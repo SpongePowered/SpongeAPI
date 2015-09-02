@@ -75,5 +75,4 @@ genEventImpl {
     outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
     validateCode = true
     eventImplCreateMethod = "createEventImpl"
-    disambAnnot = 'org.spongepowered.api.util.event.factory.UnderlyingFields';
 }

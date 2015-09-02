@@ -24,15 +24,232 @@
  */
 package org.spongepowered.api.event;
 
+import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3i;
+import com.google.common.base.Function;
+import com.google.common.base.Optional;
+import com.google.common.collect.Maps;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.GameProfile;
+import org.spongepowered.api.MinecraftVersion;
+import org.spongepowered.api.Server;
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.BlockTransaction;
+import org.spongepowered.api.block.tileentity.Sign;
+import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
+import org.spongepowered.api.block.tileentity.carrier.Furnace;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataTransactionResult;
+import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntitySnapshot;
+import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.entity.Transform;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.entity.projectile.FishHook;
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.entity.weather.Lightning;
+import org.spongepowered.api.event.action.ChangeExperienceEvent;
+import org.spongepowered.api.event.action.ConnectEvent;
+import org.spongepowered.api.event.action.DisconnectEvent;
+import org.spongepowered.api.event.action.InteractEvent;
+import org.spongepowered.api.event.action.MessageEvent;
+import org.spongepowered.api.event.block.AttackBlockEvent;
+import org.spongepowered.api.event.block.BlockEvent;
+import org.spongepowered.api.event.block.BreakBlockEvent;
+import org.spongepowered.api.event.block.ChangeBlockEvent;
+import org.spongepowered.api.event.block.CollideBlockEvent;
+import org.spongepowered.api.event.block.DecayBlockEvent;
+import org.spongepowered.api.event.block.GrowBlockEvent;
+import org.spongepowered.api.event.block.HarvestBlockEvent;
+import org.spongepowered.api.event.block.InteractBlockEvent;
+import org.spongepowered.api.event.block.MoveBlockEvent;
+import org.spongepowered.api.event.block.NotifyNeighborBlockEvent;
+import org.spongepowered.api.event.block.PlaceBlockEvent;
+import org.spongepowered.api.event.block.tileentity.BrewingStandBrewItemsEvent;
+import org.spongepowered.api.event.block.tileentity.BrewingStandEvent;
+import org.spongepowered.api.event.block.tileentity.ChangeSignEvent;
+import org.spongepowered.api.event.block.tileentity.FurnaceConsumeFuelEvent;
+import org.spongepowered.api.event.block.tileentity.FurnaceEvent;
+import org.spongepowered.api.event.block.tileentity.FurnaceSmeltItemEvent;
+import org.spongepowered.api.event.block.tileentity.TargetTileEntityEvent;
+import org.spongepowered.api.event.block.tileentity.TileEntityEvent;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
+import org.spongepowered.api.event.cause.entity.health.HealthModifier;
+import org.spongepowered.api.event.command.CommandSourceEvent;
+import org.spongepowered.api.event.command.SendCommandEvent;
+import org.spongepowered.api.event.command.TabCompleteCommandEvent;
+import org.spongepowered.api.event.data.ChangeDataHolderEvent;
+import org.spongepowered.api.event.entity.AffectEntityEvent;
+import org.spongepowered.api.event.entity.BreedEntityEvent;
+import org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent;
+import org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent;
+import org.spongepowered.api.event.entity.CollideEntityEvent;
+import org.spongepowered.api.event.entity.CreateEntityEvent;
+import org.spongepowered.api.event.entity.DamageEntityEvent;
+import org.spongepowered.api.event.entity.DestructEntityEvent;
+import org.spongepowered.api.event.entity.DismountEntityEvent;
+import org.spongepowered.api.event.entity.DisplaceEntityEvent;
+import org.spongepowered.api.event.entity.EntityEvent;
+import org.spongepowered.api.event.entity.EntityPortalEvent;
+import org.spongepowered.api.event.entity.ExpireEntityEvent;
+import org.spongepowered.api.event.entity.FishingEvent;
+import org.spongepowered.api.event.entity.HarvestEntityEvent;
+import org.spongepowered.api.event.entity.HealEntityEvent;
+import org.spongepowered.api.event.entity.IgniteEntityEvent;
+import org.spongepowered.api.event.entity.InteractEntityEvent;
+import org.spongepowered.api.event.entity.LeashEntityEvent;
+import org.spongepowered.api.event.entity.MountEntityEvent;
+import org.spongepowered.api.event.entity.PreCreateEntityEvent;
+import org.spongepowered.api.event.entity.SpawnEntityEvent;
+import org.spongepowered.api.event.entity.TameEntityEvent;
+import org.spongepowered.api.event.entity.TargetEntityEvent;
+import org.spongepowered.api.event.entity.UnleashEntityEvent;
+import org.spongepowered.api.event.entity.item.ItemMergeItemEvent;
+import org.spongepowered.api.event.entity.item.TargetItemEvent;
+import org.spongepowered.api.event.entity.living.LivingEvent;
+import org.spongepowered.api.event.entity.living.TargetLivingEvent;
+import org.spongepowered.api.event.entity.living.human.ChangeHumanExperienceEvent;
+import org.spongepowered.api.event.entity.living.human.ChangeHumanGameModeEvent;
+import org.spongepowered.api.event.entity.living.human.ChangeHumanLevelEvent;
+import org.spongepowered.api.event.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.entity.living.human.HumanSleepEvent;
+import org.spongepowered.api.event.entity.living.human.TargetHumanEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerChangeStatisticEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerChatEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerConnectionEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerConnectionRegisterChannelEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerConnectionUnregisterChannelEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerGainAchievementEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerJoinEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerKickEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerMessageEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerQuitEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerResourcePackStatusEvent;
+import org.spongepowered.api.event.entity.living.player.RespawnPlayerEvent;
+import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
+import org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent;
+import org.spongepowered.api.event.entity.projectile.TargetProjectileEvent;
+import org.spongepowered.api.event.game.state.GameAboutToStartServerEvent;
+import org.spongepowered.api.event.game.state.GameConstructionEvent;
+import org.spongepowered.api.event.game.state.GameInitializationEvent;
+import org.spongepowered.api.event.game.state.GameLoadCompleteEvent;
+import org.spongepowered.api.event.game.state.GamePostInitializationEvent;
+import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
+import org.spongepowered.api.event.game.state.GameStartedServerEvent;
+import org.spongepowered.api.event.game.state.GameStartingServerEvent;
+import org.spongepowered.api.event.game.state.GameStateEvent;
+import org.spongepowered.api.event.game.state.GameStoppedServerEvent;
+import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
+import org.spongepowered.api.event.inventory.BlockBrewEvent;
+import org.spongepowered.api.event.inventory.BlockInventoryEvent;
+import org.spongepowered.api.event.inventory.BulkItemResultEvent;
+import org.spongepowered.api.event.inventory.ContainerEvent;
+import org.spongepowered.api.event.inventory.DropItemStackEvent;
+import org.spongepowered.api.event.inventory.InventoryClickEvent;
+import org.spongepowered.api.event.inventory.InventoryCloseEvent;
+import org.spongepowered.api.event.inventory.InventoryEvent;
+import org.spongepowered.api.event.inventory.ItemResultEvent;
+import org.spongepowered.api.event.inventory.PickUpItemEvent;
+import org.spongepowered.api.event.inventory.UseItemStackEvent;
+import org.spongepowered.api.event.inventory.viewer.ViewerCraftItemEvent;
+import org.spongepowered.api.event.inventory.viewer.ViewerEvent;
+import org.spongepowered.api.event.inventory.viewer.ViewerOpenContainerEvent;
+import org.spongepowered.api.event.network.BanIpEvent;
+import org.spongepowered.api.event.network.GameClientConnectionEvent;
+import org.spongepowered.api.event.network.PardonIpEvent;
+import org.spongepowered.api.event.plugin.PluginEvent;
+import org.spongepowered.api.event.plugin.PluginForceChunkEvent;
+import org.spongepowered.api.event.plugin.PluginUnforceChunkEvent;
+import org.spongepowered.api.event.rcon.RconEvent;
+import org.spongepowered.api.event.rcon.RconLoginEvent;
+import org.spongepowered.api.event.rcon.RconQuitEvent;
+import org.spongepowered.api.event.server.PingServerEvent;
+import org.spongepowered.api.event.server.ServerCreateWorldEvent;
+import org.spongepowered.api.event.server.ServerEvent;
+import org.spongepowered.api.event.server.query.BasicQueryServerEvent;
+import org.spongepowered.api.event.server.query.FullQueryServerEvent;
+import org.spongepowered.api.event.server.query.QueryServerEvent;
+import org.spongepowered.api.event.user.BanUserEvent;
+import org.spongepowered.api.event.user.PardonUserEvent;
+import org.spongepowered.api.event.user.TargetUserEvent;
+import org.spongepowered.api.event.world.ChangeWorldGameRuleEvent;
+import org.spongepowered.api.event.world.ChangeWorldWeatherEvent;
+import org.spongepowered.api.event.world.CreatePortalEvent;
+import org.spongepowered.api.event.world.CreateWorldEvent;
+import org.spongepowered.api.event.world.LoadWorldEvent;
+import org.spongepowered.api.event.world.UnloadWorldEvent;
+import org.spongepowered.api.event.world.WorldEvent;
+import org.spongepowered.api.event.world.WorldExplosionEvent;
+import org.spongepowered.api.event.world.WorldGenerateChunkEvent;
+import org.spongepowered.api.event.world.WorldTickBlockEvent;
+import org.spongepowered.api.event.world.chunk.ChangeChunkEvent;
+import org.spongepowered.api.event.world.chunk.ForcedChunkEvent;
+import org.spongepowered.api.event.world.chunk.LoadChunkEvent;
+import org.spongepowered.api.event.world.chunk.PopulateChunkEvent;
+import org.spongepowered.api.event.world.chunk.UnforcedChunkEvent;
+import org.spongepowered.api.event.world.chunk.UnloadChunkEvent;
+import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.Container;
+import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.ItemStackTransaction;
+import org.spongepowered.api.item.inventory.Slot;
+import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
+import org.spongepowered.api.item.recipe.Recipe;
+import org.spongepowered.api.network.PlayerConnection;
+import org.spongepowered.api.network.RemoteConnection;
+import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.potion.PotionEffect;
+import org.spongepowered.api.resourcepack.ResourcePack;
+import org.spongepowered.api.service.world.ChunkLoadService;
+import org.spongepowered.api.statistic.Statistic;
+import org.spongepowered.api.statistic.achievement.Achievement;
+import org.spongepowered.api.status.Favicon;
+import org.spongepowered.api.status.StatusClient;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.sink.MessageSink;
+import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.Tuple;
+import org.spongepowered.api.util.ban.Ban;
+import org.spongepowered.api.util.command.CommandResult;
+import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.source.RconSource;
+import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.TeleporterAgent;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.gen.Populator;
+import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.api.world.weather.Weather;
 
-/** 
+import java.net.InetSocketAddress;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
+/**
  * Generates Sponge event implementations.
  */
 public final class SpongeEventFactory {
     private SpongeEventFactory() {
     }
 
-    /** 
+    /**
      * Creates an event class from an interface and a map of property names to values.
      * 
      * @param type The event interface to generate a class for
@@ -40,12 +257,12 @@ public final class SpongeEventFactory {
      * @param <T> The type of event to be created
      * @return The generated event class.
      */
-@java.lang.SuppressWarnings(value = "unchecked")
-    public static <T>T createEventImpl(java.lang.Class<T> type, java.util.Map<java.lang.String, java.lang.Object> values) {
-        return org.spongepowered.api.event.SpongeEventFactoryUtils.createEventImpl(type, values);
+    @SuppressWarnings(value = "unchecked")
+    public static <T>T createEventImpl(Class<T> type, Map<String, Object> values) {
+        return SpongeEventFactoryUtils.createEventImpl(type, values);
     }
 
-    /** 
+    /**
      * Creates a new {@link GameStateEvent} of the given type.
      * 
      * @param type The type of the state event
@@ -53,25 +270,25 @@ public final class SpongeEventFactory {
      * @param <T> The type of the state event
      * @return A new instance of the event
      */
-public static <T extends org.spongepowered.api.event.game.state.GameStateEvent>T createState(java.lang.Class<T> type, org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMapWithExpectedSize(1);
+    public static <T extends GameStateEvent>T createState(Class<T> type, Game game) {
+        Map<String, Object> values = Maps.newHashMapWithExpectedSize(1);
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(type, values);
+        return SpongeEventFactory.createEventImpl(type, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.Event}.
      * 
      * @return A new event
      */
-public static org.spongepowered.api.event.Event createEvent() {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.Event.class, values);
+    public static Event createEvent() {
+        Map<String, Object> values = Maps.newHashMap();
+        return SpongeEventFactory.createEventImpl(Event.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.GameEvent}.
@@ -79,13 +296,13 @@ public static org.spongepowered.api.event.Event createEvent() {
      * @param game The game
      * @return A new game event
      */
-public static org.spongepowered.api.event.GameEvent createGameEvent(org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GameEvent createGameEvent(Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.GameEvent.class, values);
+        return SpongeEventFactory.createEventImpl(GameEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.action.ChangeExperienceEvent}.
@@ -94,38 +311,38 @@ public static org.spongepowered.api.event.GameEvent createGameEvent(org.spongepo
      * @param originalExperience The original experience
      * @return A new change experience event
      */
-public static org.spongepowered.api.event.action.ChangeExperienceEvent createChangeExperienceEvent(int experience, int originalExperience) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeExperienceEvent createChangeExperienceEvent(int experience, int originalExperience) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("experience", experience);
         values.put("originalExperience", originalExperience);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.action.ChangeExperienceEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeExperienceEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.action.ConnectEvent}.
      * 
      * @return A new connect event
      */
-public static org.spongepowered.api.event.action.ConnectEvent createConnectEvent() {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.action.ConnectEvent.class, values);
+    public static ConnectEvent createConnectEvent() {
+        Map<String, Object> values = Maps.newHashMap();
+        return SpongeEventFactory.createEventImpl(ConnectEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.action.DisconnectEvent}.
      * 
      * @return A new disconnect event
      */
-public static org.spongepowered.api.event.action.DisconnectEvent createDisconnectEvent() {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.action.DisconnectEvent.class, values);
+    public static DisconnectEvent createDisconnectEvent() {
+        Map<String, Object> values = Maps.newHashMap();
+        return SpongeEventFactory.createEventImpl(DisconnectEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.action.InteractEvent}.
@@ -135,15 +352,15 @@ public static org.spongepowered.api.event.action.DisconnectEvent createDisconnec
      * @param interactionPoint The interaction point
      * @return A new interact event
      */
-public static org.spongepowered.api.event.action.InteractEvent createInteractEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEvent createInteractEvent(Cause cause, Game game, Optional<Vector3d> interactionPoint) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.action.InteractEvent.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.action.MessageEvent}.
@@ -155,17 +372,17 @@ public static org.spongepowered.api.event.action.InteractEvent createInteractEve
      * @param source The source
      * @return A new message event
      */
-public static org.spongepowered.api.event.action.MessageEvent createMessageEvent(org.spongepowered.api.Game game, org.spongepowered.api.text.Text message, org.spongepowered.api.text.Text newMessage, org.spongepowered.api.text.sink.MessageSink sink, org.spongepowered.api.util.command.CommandSource source) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static MessageEvent createMessageEvent(Game game, Text message, Text newMessage, MessageSink sink, CommandSource source) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("message", message);
         values.put("newMessage", newMessage);
         values.put("sink", sink);
         values.put("source", source);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.action.MessageEvent.class, values);
+        return SpongeEventFactory.createEventImpl(MessageEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.AttackBlockEvent}.
@@ -178,18 +395,18 @@ public static org.spongepowered.api.event.action.MessageEvent createMessageEvent
      * @param targetSide The target side
      * @return A new attack block event
      */
-public static org.spongepowered.api.event.block.AttackBlockEvent createAttackBlockEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static AttackBlockEvent createAttackBlockEvent(Cause cause, Game game, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.AttackBlockEvent.class, values);
+        return SpongeEventFactory.createEventImpl(AttackBlockEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.AttackBlockEvent.SourceEntity}.
@@ -204,8 +421,8 @@ public static org.spongepowered.api.event.block.AttackBlockEvent createAttackBlo
      * @param targetSide The target side
      * @return A new source entity attack block event
      */
-public static org.spongepowered.api.event.block.AttackBlockEvent.SourceEntity createAttackBlockEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static AttackBlockEvent.SourceEntity createAttackBlockEventSourceEntity(Cause cause, Game game, Optional<Vector3d> interactionPoint, Entity sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -214,10 +431,10 @@ public static org.spongepowered.api.event.block.AttackBlockEvent.SourceEntity cr
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.AttackBlockEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(AttackBlockEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.AttackBlockEvent.SourceHuman}.
@@ -232,8 +449,8 @@ public static org.spongepowered.api.event.block.AttackBlockEvent.SourceEntity cr
      * @param targetSide The target side
      * @return A new source human attack block event
      */
-public static org.spongepowered.api.event.block.AttackBlockEvent.SourceHuman createAttackBlockEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static AttackBlockEvent.SourceHuman createAttackBlockEventSourceHuman(Cause cause, Game game, Optional<Vector3d> interactionPoint, Human sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -242,10 +459,10 @@ public static org.spongepowered.api.event.block.AttackBlockEvent.SourceHuman cre
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.AttackBlockEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(AttackBlockEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.AttackBlockEvent.SourceLiving}.
@@ -260,8 +477,8 @@ public static org.spongepowered.api.event.block.AttackBlockEvent.SourceHuman cre
      * @param targetSide The target side
      * @return A new source living attack block event
      */
-public static org.spongepowered.api.event.block.AttackBlockEvent.SourceLiving createAttackBlockEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static AttackBlockEvent.SourceLiving createAttackBlockEventSourceLiving(Cause cause, Game game, Optional<Vector3d> interactionPoint, Living sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -270,10 +487,10 @@ public static org.spongepowered.api.event.block.AttackBlockEvent.SourceLiving cr
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.AttackBlockEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(AttackBlockEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.AttackBlockEvent.SourcePlayer}.
@@ -288,8 +505,8 @@ public static org.spongepowered.api.event.block.AttackBlockEvent.SourceLiving cr
      * @param targetSide The target side
      * @return A new source player attack block event
      */
-public static org.spongepowered.api.event.block.AttackBlockEvent.SourcePlayer createAttackBlockEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static AttackBlockEvent.SourcePlayer createAttackBlockEventSourcePlayer(Cause cause, Game game, Optional<Vector3d> interactionPoint, Player sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -298,10 +515,10 @@ public static org.spongepowered.api.event.block.AttackBlockEvent.SourcePlayer cr
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.AttackBlockEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(AttackBlockEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.BlockEvent}.
@@ -313,17 +530,17 @@ public static org.spongepowered.api.event.block.AttackBlockEvent.SourcePlayer cr
      * @param sourceSide The source side
      * @return A new block event
      */
-public static org.spongepowered.api.event.block.BlockEvent createBlockEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BlockEvent createBlockEvent(Cause cause, Game game, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.BlockEvent.class, values);
+        return SpongeEventFactory.createEventImpl(BlockEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.BreakBlockEvent}.
@@ -333,15 +550,15 @@ public static org.spongepowered.api.event.block.BlockEvent createBlockEvent(org.
      * @param transactions The transactions
      * @return A new break block event
      */
-public static org.spongepowered.api.event.block.BreakBlockEvent createBreakBlockEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BreakBlockEvent createBreakBlockEvent(Cause cause, Game game, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.BreakBlockEvent.class, values);
+        return SpongeEventFactory.createEventImpl(BreakBlockEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.BreakBlockEvent.SourceBlock}.
@@ -354,18 +571,18 @@ public static org.spongepowered.api.event.block.BreakBlockEvent createBreakBlock
      * @param transactions The transactions
      * @return A new source block break block event
      */
-public static org.spongepowered.api.event.block.BreakBlockEvent.SourceBlock createBreakBlockEventSourceBlock(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BreakBlockEvent.SourceBlock createBreakBlockEventSourceBlock(Cause cause, Game game, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.BreakBlockEvent.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(BreakBlockEvent.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.BreakBlockEvent.SourceEntity}.
@@ -377,17 +594,17 @@ public static org.spongepowered.api.event.block.BreakBlockEvent.SourceBlock crea
      * @param transactions The transactions
      * @return A new source entity break block event
      */
-public static org.spongepowered.api.event.block.BreakBlockEvent.SourceEntity createBreakBlockEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BreakBlockEvent.SourceEntity createBreakBlockEventSourceEntity(Cause cause, Game game, Entity sourceEntity, Transform<World> sourceTransform, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.BreakBlockEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(BreakBlockEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.BreakBlockEvent.SourceHuman}.
@@ -399,17 +616,17 @@ public static org.spongepowered.api.event.block.BreakBlockEvent.SourceEntity cre
      * @param transactions The transactions
      * @return A new source human break block event
      */
-public static org.spongepowered.api.event.block.BreakBlockEvent.SourceHuman createBreakBlockEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BreakBlockEvent.SourceHuman createBreakBlockEventSourceHuman(Cause cause, Game game, Human sourceEntity, Transform<World> sourceTransform, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.BreakBlockEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(BreakBlockEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.BreakBlockEvent.SourceLiving}.
@@ -421,17 +638,17 @@ public static org.spongepowered.api.event.block.BreakBlockEvent.SourceHuman crea
      * @param transactions The transactions
      * @return A new source living break block event
      */
-public static org.spongepowered.api.event.block.BreakBlockEvent.SourceLiving createBreakBlockEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BreakBlockEvent.SourceLiving createBreakBlockEventSourceLiving(Cause cause, Game game, Living sourceEntity, Transform<World> sourceTransform, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.BreakBlockEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(BreakBlockEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.BreakBlockEvent.SourcePlayer}.
@@ -443,17 +660,17 @@ public static org.spongepowered.api.event.block.BreakBlockEvent.SourceLiving cre
      * @param transactions The transactions
      * @return A new source player break block event
      */
-public static org.spongepowered.api.event.block.BreakBlockEvent.SourcePlayer createBreakBlockEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BreakBlockEvent.SourcePlayer createBreakBlockEventSourcePlayer(Cause cause, Game game, Player sourceEntity, Transform<World> sourceTransform, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.BreakBlockEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(BreakBlockEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent}.
@@ -463,15 +680,15 @@ public static org.spongepowered.api.event.block.BreakBlockEvent.SourcePlayer cre
      * @param transactions The transactions
      * @return A new change block event
      */
-public static org.spongepowered.api.event.block.ChangeBlockEvent createChangeBlockEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeBlockEvent createChangeBlockEvent(Cause cause, Game game, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.ChangeBlockEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeBlockEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.SourceBlock}.
@@ -484,18 +701,18 @@ public static org.spongepowered.api.event.block.ChangeBlockEvent createChangeBlo
      * @param transactions The transactions
      * @return A new source block change block event
      */
-public static org.spongepowered.api.event.block.ChangeBlockEvent.SourceBlock createChangeBlockEventSourceBlock(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeBlockEvent.SourceBlock createChangeBlockEventSourceBlock(Cause cause, Game game, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.ChangeBlockEvent.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeBlockEvent.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.SourceEntity}.
@@ -507,17 +724,17 @@ public static org.spongepowered.api.event.block.ChangeBlockEvent.SourceBlock cre
      * @param transactions The transactions
      * @return A new source entity change block event
      */
-public static org.spongepowered.api.event.block.ChangeBlockEvent.SourceEntity createChangeBlockEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeBlockEvent.SourceEntity createChangeBlockEventSourceEntity(Cause cause, Game game, Entity sourceEntity, Transform<World> sourceTransform, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.ChangeBlockEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeBlockEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.SourceHuman}.
@@ -529,17 +746,17 @@ public static org.spongepowered.api.event.block.ChangeBlockEvent.SourceEntity cr
      * @param transactions The transactions
      * @return A new source human change block event
      */
-public static org.spongepowered.api.event.block.ChangeBlockEvent.SourceHuman createChangeBlockEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeBlockEvent.SourceHuman createChangeBlockEventSourceHuman(Cause cause, Game game, Human sourceEntity, Transform<World> sourceTransform, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.ChangeBlockEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeBlockEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.SourceLiving}.
@@ -551,17 +768,17 @@ public static org.spongepowered.api.event.block.ChangeBlockEvent.SourceHuman cre
      * @param transactions The transactions
      * @return A new source living change block event
      */
-public static org.spongepowered.api.event.block.ChangeBlockEvent.SourceLiving createChangeBlockEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeBlockEvent.SourceLiving createChangeBlockEventSourceLiving(Cause cause, Game game, Living sourceEntity, Transform<World> sourceTransform, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.ChangeBlockEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeBlockEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.SourcePlayer}.
@@ -573,17 +790,17 @@ public static org.spongepowered.api.event.block.ChangeBlockEvent.SourceLiving cr
      * @param transactions The transactions
      * @return A new source player change block event
      */
-public static org.spongepowered.api.event.block.ChangeBlockEvent.SourcePlayer createChangeBlockEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeBlockEvent.SourcePlayer createChangeBlockEventSourcePlayer(Cause cause, Game game, Player sourceEntity, Transform<World> sourceTransform, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.ChangeBlockEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeBlockEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.SourceWorld}.
@@ -594,16 +811,16 @@ public static org.spongepowered.api.event.block.ChangeBlockEvent.SourcePlayer cr
      * @param transactions The transactions
      * @return A new source world change block event
      */
-public static org.spongepowered.api.event.block.ChangeBlockEvent.SourceWorld createChangeBlockEventSourceWorld(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeBlockEvent.SourceWorld createChangeBlockEventSourceWorld(Cause cause, Game game, World sourceWorld, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.ChangeBlockEvent.SourceWorld.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeBlockEvent.SourceWorld.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.CollideBlockEvent}.
@@ -615,17 +832,17 @@ public static org.spongepowered.api.event.block.ChangeBlockEvent.SourceWorld cre
      * @param targetSide The target side
      * @return A new collide block event
      */
-public static org.spongepowered.api.event.block.CollideBlockEvent createCollideBlockEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.block.BlockState targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CollideBlockEvent createCollideBlockEvent(Cause cause, Game game, BlockState targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.CollideBlockEvent.class, values);
+        return SpongeEventFactory.createEventImpl(CollideBlockEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.CollideBlockEvent.SourceEntity}.
@@ -639,8 +856,8 @@ public static org.spongepowered.api.event.block.CollideBlockEvent createCollideB
      * @param targetSide The target side
      * @return A new source entity collide block event
      */
-public static org.spongepowered.api.event.block.CollideBlockEvent.SourceEntity createCollideBlockEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockState targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CollideBlockEvent.SourceEntity createCollideBlockEventSourceEntity(Cause cause, Game game, Entity sourceEntity, Transform<World> sourceTransform, BlockState targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
@@ -648,10 +865,10 @@ public static org.spongepowered.api.event.block.CollideBlockEvent.SourceEntity c
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.CollideBlockEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(CollideBlockEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.CollideBlockEvent.SourceHuman}.
@@ -665,8 +882,8 @@ public static org.spongepowered.api.event.block.CollideBlockEvent.SourceEntity c
      * @param targetSide The target side
      * @return A new source human collide block event
      */
-public static org.spongepowered.api.event.block.CollideBlockEvent.SourceHuman createCollideBlockEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockState targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CollideBlockEvent.SourceHuman createCollideBlockEventSourceHuman(Cause cause, Game game, Human sourceEntity, Transform<World> sourceTransform, BlockState targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
@@ -674,10 +891,10 @@ public static org.spongepowered.api.event.block.CollideBlockEvent.SourceHuman cr
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.CollideBlockEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(CollideBlockEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.CollideBlockEvent.SourceLiving}.
@@ -691,8 +908,8 @@ public static org.spongepowered.api.event.block.CollideBlockEvent.SourceHuman cr
      * @param targetSide The target side
      * @return A new source living collide block event
      */
-public static org.spongepowered.api.event.block.CollideBlockEvent.SourceLiving createCollideBlockEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockState targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CollideBlockEvent.SourceLiving createCollideBlockEventSourceLiving(Cause cause, Game game, Living sourceEntity, Transform<World> sourceTransform, BlockState targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
@@ -700,10 +917,10 @@ public static org.spongepowered.api.event.block.CollideBlockEvent.SourceLiving c
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.CollideBlockEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(CollideBlockEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.CollideBlockEvent.SourcePlayer}.
@@ -717,8 +934,8 @@ public static org.spongepowered.api.event.block.CollideBlockEvent.SourceLiving c
      * @param targetSide The target side
      * @return A new source player collide block event
      */
-public static org.spongepowered.api.event.block.CollideBlockEvent.SourcePlayer createCollideBlockEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockState targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CollideBlockEvent.SourcePlayer createCollideBlockEventSourcePlayer(Cause cause, Game game, Player sourceEntity, Transform<World> sourceTransform, BlockState targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
@@ -726,10 +943,10 @@ public static org.spongepowered.api.event.block.CollideBlockEvent.SourcePlayer c
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.CollideBlockEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(CollideBlockEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.DecayBlockEvent}.
@@ -739,15 +956,15 @@ public static org.spongepowered.api.event.block.CollideBlockEvent.SourcePlayer c
      * @param transactions The transactions
      * @return A new decay block event
      */
-public static org.spongepowered.api.event.block.DecayBlockEvent createDecayBlockEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DecayBlockEvent createDecayBlockEvent(Cause cause, Game game, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.DecayBlockEvent.class, values);
+        return SpongeEventFactory.createEventImpl(DecayBlockEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.DecayBlockEvent.SourceWorld}.
@@ -758,16 +975,16 @@ public static org.spongepowered.api.event.block.DecayBlockEvent createDecayBlock
      * @param transactions The transactions
      * @return A new source world decay block event
      */
-public static org.spongepowered.api.event.block.DecayBlockEvent.SourceWorld createDecayBlockEventSourceWorld(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DecayBlockEvent.SourceWorld createDecayBlockEventSourceWorld(Cause cause, Game game, World sourceWorld, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.DecayBlockEvent.SourceWorld.class, values);
+        return SpongeEventFactory.createEventImpl(DecayBlockEvent.SourceWorld.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.GrowBlockEvent}.
@@ -777,15 +994,15 @@ public static org.spongepowered.api.event.block.DecayBlockEvent.SourceWorld crea
      * @param transactions The transactions
      * @return A new grow block event
      */
-public static org.spongepowered.api.event.block.GrowBlockEvent createGrowBlockEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GrowBlockEvent createGrowBlockEvent(Cause cause, Game game, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.GrowBlockEvent.class, values);
+        return SpongeEventFactory.createEventImpl(GrowBlockEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.GrowBlockEvent.SourceWorld}.
@@ -796,16 +1013,16 @@ public static org.spongepowered.api.event.block.GrowBlockEvent createGrowBlockEv
      * @param transactions The transactions
      * @return A new source world grow block event
      */
-public static org.spongepowered.api.event.block.GrowBlockEvent.SourceWorld createGrowBlockEventSourceWorld(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GrowBlockEvent.SourceWorld createGrowBlockEventSourceWorld(Cause cause, Game game, World sourceWorld, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.GrowBlockEvent.SourceWorld.class, values);
+        return SpongeEventFactory.createEventImpl(GrowBlockEvent.SourceWorld.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.HarvestBlockEvent}.
@@ -821,8 +1038,8 @@ public static org.spongepowered.api.event.block.GrowBlockEvent.SourceWorld creat
      * @param targetLocation The target location
      * @return A new harvest block event
      */
-public static org.spongepowered.api.event.block.HarvestBlockEvent createHarvestBlockEvent(float dropChance, int experience, org.spongepowered.api.Game game, java.util.Collection<org.spongepowered.api.item.inventory.ItemStack> itemStacks, float originalDropChance, int originalExperience, java.util.Collection<org.spongepowered.api.item.inventory.ItemStack> originalItemStacks, org.spongepowered.api.block.BlockState targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HarvestBlockEvent createHarvestBlockEvent(float dropChance, int experience, Game game, Collection<ItemStack> itemStacks, float originalDropChance, int originalExperience, Collection<ItemStack> originalItemStacks, BlockState targetBlock, Location<World> targetLocation) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("dropChance", dropChance);
         values.put("experience", experience);
         values.put("game", game);
@@ -832,10 +1049,10 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent createHarvestB
         values.put("originalItemStacks", originalItemStacks);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.HarvestBlockEvent.class, values);
+        return SpongeEventFactory.createEventImpl(HarvestBlockEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.HarvestBlockEvent.SourceBlock}.
@@ -855,8 +1072,8 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent createHarvestB
      * @param targetLocation The target location
      * @return A new source block harvest block event
      */
-public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceBlock createHarvestBlockEventSourceBlock(org.spongepowered.api.event.cause.Cause cause, float dropChance, int experience, org.spongepowered.api.Game game, java.util.Collection<org.spongepowered.api.item.inventory.ItemStack> itemStacks, float originalDropChance, int originalExperience, java.util.Collection<org.spongepowered.api.item.inventory.ItemStack> originalItemStacks, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, org.spongepowered.api.block.BlockState targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HarvestBlockEvent.SourceBlock createHarvestBlockEventSourceBlock(Cause cause, float dropChance, int experience, Game game, Collection<ItemStack> itemStacks, float originalDropChance, int originalExperience, Collection<ItemStack> originalItemStacks, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, BlockState targetBlock, Location<World> targetLocation) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("dropChance", dropChance);
         values.put("experience", experience);
@@ -870,10 +1087,10 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceBlock cr
         values.put("sourceSide", sourceSide);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.HarvestBlockEvent.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(HarvestBlockEvent.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.HarvestBlockEvent.SourceEntity}.
@@ -892,8 +1109,8 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceBlock cr
      * @param targetLocation The target location
      * @return A new source entity harvest block event
      */
-public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceEntity createHarvestBlockEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, float dropChance, int experience, org.spongepowered.api.Game game, java.util.Collection<org.spongepowered.api.item.inventory.ItemStack> itemStacks, float originalDropChance, int originalExperience, java.util.Collection<org.spongepowered.api.item.inventory.ItemStack> originalItemStacks, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockState targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HarvestBlockEvent.SourceEntity createHarvestBlockEventSourceEntity(Cause cause, float dropChance, int experience, Game game, Collection<ItemStack> itemStacks, float originalDropChance, int originalExperience, Collection<ItemStack> originalItemStacks, Entity sourceEntity, Transform<World> sourceTransform, BlockState targetBlock, Location<World> targetLocation) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("dropChance", dropChance);
         values.put("experience", experience);
@@ -906,10 +1123,10 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceEntity c
         values.put("sourceTransform", sourceTransform);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.HarvestBlockEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(HarvestBlockEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.HarvestBlockEvent.SourceHuman}.
@@ -928,8 +1145,8 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceEntity c
      * @param targetLocation The target location
      * @return A new source human harvest block event
      */
-public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceHuman createHarvestBlockEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, float dropChance, int experience, org.spongepowered.api.Game game, java.util.Collection<org.spongepowered.api.item.inventory.ItemStack> itemStacks, float originalDropChance, int originalExperience, java.util.Collection<org.spongepowered.api.item.inventory.ItemStack> originalItemStacks, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockState targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HarvestBlockEvent.SourceHuman createHarvestBlockEventSourceHuman(Cause cause, float dropChance, int experience, Game game, Collection<ItemStack> itemStacks, float originalDropChance, int originalExperience, Collection<ItemStack> originalItemStacks, Human sourceEntity, Transform<World> sourceTransform, BlockState targetBlock, Location<World> targetLocation) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("dropChance", dropChance);
         values.put("experience", experience);
@@ -942,10 +1159,10 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceHuman cr
         values.put("sourceTransform", sourceTransform);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.HarvestBlockEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(HarvestBlockEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.HarvestBlockEvent.SourceLiving}.
@@ -964,8 +1181,8 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceHuman cr
      * @param targetLocation The target location
      * @return A new source living harvest block event
      */
-public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceLiving createHarvestBlockEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, float dropChance, int experience, org.spongepowered.api.Game game, java.util.Collection<org.spongepowered.api.item.inventory.ItemStack> itemStacks, float originalDropChance, int originalExperience, java.util.Collection<org.spongepowered.api.item.inventory.ItemStack> originalItemStacks, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockState targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HarvestBlockEvent.SourceLiving createHarvestBlockEventSourceLiving(Cause cause, float dropChance, int experience, Game game, Collection<ItemStack> itemStacks, float originalDropChance, int originalExperience, Collection<ItemStack> originalItemStacks, Living sourceEntity, Transform<World> sourceTransform, BlockState targetBlock, Location<World> targetLocation) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("dropChance", dropChance);
         values.put("experience", experience);
@@ -978,10 +1195,10 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceLiving c
         values.put("sourceTransform", sourceTransform);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.HarvestBlockEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(HarvestBlockEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.HarvestBlockEvent.SourcePlayer}.
@@ -1000,8 +1217,8 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent.SourceLiving c
      * @param targetLocation The target location
      * @return A new source player harvest block event
      */
-public static org.spongepowered.api.event.block.HarvestBlockEvent.SourcePlayer createHarvestBlockEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, float dropChance, int experience, org.spongepowered.api.Game game, java.util.Collection<org.spongepowered.api.item.inventory.ItemStack> itemStacks, float originalDropChance, int originalExperience, java.util.Collection<org.spongepowered.api.item.inventory.ItemStack> originalItemStacks, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockState targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HarvestBlockEvent.SourcePlayer createHarvestBlockEventSourcePlayer(Cause cause, float dropChance, int experience, Game game, Collection<ItemStack> itemStacks, float originalDropChance, int originalExperience, Collection<ItemStack> originalItemStacks, Player sourceEntity, Transform<World> sourceTransform, BlockState targetBlock, Location<World> targetLocation) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("dropChance", dropChance);
         values.put("experience", experience);
@@ -1014,10 +1231,10 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent.SourcePlayer c
         values.put("sourceTransform", sourceTransform);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.HarvestBlockEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(HarvestBlockEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent}.
@@ -1030,18 +1247,18 @@ public static org.spongepowered.api.event.block.HarvestBlockEvent.SourcePlayer c
      * @param targetSide The target side
      * @return A new interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent createInteractBlockEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent createInteractBlockEvent(Cause cause, Game game, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Attack}.
@@ -1054,18 +1271,18 @@ public static org.spongepowered.api.event.block.InteractBlockEvent createInterac
      * @param targetSide The target side
      * @return A new attack interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.Attack createInteractBlockEventAttack(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.Attack createInteractBlockEventAttack(Cause cause, Game game, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Attack.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Attack.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceEntity}.
@@ -1080,8 +1297,8 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Attack create
      * @param targetSide The target side
      * @return A new source entity attack interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceEntity createInteractBlockEventAttackSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.Attack.SourceEntity createInteractBlockEventAttackSourceEntity(Cause cause, Game game, Optional<Vector3d> interactionPoint, Entity sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -1090,10 +1307,10 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.Source
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Attack.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceHuman}.
@@ -1108,8 +1325,8 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.Source
      * @param targetSide The target side
      * @return A new source human attack interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceHuman createInteractBlockEventAttackSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.Attack.SourceHuman createInteractBlockEventAttackSourceHuman(Cause cause, Game game, Optional<Vector3d> interactionPoint, Human sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -1118,10 +1335,10 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.Source
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Attack.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceLiving}.
@@ -1136,8 +1353,8 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.Source
      * @param targetSide The target side
      * @return A new source living attack interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceLiving createInteractBlockEventAttackSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.Attack.SourceLiving createInteractBlockEventAttackSourceLiving(Cause cause, Game game, Optional<Vector3d> interactionPoint, Living sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -1146,10 +1363,10 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.Source
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Attack.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourcePlayer}.
@@ -1164,8 +1381,8 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.Source
      * @param targetSide The target side
      * @return A new source player attack interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourcePlayer createInteractBlockEventAttackSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.Attack.SourcePlayer createInteractBlockEventAttackSourcePlayer(Cause cause, Game game, Optional<Vector3d> interactionPoint, Player sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -1174,10 +1391,10 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.Source
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Attack.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Attack.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.SourceBlock}.
@@ -1193,8 +1410,8 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Attack.Source
      * @param targetSide The target side
      * @return A new source block interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.SourceBlock createInteractBlockEventSourceBlock(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.SourceBlock createInteractBlockEventSourceBlock(Cause cause, Game game, Optional<Vector3d> interactionPoint, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -1204,10 +1421,10 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.SourceBlock c
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.SourceEntity}.
@@ -1222,8 +1439,8 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.SourceBlock c
      * @param targetSide The target side
      * @return A new source entity interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.SourceEntity createInteractBlockEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.SourceEntity createInteractBlockEventSourceEntity(Cause cause, Game game, Optional<Vector3d> interactionPoint, Entity sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -1232,10 +1449,10 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.SourceEntity 
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.SourceHuman}.
@@ -1250,8 +1467,8 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.SourceEntity 
      * @param targetSide The target side
      * @return A new source human interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.SourceHuman createInteractBlockEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.SourceHuman createInteractBlockEventSourceHuman(Cause cause, Game game, Optional<Vector3d> interactionPoint, Human sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -1260,10 +1477,10 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.SourceHuman c
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.SourceLiving}.
@@ -1278,8 +1495,8 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.SourceHuman c
      * @param targetSide The target side
      * @return A new source living interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.SourceLiving createInteractBlockEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.SourceLiving createInteractBlockEventSourceLiving(Cause cause, Game game, Optional<Vector3d> interactionPoint, Living sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -1288,10 +1505,10 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.SourceLiving 
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.SourcePlayer}.
@@ -1306,8 +1523,8 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.SourceLiving 
      * @param targetSide The target side
      * @return A new source player interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.SourcePlayer createInteractBlockEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.SourcePlayer createInteractBlockEventSourcePlayer(Cause cause, Game game, Optional<Vector3d> interactionPoint, Player sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -1316,10 +1533,10 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.SourcePlayer 
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Use}.
@@ -1332,18 +1549,18 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.SourcePlayer 
      * @param targetSide The target side
      * @return A new use interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.Use createInteractBlockEventUse(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.Use createInteractBlockEventUse(Cause cause, Game game, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Use.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Use.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceBlock}.
@@ -1359,8 +1576,8 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use createInt
      * @param targetSide The target side
      * @return A new source block use interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceBlock createInteractBlockEventUseSourceBlock(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.Use.SourceBlock createInteractBlockEventUseSourceBlock(Cause cause, Game game, Optional<Vector3d> interactionPoint, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -1370,10 +1587,10 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceBlo
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Use.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceEntity}.
@@ -1388,8 +1605,8 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceBlo
      * @param targetSide The target side
      * @return A new source entity use interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceEntity createInteractBlockEventUseSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.Use.SourceEntity createInteractBlockEventUseSourceEntity(Cause cause, Game game, Optional<Vector3d> interactionPoint, Entity sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -1398,10 +1615,10 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceEnt
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Use.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceHuman}.
@@ -1416,8 +1633,8 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceEnt
      * @param targetSide The target side
      * @return A new source human use interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceHuman createInteractBlockEventUseSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.Use.SourceHuman createInteractBlockEventUseSourceHuman(Cause cause, Game game, Optional<Vector3d> interactionPoint, Human sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -1426,10 +1643,10 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceHum
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Use.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceLiving}.
@@ -1444,8 +1661,8 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceHum
      * @param targetSide The target side
      * @return A new source living use interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceLiving createInteractBlockEventUseSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.Use.SourceLiving createInteractBlockEventUseSourceLiving(Cause cause, Game game, Optional<Vector3d> interactionPoint, Living sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -1454,10 +1671,10 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceLiv
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Use.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Use.SourcePlayer}.
@@ -1472,8 +1689,8 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourceLiv
      * @param targetSide The target side
      * @return A new source player use interact block event
      */
-public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourcePlayer createInteractBlockEventUseSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.BlockSnapshot targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation, org.spongepowered.api.util.Direction targetSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractBlockEvent.Use.SourcePlayer createInteractBlockEventUseSourcePlayer(Cause cause, Game game, Optional<Vector3d> interactionPoint, Player sourceEntity, Transform<World> sourceTransform, BlockSnapshot targetBlock, Location<World> targetLocation, Direction targetSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -1482,10 +1699,10 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourcePla
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.InteractBlockEvent.Use.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(InteractBlockEvent.Use.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.MoveBlockEvent}.
@@ -1495,15 +1712,15 @@ public static org.spongepowered.api.event.block.InteractBlockEvent.Use.SourcePla
      * @param transactions The transactions
      * @return A new move block event
      */
-public static org.spongepowered.api.event.block.MoveBlockEvent createMoveBlockEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static MoveBlockEvent createMoveBlockEvent(Cause cause, Game game, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.MoveBlockEvent.class, values);
+        return SpongeEventFactory.createEventImpl(MoveBlockEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.MoveBlockEvent.SourceBlock}.
@@ -1516,18 +1733,18 @@ public static org.spongepowered.api.event.block.MoveBlockEvent createMoveBlockEv
      * @param transactions The transactions
      * @return A new source block move block event
      */
-public static org.spongepowered.api.event.block.MoveBlockEvent.SourceBlock createMoveBlockEventSourceBlock(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static MoveBlockEvent.SourceBlock createMoveBlockEventSourceBlock(Cause cause, Game game, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.MoveBlockEvent.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(MoveBlockEvent.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent}.
@@ -1538,16 +1755,16 @@ public static org.spongepowered.api.event.block.MoveBlockEvent.SourceBlock creat
      * @param relatives The relatives
      * @return A new notify neighbor block event
      */
-public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent createNotifyNeighborBlockEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> originalRelatives, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> relatives) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static NotifyNeighborBlockEvent createNotifyNeighborBlockEvent(Cause cause, Game game, Map<Direction, BlockState> originalRelatives, Map<Direction, BlockState> relatives) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("originalRelatives", originalRelatives);
         values.put("relatives", relatives);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.class, values);
+        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn}.
@@ -1558,16 +1775,16 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent createN
      * @param relatives The relatives
      * @return A new burn notify neighbor block event
      */
-public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn createNotifyNeighborBlockEventBurn(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> originalRelatives, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> relatives) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static NotifyNeighborBlockEvent.Burn createNotifyNeighborBlockEventBurn(Cause cause, Game game, Map<Direction, BlockState> originalRelatives, Map<Direction, BlockState> relatives) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("originalRelatives", originalRelatives);
         values.put("relatives", relatives);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn.class, values);
+        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Burn.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn.SourceBlock}.
@@ -1582,8 +1799,8 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn cr
      * @param transactions The transactions
      * @return A new source block burn notify neighbor block event
      */
-public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn.SourceBlock createNotifyNeighborBlockEventBurnSourceBlock(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> originalRelatives, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> relatives, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static NotifyNeighborBlockEvent.Burn.SourceBlock createNotifyNeighborBlockEventBurnSourceBlock(Cause cause, Game game, Map<Direction, BlockState> originalRelatives, Map<Direction, BlockState> relatives, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("originalRelatives", originalRelatives);
@@ -1592,10 +1809,10 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn.So
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Burn.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite}.
@@ -1606,16 +1823,16 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn.So
      * @param relatives The relatives
      * @return A new ignite notify neighbor block event
      */
-public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite createNotifyNeighborBlockEventIgnite(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> originalRelatives, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> relatives) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static NotifyNeighborBlockEvent.Ignite createNotifyNeighborBlockEventIgnite(Cause cause, Game game, Map<Direction, BlockState> originalRelatives, Map<Direction, BlockState> relatives) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("originalRelatives", originalRelatives);
         values.put("relatives", relatives);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite.class, values);
+        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Ignite.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite.SourceBlock}.
@@ -1630,8 +1847,8 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite 
      * @param transactions The transactions
      * @return A new source block ignite notify neighbor block event
      */
-public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite.SourceBlock createNotifyNeighborBlockEventIgniteSourceBlock(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> originalRelatives, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> relatives, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static NotifyNeighborBlockEvent.Ignite.SourceBlock createNotifyNeighborBlockEventIgniteSourceBlock(Cause cause, Game game, Map<Direction, BlockState> originalRelatives, Map<Direction, BlockState> relatives, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("originalRelatives", originalRelatives);
@@ -1640,10 +1857,10 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite.
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Ignite.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power}.
@@ -1654,16 +1871,16 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite.
      * @param relatives The relatives
      * @return A new power notify neighbor block event
      */
-public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power createNotifyNeighborBlockEventPower(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> originalRelatives, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> relatives) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static NotifyNeighborBlockEvent.Power createNotifyNeighborBlockEventPower(Cause cause, Game game, Map<Direction, BlockState> originalRelatives, Map<Direction, BlockState> relatives) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("originalRelatives", originalRelatives);
         values.put("relatives", relatives);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power.class, values);
+        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Power.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power.SourceBlock}.
@@ -1678,8 +1895,8 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power c
      * @param transactions The transactions
      * @return A new source block power notify neighbor block event
      */
-public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power.SourceBlock createNotifyNeighborBlockEventPowerSourceBlock(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> originalRelatives, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> relatives, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static NotifyNeighborBlockEvent.Power.SourceBlock createNotifyNeighborBlockEventPowerSourceBlock(Cause cause, Game game, Map<Direction, BlockState> originalRelatives, Map<Direction, BlockState> relatives, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("originalRelatives", originalRelatives);
@@ -1688,10 +1905,10 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power.S
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Power.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.SourceBlock}.
@@ -1706,8 +1923,8 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power.S
      * @param transactions The transactions
      * @return A new source block notify neighbor block event
      */
-public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.SourceBlock createNotifyNeighborBlockEventSourceBlock(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> originalRelatives, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> relatives, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static NotifyNeighborBlockEvent.SourceBlock createNotifyNeighborBlockEventSourceBlock(Cause cause, Game game, Map<Direction, BlockState> originalRelatives, Map<Direction, BlockState> relatives, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("originalRelatives", originalRelatives);
@@ -1716,10 +1933,10 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.SourceB
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread}.
@@ -1731,17 +1948,17 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.SourceB
      * @param spreadingBlock The spreading block
      * @return A new spread notify neighbor block event
      */
-public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread createNotifyNeighborBlockEventSpread(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> originalRelatives, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> relatives, org.spongepowered.api.block.BlockState spreadingBlock) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static NotifyNeighborBlockEvent.Spread createNotifyNeighborBlockEventSpread(Cause cause, Game game, Map<Direction, BlockState> originalRelatives, Map<Direction, BlockState> relatives, BlockState spreadingBlock) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("originalRelatives", originalRelatives);
         values.put("relatives", relatives);
         values.put("spreadingBlock", spreadingBlock);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread.class, values);
+        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Spread.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread.SourceBlock}.
@@ -1757,8 +1974,8 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread 
      * @param transactions The transactions
      * @return A new source block spread notify neighbor block event
      */
-public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread.SourceBlock createNotifyNeighborBlockEventSpreadSourceBlock(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> originalRelatives, java.util.Map<org.spongepowered.api.util.Direction, org.spongepowered.api.block.BlockState> relatives, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, org.spongepowered.api.block.BlockState spreadingBlock, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static NotifyNeighborBlockEvent.Spread.SourceBlock createNotifyNeighborBlockEventSpreadSourceBlock(Cause cause, Game game, Map<Direction, BlockState> originalRelatives, Map<Direction, BlockState> relatives, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, BlockState spreadingBlock, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("originalRelatives", originalRelatives);
@@ -1768,10 +1985,10 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread.
         values.put("sourceSide", sourceSide);
         values.put("spreadingBlock", spreadingBlock);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(NotifyNeighborBlockEvent.Spread.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.PlaceBlockEvent}.
@@ -1781,15 +1998,15 @@ public static org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread.
      * @param transactions The transactions
      * @return A new place block event
      */
-public static org.spongepowered.api.event.block.PlaceBlockEvent createPlaceBlockEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlaceBlockEvent createPlaceBlockEvent(Cause cause, Game game, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.PlaceBlockEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PlaceBlockEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.PlaceBlockEvent.SourceBlock}.
@@ -1802,18 +2019,18 @@ public static org.spongepowered.api.event.block.PlaceBlockEvent createPlaceBlock
      * @param transactions The transactions
      * @return A new source block place block event
      */
-public static org.spongepowered.api.event.block.PlaceBlockEvent.SourceBlock createPlaceBlockEventSourceBlock(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlaceBlockEvent.SourceBlock createPlaceBlockEventSourceBlock(Cause cause, Game game, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.PlaceBlockEvent.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(PlaceBlockEvent.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.PlaceBlockEvent.SourceEntity}.
@@ -1825,17 +2042,17 @@ public static org.spongepowered.api.event.block.PlaceBlockEvent.SourceBlock crea
      * @param transactions The transactions
      * @return A new source entity place block event
      */
-public static org.spongepowered.api.event.block.PlaceBlockEvent.SourceEntity createPlaceBlockEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlaceBlockEvent.SourceEntity createPlaceBlockEventSourceEntity(Cause cause, Game game, Entity sourceEntity, Transform<World> sourceTransform, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.PlaceBlockEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(PlaceBlockEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.PlaceBlockEvent.SourceHuman}.
@@ -1847,17 +2064,17 @@ public static org.spongepowered.api.event.block.PlaceBlockEvent.SourceEntity cre
      * @param transactions The transactions
      * @return A new source human place block event
      */
-public static org.spongepowered.api.event.block.PlaceBlockEvent.SourceHuman createPlaceBlockEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlaceBlockEvent.SourceHuman createPlaceBlockEventSourceHuman(Cause cause, Game game, Human sourceEntity, Transform<World> sourceTransform, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.PlaceBlockEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(PlaceBlockEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.PlaceBlockEvent.SourceLiving}.
@@ -1869,17 +2086,17 @@ public static org.spongepowered.api.event.block.PlaceBlockEvent.SourceHuman crea
      * @param transactions The transactions
      * @return A new source living place block event
      */
-public static org.spongepowered.api.event.block.PlaceBlockEvent.SourceLiving createPlaceBlockEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlaceBlockEvent.SourceLiving createPlaceBlockEventSourceLiving(Cause cause, Game game, Living sourceEntity, Transform<World> sourceTransform, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.PlaceBlockEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(PlaceBlockEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.PlaceBlockEvent.SourcePlayer}.
@@ -1891,17 +2108,17 @@ public static org.spongepowered.api.event.block.PlaceBlockEvent.SourceLiving cre
      * @param transactions The transactions
      * @return A new source player place block event
      */
-public static org.spongepowered.api.event.block.PlaceBlockEvent.SourcePlayer createPlaceBlockEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlaceBlockEvent.SourcePlayer createPlaceBlockEventSourcePlayer(Cause cause, Game game, Player sourceEntity, Transform<World> sourceTransform, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.PlaceBlockEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(PlaceBlockEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.BrewingStandBrewItemsEvent}.
@@ -1919,8 +2136,8 @@ public static org.spongepowered.api.event.block.PlaceBlockEvent.SourcePlayer cre
      * @param tile The tile
      * @return A new brewing stand brew items event
      */
-public static org.spongepowered.api.event.block.tileentity.BrewingStandBrewItemsEvent createBrewingStandBrewItemsEvent(java.util.List<org.spongepowered.api.item.inventory.ItemStack> brewedItems, org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.item.inventory.ItemStack fuelSource, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory, java.util.List<org.spongepowered.api.item.inventory.ItemStack> results, org.spongepowered.api.block.BlockSnapshot sourceBlock, java.util.List<org.spongepowered.api.item.inventory.ItemStack> sourceItems, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, org.spongepowered.api.block.tileentity.carrier.BrewingStand tile) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BrewingStandBrewItemsEvent createBrewingStandBrewItemsEvent(List<ItemStack> brewedItems, Cause cause, ItemStack fuelSource, Game game, Inventory inventory, List<ItemStack> results, BlockSnapshot sourceBlock, List<ItemStack> sourceItems, Location<World> sourceLocation, Optional<Direction> sourceSide, BrewingStand tile) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("brewedItems", brewedItems);
         values.put("cause", cause);
         values.put("fuelSource", fuelSource);
@@ -1932,10 +2149,10 @@ public static org.spongepowered.api.event.block.tileentity.BrewingStandBrewItems
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("tile", tile);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.BrewingStandBrewItemsEvent.class, values);
+        return SpongeEventFactory.createEventImpl(BrewingStandBrewItemsEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.BrewingStandEvent}.
@@ -1949,8 +2166,8 @@ public static org.spongepowered.api.event.block.tileentity.BrewingStandBrewItems
      * @param tile The tile
      * @return A new brewing stand event
      */
-public static org.spongepowered.api.event.block.tileentity.BrewingStandEvent createBrewingStandEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, org.spongepowered.api.block.tileentity.carrier.BrewingStand tile) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BrewingStandEvent createBrewingStandEvent(Cause cause, Game game, Inventory inventory, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, BrewingStand tile) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("inventory", inventory);
@@ -1958,10 +2175,10 @@ public static org.spongepowered.api.event.block.tileentity.BrewingStandEvent cre
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("tile", tile);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.BrewingStandEvent.class, values);
+        return SpongeEventFactory.createEventImpl(BrewingStandEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.ChangeSignEvent}.
@@ -1972,16 +2189,16 @@ public static org.spongepowered.api.event.block.tileentity.BrewingStandEvent cre
      * @param text The text
      * @return A new change sign event
      */
-public static org.spongepowered.api.event.block.tileentity.ChangeSignEvent createChangeSignEvent(org.spongepowered.api.Game game, org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData originalText, org.spongepowered.api.block.tileentity.Sign targetTile, org.spongepowered.api.data.manipulator.mutable.tileentity.SignData text) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeSignEvent createChangeSignEvent(Game game, ImmutableSignData originalText, Sign targetTile, SignData text) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("originalText", originalText);
         values.put("targetTile", targetTile);
         values.put("text", text);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.ChangeSignEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeSignEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.ChangeSignEvent.SourceEntity}.
@@ -1995,8 +2212,8 @@ public static org.spongepowered.api.event.block.tileentity.ChangeSignEvent creat
      * @param text The text
      * @return A new source entity change sign event
      */
-public static org.spongepowered.api.event.block.tileentity.ChangeSignEvent.SourceEntity createChangeSignEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData originalText, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.tileentity.Sign targetTile, org.spongepowered.api.data.manipulator.mutable.tileentity.SignData text) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeSignEvent.SourceEntity createChangeSignEventSourceEntity(Cause cause, Game game, ImmutableSignData originalText, Entity sourceEntity, Transform<World> sourceTransform, Sign targetTile, SignData text) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("originalText", originalText);
@@ -2004,10 +2221,10 @@ public static org.spongepowered.api.event.block.tileentity.ChangeSignEvent.Sourc
         values.put("sourceTransform", sourceTransform);
         values.put("targetTile", targetTile);
         values.put("text", text);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.ChangeSignEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeSignEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.ChangeSignEvent.SourcePlayer}.
@@ -2021,8 +2238,8 @@ public static org.spongepowered.api.event.block.tileentity.ChangeSignEvent.Sourc
      * @param text The text
      * @return A new source player change sign event
      */
-public static org.spongepowered.api.event.block.tileentity.ChangeSignEvent.SourcePlayer createChangeSignEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData originalText, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.block.tileentity.Sign targetTile, org.spongepowered.api.data.manipulator.mutable.tileentity.SignData text) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeSignEvent.SourcePlayer createChangeSignEventSourcePlayer(Cause cause, Game game, ImmutableSignData originalText, Player sourceEntity, Transform<World> sourceTransform, Sign targetTile, SignData text) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("originalText", originalText);
@@ -2030,10 +2247,10 @@ public static org.spongepowered.api.event.block.tileentity.ChangeSignEvent.Sourc
         values.put("sourceTransform", sourceTransform);
         values.put("targetTile", targetTile);
         values.put("text", text);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.ChangeSignEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeSignEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.FurnaceConsumeFuelEvent}.
@@ -2050,8 +2267,8 @@ public static org.spongepowered.api.event.block.tileentity.ChangeSignEvent.Sourc
      * @param tile The tile
      * @return A new furnace consume fuel event
      */
-public static org.spongepowered.api.event.block.tileentity.FurnaceConsumeFuelEvent createFurnaceConsumeFuelEvent(org.spongepowered.api.item.inventory.ItemStack burnedItem, org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStack> remainingFuel, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStack> result, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, org.spongepowered.api.block.tileentity.carrier.Furnace tile) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FurnaceConsumeFuelEvent createFurnaceConsumeFuelEvent(ItemStack burnedItem, Cause cause, Game game, Inventory inventory, Optional<ItemStack> remainingFuel, Optional<ItemStack> result, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, Furnace tile) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("burnedItem", burnedItem);
         values.put("cause", cause);
         values.put("game", game);
@@ -2062,10 +2279,10 @@ public static org.spongepowered.api.event.block.tileentity.FurnaceConsumeFuelEve
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("tile", tile);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.FurnaceConsumeFuelEvent.class, values);
+        return SpongeEventFactory.createEventImpl(FurnaceConsumeFuelEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.FurnaceEvent}.
@@ -2079,8 +2296,8 @@ public static org.spongepowered.api.event.block.tileentity.FurnaceConsumeFuelEve
      * @param tile The tile
      * @return A new furnace event
      */
-public static org.spongepowered.api.event.block.tileentity.FurnaceEvent createFurnaceEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, org.spongepowered.api.block.tileentity.carrier.Furnace tile) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FurnaceEvent createFurnaceEvent(Cause cause, Game game, Inventory inventory, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, Furnace tile) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("inventory", inventory);
@@ -2088,10 +2305,10 @@ public static org.spongepowered.api.event.block.tileentity.FurnaceEvent createFu
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("tile", tile);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.FurnaceEvent.class, values);
+        return SpongeEventFactory.createEventImpl(FurnaceEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.FurnaceSmeltItemEvent}.
@@ -2108,8 +2325,8 @@ public static org.spongepowered.api.event.block.tileentity.FurnaceEvent createFu
      * @param tile The tile
      * @return A new furnace smelt item event
      */
-public static org.spongepowered.api.event.block.tileentity.FurnaceSmeltItemEvent createFurnaceSmeltItemEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.item.inventory.ItemStack cookedItem, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStack> result, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.item.inventory.ItemStack sourceItem, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, org.spongepowered.api.block.tileentity.carrier.Furnace tile) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FurnaceSmeltItemEvent createFurnaceSmeltItemEvent(Cause cause, ItemStack cookedItem, Game game, Inventory inventory, Optional<ItemStack> result, BlockSnapshot sourceBlock, ItemStack sourceItem, Location<World> sourceLocation, Optional<Direction> sourceSide, Furnace tile) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("cookedItem", cookedItem);
         values.put("game", game);
@@ -2120,10 +2337,10 @@ public static org.spongepowered.api.event.block.tileentity.FurnaceSmeltItemEvent
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("tile", tile);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.FurnaceSmeltItemEvent.class, values);
+        return SpongeEventFactory.createEventImpl(FurnaceSmeltItemEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.TargetTileEntityEvent}.
@@ -2132,14 +2349,14 @@ public static org.spongepowered.api.event.block.tileentity.FurnaceSmeltItemEvent
      * @param targetTile The target tile
      * @return A new target tile entity event
      */
-public static org.spongepowered.api.event.block.tileentity.TargetTileEntityEvent createTargetTileEntityEvent(org.spongepowered.api.Game game, org.spongepowered.api.block.tileentity.TileEntity targetTile) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static TargetTileEntityEvent createTargetTileEntityEvent(Game game, TileEntity targetTile) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetTile", targetTile);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.TargetTileEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(TargetTileEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.TileEntityEvent}.
@@ -2152,18 +2369,18 @@ public static org.spongepowered.api.event.block.tileentity.TargetTileEntityEvent
      * @param tile The tile
      * @return A new tile entity event
      */
-public static org.spongepowered.api.event.block.tileentity.TileEntityEvent createTileEntityEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, org.spongepowered.api.block.tileentity.TileEntity tile) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static TileEntityEvent createTileEntityEvent(Cause cause, Game game, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, TileEntity tile) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
         values.put("tile", tile);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.block.tileentity.TileEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(TileEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.command.CommandSourceEvent}.
@@ -2172,14 +2389,14 @@ public static org.spongepowered.api.event.block.tileentity.TileEntityEvent creat
      * @param source The source
      * @return A new command source event
      */
-public static org.spongepowered.api.event.command.CommandSourceEvent createCommandSourceEvent(org.spongepowered.api.Game game, org.spongepowered.api.util.command.CommandSource source) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CommandSourceEvent createCommandSourceEvent(Game game, CommandSource source) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("source", source);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.command.CommandSourceEvent.class, values);
+        return SpongeEventFactory.createEventImpl(CommandSourceEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.command.SendCommandEvent}.
@@ -2191,17 +2408,17 @@ public static org.spongepowered.api.event.command.CommandSourceEvent createComma
      * @param source The source
      * @return A new send command event
      */
-public static org.spongepowered.api.event.command.SendCommandEvent createSendCommandEvent(java.lang.String arguments, java.lang.String command, org.spongepowered.api.Game game, org.spongepowered.api.util.command.CommandResult result, org.spongepowered.api.util.command.CommandSource source) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static SendCommandEvent createSendCommandEvent(String arguments, String command, Game game, CommandResult result, CommandSource source) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("arguments", arguments);
         values.put("command", command);
         values.put("game", game);
         values.put("result", result);
         values.put("source", source);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.command.SendCommandEvent.class, values);
+        return SpongeEventFactory.createEventImpl(SendCommandEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.command.TabCompleteCommandEvent}.
@@ -2213,17 +2430,17 @@ public static org.spongepowered.api.event.command.SendCommandEvent createSendCom
      * @param tabCompletions The tab completions
      * @return A new tab complete command event
      */
-public static org.spongepowered.api.event.command.TabCompleteCommandEvent createTabCompleteCommandEvent(java.lang.String arguments, java.lang.String command, org.spongepowered.api.Game game, org.spongepowered.api.util.command.CommandSource source, java.util.List<java.lang.String> tabCompletions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static TabCompleteCommandEvent createTabCompleteCommandEvent(String arguments, String command, Game game, CommandSource source, List<String> tabCompletions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("arguments", arguments);
         values.put("command", command);
         values.put("game", game);
         values.put("source", source);
         values.put("tabCompletions", tabCompletions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.command.TabCompleteCommandEvent.class, values);
+        return SpongeEventFactory.createEventImpl(TabCompleteCommandEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.data.ChangeDataHolderEvent}.
@@ -2232,14 +2449,14 @@ public static org.spongepowered.api.event.command.TabCompleteCommandEvent create
      * @param targetHolder The target holder
      * @return A new change data holder event
      */
-public static org.spongepowered.api.event.data.ChangeDataHolderEvent createChangeDataHolderEvent(org.spongepowered.api.Game game, org.spongepowered.api.data.DataHolder targetHolder) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeDataHolderEvent createChangeDataHolderEvent(Game game, DataHolder targetHolder) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetHolder", targetHolder);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.data.ChangeDataHolderEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeDataHolderEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.data.ChangeDataHolderEvent.ValueChange}.
@@ -2250,16 +2467,16 @@ public static org.spongepowered.api.event.data.ChangeDataHolderEvent createChang
      * @param targetHolder The target holder
      * @return A new value change change data holder event
      */
-public static org.spongepowered.api.event.data.ChangeDataHolderEvent.ValueChange createChangeDataHolderEventValueChange(org.spongepowered.api.data.DataTransactionResult endResult, org.spongepowered.api.Game game, org.spongepowered.api.data.DataTransactionResult originalChanges, org.spongepowered.api.data.DataHolder targetHolder) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeDataHolderEvent.ValueChange createChangeDataHolderEventValueChange(DataTransactionResult endResult, Game game, DataTransactionResult originalChanges, DataHolder targetHolder) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("endResult", endResult);
         values.put("game", game);
         values.put("originalChanges", originalChanges);
         values.put("targetHolder", targetHolder);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.data.ChangeDataHolderEvent.ValueChange.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeDataHolderEvent.ValueChange.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.AffectEntityEvent}.
@@ -2270,16 +2487,16 @@ public static org.spongepowered.api.event.data.ChangeDataHolderEvent.ValueChange
      * @param game The game
      * @return A new affect entity event
      */
-public static org.spongepowered.api.event.entity.AffectEntityEvent createAffectEntityEvent(org.spongepowered.api.event.cause.Cause cause, java.util.List<? extends org.spongepowered.api.entity.Entity> entities, java.util.List<org.spongepowered.api.entity.EntitySnapshot> entitySnapshots, org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static AffectEntityEvent createAffectEntityEvent(Cause cause, List<? extends Entity> entities, List<EntitySnapshot> entitySnapshots, Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.AffectEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(AffectEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.BreedEntityEvent}.
@@ -2291,17 +2508,17 @@ public static org.spongepowered.api.event.entity.AffectEntityEvent createAffectE
      * @param targetTransform The target transform
      * @return A new breed entity event
      */
-public static org.spongepowered.api.event.entity.BreedEntityEvent createBreedEntityEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BreedEntityEvent createBreedEntityEvent(Cause cause, Game game, Optional<Vector3d> interactionPoint, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.BreedEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(BreedEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.BreedEntityEvent.SourceEntity}.
@@ -2315,8 +2532,8 @@ public static org.spongepowered.api.event.entity.BreedEntityEvent createBreedEnt
      * @param targetTransform The target transform
      * @return A new source entity breed entity event
      */
-public static org.spongepowered.api.event.entity.BreedEntityEvent.SourceEntity createBreedEntityEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BreedEntityEvent.SourceEntity createBreedEntityEventSourceEntity(Cause cause, Game game, Optional<Vector3d> interactionPoint, Entity sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -2324,10 +2541,10 @@ public static org.spongepowered.api.event.entity.BreedEntityEvent.SourceEntity c
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.BreedEntityEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(BreedEntityEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent}.
@@ -2340,18 +2557,18 @@ public static org.spongepowered.api.event.entity.BreedEntityEvent.SourceEntity c
      * @param targetTransform The target transform
      * @return A new change entity equipment event
      */
-public static org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent createChangeEntityEquipmentEvent(org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Slot inventory, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStackTransaction> newItemStack, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStackSnapshot> originalItem, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeEntityEquipmentEvent createChangeEntityEquipmentEvent(Game game, Slot inventory, Optional<ItemStackTransaction> newItemStack, Optional<ItemStackSnapshot> originalItem, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("inventory", inventory);
         values.put("newItemStack", newItemStack);
         values.put("originalItem", originalItem);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeEntityEquipmentEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetHuman}.
@@ -2364,18 +2581,18 @@ public static org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent crea
      * @param targetTransform The target transform
      * @return A new target human change entity equipment event
      */
-public static org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetHuman createChangeEntityEquipmentEventTargetHuman(org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Slot inventory, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStackTransaction> newItemStack, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStackSnapshot> originalItem, org.spongepowered.api.entity.living.Living targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeEntityEquipmentEvent.TargetHuman createChangeEntityEquipmentEventTargetHuman(Game game, Slot inventory, Optional<ItemStackTransaction> newItemStack, Optional<ItemStackSnapshot> originalItem, Living targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("inventory", inventory);
         values.put("newItemStack", newItemStack);
         values.put("originalItem", originalItem);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetHuman.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeEntityEquipmentEvent.TargetHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetLiving}.
@@ -2388,18 +2605,18 @@ public static org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.Targ
      * @param targetTransform The target transform
      * @return A new target living change entity equipment event
      */
-public static org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetLiving createChangeEntityEquipmentEventTargetLiving(org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Slot inventory, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStackTransaction> newItemStack, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStackSnapshot> originalItem, org.spongepowered.api.entity.living.Living targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeEntityEquipmentEvent.TargetLiving createChangeEntityEquipmentEventTargetLiving(Game game, Slot inventory, Optional<ItemStackTransaction> newItemStack, Optional<ItemStackSnapshot> originalItem, Living targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("inventory", inventory);
         values.put("newItemStack", newItemStack);
         values.put("originalItem", originalItem);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetLiving.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeEntityEquipmentEvent.TargetLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetPlayer}.
@@ -2412,18 +2629,18 @@ public static org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.Targ
      * @param targetTransform The target transform
      * @return A new target player change entity equipment event
      */
-public static org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetPlayer createChangeEntityEquipmentEventTargetPlayer(org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Slot inventory, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStackTransaction> newItemStack, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStackSnapshot> originalItem, org.spongepowered.api.entity.living.player.Player targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeEntityEquipmentEvent.TargetPlayer createChangeEntityEquipmentEventTargetPlayer(Game game, Slot inventory, Optional<ItemStackTransaction> newItemStack, Optional<ItemStackSnapshot> originalItem, Player targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("inventory", inventory);
         values.put("newItemStack", newItemStack);
         values.put("originalItem", originalItem);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetPlayer.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeEntityEquipmentEvent.TargetPlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent}.
@@ -2436,18 +2653,18 @@ public static org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.Targ
      * @param targetTransform The target transform
      * @return A new change entity potion effect event
      */
-public static org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent createChangeEntityPotionEffectEvent(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.potion.PotionEffect> currentEffects, org.spongepowered.api.Game game, org.spongepowered.api.potion.PotionEffect potionEffect, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeEntityPotionEffectEvent createChangeEntityPotionEffectEvent(Cause cause, List<PotionEffect> currentEffects, Game game, PotionEffect potionEffect, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("currentEffects", currentEffects);
         values.put("game", game);
         values.put("potionEffect", potionEffect);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeEntityPotionEffectEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Expire}.
@@ -2460,18 +2677,18 @@ public static org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent c
      * @param targetTransform The target transform
      * @return A new expire change entity potion effect event
      */
-public static org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Expire createChangeEntityPotionEffectEventExpire(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.potion.PotionEffect> currentEffects, org.spongepowered.api.Game game, org.spongepowered.api.potion.PotionEffect potionEffect, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeEntityPotionEffectEvent.Expire createChangeEntityPotionEffectEventExpire(Cause cause, List<PotionEffect> currentEffects, Game game, PotionEffect potionEffect, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("currentEffects", currentEffects);
         values.put("game", game);
         values.put("potionEffect", potionEffect);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Expire.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeEntityPotionEffectEvent.Expire.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Gain}.
@@ -2484,18 +2701,18 @@ public static org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.E
      * @param targetTransform The target transform
      * @return A new gain change entity potion effect event
      */
-public static org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Gain createChangeEntityPotionEffectEventGain(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.potion.PotionEffect> currentEffects, org.spongepowered.api.Game game, org.spongepowered.api.potion.PotionEffect potionEffect, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeEntityPotionEffectEvent.Gain createChangeEntityPotionEffectEventGain(Cause cause, List<PotionEffect> currentEffects, Game game, PotionEffect potionEffect, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("currentEffects", currentEffects);
         values.put("game", game);
         values.put("potionEffect", potionEffect);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Gain.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeEntityPotionEffectEvent.Gain.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Remove}.
@@ -2508,18 +2725,18 @@ public static org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.G
      * @param targetTransform The target transform
      * @return A new remove change entity potion effect event
      */
-public static org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Remove createChangeEntityPotionEffectEventRemove(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.potion.PotionEffect> currentEffects, org.spongepowered.api.Game game, org.spongepowered.api.potion.PotionEffect potionEffect, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeEntityPotionEffectEvent.Remove createChangeEntityPotionEffectEventRemove(Cause cause, List<PotionEffect> currentEffects, Game game, PotionEffect potionEffect, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("currentEffects", currentEffects);
         values.put("game", game);
         values.put("potionEffect", potionEffect);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Remove.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeEntityPotionEffectEvent.Remove.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.CollideEntityEvent}.
@@ -2530,16 +2747,16 @@ public static org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.R
      * @param targetTransform The target transform
      * @return A new collide entity event
      */
-public static org.spongepowered.api.event.entity.CollideEntityEvent createCollideEntityEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CollideEntityEvent createCollideEntityEvent(Cause cause, Game game, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.CollideEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(CollideEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.CollideEntityEvent.SourceEntity}.
@@ -2552,18 +2769,18 @@ public static org.spongepowered.api.event.entity.CollideEntityEvent createCollid
      * @param targetTransform The target transform
      * @return A new source entity collide entity event
      */
-public static org.spongepowered.api.event.entity.CollideEntityEvent.SourceEntity createCollideEntityEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CollideEntityEvent.SourceEntity createCollideEntityEventSourceEntity(Cause cause, Game game, Entity sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.CollideEntityEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(CollideEntityEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.CollideEntityEvent.SourceHuman}.
@@ -2576,18 +2793,18 @@ public static org.spongepowered.api.event.entity.CollideEntityEvent.SourceEntity
      * @param targetTransform The target transform
      * @return A new source human collide entity event
      */
-public static org.spongepowered.api.event.entity.CollideEntityEvent.SourceHuman createCollideEntityEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CollideEntityEvent.SourceHuman createCollideEntityEventSourceHuman(Cause cause, Game game, Human sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.CollideEntityEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(CollideEntityEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.CollideEntityEvent.SourceLiving}.
@@ -2600,18 +2817,18 @@ public static org.spongepowered.api.event.entity.CollideEntityEvent.SourceHuman 
      * @param targetTransform The target transform
      * @return A new source living collide entity event
      */
-public static org.spongepowered.api.event.entity.CollideEntityEvent.SourceLiving createCollideEntityEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CollideEntityEvent.SourceLiving createCollideEntityEventSourceLiving(Cause cause, Game game, Living sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.CollideEntityEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(CollideEntityEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.CollideEntityEvent.SourcePlayer}.
@@ -2624,18 +2841,18 @@ public static org.spongepowered.api.event.entity.CollideEntityEvent.SourceLiving
      * @param targetTransform The target transform
      * @return A new source player collide entity event
      */
-public static org.spongepowered.api.event.entity.CollideEntityEvent.SourcePlayer createCollideEntityEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CollideEntityEvent.SourcePlayer createCollideEntityEventSourcePlayer(Cause cause, Game game, Player sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.CollideEntityEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(CollideEntityEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.CreateEntityEvent}.
@@ -2646,16 +2863,16 @@ public static org.spongepowered.api.event.entity.CollideEntityEvent.SourcePlayer
      * @param targetTransform The target transform
      * @return A new create entity event
      */
-public static org.spongepowered.api.event.entity.CreateEntityEvent createCreateEntityEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CreateEntityEvent createCreateEntityEvent(Cause cause, Game game, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.CreateEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(CreateEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.CreateEntityEvent.TargetItem}.
@@ -2666,16 +2883,16 @@ public static org.spongepowered.api.event.entity.CreateEntityEvent createCreateE
      * @param targetTransform The target transform
      * @return A new target item create entity event
      */
-public static org.spongepowered.api.event.entity.CreateEntityEvent.TargetItem createCreateEntityEventTargetItem(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Item targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CreateEntityEvent.TargetItem createCreateEntityEventTargetItem(Cause cause, Game game, Item targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.CreateEntityEvent.TargetItem.class, values);
+        return SpongeEventFactory.createEventImpl(CreateEntityEvent.TargetItem.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DamageEntityEvent}.
@@ -2693,8 +2910,8 @@ public static org.spongepowered.api.event.entity.CreateEntityEvent.TargetItem cr
      * @param targetTransform The target transform
      * @return A new damage entity event
      */
-public static org.spongepowered.api.event.entity.DamageEntityEvent createDamageEntityEvent(double baseDamage, org.spongepowered.api.event.cause.Cause cause, double finalDamage, org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, double originalDamage, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DamageEntityEvent createDamageEntityEvent(double baseDamage, Cause cause, double finalDamage, Game game, List<Tuple<DamageModifier, Function<? super Double, Double>>> modifiers, double originalDamage, Map<DamageModifier, Double> originalDamages, double originalFinalDamage, List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("baseDamage", baseDamage);
         values.put("cause", cause);
         values.put("finalDamage", finalDamage);
@@ -2706,10 +2923,10 @@ public static org.spongepowered.api.event.entity.DamageEntityEvent createDamageE
         values.put("originalFunctions", originalFunctions);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DamageEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(DamageEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DamageEntityEvent.SourceEntity}.
@@ -2729,8 +2946,8 @@ public static org.spongepowered.api.event.entity.DamageEntityEvent createDamageE
      * @param targetTransform The target transform
      * @return A new source entity damage entity event
      */
-public static org.spongepowered.api.event.entity.DamageEntityEvent.SourceEntity createDamageEntityEventSourceEntity(double baseDamage, org.spongepowered.api.event.cause.Cause cause, double finalDamage, org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, double originalDamage, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DamageEntityEvent.SourceEntity createDamageEntityEventSourceEntity(double baseDamage, Cause cause, double finalDamage, Game game, List<Tuple<DamageModifier, Function<? super Double, Double>>> modifiers, double originalDamage, Map<DamageModifier, Double> originalDamages, double originalFinalDamage, List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions, Entity sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("baseDamage", baseDamage);
         values.put("cause", cause);
         values.put("finalDamage", finalDamage);
@@ -2744,10 +2961,10 @@ public static org.spongepowered.api.event.entity.DamageEntityEvent.SourceEntity 
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DamageEntityEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(DamageEntityEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DamageEntityEvent.SourceHuman}.
@@ -2767,8 +2984,8 @@ public static org.spongepowered.api.event.entity.DamageEntityEvent.SourceEntity 
      * @param targetTransform The target transform
      * @return A new source human damage entity event
      */
-public static org.spongepowered.api.event.entity.DamageEntityEvent.SourceHuman createDamageEntityEventSourceHuman(double baseDamage, org.spongepowered.api.event.cause.Cause cause, double finalDamage, org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, double originalDamage, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DamageEntityEvent.SourceHuman createDamageEntityEventSourceHuman(double baseDamage, Cause cause, double finalDamage, Game game, List<Tuple<DamageModifier, Function<? super Double, Double>>> modifiers, double originalDamage, Map<DamageModifier, Double> originalDamages, double originalFinalDamage, List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions, Human sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("baseDamage", baseDamage);
         values.put("cause", cause);
         values.put("finalDamage", finalDamage);
@@ -2782,10 +2999,10 @@ public static org.spongepowered.api.event.entity.DamageEntityEvent.SourceHuman c
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DamageEntityEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(DamageEntityEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DamageEntityEvent.SourceLiving}.
@@ -2805,8 +3022,8 @@ public static org.spongepowered.api.event.entity.DamageEntityEvent.SourceHuman c
      * @param targetTransform The target transform
      * @return A new source living damage entity event
      */
-public static org.spongepowered.api.event.entity.DamageEntityEvent.SourceLiving createDamageEntityEventSourceLiving(double baseDamage, org.spongepowered.api.event.cause.Cause cause, double finalDamage, org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, double originalDamage, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DamageEntityEvent.SourceLiving createDamageEntityEventSourceLiving(double baseDamage, Cause cause, double finalDamage, Game game, List<Tuple<DamageModifier, Function<? super Double, Double>>> modifiers, double originalDamage, Map<DamageModifier, Double> originalDamages, double originalFinalDamage, List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions, Living sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("baseDamage", baseDamage);
         values.put("cause", cause);
         values.put("finalDamage", finalDamage);
@@ -2820,10 +3037,10 @@ public static org.spongepowered.api.event.entity.DamageEntityEvent.SourceLiving 
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DamageEntityEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(DamageEntityEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DamageEntityEvent.SourcePlayer}.
@@ -2843,8 +3060,8 @@ public static org.spongepowered.api.event.entity.DamageEntityEvent.SourceLiving 
      * @param targetTransform The target transform
      * @return A new source player damage entity event
      */
-public static org.spongepowered.api.event.entity.DamageEntityEvent.SourcePlayer createDamageEntityEventSourcePlayer(double baseDamage, org.spongepowered.api.event.cause.Cause cause, double finalDamage, org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, double originalDamage, java.util.Map<org.spongepowered.api.event.cause.entity.damage.DamageModifier, java.lang.Double> originalDamages, double originalFinalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DamageEntityEvent.SourcePlayer createDamageEntityEventSourcePlayer(double baseDamage, Cause cause, double finalDamage, Game game, List<Tuple<DamageModifier, Function<? super Double, Double>>> modifiers, double originalDamage, Map<DamageModifier, Double> originalDamages, double originalFinalDamage, List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions, Player sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("baseDamage", baseDamage);
         values.put("cause", cause);
         values.put("finalDamage", finalDamage);
@@ -2858,10 +3075,10 @@ public static org.spongepowered.api.event.entity.DamageEntityEvent.SourcePlayer 
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DamageEntityEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(DamageEntityEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DestructEntityEvent}.
@@ -2873,17 +3090,17 @@ public static org.spongepowered.api.event.entity.DamageEntityEvent.SourcePlayer 
      * @param targetTransform The target transform
      * @return A new destruct entity event
      */
-public static org.spongepowered.api.event.entity.DestructEntityEvent createDestructEntityEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.EntitySnapshot snapshot, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DestructEntityEvent createDestructEntityEvent(Cause cause, Game game, EntitySnapshot snapshot, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("snapshot", snapshot);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DestructEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(DestructEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DismountEntityEvent}.
@@ -2894,16 +3111,16 @@ public static org.spongepowered.api.event.entity.DestructEntityEvent createDestr
      * @param targetTransform The target transform
      * @return A new dismount entity event
      */
-public static org.spongepowered.api.event.entity.DismountEntityEvent createDismountEntityEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DismountEntityEvent createDismountEntityEvent(Cause cause, Game game, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DismountEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(DismountEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DismountEntityEvent.SourceEntity}.
@@ -2916,18 +3133,18 @@ public static org.spongepowered.api.event.entity.DismountEntityEvent createDismo
      * @param targetTransform The target transform
      * @return A new source entity dismount entity event
      */
-public static org.spongepowered.api.event.entity.DismountEntityEvent.SourceEntity createDismountEntityEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DismountEntityEvent.SourceEntity createDismountEntityEventSourceEntity(Cause cause, Game game, Entity sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DismountEntityEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(DismountEntityEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DismountEntityEvent.SourceHuman}.
@@ -2940,18 +3157,18 @@ public static org.spongepowered.api.event.entity.DismountEntityEvent.SourceEntit
      * @param targetTransform The target transform
      * @return A new source human dismount entity event
      */
-public static org.spongepowered.api.event.entity.DismountEntityEvent.SourceHuman createDismountEntityEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DismountEntityEvent.SourceHuman createDismountEntityEventSourceHuman(Cause cause, Game game, Human sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DismountEntityEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(DismountEntityEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DismountEntityEvent.SourceLiving}.
@@ -2964,18 +3181,18 @@ public static org.spongepowered.api.event.entity.DismountEntityEvent.SourceHuman
      * @param targetTransform The target transform
      * @return A new source living dismount entity event
      */
-public static org.spongepowered.api.event.entity.DismountEntityEvent.SourceLiving createDismountEntityEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DismountEntityEvent.SourceLiving createDismountEntityEventSourceLiving(Cause cause, Game game, Living sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DismountEntityEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(DismountEntityEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DismountEntityEvent.SourcePlayer}.
@@ -2988,18 +3205,18 @@ public static org.spongepowered.api.event.entity.DismountEntityEvent.SourceLivin
      * @param targetTransform The target transform
      * @return A new source player dismount entity event
      */
-public static org.spongepowered.api.event.entity.DismountEntityEvent.SourcePlayer createDismountEntityEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DismountEntityEvent.SourcePlayer createDismountEntityEventSourcePlayer(Cause cause, Game game, Player sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DismountEntityEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(DismountEntityEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent}.
@@ -3011,17 +3228,17 @@ public static org.spongepowered.api.event.entity.DismountEntityEvent.SourcePlaye
      * @param targetTransform The target transform
      * @return A new displace entity event
      */
-public static org.spongepowered.api.event.entity.DisplaceEntityEvent createDisplaceEntityEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> newTransform, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> oldTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DisplaceEntityEvent createDisplaceEntityEvent(Game game, Transform<World> newTransform, Transform<World> oldTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("newTransform", newTransform);
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Move}.
@@ -3033,17 +3250,17 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent createDispl
      * @param targetTransform The target transform
      * @return A new move displace entity event
      */
-public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Move createDisplaceEntityEventMove(org.spongepowered.api.Game game, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> newTransform, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> oldTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DisplaceEntityEvent.Move createDisplaceEntityEventMove(Game game, Transform<World> newTransform, Transform<World> oldTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("newTransform", newTransform);
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.class, values);
+        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Move.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetHuman}.
@@ -3055,17 +3272,17 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Move create
      * @param targetTransform The target transform
      * @return A new target human move displace entity event
      */
-public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetHuman createDisplaceEntityEventMoveTargetHuman(org.spongepowered.api.Game game, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> newTransform, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> oldTransform, org.spongepowered.api.entity.living.Living targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DisplaceEntityEvent.Move.TargetHuman createDisplaceEntityEventMoveTargetHuman(Game game, Transform<World> newTransform, Transform<World> oldTransform, Living targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("newTransform", newTransform);
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetHuman.class, values);
+        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Move.TargetHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetLiving}.
@@ -3077,17 +3294,17 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.Target
      * @param targetTransform The target transform
      * @return A new target living move displace entity event
      */
-public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetLiving createDisplaceEntityEventMoveTargetLiving(org.spongepowered.api.Game game, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> newTransform, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> oldTransform, org.spongepowered.api.entity.living.Living targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DisplaceEntityEvent.Move.TargetLiving createDisplaceEntityEventMoveTargetLiving(Game game, Transform<World> newTransform, Transform<World> oldTransform, Living targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("newTransform", newTransform);
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetLiving.class, values);
+        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Move.TargetLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetPlayer}.
@@ -3099,17 +3316,17 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.Target
      * @param targetTransform The target transform
      * @return A new target player move displace entity event
      */
-public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetPlayer createDisplaceEntityEventMoveTargetPlayer(org.spongepowered.api.Game game, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> newTransform, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> oldTransform, org.spongepowered.api.entity.living.player.Player targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DisplaceEntityEvent.Move.TargetPlayer createDisplaceEntityEventMoveTargetPlayer(Game game, Transform<World> newTransform, Transform<World> oldTransform, Player targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("newTransform", newTransform);
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetPlayer.class, values);
+        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Move.TargetPlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetHuman}.
@@ -3121,17 +3338,17 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.Target
      * @param targetTransform The target transform
      * @return A new target human displace entity event
      */
-public static org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetHuman createDisplaceEntityEventTargetHuman(org.spongepowered.api.Game game, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> newTransform, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> oldTransform, org.spongepowered.api.entity.living.Living targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DisplaceEntityEvent.TargetHuman createDisplaceEntityEventTargetHuman(Game game, Transform<World> newTransform, Transform<World> oldTransform, Living targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("newTransform", newTransform);
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetHuman.class, values);
+        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.TargetHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetLiving}.
@@ -3143,17 +3360,17 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetHuman
      * @param targetTransform The target transform
      * @return A new target living displace entity event
      */
-public static org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetLiving createDisplaceEntityEventTargetLiving(org.spongepowered.api.Game game, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> newTransform, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> oldTransform, org.spongepowered.api.entity.living.Living targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DisplaceEntityEvent.TargetLiving createDisplaceEntityEventTargetLiving(Game game, Transform<World> newTransform, Transform<World> oldTransform, Living targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("newTransform", newTransform);
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetLiving.class, values);
+        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.TargetLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetPlayer}.
@@ -3165,17 +3382,17 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetLivin
      * @param targetTransform The target transform
      * @return A new target player displace entity event
      */
-public static org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetPlayer createDisplaceEntityEventTargetPlayer(org.spongepowered.api.Game game, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> newTransform, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> oldTransform, org.spongepowered.api.entity.living.player.Player targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DisplaceEntityEvent.TargetPlayer createDisplaceEntityEventTargetPlayer(Game game, Transform<World> newTransform, Transform<World> oldTransform, Player targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("newTransform", newTransform);
         values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetPlayer.class, values);
+        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.TargetPlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport}.
@@ -3190,8 +3407,8 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetPlaye
      * @param teleporterAgent The teleporter agent
      * @return A new teleport displace entity event
      */
-public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport createDisplaceEntityEventTeleport(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, boolean keepsVelocity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> newTransform, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> oldTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, org.spongepowered.api.world.TeleporterAgent teleporterAgent) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DisplaceEntityEvent.Teleport createDisplaceEntityEventTeleport(Cause cause, Game game, boolean keepsVelocity, Transform<World> newTransform, Transform<World> oldTransform, Entity targetEntity, Transform<World> targetTransform, TeleporterAgent teleporterAgent) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("keepsVelocity", keepsVelocity);
@@ -3200,10 +3417,10 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport cr
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("teleporterAgent", teleporterAgent);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.class, values);
+        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Teleport.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetHuman}.
@@ -3218,8 +3435,8 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport cr
      * @param teleporterAgent The teleporter agent
      * @return A new target human teleport displace entity event
      */
-public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetHuman createDisplaceEntityEventTeleportTargetHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, boolean keepsVelocity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> newTransform, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> oldTransform, org.spongepowered.api.entity.living.Living targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, org.spongepowered.api.world.TeleporterAgent teleporterAgent) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DisplaceEntityEvent.Teleport.TargetHuman createDisplaceEntityEventTeleportTargetHuman(Cause cause, Game game, boolean keepsVelocity, Transform<World> newTransform, Transform<World> oldTransform, Living targetEntity, Transform<World> targetTransform, TeleporterAgent teleporterAgent) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("keepsVelocity", keepsVelocity);
@@ -3228,10 +3445,10 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.Ta
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("teleporterAgent", teleporterAgent);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetHuman.class, values);
+        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Teleport.TargetHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetLiving}.
@@ -3246,8 +3463,8 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.Ta
      * @param teleporterAgent The teleporter agent
      * @return A new target living teleport displace entity event
      */
-public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetLiving createDisplaceEntityEventTeleportTargetLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, boolean keepsVelocity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> newTransform, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> oldTransform, org.spongepowered.api.entity.living.Living targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, org.spongepowered.api.world.TeleporterAgent teleporterAgent) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DisplaceEntityEvent.Teleport.TargetLiving createDisplaceEntityEventTeleportTargetLiving(Cause cause, Game game, boolean keepsVelocity, Transform<World> newTransform, Transform<World> oldTransform, Living targetEntity, Transform<World> targetTransform, TeleporterAgent teleporterAgent) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("keepsVelocity", keepsVelocity);
@@ -3256,10 +3473,10 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.Ta
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("teleporterAgent", teleporterAgent);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetLiving.class, values);
+        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Teleport.TargetLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetPlayer}.
@@ -3274,8 +3491,8 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.Ta
      * @param teleporterAgent The teleporter agent
      * @return A new target player teleport displace entity event
      */
-public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetPlayer createDisplaceEntityEventTeleportTargetPlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, boolean keepsVelocity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> newTransform, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> oldTransform, org.spongepowered.api.entity.living.player.Player targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, org.spongepowered.api.world.TeleporterAgent teleporterAgent) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DisplaceEntityEvent.Teleport.TargetPlayer createDisplaceEntityEventTeleportTargetPlayer(Cause cause, Game game, boolean keepsVelocity, Transform<World> newTransform, Transform<World> oldTransform, Player targetEntity, Transform<World> targetTransform, TeleporterAgent teleporterAgent) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("keepsVelocity", keepsVelocity);
@@ -3284,10 +3501,10 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.Ta
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("teleporterAgent", teleporterAgent);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetPlayer.class, values);
+        return SpongeEventFactory.createEventImpl(DisplaceEntityEvent.Teleport.TargetPlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.EntityEvent}.
@@ -3298,16 +3515,16 @@ public static org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.Ta
      * @param sourceTransform The source transform
      * @return A new entity event
      */
-public static org.spongepowered.api.event.entity.EntityEvent createEntityEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static EntityEvent createEntityEvent(Cause cause, Game game, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.EntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(EntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.EntityPortalEvent}.
@@ -3318,16 +3535,16 @@ public static org.spongepowered.api.event.entity.EntityEvent createEntityEvent(o
      * @param sourceTransform The source transform
      * @return A new entity portal event
      */
-public static org.spongepowered.api.event.entity.EntityPortalEvent createEntityPortalEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static EntityPortalEvent createEntityPortalEvent(Cause cause, Game game, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.EntityPortalEvent.class, values);
+        return SpongeEventFactory.createEventImpl(EntityPortalEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.EntityPortalEvent.Enter}.
@@ -3338,16 +3555,16 @@ public static org.spongepowered.api.event.entity.EntityPortalEvent createEntityP
      * @param sourceTransform The source transform
      * @return A new enter entity portal event
      */
-public static org.spongepowered.api.event.entity.EntityPortalEvent.Enter createEntityPortalEventEnter(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static EntityPortalEvent.Enter createEntityPortalEventEnter(Cause cause, Game game, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.EntityPortalEvent.Enter.class, values);
+        return SpongeEventFactory.createEventImpl(EntityPortalEvent.Enter.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.EntityPortalEvent.Exit}.
@@ -3358,16 +3575,16 @@ public static org.spongepowered.api.event.entity.EntityPortalEvent.Enter createE
      * @param sourceTransform The source transform
      * @return A new exit entity portal event
      */
-public static org.spongepowered.api.event.entity.EntityPortalEvent.Exit createEntityPortalEventExit(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static EntityPortalEvent.Exit createEntityPortalEventExit(Cause cause, Game game, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.EntityPortalEvent.Exit.class, values);
+        return SpongeEventFactory.createEventImpl(EntityPortalEvent.Exit.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ExpireEntityEvent}.
@@ -3378,16 +3595,16 @@ public static org.spongepowered.api.event.entity.EntityPortalEvent.Exit createEn
      * @param targetTransform The target transform
      * @return A new expire entity event
      */
-public static org.spongepowered.api.event.entity.ExpireEntityEvent createExpireEntityEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ExpireEntityEvent createExpireEntityEvent(Cause cause, Game game, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ExpireEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ExpireEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ExpireEntityEvent.TargetItem}.
@@ -3398,16 +3615,16 @@ public static org.spongepowered.api.event.entity.ExpireEntityEvent createExpireE
      * @param targetTransform The target transform
      * @return A new target item expire entity event
      */
-public static org.spongepowered.api.event.entity.ExpireEntityEvent.TargetItem createExpireEntityEventTargetItem(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Item targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ExpireEntityEvent.TargetItem createExpireEntityEventTargetItem(Cause cause, Game game, Item targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.ExpireEntityEvent.TargetItem.class, values);
+        return SpongeEventFactory.createEventImpl(ExpireEntityEvent.TargetItem.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent}.
@@ -3416,14 +3633,14 @@ public static org.spongepowered.api.event.entity.ExpireEntityEvent.TargetItem cr
      * @param game The game
      * @return A new fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent createFishingEvent(org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent createFishingEvent(FishHook fishHook, Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("fishHook", fishHook);
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Cast}.
@@ -3432,14 +3649,14 @@ public static org.spongepowered.api.event.entity.FishingEvent createFishingEvent
      * @param game The game
      * @return A new cast fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.Cast createFishingEventCast(org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.Cast createFishingEventCast(FishHook fishHook, Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("fishHook", fishHook);
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Cast.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.Cast.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Cast.SourceEntity}.
@@ -3451,17 +3668,17 @@ public static org.spongepowered.api.event.entity.FishingEvent.Cast createFishing
      * @param sourceTransform The source transform
      * @return A new source entity cast fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.Cast.SourceEntity createFishingEventCastSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.Cast.SourceEntity createFishingEventCastSourceEntity(Cause cause, FishHook fishHook, Game game, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("fishHook", fishHook);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Cast.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.Cast.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Cast.SourceHuman}.
@@ -3473,17 +3690,17 @@ public static org.spongepowered.api.event.entity.FishingEvent.Cast.SourceEntity 
      * @param sourceTransform The source transform
      * @return A new source human cast fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.Cast.SourceHuman createFishingEventCastSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.Cast.SourceHuman createFishingEventCastSourceHuman(Cause cause, FishHook fishHook, Game game, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("fishHook", fishHook);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Cast.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.Cast.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Cast.SourceLiving}.
@@ -3495,17 +3712,17 @@ public static org.spongepowered.api.event.entity.FishingEvent.Cast.SourceHuman c
      * @param sourceTransform The source transform
      * @return A new source living cast fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.Cast.SourceLiving createFishingEventCastSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.Cast.SourceLiving createFishingEventCastSourceLiving(Cause cause, FishHook fishHook, Game game, Living sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("fishHook", fishHook);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Cast.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.Cast.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Cast.SourcePlayer}.
@@ -3517,17 +3734,17 @@ public static org.spongepowered.api.event.entity.FishingEvent.Cast.SourceLiving 
      * @param sourceTransform The source transform
      * @return A new source player cast fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.Cast.SourcePlayer createFishingEventCastSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.Cast.SourcePlayer createFishingEventCastSourcePlayer(Cause cause, FishHook fishHook, Game game, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("fishHook", fishHook);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Cast.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.Cast.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Hook}.
@@ -3538,16 +3755,16 @@ public static org.spongepowered.api.event.entity.FishingEvent.Cast.SourcePlayer 
      * @param targetTransform The target transform
      * @return A new hook fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.Hook createFishingEventHook(org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.Hook createFishingEventHook(FishHook fishHook, Game game, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("fishHook", fishHook);
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Hook.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.Hook.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Hook.SourceEntity}.
@@ -3561,8 +3778,8 @@ public static org.spongepowered.api.event.entity.FishingEvent.Hook createFishing
      * @param targetTransform The target transform
      * @return A new source entity hook fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourceEntity createFishingEventHookSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.Hook.SourceEntity createFishingEventHookSourceEntity(Cause cause, FishHook fishHook, Game game, Entity sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("fishHook", fishHook);
         values.put("game", game);
@@ -3570,10 +3787,10 @@ public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourceEntity 
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Hook.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.Hook.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Hook.SourceHuman}.
@@ -3587,8 +3804,8 @@ public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourceEntity 
      * @param targetTransform The target transform
      * @return A new source human hook fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourceHuman createFishingEventHookSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.Hook.SourceHuman createFishingEventHookSourceHuman(Cause cause, FishHook fishHook, Game game, Human sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("fishHook", fishHook);
         values.put("game", game);
@@ -3596,10 +3813,10 @@ public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourceHuman c
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Hook.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.Hook.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Hook.SourceLiving}.
@@ -3613,8 +3830,8 @@ public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourceHuman c
      * @param targetTransform The target transform
      * @return A new source living hook fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourceLiving createFishingEventHookSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.Hook.SourceLiving createFishingEventHookSourceLiving(Cause cause, FishHook fishHook, Game game, Living sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("fishHook", fishHook);
         values.put("game", game);
@@ -3622,10 +3839,10 @@ public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourceLiving 
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Hook.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.Hook.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Hook.SourcePlayer}.
@@ -3639,8 +3856,8 @@ public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourceLiving 
      * @param targetTransform The target transform
      * @return A new source player hook fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourcePlayer createFishingEventHookSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.Hook.SourcePlayer createFishingEventHookSourcePlayer(Cause cause, FishHook fishHook, Game game, Player sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("fishHook", fishHook);
         values.put("game", game);
@@ -3648,10 +3865,10 @@ public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourcePlayer 
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Hook.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.Hook.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Retract}.
@@ -3662,16 +3879,16 @@ public static org.spongepowered.api.event.entity.FishingEvent.Hook.SourcePlayer 
      * @param game The game
      * @return A new retract fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.Retract createFishingEventRetract(com.google.common.base.Optional<org.spongepowered.api.entity.Entity> caughtEntity, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStackSnapshot> caughtItem, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.Retract createFishingEventRetract(Optional<Entity> caughtEntity, Optional<ItemStackSnapshot> caughtItem, FishHook fishHook, Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("caughtEntity", caughtEntity);
         values.put("caughtItem", caughtItem);
         values.put("fishHook", fishHook);
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Retract.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.Retract.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Retract.SourceEntity}.
@@ -3685,8 +3902,8 @@ public static org.spongepowered.api.event.entity.FishingEvent.Retract createFish
      * @param sourceTransform The source transform
      * @return A new source entity retract fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourceEntity createFishingEventRetractSourceEntity(com.google.common.base.Optional<org.spongepowered.api.entity.Entity> caughtEntity, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStackSnapshot> caughtItem, org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.Retract.SourceEntity createFishingEventRetractSourceEntity(Optional<Entity> caughtEntity, Optional<ItemStackSnapshot> caughtItem, Cause cause, FishHook fishHook, Game game, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("caughtEntity", caughtEntity);
         values.put("caughtItem", caughtItem);
         values.put("cause", cause);
@@ -3694,10 +3911,10 @@ public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourceEnti
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Retract.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.Retract.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Retract.SourceHuman}.
@@ -3711,8 +3928,8 @@ public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourceEnti
      * @param sourceTransform The source transform
      * @return A new source human retract fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourceHuman createFishingEventRetractSourceHuman(com.google.common.base.Optional<org.spongepowered.api.entity.Entity> caughtEntity, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStackSnapshot> caughtItem, org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.Retract.SourceHuman createFishingEventRetractSourceHuman(Optional<Entity> caughtEntity, Optional<ItemStackSnapshot> caughtItem, Cause cause, FishHook fishHook, Game game, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("caughtEntity", caughtEntity);
         values.put("caughtItem", caughtItem);
         values.put("cause", cause);
@@ -3720,10 +3937,10 @@ public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourceHuma
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Retract.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.Retract.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Retract.SourceLiving}.
@@ -3737,8 +3954,8 @@ public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourceHuma
      * @param sourceTransform The source transform
      * @return A new source living retract fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourceLiving createFishingEventRetractSourceLiving(com.google.common.base.Optional<org.spongepowered.api.entity.Entity> caughtEntity, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStackSnapshot> caughtItem, org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.Retract.SourceLiving createFishingEventRetractSourceLiving(Optional<Entity> caughtEntity, Optional<ItemStackSnapshot> caughtItem, Cause cause, FishHook fishHook, Game game, Living sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("caughtEntity", caughtEntity);
         values.put("caughtItem", caughtItem);
         values.put("cause", cause);
@@ -3746,10 +3963,10 @@ public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourceLivi
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Retract.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.Retract.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.Retract.SourcePlayer}.
@@ -3763,8 +3980,8 @@ public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourceLivi
      * @param sourceTransform The source transform
      * @return A new source player retract fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourcePlayer createFishingEventRetractSourcePlayer(com.google.common.base.Optional<org.spongepowered.api.entity.Entity> caughtEntity, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStackSnapshot> caughtItem, org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.Retract.SourcePlayer createFishingEventRetractSourcePlayer(Optional<Entity> caughtEntity, Optional<ItemStackSnapshot> caughtItem, Cause cause, FishHook fishHook, Game game, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("caughtEntity", caughtEntity);
         values.put("caughtItem", caughtItem);
         values.put("cause", cause);
@@ -3772,10 +3989,10 @@ public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourcePlay
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.Retract.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.Retract.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.SourceEntity}.
@@ -3787,17 +4004,17 @@ public static org.spongepowered.api.event.entity.FishingEvent.Retract.SourcePlay
      * @param sourceTransform The source transform
      * @return A new source entity fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.SourceEntity createFishingEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.SourceEntity createFishingEventSourceEntity(Cause cause, FishHook fishHook, Game game, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("fishHook", fishHook);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.SourceHuman}.
@@ -3809,17 +4026,17 @@ public static org.spongepowered.api.event.entity.FishingEvent.SourceEntity creat
      * @param sourceTransform The source transform
      * @return A new source human fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.SourceHuman createFishingEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.SourceHuman createFishingEventSourceHuman(Cause cause, FishHook fishHook, Game game, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("fishHook", fishHook);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.SourceLiving}.
@@ -3831,17 +4048,17 @@ public static org.spongepowered.api.event.entity.FishingEvent.SourceHuman create
      * @param sourceTransform The source transform
      * @return A new source living fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.SourceLiving createFishingEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.SourceLiving createFishingEventSourceLiving(Cause cause, FishHook fishHook, Game game, Living sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("fishHook", fishHook);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.FishingEvent.SourcePlayer}.
@@ -3853,17 +4070,17 @@ public static org.spongepowered.api.event.entity.FishingEvent.SourceLiving creat
      * @param sourceTransform The source transform
      * @return A new source player fishing event
      */
-public static org.spongepowered.api.event.entity.FishingEvent.SourcePlayer createFishingEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.entity.projectile.FishHook fishHook, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FishingEvent.SourcePlayer createFishingEventSourcePlayer(Cause cause, FishHook fishHook, Game game, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("fishHook", fishHook);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.FishingEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(FishingEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.HarvestEntityEvent}.
@@ -3876,18 +4093,18 @@ public static org.spongepowered.api.event.entity.FishingEvent.SourcePlayer creat
      * @param targetTransform The target transform
      * @return A new harvest entity event
      */
-public static org.spongepowered.api.event.entity.HarvestEntityEvent createHarvestEntityEvent(org.spongepowered.api.event.cause.Cause cause, int experience, org.spongepowered.api.Game game, int originalExperience, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HarvestEntityEvent createHarvestEntityEvent(Cause cause, int experience, Game game, int originalExperience, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("experience", experience);
         values.put("game", game);
         values.put("originalExperience", originalExperience);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.HarvestEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(HarvestEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.HarvestEntityEvent.TargetHuman}.
@@ -3900,18 +4117,18 @@ public static org.spongepowered.api.event.entity.HarvestEntityEvent createHarves
      * @param targetTransform The target transform
      * @return A new target human harvest entity event
      */
-public static org.spongepowered.api.event.entity.HarvestEntityEvent.TargetHuman createHarvestEntityEventTargetHuman(org.spongepowered.api.event.cause.Cause cause, int experience, org.spongepowered.api.Game game, int originalExperience, org.spongepowered.api.entity.living.Living targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HarvestEntityEvent.TargetHuman createHarvestEntityEventTargetHuman(Cause cause, int experience, Game game, int originalExperience, Living targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("experience", experience);
         values.put("game", game);
         values.put("originalExperience", originalExperience);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.HarvestEntityEvent.TargetHuman.class, values);
+        return SpongeEventFactory.createEventImpl(HarvestEntityEvent.TargetHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.HarvestEntityEvent.TargetLiving}.
@@ -3924,18 +4141,18 @@ public static org.spongepowered.api.event.entity.HarvestEntityEvent.TargetHuman 
      * @param targetTransform The target transform
      * @return A new target living harvest entity event
      */
-public static org.spongepowered.api.event.entity.HarvestEntityEvent.TargetLiving createHarvestEntityEventTargetLiving(org.spongepowered.api.event.cause.Cause cause, int experience, org.spongepowered.api.Game game, int originalExperience, org.spongepowered.api.entity.living.Living targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HarvestEntityEvent.TargetLiving createHarvestEntityEventTargetLiving(Cause cause, int experience, Game game, int originalExperience, Living targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("experience", experience);
         values.put("game", game);
         values.put("originalExperience", originalExperience);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.HarvestEntityEvent.TargetLiving.class, values);
+        return SpongeEventFactory.createEventImpl(HarvestEntityEvent.TargetLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.HarvestEntityEvent.TargetPlayer}.
@@ -3951,8 +4168,8 @@ public static org.spongepowered.api.event.entity.HarvestEntityEvent.TargetLiving
      * @param targetTransform The target transform
      * @return A new target player harvest entity event
      */
-public static org.spongepowered.api.event.entity.HarvestEntityEvent.TargetPlayer createHarvestEntityEventTargetPlayer(org.spongepowered.api.event.cause.Cause cause, int experience, org.spongepowered.api.Game game, boolean keepsInventory, boolean keepsLevel, int newLevel, int originalExperience, org.spongepowered.api.entity.living.player.Player targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HarvestEntityEvent.TargetPlayer createHarvestEntityEventTargetPlayer(Cause cause, int experience, Game game, boolean keepsInventory, boolean keepsLevel, int newLevel, int originalExperience, Player targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("experience", experience);
         values.put("game", game);
@@ -3962,10 +4179,10 @@ public static org.spongepowered.api.event.entity.HarvestEntityEvent.TargetPlayer
         values.put("originalExperience", originalExperience);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.HarvestEntityEvent.TargetPlayer.class, values);
+        return SpongeEventFactory.createEventImpl(HarvestEntityEvent.TargetPlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.HealEntityEvent}.
@@ -3982,8 +4199,8 @@ public static org.spongepowered.api.event.entity.HarvestEntityEvent.TargetPlayer
      * @param targetTransform The target transform
      * @return A new heal entity event
      */
-public static org.spongepowered.api.event.entity.HealEntityEvent createHealEntityEvent(double baseHealAmount, org.spongepowered.api.event.cause.Cause cause, double finalHealAmount, org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.health.HealthModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> modifiers, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.health.HealthModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, double originalHealAmount, java.util.Map<org.spongepowered.api.event.cause.entity.health.HealthModifier, java.lang.Double> originalHealingAmounts, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HealEntityEvent createHealEntityEvent(double baseHealAmount, Cause cause, double finalHealAmount, Game game, List<Tuple<HealthModifier, Function<? super Double, Double>>> modifiers, List<Tuple<HealthModifier, Function<? super Double, Double>>> originalFunctions, double originalHealAmount, Map<HealthModifier, Double> originalHealingAmounts, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("baseHealAmount", baseHealAmount);
         values.put("cause", cause);
         values.put("finalHealAmount", finalHealAmount);
@@ -3994,10 +4211,10 @@ public static org.spongepowered.api.event.entity.HealEntityEvent createHealEntit
         values.put("originalHealingAmounts", originalHealingAmounts);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.HealEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(HealEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.IgniteEntityEvent}.
@@ -4008,16 +4225,16 @@ public static org.spongepowered.api.event.entity.HealEntityEvent createHealEntit
      * @param targetTransform The target transform
      * @return A new ignite entity event
      */
-public static org.spongepowered.api.event.entity.IgniteEntityEvent createIgniteEntityEvent(int fireTicks, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static IgniteEntityEvent createIgniteEntityEvent(int fireTicks, Game game, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("fireTicks", fireTicks);
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.IgniteEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(IgniteEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent}.
@@ -4029,17 +4246,17 @@ public static org.spongepowered.api.event.entity.IgniteEntityEvent createIgniteE
      * @param targetTransform The target transform
      * @return A new interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent createInteractEntityEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent createInteractEntityEvent(Cause cause, Game game, Optional<Vector3d> interactionPoint, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Attack}.
@@ -4053,8 +4270,8 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent createInter
      * @param targetTransform The target transform
      * @return A new attack interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack createInteractEntityEventAttack(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, double originalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.Attack createInteractEntityEventAttack(Cause cause, Game game, Optional<Vector3d> interactionPoint, double originalDamage, List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -4062,10 +4279,10 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack crea
         values.put("originalFunctions", originalFunctions);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Attack.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Attack.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceEntity}.
@@ -4081,8 +4298,8 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack crea
      * @param targetTransform The target transform
      * @return A new source entity attack interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceEntity createInteractEntityEventAttackSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, double originalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.Attack.SourceEntity createInteractEntityEventAttackSourceEntity(Cause cause, Game game, Optional<Vector3d> interactionPoint, double originalDamage, List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions, Entity sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -4092,10 +4309,10 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.Sour
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Attack.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceHuman}.
@@ -4111,8 +4328,8 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.Sour
      * @param targetTransform The target transform
      * @return A new source human attack interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceHuman createInteractEntityEventAttackSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, double originalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.Attack.SourceHuman createInteractEntityEventAttackSourceHuman(Cause cause, Game game, Optional<Vector3d> interactionPoint, double originalDamage, List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions, Human sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -4122,10 +4339,10 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.Sour
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Attack.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceLightning}.
@@ -4141,8 +4358,8 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.Sour
      * @param targetTransform The target transform
      * @return A new source lightning attack interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceLightning createInteractEntityEventAttackSourceLightning(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, double originalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, org.spongepowered.api.entity.weather.Lightning sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.Attack.SourceLightning createInteractEntityEventAttackSourceLightning(Cause cause, Game game, Optional<Vector3d> interactionPoint, double originalDamage, List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions, Lightning sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -4152,10 +4369,10 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.Sour
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceLightning.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Attack.SourceLightning.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceLiving}.
@@ -4171,8 +4388,8 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.Sour
      * @param targetTransform The target transform
      * @return A new source living attack interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceLiving createInteractEntityEventAttackSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, double originalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.Attack.SourceLiving createInteractEntityEventAttackSourceLiving(Cause cause, Game game, Optional<Vector3d> interactionPoint, double originalDamage, List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions, Living sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -4182,10 +4399,10 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.Sour
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Attack.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourcePlayer}.
@@ -4201,8 +4418,8 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.Sour
      * @param targetTransform The target transform
      * @return A new source player attack interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourcePlayer createInteractEntityEventAttackSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, double originalDamage, java.util.List<org.spongepowered.api.util.Tuple<org.spongepowered.api.event.cause.entity.damage.DamageModifier, com.google.common.base.Function<? super java.lang.Double, java.lang.Double>>> originalFunctions, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.Attack.SourcePlayer createInteractEntityEventAttackSourcePlayer(Cause cause, Game game, Optional<Vector3d> interactionPoint, double originalDamage, List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions, Player sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -4212,10 +4429,10 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.Sour
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Attack.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Attack.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.SourceBlock}.
@@ -4230,8 +4447,8 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Attack.Sour
      * @param targetTransform The target transform
      * @return A new source block interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceBlock createInteractEntityEventSourceBlock(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.SourceBlock createInteractEntityEventSourceBlock(Cause cause, Game game, Optional<Vector3d> interactionPoint, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -4240,10 +4457,10 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceBlock
         values.put("sourceSide", sourceSide);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.SourceEntity}.
@@ -4257,8 +4474,8 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceBlock
      * @param targetTransform The target transform
      * @return A new source entity interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceEntity createInteractEntityEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.SourceEntity createInteractEntityEventSourceEntity(Cause cause, Game game, Optional<Vector3d> interactionPoint, Entity sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -4266,10 +4483,10 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceEntit
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.SourceHuman}.
@@ -4283,8 +4500,8 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceEntit
      * @param targetTransform The target transform
      * @return A new source human interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceHuman createInteractEntityEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.SourceHuman createInteractEntityEventSourceHuman(Cause cause, Game game, Optional<Vector3d> interactionPoint, Human sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -4292,10 +4509,10 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceHuman
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.SourceLiving}.
@@ -4309,8 +4526,8 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceHuman
      * @param targetTransform The target transform
      * @return A new source living interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceLiving createInteractEntityEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.SourceLiving createInteractEntityEventSourceLiving(Cause cause, Game game, Optional<Vector3d> interactionPoint, Living sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -4318,10 +4535,10 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceLivin
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.SourcePlayer}.
@@ -4335,8 +4552,8 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.SourceLivin
      * @param targetTransform The target transform
      * @return A new source player interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.SourcePlayer createInteractEntityEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.SourcePlayer createInteractEntityEventSourcePlayer(Cause cause, Game game, Optional<Vector3d> interactionPoint, Player sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -4344,10 +4561,10 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.SourcePlaye
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Use}.
@@ -4359,17 +4576,17 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.SourcePlaye
      * @param targetTransform The target transform
      * @return A new use interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.Use createInteractEntityEventUse(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.Use createInteractEntityEventUse(Cause cause, Game game, Optional<Vector3d> interactionPoint, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Use.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Use.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceEntity}.
@@ -4383,8 +4600,8 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Use createI
      * @param targetTransform The target transform
      * @return A new source entity use interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceEntity createInteractEntityEventUseSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.Use.SourceEntity createInteractEntityEventUseSourceEntity(Cause cause, Game game, Optional<Vector3d> interactionPoint, Entity sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -4392,10 +4609,10 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceE
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Use.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceHuman}.
@@ -4409,8 +4626,8 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceE
      * @param targetTransform The target transform
      * @return A new source human use interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceHuman createInteractEntityEventUseSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.Use.SourceHuman createInteractEntityEventUseSourceHuman(Cause cause, Game game, Optional<Vector3d> interactionPoint, Human sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -4418,10 +4635,10 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceH
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Use.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceLiving}.
@@ -4435,8 +4652,8 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceH
      * @param targetTransform The target transform
      * @return A new source living use interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceLiving createInteractEntityEventUseSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.Use.SourceLiving createInteractEntityEventUseSourceLiving(Cause cause, Game game, Optional<Vector3d> interactionPoint, Living sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -4444,10 +4661,10 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceL
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Use.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourcePlayer}.
@@ -4461,8 +4678,8 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceL
      * @param targetTransform The target transform
      * @return A new source player use interact entity event
      */
-public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourcePlayer createInteractEntityEventUseSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<com.flowpowered.math.vector.Vector3d> interactionPoint, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InteractEntityEvent.Use.SourcePlayer createInteractEntityEventUseSourcePlayer(Cause cause, Game game, Optional<Vector3d> interactionPoint, Player sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
@@ -4470,10 +4687,10 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceP
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(InteractEntityEvent.Use.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.LeashEntityEvent}.
@@ -4483,15 +4700,15 @@ public static org.spongepowered.api.event.entity.InteractEntityEvent.Use.SourceP
      * @param targetTransform The target transform
      * @return A new leash entity event
      */
-public static org.spongepowered.api.event.entity.LeashEntityEvent createLeashEntityEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static LeashEntityEvent createLeashEntityEvent(Game game, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.LeashEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(LeashEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.MountEntityEvent}.
@@ -4502,16 +4719,16 @@ public static org.spongepowered.api.event.entity.LeashEntityEvent createLeashEnt
      * @param vehicle The vehicle
      * @return A new mount entity event
      */
-public static org.spongepowered.api.event.entity.MountEntityEvent createMountEntityEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, org.spongepowered.api.entity.Entity vehicle) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static MountEntityEvent createMountEntityEvent(Game game, Entity targetEntity, Transform<World> targetTransform, Entity vehicle) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("vehicle", vehicle);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.MountEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(MountEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.PreCreateEntityEvent}.
@@ -4522,16 +4739,16 @@ public static org.spongepowered.api.event.entity.MountEntityEvent createMountEnt
      * @param targetType The target type
      * @return A new pre create entity event
      */
-public static org.spongepowered.api.event.entity.PreCreateEntityEvent createPreCreateEntityEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> location, org.spongepowered.api.entity.EntityType targetType) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PreCreateEntityEvent createPreCreateEntityEvent(Cause cause, Game game, Location<World> location, EntityType targetType) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("location", location);
         values.put("targetType", targetType);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.PreCreateEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PreCreateEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.SpawnEntityEvent}.
@@ -4542,16 +4759,16 @@ public static org.spongepowered.api.event.entity.PreCreateEntityEvent createPreC
      * @param targetTransform The target transform
      * @return A new spawn entity event
      */
-public static org.spongepowered.api.event.entity.SpawnEntityEvent createSpawnEntityEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static SpawnEntityEvent createSpawnEntityEvent(Cause cause, Game game, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.SpawnEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(SpawnEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.SpawnEntityEvent.SourceBlock}.
@@ -4565,8 +4782,8 @@ public static org.spongepowered.api.event.entity.SpawnEntityEvent createSpawnEnt
      * @param targetTransform The target transform
      * @return A new source block spawn entity event
      */
-public static org.spongepowered.api.event.entity.SpawnEntityEvent.SourceBlock createSpawnEntityEventSourceBlock(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static SpawnEntityEvent.SourceBlock createSpawnEntityEventSourceBlock(Cause cause, Game game, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceBlock", sourceBlock);
@@ -4574,10 +4791,10 @@ public static org.spongepowered.api.event.entity.SpawnEntityEvent.SourceBlock cr
         values.put("sourceSide", sourceSide);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.SpawnEntityEvent.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(SpawnEntityEvent.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.SpawnEntityEvent.SourceWorld}.
@@ -4589,17 +4806,17 @@ public static org.spongepowered.api.event.entity.SpawnEntityEvent.SourceBlock cr
      * @param targetTransform The target transform
      * @return A new source world spawn entity event
      */
-public static org.spongepowered.api.event.entity.SpawnEntityEvent.SourceWorld createSpawnEntityEventSourceWorld(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static SpawnEntityEvent.SourceWorld createSpawnEntityEventSourceWorld(Cause cause, Game game, World sourceWorld, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.SpawnEntityEvent.SourceWorld.class, values);
+        return SpongeEventFactory.createEventImpl(SpawnEntityEvent.SourceWorld.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.SpawnEntityEvent.TargetLiving}.
@@ -4610,16 +4827,16 @@ public static org.spongepowered.api.event.entity.SpawnEntityEvent.SourceWorld cr
      * @param targetTransform The target transform
      * @return A new target living spawn entity event
      */
-public static org.spongepowered.api.event.entity.SpawnEntityEvent.TargetLiving createSpawnEntityEventTargetLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static SpawnEntityEvent.TargetLiving createSpawnEntityEventTargetLiving(Cause cause, Game game, Living targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.SpawnEntityEvent.TargetLiving.class, values);
+        return SpongeEventFactory.createEventImpl(SpawnEntityEvent.TargetLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.TameEntityEvent}.
@@ -4629,15 +4846,15 @@ public static org.spongepowered.api.event.entity.SpawnEntityEvent.TargetLiving c
      * @param targetTransform The target transform
      * @return A new tame entity event
      */
-public static org.spongepowered.api.event.entity.TameEntityEvent createTameEntityEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static TameEntityEvent createTameEntityEvent(Game game, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.TameEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(TameEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.TameEntityEvent.SourceEntity}.
@@ -4650,18 +4867,18 @@ public static org.spongepowered.api.event.entity.TameEntityEvent createTameEntit
      * @param targetTransform The target transform
      * @return A new source entity tame entity event
      */
-public static org.spongepowered.api.event.entity.TameEntityEvent.SourceEntity createTameEntityEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static TameEntityEvent.SourceEntity createTameEntityEventSourceEntity(Cause cause, Game game, Entity sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.TameEntityEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(TameEntityEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.TameEntityEvent.SourceHuman}.
@@ -4674,18 +4891,18 @@ public static org.spongepowered.api.event.entity.TameEntityEvent.SourceEntity cr
      * @param targetTransform The target transform
      * @return A new source human tame entity event
      */
-public static org.spongepowered.api.event.entity.TameEntityEvent.SourceHuman createTameEntityEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static TameEntityEvent.SourceHuman createTameEntityEventSourceHuman(Cause cause, Game game, Human sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.TameEntityEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(TameEntityEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.TameEntityEvent.SourceLiving}.
@@ -4698,18 +4915,18 @@ public static org.spongepowered.api.event.entity.TameEntityEvent.SourceHuman cre
      * @param targetTransform The target transform
      * @return A new source living tame entity event
      */
-public static org.spongepowered.api.event.entity.TameEntityEvent.SourceLiving createTameEntityEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static TameEntityEvent.SourceLiving createTameEntityEventSourceLiving(Cause cause, Game game, Living sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.TameEntityEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(TameEntityEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.TameEntityEvent.SourcePlayer}.
@@ -4722,18 +4939,18 @@ public static org.spongepowered.api.event.entity.TameEntityEvent.SourceLiving cr
      * @param targetTransform The target transform
      * @return A new source player tame entity event
      */
-public static org.spongepowered.api.event.entity.TameEntityEvent.SourcePlayer createTameEntityEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static TameEntityEvent.SourcePlayer createTameEntityEventSourcePlayer(Cause cause, Game game, Player sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.TameEntityEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(TameEntityEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.TargetEntityEvent}.
@@ -4743,15 +4960,15 @@ public static org.spongepowered.api.event.entity.TameEntityEvent.SourcePlayer cr
      * @param targetTransform The target transform
      * @return A new target entity event
      */
-public static org.spongepowered.api.event.entity.TargetEntityEvent createTargetEntityEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static TargetEntityEvent createTargetEntityEvent(Game game, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.TargetEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(TargetEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.UnleashEntityEvent}.
@@ -4762,16 +4979,16 @@ public static org.spongepowered.api.event.entity.TargetEntityEvent createTargetE
      * @param targetTransform The target transform
      * @return A new unleash entity event
      */
-public static org.spongepowered.api.event.entity.UnleashEntityEvent createUnleashEntityEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity leashHolder, org.spongepowered.api.entity.Entity targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UnleashEntityEvent createUnleashEntityEvent(Game game, Entity leashHolder, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("leashHolder", leashHolder);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.UnleashEntityEvent.class, values);
+        return SpongeEventFactory.createEventImpl(UnleashEntityEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.item.ItemMergeItemEvent}.
@@ -4782,16 +4999,16 @@ public static org.spongepowered.api.event.entity.UnleashEntityEvent createUnleas
      * @param targetTransform The target transform
      * @return A new item merge item event
      */
-public static org.spongepowered.api.event.entity.item.ItemMergeItemEvent createItemMergeItemEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.Item itemToMerge, org.spongepowered.api.entity.Item targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ItemMergeItemEvent createItemMergeItemEvent(Game game, Item itemToMerge, Item targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("itemToMerge", itemToMerge);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.item.ItemMergeItemEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ItemMergeItemEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.item.TargetItemEvent}.
@@ -4801,15 +5018,15 @@ public static org.spongepowered.api.event.entity.item.ItemMergeItemEvent createI
      * @param targetTransform The target transform
      * @return A new target item event
      */
-public static org.spongepowered.api.event.entity.item.TargetItemEvent createTargetItemEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.Item targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static TargetItemEvent createTargetItemEvent(Game game, Item targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.item.TargetItemEvent.class, values);
+        return SpongeEventFactory.createEventImpl(TargetItemEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.LivingEvent}.
@@ -4820,16 +5037,16 @@ public static org.spongepowered.api.event.entity.item.TargetItemEvent createTarg
      * @param sourceTransform The source transform
      * @return A new living event
      */
-public static org.spongepowered.api.event.entity.living.LivingEvent createLivingEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static LivingEvent createLivingEvent(Cause cause, Game game, Living sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.LivingEvent.class, values);
+        return SpongeEventFactory.createEventImpl(LivingEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.TargetLivingEvent}.
@@ -4839,15 +5056,15 @@ public static org.spongepowered.api.event.entity.living.LivingEvent createLiving
      * @param targetTransform The target transform
      * @return A new target living event
      */
-public static org.spongepowered.api.event.entity.living.TargetLivingEvent createTargetLivingEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static TargetLivingEvent createTargetLivingEvent(Game game, Living targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.TargetLivingEvent.class, values);
+        return SpongeEventFactory.createEventImpl(TargetLivingEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.ChangeHumanExperienceEvent}.
@@ -4861,8 +5078,8 @@ public static org.spongepowered.api.event.entity.living.TargetLivingEvent create
      * @param sourceTransform The source transform
      * @return A new change human experience event
      */
-public static org.spongepowered.api.event.entity.living.human.ChangeHumanExperienceEvent createChangeHumanExperienceEvent(org.spongepowered.api.event.cause.Cause cause, int currentExperience, int experience, org.spongepowered.api.Game game, int originalExperience, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeHumanExperienceEvent createChangeHumanExperienceEvent(Cause cause, int currentExperience, int experience, Game game, int originalExperience, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("currentExperience", currentExperience);
         values.put("experience", experience);
@@ -4870,10 +5087,10 @@ public static org.spongepowered.api.event.entity.living.human.ChangeHumanExperie
         values.put("originalExperience", originalExperience);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.ChangeHumanExperienceEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeHumanExperienceEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.ChangeHumanExperienceEvent.TargetPlayer}.
@@ -4889,8 +5106,8 @@ public static org.spongepowered.api.event.entity.living.human.ChangeHumanExperie
      * @param targetTransform The target transform
      * @return A new target player change human experience event
      */
-public static org.spongepowered.api.event.entity.living.human.ChangeHumanExperienceEvent.TargetPlayer createChangeHumanExperienceEventTargetPlayer(org.spongepowered.api.event.cause.Cause cause, int currentExperience, int experience, org.spongepowered.api.Game game, int originalExperience, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.living.player.Player targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeHumanExperienceEvent.TargetPlayer createChangeHumanExperienceEventTargetPlayer(Cause cause, int currentExperience, int experience, Game game, int originalExperience, Human sourceEntity, Transform<World> sourceTransform, Player targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("currentExperience", currentExperience);
         values.put("experience", experience);
@@ -4900,10 +5117,10 @@ public static org.spongepowered.api.event.entity.living.human.ChangeHumanExperie
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.ChangeHumanExperienceEvent.TargetPlayer.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeHumanExperienceEvent.TargetPlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.ChangeHumanGameModeEvent}.
@@ -4916,18 +5133,18 @@ public static org.spongepowered.api.event.entity.living.human.ChangeHumanExperie
      * @param targetTransform The target transform
      * @return A new change human game mode event
      */
-public static org.spongepowered.api.event.entity.living.human.ChangeHumanGameModeEvent createChangeHumanGameModeEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.gamemode.GameMode newGameMode, org.spongepowered.api.entity.living.player.gamemode.GameMode oldGameMode, org.spongepowered.api.entity.living.Living targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeHumanGameModeEvent createChangeHumanGameModeEvent(Cause cause, Game game, GameMode newGameMode, GameMode oldGameMode, Living targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("newGameMode", newGameMode);
         values.put("oldGameMode", oldGameMode);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.ChangeHumanGameModeEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeHumanGameModeEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.ChangeHumanGameModeEvent.TargetPlayer}.
@@ -4940,18 +5157,18 @@ public static org.spongepowered.api.event.entity.living.human.ChangeHumanGameMod
      * @param targetTransform The target transform
      * @return A new target player change human game mode event
      */
-public static org.spongepowered.api.event.entity.living.human.ChangeHumanGameModeEvent.TargetPlayer createChangeHumanGameModeEventTargetPlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.gamemode.GameMode newGameMode, org.spongepowered.api.entity.living.player.gamemode.GameMode oldGameMode, org.spongepowered.api.entity.living.player.Player targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeHumanGameModeEvent.TargetPlayer createChangeHumanGameModeEventTargetPlayer(Cause cause, Game game, GameMode newGameMode, GameMode oldGameMode, Player targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("newGameMode", newGameMode);
         values.put("oldGameMode", oldGameMode);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.ChangeHumanGameModeEvent.TargetPlayer.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeHumanGameModeEvent.TargetPlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.ChangeHumanLevelEvent}.
@@ -4963,17 +5180,17 @@ public static org.spongepowered.api.event.entity.living.human.ChangeHumanGameMod
      * @param targetTransform The target transform
      * @return A new change human level event
      */
-public static org.spongepowered.api.event.entity.living.human.ChangeHumanLevelEvent createChangeHumanLevelEvent(org.spongepowered.api.Game game, int level, int newLevel, org.spongepowered.api.entity.living.Living targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeHumanLevelEvent createChangeHumanLevelEvent(Game game, int level, int newLevel, Living targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("level", level);
         values.put("newLevel", newLevel);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.ChangeHumanLevelEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeHumanLevelEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.ChangeHumanLevelEvent.TargetPlayer}.
@@ -4985,17 +5202,17 @@ public static org.spongepowered.api.event.entity.living.human.ChangeHumanLevelEv
      * @param targetTransform The target transform
      * @return A new target player change human level event
      */
-public static org.spongepowered.api.event.entity.living.human.ChangeHumanLevelEvent.TargetPlayer createChangeHumanLevelEventTargetPlayer(org.spongepowered.api.Game game, int level, int newLevel, org.spongepowered.api.entity.living.player.Player targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeHumanLevelEvent.TargetPlayer createChangeHumanLevelEventTargetPlayer(Game game, int level, int newLevel, Player targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("level", level);
         values.put("newLevel", newLevel);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.ChangeHumanLevelEvent.TargetPlayer.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeHumanLevelEvent.TargetPlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanEvent}.
@@ -5006,16 +5223,16 @@ public static org.spongepowered.api.event.entity.living.human.ChangeHumanLevelEv
      * @param sourceTransform The source transform
      * @return A new human event
      */
-public static org.spongepowered.api.event.entity.living.human.HumanEvent createHumanEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HumanEvent createHumanEvent(Cause cause, Game game, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanEvent.class, values);
+        return SpongeEventFactory.createEventImpl(HumanEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent}.
@@ -5027,17 +5244,17 @@ public static org.spongepowered.api.event.entity.living.human.HumanEvent createH
      * @param sourceTransform The source transform
      * @return A new human sleep event
      */
-public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent createHumanSleepEvent(org.spongepowered.api.world.Location<org.spongepowered.api.world.World> bed, org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HumanSleepEvent createHumanSleepEvent(Location<World> bed, Cause cause, Game game, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("bed", bed);
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.class, values);
+        return SpongeEventFactory.createEventImpl(HumanSleepEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent.Enter}.
@@ -5049,17 +5266,17 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent cr
      * @param sourceTransform The source transform
      * @return A new enter human sleep event
      */
-public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.Enter createHumanSleepEventEnter(org.spongepowered.api.world.Location<org.spongepowered.api.world.World> bed, org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HumanSleepEvent.Enter createHumanSleepEventEnter(Location<World> bed, Cause cause, Game game, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("bed", bed);
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.Enter.class, values);
+        return SpongeEventFactory.createEventImpl(HumanSleepEvent.Enter.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer}.
@@ -5071,17 +5288,17 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.En
      * @param sourceTransform The source transform
      * @return A new source player human sleep event
      */
-public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer createHumanSleepEventSourcePlayer(org.spongepowered.api.world.Location<org.spongepowered.api.world.World> bed, org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HumanSleepEvent.SourcePlayer createHumanSleepEventSourcePlayer(Location<World> bed, Cause cause, Game game, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("bed", bed);
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(HumanSleepEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.Enter}.
@@ -5093,17 +5310,17 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.So
      * @param sourceTransform The source transform
      * @return A new enter source player human sleep event
      */
-public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.Enter createHumanSleepEventSourcePlayerEnter(org.spongepowered.api.world.Location<org.spongepowered.api.world.World> bed, org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HumanSleepEvent.SourcePlayer.Enter createHumanSleepEventSourcePlayerEnter(Location<World> bed, Cause cause, Game game, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("bed", bed);
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.Enter.class, values);
+        return SpongeEventFactory.createEventImpl(HumanSleepEvent.SourcePlayer.Enter.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.StartSleeping}.
@@ -5117,8 +5334,8 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.So
      * @param sourceTransform The source transform
      * @return A new start sleeping source player human sleep event
      */
-public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.StartSleeping createHumanSleepEventSourcePlayerStartSleeping(java.util.List<org.spongepowered.api.entity.living.player.Player> awokenPlayers, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> bed, org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.entity.living.player.Player> ignoredPlayers, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HumanSleepEvent.SourcePlayer.StartSleeping createHumanSleepEventSourcePlayerStartSleeping(List<Player> awokenPlayers, Location<World> bed, Cause cause, Game game, List<Player> ignoredPlayers, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("awokenPlayers", awokenPlayers);
         values.put("bed", bed);
         values.put("cause", cause);
@@ -5126,10 +5343,10 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.So
         values.put("ignoredPlayers", ignoredPlayers);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.StartSleeping.class, values);
+        return SpongeEventFactory.createEventImpl(HumanSleepEvent.SourcePlayer.StartSleeping.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.StopSleeping}.
@@ -5142,18 +5359,18 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.So
      * @param spawnTransform The spawn transform
      * @return A new stop sleeping source player human sleep event
      */
-public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.StopSleeping createHumanSleepEventSourcePlayerStopSleeping(org.spongepowered.api.world.Location<org.spongepowered.api.world.World> bed, org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, com.google.common.base.Optional<org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World>> spawnTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HumanSleepEvent.SourcePlayer.StopSleeping createHumanSleepEventSourcePlayerStopSleeping(Location<World> bed, Cause cause, Game game, Player sourceEntity, Transform<World> sourceTransform, Optional<Transform<World>> spawnTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("bed", bed);
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("spawnTransform", spawnTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.SourcePlayer.StopSleeping.class, values);
+        return SpongeEventFactory.createEventImpl(HumanSleepEvent.SourcePlayer.StopSleeping.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent.StartSleeping}.
@@ -5167,8 +5384,8 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.So
      * @param sourceTransform The source transform
      * @return A new start sleeping human sleep event
      */
-public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.StartSleeping createHumanSleepEventStartSleeping(java.util.List<org.spongepowered.api.entity.living.player.Player> awokenPlayers, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> bed, org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.entity.living.player.Player> ignoredPlayers, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HumanSleepEvent.StartSleeping createHumanSleepEventStartSleeping(List<Player> awokenPlayers, Location<World> bed, Cause cause, Game game, List<Player> ignoredPlayers, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("awokenPlayers", awokenPlayers);
         values.put("bed", bed);
         values.put("cause", cause);
@@ -5176,10 +5393,10 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.St
         values.put("ignoredPlayers", ignoredPlayers);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.StartSleeping.class, values);
+        return SpongeEventFactory.createEventImpl(HumanSleepEvent.StartSleeping.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.HumanSleepEvent.StopSleeping}.
@@ -5192,18 +5409,18 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.St
      * @param spawnTransform The spawn transform
      * @return A new stop sleeping human sleep event
      */
-public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.StopSleeping createHumanSleepEventStopSleeping(org.spongepowered.api.world.Location<org.spongepowered.api.world.World> bed, org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, com.google.common.base.Optional<org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World>> spawnTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static HumanSleepEvent.StopSleeping createHumanSleepEventStopSleeping(Location<World> bed, Cause cause, Game game, Human sourceEntity, Transform<World> sourceTransform, Optional<Transform<World>> spawnTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("bed", bed);
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("spawnTransform", spawnTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.HumanSleepEvent.StopSleeping.class, values);
+        return SpongeEventFactory.createEventImpl(HumanSleepEvent.StopSleeping.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.human.TargetHumanEvent}.
@@ -5213,15 +5430,15 @@ public static org.spongepowered.api.event.entity.living.human.HumanSleepEvent.St
      * @param targetTransform The target transform
      * @return A new target human event
      */
-public static org.spongepowered.api.event.entity.living.human.TargetHumanEvent createTargetHumanEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static TargetHumanEvent createTargetHumanEvent(Game game, Living targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.human.TargetHumanEvent.class, values);
+        return SpongeEventFactory.createEventImpl(TargetHumanEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerChangeStatisticEvent}.
@@ -5235,8 +5452,8 @@ public static org.spongepowered.api.event.entity.living.human.TargetHumanEvent c
      * @param sourceTransform The source transform
      * @return A new player change statistic event
      */
-public static org.spongepowered.api.event.entity.living.player.PlayerChangeStatisticEvent createPlayerChangeStatisticEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.statistic.Statistic changedStatistic, org.spongepowered.api.Game game, long newValue, long oldValue, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlayerChangeStatisticEvent createPlayerChangeStatisticEvent(Cause cause, Statistic changedStatistic, Game game, long newValue, long oldValue, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("changedStatistic", changedStatistic);
         values.put("game", game);
@@ -5244,10 +5461,10 @@ public static org.spongepowered.api.event.entity.living.player.PlayerChangeStati
         values.put("oldValue", oldValue);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerChangeStatisticEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PlayerChangeStatisticEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerChatEvent}.
@@ -5263,8 +5480,8 @@ public static org.spongepowered.api.event.entity.living.player.PlayerChangeStati
      * @param unformattedMessage The unformatted message
      * @return A new player chat event
      */
-public static org.spongepowered.api.event.entity.living.player.PlayerChatEvent createPlayerChatEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.text.Text message, org.spongepowered.api.text.Text newMessage, org.spongepowered.api.text.sink.MessageSink sink, org.spongepowered.api.entity.living.player.Player source, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.text.Text unformattedMessage) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlayerChatEvent createPlayerChatEvent(Cause cause, Game game, Text message, Text newMessage, MessageSink sink, Player source, Player sourceEntity, Transform<World> sourceTransform, Text unformattedMessage) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("message", message);
@@ -5274,10 +5491,10 @@ public static org.spongepowered.api.event.entity.living.player.PlayerChatEvent c
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("unformattedMessage", unformattedMessage);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerChatEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PlayerChatEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerConnectionEvent}.
@@ -5286,14 +5503,14 @@ public static org.spongepowered.api.event.entity.living.player.PlayerChatEvent c
      * @param game The game
      * @return A new player connection event
      */
-public static org.spongepowered.api.event.entity.living.player.PlayerConnectionEvent createPlayerConnectionEvent(org.spongepowered.api.network.PlayerConnection connection, org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlayerConnectionEvent createPlayerConnectionEvent(PlayerConnection connection, Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("connection", connection);
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerConnectionEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PlayerConnectionEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerConnectionRegisterChannelEvent}.
@@ -5303,15 +5520,15 @@ public static org.spongepowered.api.event.entity.living.player.PlayerConnectionE
      * @param game The game
      * @return A new player connection register channel event
      */
-public static org.spongepowered.api.event.entity.living.player.PlayerConnectionRegisterChannelEvent createPlayerConnectionRegisterChannelEvent(java.lang.String channelRegistered, org.spongepowered.api.network.PlayerConnection connection, org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlayerConnectionRegisterChannelEvent createPlayerConnectionRegisterChannelEvent(String channelRegistered, PlayerConnection connection, Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("channelRegistered", channelRegistered);
         values.put("connection", connection);
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerConnectionRegisterChannelEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PlayerConnectionRegisterChannelEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerConnectionUnregisterChannelEvent}.
@@ -5321,15 +5538,15 @@ public static org.spongepowered.api.event.entity.living.player.PlayerConnectionR
      * @param game The game
      * @return A new player connection unregister channel event
      */
-public static org.spongepowered.api.event.entity.living.player.PlayerConnectionUnregisterChannelEvent createPlayerConnectionUnregisterChannelEvent(java.lang.String channelUnregistered, org.spongepowered.api.network.PlayerConnection connection, org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlayerConnectionUnregisterChannelEvent createPlayerConnectionUnregisterChannelEvent(String channelUnregistered, PlayerConnection connection, Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("channelUnregistered", channelUnregistered);
         values.put("connection", connection);
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerConnectionUnregisterChannelEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PlayerConnectionUnregisterChannelEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerEvent}.
@@ -5340,16 +5557,16 @@ public static org.spongepowered.api.event.entity.living.player.PlayerConnectionU
      * @param sourceTransform The source transform
      * @return A new player event
      */
-public static org.spongepowered.api.event.entity.living.player.PlayerEvent createPlayerEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlayerEvent createPlayerEvent(Cause cause, Game game, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PlayerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerGainAchievementEvent}.
@@ -5361,17 +5578,17 @@ public static org.spongepowered.api.event.entity.living.player.PlayerEvent creat
      * @param sourceTransform The source transform
      * @return A new player gain achievement event
      */
-public static org.spongepowered.api.event.entity.living.player.PlayerGainAchievementEvent createPlayerGainAchievementEvent(org.spongepowered.api.statistic.achievement.Achievement achievement, org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlayerGainAchievementEvent createPlayerGainAchievementEvent(Achievement achievement, Cause cause, Game game, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("achievement", achievement);
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerGainAchievementEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PlayerGainAchievementEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerJoinEvent}.
@@ -5386,8 +5603,8 @@ public static org.spongepowered.api.event.entity.living.player.PlayerGainAchieve
      * @param sourceTransform The source transform
      * @return A new player join event
      */
-public static org.spongepowered.api.event.entity.living.player.PlayerJoinEvent createPlayerJoinEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.text.Text message, org.spongepowered.api.text.Text newMessage, org.spongepowered.api.text.sink.MessageSink sink, org.spongepowered.api.entity.living.player.Player source, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlayerJoinEvent createPlayerJoinEvent(Cause cause, Game game, Text message, Text newMessage, MessageSink sink, Player source, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("message", message);
@@ -5396,10 +5613,10 @@ public static org.spongepowered.api.event.entity.living.player.PlayerJoinEvent c
         values.put("source", source);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerJoinEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PlayerJoinEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerKickEvent}.
@@ -5414,8 +5631,8 @@ public static org.spongepowered.api.event.entity.living.player.PlayerJoinEvent c
      * @param sourceTransform The source transform
      * @return A new player kick event
      */
-public static org.spongepowered.api.event.entity.living.player.PlayerKickEvent createPlayerKickEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.text.Text message, org.spongepowered.api.text.Text newMessage, org.spongepowered.api.text.sink.MessageSink sink, org.spongepowered.api.entity.living.player.Player source, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlayerKickEvent createPlayerKickEvent(Cause cause, Game game, Text message, Text newMessage, MessageSink sink, Player source, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("message", message);
@@ -5424,10 +5641,10 @@ public static org.spongepowered.api.event.entity.living.player.PlayerKickEvent c
         values.put("source", source);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerKickEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PlayerKickEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerMessageEvent}.
@@ -5442,8 +5659,8 @@ public static org.spongepowered.api.event.entity.living.player.PlayerKickEvent c
      * @param sourceTransform The source transform
      * @return A new player message event
      */
-public static org.spongepowered.api.event.entity.living.player.PlayerMessageEvent createPlayerMessageEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.text.Text message, org.spongepowered.api.text.Text newMessage, org.spongepowered.api.text.sink.MessageSink sink, org.spongepowered.api.entity.living.player.Player source, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlayerMessageEvent createPlayerMessageEvent(Cause cause, Game game, Text message, Text newMessage, MessageSink sink, Player source, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("message", message);
@@ -5452,10 +5669,10 @@ public static org.spongepowered.api.event.entity.living.player.PlayerMessageEven
         values.put("source", source);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerMessageEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PlayerMessageEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerQuitEvent}.
@@ -5470,8 +5687,8 @@ public static org.spongepowered.api.event.entity.living.player.PlayerMessageEven
      * @param sourceTransform The source transform
      * @return A new player quit event
      */
-public static org.spongepowered.api.event.entity.living.player.PlayerQuitEvent createPlayerQuitEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.text.Text message, org.spongepowered.api.text.Text newMessage, org.spongepowered.api.text.sink.MessageSink sink, org.spongepowered.api.entity.living.player.Player source, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlayerQuitEvent createPlayerQuitEvent(Cause cause, Game game, Text message, Text newMessage, MessageSink sink, Player source, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("message", message);
@@ -5480,10 +5697,10 @@ public static org.spongepowered.api.event.entity.living.player.PlayerQuitEvent c
         values.put("source", source);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerQuitEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PlayerQuitEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerResourcePackStatusEvent}.
@@ -5496,18 +5713,18 @@ public static org.spongepowered.api.event.entity.living.player.PlayerQuitEvent c
      * @param status The status
      * @return A new player resource pack status event
      */
-public static org.spongepowered.api.event.entity.living.player.PlayerResourcePackStatusEvent createPlayerResourcePackStatusEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.resourcepack.ResourcePack pack, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.event.entity.living.player.PlayerResourcePackStatusEvent.ResourcePackStatus status) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PlayerResourcePackStatusEvent createPlayerResourcePackStatusEvent(Cause cause, Game game, ResourcePack pack, Player sourceEntity, Transform<World> sourceTransform, PlayerResourcePackStatusEvent.ResourcePackStatus status) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("pack", pack);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("status", status);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.PlayerResourcePackStatusEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PlayerResourcePackStatusEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.RespawnPlayerEvent}.
@@ -5519,17 +5736,17 @@ public static org.spongepowered.api.event.entity.living.player.PlayerResourcePac
      * @param targetTransform The target transform
      * @return A new respawn player event
      */
-public static org.spongepowered.api.event.entity.living.player.RespawnPlayerEvent createRespawnPlayerEvent(boolean bedSpawn, org.spongepowered.api.Game game, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> originTransform, org.spongepowered.api.entity.living.player.Player targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static RespawnPlayerEvent createRespawnPlayerEvent(boolean bedSpawn, Game game, Transform<World> originTransform, Player targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("bedSpawn", bedSpawn);
         values.put("game", game);
         values.put("originTransform", originTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.RespawnPlayerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(RespawnPlayerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.TargetPlayerEvent}.
@@ -5539,15 +5756,15 @@ public static org.spongepowered.api.event.entity.living.player.RespawnPlayerEven
      * @param targetTransform The target transform
      * @return A new target player event
      */
-public static org.spongepowered.api.event.entity.living.player.TargetPlayerEvent createTargetPlayerEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static TargetPlayerEvent createTargetPlayerEvent(Game game, Player targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.living.player.TargetPlayerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(TargetPlayerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent}.
@@ -5559,17 +5776,17 @@ public static org.spongepowered.api.event.entity.living.player.TargetPlayerEvent
      * @param targetTransform The target transform
      * @return A new launch projectile event
      */
-public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent createLaunchProjectileEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<org.spongepowered.api.entity.projectile.source.ProjectileSource> source, org.spongepowered.api.entity.projectile.Projectile targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static LaunchProjectileEvent createLaunchProjectileEvent(Cause cause, Game game, Optional<ProjectileSource> source, Projectile targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("source", source);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.class, values);
+        return SpongeEventFactory.createEventImpl(LaunchProjectileEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourceEntity}.
@@ -5583,8 +5800,8 @@ public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEven
      * @param targetTransform The target transform
      * @return A new source entity launch projectile event
      */
-public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourceEntity createLaunchProjectileEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<org.spongepowered.api.entity.projectile.source.ProjectileSource> source, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.projectile.Projectile targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static LaunchProjectileEvent.SourceEntity createLaunchProjectileEventSourceEntity(Cause cause, Game game, Optional<ProjectileSource> source, Entity sourceEntity, Transform<World> sourceTransform, Projectile targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("source", source);
@@ -5592,10 +5809,10 @@ public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEven
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(LaunchProjectileEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourceHuman}.
@@ -5609,8 +5826,8 @@ public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEven
      * @param targetTransform The target transform
      * @return A new source human launch projectile event
      */
-public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourceHuman createLaunchProjectileEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<org.spongepowered.api.entity.projectile.source.ProjectileSource> source, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.projectile.Projectile targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static LaunchProjectileEvent.SourceHuman createLaunchProjectileEventSourceHuman(Cause cause, Game game, Optional<ProjectileSource> source, Human sourceEntity, Transform<World> sourceTransform, Projectile targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("source", source);
@@ -5618,10 +5835,10 @@ public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEven
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(LaunchProjectileEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourceLiving}.
@@ -5635,8 +5852,8 @@ public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEven
      * @param targetTransform The target transform
      * @return A new source living launch projectile event
      */
-public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourceLiving createLaunchProjectileEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<org.spongepowered.api.entity.projectile.source.ProjectileSource> source, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.projectile.Projectile targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static LaunchProjectileEvent.SourceLiving createLaunchProjectileEventSourceLiving(Cause cause, Game game, Optional<ProjectileSource> source, Living sourceEntity, Transform<World> sourceTransform, Projectile targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("source", source);
@@ -5644,10 +5861,10 @@ public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEven
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(LaunchProjectileEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourcePlayer}.
@@ -5661,8 +5878,8 @@ public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEven
      * @param targetTransform The target transform
      * @return A new source player launch projectile event
      */
-public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourcePlayer createLaunchProjectileEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, com.google.common.base.Optional<org.spongepowered.api.entity.projectile.source.ProjectileSource> source, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform, org.spongepowered.api.entity.projectile.Projectile targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static LaunchProjectileEvent.SourcePlayer createLaunchProjectileEventSourcePlayer(Cause cause, Game game, Optional<ProjectileSource> source, Player sourceEntity, Transform<World> sourceTransform, Projectile targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("source", source);
@@ -5670,10 +5887,10 @@ public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEven
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(LaunchProjectileEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.projectile.TargetProjectileEvent}.
@@ -5683,15 +5900,15 @@ public static org.spongepowered.api.event.entity.projectile.LaunchProjectileEven
      * @param targetTransform The target transform
      * @return A new target projectile event
      */
-public static org.spongepowered.api.event.entity.projectile.TargetProjectileEvent createTargetProjectileEvent(org.spongepowered.api.Game game, org.spongepowered.api.entity.projectile.Projectile targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static TargetProjectileEvent createTargetProjectileEvent(Game game, Projectile targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.entity.projectile.TargetProjectileEvent.class, values);
+        return SpongeEventFactory.createEventImpl(TargetProjectileEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameAboutToStartServerEvent}.
@@ -5699,13 +5916,13 @@ public static org.spongepowered.api.event.entity.projectile.TargetProjectileEven
      * @param game The game
      * @return A new game about to start server event
      */
-public static org.spongepowered.api.event.game.state.GameAboutToStartServerEvent createGameAboutToStartServerEvent(org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GameAboutToStartServerEvent createGameAboutToStartServerEvent(Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameAboutToStartServerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(GameAboutToStartServerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameConstructionEvent}.
@@ -5713,13 +5930,13 @@ public static org.spongepowered.api.event.game.state.GameAboutToStartServerEvent
      * @param game The game
      * @return A new game construction event
      */
-public static org.spongepowered.api.event.game.state.GameConstructionEvent createGameConstructionEvent(org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GameConstructionEvent createGameConstructionEvent(Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameConstructionEvent.class, values);
+        return SpongeEventFactory.createEventImpl(GameConstructionEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameInitializationEvent}.
@@ -5727,13 +5944,13 @@ public static org.spongepowered.api.event.game.state.GameConstructionEvent creat
      * @param game The game
      * @return A new game initialization event
      */
-public static org.spongepowered.api.event.game.state.GameInitializationEvent createGameInitializationEvent(org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GameInitializationEvent createGameInitializationEvent(Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameInitializationEvent.class, values);
+        return SpongeEventFactory.createEventImpl(GameInitializationEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameLoadCompleteEvent}.
@@ -5741,13 +5958,13 @@ public static org.spongepowered.api.event.game.state.GameInitializationEvent cre
      * @param game The game
      * @return A new game load complete event
      */
-public static org.spongepowered.api.event.game.state.GameLoadCompleteEvent createGameLoadCompleteEvent(org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GameLoadCompleteEvent createGameLoadCompleteEvent(Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameLoadCompleteEvent.class, values);
+        return SpongeEventFactory.createEventImpl(GameLoadCompleteEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GamePostInitializationEvent}.
@@ -5755,13 +5972,13 @@ public static org.spongepowered.api.event.game.state.GameLoadCompleteEvent creat
      * @param game The game
      * @return A new game post initialization event
      */
-public static org.spongepowered.api.event.game.state.GamePostInitializationEvent createGamePostInitializationEvent(org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GamePostInitializationEvent createGamePostInitializationEvent(Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GamePostInitializationEvent.class, values);
+        return SpongeEventFactory.createEventImpl(GamePostInitializationEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GamePreInitializationEvent}.
@@ -5769,13 +5986,13 @@ public static org.spongepowered.api.event.game.state.GamePostInitializationEvent
      * @param game The game
      * @return A new game pre initialization event
      */
-public static org.spongepowered.api.event.game.state.GamePreInitializationEvent createGamePreInitializationEvent(org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GamePreInitializationEvent createGamePreInitializationEvent(Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GamePreInitializationEvent.class, values);
+        return SpongeEventFactory.createEventImpl(GamePreInitializationEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameStartedServerEvent}.
@@ -5783,13 +6000,13 @@ public static org.spongepowered.api.event.game.state.GamePreInitializationEvent 
      * @param game The game
      * @return A new game started server event
      */
-public static org.spongepowered.api.event.game.state.GameStartedServerEvent createGameStartedServerEvent(org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GameStartedServerEvent createGameStartedServerEvent(Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameStartedServerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(GameStartedServerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameStartingServerEvent}.
@@ -5797,13 +6014,13 @@ public static org.spongepowered.api.event.game.state.GameStartedServerEvent crea
      * @param game The game
      * @return A new game starting server event
      */
-public static org.spongepowered.api.event.game.state.GameStartingServerEvent createGameStartingServerEvent(org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GameStartingServerEvent createGameStartingServerEvent(Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameStartingServerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(GameStartingServerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameStateEvent}.
@@ -5811,13 +6028,13 @@ public static org.spongepowered.api.event.game.state.GameStartingServerEvent cre
      * @param game The game
      * @return A new game state event
      */
-public static org.spongepowered.api.event.game.state.GameStateEvent createGameStateEvent(org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GameStateEvent createGameStateEvent(Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameStateEvent.class, values);
+        return SpongeEventFactory.createEventImpl(GameStateEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameStoppedServerEvent}.
@@ -5825,13 +6042,13 @@ public static org.spongepowered.api.event.game.state.GameStateEvent createGameSt
      * @param game The game
      * @return A new game stopped server event
      */
-public static org.spongepowered.api.event.game.state.GameStoppedServerEvent createGameStoppedServerEvent(org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GameStoppedServerEvent createGameStoppedServerEvent(Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameStoppedServerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(GameStoppedServerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameStoppingServerEvent}.
@@ -5839,13 +6056,13 @@ public static org.spongepowered.api.event.game.state.GameStoppedServerEvent crea
      * @param game The game
      * @return A new game stopping server event
      */
-public static org.spongepowered.api.event.game.state.GameStoppingServerEvent createGameStoppingServerEvent(org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GameStoppingServerEvent createGameStoppingServerEvent(Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.game.state.GameStoppingServerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(GameStoppingServerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.BlockBrewEvent}.
@@ -5859,8 +6076,8 @@ public static org.spongepowered.api.event.game.state.GameStoppingServerEvent cre
      * @param sourceSide The source side
      * @return A new block brew event
      */
-public static org.spongepowered.api.event.inventory.BlockBrewEvent createBlockBrewEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStack> result, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BlockBrewEvent createBlockBrewEvent(Cause cause, Game game, Inventory inventory, Optional<ItemStack> result, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("inventory", inventory);
@@ -5868,10 +6085,10 @@ public static org.spongepowered.api.event.inventory.BlockBrewEvent createBlockBr
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.BlockBrewEvent.class, values);
+        return SpongeEventFactory.createEventImpl(BlockBrewEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.BlockInventoryEvent}.
@@ -5884,18 +6101,18 @@ public static org.spongepowered.api.event.inventory.BlockBrewEvent createBlockBr
      * @param sourceSide The source side
      * @return A new block inventory event
      */
-public static org.spongepowered.api.event.inventory.BlockInventoryEvent createBlockInventoryEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BlockInventoryEvent createBlockInventoryEvent(Cause cause, Game game, Inventory inventory, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("inventory", inventory);
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.BlockInventoryEvent.class, values);
+        return SpongeEventFactory.createEventImpl(BlockInventoryEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.BulkItemResultEvent}.
@@ -5905,15 +6122,15 @@ public static org.spongepowered.api.event.inventory.BlockInventoryEvent createBl
      * @param results The results
      * @return A new bulk item result event
      */
-public static org.spongepowered.api.event.inventory.BulkItemResultEvent createBulkItemResultEvent(org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory, java.util.List<org.spongepowered.api.item.inventory.ItemStack> results) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BulkItemResultEvent createBulkItemResultEvent(Game game, Inventory inventory, List<ItemStack> results) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("inventory", inventory);
         values.put("results", results);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.BulkItemResultEvent.class, values);
+        return SpongeEventFactory.createEventImpl(BulkItemResultEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.ContainerEvent}.
@@ -5922,14 +6139,14 @@ public static org.spongepowered.api.event.inventory.BulkItemResultEvent createBu
      * @param game The game
      * @return A new container event
      */
-public static org.spongepowered.api.event.inventory.ContainerEvent createContainerEvent(org.spongepowered.api.item.inventory.Container container, org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ContainerEvent createContainerEvent(Container container, Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("container", container);
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.ContainerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ContainerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent}.
@@ -5938,14 +6155,14 @@ public static org.spongepowered.api.event.inventory.ContainerEvent createContain
      * @param game The game
      * @return A new drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent createDropItemStackEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent createDropItemStackEvent(Cause cause, Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Post}.
@@ -5956,16 +6173,16 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent createDro
      * @param game The game
      * @return A new post drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post createDropItemStackEventPost(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.entity.Item> entities, java.util.List<org.spongepowered.api.entity.EntitySnapshot> entitySnapshots, org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.Post createDropItemStackEventPost(Cause cause, List<Item> entities, List<EntitySnapshot> entitySnapshots, Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Post.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Post.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceBlock}.
@@ -5979,8 +6196,8 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post crea
      * @param sourceSide The source side
      * @return A new source block post drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceBlock createDropItemStackEventPostSourceBlock(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.entity.Item> entities, java.util.List<org.spongepowered.api.entity.EntitySnapshot> entitySnapshots, org.spongepowered.api.Game game, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.Post.SourceBlock createDropItemStackEventPostSourceBlock(Cause cause, List<Item> entities, List<EntitySnapshot> entitySnapshots, Game game, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
@@ -5988,10 +6205,10 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.Sour
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Post.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceEntity}.
@@ -6004,18 +6221,18 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.Sour
      * @param sourceTransform The source transform
      * @return A new source entity post drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceEntity createDropItemStackEventPostSourceEntity(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.entity.Item> entities, java.util.List<org.spongepowered.api.entity.EntitySnapshot> entitySnapshots, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.Post.SourceEntity createDropItemStackEventPostSourceEntity(Cause cause, List<Item> entities, List<EntitySnapshot> entitySnapshots, Game game, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Post.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceHuman}.
@@ -6028,18 +6245,18 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.Sour
      * @param sourceTransform The source transform
      * @return A new source human post drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceHuman createDropItemStackEventPostSourceHuman(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.entity.Item> entities, java.util.List<org.spongepowered.api.entity.EntitySnapshot> entitySnapshots, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.Post.SourceHuman createDropItemStackEventPostSourceHuman(Cause cause, List<Item> entities, List<EntitySnapshot> entitySnapshots, Game game, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Post.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceLiving}.
@@ -6052,18 +6269,18 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.Sour
      * @param sourceTransform The source transform
      * @return A new source living post drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceLiving createDropItemStackEventPostSourceLiving(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.entity.Item> entities, java.util.List<org.spongepowered.api.entity.EntitySnapshot> entitySnapshots, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.Post.SourceLiving createDropItemStackEventPostSourceLiving(Cause cause, List<Item> entities, List<EntitySnapshot> entitySnapshots, Game game, Living sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Post.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourcePlayer}.
@@ -6076,18 +6293,18 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.Sour
      * @param sourceTransform The source transform
      * @return A new source player post drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourcePlayer createDropItemStackEventPostSourcePlayer(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.entity.Item> entities, java.util.List<org.spongepowered.api.entity.EntitySnapshot> entitySnapshots, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.Post.SourcePlayer createDropItemStackEventPostSourcePlayer(Cause cause, List<Item> entities, List<EntitySnapshot> entitySnapshots, Game game, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Post.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Post.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Pre}.
@@ -6098,16 +6315,16 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Post.Sour
      * @param game The game
      * @return A new pre drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre createDropItemStackEventPre(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.item.inventory.ItemStackSnapshot> defaultDroppedItems, java.util.List<org.spongepowered.api.item.inventory.ItemStackTransaction> droppedItems, org.spongepowered.api.Game game) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.Pre createDropItemStackEventPre(Cause cause, List<ItemStackSnapshot> defaultDroppedItems, List<ItemStackTransaction> droppedItems, Game game) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("defaultDroppedItems", defaultDroppedItems);
         values.put("droppedItems", droppedItems);
         values.put("game", game);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Pre.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceBlock}.
@@ -6121,8 +6338,8 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre creat
      * @param sourceSide The source side
      * @return A new source block pre drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceBlock createDropItemStackEventPreSourceBlock(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.item.inventory.ItemStackSnapshot> defaultDroppedItems, java.util.List<org.spongepowered.api.item.inventory.ItemStackTransaction> droppedItems, org.spongepowered.api.Game game, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.Pre.SourceBlock createDropItemStackEventPreSourceBlock(Cause cause, List<ItemStackSnapshot> defaultDroppedItems, List<ItemStackTransaction> droppedItems, Game game, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("defaultDroppedItems", defaultDroppedItems);
         values.put("droppedItems", droppedItems);
@@ -6130,10 +6347,10 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.Sourc
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Pre.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceEntity}.
@@ -6146,18 +6363,18 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.Sourc
      * @param sourceTransform The source transform
      * @return A new source entity pre drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceEntity createDropItemStackEventPreSourceEntity(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.item.inventory.ItemStackSnapshot> defaultDroppedItems, java.util.List<org.spongepowered.api.item.inventory.ItemStackTransaction> droppedItems, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.Pre.SourceEntity createDropItemStackEventPreSourceEntity(Cause cause, List<ItemStackSnapshot> defaultDroppedItems, List<ItemStackTransaction> droppedItems, Game game, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("defaultDroppedItems", defaultDroppedItems);
         values.put("droppedItems", droppedItems);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Pre.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceHuman}.
@@ -6170,18 +6387,18 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.Sourc
      * @param sourceTransform The source transform
      * @return A new source human pre drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceHuman createDropItemStackEventPreSourceHuman(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.item.inventory.ItemStackSnapshot> defaultDroppedItems, java.util.List<org.spongepowered.api.item.inventory.ItemStackTransaction> droppedItems, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.Pre.SourceHuman createDropItemStackEventPreSourceHuman(Cause cause, List<ItemStackSnapshot> defaultDroppedItems, List<ItemStackTransaction> droppedItems, Game game, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("defaultDroppedItems", defaultDroppedItems);
         values.put("droppedItems", droppedItems);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Pre.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceLiving}.
@@ -6194,18 +6411,18 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.Sourc
      * @param sourceTransform The source transform
      * @return A new source living pre drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceLiving createDropItemStackEventPreSourceLiving(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.item.inventory.ItemStackSnapshot> defaultDroppedItems, java.util.List<org.spongepowered.api.item.inventory.ItemStackTransaction> droppedItems, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.Pre.SourceLiving createDropItemStackEventPreSourceLiving(Cause cause, List<ItemStackSnapshot> defaultDroppedItems, List<ItemStackTransaction> droppedItems, Game game, Living sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("defaultDroppedItems", defaultDroppedItems);
         values.put("droppedItems", droppedItems);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Pre.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourcePlayer}.
@@ -6218,18 +6435,18 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.Sourc
      * @param sourceTransform The source transform
      * @return A new source player pre drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourcePlayer createDropItemStackEventPreSourcePlayer(org.spongepowered.api.event.cause.Cause cause, java.util.List<org.spongepowered.api.item.inventory.ItemStackSnapshot> defaultDroppedItems, java.util.List<org.spongepowered.api.item.inventory.ItemStackTransaction> droppedItems, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.Pre.SourcePlayer createDropItemStackEventPreSourcePlayer(Cause cause, List<ItemStackSnapshot> defaultDroppedItems, List<ItemStackTransaction> droppedItems, Game game, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("defaultDroppedItems", defaultDroppedItems);
         values.put("droppedItems", droppedItems);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.Pre.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.SourceBlock}.
@@ -6241,17 +6458,17 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.Pre.Sourc
      * @param sourceSide The source side
      * @return A new source block drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.SourceBlock createDropItemStackEventSourceBlock(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.SourceBlock createDropItemStackEventSourceBlock(Cause cause, Game game, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.SourceEntity}.
@@ -6262,16 +6479,16 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.SourceBlo
      * @param sourceTransform The source transform
      * @return A new source entity drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.SourceEntity createDropItemStackEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.SourceEntity createDropItemStackEventSourceEntity(Cause cause, Game game, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.SourceHuman}.
@@ -6282,16 +6499,16 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.SourceEnt
      * @param sourceTransform The source transform
      * @return A new source human drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.SourceHuman createDropItemStackEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.SourceHuman createDropItemStackEventSourceHuman(Cause cause, Game game, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.SourceLiving}.
@@ -6302,16 +6519,16 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.SourceHum
      * @param sourceTransform The source transform
      * @return A new source living drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.SourceLiving createDropItemStackEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.SourceLiving createDropItemStackEventSourceLiving(Cause cause, Game game, Living sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.SourcePlayer}.
@@ -6322,16 +6539,16 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.SourceLiv
      * @param sourceTransform The source transform
      * @return A new source player drop item stack event
      */
-public static org.spongepowered.api.event.inventory.DropItemStackEvent.SourcePlayer createDropItemStackEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static DropItemStackEvent.SourcePlayer createDropItemStackEventSourcePlayer(Cause cause, Game game, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.DropItemStackEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(DropItemStackEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.InventoryClickEvent}.
@@ -6341,15 +6558,15 @@ public static org.spongepowered.api.event.inventory.DropItemStackEvent.SourcePla
      * @param viewer The viewer
      * @return A new inventory click event
      */
-public static org.spongepowered.api.event.inventory.InventoryClickEvent createInventoryClickEvent(org.spongepowered.api.item.inventory.Container container, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human viewer) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InventoryClickEvent createInventoryClickEvent(Container container, Game game, Human viewer) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("container", container);
         values.put("game", game);
         values.put("viewer", viewer);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.InventoryClickEvent.class, values);
+        return SpongeEventFactory.createEventImpl(InventoryClickEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.InventoryCloseEvent}.
@@ -6359,15 +6576,15 @@ public static org.spongepowered.api.event.inventory.InventoryClickEvent createIn
      * @param viewer The viewer
      * @return A new inventory close event
      */
-public static org.spongepowered.api.event.inventory.InventoryCloseEvent createInventoryCloseEvent(org.spongepowered.api.item.inventory.Container container, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human viewer) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InventoryCloseEvent createInventoryCloseEvent(Container container, Game game, Human viewer) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("container", container);
         values.put("game", game);
         values.put("viewer", viewer);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.InventoryCloseEvent.class, values);
+        return SpongeEventFactory.createEventImpl(InventoryCloseEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.InventoryEvent}.
@@ -6376,14 +6593,14 @@ public static org.spongepowered.api.event.inventory.InventoryCloseEvent createIn
      * @param inventory The inventory
      * @return A new inventory event
      */
-public static org.spongepowered.api.event.inventory.InventoryEvent createInventoryEvent(org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static InventoryEvent createInventoryEvent(Game game, Inventory inventory) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("inventory", inventory);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.InventoryEvent.class, values);
+        return SpongeEventFactory.createEventImpl(InventoryEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.ItemResultEvent}.
@@ -6393,15 +6610,15 @@ public static org.spongepowered.api.event.inventory.InventoryEvent createInvento
      * @param result The result
      * @return A new item result event
      */
-public static org.spongepowered.api.event.inventory.ItemResultEvent createItemResultEvent(org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory, com.google.common.base.Optional<org.spongepowered.api.item.inventory.ItemStack> result) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ItemResultEvent createItemResultEvent(Game game, Inventory inventory, Optional<ItemStack> result) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("inventory", inventory);
         values.put("result", result);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.ItemResultEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ItemResultEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.PickUpItemEvent}.
@@ -6411,15 +6628,15 @@ public static org.spongepowered.api.event.inventory.ItemResultEvent createItemRe
      * @param items The items
      * @return A new pick up item event
      */
-public static org.spongepowered.api.event.inventory.PickUpItemEvent createPickUpItemEvent(org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory, java.util.Collection<org.spongepowered.api.entity.Item> items) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PickUpItemEvent createPickUpItemEvent(Game game, Inventory inventory, Collection<Item> items) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("inventory", inventory);
         values.put("items", items);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.PickUpItemEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PickUpItemEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.PickUpItemEvent.SourceBlock}.
@@ -6433,8 +6650,8 @@ public static org.spongepowered.api.event.inventory.PickUpItemEvent createPickUp
      * @param sourceSide The source side
      * @return A new source block pick up item event
      */
-public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourceBlock createPickUpItemEventSourceBlock(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory, java.util.Collection<org.spongepowered.api.entity.Item> items, org.spongepowered.api.block.BlockSnapshot sourceBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> sourceLocation, com.google.common.base.Optional<org.spongepowered.api.util.Direction> sourceSide) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PickUpItemEvent.SourceBlock createPickUpItemEventSourceBlock(Cause cause, Game game, Inventory inventory, Collection<Item> items, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("inventory", inventory);
@@ -6442,10 +6659,10 @@ public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourceBlock 
         values.put("sourceBlock", sourceBlock);
         values.put("sourceLocation", sourceLocation);
         values.put("sourceSide", sourceSide);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.PickUpItemEvent.SourceBlock.class, values);
+        return SpongeEventFactory.createEventImpl(PickUpItemEvent.SourceBlock.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.PickUpItemEvent.SourceEntity}.
@@ -6458,18 +6675,18 @@ public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourceBlock 
      * @param sourceTransform The source transform
      * @return A new source entity pick up item event
      */
-public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourceEntity createPickUpItemEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory, java.util.Collection<org.spongepowered.api.entity.Item> items, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PickUpItemEvent.SourceEntity createPickUpItemEventSourceEntity(Cause cause, Game game, Inventory inventory, Collection<Item> items, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("inventory", inventory);
         values.put("items", items);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.PickUpItemEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(PickUpItemEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.PickUpItemEvent.SourceHuman}.
@@ -6482,18 +6699,18 @@ public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourceEntity
      * @param sourceTransform The source transform
      * @return A new source human pick up item event
      */
-public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourceHuman createPickUpItemEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory, java.util.Collection<org.spongepowered.api.entity.Item> items, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PickUpItemEvent.SourceHuman createPickUpItemEventSourceHuman(Cause cause, Game game, Inventory inventory, Collection<Item> items, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("inventory", inventory);
         values.put("items", items);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.PickUpItemEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(PickUpItemEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.PickUpItemEvent.SourceLiving}.
@@ -6506,18 +6723,18 @@ public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourceHuman 
      * @param sourceTransform The source transform
      * @return A new source living pick up item event
      */
-public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourceLiving createPickUpItemEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory, java.util.Collection<org.spongepowered.api.entity.Item> items, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PickUpItemEvent.SourceLiving createPickUpItemEventSourceLiving(Cause cause, Game game, Inventory inventory, Collection<Item> items, Living sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("inventory", inventory);
         values.put("items", items);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.PickUpItemEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(PickUpItemEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.PickUpItemEvent.SourcePlayer}.
@@ -6530,18 +6747,18 @@ public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourceLiving
      * @param sourceTransform The source transform
      * @return A new source player pick up item event
      */
-public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourcePlayer createPickUpItemEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.Inventory inventory, java.util.Collection<org.spongepowered.api.entity.Item> items, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PickUpItemEvent.SourcePlayer createPickUpItemEventSourcePlayer(Cause cause, Game game, Inventory inventory, Collection<Item> items, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("inventory", inventory);
         values.put("items", items);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.PickUpItemEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(PickUpItemEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent}.
@@ -6551,15 +6768,15 @@ public static org.spongepowered.api.event.inventory.PickUpItemEvent.SourcePlayer
      * @param itemStackInUse The item stack in use
      * @return A new use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent createUseItemStackEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent createUseItemStackEvent(Cause cause, Game game, ItemStackTransaction itemStackInUse) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Finish}.
@@ -6569,15 +6786,15 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent createUseI
      * @param itemStackInUse The item stack in use
      * @return A new finish use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.Finish createUseItemStackEventFinish(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.Finish createUseItemStackEventFinish(Cause cause, Game game, ItemStackTransaction itemStackInUse) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.Finish.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.Finish.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity}.
@@ -6589,17 +6806,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.Finish cre
      * @param sourceTransform The source transform
      * @return A new source entity use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity createUseItemStackEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourceEntity createUseItemStackEventSourceEntity(Cause cause, Game game, ItemStackTransaction itemStackInUse, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Finish}.
@@ -6611,17 +6828,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEnti
      * @param sourceTransform The source transform
      * @return A new finish source entity use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Finish createUseItemStackEventSourceEntityFinish(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourceEntity.Finish createUseItemStackEventSourceEntityFinish(Cause cause, Game game, ItemStackTransaction itemStackInUse, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Finish.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceEntity.Finish.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Start}.
@@ -6633,17 +6850,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEnti
      * @param sourceTransform The source transform
      * @return A new start source entity use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Start createUseItemStackEventSourceEntityStart(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourceEntity.Start createUseItemStackEventSourceEntityStart(Cause cause, Game game, ItemStackTransaction itemStackInUse, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Start.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceEntity.Start.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Stop}.
@@ -6655,17 +6872,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEnti
      * @param sourceTransform The source transform
      * @return A new stop source entity use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Stop createUseItemStackEventSourceEntityStop(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourceEntity.Stop createUseItemStackEventSourceEntityStop(Cause cause, Game game, ItemStackTransaction itemStackInUse, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Stop.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceEntity.Stop.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Tick}.
@@ -6677,17 +6894,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEnti
      * @param sourceTransform The source transform
      * @return A new tick source entity use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Tick createUseItemStackEventSourceEntityTick(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourceEntity.Tick createUseItemStackEventSourceEntityTick(Cause cause, Game game, ItemStackTransaction itemStackInUse, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Tick.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceEntity.Tick.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman}.
@@ -6699,17 +6916,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEnti
      * @param sourceTransform The source transform
      * @return A new source human use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman createUseItemStackEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourceHuman createUseItemStackEventSourceHuman(Cause cause, Game game, ItemStackTransaction itemStackInUse, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Finish}.
@@ -6721,17 +6938,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuma
      * @param sourceTransform The source transform
      * @return A new finish source human use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Finish createUseItemStackEventSourceHumanFinish(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourceHuman.Finish createUseItemStackEventSourceHumanFinish(Cause cause, Game game, ItemStackTransaction itemStackInUse, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Finish.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceHuman.Finish.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Start}.
@@ -6743,17 +6960,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuma
      * @param sourceTransform The source transform
      * @return A new start source human use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Start createUseItemStackEventSourceHumanStart(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourceHuman.Start createUseItemStackEventSourceHumanStart(Cause cause, Game game, ItemStackTransaction itemStackInUse, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Start.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceHuman.Start.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Stop}.
@@ -6765,17 +6982,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuma
      * @param sourceTransform The source transform
      * @return A new stop source human use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Stop createUseItemStackEventSourceHumanStop(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourceHuman.Stop createUseItemStackEventSourceHumanStop(Cause cause, Game game, ItemStackTransaction itemStackInUse, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Stop.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceHuman.Stop.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Tick}.
@@ -6787,17 +7004,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuma
      * @param sourceTransform The source transform
      * @return A new tick source human use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Tick createUseItemStackEventSourceHumanTick(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourceHuman.Tick createUseItemStackEventSourceHumanTick(Cause cause, Game game, ItemStackTransaction itemStackInUse, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Tick.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceHuman.Tick.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving}.
@@ -6809,17 +7026,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuma
      * @param sourceTransform The source transform
      * @return A new source living use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving createUseItemStackEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourceLiving createUseItemStackEventSourceLiving(Cause cause, Game game, ItemStackTransaction itemStackInUse, Living sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Finish}.
@@ -6831,17 +7048,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLivi
      * @param sourceTransform The source transform
      * @return A new finish source living use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Finish createUseItemStackEventSourceLivingFinish(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourceLiving.Finish createUseItemStackEventSourceLivingFinish(Cause cause, Game game, ItemStackTransaction itemStackInUse, Living sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Finish.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceLiving.Finish.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Start}.
@@ -6853,17 +7070,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLivi
      * @param sourceTransform The source transform
      * @return A new start source living use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Start createUseItemStackEventSourceLivingStart(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourceLiving.Start createUseItemStackEventSourceLivingStart(Cause cause, Game game, ItemStackTransaction itemStackInUse, Living sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Start.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceLiving.Start.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Stop}.
@@ -6875,17 +7092,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLivi
      * @param sourceTransform The source transform
      * @return A new stop source living use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Stop createUseItemStackEventSourceLivingStop(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourceLiving.Stop createUseItemStackEventSourceLivingStop(Cause cause, Game game, ItemStackTransaction itemStackInUse, Living sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Stop.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceLiving.Stop.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Tick}.
@@ -6897,17 +7114,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLivi
      * @param sourceTransform The source transform
      * @return A new tick source living use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Tick createUseItemStackEventSourceLivingTick(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourceLiving.Tick createUseItemStackEventSourceLivingTick(Cause cause, Game game, ItemStackTransaction itemStackInUse, Living sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Tick.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourceLiving.Tick.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer}.
@@ -6919,17 +7136,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLivi
      * @param sourceTransform The source transform
      * @return A new source player use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer createUseItemStackEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourcePlayer createUseItemStackEventSourcePlayer(Cause cause, Game game, ItemStackTransaction itemStackInUse, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Finish}.
@@ -6941,17 +7158,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlay
      * @param sourceTransform The source transform
      * @return A new finish source player use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Finish createUseItemStackEventSourcePlayerFinish(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourcePlayer.Finish createUseItemStackEventSourcePlayerFinish(Cause cause, Game game, ItemStackTransaction itemStackInUse, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Finish.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourcePlayer.Finish.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Start}.
@@ -6963,17 +7180,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlay
      * @param sourceTransform The source transform
      * @return A new start source player use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Start createUseItemStackEventSourcePlayerStart(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourcePlayer.Start createUseItemStackEventSourcePlayerStart(Cause cause, Game game, ItemStackTransaction itemStackInUse, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Start.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourcePlayer.Start.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Stop}.
@@ -6985,17 +7202,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlay
      * @param sourceTransform The source transform
      * @return A new stop source player use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Stop createUseItemStackEventSourcePlayerStop(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourcePlayer.Stop createUseItemStackEventSourcePlayerStop(Cause cause, Game game, ItemStackTransaction itemStackInUse, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Stop.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourcePlayer.Stop.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Tick}.
@@ -7007,17 +7224,17 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlay
      * @param sourceTransform The source transform
      * @return A new tick source player use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Tick createUseItemStackEventSourcePlayerTick(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.SourcePlayer.Tick createUseItemStackEventSourcePlayerTick(Cause cause, Game game, ItemStackTransaction itemStackInUse, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Tick.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.SourcePlayer.Tick.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Start}.
@@ -7027,15 +7244,15 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlay
      * @param itemStackInUse The item stack in use
      * @return A new start use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.Start createUseItemStackEventStart(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.Start createUseItemStackEventStart(Cause cause, Game game, ItemStackTransaction itemStackInUse) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.Start.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.Start.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Stop}.
@@ -7045,15 +7262,15 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.Start crea
      * @param itemStackInUse The item stack in use
      * @return A new stop use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.Stop createUseItemStackEventStop(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.Stop createUseItemStackEventStop(Cause cause, Game game, ItemStackTransaction itemStackInUse) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.Stop.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.Stop.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Tick}.
@@ -7063,15 +7280,15 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.Stop creat
      * @param itemStackInUse The item stack in use
      * @return A new tick use item stack event
      */
-public static org.spongepowered.api.event.inventory.UseItemStackEvent.Tick createUseItemStackEventTick(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.ItemStackTransaction itemStackInUse) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UseItemStackEvent.Tick createUseItemStackEventTick(Cause cause, Game game, ItemStackTransaction itemStackInUse) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("itemStackInUse", itemStackInUse);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.UseItemStackEvent.Tick.class, values);
+        return SpongeEventFactory.createEventImpl(UseItemStackEvent.Tick.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.viewer.ViewerCraftItemEvent}.
@@ -7085,8 +7302,8 @@ public static org.spongepowered.api.event.inventory.UseItemStackEvent.Tick creat
      * @param viewer The viewer
      * @return A new viewer craft item event
      */
-public static org.spongepowered.api.event.inventory.viewer.ViewerCraftItemEvent createViewerCraftItemEvent(org.spongepowered.api.item.inventory.Container container, org.spongepowered.api.Game game, org.spongepowered.api.item.inventory.crafting.CraftingInventory inventory, org.spongepowered.api.item.recipe.Recipe recipe, java.util.List<org.spongepowered.api.item.ItemType> resultTypes, java.util.List<org.spongepowered.api.item.inventory.ItemStack> results, org.spongepowered.api.entity.living.Human viewer) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ViewerCraftItemEvent createViewerCraftItemEvent(Container container, Game game, CraftingInventory inventory, Recipe recipe, List<ItemType> resultTypes, List<ItemStack> results, Human viewer) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("container", container);
         values.put("game", game);
         values.put("inventory", inventory);
@@ -7094,10 +7311,10 @@ public static org.spongepowered.api.event.inventory.viewer.ViewerCraftItemEvent 
         values.put("resultTypes", resultTypes);
         values.put("results", results);
         values.put("viewer", viewer);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.viewer.ViewerCraftItemEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ViewerCraftItemEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.viewer.ViewerEvent}.
@@ -7107,15 +7324,15 @@ public static org.spongepowered.api.event.inventory.viewer.ViewerCraftItemEvent 
      * @param viewer The viewer
      * @return A new viewer event
      */
-public static org.spongepowered.api.event.inventory.viewer.ViewerEvent createViewerEvent(org.spongepowered.api.item.inventory.Container container, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human viewer) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ViewerEvent createViewerEvent(Container container, Game game, Human viewer) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("container", container);
         values.put("game", game);
         values.put("viewer", viewer);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.viewer.ViewerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ViewerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.viewer.ViewerOpenContainerEvent}.
@@ -7125,15 +7342,15 @@ public static org.spongepowered.api.event.inventory.viewer.ViewerEvent createVie
      * @param viewer The viewer
      * @return A new viewer open container event
      */
-public static org.spongepowered.api.event.inventory.viewer.ViewerOpenContainerEvent createViewerOpenContainerEvent(org.spongepowered.api.item.inventory.Container container, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.Human viewer) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ViewerOpenContainerEvent createViewerOpenContainerEvent(Container container, Game game, Human viewer) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("container", container);
         values.put("game", game);
         values.put("viewer", viewer);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.inventory.viewer.ViewerOpenContainerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ViewerOpenContainerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.network.BanIpEvent}.
@@ -7141,13 +7358,13 @@ public static org.spongepowered.api.event.inventory.viewer.ViewerOpenContainerEv
      * @param ban The ban
      * @return A new ban ip event
      */
-public static org.spongepowered.api.event.network.BanIpEvent createBanIpEvent(org.spongepowered.api.util.ban.Ban.Ip ban) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BanIpEvent createBanIpEvent(Ban.Ip ban) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("ban", ban);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.network.BanIpEvent.class, values);
+        return SpongeEventFactory.createEventImpl(BanIpEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.network.GameClientConnectionEvent}.
@@ -7159,17 +7376,17 @@ public static org.spongepowered.api.event.network.BanIpEvent createBanIpEvent(or
      * @param profile The profile
      * @return A new game client connection event
      */
-public static org.spongepowered.api.event.network.GameClientConnectionEvent createGameClientConnectionEvent(org.spongepowered.api.network.RemoteConnection connection, com.google.common.base.Optional<org.spongepowered.api.event.cause.Cause> disconnectCause, com.google.common.base.Optional<org.spongepowered.api.text.Text> disconnectMessage, org.spongepowered.api.Game game, org.spongepowered.api.GameProfile profile) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GameClientConnectionEvent createGameClientConnectionEvent(RemoteConnection connection, Optional<Cause> disconnectCause, Optional<Text> disconnectMessage, Game game, GameProfile profile) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("connection", connection);
         values.put("disconnectCause", disconnectCause);
         values.put("disconnectMessage", disconnectMessage);
         values.put("game", game);
         values.put("profile", profile);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.network.GameClientConnectionEvent.class, values);
+        return SpongeEventFactory.createEventImpl(GameClientConnectionEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.network.GameClientConnectionEvent.Authenticate}.
@@ -7181,17 +7398,17 @@ public static org.spongepowered.api.event.network.GameClientConnectionEvent crea
      * @param profile The profile
      * @return A new authenticate game client connection event
      */
-public static org.spongepowered.api.event.network.GameClientConnectionEvent.Authenticate createGameClientConnectionEventAuthenticate(org.spongepowered.api.network.RemoteConnection connection, com.google.common.base.Optional<org.spongepowered.api.event.cause.Cause> disconnectCause, com.google.common.base.Optional<org.spongepowered.api.text.Text> disconnectMessage, org.spongepowered.api.Game game, org.spongepowered.api.GameProfile profile) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GameClientConnectionEvent.Authenticate createGameClientConnectionEventAuthenticate(RemoteConnection connection, Optional<Cause> disconnectCause, Optional<Text> disconnectMessage, Game game, GameProfile profile) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("connection", connection);
         values.put("disconnectCause", disconnectCause);
         values.put("disconnectMessage", disconnectMessage);
         values.put("game", game);
         values.put("profile", profile);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.network.GameClientConnectionEvent.Authenticate.class, values);
+        return SpongeEventFactory.createEventImpl(GameClientConnectionEvent.Authenticate.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.network.GameClientConnectionEvent.Login}.
@@ -7203,17 +7420,17 @@ public static org.spongepowered.api.event.network.GameClientConnectionEvent.Auth
      * @param profile The profile
      * @return A new login game client connection event
      */
-public static org.spongepowered.api.event.network.GameClientConnectionEvent.Login createGameClientConnectionEventLogin(org.spongepowered.api.network.RemoteConnection connection, com.google.common.base.Optional<org.spongepowered.api.event.cause.Cause> disconnectCause, com.google.common.base.Optional<org.spongepowered.api.text.Text> disconnectMessage, org.spongepowered.api.Game game, org.spongepowered.api.GameProfile profile) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static GameClientConnectionEvent.Login createGameClientConnectionEventLogin(RemoteConnection connection, Optional<Cause> disconnectCause, Optional<Text> disconnectMessage, Game game, GameProfile profile) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("connection", connection);
         values.put("disconnectCause", disconnectCause);
         values.put("disconnectMessage", disconnectMessage);
         values.put("game", game);
         values.put("profile", profile);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.network.GameClientConnectionEvent.Login.class, values);
+        return SpongeEventFactory.createEventImpl(GameClientConnectionEvent.Login.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.network.PardonIpEvent}.
@@ -7221,13 +7438,13 @@ public static org.spongepowered.api.event.network.GameClientConnectionEvent.Logi
      * @param ban The ban
      * @return A new pardon ip event
      */
-public static org.spongepowered.api.event.network.PardonIpEvent createPardonIpEvent(org.spongepowered.api.util.ban.Ban.Ip ban) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PardonIpEvent createPardonIpEvent(Ban.Ip ban) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("ban", ban);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.network.PardonIpEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PardonIpEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.plugin.PluginEvent}.
@@ -7236,14 +7453,14 @@ public static org.spongepowered.api.event.network.PardonIpEvent createPardonIpEv
      * @param plugin The plugin
      * @return A new plugin event
      */
-public static org.spongepowered.api.event.plugin.PluginEvent createPluginEvent(org.spongepowered.api.Game game, org.spongepowered.api.plugin.PluginContainer plugin) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PluginEvent createPluginEvent(Game game, PluginContainer plugin) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("plugin", plugin);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.plugin.PluginEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PluginEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.plugin.PluginForceChunkEvent}.
@@ -7255,17 +7472,17 @@ public static org.spongepowered.api.event.plugin.PluginEvent createPluginEvent(o
      * @param ticket The ticket
      * @return A new plugin force chunk event
      */
-public static org.spongepowered.api.event.plugin.PluginForceChunkEvent createPluginForceChunkEvent(org.spongepowered.api.event.cause.Cause cause, com.flowpowered.math.vector.Vector3i chunkCoords, org.spongepowered.api.Game game, org.spongepowered.api.plugin.PluginContainer plugin, org.spongepowered.api.service.world.ChunkLoadService.LoadingTicket ticket) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PluginForceChunkEvent createPluginForceChunkEvent(Cause cause, Vector3i chunkCoords, Game game, PluginContainer plugin, ChunkLoadService.LoadingTicket ticket) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("chunkCoords", chunkCoords);
         values.put("game", game);
         values.put("plugin", plugin);
         values.put("ticket", ticket);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.plugin.PluginForceChunkEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PluginForceChunkEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.plugin.PluginUnforceChunkEvent}.
@@ -7277,17 +7494,17 @@ public static org.spongepowered.api.event.plugin.PluginForceChunkEvent createPlu
      * @param ticket The ticket
      * @return A new plugin unforce chunk event
      */
-public static org.spongepowered.api.event.plugin.PluginUnforceChunkEvent createPluginUnforceChunkEvent(org.spongepowered.api.event.cause.Cause cause, com.flowpowered.math.vector.Vector3i chunkCoords, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.service.world.ChunkLoadService.LoadingTicket ticket) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PluginUnforceChunkEvent createPluginUnforceChunkEvent(Cause cause, Vector3i chunkCoords, Game game, World sourceWorld, ChunkLoadService.LoadingTicket ticket) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("chunkCoords", chunkCoords);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("ticket", ticket);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.plugin.PluginUnforceChunkEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PluginUnforceChunkEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.rcon.RconEvent}.
@@ -7295,13 +7512,13 @@ public static org.spongepowered.api.event.plugin.PluginUnforceChunkEvent createP
      * @param source The source
      * @return A new rcon event
      */
-public static org.spongepowered.api.event.rcon.RconEvent createRconEvent(org.spongepowered.api.util.command.source.RconSource source) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static RconEvent createRconEvent(RconSource source) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("source", source);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.rcon.RconEvent.class, values);
+        return SpongeEventFactory.createEventImpl(RconEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.rcon.RconLoginEvent}.
@@ -7309,13 +7526,13 @@ public static org.spongepowered.api.event.rcon.RconEvent createRconEvent(org.spo
      * @param source The source
      * @return A new rcon login event
      */
-public static org.spongepowered.api.event.rcon.RconLoginEvent createRconLoginEvent(org.spongepowered.api.util.command.source.RconSource source) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static RconLoginEvent createRconLoginEvent(RconSource source) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("source", source);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.rcon.RconLoginEvent.class, values);
+        return SpongeEventFactory.createEventImpl(RconLoginEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.rcon.RconQuitEvent}.
@@ -7323,13 +7540,13 @@ public static org.spongepowered.api.event.rcon.RconLoginEvent createRconLoginEve
      * @param source The source
      * @return A new rcon quit event
      */
-public static org.spongepowered.api.event.rcon.RconQuitEvent createRconQuitEvent(org.spongepowered.api.util.command.source.RconSource source) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static RconQuitEvent createRconQuitEvent(RconSource source) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("source", source);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.rcon.RconQuitEvent.class, values);
+        return SpongeEventFactory.createEventImpl(RconQuitEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.PingServerEvent}.
@@ -7340,16 +7557,16 @@ public static org.spongepowered.api.event.rcon.RconQuitEvent createRconQuitEvent
      * @param server The server
      * @return A new ping server event
      */
-public static org.spongepowered.api.event.server.PingServerEvent createPingServerEvent(org.spongepowered.api.status.StatusClient client, org.spongepowered.api.Game game, org.spongepowered.api.event.server.PingServerEvent.Response response, org.spongepowered.api.Server server) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PingServerEvent createPingServerEvent(StatusClient client, Game game, PingServerEvent.Response response, Server server) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("client", client);
         values.put("game", game);
         values.put("response", response);
         values.put("server", server);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.PingServerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PingServerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.PingServerEvent.Response}.
@@ -7360,16 +7577,16 @@ public static org.spongepowered.api.event.server.PingServerEvent createPingServe
      * @param version The version
      * @return A new response ping server event
      */
-public static org.spongepowered.api.event.server.PingServerEvent.Response createPingServerEventResponse(org.spongepowered.api.text.Text description, com.google.common.base.Optional<org.spongepowered.api.status.Favicon> favicon, com.google.common.base.Optional<org.spongepowered.api.event.server.PingServerEvent.Response.Players> players, org.spongepowered.api.MinecraftVersion version) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PingServerEvent.Response createPingServerEventResponse(Text description, Optional<Favicon> favicon, Optional<PingServerEvent.Response.Players> players, MinecraftVersion version) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("description", description);
         values.put("favicon", favicon);
         values.put("players", players);
         values.put("version", version);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.PingServerEvent.Response.class, values);
+        return SpongeEventFactory.createEventImpl(PingServerEvent.Response.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.PingServerEvent.Response.Players}.
@@ -7379,15 +7596,15 @@ public static org.spongepowered.api.event.server.PingServerEvent.Response create
      * @param profiles The profiles
      * @return A new players response ping server event
      */
-public static org.spongepowered.api.event.server.PingServerEvent.Response.Players createPingServerEventResponsePlayers(int max, int online, java.util.List<org.spongepowered.api.GameProfile> profiles) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PingServerEvent.Response.Players createPingServerEventResponsePlayers(int max, int online, List<GameProfile> profiles) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("max", max);
         values.put("online", online);
         values.put("profiles", profiles);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.PingServerEvent.Response.Players.class, values);
+        return SpongeEventFactory.createEventImpl(PingServerEvent.Response.Players.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.ServerCreateWorldEvent}.
@@ -7399,17 +7616,17 @@ public static org.spongepowered.api.event.server.PingServerEvent.Response.Player
      * @param worldProperties The world properties
      * @return A new server create world event
      */
-public static org.spongepowered.api.event.server.ServerCreateWorldEvent createServerCreateWorldEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.Server server, org.spongepowered.api.world.WorldCreationSettings worldCreationSettings, org.spongepowered.api.world.storage.WorldProperties worldProperties) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ServerCreateWorldEvent createServerCreateWorldEvent(Cause cause, Game game, Server server, WorldCreationSettings worldCreationSettings, WorldProperties worldProperties) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("server", server);
         values.put("worldCreationSettings", worldCreationSettings);
         values.put("worldProperties", worldProperties);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.ServerCreateWorldEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ServerCreateWorldEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.ServerEvent}.
@@ -7418,14 +7635,14 @@ public static org.spongepowered.api.event.server.ServerCreateWorldEvent createSe
      * @param server The server
      * @return A new server event
      */
-public static org.spongepowered.api.event.server.ServerEvent createServerEvent(org.spongepowered.api.Game game, org.spongepowered.api.Server server) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ServerEvent createServerEvent(Game game, Server server) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("server", server);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.ServerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ServerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.query.BasicQueryServerEvent}.
@@ -7440,8 +7657,8 @@ public static org.spongepowered.api.event.server.ServerEvent createServerEvent(o
      * @param size The size
      * @return A new basic query server event
      */
-public static org.spongepowered.api.event.server.query.BasicQueryServerEvent createBasicQueryServerEvent(java.net.InetSocketAddress address, java.lang.String gameType, java.lang.String map, int maxPlayerCount, int maxSize, java.lang.String motd, int playerCount, int size) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BasicQueryServerEvent createBasicQueryServerEvent(InetSocketAddress address, String gameType, String map, int maxPlayerCount, int maxSize, String motd, int playerCount, int size) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("address", address);
         values.put("gameType", gameType);
         values.put("map", map);
@@ -7450,10 +7667,10 @@ public static org.spongepowered.api.event.server.query.BasicQueryServerEvent cre
         values.put("motd", motd);
         values.put("playerCount", playerCount);
         values.put("size", size);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.query.BasicQueryServerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(BasicQueryServerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.query.FullQueryServerEvent}.
@@ -7473,8 +7690,8 @@ public static org.spongepowered.api.event.server.query.BasicQueryServerEvent cre
      * @param version The version
      * @return A new full query server event
      */
-public static org.spongepowered.api.event.server.query.FullQueryServerEvent createFullQueryServerEvent(java.net.InetSocketAddress address, java.util.Map<java.lang.String, java.lang.String> customValuesMap, java.lang.String gameId, java.lang.String gameType, java.lang.String map, int maxPlayerCount, int maxSize, java.lang.String motd, int playerCount, java.util.List<java.lang.String> players, java.lang.String plugins, int size, java.lang.String version) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static FullQueryServerEvent createFullQueryServerEvent(InetSocketAddress address, Map<String, String> customValuesMap, String gameId, String gameType, String map, int maxPlayerCount, int maxSize, String motd, int playerCount, List<String> players, String plugins, int size, String version) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("address", address);
         values.put("customValuesMap", customValuesMap);
         values.put("gameId", gameId);
@@ -7488,10 +7705,10 @@ public static org.spongepowered.api.event.server.query.FullQueryServerEvent crea
         values.put("plugins", plugins);
         values.put("size", size);
         values.put("version", version);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.query.FullQueryServerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(FullQueryServerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.server.query.QueryServerEvent}.
@@ -7506,8 +7723,8 @@ public static org.spongepowered.api.event.server.query.FullQueryServerEvent crea
      * @param size The size
      * @return A new query server event
      */
-public static org.spongepowered.api.event.server.query.QueryServerEvent createQueryServerEvent(java.net.InetSocketAddress address, java.lang.String gameType, java.lang.String map, int maxPlayerCount, int maxSize, java.lang.String motd, int playerCount, int size) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static QueryServerEvent createQueryServerEvent(InetSocketAddress address, String gameType, String map, int maxPlayerCount, int maxSize, String motd, int playerCount, int size) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("address", address);
         values.put("gameType", gameType);
         values.put("map", map);
@@ -7516,10 +7733,10 @@ public static org.spongepowered.api.event.server.query.QueryServerEvent createQu
         values.put("motd", motd);
         values.put("playerCount", playerCount);
         values.put("size", size);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.server.query.QueryServerEvent.class, values);
+        return SpongeEventFactory.createEventImpl(QueryServerEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.user.BanUserEvent}.
@@ -7528,14 +7745,14 @@ public static org.spongepowered.api.event.server.query.QueryServerEvent createQu
      * @param targetUser The target user
      * @return A new ban user event
      */
-public static org.spongepowered.api.event.user.BanUserEvent createBanUserEvent(org.spongepowered.api.util.ban.Ban.User ban, org.spongepowered.api.entity.living.player.User targetUser) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BanUserEvent createBanUserEvent(Ban.User ban, User targetUser) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("ban", ban);
         values.put("targetUser", targetUser);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.user.BanUserEvent.class, values);
+        return SpongeEventFactory.createEventImpl(BanUserEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.user.BanUserEvent.TargetPlayer}.
@@ -7547,17 +7764,17 @@ public static org.spongepowered.api.event.user.BanUserEvent createBanUserEvent(o
      * @param targetUser The target user
      * @return A new target player ban user event
      */
-public static org.spongepowered.api.event.user.BanUserEvent.TargetPlayer createBanUserEventTargetPlayer(org.spongepowered.api.util.ban.Ban.User ban, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, org.spongepowered.api.entity.living.player.User targetUser) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static BanUserEvent.TargetPlayer createBanUserEventTargetPlayer(Ban.User ban, Game game, Player targetEntity, Transform<World> targetTransform, User targetUser) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("ban", ban);
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("targetUser", targetUser);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.user.BanUserEvent.TargetPlayer.class, values);
+        return SpongeEventFactory.createEventImpl(BanUserEvent.TargetPlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.user.PardonUserEvent}.
@@ -7566,14 +7783,14 @@ public static org.spongepowered.api.event.user.BanUserEvent.TargetPlayer createB
      * @param targetUser The target user
      * @return A new pardon user event
      */
-public static org.spongepowered.api.event.user.PardonUserEvent createPardonUserEvent(org.spongepowered.api.util.ban.Ban.User ban, org.spongepowered.api.entity.living.player.User targetUser) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PardonUserEvent createPardonUserEvent(Ban.User ban, User targetUser) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("ban", ban);
         values.put("targetUser", targetUser);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.user.PardonUserEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PardonUserEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.user.PardonUserEvent.TargetPlayer}.
@@ -7585,17 +7802,17 @@ public static org.spongepowered.api.event.user.PardonUserEvent createPardonUserE
      * @param targetUser The target user
      * @return A new target player pardon user event
      */
-public static org.spongepowered.api.event.user.PardonUserEvent.TargetPlayer createPardonUserEventTargetPlayer(org.spongepowered.api.util.ban.Ban.User ban, org.spongepowered.api.Game game, org.spongepowered.api.entity.living.player.Player targetEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> targetTransform, org.spongepowered.api.entity.living.player.Player targetUser) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PardonUserEvent.TargetPlayer createPardonUserEventTargetPlayer(Ban.User ban, Game game, Player targetEntity, Transform<World> targetTransform, Player targetUser) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("ban", ban);
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("targetUser", targetUser);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.user.PardonUserEvent.TargetPlayer.class, values);
+        return SpongeEventFactory.createEventImpl(PardonUserEvent.TargetPlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.user.TargetUserEvent}.
@@ -7603,13 +7820,13 @@ public static org.spongepowered.api.event.user.PardonUserEvent.TargetPlayer crea
      * @param targetUser The target user
      * @return A new target user event
      */
-public static org.spongepowered.api.event.user.TargetUserEvent createTargetUserEvent(org.spongepowered.api.entity.living.player.User targetUser) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static TargetUserEvent createTargetUserEvent(User targetUser) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("targetUser", targetUser);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.user.TargetUserEvent.class, values);
+        return SpongeEventFactory.createEventImpl(TargetUserEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.ChangeWorldGameRuleEvent}.
@@ -7621,17 +7838,17 @@ public static org.spongepowered.api.event.user.TargetUserEvent createTargetUserE
      * @param targetWorld The target world
      * @return A new change world game rule event
      */
-public static org.spongepowered.api.event.world.ChangeWorldGameRuleEvent createChangeWorldGameRuleEvent(org.spongepowered.api.Game game, java.lang.String name, java.lang.String newValue, java.lang.String oldValue, org.spongepowered.api.world.World targetWorld) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeWorldGameRuleEvent createChangeWorldGameRuleEvent(Game game, String name, String newValue, String oldValue, World targetWorld) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("name", name);
         values.put("newValue", newValue);
         values.put("oldValue", oldValue);
         values.put("targetWorld", targetWorld);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.ChangeWorldGameRuleEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeWorldGameRuleEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.ChangeWorldWeatherEvent}.
@@ -7644,18 +7861,18 @@ public static org.spongepowered.api.event.world.ChangeWorldGameRuleEvent createC
      * @param world The world
      * @return A new change world weather event
      */
-public static org.spongepowered.api.event.world.ChangeWorldWeatherEvent createChangeWorldWeatherEvent(org.spongepowered.api.event.cause.Cause cause, int duration, org.spongepowered.api.Game game, org.spongepowered.api.world.weather.Weather initialWeather, org.spongepowered.api.world.weather.Weather resultingWeather, org.spongepowered.api.world.World world) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeWorldWeatherEvent createChangeWorldWeatherEvent(Cause cause, int duration, Game game, Weather initialWeather, Weather resultingWeather, World world) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("duration", duration);
         values.put("game", game);
         values.put("initialWeather", initialWeather);
         values.put("resultingWeather", resultingWeather);
         values.put("world", world);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.ChangeWorldWeatherEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeWorldWeatherEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.CreatePortalEvent}.
@@ -7665,15 +7882,15 @@ public static org.spongepowered.api.event.world.ChangeWorldWeatherEvent createCh
      * @param portalLocation The portal location
      * @return A new create portal event
      */
-public static org.spongepowered.api.event.world.CreatePortalEvent createCreatePortalEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> portalLocation) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CreatePortalEvent createCreatePortalEvent(Cause cause, Game game, Location<World> portalLocation) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("portalLocation", portalLocation);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.CreatePortalEvent.class, values);
+        return SpongeEventFactory.createEventImpl(CreatePortalEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.CreatePortalEvent.SourceEntity}.
@@ -7685,17 +7902,17 @@ public static org.spongepowered.api.event.world.CreatePortalEvent createCreatePo
      * @param sourceTransform The source transform
      * @return A new source entity create portal event
      */
-public static org.spongepowered.api.event.world.CreatePortalEvent.SourceEntity createCreatePortalEventSourceEntity(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> portalLocation, org.spongepowered.api.entity.Entity sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CreatePortalEvent.SourceEntity createCreatePortalEventSourceEntity(Cause cause, Game game, Location<World> portalLocation, Entity sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("portalLocation", portalLocation);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.CreatePortalEvent.SourceEntity.class, values);
+        return SpongeEventFactory.createEventImpl(CreatePortalEvent.SourceEntity.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.CreatePortalEvent.SourceHuman}.
@@ -7707,17 +7924,17 @@ public static org.spongepowered.api.event.world.CreatePortalEvent.SourceEntity c
      * @param sourceTransform The source transform
      * @return A new source human create portal event
      */
-public static org.spongepowered.api.event.world.CreatePortalEvent.SourceHuman createCreatePortalEventSourceHuman(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> portalLocation, org.spongepowered.api.entity.living.Human sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CreatePortalEvent.SourceHuman createCreatePortalEventSourceHuman(Cause cause, Game game, Location<World> portalLocation, Human sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("portalLocation", portalLocation);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.CreatePortalEvent.SourceHuman.class, values);
+        return SpongeEventFactory.createEventImpl(CreatePortalEvent.SourceHuman.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.CreatePortalEvent.SourceLiving}.
@@ -7729,17 +7946,17 @@ public static org.spongepowered.api.event.world.CreatePortalEvent.SourceHuman cr
      * @param sourceTransform The source transform
      * @return A new source living create portal event
      */
-public static org.spongepowered.api.event.world.CreatePortalEvent.SourceLiving createCreatePortalEventSourceLiving(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> portalLocation, org.spongepowered.api.entity.living.Living sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CreatePortalEvent.SourceLiving createCreatePortalEventSourceLiving(Cause cause, Game game, Location<World> portalLocation, Living sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("portalLocation", portalLocation);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.CreatePortalEvent.SourceLiving.class, values);
+        return SpongeEventFactory.createEventImpl(CreatePortalEvent.SourceLiving.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.CreatePortalEvent.SourcePlayer}.
@@ -7751,17 +7968,17 @@ public static org.spongepowered.api.event.world.CreatePortalEvent.SourceLiving c
      * @param sourceTransform The source transform
      * @return A new source player create portal event
      */
-public static org.spongepowered.api.event.world.CreatePortalEvent.SourcePlayer createCreatePortalEventSourcePlayer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> portalLocation, org.spongepowered.api.entity.living.player.Player sourceEntity, org.spongepowered.api.entity.Transform<org.spongepowered.api.world.World> sourceTransform) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CreatePortalEvent.SourcePlayer createCreatePortalEventSourcePlayer(Cause cause, Game game, Location<World> portalLocation, Player sourceEntity, Transform<World> sourceTransform) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("portalLocation", portalLocation);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.CreatePortalEvent.SourcePlayer.class, values);
+        return SpongeEventFactory.createEventImpl(CreatePortalEvent.SourcePlayer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.CreateWorldEvent}.
@@ -7772,16 +7989,16 @@ public static org.spongepowered.api.event.world.CreatePortalEvent.SourcePlayer c
      * @param worldProperties The world properties
      * @return A new create world event
      */
-public static org.spongepowered.api.event.world.CreateWorldEvent createCreateWorldEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.WorldCreationSettings worldCreationSettings, org.spongepowered.api.world.storage.WorldProperties worldProperties) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static CreateWorldEvent createCreateWorldEvent(Cause cause, Game game, WorldCreationSettings worldCreationSettings, WorldProperties worldProperties) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("worldCreationSettings", worldCreationSettings);
         values.put("worldProperties", worldProperties);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.CreateWorldEvent.class, values);
+        return SpongeEventFactory.createEventImpl(CreateWorldEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.LoadWorldEvent}.
@@ -7791,15 +8008,15 @@ public static org.spongepowered.api.event.world.CreateWorldEvent createCreateWor
      * @param targetWorld The target world
      * @return A new load world event
      */
-public static org.spongepowered.api.event.world.LoadWorldEvent createLoadWorldEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.World targetWorld) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static LoadWorldEvent createLoadWorldEvent(Cause cause, Game game, World targetWorld) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetWorld", targetWorld);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.LoadWorldEvent.class, values);
+        return SpongeEventFactory.createEventImpl(LoadWorldEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.LoadWorldEvent.SourcePlugin}.
@@ -7810,16 +8027,16 @@ public static org.spongepowered.api.event.world.LoadWorldEvent createLoadWorldEv
      * @param targetWorld The target world
      * @return A new source plugin load world event
      */
-public static org.spongepowered.api.event.world.LoadWorldEvent.SourcePlugin createLoadWorldEventSourcePlugin(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.plugin.PluginContainer plugin, org.spongepowered.api.world.World targetWorld) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static LoadWorldEvent.SourcePlugin createLoadWorldEventSourcePlugin(Cause cause, Game game, PluginContainer plugin, World targetWorld) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("plugin", plugin);
         values.put("targetWorld", targetWorld);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.LoadWorldEvent.SourcePlugin.class, values);
+        return SpongeEventFactory.createEventImpl(LoadWorldEvent.SourcePlugin.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.LoadWorldEvent.SourceServer}.
@@ -7830,16 +8047,16 @@ public static org.spongepowered.api.event.world.LoadWorldEvent.SourcePlugin crea
      * @param targetWorld The target world
      * @return A new source server load world event
      */
-public static org.spongepowered.api.event.world.LoadWorldEvent.SourceServer createLoadWorldEventSourceServer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.Server server, org.spongepowered.api.world.World targetWorld) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static LoadWorldEvent.SourceServer createLoadWorldEventSourceServer(Cause cause, Game game, Server server, World targetWorld) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("server", server);
         values.put("targetWorld", targetWorld);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.LoadWorldEvent.SourceServer.class, values);
+        return SpongeEventFactory.createEventImpl(LoadWorldEvent.SourceServer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.UnloadWorldEvent}.
@@ -7849,15 +8066,15 @@ public static org.spongepowered.api.event.world.LoadWorldEvent.SourceServer crea
      * @param targetWorld The target world
      * @return A new unload world event
      */
-public static org.spongepowered.api.event.world.UnloadWorldEvent createUnloadWorldEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.World targetWorld) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UnloadWorldEvent createUnloadWorldEvent(Cause cause, Game game, World targetWorld) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetWorld", targetWorld);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.UnloadWorldEvent.class, values);
+        return SpongeEventFactory.createEventImpl(UnloadWorldEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.UnloadWorldEvent.SourcePlugin}.
@@ -7868,16 +8085,16 @@ public static org.spongepowered.api.event.world.UnloadWorldEvent createUnloadWor
      * @param targetWorld The target world
      * @return A new source plugin unload world event
      */
-public static org.spongepowered.api.event.world.UnloadWorldEvent.SourcePlugin createUnloadWorldEventSourcePlugin(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.plugin.PluginContainer plugin, org.spongepowered.api.world.World targetWorld) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UnloadWorldEvent.SourcePlugin createUnloadWorldEventSourcePlugin(Cause cause, Game game, PluginContainer plugin, World targetWorld) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("plugin", plugin);
         values.put("targetWorld", targetWorld);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.UnloadWorldEvent.SourcePlugin.class, values);
+        return SpongeEventFactory.createEventImpl(UnloadWorldEvent.SourcePlugin.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.UnloadWorldEvent.SourceServer}.
@@ -7888,16 +8105,16 @@ public static org.spongepowered.api.event.world.UnloadWorldEvent.SourcePlugin cr
      * @param targetWorld The target world
      * @return A new source server unload world event
      */
-public static org.spongepowered.api.event.world.UnloadWorldEvent.SourceServer createUnloadWorldEventSourceServer(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.Server server, org.spongepowered.api.world.World targetWorld) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UnloadWorldEvent.SourceServer createUnloadWorldEventSourceServer(Cause cause, Game game, Server server, World targetWorld) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("server", server);
         values.put("targetWorld", targetWorld);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.UnloadWorldEvent.SourceServer.class, values);
+        return SpongeEventFactory.createEventImpl(UnloadWorldEvent.SourceServer.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.WorldEvent}.
@@ -7907,15 +8124,15 @@ public static org.spongepowered.api.event.world.UnloadWorldEvent.SourceServer cr
      * @param sourceWorld The source world
      * @return A new world event
      */
-public static org.spongepowered.api.event.world.WorldEvent createWorldEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static WorldEvent createWorldEvent(Cause cause, Game game, World sourceWorld) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldEvent.class, values);
+        return SpongeEventFactory.createEventImpl(WorldEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.WorldExplosionEvent}.
@@ -7927,17 +8144,17 @@ public static org.spongepowered.api.event.world.WorldEvent createWorldEvent(org.
      * @param transactions The transactions
      * @return A new world explosion event
      */
-public static org.spongepowered.api.event.world.WorldExplosionEvent createWorldExplosionEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.world.explosion.Explosion explosion, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static WorldExplosionEvent createWorldExplosionEvent(Cause cause, Explosion explosion, Game game, World sourceWorld, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("explosion", explosion);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldExplosionEvent.class, values);
+        return SpongeEventFactory.createEventImpl(WorldExplosionEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.WorldExplosionEvent.Detonate}.
@@ -7951,8 +8168,8 @@ public static org.spongepowered.api.event.world.WorldExplosionEvent createWorldE
      * @param transactions The transactions
      * @return A new detonate world explosion event
      */
-public static org.spongepowered.api.event.world.WorldExplosionEvent.Detonate createWorldExplosionEventDetonate(org.spongepowered.api.event.cause.Cause cause, java.util.List<? extends org.spongepowered.api.entity.Entity> entities, java.util.List<org.spongepowered.api.entity.EntitySnapshot> entitySnapshots, org.spongepowered.api.world.explosion.Explosion explosion, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static WorldExplosionEvent.Detonate createWorldExplosionEventDetonate(Cause cause, List<? extends Entity> entities, List<EntitySnapshot> entitySnapshots, Explosion explosion, Game game, World sourceWorld, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
@@ -7960,10 +8177,10 @@ public static org.spongepowered.api.event.world.WorldExplosionEvent.Detonate cre
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldExplosionEvent.Detonate.class, values);
+        return SpongeEventFactory.createEventImpl(WorldExplosionEvent.Detonate.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.WorldExplosionEvent.Pre}.
@@ -7975,17 +8192,17 @@ public static org.spongepowered.api.event.world.WorldExplosionEvent.Detonate cre
      * @param transactions The transactions
      * @return A new pre world explosion event
      */
-public static org.spongepowered.api.event.world.WorldExplosionEvent.Pre createWorldExplosionEventPre(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.world.explosion.Explosion explosion, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, java.util.List<org.spongepowered.api.block.BlockTransaction> transactions) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static WorldExplosionEvent.Pre createWorldExplosionEventPre(Cause cause, Explosion explosion, Game game, World sourceWorld, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("explosion", explosion);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("transactions", transactions);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldExplosionEvent.Pre.class, values);
+        return SpongeEventFactory.createEventImpl(WorldExplosionEvent.Pre.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.WorldGenerateChunkEvent}.
@@ -7995,15 +8212,15 @@ public static org.spongepowered.api.event.world.WorldExplosionEvent.Pre createWo
      * @param targetChunk The target chunk
      * @return A new world generate chunk event
      */
-public static org.spongepowered.api.event.world.WorldGenerateChunkEvent createWorldGenerateChunkEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static WorldGenerateChunkEvent createWorldGenerateChunkEvent(Cause cause, Game game, Chunk targetChunk) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldGenerateChunkEvent.class, values);
+        return SpongeEventFactory.createEventImpl(WorldGenerateChunkEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.WorldGenerateChunkEvent.Post}.
@@ -8013,15 +8230,15 @@ public static org.spongepowered.api.event.world.WorldGenerateChunkEvent createWo
      * @param targetChunk The target chunk
      * @return A new post world generate chunk event
      */
-public static org.spongepowered.api.event.world.WorldGenerateChunkEvent.Post createWorldGenerateChunkEventPost(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static WorldGenerateChunkEvent.Post createWorldGenerateChunkEventPost(Cause cause, Game game, Chunk targetChunk) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldGenerateChunkEvent.Post.class, values);
+        return SpongeEventFactory.createEventImpl(WorldGenerateChunkEvent.Post.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.WorldGenerateChunkEvent.Pre}.
@@ -8031,15 +8248,15 @@ public static org.spongepowered.api.event.world.WorldGenerateChunkEvent.Post cre
      * @param targetChunk The target chunk
      * @return A new pre world generate chunk event
      */
-public static org.spongepowered.api.event.world.WorldGenerateChunkEvent.Pre createWorldGenerateChunkEventPre(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static WorldGenerateChunkEvent.Pre createWorldGenerateChunkEventPre(Cause cause, Game game, Chunk targetChunk) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldGenerateChunkEvent.Pre.class, values);
+        return SpongeEventFactory.createEventImpl(WorldGenerateChunkEvent.Pre.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.WorldTickBlockEvent}.
@@ -8051,17 +8268,17 @@ public static org.spongepowered.api.event.world.WorldGenerateChunkEvent.Pre crea
      * @param targetLocation The target location
      * @return A new world tick block event
      */
-public static org.spongepowered.api.event.world.WorldTickBlockEvent createWorldTickBlockEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.block.BlockState targetBlock, org.spongepowered.api.world.Location<org.spongepowered.api.world.World> targetLocation) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static WorldTickBlockEvent createWorldTickBlockEvent(Cause cause, Game game, World sourceWorld, BlockState targetBlock, Location<World> targetLocation) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.WorldTickBlockEvent.class, values);
+        return SpongeEventFactory.createEventImpl(WorldTickBlockEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.ChangeChunkEvent}.
@@ -8071,15 +8288,15 @@ public static org.spongepowered.api.event.world.WorldTickBlockEvent createWorldT
      * @param targetChunk The target chunk
      * @return A new change chunk event
      */
-public static org.spongepowered.api.event.world.chunk.ChangeChunkEvent createChangeChunkEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeChunkEvent createChangeChunkEvent(Cause cause, Game game, Chunk targetChunk) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.ChangeChunkEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeChunkEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.ChangeChunkEvent.SourceWorld}.
@@ -8090,16 +8307,16 @@ public static org.spongepowered.api.event.world.chunk.ChangeChunkEvent createCha
      * @param targetChunk The target chunk
      * @return A new source world change chunk event
      */
-public static org.spongepowered.api.event.world.chunk.ChangeChunkEvent.SourceWorld createChangeChunkEventSourceWorld(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ChangeChunkEvent.SourceWorld createChangeChunkEventSourceWorld(Cause cause, Game game, World sourceWorld, Chunk targetChunk) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.ChangeChunkEvent.SourceWorld.class, values);
+        return SpongeEventFactory.createEventImpl(ChangeChunkEvent.SourceWorld.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.ForcedChunkEvent}.
@@ -8111,17 +8328,17 @@ public static org.spongepowered.api.event.world.chunk.ChangeChunkEvent.SourceWor
      * @param ticket The ticket
      * @return A new forced chunk event
      */
-public static org.spongepowered.api.event.world.chunk.ForcedChunkEvent createForcedChunkEvent(org.spongepowered.api.event.cause.Cause cause, com.flowpowered.math.vector.Vector3i chunkCoords, org.spongepowered.api.Game game, org.spongepowered.api.world.Chunk targetChunk, org.spongepowered.api.service.world.ChunkLoadService.LoadingTicket ticket) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static ForcedChunkEvent createForcedChunkEvent(Cause cause, Vector3i chunkCoords, Game game, Chunk targetChunk, ChunkLoadService.LoadingTicket ticket) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("chunkCoords", chunkCoords);
         values.put("game", game);
         values.put("targetChunk", targetChunk);
         values.put("ticket", ticket);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.ForcedChunkEvent.class, values);
+        return SpongeEventFactory.createEventImpl(ForcedChunkEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.LoadChunkEvent}.
@@ -8131,15 +8348,15 @@ public static org.spongepowered.api.event.world.chunk.ForcedChunkEvent createFor
      * @param targetChunk The target chunk
      * @return A new load chunk event
      */
-public static org.spongepowered.api.event.world.chunk.LoadChunkEvent createLoadChunkEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static LoadChunkEvent createLoadChunkEvent(Cause cause, Game game, Chunk targetChunk) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.LoadChunkEvent.class, values);
+        return SpongeEventFactory.createEventImpl(LoadChunkEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.LoadChunkEvent.SourceWorld}.
@@ -8150,16 +8367,16 @@ public static org.spongepowered.api.event.world.chunk.LoadChunkEvent createLoadC
      * @param targetChunk The target chunk
      * @return A new source world load chunk event
      */
-public static org.spongepowered.api.event.world.chunk.LoadChunkEvent.SourceWorld createLoadChunkEventSourceWorld(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static LoadChunkEvent.SourceWorld createLoadChunkEventSourceWorld(Cause cause, Game game, World sourceWorld, Chunk targetChunk) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.LoadChunkEvent.SourceWorld.class, values);
+        return SpongeEventFactory.createEventImpl(LoadChunkEvent.SourceWorld.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.PopulateChunkEvent}.
@@ -8170,16 +8387,16 @@ public static org.spongepowered.api.event.world.chunk.LoadChunkEvent.SourceWorld
      * @param targetChunk The target chunk
      * @return A new populate chunk event
      */
-public static org.spongepowered.api.event.world.chunk.PopulateChunkEvent createPopulateChunkEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PopulateChunkEvent createPopulateChunkEvent(Cause cause, Game game, World sourceWorld, Chunk targetChunk) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.PopulateChunkEvent.class, values);
+        return SpongeEventFactory.createEventImpl(PopulateChunkEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Populate}.
@@ -8190,16 +8407,16 @@ public static org.spongepowered.api.event.world.chunk.PopulateChunkEvent createP
      * @param targetChunk The target chunk
      * @return A new populate populate chunk event
      */
-public static org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Populate createPopulateChunkEventPopulate(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PopulateChunkEvent.Populate createPopulateChunkEventPopulate(Cause cause, Game game, World sourceWorld, Chunk targetChunk) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Populate.class, values);
+        return SpongeEventFactory.createEventImpl(PopulateChunkEvent.Populate.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Post}.
@@ -8210,16 +8427,16 @@ public static org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Populat
      * @param targetChunk The target chunk
      * @return A new post populate chunk event
      */
-public static org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Post createPopulateChunkEventPost(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PopulateChunkEvent.Post createPopulateChunkEventPost(Cause cause, Game game, World sourceWorld, Chunk targetChunk) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Post.class, values);
+        return SpongeEventFactory.createEventImpl(PopulateChunkEvent.Post.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Pre}.
@@ -8231,17 +8448,17 @@ public static org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Post cr
      * @param targetChunk The target chunk
      * @return A new pre populate chunk event
      */
-public static org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Pre createPopulateChunkEventPre(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, java.util.List<org.spongepowered.api.world.gen.Populator> pendingPopulators, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static PopulateChunkEvent.Pre createPopulateChunkEventPre(Cause cause, Game game, List<Populator> pendingPopulators, World sourceWorld, Chunk targetChunk) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("pendingPopulators", pendingPopulators);
         values.put("sourceWorld", sourceWorld);
         values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Pre.class, values);
+        return SpongeEventFactory.createEventImpl(PopulateChunkEvent.Pre.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.UnforcedChunkEvent}.
@@ -8252,16 +8469,16 @@ public static org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Pre cre
      * @param ticket The ticket
      * @return A new unforced chunk event
      */
-public static org.spongepowered.api.event.world.chunk.UnforcedChunkEvent createUnforcedChunkEvent(org.spongepowered.api.event.cause.Cause cause, com.flowpowered.math.vector.Vector3i chunkCoords, org.spongepowered.api.Game game, org.spongepowered.api.service.world.ChunkLoadService.LoadingTicket ticket) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UnforcedChunkEvent createUnforcedChunkEvent(Cause cause, Vector3i chunkCoords, Game game, ChunkLoadService.LoadingTicket ticket) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("chunkCoords", chunkCoords);
         values.put("game", game);
         values.put("ticket", ticket);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.UnforcedChunkEvent.class, values);
+        return SpongeEventFactory.createEventImpl(UnforcedChunkEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.UnloadChunkEvent}.
@@ -8271,15 +8488,15 @@ public static org.spongepowered.api.event.world.chunk.UnforcedChunkEvent createU
      * @param targetChunk The target chunk
      * @return A new unload chunk event
      */
-public static org.spongepowered.api.event.world.chunk.UnloadChunkEvent createUnloadChunkEvent(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UnloadChunkEvent createUnloadChunkEvent(Cause cause, Game game, Chunk targetChunk) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.UnloadChunkEvent.class, values);
+        return SpongeEventFactory.createEventImpl(UnloadChunkEvent.class, values);
     }
 
-    /** 
+    /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.chunk.UnloadChunkEvent.SourceWorld}.
@@ -8290,13 +8507,13 @@ public static org.spongepowered.api.event.world.chunk.UnloadChunkEvent createUnl
      * @param targetChunk The target chunk
      * @return A new source world unload chunk event
      */
-public static org.spongepowered.api.event.world.chunk.UnloadChunkEvent.SourceWorld createUnloadChunkEventSourceWorld(org.spongepowered.api.event.cause.Cause cause, org.spongepowered.api.Game game, org.spongepowered.api.world.World sourceWorld, org.spongepowered.api.world.Chunk targetChunk) {
-        java.util.Map<java.lang.String, java.lang.Object> values = com.google.common.collect.Maps.newHashMap();
+    public static UnloadChunkEvent.SourceWorld createUnloadChunkEventSourceWorld(Cause cause, Game game, World sourceWorld, Chunk targetChunk) {
+        Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("sourceWorld", sourceWorld);
         values.put("targetChunk", targetChunk);
-        return org.spongepowered.api.event.SpongeEventFactory.createEventImpl(org.spongepowered.api.event.world.chunk.UnloadChunkEvent.SourceWorld.class, values);
+        return SpongeEventFactory.createEventImpl(UnloadChunkEvent.SourceWorld.class, values);
     }
 }
 
