@@ -90,7 +90,7 @@ public interface SchedulerService {
      * @return A new executor service that can be used to execute
      *         synchronous tasks
      */
-    SpongeExecutorService syncExecutor(Object plugin);
+    SpongeExecutorService createSyncExecutor(Object plugin);
 
     /**
      * Creates a new ExecutorService that can be used to schedule asynchronous
@@ -99,6 +99,7 @@ public interface SchedulerService {
      * @param plugin The plugin that will own the created tasks
      * @return A new executor service that can be used to execute
      *         asynchronous tasks
+     * @see TaskBuilder#async()
      */
-    SpongeExecutorService asyncExecutor(Object plugin);
+    SpongeExecutorService createAsyncExecutor(Object plugin);
 }
