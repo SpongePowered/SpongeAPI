@@ -33,6 +33,8 @@ import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.ValueContainer;
 
+import java.util.List;
+
 /**
  * Represents a {@link ValueContainer} that is immutable once created and
  * contains a various bundle of {@link ValueContainer}s of type declared by
@@ -244,6 +246,6 @@ public interface ImmutableValueStore<I extends ImmutableValueStore<I, H>, H exte
      * @return A collection of copied {@link ValueContainer}s originating
      *     from this value store
      */
-    ImmutableCollection<H> getContainers();
+    List<H> getContainers();
 
 }
