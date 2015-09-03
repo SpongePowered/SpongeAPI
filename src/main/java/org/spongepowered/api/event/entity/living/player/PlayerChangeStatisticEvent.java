@@ -38,27 +38,27 @@ public interface PlayerChangeStatisticEvent extends PlayerEvent, Cancellable {
      *
      * @return The statistic being modified
      */
-    Statistic getChangedStatistic();
+    Statistic getStatistic();
     
     /**
      * Gets the original value of the statistic.
      * 
-     * @return The old value
+     * @return The original value
      */
-    long getOldValue();
+    long getOriginalValue();
 
     /**
-     * Gets the pending new value of the statistic.
+     * Gets the new value of the statistic.
      * 
      * @return The new value
      */
-    long getNewValue();
+    long getValue();
 
     /**
-     * Sets the pending new value of the statistic to the given value.
+     * Sets the new value of the statistic to the given value.
      * 
      * @param value The new value
      */
-    void setNewValue(long value);
+    void setValue(long value);
 
 }

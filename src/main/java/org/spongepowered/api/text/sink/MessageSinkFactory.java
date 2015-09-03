@@ -49,6 +49,20 @@ public interface MessageSinkFactory {
     MessageSink toAll();
 
     /**
+     * A message sink that targets all players currently active.
+     *
+     * @return The sink
+     */
+    MessageSink toAllPlayers();
+
+    /**
+     * An empty message sink.
+     *
+     * @return The sink
+     */
+    MessageSink toNone();
+
+    /**
      * A message sink that targets all subjects contained within the given sinks
      * and applies the message transformations of each sink in order (so with n
      * sinks,

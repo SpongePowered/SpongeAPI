@@ -32,18 +32,18 @@ import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
 public interface ChangeHumanLevelEvent extends TargetHumanEvent {
 
     /**
-     * Gets the current level of the human.
+     * Gets the original level of the human.
      *
-     * @return The current level of the human
+     * @return The original level of the human
      */
-    int getLevel();
+    int getOriginalLevel();
 
     /**
      * Gets the new level of the human.
      *
      * @return The new level of the human
      */
-    int getNewLevel();
+    int getLevel();
 
     /**
      * Sets the new level of the human.
@@ -51,9 +51,9 @@ public interface ChangeHumanLevelEvent extends TargetHumanEvent {
      * <p>Technically, this can be set to the same level to
      * cancel effects of the level being changed.</p>
      *
-     * @param newLevel The level to change to
+     * @param level The new level to change to
      */
-    void setNewLevel(int newLevel);
+    void setLevel(int level);
 
     interface TargetPlayer extends ChangeHumanLevelEvent, TargetPlayerEvent {
 

@@ -36,25 +36,25 @@ import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
 public interface ChangeHumanGameModeEvent extends TargetHumanEvent, CauseTracked, Cancellable {
 
     /**
-     * Gets the old {@link GameMode} of the human.
+     * Gets the original {@link GameMode} of the human.
      *
-     * @return The old {@link GameMode}.
+     * @return The original {@link GameMode}.
      */
-    GameMode getOldGameMode();
+    GameMode getOriginalGameMode();
 
     /**
      * Gets the new {@link GameMode} of the human.
      *
      * @return The new {@link GameMode}.
      */
-    GameMode getNewGameMode();
+    GameMode getGameMode();
 
     /**
      * Sets the new {@link GameMode} of the human.
      *
-     * @param newGameMode The new {@link GameMode} value.
+     * @param gameMode The new {@link GameMode} value.
      */
-    void setNewGameMode(GameMode newGameMode);
+    void setGameMode(GameMode gameMode);
 
     interface TargetPlayer extends ChangeHumanGameModeEvent, TargetPlayerEvent {
 

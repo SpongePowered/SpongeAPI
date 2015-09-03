@@ -55,6 +55,24 @@ public class MessageSinks {
     }
 
     /**
+     * A message sink that targets all players currently active.
+     *
+     * @return The sink
+     */
+    public static MessageSink toAllPlayers() {
+        return factory.toAllPlayers();
+    }
+
+    /**
+     * An empty message sink.
+     *
+     * @return The sink
+     */
+    public static MessageSink toNone() {
+        return factory.toNone();
+    }
+
+    /**
      * A message sink that targets all subjects contained within the given sinks
      * and applies the message transformations of each sink in order (so with n
      * sinks,

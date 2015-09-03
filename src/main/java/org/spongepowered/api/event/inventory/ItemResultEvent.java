@@ -35,14 +35,14 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface ItemResultEvent extends InventoryEvent {
 
     /**
-     * Retrieves the result for this event.
+     * Retrieves the result.
      *
      * @return The result
      */
     Optional<ItemStack> getResult();
 
     /**
-     * Sets the result for this event.
+     * Sets the result.
      *
      * @param result The new result
      */

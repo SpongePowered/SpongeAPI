@@ -56,6 +56,7 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.extent.Extent;
 
+import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.Set;
 
@@ -80,7 +81,7 @@ import javax.annotation.Nullable;
  */
 public final class Location<E extends Extent> implements DataHolder {
 
-    private final E extent;
+    private final WeakReference<E> extent;
     // Lazily computed, either position or blockPosition is set by the constructor
     @Nullable
     private Vector3d position = null;
@@ -96,7 +97,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param position The position
      */
     public Location(E extent, Vector3d position) {
-        this.extent = checkNotNull(extent, "extent");
+        this.extent = new WeakReference<E>(checkNotNull(extent, "extent"));
         this.position = checkNotNull(position, "position");
     }
 
@@ -119,7 +120,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param blockPosition The position
      */
     public Location(E extent, Vector3i blockPosition) {
-        this.extent = checkNotNull(extent, "extent");
+        this.extent = new WeakReference<E>(checkNotNull(extent, "extent"));
         this.blockPosition = checkNotNull(blockPosition, "blockPosition");
     }
 
@@ -137,11 +138,14 @@ public final class Location<E extends Extent> implements DataHolder {
 
     /**
      * Get the underlying extent.
+     * 
+     * <p>Note: This can be null if the {@link Extent} is unloaded and garbage
+     * collected.</p>
      *
      * @return The extent
      */
     public E getExtent() {
-        return this.extent;
+        return this.extent.get();
     }
 
     /**
@@ -742,7 +746,7 @@ public final class Location<E extends Extent> implements DataHolder {
 
     @Override
     public DataHolder copy() {
-        return new Location<E>(this.extent, getPosition());
+        return new Location<E>(this.extent.get(), getPosition());
     }
 
     @Override

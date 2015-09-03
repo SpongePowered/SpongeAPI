@@ -45,8 +45,8 @@ import org.spongepowered.api.item.inventory.Slot;
  * a {@link Slot} belonging to an {@link Inventory} of an {@link Entity}
  * is filled with an {@link ItemStack}, emptied of an {@link ItemStack},
  * or swapped with an {@link ItemStack}. The requirement of course is
- * that if the {@link #getOriginalItem()} is {@link Optional#absent()}, then
- * the {@link #getNewItemStack()} must be present, and vice versa. In the event
+ * that if the {@link #getOriginalItemStack()} is {@link Optional#absent()}, then
+ * the {@link #getItemStack()} must be present, and vice versa. In the event
  * that a change to the suggested {@link ItemStack}, the use of the
  * {@link ItemStackTransaction} is recommended.
  */
@@ -60,17 +60,17 @@ public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, Inventory
      *
      * @return The original itemstack, if available
      */
-    Optional<ItemStackSnapshot> getOriginalItem();
+    Optional<ItemStackSnapshot> getOriginalItemStack();
 
     /**
-     * Gets the {@link ItemStack} that is being equipped in the relative
+     * Gets the new {@link ItemStack} that is being equipped in the relative
      * armor slot.
      *
      * <p>The itemstack may not exist or the slot is being emptied.</p>
      *
-     * @return The item stack, if available
+     * @return The new item stack, if available
      */
-    Optional<ItemStackTransaction> getNewItemStack();
+    Optional<ItemStackTransaction> getItemStack();
 
     @Override
     Slot getInventory();

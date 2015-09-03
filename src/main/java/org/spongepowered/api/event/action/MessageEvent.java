@@ -49,21 +49,28 @@ public interface MessageEvent extends GameEvent, Cancellable {
      *
      * @return The message
      */
+    Text getOriginalMessage();
+
+    /**
+     * Gets the new {@link Text} message.
+     *
+     * @return The new message
+     */
     Text getMessage();
 
     /**
-     * Gets the currently set {@link Text} message.
-     *
-     * @return The message
-     */
-    Text getNewMessage();
-
-    /**
-     * Sets the {@link Text} message.
+     * Sets the new {@link Text} message.
      *
      * @param message The new message
      */
-    void setNewMessage(Text message);
+    void setMessage(Text message);
+
+    /**
+     * Gets the original sink that this message will be sent to.
+     *
+     * @return The original message sink to send to
+     */
+    MessageSink getOriginalSink();
 
     /**
      * Gets the current sink that this message will be sent to.

@@ -22,38 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.world.chunk;
 
-import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.world.Location;
 
 /**
- * Called when a GameRule is changed.
+ * Base event for all events with a source {@link Chunk}.
  */
-public interface ChangeWorldGameRuleEvent extends GameEvent, Cancellable {
-
-    World getTargetWorld();
+public interface ChunkEvent extends GameEvent, CauseTracked {
 
     /**
-     * Gets the original value of the GameRule.
+     * Gets the source {@link Location}.
      *
-     * @return The original value.
+     * @return The source Location
      */
-    String getOriginalValue();
+    Location<Chunk> getSourceLocation();
 
     /**
-     * Gets the new value of the GameRule.
+     * Gets the source {@link Chunk}.
      *
-     * @return The new value.
+     * @return The source Chunk
      */
-    String getValue();
-
-    /**
-     * Gets the name of this GameRule.
-     *
-     * @return The name of the GameRule.
-     */
-    String getName();
-
+    Chunk getSourceChunk();
 }

@@ -89,14 +89,14 @@ public interface HarvestEntityEvent extends TargetEntityEvent, ChangeExperienceE
          *
          * @return The new level after death
          */
-        int getNewLevel();
+        int getLevel();
 
         /**
          * Sets the new level the player will have after death.
          *
          * @param level The new level after death
          */
-        void setNewLevel(int level);
+        void setLevel(int level);
 
     }
 

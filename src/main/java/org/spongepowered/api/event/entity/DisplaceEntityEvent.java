@@ -48,25 +48,25 @@ import org.spongepowered.api.world.World;
 public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
 
     /**
-     * Gets a copy of the previous transform that the entity was in.
+     * Gets the transform that the {@link Entity} came from.
      *
-     * @return A copy of the old transform
+     * @return the previous transform
      */
-    Transform<World> getOldTransform();
+    Transform<World> getFromTransform();
 
     /**
-     * Gets a copy of the new transform that the entity is in.
+     * Gets the new transform that the {@link Entity} will change to.
      *
-     * @return A copy of the new transform
+     * @return the new transform
      */
-    Transform<World> getNewTransform();
+    Transform<World> getToTransform();
 
     /**
-     * Sets the new transform that the entity is in.
+     * Sets the new transform that the {@link Entity} will change to.
      *
      * @param transform The new transform
      */
-    void setNewTransform(Transform<World> transform);
+    void setToTransform(Transform<World> transform);
 
     /**
      * An event where the {@link #getTargetEntity()} is moving. This can
