@@ -29,6 +29,10 @@ import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
+import java.net.InetSocketAddress;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.MinecraftVersion;
@@ -36,6 +40,7 @@ import org.spongepowered.api.Server;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTransaction;
+import org.spongepowered.api.block.tileentity.CommandBlock;
 import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
@@ -49,6 +54,7 @@ import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.Transform;
+import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
@@ -78,6 +84,7 @@ import org.spongepowered.api.event.block.PlaceBlockEvent;
 import org.spongepowered.api.event.block.tileentity.BrewingStandBrewItemsEvent;
 import org.spongepowered.api.event.block.tileentity.BrewingStandEvent;
 import org.spongepowered.api.event.block.tileentity.ChangeSignEvent;
+import org.spongepowered.api.event.block.tileentity.CommandBlockEvent;
 import org.spongepowered.api.event.block.tileentity.FurnaceConsumeFuelEvent;
 import org.spongepowered.api.event.block.tileentity.FurnaceEvent;
 import org.spongepowered.api.event.block.tileentity.FurnaceSmeltItemEvent;
@@ -88,6 +95,7 @@ import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.health.HealthModifier;
 import org.spongepowered.api.event.command.CommandSourceEvent;
 import org.spongepowered.api.event.command.SendCommandEvent;
+import org.spongepowered.api.event.command.SendMessageCommandSourceEvent;
 import org.spongepowered.api.event.command.TabCompleteCommandEvent;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
@@ -126,7 +134,6 @@ import org.spongepowered.api.event.entity.living.human.HumanEvent;
 import org.spongepowered.api.event.entity.living.human.HumanSleepEvent;
 import org.spongepowered.api.event.entity.living.human.TargetHumanEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerChangeStatisticEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerChatEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerConnectionEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerConnectionRegisterChannelEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerConnectionUnregisterChannelEvent;
@@ -134,7 +141,6 @@ import org.spongepowered.api.event.entity.living.player.PlayerEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerGainAchievementEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerJoinEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerKickEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerMessageEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerQuitEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerResourcePackStatusEvent;
 import org.spongepowered.api.event.entity.living.player.RespawnPlayerEvent;
@@ -195,6 +201,7 @@ import org.spongepowered.api.event.world.WorldExplosionEvent;
 import org.spongepowered.api.event.world.WorldGenerateChunkEvent;
 import org.spongepowered.api.event.world.WorldTickBlockEvent;
 import org.spongepowered.api.event.world.chunk.ChangeChunkEvent;
+import org.spongepowered.api.event.world.chunk.ChunkEvent;
 import org.spongepowered.api.event.world.chunk.ForcedChunkEvent;
 import org.spongepowered.api.event.world.chunk.LoadChunkEvent;
 import org.spongepowered.api.event.world.chunk.PopulateChunkEvent;
@@ -237,11 +244,6 @@ import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
 
-import java.net.InetSocketAddress;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Generates Sponge event implementations.
  */
@@ -261,6 +263,32 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMapWithExpectedSize(1);
         values.put("game", game);
         return SpongeEventFactoryUtils.createEventImpl(type, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.BreedEntityEvent.SourceEntity}.
+     * 
+     * @param cause The cause
+     * @param game The game
+     * @param interactionPoint The interaction point
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param targetEntity The target entity
+     * @param targetTransform The target transform
+     * @return A new source entity breed entity event
+     */
+    public static InteractEntityEvent.SourceEntity createBreedEntityEventSourceEntity(Cause cause, Game game, Optional<Vector3d> interactionPoint, Entity sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("game", game);
+        values.put("interactionPoint", interactionPoint);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("targetEntity", targetEntity);
+        values.put("targetTransform", targetTransform);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.SourceEntity.class, values);
     }
 
     /**
@@ -354,18 +382,18 @@ public final class SpongeEventFactory {
      * 
      * @param game The game
      * @param message The message
-     * @param newMessage The new message
+     * @param originalMessage The original message
+     * @param originalSink The original sink
      * @param sink The sink
-     * @param source The source
      * @return A new message event
      */
-    public static MessageEvent createMessageEvent(Game game, Text message, Text newMessage, MessageSink sink, CommandSource source) {
+    public static MessageEvent createMessageEvent(Game game, Text message, Text originalMessage, MessageSink originalSink, MessageSink sink) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("message", message);
-        values.put("newMessage", newMessage);
+        values.put("originalMessage", originalMessage);
+        values.put("originalSink", originalSink);
         values.put("sink", sink);
-        values.put("source", source);
         return SpongeEventFactoryUtils.createEventImpl(MessageEvent.class, values);
     }
 
@@ -2240,6 +2268,30 @@ public final class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.tileentity.CommandBlockEvent}.
+     * 
+     * @param cause The cause
+     * @param game The game
+     * @param sourceBlock The source block
+     * @param sourceLocation The source location
+     * @param sourceSide The source side
+     * @param tile The tile
+     * @return A new command block event
+     */
+    public static CommandBlockEvent createCommandBlockEvent(Cause cause, Game game, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, CommandBlock tile) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("game", game);
+        values.put("sourceBlock", sourceBlock);
+        values.put("sourceLocation", sourceLocation);
+        values.put("sourceSide", sourceSide);
+        values.put("tile", tile);
+        return SpongeEventFactoryUtils.createEventImpl(CommandBlockEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.block.tileentity.FurnaceConsumeFuelEvent}.
      * 
      * @param burnedItem The burned item
@@ -2408,6 +2460,170 @@ public final class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.command.SendMessageCommandSourceEvent}.
+     * 
+     * @param game The game
+     * @param message The message
+     * @param originalMessage The original message
+     * @param originalSink The original sink
+     * @param sink The sink
+     * @return A new send message command source event
+     */
+    public static SendMessageCommandSourceEvent createSendMessageCommandSourceEvent(Game game, Text message, Text originalMessage, MessageSink originalSink, MessageSink sink) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("message", message);
+        values.put("originalMessage", originalMessage);
+        values.put("originalSink", originalSink);
+        values.put("sink", sink);
+        return SpongeEventFactoryUtils.createEventImpl(SendMessageCommandSourceEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.command.SendMessageCommandSourceEvent.SourceCommandBlock}.
+     * 
+     * @param cause The cause
+     * @param game The game
+     * @param message The message
+     * @param originalMessage The original message
+     * @param originalSink The original sink
+     * @param sink The sink
+     * @param source The source
+     * @param sourceBlock The source block
+     * @param sourceLocation The source location
+     * @param sourceSide The source side
+     * @param tile The tile
+     * @return A new source command block send message command source event
+     */
+    public static SendMessageCommandSourceEvent.SourceCommandBlock createSendMessageCommandSourceEventSourceCommandBlock(Cause cause, Game game, Text message, Text originalMessage, MessageSink originalSink, MessageSink sink, CommandBlock source, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, CommandBlock tile) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("game", game);
+        values.put("message", message);
+        values.put("originalMessage", originalMessage);
+        values.put("originalSink", originalSink);
+        values.put("sink", sink);
+        values.put("source", source);
+        values.put("sourceBlock", sourceBlock);
+        values.put("sourceLocation", sourceLocation);
+        values.put("sourceSide", sourceSide);
+        values.put("tile", tile);
+        return SpongeEventFactoryUtils.createEventImpl(SendMessageCommandSourceEvent.SourceCommandBlock.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.command.SendMessageCommandSourceEvent.SourceCommandSource}.
+     * 
+     * @param game The game
+     * @param message The message
+     * @param originalMessage The original message
+     * @param originalSink The original sink
+     * @param sink The sink
+     * @param source The source
+     * @return A new source command source send message command source event
+     */
+    public static SendMessageCommandSourceEvent.SourceCommandSource createSendMessageCommandSourceEventSourceCommandSource(Game game, Text message, Text originalMessage, MessageSink originalSink, MessageSink sink, CommandSource source) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("message", message);
+        values.put("originalMessage", originalMessage);
+        values.put("originalSink", originalSink);
+        values.put("sink", sink);
+        values.put("source", source);
+        return SpongeEventFactoryUtils.createEventImpl(SendMessageCommandSourceEvent.SourceCommandSource.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.command.SendMessageCommandSourceEvent.SourceConsole}.
+     * 
+     * @param game The game
+     * @param message The message
+     * @param originalMessage The original message
+     * @param originalSink The original sink
+     * @param server The server
+     * @param sink The sink
+     * @param source The source
+     * @return A new source console send message command source event
+     */
+    public static SendMessageCommandSourceEvent.SourceConsole createSendMessageCommandSourceEventSourceConsole(Game game, Text message, Text originalMessage, MessageSink originalSink, Server server, MessageSink sink, CommandSource source) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("message", message);
+        values.put("originalMessage", originalMessage);
+        values.put("originalSink", originalSink);
+        values.put("server", server);
+        values.put("sink", sink);
+        values.put("source", source);
+        return SpongeEventFactoryUtils.createEventImpl(SendMessageCommandSourceEvent.SourceConsole.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.command.SendMessageCommandSourceEvent.SourcePlayer}.
+     * 
+     * @param cause The cause
+     * @param game The game
+     * @param message The message
+     * @param originalMessage The original message
+     * @param originalSink The original sink
+     * @param originalUnformattedMessage The original unformatted message
+     * @param sink The sink
+     * @param source The source
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param unformattedMessage The unformatted message
+     * @return A new source player send message command source event
+     */
+    public static SendMessageCommandSourceEvent.SourcePlayer createSendMessageCommandSourceEventSourcePlayer(Cause cause, Game game, Text message, Text originalMessage, MessageSink originalSink, Text originalUnformattedMessage, MessageSink sink, Player source, Player sourceEntity, Transform<World> sourceTransform, Text unformattedMessage) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("game", game);
+        values.put("message", message);
+        values.put("originalMessage", originalMessage);
+        values.put("originalSink", originalSink);
+        values.put("originalUnformattedMessage", originalUnformattedMessage);
+        values.put("sink", sink);
+        values.put("source", source);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("unformattedMessage", unformattedMessage);
+        return SpongeEventFactoryUtils.createEventImpl(SendMessageCommandSourceEvent.SourcePlayer.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.command.SendMessageCommandSourceEvent.SourcePlugin}.
+     * 
+     * @param game The game
+     * @param message The message
+     * @param originalMessage The original message
+     * @param originalSink The original sink
+     * @param plugin The plugin
+     * @param sink The sink
+     * @return A new source plugin send message command source event
+     */
+    public static SendMessageCommandSourceEvent.SourcePlugin createSendMessageCommandSourceEventSourcePlugin(Game game, Text message, Text originalMessage, MessageSink originalSink, PluginContainer plugin, MessageSink sink) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("message", message);
+        values.put("originalMessage", originalMessage);
+        values.put("originalSink", originalSink);
+        values.put("plugin", plugin);
+        values.put("sink", sink);
+        return SpongeEventFactoryUtils.createEventImpl(SendMessageCommandSourceEvent.SourcePlugin.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.command.TabCompleteCommandEvent}.
      * 
      * @param arguments The arguments
@@ -2495,7 +2711,7 @@ public final class SpongeEventFactory {
      * @param targetTransform The target transform
      * @return A new breed entity event
      */
-    public static BreedEntityEvent createBreedEntityEvent(Cause cause, Game game, Optional<Vector3d> interactionPoint, Entity targetEntity, Transform<World> targetTransform) {
+    public static BreedEntityEvent createBreedEntityEvent(Cause cause, Game game, Optional<Vector3d> interactionPoint, Ageable targetEntity, Transform<World> targetTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
@@ -2508,27 +2724,61 @@ public final class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.BreedEntityEvent.SourceEntity}.
+     * {@link org.spongepowered.api.event.entity.BreedEntityEvent.Breed}.
      * 
      * @param cause The cause
      * @param game The game
      * @param interactionPoint The interaction point
+     * @param offspringEntity The offspring entity
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
      * @param targetEntity The target entity
      * @param targetTransform The target transform
-     * @return A new source entity breed entity event
+     * @return A new breed breed entity event
      */
-    public static BreedEntityEvent.SourceEntity createBreedEntityEventSourceEntity(Cause cause, Game game, Optional<Vector3d> interactionPoint, Entity sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+    public static BreedEntityEvent.Breed createBreedEntityEventBreed(Cause cause, Game game, Optional<Vector3d> interactionPoint, Ageable offspringEntity, Ageable sourceEntity, Transform<World> sourceTransform, Ageable targetEntity, Transform<World> targetTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("interactionPoint", interactionPoint);
+        values.put("offspringEntity", offspringEntity);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
-        return SpongeEventFactoryUtils.createEventImpl(BreedEntityEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(BreedEntityEvent.Breed.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.BreedEntityEvent.FindMate}.
+     * 
+     * @param cause The cause
+     * @param game The game
+     * @param hasAllowResult The has allow result
+     * @param interactionPoint The interaction point
+     * @param originalResult The original result
+     * @param result The result
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param targetEntity The target entity
+     * @param targetTransform The target transform
+     * @return A new find mate breed entity event
+     */
+    public static BreedEntityEvent.FindMate createBreedEntityEventFindMate(Cause cause, Game game, boolean hasAllowResult, Optional<Vector3d> interactionPoint, TristateResult.Result originalResult, TristateResult.Result result, Ageable sourceEntity, Transform<World> sourceTransform, Ageable targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("game", game);
+        values.put("hasAllowResult", hasAllowResult);
+        values.put("interactionPoint", interactionPoint);
+        values.put("originalResult", originalResult);
+        values.put("result", result);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("targetEntity", targetEntity);
+        values.put("targetTransform", targetTransform);
+        return SpongeEventFactoryUtils.createEventImpl(BreedEntityEvent.FindMate.class, values);
     }
 
     /**
@@ -2538,18 +2788,18 @@ public final class SpongeEventFactory {
      * 
      * @param game The game
      * @param inventory The inventory
-     * @param newItemStack The new item stack
-     * @param originalItem The original item
+     * @param itemStack The item stack
+     * @param originalItemStack The original item stack
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @return A new change entity equipment event
      */
-    public static ChangeEntityEquipmentEvent createChangeEntityEquipmentEvent(Game game, Slot inventory, Optional<ItemStackTransaction> newItemStack, Optional<ItemStackSnapshot> originalItem, Entity targetEntity, Transform<World> targetTransform) {
+    public static ChangeEntityEquipmentEvent createChangeEntityEquipmentEvent(Game game, Slot inventory, Optional<ItemStackTransaction> itemStack, Optional<ItemStackSnapshot> originalItemStack, Entity targetEntity, Transform<World> targetTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("inventory", inventory);
-        values.put("newItemStack", newItemStack);
-        values.put("originalItem", originalItem);
+        values.put("itemStack", itemStack);
+        values.put("originalItemStack", originalItemStack);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         return SpongeEventFactoryUtils.createEventImpl(ChangeEntityEquipmentEvent.class, values);
@@ -2562,18 +2812,18 @@ public final class SpongeEventFactory {
      * 
      * @param game The game
      * @param inventory The inventory
-     * @param newItemStack The new item stack
-     * @param originalItem The original item
+     * @param itemStack The item stack
+     * @param originalItemStack The original item stack
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @return A new target human change entity equipment event
      */
-    public static ChangeEntityEquipmentEvent.TargetHuman createChangeEntityEquipmentEventTargetHuman(Game game, Slot inventory, Optional<ItemStackTransaction> newItemStack, Optional<ItemStackSnapshot> originalItem, Living targetEntity, Transform<World> targetTransform) {
+    public static ChangeEntityEquipmentEvent.TargetHuman createChangeEntityEquipmentEventTargetHuman(Game game, Slot inventory, Optional<ItemStackTransaction> itemStack, Optional<ItemStackSnapshot> originalItemStack, Living targetEntity, Transform<World> targetTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("inventory", inventory);
-        values.put("newItemStack", newItemStack);
-        values.put("originalItem", originalItem);
+        values.put("itemStack", itemStack);
+        values.put("originalItemStack", originalItemStack);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         return SpongeEventFactoryUtils.createEventImpl(ChangeEntityEquipmentEvent.TargetHuman.class, values);
@@ -2586,18 +2836,18 @@ public final class SpongeEventFactory {
      * 
      * @param game The game
      * @param inventory The inventory
-     * @param newItemStack The new item stack
-     * @param originalItem The original item
+     * @param itemStack The item stack
+     * @param originalItemStack The original item stack
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @return A new target living change entity equipment event
      */
-    public static ChangeEntityEquipmentEvent.TargetLiving createChangeEntityEquipmentEventTargetLiving(Game game, Slot inventory, Optional<ItemStackTransaction> newItemStack, Optional<ItemStackSnapshot> originalItem, Living targetEntity, Transform<World> targetTransform) {
+    public static ChangeEntityEquipmentEvent.TargetLiving createChangeEntityEquipmentEventTargetLiving(Game game, Slot inventory, Optional<ItemStackTransaction> itemStack, Optional<ItemStackSnapshot> originalItemStack, Living targetEntity, Transform<World> targetTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("inventory", inventory);
-        values.put("newItemStack", newItemStack);
-        values.put("originalItem", originalItem);
+        values.put("itemStack", itemStack);
+        values.put("originalItemStack", originalItemStack);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         return SpongeEventFactoryUtils.createEventImpl(ChangeEntityEquipmentEvent.TargetLiving.class, values);
@@ -2610,18 +2860,18 @@ public final class SpongeEventFactory {
      * 
      * @param game The game
      * @param inventory The inventory
-     * @param newItemStack The new item stack
-     * @param originalItem The original item
+     * @param itemStack The item stack
+     * @param originalItemStack The original item stack
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @return A new target player change entity equipment event
      */
-    public static ChangeEntityEquipmentEvent.TargetPlayer createChangeEntityEquipmentEventTargetPlayer(Game game, Slot inventory, Optional<ItemStackTransaction> newItemStack, Optional<ItemStackSnapshot> originalItem, Player targetEntity, Transform<World> targetTransform) {
+    public static ChangeEntityEquipmentEvent.TargetPlayer createChangeEntityEquipmentEventTargetPlayer(Game game, Slot inventory, Optional<ItemStackTransaction> itemStack, Optional<ItemStackSnapshot> originalItemStack, Player targetEntity, Transform<World> targetTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("inventory", inventory);
-        values.put("newItemStack", newItemStack);
-        values.put("originalItem", originalItem);
+        values.put("itemStack", itemStack);
+        values.put("originalItemStack", originalItemStack);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         return SpongeEventFactoryUtils.createEventImpl(ChangeEntityEquipmentEvent.TargetPlayer.class, values);
@@ -3208,20 +3458,20 @@ public final class SpongeEventFactory {
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent}.
      * 
+     * @param fromTransform The from transform
      * @param game The game
-     * @param newTransform The new transform
-     * @param oldTransform The old transform
      * @param targetEntity The target entity
      * @param targetTransform The target transform
+     * @param toTransform The to transform
      * @return A new displace entity event
      */
-    public static DisplaceEntityEvent createDisplaceEntityEvent(Game game, Transform<World> newTransform, Transform<World> oldTransform, Entity targetEntity, Transform<World> targetTransform) {
+    public static DisplaceEntityEvent createDisplaceEntityEvent(Transform<World> fromTransform, Game game, Entity targetEntity, Transform<World> targetTransform, Transform<World> toTransform) {
         Map<String, Object> values = Maps.newHashMap();
+        values.put("fromTransform", fromTransform);
         values.put("game", game);
-        values.put("newTransform", newTransform);
-        values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
+        values.put("toTransform", toTransform);
         return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.class, values);
     }
 
@@ -3230,20 +3480,20 @@ public final class SpongeEventFactory {
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Move}.
      * 
+     * @param fromTransform The from transform
      * @param game The game
-     * @param newTransform The new transform
-     * @param oldTransform The old transform
      * @param targetEntity The target entity
      * @param targetTransform The target transform
+     * @param toTransform The to transform
      * @return A new move displace entity event
      */
-    public static DisplaceEntityEvent.Move createDisplaceEntityEventMove(Game game, Transform<World> newTransform, Transform<World> oldTransform, Entity targetEntity, Transform<World> targetTransform) {
+    public static DisplaceEntityEvent.Move createDisplaceEntityEventMove(Transform<World> fromTransform, Game game, Entity targetEntity, Transform<World> targetTransform, Transform<World> toTransform) {
         Map<String, Object> values = Maps.newHashMap();
+        values.put("fromTransform", fromTransform);
         values.put("game", game);
-        values.put("newTransform", newTransform);
-        values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
+        values.put("toTransform", toTransform);
         return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Move.class, values);
     }
 
@@ -3252,20 +3502,20 @@ public final class SpongeEventFactory {
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetHuman}.
      * 
+     * @param fromTransform The from transform
      * @param game The game
-     * @param newTransform The new transform
-     * @param oldTransform The old transform
      * @param targetEntity The target entity
      * @param targetTransform The target transform
+     * @param toTransform The to transform
      * @return A new target human move displace entity event
      */
-    public static DisplaceEntityEvent.Move.TargetHuman createDisplaceEntityEventMoveTargetHuman(Game game, Transform<World> newTransform, Transform<World> oldTransform, Living targetEntity, Transform<World> targetTransform) {
+    public static DisplaceEntityEvent.Move.TargetHuman createDisplaceEntityEventMoveTargetHuman(Transform<World> fromTransform, Game game, Living targetEntity, Transform<World> targetTransform, Transform<World> toTransform) {
         Map<String, Object> values = Maps.newHashMap();
+        values.put("fromTransform", fromTransform);
         values.put("game", game);
-        values.put("newTransform", newTransform);
-        values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
+        values.put("toTransform", toTransform);
         return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Move.TargetHuman.class, values);
     }
 
@@ -3274,20 +3524,20 @@ public final class SpongeEventFactory {
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetLiving}.
      * 
+     * @param fromTransform The from transform
      * @param game The game
-     * @param newTransform The new transform
-     * @param oldTransform The old transform
      * @param targetEntity The target entity
      * @param targetTransform The target transform
+     * @param toTransform The to transform
      * @return A new target living move displace entity event
      */
-    public static DisplaceEntityEvent.Move.TargetLiving createDisplaceEntityEventMoveTargetLiving(Game game, Transform<World> newTransform, Transform<World> oldTransform, Living targetEntity, Transform<World> targetTransform) {
+    public static DisplaceEntityEvent.Move.TargetLiving createDisplaceEntityEventMoveTargetLiving(Transform<World> fromTransform, Game game, Living targetEntity, Transform<World> targetTransform, Transform<World> toTransform) {
         Map<String, Object> values = Maps.newHashMap();
+        values.put("fromTransform", fromTransform);
         values.put("game", game);
-        values.put("newTransform", newTransform);
-        values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
+        values.put("toTransform", toTransform);
         return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Move.TargetLiving.class, values);
     }
 
@@ -3296,20 +3546,20 @@ public final class SpongeEventFactory {
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetPlayer}.
      * 
+     * @param fromTransform The from transform
      * @param game The game
-     * @param newTransform The new transform
-     * @param oldTransform The old transform
      * @param targetEntity The target entity
      * @param targetTransform The target transform
+     * @param toTransform The to transform
      * @return A new target player move displace entity event
      */
-    public static DisplaceEntityEvent.Move.TargetPlayer createDisplaceEntityEventMoveTargetPlayer(Game game, Transform<World> newTransform, Transform<World> oldTransform, Player targetEntity, Transform<World> targetTransform) {
+    public static DisplaceEntityEvent.Move.TargetPlayer createDisplaceEntityEventMoveTargetPlayer(Transform<World> fromTransform, Game game, Player targetEntity, Transform<World> targetTransform, Transform<World> toTransform) {
         Map<String, Object> values = Maps.newHashMap();
+        values.put("fromTransform", fromTransform);
         values.put("game", game);
-        values.put("newTransform", newTransform);
-        values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
+        values.put("toTransform", toTransform);
         return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Move.TargetPlayer.class, values);
     }
 
@@ -3318,20 +3568,20 @@ public final class SpongeEventFactory {
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetHuman}.
      * 
+     * @param fromTransform The from transform
      * @param game The game
-     * @param newTransform The new transform
-     * @param oldTransform The old transform
      * @param targetEntity The target entity
      * @param targetTransform The target transform
+     * @param toTransform The to transform
      * @return A new target human displace entity event
      */
-    public static DisplaceEntityEvent.TargetHuman createDisplaceEntityEventTargetHuman(Game game, Transform<World> newTransform, Transform<World> oldTransform, Living targetEntity, Transform<World> targetTransform) {
+    public static DisplaceEntityEvent.TargetHuman createDisplaceEntityEventTargetHuman(Transform<World> fromTransform, Game game, Living targetEntity, Transform<World> targetTransform, Transform<World> toTransform) {
         Map<String, Object> values = Maps.newHashMap();
+        values.put("fromTransform", fromTransform);
         values.put("game", game);
-        values.put("newTransform", newTransform);
-        values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
+        values.put("toTransform", toTransform);
         return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.TargetHuman.class, values);
     }
 
@@ -3340,20 +3590,20 @@ public final class SpongeEventFactory {
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetLiving}.
      * 
+     * @param fromTransform The from transform
      * @param game The game
-     * @param newTransform The new transform
-     * @param oldTransform The old transform
      * @param targetEntity The target entity
      * @param targetTransform The target transform
+     * @param toTransform The to transform
      * @return A new target living displace entity event
      */
-    public static DisplaceEntityEvent.TargetLiving createDisplaceEntityEventTargetLiving(Game game, Transform<World> newTransform, Transform<World> oldTransform, Living targetEntity, Transform<World> targetTransform) {
+    public static DisplaceEntityEvent.TargetLiving createDisplaceEntityEventTargetLiving(Transform<World> fromTransform, Game game, Living targetEntity, Transform<World> targetTransform, Transform<World> toTransform) {
         Map<String, Object> values = Maps.newHashMap();
+        values.put("fromTransform", fromTransform);
         values.put("game", game);
-        values.put("newTransform", newTransform);
-        values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
+        values.put("toTransform", toTransform);
         return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.TargetLiving.class, values);
     }
 
@@ -3362,20 +3612,20 @@ public final class SpongeEventFactory {
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetPlayer}.
      * 
+     * @param fromTransform The from transform
      * @param game The game
-     * @param newTransform The new transform
-     * @param oldTransform The old transform
      * @param targetEntity The target entity
      * @param targetTransform The target transform
+     * @param toTransform The to transform
      * @return A new target player displace entity event
      */
-    public static DisplaceEntityEvent.TargetPlayer createDisplaceEntityEventTargetPlayer(Game game, Transform<World> newTransform, Transform<World> oldTransform, Player targetEntity, Transform<World> targetTransform) {
+    public static DisplaceEntityEvent.TargetPlayer createDisplaceEntityEventTargetPlayer(Transform<World> fromTransform, Game game, Player targetEntity, Transform<World> targetTransform, Transform<World> toTransform) {
         Map<String, Object> values = Maps.newHashMap();
+        values.put("fromTransform", fromTransform);
         values.put("game", game);
-        values.put("newTransform", newTransform);
-        values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
+        values.put("toTransform", toTransform);
         return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.TargetPlayer.class, values);
     }
 
@@ -3385,25 +3635,25 @@ public final class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport}.
      * 
      * @param cause The cause
+     * @param fromTransform The from transform
      * @param game The game
      * @param keepsVelocity The keeps velocity
-     * @param newTransform The new transform
-     * @param oldTransform The old transform
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @param teleporterAgent The teleporter agent
+     * @param toTransform The to transform
      * @return A new teleport displace entity event
      */
-    public static DisplaceEntityEvent.Teleport createDisplaceEntityEventTeleport(Cause cause, Game game, boolean keepsVelocity, Transform<World> newTransform, Transform<World> oldTransform, Entity targetEntity, Transform<World> targetTransform, TeleporterAgent teleporterAgent) {
+    public static DisplaceEntityEvent.Teleport createDisplaceEntityEventTeleport(Cause cause, Transform<World> fromTransform, Game game, boolean keepsVelocity, Entity targetEntity, Transform<World> targetTransform, TeleporterAgent teleporterAgent, Transform<World> toTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
+        values.put("fromTransform", fromTransform);
         values.put("game", game);
         values.put("keepsVelocity", keepsVelocity);
-        values.put("newTransform", newTransform);
-        values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("teleporterAgent", teleporterAgent);
+        values.put("toTransform", toTransform);
         return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.class, values);
     }
 
@@ -3413,25 +3663,25 @@ public final class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetHuman}.
      * 
      * @param cause The cause
+     * @param fromTransform The from transform
      * @param game The game
      * @param keepsVelocity The keeps velocity
-     * @param newTransform The new transform
-     * @param oldTransform The old transform
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @param teleporterAgent The teleporter agent
+     * @param toTransform The to transform
      * @return A new target human teleport displace entity event
      */
-    public static DisplaceEntityEvent.Teleport.TargetHuman createDisplaceEntityEventTeleportTargetHuman(Cause cause, Game game, boolean keepsVelocity, Transform<World> newTransform, Transform<World> oldTransform, Living targetEntity, Transform<World> targetTransform, TeleporterAgent teleporterAgent) {
+    public static DisplaceEntityEvent.Teleport.TargetHuman createDisplaceEntityEventTeleportTargetHuman(Cause cause, Transform<World> fromTransform, Game game, boolean keepsVelocity, Living targetEntity, Transform<World> targetTransform, TeleporterAgent teleporterAgent, Transform<World> toTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
+        values.put("fromTransform", fromTransform);
         values.put("game", game);
         values.put("keepsVelocity", keepsVelocity);
-        values.put("newTransform", newTransform);
-        values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("teleporterAgent", teleporterAgent);
+        values.put("toTransform", toTransform);
         return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.TargetHuman.class, values);
     }
 
@@ -3441,25 +3691,25 @@ public final class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetLiving}.
      * 
      * @param cause The cause
+     * @param fromTransform The from transform
      * @param game The game
      * @param keepsVelocity The keeps velocity
-     * @param newTransform The new transform
-     * @param oldTransform The old transform
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @param teleporterAgent The teleporter agent
+     * @param toTransform The to transform
      * @return A new target living teleport displace entity event
      */
-    public static DisplaceEntityEvent.Teleport.TargetLiving createDisplaceEntityEventTeleportTargetLiving(Cause cause, Game game, boolean keepsVelocity, Transform<World> newTransform, Transform<World> oldTransform, Living targetEntity, Transform<World> targetTransform, TeleporterAgent teleporterAgent) {
+    public static DisplaceEntityEvent.Teleport.TargetLiving createDisplaceEntityEventTeleportTargetLiving(Cause cause, Transform<World> fromTransform, Game game, boolean keepsVelocity, Living targetEntity, Transform<World> targetTransform, TeleporterAgent teleporterAgent, Transform<World> toTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
+        values.put("fromTransform", fromTransform);
         values.put("game", game);
         values.put("keepsVelocity", keepsVelocity);
-        values.put("newTransform", newTransform);
-        values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("teleporterAgent", teleporterAgent);
+        values.put("toTransform", toTransform);
         return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.TargetLiving.class, values);
     }
 
@@ -3469,25 +3719,25 @@ public final class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetPlayer}.
      * 
      * @param cause The cause
+     * @param fromTransform The from transform
      * @param game The game
      * @param keepsVelocity The keeps velocity
-     * @param newTransform The new transform
-     * @param oldTransform The old transform
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @param teleporterAgent The teleporter agent
+     * @param toTransform The to transform
      * @return A new target player teleport displace entity event
      */
-    public static DisplaceEntityEvent.Teleport.TargetPlayer createDisplaceEntityEventTeleportTargetPlayer(Cause cause, Game game, boolean keepsVelocity, Transform<World> newTransform, Transform<World> oldTransform, Player targetEntity, Transform<World> targetTransform, TeleporterAgent teleporterAgent) {
+    public static DisplaceEntityEvent.Teleport.TargetPlayer createDisplaceEntityEventTeleportTargetPlayer(Cause cause, Transform<World> fromTransform, Game game, boolean keepsVelocity, Player targetEntity, Transform<World> targetTransform, TeleporterAgent teleporterAgent, Transform<World> toTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
+        values.put("fromTransform", fromTransform);
         values.put("game", game);
         values.put("keepsVelocity", keepsVelocity);
-        values.put("newTransform", newTransform);
-        values.put("oldTransform", oldTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         values.put("teleporterAgent", teleporterAgent);
+        values.put("toTransform", toTransform);
         return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.TargetPlayer.class, values);
     }
 
@@ -4149,20 +4399,20 @@ public final class SpongeEventFactory {
      * @param game The game
      * @param keepsInventory The keeps inventory
      * @param keepsLevel The keeps level
-     * @param newLevel The new level
+     * @param level The level
      * @param originalExperience The original experience
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @return A new target player harvest entity event
      */
-    public static HarvestEntityEvent.TargetPlayer createHarvestEntityEventTargetPlayer(Cause cause, int experience, Game game, boolean keepsInventory, boolean keepsLevel, int newLevel, int originalExperience, Player targetEntity, Transform<World> targetTransform) {
+    public static HarvestEntityEvent.TargetPlayer createHarvestEntityEventTargetPlayer(Cause cause, int experience, Game game, boolean keepsInventory, boolean keepsLevel, int level, int originalExperience, Player targetEntity, Transform<World> targetTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("experience", experience);
         values.put("game", game);
         values.put("keepsInventory", keepsInventory);
         values.put("keepsLevel", keepsLevel);
-        values.put("newLevel", newLevel);
+        values.put("level", level);
         values.put("originalExperience", originalExperience);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
@@ -5114,18 +5364,18 @@ public final class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param game The game
-     * @param newGameMode The new game mode
-     * @param oldGameMode The old game mode
+     * @param gameMode The game mode
+     * @param originalGameMode The original game mode
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @return A new change human game mode event
      */
-    public static ChangeHumanGameModeEvent createChangeHumanGameModeEvent(Cause cause, Game game, GameMode newGameMode, GameMode oldGameMode, Living targetEntity, Transform<World> targetTransform) {
+    public static ChangeHumanGameModeEvent createChangeHumanGameModeEvent(Cause cause, Game game, GameMode gameMode, GameMode originalGameMode, Living targetEntity, Transform<World> targetTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
-        values.put("newGameMode", newGameMode);
-        values.put("oldGameMode", oldGameMode);
+        values.put("gameMode", gameMode);
+        values.put("originalGameMode", originalGameMode);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         return SpongeEventFactoryUtils.createEventImpl(ChangeHumanGameModeEvent.class, values);
@@ -5138,18 +5388,18 @@ public final class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param game The game
-     * @param newGameMode The new game mode
-     * @param oldGameMode The old game mode
+     * @param gameMode The game mode
+     * @param originalGameMode The original game mode
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @return A new target player change human game mode event
      */
-    public static ChangeHumanGameModeEvent.TargetPlayer createChangeHumanGameModeEventTargetPlayer(Cause cause, Game game, GameMode newGameMode, GameMode oldGameMode, Player targetEntity, Transform<World> targetTransform) {
+    public static ChangeHumanGameModeEvent.TargetPlayer createChangeHumanGameModeEventTargetPlayer(Cause cause, Game game, GameMode gameMode, GameMode originalGameMode, Player targetEntity, Transform<World> targetTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
-        values.put("newGameMode", newGameMode);
-        values.put("oldGameMode", oldGameMode);
+        values.put("gameMode", gameMode);
+        values.put("originalGameMode", originalGameMode);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         return SpongeEventFactoryUtils.createEventImpl(ChangeHumanGameModeEvent.TargetPlayer.class, values);
@@ -5162,16 +5412,16 @@ public final class SpongeEventFactory {
      * 
      * @param game The game
      * @param level The level
-     * @param newLevel The new level
+     * @param originalLevel The original level
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @return A new change human level event
      */
-    public static ChangeHumanLevelEvent createChangeHumanLevelEvent(Game game, int level, int newLevel, Living targetEntity, Transform<World> targetTransform) {
+    public static ChangeHumanLevelEvent createChangeHumanLevelEvent(Game game, int level, int originalLevel, Living targetEntity, Transform<World> targetTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("level", level);
-        values.put("newLevel", newLevel);
+        values.put("originalLevel", originalLevel);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         return SpongeEventFactoryUtils.createEventImpl(ChangeHumanLevelEvent.class, values);
@@ -5184,16 +5434,16 @@ public final class SpongeEventFactory {
      * 
      * @param game The game
      * @param level The level
-     * @param newLevel The new level
+     * @param originalLevel The original level
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @return A new target player change human level event
      */
-    public static ChangeHumanLevelEvent.TargetPlayer createChangeHumanLevelEventTargetPlayer(Game game, int level, int newLevel, Player targetEntity, Transform<World> targetTransform) {
+    public static ChangeHumanLevelEvent.TargetPlayer createChangeHumanLevelEventTargetPlayer(Game game, int level, int originalLevel, Player targetEntity, Transform<World> targetTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("level", level);
-        values.put("newLevel", newLevel);
+        values.put("originalLevel", originalLevel);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         return SpongeEventFactoryUtils.createEventImpl(ChangeHumanLevelEvent.TargetPlayer.class, values);
@@ -5431,54 +5681,24 @@ public final class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.living.player.PlayerChangeStatisticEvent}.
      * 
      * @param cause The cause
-     * @param changedStatistic The changed statistic
      * @param game The game
-     * @param newValue The new value
-     * @param oldValue The old value
+     * @param originalValue The original value
      * @param sourceEntity The source entity
      * @param sourceTransform The source transform
+     * @param statistic The statistic
+     * @param value The value
      * @return A new player change statistic event
      */
-    public static PlayerChangeStatisticEvent createPlayerChangeStatisticEvent(Cause cause, Statistic changedStatistic, Game game, long newValue, long oldValue, Player sourceEntity, Transform<World> sourceTransform) {
+    public static PlayerChangeStatisticEvent createPlayerChangeStatisticEvent(Cause cause, Game game, long originalValue, Player sourceEntity, Transform<World> sourceTransform, Statistic statistic, long value) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
-        values.put("changedStatistic", changedStatistic);
         values.put("game", game);
-        values.put("newValue", newValue);
-        values.put("oldValue", oldValue);
+        values.put("originalValue", originalValue);
         values.put("sourceEntity", sourceEntity);
         values.put("sourceTransform", sourceTransform);
+        values.put("statistic", statistic);
+        values.put("value", value);
         return SpongeEventFactoryUtils.createEventImpl(PlayerChangeStatisticEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.living.player.PlayerChatEvent}.
-     * 
-     * @param cause The cause
-     * @param game The game
-     * @param message The message
-     * @param newMessage The new message
-     * @param sink The sink
-     * @param source The source
-     * @param sourceEntity The source entity
-     * @param sourceTransform The source transform
-     * @param unformattedMessage The unformatted message
-     * @return A new player chat event
-     */
-    public static PlayerChatEvent createPlayerChatEvent(Cause cause, Game game, Text message, Text newMessage, MessageSink sink, Player source, Player sourceEntity, Transform<World> sourceTransform, Text unformattedMessage) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("game", game);
-        values.put("message", message);
-        values.put("newMessage", newMessage);
-        values.put("sink", sink);
-        values.put("source", source);
-        values.put("sourceEntity", sourceEntity);
-        values.put("sourceTransform", sourceTransform);
-        values.put("unformattedMessage", unformattedMessage);
-        return SpongeEventFactoryUtils.createEventImpl(PlayerChatEvent.class, values);
     }
 
     /**
@@ -5580,26 +5800,24 @@ public final class SpongeEventFactory {
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerJoinEvent}.
      * 
-     * @param cause The cause
      * @param game The game
      * @param message The message
-     * @param newMessage The new message
+     * @param originalMessage The original message
+     * @param originalSink The original sink
+     * @param server The server
      * @param sink The sink
      * @param source The source
-     * @param sourceEntity The source entity
-     * @param sourceTransform The source transform
      * @return A new player join event
      */
-    public static PlayerJoinEvent createPlayerJoinEvent(Cause cause, Game game, Text message, Text newMessage, MessageSink sink, Player source, Player sourceEntity, Transform<World> sourceTransform) {
+    public static PlayerJoinEvent createPlayerJoinEvent(Game game, Text message, Text originalMessage, MessageSink originalSink, Server server, MessageSink sink, CommandSource source) {
         Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
         values.put("game", game);
         values.put("message", message);
-        values.put("newMessage", newMessage);
+        values.put("originalMessage", originalMessage);
+        values.put("originalSink", originalSink);
+        values.put("server", server);
         values.put("sink", sink);
         values.put("source", source);
-        values.put("sourceEntity", sourceEntity);
-        values.put("sourceTransform", sourceTransform);
         return SpongeEventFactoryUtils.createEventImpl(PlayerJoinEvent.class, values);
     }
 
@@ -5608,55 +5826,25 @@ public final class SpongeEventFactory {
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerKickEvent}.
      * 
-     * @param cause The cause
      * @param game The game
      * @param message The message
-     * @param newMessage The new message
+     * @param originalMessage The original message
+     * @param originalSink The original sink
+     * @param server The server
      * @param sink The sink
      * @param source The source
-     * @param sourceEntity The source entity
-     * @param sourceTransform The source transform
      * @return A new player kick event
      */
-    public static PlayerKickEvent createPlayerKickEvent(Cause cause, Game game, Text message, Text newMessage, MessageSink sink, Player source, Player sourceEntity, Transform<World> sourceTransform) {
+    public static PlayerKickEvent createPlayerKickEvent(Game game, Text message, Text originalMessage, MessageSink originalSink, Server server, MessageSink sink, CommandSource source) {
         Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
         values.put("game", game);
         values.put("message", message);
-        values.put("newMessage", newMessage);
+        values.put("originalMessage", originalMessage);
+        values.put("originalSink", originalSink);
+        values.put("server", server);
         values.put("sink", sink);
         values.put("source", source);
-        values.put("sourceEntity", sourceEntity);
-        values.put("sourceTransform", sourceTransform);
         return SpongeEventFactoryUtils.createEventImpl(PlayerKickEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.living.player.PlayerMessageEvent}.
-     * 
-     * @param cause The cause
-     * @param game The game
-     * @param message The message
-     * @param newMessage The new message
-     * @param sink The sink
-     * @param source The source
-     * @param sourceEntity The source entity
-     * @param sourceTransform The source transform
-     * @return A new player message event
-     */
-    public static PlayerMessageEvent createPlayerMessageEvent(Cause cause, Game game, Text message, Text newMessage, MessageSink sink, Player source, Player sourceEntity, Transform<World> sourceTransform) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("game", game);
-        values.put("message", message);
-        values.put("newMessage", newMessage);
-        values.put("sink", sink);
-        values.put("source", source);
-        values.put("sourceEntity", sourceEntity);
-        values.put("sourceTransform", sourceTransform);
-        return SpongeEventFactoryUtils.createEventImpl(PlayerMessageEvent.class, values);
     }
 
     /**
@@ -5664,26 +5852,24 @@ public final class SpongeEventFactory {
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerQuitEvent}.
      * 
-     * @param cause The cause
      * @param game The game
      * @param message The message
-     * @param newMessage The new message
+     * @param originalMessage The original message
+     * @param originalSink The original sink
+     * @param server The server
      * @param sink The sink
      * @param source The source
-     * @param sourceEntity The source entity
-     * @param sourceTransform The source transform
      * @return A new player quit event
      */
-    public static PlayerQuitEvent createPlayerQuitEvent(Cause cause, Game game, Text message, Text newMessage, MessageSink sink, Player source, Player sourceEntity, Transform<World> sourceTransform) {
+    public static PlayerQuitEvent createPlayerQuitEvent(Game game, Text message, Text originalMessage, MessageSink originalSink, Server server, MessageSink sink, CommandSource source) {
         Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
         values.put("game", game);
         values.put("message", message);
-        values.put("newMessage", newMessage);
+        values.put("originalMessage", originalMessage);
+        values.put("originalSink", originalSink);
+        values.put("server", server);
         values.put("sink", sink);
         values.put("source", source);
-        values.put("sourceEntity", sourceEntity);
-        values.put("sourceTransform", sourceTransform);
         return SpongeEventFactoryUtils.createEventImpl(PlayerQuitEvent.class, values);
     }
 
@@ -5717,17 +5903,17 @@ public final class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.living.player.RespawnPlayerEvent}.
      * 
      * @param bedSpawn The bed spawn
+     * @param fromTransform The from transform
      * @param game The game
-     * @param originTransform The origin transform
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @return A new respawn player event
      */
-    public static RespawnPlayerEvent createRespawnPlayerEvent(boolean bedSpawn, Game game, Transform<World> originTransform, Player targetEntity, Transform<World> targetTransform) {
+    public static RespawnPlayerEvent createRespawnPlayerEvent(boolean bedSpawn, Transform<World> fromTransform, Game game, Player targetEntity, Transform<World> targetTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("bedSpawn", bedSpawn);
+        values.put("fromTransform", fromTransform);
         values.put("game", game);
-        values.put("originTransform", originTransform);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         return SpongeEventFactoryUtils.createEventImpl(RespawnPlayerEvent.class, values);
@@ -7820,18 +8006,18 @@ public final class SpongeEventFactory {
      * 
      * @param game The game
      * @param name The name
-     * @param newValue The new value
-     * @param oldValue The old value
+     * @param originalValue The original value
      * @param targetWorld The target world
+     * @param value The value
      * @return A new change world game rule event
      */
-    public static ChangeWorldGameRuleEvent createChangeWorldGameRuleEvent(Game game, String name, String newValue, String oldValue, World targetWorld) {
+    public static ChangeWorldGameRuleEvent createChangeWorldGameRuleEvent(Game game, String name, String originalValue, World targetWorld, String value) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("name", name);
-        values.put("newValue", newValue);
-        values.put("oldValue", oldValue);
+        values.put("originalValue", originalValue);
         values.put("targetWorld", targetWorld);
+        values.put("value", value);
         return SpongeEventFactoryUtils.createEventImpl(ChangeWorldGameRuleEvent.class, values);
     }
 
@@ -8301,6 +8487,26 @@ public final class SpongeEventFactory {
         values.put("sourceWorld", sourceWorld);
         values.put("targetChunk", targetChunk);
         return SpongeEventFactoryUtils.createEventImpl(ChangeChunkEvent.SourceWorld.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.chunk.ChunkEvent}.
+     * 
+     * @param cause The cause
+     * @param game The game
+     * @param sourceChunk The source chunk
+     * @param sourceLocation The source location
+     * @return A new chunk event
+     */
+    public static ChunkEvent createChunkEvent(Cause cause, Game game, Chunk sourceChunk, Location<Chunk> sourceLocation) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("game", game);
+        values.put("sourceChunk", sourceChunk);
+        values.put("sourceLocation", sourceLocation);
+        return SpongeEventFactoryUtils.createEventImpl(ChunkEvent.class, values);
     }
 
     /**
