@@ -27,12 +27,13 @@ package org.spongepowered.api.entity;
 import com.flowpowered.math.imaginary.Quaterniond;
 import com.flowpowered.math.matrix.Matrix4d;
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
 /**
- * Represents the world attributes of an {@link Entity}. Comprised of a
- * {@link Location} and two {@link Vector3d} representing the rotation
+ * Represents the immutable world attributes of an {@link Entity}. Comprised of
+ * a {@link Location} and two {@link Vector3d} representing the rotation
  * and the scale. The implementation may internally use a location or a
  * separate extent and position. Be wary that calling {@link #getLocation()}
  * could result in object creation.
@@ -63,15 +64,6 @@ public interface Transform<E extends Extent> {
     Location<E> getLocation();
 
     /**
-     * Sets the {@link Location} of this transform.
-     * This sets both the position and the extent.
-     *
-     * @param location The new location
-     * @return This object, for chaining
-     */
-    Transform<E> setLocation(Location<E> location);
-
-    /**
      * Gets the {@link Extent} this transform contains.
      *
      * <p>Note: This can be null if the {@link Extent} is unloaded and garbage
@@ -83,27 +75,11 @@ public interface Transform<E extends Extent> {
     E getExtent();
 
     /**
-     * Sets the {@link Extent} of this transform.
-     *
-     * @param extent The new extent
-     * @return This object, for chaining
-     */
-    Transform<E> setExtent(E extent);
-
-    /**
      * Gets the coordinates of this transform.
      *
      * @return The coordinates
      */
     Vector3d getPosition();
-
-    /**
-     * Sets the coordinates of this transform.
-     *
-     * @param position The new position
-     * @return The object, for chaining
-     */
-    Transform<E> setPosition(Vector3d position);
 
     /**
      * Gets the rotation of this transform, as a {@link Vector3d}.
@@ -120,21 +96,6 @@ public interface Transform<E extends Extent> {
     Vector3d getRotation();
 
     /**
-     * Sets the rotation of this transform.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     * <ul>
-     *     <li><code>x -> pitch</code></li>
-     *     <li><code>y -> yaw</code></li>
-     *     <li><code>z -> roll</code></li>
-     * </ul>
-     *
-     * @param rotation The new rotation
-     * @return This object, for chaining
-     */
-    Transform<E> setRotation(Vector3d rotation);
-
-    /**
      * Returns the rotation as a quaternion.
      * Quaternions are objectively better than
      * the Euler angles preferred by Minecraft.
@@ -144,18 +105,6 @@ public interface Transform<E extends Extent> {
      * @return The rotation
      */
     Quaterniond getRotationAsQuaternion();
-
-    /**
-     * Sets the rotation as a quaternion.
-     * Quaternions are objectively better than
-     * the Euler angles preferred by Minecraft.
-     * This is for compatibility with
-     * the flow-math library.
-     *
-     * @param rotation The rotation
-     * @return This object, for chaining
-     */
-    Transform<E> setRotation(Quaterniond rotation);
 
     /**
      * Gets the pitch component of this transform rotation
@@ -186,36 +135,32 @@ public interface Transform<E extends Extent> {
     Vector3d getScale();
 
     /**
-     * Sets the scale of the transform for each axis.
-     *
-     * @return This object, for chaining
-     */
-    Transform<E> setScale(Vector3d scale);
-
-    /**
      * "Adds" another transform to this one.
      * This is equivalent to adding the
      * translation, rotation and scale
-     * individually.
+     * individually. Returns the results
+     * as a new copy.
      *
      * @param other The transform to add
-     * @return This object, for chaining
+     * @return A new transform
      */
     Transform<E> add(Transform<E> other);
 
     /**
      * Adds a translation to this transform.
+     * Returns the results as a new copy.
      *
      * @param translation The translation to add
-     * @return This object, for chaining
+     * @return A new transform
      */
     Transform<E> addTranslation(Vector3d translation);
 
     /**
      * Adds a rotation to this transform.
+     * Returns the results as a new copy.
      *
      * @param rotation The rotation to add
-     * @return This object, for chaining
+     * @return A new transform
      */
     Transform<E> addRotation(Vector3d rotation);
 
@@ -227,9 +172,10 @@ public interface Transform<E extends Extent> {
      * dealing with rotation additions.
      * This is for compatibility with
      * the flow-math library.
+     * Returns the results as a new copy.
      *
      * @param rotation The rotation to add
-     * @return This object, for chaining
+     * @return A new transform
      */
     Transform<E> addRotation(Quaterniond rotation);
 
@@ -238,9 +184,10 @@ public interface Transform<E extends Extent> {
      * Scales are multiplicative, so
      * this actually multiplies the
      * current scale.
+     * Returns the results as a new copy.
      *
      * @param scale The scale to add
-     * @return This object, for chaining
+     * @return A new transform
      */
     Transform<E> addScale(Vector3d scale);
 
@@ -280,8 +227,65 @@ public interface Transform<E extends Extent> {
     boolean isValid();
 
     /**
-     * Invalidates this transform. {@link #isValid()} will return false.
+     * A builder for transforms. Create one from
+     * {@link GameRegistry#createTransformBuilder()}.
+     * The builder uses the default values for position and
+     * rotation of (0, 0, 0) and scale of (1, 1, 1).
+     * Only the extent must be set to build and not doing so
+     * results in a state exception.
+     *
+     * @param <E> The type of extent
      */
-    void invalidate();
+    interface Builder<E extends Extent> {
+
+        /**
+         * Sets the extent of this transform.
+         *
+         * @param extent The extent
+         * @return This builder for chained calls
+         */
+        Builder<E> withExtent(E extent);
+
+        /**
+         * Sets the position of this transform.
+         *
+         * @param position The position
+         * @return This builder for chained calls
+         */
+        Builder<E> withPosition(Vector3d position);
+
+        /**
+         * Sets the rotation of this transform.
+         *
+         * @param rotation The rotation
+         * @return This builder for chained calls
+         */
+        Builder<E> withRotation(Vector3d rotation);
+
+        /**
+         * Sets the rotation of this transform.
+         *
+         * @param rotation The extent
+         * @return This builder for chained calls
+         */
+        Builder<E> withRotation(Quaterniond rotation);
+
+        /**
+         * Sets the scale of this transform.
+         *
+         * @param scale The scale
+         * @return This builder for chained calls
+         */
+        Builder<E> withScale(Vector3d scale);
+
+        /**
+         * Creates a new transform from the configured builder.
+         *
+         * @return The new transform
+         * @throws IllegalStateException If the extent hasn't been set
+         */
+        Transform<E> build();
+
+    }
 
 }

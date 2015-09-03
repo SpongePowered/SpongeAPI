@@ -531,28 +531,17 @@ public interface GameRegistry {
     PopulatorFactory getPopulatorFactory();
 
     /**
-     * Returns a new invalid identity transform.
-     * The extent needs to be set using
-     * {@link Transform#setExtent(Extent)} to validate it.
+     * Returns a new transform builder.
+     * Use chained setter calls to configure it.
+     * Example:
+     * <pre>{@code createTransformBuilder()
+     * .withPosition(position)
+     * .withRotation(rotation)
+     * .build()}</pre>
      *
-     * @return A new invalid identity transform
-     * @see #createTransform(Extent)
+     * @return A new transform builder
      */
-    <E extends Extent> Transform<E> createTransform();
-
-    /**
-     * Returns a new identity transform for the given extent.
-     * This transform has no translation, rotation or scale
-     * (position and rotation are (0, 0, 0) and scale is (1, 1, 1)).
-     * Use chained setter calls to configure it. Example:
-     * <pre>{@code createTransform(extent)
-     * .setPosition(position)
-     * .setRotation(rotation)}</pre>
-     *
-     * @param extent The extent which contains the transform
-     * @return A new identity transform
-     */
-    <E extends Extent> Transform<E> createTransform(E extent);
+    <E extends Extent> Transform.Builder<E> createTransformBuilder();
 
     /**
      * Gets the {@link ExtentBufferFactory} for creating buffers
