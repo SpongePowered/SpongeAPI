@@ -25,11 +25,11 @@
 package org.spongepowered.api.event.entity.living.player;
 
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.command.SendMessageCommandSourceEvent;
 
 /**
  * Called when a {@link Player} is kicked.
  */
-public interface PlayerKickEvent extends PlayerMessageEvent, Cancellable {
+public interface PlayerKickEvent extends SendMessageCommandSourceEvent.SourceConsole {
 
 }

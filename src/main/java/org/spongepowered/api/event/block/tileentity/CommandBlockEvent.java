@@ -22,18 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.event.block.tileentity;
 
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.action.MessageEvent;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.block.tileentity.CommandBlock;
 
-/**
- * Describes events where a {@link CommandSource} is a {@link Player}
- * and has sent a {@link Text} message.
- */
-public interface PlayerMessageEvent extends PlayerEvent, MessageEvent {
+public interface CommandBlockEvent extends TileEntityEvent {
     @Override
-    Player getSource();
+    CommandBlock getTile();
 }

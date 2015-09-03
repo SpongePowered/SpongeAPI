@@ -142,10 +142,15 @@ public final class Location<E extends Extent> implements DataHolder {
      * <p>Note: This can be null if the {@link Extent} is unloaded and garbage
      * collected.</p>
      *
-     * @return The extent
+     * @return The extent, if available
+     * @throws IllegalStateException If the {@link Extent} is null
      */
     public E getExtent() {
-        return this.extent.get();
+        final E currentExtent = this.extent.get();
+        if (currentExtent == null) {
+            throw new IllegalStateException();
+        }
+        return currentExtent;
     }
 
     /**

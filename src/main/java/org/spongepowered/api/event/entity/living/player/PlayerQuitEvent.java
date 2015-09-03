@@ -26,9 +26,10 @@ package org.spongepowered.api.event.entity.living.player;
 
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.action.DisconnectEvent;
+import org.spongepowered.api.event.command.SendMessageCommandSourceEvent;
 
 /**
  * Called when a {@link Player} quit the game.
  */
-public interface PlayerQuitEvent extends PlayerMessageEvent, DisconnectEvent {
+public interface PlayerQuitEvent extends SendMessageCommandSourceEvent.SourceConsole, DisconnectEvent {
 }

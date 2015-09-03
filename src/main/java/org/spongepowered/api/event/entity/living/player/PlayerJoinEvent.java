@@ -25,10 +25,11 @@
 package org.spongepowered.api.event.entity.living.player;
 
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.command.SendMessageCommandSourceEvent;
 
 /**
  * Called before a {@link Player} joins the game.
  */
-public interface PlayerJoinEvent extends PlayerMessageEvent {
+public interface PlayerJoinEvent extends SendMessageCommandSourceEvent.SourceConsole {
 
 }

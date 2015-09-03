@@ -36,14 +36,6 @@ import org.spongepowered.api.util.command.CommandSource;
 public interface MessageEvent extends GameEvent, Cancellable {
 
     /**
-     * Gets the {@link CommandSource} of the event which may
-     * or may not be a target of the {@link Text}.
-     *
-     * @return The source
-     */
-    CommandSource getSource();
-
-    /**
      * Gets the {@link Text} message created by the {@link CommandSource} before
      * the calling of this event.
      *
