@@ -24,19 +24,45 @@
  */
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.TristateResult;
+import org.spongepowered.api.event.TristateResult.Result;
+import org.spongepowered.api.entity.living.Ageable;
 
 /**
- * An event where an {@link Entity} is being bred. Usually in the case
- * where a new {@link Entity} is going to be spawned after the completion
- * of this event.
+ * Represents an event when two {@link Ageable} entities come together
+ * to attempt to produce offspring.
  */
 public interface BreedEntityEvent extends InteractEntityEvent {
 
+    @Override
+    Ageable getTargetEntity();
+
     /**
-     * A variant where the {@link #getTargetEntity()} is being bred with
-     * a source that is an {@link Entity}.
+     * Called when an {@link Entity} finds an {@link Entity} to mate with.
+     * 
+     * If {@link Result#ALLOW}, bypasses normal handling to force mate with
+     * {@link Entity}.
      */
-    interface SourceEntity extends BreedEntityEvent, InteractEntityEvent.SourceEntity { }
+    interface FindMate extends BreedEntityEvent, InteractEntityEvent.SourceEntity, TristateResult {
+
+        @Override
+        Ageable getSourceEntity();
+    }
+
+    /**
+     * Called when an {@link Entity} begins to breed with an {@link Entity}.
+     */
+    interface Breed extends BreedEntityEvent, InteractEntityEvent.SourceEntity {
+
+        @Override
+        Ageable getSourceEntity();
+
+        /**
+         * Gets the offspring {@link Entity}.
+         * 
+         * @return the offspring entity
+         */
+        Ageable getOffspringEntity();
+    }
 
 }
