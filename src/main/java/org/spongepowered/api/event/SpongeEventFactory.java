@@ -165,9 +165,9 @@ import org.spongepowered.api.event.network.BanIpEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.event.network.PardonIpEvent;
 import org.spongepowered.api.event.plugin.PluginEvent;
+import org.spongepowered.api.event.rcon.RconDisconnectEvent;
 import org.spongepowered.api.event.rcon.RconEvent;
 import org.spongepowered.api.event.rcon.RconLoginEvent;
-import org.spongepowered.api.event.rcon.RconQuitEvent;
 import org.spongepowered.api.event.server.PingServerEvent;
 import org.spongepowered.api.event.server.ServerEvent;
 import org.spongepowered.api.event.server.channel.RegisterChannelEvent;
@@ -7326,6 +7326,20 @@ public final class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.rcon.RconDisconnectEvent}.
+     * 
+     * @param source The source
+     * @return A new rcon disconnect event
+     */
+    public static RconDisconnectEvent createRconDisconnectEvent(RconSource source) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("source", source);
+        return SpongeEventFactoryUtils.createEventImpl(RconDisconnectEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.rcon.RconEvent}.
      * 
      * @param source The source
@@ -7349,20 +7363,6 @@ public final class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("source", source);
         return SpongeEventFactoryUtils.createEventImpl(RconLoginEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.rcon.RconQuitEvent}.
-     * 
-     * @param source The source
-     * @return A new rcon quit event
-     */
-    public static RconQuitEvent createRconQuitEvent(RconSource source) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("source", source);
-        return SpongeEventFactoryUtils.createEventImpl(RconQuitEvent.class, values);
     }
 
     /**

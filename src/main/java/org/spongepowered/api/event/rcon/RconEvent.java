@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.event.rcon;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.command.source.RconSource;
 
 /**
  * An event that is associated with an {@link RconSource}.
  */
-public interface RconEvent extends Event {
+public interface RconEvent extends Cancellable, Event {
 
     /**
      * Gets the {@link RconSource} responsible for the event.
