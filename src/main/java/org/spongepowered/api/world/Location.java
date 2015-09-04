@@ -147,9 +147,7 @@ public final class Location<E extends Extent> implements DataHolder {
      */
     public E getExtent() {
         final E currentExtent = this.extent.get();
-        if (currentExtent == null) {
-            throw new IllegalStateException();
-        }
+        checkState(currentExtent != null);
         return currentExtent;
     }
 
@@ -751,7 +749,7 @@ public final class Location<E extends Extent> implements DataHolder {
 
     @Override
     public DataHolder copy() {
-        return new Location<E>(this.extent.get(), getPosition());
+        return new Location<E>(getExtent(), getPosition());
     }
 
     @Override
