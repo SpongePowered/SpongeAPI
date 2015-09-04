@@ -25,10 +25,8 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.world.World;
 
 /**
  * Base event for all events with an {@link Entity} as the source.
@@ -41,18 +39,5 @@ public interface EntityEvent extends GameEvent, CauseTracked {
      * @return The source entity
      */
     Entity getSourceEntity();
-
-    /**
-     * Gets a copy of the {@link Transform} of the {@link Entity} at the time
-     * that this event was generated and thrown. Due to the {@link Transform}
-     * of the {@link Entity} being stateful, any time that the {@link Entity}
-     * is moved during the processing of this event, this source transform
-     * is kept to understand where the {@link Entity} was at when the event
-     * was generated.
-     *
-     * @return The original transform of the entity at the time of the event
-     *     being generated.
-     */
-    Transform<World> getSourceTransform();
 
 }

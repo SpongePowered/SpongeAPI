@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.event.entity;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.living.Human;
@@ -37,6 +38,7 @@ import org.spongepowered.api.event.entity.living.LivingEvent;
 import org.spongepowered.api.event.entity.living.human.HumanEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.ItemStackTransaction;
 
 import javax.annotation.Nullable;
@@ -68,22 +70,22 @@ public interface FishingEvent extends GameEvent, Cancellable {
         /**
          * An event where the source is an {@link Entity}.
          */
-        interface SourceEntity extends Cast, FishingEvent.SourceEntity { }
+        interface SourceEntity extends Cast, EntityEvent { }
 
         /**
          * An event where the source is a {@link Living}.
          */
-        interface SourceLiving extends SourceEntity, FishingEvent.SourceLiving { }
+        interface SourceLiving extends SourceEntity, LivingEvent { }
 
         /**
          * An event where the source is a {@link Human}.
          */
-        interface SourceHuman extends SourceLiving, FishingEvent.SourceHuman { }
+        interface SourceHuman extends SourceLiving, HumanEvent { }
 
         /**
          * An event where the source is an {@link Player}.
          */
-        interface SourcePlayer extends SourceHuman, FishingEvent.SourcePlayer { }
+        interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
     }
 
@@ -93,24 +95,45 @@ public interface FishingEvent extends GameEvent, Cancellable {
     interface Hook extends FishingEvent, TargetEntityEvent {
 
         /**
+         * Gets the original hooked {@link Entity}.
+         * 
+         * @return The {@link Entity} snapshot
+         */
+        EntitySnapshot getOriginalHookedEntity();
+
+        /**
+         * Gets the {@link Entity} hooked, if available.
+         *
+         * @return The hooked {@link Entity}, if available
+         */
+        Optional<Entity> getHookedEntity();
+
+        /**
+         * Sets the {@link Entity} hooked, if available.
+         *
+         * @param entity The hooked {@link Entity} to set
+         */
+        void setHookedEntity(@Nullable Entity entity);
+
+        /**
          * An event where the source is an {@link Entity}.
          */
-        interface SourceEntity extends Hook, FishingEvent.SourceEntity { }
+        interface SourceEntity extends Hook, EntityEvent { }
 
         /**
          * An event where the source is a {@link Living}.
          */
-        interface SourceLiving extends SourceEntity, FishingEvent.SourceLiving { }
+        interface SourceLiving extends SourceEntity, LivingEvent { }
 
         /**
          * An event where the source is a {@link Human}.
          */
-        interface SourceHuman extends SourceLiving, FishingEvent.SourceHuman { }
+        interface SourceHuman extends SourceLiving, HumanEvent { }
 
         /**
          * An event where the source is an {@link Player}.
          */
-        interface SourcePlayer extends SourceHuman, FishingEvent.SourcePlayer { }
+        interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
     }
 
@@ -118,19 +141,31 @@ public interface FishingEvent extends GameEvent, Cancellable {
      * A specific {@link FishingEvent} where the {@link FishHook} is retracted
      * or "reeled in".
      */
-    interface Retract extends FishingEvent, TargetEntityEvent {
+    interface Retract extends FishingEvent {
 
         /**
-         * Gets te {@link ItemStackTransaction} that is the transaction involving the {@link ItemStack}.
-         * @return The itemstack transaction
+         * Gets the {@link ItemStackTransaction} that is the transaction 
+         * involving the {@link ItemStack}, if available. If you wish to
+         * change the itemstack result, use {@link 
+         * ItemStackTransaction#setCustom(ItemStackSnapshot)}
+         * 
+         * @return The itemstack transaction, if available
          */
-        ItemStackTransaction getTargetItemStackTransaction();
+        Optional<ItemStackTransaction> getItemStackTransaction();
 
         /**
-         * Gets the original {@link EntitySnapshot} being targeted.
-         * @return The snapshot
+         * Gets the original caught {@link Entity} if available.
+         * 
+         * @return The {@link Entity} snapshot, if available
          */
-        EntitySnapshot getOriginalTargetEntity();
+        Optional<EntitySnapshot> getOriginalCaughtEntity();
+
+        /**
+         * Gets the {@link Entity} hooked, if available.
+         *
+         * @return The hooked {@link Entity}
+         */
+        Optional<Entity> getCaughtEntity();
 
         /**
          * Sets the {@link Entity} hooked, if available.
@@ -142,42 +177,22 @@ public interface FishingEvent extends GameEvent, Cancellable {
         /**
          * An event where the source is an {@link Entity}.
          */
-        interface SourceEntity extends Retract, FishingEvent.SourceEntity { }
+        interface SourceEntity extends Retract, EntityEvent { }
 
         /**
          * An event where the source is a {@link Living}.
          */
-        interface SourceLiving extends SourceEntity, FishingEvent.SourceLiving { }
+        interface SourceLiving extends SourceEntity, LivingEvent { }
 
         /**
          * An event where the source is a {@link Human}.
          */
-        interface SourceHuman extends SourceLiving, FishingEvent.SourceHuman { }
+        interface SourceHuman extends SourceLiving, HumanEvent { }
 
         /**
          * An event where the source is an {@link Player}.
          */
-        interface SourcePlayer extends SourceHuman, FishingEvent.SourcePlayer { }
+        interface SourcePlayer extends SourceHuman, PlayerEvent { }
     }
-
-    /**
-     * An event where the source is an {@link Entity}.
-     */
-    interface SourceEntity extends FishingEvent, EntityEvent { }
-
-    /**
-     * An event where the source is a {@link Living}.
-     */
-    interface SourceLiving extends SourceEntity, LivingEvent { }
-
-    /**
-     * An event where the source is a {@link Human}.
-     */
-    interface SourceHuman extends SourceLiving, HumanEvent { }
-
-    /**
-     * An event where the source is an {@link Player}.
-     */
-    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }
