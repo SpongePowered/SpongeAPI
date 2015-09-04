@@ -59,9 +59,9 @@ import java.util.UUID;
 public interface Entity extends Identifiable, DataHolder, DataSerializable {
 
     /**
-     * Get the type of entity.
+     * Gets the type of this entity.
      *
-     * @return The type of entity
+     * @return The type
      */
     EntityType getType();
 
@@ -72,14 +72,17 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      */
     World getWorld();
 
+<<<<<<< HEAD
     /**
      * Creates a {@link EntitySnapshot} containing the {@link EntityType} and data of this entity.
      * @return The snapshot
      */
     EntitySnapshot createSnapshot();
 
+=======
+>>>>>>> Added convenience methods to Entity for getting and setting positions and rotations.
     /**
-     * Get the location of this entity.
+     * Gets the location of this entity.
      *
      * @return The location
      */
@@ -103,7 +106,31 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
     boolean setLocationSafely(Location<World> location);
 
     /**
-     * Gets the rotation.
+     * Gets the position of this entity in its current world.
+     *
+     * @return The position
+     */
+    Vector3d getPosition();
+
+    /**
+     * Sets the position of this entity in its current world. This is equivalent to a teleport,
+     * and also moves this entity's passengers.
+     *
+     * @param position The position to set
+     */
+    void setPosition(Vector3d position);
+
+    /**
+     * Sets the position of this entity in its current world using a safe one from {@link TeleportHelper#getSafeLocation(Location)}.
+     * This is equivalent to a teleport and also moves this entity's passengers.
+     *
+     * @param position The position to set
+     * @return True if position was set successfully, false if position couldn't be set as no safe position was found
+     */
+    boolean setPositionSafely(Vector3d position);
+
+    /**
+     * Gets the rotation of this entity.
      *
      * <p>The format of the rotation is represented by:</p>
      *
@@ -122,12 +149,74 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
      * </code></ul>
      *
-     * @param rotation The rotation to set the entity to
+     * @param rotation The rotation to set
      */
     void setRotation(Vector3d rotation);
 
     /**
-     * Moves the entity to the specified location, and sets the rotation.
+     * Moves this entity to the specified position in its current world, and sets the rotation.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @param position The position to set
+     * @param rotation The rotation to set
+     */
+    void setPositionAndRotation(Vector3d position, Vector3d rotation);
+
+    /**
+     * Sets the position of this entity in its current world using a safe one from
+     * {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this entity.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @param position The position to set
+     * @param rotation The rotation to set
+     * @return True if position was set successfully, false if position couldn't be set as no safe position was found
+     */
+    boolean setPositionAndRotationSafely(Vector3d position, Vector3d rotation);
+
+    /**
+     * Moves this entity to the specified position in its current world, and sets the rotation. {@link RelativePositions}
+     * listed inside the EnumSet are considered relative.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @param position The position to set
+     * @param rotation The rotation to set
+     * @param relativePositions The coordinates to set relatively
+     */
+    void setPositionAndRotation(Vector3d position, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
+
+    /**
+     * Sets the position of this entity using a safe one from
+     * {@link TeleportHelper#getSafeLocation(Location)} and its rotation.
+     * {@link RelativePositions} listed inside the EnumSet are
+     * considered relative.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @param position The position to set
+     * @param rotation The rotation to set
+     * @param relativePositions The coordinates to set relatively
+     * @return True if position was set successfully, false if position
+     *     couldn't be set as no safe position was found
+     */
+    boolean setPositionAndRotationSafely(Vector3d position, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
+
+    /**
+     * Moves this entity to the specified location, and sets the rotation.
      *
      * <p>The format of the rotation is represented by:</p>
      *
@@ -140,7 +229,8 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
     void setLocationAndRotation(Location<World> location, Vector3d rotation);
 
     /**
-     * Sets the location using a safe one from {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this entity.
+     * Sets the location of this entity using a safe one from {@link TeleportHelper#getSafeLocation(Location)}
+     * and the rotation of this entity.
      *
      * <p>The format of the rotation is represented by:</p>
      *
@@ -154,7 +244,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
     boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation);
 
     /**
-     * Moves the entity to the specified location, and sets the rotation. {@link RelativePositions}
+     * Moves this entity to the specified location, and sets the rotation. {@link RelativePositions}
      * listed inside the EnumSet are considered relative.
      *
      * <p>The format of the rotation is represented by:</p>
@@ -169,9 +259,9 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
     void setLocationAndRotation(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
     /**
-     * Sets the location using a safe one from
-     * {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this
-     * entity. {@link RelativePositions} listed inside the EnumSet are
+     * Sets the location of this entity using a safe one from
+     * {@link TeleportHelper#getSafeLocation(Location)} and its rotation.
+     * {@link RelativePositions} listed inside the EnumSet are
      * considered relative.
      *
      * <p>The format of the rotation is represented by:</p>
@@ -260,6 +350,48 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
     boolean transferToWorld(UUID uuid, Vector3d position);
 
     /**
+     * Sets the location of this entity to a new position in a world which does
+     * not have to be loaded (but must at least be enabled) and its rotation.
+     *
+     * <p>If the target world is loaded then this is equivalent to
+     * setting the location via {@link TargetedLocationData}.</p>
+     *
+     * <p>If the target world is unloaded but is enabled according to its
+     * {@link WorldProperties#isEnabled()} then this will first load the world
+     * before transferring the entity to that world.</p>
+     *
+     * <p>If the target world is unloaded and not enabled then the transfer
+     * will fail.</p>
+     *
+     * @param worldName The name of the world to transfer to
+     * @param position The position in the target world
+     * @param rotation The rotation
+     * @return True if the teleport was successful
+     */
+    boolean transferToWorld(String worldName, Vector3d position, Vector3d rotation);
+
+    /**
+     * Sets the location of this entity to a new position in a world which does
+     * not have to be loaded (but must at least be enabled) and its rotation.
+     *
+     * <p>If the target world is loaded then this is equivalent to
+     * setting the location via {@link TargetedLocationData}.</p>
+     *
+     * <p>If the target world is unloaded but is enabled according to its
+     * {@link WorldProperties#isEnabled()} then this will first load the world
+     * before transferring the entity to that world.</p>
+     *
+     * <p>If the target world is unloaded and not enabled then the transfer
+     * will fail.</p>
+     *
+     * @param uuid The UUID of the target world to transfer to
+     * @param position The position in the target world
+     * @param rotation The rotation
+     * @return True if the teleport was successful
+     */
+    boolean transferToWorld(UUID uuid, Vector3d position, Vector3d rotation);
+
+    /**
      * Returns whether this entity is on the ground (not in the air) or not.
      *
      * @return Whether this entity is on the ground or not
@@ -281,7 +413,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
     boolean isLoaded();
 
     /**
-     * Mark this entity for removal in the very near future, preferably
+     * Marks this entity for removal in the very near future, preferably
      * within one game tick.
      */
     void remove();
@@ -297,5 +429,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @return True if damaging the entity was successful
      */
     boolean damage(double damage, Cause cause);
+
+    EntitySnapshot createSnapshot();
 
 }
