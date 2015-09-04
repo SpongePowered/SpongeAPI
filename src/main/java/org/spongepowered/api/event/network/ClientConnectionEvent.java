@@ -26,6 +26,7 @@ package org.spongepowered.api.event.network;
 
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.action.ConnectionEvent;
 import org.spongepowered.api.event.command.MessageSinkEvent;
@@ -55,25 +56,18 @@ public interface ClientConnectionEvent extends GameEvent, ConnectionEvent {
     GameProfile getProfile();
 
     /**
-     * Called asynchronously when the client is being authenticated.
-     *
-     * <p>Note: This event is fired before #Login.</p>
-     */
-    interface Authenticate extends ClientConnectionEvent { }
-
-    /**
      * Called when the client logs into the server.
      *
      * <p>Note: This event is fired before #Join.</p>
      */
-    interface Login extends ClientConnectionEvent, MessageSinkEvent { }
+    interface Login extends ClientConnectionEvent, MessageSinkEvent, Cancellable { }
 
     /**
      * Called when a {@link Player} joins the game {@link World} for the first
      * time after initial connection.
      *
      */
-    interface Join extends ClientConnectionEvent, DisplaceEntityEvent.TargetPlayer, MessageSinkEvent { }
+    interface Join extends ClientConnectionEvent, DisplaceEntityEvent.TargetPlayer, MessageSinkEvent, Cancellable { }
 
     /**
      * Called when a {@link Player} disconnects from the game.

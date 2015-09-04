@@ -26,6 +26,7 @@ package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.EntityEvent;
 import org.spongepowered.api.event.entity.living.LivingEvent;
@@ -35,6 +36,9 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
+/**
+ * Fired when something collides a {@link BlockState} due to a {@link Cause}.
+ */
 public interface CollideBlockEvent extends GameEvent, CauseTracked {
 
     /**
