@@ -22,15 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.event.statistic;
 
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.action.DisconnectEvent;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.command.SendMessageCommandSourceEvent;
+import org.spongepowered.api.statistic.Statistic;
 
 /**
- * Called when a {@link Player} quit the game.
+ * Base event where a {@link Statistic} is the source.
  */
-public interface DisconnectPlayerEvent extends TargetPlayerEvent, SendMessageCommandSourceEvent.SourceConsole, CauseTracked, DisconnectEvent {
+public interface StatisticEvent {
+
+    /**
+     * Gets the {@link Statistic}.
+     *
+     * @return The statistic
+     */
+    Statistic getStatistic();
 }

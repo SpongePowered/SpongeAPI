@@ -22,21 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.event.achievement;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.network.PlayerConnection;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.command.MessageSinkEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerEvent;
+import org.spongepowered.api.statistic.achievement.Achievement;
 
 /**
- * An event that occurs when a {@link PlayerConnection} registers a channel with the server.
+ * Represents an event that is called when an {@link Achievement} is granted
  */
-public interface PlayerConnectionRegisterChannelEvent extends PlayerConnectionEvent, Cancellable {
+public interface GrantAchievementEvent extends AchievementEvent, MessageSinkEvent, CauseTracked {
 
-    /**
-     * Gets the name of the channel being registered.
-     *
-     * @return The channel being registered
-     */
-    String getChannelRegistered();
+    interface TargetPlayer extends GrantAchievementEvent, PlayerEvent {}
 
 }

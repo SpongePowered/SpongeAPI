@@ -28,19 +28,40 @@ import org.spongepowered.api.block.tileentity.CommandBlock;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.action.MessageEvent;
 import org.spongepowered.api.event.block.tileentity.CommandBlockEvent;
-import org.spongepowered.api.event.command.CommandSourceEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerEvent;
 import org.spongepowered.api.event.plugin.PluginEvent;
 import org.spongepowered.api.event.server.ServerEvent;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.sink.MessageSink;
 import org.spongepowered.api.util.command.CommandSource;
 
 /**
  * Describes events when a {@link CommandSource} sends a {@link Text} message.
  */
-public interface SendMessageCommandSourceEvent extends MessageEvent {
+public interface MessageSinkEvent extends MessageEvent {
 
-    interface SourceCommandSource extends SendMessageCommandSourceEvent, CommandSourceEvent { }
+    /**
+     * Gets the original sink that this message will be sent to.
+     *
+     * @return The original message sink to send to
+     */
+    MessageSink getOriginalSink();
+
+    /**
+     * Gets the current sink that this message will be sent to.
+     *
+     * @return The message sink the message in this event will be sent to
+     */
+    MessageSink getSink();
+
+    /**
+     * Set the target for this message to go to.
+     *
+     * @param sink The sink to set
+     */
+    void setSink(MessageSink sink);
+
+    interface SourceCommandSource extends MessageSinkEvent, CommandSourceEvent { }
 
     interface SourceConsole extends SourceCommandSource, ServerEvent { }
 
@@ -95,5 +116,5 @@ public interface SendMessageCommandSourceEvent extends MessageEvent {
         void setMessage(Text message);
     }
 
-    interface SourcePlugin extends MessageEvent, PluginEvent {}
+    interface SourcePlugin extends MessageSinkEvent, PluginEvent {}
 }

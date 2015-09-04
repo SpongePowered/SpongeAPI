@@ -27,7 +27,6 @@ package org.spongepowered.api.event.action;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.sink.MessageSink;
 import org.spongepowered.api.util.command.CommandSource;
 
 /**
@@ -56,26 +55,5 @@ public interface MessageEvent extends GameEvent, Cancellable {
      * @param message The new message
      */
     void setMessage(Text message);
-
-    /**
-     * Gets the original sink that this message will be sent to.
-     *
-     * @return The original message sink to send to
-     */
-    MessageSink getOriginalSink();
-
-    /**
-     * Gets the current sink that this message will be sent to.
-     *
-     * @return The message sink the message in this event will be sent to
-     */
-    MessageSink getSink();
-
-    /**
-     * Set the target for this message to go to.
-     *
-     * @param sink The sink to set
-     */
-    void setSink(MessageSink sink);
 
 }

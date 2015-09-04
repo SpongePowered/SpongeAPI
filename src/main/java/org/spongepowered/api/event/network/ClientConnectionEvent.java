@@ -24,23 +24,21 @@
  */
 package org.spongepowered.api.event.network;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.event.action.ConnectEvent;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.command.SendMessageCommandSourceEvent;
+import org.spongepowered.api.event.action.ConnectionEvent;
+import org.spongepowered.api.event.command.MessageSinkEvent;
 import org.spongepowered.api.event.entity.DisplaceEntityEvent;
+import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
 import org.spongepowered.api.network.RemoteConnection;
-import org.spongepowered.api.text.Text;
-
-import javax.annotation.Nullable;
+import org.spongepowered.api.world.World;
 
 /**
  * Represents an event fired during the login process.
  *
  */
-public interface GameClientConnectionEvent extends GameEvent, ConnectEvent {
+public interface ClientConnectionEvent extends GameEvent, ConnectionEvent {
 
     /**
      * Gets the {@link RemoteConnection} representing the client connection.
@@ -57,53 +55,28 @@ public interface GameClientConnectionEvent extends GameEvent, ConnectEvent {
     GameProfile getProfile();
 
     /**
-     * Gets the disconnect message that will show to the client if the event is
-     * cancelled.
+     * Called asynchronously when the client is being authenticated.
      *
-     * @return The disconnect message
+     * <p>Note: This event is fired before #Login.</p>
      */
-    Optional<Text> getDisconnectMessage();
+    interface Authenticate extends ClientConnectionEvent { }
 
     /**
-     * Sets the disconnect message that will show to the client if the event is
-     * cancelled. Passing null will will result in the message being set by the
-     * server if the event is cancelled.
+     * Called when the client logs into the server.
      *
-     * @param message The disconnect message
+     * <p>Note: This event is fired before #Join.</p>
      */
-    void setDisconnectMessage(@Nullable Text message);
+    interface Login extends ClientConnectionEvent, MessageSinkEvent { }
 
     /**
-     * Gets the currently set reason why the client will be disconnected if the
-     * event is cancelled.
+     * Called when a {@link Player} joins the game {@link World} for the first
+     * time after initial connection.
      *
-     * @return The reason for disconnecting, if set
      */
-    Optional<Cause> getDisconnectCause();
+    interface Join extends ClientConnectionEvent, DisplaceEntityEvent.TargetPlayer, MessageSinkEvent { }
 
     /**
-     * Sets the cause for disconnecting the client if the event is cancelled.
-     * Passing null will result in the cause being set by the server if the
-     * event is cancelled.
-     *
-     * @param cause The cause
+     * Called when a {@link Player} disconnects from the game.
      */
-    void setDisconnectCause(@Nullable Cause cause);
-
-    /**
-     * An event where the game client is being authenticated.
-     *
-     * <p>This is fired asynchronously and should be used to setup </p>
-     */
-    interface Authenticate extends GameClientConnectionEvent { }
-
-    /**
-     * An event where the game client is logging in.
-     */
-    interface Login extends GameClientConnectionEvent { }
-
-    /**
-     * Called when the {@link Player} joins the game.
-     */
-    interface Join extends GameClientConnectionEvent, DisplaceEntityEvent.TargetPlayer, SendMessageCommandSourceEvent.SourceConsole { }
+    interface Disconnect extends ClientConnectionEvent, TargetPlayerEvent, MessageSinkEvent { }
 }

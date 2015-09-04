@@ -22,17 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.server.channel;
 
-package org.spongepowered.api.event.action;
-
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
+import org.spongepowered.api.event.plugin.PluginEvent;
 
 /**
- * Represents a remote connection trying to connect.
- *
- * <p>Cancelling the event will prevent the source from connecting.</p>
+ * Fired when a channel is unregistered.
  */
-public interface ConnectEvent extends Event, Cancellable {
+public interface UnRegisterChannelEvent extends TargetChannelEvent {
 
+    interface SourcePlugin extends UnRegisterChannelEvent, PluginEvent {}
 }

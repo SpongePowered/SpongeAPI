@@ -22,20 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.event.server.channel;
 
-import org.spongepowered.api.network.PlayerConnection;
+import org.spongepowered.api.event.plugin.PluginEvent;
 
 /**
- * An event that occurs when a {@link PlayerConnection} unregisters a channel with the server.
+ * Fired when a channel is registered.
  */
-public interface PlayerConnectionUnregisterChannelEvent extends PlayerConnectionEvent {
+public interface RegisterChannelEvent extends TargetChannelEvent {
 
-    /**
-     * The name of the channel unregistered.
-     *
-     * @return The name of the channel
-     */
-    String getChannelUnregistered();
-
+    interface SourcePlugin extends RegisterChannelEvent, PluginEvent {}
 }

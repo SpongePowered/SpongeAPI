@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.event.rcon;
 
-import org.spongepowered.api.event.action.ConnectEvent;
+import org.spongepowered.api.event.action.ConnectionEvent;
 
 /**
  * An event when an Rcon source logs in to the server.
  */
-public interface RconLoginEvent extends RconEvent, ConnectEvent {
+public interface RconLoginEvent extends RconEvent, ConnectionEvent {
 }

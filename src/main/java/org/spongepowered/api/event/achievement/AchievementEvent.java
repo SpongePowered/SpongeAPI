@@ -22,36 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.achievement;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.event.action.MessageEvent;
+import org.spongepowered.api.statistic.achievement.Achievement;
 
-/**
- * Called before the construction of an {@link Entity}. Usually, this will
- * occur whenever an {@link Entity} is going to be instantiated. The only thing
- * known for the event is the {@link EntityType}.
- */
-public interface PreCreateEntityEvent extends GameEvent, CauseTracked, Cancellable {
+public interface AchievementEvent extends GameEvent, MessageEvent, Cancellable {
 
     /**
-     * Gets the {@link Location} that the {@link Entity} will be created at.
+     * Gets the achievement being targeted.
      *
-     * @return The location
+     * @return The achievement
      */
-    Location<World> getLocation();
-
-    /**
-     * Gets the {@link EntityType} of the target {@link Entity} that is going to be
-     * constructed.
-     *
-     * @return The target entity type
-     */
-    EntityType getTargetType();
-
+    Achievement getAchievement();
 }

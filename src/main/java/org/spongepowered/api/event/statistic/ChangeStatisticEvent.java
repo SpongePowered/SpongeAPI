@@ -22,23 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.event.statistic;
 
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.statistic.achievement.Achievement;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.entity.living.player.PlayerEvent;
+import org.spongepowered.api.statistic.Statistic;
 
 /**
- * Represents an event that is called when a {@link Player} earns an
- * {@link Achievement}.
+ * Represents an event that is triggered if a {@link Statistic}'s value is being
+ * modified.
  */
-public interface PlayerGainAchievementEvent extends PlayerEvent, Cancellable {
+public interface ChangeStatisticEvent extends StatisticEvent, CauseTracked, Cancellable {
+    
+    /**
+     * Gets the original value of the statistic.
+     * 
+     * @return The original value
+     */
+    long getOriginalValue();
 
     /**
-     * Gets the achievement that is granted to the {@link Player}.
-     *
-     * @return The achievement that is granted to the player
+     * Gets the new value of the statistic.
+     * 
+     * @return The new value
      */
-    Achievement getAchievement();
+    long getValue();
 
+    /**
+     * Sets the new value of the statistic to the given value.
+     * 
+     * @param value The new value
+     */
+    void setValue(long value);
+
+    interface TargetPlayer extends ChangeStatisticEvent, PlayerEvent {}
 }

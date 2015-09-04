@@ -25,10 +25,10 @@
 package org.spongepowered.api.event.entity.living.human;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.entity.TargetEntityEvent;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 
-public interface TargetHumanEvent extends TargetEntityEvent {
+public interface TargetHumanEvent extends TargetLivingEvent {
 
     /**
      * Gets the target {@link Entity}.
@@ -36,6 +36,6 @@ public interface TargetHumanEvent extends TargetEntityEvent {
      * @return The entity
      */
     @Override
-    Living getTargetEntity();
+    Human getTargetEntity();
 
 }

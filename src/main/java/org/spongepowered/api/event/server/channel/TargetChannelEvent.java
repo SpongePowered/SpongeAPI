@@ -22,43 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.event.server.channel;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.statistic.Statistic;
+import org.spongepowered.api.event.GameEvent;
 
 /**
- * Represents an event that is triggered if a {@link Statistic}'s value is being
- * modified.
+ * Base event for when a channel is the target
  */
-public interface PlayerChangeStatisticEvent extends PlayerEvent, Cancellable {
+public interface TargetChannelEvent extends GameEvent {
 
     /**
-     * Gets the {@link Statistic} which is being modified by this event.
-     *
-     * @return The statistic being modified
+     * Gets the name of the channel being targeted
+     * @return The channel name
      */
-    Statistic getStatistic();
-    
-    /**
-     * Gets the original value of the statistic.
-     * 
-     * @return The original value
-     */
-    long getOriginalValue();
-
-    /**
-     * Gets the new value of the statistic.
-     * 
-     * @return The new value
-     */
-    long getValue();
-
-    /**
-     * Sets the new value of the statistic to the given value.
-     * 
-     * @param value The new value
-     */
-    void setValue(long value);
-
+    String getTargetChannel();
 }

@@ -22,21 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
 
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.network.PlayerConnection;
+package org.spongepowered.api.event.action;
+
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 
 /**
- * Represents an event that occurs when a {@link PlayerConnection} is being changed.
+ * Represents a remote connection trying to connect.
+ *
+ * <p>Cancelling the event will prevent the source from connecting.</p>
  */
-public interface PlayerConnectionEvent extends GameEvent {
-
-    /**
-     * Gets the {@link PlayerConnection} associated with this event.
-     *
-     * @return The player connection
-     */
-    PlayerConnection getConnection();
+public interface ConnectionEvent extends Event, Cancellable {
 
 }

@@ -26,11 +26,11 @@ package org.spongepowered.api.event.entity.living.player;
 
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.command.SendMessageCommandSourceEvent;
+import org.spongepowered.api.event.command.MessageSinkEvent;
 
 /**
  * Called when a {@link Player} is kicked.
  */
-public interface KickPlayerEvent extends TargetPlayerEvent, SendMessageCommandSourceEvent, CauseTracked {
+public interface KickPlayerEvent extends TargetPlayerEvent, MessageSinkEvent, CauseTracked {
 
 }

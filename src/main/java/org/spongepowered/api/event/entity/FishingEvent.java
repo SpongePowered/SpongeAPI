@@ -25,8 +25,8 @@
 
 package org.spongepowered.api.event.entity;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
@@ -36,7 +36,8 @@ import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.entity.living.LivingEvent;
 import org.spongepowered.api.event.entity.living.human.HumanEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerEvent;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackTransaction;
 
 import javax.annotation.Nullable;
 
@@ -45,6 +46,12 @@ import javax.annotation.Nullable;
  * {@link FishHook}.
  */
 public interface FishingEvent extends GameEvent, Cancellable {
+
+    /**
+     * Gets the original {@link FishHook}, as a {@link EntitySnapshot}.
+     * @return The original fish hook
+     */
+    EntitySnapshot getOriginalFishHook();
 
     /**
      * Gets the {@link FishHook} related with this event.
@@ -111,30 +118,19 @@ public interface FishingEvent extends GameEvent, Cancellable {
      * A specific {@link FishingEvent} where the {@link FishHook} is retracted
      * or "reeled in".
      */
-    interface Retract extends FishingEvent {
+    interface Retract extends FishingEvent, TargetEntityEvent {
 
         /**
-         * Gets the {@link ItemStackSnapshot} that will be given, if
-         * available.
-         *
-         * @return The item stack snapshot that will be given
+         * Gets te {@link ItemStackTransaction} that is the transaction involving the {@link ItemStack}.
+         * @return The itemstack transaction
          */
-        Optional<ItemStackSnapshot> getCaughtItem();
+        ItemStackTransaction getTargetItemStackTransaction();
 
         /**
-         * Sets the {@link ItemStackSnapshot} that will be given,
-         * if available.
-         *
-         * @param item The item stack snapshot to set
+         * Gets the original {@link EntitySnapshot} being targeted.
+         * @return The snapshot
          */
-        void setCaughtItem(@Nullable ItemStackSnapshot item);
-
-        /**
-         * Gets the {@link Entity} hooked, if available.
-         *
-         * @return The hooked {@link Entity}
-         */
-        Optional<Entity> getCaughtEntity();
+        EntitySnapshot getOriginalTargetEntity();
 
         /**
          * Sets the {@link Entity} hooked, if available.
