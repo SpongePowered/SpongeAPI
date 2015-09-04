@@ -26,44 +26,44 @@
 package org.spongepowered.api.event.block;
 
 import com.google.common.base.Predicate;
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockTransaction;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 import java.util.Map;
 
 /**
  * Called when a block at a {@link Location} triggers an update to one or more
- * {@link BlockState}s. There is a way to mark an "update" as being "invalid"
+ * {@link Location}s. There is a way to mark an "update" as being "invalid"
  * or "cancelled": {@link #filterDirections(Predicate)} will apply a
  * {@link Predicate} such that if the predicate returns <code>false</code>, the
- * {@link BlockState} removed from the {@link #getRelatives()} map.
+ * {@link Location} removed from the {@link #getRelatives()} map.
  */
 public interface NotifyNeighborBlockEvent extends GameEvent, CauseTracked, Cancellable {
 
     /**
-     * Gets the immutable {@link Map} of {@link Direction} to
-     * {@link BlockState} of the block states that would normally be notified
-     * of changes.
+     * Gets the immutable {@link Map} of {@link Direction} to {@link Location}
+     * of the {@link BlockSnapshot} that would normally be notified of changes.
      *
      * @return The original directions map
      */
-    Map<Direction, BlockState> getOriginalRelatives();
+    Map<Direction, BlockSnapshot> getOriginalRelatives();
 
     /**
      * Gets an immutable {@link Map} of {@link Direction} to
-     * {@link BlockState} of the {@link BlockState}s that will be notified of
+     * {@link Location} of the {@link BlockState}s that will be notified of
      * an update. If a {@link Direction} is not required or needing to be
      * excluded from an update, {@link #filterDirections(Predicate)} will
      * perform that exclusion.
      *
      * @return The map
      */
-    Map<Direction, BlockState> getRelatives();
+    Map<Direction, Location<World>> getRelatives();
 
     /**
      * Filters out {@link Direction}s of the {@link BlockState}s to be

@@ -22,25 +22,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.item.TargetItemEvent;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
- * An event where an {@link Entity} is already created, but has not been
- * "spawned" or "added" to a {@link World}. All data associated with the
- * {@link Entity} should be readily available by this time.
+ * Base event during the construction of an {@link Entity}.
  */
-public interface CreateEntityEvent extends TargetEntityEvent, CauseTracked {
+public interface ConstructEntityEvent extends GameEvent, CauseTracked {
 
     /**
-     * An event where the {@link #getTargetEntity()} is an {@link Item}.
+     * Gets the {@link Location} that the {@link Entity} will be created at.
+     *
+     * @return The location
      */
-    interface TargetItem extends CreateEntityEvent, TargetItemEvent { }
+    Location<World> getLocation();
+
+    /**
+     * Gets the {@link EntityType} of the target {@link Entity} that is going to be
+     * constructed.
+     *
+     * @return The target entity type
+     */
+    EntityType getTargetType();
+
+    /**
+     * Called before the construction of an {@link Entity}. Usually, this will
+     * occur whenever an {@link Entity} is going to be instantiated. The only thing
+     * known for the event is the {@link EntityType}.
+     */
+    interface Pre extends ConstructEntityEvent, Cancellable {}
+
+    /**
+     * Called after the construction of an {@link Entity}.
+     * 
+     * <p>Note: This takes before spawning.</p>
+     */
+    interface Post extends ConstructEntityEvent, TargetEntityEvent {}
 
 }

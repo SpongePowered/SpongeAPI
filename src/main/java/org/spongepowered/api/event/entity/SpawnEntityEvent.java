@@ -35,7 +35,7 @@ import org.spongepowered.api.world.World;
 /**
  * Raised when an {@link Entity} is spawned. This usually follows the chain of
  * the various entity creation events: {@link PreCreateEntityEvent},
- * {@link CreateEntityEvent}, and finally {@link SpawnEntityEvent}.
+ * {@link ConstructEntityEvent}, and finally {@link SpawnEntityEvent}.
  */
 public interface SpawnEntityEvent extends TargetEntityEvent, CauseTracked {
 

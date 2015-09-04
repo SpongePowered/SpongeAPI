@@ -29,10 +29,14 @@ import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSign
 import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.command.CommandSourceEvent;
 import org.spongepowered.api.event.entity.EntityEvent;
+import org.spongepowered.api.event.entity.living.LivingEvent;
+import org.spongepowered.api.event.entity.living.human.HumanEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerEvent;
 
-public interface ChangeSignEvent extends TargetTileEntityEvent {
+public interface ChangeSignEvent extends TargetTileEntityEvent, Cancellable {
 
     /**
      * Gets the target {@link Sign} being changed.
@@ -55,13 +59,28 @@ public interface ChangeSignEvent extends TargetTileEntityEvent {
     SignData getText();
 
     /**
+     * An event where an {@link CommandSource} is the source.
+     */
+    interface SourceCommandSource extends ChangeSignEvent, CommandSourceEvent { }
+
+    /**
      * An event where an {@link Entity} is the source.
      */
     interface SourceEntity extends ChangeSignEvent, EntityEvent { }
 
     /**
+     * An event where an {@link Living} is the source.
+     */
+    interface SourceLiving extends SourceEntity, LivingEvent { }
+
+    /**
+     * An event where an {@link Human} is the source.
+     */
+    interface SourceHuman extends SourceLiving, HumanEvent { }
+
+    /**
      * An event where a {@link Player} is the source.
      */
-    interface SourcePlayer extends SourceEntity, PlayerEvent { }
+    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }

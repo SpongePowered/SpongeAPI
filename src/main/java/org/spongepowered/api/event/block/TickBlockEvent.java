@@ -22,17 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
+package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
- * Called when a {@link BlockState} is receiving a tick from the {@link World}.
+ * Called when a {@link BlockState} receives a tick.
  */
-public interface WorldTickBlockEvent extends WorldEvent, Cancellable {
+public interface TickBlockEvent extends GameEvent, CauseTracked, Cancellable {
 
     /**
      * Gets the target {@link Location} being updated.
@@ -47,4 +49,5 @@ public interface WorldTickBlockEvent extends WorldEvent, Cancellable {
      * @return The block state
      */
     BlockState getTargetBlock();
+
 }
