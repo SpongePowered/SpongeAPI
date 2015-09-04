@@ -39,15 +39,15 @@ public interface ExplosionBuilder {
      * Sets the {@link World} the explosion will occur in.
      *
      * @param world The world
-     * @return The builder, for chaining
+     * @return This builder, for chaining
      */
     ExplosionBuilder world(World world);
 
     /**
-     * Sets the source explosive of the explosion.
+     * Sets the source {@link Explosive} of the explosion.
      *
-     * @param source The source entity
-     * @return The builder, for chaining
+     * @param source The source explosive
+     * @return This builder, for chaining
      */
     ExplosionBuilder sourceExplosive(@Nullable Explosive source);
 
@@ -55,7 +55,7 @@ public interface ExplosionBuilder {
      * Sets the radius of the explosion.
      *
      * @param radius The radius
-     * @return The builder, for chaining
+     * @return This builder, for chaining
      */
     ExplosionBuilder radius(float radius);
 
@@ -63,7 +63,7 @@ public interface ExplosionBuilder {
      * Sets the origin of the explosion.
      *
      * @param origin The origin
-     * @return The builder, for chaining
+     * @return This builder, for chaining
      */
     ExplosionBuilder origin(Vector3d origin);
 
@@ -71,15 +71,23 @@ public interface ExplosionBuilder {
      * Sets whether the affected blocks have a chance to catch on fire.
      *
      * @param fire Whether the affected blocks can catch on fire
-     * @return The builder, for chaining
+     * @return This builder, for chaining
      */
     ExplosionBuilder canCauseFire(boolean fire);
+
+    /**
+     * Sets whether the explosion will show smoke to the client
+     *
+     * @param smoke Whether the explosion will show smoke
+     * @return This builder, for chaining
+     */
+    ExplosionBuilder canPlaySmoke(boolean smoke);
 
     /**
      * Sets whether the affected blocks should be destroyed on explosion.
      *
      * @param destroy Whether the affected blocks should be destroyed
-     * @return The builder, for chaining
+     * @return This builder, for chaining
      */
     ExplosionBuilder shouldBreakBlocks(boolean destroy);
 
@@ -91,11 +99,11 @@ public interface ExplosionBuilder {
     ExplosionBuilder reset();
 
     /**
-     * Attempts to create a {@link Explosion} from the specified parameters.
+     * Creates an {@link Explosion} from the specified parameters.
      *
-     * @throws IllegalArgumentException If any builder parameter is invalid
-     * @return The explosion, if successful
+     * @throws IllegalStateException If any builder parameter is invalid
+     * @return The created explosion
      */
-    Explosion build() throws IllegalArgumentException;
+    Explosion build();
 
 }
