@@ -45,7 +45,7 @@ public interface RespawnPlayerEvent extends TargetPlayerEvent {
      *
      * @return the new transform
      */
-    Transform<World> getToTransform(Transform<World> toTransform);
+    Transform<World> getToTransform();
 
     /**
      * Sets the new transform that the entity will change to.

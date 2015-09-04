@@ -6177,15 +6177,17 @@ public final class SpongeEventFactory {
      * @param game The game
      * @param targetEntity The target entity
      * @param targetTransform The target transform
+     * @param toTransform The to transform
      * @return A new respawn player event
      */
-    public static RespawnPlayerEvent createRespawnPlayerEvent(boolean bedSpawn, Transform<World> fromTransform, Game game, Player targetEntity, Transform<World> targetTransform) {
+    public static RespawnPlayerEvent createRespawnPlayerEvent(boolean bedSpawn, Transform<World> fromTransform, Game game, Player targetEntity, Transform<World> targetTransform, Transform<World> toTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("bedSpawn", bedSpawn);
         values.put("fromTransform", fromTransform);
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
+        values.put("toTransform", toTransform);
         return SpongeEventFactoryUtils.createEventImpl(RespawnPlayerEvent.class, values);
     }
 
