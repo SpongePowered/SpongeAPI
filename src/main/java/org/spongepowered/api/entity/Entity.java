@@ -72,6 +72,10 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      */
     World getWorld();
 
+    /**
+     * Creates a {@link EntitySnapshot} containing the {@link EntityType} and data of this entity.
+     * @return The snapshot
+     */
     EntitySnapshot createSnapshot();
 
     /**
