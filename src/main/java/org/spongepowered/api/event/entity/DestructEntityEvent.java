@@ -30,7 +30,7 @@ import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * An event where the {@link Entity} is being either removed usually due to
- * the {@link Entity} being marked as "dead".
+ * the {@link Entity} being marked as "dead". Happens before {@link HarvestEntityEvent}.
  */
 public interface DestructEntityEvent extends TargetEntityEvent, MessageSinkEvent.SourceCommandSource, CauseTracked {
 

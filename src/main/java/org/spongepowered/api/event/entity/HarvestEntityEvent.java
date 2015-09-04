@@ -35,7 +35,8 @@ import org.spongepowered.api.event.entity.living.human.TargetHumanEvent;
 import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
 
 /**
- * Called when an {@link Entity} is killed.
+ * Called when an {@link Entity} has been killed and is being "harvested" (drops/etc). Happens
+ * after {@link DestructEntityEvent}.
  */
 public interface HarvestEntityEvent extends TargetEntityEvent, ChangeExperienceEvent, CauseTracked {
 
