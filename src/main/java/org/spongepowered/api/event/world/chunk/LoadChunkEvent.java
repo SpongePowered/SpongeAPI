@@ -31,7 +31,7 @@ import org.spongepowered.api.world.World;
 /**
  * Base event for when a {@link Chunk} is triggered to load.
  */
-public interface LoadChunkEvent extends ChangeChunkEvent {
+public interface LoadChunkEvent extends TargetChunkEvent {
 
     /**
      * An event where the source is a {@link World}.

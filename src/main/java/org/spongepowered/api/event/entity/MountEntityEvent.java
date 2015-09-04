@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.entity.living.LivingEvent;
+import org.spongepowered.api.event.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerEvent;
 
 /**
  * Raised when an entity mounts another entity.
@@ -39,4 +42,23 @@ public interface MountEntityEvent extends TargetEntityEvent, Cancellable {
      */
     Entity getVehicle();
 
+    /**
+     * An event where the source {@link Entity} is the one performing the mount.
+     */
+    interface SourceEntity extends MountEntityEvent, EntityEvent { }
+
+    /**
+     * An event where the source is a {@link Living} entity.
+     */
+    interface SourceLiving extends SourceEntity, LivingEvent { }
+
+    /**
+     * An event where the source is a {@link Human}.
+     */
+    interface SourceHuman extends SourceLiving, HumanEvent { }
+
+    /**
+     * An event where the source is a {@link Player}.
+     */
+    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 }

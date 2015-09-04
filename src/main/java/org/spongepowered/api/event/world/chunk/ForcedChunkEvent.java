@@ -27,7 +27,7 @@ package org.spongepowered.api.event.world.chunk;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.service.world.ChunkLoadService;
 
-public interface ForcedChunkEvent extends ChangeChunkEvent {
+public interface ForcedChunkEvent extends TargetChunkEvent {
 
     /**
      * Gets the ticket that the chunk was removed from.

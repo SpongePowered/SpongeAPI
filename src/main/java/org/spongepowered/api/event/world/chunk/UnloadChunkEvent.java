@@ -31,7 +31,7 @@ import org.spongepowered.api.world.World;
 /**
  * An event where a {@link Chunk} is being unloaded.
  */
-public interface UnloadChunkEvent extends ChangeChunkEvent {
+public interface UnloadChunkEvent extends TargetChunkEvent {
 
     /**
      * An event where the source is a {@link World}.

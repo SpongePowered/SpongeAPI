@@ -24,10 +24,32 @@
  */
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.event.entity.living.LivingEvent;
+import org.spongepowered.api.event.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.entity.living.player.PlayerEvent;
+
 /**
  * An event that is called when an entity becomes leashed.
  */
 public interface LeashEntityEvent extends TargetEntityEvent {
 
+    /**
+     * Called when a {@link Entity} attaches a leash to an {@link Entity}.
+     */
+    interface SourceEntity extends LeashEntityEvent, EntityEvent { }
 
+    /**
+     * Called when a {@link Living} attaches a leash to an {@link Entity}.
+     */
+    interface SourceLiving extends SourceEntity, LivingEvent { }
+
+    /**
+     * Called when a {@link Human} attaches a leash to an {@link Entity}.
+     */
+    interface SourceHuman extends SourceLiving, HumanEvent { }
+
+    /**
+     * Called when a {@link Player} attaches a leash to an {@link Entity}.
+     */
+    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 }

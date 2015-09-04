@@ -22,15 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.server;
+package org.spongepowered.api.event.entity.living.player;
 
-import org.spongepowered.api.Server;
-import org.spongepowered.api.event.world.CreateWorldEvent;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.command.SendMessageCommandSourceEvent;
 
 /**
- * Called when a {@link Server} loads a {@link World} level.
+ * Called when a {@link Player} is kicked.
  */
-public interface ServerCreateWorldEvent extends CreateWorldEvent, ServerEvent {
+public interface KickPlayerEvent extends TargetPlayerEvent, SendMessageCommandSourceEvent, CauseTracked {
 
 }

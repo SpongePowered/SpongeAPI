@@ -48,5 +48,5 @@ public interface CreateWorldEvent extends GameEvent, CauseTracked {
      * @return The creation settings
      */
     WorldCreationSettings getWorldCreationSettings();
-    
+
 }

@@ -30,7 +30,7 @@ import org.spongepowered.api.world.gen.Populator;
 
 import java.util.List;
 
-public interface PopulateChunkEvent extends WorldEvent, ChangeChunkEvent {
+public interface PopulateChunkEvent extends WorldEvent, TargetChunkEvent {
 
     interface Pre extends PopulateChunkEvent {
 

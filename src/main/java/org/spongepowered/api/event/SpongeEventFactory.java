@@ -139,7 +139,6 @@ import org.spongepowered.api.event.entity.living.player.PlayerConnectionRegister
 import org.spongepowered.api.event.entity.living.player.PlayerConnectionUnregisterChannelEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerGainAchievementEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerJoinEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerKickEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerQuitEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerResourcePackStatusEvent;
@@ -176,13 +175,10 @@ import org.spongepowered.api.event.network.BanIpEvent;
 import org.spongepowered.api.event.network.GameClientConnectionEvent;
 import org.spongepowered.api.event.network.PardonIpEvent;
 import org.spongepowered.api.event.plugin.PluginEvent;
-import org.spongepowered.api.event.plugin.PluginForceChunkEvent;
-import org.spongepowered.api.event.plugin.PluginUnforceChunkEvent;
 import org.spongepowered.api.event.rcon.RconEvent;
 import org.spongepowered.api.event.rcon.RconLoginEvent;
 import org.spongepowered.api.event.rcon.RconQuitEvent;
 import org.spongepowered.api.event.server.PingServerEvent;
-import org.spongepowered.api.event.server.ServerCreateWorldEvent;
 import org.spongepowered.api.event.server.ServerEvent;
 import org.spongepowered.api.event.server.query.BasicQueryServerEvent;
 import org.spongepowered.api.event.server.query.FullQueryServerEvent;
@@ -200,7 +196,6 @@ import org.spongepowered.api.event.world.WorldEvent;
 import org.spongepowered.api.event.world.WorldExplosionEvent;
 import org.spongepowered.api.event.world.WorldGenerateChunkEvent;
 import org.spongepowered.api.event.world.WorldTickBlockEvent;
-import org.spongepowered.api.event.world.chunk.ChangeChunkEvent;
 import org.spongepowered.api.event.world.chunk.ChunkEvent;
 import org.spongepowered.api.event.world.chunk.ForcedChunkEvent;
 import org.spongepowered.api.event.world.chunk.LoadChunkEvent;
@@ -5798,32 +5793,6 @@ public final class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.living.player.PlayerJoinEvent}.
-     * 
-     * @param game The game
-     * @param message The message
-     * @param originalMessage The original message
-     * @param originalSink The original sink
-     * @param server The server
-     * @param sink The sink
-     * @param source The source
-     * @return A new player join event
-     */
-    public static PlayerJoinEvent createPlayerJoinEvent(Game game, Text message, Text originalMessage, MessageSink originalSink, Server server, MessageSink sink, CommandSource source) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("message", message);
-        values.put("originalMessage", originalMessage);
-        values.put("originalSink", originalSink);
-        values.put("server", server);
-        values.put("sink", sink);
-        values.put("source", source);
-        return SpongeEventFactoryUtils.createEventImpl(PlayerJoinEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.player.PlayerKickEvent}.
      * 
      * @param game The game
@@ -7636,50 +7605,6 @@ public final class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.plugin.PluginForceChunkEvent}.
-     * 
-     * @param cause The cause
-     * @param chunkCoords The chunk coords
-     * @param game The game
-     * @param plugin The plugin
-     * @param ticket The ticket
-     * @return A new plugin force chunk event
-     */
-    public static PluginForceChunkEvent createPluginForceChunkEvent(Cause cause, Vector3i chunkCoords, Game game, PluginContainer plugin, ChunkLoadService.LoadingTicket ticket) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("chunkCoords", chunkCoords);
-        values.put("game", game);
-        values.put("plugin", plugin);
-        values.put("ticket", ticket);
-        return SpongeEventFactoryUtils.createEventImpl(PluginForceChunkEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.plugin.PluginUnforceChunkEvent}.
-     * 
-     * @param cause The cause
-     * @param chunkCoords The chunk coords
-     * @param game The game
-     * @param sourceWorld The source world
-     * @param ticket The ticket
-     * @return A new plugin unforce chunk event
-     */
-    public static PluginUnforceChunkEvent createPluginUnforceChunkEvent(Cause cause, Vector3i chunkCoords, Game game, World sourceWorld, ChunkLoadService.LoadingTicket ticket) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("chunkCoords", chunkCoords);
-        values.put("game", game);
-        values.put("sourceWorld", sourceWorld);
-        values.put("ticket", ticket);
-        return SpongeEventFactoryUtils.createEventImpl(PluginUnforceChunkEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
      * {@link org.spongepowered.api.event.rcon.RconEvent}.
      * 
      * @param source The source
@@ -7775,28 +7700,6 @@ public final class SpongeEventFactory {
         values.put("online", online);
         values.put("profiles", profiles);
         return SpongeEventFactoryUtils.createEventImpl(PingServerEvent.Response.Players.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.server.ServerCreateWorldEvent}.
-     * 
-     * @param cause The cause
-     * @param game The game
-     * @param server The server
-     * @param worldCreationSettings The world creation settings
-     * @param worldProperties The world properties
-     * @return A new server create world event
-     */
-    public static ServerCreateWorldEvent createServerCreateWorldEvent(Cause cause, Game game, Server server, WorldCreationSettings worldCreationSettings, WorldProperties worldProperties) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("game", game);
-        values.put("server", server);
-        values.put("worldCreationSettings", worldCreationSettings);
-        values.put("worldProperties", worldProperties);
-        return SpongeEventFactoryUtils.createEventImpl(ServerCreateWorldEvent.class, values);
     }
 
     /**
@@ -8192,46 +8095,6 @@ public final class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.LoadWorldEvent.SourcePlugin}.
-     * 
-     * @param cause The cause
-     * @param game The game
-     * @param plugin The plugin
-     * @param targetWorld The target world
-     * @return A new source plugin load world event
-     */
-    public static LoadWorldEvent.SourcePlugin createLoadWorldEventSourcePlugin(Cause cause, Game game, PluginContainer plugin, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("game", game);
-        values.put("plugin", plugin);
-        values.put("targetWorld", targetWorld);
-        return SpongeEventFactoryUtils.createEventImpl(LoadWorldEvent.SourcePlugin.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.LoadWorldEvent.SourceServer}.
-     * 
-     * @param cause The cause
-     * @param game The game
-     * @param server The server
-     * @param targetWorld The target world
-     * @return A new source server load world event
-     */
-    public static LoadWorldEvent.SourceServer createLoadWorldEventSourceServer(Cause cause, Game game, Server server, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("game", game);
-        values.put("server", server);
-        values.put("targetWorld", targetWorld);
-        return SpongeEventFactoryUtils.createEventImpl(LoadWorldEvent.SourceServer.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
      * {@link org.spongepowered.api.event.world.UnloadWorldEvent}.
      * 
      * @param cause The cause
@@ -8245,46 +8108,6 @@ public final class SpongeEventFactory {
         values.put("game", game);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(UnloadWorldEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.UnloadWorldEvent.SourcePlugin}.
-     * 
-     * @param cause The cause
-     * @param game The game
-     * @param plugin The plugin
-     * @param targetWorld The target world
-     * @return A new source plugin unload world event
-     */
-    public static UnloadWorldEvent.SourcePlugin createUnloadWorldEventSourcePlugin(Cause cause, Game game, PluginContainer plugin, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("game", game);
-        values.put("plugin", plugin);
-        values.put("targetWorld", targetWorld);
-        return SpongeEventFactoryUtils.createEventImpl(UnloadWorldEvent.SourcePlugin.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.UnloadWorldEvent.SourceServer}.
-     * 
-     * @param cause The cause
-     * @param game The game
-     * @param server The server
-     * @param targetWorld The target world
-     * @return A new source server unload world event
-     */
-    public static UnloadWorldEvent.SourceServer createUnloadWorldEventSourceServer(Cause cause, Game game, Server server, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("game", game);
-        values.put("server", server);
-        values.put("targetWorld", targetWorld);
-        return SpongeEventFactoryUtils.createEventImpl(UnloadWorldEvent.SourceServer.class, values);
     }
 
     /**
@@ -8449,44 +8272,6 @@ public final class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
         return SpongeEventFactoryUtils.createEventImpl(WorldTickBlockEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.chunk.ChangeChunkEvent}.
-     * 
-     * @param cause The cause
-     * @param game The game
-     * @param targetChunk The target chunk
-     * @return A new change chunk event
-     */
-    public static ChangeChunkEvent createChangeChunkEvent(Cause cause, Game game, Chunk targetChunk) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("game", game);
-        values.put("targetChunk", targetChunk);
-        return SpongeEventFactoryUtils.createEventImpl(ChangeChunkEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.chunk.ChangeChunkEvent.SourceWorld}.
-     * 
-     * @param cause The cause
-     * @param game The game
-     * @param sourceWorld The source world
-     * @param targetChunk The target chunk
-     * @return A new source world change chunk event
-     */
-    public static ChangeChunkEvent.SourceWorld createChangeChunkEventSourceWorld(Cause cause, Game game, World sourceWorld, Chunk targetChunk) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("game", game);
-        values.put("sourceWorld", sourceWorld);
-        values.put("targetChunk", targetChunk);
-        return SpongeEventFactoryUtils.createEventImpl(ChangeChunkEvent.SourceWorld.class, values);
     }
 
     /**
@@ -8709,4 +8494,3 @@ public final class SpongeEventFactory {
         return SpongeEventFactoryUtils.createEventImpl(UnloadChunkEvent.SourceWorld.class, values);
     }
 }
-

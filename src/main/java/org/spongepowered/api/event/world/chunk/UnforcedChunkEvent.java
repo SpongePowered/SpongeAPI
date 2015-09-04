@@ -30,7 +30,7 @@ import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.service.world.ChunkLoadService;
 
-// NOTE: This does not extend ChangeChunkEvent as Chunk may not be currently loaded.
+// NOTE: This does not extend TargetChunkEvent as Chunk may not be currently loaded.
 public interface UnforcedChunkEvent extends GameEvent, CauseTracked, Cancellable {
 
     /**

@@ -29,6 +29,8 @@ import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.action.ConnectEvent;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.command.SendMessageCommandSourceEvent;
+import org.spongepowered.api.event.entity.DisplaceEntityEvent;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.text.Text;
 
@@ -90,6 +92,8 @@ public interface GameClientConnectionEvent extends GameEvent, ConnectEvent {
 
     /**
      * An event where the game client is being authenticated.
+     *
+     * <p>This is fired asynchronously and should be used to setup </p>
      */
     interface Authenticate extends GameClientConnectionEvent { }
 
@@ -98,4 +102,8 @@ public interface GameClientConnectionEvent extends GameEvent, ConnectEvent {
      */
     interface Login extends GameClientConnectionEvent { }
 
+    /**
+     * Called when the {@link Player} joins the game.
+     */
+    interface Join extends GameClientConnectionEvent, DisplaceEntityEvent.TargetPlayer, SendMessageCommandSourceEvent.SourceConsole { }
 }

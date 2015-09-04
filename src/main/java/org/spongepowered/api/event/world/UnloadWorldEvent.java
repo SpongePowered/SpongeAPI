@@ -27,8 +27,6 @@ package org.spongepowered.api.event.world;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.plugin.PluginEvent;
-import org.spongepowered.api.event.server.ServerEvent;
 import org.spongepowered.api.world.World;
 
 /**
@@ -42,9 +40,5 @@ public interface UnloadWorldEvent extends GameEvent, CauseTracked, Cancellable {
      * @return The target world
      */
     World getTargetWorld();
-
-    interface SourcePlugin extends UnloadWorldEvent, PluginEvent { }
-
-    interface SourceServer extends UnloadWorldEvent, ServerEvent { }
 
 }

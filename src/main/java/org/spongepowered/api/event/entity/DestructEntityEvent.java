@@ -25,20 +25,13 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntitySnapshot;
+import org.spongepowered.api.event.command.SendMessageCommandSourceEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * An event where the {@link Entity} is being either removed usually due to
  * the {@link Entity} being marked as "dead".
  */
-public interface DestructEntityEvent extends TargetEntityEvent, CauseTracked {
-
-    /**
-     * Gets the {@link EntitySnapshot} of the {@link Entity} being destroyed.
-     *
-     * @return The entity snapshot
-     */
-    EntitySnapshot getSnapshot();
+public interface DestructEntityEvent extends TargetEntityEvent, SendMessageCommandSourceEvent.SourceCommandSource, CauseTracked {
 
 }
