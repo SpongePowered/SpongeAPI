@@ -56,7 +56,7 @@ public interface ClientConnectionEvent extends GameEvent, ConnectionEvent {
     GameProfile getProfile();
 
     /**
-     * Called when the client logs into the server.
+     * Called asynchronously when the client attempts to login into the server.
      *
      * <p>Note: This event is fired before #Join.</p>
      */
