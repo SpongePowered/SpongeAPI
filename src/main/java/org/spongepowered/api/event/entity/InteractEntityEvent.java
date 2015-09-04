@@ -34,7 +34,6 @@ import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.Arrow;
 import org.spongepowered.api.entity.weather.Lightning;
-import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 import org.spongepowered.api.event.AbstractAttackEntityEvent;
 import org.spongepowered.api.event.action.InteractEvent;
 import org.spongepowered.api.event.block.BlockEvent;
@@ -48,6 +47,7 @@ import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSource
 import org.spongepowered.api.event.entity.living.LivingEvent;
 import org.spongepowered.api.event.entity.living.human.HumanEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerEvent;
+import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Tuple;

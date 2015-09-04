@@ -25,8 +25,8 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.block.BlockEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * An event that involves a {@link TileEntity}.

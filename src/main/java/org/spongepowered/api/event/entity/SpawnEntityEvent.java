@@ -26,10 +26,10 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.block.BlockEvent;
-import org.spongepowered.api.event.world.WorldEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
+import org.spongepowered.api.event.world.WorldEvent;
 import org.spongepowered.api.world.World;
 
 /**

@@ -29,7 +29,6 @@ import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.Text;
 
 import java.util.Map;
-import java.util.Set;
 
 /**
  * A description object for permissions. The description is meant to provide

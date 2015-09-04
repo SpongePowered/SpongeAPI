@@ -25,7 +25,6 @@
 
 package org.spongepowered.api.event.cause.entity.health.source;
 
-import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.health.HealType;
 
 public interface HealingSourceBuilder {

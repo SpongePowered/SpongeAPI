@@ -55,7 +55,6 @@ import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.InvocationCommandException;
 import org.spongepowered.api.util.command.dispatcher.Disambiguator;
 import org.spongepowered.api.util.command.dispatcher.SimpleDispatcher;
-import org.spongepowered.api.util.event.callback.CallbackList;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

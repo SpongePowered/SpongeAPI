@@ -25,8 +25,8 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.command.MessageSinkEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.command.MessageSinkEvent;
 
 /**
  * An event where the {@link Entity} is being either removed usually due to

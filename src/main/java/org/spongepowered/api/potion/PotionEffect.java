@@ -27,7 +27,6 @@ package org.spongepowered.api.potion;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.data.manipulator.mutable.PotionEffectData;
-import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.entity.Entity;
 
 /**

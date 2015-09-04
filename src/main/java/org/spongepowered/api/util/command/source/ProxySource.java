@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.util.command.source;
 
-import com.google.common.base.Optional;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.command.CommandSource;
 
 /**

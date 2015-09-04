@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.event.TristateResult;
-import org.spongepowered.api.event.TristateResult.Result;
 import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.event.TristateResult;
 
 /**
  * Represents an event when two {@link Ageable} entities come together

@@ -5537,18 +5537,112 @@ public final class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.UnleashEntityEvent}.
      * 
      * @param game The game
-     * @param leashHolder The leash holder
      * @param targetEntity The target entity
      * @param targetTransform The target transform
      * @return A new unleash entity event
      */
-    public static UnleashEntityEvent createUnleashEntityEvent(Game game, Entity leashHolder, Entity targetEntity, Transform<World> targetTransform) {
+    public static UnleashEntityEvent createUnleashEntityEvent(Game game, Entity targetEntity, Transform<World> targetTransform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
-        values.put("leashHolder", leashHolder);
         values.put("targetEntity", targetEntity);
         values.put("targetTransform", targetTransform);
         return SpongeEventFactoryUtils.createEventImpl(UnleashEntityEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.UnleashEntityEvent.SourceEntity}.
+     * 
+     * @param cause The cause
+     * @param game The game
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param targetEntity The target entity
+     * @param targetTransform The target transform
+     * @return A new source entity unleash entity event
+     */
+    public static UnleashEntityEvent.SourceEntity createUnleashEntityEventSourceEntity(Cause cause, Game game, Entity sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("game", game);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("targetEntity", targetEntity);
+        values.put("targetTransform", targetTransform);
+        return SpongeEventFactoryUtils.createEventImpl(UnleashEntityEvent.SourceEntity.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.UnleashEntityEvent.SourceHuman}.
+     * 
+     * @param cause The cause
+     * @param game The game
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param targetEntity The target entity
+     * @param targetTransform The target transform
+     * @return A new source human unleash entity event
+     */
+    public static UnleashEntityEvent.SourceHuman createUnleashEntityEventSourceHuman(Cause cause, Game game, Human sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("game", game);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("targetEntity", targetEntity);
+        values.put("targetTransform", targetTransform);
+        return SpongeEventFactoryUtils.createEventImpl(UnleashEntityEvent.SourceHuman.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.UnleashEntityEvent.SourceLiving}.
+     * 
+     * @param cause The cause
+     * @param game The game
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param targetEntity The target entity
+     * @param targetTransform The target transform
+     * @return A new source living unleash entity event
+     */
+    public static UnleashEntityEvent.SourceLiving createUnleashEntityEventSourceLiving(Cause cause, Game game, Living sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("game", game);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("targetEntity", targetEntity);
+        values.put("targetTransform", targetTransform);
+        return SpongeEventFactoryUtils.createEventImpl(UnleashEntityEvent.SourceLiving.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.UnleashEntityEvent.SourcePlayer}.
+     * 
+     * @param cause The cause
+     * @param game The game
+     * @param sourceEntity The source entity
+     * @param sourceTransform The source transform
+     * @param targetEntity The target entity
+     * @param targetTransform The target transform
+     * @return A new source player unleash entity event
+     */
+    public static UnleashEntityEvent.SourcePlayer createUnleashEntityEventSourcePlayer(Cause cause, Game game, Player sourceEntity, Transform<World> sourceTransform, Entity targetEntity, Transform<World> targetTransform) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("game", game);
+        values.put("sourceEntity", sourceEntity);
+        values.put("sourceTransform", sourceTransform);
+        values.put("targetEntity", targetEntity);
+        values.put("targetTransform", targetTransform);
+        return SpongeEventFactoryUtils.createEventImpl(UnleashEntityEvent.SourcePlayer.class, values);
     }
 
     /**
@@ -8843,3 +8937,4 @@ public final class SpongeEventFactory {
         return SpongeEventFactoryUtils.createEventImpl(UnloadChunkEvent.SourceWorld.class, values);
     }
 }
+

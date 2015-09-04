@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.event.world.chunk;
 
-import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.Location;
 
 /**

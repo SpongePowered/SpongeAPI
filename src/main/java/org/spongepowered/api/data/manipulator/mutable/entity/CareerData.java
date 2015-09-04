@@ -27,7 +27,6 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableCareerData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.Career;
-import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.Villager;
 
 /**

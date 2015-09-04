@@ -26,8 +26,8 @@ package org.spongepowered.api.service.event;
 
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.EventListener;
-import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.Order;
 
 /**
  * Manages the registration of event listeners and the dispatching of events.
