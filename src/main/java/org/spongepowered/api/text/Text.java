@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.text;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
