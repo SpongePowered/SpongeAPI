@@ -169,7 +169,7 @@ public final class TextElements {
     }
 
     // collectionKey(Keys.SIGN_LINES, iterable(identity()));
-    public static <C extends CompositeValueStore<C, ?>, L extends Collection<Text>> TextElement<C> collectionKey(
+    public static <C extends CompositeValueStore<?, ?>, L extends Collection<Text>> TextElement<C> collectionKey(
         final Key<? extends BaseValue<L>> key, final TextElement<? super L> join) {
         return new TextElement<C>() {
             @Override
@@ -185,7 +185,7 @@ public final class TextElements {
     }
 
     // optionalKey(Keys.LAST_COMMAND_OUTPUT);
-    public static <C extends CompositeValueStore<C, ? extends ValueContainer<?>>> TextElement<C> optionalKey(
+    public static <C extends CompositeValueStore<?, ?>> TextElement<C> optionalKey(
         final Key<? extends BaseValue<Optional<Text>>> key) {
         return new TextElement<C>() {
             @Override
