@@ -8,7 +8,7 @@ public class TextTemplate {
         return null;
     }
 
-    public Text build(Object... args) {
+    public Text build(TextArgs args) {
         return null;
     }
 
