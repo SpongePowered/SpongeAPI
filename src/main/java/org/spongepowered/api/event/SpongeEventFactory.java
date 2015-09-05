@@ -4000,16 +4000,20 @@ public final class SpongeEventFactory {
      * @param game The game
      * @param originalCaughtEntity The original caught entity
      * @param caughtEntity The caught entity
+     * @param originalExperience The original experience
+     * @param experience The experience
      * @param originalFishHook The original fish hook
      * @param fishHook The fish hook
      * @param itemStackTransaction The item stack transaction
      * @return A new retract fishing event
      */
-    public static FishingEvent.Retract createFishingEventRetract(Game game, Optional<EntitySnapshot> originalCaughtEntity, Optional<Entity> caughtEntity, EntitySnapshot originalFishHook, FishHook fishHook, Optional<ItemStackTransaction> itemStackTransaction) {
+    public static FishingEvent.Retract createFishingEventRetract(Game game, Optional<EntitySnapshot> originalCaughtEntity, Optional<Entity> caughtEntity, int originalExperience, int experience, EntitySnapshot originalFishHook, FishHook fishHook, Optional<ItemStackTransaction> itemStackTransaction) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("originalCaughtEntity", originalCaughtEntity);
         values.put("caughtEntity", caughtEntity);
+        values.put("originalExperience", originalExperience);
+        values.put("experience", experience);
         values.put("originalFishHook", originalFishHook);
         values.put("fishHook", fishHook);
         values.put("itemStackTransaction", itemStackTransaction);
@@ -4025,18 +4029,22 @@ public final class SpongeEventFactory {
      * @param cause The cause
      * @param originalCaughtEntity The original caught entity
      * @param caughtEntity The caught entity
+     * @param originalExperience The original experience
+     * @param experience The experience
      * @param originalFishHook The original fish hook
      * @param fishHook The fish hook
      * @param itemStackTransaction The item stack transaction
      * @param sourceEntity The source entity
      * @return A new source entity retract fishing event
      */
-    public static FishingEvent.Retract.SourceEntity createFishingEventRetractSourceEntity(Game game, Cause cause, Optional<EntitySnapshot> originalCaughtEntity, Optional<Entity> caughtEntity, EntitySnapshot originalFishHook, FishHook fishHook, Optional<ItemStackTransaction> itemStackTransaction, Entity sourceEntity) {
+    public static FishingEvent.Retract.SourceEntity createFishingEventRetractSourceEntity(Game game, Cause cause, Optional<EntitySnapshot> originalCaughtEntity, Optional<Entity> caughtEntity, int originalExperience, int experience, EntitySnapshot originalFishHook, FishHook fishHook, Optional<ItemStackTransaction> itemStackTransaction, Entity sourceEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("originalCaughtEntity", originalCaughtEntity);
         values.put("caughtEntity", caughtEntity);
+        values.put("originalExperience", originalExperience);
+        values.put("experience", experience);
         values.put("originalFishHook", originalFishHook);
         values.put("fishHook", fishHook);
         values.put("itemStackTransaction", itemStackTransaction);
@@ -4053,18 +4061,22 @@ public final class SpongeEventFactory {
      * @param cause The cause
      * @param originalCaughtEntity The original caught entity
      * @param caughtEntity The caught entity
+     * @param originalExperience The original experience
+     * @param experience The experience
      * @param originalFishHook The original fish hook
      * @param fishHook The fish hook
      * @param itemStackTransaction The item stack transaction
      * @param sourceEntity The source entity
      * @return A new source human retract fishing event
      */
-    public static FishingEvent.Retract.SourceHuman createFishingEventRetractSourceHuman(Game game, Cause cause, Optional<EntitySnapshot> originalCaughtEntity, Optional<Entity> caughtEntity, EntitySnapshot originalFishHook, FishHook fishHook, Optional<ItemStackTransaction> itemStackTransaction, Human sourceEntity) {
+    public static FishingEvent.Retract.SourceHuman createFishingEventRetractSourceHuman(Game game, Cause cause, Optional<EntitySnapshot> originalCaughtEntity, Optional<Entity> caughtEntity, int originalExperience, int experience, EntitySnapshot originalFishHook, FishHook fishHook, Optional<ItemStackTransaction> itemStackTransaction, Human sourceEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("originalCaughtEntity", originalCaughtEntity);
         values.put("caughtEntity", caughtEntity);
+        values.put("originalExperience", originalExperience);
+        values.put("experience", experience);
         values.put("originalFishHook", originalFishHook);
         values.put("fishHook", fishHook);
         values.put("itemStackTransaction", itemStackTransaction);
@@ -4081,18 +4093,22 @@ public final class SpongeEventFactory {
      * @param cause The cause
      * @param originalCaughtEntity The original caught entity
      * @param caughtEntity The caught entity
+     * @param originalExperience The original experience
+     * @param experience The experience
      * @param originalFishHook The original fish hook
      * @param fishHook The fish hook
      * @param itemStackTransaction The item stack transaction
      * @param sourceEntity The source entity
      * @return A new source living retract fishing event
      */
-    public static FishingEvent.Retract.SourceLiving createFishingEventRetractSourceLiving(Game game, Cause cause, Optional<EntitySnapshot> originalCaughtEntity, Optional<Entity> caughtEntity, EntitySnapshot originalFishHook, FishHook fishHook, Optional<ItemStackTransaction> itemStackTransaction, Living sourceEntity) {
+    public static FishingEvent.Retract.SourceLiving createFishingEventRetractSourceLiving(Game game, Cause cause, Optional<EntitySnapshot> originalCaughtEntity, Optional<Entity> caughtEntity, int originalExperience, int experience, EntitySnapshot originalFishHook, FishHook fishHook, Optional<ItemStackTransaction> itemStackTransaction, Living sourceEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("originalCaughtEntity", originalCaughtEntity);
         values.put("caughtEntity", caughtEntity);
+        values.put("originalExperience", originalExperience);
+        values.put("experience", experience);
         values.put("originalFishHook", originalFishHook);
         values.put("fishHook", fishHook);
         values.put("itemStackTransaction", itemStackTransaction);
@@ -4109,18 +4125,22 @@ public final class SpongeEventFactory {
      * @param cause The cause
      * @param originalCaughtEntity The original caught entity
      * @param caughtEntity The caught entity
+     * @param originalExperience The original experience
+     * @param experience The experience
      * @param originalFishHook The original fish hook
      * @param fishHook The fish hook
      * @param itemStackTransaction The item stack transaction
      * @param sourceEntity The source entity
      * @return A new source player retract fishing event
      */
-    public static FishingEvent.Retract.SourcePlayer createFishingEventRetractSourcePlayer(Game game, Cause cause, Optional<EntitySnapshot> originalCaughtEntity, Optional<Entity> caughtEntity, EntitySnapshot originalFishHook, FishHook fishHook, Optional<ItemStackTransaction> itemStackTransaction, Player sourceEntity) {
+    public static FishingEvent.Retract.SourcePlayer createFishingEventRetractSourcePlayer(Game game, Cause cause, Optional<EntitySnapshot> originalCaughtEntity, Optional<Entity> caughtEntity, int originalExperience, int experience, EntitySnapshot originalFishHook, FishHook fishHook, Optional<ItemStackTransaction> itemStackTransaction, Player sourceEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("originalCaughtEntity", originalCaughtEntity);
         values.put("caughtEntity", caughtEntity);
+        values.put("originalExperience", originalExperience);
+        values.put("experience", experience);
         values.put("originalFishHook", originalFishHook);
         values.put("fishHook", fishHook);
         values.put("itemStackTransaction", itemStackTransaction);

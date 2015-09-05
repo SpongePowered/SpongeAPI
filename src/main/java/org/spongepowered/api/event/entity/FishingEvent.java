@@ -34,6 +34,7 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.FishHook;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.action.ChangeExperienceEvent;
 import org.spongepowered.api.event.entity.living.LivingEvent;
 import org.spongepowered.api.event.entity.living.human.HumanEvent;
 import org.spongepowered.api.event.entity.living.player.PlayerEvent;
@@ -141,7 +142,7 @@ public interface FishingEvent extends GameEvent, Cancellable {
      * A specific {@link FishingEvent} where the {@link FishHook} is retracted
      * or "reeled in".
      */
-    interface Retract extends FishingEvent {
+    interface Retract extends FishingEvent, ChangeExperienceEvent {
 
         /**
          * Gets the {@link ItemStackTransaction} that is the transaction 
