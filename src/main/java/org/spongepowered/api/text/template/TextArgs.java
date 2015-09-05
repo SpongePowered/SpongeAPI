@@ -1,6 +1,8 @@
 package org.spongepowered.api.text.template;
 
+import com.google.common.base.Function;
 import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
@@ -19,6 +21,15 @@ public final class TextArgs {
             @Override
             public Text create(Text value) {
                 return value;
+            }
+        };
+    }
+
+    public static <T> TextArg<T> function(final Function<T, Text> function) {
+        return new TextArg<T>() {
+            @Override
+            public Text create(T value) {
+                return Preconditions.checkNotNull(function.apply(value));
             }
         };
     }
