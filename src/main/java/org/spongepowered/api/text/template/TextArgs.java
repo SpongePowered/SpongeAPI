@@ -14,29 +14,11 @@ public final class TextArgs {
 
     public static Text DEFAULT_SEPARATOR = Texts.of(", ");
 
-    public static <T extends Translatable> TextArg<T> translatable() {
-        return new TextArg<T>() {
-            @Override
-            public Optional<? extends Text> create(T value) {
-                return Optional.of(Texts.of(value));
-            }
-        };
-    }
-
     public static <T extends Text> TextArg<T> identity() {
         return new TextArg<T>() {
             @Override
             public Optional<? extends Text> create(T value) {
                 return Optional.of(value);
-            }
-        };
-    }
-
-    public static TextArg<Player> playerDisplayName() {
-        return new TextArg<Player>() {
-            @Override
-            public Optional<? extends Text> create(Player player) {
-                return player.get(Keys.DISPLAY_NAME);
             }
         };
     }
@@ -90,6 +72,24 @@ public final class TextArgs {
 
     public static <E> TextArg<Iterable<E>> iterable(final TextArg<E> singleArg) {
         return iterable(singleArg, DEFAULT_SEPARATOR);
+    }
+
+    public static <T extends Translatable> TextArg<T> translatable() {
+        return new TextArg<T>() {
+            @Override
+            public Optional<? extends Text> create(T value) {
+                return Optional.of(Texts.of(value));
+            }
+        };
+    }
+
+    public static TextArg<Player> playerDisplayName() {
+        return new TextArg<Player>() {
+            @Override
+            public Optional<? extends Text> create(Player player) {
+                return player.get(Keys.DISPLAY_NAME);
+            }
+        };
     }
 
 }
