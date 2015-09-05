@@ -37,9 +37,4 @@ import javax.annotation.Nonnull;
  */
 public interface EventFactory<E> extends Function<Map<String, Object>, E> {
 
-    // Override to change nullability contract
-    @Nonnull
-    @Override
-    E apply(@Nonnull Map<String, Object> input);
-
 }
