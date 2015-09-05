@@ -40,11 +40,11 @@ import org.spongepowered.api.world.World;
  * An event where a portal is created. Usually, this happens after a
  * {@link ChangeBlockEvent} from any source.
  */
-public interface CreatePortalEvent extends GameEvent, CauseTracked, Cancellable {
+public interface ConstructPortalEvent extends GameEvent, CauseTracked, Cancellable {
 
     Location<World> getPortalLocation();
 
-    interface SourceEntity extends CreatePortalEvent, EntityEvent { }
+    interface SourceEntity extends ConstructPortalEvent, EntityEvent { }
 
     interface SourceLiving extends SourceEntity, LivingEvent { }
 

@@ -181,8 +181,8 @@ import org.spongepowered.api.event.user.PardonUserEvent;
 import org.spongepowered.api.event.user.TargetUserEvent;
 import org.spongepowered.api.event.world.ChangeWorldGameRuleEvent;
 import org.spongepowered.api.event.world.ChangeWorldWeatherEvent;
-import org.spongepowered.api.event.world.CreatePortalEvent;
-import org.spongepowered.api.event.world.CreateWorldEvent;
+import org.spongepowered.api.event.world.ConstructPortalEvent;
+import org.spongepowered.api.event.world.ConstructWorldEvent;
 import org.spongepowered.api.event.world.LoadWorldEvent;
 import org.spongepowered.api.event.world.UnloadWorldEvent;
 import org.spongepowered.api.event.world.WorldEvent;
@@ -239,7 +239,6 @@ import java.util.Map;
  * This class should only ever contain generated code.
  */
 public final class SpongeEventFactory {
-
     private SpongeEventFactory() {
     }
 
@@ -7740,119 +7739,119 @@ public final class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.CreatePortalEvent}.
+     * {@link org.spongepowered.api.event.world.ConstructPortalEvent}.
      * 
      * @param cause The cause
      * @param game The game
      * @param portalLocation The portal location
-     * @return A new create portal event
+     * @return A new construct portal event
      */
-    public static CreatePortalEvent createCreatePortalEvent(Cause cause, Game game, Location<World> portalLocation) {
+    public static ConstructPortalEvent createConstructPortalEvent(Cause cause, Game game, Location<World> portalLocation) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("portalLocation", portalLocation);
-        return SpongeEventFactoryUtils.createEventImpl(CreatePortalEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ConstructPortalEvent.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.CreatePortalEvent.SourceEntity}.
-     * 
-     * @param cause The cause
-     * @param game The game
-     * @param portalLocation The portal location
-     * @param sourceEntity The source entity
-     * @return A new source entity create portal event
-     */
-    public static CreatePortalEvent.SourceEntity createCreatePortalEventSourceEntity(Cause cause, Game game, Location<World> portalLocation, Entity sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("game", game);
-        values.put("portalLocation", portalLocation);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(CreatePortalEvent.SourceEntity.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.CreatePortalEvent.SourceHuman}.
+     * {@link org.spongepowered.api.event.world.ConstructPortalEvent.SourceEntity}.
      * 
      * @param cause The cause
      * @param game The game
      * @param portalLocation The portal location
      * @param sourceEntity The source entity
-     * @return A new source human create portal event
+     * @return A new source entity construct portal event
      */
-    public static CreatePortalEvent.SourceHuman createCreatePortalEventSourceHuman(Cause cause, Game game, Location<World> portalLocation, Human sourceEntity) {
+    public static ConstructPortalEvent.SourceEntity createConstructPortalEventSourceEntity(Cause cause, Game game, Location<World> portalLocation, Entity sourceEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("portalLocation", portalLocation);
         values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(CreatePortalEvent.SourceHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ConstructPortalEvent.SourceEntity.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.CreatePortalEvent.SourceLiving}.
+     * {@link org.spongepowered.api.event.world.ConstructPortalEvent.SourceHuman}.
      * 
      * @param cause The cause
      * @param game The game
      * @param portalLocation The portal location
      * @param sourceEntity The source entity
-     * @return A new source living create portal event
+     * @return A new source human construct portal event
      */
-    public static CreatePortalEvent.SourceLiving createCreatePortalEventSourceLiving(Cause cause, Game game, Location<World> portalLocation, Living sourceEntity) {
+    public static ConstructPortalEvent.SourceHuman createConstructPortalEventSourceHuman(Cause cause, Game game, Location<World> portalLocation, Human sourceEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("portalLocation", portalLocation);
         values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(CreatePortalEvent.SourceLiving.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ConstructPortalEvent.SourceHuman.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.CreatePortalEvent.SourcePlayer}.
+     * {@link org.spongepowered.api.event.world.ConstructPortalEvent.SourceLiving}.
      * 
      * @param cause The cause
      * @param game The game
      * @param portalLocation The portal location
      * @param sourceEntity The source entity
-     * @return A new source player create portal event
+     * @return A new source living construct portal event
      */
-    public static CreatePortalEvent.SourcePlayer createCreatePortalEventSourcePlayer(Cause cause, Game game, Location<World> portalLocation, Player sourceEntity) {
+    public static ConstructPortalEvent.SourceLiving createConstructPortalEventSourceLiving(Cause cause, Game game, Location<World> portalLocation, Living sourceEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("portalLocation", portalLocation);
         values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(CreatePortalEvent.SourcePlayer.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ConstructPortalEvent.SourceLiving.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.CreateWorldEvent}.
+     * {@link org.spongepowered.api.event.world.ConstructPortalEvent.SourcePlayer}.
+     * 
+     * @param cause The cause
+     * @param game The game
+     * @param portalLocation The portal location
+     * @param sourceEntity The source entity
+     * @return A new source player construct portal event
+     */
+    public static ConstructPortalEvent.SourcePlayer createConstructPortalEventSourcePlayer(Cause cause, Game game, Location<World> portalLocation, Player sourceEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("game", game);
+        values.put("portalLocation", portalLocation);
+        values.put("sourceEntity", sourceEntity);
+        return SpongeEventFactoryUtils.createEventImpl(ConstructPortalEvent.SourcePlayer.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.ConstructWorldEvent}.
      * 
      * @param cause The cause
      * @param game The game
      * @param worldCreationSettings The world creation settings
      * @param worldProperties The world properties
-     * @return A new create world event
+     * @return A new construct world event
      */
-    public static CreateWorldEvent createCreateWorldEvent(Cause cause, Game game, WorldCreationSettings worldCreationSettings, WorldProperties worldProperties) {
+    public static ConstructWorldEvent createConstructWorldEvent(Cause cause, Game game, WorldCreationSettings worldCreationSettings, WorldProperties worldProperties) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("game", game);
         values.put("worldCreationSettings", worldCreationSettings);
         values.put("worldProperties", worldProperties);
-        return SpongeEventFactoryUtils.createEventImpl(CreateWorldEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ConstructWorldEvent.class, values);
     }
 
     /**
