@@ -3,6 +3,8 @@ package org.spongepowered.api.text.template;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Iterables;
+import com.sun.tools.internal.ws.api.wsdl.TWSDLExtensible;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.BaseValue;
@@ -44,6 +46,24 @@ public final class TextElements {
             @Override
             public Text create(T value) {
                 return Preconditions.checkNotNull(function.apply(value));
+            }
+        };
+    }
+
+    public static <T, U> TextElement<U> compose(final TextElement<T> element, final Function<U, T> function) {
+        return new TextElement<U>() {
+            @Override
+            public Text create(U value) {
+                return element.create(Preconditions.checkNotNull(function.apply(value)));
+            }
+        };
+    }
+
+    public static <T> TextElement<T> map(final TextElement<T> element, final Function<Text, Text> function) {
+        return new TextElement<T>() {
+            @Override
+            public Text create(T value) {
+                return Preconditions.checkNotNull(function.apply(element.create(value)));
             }
         };
     }
@@ -141,8 +161,7 @@ public final class TextElements {
     }
 
     public static <C extends CompositeValueStore<?, ?>> TextElement<C> key(
-        final Key<? extends BaseValue<Text>> key
-    ) {
+        final Key<? extends BaseValue<Text>> key) {
         return new TextElement<C>() {
             @Override
             public Text create(C value) {
@@ -153,8 +172,7 @@ public final class TextElements {
 
     // collectionKey(Keys.SIGN_LINES, iterable(identity()));
     public static <C extends CompositeValueStore<C, ?>, L extends Collection<Text>> TextElement<C> collectionKey(
-        final Key<? extends BaseValue<L>> key, final TextElement<? super L> join
-    ) {
+        final Key<? extends BaseValue<L>> key, final TextElement<? super L> join) {
         return new TextElement<C>() {
             @Override
             public Text create(C value) {
@@ -170,8 +188,7 @@ public final class TextElements {
 
     // optionalKey(Keys.LAST_COMMAND_OUTPUT);
     public static <C extends CompositeValueStore<C, ? extends ValueContainer<?>>> TextElement<C> optionalKey(
-        final Key<? extends BaseValue<Optional<Text>>> key
-    ) {
+        final Key<? extends BaseValue<Optional<Text>>> key) {
         return new TextElement<C>() {
             @Override
             public Text create(C value) {
