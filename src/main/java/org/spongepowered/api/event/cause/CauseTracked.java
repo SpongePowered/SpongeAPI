@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.event.cause;
 
+import org.spongepowered.api.eventgencore.annotation.AbsoluteSortPosition;
+
 /**
  * Something that keeps track of the cause.
  */
@@ -34,6 +36,7 @@ public interface CauseTracked {
      *
      * @return The last cause
      */
+    @AbsoluteSortPosition(1)
     Cause getCause();
 
 }

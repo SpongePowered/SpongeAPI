@@ -238,7 +238,7 @@ public class SimpleCommandService implements CommandService {
     @Override
     public CommandResult process(CommandSource source, String commandLine) {
         final String[] argSplit = commandLine.split(" ", 2);
-        final SendCommandEvent event = SpongeEventFactory.createSendCommandEvent(argSplit.length > 1 ? argSplit[1] : "", argSplit[0], this.game, CommandResult.empty(), source);
+        final SendCommandEvent event = SpongeEventFactory.createSendCommandEvent(this.game, argSplit.length > 1 ? argSplit[1] : "", argSplit[0], CommandResult.empty(), source);
         this.game.getEventManager().post(event);
         if (event.isCancelled()) {
             return event.getResult();
@@ -295,8 +295,8 @@ public class SimpleCommandService implements CommandService {
         try {
             final String[] argSplit = arguments.split(" ", 2);
             List<String> suggestions = new ArrayList<String>(this.dispatcher.getSuggestions(src, arguments));
-            final TabCompleteCommandEvent event = SpongeEventFactory.createTabCompleteCommandEvent(argSplit.length > 1 ? argSplit[1] : "",
-                    argSplit[0], this.game, src, suggestions);
+            final TabCompleteCommandEvent event = SpongeEventFactory.createTabCompleteCommandEvent(this.game, argSplit.length > 1 ? argSplit[1] : "",
+                    argSplit[0], src, suggestions);
             this.game.getEventManager().post(event);
             if (event.isCancelled()) {
                 return ImmutableList.of();

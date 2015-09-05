@@ -25,6 +25,7 @@
 package org.spongepowered.api.event;
 
 import org.spongepowered.api.Game;
+import org.spongepowered.api.eventgencore.annotation.AbsoluteSortPosition;
 
 /**
  * Base event for all events within the {@link Game}.
@@ -36,6 +37,7 @@ public interface GameEvent extends Event {
      *
      * @return The game
      */
+    @AbsoluteSortPosition(0)
     Game getGame();
 
 }

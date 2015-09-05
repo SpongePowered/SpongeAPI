@@ -57,11 +57,11 @@ public class SpongeEventFactoryUtils {
     private static final LoadingCache<Class<?>, EventFactory<?>> factories = CacheBuilder.newBuilder().build(
         new CacheLoader<Class<?>, EventFactory<?>>() {
 
-            @Override
-            public EventFactory<?> load(Class<?> type) {
-                return factoryProvider.create(type, ReflectionUtils.getBaseClass(type, ImplementedBy.class).getActualClass(), plugins);
-            }
-        });
+                @Override
+                public EventFactory<?> load(Class<?> type) {
+                    return factoryProvider.create(type, ReflectionUtils.getBaseClass(type).getActualClass(), plugins);
+                }
+            });
 
 
     static {
