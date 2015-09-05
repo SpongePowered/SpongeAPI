@@ -29,10 +29,6 @@ import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
-import java.net.InetSocketAddress;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.MinecraftVersion;
@@ -232,6 +228,11 @@ import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
+
+import java.net.InetSocketAddress;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Generates Sponge event implementations.
@@ -3010,16 +3011,16 @@ public final class SpongeEventFactory {
      * 
      * @param game The game
      * @param cause The cause
-     * @param location The location
      * @param targetType The target type
+     * @param transform The transform
      * @return A new construct entity event
      */
-    public static ConstructEntityEvent createConstructEntityEvent(Game game, Cause cause, Location<World> location, EntityType targetType) {
+    public static ConstructEntityEvent createConstructEntityEvent(Game game, Cause cause, EntityType targetType, Transform<World> transform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
-        values.put("location", location);
         values.put("targetType", targetType);
+        values.put("transform", transform);
         return SpongeEventFactoryUtils.createEventImpl(ConstructEntityEvent.class, values);
     }
 
@@ -3030,18 +3031,18 @@ public final class SpongeEventFactory {
      * 
      * @param game The game
      * @param cause The cause
-     * @param location The location
      * @param targetEntity The target entity
      * @param targetType The target type
+     * @param transform The transform
      * @return A new post construct entity event
      */
-    public static ConstructEntityEvent.Post createConstructEntityEventPost(Game game, Cause cause, Location<World> location, Entity targetEntity, EntityType targetType) {
+    public static ConstructEntityEvent.Post createConstructEntityEventPost(Game game, Cause cause, Entity targetEntity, EntityType targetType, Transform<World> transform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
-        values.put("location", location);
         values.put("targetEntity", targetEntity);
         values.put("targetType", targetType);
+        values.put("transform", transform);
         return SpongeEventFactoryUtils.createEventImpl(ConstructEntityEvent.Post.class, values);
     }
 
@@ -3052,16 +3053,16 @@ public final class SpongeEventFactory {
      * 
      * @param game The game
      * @param cause The cause
-     * @param location The location
      * @param targetType The target type
+     * @param transform The transform
      * @return A new pre construct entity event
      */
-    public static ConstructEntityEvent.Pre createConstructEntityEventPre(Game game, Cause cause, Location<World> location, EntityType targetType) {
+    public static ConstructEntityEvent.Pre createConstructEntityEventPre(Game game, Cause cause, EntityType targetType, Transform<World> transform) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
-        values.put("location", location);
         values.put("targetType", targetType);
+        values.put("transform", transform);
         return SpongeEventFactoryUtils.createEventImpl(ConstructEntityEvent.Pre.class, values);
     }
 
@@ -4888,68 +4889,6 @@ public final class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.SpawnEntityEvent.SourceBlock}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param sourceBlock The source block
-     * @param sourceLocation The source location
-     * @param sourceSide The source side
-     * @param targetEntity The target entity
-     * @return A new source block spawn entity event
-     */
-    public static SpawnEntityEvent.SourceBlock createSpawnEntityEventSourceBlock(Game game, Cause cause, BlockSnapshot sourceBlock, Location<World> sourceLocation, Optional<Direction> sourceSide, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("sourceBlock", sourceBlock);
-        values.put("sourceLocation", sourceLocation);
-        values.put("sourceSide", sourceSide);
-        values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(SpawnEntityEvent.SourceBlock.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.SpawnEntityEvent.SourceWorld}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param sourceWorld The source world
-     * @param targetEntity The target entity
-     * @return A new source world spawn entity event
-     */
-    public static SpawnEntityEvent.SourceWorld createSpawnEntityEventSourceWorld(Game game, Cause cause, World sourceWorld, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("sourceWorld", sourceWorld);
-        values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(SpawnEntityEvent.SourceWorld.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.SpawnEntityEvent.TargetLiving}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param targetEntity The target entity
-     * @return A new target living spawn entity event
-     */
-    public static SpawnEntityEvent.TargetLiving createSpawnEntityEventTargetLiving(Game game, Cause cause, Living targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(SpawnEntityEvent.TargetLiving.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.TameEntityEvent}.
      * 
      * @param game The game
@@ -6648,401 +6587,81 @@ public final class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity}.
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Finish.SourceEntity}.
      * 
      * @param game The game
      * @param cause The cause
      * @param itemStackInUse The item stack in use
      * @param sourceEntity The source entity
-     * @return A new source entity use item stack event
+     * @return A new source entity finish use item stack event
      */
-    public static UseItemStackEvent.SourceEntity createUseItemStackEventSourceEntity(Game game, Cause cause, ItemStackTransaction itemStackInUse, Entity sourceEntity) {
+    public static UseItemStackEvent.Finish.SourceEntity createUseItemStackEventFinishSourceEntity(Game game, Cause cause, ItemStackTransaction itemStackInUse, Entity sourceEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceEntity.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Finish.SourceEntity.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Finish}.
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Finish.SourceHuman}.
      * 
      * @param game The game
      * @param cause The cause
      * @param itemStackInUse The item stack in use
      * @param sourceEntity The source entity
-     * @return A new finish source entity use item stack event
+     * @return A new source human finish use item stack event
      */
-    public static UseItemStackEvent.SourceEntity.Finish createUseItemStackEventSourceEntityFinish(Game game, Cause cause, ItemStackTransaction itemStackInUse, Entity sourceEntity) {
+    public static UseItemStackEvent.Finish.SourceHuman createUseItemStackEventFinishSourceHuman(Game game, Cause cause, ItemStackTransaction itemStackInUse, Human sourceEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceEntity.Finish.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Finish.SourceHuman.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Start}.
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Finish.SourceLiving}.
      * 
      * @param game The game
      * @param cause The cause
      * @param itemStackInUse The item stack in use
      * @param sourceEntity The source entity
-     * @return A new start source entity use item stack event
+     * @return A new source living finish use item stack event
      */
-    public static UseItemStackEvent.SourceEntity.Start createUseItemStackEventSourceEntityStart(Game game, Cause cause, ItemStackTransaction itemStackInUse, Entity sourceEntity) {
+    public static UseItemStackEvent.Finish.SourceLiving createUseItemStackEventFinishSourceLiving(Game game, Cause cause, ItemStackTransaction itemStackInUse, Living sourceEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceEntity.Start.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Finish.SourceLiving.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Stop}.
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Finish.SourcePlayer}.
      * 
      * @param game The game
      * @param cause The cause
      * @param itemStackInUse The item stack in use
      * @param sourceEntity The source entity
-     * @return A new stop source entity use item stack event
+     * @return A new source player finish use item stack event
      */
-    public static UseItemStackEvent.SourceEntity.Stop createUseItemStackEventSourceEntityStop(Game game, Cause cause, ItemStackTransaction itemStackInUse, Entity sourceEntity) {
+    public static UseItemStackEvent.Finish.SourcePlayer createUseItemStackEventFinishSourcePlayer(Game game, Cause cause, ItemStackTransaction itemStackInUse, Player sourceEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("itemStackInUse", itemStackInUse);
         values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceEntity.Stop.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceEntity.Tick}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new tick source entity use item stack event
-     */
-    public static UseItemStackEvent.SourceEntity.Tick createUseItemStackEventSourceEntityTick(Game game, Cause cause, ItemStackTransaction itemStackInUse, Entity sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceEntity.Tick.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new source human use item stack event
-     */
-    public static UseItemStackEvent.SourceHuman createUseItemStackEventSourceHuman(Game game, Cause cause, ItemStackTransaction itemStackInUse, Human sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceHuman.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Finish}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new finish source human use item stack event
-     */
-    public static UseItemStackEvent.SourceHuman.Finish createUseItemStackEventSourceHumanFinish(Game game, Cause cause, ItemStackTransaction itemStackInUse, Human sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceHuman.Finish.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Start}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new start source human use item stack event
-     */
-    public static UseItemStackEvent.SourceHuman.Start createUseItemStackEventSourceHumanStart(Game game, Cause cause, ItemStackTransaction itemStackInUse, Human sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceHuman.Start.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Stop}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new stop source human use item stack event
-     */
-    public static UseItemStackEvent.SourceHuman.Stop createUseItemStackEventSourceHumanStop(Game game, Cause cause, ItemStackTransaction itemStackInUse, Human sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceHuman.Stop.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceHuman.Tick}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new tick source human use item stack event
-     */
-    public static UseItemStackEvent.SourceHuman.Tick createUseItemStackEventSourceHumanTick(Game game, Cause cause, ItemStackTransaction itemStackInUse, Human sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceHuman.Tick.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new source living use item stack event
-     */
-    public static UseItemStackEvent.SourceLiving createUseItemStackEventSourceLiving(Game game, Cause cause, ItemStackTransaction itemStackInUse, Living sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceLiving.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Finish}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new finish source living use item stack event
-     */
-    public static UseItemStackEvent.SourceLiving.Finish createUseItemStackEventSourceLivingFinish(Game game, Cause cause, ItemStackTransaction itemStackInUse, Living sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceLiving.Finish.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Start}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new start source living use item stack event
-     */
-    public static UseItemStackEvent.SourceLiving.Start createUseItemStackEventSourceLivingStart(Game game, Cause cause, ItemStackTransaction itemStackInUse, Living sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceLiving.Start.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Stop}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new stop source living use item stack event
-     */
-    public static UseItemStackEvent.SourceLiving.Stop createUseItemStackEventSourceLivingStop(Game game, Cause cause, ItemStackTransaction itemStackInUse, Living sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceLiving.Stop.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourceLiving.Tick}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new tick source living use item stack event
-     */
-    public static UseItemStackEvent.SourceLiving.Tick createUseItemStackEventSourceLivingTick(Game game, Cause cause, ItemStackTransaction itemStackInUse, Living sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourceLiving.Tick.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new source player use item stack event
-     */
-    public static UseItemStackEvent.SourcePlayer createUseItemStackEventSourcePlayer(Game game, Cause cause, ItemStackTransaction itemStackInUse, Player sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourcePlayer.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Finish}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new finish source player use item stack event
-     */
-    public static UseItemStackEvent.SourcePlayer.Finish createUseItemStackEventSourcePlayerFinish(Game game, Cause cause, ItemStackTransaction itemStackInUse, Player sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourcePlayer.Finish.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Start}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new start source player use item stack event
-     */
-    public static UseItemStackEvent.SourcePlayer.Start createUseItemStackEventSourcePlayerStart(Game game, Cause cause, ItemStackTransaction itemStackInUse, Player sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourcePlayer.Start.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Stop}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new stop source player use item stack event
-     */
-    public static UseItemStackEvent.SourcePlayer.Stop createUseItemStackEventSourcePlayerStop(Game game, Cause cause, ItemStackTransaction itemStackInUse, Player sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourcePlayer.Stop.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.SourcePlayer.Tick}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param itemStackInUse The item stack in use
-     * @param sourceEntity The source entity
-     * @return A new tick source player use item stack event
-     */
-    public static UseItemStackEvent.SourcePlayer.Tick createUseItemStackEventSourcePlayerTick(Game game, Cause cause, ItemStackTransaction itemStackInUse, Player sourceEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("itemStackInUse", itemStackInUse);
-        values.put("sourceEntity", sourceEntity);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.SourcePlayer.Tick.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Finish.SourcePlayer.class, values);
     }
 
     /**
@@ -7066,6 +6685,86 @@ public final class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Start.SourceEntity}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackInUse The item stack in use
+     * @param sourceEntity The source entity
+     * @return A new source entity start use item stack event
+     */
+    public static UseItemStackEvent.Start.SourceEntity createUseItemStackEventStartSourceEntity(Game game, Cause cause, ItemStackTransaction itemStackInUse, Entity sourceEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackInUse", itemStackInUse);
+        values.put("sourceEntity", sourceEntity);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Start.SourceEntity.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Start.SourceHuman}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackInUse The item stack in use
+     * @param sourceEntity The source entity
+     * @return A new source human start use item stack event
+     */
+    public static UseItemStackEvent.Start.SourceHuman createUseItemStackEventStartSourceHuman(Game game, Cause cause, ItemStackTransaction itemStackInUse, Human sourceEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackInUse", itemStackInUse);
+        values.put("sourceEntity", sourceEntity);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Start.SourceHuman.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Start.SourceLiving}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackInUse The item stack in use
+     * @param sourceEntity The source entity
+     * @return A new source living start use item stack event
+     */
+    public static UseItemStackEvent.Start.SourceLiving createUseItemStackEventStartSourceLiving(Game game, Cause cause, ItemStackTransaction itemStackInUse, Living sourceEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackInUse", itemStackInUse);
+        values.put("sourceEntity", sourceEntity);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Start.SourceLiving.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Start.SourcePlayer}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackInUse The item stack in use
+     * @param sourceEntity The source entity
+     * @return A new source player start use item stack event
+     */
+    public static UseItemStackEvent.Start.SourcePlayer createUseItemStackEventStartSourcePlayer(Game game, Cause cause, ItemStackTransaction itemStackInUse, Player sourceEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackInUse", itemStackInUse);
+        values.put("sourceEntity", sourceEntity);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Start.SourcePlayer.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Stop}.
      * 
      * @param game The game
@@ -7084,6 +6783,86 @@ public final class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Stop.SourceEntity}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackInUse The item stack in use
+     * @param sourceEntity The source entity
+     * @return A new source entity stop use item stack event
+     */
+    public static UseItemStackEvent.Stop.SourceEntity createUseItemStackEventStopSourceEntity(Game game, Cause cause, ItemStackTransaction itemStackInUse, Entity sourceEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackInUse", itemStackInUse);
+        values.put("sourceEntity", sourceEntity);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Stop.SourceEntity.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Stop.SourceHuman}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackInUse The item stack in use
+     * @param sourceEntity The source entity
+     * @return A new source human stop use item stack event
+     */
+    public static UseItemStackEvent.Stop.SourceHuman createUseItemStackEventStopSourceHuman(Game game, Cause cause, ItemStackTransaction itemStackInUse, Human sourceEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackInUse", itemStackInUse);
+        values.put("sourceEntity", sourceEntity);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Stop.SourceHuman.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Stop.SourceLiving}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackInUse The item stack in use
+     * @param sourceEntity The source entity
+     * @return A new source living stop use item stack event
+     */
+    public static UseItemStackEvent.Stop.SourceLiving createUseItemStackEventStopSourceLiving(Game game, Cause cause, ItemStackTransaction itemStackInUse, Living sourceEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackInUse", itemStackInUse);
+        values.put("sourceEntity", sourceEntity);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Stop.SourceLiving.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Stop.SourcePlayer}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackInUse The item stack in use
+     * @param sourceEntity The source entity
+     * @return A new source player stop use item stack event
+     */
+    public static UseItemStackEvent.Stop.SourcePlayer createUseItemStackEventStopSourcePlayer(Game game, Cause cause, ItemStackTransaction itemStackInUse, Player sourceEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackInUse", itemStackInUse);
+        values.put("sourceEntity", sourceEntity);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Stop.SourcePlayer.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Tick}.
      * 
      * @param game The game
@@ -7097,6 +6876,86 @@ public final class SpongeEventFactory {
         values.put("cause", cause);
         values.put("itemStackInUse", itemStackInUse);
         return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Tick.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Tick.SourceEntity}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackInUse The item stack in use
+     * @param sourceEntity The source entity
+     * @return A new source entity tick use item stack event
+     */
+    public static UseItemStackEvent.Tick.SourceEntity createUseItemStackEventTickSourceEntity(Game game, Cause cause, ItemStackTransaction itemStackInUse, Entity sourceEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackInUse", itemStackInUse);
+        values.put("sourceEntity", sourceEntity);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Tick.SourceEntity.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Tick.SourceHuman}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackInUse The item stack in use
+     * @param sourceEntity The source entity
+     * @return A new source human tick use item stack event
+     */
+    public static UseItemStackEvent.Tick.SourceHuman createUseItemStackEventTickSourceHuman(Game game, Cause cause, ItemStackTransaction itemStackInUse, Human sourceEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackInUse", itemStackInUse);
+        values.put("sourceEntity", sourceEntity);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Tick.SourceHuman.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Tick.SourceLiving}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackInUse The item stack in use
+     * @param sourceEntity The source entity
+     * @return A new source living tick use item stack event
+     */
+    public static UseItemStackEvent.Tick.SourceLiving createUseItemStackEventTickSourceLiving(Game game, Cause cause, ItemStackTransaction itemStackInUse, Living sourceEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackInUse", itemStackInUse);
+        values.put("sourceEntity", sourceEntity);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Tick.SourceLiving.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.UseItemStackEvent.Tick.SourcePlayer}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackInUse The item stack in use
+     * @param sourceEntity The source entity
+     * @return A new source player tick use item stack event
+     */
+    public static UseItemStackEvent.Tick.SourcePlayer createUseItemStackEventTickSourcePlayer(Game game, Cause cause, ItemStackTransaction itemStackInUse, Player sourceEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackInUse", itemStackInUse);
+        values.put("sourceEntity", sourceEntity);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Tick.SourcePlayer.class, values);
     }
 
     /**
@@ -7198,19 +7057,19 @@ public final class SpongeEventFactory {
      * Creates a new instance of
      * {@link org.spongepowered.api.event.network.ClientConnectionEvent.Auth}.
      * 
-     * @param connection The connection
      * @param game The game
-     * @param message The message
      * @param originalMessage The original message
+     * @param message The message
+     * @param connection The connection
      * @param profile The profile
      * @return A new auth client connection event
      */
-    public static ClientConnectionEvent.Auth createClientConnectionEventAuth(RemoteConnection connection, Game game, Text message, Text originalMessage, GameProfile profile) {
+    public static ClientConnectionEvent.Auth createClientConnectionEventAuth(Game game, Text originalMessage, Text message, RemoteConnection connection, GameProfile profile) {
         Map<String, Object> values = Maps.newHashMap();
-        values.put("connection", connection);
         values.put("game", game);
-        values.put("message", message);
         values.put("originalMessage", originalMessage);
+        values.put("message", message);
+        values.put("connection", connection);
         values.put("profile", profile);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Auth.class, values);
     }
@@ -8311,4 +8170,3 @@ public final class SpongeEventFactory {
         return SpongeEventFactoryUtils.createEventImpl(UnloadChunkEvent.SourceWorld.class, values);
     }
 }
-

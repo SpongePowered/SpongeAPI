@@ -52,62 +52,102 @@ public interface UseItemStackEvent extends GameEvent, CauseTracked, Cancellable 
      */
     void setItemStackInUse(ItemStackSnapshot item);
 
-    interface Start extends UseItemStackEvent { }
+    /**
+     * Called before {@link #Tick} when a player starts using an 
+     * {@link ItemType}, typically when they hold right mouse.
+     * 
+     * <p>Examples:</p>
+     * 
+     * <ul>
+     *     <li>Drawing a bow</li>
+     *     <li>Eating food</li>
+     *     <li>Drinking Potions/Milk</li>
+     *     <li>Guarding with a sword</li>
+     * </ul>
+     * 
+     * <p>Note: Cancelling the event, or setting the duration to <= 0
+     * prevents the {@link ItemType} from processing.</p>
+     */
+    interface Start extends UseItemStackEvent { 
 
-    interface Tick extends UseItemStackEvent { }
+        interface SourceEntity extends UseItemStackEvent.Start, EntityEvent { }
 
-    interface Stop extends UseItemStackEvent { }
+        interface SourceLiving extends SourceEntity, LivingEvent { }
 
-    interface Finish extends UseItemStackEvent { }
+        interface SourceHuman extends SourceLiving, HumanEvent { }
 
-    interface SourceEntity extends UseItemStackEvent, EntityEvent {
-
-        interface Start extends SourceEntity, UseItemStackEvent.Start { }
-
-        interface Tick extends SourceEntity, UseItemStackEvent.Tick { }
-
-        interface Stop extends SourceEntity, UseItemStackEvent.Stop { }
-
-        interface Finish extends SourceEntity, UseItemStackEvent.Finish { }
-
+        interface SourcePlayer extends SourceHuman, PlayerEvent { }
     }
 
-    interface SourceLiving extends SourceEntity, LivingEvent {
+    /**
+     * Called after {@link #Start} during each tick as an {@link ItemType} is 
+     * being used.
+     *
+     * <p>Note: Cancelling the event, or setting the duration <= 0 will cause
+     * the player to stop using the item.</p>
+     */
+    interface Tick extends UseItemStackEvent { 
 
-        interface Start extends SourceLiving, SourceEntity.Start { }
+        interface SourceEntity extends UseItemStackEvent.Tick, EntityEvent { }
 
-        interface Tick extends SourceLiving, SourceEntity.Tick { }
+        interface SourceLiving extends SourceEntity, LivingEvent { }
 
-        interface Stop extends SourceLiving, SourceEntity.Stop { }
+        interface SourceHuman extends SourceLiving, HumanEvent { }
 
-        interface Finish extends SourceLiving, SourceEntity.Finish { }
-
+        interface SourcePlayer extends SourceHuman, PlayerEvent { }
     }
 
+    /**
+     * Called after {@link #Tick} when an {@link ItemType} has finished being
+     * used.
+     * 
+     * <p>Examples:</p>
+     * 
+     * <ul>
+     *     <li>Stop eating halfway through</li>
+     *     <li>Stop defending with sword</li>
+     *     <li>Stop drawing bow. This case would fire the arrow</li>
+     * </ul>
+     * 
+     * <p>Duration on this event is how long the item had left in its countdown 
+     * before 'finishing'
+     *
+     * Cancelling this event will prevent the {@link ItemType} from being 
+     * notified that it has stopped being used. The only vanilla 
+     * {@link ItemType} this would affect are bows, and it would cause the bow
+     * to NOT fire.</p>
+     */
+    interface Stop extends UseItemStackEvent { 
 
-    interface SourceHuman extends SourceLiving, HumanEvent {
+        interface SourceEntity extends UseItemStackEvent.Stop, EntityEvent { }
 
-        interface Start extends SourceHuman, SourceLiving.Start { }
+        interface SourceLiving extends SourceEntity, LivingEvent { }
 
-        interface Tick extends SourceHuman, SourceLiving.Tick { }
+        interface SourceHuman extends SourceLiving, HumanEvent { }
 
-        interface Stop extends SourceHuman, SourceLiving.Stop { }
-
-        interface Finish extends SourceHuman, SourceLiving.Finish { }
-
+        interface SourcePlayer extends SourceHuman, PlayerEvent { }
     }
 
+    /**
+     * Called after {@link #Stop} when an {@link ItemType} has finished being
+     * used. The resulting {@link ItemStack} reflects the state after {@link #Stop}.
+     * 
+     * <p>Example:</p>
+     * 
+     * <ul>
+     *     <li>After the player consumed a {@link PotionEffectType} that's 
+     *     already applied.</li>
+     *</ul>
+     */
+    interface Finish extends UseItemStackEvent { 
 
-    interface SourcePlayer extends SourceHuman, PlayerEvent {
+        interface SourceEntity extends UseItemStackEvent.Finish, EntityEvent { }
 
-        interface Start extends SourcePlayer, SourceHuman.Start { }
+        interface SourceLiving extends SourceEntity, LivingEvent { }
 
-        interface Tick extends SourcePlayer, SourceHuman.Tick { }
+        interface SourceHuman extends SourceLiving, HumanEvent { }
 
-        interface Stop extends SourcePlayer, SourceHuman.Stop { }
-
-        interface Finish extends SourcePlayer, SourceHuman.Finish { }
-
+        interface SourcePlayer extends SourceHuman, PlayerEvent { }
     }
 
 }

@@ -26,10 +26,10 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
@@ -38,11 +38,11 @@ import org.spongepowered.api.world.World;
 public interface ConstructEntityEvent extends GameEvent, CauseTracked {
 
     /**
-     * Gets the {@link Location} that the {@link Entity} will be created at.
+     * Gets the {@link Transform} that the {@link Entity} will be constructed with.
      *
-     * @return The location
+     * @return The transform
      */
-    Location<World> getLocation();
+    Transform<World> getTransform();
 
     /**
      * Gets the {@link EntityType} of the target {@link Entity} that is going to be
