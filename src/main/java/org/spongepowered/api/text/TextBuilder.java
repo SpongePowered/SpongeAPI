@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *
  * @see Text
  */
-public abstract class TextBuilder implements TextRepresentable {
+public abstract class TextBuilder {
 
     protected TextFormat format = new TextFormat();
     protected List<Text> children = Lists.newArrayList();
@@ -372,11 +372,6 @@ public abstract class TextBuilder implements TextRepresentable {
                 .toString();
     }
 
-    @Override
-    public final Text toText() {
-        return build();
-    }
-
     /**
      * Represents a {@link TextBuilder} creating immutable {@link Text.Literal}
      * instances.
@@ -551,189 +546,6 @@ public abstract class TextBuilder implements TextRepresentable {
         @Override
         public Literal removeAll() {
             return (Literal) super.removeAll();
-        }
-
-    }
-
-    /**
-     * Represents a {@link TextBuilder} creating immutable
-     * {@link Text.Placeholder} instances.
-     *
-     * @see Text.Placeholder
-     */
-    public static class Placeholder extends TextBuilder {
-        private String key;
-        private Text fallback;
-
-        /**
-         * Constructs a new unformatted {@link Placeholder} with the given
-         * content.
-         *
-         * @param key The none empty replacement key for the placeholder builder
-         */
-        Placeholder(String key) {
-            key(key);
-        }
-
-        /**
-         * Constructs a new {@link Placeholder} with the formatting and actions
-         * of the specified {@link Text} and the given content.
-         *
-         * @param text The text to apply the properties from
-         * @param key The none empty replacement key for the placeholder builder
-         */
-        Placeholder(Text text, String key) {
-            super(text);
-            key(key);
-        }
-
-        /**
-         * Constructs a new {@link Placeholder} with the formatting, actions and
-         * content of the specified {@link Text.Placeholder}.
-         *
-         * @param text The text to apply the properties from
-         */
-        Placeholder(Text.Placeholder text) {
-            super(text);
-            this.key = text.key;
-            if (text.getFallback().isPresent()) {
-                this.fallback = text.getFallback().get();
-            }
-        }
-
-        /**
-         * Returns the current replacement key of this builder.
-         *
-         * @return The current replacement key
-         * @see Text.Placeholder#getKey()
-         */
-        public final String getKey() {
-            return this.key;
-        }
-
-        /**
-         * Sets the plain text replacement key of this text.
-         *
-         * @param key The key of this text
-         * @return This text builder
-         * @see Text.Placeholder#getKey()
-         */
-        public Placeholder key(String key) {
-            checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
-            this.key = key;
-            return this;
-        }
-
-        /**
-         * Sets the fallback text that will be used if no value is present for this placeholder
-         *
-         * @param fallback The content of this text
-         * @return This text builder
-         * @see Text.Placeholder#getFallback()
-         */
-        public Placeholder fallback(Text fallback) {
-            this.fallback = fallback;
-            return this;
-        }
-
-        @Override
-        public Text.Placeholder build() {
-            return new Text.Placeholder(
-                    this.format,
-                    ImmutableList.copyOf(this.children),
-                    this.clickAction,
-                    this.hoverAction,
-                    this.shiftClickAction,
-                    this.key,
-                    this.fallback);
-        }
-
-        @Override
-        public boolean equals(@Nullable Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (!(o instanceof Placeholder) || !super.equals(o)) {
-                return false;
-            }
-
-            Placeholder that = (Placeholder) o;
-            return Objects.equal(this.key, that.key) && Objects.equal(this.fallback, that.fallback);
-
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hashCode(super.hashCode(), this.fallback);
-        }
-
-        @Override
-        public String toString() {
-            return Objects.toStringHelper(this)
-                    .addValue(super.toString())
-                    .add("key", this.key)
-                    .add("fallback", this.fallback)
-                    .toString();
-        }
-
-        @Override
-        public Placeholder color(TextColor color) {
-            return (Placeholder) super.color(color);
-        }
-
-        @Override
-        public Placeholder style(TextStyle... styles) {
-            return (Placeholder) super.style(styles);
-        }
-
-        @Override
-        public Placeholder onClick(@Nullable ClickAction<?> clickAction) {
-            return (Placeholder) super.onClick(clickAction);
-        }
-
-        @Override
-        public Placeholder onHover(@Nullable HoverAction<?> hoverAction) {
-            return (Placeholder) super.onHover(hoverAction);
-        }
-
-        @Override
-        public Placeholder onShiftClick(@Nullable ShiftClickAction<?> shiftClickAction) {
-            return (Placeholder) super.onShiftClick(shiftClickAction);
-        }
-
-        @Override
-        public Placeholder append(Text... children) {
-            return (Placeholder) super.append(children);
-        }
-
-        @Override
-        public Placeholder append(Iterable<? extends Text> children) {
-            return (Placeholder) super.append(children);
-        }
-
-        @Override
-        public Placeholder insert(int pos, Text... children) {
-            return (Placeholder) super.insert(pos, children);
-        }
-
-        @Override
-        public Placeholder insert(int pos, Iterable<? extends Text> children) {
-            return (Placeholder) super.insert(pos, children);
-        }
-
-        @Override
-        public Placeholder remove(Text... children) {
-            return (Placeholder) super.remove(children);
-        }
-
-        @Override
-        public Placeholder remove(Iterable<? extends Text> children) {
-            return (Placeholder) super.remove(children);
-        }
-
-        @Override
-        public Placeholder removeAll() {
-            return (Placeholder) super.removeAll();
         }
 
     }
