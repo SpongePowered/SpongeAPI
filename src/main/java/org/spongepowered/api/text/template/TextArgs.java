@@ -82,4 +82,8 @@ public final class TextArgs {
         return new TextArgs(ImmutableList.builder(), ImmutableMap.<String, Object>builder());
     }
 
+    public static TextArgs of(Object... args) {
+        return create().add(args);
+    }
+
 }
