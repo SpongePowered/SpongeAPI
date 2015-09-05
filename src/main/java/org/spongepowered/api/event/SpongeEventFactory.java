@@ -7197,6 +7197,24 @@ public final class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.network.ClientConnectionEvent.Auth}.
+     * 
+     * @param connection The connection
+     * @param game The game
+     * @param profile The profile
+     * @return A new auth client connection event
+     */
+    public static ClientConnectionEvent.Auth createClientConnectionEventAuth(RemoteConnection connection, Game game, GameProfile profile) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("connection", connection);
+        values.put("game", game);
+        values.put("profile", profile);
+        return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Auth.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.network.ClientConnectionEvent.Disconnect}.
      * 
      * @param connection The connection

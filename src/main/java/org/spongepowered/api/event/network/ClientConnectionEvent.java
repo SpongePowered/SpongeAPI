@@ -56,9 +56,18 @@ public interface ClientConnectionEvent extends GameEvent, ConnectionEvent {
     GameProfile getProfile();
 
     /**
-     * Called asynchronously when the client attempts to login into the server.
+     * Called asynchronously when the client attempts to authenticate against
+     * the server.
      *
-     * <p>Note: This event is fired before #Join.</p>
+     * <p>Note: This event is fired before #Login.</p>
+     */
+    interface Auth extends ClientConnectionEvent, Cancellable { }
+
+    /**
+     * Called after the client authenticates and attempts to login to the
+     * server.
+     *
+     * <p>Note: This event is fired after #Auth and is NOT async.</p>
      */
     interface Login extends ClientConnectionEvent, MessageSinkEvent, Cancellable { }
 
@@ -66,6 +75,7 @@ public interface ClientConnectionEvent extends GameEvent, ConnectionEvent {
      * Called when a {@link Player} joins the game {@link World} for the first
      * time after initial connection.
      *
+     * <p>Note: This event is fired after #Login.</p>
      */
     interface Join extends ClientConnectionEvent, DisplaceEntityEvent.TargetPlayer, MessageSinkEvent, Cancellable { }
 
