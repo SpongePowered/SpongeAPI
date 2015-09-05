@@ -3,13 +3,19 @@ package org.spongepowered.api.text.template;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
+import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.data.value.mutable.CompositeValueStore;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.text.translation.Translatable;
 
+import javax.annotation.Nullable;
+import java.util.Collection;
 import java.util.Iterator;
 
 public final class TextArgs {
@@ -132,10 +138,50 @@ public final class TextArgs {
     }
 
     public static TextArg<Player> playerDisplayName() {
-        return new TextArg<Player>() {
+        return key(Keys.DISPLAY_NAME);
+    }
+
+    public static <C extends CompositeValueStore<?, ?>> TextArg<C> key(
+        final Key<? extends BaseValue<Text>> key
+    ) {
+        return new TextArg<C>() {
             @Override
-            public Text create(Player player) {
-                return player.get(Keys.DISPLAY_NAME).or(Texts.of());
+            public Text create(C value) {
+                return value.get(key).or(Texts.of());
+            }
+        };
+    }
+
+    // collectionKey(Keys.SIGN_LINES, iterable(identity()));
+    public static <C extends CompositeValueStore<C, ?>, L extends Collection<Text>> TextArg<C> collectionKey(
+        final Key<? extends BaseValue<L>> key, final TextArg<? super L> join
+    ) {
+        return new TextArg<C>() {
+            @Override
+            public Text create(C value) {
+                Optional<L> possibleColl = value.get(key);
+                if (possibleColl.isPresent()) {
+                    return join.create(possibleColl.get());
+                } else {
+                    return Texts.of();
+                }
+            }
+        };
+    }
+
+    // optionalKey(Keys.LAST_COMMAND_OUTPUT);
+    public static <C extends CompositeValueStore<C, ? extends ValueContainer<?>>> TextArg<C> optionalKey(
+        final Key<? extends BaseValue<Optional<Text>>> key
+    ) {
+        return new TextArg<C>() {
+            @Override
+            public Text create(C value) {
+                Optional<Text> possibleColl = value.getOrElse(key, Optional.<Text>absent());
+                if (possibleColl.isPresent()) {
+                    return possibleColl.get();
+                } else {
+                    return Texts.of();
+                }
             }
         };
     }
