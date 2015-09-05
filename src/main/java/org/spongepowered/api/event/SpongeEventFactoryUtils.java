@@ -28,6 +28,9 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.event.game.state.GameStateEvent;
 import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 import org.spongepowered.api.eventgencore.classwrapper.reflection.ReflectionUtils;
 import org.spongepowered.api.util.event.factory.ClassGeneratorProvider;
@@ -37,6 +40,7 @@ import org.spongepowered.api.util.event.factory.plugin.AccessorModifierEventFact
 import org.spongepowered.api.util.event.factory.plugin.EventFactoryPlugin;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * A class to hold the logic for {@link SpongeEventFactory}
@@ -51,13 +55,13 @@ public class SpongeEventFactoryUtils {
     public static List<? extends EventFactoryPlugin> plugins = Lists.newArrayList(new AccessorModifierEventFactoryPlugin());
 
     private static final LoadingCache<Class<?>, EventFactory<?>> factories = CacheBuilder.newBuilder().build(
-            new CacheLoader<Class<?>, EventFactory<?>>() {
+        new CacheLoader<Class<?>, EventFactory<?>>() {
 
-                @Override
-                public EventFactory<?> load(Class<?> type) {
-                    return factoryProvider.create(type, ReflectionUtils.getBaseClass(type, ImplementedBy.class).getActualClass(), plugins);
-                }
-            });
+            @Override
+            public EventFactory<?> load(Class<?> type) {
+                return factoryProvider.create(type, ReflectionUtils.getBaseClass(type, ImplementedBy.class).getActualClass(), plugins);
+            }
+        });
 
 
     static {
@@ -66,17 +70,29 @@ public class SpongeEventFactoryUtils {
 
     /**
      * Creates an event class from an interface and a map of property names to values.
-     *c
+     *
      * @param type The event interface to generate a class for
      * @param values The map of property names to values
      * @param <T> The type of event to be created
      * @return The generated event class.
      */
     @SuppressWarnings("unchecked")
-    public static <T>T createEventImpl(java.lang.Class<T> type, java.util.Map<java.lang.String, java.lang.Object> values) {
-        return ((T) factories.getUnchecked(type).apply(values));
+    public static <T> T createEventImpl(java.lang.Class<T> type, java.util.Map<java.lang.String, java.lang.Object> values) {
+        return (T) factories.getUnchecked(type).apply(values);
     }
 
-
+    /**
+     * Creates a new {@link GameStateEvent} of the given type.
+     *
+     * @param type The type of the state event
+     * @param game The game instance for this {@link GameEvent}
+     * @param <T> The type of the state event
+     * @return A new instance of the event
+     */
+    public static <T extends GameStateEvent> T createState(Class<T> type, Game game) {
+        Map<String, Object> values = Maps.newHashMapWithExpectedSize(1);
+        values.put("game", game);
+        return SpongeEventFactoryUtils.createEventImpl(type, values);
+    }
 
 }

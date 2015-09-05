@@ -236,23 +236,11 @@ import java.util.Map;
 
 /**
  * Generates Sponge event implementations.
+ * This class should only ever contain generated code.
  */
 public final class SpongeEventFactory {
-    private SpongeEventFactory() {
-    }
 
-    /**
-     * Creates a new {@link GameStateEvent} of the given type.
-     * 
-     * @param type The type of the state event
-     * @param game The game instance for this {@link GameEvent}
-     * @param <T> The type of the state event
-     * @return A new instance of the event
-     */
-    public static <T extends GameStateEvent>T createState(Class<T> type, Game game) {
-        Map<String, Object> values = Maps.newHashMapWithExpectedSize(1);
-        values.put("game", game);
-        return SpongeEventFactoryUtils.createEventImpl(type, values);
+    private SpongeEventFactory() {
     }
 
     /**

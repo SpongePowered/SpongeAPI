@@ -28,11 +28,18 @@ import com.google.common.base.Function;
 
 import java.util.Map;
 
+import javax.annotation.Nonnull;
+
 /**
  * Generates a new instance of an event using a given map of parameters.
  *
  * @param <E> The type of event
  */
 public interface EventFactory<E> extends Function<Map<String, Object>, E> {
+
+    // Override to change nullability contract
+    @Nonnull
+    @Override
+    E apply(@Nonnull Map<String, Object> input);
 
 }
