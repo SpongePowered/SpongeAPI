@@ -54,6 +54,7 @@ public final class Texts {
 
     private static TextFactory factory = null;
     static final Text.Literal EMPTY = new Text.Literal();
+    static final TextFormat EMPTY_FORMAT = new TextFormat();
 
     private Texts() {
     }
@@ -146,7 +147,7 @@ public final class Texts {
      */
     public static Text of(Object... objects) {
         TextBuilder builder = builder();
-        TextFormat format = new TextFormat();
+        TextFormat format = EMPTY_FORMAT;
         HoverAction<?> hoverAction = null;
         ClickAction<?> clickAction = null;
         ShiftClickAction<?> shiftClickAction = null;
