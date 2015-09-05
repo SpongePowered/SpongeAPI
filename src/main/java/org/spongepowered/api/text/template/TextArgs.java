@@ -25,6 +25,15 @@ public final class TextArgs {
         };
     }
 
+    public static <T> TextArg<T> always(final Text text) {
+        return new TextArg<T>() {
+            @Override
+            public Text create(T value) {
+                return text;
+            }
+        };
+    }
+
     public static <T> TextArg<T> function(final Function<T, Text> function) {
         return new TextArg<T>() {
             @Override
@@ -83,6 +92,20 @@ public final class TextArgs {
 
     public static <E> TextArg<Iterable<E>> iterable(final TextArg<E> singleArg) {
         return iterable(singleArg, DEFAULT_SEPARATOR);
+    }
+
+    public static <T> TextArg<T> fallback(final TextArg<T> thatArg, final TextArg<T> fallbackArg) {
+        return new TextArg<T>() {
+            @Override
+            public Text create(T value) {
+                Text result = thatArg.create(value);
+                if (result.isEmpty()) {
+                    return fallbackArg.create(value);
+                } else {
+                    return result;
+                }
+            }
+        };
     }
 
     public static <T> TextArg<T> fallback(final TextArg<T> thatArg, final Text fallback) {
