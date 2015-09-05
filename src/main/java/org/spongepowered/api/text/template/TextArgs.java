@@ -1,189 +1,43 @@
 package org.spongepowered.api.text.template;
 
-import com.google.common.base.Function;
-import com.google.common.base.Optional;
-import com.google.common.base.Preconditions;
-import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.ValueContainer;
-import org.spongepowered.api.data.value.mutable.CompositeValueStore;
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.TextBuilder;
-import org.spongepowered.api.text.Texts;
-import org.spongepowered.api.text.translation.Translatable;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.Iterator;
+public class TextArgs {
 
-public final class TextArgs {
+    private final ImmutableList.Builder<?> positionedArgsBuilder;
+    private ImmutableList<?> positionedArgs = null;
+    private final ImmutableMap.Builder<String, ?> namedArgsBuilder;
+    private  ImmutableMap<String, ?> namedArgs = null;
 
-    public static Text DEFAULT_SEPARATOR = Texts.of(", ");
-
-    public static TextArg<Text> identity() {
-        return new TextArg<Text>() {
-            @Override
-            public Text create(Text value) {
-                return value;
-            }
-        };
+    TextArgs(ImmutableList.Builder<?> positionedArgs, ImmutableMap.Builder<String, ?> namedArgs) {
+        this.positionedArgsBuilder = positionedArgs;
+        this.namedArgsBuilder = namedArgs;
     }
 
-    public static <T> TextArg<T> always(final Text text) {
-        return new TextArg<T>() {
-            @Override
-            public Text create(T value) {
-                return text;
-            }
-        };
+    public TextArgs add(Object arg) {
+        return new TextArgs(positionedArgsBuilder, namedArgsBuilder);
     }
 
-    public static <T> TextArg<T> function(final Function<T, Text> function) {
-        return new TextArg<T>() {
-            @Override
-            public Text create(T value) {
-                return Preconditions.checkNotNull(function.apply(value));
-            }
-        };
+    public TextArgs with(String name, Object arg) {
+        return new TextArgs(positionedArgsBuilder, namedArgsBuilder);
     }
 
-    public static <E> TextArg<Optional<E>> optional(final TextArg<E> singleArg) {
-        return new TextArg<Optional<E>>() {
-            @Override
-            public Text create(Optional<E> value) {
-                if (value.isPresent()) {
-                    return singleArg.create(value.get());
-                } else {
-                    return Texts.of();
-                }
-            }
-        };
+    public Object getPositionedArg(int position) throws IndexOutOfBoundsException {
+        if (positionedArgs == null) {
+            positionedArgs = positionedArgsBuilder.build();
+        }
+        return positionedArgs.get(position);
     }
 
-    public static <E> TextArg<Iterator<E>> iterator(final TextArg<E> singleArg, final Text separator) {
-        return new TextArg<Iterator<E>>() {
-            @Override
-            public Text create(Iterator<E> iterator) {
-                TextBuilder builder = Texts.builder();
-                boolean first = true;
-                while (iterator.hasNext()) {
-                    Text next = singleArg.create(iterator.next());
-                    if (!next.isEmpty()) {
-                        if (!first) {
-                            builder.append(separator);
-                        }
-                        first = false;
-                        builder.append(next);
-                    }
-                }
-                return builder.build();
-            }
-        };
-    }
-
-    public static <E> TextArg<Iterator<E>> iterator(final TextArg<E> singleArg) {
-        return iterator(singleArg, DEFAULT_SEPARATOR);
-    }
-
-    public static <E> TextArg<Iterable<E>> iterable(final TextArg<E> singleArg, final Text separator) {
-        return new TextArg<Iterable<E>>() {
-            @Override
-            public Text create(Iterable<E> value) {
-                return iterator(singleArg, separator).create(value.iterator());
-            }
-        };
-    }
-
-    public static <E> TextArg<Iterable<E>> iterable(final TextArg<E> singleArg) {
-        return iterable(singleArg, DEFAULT_SEPARATOR);
-    }
-
-    public static <T> TextArg<T> fallback(final TextArg<T> thatArg, final TextArg<T> fallbackArg) {
-        return new TextArg<T>() {
-            @Override
-            public Text create(T value) {
-                Text result = thatArg.create(value);
-                if (result.isEmpty()) {
-                    return fallbackArg.create(value);
-                } else {
-                    return result;
-                }
-            }
-        };
-    }
-
-    public static <T> TextArg<T> fallback(final TextArg<T> thatArg, final Text fallback) {
-        return new TextArg<T>() {
-            @Override
-            public Text create(T value) {
-                Text result = thatArg.create(value);
-                if (result.isEmpty()) {
-                    return fallback;
-                } else {
-                    return result;
-                }
-            }
-        };
-    }
-
-    public static <T extends Translatable> TextArg<T> translatable() {
-        return new TextArg<T>() {
-            @Override
-            public Text create(T value) {
-                return Texts.of(value);
-            }
-        };
-    }
-
-    public static TextArg<Player> playerDisplayName() {
-        return key(Keys.DISPLAY_NAME);
-    }
-
-    public static <C extends CompositeValueStore<?, ?>> TextArg<C> key(
-        final Key<? extends BaseValue<Text>> key
-    ) {
-        return new TextArg<C>() {
-            @Override
-            public Text create(C value) {
-                return value.get(key).or(Texts.of());
-            }
-        };
-    }
-
-    // collectionKey(Keys.SIGN_LINES, iterable(identity()));
-    public static <C extends CompositeValueStore<C, ?>, L extends Collection<Text>> TextArg<C> collectionKey(
-        final Key<? extends BaseValue<L>> key, final TextArg<? super L> join
-    ) {
-        return new TextArg<C>() {
-            @Override
-            public Text create(C value) {
-                Optional<L> possibleColl = value.get(key);
-                if (possibleColl.isPresent()) {
-                    return join.create(possibleColl.get());
-                } else {
-                    return Texts.of();
-                }
-            }
-        };
-    }
-
-    // optionalKey(Keys.LAST_COMMAND_OUTPUT);
-    public static <C extends CompositeValueStore<C, ? extends ValueContainer<?>>> TextArg<C> optionalKey(
-        final Key<? extends BaseValue<Optional<Text>>> key
-    ) {
-        return new TextArg<C>() {
-            @Override
-            public Text create(C value) {
-                Optional<Text> possibleColl = value.getOrElse(key, Optional.<Text>absent());
-                if (possibleColl.isPresent()) {
-                    return possibleColl.get();
-                } else {
-                    return Texts.of();
-                }
-            }
-        };
+    public Object getNamedArg(String name) throws IllegalArgumentException {
+        if (namedArgs == null) {
+            namedArgs = namedArgsBuilder.build();
+        }
+        if (namedArgs.containsKey(name)) {
+            throw new IllegalArgumentException("Named arg " + name + " not found");
+        }
+        return namedArgs.get(name);
     }
 
 }
