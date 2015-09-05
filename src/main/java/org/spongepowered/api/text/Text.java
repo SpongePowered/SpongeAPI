@@ -200,6 +200,8 @@ public abstract class Text {
      */
     public abstract TextBuilder builder();
 
+    public abstract boolean isEmpty();
+
     @Override
     public boolean equals(@Nullable Object o) {
         if (this == o) {
@@ -282,6 +284,12 @@ public abstract class Text {
         @Override
         public TextBuilder.Literal builder() {
             return new TextBuilder.Literal(this);
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return content.equals("") && children.isEmpty() && !clickAction.isPresent() && !hoverAction.isPresent() &&
+                !shiftClickAction.isPresent();
         }
 
         @Override
@@ -376,6 +384,11 @@ public abstract class Text {
         }
 
         @Override
+        public boolean isEmpty() {
+            return false;
+        }
+
+        @Override
         public boolean equals(@Nullable Object o) {
             if (this == o) {
                 return true;
@@ -453,6 +466,11 @@ public abstract class Text {
         @Override
         public TextBuilder.Selector builder() {
             return new TextBuilder.Selector(this);
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return false;
         }
 
         @Override
@@ -545,6 +563,11 @@ public abstract class Text {
         @Override
         public TextBuilder.Score builder() {
             return new TextBuilder.Score(this);
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return false;
         }
 
         @Override

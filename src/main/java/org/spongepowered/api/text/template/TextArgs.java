@@ -14,11 +14,11 @@ public final class TextArgs {
 
     public static Text DEFAULT_SEPARATOR = Texts.of(", ");
 
-    public static <T extends Text> TextArg<T> identity() {
-        return new TextArg<T>() {
+    public static TextArg<Text> identity() {
+        return new TextArg<Text>() {
             @Override
-            public Optional<? extends Text> create(T value) {
-                return Optional.of(value);
+            public Text create(Text value) {
+                return value;
             }
         };
     }
@@ -26,11 +26,11 @@ public final class TextArgs {
     public static <E> TextArg<Optional<E>> optional(final TextArg<E> singleArg) {
         return new TextArg<Optional<E>>() {
             @Override
-            public Optional<? extends Text> create(Optional<E> value) {
+            public Text create(Optional<E> value) {
                 if (value.isPresent()) {
                     return singleArg.create(value.get());
                 } else {
-                    return Optional.absent();
+                    return Texts.of();
                 }
             }
         };
@@ -39,20 +39,20 @@ public final class TextArgs {
     public static <E> TextArg<Iterator<E>> iterator(final TextArg<E> singleArg, final Text separator) {
         return new TextArg<Iterator<E>>() {
             @Override
-            public Optional<? extends Text> create(Iterator<E> iterator) {
+            public Text create(Iterator<E> iterator) {
                 TextBuilder builder = Texts.builder();
                 boolean first = true;
                 while (iterator.hasNext()) {
-                    Optional<? extends Text> textOpt = singleArg.create(iterator.next());
-                    if (textOpt.isPresent()) {
+                    Text next = singleArg.create(iterator.next());
+                    if (!next.isEmpty()) {
                         if (!first) {
                             builder.append(separator);
                         }
                         first = false;
-                        builder.append(textOpt.get());
+                        builder.append(next);
                     }
                 }
-                return Optional.of(builder.build());
+                return builder.build();
             }
         };
     }
@@ -64,7 +64,7 @@ public final class TextArgs {
     public static <E> TextArg<Iterable<E>> iterable(final TextArg<E> singleArg, final Text separator) {
         return new TextArg<Iterable<E>>() {
             @Override
-            public Optional<? extends Text> create(Iterable<E> value) {
+            public Text create(Iterable<E> value) {
                 return iterator(singleArg, separator).create(value.iterator());
             }
         };
@@ -74,11 +74,25 @@ public final class TextArgs {
         return iterable(singleArg, DEFAULT_SEPARATOR);
     }
 
+    public static <T> TextArg<T> fallback(final TextArg<T> thatArg, final Text fallback) {
+        return new TextArg<T>() {
+            @Override
+            public Text create(T value) {
+                Text result = thatArg.create(value);
+                if (result.isEmpty()) {
+                    return fallback;
+                } else {
+                    return result;
+                }
+            }
+        };
+    }
+
     public static <T extends Translatable> TextArg<T> translatable() {
         return new TextArg<T>() {
             @Override
-            public Optional<? extends Text> create(T value) {
-                return Optional.of(Texts.of(value));
+            public Text create(T value) {
+                return Texts.of(value);
             }
         };
     }
@@ -86,8 +100,8 @@ public final class TextArgs {
     public static TextArg<Player> playerDisplayName() {
         return new TextArg<Player>() {
             @Override
-            public Optional<? extends Text> create(Player player) {
-                return player.get(Keys.DISPLAY_NAME);
+            public Text create(Player player) {
+                return player.get(Keys.DISPLAY_NAME).or(Texts.of());
             }
         };
     }
