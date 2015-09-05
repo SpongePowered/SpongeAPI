@@ -7201,13 +7201,17 @@ public final class SpongeEventFactory {
      * 
      * @param connection The connection
      * @param game The game
+     * @param message The message
+     * @param originalMessage The original message
      * @param profile The profile
      * @return A new auth client connection event
      */
-    public static ClientConnectionEvent.Auth createClientConnectionEventAuth(RemoteConnection connection, Game game, GameProfile profile) {
+    public static ClientConnectionEvent.Auth createClientConnectionEventAuth(RemoteConnection connection, Game game, Text message, Text originalMessage, GameProfile profile) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("connection", connection);
         values.put("game", game);
+        values.put("message", message);
+        values.put("originalMessage", originalMessage);
         values.put("profile", profile);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Auth.class, values);
     }
