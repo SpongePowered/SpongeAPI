@@ -3,8 +3,6 @@ package org.spongepowered.api.text.template;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Iterables;
-import com.sun.tools.internal.ws.api.wsdl.TWSDLExtensible;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.BaseValue;
