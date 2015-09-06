@@ -62,7 +62,7 @@ public interface ClientConnectionEvent extends GameEvent, ConnectionEvent {
      *
      * <p>Note: This event is fired before #Login.</p>
      */
-    interface Auth extends ClientConnectionEvent, MessageEvent, Cancellable {}
+    interface Auth extends ClientConnectionEvent, MessageSinkEvent, Cancellable {}
 
     /**
      * Called after the client authenticates and attempts to login to the
