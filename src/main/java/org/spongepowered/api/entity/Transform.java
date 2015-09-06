@@ -244,7 +244,7 @@ public interface Transform<E extends Extent> {
          * @param extent The extent
          * @return This builder for chained calls
          */
-        Builder<E> withExtent(E extent);
+        Builder<E> extent(E extent);
 
         /**
          * Sets the position of this transform.
@@ -252,7 +252,7 @@ public interface Transform<E extends Extent> {
          * @param position The position
          * @return This builder for chained calls
          */
-        Builder<E> withPosition(Vector3d position);
+        Builder<E> position(Vector3d position);
 
         /**
          * Sets the rotation of this transform.
@@ -260,7 +260,7 @@ public interface Transform<E extends Extent> {
          * @param rotation The rotation
          * @return This builder for chained calls
          */
-        Builder<E> withRotation(Vector3d rotation);
+        Builder<E> rotation(Vector3d rotation);
 
         /**
          * Sets the rotation of this transform.
@@ -268,7 +268,7 @@ public interface Transform<E extends Extent> {
          * @param rotation The extent
          * @return This builder for chained calls
          */
-        Builder<E> withRotation(Quaterniond rotation);
+        Builder<E> rotation(Quaterniond rotation);
 
         /**
          * Sets the scale of this transform.
@@ -276,7 +276,7 @@ public interface Transform<E extends Extent> {
          * @param scale The scale
          * @return This builder for chained calls
          */
-        Builder<E> withScale(Vector3d scale);
+        Builder<E> scale(Vector3d scale);
 
         /**
          * Creates a new transform from the configured builder.
