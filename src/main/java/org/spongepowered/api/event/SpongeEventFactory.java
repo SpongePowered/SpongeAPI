@@ -3073,6 +3073,24 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.InteractInventoryEvent.Move}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param targetInventory The target inventory
+     * @return A new move interact inventory event
+     */
+    public static InteractInventoryEvent.Move createInteractInventoryEventMove(Game game, Cause cause, Inventory targetInventory) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("targetInventory", targetInventory);
+        return SpongeEventFactoryUtils.createEventImpl(InteractInventoryEvent.Move.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.PickUpItemEvent}.
      * 
      * @param game The game

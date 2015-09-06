@@ -32,5 +32,7 @@ public interface InteractInventoryEvent extends TargetInventoryEvent, CauseTrack
 
     interface Close extends InteractInventoryEvent {}
 
+    interface Move extends InteractInventoryEvent {}
+
     interface Drag extends InteractInventoryEvent {}
 }
