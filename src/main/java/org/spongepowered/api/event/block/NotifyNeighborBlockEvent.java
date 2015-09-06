@@ -84,11 +84,11 @@ public interface NotifyNeighborBlockEvent extends GameEvent, Cancellable, CauseT
     interface Spread extends NotifyNeighborBlockEvent {
 
         /**
-         * Gets the {@link BlockState} that is being spread.
+         * Gets the {@link BlockSnapshot} that is being spread.
          *
-         * @return The BlockState
+         * @return The BlockSnapshot
          */
-        BlockState getSpreadingBlock();
+        BlockSnapshot getSpreadingSnapshot();
 
     }
 

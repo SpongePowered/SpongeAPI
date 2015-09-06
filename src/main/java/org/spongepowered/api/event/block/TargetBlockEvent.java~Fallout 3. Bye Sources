@@ -22,11 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tileentity;
+package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.tileentity.carrier.Furnace;
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.event.GameEvent;
 
-public interface FurnaceEvent extends GameEvent {
-    Furnace getFurnace();
+public interface TargetBlockEvent extends GameEvent {
+
+    /**
+     * @return The BlockSnapshot
+     */
+    BlockSnapshot getBlockSnapshot();
 }

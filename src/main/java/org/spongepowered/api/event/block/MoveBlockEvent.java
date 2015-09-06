@@ -24,14 +24,8 @@
  */
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.world.Location;
-
 /**
- * Called when a {@link BlockState} moves another {@link BlockState} from one {@link Location} to another.
- *
- * TODO This event needs work
+ * Called when a block is moved
  */
 public interface MoveBlockEvent extends ChangeBlockEvent {
-
 }

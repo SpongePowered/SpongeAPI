@@ -27,149 +27,220 @@ package org.spongepowered.api.event.server.query;
 import org.spongepowered.api.event.Event;
 
 import java.net.InetSocketAddress;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Called when the server is queried through the Query protocol.
  */
 public interface QueryServerEvent extends Event {
 
-    /**
-     * Gets the MOTD to respond with.
-     *
-     * <p>By default, this is the server's current MOTD</p>
-     *
-     * @return The MOTD to respond with.
-     */
-    String getMotd();
+    interface Basic extends QueryServerEvent {
 
-    /**
-     * Sets the MOTD to respond with.
-     *
-     * <p>If setting the string causes the message to go over the
-     * maximum size, the message will be automatically truncated.</p>
-     *
-     * @param motd The MOTD to respond with
-     */
-    void setMotd(String motd);
+        /**
+         * Gets the MOTD to respond with.
+         *
+         * <p>By default, this is the server's current MOTD</p>
+         *
+         * @return The MOTD to respond with.
+         */
+        String getMotd();
 
-    /**
-     * Gets the GameType to respond with.
-     *
-     * <p>By default, this is <code>SMP</code>.
-     *
-     * If setting the string causes the message to go over the
-     * maximum size, the message will be automatically truncated.</p>
-     *
-     * @return The GameType to respond with
-     */
-    String getGameType();
+        /**
+         * Sets the MOTD to respond with.
+         *
+         * <p>If setting the string causes the message to go over the
+         * maximum size, the message will be automatically truncated.</p>
+         *
+         * @param motd The MOTD to respond with
+         */
+        void setMotd(String motd);
 
-    /**
-     * Sets the GameType to respond with.
-     *
-     * <p>If setting the string causes the message to go over the
-     * maximum size, the message will be automatically truncated.</p>
-     *
-     * @param gameType The GameType to respond with
-     */
-    void setGameType(String gameType);
+        /**
+         * Gets the GameType to respond with.
+         *
+         * <p>By default, this is <code>SMP</code>.
+         *
+         * If setting the string causes the message to go over the
+         * maximum size, the message will be automatically truncated.</p>
+         *
+         * @return The GameType to respond with
+         */
+        String getGameType();
 
-    /**
-     * Gets the map (world) to respond with.
-     *
-     * <p>By default, this is the current world on the server.</p>
-     *
-     * @return The map to respond with
-     */
-    String getMap();
+        /**
+         * Sets the GameType to respond with.
+         *
+         * <p>If setting the string causes the message to go over the
+         * maximum size, the message will be automatically truncated.</p>
+         *
+         * @param gameType The GameType to respond with
+         */
+        void setGameType(String gameType);
 
-    /**
-     * Sets the map (world) to respond with.
-     *
-     * <p>If setting the string causes the message to go over the
-     * maximum size, the message will be automatically truncated.</p>
-     *
-     * @param map The map to respond with
-     */
-    void setMap(String map);
+        /**
+         * Gets the map (world) to respond with.
+         *
+         * <p>By default, this is the current world on the server.</p>
+         *
+         * @return The map to respond with
+         */
+        String getMap();
 
-    /**
-     * Gets the player count to respond with.
-     *
-     * <p>By default, this is the number of players present on the server.
-     *
-     * If setting the string causes the message to go over the
-     * maximum size, the message will be automatically truncated.</p>
-     *
-     * @return The player count to respond with
-     */
-    int getPlayerCount();
+        /**
+         * Sets the map (world) to respond with.
+         *
+         * <p>If setting the string causes the message to go over the
+         * maximum size, the message will be automatically truncated.</p>
+         *
+         * @param map The map to respond with
+         */
+        void setMap(String map);
 
-    /**
-     * Sets the player count to respond with.
-     *
-     * <p>If setting the int causes the message to go over the
-     * maximum size, the message will be automatically truncated.</p>
-     *
-     * @param playerCount The player count to respond with
-     */
-    void setPlayerCount(int playerCount);
+        /**
+         * Gets the player count to respond with.
+         *
+         * <p>By default, this is the number of players present on the server.
+         *
+         * If setting the string causes the message to go over the
+         * maximum size, the message will be automatically truncated.</p>
+         *
+         * @return The player count to respond with
+         */
+        int getPlayerCount();
 
-    /**
-     * Gets the max player count to respond with.
-     *
-     * <p>By default, this is the maximum number of players allowed on the server.</p>
-     *
-     * @return The max player count to respond with
-     */
-    int getMaxPlayerCount();
+        /**
+         * Sets the player count to respond with.
+         *
+         * <p>If setting the int causes the message to go over the
+         * maximum size, the message will be automatically truncated.</p>
+         *
+         * @param playerCount The player count to respond with
+         */
+        void setPlayerCount(int playerCount);
 
-    /**
-     * Sets the max player count to respond with.
-     *
-     * <p>If setting the int causes the message to go over the
-     * maximum size, the message will be automatically truncated.</p>
-     *
-     * @param maxPlayerCount The max player count to respond with
-     */
-    void setMaxPlayerCount(int maxPlayerCount);
+        /**
+         * Gets the max player count to respond with.
+         *
+         * <p>By default, this is the maximum number of players allowed on the server.</p>
+         *
+         * @return The max player count to respond with
+         */
+        int getMaxPlayerCount();
 
-    /**
-     * Gets the address to respond with.
-     *
-     * <p>By default, this is the address the server is listening on.</p>
-     *
-     * @return The address to respond with
-     */
-    InetSocketAddress getAddress();
+        /**
+         * Sets the max player count to respond with.
+         *
+         * <p>If setting the int causes the message to go over the
+         * maximum size, the message will be automatically truncated.</p>
+         *
+         * @param maxPlayerCount The max player count to respond with
+         */
+        void setMaxPlayerCount(int maxPlayerCount);
 
-    /**
-     * Sets the address to respond with.
-     *
-     * @param address The address to respond with
-     */
-    void setAddress(InetSocketAddress address);
+        /**
+         * Gets the address to respond with.
+         *
+         * <p>By default, this is the address the server is listening on.</p>
+         *
+         * @return The address to respond with
+         */
+        InetSocketAddress getAddress();
 
-    /**
-     * Gets the current size of the data to respond with.
-     *
-     * <p>This value is implementation-defined - it is only meaningful when
-     * compared with {@link #getMaxSize()}.</p>
-     *
-     * @return The current size of the data to respond with
-     */
-    int getSize();
+        /**
+         * Sets the address to respond with.
+         *
+         * @param address The address to respond with
+         */
+        void setAddress(InetSocketAddress address);
 
-    /**
-     * Gets the maximum size of the data to respond with.
-     *
-     * <p>If the size of the data is greater than the returned value,
-     * it will be automatically truncated.
-     *
-     * This value is implementation-defined - it is only meaningful when
-     * compared with {@link #getSize()} ()}.</p>
-     *
-     * @return The maximum size of the data to respond with
-     */
-    int getMaxSize();
+        /**
+         * Gets the current size of the data to respond with.
+         *
+         * <p>This value is implementation-defined - it is only meaningful when
+         * compared with {@link #getMaxSize()}.</p>
+         *
+         * @return The current size of the data to respond with
+         */
+        int getSize();
+
+        /**
+         * Gets the maximum size of the data to respond with.
+         *
+         * <p>If the size of the data is greater than the returned value,
+         * it will be automatically truncated.
+         *
+         * This value is implementation-defined - it is only meaningful when
+         * compared with {@link #getSize()} ()}.</p>
+         *
+         * @return The maximum size of the data to respond with
+         */
+        int getMaxSize();
+    }
+
+    interface Full extends Basic {
+
+        /**
+         * Gets the GameId to respond with.
+         *
+         * <p>This is currently hardcoded to <code>MINECRAFT</code>.</p>
+         *
+         * @return The GameId to respond with.
+         */
+        String getGameId();
+
+        /**
+         * Gets the version to respond with.
+         *
+         * <p>By default, this is the server's Minecraft version (e.g 1.8.1).</p>
+         *
+         * @return The version to respond with
+         */
+        String getVersion();
+
+        /**
+         * Sets the version to respond with.
+         *
+         * <p>If setting the string causes the message to go over the
+         * maximum size, the message will be automatically truncated.</p>
+         *
+         * @param version The version to respond with
+         */
+        void setVersion(String version);
+
+        /**
+         * Gets the list of plugins to respond with.
+         *
+         * @return The list of plugins to respond with
+         */
+        String getPlugins();
+
+        /**
+         * Sets the list of plugins to respond with.
+         *
+         * <p>If setting the string causes the message to go over the
+         * maximum size, the message will be automatically truncated.</p>
+         *
+         * @param plugins The list of plugins to respond with
+         */
+        void setPlugins(String plugins);
+
+        /**
+         * Gets the map of custom keys and values to respond with.
+         *
+         * <p>If settings any of the keys or values causes the message
+         * to go oer the maximum size, the message will be automatically
+         * truncated.</p>
+         *
+         * @return The map of custom keys and values to respond with
+         */
+        Map<String, String> getCustomValuesMap();
+
+        /**
+         * Gets the list of player names to respond with.
+         *
+         * @return The list of player names to respond with
+         */
+        List<String> getPlayers();
+    }
 }

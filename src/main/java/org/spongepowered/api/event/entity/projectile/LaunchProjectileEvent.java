@@ -24,9 +24,7 @@
  */
 package org.spongepowered.api.event.entity.projectile;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 
@@ -34,15 +32,5 @@ import org.spongepowered.api.event.cause.CauseTracked;
  * Called when a {@link Projectile} is launched.
  */
 public interface LaunchProjectileEvent extends TargetProjectileEvent, Cancellable, CauseTracked {
-
-    /**
-     * Gets the source that shot the projectile.
-     *
-     * <p>Projectiles may be launched for various reasons and may not always
-     * have a link to the source.</p>
-     *
-     * @return The projectile source, if available
-     */
-    Optional<ProjectileSource> getSource();
 
 }

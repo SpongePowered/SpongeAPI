@@ -22,5 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.event.rcon;
+package org.spongepowered.api.event.inventory;
+
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
+import org.spongepowered.api.item.recipe.Recipe;
+
+/**
+ * Fired when {@link ItemStack}s are crafted from a {@link Recipe} into a {@link CraftingInventory}.
+ */
+public interface CraftItemEvent extends AffectItemStackEvent, Cancellable, CauseTracked {
+
+    /**
+     * @return The crafting inventory
+     */
+    @Override
+    CraftingInventory getTargetInventory();
+
+    /**
+     * @return The {@link Recipe}
+     */
+    Recipe getRecipe();
+
+}

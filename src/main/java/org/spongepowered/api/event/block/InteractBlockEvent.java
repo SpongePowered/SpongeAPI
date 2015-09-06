@@ -45,12 +45,12 @@ public interface InteractBlockEvent extends InteractEvent, TargetBlockEvent {
     Direction getTargetSide();
 
     /**
-     * An event where a block is being "used".
-     */
-    interface Use extends InteractBlockEvent { }
-
-    /**
      * An event where a block is being "attacked".
      */
-    interface Attack extends InteractBlockEvent { }
+    interface Attack extends InteractBlockEvent {}
+
+    /**
+     * An event where a block is being "used".
+     */
+    interface Use extends InteractBlockEvent {}
 }

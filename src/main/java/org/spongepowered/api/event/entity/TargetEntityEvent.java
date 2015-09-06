@@ -28,8 +28,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.GameEvent;
 
 /**
- * An event where an unknown action is being performed on a targeted
- * {@link Entity}.
+ * Base event for when a {@link Entity} is a target
  */
 public interface TargetEntityEvent extends GameEvent {
 

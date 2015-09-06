@@ -33,7 +33,7 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.entity.living.human.TargetHumanEvent;
 import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
-import org.spongepowered.api.event.inventory.InventoryEvent;
+import org.spongepowered.api.event.inventory.TargetInventoryEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -50,7 +50,7 @@ import org.spongepowered.api.item.inventory.Slot;
  * that a change to the suggested {@link ItemStack}, the use of the
  * {@link ItemStackTransaction} is recommended.
  */
-public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, InventoryEvent, Cancellable {
+public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInventoryEvent, Cancellable {
 
     /**
      * Gets the previously equipped {@link ItemStack} as an
@@ -73,7 +73,7 @@ public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, Inventory
     Optional<ItemStackTransaction> getItemStack();
 
     @Override
-    Slot getInventory();
+    Slot getTargetInventory();
 
     /**
      * An event where a {@link Living} entity is targeted.

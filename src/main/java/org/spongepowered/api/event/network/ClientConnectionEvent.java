@@ -28,7 +28,6 @@ import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.event.action.ConnectionEvent;
 import org.spongepowered.api.event.action.MessageEvent;
 import org.spongepowered.api.event.command.MessageSinkEvent;
 import org.spongepowered.api.event.entity.DisplaceEntityEvent;
@@ -40,21 +39,7 @@ import org.spongepowered.api.world.World;
  * Represents an event fired during the login process.
  *
  */
-public interface ClientConnectionEvent extends GameEvent, ConnectionEvent {
-
-    /**
-     * Gets the {@link RemoteConnection} representing the client connection.
-     *
-     * @return The remote connection
-     */
-    RemoteConnection getConnection();
-
-    /**
-     * Gets the profile of the client attempting to connect.
-     *
-     * @return The client's profile
-     */
-    GameProfile getProfile();
+public interface ClientConnectionEvent extends GameEvent {
 
     /**
      * Called asynchronously when the client attempts to authenticate against
@@ -62,7 +47,21 @@ public interface ClientConnectionEvent extends GameEvent, ConnectionEvent {
      *
      * <p>Note: This event is fired before #Login.</p>
      */
-    interface Auth extends ClientConnectionEvent, MessageSinkEvent, Cancellable {}
+    interface Auth extends ClientConnectionEvent, MessageEvent, Cancellable {
+        /**
+         * Gets the {@link RemoteConnection} representing the client connection.
+         *
+         * @return The remote connection
+         */
+        RemoteConnection getConnection();
+
+        /**
+         * Gets the profile of the client attempting to connect.
+         *
+         * @return The client's profile
+         */
+        GameProfile getProfile();
+    }
 
     /**
      * Called after the client authenticates and attempts to login to the
@@ -70,7 +69,21 @@ public interface ClientConnectionEvent extends GameEvent, ConnectionEvent {
      *
      * <p>Note: This event is fired after #Auth and is NOT async.</p>
      */
-    interface Login extends ClientConnectionEvent, MessageSinkEvent, Cancellable {}
+    interface Login extends ClientConnectionEvent, MessageSinkEvent, Cancellable {
+        /**
+         * Gets the {@link RemoteConnection} representing the client connection.
+         *
+         * @return The remote connection
+         */
+        RemoteConnection getConnection();
+
+        /**
+         * Gets the profile of the client attempting to connect.
+         *
+         * @return The client's profile
+         */
+        GameProfile getProfile();
+    }
 
     /**
      * Called when a {@link Player} joins the game {@link World} for the first

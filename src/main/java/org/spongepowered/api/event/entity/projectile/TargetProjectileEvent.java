@@ -28,7 +28,7 @@ import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.event.entity.TargetEntityEvent;
 
 /**
- * Base event for all events with an {@link Projectile} as the source.
+ * Base event for all events with an {@link Projectile} as the target.
  */
 public interface TargetProjectileEvent extends TargetEntityEvent {
 

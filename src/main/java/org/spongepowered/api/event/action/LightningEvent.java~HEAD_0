@@ -22,13 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.rcon;
+package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.event.action.DisconnectEvent;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.block.ChangeBlockEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.entity.AffectEntityEvent;
 
-/**
- * This event is called when a rcon client disconnects from the server.
- */
-public interface RconDisconnectEvent extends RconEvent, DisconnectEvent {
+public interface LightningEvent extends GameEvent, CauseTracked {
 
+    interface Pre extends LightningEvent, Cancellable {}
+
+    interface Strike extends LightningEvent, AffectEntityEvent, ChangeBlockEvent {}
+
+    interface Post extends LightningEvent {}
 }

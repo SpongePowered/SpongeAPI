@@ -24,19 +24,38 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import org.spongepowered.api.event.GameEvent;
+import com.google.common.base.Predicate;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackTransaction;
+
+import java.util.List;
 
 /**
- * An InventoryEvent is a GameEvent that involves an {@link Inventory}.
+ * Fired when {@link ItemStack}s are generated into a {@link Inventory}
  */
-public interface InventoryEvent extends GameEvent {
+public interface AffectItemStackEvent extends TargetInventoryEvent, Cancellable, CauseTracked {
 
     /**
-     * Returns the Inventory involved in this event.
+     * Gets a list of the {@link ItemStackTransaction}s for this event. If a
+     * transaction is requested to be marked as "invalid",
+     * {@link ItemStackTransaction#setIsValid(boolean)} can be used.
      *
-     * @return The Inventory involved
+     * @return The unmodifiable list of transactions
      */
-    Inventory getInventory();
+    List<ItemStackTransaction> getTransactions();
+
+    /**
+     * Applies the provided {@link Predicate} to the {@link List} of
+     * {@link ItemStackTransaction}s from {@link #getTransactions()} such that
+     * any time that {@link Predicate#apply(Object)} returns <code>false</code>
+     * on a {@link ItemStackTransaction}, the {@link ItemStackTransaction} is
+     * marked as "invalid" and will not apply post event.
+     *
+     * @param predicate The predicate to use for filtering
+     */
+    void filter(Predicate<ItemStack> predicate);
 
 }

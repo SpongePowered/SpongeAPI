@@ -22,31 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.event.GameEvent;
 
-import java.util.List;
-
-/**
- * Fired when some inventory event causes multiple resulting items.
- *
- * <p>This is usually a smelt or brew.</p>
- */
-public interface BulkItemResultEvent extends InventoryEvent {
+public interface TargetBlockEvent extends GameEvent {
 
     /**
-     * Retrieves the results.
-     *
-     * @return The results
+     * @return The BlockSnapshot
      */
-    List<ItemStack> getResults();
-
-    /**
-     * Sets the results.
-     *
-     * @param results The new result
-     */
-    void setResults(List<ItemStack> results);
-
+    BlockSnapshot getBlockSnapshot();
 }

@@ -22,21 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.rcon;
+package org.spongepowered.api.event.inventory;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.command.source.RconSource;
+import org.spongepowered.api.event.cause.CauseTracked;
 
-/**
- * An event that is associated with an {@link RconSource}.
- */
-public interface RconEvent extends Cancellable, Event {
+public interface InteractInventoryEvent extends TargetInventoryEvent, CauseTracked {
+    interface Click extends InteractInventoryEvent, Cancellable {}
 
-    /**
-     * Gets the {@link RconSource} responsible for the event.
-     *
-     * @return The {@link RconSource} responsible for the event
-     */
-    RconSource getSource();
+    interface Close extends InteractInventoryEvent {}
+
+    interface Drag extends InteractInventoryEvent {}
 }

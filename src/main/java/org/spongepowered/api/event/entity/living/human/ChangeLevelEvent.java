@@ -25,13 +25,14 @@
 package org.spongepowered.api.event.entity.living.human;
 
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
 
 /**
  * Called when a human's level is changed.
  */
-public interface ChangeLevelEvent extends TargetHumanEvent, Cancellable, CauseTracked {
+public interface ChangeLevelEvent extends GameEvent, Cancellable, CauseTracked {
 
     /**
      * Gets the original level of the human.
@@ -57,7 +58,7 @@ public interface ChangeLevelEvent extends TargetHumanEvent, Cancellable, CauseTr
      */
     void setLevel(int level);
 
-    interface TargetPlayer extends ChangeLevelEvent, TargetPlayerEvent {
+    interface TargetHuman extends ChangeLevelEvent, TargetHumanEvent {}
 
-    }
+    interface TargetPlayer extends TargetHuman, TargetPlayerEvent {}
 }

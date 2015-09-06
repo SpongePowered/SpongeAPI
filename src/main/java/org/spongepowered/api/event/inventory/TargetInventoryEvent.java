@@ -24,11 +24,17 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.item.inventory.Inventory;
 
 /**
- * Fired when an item is brewed.
+ * Base event for all events with an {@link Inventory} as the target.
  */
-public interface BlockBrewEvent extends BlockInventoryEvent, ItemResultEvent, Cancellable {
+public interface TargetInventoryEvent extends GameEvent {
+
+    /**
+     * @return The target {@link Inventory}
+     */
+    Inventory getTargetInventory();
 
 }

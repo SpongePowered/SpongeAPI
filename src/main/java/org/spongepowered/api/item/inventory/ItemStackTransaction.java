@@ -107,7 +107,7 @@ public final class ItemStackTransaction {
      *
      * @param valid Whether this transaction is valid or not
      */
-    public void setValid(boolean valid) {
+    public void setIsValid(boolean valid) {
         this.valid = valid;
     }
 

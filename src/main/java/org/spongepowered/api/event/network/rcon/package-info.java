@@ -22,14 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
-
-import org.spongepowered.api.event.inventory.viewer.ViewerEvent;
-
-/**
- * Represents an event when a viewer has clicked inside an inventory.
- *
- * <p>Note that this event is incomplete.</p>
- */
-public interface InventoryClickEvent extends ViewerEvent {
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.event.network.rcon;

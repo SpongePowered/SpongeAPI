@@ -22,48 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory.viewer;
+package org.spongepowered.api.event.network.rcon;
 
-import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
-import org.spongepowered.api.item.recipe.Recipe;
-
-import java.util.List;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.command.source.RconSource;
 
 /**
- * Called when a {@link Viewer} crafts {@link ItemStack}s from their {@link CraftingInventory}.
+ * An event that is associated with an {@link RconSource}.
  */
-public interface ViewerCraftItemEvent extends ViewerEvent, Cancellable {
+public interface RconConnectionEvent extends Event, Cancellable {
 
     /**
-     * Retrieves the CraftingInventory involved with this event.
+     * Gets the {@link RconSource} responsible for the event.
      *
-     * @return The crafting inventory
+     * @return The {@link RconSource} responsible for the event
      */
-    CraftingInventory getInventory();
+    RconSource getSource();
 
-    /**
-     * Retrieves the recipe that has been crafted as a result of this event.
-     *
-     * @return The recipe
-     */
-    Recipe getRecipe();
+    interface Connect extends RconConnectionEvent {}
 
-    /**
-     * Gets the ItemStacks that are a result of this crafting event.
-     *
-     * @return The results
-     */
-    List<ItemStack> getResults();
-
-    /**
-     * Gets the types of the results of this crafting event.
-     *
-     * @return The result types
-     */
-    List<ItemType> getResultTypes();
-
+    interface Login extends RconConnectionEvent {}
 }

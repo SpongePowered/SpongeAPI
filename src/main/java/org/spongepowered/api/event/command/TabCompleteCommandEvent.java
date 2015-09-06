@@ -24,12 +24,21 @@
  */
 package org.spongepowered.api.event.command;
 
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.util.command.CommandSource;
+
 import java.util.List;
 
 /**
  * Event called when suggestions are requested by a command source.
  */
-public interface TabCompleteCommandEvent extends CommandSourceEvent {
+public interface TabCompleteCommandEvent extends GameEvent, Cancellable {
+
+    /**
+     * @return The CommandSource
+     */
+    CommandSource getSource();
 
     /**
      * Get the command as a string, without any sort of command prefix.

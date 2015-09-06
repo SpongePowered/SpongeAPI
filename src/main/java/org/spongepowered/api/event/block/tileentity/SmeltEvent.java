@@ -24,44 +24,45 @@
  */
 package org.spongepowered.api.event.block.tileentity;
 
-import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
-import org.spongepowered.api.event.inventory.BulkItemResultEvent;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.block.tileentity.carrier.Furnace;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.inventory.AffectItemStackEvent;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 import java.util.List;
 
-/**
- * An event when a {@link BrewingStand} freshly brews {@link ItemStack}s into new potions.
- */
-public interface BrewingStandBrewItemsEvent extends BrewingStandEvent, BulkItemResultEvent {
+public interface SmeltEvent extends TargetTileEntityEvent, CauseTracked {
+
+    @Override
+    Furnace getTargetTile();
 
     /**
-     * Gets the orignal {@link ItemStack}s that were being brewed.
-     *
-     * @return The original item stacks
+     * @return The ingredient
      */
-    List<ItemStack> getSourceItems();
+    ItemStackSnapshot getFuel();
 
-    /**
-     * Gets the fuel source being brewed into the source items.
-     *
-     * @return The fuel source being brewed into the source items
-     */
-    ItemStack getFuelSource();
+    interface Start extends SmeltEvent, AffectItemStackEvent, Cancellable {}
 
-    /**
-     * Gets the final brewed items.
-     *
-     * @return The resulting brewed items
-     */
-    List<ItemStack> getBrewedItems();
+    interface ConsumeFuel extends SmeltEvent, AffectItemStackEvent {}
 
-    /**
-     * Sets the final brewed items.
-     *
-     * <p>Note that the brewed items must not exceed the inventory size of the {@link BrewingStand}.</p>
-     *
-     * @param items The newly brewed items
-     */
-    void setBrewedItems(List<ItemStack> items);
+    interface Tick extends SmeltEvent, AffectItemStackEvent, Cancellable {}
+
+    interface Interrupt extends SmeltEvent {
+        /**
+         * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
+         * of the smelt.
+         * @return The smelt items
+         */
+        List<ItemStackSnapshot> getSmeltedItems();
+    }
+
+    interface Finish extends SmeltEvent {
+        /**
+         * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
+         * of the smelt.
+         * @return The smelt items
+         */
+        List<ItemStackSnapshot> getSmeltedItems();
+    }
 }

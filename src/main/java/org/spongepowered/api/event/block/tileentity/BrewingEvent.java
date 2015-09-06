@@ -24,41 +24,49 @@
  */
 package org.spongepowered.api.event.block.tileentity;
 
-import org.spongepowered.api.block.tileentity.carrier.Furnace;
+import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.inventory.ItemResultEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.inventory.AffectItemStackEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+
+import java.util.List;
 
 /**
- * An event that occurs when a {@link Furnace} smelt an item.
+ * Fires during the brewing process where {@link ItemStack}s are brewed into different {@link ItemStack}s
+ * based on an ingredient which is also an {@link ItemStack} within a {@link BrewingStand}.
  */
-public interface FurnaceSmeltItemEvent extends FurnaceEvent, ItemResultEvent, Cancellable {
+public interface BrewingEvent extends TargetTileEntityEvent, CauseTracked {
+
+    @Override
+    BrewingStand getTargetTile();
 
     /**
-     * Gets the freshly cooked {@link ItemStack}.
-     *
-     * <p>A {@link Furnace} cooks {@link ItemStack}s with fuel and produces
-     * new items.</p>
-     *
-     * @return The cooked item
+     * @return The ingredient
      */
-    ItemStack getCookedItem();
+    ItemStackSnapshot getIngredient();
 
-    /**
-     * Sets the cooked {@link ItemStack}.
-     *
-     * <p>A {@link Furnace} cooks {@link ItemStack}s with fuel and produces
-     * new items.</p>
-     *
-     * @param item The resulting cooked item
-     */
-    void setCookedItem(ItemStack item);
+    interface Start extends BrewingEvent, AffectItemStackEvent, Cancellable {}
 
-    /**
-     * Gets the source {@link ItemStack} that was cooked.
-     *
-     * @return The source item
-     */
-    ItemStack getSourceItem();
+    interface Tick extends BrewingEvent, AffectItemStackEvent, Cancellable {}
 
+    interface Interrupt extends BrewingEvent {
+        /**
+         * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
+         * of the brew.
+         * @return The brewed items
+         */
+        List<ItemStackSnapshot> getBrewedItemStacks();
+    }
+
+    interface Finish extends BrewingEvent {
+
+        /**
+         * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
+         * of the brew.
+         * @return The brewed items
+         */
+        List<ItemStackSnapshot> getBrewedItemStacks();
+    }
 }

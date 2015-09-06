@@ -128,7 +128,6 @@ public interface ClientPingServerEvent extends Event, Cancellable {
             @Override
             List<GameProfile> getProfiles();
         }
-
     }
 
 }
