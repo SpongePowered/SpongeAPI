@@ -26,6 +26,7 @@ package org.spongepowered.api.effect.potion;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -35,10 +36,18 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 public interface PotionEffectType extends CatalogType, Translatable {
 
     /**
-     * Gets whether this potion effect is applied
-     * instantly or over time.
+     * Gets whether this potion effect is applied instantly or over time.
      *
      * @return If applied instantly.
      */
     boolean isInstant();
+
+    /**
+     * Gets the {@link Translation} for this potion effect type as a potion
+     * name.
+     *
+     * @return The translation representing this effect as potion
+     */
+    Translation getPotionTranslation();
+
 }
