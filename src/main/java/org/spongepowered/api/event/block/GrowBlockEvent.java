@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.event.world.WorldEvent;
 import org.spongepowered.api.world.World;
 
 /**
@@ -40,10 +39,5 @@ import org.spongepowered.api.world.World;
  * </ul>
  */
 public interface GrowBlockEvent extends ChangeBlockEvent {
-
-    /**
-     * An event where the source is a {@link World}.
-     */
-    interface SourceWorld extends GrowBlockEvent, WorldEvent { }
 
 }

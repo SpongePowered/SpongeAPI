@@ -24,12 +24,11 @@
  */
 package org.spongepowered.api.event.server.channel;
 
-import org.spongepowered.api.event.plugin.PluginEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * Fired when a channel is registered.
  */
-public interface RegisterChannelEvent extends TargetChannelEvent {
+public interface RegisterChannelEvent extends TargetChannelEvent, CauseTracked {
 
-    interface SourcePlugin extends RegisterChannelEvent, PluginEvent {}
 }

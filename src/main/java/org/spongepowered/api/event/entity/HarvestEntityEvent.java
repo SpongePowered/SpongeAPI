@@ -28,7 +28,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.action.ChangeExperienceEvent;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.entity.living.human.TargetHumanEvent;
@@ -38,7 +38,7 @@ import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
  * Called when an {@link Entity} has been killed and is being "harvested" (drops/etc). Happens
  * after {@link DestructEntityEvent}.
  */
-public interface HarvestEntityEvent extends TargetEntityEvent, ChangeExperienceEvent, CauseTracked {
+public interface HarvestEntityEvent extends TargetEntityEvent, ChangeEntityExperienceEvent, Cancellable, CauseTracked {
 
     /**
      * An event where the target is a {@link Living}.
@@ -100,5 +100,4 @@ public interface HarvestEntityEvent extends TargetEntityEvent, ChangeExperienceE
         void setLevel(int level);
 
     }
-
 }

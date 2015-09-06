@@ -26,19 +26,10 @@ package org.spongepowered.api.event.block;
 
 import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.event.action.ChangeExperienceEvent;
-import org.spongepowered.api.event.entity.EntityEvent;
-import org.spongepowered.api.event.entity.living.LivingEvent;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerEvent;
+import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 import java.util.Collection;
 
@@ -46,21 +37,7 @@ import java.util.Collection;
  * Base event for when a target {@link BlockState} at a {@link Location} is 
  * being harvested and one or more {@link ItemStack}(s) are dropped.
  */
-public interface HarvestBlockEvent extends GameEvent, ChangeExperienceEvent, Cancellable {
-
-    /**
-     * Gets the target {@link Location} being harvested.
-     *
-     * @return The location
-     */
-    Location<World> getTargetLocation();
-
-    /**
-     * Gets the target {@link BlockState} being harvested.
-     *
-     * @return The block state
-     */
-    BlockState getTargetBlock();
+public interface HarvestBlockEvent extends TargetBlockEvent, ChangeEntityExperienceEvent {
 
     /**
      * Gets a mutable copy of the original {@link Collection<ItemStack>} 
@@ -135,24 +112,5 @@ public interface HarvestBlockEvent extends GameEvent, ChangeExperienceEvent, Can
      * @param chance The chance
      */
     void setDropChance(float chance);
-
-    interface SourceBlock extends HarvestBlockEvent, BlockEvent { }
-
-    interface SourceEntity extends HarvestBlockEvent, EntityEvent { }
-
-    /**
-     * An event where the source is a {@link Living}.
-     */
-    interface SourceLiving extends SourceEntity, LivingEvent { }
-
-    /**
-     * An event where the source is a {@link Human}.
-     */
-    interface SourceHuman extends SourceLiving, HumanEvent { }
-
-    /**
-     * An event where the source is a {@link Player}.
-     */
-    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }

@@ -24,11 +24,12 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import org.spongepowered.api.event.block.BlockEvent;
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.event.GameEvent;
 
 /**
  * Represents an InventoryEvent that involves a Block as a carrier.
  */
-public interface BlockInventoryEvent extends BlockEvent, InventoryEvent {
-
+public interface BlockInventoryEvent extends GameEvent, InventoryEvent {
+    BlockSnapshot getBlockSnapshot();
 }

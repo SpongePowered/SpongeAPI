@@ -25,20 +25,12 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.World;
 
 /**
  * Base event for when a {@link World} is loaded.
  */
-public interface LoadWorldEvent extends GameEvent, CauseTracked, Cancellable {
-
-    /**
-     * Gets the target {@link World}.
-     *
-     * @return The target world
-     */
-    World getTargetWorld();
+public interface LoadWorldEvent extends TargetWorldEvent, Cancellable, CauseTracked {
 
 }

@@ -25,16 +25,18 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * Raised when an {@link Entity} is spawned. This usually follows the chain of
- * the various entity creation events: {@link PreCreateEntityEvent},
- * {@link ConstructEntityEvent}, and finally {@link SpawnEntityEvent}.
+ * the various entity creation events: {@link ConstructEntityEvent.Pre},
+ * {@link ConstructEntityEvent.Post}, and finally {@link SpawnEntityEvent}.
  * 
- * <p>Note: To determine the {@link Cause}, refer to package 
+ * <p>Note: To determine the {@link Cause}, refer to package
  * org.spongepowered.api.event.cause.entity.spawn.</p>
  */
-public interface SpawnEntityEvent extends TargetEntityEvent, CauseTracked {
+public interface SpawnEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
 
 }

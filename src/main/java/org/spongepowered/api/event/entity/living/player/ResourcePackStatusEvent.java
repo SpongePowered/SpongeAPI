@@ -25,13 +25,20 @@
 package org.spongepowered.api.event.entity.living.player;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.resourcepack.ResourcePack;
 
 /**
  * Called when a player notifies the server of the status of a resource pack
  * change request.
  */
-public interface PlayerResourcePackStatusEvent extends PlayerEvent {
+public interface ResourcePackStatusEvent extends GameEvent {
+
+    /**
+     * @return The player
+     */
+    Player getPlayer();
 
     /**
      * Gets the pack that this status corresponds to.

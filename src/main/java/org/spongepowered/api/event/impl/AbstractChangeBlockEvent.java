@@ -22,16 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.human;
+package org.spongepowered.api.event.impl;
 
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.event.entity.living.LivingEvent;
+import org.spongepowered.api.event.block.ChangeBlockEvent;
 
-/**
- * Base event for all events with an {@link Human} as the source.
- */
-public interface HumanEvent extends LivingEvent {
+public abstract class AbstractChangeBlockEvent extends AbstractEvent implements ChangeBlockEvent {
 
-    @Override
-    Human getSourceEntity();
 }

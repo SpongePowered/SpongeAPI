@@ -29,10 +29,6 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.EntityEvent;
-import org.spongepowered.api.event.entity.living.LivingEvent;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerEvent;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -40,16 +36,8 @@ import org.spongepowered.api.world.World;
  * An event where a portal is created. Usually, this happens after a
  * {@link ChangeBlockEvent} from any source.
  */
-public interface ConstructPortalEvent extends GameEvent, CauseTracked, Cancellable {
+public interface ConstructPortalEvent extends GameEvent, Cancellable, CauseTracked {
 
     Location<World> getPortalLocation();
-
-    interface SourceEntity extends ConstructPortalEvent, EntityEvent { }
-
-    interface SourceLiving extends SourceEntity, LivingEvent { }
-
-    interface SourceHuman extends SourceLiving, HumanEvent { }
-
-    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }

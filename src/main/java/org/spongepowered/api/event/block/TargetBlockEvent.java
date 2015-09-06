@@ -22,20 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.plugin;
+package org.spongepowered.api.event.block;
 
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.plugin.PluginContainer;
 
-/**
- * Base event where a {@link PluginContainer} is the source.
- */
-public interface PluginEvent extends GameEvent {
+public interface TargetBlockEvent extends GameEvent {
 
     /**
-     * Gets the {@link PluginContainer} who caused this event.
-     *
-     * @return The PluginContainer
+     * @return The BlockSnapshot
      */
-    PluginContainer getPlugin();
+    BlockSnapshot getBlockSnapshot();
 }

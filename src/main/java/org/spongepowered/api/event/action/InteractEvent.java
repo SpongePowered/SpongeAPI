@@ -33,7 +33,7 @@ import org.spongepowered.api.event.cause.CauseTracked;
 /**
  * Base event for all interactions.
  */
-public interface InteractEvent extends GameEvent, CauseTracked, Cancellable {
+public interface InteractEvent extends GameEvent, Cancellable, CauseTracked {
 
     /**
      * Gets the point of interaction where the interaction occurred as a

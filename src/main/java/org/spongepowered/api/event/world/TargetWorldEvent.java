@@ -22,30 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event;
+package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.eventgencore.annotation.SetField;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.world.World;
 
-/**
- * The abstract base class for {@link Cancellable}, used to prevent
- * the need to pass in 'cancelled' to the event factory.
- *
- * <p>This class was actually created because @Aaron1011 didn't
- * want to add yet another annotation for the event generator.
- */
-public abstract class AbstractCancellable extends AbstractEvent implements Cancellable {
+public interface TargetWorldEvent extends GameEvent {
 
-    @SetField
-    protected boolean cancelled;
-
-    @Override
-    public boolean isCancelled() {
-        return this.cancelled;
-    }
-
-    @Override
-    public void setCancelled(boolean cancelled) {
-        this.cancelled = true;
-    }
-
+    /**
+     * @return The target {@link World}
+     */
+    World getTargetWorld();
 }

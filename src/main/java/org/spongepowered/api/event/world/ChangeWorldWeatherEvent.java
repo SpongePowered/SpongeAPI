@@ -25,23 +25,20 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
 /**
  * Called when a {@link WeatherUniverse}'s {@link Weather} changes.
  */
-public interface ChangeWorldWeatherEvent extends GameEvent, CauseTracked, Cancellable {
+public interface ChangeWorldWeatherEvent extends TargetWorldEvent, Cancellable, CauseTracked {
 
     /**
-     * Gets the world that is targeted in this event.
-     *
-     * @return The world that is being targeted
+     * Gets the original {@link Weather} that the event is creating.
+     * @return The original Weather
      */
-    World getWorld();
+    Weather getOriginalWeather();
 
     /**
      * Gets the {@link Weather} that was happening before this event.
@@ -55,14 +52,20 @@ public interface ChangeWorldWeatherEvent extends GameEvent, CauseTracked, Cancel
      *
      * @return The Weather after this event is called
      */
-    Weather getResultingWeather();
+    Weather getWeather();
 
     /**
      * Sets what the new {@link Weather} should be with a random duration.
      *
      * @param weather The new Weather
      */
-    void setResultingWeather(Weather weather);
+    void setWeather(Weather weather);
+
+    /**
+     * Gets the original duration of {@link ChangeWorldWeatherEvent#getWeather()} that would run after event.
+     * @return The original duration
+     */
+    int getOriginalDuration();
 
     /**
      * Sets the duration of the {@link Weather} (in ticks).

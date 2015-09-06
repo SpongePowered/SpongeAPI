@@ -25,14 +25,12 @@
 package org.spongepowered.api.event.world.chunk;
 
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.world.WorldEvent;
 import org.spongepowered.api.world.Chunk;
 
 /**
  * Base event for anything targeting a {@link Chunk}.
  */
-public interface TargetChunkEvent extends GameEvent, CauseTracked {
+public interface TargetChunkEvent extends GameEvent {
 
     /**
      * Gets the {@link Chunk} being changed.
@@ -40,6 +38,4 @@ public interface TargetChunkEvent extends GameEvent, CauseTracked {
      * @return The Chunk
      */
     Chunk getTargetChunk();
-
-    interface SourceWorld extends TargetChunkEvent, WorldEvent { }
 }

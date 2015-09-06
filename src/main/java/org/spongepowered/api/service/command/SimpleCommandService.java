@@ -238,7 +238,8 @@ public class SimpleCommandService implements CommandService {
     @Override
     public CommandResult process(CommandSource source, String commandLine) {
         final String[] argSplit = commandLine.split(" ", 2);
-        final SendCommandEvent event = SpongeEventFactory.createSendCommandEvent(this.game, argSplit.length > 1 ? argSplit[1] : "", argSplit[0], CommandResult.empty(), source);
+        final SendCommandEvent event = SpongeEventFactory.createSendCommandEvent(this.game, argSplit.length > 1 ? argSplit[1] : "", argSplit[0],
+                CommandResult.empty(), source);
         this.game.getEventManager().post(event);
         if (event.isCancelled()) {
             return event.getResult();

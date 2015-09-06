@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.event.TristateResult;
 
@@ -33,28 +34,18 @@ import org.spongepowered.api.event.TristateResult;
  */
 public interface BreedEntityEvent extends InteractEntityEvent {
 
-    @Override
-    Ageable getTargetEntity();
-
     /**
      * Called when an {@link Entity} finds an {@link Entity} to mate with.
      * 
      * If {@link Result#ALLOW}, bypasses normal handling to force mate with
      * {@link Entity}.
      */
-    interface FindMate extends BreedEntityEvent, InteractEntityEvent.SourceEntity, TristateResult {
-
-        @Override
-        Ageable getSourceEntity();
-    }
+    interface FindMate extends BreedEntityEvent, InteractEntityEvent, TristateResult {}
 
     /**
      * Called when an {@link Entity} begins to breed with an {@link Entity}.
      */
-    interface Breed extends BreedEntityEvent, InteractEntityEvent.SourceEntity {
-
-        @Override
-        Ageable getSourceEntity();
+    interface Breed extends BreedEntityEvent, InteractEntityEvent {
 
         /**
          * Gets the offspring {@link Entity}.

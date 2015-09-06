@@ -25,13 +25,8 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
-import org.spongepowered.api.event.inventory.BlockInventoryEvent;
+import org.spongepowered.api.event.GameEvent;
 
-/**
- * An event related to a {@link BrewingStand}.
- */
-public interface BrewingStandEvent extends TileEntityEvent, BlockInventoryEvent {
-
-    @Override
-    BrewingStand getTile();
+public interface BrewingStandEvent extends GameEvent {
+    BrewingStand getBrewingStand();
 }

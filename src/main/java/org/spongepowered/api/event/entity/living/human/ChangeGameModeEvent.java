@@ -22,29 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world.chunk;
+package org.spongepowered.api.event.entity.living.human;
 
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.world.Chunk;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
 
 /**
- * Base event for all events with a source {@link Chunk}.
+ * Called when a {@link Human} changes {@link GameMode}.
  */
-public interface ChunkEvent extends GameEvent, CauseTracked {
+public interface ChangeGameModeEvent extends TargetHumanEvent, Cancellable, CauseTracked {
 
     /**
-     * Gets the source {@link Location}.
+     * Gets the original {@link GameMode} of the human.
      *
-     * @return The source Location
+     * @return The original {@link GameMode}.
      */
-    Location<Chunk> getSourceLocation();
+    GameMode getOriginalGameMode();
 
     /**
-     * Gets the source {@link Chunk}.
+     * Gets the new {@link GameMode} of the human.
      *
-     * @return The source Chunk
+     * @return The new {@link GameMode}.
      */
-    Chunk getSourceChunk();
+    GameMode getGameMode();
+
+    /**
+     * Sets the new {@link GameMode} of the human.
+     *
+     * @param gameMode The new {@link GameMode} value.
+     */
+    void setGameMode(GameMode gameMode);
+
+    interface TargetPlayer extends ChangeGameModeEvent, TargetPlayerEvent {
+
+    }
 }

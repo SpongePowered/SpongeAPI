@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import com.google.common.base.Function;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.cause.entity.health.HealthModifier;
 import org.spongepowered.api.event.cause.entity.health.HealthModifierBuilder;
@@ -40,7 +41,7 @@ import java.util.Map;
  * after a certain amount of "heal amount" the entity is destroyed. Similar to
  * the {@link InteractEntityEvent.Attack}, this event uses various modifiers
  */
-public interface HealEntityEvent extends TargetEntityEvent, CauseTracked {
+public interface HealEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
 
     /**
      * Gets the original amount to "heal" the targeted {@link Entity}.

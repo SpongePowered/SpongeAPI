@@ -24,13 +24,7 @@
  */
 package org.spongepowered.api.event.command;
 
-import org.spongepowered.api.block.tileentity.CommandBlock;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.action.MessageEvent;
-import org.spongepowered.api.event.block.tileentity.CommandBlockEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerEvent;
-import org.spongepowered.api.event.plugin.PluginEvent;
-import org.spongepowered.api.event.server.ServerEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.sink.MessageSink;
 import org.spongepowered.api.util.command.CommandSource;
@@ -61,60 +55,4 @@ public interface MessageSinkEvent extends MessageEvent {
      */
     void setSink(MessageSink sink);
 
-    interface SourceCommandSource extends MessageSinkEvent, CommandSourceEvent { }
-
-    interface SourceConsole extends SourceCommandSource, ServerEvent { }
-
-    interface SourceCommandBlock extends SourceCommandSource, CommandBlockEvent {
-        @Override
-        CommandBlock getSource();
-    }
-
-    interface SourcePlayer extends SourceCommandSource, PlayerEvent {
-        @Override
-        Player getSource();
-
-        /**
-         * The placeholder key that will be replaced with the player's name
-         */
-        String PLACEHOLDER_NAME = "name";
-
-        /**
-         * The placeholder key that will be replaced with the output of {@link #getUnformattedMessage()}
-         */
-        String PLACEHOLDER_MESSAGE = "message";
-
-        /**
-         * Returns the message as the player provided it before the calling of this event,
-         * without being formatted with the player's name or any other decorations.
-         *
-         * @return The unformatted message
-         */
-        Text getOriginalUnformattedMessage();
-
-        /**
-         * Returns the message as the player provided it, without being formatted with the player's name or any other decorations.
-         *
-         * @return The unformatted message
-         */
-        Text getUnformattedMessage();
-
-        /**
-         * Set the unformatted message that will be provided for this event
-         *
-         * @param message The message to set
-         */
-        void setUnformattedMessage(Text message);
-
-        /**
-         * Sets the new message The placeholders {@code name} and {@code message} will be replaced with the sender's display
-         * name and {@link #getUnformattedMessage()} in the provided text.
-         *
-         * @param message The new message
-         */
-        @Override
-        void setMessage(Text message);
-    }
-
-    interface SourcePlugin extends MessageSinkEvent, PluginEvent {}
 }

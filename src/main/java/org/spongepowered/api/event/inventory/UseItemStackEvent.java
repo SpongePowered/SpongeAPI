@@ -28,15 +28,13 @@ package org.spongepowered.api.event.inventory;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.EntityEvent;
-import org.spongepowered.api.event.entity.living.LivingEvent;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerEvent;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.ItemStackTransaction;
+import org.spongepowered.api.potion.PotionEffectType;
 
-public interface UseItemStackEvent extends GameEvent, CauseTracked, Cancellable {
+public interface UseItemStackEvent extends GameEvent, Cancellable, CauseTracked {
 
     /**
      * Gets the {@link ItemStack} being consumed.
@@ -53,7 +51,7 @@ public interface UseItemStackEvent extends GameEvent, CauseTracked, Cancellable 
     void setItemStackInUse(ItemStackSnapshot item);
 
     /**
-     * Called before {@link #Tick} when a player starts using an 
+     * Called before {@link UseItemStackEvent.Tick} when a player starts using an
      * {@link ItemType}, typically when they hold right mouse.
      * 
      * <p>Examples:</p>
@@ -68,37 +66,19 @@ public interface UseItemStackEvent extends GameEvent, CauseTracked, Cancellable 
      * <p>Note: Cancelling the event, or setting the duration to <= 0
      * prevents the {@link ItemType} from processing.</p>
      */
-    interface Start extends UseItemStackEvent { 
-
-        interface SourceEntity extends UseItemStackEvent.Start, EntityEvent { }
-
-        interface SourceLiving extends SourceEntity, LivingEvent { }
-
-        interface SourceHuman extends SourceLiving, HumanEvent { }
-
-        interface SourcePlayer extends SourceHuman, PlayerEvent { }
-    }
+    interface Start extends UseItemStackEvent {}
 
     /**
-     * Called after {@link #Start} during each tick as an {@link ItemType} is 
+     * Called after {@link UseItemStackEvent.Start} during each tick as an {@link ItemType} is
      * being used.
      *
      * <p>Note: Cancelling the event, or setting the duration <= 0 will cause
      * the player to stop using the item.</p>
      */
-    interface Tick extends UseItemStackEvent { 
-
-        interface SourceEntity extends UseItemStackEvent.Tick, EntityEvent { }
-
-        interface SourceLiving extends SourceEntity, LivingEvent { }
-
-        interface SourceHuman extends SourceLiving, HumanEvent { }
-
-        interface SourcePlayer extends SourceHuman, PlayerEvent { }
-    }
+    interface Tick extends UseItemStackEvent {}
 
     /**
-     * Called after {@link #Tick} when an {@link ItemType} has finished being
+     * Called after {@link UseItemStackEvent.Tick} when an {@link ItemType} has finished being
      * used.
      * 
      * <p>Examples:</p>
@@ -117,37 +97,19 @@ public interface UseItemStackEvent extends GameEvent, CauseTracked, Cancellable 
      * {@link ItemType} this would affect are bows, and it would cause the bow
      * to NOT fire.</p>
      */
-    interface Stop extends UseItemStackEvent { 
-
-        interface SourceEntity extends UseItemStackEvent.Stop, EntityEvent { }
-
-        interface SourceLiving extends SourceEntity, LivingEvent { }
-
-        interface SourceHuman extends SourceLiving, HumanEvent { }
-
-        interface SourcePlayer extends SourceHuman, PlayerEvent { }
-    }
+    interface Stop extends UseItemStackEvent {}
 
     /**
-     * Called after {@link #Stop} when an {@link ItemType} has finished being
-     * used. The resulting {@link ItemStack} reflects the state after {@link #Stop}.
+     * Called after {@link UseItemStackEvent.Stop} when an {@link ItemType} has finished being
+     * used.
      * 
      * <p>Example:</p>
      * 
      * <ul>
-     *     <li>After the player consumed a {@link PotionEffectType} that's 
+     *     <li>After the player consumed a {@link PotionEffectType} that's
      *     already applied.</li>
      *</ul>
      */
-    interface Finish extends UseItemStackEvent { 
-
-        interface SourceEntity extends UseItemStackEvent.Finish, EntityEvent { }
-
-        interface SourceLiving extends SourceEntity, LivingEvent { }
-
-        interface SourceHuman extends SourceLiving, HumanEvent { }
-
-        interface SourcePlayer extends SourceHuman, PlayerEvent { }
-    }
+    interface Finish extends UseItemStackEvent {}
 
 }

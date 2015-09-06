@@ -22,20 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.server;
+package org.spongepowered.api.event.impl;
 
-import org.spongepowered.api.Server;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.entity.AffectEntityEvent;
 
-/**
- * Base event where a {@link Server} is the source.
- */
-public interface ServerEvent extends GameEvent {
+public abstract class AbstractAffectEntityEvent extends AbstractEvent implements AffectEntityEvent {
 
-    /**
-     * Gets the server source.
-     *
-     * @return The server
-     */
-    Server getServer();
 }

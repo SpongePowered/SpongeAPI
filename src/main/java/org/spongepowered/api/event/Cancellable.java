@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event;
 
+import org.spongepowered.api.event.impl.AbstractCancellable;
 import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 
 /**

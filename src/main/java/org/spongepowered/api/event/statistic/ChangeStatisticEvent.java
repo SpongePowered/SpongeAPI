@@ -25,16 +25,23 @@
 package org.spongepowered.api.event.statistic;
 
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.living.player.PlayerEvent;
+import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
 import org.spongepowered.api.statistic.Statistic;
 
 /**
  * Represents an event that is triggered if a {@link Statistic}'s value is being
  * modified.
  */
-public interface ChangeStatisticEvent extends StatisticEvent, CauseTracked, Cancellable {
-    
+public interface ChangeStatisticEvent extends GameEvent, Cancellable, CauseTracked {
+    /**
+     * Gets the {@link Statistic}.
+     *
+     * @return The statistic
+     */
+    Statistic getStatistic();
+
     /**
      * Gets the original value of the statistic.
      * 
@@ -56,5 +63,5 @@ public interface ChangeStatisticEvent extends StatisticEvent, CauseTracked, Canc
      */
     void setValue(long value);
 
-    interface TargetPlayer extends ChangeStatisticEvent, PlayerEvent {}
+    interface TargetPlayer extends ChangeStatisticEvent, TargetPlayerEvent {}
 }

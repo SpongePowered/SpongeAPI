@@ -26,12 +26,13 @@ package org.spongepowered.api.event.entity.living.player;
 
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.World;
 
 /**
  * Called when a player respawns.
  */
-public interface RespawnPlayerEvent extends TargetPlayerEvent {
+public interface RespawnPlayerEvent extends TargetPlayerEvent, CauseTracked {
 
     /**
      * Gets a copy of the transform that the entity came from.
@@ -50,7 +51,7 @@ public interface RespawnPlayerEvent extends TargetPlayerEvent {
     /**
      * Sets the new transform that the entity will change to.
      *
-     * @param transform The new transform
+     * @param respawnTransform The new transform
      */
     void setToTransform(Transform<World> respawnTransform);
 

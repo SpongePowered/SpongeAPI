@@ -44,7 +44,7 @@ import java.util.Map;
  * {@link Predicate} such that if the predicate returns <code>false</code>, the
  * {@link Location} removed from the {@link #getRelatives()} map.
  */
-public interface NotifyNeighborBlockEvent extends GameEvent, CauseTracked, Cancellable {
+public interface NotifyNeighborBlockEvent extends GameEvent, Cancellable, CauseTracked {
 
     /**
      * Gets the immutable {@link Map} of {@link Direction} to {@link Location}
@@ -79,53 +79,21 @@ public interface NotifyNeighborBlockEvent extends GameEvent, CauseTracked, Cance
      * An event where the action is an "ingition" that notifies the neighbor
      * blocks.
      */
-    interface Ignite extends NotifyNeighborBlockEvent {
-
-        /**
-         * An event where the source is a block.
-         */
-        interface SourceBlock extends Ignite, NotifyNeighborBlockEvent.SourceBlock { }
-
-    }
+    interface Ignite extends NotifyNeighborBlockEvent {}
 
     interface Spread extends NotifyNeighborBlockEvent {
 
         /**
          * Gets the {@link BlockState} that is being spread.
          *
-         * <p>
-         *     This block may or may not be the same as {@link BlockEvent#getSourceBlock()}.
-         * </p>
-         *
          * @return The BlockState
          */
         BlockState getSpreadingBlock();
 
-        /**
-         * An event where the source is a block.
-         */
-        interface SourceBlock extends Spread, NotifyNeighborBlockEvent.SourceBlock { }
-
     }
 
-    interface Burn extends NotifyNeighborBlockEvent {
+    interface Burn extends NotifyNeighborBlockEvent {}
 
-        /**
-         * An event where the source is a block.
-         */
-        interface SourceBlock extends Burn, NotifyNeighborBlockEvent.SourceBlock { }
-
-    }
-
-    interface Power extends NotifyNeighborBlockEvent {
-
-        /**
-         * An event where the source is a block.
-         */
-        interface SourceBlock extends Power, NotifyNeighborBlockEvent.SourceBlock { }
-
-    }
-
-    interface SourceBlock extends NotifyNeighborBlockEvent, ChangeBlockEvent.SourceBlock { }
+    interface Power extends NotifyNeighborBlockEvent {}
 
 }

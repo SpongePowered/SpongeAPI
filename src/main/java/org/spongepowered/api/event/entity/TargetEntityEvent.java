@@ -25,14 +25,13 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 
 /**
  * An event where an unknown action is being performed on a targeted
  * {@link Entity}.
  */
-public interface TargetEntityEvent extends GameEvent, Cancellable {
+public interface TargetEntityEvent extends GameEvent {
 
     /**
      * Gets the target {@link Entity}.

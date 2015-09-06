@@ -25,10 +25,6 @@
 package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.world.Location;
 
 /**
@@ -36,34 +32,4 @@ import org.spongepowered.api.world.Location;
  * being broke.
  */
 public interface BreakBlockEvent extends ChangeBlockEvent {
-
-    /**
-     * Called when a {@link BlockState} breaks another {@link BlockState} at a
-     * {@link Location}.
-     */
-    interface SourceBlock extends BreakBlockEvent, ChangeBlockEvent.SourceBlock { }
-
-    /**
-     * Called when an {@link Entity} breaks a {@link BlockState} at a
-     * {@link Location}.
-     */
-    interface SourceEntity extends BreakBlockEvent, ChangeBlockEvent.SourceEntity { }
-
-    /**
-     * Called when a {@link Living} breaks a {@link BlockState} at a
-     * {@link Location}.
-     */
-    interface SourceLiving extends SourceEntity, ChangeBlockEvent.SourceLiving { }
-
-    /**
-     * Called when a {@link Human} breaks a {@link BlockState} at a
-     * {@link Location}.
-     */
-    interface SourceHuman extends SourceLiving, ChangeBlockEvent.SourceHuman { }
-
-    /**
-     * Called when a {@link Player} breaks a {@link BlockState} at a
-     * {@link Location}.
-     */
-    interface SourcePlayer extends SourceHuman, ChangeBlockEvent.SourcePlayer { }
 }

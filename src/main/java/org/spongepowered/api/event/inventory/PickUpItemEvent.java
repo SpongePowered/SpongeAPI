@@ -26,11 +26,6 @@ package org.spongepowered.api.event.inventory;
 
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.block.BlockEvent;
-import org.spongepowered.api.event.entity.EntityEvent;
-import org.spongepowered.api.event.entity.living.LivingEvent;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerEvent;
 
 import java.util.Collection;
 
@@ -42,16 +37,5 @@ public interface PickUpItemEvent extends InventoryEvent, Cancellable {
      * @return The items as entities
      */
     Collection<Item> getItems();
-
-    interface SourceBlock extends PickUpItemEvent, BlockEvent { }
-
-    interface SourceEntity extends PickUpItemEvent, EntityEvent { }
-
-    interface SourceLiving extends SourceEntity, LivingEvent { }
-
-    interface SourceHuman extends SourceLiving, HumanEvent { }
-
-    interface SourcePlayer extends SourceHuman, PlayerEvent { }
-
 
 }

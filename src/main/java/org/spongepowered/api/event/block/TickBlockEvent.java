@@ -26,28 +26,10 @@ package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 /**
  * Called when a {@link BlockState} receives a tick.
  */
-public interface TickBlockEvent extends GameEvent, CauseTracked, Cancellable {
-
-    /**
-     * Gets the target {@link Location} being updated.
-     *
-     * @return The location
-     */
-    Location<World> getTargetLocation();
-
-    /**
-     * Gets the target {@link BlockState} being updated.
-     *
-     * @return The block state
-     */
-    BlockState getTargetBlock();
-
+public interface TickBlockEvent extends TargetBlockEvent, Cancellable, CauseTracked {
 }

@@ -25,12 +25,12 @@
 
 package org.spongepowered.api.event.world.chunk;
 
-import org.spongepowered.api.event.world.WorldEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.gen.Populator;
 
 import java.util.List;
 
-public interface PopulateChunkEvent extends WorldEvent, TargetChunkEvent {
+public interface PopulateChunkEvent extends TargetChunkEvent, CauseTracked {
 
     interface Pre extends PopulateChunkEvent {
 
@@ -43,12 +43,8 @@ public interface PopulateChunkEvent extends WorldEvent, TargetChunkEvent {
 
     }
 
-    interface Populate extends PopulateChunkEvent {
+    interface Populate extends PopulateChunkEvent {}
 
-    }
-
-    interface Post extends PopulateChunkEvent {
-
-    }
+    interface Post extends PopulateChunkEvent {}
 
 }

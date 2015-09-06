@@ -28,25 +28,17 @@ import com.google.common.base.Function;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.block.tileentity.carrier.Dispenser;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.Arrow;
-import org.spongepowered.api.entity.weather.Lightning;
-import org.spongepowered.api.event.AbstractAttackEntityEvent;
+import org.spongepowered.api.event.impl.AbstractAttackEntityEvent;
 import org.spongepowered.api.event.action.InteractEvent;
-import org.spongepowered.api.event.block.BlockEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierBuilder;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
-import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSource;
-import org.spongepowered.api.event.entity.living.LivingEvent;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerEvent;
 import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -275,90 +267,11 @@ public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
          */
         List<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers();
 
-        /**
-         * An event where an {@link Entity} is a source. This will coincide with
-         * the {@link DamageSource} being an {@link EntityDamageSource}.
-         */
-        interface SourceEntity extends Attack, EntityEvent { }
-
-        /**
-         * An event where an {@link Lightning} is a source. This will coincide
-         * with the {@link DamageSource} being an {@link EntityDamageSource}.
-         */
-        interface SourceLightning extends SourceEntity {
-
-            @Override
-            Lightning getSourceEntity();
-
-        }
-
-        /**
-         * An event where a {@link Living} is a source. This will coincide with
-         * the {@link DamageSource} being an {@link EntityDamageSource}.
-         */
-        interface SourceLiving extends SourceEntity, LivingEvent { }
-
-        /**
-         * An event where a {@link Human} is a source. This will coincide with
-         * the {@link DamageSource} being an {@link EntityDamageSource}.
-         */
-        interface SourceHuman extends SourceLiving, HumanEvent { }
-
-        /**
-         * An event where a {@link Player} is a source. This will coincide with
-         * the {@link DamageSource} being an {@link EntityDamageSource}.
-         */
-        interface SourcePlayer extends SourceHuman, PlayerEvent { }
-
     }
 
     /**
      * An event where the targeted entity is being "used".
      */
-    interface Use extends InteractEntityEvent {
-
-        /**
-         * An event where an {@link Entity} is the source.
-         */
-
-        interface SourceEntity extends Use, InteractEntityEvent.SourceEntity { }
-        /**
-         * An event where a {@link Living} is the source.
-         */
-
-        interface SourceLiving extends SourceEntity, InteractEntityEvent.SourceLiving { }
-        /**
-         * An event where a {@link Human} is the source.
-         */
-
-        interface SourceHuman extends SourceLiving, InteractEntityEvent.SourceHuman { }
-        /**
-         * An event where a {@link Player} is the source.
-         */
-        interface SourcePlayer extends SourceHuman, InteractEntityEvent.SourcePlayer { }
-
-    }
-
-    interface SourceBlock extends InteractEntityEvent, BlockEvent { }
-
-    /**
-     * An event where an {@link Entity} is the source.
-     */
-    interface SourceEntity extends InteractEntityEvent, EntityEvent { }
-
-    /**
-     * An event where a {@link Living} is the source.
-     */
-    interface SourceLiving extends SourceEntity, LivingEvent { }
-
-    /**
-     * An event where a {@link Human} is the source.
-     */
-    interface SourceHuman extends SourceLiving, HumanEvent { }
-
-    /**
-     * An event where a {@link Player} is the source.
-     */
-    interface SourcePlayer extends SourceHuman, PlayerEvent { }
+    interface Use extends InteractEntityEvent {}
 
 }

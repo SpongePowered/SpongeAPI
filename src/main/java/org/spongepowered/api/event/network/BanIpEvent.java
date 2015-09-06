@@ -31,7 +31,7 @@ import org.spongepowered.api.util.ban.Ban;
 /**
  * Called when a ban is made on an IP address.
  */
-public interface BanIpEvent extends Cancellable, Event {
+public interface BanIpEvent extends Event, Cancellable {
 
     /**
      * Gets the ban made in this event.

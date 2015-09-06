@@ -24,16 +24,24 @@
  */
 package org.spongepowered.api.event.achievement;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.command.MessageSinkEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerEvent;
+import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
 import org.spongepowered.api.statistic.achievement.Achievement;
 
 /**
  * Represents an event that is called when an {@link Achievement} is granted
  */
-public interface GrantAchievementEvent extends AchievementEvent, MessageSinkEvent, CauseTracked {
+public interface GrantAchievementEvent extends MessageSinkEvent, Cancellable, CauseTracked {
 
-    interface TargetPlayer extends GrantAchievementEvent, PlayerEvent {}
+    /**
+     * Gets the achievement being targeted.
+     *
+     * @return The achievement
+     */
+    Achievement getAchievement();
+
+    interface TargetPlayer extends GrantAchievementEvent, TargetPlayerEvent {}
 
 }

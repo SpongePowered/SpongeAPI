@@ -24,37 +24,12 @@
  */
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.entity.living.LivingEvent;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * An event that is called when an entity becomes unleashed.
  */
-public interface UnleashEntityEvent extends TargetEntityEvent, Cancellable {
+public interface UnleashEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
 
-    /**
-     * Called when a {@link Entity} unleashes an {@link Entity}.
-     */
-    interface SourceEntity extends UnleashEntityEvent, EntityEvent { }
-
-    /**
-     * Called when a {@link Living} unleashes an {@link Entity}.
-     */
-    interface SourceLiving extends SourceEntity, LivingEvent { }
-
-    /**
-     * Called when a {@link Human} unleashes an {@link Entity}.
-     */
-    interface SourceHuman extends SourceLiving, HumanEvent { }
-
-    /**
-     * Called when a {@link Player} unleashes an {@link Entity}.
-     */
-    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 }

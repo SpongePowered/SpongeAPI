@@ -25,19 +25,13 @@
 package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.world.Location;
 
 /**
  * Called when a {@link BlockState} moves another {@link BlockState} from one {@link Location} to another.
  *
- * TODO BlockChangeBlock Candidate for Bulk?
+ * TODO This event needs work
  */
-public interface MoveBlockEvent extends ChangeBlockEvent, Cancellable {
-
-    /**
-     * An event where a {@link BlockEvent} is the source.
-     */
-    interface SourceBlock extends MoveBlockEvent, BlockEvent { }
+public interface MoveBlockEvent extends ChangeBlockEvent {
 
 }

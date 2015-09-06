@@ -30,13 +30,8 @@ import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.event.block.BlockEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
-import org.spongepowered.api.event.entity.EntityEvent;
-import org.spongepowered.api.event.entity.living.LivingEvent;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.ItemStackTransaction;
@@ -51,9 +46,9 @@ import java.util.List;
  * case before an {@link Item} entity is actually constructed, let alone
  * spawned.
  */
-public interface DropItemStackEvent extends GameEvent, CauseTracked, Cancellable {
+public interface DropItemStackEvent extends GameEvent, CauseTracked {
 
-    interface Pre extends DropItemStackEvent {
+    interface Pre extends DropItemStackEvent, Cancellable {
 
         /**
          * Gets the list of {@link ItemStackSnapshot}s to be dropped.
@@ -91,19 +86,9 @@ public interface DropItemStackEvent extends GameEvent, CauseTracked, Cancellable
          */
         void filter(Predicate<ItemStackSnapshot> predicate);
 
-        interface SourceBlock extends Pre, DropItemStackEvent.SourceBlock { }
-
-        interface SourceEntity extends Pre, DropItemStackEvent.SourceEntity { }
-
-        interface SourceLiving extends SourceEntity, DropItemStackEvent.SourceLiving { }
-
-        interface SourceHuman extends SourceLiving, DropItemStackEvent.SourceHuman { }
-
-        interface SourcePlayer extends SourceHuman, DropItemStackEvent.SourcePlayer { }
-
     }
 
-    interface Post extends DropItemStackEvent, AffectEntityEvent {
+    interface Drop extends DropItemStackEvent, AffectEntityEvent, Cancellable {
 
         @Override
         List<EntitySnapshot> getEntitySnapshots();
@@ -116,26 +101,7 @@ public interface DropItemStackEvent extends GameEvent, CauseTracked, Cancellable
 
         @Override
         List<Item> filterEntities(Predicate<? extends Entity> predicate);
-
-        interface SourceBlock extends Post, DropItemStackEvent.SourceBlock { }
-
-        interface SourceEntity extends Post, DropItemStackEvent.SourceEntity { }
-
-        interface SourceLiving extends SourceEntity, DropItemStackEvent.SourceLiving { }
-
-        interface SourceHuman extends SourceLiving, DropItemStackEvent.SourceHuman { }
-
-        interface SourcePlayer extends SourceHuman, DropItemStackEvent.SourcePlayer { }
     }
 
-    interface SourceBlock extends DropItemStackEvent, BlockEvent { }
-
-    interface SourceEntity extends DropItemStackEvent, EntityEvent { }
-
-    interface SourceLiving extends SourceEntity, LivingEvent { }
-
-    interface SourceHuman extends SourceLiving, HumanEvent { }
-
-    interface SourcePlayer extends SourceHuman, PlayerEvent { }
-
+    interface Post extends DropItemStackEvent {}
 }

@@ -27,6 +27,7 @@ package org.spongepowered.api.event.server;
 import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.status.StatusClient;
 import org.spongepowered.api.status.StatusResponse;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
  * sending any response.
  * </p>
  */
-public interface PingServerEvent extends ServerEvent, Cancellable {
+public interface ClientPingServerEvent extends Event, Cancellable {
 
     /**
      * Gets the client pinging the server.
@@ -100,7 +101,7 @@ public interface PingServerEvent extends ServerEvent, Cancellable {
 
         /**
          * Represents the information about the players on the server, sent after
-         * the {@link PingServerEvent}.
+         * the {@link ClientPingServerEvent}.
          */
         interface Players extends StatusResponse.Players {
 

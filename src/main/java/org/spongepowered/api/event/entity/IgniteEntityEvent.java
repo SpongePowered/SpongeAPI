@@ -24,10 +24,19 @@
  */
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
+
 /**
  * An event that occurs when an entity becomes ignited.
  */
-public interface IgniteEntityEvent extends TargetEntityEvent {
+public interface IgniteEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
+
+    /**
+     * Gets the original amount of fire ticks the entity will remain on fire.
+     * @return The original fire ticks
+     */
+    int getOriginalFireTicks();
 
     /**
      * Gets the amount of ticks the entity will remain on fire.

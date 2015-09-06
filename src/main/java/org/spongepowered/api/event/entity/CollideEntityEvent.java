@@ -25,42 +25,12 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.living.LivingEvent;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerEvent;
 
 /**
  * Fired when something collides a {@link Entity} due to a {@link Cause}.
  */
 public interface CollideEntityEvent extends TargetEntityEvent, CauseTracked {
-
-    /**
-     * An event where the {@link #getTargetEntity()} is colliding with another
-     * {@link Entity}.
-     */
-    interface SourceEntity extends CollideEntityEvent, EntityEvent { }
-
-    /**
-     * An event where the {@link #getTargetEntity()} is colliding with another
-     * {@link Living}.
-     */
-    interface SourceLiving extends SourceEntity, LivingEvent { }
-
-    /**
-     * An event where the {@link #getTargetEntity()} is colliding with another
-     * {@link Human}.
-     */
-    interface SourceHuman extends SourceLiving, HumanEvent { }
-
-    /**
-     * An event where the {@link #getTargetEntity()} is colliding with another
-     * {@link Player}.
-     */
-    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }

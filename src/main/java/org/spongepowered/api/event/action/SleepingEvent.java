@@ -22,46 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.human;
+package org.spongepowered.api.event.action;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.entity.Transform;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.entity.living.player.PlayerEvent;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.entity.TargetEntityEvent;
 import org.spongepowered.api.world.World;
-
-import java.util.List;
 
 /**
  * Called when a Human enters a bed to sleep in.
  */
-public interface HumanSleepEvent extends HumanEvent, Cancellable {
+public interface SleepingEvent extends GameEvent, TargetEntityEvent, CauseTracked {
 
     /**
-     * Gets the location of the bed being used.
+     * Gets the {@link BlockSnapshot} of the bed being used to sleep
      *
      * @return The location of the bed
      */
-    Location<World> getBed();
+    BlockSnapshot getBed();
 
-    interface Enter extends HumanSleepEvent {
+    interface Pre extends SleepingEvent, Cancellable {}
 
-    }
+    interface Tick extends SleepingEvent, Cancellable {}
 
-    interface StartSleeping extends HumanSleepEvent {
-
-        // todo maybe move this?
-        List<Player> getAwokenPlayers();
-
-        void ignorePlayer(Player player);
-
-        List<Player> getIgnoredPlayers();
-
-    }
-
-    interface StopSleeping extends HumanSleepEvent {
+    interface Post extends SleepingEvent, Cancellable {
 
         /**
          * Gets whether the spawn transform for the human was set.
@@ -96,19 +84,5 @@ public interface HumanSleepEvent extends HumanEvent, Cancellable {
         void setSpawnTransform(Transform<World> transform);
     }
 
-    interface SourcePlayer extends HumanSleepEvent, PlayerEvent {
-
-        interface Enter extends HumanSleepEvent.Enter, SourcePlayer {
-
-        }
-
-        interface StartSleeping extends HumanSleepEvent.StartSleeping, SourcePlayer {
-
-        }
-
-        interface StopSleeping extends HumanSleepEvent.StopSleeping, SourcePlayer {
-
-        }
-    }
-
+    interface Finish extends SleepingEvent {}
 }

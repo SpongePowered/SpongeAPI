@@ -25,14 +25,8 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
-import org.spongepowered.api.event.inventory.BlockInventoryEvent;
+import org.spongepowered.api.event.GameEvent;
 
-/**
- * Represents an event that affects a tile entity with a {@link Furnace}
- * data.
- */
-public interface FurnaceEvent extends TileEntityEvent, BlockInventoryEvent {
-
-    @Override
-    Furnace getTile();
+public interface FurnaceEvent extends GameEvent {
+    Furnace getFurnace();
 }

@@ -22,23 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.event.world;
 
-
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.block.ChangeBlockEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.entity.AffectEntityEvent;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.explosion.Explosion;
 
 /**
- * Describes events which contain a {@link Player}.
+ * Called when an {@link Explosion} occurs in a {@link World}.
  */
-public interface PlayerEvent extends HumanEvent {
+public interface ExplosionEvent extends TargetWorldEvent, CauseTracked {
 
     /**
-     * Gets the source {@link Player} involved involved in this event.
+     * Gets the {@link Explosion} involved in this event.
      *
-     * @return The source {@link Player} involved
+     * @return The explosion that this event is involved in
      */
-    @Override
-    Player getSourceEntity();
+    Explosion getExplosion();
 
+    /**
+     * An event that is fired before the explosion occurs.
+     */
+    interface Pre extends ExplosionEvent, Cancellable {}
+
+    /**
+     * An event that is fired as the explosion is going to start affecting
+     * multiple blocks and entities.
+     */
+    interface Detonate extends ExplosionEvent, AffectEntityEvent, ChangeBlockEvent {}
+
+    interface Post extends ExplosionEvent {}
 }

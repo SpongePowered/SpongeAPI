@@ -26,11 +26,12 @@ package org.spongepowered.api.event.entity.item;
 
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * Called when an {@link Item} is merged with another {@link Item}.
  */
-public interface ItemMergeItemEvent extends TargetItemEvent, Cancellable {
+public interface ItemMergeItemEvent extends TargetItemEvent, Cancellable, CauseTracked {
 
     /**
      * Gets a copy of the second item to be merged.

@@ -34,6 +34,7 @@ import org.spongepowered.api.world.World;
 
 /**
  * Base event during the construction of an {@link Entity}.
+ *
  */
 public interface ConstructEntityEvent extends GameEvent, CauseTracked {
 
@@ -54,8 +55,11 @@ public interface ConstructEntityEvent extends GameEvent, CauseTracked {
 
     /**
      * Called before the construction of an {@link Entity}. Usually, this will
-     * occur whenever an {@link Entity} is going to be instantiated. The only thing
-     * known for the event is the {@link EntityType}.
+     * occur whenever an {@link Entity} is going to be instantiated. The only thing known
+     * for the event is the {@link EntityType}.
+     *
+     * <p>Note: This does not cover all Entity construction. A best effort is made to
+     * capture as many as we can.</p>
      */
     interface Pre extends ConstructEntityEvent, Cancellable {}
 

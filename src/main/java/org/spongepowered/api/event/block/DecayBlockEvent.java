@@ -24,17 +24,9 @@
  */
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.event.world.WorldEvent;
-import org.spongepowered.api.world.World;
-
 /**
  * Called when a world is about to decay a block.
  */
 public interface DecayBlockEvent extends ChangeBlockEvent {
-
-    /**
-     * An event where a {@link World} is the source.
-     */
-    interface SourceWorld extends DecayBlockEvent, WorldEvent { }
 
 }

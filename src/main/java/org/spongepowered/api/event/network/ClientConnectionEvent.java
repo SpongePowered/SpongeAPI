@@ -62,7 +62,7 @@ public interface ClientConnectionEvent extends GameEvent, ConnectionEvent {
      *
      * <p>Note: This event is fired before #Login.</p>
      */
-    interface Auth extends ClientConnectionEvent, MessageEvent, Cancellable { }
+    interface Auth extends ClientConnectionEvent, MessageEvent, Cancellable {}
 
     /**
      * Called after the client authenticates and attempts to login to the
@@ -70,7 +70,7 @@ public interface ClientConnectionEvent extends GameEvent, ConnectionEvent {
      *
      * <p>Note: This event is fired after #Auth and is NOT async.</p>
      */
-    interface Login extends ClientConnectionEvent, MessageSinkEvent, Cancellable { }
+    interface Login extends ClientConnectionEvent, MessageSinkEvent, Cancellable {}
 
     /**
      * Called when a {@link Player} joins the game {@link World} for the first
@@ -78,10 +78,10 @@ public interface ClientConnectionEvent extends GameEvent, ConnectionEvent {
      *
      * <p>Note: This event is fired after #Login.</p>
      */
-    interface Join extends ClientConnectionEvent, DisplaceEntityEvent.TargetPlayer, MessageSinkEvent, Cancellable { }
+    interface Join extends ClientConnectionEvent, DisplaceEntityEvent.TargetPlayer, MessageSinkEvent {}
 
     /**
      * Called when a {@link Player} disconnects from the game.
      */
-    interface Disconnect extends ClientConnectionEvent, TargetPlayerEvent, MessageSinkEvent { }
+    interface Disconnect extends ClientConnectionEvent, TargetPlayerEvent, MessageSinkEvent {}
 }

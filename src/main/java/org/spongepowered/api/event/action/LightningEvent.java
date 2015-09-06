@@ -22,21 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block.tileentity;
+package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.event.block.BlockEvent;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.entity.AffectEntityEvent;
 
-/**
- * An event that involves a {@link TileEntity}.
- */
-public interface TileEntityEvent extends BlockEvent, CauseTracked {
+public interface LightningEvent extends GameEvent, CauseTracked {
 
-    /**
-     * Gets the {@link TileEntity} related to this event.
-     *
-     * @return The tile entity
-     */
-    TileEntity getTile();
+    interface Pre extends LightningEvent, Cancellable {}
+
+    interface Strike extends LightningEvent, AffectEntityEvent, ChangeBlockEvent {}
+
+    interface Post extends LightningEvent {}
 }

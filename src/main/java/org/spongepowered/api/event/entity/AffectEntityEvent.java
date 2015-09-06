@@ -29,8 +29,10 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.impl.AbstractAffectEntityEvent;
+import org.spongepowered.api.event.world.TargetWorldEvent;
+import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -46,7 +48,8 @@ import java.util.List;
  * {@link Explosion} "damaging" a varying amount of {@link Entity} instances.
  * Other cases will be included as necessary.
  */
-public interface AffectEntityEvent extends GameEvent, CauseTracked, Cancellable {
+@ImplementedBy(AbstractAffectEntityEvent.class)
+public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseTracked {
 
     /**
      * Gets an {@link List<EntitySnapshot>} of the entity data

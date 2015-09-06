@@ -48,7 +48,6 @@ public interface ChangeDataHolderEvent extends GameEvent, Cancellable {
 
     interface ValueChange extends ChangeDataHolderEvent {
 
-
         /**
          * Gets the original {@link DataTransactionResult} of the {@link Value}s
          * that have changed in this event.

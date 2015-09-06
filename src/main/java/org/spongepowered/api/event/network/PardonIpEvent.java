@@ -31,7 +31,7 @@ import org.spongepowered.api.util.ban.Ban;
 /**
  * Called when a pardon is made on an IP address.
  */
-public interface PardonIpEvent extends Cancellable, Event {
+public interface PardonIpEvent extends Event, Cancellable {
 
     /**
      * Gets the ban pardoned in this event.

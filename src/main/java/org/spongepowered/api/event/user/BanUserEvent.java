@@ -25,14 +25,14 @@
 package org.spongepowered.api.event.user;
 
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
 import org.spongepowered.api.util.ban.Ban;
 
 /**
  * Occurs when a user is banned.
  */
-public interface BanUserEvent extends TargetUserEvent, Cancellable {
+public interface BanUserEvent extends TargetUserEvent, CauseTracked {
 
     /**
      * Gets the ban involved in this event.

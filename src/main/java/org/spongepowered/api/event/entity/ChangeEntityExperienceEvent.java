@@ -22,14 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.action;
+package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.event.Event;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * An event that is related to experience.
  */
-public interface ChangeExperienceEvent extends Event {
+public interface ChangeEntityExperienceEvent extends TargetEntityEvent, Cancellable, CauseTracked {
 
     /**
      * Gets the original experience unmodified by event changes.

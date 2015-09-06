@@ -27,19 +27,10 @@ package org.spongepowered.api.event.block.tileentity;
 import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.command.CommandSourceEvent;
-import org.spongepowered.api.event.entity.EntityEvent;
-import org.spongepowered.api.event.entity.living.LivingEvent;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.entity.living.player.PlayerEvent;
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.event.cause.CauseTracked;
 
-public interface ChangeSignEvent extends TargetTileEntityEvent, Cancellable {
+public interface ChangeSignEvent extends TargetTileEntityEvent, Cancellable, CauseTracked {
 
     /**
      * Gets the target {@link Sign} being changed.
@@ -60,30 +51,5 @@ public interface ChangeSignEvent extends TargetTileEntityEvent, Cancellable {
      * @return The SignData
      */
     SignData getText();
-
-    /**
-     * An event where an {@link CommandSource} is the source.
-     */
-    interface SourceCommandSource extends ChangeSignEvent, CommandSourceEvent { }
-
-    /**
-     * An event where an {@link Entity} is the source.
-     */
-    interface SourceEntity extends ChangeSignEvent, EntityEvent { }
-
-    /**
-     * An event where an {@link Living} is the source.
-     */
-    interface SourceLiving extends SourceEntity, LivingEvent { }
-
-    /**
-     * An event where an {@link Human} is the source.
-     */
-    interface SourceHuman extends SourceLiving, HumanEvent { }
-
-    /**
-     * An event where a {@link Player} is the source.
-     */
-    interface SourcePlayer extends SourceHuman, PlayerEvent { }
 
 }
