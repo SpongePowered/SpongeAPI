@@ -416,9 +416,11 @@ public final class Location<E extends Extent> implements DataHolder {
      * <p>This will remove any extended block data at the given position.</p>
      *
      * @param state The new block state
+     * @param notifyNeighbors Whether or not you want to notify neighboring
+     *     blocks of this change. If true, this may cause blocks to change.
      */
-    public void setBlock(BlockState state) {
-        getExtent().setBlock(getBlockPosition(), state);
+    public void setBlock(BlockState state, boolean notifyNeighbors) {
+        getExtent().setBlock(getBlockPosition(), state, notifyNeighbors);
     }
 
     /**
@@ -427,9 +429,11 @@ public final class Location<E extends Extent> implements DataHolder {
      * <p>This will remove any extended block data at the given position.</p>
      *
      * @param type The new type
+     * @param notifyNeighbors Whether or not you want to notify neighboring
+     *     blocks of this change. If true, this may cause blocks to change.
      */
-    public void setBlockType(BlockType type) {
-        getExtent().setBlockType(getBlockPosition(), type);
+    public void setBlockType(BlockType type, boolean notifyNeighbors) {
+        getExtent().setBlockType(getBlockPosition(), type, notifyNeighbors);
     }
 
     /**
@@ -439,9 +443,13 @@ public final class Location<E extends Extent> implements DataHolder {
      * been placed at this location.</p>
      *
      * @param snapshot The snapshot
+     * @param force If true, forces block state to be set even if the
+     *     {@link BlockType} does not match the snapshot one.
+     * @param notifyNeighbors Whether or not you want to notify neighboring
+     *     blocks of this change. If true, this may cause blocks to change.
      */
-    public void restoreSnapshot(BlockSnapshot snapshot) {
-        getExtent().restoreSnapshot(getBlockPosition(), snapshot);
+    public void restoreSnapshot(BlockSnapshot snapshot, boolean force, boolean notifyNeighbors) {
+        getExtent().restoreSnapshot(getBlockPosition(), snapshot, force, notifyNeighbors);
     }
 
     /**
@@ -451,7 +459,7 @@ public final class Location<E extends Extent> implements DataHolder {
      */
     @SuppressWarnings("ConstantConditions")
     public void removeBlock() {
-        getExtent().setBlockType(getBlockPosition(), BlockTypes.AIR);
+        getExtent().setBlockType(getBlockPosition(), BlockTypes.AIR, true);
     }
 
     @Override

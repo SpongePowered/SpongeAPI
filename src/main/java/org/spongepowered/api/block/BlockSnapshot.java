@@ -24,8 +24,10 @@
  */
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.LocateableSnapshot;
+import org.spongepowered.api.world.Location;
 
 /**
  * An immutable representation of a {@link BlockState} and any extra data that
@@ -41,7 +43,7 @@ public interface BlockSnapshot extends LocateableSnapshot<BlockSnapshot> {
     BlockState getState();
 
     /**
-     * Creates a new {@link BlockSnapshot} with the provided
+     * Creates a copy of the {@link BlockSnapshot} with the provided 
      * {@link BlockState}. Any additional data associated with a
      * {@link TileEntity} or custom data may be lost.
      *
@@ -50,4 +52,32 @@ public interface BlockSnapshot extends LocateableSnapshot<BlockSnapshot> {
      */
     BlockSnapshot withState(BlockState blockState);
 
+    /**
+     * Creates a copy of the {@link BlockSnapshot} with the provided
+     * {@link DataContainer}.
+     *
+     * @param container The data container
+     * @return The new snapshot
+     */
+    BlockSnapshot withContainer(DataContainer container);
+
+    /**
+     * Restores the {@link BlockSnapshot} to the {@link Location} stored within
+     * the snapshot. If the {@link Location} is not available, the snapshot will
+     * not be restored.
+     *
+     * <p>If forced, the state of the block will change its {@link BlockType}
+     * to match that of the snapshot then set the state. However, if force is
+     * set to false and the {@link BlockType}s does not match, false will be
+     * returned.
+     * If notifyNeighbors is true, neighboring blocks will be notified of
+     * changes at the restored block location triggering physic updates.</p>
+     *
+     * @param force If true, forces block state to be set even if the
+     *     {@link BlockType} does not match the snapshot one.
+     * @param notifyNeighbors If true, notifies neighboring blocks to update
+     *     physics
+     * @return true if the restore was successful, false otherwise
+     */
+    boolean restore(boolean force, boolean notifyNeighbors);
 }

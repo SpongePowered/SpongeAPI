@@ -83,7 +83,7 @@ public class SkylandsGroundCoverPopulator implements GeneratorPopulator {
                                     break yIteration;
                                 }
                                 if (!buffer.getBlockType(xx, yy, zz).equals(BlockTypes.AIR)) {
-                                    buffer.setBlockType(xx, yy, zz, cover);
+                                    buffer.setBlockType(xx, yy, zz, cover, true);
                                 } else {
                                     break layerIteration;
                                 }

@@ -136,9 +136,9 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
                         }
                     }
                     if (flower != null) {
-                        buffer.setBlock(xx, yy + 1, zz, flower.getBlock());
+                        buffer.setBlock(xx, yy + 1, zz, flower.getBlock(), true);
                         if (flower.isDoubleHeight()) {
-                            buffer.setBlock(xx, yy + 2, zz, flower.getUpperBlock());
+                            buffer.setBlock(xx, yy + 2, zz, flower.getUpperBlock(), true);
                         }
                     } else if (value >= GRASS_ODDS) {
                         // if no flower, check if the value is greater than the grass odds
@@ -147,9 +147,9 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
                             //buffer.setBlockType(xx, yy + 1, zz, BlockTypes.MELON_BLOCK);
                             //buffer.setBlockType(xx, yy + 2, zz, BlockTypes.MELON_BLOCK);
                             // TODO: fix double plants
-                            buffer.setBlock(xx, yy + 1, zz, TALL_GRASS);
+                            buffer.setBlock(xx, yy + 1, zz, TALL_GRASS, true);
                         } else {
-                            buffer.setBlock(xx, yy + 1, zz, TALL_GRASS);
+                            buffer.setBlock(xx, yy + 1, zz, TALL_GRASS, true);
                         }
                     }
                 }
@@ -163,7 +163,7 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
                         // generate a new random value for the layer
                         final float value = SkylandsUtil.hashToFloat(xx, layerNumber, zz, seed);
                         if (value >= COVERED_GRASS_ODDS) {
-                            buffer.setBlock(xx, yy + 1, zz, TALL_GRASS);
+                            buffer.setBlock(xx, yy + 1, zz, TALL_GRASS, true);
                         }
                     }
                     layerNumber++;

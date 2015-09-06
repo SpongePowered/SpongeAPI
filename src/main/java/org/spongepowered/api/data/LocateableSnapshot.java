@@ -24,9 +24,12 @@
  */
 package org.spongepowered.api.data;
 
+import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Optional;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+
+import java.util.UUID;
 
 /**
  * A type of {@link ImmutableDataHolder} that may be linked to a particular
@@ -40,6 +43,20 @@ import org.spongepowered.api.world.World;
 public interface LocateableSnapshot<T extends LocateableSnapshot<T>> extends ImmutableDataHolder<T> {
 
     /**
+     * Gets the {@link UUID} of the world.
+     * 
+     * @return The world unique Id
+     */
+    UUID getWorldUniqueId();
+
+    /**
+     * Gets the saved block position.
+     *
+     * @return The saved block position
+     */
+    Vector3i getPosition();
+
+    /**
      * Gets the {@link Location} of the snapshot at which it may have been
      * taken from. The {@link Location} being immutable signifies that the
      * {@link LocateableSnapshot} can be re-created at the desired
@@ -49,4 +66,12 @@ public interface LocateableSnapshot<T extends LocateableSnapshot<T>> extends Imm
      */
     Optional<Location<World>> getLocation();
 
+    /**
+     * Creates a copy of the snapshot with the provided
+     * {@link Location}.
+     *
+     * @param location The location
+     * @return The new snapshot
+     */
+    T withLocation(Location<World> location);
 }

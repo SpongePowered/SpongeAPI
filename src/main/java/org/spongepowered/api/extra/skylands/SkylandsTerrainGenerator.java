@@ -133,11 +133,11 @@ public class SkylandsTerrainGenerator implements GeneratorPopulator {
                     if (density >= THRESHOLD) {
                         for (OreNoise oreNoise : this.oreNoises) {
                             if (oreNoise.hasBlock(density, xx, yy, zz, intSeed)) {
-                                buffer.setBlockType(xx, yy, zz, oreNoise.getBlock());
+                                buffer.setBlockType(xx, yy, zz, oreNoise.getBlock(), true);
                                 continue xIteration;
                             }
                         }
-                        buffer.setBlockType(xx, yy, zz, BlockTypes.STONE);
+                        buffer.setBlockType(xx, yy, zz, BlockTypes.STONE, true);
                     }
                 }
             }
