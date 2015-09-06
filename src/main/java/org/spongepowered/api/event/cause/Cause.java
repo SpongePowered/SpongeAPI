@@ -117,7 +117,7 @@ public abstract class Cause {
      *
      * @return The root object cause for this cause
      */
-    public abstract Optional<?> getRoot();
+    public abstract Optional<?> root();
 
     /**
      * Gets the first <code>T</code> object of this {@link Cause}, if
@@ -127,7 +127,7 @@ public abstract class Cause {
      * @param <T> The type of object being queried for
      * @return The first element of the type, if available
      */
-    public abstract <T> Optional<T> getFirst(Class<T> target);
+    public abstract <T> Optional<T> first(Class<T> target);
 
     /**
      * Gets the last object instance of the {@link Class} of type
@@ -137,7 +137,7 @@ public abstract class Cause {
      * @param <T> The type of object being queried for
      * @return The last element of the type, if available
      */
-    public abstract <T> Optional<T> getLast(Class<T> target);
+    public abstract <T> Optional<T> last(Class<T> target);
 
     /**
      * Gets an {@link ImmutableList} of all objects that are instances of the
@@ -147,14 +147,14 @@ public abstract class Cause {
      * @param target The class of the target type
      * @return An immutable list of the objects queried
      */
-    public abstract <T> List<T> getAllOf(Class<T> target);
+    public abstract <T> List<T> allOf(Class<T> target);
 
     /**
      * Gets an {@link List} of all causes within this {@link Cause}.
      *
      * @return An immutable list of all the causes
      */
-    public abstract List<Object> getAllCauses();
+    public abstract List<Object> all();
 
     /**
      * Returns {@code true} if {@code object} is a {@code Cause} instance, and
@@ -186,12 +186,12 @@ public abstract class Cause {
         }
 
         @Override
-        public Optional<?> getRoot() {
+        public Optional<?> root() {
             return Optional.of(this.cause[0]);
         }
 
         @Override
-        public <T> Optional<T> getFirst(Class<T> target) {
+        public <T> Optional<T> first(Class<T> target) {
             for (Object aCause : this.cause) {
                 if (target.isInstance(aCause)) {
                     return Optional.of((T) aCause);
@@ -201,7 +201,7 @@ public abstract class Cause {
         }
 
         @Override
-        public <T> List<T> getAllOf(Class<T> target) {
+        public <T> List<T> allOf(Class<T> target) {
             ImmutableList.Builder<T> builder = ImmutableList.builder();
             for (Object aCause : this.cause) {
                 if (target.isInstance(aCause)) {
@@ -212,7 +212,7 @@ public abstract class Cause {
         }
 
         @Override
-        public <T> Optional<T> getLast(Class<T> target) {
+        public <T> Optional<T> last(Class<T> target) {
             for (int i = this.cause.length - 1; i >= 0; i--) {
                 if (target.isInstance(this.cause[i])) {
                     return Optional.of((T) this.cause[i]);
@@ -222,7 +222,7 @@ public abstract class Cause {
         }
 
         @Override
-        public List<Object> getAllCauses() {
+        public List<Object> all() {
             return ImmutableList.copyOf(this.cause);
         }
 
@@ -251,27 +251,27 @@ public abstract class Cause {
         }
 
         @Override
-        public Optional<?> getRoot() {
+        public Optional<?> root() {
             return Optional.absent();
         }
 
         @Override
-        public <T> Optional<T> getFirst(Class<T> target) {
+        public <T> Optional<T> first(Class<T> target) {
             return Optional.absent();
         }
 
         @Override
-        public <T> Optional<T> getLast(Class<T> target) {
+        public <T> Optional<T> last(Class<T> target) {
             return Optional.absent();
         }
 
         @Override
-        public <T> List<T> getAllOf(Class<T> target) {
+        public <T> List<T> allOf(Class<T> target) {
             return ImmutableList.of();
         }
 
         @Override
-        public List<Object> getAllCauses() {
+        public List<Object> all() {
             return ImmutableList.of();
         }
 
