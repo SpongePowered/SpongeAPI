@@ -110,6 +110,7 @@ import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.entity.TameEntityEvent;
 import org.spongepowered.api.event.entity.TargetEntityEvent;
 import org.spongepowered.api.event.entity.UnleashEntityEvent;
+import org.spongepowered.api.event.entity.item.AffectItemEvent;
 import org.spongepowered.api.event.entity.item.ItemMergeItemEvent;
 import org.spongepowered.api.event.entity.item.TargetItemEvent;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
@@ -2385,6 +2386,28 @@ public class SpongeEventFactory {
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(UnleashEntityEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.item.AffectItemEvent}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param entities The entities
+     * @param entitySnapshots The entity snapshots
+     * @param targetWorld The target world
+     * @return A new affect item event
+     */
+    public static AffectItemEvent createAffectItemEvent(Game game, Cause cause, List<Item> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("entities", entities);
+        values.put("entitySnapshots", entitySnapshots);
+        values.put("targetWorld", targetWorld);
+        return SpongeEventFactoryUtils.createEventImpl(AffectItemEvent.class, values);
     }
 
     /**

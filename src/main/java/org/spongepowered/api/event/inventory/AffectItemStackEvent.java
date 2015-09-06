@@ -55,7 +55,8 @@ public interface AffectItemStackEvent extends TargetInventoryEvent, Cancellable,
      * marked as "invalid" and will not apply post event.
      *
      * @param predicate The predicate to use for filtering
+     * @return The filtered transactions
      */
-    void filter(Predicate<ItemStack> predicate);
+    List<ItemStackTransaction> filter(Predicate<ItemStack> predicate);
 
 }

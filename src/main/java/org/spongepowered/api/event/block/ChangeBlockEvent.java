@@ -61,7 +61,8 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable, CauseTr
      * marked as "invalid" and will not apply post event.
      *
      * @param predicate The predicate to use for filtering
+     * @return The filtered transactions
      */
-    void filter(Predicate<Location<World>> predicate);
+    List<BlockTransaction> filter(Predicate<Location<World>> predicate);
 
 }

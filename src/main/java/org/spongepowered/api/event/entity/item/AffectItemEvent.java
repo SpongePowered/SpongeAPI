@@ -22,10 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.event.entity.item;
 
-import org.spongepowered.api.event.entity.item.AffectItemEvent;
+import com.google.common.base.Predicate;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.event.entity.AffectEntityEvent;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
-public interface PickUpItemEvent extends TargetInventoryEvent, AffectItemEvent {
+import java.util.List;
 
+public interface AffectItemEvent extends AffectEntityEvent {
+
+    @Override
+    List<Item> getEntities();
+
+    @Override
+    List<Item> filterEntityLocations(Predicate<Location<World>> predicate);
+
+    @Override
+    List<Item> filterEntities(Predicate<Entity> predicate);
 }

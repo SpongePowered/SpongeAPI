@@ -25,18 +25,14 @@
 package org.spongepowered.api.event.inventory;
 
 import com.google.common.base.Predicate;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.AffectEntityEvent;
+import org.spongepowered.api.event.entity.item.AffectItemEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.ItemStackTransaction;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 import java.util.List;
 
@@ -83,25 +79,13 @@ public interface DropItemStackEvent extends GameEvent, CauseTracked {
          * marked as "invalid".
          *
          * @param predicate The predicate to apply to the list
+         * @return The filtered list of snapshots
          */
-        void filter(Predicate<ItemStackSnapshot> predicate);
+        List<ItemStackSnapshot> filter(Predicate<ItemStackSnapshot> predicate);
 
     }
 
-    interface Drop extends DropItemStackEvent, AffectEntityEvent, Cancellable {
-
-        @Override
-        List<EntitySnapshot> getEntitySnapshots();
-
-        @Override
-        List<Item> getEntities();
-
-        @Override
-        List<Item> filterEntityLocations(Predicate<Location<World>> predicate);
-
-        @Override
-        List<Item> filterEntities(Predicate<? extends Entity> predicate);
-    }
+    interface Drop extends DropItemStackEvent, AffectItemEvent, Cancellable {}
 
     interface Post extends DropItemStackEvent {}
 }
