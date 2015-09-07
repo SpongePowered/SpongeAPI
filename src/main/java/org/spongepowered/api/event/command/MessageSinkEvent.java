@@ -35,11 +35,6 @@ import org.spongepowered.api.util.command.CommandSource;
 public interface MessageSinkEvent extends MessageEvent {
 
     /**
-     * @return The CommandSource
-     */
-    CommandSource getSource();
-
-    /**
      * Gets the original sink that this message will be sent to.
      *
      * @return The original message sink to send to

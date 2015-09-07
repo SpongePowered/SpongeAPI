@@ -1231,10 +1231,9 @@ public class SpongeEventFactory {
      * @param message The message
      * @param originalSink The original sink
      * @param sink The sink
-     * @param source The source
      * @return A new message sink event
      */
-    public static MessageSinkEvent createMessageSinkEvent(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, CommandSource source) {
+    public static MessageSinkEvent createMessageSinkEvent(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -1242,7 +1241,6 @@ public class SpongeEventFactory {
         values.put("message", message);
         values.put("originalSink", originalSink);
         values.put("sink", sink);
-        values.put("source", source);
         return SpongeEventFactoryUtils.createEventImpl(MessageSinkEvent.class, values);
     }
 
@@ -1737,11 +1735,10 @@ public class SpongeEventFactory {
      * @param message The message
      * @param originalSink The original sink
      * @param sink The sink
-     * @param source The source
      * @param targetEntity The target entity
      * @return A new destruct entity event
      */
-    public static DestructEntityEvent createDestructEntityEvent(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, CommandSource source, Entity targetEntity) {
+    public static DestructEntityEvent createDestructEntityEvent(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Entity targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -1749,7 +1746,6 @@ public class SpongeEventFactory {
         values.put("message", message);
         values.put("originalSink", originalSink);
         values.put("sink", sink);
-        values.put("source", source);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(DestructEntityEvent.class, values);
     }
@@ -2617,11 +2613,10 @@ public class SpongeEventFactory {
      * @param message The message
      * @param originalSink The original sink
      * @param sink The sink
-     * @param source The source
      * @param targetEntity The target entity
      * @return A new kick player event
      */
-    public static KickPlayerEvent createKickPlayerEvent(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, CommandSource source, Player targetEntity) {
+    public static KickPlayerEvent createKickPlayerEvent(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Player targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -2629,7 +2624,6 @@ public class SpongeEventFactory {
         values.put("message", message);
         values.put("originalSink", originalSink);
         values.put("sink", sink);
-        values.put("source", source);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(KickPlayerEvent.class, values);
     }
@@ -3297,11 +3291,10 @@ public class SpongeEventFactory {
      * @param message The message
      * @param originalSink The original sink
      * @param sink The sink
-     * @param source The source
      * @param targetEntity The target entity
      * @return A new disconnect client connection event
      */
-    public static ClientConnectionEvent.Disconnect createClientConnectionEventDisconnect(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, CommandSource source, Player targetEntity) {
+    public static ClientConnectionEvent.Disconnect createClientConnectionEventDisconnect(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Player targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3309,7 +3302,6 @@ public class SpongeEventFactory {
         values.put("message", message);
         values.put("originalSink", originalSink);
         values.put("sink", sink);
-        values.put("source", source);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Disconnect.class, values);
     }
@@ -3327,11 +3319,10 @@ public class SpongeEventFactory {
      * @param sink The sink
      * @param fromTransform The from transform
      * @param toTransform The to transform
-     * @param source The source
      * @param targetEntity The target entity
      * @return A new join client connection event
      */
-    public static ClientConnectionEvent.Join createClientConnectionEventJoin(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Transform<World> fromTransform, Transform<World> toTransform, CommandSource source, Player targetEntity) {
+    public static ClientConnectionEvent.Join createClientConnectionEventJoin(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Transform<World> fromTransform, Transform<World> toTransform, Player targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3341,7 +3332,6 @@ public class SpongeEventFactory {
         values.put("sink", sink);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
-        values.put("source", source);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Join.class, values);
     }
@@ -3359,10 +3349,9 @@ public class SpongeEventFactory {
      * @param sink The sink
      * @param connection The connection
      * @param profile The profile
-     * @param source The source
      * @return A new login client connection event
      */
-    public static ClientConnectionEvent.Login createClientConnectionEventLogin(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, RemoteConnection connection, GameProfile profile, CommandSource source) {
+    public static ClientConnectionEvent.Login createClientConnectionEventLogin(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, RemoteConnection connection, GameProfile profile) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3372,7 +3361,6 @@ public class SpongeEventFactory {
         values.put("sink", sink);
         values.put("connection", connection);
         values.put("profile", profile);
-        values.put("source", source);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Login.class, values);
     }
 
