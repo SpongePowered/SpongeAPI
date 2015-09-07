@@ -65,4 +65,11 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable, CauseTr
      */
     List<BlockTransaction> filter(Predicate<Location<World>> predicate);
 
+    /**
+     * Invalidates the list as such that all {@link BlockTransaction}s are
+     * marked as "invalid" and will not apply post event.
+     * @return The filtered transactions
+     */
+    List<BlockTransaction> filterAll();
+
 }
