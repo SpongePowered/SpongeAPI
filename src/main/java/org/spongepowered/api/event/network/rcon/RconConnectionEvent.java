@@ -31,7 +31,7 @@ import org.spongepowered.api.util.command.source.RconSource;
 /**
  * An event that is associated with an {@link RconSource}.
  */
-public interface RconConnectionEvent extends Event, Cancellable {
+public interface RconConnectionEvent extends Event {
 
     /**
      * Gets the {@link RconSource} responsible for the event.
@@ -40,9 +40,9 @@ public interface RconConnectionEvent extends Event, Cancellable {
      */
     RconSource getSource();
 
-    interface Connect extends RconConnectionEvent {}
+    interface Connect extends RconConnectionEvent, Cancellable {}
 
-    interface Login extends RconConnectionEvent {}
+    interface Login extends RconConnectionEvent, Cancellable {}
 
     interface Disconnect extends RconConnectionEvent {}
 }
