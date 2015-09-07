@@ -26,12 +26,13 @@ package org.spongepowered.api.event.command;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.util.command.CommandResult;
 
 /**
  * Fired when a command is sent
  */
-public interface SendCommandEvent extends GameEvent, Cancellable {
+public interface SendCommandEvent extends GameEvent, Cancellable, CauseTracked {
 
     /**
      * Get the command as a string, without any sort of command prefix.

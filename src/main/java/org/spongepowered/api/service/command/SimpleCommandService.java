@@ -38,6 +38,7 @@ import com.google.common.collect.Multimap;
 import org.slf4j.Logger;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.SpongeEventFactory;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.command.SendCommandEvent;
 import org.spongepowered.api.event.command.TabCompleteCommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -238,8 +239,8 @@ public class SimpleCommandService implements CommandService {
     @Override
     public CommandResult process(CommandSource source, String commandLine) {
         final String[] argSplit = commandLine.split(" ", 2);
-        final SendCommandEvent event = SpongeEventFactory.createSendCommandEvent(this.game, argSplit.length > 1 ? argSplit[1] : "", argSplit[0],
-                CommandResult.empty(), source);
+        final SendCommandEvent event = SpongeEventFactory.createSendCommandEvent(this.game, Cause.of(source), argSplit.length > 1 ? argSplit[1] : "",
+                argSplit[0], CommandResult.empty());
         this.game.getEventManager().post(event);
         if (event.isCancelled()) {
             return event.getResult();
@@ -296,8 +297,8 @@ public class SimpleCommandService implements CommandService {
         try {
             final String[] argSplit = arguments.split(" ", 2);
             List<String> suggestions = new ArrayList<String>(this.dispatcher.getSuggestions(src, arguments));
-            final TabCompleteCommandEvent event = SpongeEventFactory.createTabCompleteCommandEvent(this.game, argSplit.length > 1 ? argSplit[1] : "",
-                    argSplit[0], src, suggestions);
+            final TabCompleteCommandEvent event = SpongeEventFactory.createTabCompleteCommandEvent(this.game, Cause.of(src), argSplit.length > 1 ?
+                            argSplit[1] : "", argSplit[0], suggestions);
             this.game.getEventManager().post(event);
             if (event.isCancelled()) {
                 return ImmutableList.of();

@@ -1307,14 +1307,16 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.command.SendCommandEvent}.
      * 
      * @param game The game
+     * @param cause The cause
      * @param arguments The arguments
      * @param command The command
      * @param result The result
      * @return A new send command event
      */
-    public static SendCommandEvent createSendCommandEvent(Game game, String arguments, String command, CommandResult result) {
+    public static SendCommandEvent createSendCommandEvent(Game game, Cause cause, String arguments, String command, CommandResult result) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
+        values.put("cause", cause);
         values.put("arguments", arguments);
         values.put("command", command);
         values.put("result", result);
@@ -1327,14 +1329,16 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.command.TabCompleteCommandEvent}.
      * 
      * @param game The game
+     * @param cause The cause
      * @param arguments The arguments
      * @param command The command
      * @param tabCompletions The tab completions
      * @return A new tab complete command event
      */
-    public static TabCompleteCommandEvent createTabCompleteCommandEvent(Game game, String arguments, String command, List<String> tabCompletions) {
+    public static TabCompleteCommandEvent createTabCompleteCommandEvent(Game game, Cause cause, String arguments, String command, List<String> tabCompletions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
+        values.put("cause", cause);
         values.put("arguments", arguments);
         values.put("command", command);
         values.put("tabCompletions", tabCompletions);
