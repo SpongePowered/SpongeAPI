@@ -416,11 +416,33 @@ public final class Location<E extends Extent> implements DataHolder {
      * <p>This will remove any extended block data at the given position.</p>
      *
      * @param state The new block state
+     */
+    public void setBlock(BlockState state) {
+        getExtent().setBlock(getBlockPosition(), state);
+    }
+
+    /**
+     * Replace the block at this position with a new state.
+     *
+     * <p>This will remove any extended block data at the given position.</p>
+     *
+     * @param state The new block state
      * @param notifyNeighbors Whether or not you want to notify neighboring
      *     blocks of this change. If true, this may cause blocks to change.
      */
     public void setBlock(BlockState state, boolean notifyNeighbors) {
         getExtent().setBlock(getBlockPosition(), state, notifyNeighbors);
+    }
+
+    /**
+     * Replace the block type at this position by a new type.
+     *
+     * <p>This will remove any extended block data at the given position.</p>
+     *
+     * @param type The new type
+     */
+    public void setBlockType(BlockType type) {
+        getExtent().setBlockType(getBlockPosition(), type);
     }
 
     /**

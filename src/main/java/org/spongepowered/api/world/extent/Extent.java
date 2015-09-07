@@ -27,6 +27,7 @@ package org.spongepowered.api.world.extent;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -86,6 +87,62 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @return The location in this extent
      */
     Location<? extends Extent> getLocation(double x, double y, double z);
+
+    /**
+     * Sets the block at the given position in the world.
+     *
+     * @param position The position
+     * @param block The block
+     * @param notifyNeighbors Whether or not you want to notify neighboring
+     *     blocks of this change. If true, this may cause blocks to change.
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the volume
+     */
+    void setBlock(Vector3i position, BlockState block, boolean notifyNeighbors);
+
+    /**
+     * Sets the block at the given position in the world.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param block The block
+     * @param notifyNeighbors Whether or not you want to notify neighboring
+     *     blocks of this change. If true, this may cause blocks to change.
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the volume
+     */
+    void setBlock(int x, int y, int z, BlockState block, boolean notifyNeighbors);
+
+    /**
+     * Replace the block at this position by a new type.
+     *
+     * <p>This will remove any extended block data at the given position.</p>
+     *
+     * @param position The position of the block
+     * @param type The new type
+     * @param notifyNeighbors Whether or not you want to notify neighboring
+     *     blocks of this change. If true, this may cause blocks to change.
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the area
+     */
+    void setBlockType(Vector3i position, BlockType type, boolean notifyNeighbors);
+
+    /**
+     * Replace the block at this position by a new type.
+     *
+     * <p>This will remove any extended block data at the given position.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param type The new type
+     * @param notifyNeighbors Whether or not you want to notify neighboring
+     *     blocks. If true, this may cause blocks to change.
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *     bounds of the area
+     */
+    void setBlockType(int x, int y, int z, BlockType type, boolean notifyNeighbors);
 
     /**
      * Get a snapshot of this block at the current point in time.
