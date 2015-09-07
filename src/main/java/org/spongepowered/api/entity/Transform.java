@@ -64,6 +64,15 @@ public interface Transform<E extends Extent> {
     Location<E> getLocation();
 
     /**
+     * Creates a copy of this transform and sets the {@link Location}.
+     * This sets both the position and the extent.
+     *
+     * @param location The new location
+     * @return A new transform
+     */
+    Transform<E> setLocation(Location<E> location);
+
+    /**
      * Gets the {@link Extent} this transform contains.
      *
      * <p>Note: This can be null if the {@link Extent} is unloaded and garbage
@@ -74,12 +83,28 @@ public interface Transform<E extends Extent> {
      */
     E getExtent();
 
+
+    /**
+     * Creates a copy of this transform and sets the {@link Extent}.
+     *
+     * @param extent The new extent
+     * @return A new transform
+     */
+    Transform<E> setExtent(E extent);
+
     /**
      * Gets the coordinates of this transform.
      *
      * @return The coordinates
      */
     Vector3d getPosition();
+
+    /**
+     * Creates a copy of this transform while setting the position of the new one.
+     * @param position The position
+     * @return A new transform
+     */
+    Transform<E> setPosition(Vector3d position);
 
     /**
      * Gets the rotation of this transform, as a {@link Vector3d}.
@@ -96,7 +121,23 @@ public interface Transform<E extends Extent> {
     Vector3d getRotation();
 
     /**
+     * Creates a copy of this transform and sets the rotation.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     * <ul>
+     *     <li><code>x -> pitch</code></li>
+     *     <li><code>y -> yaw</code></li>
+     *     <li><code>z -> roll</code></li>
+     * </ul>
+     *
+     * @param rotation The new rotation
+     * @return A new transform
+     */
+    Transform<E> setRotation(Vector3d rotation);
+
+    /**
      * Returns the rotation as a quaternion.
+     *
      * Quaternions are objectively better than
      * the Euler angles preferred by Minecraft.
      * This is for compatibility with
@@ -105,6 +146,21 @@ public interface Transform<E extends Extent> {
      * @return The rotation
      */
     Quaterniond getRotationAsQuaternion();
+
+
+    /**
+     * Creates a copy of this transform and sets the rotation as
+     * a quaternion.
+     *
+     * Quaternions are objectively better than
+     * the Euler angles preferred by Minecraft.
+     * This is for compatibility with
+     * the flow-math library.
+     *
+     * @param rotation The new rotation
+     * @return A new transform
+     */
+    Transform<E> setRotation(Quaterniond rotation);
 
     /**
      * Gets the pitch component of this transform rotation
@@ -133,6 +189,15 @@ public interface Transform<E extends Extent> {
      * @return The scale
      */
     Vector3d getScale();
+
+    /**
+     * Creates a copy of this transform and sets the scale for
+     * each axis.
+     *
+     * @param scale The scale
+     * @return A new transform
+     */
+    Transform<E> setScale(Vector3d scale);
 
     /**
      * "Adds" another transform to this one.
