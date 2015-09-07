@@ -43,4 +43,6 @@ public interface RconConnectionEvent extends Event, Cancellable {
     interface Connect extends RconConnectionEvent {}
 
     interface Login extends RconConnectionEvent {}
+
+    interface Disconnect extends RconConnectionEvent {}
 }

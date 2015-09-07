@@ -3421,6 +3421,20 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.network.rcon.RconConnectionEvent.Disconnect}.
+     * 
+     * @param source The source
+     * @return A new disconnect rcon connection event
+     */
+    public static RconConnectionEvent.Disconnect createRconConnectionEventDisconnect(RconSource source) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("source", source);
+        return SpongeEventFactoryUtils.createEventImpl(RconConnectionEvent.Disconnect.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.network.rcon.RconConnectionEvent.Login}.
      * 
      * @param source The source
