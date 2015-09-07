@@ -60,6 +60,7 @@ import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.projectile.FishHook;
 import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.event.achievement.GrantAchievementEvent;
 import org.spongepowered.api.event.action.FishingEvent;
 import org.spongepowered.api.event.action.InteractEvent;
 import org.spongepowered.api.event.action.LightningEvent;
@@ -151,6 +152,7 @@ import org.spongepowered.api.event.server.channel.RegisterChannelEvent;
 import org.spongepowered.api.event.server.channel.TargetChannelEvent;
 import org.spongepowered.api.event.server.channel.UnRegisterChannelEvent;
 import org.spongepowered.api.event.server.query.QueryServerEvent;
+import org.spongepowered.api.event.statistic.ChangeStatisticEvent;
 import org.spongepowered.api.event.user.BanUserEvent;
 import org.spongepowered.api.event.user.PardonUserEvent;
 import org.spongepowered.api.event.user.TargetUserEvent;
@@ -181,6 +183,8 @@ import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.potion.PotionEffect;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.service.world.ChunkLoadService;
+import org.spongepowered.api.statistic.Statistic;
+import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.status.StatusClient;
 import org.spongepowered.api.text.Text;
@@ -189,7 +193,6 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.ban.Ban;
 import org.spongepowered.api.util.command.CommandResult;
-import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.source.RconSource;
 import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.Location;
@@ -226,6 +229,60 @@ public class SpongeEventFactory {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         return SpongeEventFactoryUtils.createEventImpl(GameEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.achievement.GrantAchievementEvent}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param originalMessage The original message
+     * @param message The message
+     * @param originalSink The original sink
+     * @param sink The sink
+     * @param achievement The achievement
+     * @return A new grant achievement event
+     */
+    public static GrantAchievementEvent createGrantAchievementEvent(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Achievement achievement) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("originalMessage", originalMessage);
+        values.put("message", message);
+        values.put("originalSink", originalSink);
+        values.put("sink", sink);
+        values.put("achievement", achievement);
+        return SpongeEventFactoryUtils.createEventImpl(GrantAchievementEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.achievement.GrantAchievementEvent.TargetPlayer}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param originalMessage The original message
+     * @param message The message
+     * @param originalSink The original sink
+     * @param sink The sink
+     * @param achievement The achievement
+     * @param targetEntity The target entity
+     * @return A new target player grant achievement event
+     */
+    public static GrantAchievementEvent.TargetPlayer createGrantAchievementEventTargetPlayer(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Achievement achievement, Player targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("originalMessage", originalMessage);
+        values.put("message", message);
+        values.put("originalSink", originalSink);
+        values.put("sink", sink);
+        values.put("achievement", achievement);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(GrantAchievementEvent.TargetPlayer.class, values);
     }
 
     /**
@@ -1253,16 +1310,14 @@ public class SpongeEventFactory {
      * @param arguments The arguments
      * @param command The command
      * @param result The result
-     * @param source The source
      * @return A new send command event
      */
-    public static SendCommandEvent createSendCommandEvent(Game game, String arguments, String command, CommandResult result, CommandSource source) {
+    public static SendCommandEvent createSendCommandEvent(Game game, String arguments, String command, CommandResult result) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("arguments", arguments);
         values.put("command", command);
         values.put("result", result);
-        values.put("source", source);
         return SpongeEventFactoryUtils.createEventImpl(SendCommandEvent.class, values);
     }
 
@@ -1274,16 +1329,14 @@ public class SpongeEventFactory {
      * @param game The game
      * @param arguments The arguments
      * @param command The command
-     * @param source The source
      * @param tabCompletions The tab completions
      * @return A new tab complete command event
      */
-    public static TabCompleteCommandEvent createTabCompleteCommandEvent(Game game, String arguments, String command, CommandSource source, List<String> tabCompletions) {
+    public static TabCompleteCommandEvent createTabCompleteCommandEvent(Game game, String arguments, String command, List<String> tabCompletions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("arguments", arguments);
         values.put("command", command);
-        values.put("source", source);
         values.put("tabCompletions", tabCompletions);
         return SpongeEventFactoryUtils.createEventImpl(TabCompleteCommandEvent.class, values);
     }
@@ -3620,6 +3673,52 @@ public class SpongeEventFactory {
         values.put("playerCount", playerCount);
         values.put("size", size);
         return SpongeEventFactoryUtils.createEventImpl(QueryServerEvent.Full.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.statistic.ChangeStatisticEvent}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param originalValue The original value
+     * @param value The value
+     * @param statistic The statistic
+     * @return A new change statistic event
+     */
+    public static ChangeStatisticEvent createChangeStatisticEvent(Game game, Cause cause, long originalValue, long value, Statistic statistic) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("originalValue", originalValue);
+        values.put("value", value);
+        values.put("statistic", statistic);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeStatisticEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.statistic.ChangeStatisticEvent.TargetPlayer}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param originalValue The original value
+     * @param value The value
+     * @param statistic The statistic
+     * @param targetEntity The target entity
+     * @return A new target player change statistic event
+     */
+    public static ChangeStatisticEvent.TargetPlayer createChangeStatisticEventTargetPlayer(Game game, Cause cause, long originalValue, long value, Statistic statistic, Player targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("originalValue", originalValue);
+        values.put("value", value);
+        values.put("statistic", statistic);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeStatisticEvent.TargetPlayer.class, values);
     }
 
     /**
