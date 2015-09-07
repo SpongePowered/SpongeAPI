@@ -3265,16 +3265,20 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param originalMessage The original message
      * @param message The message
+     * @param originalSink The original sink
+     * @param sink The sink
      * @param connection The connection
      * @param profile The profile
      * @return A new auth client connection event
      */
-    public static ClientConnectionEvent.Auth createClientConnectionEventAuth(Game game, Cause cause, Text originalMessage, Text message, RemoteConnection connection, GameProfile profile) {
+    public static ClientConnectionEvent.Auth createClientConnectionEventAuth(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, RemoteConnection connection, GameProfile profile) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("originalMessage", originalMessage);
         values.put("message", message);
+        values.put("originalSink", originalSink);
+        values.put("sink", sink);
         values.put("connection", connection);
         values.put("profile", profile);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Auth.class, values);

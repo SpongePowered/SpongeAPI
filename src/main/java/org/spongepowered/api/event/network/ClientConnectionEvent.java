@@ -28,7 +28,6 @@ import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.event.action.MessageEvent;
 import org.spongepowered.api.event.command.MessageSinkEvent;
 import org.spongepowered.api.event.entity.DisplaceEntityEvent;
 import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
@@ -47,7 +46,7 @@ public interface ClientConnectionEvent extends GameEvent {
      *
      * <p>Note: This event is fired before #Login.</p>
      */
-    interface Auth extends ClientConnectionEvent, MessageEvent, Cancellable {
+    interface Auth extends ClientConnectionEvent, MessageSinkEvent, Cancellable {
         /**
          * Gets the {@link RemoteConnection} representing the client connection.
          *
