@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.util.event.factory;
 
-import com.google.common.base.Function;
 
 import java.util.Map;
+import java.util.function.Function;
 
 import javax.annotation.Nonnull;
 
