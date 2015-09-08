@@ -173,7 +173,7 @@ public class BlockRayHit<E extends Extent> {
      */
     public Location<E> getLocation() {
         if (this.location == null) {
-            this.location = new Location<E>(this.extent, this.xBlock, this.yBlock, this.zBlock);
+            this.location = new Location<>(this.extent, this.xBlock, this.yBlock, this.zBlock);
         }
         return this.location;
     }

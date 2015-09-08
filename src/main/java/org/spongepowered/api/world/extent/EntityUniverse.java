@@ -26,7 +26,6 @@ package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Predicate;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.entity.Entity;
@@ -38,6 +37,7 @@ import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * A container of {@link Entity} instances.
@@ -140,7 +140,7 @@ public interface EntityUniverse {
      *
      * <p>Creating an entity does not spawn the entity into the world. An entity
      * created means the entity can be spawned at the given location. If
-     * {@link Optional#absent()} was returned, the entity is not able to spawn
+     * {@link Optional#empty()} was returned, the entity is not able to spawn
      * at the given location. Furthermore, this allows for the {@link Entity} to
      * be customized further prior to traditional "ticking" and processing by
      * core systems.</p>

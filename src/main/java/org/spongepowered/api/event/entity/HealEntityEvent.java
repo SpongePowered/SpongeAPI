@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.entity;
 
-import com.google.common.base.Function;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
@@ -35,6 +34,7 @@ import org.spongepowered.api.util.Tuple;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * An event where an {@link Entity} is "healed". This can usually mean that

@@ -28,11 +28,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.data.DataQuery.of;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.world.Location;
+
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -66,7 +67,7 @@ public final class BlockTransaction implements DataSerializable {
     }
 
     public Optional<BlockSnapshot> getCustomReplacement() {
-        return Optional.fromNullable(this.customReplacement);
+        return Optional.ofNullable(this.customReplacement);
     }
 
     public BlockTransaction setCustomReplacement(@Nullable BlockSnapshot customReplacement) {

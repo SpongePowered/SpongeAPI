@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.entity;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.block.tileentity.carrier.Dispenser;
@@ -50,6 +49,7 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * Represents the base event for when an {@link Entity} is being "attacked".

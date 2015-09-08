@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.action;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.Cancellable;
@@ -32,6 +31,8 @@ import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.TargetEntityEvent;
 import org.spongepowered.api.world.World;
+
+import java.util.Optional;
 
 /**
  * Called when a Human enters a bed to sleep in.
@@ -66,7 +67,7 @@ public interface SleepingEvent extends GameEvent, TargetEntityEvent, CauseTracke
          *
          * <p>This may have not been set by the event, so checking
          * {@link #wasSpawnSet()} is advisable. If spawn has not been set,
-         * it will return {@link Optional#absent()}.</p>
+         * it will return {@link Optional#empty()}.</p>
          *
          * @return The humans new spawn transform, if available
          */

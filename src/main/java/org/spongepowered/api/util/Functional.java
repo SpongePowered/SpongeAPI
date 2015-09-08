@@ -22,33 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.damage;
+package org.spongepowered.api.util;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.Cause;
-
-import java.util.function.Function;
+import java.util.Arrays;
+import java.util.function.Predicate;
 
 /**
- * Represents a modifier that will apply a function on a damage value to
- * deal towards an entity such that the raw damage is the input of a
- * {@link Function} such that the output will be the final damage applied
- * to the {@link Entity}.
+ * Utility methods to help with function work
  */
-public interface DamageModifier {
+public class Functional {
+    private Functional() {}
 
     /**
-     * Gets the {@link DamageModifierType} for this {@link DamageModifier}.
+     * Perform an AND using an array of predicates.
      *
-     * @return The damage modifier type
+     * @param predicates The predicates to AND
+     * @param <E> The type to accept
+     * @return The combined predicate
      */
-    DamageModifierType getType();
+    public static <E> Predicate<E> predicateAnd(Predicate<E>... predicates) {
+        return predicateAnd(Arrays.asList(predicates));
+    }
 
     /**
-     * Gets the cause of this {@link DamageModifier}.
+     * Perform an AND using an iterable of predicates.
      *
-     * @return The cause of this damage modifier
+     * @param predicates The predicates to and
+     * @param <E> The type to accept
+     * @return The combined predicate
      */
-    Cause getCause();
+    public static <E> Predicate<E> predicateAnd(Iterable<Predicate<E>> predicates) {
+        return e -> {
+            for (Predicate<E> pred : predicates) {
+                if (!pred.test(e)) {
+                    return false;
+                }
+            }
+            return true;
+        };
+    }
 
 }

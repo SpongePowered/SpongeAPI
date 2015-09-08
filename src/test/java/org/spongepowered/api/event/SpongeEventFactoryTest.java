@@ -147,7 +147,7 @@ public class SpongeEventFactoryTest {
         } else if (Enum.class.isAssignableFrom(paramType)) {
             return paramType.getEnumConstants()[0];
         } else if (Location.class.isAssignableFrom(paramType)) {
-            return new Location<Extent>((Extent) mockParam(Extent.class), 0, 0, 0);
+            return new Location<>((Extent) mockParam(Extent.class), 0, 0, 0);
         } else if (paramType == Text[].class) {
             return new Text[] {};
         } else if (BlockSnapshot.class.isAssignableFrom(paramType)) {

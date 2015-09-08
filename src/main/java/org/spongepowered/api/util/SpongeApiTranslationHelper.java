@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.util;
 
-import com.google.common.base.Function;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.text.translation.ResourceBundleTranslation;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.function.Function;
 
 import javax.annotation.Nullable;
 

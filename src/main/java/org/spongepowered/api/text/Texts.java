@@ -273,7 +273,7 @@ public final class Texts {
     public static Text format(Text template, Object... replacements) {
         checkNotNull(template, "template");
         checkNotNull(replacements, "values");
-        Map<String, Object> replacementsMap = new HashMap<String, Object>();
+        Map<String, Object> replacementsMap = new HashMap<>();
         int index = 0;
         for (Object replacement : replacements) {
             replacementsMap.put(Integer.toString(index++), replacement);
@@ -288,7 +288,7 @@ public final class Texts {
             // Only replace
             if (replacement != null) {
                 // Copy color, style and text actions from placeholder
-                List<Object> formats = new ArrayList<Object>();
+                List<Object> formats = new ArrayList<>();
                 formats.add(template.getFormat());
                 Optional<HoverAction<?>> hoverAction = template.getHoverAction();
                 if (hoverAction.isPresent()) {

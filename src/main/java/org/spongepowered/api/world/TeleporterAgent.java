@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.world;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 
 public interface TeleporterAgent {
 

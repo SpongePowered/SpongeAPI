@@ -25,10 +25,10 @@
 package org.spongepowered.api.data;
 
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Optional;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -36,7 +36,7 @@ import java.util.UUID;
  * {@link Location}. Being that a {@link LocateableSnapshot} may be built
  * by an {@link ImmutableDataBuilder}, the {@link Location} may be
  * <code>null</code> such that {@link #getLocation()} returns
- * {@link Optional#absent()}.
+ * {@link Optional#empty()}.
  *
  * @param <T> The type of location snapshot for self referencing
  */
@@ -44,7 +44,7 @@ public interface LocateableSnapshot<T extends LocateableSnapshot<T>> extends Imm
 
     /**
      * Gets the {@link UUID} of the world.
-     * 
+     *
      * @return The world unique Id
      */
     UUID getWorldUniqueId();

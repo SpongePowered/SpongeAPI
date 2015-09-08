@@ -26,11 +26,10 @@ package org.spongepowered.api.text.translation;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Function;
-
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import java.util.function.Function;
 
 /**
  * A translation class designed to be used for ResourceBundles. For convenience, most users will want to wrap this in a class that keeps track of

@@ -27,7 +27,6 @@ package org.spongepowered.api.event.impl;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -39,6 +38,7 @@ import org.spongepowered.api.util.Tuple;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 public abstract class AbstractDamageEntityEvent extends AbstractEvent implements DamageEntityEvent {
 
@@ -156,7 +156,7 @@ public abstract class AbstractDamageEntityEvent extends AbstractEvent implements
     public final List<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers() {
         ImmutableList.Builder<Tuple<DamageModifier, Function<? super Double, Double>>> builder = ImmutableList.builder();
         for (Map.Entry<DamageModifier, Function<? super Double, Double>> entry : this.modifierFunctions.entrySet()) {
-            builder.add(new Tuple<DamageModifier, Function<? super Double, Double>>(entry.getKey(), entry.getValue()));
+            builder.add(new Tuple<>(entry.getKey(), entry.getValue()));
         }
         return builder.build();
     }

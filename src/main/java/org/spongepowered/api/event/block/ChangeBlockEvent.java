@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.block;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTransaction;
 import org.spongepowered.api.event.Cancellable;
@@ -36,6 +35,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Base event for when {@link BlockState}s at {@link Location<World>}s are being
@@ -56,7 +56,7 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable, CauseTr
     /**
      * Applies the provided {@link Predicate} to the {@link List} of
      * {@link BlockTransaction}s from {@link #getTransactions()} such that
-     * any time that {@link Predicate#apply(Object)} returns <code>false</code>
+     * any time that {@link Predicate#test(Object)} returns <code>false</code>
      * on a {@link BlockTransaction}, the {@link BlockTransaction} is
      * marked as "invalid" and will not apply post event.
      *

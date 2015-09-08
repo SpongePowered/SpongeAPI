@@ -29,7 +29,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
-import com.google.common.base.Predicate;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.spongepowered.api.plugin.PluginContainer;

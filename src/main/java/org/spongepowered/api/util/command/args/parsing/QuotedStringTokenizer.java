@@ -63,7 +63,7 @@ class QuotedStringTokenizer implements InputTokenizer {
         }
 
         final TokenizerState state = new TokenizerState(arguments, lenient);
-        List<SingleArg> returnedArgs = new ArrayList<SingleArg>(arguments.length() / 8);
+        List<SingleArg> returnedArgs = new ArrayList<>(arguments.length() / 8);
         skipWhiteSpace(state);
         while (state.hasMore()) {
             int startIdx = state.getIndex() + 1;

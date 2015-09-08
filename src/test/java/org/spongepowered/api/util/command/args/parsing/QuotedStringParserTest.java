@@ -26,7 +26,6 @@ package org.spongepowered.api.util.command.args.parsing;
 
 import static org.junit.Assert.assertEquals;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.junit.Ignore;
@@ -38,17 +37,9 @@ import org.spongepowered.api.util.command.args.ArgumentParseException;
 import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 public class QuotedStringParserTest {
     private static List<String> parseFrom(String args) throws ArgumentParseException {
-        return Lists.transform(new QuotedStringTokenizer(true, false).tokenize(args, false), new Function<SingleArg, String>() {
-            @Nullable
-            @Override
-            public String apply(SingleArg input) {
-                return input.getValue();
-            }
-        });
+        return Lists.transform(new QuotedStringTokenizer(true, false).tokenize(args, false), SingleArg::getValue);
     }
 
     @Rule

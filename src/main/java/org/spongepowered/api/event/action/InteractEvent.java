@@ -25,10 +25,11 @@
 package org.spongepowered.api.event.action;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.google.common.base.Optional;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
+
+import java.util.Optional;
 
 /**
  * Base event for all interactions.
@@ -43,7 +44,7 @@ public interface InteractEvent extends GameEvent, Cancellable, CauseTracked {
      * the optional).</p>
      *
      * @return An optional containing the point of interaction or
-     *     {@link Optional#absent()} if not known
+     *     {@link Optional#empty()} if not known
      */
     Optional<Vector3d> getInteractionPoint();
 }

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.entity;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.Cancellable;
@@ -38,6 +37,7 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * An event that affects multiple {@link Entity} instances as a bulk action.

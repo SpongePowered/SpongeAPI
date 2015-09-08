@@ -25,7 +25,6 @@
 
 package org.spongepowered.api.event.block;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
@@ -36,6 +35,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 import java.util.Map;
+import java.util.function.Predicate;
 
 /**
  * Called when a block at a {@link Location} triggers an update to one or more
@@ -68,7 +68,7 @@ public interface NotifyNeighborBlockEvent extends GameEvent, Cancellable, CauseT
     /**
      * Filters out {@link Direction}s of the {@link BlockState}s to be
      * marked as "valid" after this event. If the
-     * {@link Predicate#apply(Object)} returns <code>false</code>, the
+     * {@link Predicate#test(Object)} returns <code>false</code>, the
      * {@link BlockState} is removed from {@link #getRelatives()} map.
      *
      * @param predicate The predicate to use for filtering.

@@ -145,8 +145,7 @@ public final class DataQuery {
      * @return The constructed query
      */
     public DataQuery then(DataQuery that) {
-        ImmutableList.Builder<String> builder =
-                new ImmutableList.Builder<String>();
+        ImmutableList.Builder<String> builder = ImmutableList.builder();
 
         builder.addAll(this.parts);
         builder.addAll(that.parts);
@@ -161,8 +160,7 @@ public final class DataQuery {
      * @return The constructed queries
      */
     public List<DataQuery> getQueryParts() {
-        ImmutableList.Builder<DataQuery> builder =
-                new ImmutableList.Builder<DataQuery>();
+        ImmutableList.Builder<DataQuery> builder = ImmutableList.builder();
 
         for (String part : getParts()) {
             builder.add(new DataQuery(part));

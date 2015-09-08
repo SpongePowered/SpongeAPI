@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
@@ -35,6 +34,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.ItemStackTransaction;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Handles when any {@link ItemStack}(s) is/are about to be "dropped" onto
@@ -74,7 +74,7 @@ public interface DropItemStackEvent extends GameEvent, CauseTracked {
 
         /**
          * Applies a {@link Predicate} on the {@link ItemStackSnapshot}s such that
-         * any {@link ItemStackSnapshot} that when {@link Predicate#apply(Object)}
+         * any {@link ItemStackSnapshot} that when {@link Predicate#test(Object)}
          * returns <code>false</code>, the owning {@link ItemStackTransaction} is
          * marked as "invalid".
          *

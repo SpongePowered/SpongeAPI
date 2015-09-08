@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.block;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
@@ -32,15 +31,16 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
+import java.util.function.Predicate;
 
 /**
- * Base event for when a target {@link BlockState} at a {@link Location} is 
+ * Base event for when a target {@link BlockState} at a {@link Location} is
  * being harvested and one or more {@link ItemStack}(s) are dropped.
  */
 public interface HarvestBlockEvent extends TargetBlockEvent, ChangeEntityExperienceEvent {
 
     /**
-     * Gets a mutable copy of the original {@link Collection<ItemStack>} 
+     * Gets a mutable copy of the original {@link Collection<ItemStack>}
      * unaffected by changes to this event.
      *
      * @return The mutable Collection of ItemStack
@@ -56,7 +56,7 @@ public interface HarvestBlockEvent extends TargetBlockEvent, ChangeEntityExperie
     Collection<ItemStack> getItemStacks();
 
     /**
-     * Sets the {@link Collection<ItemStack>} that will be dropped after event 
+     * Sets the {@link Collection<ItemStack>} that will be dropped after event
      * resolution.
      *
      * @param items The Collection of ItemStack
@@ -64,11 +64,11 @@ public interface HarvestBlockEvent extends TargetBlockEvent, ChangeEntityExperie
     void setItems(Collection<ItemStack> items);
 
     /**
-     * Filters {@link ItemStack}s within {@link 
+     * Filters {@link ItemStack}s within {@link
      * HarvestBlockEvent#getItemStacks()}.
      *
-     * <p>The ItemStacks remaining in the Collection will be the ones that will 
-     * be dropped. This will be the same Collection returned from {@link 
+     * <p>The ItemStacks remaining in the Collection will be the ones that will
+     * be dropped. This will be the same Collection returned from {@link
      * HarvestBlockEvent#getItemStacks()}.</p>
      *
      * @param predicate The predicate to use for filtering.
@@ -86,10 +86,10 @@ public interface HarvestBlockEvent extends TargetBlockEvent, ChangeEntityExperie
     float getOriginalDropChance();
 
     /**
-     * Gets the chance the result from {@link HarvestBlockEvent#getItemStacks()} 
+     * Gets the chance the result from {@link HarvestBlockEvent#getItemStacks()}
      * will be dropped.
      *
-     * <p>A value of 0.0f means 0% chance of drop whereas 1.0f means 100% 
+     * <p>A value of 0.0f means 0% chance of drop whereas 1.0f means 100%
      * chance of drop.</p>
      *
      * @return The chance
@@ -101,12 +101,12 @@ public interface HarvestBlockEvent extends TargetBlockEvent, ChangeEntityExperie
      * will drop.
      *
      * <p>A value of 0.0f means 0% chance of drop whereas 1.0f means 100% chance
-     * of drop. Any value below 0.0f will be grounded at 0 and likewise any 
+     * of drop. Any value below 0.0f will be grounded at 0 and likewise any
      * value above 1.0f will be capped at 1.0f.</p>
      *
-     * Keep in mind that your chance is not guaranteed; a plugin or mod could 
-     * change it afterwards. If the desire is to guarantee that the drop won't 
-     * occur, use {@link Cancellable#setCancelled(boolean)} instead (make sure 
+     * Keep in mind that your chance is not guaranteed; a plugin or mod could
+     * change it afterwards. If the desire is to guarantee that the drop won't
+     * occur, use {@link Cancellable#setCancelled(boolean)} instead (make sure
      * to pass in true).
      *
      * @param chance The chance

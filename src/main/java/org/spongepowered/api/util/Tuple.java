@@ -31,13 +31,13 @@ import org.apache.commons.lang3.tuple.Pair;
 
 /**
  * A tuple of objects. This can be considered a {@link Pair}
- * @param <K> 
+ * @param <K>
  * @param <V>
  */
 public class Tuple<K, V> {
 
     public static <K, V> Tuple<K, V> of(K first, V second) {
-        return new Tuple<K, V>(first, second);
+        return new Tuple<>(first, second);
     }
 
     private final K first;

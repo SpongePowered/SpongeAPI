@@ -98,7 +98,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param position The position
      */
     public Location(E extent, Vector3d position) {
-        this.extent = new WeakReference<E>(checkNotNull(extent, "extent"));
+        this.extent = new WeakReference<>(checkNotNull(extent, "extent"));
         this.position = checkNotNull(position, "position");
     }
 
@@ -121,7 +121,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param blockPosition The position
      */
     public Location(E extent, Vector3i blockPosition) {
-        this.extent = new WeakReference<E>(checkNotNull(extent, "extent"));
+        this.extent = new WeakReference<>(checkNotNull(extent, "extent"));
         this.blockPosition = checkNotNull(blockPosition, "blockPosition");
     }
 
@@ -139,7 +139,7 @@ public final class Location<E extends Extent> implements DataHolder {
 
     /**
      * Get the underlying extent.
-     * 
+     *
      * <p>Note: This can be null if the {@link Extent} is unloaded and garbage
      * collected.</p>
      *
@@ -288,7 +288,7 @@ public final class Location<E extends Extent> implements DataHolder {
         if (extent == getExtent()) {
             return this;
         }
-        return new Location<E>(extent, getPosition());
+        return new Location<>(extent, getPosition());
     }
 
     /**
@@ -302,7 +302,7 @@ public final class Location<E extends Extent> implements DataHolder {
         if (position == getPosition()) {
             return this;
         }
-        return new Location<E>(getExtent(), position);
+        return new Location<>(getExtent(), position);
     }
 
     /**
@@ -782,7 +782,7 @@ public final class Location<E extends Extent> implements DataHolder {
 
     @Override
     public DataHolder copy() {
-        return new Location<E>(this.extent.get(), getPosition());
+        return new Location<>(this.extent.get(), getPosition());
     }
 
     @Override

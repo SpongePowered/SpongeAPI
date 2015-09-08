@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.item.inventory.Inventory;
@@ -32,6 +31,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackTransaction;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Fired when {@link ItemStack}s are generated into a {@link Inventory}
@@ -50,7 +50,7 @@ public interface AffectItemStackEvent extends TargetInventoryEvent, Cancellable,
     /**
      * Applies the provided {@link Predicate} to the {@link List} of
      * {@link ItemStackTransaction}s from {@link #getTransactions()} such that
-     * any time that {@link Predicate#apply(Object)} returns <code>false</code>
+     * any time that {@link Predicate#test(Object)} returns <code>false</code>
      * on a {@link ItemStackTransaction}, the {@link ItemStackTransaction} is
      * marked as "invalid" and will not apply post event.
      *

@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        mavenLocal()
         jcenter()
         maven {
             name = 'sponge'
@@ -9,11 +10,11 @@ buildscript {
 
     dependencies {
         classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
-        classpath 'org.spongepowered:event-impl-gen:0.4-SNAPSHOT'
+        classpath 'org.spongepowered:event-impl-gen:0.5-SNAPSHOT'
     }
 }
 
-version = '2.1-SNAPSHOT'
+version = '3.0-SNAPSHOT'
 
 ext.api = project
 apply from: 'gradle/java.gradle'
@@ -39,7 +40,7 @@ dependencies {
 
     compile 'org.ow2.asm:asm:5.0.3'
 
-    compile 'org.spongepowered:event-gen-core:0.4-SNAPSHOT'
+    compile 'org.spongepowered:event-gen-core:0.5-SNAPSHOT'
 }
 
 // JAR manifest configuration

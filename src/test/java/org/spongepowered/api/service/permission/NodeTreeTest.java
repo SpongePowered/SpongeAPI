@@ -36,7 +36,7 @@ public class NodeTreeTest {
 
     @Test
     public void testAsMap() {
-        final Map<String, Boolean> testPermissions = new HashMap<String, Boolean>();
+        final Map<String, Boolean> testPermissions = new HashMap<>();
         testPermissions.put("generate.rainbow", true);
         testPermissions.put("generate.sunset", false);
         testPermissions.put("generate", true);
@@ -49,7 +49,7 @@ public class NodeTreeTest {
 
     @Test
     public void testWithValue() throws Exception {
-        final Map<String, Boolean> testPermissions = new HashMap<String, Boolean>();
+        final Map<String, Boolean> testPermissions = new HashMap<>();
         testPermissions.put("generate.rainbow", true);
         testPermissions.put("generate.sunset", false);
         testPermissions.put("generate", true);
@@ -64,7 +64,7 @@ public class NodeTreeTest {
 
     @Test
     public void testWithAll() throws Exception {
-        final Map<String, Boolean> testPermissions = new HashMap<String, Boolean>();
+        final Map<String, Boolean> testPermissions = new HashMap<>();
         testPermissions.put("generate.rainbow", true);
         testPermissions.put("generate.sunset", false);
         testPermissions.put("generate", true);
@@ -72,7 +72,7 @@ public class NodeTreeTest {
 
         NodeTree oldTree = NodeTree.of(testPermissions);
 
-        final Map<String, Tristate> newPermissions = new HashMap<String, Tristate>();
+        final Map<String, Tristate> newPermissions = new HashMap<>();
         newPermissions.put("generate.sunset.red", Tristate.TRUE);
         newPermissions.put("generate.thunderstorm.explosive", Tristate.UNDEFINED);
         newPermissions.put("something.new", Tristate.FALSE);
@@ -91,7 +91,7 @@ public class NodeTreeTest {
 
     @Test
     public void testCreateFromValues() throws Exception {
-        final Map<String, Boolean> testPermissions = new HashMap<String, Boolean>();
+        final Map<String, Boolean> testPermissions = new HashMap<>();
         testPermissions.put("generate.rainbow", true);
         testPermissions.put("generate.sunset", false);
         testPermissions.put("generate", true);

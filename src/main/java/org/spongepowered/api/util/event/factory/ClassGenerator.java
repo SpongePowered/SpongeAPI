@@ -465,6 +465,10 @@ public class ClassGenerator {
         mv.visitEnd();
     }
 
+    private void generateAccessorsandMutator(ClassWriter cw, Class<?> type, Class<?> parentType, String internalName, Property<Class<?>, Method> property) {
+        if (!hasImplementation(parentType, property.getAccessor())) {
+            this.generateAccessor(cw, parentType, internalName, property);
+        }
 
         Optional<Method> mutatorOptional = property.getMutator();
         if (mutatorOptional.isPresent() && !hasImplementation(parentType, mutatorOptional.get())) {
@@ -498,10 +502,9 @@ public class ClassGenerator {
             toStringMv
                     .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
 
-                if (property.getAccessor().getReturnType().equals(Optional.class)) {
-                    mv.visitMethodInsn(INVOKESTATIC, "java/util/Optional", "ofNullable",
-                                       "(Ljava/lang/Object;)Ljava/util/Optional;", false);
-                }
+            toStringMv.visitLdcInsn("=");
+            toStringMv
+                    .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
 
             toStringMv.visitVarInsn(ALOAD, 0);
             toStringMv.visitFieldInsn(GETFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
@@ -619,7 +622,7 @@ public class ClassGenerator {
         String internalName = name.replace('.', '/');
 
         ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
-        cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, internalName, null, "java/lang/Object", new String[]{Type.getInternalName(EventFactory.class)});
+        cw.visit(V1_8, ACC_PUBLIC + ACC_SUPER, internalName, null, "java/lang/Object", new String[]{Type.getInternalName(EventFactory.class)});
 
         // Create the constructor
         {
