@@ -25,10 +25,10 @@
 package org.spongepowered.api.data.property;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.Property;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -65,7 +65,7 @@ public class HarvestingProperty extends AbstractProperty<String, Set<BlockType>>
     public int compareTo(Property<?, ?> o) {
         if (o instanceof HarvestingProperty) {
             HarvestingProperty property = (HarvestingProperty) o;
-            Set<BlockType> set = Sets.newHashSet(property.getValue());
+            Set<BlockType> set = new HashSet<>(property.getValue());
             for (BlockType harvest : this.getValue()) {
                 if (set.contains(harvest)) {
                     set.remove(harvest);

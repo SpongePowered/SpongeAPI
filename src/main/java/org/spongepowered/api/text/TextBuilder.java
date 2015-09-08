@@ -29,7 +29,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.text.action.ShiftClickAction;
@@ -39,6 +38,7 @@ import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.translation.Translation;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
 public abstract class TextBuilder implements TextRepresentable {
 
     protected TextFormat format = new TextFormat();
-    protected List<Text> children = Lists.newArrayList();
+    protected List<Text> children = new ArrayList<>();
     @Nullable protected ClickAction<?> clickAction;
     @Nullable protected HoverAction<?> hoverAction;
     @Nullable protected ShiftClickAction<?> shiftClickAction;
@@ -73,7 +73,7 @@ public abstract class TextBuilder implements TextRepresentable {
     TextBuilder(Text text) {
         checkNotNull(text, "text");
         this.format = text.format;
-        this.children = Lists.newArrayList(text.children);
+        this.children = new ArrayList<>(text.children);
         this.clickAction = text.clickAction.orElse(null);
         this.hoverAction = text.hoverAction.orElse(null);
         this.shiftClickAction = text.shiftClickAction.orElse(null);

@@ -28,10 +28,8 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.game.state.GameStateEvent;
-import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 import org.spongepowered.api.eventgencore.classwrapper.reflection.ReflectionUtils;
 import org.spongepowered.api.util.event.factory.ClassGeneratorProvider;
 import org.spongepowered.api.util.event.factory.EventFactory;
@@ -39,6 +37,7 @@ import org.spongepowered.api.util.event.factory.NullPolicy;
 import org.spongepowered.api.util.event.factory.plugin.AccessorModifierEventFactoryPlugin;
 import org.spongepowered.api.util.event.factory.plugin.EventFactoryPlugin;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -90,7 +89,7 @@ public class SpongeEventFactoryUtils {
      * @return A new instance of the event
      */
     public static <T extends GameStateEvent> T createState(Class<T> type, Game game) {
-        Map<String, Object> values = Maps.newHashMapWithExpectedSize(1);
+        Map<String, Object> values = new HashMap<>(1);
         values.put("game", game);
         return SpongeEventFactoryUtils.createEventImpl(type, values);
     }

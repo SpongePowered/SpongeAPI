@@ -33,7 +33,6 @@ import com.flowpowered.math.vector.VectorNi;
 import com.flowpowered.math.vector.Vectord;
 import com.flowpowered.math.vector.Vectorf;
 import com.flowpowered.math.vector.Vectorl;
-import com.google.common.collect.Lists;
 import com.google.common.primitives.Booleans;
 import com.google.common.primitives.Bytes;
 import com.google.common.primitives.Chars;
@@ -45,6 +44,7 @@ import com.google.common.primitives.Shorts;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -173,7 +173,7 @@ public final class Coerce {
     @SuppressWarnings("unchecked")
     public static <T> List<T> toListOf(@Nullable Object obj, Class<T> ofClass) {
         checkNotNull(ofClass, "ofClass");
-        List<T> filteredList = Lists.newArrayList();
+        List<T> filteredList = new ArrayList<>();
 
         for (Object o : Coerce.toList(obj)) {
             if (ofClass.isAssignableFrom(o.getClass())) {
@@ -778,7 +778,7 @@ public final class Coerce {
             return Collections.<Object>emptyList();
         }
 
-        List<String> list = Lists.newArrayList();
+        List<String> list = new ArrayList<>();
         for (String part : candidate.group(2).split(",")) {
             if (part != null) {
                 list.add(part);

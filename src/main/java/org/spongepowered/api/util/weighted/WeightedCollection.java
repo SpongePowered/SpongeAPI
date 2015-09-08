@@ -27,8 +27,8 @@ package org.spongepowered.api.util.weighted;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.Lists;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -38,7 +38,7 @@ import java.util.Random;
 /**
  * Represents a mutable collection of weighted objects. This collection is not
  * thread-safe and must be externally synchronized if that is required.
- * 
+ *
  * @param <T> The weighted object type
  */
 public class WeightedCollection<T extends WeightedObject<?>> implements Collection<T> {
@@ -50,14 +50,14 @@ public class WeightedCollection<T extends WeightedObject<?>> implements Collecti
      * Creates a new {@link WeightedCollection}.
      */
     public WeightedCollection() {
-        this.objects = Lists.newArrayList();
+        this.objects = new ArrayList<>();
     }
 
     /**
      * Selects a random value from this list based on their weight.
-     * 
+     *
      * <p>If the list is empty then null will be returned.</p>
-     * 
+     *
      * @param rand The random object to use for selection
      * @return The selected value, or null if the list was empty
      */
@@ -84,7 +84,7 @@ public class WeightedCollection<T extends WeightedObject<?>> implements Collecti
     /**
      * Adds the given weighted object to the collection. The object may not be
      * null.
-     * 
+     *
      * @param object The weighted object
      * @throws NullPointerException If the object is null
      */

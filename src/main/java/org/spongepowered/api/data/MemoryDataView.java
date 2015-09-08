@@ -34,15 +34,16 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.service.persistence.DataBuilder;
 import org.spongepowered.api.service.persistence.SerializationService;
 import org.spongepowered.api.util.Coerce;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -55,7 +56,7 @@ import javax.annotation.Nullable;
  */
 public class MemoryDataView implements DataView {
 
-    protected final Map<String, Object> map = Maps.newLinkedHashMap();
+    protected final Map<String, Object> map = new LinkedHashMap<>();
     private final DataContainer container;
     private final DataView parent;
     private final DataQuery path;
@@ -142,7 +143,7 @@ public class MemoryDataView implements DataView {
             if (!subViewOptional.isPresent()) {
                 return false;
             }
-            List<String> subParts = Lists.newArrayListWithCapacity(queryParts.size() - 1);
+            List<String> subParts = new ArrayList<>(queryParts.size() - 1);
             for (int i = 1; i < queryParts.size(); i++) {
                 subParts.add(queryParts.get(i).asString("."));
             }
@@ -177,7 +178,7 @@ public class MemoryDataView implements DataView {
         } else {
             subView = subViewOptional.get();
         }
-        List<String> subParts = Lists.newArrayListWithCapacity(queryParts.size() - 1);
+        List<String> subParts = new ArrayList<>(queryParts.size() - 1);
         for (int i = 1; i < queryParts.size(); i++) {
             subParts.add(queryParts.get(i).asString("."));
         }
@@ -212,7 +213,7 @@ public class MemoryDataView implements DataView {
                 } else {
                     subView = subViewOptional.get();
                 }
-                List<String> subParts = Lists.newArrayListWithCapacity(parts.size() - 1);
+                List<String> subParts = new ArrayList<>(parts.size() - 1);
                 for (int i = 1; i < parts.size(); i++) {
                     subParts.add(parts.get(i));
                 }
@@ -288,7 +289,7 @@ public class MemoryDataView implements DataView {
             } else {
                 subView = subViewOptional.get();
             }
-            List<String> subParts = Lists.newArrayListWithCapacity(parts.size() - 1);
+            List<String> subParts = new ArrayList<>(parts.size() - 1);
             for (int i = 1; i < parts.size(); i++) {
                 subParts.add(parts.get(i));
             }
@@ -440,7 +441,7 @@ public class MemoryDataView implements DataView {
         Optional<Object> val = get(path);
         if (val.isPresent()) {
             if (val.get() instanceof List<?>) {
-                return Optional.<List<?>>of(Lists.newArrayList((List<?>) val.get()));
+                return Optional.<List<?>>of(new ArrayList<>((List<?>) val.get()));
             }
             if (val.get() instanceof Object[]) {
                 return Optional.<List<?>>of(Lists.newArrayList((Object[]) val.get()));
@@ -457,7 +458,7 @@ public class MemoryDataView implements DataView {
             return Optional.empty();
         }
 
-        List<String> newList = Lists.newArrayList();
+        List<String> newList = new ArrayList<>();
 
         for (Object object : list.get()) {
             Optional<String> optional = Coerce.asString(object);
@@ -488,7 +489,7 @@ public class MemoryDataView implements DataView {
             return Optional.empty();
         }
 
-        List<Character> newList = Lists.newArrayList();
+        List<Character> newList = new ArrayList<>();
 
         for (Object object : list.get()) {
             Optional<Character> optional = Coerce.asChar(object);
@@ -507,7 +508,7 @@ public class MemoryDataView implements DataView {
             return Optional.empty();
         }
 
-        List<Boolean> newList = Lists.newArrayList();
+        List<Boolean> newList = new ArrayList<>();
 
         for (Object object : list.get()) {
             Optional<Boolean> optional = Coerce.asBoolean(object);
@@ -526,7 +527,7 @@ public class MemoryDataView implements DataView {
             return Optional.empty();
         }
 
-        List<Byte> newList = Lists.newArrayList();
+        List<Byte> newList = new ArrayList<>();
 
         for (Object object : list.get()) {
             Optional<Byte> optional = Coerce.asByte(object);
@@ -545,7 +546,7 @@ public class MemoryDataView implements DataView {
             return Optional.empty();
         }
 
-        List<Short> newList = Lists.newArrayList();
+        List<Short> newList = new ArrayList<>();
 
         for (Object object : list.get()) {
             Optional<Short> optional = Coerce.asShort(object);
@@ -564,7 +565,7 @@ public class MemoryDataView implements DataView {
             return Optional.empty();
         }
 
-        List<Integer> newList = Lists.newArrayList();
+        List<Integer> newList = new ArrayList<>();
 
         for (Object object : list.get()) {
             Optional<Integer> optional = Coerce.asInteger(object);
@@ -583,7 +584,7 @@ public class MemoryDataView implements DataView {
             return Optional.empty();
         }
 
-        List<Long> newList = Lists.newArrayList();
+        List<Long> newList = new ArrayList<>();
 
         for (Object object : list.get()) {
             Optional<Long> optional = Coerce.asLong(object);
@@ -602,7 +603,7 @@ public class MemoryDataView implements DataView {
             return Optional.empty();
         }
 
-        List<Float> newList = Lists.newArrayList();
+        List<Float> newList = new ArrayList<>();
 
         for (Object object : list.get()) {
             Optional<Float> optional = Coerce.asFloat(object);
@@ -621,7 +622,7 @@ public class MemoryDataView implements DataView {
             return Optional.empty();
         }
 
-        List<Double> newList = Lists.newArrayList();
+        List<Double> newList = new ArrayList<>();
 
         for (Object object : list.get()) {
             Optional<Double> optional = Coerce.asDouble(object);
@@ -640,7 +641,7 @@ public class MemoryDataView implements DataView {
             return Optional.empty();
         }
 
-        List<Map<?, ?>> newList = Lists.newArrayList();
+        List<Map<?, ?>> newList = new ArrayList<>();
 
         for (Object object : list.get()) {
             if (object instanceof Map) {
@@ -659,7 +660,7 @@ public class MemoryDataView implements DataView {
             return Optional.empty();
         }
 
-        List<DataView> newList = Lists.newArrayList();
+        List<DataView> newList = new ArrayList<>();
 
         for (Object object : list.get()) {
             if (object instanceof DataView) {
@@ -704,7 +705,7 @@ public class MemoryDataView implements DataView {
         if (!builderOptional.isPresent()) {
             return Optional.empty();
         } else {
-            List<T> newList = Lists.newArrayList();
+            List<T> newList = new ArrayList<>();
             for (DataView view : optional.get()) {
                 Optional<T> element = builderOptional.get().build(view);
                 if (element.isPresent()) {

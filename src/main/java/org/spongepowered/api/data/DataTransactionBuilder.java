@@ -28,13 +28,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -212,7 +212,7 @@ public final class DataTransactionBuilder {
      */
     public DataTransactionBuilder replace(final ImmutableValue<?> value) {
         if (this.replaced == null) {
-            this.replaced = Lists.newArrayList();
+            this.replaced = new ArrayList<>();
         }
         this.replaced.add(checkNotNull(value));
         return this;
@@ -268,7 +268,7 @@ public final class DataTransactionBuilder {
      */
     public DataTransactionBuilder reject(final ImmutableValue<?> value) {
         if (this.rejected == null) {
-            this.rejected = Lists.newArrayList();
+            this.rejected = new ArrayList<>();
         }
         this.rejected.add(checkNotNull(value));
         return this;
@@ -323,7 +323,7 @@ public final class DataTransactionBuilder {
      */
     public DataTransactionBuilder success(final ImmutableValue<?> value) {
         if (this.successful == null) {
-            this.successful = Lists.newArrayList();
+            this.successful = new ArrayList<>();
         }
         this.successful.add(checkNotNull(value));
         return this;
@@ -385,9 +385,9 @@ public final class DataTransactionBuilder {
                 this.resultType = result.getType();
             }
         }
-        final List<ImmutableValue<?>> newSuccessful = Lists.newArrayList();
-        final List<ImmutableValue<?>> newReplaced = Lists.newArrayList();
-        final List<ImmutableValue<?>> newRejected = Lists.newArrayList();
+        final List<ImmutableValue<?>> newSuccessful = new ArrayList<>();
+        final List<ImmutableValue<?>> newReplaced = new ArrayList<>();
+        final List<ImmutableValue<?>> newRejected = new ArrayList<>();
         // Now let's handle the successful data
 
         dance:

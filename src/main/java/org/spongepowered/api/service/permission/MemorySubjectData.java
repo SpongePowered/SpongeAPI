@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import javax.annotation.Nullable;
@@ -52,9 +53,9 @@ import javax.annotation.Nullable;
 public class MemorySubjectData implements OptionSubjectData {
 
     private final PermissionService service;
-    private final ConcurrentMap<Set<Context>, Map<String, String>> options = Maps.newConcurrentMap();
-    private final ConcurrentMap<Set<Context>, NodeTree> permissions = Maps.newConcurrentMap();
-    private final ConcurrentMap<Set<Context>, List<Map.Entry<String, String>>> parents = Maps.newConcurrentMap();
+    private final ConcurrentMap<Set<Context>, Map<String, String>> options = new ConcurrentHashMap<>();
+    private final ConcurrentMap<Set<Context>, NodeTree> permissions = new ConcurrentHashMap<>();
+    private final ConcurrentMap<Set<Context>, List<Map.Entry<String, String>>> parents = new ConcurrentHashMap<>();
 
     /**
      * Creates a new subject data instance, using the provided service to request instances of permission subjects.

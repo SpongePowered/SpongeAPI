@@ -70,7 +70,7 @@ public interface ImmutableCollectionValue<E, C extends Collection<E>, I extends 
      * @param elements The values to add
      * @return The new value
      */
-    I with(Iterable<E> elements);
+    I with(E... elements);
 
     @Override
     I transform(Function<C, C> function);

@@ -26,12 +26,12 @@ package org.spongepowered.api.data;
 
 import static org.junit.Assert.assertTrue;
 
-import com.google.common.collect.Lists;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.SimpleConfigurationNode;
 import org.junit.Test;
 import org.spongepowered.api.data.translator.ConfigurateTranslator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,12 +43,12 @@ public class ConfigurateDataViewTest {
         node.getNode("foo","int").setValue(1);
         node.getNode("foo", "double").setValue(10.0D);
         node.getNode("foo", "long").setValue(Long.MAX_VALUE);
-        List<String> stringList = Lists.newArrayList();
+        List<String> stringList = new ArrayList<>();
         for (int i = 0; i < 100; i ++) {
             stringList.add("String" + i);
         }
         node.getNode("foo", "stringList").setValue(stringList);
-        List<SimpleData> dataList = Lists.newArrayList();
+        List<SimpleData> dataList = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             dataList.add(new SimpleData(i, 10.0 + i, "String" + i, Collections.<String>emptyList()));
         }

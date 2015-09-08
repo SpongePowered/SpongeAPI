@@ -29,7 +29,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.entity.InteractEntityEvent;
 import org.spongepowered.api.eventgencore.annotation.SetField;
@@ -46,8 +45,8 @@ public abstract class AbstractAttackEntityEvent extends AbstractEvent implements
     @SetField(isRequired = true) protected List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions;
     @SetField protected double originalFinalDamage;
     @SetField protected Map<DamageModifier, Double> originalModifiers;
-    @SetField protected final LinkedHashMap<DamageModifier, Double> modifiers = Maps.newLinkedHashMap();
-    @SetField protected final LinkedHashMap<DamageModifier, Function<? super Double, Double>> modifierFunctions = Maps.newLinkedHashMap();
+    @SetField protected final LinkedHashMap<DamageModifier, Double> modifiers = new LinkedHashMap<>();
+    @SetField protected final LinkedHashMap<DamageModifier, Function<? super Double, Double>> modifierFunctions = new LinkedHashMap<>();
     @SetField protected double baseDamage;
 
     // These are left unused on purpose, because Aaron101 is too lazy to change the event generator.

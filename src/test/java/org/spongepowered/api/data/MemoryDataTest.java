@@ -24,19 +24,23 @@
  */
 package org.spongepowered.api.data;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.spongepowered.api.data.DataQuery.of;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.spongepowered.api.service.persistence.DataBuilder;
 import org.spongepowered.api.service.persistence.SerializationService;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -165,7 +169,7 @@ public class MemoryDataTest {
     public void testLists() {
         DataContainer container = new MemoryDataContainer();
         DataQuery query = of("foo");
-        List<DataView> list = Lists.newArrayList();
+        List<DataView> list = new ArrayList<>();
         for (int i = 0; i < 1; i++) {
             DataContainer internal = new MemoryDataContainer();
             internal.set(of("foo", "bar"), "foo.bar" + i);
@@ -221,9 +225,9 @@ public class MemoryDataTest {
 
         Optional<SimpleData> fromContainer = container.getSerializable(of(), SimpleData.class, service);
         assertTrue(fromContainer.isPresent());
-        assertTrue(Objects.equal(fromContainer.get(), temp));
+        assertEquals(temp, fromContainer.get());
         assertTrue(container.contains(of("myStringList")));
-        assertTrue(container.getStringList(of("myStringList")).get().equals(myList));
+        assertEquals(myList, container.getStringList(of("myStringList")).get());
 
     }
 
@@ -233,10 +237,10 @@ public class MemoryDataTest {
         DataBuilder<SimpleData> builder = new SimpleDataBuilder();
         Mockito.stub(service.getBuilder(SimpleData.class)).toReturn(Optional.of(builder));
 
-        List<SimpleData> list = Lists.newArrayList();
+        List<SimpleData> list = new ArrayList<>();
         for (int i = 0; i < 1000; i++) {
             String number = Integer.toString(i);
-            list.add(new SimpleData(i, 0.1 * i, "i", Lists.asList(number, new String[] {" foo", "bar"})));
+            list.add(new SimpleData(i, 0.1 * i, "i", ImmutableList.of(number, " foo", "bar")));
         }
         DataContainer container = new MemoryDataContainer();
         container.set(of("foo", "bar"), list);
@@ -244,13 +248,13 @@ public class MemoryDataTest {
         Optional<List<SimpleData>> fromContainer = container.getSerializableList(of("foo", "bar"), SimpleData.class, service);
         assertTrue(fromContainer.isPresent());
         List<SimpleData> memoryList = fromContainer.get();
-        assertTrue(Objects.equal(memoryList, list));
+        assertEquals(list, memoryList);
 
     }
 
     @Test
     public void testGetKeys() {
-        Set<DataQuery> queries = Sets.newHashSet();
+        Set<DataQuery> queries = new HashSet<>();
 
         queries.add(of("foo"));
         queries.add(of("foo", "bar"));
@@ -262,7 +266,7 @@ public class MemoryDataTest {
         view.set(of("foo", "bar", "baz"), "foobarbaz");
         view.set(of("bar"), 1);
 
-        Set<DataQuery> testQueries = Sets.newHashSet();
+        Set<DataQuery> testQueries = new HashSet<>();
         testQueries.add(of("foo"));
         testQueries.add(of("bar"));
         Set<DataQuery> shallowKeys = view.getKeys(false);
@@ -279,13 +283,13 @@ public class MemoryDataTest {
         view.set(of("foo", "bar", "baz"), "foobarbaz");
         view.set(of("bar"), 1);
 
-        Map<DataQuery, Object> shallowMap = Maps.newLinkedHashMap();
+        Map<DataQuery, Object> shallowMap = new LinkedHashMap<>();
         shallowMap.put(of("bar"), 1);
-        final Map<DataQuery, Object> internalView = Maps.newLinkedHashMap();
+        final Map<DataQuery, Object> internalView = new LinkedHashMap<>();
         internalView.put(of("foo"), "foo");
         internalView.put(of("bar"), "foobar");
         internalView.put(of("baz"), "foobarbaz");
-        Map<DataQuery, Object> intermediateMap = Maps.newLinkedHashMap();
+        Map<DataQuery, Object> intermediateMap = new LinkedHashMap<>();
         intermediateMap.put(of("bar"), internalView);
         shallowMap.put(of("foo"), intermediateMap);
 
@@ -295,7 +299,7 @@ public class MemoryDataTest {
         // Since we also support getting deep values, this has the uncommon side effect
         // of actually having every possible DataQuery created for every possible value
         // from the top level root node.
-        final Map<DataQuery, Object> deepMap = Maps.newLinkedHashMap();
+        final Map<DataQuery, Object> deepMap = new LinkedHashMap<>();
         deepMap.put(of("bar"), 1);
         deepMap.put(of("foo", "bar", "foo"), "foo");
         deepMap.put(of("foo", "bar", "bar"), "foobar");
@@ -313,10 +317,10 @@ public class MemoryDataTest {
 
     @Test
     public void testMaps() {
-        Map<String, Object> myMap = Maps.newHashMap();
+        Map<String, Object> myMap = new HashMap<>();
         myMap.put("foo", "bar");
         myMap.put("myNumber", 1);
-        List<String> stringList = Lists.newArrayList();
+        List<String> stringList = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             stringList.add("Foo" + i);
         }
@@ -324,7 +328,7 @@ public class MemoryDataTest {
         DataView view = new MemoryDataContainer();
         view.set(of("Foo"), myMap);
 
-        Map<?, ?> retrievedMap = (Map<?, ?>) view.getMap(of("Foo")).get();
+        Map<?, ?> retrievedMap = view.getMap(of("Foo")).get();
         assertTrue(myMap.keySet().equals(retrievedMap.keySet()));
         assertTrue(myMap.entrySet().equals(retrievedMap.entrySet()));
     }

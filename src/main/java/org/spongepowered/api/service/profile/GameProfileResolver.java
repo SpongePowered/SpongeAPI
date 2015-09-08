@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.service.profile;
 
-import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.GameProfile;
 
 import java.io.IOException;
 import java.util.Collection;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -39,7 +39,7 @@ import java.util.concurrent.ExecutionException;
  * <p>The service may cache the data of a request for faster lookups. Note that
  * the cached data may not always be up to date.</p>
  *
- * <p>The returned {@link ListenableFuture} throws an {@link ExecutionException}
+ * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
  * caused by a {@link ProfileNotFoundException} if the profile does not exist or
  * an {@link IOException} if a network error occurred.</p>
  */
@@ -55,7 +55,7 @@ public interface GameProfileResolver {
      * @param uniqueId The unique ID
      * @return The result of the request
      */
-    ListenableFuture<GameProfile> get(UUID uniqueId);
+    CompletableFuture<GameProfile> get(UUID uniqueId);
 
     /**
      * Looks up a {@link GameProfile} by its unique ID.
@@ -64,7 +64,7 @@ public interface GameProfileResolver {
      * @param useCache true to perform a cache lookup first
      * @return The result of the request
      */
-    ListenableFuture<GameProfile> get(UUID uniqueId, boolean useCache);
+    CompletableFuture<GameProfile> get(UUID uniqueId, boolean useCache);
 
     /**
      * Looks up a {@link GameProfile} by its user name (case-insensitive).
@@ -76,7 +76,7 @@ public interface GameProfileResolver {
      * @param name The username
      * @return The result of the request
      */
-    ListenableFuture<GameProfile> get(String name);
+    CompletableFuture<GameProfile> get(String name);
 
     /**
      * Looks up a {@link GameProfile} by its user name (case-insensitive).
@@ -85,7 +85,7 @@ public interface GameProfileResolver {
      * @param useCache true to perform a cache lookup first
      * @return The result of the request
      */
-    ListenableFuture<GameProfile> get(String name, boolean useCache);
+    CompletableFuture<GameProfile> get(String name, boolean useCache);
 
     /**
      * Gets a collection of {@link GameProfile}s by their user names
@@ -95,7 +95,7 @@ public interface GameProfileResolver {
      * @param useCache true to perform a cache lookup first
      * @return The result of the request
      */
-    ListenableFuture<Collection<GameProfile>> getAllByName(Iterable<String> names, boolean useCache);
+    CompletableFuture<Collection<GameProfile>> getAllByName(Iterable<String> names, boolean useCache);
 
     /**
      * Gets a collection of {@link GameProfile}s by their unique IDs.
@@ -104,7 +104,7 @@ public interface GameProfileResolver {
      * @param useCache true to perform a cache lookup first
      * @return The result of the request
      */
-    ListenableFuture<Collection<GameProfile>> getAllById(Iterable<UUID> uniqueIds, boolean useCache);
+    CompletableFuture<Collection<GameProfile>> getAllById(Iterable<UUID> uniqueIds, boolean useCache);
 
     /**
      * Gets a collection of all cached {@link GameProfile}s.

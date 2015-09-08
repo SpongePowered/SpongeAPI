@@ -24,14 +24,23 @@
  */
 package org.spongepowered.api.util;
 
+import com.google.common.collect.ImmutableSet;
+
 import java.util.Arrays;
+import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 import java.util.function.Predicate;
 
 /**
  * Utility methods to help with function work
  */
 public class Functional {
-    private Functional() {}
+
+    private Functional() {
+    }
 
     /**
      * Perform an AND using an array of predicates.
@@ -62,4 +71,53 @@ public class Functional {
         };
     }
 
+    /**
+     * Get the value of an {@link Optional} as either a zero- or one-element immutable set.
+     *
+     * @param value The value to get as a set
+     * @param <T> The type
+     * @return The immutable set containing any value the optional has
+     */
+    public static <T> Set<T> optionalAsSet(Optional<T> value) {
+        return value.isPresent() ? ImmutableSet.of(value.get()) : ImmutableSet.of();
+    }
+
+    /**
+     * Execute a callable on <strong>the current thread</strong>, capturing the result or any exceptions that may be thrown into a {@link
+     * CompletableFuture}.
+     *
+     * @param call The callable to execute
+     * @param <T> The type of value returned
+     * @return The future holding the result
+     */
+    public static <T> CompletableFuture<T> failableFuture(Callable<T> call) {
+        CompletableFuture<T> ret = new CompletableFuture<>();
+        try {
+            ret.complete(call.call());
+        } catch (Exception e) {
+            ret.completeExceptionally(e);
+        }
+        return ret;
+    }
+
+    /**
+     * Execute a callable on the provided executor, capturing the result or any exceptions that may be thrown into a {@link
+     * CompletableFuture}.
+     *
+     * @param call The callable to execute
+     * @param exec The executor to execute this task on
+     * @param <T> The type of value returned
+     * @return The future holding the result
+     */
+    public static <T> CompletableFuture<T> asyncFailableFuture(Callable<T> call, Executor exec) {
+        CompletableFuture<T> ret = new CompletableFuture<>();
+        exec.execute((Runnable & CompletableFuture.AsynchronousCompletionTask) () -> {
+            try {
+                ret.complete(call.call());
+            } catch (Exception e) {
+                ret.completeExceptionally(e);
+            }
+        });
+        return ret;
+    }
 }

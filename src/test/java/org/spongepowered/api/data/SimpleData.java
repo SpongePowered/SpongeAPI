@@ -89,4 +89,14 @@ class SimpleData implements DataSerializable {
                 && Objects.equal(this.testString, other.testString)
                 && Arrays.equals(this.testList, other.testList);
     }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("testInt", testInt)
+                .add("testDouble", testDouble)
+                .add("testString", testString)
+                .add("testList", Arrays.toString(testList))
+                .toString();
+    }
 }

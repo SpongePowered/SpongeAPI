@@ -29,7 +29,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.eventgencore.annotation.SetField;
@@ -50,8 +49,8 @@ public abstract class AbstractDamageEntityEvent extends AbstractEvent implements
     private double originalFinalDamage;
     private ImmutableMap<DamageModifier, Double> originalModifiers;
     private ImmutableList<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions;
-    private final LinkedHashMap<DamageModifier, Double> modifiers = Maps.newLinkedHashMap();
-    private final LinkedHashMap<DamageModifier, Function<? super Double, Double>> modifierFunctions = Maps.newLinkedHashMap();
+    private final LinkedHashMap<DamageModifier, Double> modifiers = new LinkedHashMap<>();
+    private final LinkedHashMap<DamageModifier, Function<? super Double, Double>> modifierFunctions = new LinkedHashMap<>();
     private double baseDamage;
 
     @Override

@@ -31,7 +31,6 @@ import static org.hamcrest.Matchers.closeTo;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertThat;
 
-import com.google.common.collect.Maps;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.spongepowered.api.event.SpongeEventFactoryUtils;
@@ -40,6 +39,7 @@ import org.spongepowered.api.util.annotation.TransformWith;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -59,7 +59,7 @@ public class ClassGeneratorProviderTest {
         ClassGeneratorProvider provider = createProvider();
         EventFactory<ModifiedMethodInterface> factory = provider.create(ModifiedMethodInterface.class, Object.class, SpongeEventFactoryUtils.plugins);
 
-        Map<String, Object> values = Maps.newHashMap();
+        Map<String, Object> values = new HashMap<>();
         values.put("newModifierClass", new ModifierClass());
         values.put("otherModifierClass", new ModifierClass());
 
@@ -73,7 +73,7 @@ public class ClassGeneratorProviderTest {
     public void testCreate_Primitives() throws Exception {
         ClassGeneratorProvider provider = createProvider();
         EventFactory<PrimitiveContainer> factory = provider.create(PrimitiveContainer.class, Object.class, SpongeEventFactoryUtils.plugins);
-        Map<String, Object> values = Maps.newHashMap();
+        Map<String, Object> values = new HashMap<>();
         values.put("byte", (byte) 10);
         values.put("short", (short) 11);
         values.put("int", 12);
@@ -141,7 +141,7 @@ public class ClassGeneratorProviderTest {
     public void testCreate_BoxedPrimitives() throws Exception {
         ClassGeneratorProvider provider = createProvider();
         EventFactory<BoxedPrimitiveContainer> factory = provider.create(BoxedPrimitiveContainer.class, Object.class, SpongeEventFactoryUtils.plugins);
-        Map<String, Object> values = Maps.newHashMap();
+        Map<String, Object> values = new HashMap<>();
         values.put("byte", (byte) 10);
         values.put("short", (short) 11);
         values.put("int", 12);
@@ -206,7 +206,7 @@ public class ClassGeneratorProviderTest {
 
         Object object = new Object();
 
-        Map<String, Object> values = Maps.newHashMap();
+        Map<String, Object> values = new HashMap<>();
         values.put("bytes", new byte[]{1});
         values.put("shorts", new short[]{2});
         values.put("ints", new int[]{3});
@@ -235,7 +235,7 @@ public class ClassGeneratorProviderTest {
         ClassGeneratorProvider provider = createProvider();
         EventFactory<ExcessParametersContainer> factory = provider.create(ExcessParametersContainer.class, Object.class, SpongeEventFactoryUtils.plugins);
 
-        Map<String, Object> values = Maps.newHashMap();
+        Map<String, Object> values = new HashMap<>();
         values.put("name", "Jon");
         values.put("age", 8);
 
@@ -247,7 +247,7 @@ public class ClassGeneratorProviderTest {
         ClassGeneratorProvider provider = createProvider();
         EventFactory<ChildContainer> factory = provider.create(ChildContainer.class, Object.class, SpongeEventFactoryUtils.plugins);
 
-        Map<String, Object> values = Maps.newHashMap();
+        Map<String, Object> values = new HashMap<>();
         values.put("name", "Eduardo");
         values.put("age", 25);
         values.put("heatCapacity", 20);
@@ -307,7 +307,7 @@ public class ClassGeneratorProviderTest {
         ClassGeneratorProvider provider = createProvider();
         EventFactory<AbstractImplContainer> factory = provider.create(AbstractImplContainer.class, AbstractImpl.class, SpongeEventFactoryUtils.plugins);
 
-        Map<String, Object> values = Maps.newHashMap();
+        Map<String, Object> values = new HashMap<>();
         values.put("age", 56);
 
         AbstractImplContainer result = factory.apply(values);
@@ -325,7 +325,7 @@ public class ClassGeneratorProviderTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testCreate_AbstractImplAndExcessParams() throws Exception {
-        Map<String, Object> values = Maps.newHashMap();
+        Map<String, Object> values = new HashMap<>();
         values.put("name", "Vincent");
         values.put("age", 56);
         values.put("cool", false);
@@ -337,7 +337,7 @@ public class ClassGeneratorProviderTest {
 
     @Test
     public void testCreate_OptionalGetter() {
-        Map<String, Object> values = Maps.newHashMap();
+        Map<String, Object> values = new HashMap<>();
         values.put("name", Optional.ofNullable("MyName"));
 
         ClassGeneratorProvider provider = createProvider();
@@ -358,7 +358,7 @@ public class ClassGeneratorProviderTest {
 
     @Test(expected = RuntimeException.class)
     public void testCreate_OverloadedSetter() {
-        Map<String, Object> values = Maps.newHashMap();
+        Map<String, Object> values = new HashMap<>();
         values.put("object", "");
 
         ClassGeneratorProvider provider = createProvider();

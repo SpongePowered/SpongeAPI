@@ -6,5 +6,5 @@
     <suppress checks="Indentation" files="package-info\.java"/>
     <suppress checks="AbbreviationAsWordInName" files="TNT"/>
     <suppress checks="AbbreviationAsWordInName" files="PEBKAC"/>
-    <suppress files="src/main/java/org/spongepowered/api/event/SpongeEventFactory\.java"/>
+    <suppress checks=".*" files="src/main/java/org/spongepowered/api/event/SpongeEventFactory\.java"/>
 </suppressions>

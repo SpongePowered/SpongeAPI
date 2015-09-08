@@ -25,10 +25,10 @@
 package org.spongepowered.api.data.property;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.potion.PotionEffect;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -66,7 +66,7 @@ public class ApplicableEffect extends AbstractProperty<String, Set<PotionEffect>
     public int compareTo(Property<?, ?> o) {
         if (o instanceof ApplicableEffect) {
             ApplicableEffect effect = (ApplicableEffect) o;
-            Set<PotionEffect> set = Sets.newHashSet(effect.getValue());
+            Set<PotionEffect> set = new HashSet<>(effect.getValue());
             for (PotionEffect effect1 : this.getValue()) {
                 if (set.contains(effect1)) {
                     set.remove(effect1);
