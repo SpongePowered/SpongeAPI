@@ -657,7 +657,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public Collection<Property<?, ?>> getProperties() {
+    public Collection<Property<?, ?>> getApplicableProperties() {
         return getExtent().getProperties(getBlockPosition());
     }
 

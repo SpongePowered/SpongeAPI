@@ -22,38 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.data.property.block;
 
-import com.flowpowered.math.vector.Vector3d;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.EyeLocationData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.data.property.DoubleProperty;
 
-/**
- * An {@link ImmutableDataManipulator} for the "eye location" of an
- * {@link Entity}.
- */
-public interface ImmutableEyeLocationData extends ImmutableDataManipulator<ImmutableEyeLocationData, EyeLocationData> {
+public class BlastResistanceProperty extends DoubleProperty {
 
     /**
-     * Gets the {@link ImmutableValue} for the "height" from the base of an
-     * {@link Entity} bounding box to the current eye height. This can be known
-     * as the "camera height".
+     * Creates a new {@link BlastResistanceProperty}.
      *
-     * @return The immutable value for the eye height
+     * @param value The value for the blast resistance
      */
-    ImmutableValue<Double> eyeHeight();
+    public BlastResistanceProperty(double value) {
+        super(value);
+    }
 
     /**
-     * Gets the {@link ImmutableValue} for the "eye" location in a 3d plane.
-     * This is different from an {@link Entity}'s position as the eye location
-     * is always adjusted for the actual eye location, which may differ from
-     * the base {@link Entity}'s location. This can be known as the "camera"
-     * position.
+     * Creates a new {@link BlastResistanceProperty}.
      *
-     * @return The location value
+     * @param value The value for the blast resistance
+     * @param operator The operator for comparison
      */
-    ImmutableValue<Vector3d> eyeLocation();
+    public BlastResistanceProperty(double value, Operator operator) {
+        super(value, operator);
+    }
 
 }

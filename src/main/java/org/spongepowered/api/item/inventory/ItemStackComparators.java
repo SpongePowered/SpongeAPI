@@ -127,8 +127,8 @@ public final class ItemStackComparators {
             if (o2 == null) {
                 return -1;
             }
-            List<Property<?, ?>> properties = Lists.newArrayList(o2.getProperties());
-            for (Property<?, ?> property : o1.getProperties()) {
+            List<Property<?, ?>> properties = Lists.newArrayList(o2.getApplicableProperties());
+            for (Property<?, ?> property : o1.getApplicableProperties()) {
                 if (properties.contains(property)) {
                     properties.remove(property);
                 } else {

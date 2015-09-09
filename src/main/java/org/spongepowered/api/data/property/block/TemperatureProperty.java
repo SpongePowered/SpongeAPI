@@ -24,16 +24,16 @@
  */
 package org.spongepowered.api.data.property.block;
 
-import org.spongepowered.api.data.property.IntProperty;
+import org.spongepowered.api.data.property.DoubleProperty;
 
-public class TemperatureProperty extends IntProperty {
+public class TemperatureProperty extends DoubleProperty {
 
     /**
      * Creates a new {@link TemperatureProperty}.
      *
      * @param value The value of the temperature of the block
      */
-    public TemperatureProperty(int value) {
+    public TemperatureProperty(double value) {
         super(value);
     }
 
@@ -43,7 +43,7 @@ public class TemperatureProperty extends IntProperty {
      * @param value The value of the temperature of the block
      * @param operator The operator for comparisons
      */
-    public TemperatureProperty(int value, Operator operator) {
+    public TemperatureProperty(double value, Operator operator) {
         super(value, operator);
     }
 

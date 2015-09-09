@@ -26,30 +26,55 @@ package org.spongepowered.api.data.property;
 
 
 import com.google.common.base.Optional;
-import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
+/**
+ * Represents a handler for a {@link PropertyHolder} such that if a
+ * {@link PropertyHolder} cannot properly provide the {@link Property}
+ * instances natively, a {@link PropertyStore} can optionally provide
+ * an "override" or "customized" support of a particular {@link Property}
+ * for any variants of {@link PropertyHolder}s.
+ *
+ * @param <T> The type of property that this store can handle
+ */
 public interface PropertyStore<T extends Property<?, ?>> {
 
     /**
-     * Gets the desired property for the provided {@link DataHolder} at present
-     * time. A property may not be the same throughout the course of the
-     * lifetime of the {@link DataHolder}.
+     * Gets the desired property for the provided {@link PropertyHolder} at
+     * present time. A property may not be the same throughout the course of
+     * the lifetime of the {@link PropertyHolder}.
      *
-     * @param dataHolder The data holder to get a property from
+     * @param propertyHolder The data holder to get a property from
      * @return The type of property
      */
-    Optional<T> getFor(DataHolder dataHolder);
+    Optional<T> getFor(PropertyHolder propertyHolder);
 
     /**
      * Gets the desired property for the provided {@link Location} at present
      * time. A property may not be the same throughout the course of the
-     * lifetime of the {@link DataHolder}.
+     * lifetime of the {@link Location}.
      *
-     * @param location The data holder to get a property from
+     * @param location The location of the block
      * @return The type of property
      */
-    Optional<T> getFor(Location<?> location);
+    Optional<T> getFor(Location<World> location);
+
+    /**
+     * Gets the priority of which this {@link PropertyStore} is used for
+     * handling a particular {@link PropertyHolder}. This is useful for
+     * multiple possible handlers of a {@link Property} being available
+     * in customized {@link PropertyHolder}s.
+     *
+     * <p>The priority is a measurement where the higher the priority, the
+     * sooner this {@link PropertyStore} is queried such that if
+     * {@link #getFor(PropertyHolder)} is called and returns a present value,
+     * that present value is returned. Usually, Sponge implemented
+     * {@link PropertyStore}s have a priority of <code>100</code>.</p>
+     *
+     * @return The priority
+     */
+    int getPriority();
 
 }

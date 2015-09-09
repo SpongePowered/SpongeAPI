@@ -22,46 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property.block;
+package org.spongepowered.api.data.property.entity;
 
-import org.spongepowered.api.data.property.IntProperty;
+import org.spongepowered.api.data.property.DoubleProperty;
 
-/**
- * An property that represents the amount of light emitted from
- * the owning block.
- */
-public class GroundLumanceProperty extends IntProperty {
+public class EyeHeightProperty extends DoubleProperty {
 
-    /**
-     * Create a new {@link GroundLumanceProperty} with the specified value.
-     *
-     * @param value value to match
-     */
-    public GroundLumanceProperty(int value) {
+    public EyeHeightProperty(double value) {
         super(value);
     }
 
-    /**
-     * Create a new {@link GroundLumanceProperty} with the specified value and
-     * logical operator.
-     *
-     * @param value value to match
-     * @param operator logical operator to use when comparing to other
-     *      properties
-     */
-    public GroundLumanceProperty(int value, Operator operator) {
-        super(value, operator);
-    }
-
-    /**
-     * Create a new {@link GroundLumanceProperty} with the specified value and
-     * logical operator.
-     *
-     * @param value value to match
-     * @param operator logical operator to use when comparing to other
-     *      properties
-     */
-    public GroundLumanceProperty(Object value, Operator operator) {
+    public EyeHeightProperty(double value, Operator operator) {
         super(value, operator);
     }
 }

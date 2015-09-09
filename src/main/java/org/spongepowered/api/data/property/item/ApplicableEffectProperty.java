@@ -22,11 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property;
+package org.spongepowered.api.data.property.item;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.property.AbstractProperty;
 import org.spongepowered.api.potion.PotionEffect;
 
 import java.util.Set;
@@ -41,31 +42,31 @@ import javax.annotation.Nullable;
  * <p>Examples of these properties include: hunger from eating zombie flesh,
  * regeneration from a golden apple, etc.</p>
  */
-public class ApplicableEffect extends AbstractProperty<String, Set<PotionEffect>> {
+public class ApplicableEffectProperty extends AbstractProperty<String, Set<PotionEffect>> {
 
     /**
-     * Creates a {@link ApplicableEffect} with a specific set of {@link PotionEffect}s.
+     * Creates a {@link ApplicableEffectProperty} with a specific set of {@link PotionEffect}s.
      *
      * @param value The potion effects
      */
-    public ApplicableEffect(@Nullable Set<PotionEffect> value) {
+    public ApplicableEffectProperty(@Nullable Set<PotionEffect> value) {
         super(value == null ? ImmutableSet.<PotionEffect>of() : ImmutableSet.copyOf(value));
     }
 
     /**
-     * Creates a {@link ApplicableEffect} with a specific set of {@link PotionEffect}s.
+     * Creates a {@link ApplicableEffectProperty} with a specific set of {@link PotionEffect}s.
      *
      * @param value The potion effects
      * @param op The operator to use when comparing against other properties
      */
-    public ApplicableEffect(@Nullable Set<PotionEffect> value, Operator op) {
+    public ApplicableEffectProperty(@Nullable Set<PotionEffect> value, Operator op) {
         super(value == null ? ImmutableSet.<PotionEffect>of() : ImmutableSet.copyOf(value), op);
     }
 
     @Override
     public int compareTo(Property<?, ?> o) {
-        if (o instanceof ApplicableEffect) {
-            ApplicableEffect effect = (ApplicableEffect) o;
+        if (o instanceof ApplicableEffectProperty) {
+            ApplicableEffectProperty effect = (ApplicableEffectProperty) o;
             Set<PotionEffect> set = Sets.newHashSet(effect.getValue());
             for (PotionEffect effect1 : this.getValue()) {
                 if (set.contains(effect1)) {

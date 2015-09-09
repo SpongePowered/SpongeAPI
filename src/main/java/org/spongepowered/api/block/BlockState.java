@@ -29,6 +29,7 @@ import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.block.trait.BlockTrait;
 import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -46,7 +47,7 @@ import java.util.Map;
  * a single instance of a particular {@link BlockState} as they are immutable,
  * a particular instance may be cached for various uses.
  */
-public interface BlockState extends ImmutableDataHolder<BlockState> {
+public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRelativePropertyHolder {
 
     /**
      * Get the base type of block.

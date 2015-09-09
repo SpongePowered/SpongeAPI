@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.item;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.item.DurabilityData;
-import org.spongepowered.api.data.property.UseLimitProperty;
+import org.spongepowered.api.data.property.item.UseLimitProperty;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.item.inventory.ItemStack;

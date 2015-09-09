@@ -28,6 +28,7 @@ import com.google.common.base.Optional;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.trait.BlockTrait;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.item.ItemBlock;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -42,7 +43,7 @@ import java.util.Collection;
  * via {@link DataHolder}.</p>
  */
 @CatalogedBy(BlockTypes.class)
-public interface BlockType extends CatalogType, Translatable {
+public interface BlockType extends CatalogType, Translatable, PropertyHolder {
 
     /**
      * Return the internal ID for the block.
@@ -80,65 +81,6 @@ public interface BlockType extends CatalogType, Translatable {
      * @param tickRandomly If the BlockType should tick randomly.
      */
     void setTickRandomly(boolean tickRandomly);
-
-    /**
-     * Gets if the block type is representing a liquid.
-     *
-     * @return Is liquid
-     */
-    boolean isLiquid();
-
-    /**
-     * Gets if a block type is a full and solid block.
-     *
-     * @return Is solid block
-     */
-    boolean isSolidCube();
-
-    /**
-     * Gets if a block type is a gas, like air.
-     *
-     * @return Is gas
-     */
-    boolean isGaseous();
-
-    /**
-     * Gets if a block type can be replaced by other block types when placed.
-     *
-     * @return If the block type can be replaced
-     */
-    boolean isReplaceable();
-
-    /**
-     * Gets if this block is affected by gravity (if it will fall when
-     * unsupported).
-     *
-     * @return Is affected by gravity
-     */
-    boolean isAffectedByGravity();
-
-    /**
-     * Gets if a block should be counted for statistics gathering.
-     *
-     * @return Is counted for statistics
-     */
-    boolean areStatisticsEnabled();
-
-    /**
-     * Gets the amount of light emitted by this block type. The returned value
-     * is normalized to have a range of 0 to 1 (1 being the maximum light
-     * value), although it is not clamped to this range.
-     *
-     * @return The amount of light
-     */
-    float getEmittedLight();
-
-    /**
-     * Gets the equivalent {@link ItemBlock} for this BlockType.
-     *
-     * @return The equivalent {@link ItemBlock}, if available
-     */
-    Optional<ItemBlock> getHeldItem();
 
     /**
      * Gets an immutable {@link Collection} of all applicable

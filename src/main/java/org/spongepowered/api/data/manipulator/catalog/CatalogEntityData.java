@@ -57,7 +57,6 @@ import org.spongepowered.api.data.manipulator.mutable.entity.ExpOrbData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExperienceHolderData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExpirableData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExplosiveRadiusData;
-import org.spongepowered.api.data.manipulator.mutable.entity.EyeLocationData;
 import org.spongepowered.api.data.manipulator.mutable.entity.FallingBlockData;
 import org.spongepowered.api.data.manipulator.mutable.entity.FlyingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.FoodData;
@@ -273,11 +272,6 @@ public final class CatalogEntityData {
      * detonation. Usually applies to all {@link Explosive}s.
      */
     public static final Class<ExplosiveRadiusData> EXPLOSIVE_RADIUS_DATA = ExplosiveRadiusData.class;
-    /**
-     * Represents an entity having the notion of a "head" and "eye location".
-     * Usually applies to all {@link Living} entities.
-     */
-    public static final Class<EyeLocationData> EYE_LOCATION_DATA = EyeLocationData.class;
     /**
      * Represents a falling block that can deal damage upon landing.
      * Applies to {@link FallingBlock}s.

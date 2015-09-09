@@ -22,43 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.data.property.item;
 
-package org.spongepowered.api.item.inventory;
-
-import org.spongepowered.api.data.ImmutableDataHolder;
-import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.data.property.IntProperty;
 
 /**
- * Represents a snapshot of an {@link ItemStack} as an
- * {@link ImmutableDataHolder} to represent all of the data associated with
- * the {@link ItemStack} of which the snapshot was created from. Being that
- * it is a snapshot, a snapshot cannot be modified, but modifications will
- * result in a new instance of the {@link ItemStackSnapshot}.
+ * Represents a property that increases the food level of an entity
+ * based on consumption.
  */
-public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot> {
+public class FoodRestorationProperty extends IntProperty {
 
     /**
-     * Gets the {@link ItemType} of this {@link ItemStackSnapshot}. The
-     * {@link ItemType} is always available.
+     * Creates a new {@link FoodRestorationProperty}.
      *
-     * @return The item type
+     * @param value The value of food level restored upon use
      */
-    ItemType getType();
+    public FoodRestorationProperty(int value) {
+        super(value);
+    }
 
     /**
-     * Gets the current stack size count of the {@link ItemStack} this
-     * {@link ItemStackSnapshot} is representing.
+     * Creates a new {@link FoodRestorationProperty}.
      *
-     * @return The current stack size
+     * @param value The value of food level restored upon use
+     * @param operator The operator to use to compare to other properties
      */
-    int getCount();
+    public FoodRestorationProperty(int value, Operator operator) {
+        super(value, operator);
+    }
 
     /**
-     * Creates a new {@link ItemStack} with all the data currently available
-     * on this {@link ItemStackSnapshot}.
+     * Creates a new {@link FoodRestorationProperty}.
      *
-     * @return The newly generated item stack
+     * @param value The value of food level restored upon use
+     * @param operator The operator to use to compare to other properties
      */
-    ItemStack createStack();
-
+    public FoodRestorationProperty(Object value, Operator operator) {
+        super(value, operator);
+    }
 }

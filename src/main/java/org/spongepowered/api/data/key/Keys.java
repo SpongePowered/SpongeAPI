@@ -219,8 +219,6 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Integer>> TOTAL_EXPERIENCE = null;
     public static final Key<MutableBoundedValue<Integer>> EXPIRATION_TICKS = null;
     public static final Key<Value<Integer>> EXPLOSIVE_RADIUS = null;
-    public static final Key<Value<Double>> EYE_HEIGHT = null;
-    public static final Key<Value<Vector3d>> EYE_LOCATION = null;
     public static final Key<MutableBoundedValue<Double>> FALL_DAMAGE_PER_BLOCK = null;
     public static final Key<MutableBoundedValue<Double>> MAX_FALL_DAMAGE = null;
     public static final Key<Value<BlockState>> FALLING_BLOCK_STATE = null;

@@ -32,7 +32,6 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
@@ -48,70 +47,6 @@ import java.util.Collection;
  * data api related queries for specific positions.
  */
 public interface LocationCompositeValueStore {
-
-    /**
-     * Attempts to retrieve a specific {@link Property} type of this the block
-     * at the given position. If the property is not applicable,
-     * {@link Optional#absent()} is returned.
-     *
-     * <p>{@link Property}s can define various immutable information about a
-     * the block at the given position that is dependent on the instance of the
-     * holder. As {@link Property}s cannot be changed, the the block at the
-     * given  position can not change the information about it's own properties
-     * either.</p>
-     *
-     * @param coordinates The position of the block
-     * @param propertyClass The property class
-     * @param <T> The type of property
-     * @return The property, if available
-     */
-    <T extends Property<?, ?>> Optional<T> getProperty(Vector3i coordinates, Class<T> propertyClass);
-
-    /**
-     * Attempts to retrieve a specific {@link Property} type of the block at
-     * the given position. If the property is not applicable,
-     * {@link Optional#absent()} is returned.
-     *
-     * <p>{@link Property}s can define various immutable information about a
-     * the block at the given position that is dependent on the instance of the
-     * holder. As {@link Property}s cannot be changed, the the block at the
-     * given  position can not change the information about it's own properties
-     * either.</p>
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param propertyClass The property class
-     * @param <T> The type of property
-     * @return The property, if available
-     */
-    <T extends Property<?, ?>> Optional<T> getProperty(int x, int y, int z, Class<T> propertyClass);
-
-    /**
-     * Gets an immutable collection of all known {@link Property}s pertaining to
-     * the block at the given position.
-     *
-     * <p>{@link Property}s can not be changed such that the property is attached
-     * to the instance of the residing {@link DataHolder}.</p>
-     *
-     * @param coordinates The position of the block
-     * @return An immutable collection of all known {@link Property}s
-     */
-    Collection<Property<?, ?>> getProperties(Vector3i coordinates);
-
-    /**
-     * Gets an immutable collection of all known {@link Property}s pertaining to
-     * the block at the given position.
-     *
-     * <p>{@link Property}s can not be changed such that the property is attached
-     * to the instance of the residing {@link DataHolder}.</p>
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @return An immutable collection of all known {@link Property}s
-     */
-    Collection<Property<?, ?>> getProperties(int x, int y, int z);
 
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the

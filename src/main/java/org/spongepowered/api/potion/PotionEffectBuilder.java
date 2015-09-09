@@ -24,12 +24,14 @@
  */
 package org.spongepowered.api.potion;
 
-import org.spongepowered.api.data.ImmutableDataBuilder;
+import org.spongepowered.api.service.persistence.DataBuilder;
 
 /**
  * Represents a builder interface to create a {@link PotionEffect}.
  */
-public interface PotionEffectBuilder extends ImmutableDataBuilder<PotionEffect, PotionEffectBuilder> {
+public interface PotionEffectBuilder extends DataBuilder<PotionEffect> {
+
+    PotionEffectBuilder from(PotionEffect potionEffect);
 
     /**
      * Sets the {@link PotionEffectType} of the potion.
@@ -75,20 +77,11 @@ public interface PotionEffectBuilder extends ImmutableDataBuilder<PotionEffect, 
     PotionEffectBuilder particles(boolean showsParticles);
 
     /**
-     * Resets all information regarding the item stack to be created.
-     *
-     * @return This builder, for chaining
-     */
-    @Override
-    PotionEffectBuilder reset();
-
-    /**
      * Builds an instance of a PotionEffect.
      *
      * @return A new instance of a PotionEffect
      * @throws IllegalStateException If the potion effect is not completed
      */
-    @Override
     PotionEffect build() throws IllegalStateException;
 
 }

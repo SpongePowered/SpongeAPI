@@ -22,41 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property;
 
-/**
- * Represents a limit on the number of uses on an item. Whether the uses are
- * defined as durability or another item data value, usually, when the uses
- * exceed this use limit, the item is removed or consumed.
- */
-public class UseLimitProperty extends IntProperty {
+package org.spongepowered.api.data.property.block;
 
-    /**
-     * Creates a new {@link UseLimitProperty}.
-     *
-     * @param value The maximum use limit
-     */
-    public UseLimitProperty(int value) {
+import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.property.AbstractProperty;
+import org.spongepowered.api.item.ItemBlock;
+import org.spongepowered.api.util.Coerce;
+
+public class HeldItemProperty extends AbstractProperty<String, ItemBlock> {
+
+    public HeldItemProperty(ItemBlock value) {
         super(value);
     }
 
-    /**
-     * Creates a new {@link UseLimitProperty}.
-     *
-     * @param value The maximum use limit
-     * @param operator The operator to use to compare to other properties
-     */
-    public UseLimitProperty(int value, Operator operator) {
-        super(value, operator);
+    public HeldItemProperty(ItemBlock value, Operator op) {
+        super(value, op);
     }
 
-    /**
-     * Creates a new {@link UseLimitProperty}.
-     *
-     * @param value The maximum use limit
-     * @param operator The operator to use to compare to other properties
-     */
-    public UseLimitProperty(Object value, Operator operator) {
-        super(value, operator);
+    @Override
+    public int compareTo(Property<?, ?> o) {
+        return this.getValue().getId().compareTo(o == null ? "" : Coerce.toString(o.getValue()));
     }
 }

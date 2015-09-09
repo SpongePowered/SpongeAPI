@@ -22,38 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property;
 
-import org.spongepowered.api.data.Property;
+package org.spongepowered.api.data.property.block;
 
-/**
- * Represents a item property that is used for defining the amount of fuel
- * ticks an item will grant to a furnace.
- *
- * <p>As with all {@link Property}, this property is immutable when
- * retrieved from an item.</p>
- */
-public class BurningFuelProperty extends IntProperty {
+import org.spongepowered.api.data.property.BooleanProperty;
 
-    /**
-     * Creates a new {@link BurningFuelProperty} with the given amount of
-     * fuel ticks.
-     *
-     * @param value The amount of fuel ticks
-     */
-    public BurningFuelProperty(int value) {
+public class StatisticsTrackedProperty extends BooleanProperty {
+
+    public StatisticsTrackedProperty(boolean value) {
         super(value);
     }
 
-    /**
-     * Creates a new {@link BurningFuelProperty} with the given amount of
-     * fuel ticks.
-     *
-     * @param value The amount of fuel ticks
-     * @param op The operator to compare this property to other properties
-     */
-    public BurningFuelProperty(int value, Property.Operator op) {
-        super(value, op);
+    public StatisticsTrackedProperty(boolean value, Operator operator) {
+        super(value, operator);
     }
-
 }

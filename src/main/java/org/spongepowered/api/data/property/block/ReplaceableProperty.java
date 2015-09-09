@@ -22,43 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property;
+package org.spongepowered.api.data.property.block;
+
+import org.spongepowered.api.data.property.BooleanProperty;
 
 /**
- * Represents a property on an item that has an efficiency qualifier applied
- * when mining harvestable blocks. For determining whether a block can be
- * harvested, use {@link HarvestingProperty}.
+ * Gets if a block type can be replaced by other block types when other
+ * blocks are being placed. In short, the case where the value is
+ * <code>true</code>,
  */
-public class EfficiencyProperty extends IntProperty {
+public class ReplaceableProperty extends BooleanProperty {
 
-    /**
-     * Creates a new EfficiencyProperty property for the specified value.
-     *
-     * @param value value to match
-     */
-    public EfficiencyProperty(int value) {
+    public ReplaceableProperty(boolean value) {
         super(value);
     }
 
-    /**
-     * Creates a new EfficiencyProperty property for the specified value
-     * and operator.
-     *
-     * @param value value to match
-     * @param operator the operator to use when comparing with other properties
-     */
-    public EfficiencyProperty(int value, Operator operator) {
-        super(value, operator);
-    }
-
-    /**
-     * Creates a new EfficiencyProperty property for the specified value
-     * and operator.
-     *
-     * @param value value to match
-     * @param operator the operator to use when comparing with other properties
-     */
-    public EfficiencyProperty(Object value, Operator operator) {
+    public ReplaceableProperty(boolean value, Operator operator) {
         super(value, operator);
     }
 }

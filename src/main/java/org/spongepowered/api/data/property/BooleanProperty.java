@@ -25,6 +25,8 @@
 package org.spongepowered.api.data.property;
 
 import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.property.item.FoodRestorationProperty;
+import org.spongepowered.api.data.property.item.SaturationProperty;
 import org.spongepowered.api.util.Coerce;
 
 /**

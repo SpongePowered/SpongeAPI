@@ -22,33 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property;
+package org.spongepowered.api.data.property.item;
 
-import javax.annotation.Nullable;
+import org.spongepowered.api.data.property.IntProperty;
 
 /**
- * Represents an item property that replenishes saturation upon use or
- * consumption. Examples of items that have these properties: any food item.
+ * Represents the percentage of damage the item will absorb when equipped. The
+ * damage absorbed can be dependent on the type of damage, equipment type, and
+ * item type.
  */
-public class SaturationProperty extends DoubleProperty {
+public class DamageAbsorptionProperty extends IntProperty {
 
     /**
-     * Creates a new {@link SaturationProperty}.
+     * Creates a new {@link DamageAbsorptionProperty} with the given amount of
+     * damage absorption per hit.
      *
-     * @param value The value of saturation replenished upon use
+     * @param value The amount of absorbed damage
      */
-    public SaturationProperty(@Nullable Double value) {
+    public DamageAbsorptionProperty(int value) {
         super(value);
     }
 
     /**
-     * Creates a new {@link SaturationProperty}.
+     * Creates a new {@link DamageAbsorptionProperty} with the given amount of
+     * damage absorption per hit.
      *
-     * @param value The value of saturation replenished upon use
-     * @param op The operator to use to compare to other properties
+     * @param value The amount of absorbed damage
+     * @param operator The operator to compare this property to other properties
      */
-    public SaturationProperty(@Nullable Double value, Operator op) {
-        super(value, op);
+    public DamageAbsorptionProperty(int value, Operator operator) {
+        super(value, operator);
     }
 
+    /**
+     * Creates a new {@link DamageAbsorptionProperty} with the given amount of
+     * damage absorption per hit.
+     *
+     * @param value The amount of absorbed damage
+     * @param operator The operator to compare this property to other properties
+     */
+    public DamageAbsorptionProperty(Object value, Operator operator) {
+        super(value, operator);
+    }
 }

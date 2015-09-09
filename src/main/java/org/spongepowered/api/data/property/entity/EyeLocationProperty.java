@@ -22,43 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.data.property.entity;
 
-package org.spongepowered.api.item.inventory;
+import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.property.AbstractProperty;
 
-import org.spongepowered.api.data.ImmutableDataHolder;
-import org.spongepowered.api.item.ItemType;
+import javax.annotation.Nullable;
 
-/**
- * Represents a snapshot of an {@link ItemStack} as an
- * {@link ImmutableDataHolder} to represent all of the data associated with
- * the {@link ItemStack} of which the snapshot was created from. Being that
- * it is a snapshot, a snapshot cannot be modified, but modifications will
- * result in a new instance of the {@link ItemStackSnapshot}.
- */
-public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot> {
+public class EyeLocationProperty extends AbstractProperty<String, Vector3d> {
 
-    /**
-     * Gets the {@link ItemType} of this {@link ItemStackSnapshot}. The
-     * {@link ItemType} is always available.
-     *
-     * @return The item type
-     */
-    ItemType getType();
+    public EyeLocationProperty(@Nullable Vector3d value) {
+        super(value);
+    }
 
-    /**
-     * Gets the current stack size count of the {@link ItemStack} this
-     * {@link ItemStackSnapshot} is representing.
-     *
-     * @return The current stack size
-     */
-    int getCount();
+    public EyeLocationProperty(@Nullable Vector3d value, @Nullable Operator op) {
+        super(value, op);
+    }
 
-    /**
-     * Creates a new {@link ItemStack} with all the data currently available
-     * on this {@link ItemStackSnapshot}.
-     *
-     * @return The newly generated item stack
-     */
-    ItemStack createStack();
-
+    @Override
+    public int compareTo(Property<?, ?> o) {
+        return 0;
+    }
 }

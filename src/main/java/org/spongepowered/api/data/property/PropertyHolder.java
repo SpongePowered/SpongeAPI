@@ -24,38 +24,38 @@
  */
 package org.spongepowered.api.data.property;
 
-/**
- * Represents a property that increases the food level of an entity
- * based on consumption.
- */
-public class FoodRestorationProperty extends IntProperty {
+import com.google.common.base.Optional;
+import org.spongepowered.api.data.Property;
+
+import java.util.Collection;
+
+public interface PropertyHolder {
 
     /**
-     * Creates a new {@link FoodRestorationProperty}.
+     * Attempts to retrieve a specific {@link Property} type of this
+     * {@link PropertyHolder}. If the property is not applicable,
+     * {@link Optional#absent()} is returned.
      *
-     * @param value The value of food level restored upon use
+     * <p>{@link Property}s can define various immutable information about a
+     * {@link PropertyHolder} that is dependent on the instance of the holder.
+     * As {@link Property}s cannot be changed, the {@link PropertyHolder} can
+     * not change the information about it's own properties either.</p>
+     *
+     * @param propertyClass The property class
+     * @param <T> The type of property
+     * @return The property, if available
      */
-    public FoodRestorationProperty(int value) {
-        super(value);
-    }
+    <T extends Property<?, ?>> Optional<T> getProperty(Class<T> propertyClass);
 
     /**
-     * Creates a new {@link FoodRestorationProperty}.
+     * Gets an immutable collection of all known {@link Property}s pertaining
+     * to this {@link PropertyHolder}.
      *
-     * @param value The value of food level restored upon use
-     * @param operator The operator to use to compare to other properties
+     * <p>{@link Property}s can not be changed such that the property is
+     * attached to the instance of the residing {@link PropertyHolder}.</p>
+     *
+     * @return An immutable collection of all known {@link Property}s
      */
-    public FoodRestorationProperty(int value, Operator operator) {
-        super(value, operator);
-    }
+    Collection<Property<?, ?>> getApplicableProperties();
 
-    /**
-     * Creates a new {@link FoodRestorationProperty}.
-     *
-     * @param value The value of food level restored upon use
-     * @param operator The operator to use to compare to other properties
-     */
-    public FoodRestorationProperty(Object value, Operator operator) {
-        super(value, operator);
-    }
 }

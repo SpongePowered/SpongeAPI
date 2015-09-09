@@ -22,12 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property;
+package org.spongepowered.api.data.property.item;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.property.AbstractProperty;
 
 import java.util.Set;
 

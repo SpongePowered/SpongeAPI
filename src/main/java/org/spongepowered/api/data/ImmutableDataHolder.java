@@ -25,6 +25,7 @@
 package org.spongepowered.api.data;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValueStore;
@@ -43,7 +44,7 @@ import java.util.List;
  * @see DataHolder
  * @param <T> The sub type of immutable data holder
  */
-public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends DataSerializable,
+public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends DataSerializable, PropertyHolder,
                                                                                ImmutableValueStore<T, ImmutableDataManipulator<?, ?>> {
 
     /**

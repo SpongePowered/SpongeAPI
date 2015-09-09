@@ -22,44 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property;
+package org.spongepowered.api.data.property.item;
+
+import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.property.IntProperty;
 
 /**
- * Represents the percentage of damage the item will absorb when equipped. The
- * damage absorbed can be dependent on the type of damage, equipment type, and
- * item type.
+ * Represents a item property that is used for defining the amount of fuel
+ * ticks an item will grant to a furnace.
+ *
+ * <p>As with all {@link Property}, this property is immutable when
+ * retrieved from an item.</p>
  */
-public class DamageAbsorptionProperty extends IntProperty {
+public class BurningFuelProperty extends IntProperty {
 
     /**
-     * Creates a new {@link DamageAbsorptionProperty} with the given amount of
-     * damage absorption per hit.
+     * Creates a new {@link BurningFuelProperty} with the given amount of
+     * fuel ticks.
      *
-     * @param value The amount of absorbed damage
+     * @param value The amount of fuel ticks
      */
-    public DamageAbsorptionProperty(int value) {
+    public BurningFuelProperty(int value) {
         super(value);
     }
 
     /**
-     * Creates a new {@link DamageAbsorptionProperty} with the given amount of
-     * damage absorption per hit.
+     * Creates a new {@link BurningFuelProperty} with the given amount of
+     * fuel ticks.
      *
-     * @param value The amount of absorbed damage
-     * @param operator The operator to compare this property to other properties
+     * @param value The amount of fuel ticks
+     * @param op The operator to compare this property to other properties
      */
-    public DamageAbsorptionProperty(int value, Operator operator) {
-        super(value, operator);
+    public BurningFuelProperty(int value, Property.Operator op) {
+        super(value, op);
     }
 
-    /**
-     * Creates a new {@link DamageAbsorptionProperty} with the given amount of
-     * damage absorption per hit.
-     *
-     * @param value The amount of absorbed damage
-     * @param operator The operator to compare this property to other properties
-     */
-    public DamageAbsorptionProperty(Object value, Operator operator) {
-        super(value, operator);
-    }
 }

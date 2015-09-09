@@ -24,45 +24,16 @@
  */
 package org.spongepowered.api.data;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
 import org.spongepowered.api.service.persistence.InvalidDataException;
-
-import java.util.Collection;
 
 /**
  * A data holder object allows the access of additional data on the object
  * that is not simply expressed by its basic type.
  */
-public interface DataHolder extends DataSerializable, CompositeValueStore<DataHolder, DataManipulator<?, ?>> {
-
-    /**
-     * Attempts to retrieve a specific {@link Property} type of this
-     * {@link DataHolder}. If the property is not applicable,
-     * {@link Optional#absent()} is returned.
-     *
-     * <p>{@link Property}s can define various immutable information about a
-     * {@link DataHolder} that is dependent on the instance of the holder.
-     * As {@link Property}s cannot be changed, the {@link DataHolder} can
-     * not change the information about it's own properties either.</p>
-     *
-     * @param propertyClass The property class
-     * @param <T> The type of property
-     * @return The property, if available
-     */
-    <T extends Property<?, ?>> Optional<T> getProperty(Class<T> propertyClass);
-
-    /**
-     * Gets an immutable collection of all known {@link Property}s pertaining to
-     * this {@link DataHolder}.
-     *
-     * <p>{@link Property}s can not be changed such that the property is attached
-     * to the instance of the residing {@link DataHolder}.</p>
-     *
-     * @return An immutable collection of all known {@link Property}s
-     */
-    Collection<Property<?, ?>> getProperties();
+public interface DataHolder extends DataSerializable, PropertyHolder, CompositeValueStore<DataHolder, DataManipulator<?, ?>> {
 
     /**
      * Validates the container with known data required to set the raw data to

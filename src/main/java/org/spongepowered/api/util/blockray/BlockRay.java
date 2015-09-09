@@ -37,7 +37,7 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.property.entity.EyeLocationProperty;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -496,9 +496,9 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         final Vector3d direction = Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
         final Location<World> location = entity.getLocation();
         final Vector3d position;
-        final Optional<Vector3d> data = entity.get(Keys.EYE_LOCATION);
+        final Optional<EyeLocationProperty> data = entity.getProperty(EyeLocationProperty.class);
         if (data.isPresent()) {
-            position = data.get();
+            position = data.get().getValue();
         } else {
             position = location.getPosition();
         }

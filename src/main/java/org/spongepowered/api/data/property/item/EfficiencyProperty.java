@@ -22,29 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property.block;
+package org.spongepowered.api.data.property.item;
 
+import org.spongepowered.api.data.property.DoubleProperty;
 import org.spongepowered.api.data.property.IntProperty;
 
-public class DigTimeProperty extends IntProperty {
+/**
+ * Represents a property on an item that has an efficiency qualifier applied
+ * when mining harvestable blocks. For determining whether a block can be
+ * harvested, use {@link HarvestingProperty}.
+ */
+public class EfficiencyProperty extends DoubleProperty {
 
     /**
-     * Creates a new {@link DigTimeProperty}.
+     * Creates a new EfficiencyProperty property for the specified value.
      *
-     * @param value The value for the dig time
+     * @param value value to match
      */
-    public DigTimeProperty(int value) {
+    public EfficiencyProperty(double value) {
         super(value);
     }
 
     /**
-     * Creates a new {@link DigTimeProperty}.
+     * Creates a new EfficiencyProperty property for the specified value
+     * and operator.
      *
-     * @param value The value for the dig time
-     * @param operator The operator for comparison
+     * @param value value to match
+     * @param operator the operator to use when comparing with other properties
      */
-    public DigTimeProperty(int value, Operator operator) {
+    public EfficiencyProperty(double value, Operator operator) {
         super(value, operator);
     }
 
+    /**
+     * Creates a new EfficiencyProperty property for the specified value
+     * and operator.
+     *
+     * @param value value to match
+     * @param operator the operator to use when comparing with other properties
+     */
+    public EfficiencyProperty(Object value, Operator operator) {
+        super(value, operator);
+    }
 }

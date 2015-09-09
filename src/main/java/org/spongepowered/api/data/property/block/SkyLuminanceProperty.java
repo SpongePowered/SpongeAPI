@@ -24,20 +24,21 @@
  */
 package org.spongepowered.api.data.property.block;
 
+import org.spongepowered.api.data.property.DoubleProperty;
 import org.spongepowered.api.data.property.IntProperty;
 
 /**
  * An property that represents the amount of light emitted from
  * the owning block.
  */
-public class SkyLuminanceProperty extends IntProperty {
+public class SkyLuminanceProperty extends DoubleProperty {
 
     /**
      * Create a new {@link SkyLuminanceProperty} with the specified value.
      *
      * @param value value to match
      */
-    public SkyLuminanceProperty(int value) {
+    public SkyLuminanceProperty(double value) {
         super(value);
     }
 
@@ -49,7 +50,7 @@ public class SkyLuminanceProperty extends IntProperty {
      * @param operator logical operator to use when comparing to other
      *      properties
      */
-    public SkyLuminanceProperty(int value, Operator operator) {
+    public SkyLuminanceProperty(double value, Operator operator) {
         super(value, operator);
     }
 

@@ -22,57 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property;
+package org.spongepowered.api.data.property.block;
 
 import org.spongepowered.api.data.Property;
-import org.spongepowered.api.item.inventory.equipment.EquipmentType;
-import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
+import org.spongepowered.api.data.property.AbstractProperty;
 import org.spongepowered.api.util.Coerce;
 
 import javax.annotation.Nullable;
 
-/**
- * Represents the {@link EquipmentType} that the item can be used in an
- * equipment inventory.
- */
-public class EquipmentProperty extends AbstractProperty<String, EquipmentType> {
+public class MatterProperty extends AbstractProperty<String, MatterProperty.Matter> {
 
-    /**
-     * Constructs a new {@link EquipmentProperty}.
-     *
-     * @param value The equipment type
-     */
-    public EquipmentProperty(@Nullable EquipmentType value) {
+    public MatterProperty(Matter value) {
         super(value);
     }
 
-    /**
-     * Constructs a new {@link EquipmentProperty}.
-     *
-     * @param value The equipment type
-     * @param op The operator to use to compare
-     */
-    public EquipmentProperty(@Nullable EquipmentType value, Operator op) {
+    public MatterProperty(Matter value, @Nullable Operator op) {
         super(value, op);
-    }
-
-    /**
-     * Constructs a new {@link EquipmentProperty}.
-     *
-     * @param value EquipmentType to match
-     * @param operator logical operator to apply when comparing with other
-     *      properties
-     */
-    public EquipmentProperty(Object value, Operator operator) {
-        super(Coerce.toPseudoEnum(value, EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN), operator);
     }
 
     @Override
     public int compareTo(Property<?, ?> o) {
-        if (o instanceof EquipmentProperty) {
-            EquipmentProperty property = (EquipmentProperty) o;
-            return this.getValue().getName().compareTo(property.getValue().getName());
-        }
-        return this.getClass().getName().compareTo(o.getClass().getName());
+        return this.getValue().compareTo(o == null ? Matter.SOLID : Coerce.toEnum(o.getValue(), Matter.class));
     }
+
+    public enum Matter {
+        SOLID,
+        LIQUID,
+        GAS;
+
+    }
+
 }

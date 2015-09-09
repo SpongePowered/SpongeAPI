@@ -30,6 +30,7 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
+import org.spongepowered.api.data.property.LocationBasePropertyHolder;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.DiscreteTransform3;
@@ -42,7 +43,8 @@ import java.util.Collection;
 /**
  * A mutable object containing blocks, tile entities, entities, and possibly other game objects.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeArea, LocationCompositeValueStore, Identifiable {
+public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeArea, LocationCompositeValueStore, Identifiable,
+                                LocationBasePropertyHolder {
 
     /**
      * Gets a location in this extent at the given position.
