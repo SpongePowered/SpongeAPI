@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.key;
 
+import com.google.common.base.Objects;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.value.BaseValue;
@@ -71,6 +72,16 @@ public final class KeyFactory {
             public DataQuery getQuery() {
                 return query;
             }
+
+            @Override
+            public int hashCode() {
+                return Objects.hashCode(elementClass, valueClass, query);
+            }
+
+            @Override
+            public String toString() {
+                return "Key{Value:" + valueClass.getName() + "<" + elementClass + ">, Query: " + query.toString() + "}";
+            }
         };
     }
 
@@ -94,6 +105,16 @@ public final class KeyFactory {
             public DataQuery getQuery() {
                 return query;
             }
+
+            @Override
+            public int hashCode() {
+                return Objects.hashCode(elementClass, query);
+            }
+
+            @Override
+            public String toString() {
+                return "Key{Value:" + "ListValue<" + elementClass + ">, Query: " + query.toString() + "}";
+            }
         };
     }
 
@@ -116,6 +137,16 @@ public final class KeyFactory {
             @Override
             public DataQuery getQuery() {
                 return query;
+            }
+
+            @Override
+            public int hashCode() {
+                return Objects.hashCode(elementClass, query);
+            }
+
+            @Override
+            public String toString() {
+                return "Key{Value:" + "SetValue<" + elementClass +">, Query: " + query.toString() + "}";
             }
         };
     }
@@ -142,6 +173,16 @@ public final class KeyFactory {
             @Override
             public DataQuery getQuery() {
                 return query;
+            }
+
+            @Override
+            public int hashCode() {
+                return Objects.hashCode(keyClass, valueclass, query);
+            }
+
+            @Override
+            public String toString() {
+                return "Key{Value:" + "MapValue<" + keyClass + "," + valueclass + ">, Query: " + query.toString() + "}";
             }
         };
     }
