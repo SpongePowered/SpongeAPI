@@ -46,7 +46,7 @@ public abstract class AbstractCancellable extends AbstractEvent implements Cance
 
     @Override
     public void setCancelled(boolean cancelled) {
-        this.cancelled = true;
+        this.cancelled = cancelled;
     }
 
 }
