@@ -26,10 +26,13 @@ package org.spongepowered.api.block;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.block.trait.BlockTrait;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.item.ItemBlock;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.util.Collection;
 
 /**
  * Describes a base type of block.
@@ -136,5 +139,7 @@ public interface BlockType extends CatalogType, Translatable {
      * @return The equivalent {@link ItemBlock}, if available
      */
     Optional<ItemBlock> getHeldItem();
+
+    Collection<BlockTrait<?>> getTraits();
 
 }
