@@ -56,6 +56,20 @@ import java.util.Map;
 public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
 
     /**
+     * An event where the targeted entity is being interacted with the client's "primary" button.
+     *
+     * This is usually left-click.
+     */
+    interface Primary extends InteractEntityEvent {}
+
+    /**
+     * An event where the targeted entity is being interacted with the client's "secondary" button.
+     *
+     * This is usually right-click.
+     */
+    interface Secondary extends InteractEntityEvent {}
+
+    /**
      * Represents the base event for when an {@link Entity} is being
      * "attacked". The uniqueness of this event is that all
      * {@link DamageSource}s can deal varying amounts of damage with varying
@@ -141,7 +155,7 @@ public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
      * associated with the targeted {@link Entity}.</p>
      */
     @ImplementedBy(AbstractAttackEntityEvent.class)
-    interface Attack extends InteractEntityEvent {
+    interface Attack extends Primary {
 
         /**
          * Gets the original "raw" amount of damage to deal to the targeted
@@ -268,10 +282,5 @@ public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
         List<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers();
 
     }
-
-    /**
-     * An event where the targeted entity is being "used".
-     */
-    interface Use extends InteractEntityEvent {}
 
 }

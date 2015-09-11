@@ -70,7 +70,6 @@ import org.spongepowered.api.data.type.TreeType;
 import org.spongepowered.api.data.type.WallType;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.sound.SoundType;
-import org.spongepowered.api.entity.EntityInteractionType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.item.Enchantment;
@@ -125,7 +124,6 @@ public final class CatalogTypes {
     public static final Class<DoublePlantType> DOUBLE_SIZE_PLANT_TYPE = DoublePlantType.class;
     public static final Class<DyeColor> DYE_COLOR = DyeColor.class;
     public static final Class<Enchantment> ENCHANTMENT = Enchantment.class;
-    public static final Class<EntityInteractionType> ENTITY_INTERACTION_TYPE = EntityInteractionType.class;
     public static final Class<EntityType> ENTITY_TYPE = EntityType.class;
     public static final Class<EquipmentType> EQUIPMENT_TYPE = EquipmentType.class;
     public static final Class<FireworkShape> FIREWORK_SHAPE = FireworkShape.class;

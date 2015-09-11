@@ -774,45 +774,45 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Attack}.
+     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Primary}.
      * 
      * @param game The game
      * @param cause The cause
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
      * @param targetSide The target side
-     * @return A new attack interact block event
+     * @return A new primary interact block event
      */
-    public static InteractBlockEvent.Attack createInteractBlockEventAttack(Game game, Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+    public static InteractBlockEvent.Primary createInteractBlockEventPrimary(Game game, Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
         values.put("targetBlock", targetBlock);
         values.put("targetSide", targetSide);
-        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Attack.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Primary.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Use}.
+     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Secondary}.
      * 
      * @param game The game
      * @param cause The cause
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
      * @param targetSide The target side
-     * @return A new use interact block event
+     * @return A new secondary interact block event
      */
-    public static InteractBlockEvent.Use createInteractBlockEventUse(Game game, Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+    public static InteractBlockEvent.Secondary createInteractBlockEventSecondary(Game game, Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
         values.put("targetBlock", targetBlock);
         values.put("targetSide", targetSide);
-        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Use.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Secondary.class, values);
     }
 
     /**
@@ -2318,21 +2318,41 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Use}.
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Primary}.
      * 
      * @param game The game
      * @param cause The cause
      * @param interactionPoint The interaction point
      * @param targetEntity The target entity
-     * @return A new use interact entity event
+     * @return A new primary interact entity event
      */
-    public static InteractEntityEvent.Use createInteractEntityEventUse(Game game, Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
+    public static InteractEntityEvent.Primary createInteractEntityEventPrimary(Game game, Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
         values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Use.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Primary.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Secondary}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param interactionPoint The interaction point
+     * @param targetEntity The target entity
+     * @return A new secondary interact entity event
+     */
+    public static InteractEntityEvent.Secondary createInteractEntityEventSecondary(Game game, Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Secondary.class, values);
     }
 
     /**

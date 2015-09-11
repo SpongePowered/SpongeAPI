@@ -45,12 +45,16 @@ public interface InteractBlockEvent extends InteractEvent, TargetBlockEvent {
     Direction getTargetSide();
 
     /**
-     * An event where a block is being "attacked".
+     * An event where the targeted block is being interacted with the client's "primary" button.
+     *
+     * This is usually left-click.
      */
-    interface Attack extends InteractBlockEvent {}
+    interface Primary extends InteractBlockEvent {}
 
     /**
-     * An event where a block is being "used".
+     * An event where the targeted block is being interacted with the client's "secondary" button.
+     *
+     * This is usually right-click.
      */
-    interface Use extends InteractBlockEvent {}
+    interface Secondary extends InteractBlockEvent {}
 }
