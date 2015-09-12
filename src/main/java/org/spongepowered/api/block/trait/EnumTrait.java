@@ -25,6 +25,11 @@
 
 package org.spongepowered.api.block.trait;
 
+/**
+ * Represents a type of {@link BlockTrait}.
+ *
+ * <p>EnumTrait's store 1 or more possible {@link Enum} values.</p>
+ */
 public interface EnumTrait<E extends Enum<E>> extends BlockTrait<E> {
 
 }

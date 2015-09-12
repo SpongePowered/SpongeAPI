@@ -142,4 +142,5 @@ public interface BlockType extends CatalogType, Translatable {
 
     Collection<BlockTrait<?>> getTraits();
 
+    Optional<BlockTrait<?>> getTrait(String blockTrait);
 }

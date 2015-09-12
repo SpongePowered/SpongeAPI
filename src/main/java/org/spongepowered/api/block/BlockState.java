@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.block;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.block.trait.BlockTrait;
 import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.data.key.Key;
@@ -34,9 +35,7 @@ import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
-import java.util.Collection;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * Represents a particular "state" that can exist at a {@link Location} with
@@ -68,15 +67,12 @@ public interface BlockState extends ImmutableDataHolder<BlockState> {
      */
     BlockState cycleValue(Key<? extends BaseValue<? extends Cycleable<?>>> key);
 
-
     BlockSnapshot snapshotFor(Location<World> location);
 
-    <T extends Comparable<T>> Optional<T> getValue(BlockTrait<T> blockTrait);
+    <T extends Comparable<T>> Optional<T> getTraitValue(BlockTrait<T> blockTrait);
 
-
+    Optional<BlockTrait<?>> getTrait(String blockTrait);
 
     Map<BlockTrait<?>, ?> getTraitMap();
-
-
 
 }

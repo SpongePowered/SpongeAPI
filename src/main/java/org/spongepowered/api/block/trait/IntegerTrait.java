@@ -25,6 +25,11 @@
 
 package org.spongepowered.api.block.trait;
 
+/**
+ * Represents a type of {@link BlockTrait}.
+ *
+ * <p>IntegerTrait's store 1 or more possible {@link Integer} values.</p>
+ */
 public interface IntegerTrait extends BlockTrait<Integer> {
 
 }
