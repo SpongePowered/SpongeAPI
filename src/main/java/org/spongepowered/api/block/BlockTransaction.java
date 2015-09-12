@@ -57,23 +57,56 @@ public final class BlockTransaction implements DataSerializable {
         this.customReplacement = customReplacement;
     }
 
+    /**
+     * Gets the original {@link BlockSnapshot} that is being replaced by
+     * either the {@link #getDefaultReplacement()} or
+     * {@link #getCustomReplacement()}, depending on whether a custom
+     * replacement is provided.
+     *
+     * @return The original block snapshot to be replaced
+     */
     public BlockSnapshot getOriginal() {
         return this.original;
     }
 
+    /**
+     * Gets the default "suggested" replacement {@link BlockSnapshot} to
+     * replace the {@link #getOriginal()} {@linkplain BlockSnapshot}.
+     *
+     * @return The suggested or default replacement
+     */
     public BlockSnapshot getDefaultReplacement() {
         return this.defaultReplacement;
     }
 
+    /**
+     * Gets the plugin/mod declared custom replacement {@link BlockSnapshot}.
+     * If one is not provided, {@link Optional#absent()} is returned.
+     *
+     * @return The custom declared replacement, if available
+     */
     public Optional<BlockSnapshot> getCustomReplacement() {
         return Optional.fromNullable(this.customReplacement);
     }
 
+    /**
+     * Sets the {@link BlockSnapshot} to customarily replace the
+     * {@link #getOriginal()} block snapshot. If set to <code>null</code>, the
+     * default {@link #getDefaultReplacement()} is used.
+     *
+     * @param customReplacement The custom replacement, or null
+     * @return This block transaction
+     */
     public BlockTransaction setCustomReplacement(@Nullable BlockSnapshot customReplacement) {
         this.customReplacement = customReplacement;
         return this;
     }
 
+    /**
+     * Gets the final {@link BlockSnapshot} to replace the original snapshot.
+     *
+     * @return The final snapshot to replace the original
+     */
     public BlockSnapshot getFinalReplacement() {
         if (this.customReplacement == null) {
             return this.defaultReplacement;
@@ -82,10 +115,24 @@ public final class BlockTransaction implements DataSerializable {
         }
     }
 
+    /**
+     * Gets whether this transaction is "valid" or not. If <code>false</code>
+     * is returned, the replacement will not take place.
+     *
+     * @return True if this transaction will go through
+     */
     public boolean isValid() {
         return this.isValid;
     }
 
+    /**
+     * Sets whether this transaction will in fact replace the original
+     * {@link BlockSnapshot} with the {@link #getFinalReplacement()}. If
+     * set to <code>false</code>, the transaction will be filtered out and
+     * no replacement takes place.
+     *
+     * @param isValid Whether this transaction is to take place or not
+     */
     public void setIsValid(boolean isValid) {
         this.isValid = isValid;
     }

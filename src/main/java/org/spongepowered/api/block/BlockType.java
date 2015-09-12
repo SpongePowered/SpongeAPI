@@ -140,7 +140,21 @@ public interface BlockType extends CatalogType, Translatable {
      */
     Optional<ItemBlock> getHeldItem();
 
+    /**
+     * Gets an immutable {@link Collection} of all applicable
+     * {@link BlockTrait}s for this {@link BlockType}.
+     *
+     * @return An immutable collection of all applicable block traits
+     */
     Collection<BlockTrait<?>> getTraits();
 
+    /**
+     * Attempts to retrieve the {@link BlockTrait} instance associated with
+     * this {@link BlockState}s {@link BlockType} by string id. If there is no
+     * {@link BlockTrait} available, {@link Optional#absent()} is returned.
+     *
+     * @param blockTrait The block trait id
+     * @return The block trait, if available
+     */
     Optional<BlockTrait<?>> getTrait(String blockTrait);
 }

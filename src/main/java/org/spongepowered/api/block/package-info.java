@@ -22,4 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+/**
+ * An API section where "blocks" are represented. A block is a tile in the 3D
+ * game universe. Each "block" has a
+ * {@link org.spongepowered.api.block.BlockState} that can be changed.
+ */
 @org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.block;

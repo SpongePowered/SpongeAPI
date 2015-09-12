@@ -22,14 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package org.spongepowered.api.block.trait;
-
 /**
- * Represents a type of {@link BlockTrait} that accepts an unknown {@link Enum}
- * set of values. Due to type erasure and implementation, most all enum types
- * may not be exposed in the API.
+ * A fallback API for handling traits of
+ * {@link org.spongepowered.api.block.BlockState}s such that the values that
+ * are not directly supported by the API can still be represented with a
+ * {@link org.spongepowered.api.block.trait.BlockTrait}. Common cases where
+ * support only through a <code>BlockTrait</code> is when mods are introduced
+ * to the game, providing custom content and custom states.
  */
-public interface EnumTrait<E extends Enum<E>> extends BlockTrait<E> {
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.block.trait;

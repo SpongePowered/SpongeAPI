@@ -25,10 +25,12 @@
 
 package org.spongepowered.api.block.trait;
 
+import com.google.common.base.Predicate;
+
 /**
- * Represents a type of {@link BlockTrait}.
- *
- * <p>IntegerTrait's store 1 or more possible {@link Integer} values.</p>
+ * Represents a type of {@link BlockTrait} that accepts {@link Integer} based
+ * values, usually with a predefined range. It is recommended to use the
+ * {@link Predicate}
  */
 public interface IntegerTrait extends BlockTrait<Integer> {
 

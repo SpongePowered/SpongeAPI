@@ -25,6 +25,7 @@
 package org.spongepowered.api.block;
 
 import com.google.common.base.Optional;
+import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.block.trait.BlockTrait;
 import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.data.key.Key;
@@ -35,6 +36,7 @@ import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -67,12 +69,63 @@ public interface BlockState extends ImmutableDataHolder<BlockState> {
      */
     BlockState cycleValue(Key<? extends BaseValue<? extends Cycleable<?>>> key);
 
+    /**
+     * Creates a new {@link BlockSnapshot} with this current {@link BlockState}
+     * at the desired {@link Location}. If the {@link Location} has the same
+     * {@link BlockState}, and the {@link BlockType} can house a
+     * {@link TileEntity}, the data from the tile entity may be included in the
+     * returned  {@link BlockSnapshot}.
+     *
+     * @param location The location for the snapshot
+     * @return The newly created snapshot
+     */
     BlockSnapshot snapshotFor(Location<World> location);
 
+    /**
+     * Gets the {@link Comparable} value for the specific {@link BlockTrait}
+     * such that if the {@link BlockState} does not support the
+     * {@link BlockTrait}, {@link Optional#absent()} is returned.
+     *
+     * @param blockTrait The block trait instance
+     * @param <T> The generic type of block trait
+     * @return The comparable value, if available and compatible
+     */
     <T extends Comparable<T>> Optional<T> getTraitValue(BlockTrait<T> blockTrait);
 
+    /**
+     * Attempts to retrieve the {@link BlockTrait} instance associated with
+     * this {@link BlockState}s {@link BlockType} by string id. If there is no
+     * {@link BlockTrait} available, {@link Optional#absent()} is returned.
+     *
+     * @param blockTrait The block trait id
+     * @return The block trait, if available
+     */
     Optional<BlockTrait<?>> getTrait(String blockTrait);
 
+    /**
+     * Gets an immutable {@link Collection} of all applicable
+     * {@link BlockTrait}s for this {@link BlockState}.
+     *
+     * @return An immutable collection of all applicable block traits
+     */
+    Collection<BlockTrait<?>> getTraits();
+
+    /**
+     * Gets an immutable {@link Collection} of all the values for all
+     * {@link BlockTrait}s for this {@link BlockState}.
+     *
+     * @return An immutable collection of all the values for all applicable
+     *     traits
+     */
+    Collection<?> getTraitValues();
+
+    /**
+     * Gets an immutable or unmodifiable {@link Map} of the known {@link BlockTrait}s
+     * to their current values for this {@link BlockState}.
+     *
+     * @return The immutable map of block traits to their values representing
+     *     this block state
+     */
     Map<BlockTrait<?>, ?> getTraitMap();
 
 }

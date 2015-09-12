@@ -26,9 +26,8 @@
 package org.spongepowered.api.block.trait;
 
 /**
- * Represents a type of {@link BlockTrait}.
- *
- * <p>BooleanTrait's can only have 2 possible values : True or False.</p>
+ * Represents a type of {@link BlockTrait} that allows only {@link Boolean} of
+ * which two possible values may exist: <code>true</code> and <code>false</code>.
  */
 public interface BooleanTrait extends BlockTrait<Boolean> {
 

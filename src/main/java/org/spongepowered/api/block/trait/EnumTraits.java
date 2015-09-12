@@ -25,10 +25,12 @@
 package org.spongepowered.api.block.trait;
 
 /**
- * Represents all possible {@link BlockTrait}s of type {@link EnumTrait} 
- * in vanilla minecraft.
+ * Represents all possible {@link EnumTrait}s that are known to exist in
+ * vanilla minecraft.
  */
-public class EnumTraits {
+public final class EnumTraits {
+
+    private EnumTraits() {}
 
     public static final EnumTrait<?> ACACIA_DOOR_FACING = null;
     public static final EnumTrait<?> ACACIA_DOOR_HALF = null;

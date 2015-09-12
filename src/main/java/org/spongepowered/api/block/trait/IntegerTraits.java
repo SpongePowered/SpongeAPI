@@ -25,10 +25,12 @@
 package org.spongepowered.api.block.trait;
 
 /**
- * Represents all possible {@link BlockTrait}s of type {@link IntegerTrait} 
- * in vanilla minecraft.
+ * Represents all possible {@link IntegerTrait}s that are known to exist in
+ * vanilla minecraft.
  */
-public class IntegerTraits {
+public final class IntegerTraits {
+
+    private IntegerTraits() {}
 
     public static final IntegerTrait ANVIL_DAMAGE = null;
     public static final IntegerTrait CACTUS_AGE = null;

@@ -25,10 +25,12 @@
 package org.spongepowered.api.block.trait;
 
 /**
- * Represents all possible {@link BlockTrait}s of type {@link BooleanTrait} 
- * in vanilla minecraft.
+ * Represents all possible {@link BooleanTrait}s that are known to exist in
+ * vanilla minecraft.
  */
-public class BooleanTraits {
+public final class BooleanTraits {
+
+    private BooleanTraits() {}
 
     public static final BooleanTrait ACACIA_DOOR_OPEN = null;
     public static final BooleanTrait ACACIA_DOOR_POWERED = null;
