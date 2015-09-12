@@ -25,11 +25,25 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
  * Called when an {@link Entity} is tamed.
+ *
+ * <p>The {@link Cause} in Vanilla takes the following format:</p>
+ *
+ * <table summary="">
+ *     <thead>
+ *         <tr><th>Type</th><th>Explanation</th></tr>
+ *     </thead>
+ *     <tbody>
+ *         <tr><td>{@link Player}</td><td>The {@link Player} that tamed the entity</td></tr>
+ *         <tr><td>{@link ItemStack}</td><td>The {@link ItemStack} used to tame the entity</td></tr>
+ *     </tbody></table>
  */
 public interface TameEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
 
