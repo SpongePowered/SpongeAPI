@@ -43,7 +43,6 @@ import org.spongepowered.api.world.Location;
 public final class DamageSources {
 
     public static final DamageSource POISON = null;
-    public static final DamageSource EXPLOSION = null;
     public static final DamageSource MELTING = null;
     public static final DamageSource IN_FIRE = null;
     public static final DamageSource FIRE_TICK = null;
@@ -53,6 +52,7 @@ public final class DamageSources {
     public static final DamageSource GENERIC = null;
     public static final DamageSource MAGIC = null;
     public static final DamageSource WITHER = null;
+    public static final DamageSource STARVATION = null;
 
     private DamageSources() {
     }

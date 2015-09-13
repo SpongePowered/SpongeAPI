@@ -80,14 +80,6 @@ public interface DamageSource {
     boolean isExplosion();
 
     /**
-     * Gets whether this {@link DamageSource} is starvation based, and
-     * therefor should be considered to bypass armor and other resistances.
-     *
-     * @return If this damage is starvation based
-     */
-    boolean isStarvationBased();
-
-    /**
      * Gets whether this {@link DamageSource} is considered to be magical
      * damage, such as potions, or other sources.
      *
