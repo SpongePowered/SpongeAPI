@@ -40,5 +40,5 @@ public interface DestructEntityEvent extends TargetEntityEvent, MessageSinkEvent
      * A derivative of {@link DestructEntityEvent} where the removal of the {@link Living}, the {@link TargetLivingEvent#getTargetEntity()},
      * is due to it losing its health.
      */
-    interface Death extends TargetLivingEvent {}
+    interface Death extends DestructEntityEvent, TargetLivingEvent {}
 }

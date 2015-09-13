@@ -29,10 +29,6 @@ import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
-import java.net.InetSocketAddress;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.MinecraftVersion;
@@ -203,6 +199,11 @@ import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
+
+import java.net.InetSocketAddress;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 public class SpongeEventFactory {
     /**
@@ -1813,12 +1814,22 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.DestructEntityEvent.Death}.
      * 
      * @param game The game
+     * @param cause The cause
+     * @param originalMessage The original message
+     * @param message The message
+     * @param originalSink The original sink
+     * @param sink The sink
      * @param targetEntity The target entity
      * @return A new death destruct entity event
      */
-    public static DestructEntityEvent.Death createDestructEntityEventDeath(Game game, Living targetEntity) {
+    public static DestructEntityEvent.Death createDestructEntityEventDeath(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Living targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
+        values.put("cause", cause);
+        values.put("originalMessage", originalMessage);
+        values.put("message", message);
+        values.put("originalSink", originalSink);
+        values.put("sink", sink);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(DestructEntityEvent.Death.class, values);
     }
