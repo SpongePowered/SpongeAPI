@@ -35,6 +35,7 @@ configure([compileJava, compileTestJava]) {
     options.compilerArgs += ['-Xlint:all', '-Xlint:-path']
     options.deprecation = true
     options.encoding = 'UTF-8'
+    options.compilerArgs += ['-AdisableTargetValidator=true']
 }
 
 test {
