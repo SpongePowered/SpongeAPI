@@ -25,8 +25,10 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.command.MessageSinkEvent;
+import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 
 /**
  * An event where the {@link Entity} is being either removed usually due to
@@ -34,4 +36,9 @@ import org.spongepowered.api.event.command.MessageSinkEvent;
  */
 public interface DestructEntityEvent extends TargetEntityEvent, MessageSinkEvent, CauseTracked {
 
+    /**
+     * A derivative of {@link DestructEntityEvent} where the removal of the {@link Living}, the {@link TargetLivingEvent#getTargetEntity()},
+     * is due to it losing its health.
+     */
+    interface Death extends TargetLivingEvent {}
 }

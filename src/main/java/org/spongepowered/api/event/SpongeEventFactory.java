@@ -1810,6 +1810,22 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.DestructEntityEvent.Death}.
+     * 
+     * @param game The game
+     * @param targetEntity The target entity
+     * @return A new death destruct entity event
+     */
+    public static DestructEntityEvent.Death createDestructEntityEventDeath(Game game, Living targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(DestructEntityEvent.Death.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DismountEntityEvent}.
      * 
      * @param game The game
