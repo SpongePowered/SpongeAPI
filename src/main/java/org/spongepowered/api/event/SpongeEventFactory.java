@@ -3249,13 +3249,17 @@ public class SpongeEventFactory {
      * 
      * @param game The game
      * @param cause The cause
+     * @param originalRemainingDuration The original remaining duration
+     * @param remainingDuration The remaining duration
      * @param itemStackInUse The item stack in use
      * @return A new use item stack event
      */
-    public static UseItemStackEvent createUseItemStackEvent(Game game, Cause cause, ItemStackTransaction itemStackInUse) {
+    public static UseItemStackEvent createUseItemStackEvent(Game game, Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackTransaction itemStackInUse) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
+        values.put("originalRemainingDuration", originalRemainingDuration);
+        values.put("remainingDuration", remainingDuration);
         values.put("itemStackInUse", itemStackInUse);
         return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.class, values);
     }
@@ -3267,14 +3271,20 @@ public class SpongeEventFactory {
      * 
      * @param game The game
      * @param cause The cause
+     * @param originalRemainingDuration The original remaining duration
+     * @param remainingDuration The remaining duration
      * @param itemStackInUse The item stack in use
+     * @param itemStackResult The item stack result
      * @return A new finish use item stack event
      */
-    public static UseItemStackEvent.Finish createUseItemStackEventFinish(Game game, Cause cause, ItemStackTransaction itemStackInUse) {
+    public static UseItemStackEvent.Finish createUseItemStackEventFinish(Game game, Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackTransaction itemStackInUse, ItemStackTransaction itemStackResult) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
+        values.put("originalRemainingDuration", originalRemainingDuration);
+        values.put("remainingDuration", remainingDuration);
         values.put("itemStackInUse", itemStackInUse);
+        values.put("itemStackResult", itemStackResult);
         return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Finish.class, values);
     }
 
@@ -3285,13 +3295,17 @@ public class SpongeEventFactory {
      * 
      * @param game The game
      * @param cause The cause
+     * @param originalRemainingDuration The original remaining duration
+     * @param remainingDuration The remaining duration
      * @param itemStackInUse The item stack in use
      * @return A new start use item stack event
      */
-    public static UseItemStackEvent.Start createUseItemStackEventStart(Game game, Cause cause, ItemStackTransaction itemStackInUse) {
+    public static UseItemStackEvent.Start createUseItemStackEventStart(Game game, Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackTransaction itemStackInUse) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
+        values.put("originalRemainingDuration", originalRemainingDuration);
+        values.put("remainingDuration", remainingDuration);
         values.put("itemStackInUse", itemStackInUse);
         return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Start.class, values);
     }
@@ -3303,13 +3317,17 @@ public class SpongeEventFactory {
      * 
      * @param game The game
      * @param cause The cause
+     * @param originalRemainingDuration The original remaining duration
+     * @param remainingDuration The remaining duration
      * @param itemStackInUse The item stack in use
      * @return A new stop use item stack event
      */
-    public static UseItemStackEvent.Stop createUseItemStackEventStop(Game game, Cause cause, ItemStackTransaction itemStackInUse) {
+    public static UseItemStackEvent.Stop createUseItemStackEventStop(Game game, Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackTransaction itemStackInUse) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
+        values.put("originalRemainingDuration", originalRemainingDuration);
+        values.put("remainingDuration", remainingDuration);
         values.put("itemStackInUse", itemStackInUse);
         return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Stop.class, values);
     }
@@ -3321,13 +3339,17 @@ public class SpongeEventFactory {
      * 
      * @param game The game
      * @param cause The cause
+     * @param originalRemainingDuration The original remaining duration
+     * @param remainingDuration The remaining duration
      * @param itemStackInUse The item stack in use
      * @return A new tick use item stack event
      */
-    public static UseItemStackEvent.Tick createUseItemStackEventTick(Game game, Cause cause, ItemStackTransaction itemStackInUse) {
+    public static UseItemStackEvent.Tick createUseItemStackEventTick(Game game, Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackTransaction itemStackInUse) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
+        values.put("originalRemainingDuration", originalRemainingDuration);
+        values.put("remainingDuration", remainingDuration);
         values.put("itemStackInUse", itemStackInUse);
         return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Tick.class, values);
     }

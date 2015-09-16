@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.event.inventory;
 
 import org.spongepowered.api.event.Cancellable;
@@ -30,11 +29,31 @@ import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.ItemStackTransaction;
 import org.spongepowered.api.potion.PotionEffectType;
 
 public interface UseItemStackEvent extends GameEvent, Cancellable, CauseTracked {
+
+    /**
+     * Gets the original remaining duration of {@link ItemStack} in use.
+     *
+     * @return The original remaining duration
+     */
+    int getOriginalRemainingDuration();
+
+    /**
+     * Gets the remaining duration of {@link ItemStack} in use.
+     *
+     * @return The remaining duration
+     */
+    int getRemainingDuration();
+
+    /**
+     * Sets the remaining duration of {@link ItemStack} in use.
+     *
+     * @param duration The remaining duration to set
+     */
+    void setRemainingDuration(int duration);
 
     /**
      * Gets the {@link ItemStack} being consumed.
@@ -42,13 +61,6 @@ public interface UseItemStackEvent extends GameEvent, Cancellable, CauseTracked 
      * @return The item being consumed
      */
     ItemStackTransaction getItemStackInUse();
-
-    /**
-     * Sets the item to be consumed.
-     *
-     * @param item The item being consumed
-     */
-    void setItemStackInUse(ItemStackSnapshot item);
 
     /**
      * Called before {@link UseItemStackEvent.Tick} when a player starts using an
@@ -110,6 +122,15 @@ public interface UseItemStackEvent extends GameEvent, Cancellable, CauseTracked 
      *     already applied.</li>
      *</ul>
      */
-    interface Finish extends UseItemStackEvent {}
+    interface Finish extends UseItemStackEvent {
+
+        /**
+         * Gets the {@link ItemStack} that is placed in the player's 
+         * inventory in replacement of the stack that is currently being used.
+         *
+         * @return The result {@link ItemStack}
+         */
+        ItemStackTransaction getItemStackResult();
+    }
 
 }
