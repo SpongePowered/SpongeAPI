@@ -36,6 +36,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.service.persistence.DataBuilder;
@@ -164,6 +165,26 @@ public class MemoryDataView implements DataView {
         if (sz == 1) {
             String key = queryParts.get(0).getParts().get(0);
             if (this.map.containsKey(key)) {
+                final Object object = this.map.get(key);
+                if (object.getClass().isArray()) {
+                    if (object instanceof byte[]) {
+                        return Optional.<Object>of(ArrayUtils.clone((byte[]) object));
+                    } else if (object instanceof short[]) {
+                        return Optional.<Object>of(ArrayUtils.clone((short[]) object));
+                    } else if (object instanceof int[]) {
+                        return Optional.<Object>of(ArrayUtils.clone((int[]) object));
+                    } else if (object instanceof long[]) {
+                        return Optional.<Object>of(ArrayUtils.clone((long[]) object));
+                    } else if (object instanceof float[]) {
+                        return Optional.<Object>of(ArrayUtils.clone((float[]) object));
+                    } else if (object instanceof double[]) {
+                        return Optional.<Object>of(ArrayUtils.clone((double[]) object));
+                    } else if (object instanceof boolean[]) {
+                        return Optional.<Object>of(ArrayUtils.clone((boolean[]) object));
+                    } else {
+                        return Optional.<Object>of(ArrayUtils.clone((Object[]) object));
+                    }
+                }
                 return Optional.of(this.map.get(key));
             } else {
                 return Optional.absent();
@@ -220,10 +241,26 @@ public class MemoryDataView implements DataView {
             } else {
                 if (value instanceof Collection) {
                     setCollection(parts.get(0), (Collection) value);
-                } else if (value instanceof Object[]) {
-                    setCollection(parts.get(0), Lists.newArrayList((Object[]) value));
                 } else if (value instanceof Map) {
                     setMap(parts.get(0), (Map) value);
+                } else if (value.getClass().isArray()) {
+                    if (value instanceof byte[]) {
+                        this.map.put(parts.get(0), ArrayUtils.clone((byte[]) value));
+                    } else if (value instanceof short[]) {
+                        this.map.put(parts.get(0), ArrayUtils.clone((short[]) value));
+                    } else if (value instanceof int[]) {
+                        this.map.put(parts.get(0), ArrayUtils.clone((int[]) value));
+                    } else if (value instanceof long[]) {
+                        this.map.put(parts.get(0), ArrayUtils.clone((long[]) value));
+                    } else if (value instanceof float[]) {
+                        this.map.put(parts.get(0), ArrayUtils.clone((float[]) value));
+                    } else if (value instanceof double[]) {
+                        this.map.put(parts.get(0), ArrayUtils.clone((double[]) value));
+                    } else if (value instanceof boolean[]) {
+                        this.map.put(parts.get(0), ArrayUtils.clone((boolean[]) value));
+                    } else {
+                        this.map.put(parts.get(0), ArrayUtils.clone((Object[]) value));
+                    }
                 } else {
                     this.map.put(parts.get(0), value);
                 }
