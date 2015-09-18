@@ -29,7 +29,6 @@ import static org.junit.Assert.assertTrue;
 import com.google.common.collect.Lists;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.SimpleConfigurationNode;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.spongepowered.api.data.translator.ConfigurateTranslator;
 
@@ -39,7 +38,6 @@ import java.util.List;
 public class ConfigurateDataViewTest {
 
     @Test
-    @Ignore
     public void testNodeToData() {
         ConfigurationNode node = SimpleConfigurationNode.root();
         node.getNode("foo","int").setValue(1);

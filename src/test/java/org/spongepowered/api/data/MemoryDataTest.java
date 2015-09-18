@@ -33,12 +33,12 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.spongepowered.api.service.persistence.DataBuilder;
 import org.spongepowered.api.service.persistence.SerializationService;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -163,7 +163,6 @@ public class MemoryDataTest {
     }
 
     @Test
-    @Ignore
     public void testLists() {
         DataContainer container = new MemoryDataContainer();
         DataQuery query = of("foo");
@@ -172,7 +171,7 @@ public class MemoryDataTest {
             DataContainer internal = new MemoryDataContainer();
             internal.set(of("foo", "bar"), "foo.bar" + i);
             int[] ints = new int[] {0, 1, 2, 3, i};
-            internal.set(of("ints"), ints);
+            internal.set(of("ints"), Arrays.asList(ints));
             list.add(internal);
         }
         container.set(query, list);

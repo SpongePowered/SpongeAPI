@@ -66,7 +66,7 @@ class SimpleData implements DataSerializable {
         container.set(new DataQuery("myInt"), this.testInt);
         container.set(new DataQuery("myDouble"), this.testDouble);
         container.set(new DataQuery("myString"), this.testString);
-        container.set(new DataQuery("myStringList"), this.testList);
+        container.set(new DataQuery("myStringList"), Arrays.asList(this.testList));
         return container;
     }
 
