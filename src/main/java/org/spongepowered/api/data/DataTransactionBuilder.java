@@ -381,7 +381,7 @@ public final class DataTransactionBuilder {
         if (this.resultType == null) {
             this.resultType = result.getType();
         } else {
-            if (this.resultType != DataTransactionResult.Type.SUCCESS && result.getType() == DataTransactionResult.Type.SUCCESS) {
+            if (this.resultType.compareTo(result.getType()) < 0) {
                 this.resultType = result.getType();
             }
         }
@@ -389,72 +389,77 @@ public final class DataTransactionBuilder {
         final List<ImmutableValue<?>> newReplaced = Lists.newArrayList();
         final List<ImmutableValue<?>> newRejected = Lists.newArrayList();
         // Now let's handle the successful data
-
-        dance:
-        for (final ImmutableValue<?> value : this.successful) {
-            for (final ImmutableValue<?> rejected : result.getRejectedData()) {
-                if (value.getKey().equals(rejected.getKey())) {
-                    newRejected.add(rejected);
-                    continue dance;
+        if (this.successful != null) {
+            dance:
+            for (final ImmutableValue<?> value : this.successful) {
+                for (final ImmutableValue<?> rejected : result.getRejectedData()) {
+                    if (value.getKey().equals(rejected.getKey())) {
+                        newRejected.add(rejected);
+                        continue dance;
+                    }
                 }
-            }
-            for (final ImmutableValue<?> replaced : result.getReplacedData()) {
-                if (value.getKey().equals(replaced.getKey())) {
-                    newReplaced.add(value);
-                    continue dance;
+                for (final ImmutableValue<?> replaced : result.getReplacedData()) {
+                    if (value.getKey().equals(replaced.getKey())) {
+                        newReplaced.add(value);
+                        continue dance;
+                    }
                 }
-            }
-            for (final ImmutableValue<?> successful : result.getSuccessfulData()) {
-                if (value.getKey().equals(successful.getKey())) {
-                    newSuccessful.add(successful);
-                    continue dance;
+                for (final ImmutableValue<?> successful : result.getSuccessfulData()) {
+                    if (value.getKey().equals(successful.getKey())) {
+                        newSuccessful.add(successful);
+                        continue dance;
+                    }
                 }
+                newSuccessful.add(value);
             }
-            newSuccessful.add(value);
         }
-        dance:
-        for (final ImmutableValue<?> value : this.replaced) {
-            for (final ImmutableValue<?> rejected : result.getRejectedData()) {
-                if (value.getKey().equals(rejected.getKey())) {
-                    newRejected.add(rejected);
-                    continue dance;
+        if (this.replaced != null) {
+            dance:
+            for (final ImmutableValue<?> value : this.replaced) {
+                for (final ImmutableValue<?> rejected : result.getRejectedData()) {
+                    if (value.getKey().equals(rejected.getKey())) {
+                        newRejected.add(rejected);
+                        continue dance;
+                    }
                 }
-            }
-            for (final ImmutableValue<?> replaced : result.getReplacedData()) {
-                if (value.getKey().equals(replaced.getKey())) {
-                    newReplaced.add(value);
-                    continue dance;
+                for (final ImmutableValue<?> replaced : result.getReplacedData()) {
+                    if (value.getKey().equals(replaced.getKey())) {
+                        newReplaced.add(value);
+                        continue dance;
+                    }
                 }
-            }
-            for (final ImmutableValue<?> successful : result.getSuccessfulData()) {
-                if (value.getKey().equals(successful.getKey())) {
-                    newSuccessful.add(successful);
-                    continue dance;
+                for (final ImmutableValue<?> successful : result.getSuccessfulData()) {
+                    if (value.getKey().equals(successful.getKey())) {
+                        newSuccessful.add(successful);
+                        continue dance;
+                    }
                 }
+                newReplaced.add(value);
             }
-            newReplaced.add(value);
         }
-        dance:
-        for (final ImmutableValue<?> value : this.rejected) {
-            for (final ImmutableValue<?> rejected : result.getRejectedData()) {
-                if (value.getKey().equals(rejected.getKey())) {
-                    newRejected.add(rejected);
-                    continue dance;
+        if (this.rejected != null) {
+            dance:
+            for (final ImmutableValue<?> value : this.rejected) {
+                for (final ImmutableValue<?> rejected : result.getRejectedData()) {
+                    if (value.getKey().equals(rejected.getKey())) {
+                        newRejected.add(rejected);
+                        continue dance;
+                    }
                 }
-            }
-            for (final ImmutableValue<?> replaced : result.getReplacedData()) {
-                if (value.getKey().equals(replaced.getKey())) {
-                    newReplaced.add(value);
-                    continue dance;
+                for (final ImmutableValue<?> replaced : result.getReplacedData()) {
+                    if (value.getKey().equals(replaced.getKey())) {
+                        newReplaced.add(value);
+                        continue dance;
+                    }
                 }
-            }
-            for (final ImmutableValue<?> successful : result.getSuccessfulData()) {
-                if (value.getKey().equals(successful.getKey())) {
-                    newSuccessful.add(successful);
-                    continue dance;
+                for (final ImmutableValue<?> successful : result.getSuccessfulData()) {
+                    if (value.getKey().equals(successful.getKey())) {
+                        newSuccessful.add(successful);
+                        continue dance;
+                    }
                 }
+                newRejected.add(value);
             }
-            newRejected.add(value);
         }
         dance:
         for (final ImmutableValue<?> value : result.getSuccessfulData()) {
