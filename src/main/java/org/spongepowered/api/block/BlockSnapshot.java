@@ -26,6 +26,7 @@ package org.spongepowered.api.block;
 
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.LocateableSnapshot;
 import org.spongepowered.api.world.Location;
 
@@ -47,6 +48,11 @@ public interface BlockSnapshot extends LocateableSnapshot<BlockSnapshot> {
      * {@link BlockState}. Any additional data associated with a
      * {@link TileEntity} or custom data may be lost.
      *
+     * <p>Note: all custom data, including implementation detailed
+     * data relating to any and all {@link TileEntity} instances that
+     * was included in this snapshot will NOT copy over to the new
+     * snapshot.</p>
+     *
      * @param blockState The block state
      * @return The new snapshot
      */
@@ -54,7 +60,9 @@ public interface BlockSnapshot extends LocateableSnapshot<BlockSnapshot> {
 
     /**
      * Creates a copy of the {@link BlockSnapshot} with the provided
-     * {@link DataContainer}.
+     * {@link DataContainer}. Note that this is equal to calling
+     * {@link BlockSnapshotBuilder#build(DataView)}. All data is
+     * validated and
      *
      * @param container The data container
      * @return The new snapshot

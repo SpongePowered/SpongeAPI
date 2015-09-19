@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity;
 
+import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.data.ImmutableDataBuilder;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -62,7 +63,7 @@ public interface EntitySnapshotBuilder extends ImmutableDataBuilder<EntitySnapsh
      * @param position The Vector3i representing the coordinates
      * @return This builder, for chaining
      */
-    EntitySnapshotBuilder position(Vector3i position);
+    EntitySnapshotBuilder position(Vector3d position);
 
     /**
      * Copies over data from an {@link Entity}.

@@ -42,6 +42,7 @@ import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Property;
@@ -80,6 +81,18 @@ import javax.annotation.Nullable;
  * @param <E> The type of extent containing this location
  */
 public final class Location<E extends Extent> implements DataHolder {
+
+    // These queries are finalized such that most all are used in a
+    // DataContainer for any location.
+    public static final DataQuery WORLD_NAME = of("WorldName");
+    public static final DataQuery WORLD_ID = of("WorldUuid");
+    public static final DataQuery CHUNK_X = of("ChunkX");
+    public static final DataQuery CHUNK_Y = of("ChunkY");
+    public static final DataQuery CHUNK_Z = of("ChunkZ");
+    public static final DataQuery BLOCK_TYPE = of("BlockType");
+    public static final DataQuery POSITION_X = of("X");
+    public static final DataQuery POSITION_Y = of("Y");
+    public static final DataQuery POSITION_Z = of("Z");
 
     private final WeakReference<E> extent;
     // Lazily computed, either position or blockPosition is set by the constructor
@@ -662,19 +675,19 @@ public final class Location<E extends Extent> implements DataHolder {
     public DataContainer toContainer() {
         final DataContainer container = new MemoryDataContainer();
         if (getExtent() instanceof World) {
-            container.set(of("WorldName"), ((World) getExtent()).getName());
-            container.set(of("WorldUuid"), getExtent().getUniqueId().toString());
+            container.set(WORLD_NAME, ((World) getExtent()).getName());
+            container.set(WORLD_ID, getExtent().getUniqueId().toString());
         } else if (getExtent() instanceof Chunk) {
-            container.set(of("ChunkX"), ((Chunk) getExtent()).getPosition().getX())
-                .set(of("ChunkY"), ((Chunk) getExtent()).getPosition().getY())
-                .set(of("ChunkZ"), ((Chunk) getExtent()).getPosition().getZ())
-                .set(of("WorldName"), ((Chunk) getExtent()).getWorld().getName())
-                .set(of("WorldUuiD"), ((Chunk) getExtent()).getWorld().getUniqueId().toString());
+            container.set(CHUNK_X, ((Chunk) getExtent()).getPosition().getX())
+                .set(CHUNK_Y, ((Chunk) getExtent()).getPosition().getY())
+                .set(CHUNK_Z, ((Chunk) getExtent()).getPosition().getZ())
+                .set(WORLD_NAME, ((Chunk) getExtent()).getWorld().getName())
+                .set(WORLD_ID, ((Chunk) getExtent()).getWorld().getUniqueId().toString());
         }
-        container.set(of("BlockType"), this.getExtent().getBlockType(getBlockPosition()).getId())
-            .set(of("x"), this.getX())
-            .set(of("y"), this.getY())
-            .set(of("z"), this.getZ());
+        container.set(BLOCK_TYPE, this.getExtent().getBlockType(getBlockPosition()).getId())
+            .set(POSITION_X, this.getX())
+            .set(POSITION_Y, this.getY())
+            .set(POSITION_Z, this.getZ());
         return container;
     }
 

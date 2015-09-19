@@ -29,7 +29,7 @@ package org.spongepowered.api.entity;
  */
 public final class EntityTypes {
 
-    public static final EntityType DROPPED_ITEM = null;
+    public static final EntityType ITEM = null;
     public static final EntityType EXPERIENCE_ORB = null;
     public static final EntityType LEASH_HITCH = null;
     public static final EntityType PAINTING = null;
