@@ -29,11 +29,17 @@ public final class DamageTypes {
 
     public static final DamageType ATTACK = null;
     public static final DamageType CONTACT = null;
+    public static final DamageType CUSTOM = null;
+    public static final DamageType DROWN = null;
     public static final DamageType EXPLOSIVE = null;
+    public static final DamageType FALL = null;
     public static final DamageType FIRE = null;
+    public static final DamageType GENERIC = null;
+    public static final DamageType HUNGER = null;
     public static final DamageType MAGIC = null;
     public static final DamageType PROJECTILE = null;
-    public static final DamageType PLUGIN = null;
+    public static final DamageType SUFFOCATE = null;
+    public static final DamageType VOID = null;
 
     private DamageTypes() {}
 
