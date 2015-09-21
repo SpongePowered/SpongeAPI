@@ -76,4 +76,12 @@ public interface EntitySnapshot extends LocateableSnapshot<EntitySnapshot> {
      */
     EntityType getType();
 
+    /**
+     * Restores the {@link EntitySnapshot} to the {@link Location} stored within
+     * the snapshot. If the {@link Location} is not available, the snapshot will
+     * not be restored.
+     *
+     * @return the restored entity if successful
+     */
+    Optional<Entity> restore();
 }
