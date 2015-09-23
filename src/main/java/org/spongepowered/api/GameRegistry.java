@@ -53,7 +53,6 @@ import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.extent.ExtentBufferFactory;
-import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
