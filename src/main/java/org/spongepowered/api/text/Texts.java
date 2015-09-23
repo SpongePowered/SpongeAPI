@@ -191,7 +191,7 @@ public final class Texts {
             } else if (obj instanceof TextColor) {
                 format = format.color((TextColor) obj);
             } else if (obj instanceof TextStyle) {
-                format.style(obj.equals(TextStyles.RESET) ? TextStyles.NONE : format.getStyle().and((TextStyle) obj));
+                format = format.style(obj.equals(TextStyles.RESET) ? TextStyles.NONE : format.getStyle().and((TextStyle) obj));
             } else if (obj instanceof TextRepresentable) {
                 builder.append(((TextRepresentable) obj).toText());
             } else if (obj instanceof TextAction) {
