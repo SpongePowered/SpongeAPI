@@ -29,6 +29,7 @@ import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableHorseDat
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.HorseVariant;
+import org.spongepowered.api.data.type.HorseVariants;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.animal.Horse;
 
@@ -42,6 +43,9 @@ public interface HorseData extends DataManipulator<HorseData, ImmutableHorseData
     /**
      * Gets a {@link Value} for the {@link HorseColor}.
      *
+     * <p>In Vanilla, this will have no effect unless {@link #variant()}
+     * is {@link HorseVariants#HORSE}</p>
+     *
      * @return The value for the horse color
      */
     Value<HorseColor> color();
@@ -49,6 +53,9 @@ public interface HorseData extends DataManipulator<HorseData, ImmutableHorseData
 
     /**
      * Gets a {@link Value} for the {@link HorseStyle}.
+     *
+     * <p>In Vanilla, this will have no effect unless {@link #variant()}
+     * is {@link HorseVariants#HORSE}</p>
      *
      * @return The value for the horse style
      */
