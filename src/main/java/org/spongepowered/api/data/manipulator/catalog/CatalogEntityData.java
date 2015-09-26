@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator.catalog;
 
-import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.DataManipulator;
@@ -32,7 +31,6 @@ import org.spongepowered.api.data.manipulator.mutable.AttributeData;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.DyeableData;
 import org.spongepowered.api.data.manipulator.mutable.FireworkData;
-import org.spongepowered.api.data.manipulator.mutable.OwnableData;
 import org.spongepowered.api.data.manipulator.mutable.PotionEffectData;
 import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
@@ -362,11 +360,6 @@ public final class CatalogEntityData {
      * contains.
      */
     public static final Class<ExpOrbData> ORB_DATA = ExpOrbData.class;
-    /**
-     * Signifies that an entity is owned by a {@link GameProfile}. Usually
-     * applicable to {@link Living} entities.
-     */
-    public static final Class<OwnableData> OWNABLE_DATA = OwnableData.class;
     /**
      * Signifies that an entity is a "passenger" riding another {@link Entity}.
      * Usually applicable for all {@link Entity}.

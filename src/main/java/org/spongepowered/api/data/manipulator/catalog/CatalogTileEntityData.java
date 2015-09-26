@@ -44,7 +44,7 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.CommandData;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
-import org.spongepowered.api.data.manipulator.mutable.OwnableData;
+import org.spongepowered.api.data.manipulator.mutable.RepresentedPlayerData;
 import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
 import org.spongepowered.api.data.manipulator.mutable.block.ComparatorData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BannerData;
@@ -110,7 +110,7 @@ public final class CatalogTileEntityData {
      * Represents data pertaining to a {@link GameProfile} for a tile entity.
      * Usually applicable to {@link Skull}s.
      */
-    public static final Class<OwnableData> OWNABLE_DATA = OwnableData.class;
+    public static final Class<RepresentedPlayerData> REPRESENTED_PLAYER_DATA = RepresentedPlayerData.class;
     /**
      * Represents a {@link TileEntity} that acts on an {@link ItemStack}.
      * Usually applicable to {@link Jukebox}es and {@link FlowerPot}s.
