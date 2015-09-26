@@ -41,7 +41,6 @@ import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntitySnapshotBuilder;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.cause.entity.damage.source.BlockDamageSourceBuilder;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSourceBuilder;
 import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSourceBuilder;
@@ -82,7 +81,6 @@ import org.spongepowered.api.world.WorldBuilder;
 import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.explosion.ExplosionBuilder;
-import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.extent.ExtentBufferFactory;
 import org.spongepowered.api.world.gen.GeneratorPopulator;
 import org.spongepowered.api.world.gen.Populator;
@@ -529,19 +527,6 @@ public interface GameRegistry {
      * @return The populator factory
      */
     PopulatorFactory getPopulatorFactory();
-
-    /**
-     * Returns a new transform builder.
-     * Use chained setter calls to configure it.
-     * Example:
-     * <pre>{@code createTransformBuilder()
-     * .withPosition(position)
-     * .withRotation(rotation)
-     * .build()}</pre>
-     *
-     * @return A new transform builder
-     */
-    <E extends Extent> Transform.Builder<E> createTransformBuilder();
 
     /**
      * Gets the {@link ExtentBufferFactory} for creating buffers
