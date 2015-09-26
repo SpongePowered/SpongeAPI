@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.key;
 
 import com.flowpowered.math.vector.Vector3d;
+
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
@@ -174,7 +175,7 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_RANGE = null;
     public static final Key<MobSpawnerData.NextEntityToSpawnValue> SPAWNER_NEXT_ENTITY_TO_SPAWN = null;
     public static final Key<WeightedEntityCollectionValue> SPAWNER_ENTITIES = null;
-    public static final Key<Value<GameProfile>> OWNED_BY_PROFILE = null;
+    public static final Key<Value<GameProfile>> REPRESENTED_PLAYER = null;
     public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = null;
     public static final Key<Value<ItemStackSnapshot>> REPRESENTED_ITEM = null;
     public static final Key<Value<Rotation>> ROTATION = null;

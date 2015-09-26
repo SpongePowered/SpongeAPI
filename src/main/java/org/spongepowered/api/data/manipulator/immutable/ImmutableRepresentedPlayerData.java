@@ -29,27 +29,22 @@ import org.spongepowered.api.block.tileentity.Skull;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.OwnableData;
+import org.spongepowered.api.data.manipulator.mutable.RepresentedPlayerData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.Tamer;
-import org.spongepowered.api.entity.living.animal.Animal;
 
 /**
  * An {@link ImmutableDataManipulator} handling the {@link GameProfile}
- * associated with "owning" an {@link Entity}. Usually applicable to
- * {@link Animal}s that can be tamed by a {@link Tamer}, but sometimes,
- * the {@link DataHolder} providing this ownable data is a
- * {@link Skull} {@link TileEntity}.
+ * represented by this {@link DataHolder}. Applicable to a {@link Skull}
+ * {@link TileEntity} or {@link ItemStack}.
  */
-public interface ImmutableOwnableData extends ImmutableDataManipulator<ImmutableOwnableData, OwnableData> {
+public interface ImmutableRepresentedPlayerData extends ImmutableDataManipulator<ImmutableRepresentedPlayerData, RepresentedPlayerData> {
 
     /**
      * Gets the {@link ImmutableValue} for the {@link GameProfile} that is
-     * marked as "owning" the {@link DataHolder}.
+     * represented by the {@link DataHolder}.
      *
      * @return The immutable value of the game profile
      */
-    ImmutableValue<GameProfile> profile();
+    ImmutableValue<GameProfile> owner();
 
 }
