@@ -55,4 +55,8 @@ public interface MessageSinkEvent extends MessageEvent {
      */
     void setSink(MessageSink sink);
 
+    /**
+     * Fired when the {@link Text} being sent to a {@link MessageSink} was due to chatting.
+     */
+    interface Chat extends MessageSinkEvent {}
 }

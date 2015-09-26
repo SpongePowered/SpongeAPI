@@ -29,6 +29,10 @@ import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
+import java.net.InetSocketAddress;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.MinecraftVersion;
@@ -199,11 +203,6 @@ import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
-
-import java.net.InetSocketAddress;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 
 public class SpongeEventFactory {
     /**
@@ -1300,6 +1299,30 @@ public class SpongeEventFactory {
         values.put("originalSink", originalSink);
         values.put("sink", sink);
         return SpongeEventFactoryUtils.createEventImpl(MessageSinkEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.command.MessageSinkEvent.Chat}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param originalMessage The original message
+     * @param message The message
+     * @param originalSink The original sink
+     * @param sink The sink
+     * @return A new chat message sink event
+     */
+    public static MessageSinkEvent.Chat createMessageSinkEventChat(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("originalMessage", originalMessage);
+        values.put("message", message);
+        values.put("originalSink", originalSink);
+        values.put("sink", sink);
+        return SpongeEventFactoryUtils.createEventImpl(MessageSinkEvent.Chat.class, values);
     }
 
     /**
