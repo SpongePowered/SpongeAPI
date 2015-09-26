@@ -34,7 +34,7 @@ import java.lang.annotation.Target;
 import javax.inject.Inject;
 
 /**
- * Provides a convenient injection for {@link SchedulerService#createAsyncExecutor(Object)}.
+ * Provides a convenient injection for {@link SchedulerService#createSyncExecutor(Object)}.
  *
  * <p>Use this annotation on a {@link SpongeExecutorService}.
  * Remember that {@link Inject} is also necessary.</p>
@@ -42,5 +42,5 @@ import javax.inject.Inject;
 @BindingAnnotation
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.PARAMETER, ElementType.FIELD})
-public @interface Asynchronous {
+public @interface SynchronousExecutor {
 }
