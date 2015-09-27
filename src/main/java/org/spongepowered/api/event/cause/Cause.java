@@ -140,6 +140,13 @@ public abstract class Cause {
     public abstract <T> Optional<T> last(Class<T> target);
 
     /**
+     * Returns whether the target class matches any object of this {@link Cause}.
+     * @param target The class of the target type
+     * @return True if found, false otherwise
+     */
+    public abstract boolean any (Class<?> target);
+
+    /**
      * Gets an {@link ImmutableList} of all objects that are instances of the
      * given {@link Class} type <code>T</code>.
      *
@@ -222,6 +229,17 @@ public abstract class Cause {
         }
 
         @Override
+        public boolean any(Class<?> target) {
+            for (Object aCause : this.cause) {
+                if (aCause.getClass().equals(target)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        @Override
         public List<Object> all() {
             return ImmutableList.copyOf(this.cause);
         }
@@ -263,6 +281,11 @@ public abstract class Cause {
         @Override
         public <T> Optional<T> last(Class<T> target) {
             return Optional.absent();
+        }
+
+        @Override
+        public boolean any(Class<?> target) {
+            return false;
         }
 
         @Override
