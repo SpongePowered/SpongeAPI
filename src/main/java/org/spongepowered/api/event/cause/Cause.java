@@ -231,7 +231,7 @@ public abstract class Cause {
         @Override
         public boolean any(Class<?> target) {
             for (Object aCause : this.cause) {
-                if (aCause.getClass().equals(target)) {
+                if (target.isInstance(aCause)) {
                     return true;
                 }
             }
