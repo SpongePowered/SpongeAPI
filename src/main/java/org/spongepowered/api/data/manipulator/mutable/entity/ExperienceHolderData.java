@@ -27,6 +27,8 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableExperienceHolderData;
 import org.spongepowered.api.data.value.BoundedValue;
+import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.entity.living.Human;
 
 /**
@@ -36,7 +38,7 @@ import org.spongepowered.api.entity.living.Human;
 public interface ExperienceHolderData extends DataManipulator<ExperienceHolderData, ImmutableExperienceHolderData> {
 
     /**
-     * Gets the {@link BoundedValue}  for the amount of experience
+     * Gets the {@link MutableBoundedValue}  for the amount of experience
      * gained since the beginning of the current {@link #level()}. Normally,
      * the higher the level, the more "experience" required to gain another
      * level.
@@ -44,33 +46,33 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
      * @return The bounded value of experience since the beginning of the
      *     current level
      */
-    BoundedValue<Integer> experienceSinceLevel();
+    MutableBoundedValue<Integer> experienceSinceLevel();
 
     /**
-     * Gets the {@link BoundedValue} for the amount of experience
+     * Gets the {@link ImmutableBoundedValue} for the amount of experience
      * required between the current {@link #level()} and the next level.
      * This can be presumed to be the supposed "maximum" for the
      * {@link #experienceSinceLevel()} amount.
      *
      * @return The immutable bounded required experience between levels
      */
-    BoundedValue<Integer> getExperienceBetweenLevels();
+    ImmutableBoundedValue<Integer> getExperienceBetweenLevels();
 
     /**
-     * Gets the {@link BoundedValue} for the current "level" of
+     * Gets the {@link MutableBoundedValue} for the current "level" of
      * experience deserved according to the {@link #totalExperience()} and
      * a function from implementation defining how much experience required
      * per level.
      *
      * @return The current level according to the amount of total experience
      */
-    BoundedValue<Integer> level();
+    MutableBoundedValue<Integer> level();
 
     /**
      * Gets the total amount of experience stored.
      *
      * @return The value of total amount of experience
      */
-    BoundedValue<Integer> totalExperience();
+    MutableBoundedValue<Integer> totalExperience();
 
 }
