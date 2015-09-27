@@ -27,9 +27,12 @@ package org.spongepowered.api.command.dispatcher;
 import com.google.common.collect.Multimap;
 import org.spongepowered.api.command.CommandCallable;
 import org.spongepowered.api.command.CommandMapping;
+import org.spongepowered.api.command.CommandSource;
 
 import java.util.Optional;
 import java.util.Set;
+
+import javax.annotation.Nullable;
 
 /**
  * Executes a command based on user input.
@@ -73,6 +76,17 @@ public interface Dispatcher extends CommandCallable {
      * @return The command mapping, if available
      */
     Optional<? extends CommandMapping> get(String alias);
+
+    /**
+     * Get the {@link CommandMapping} associated with an alias in the context
+     * of a given {@link CommandSource}. Returns null if no command is named by
+     * the given alias.
+     *
+     * @param alias The alias to look up
+     * @param source The source this alias is being looked up for
+     * @return The command mapping, if available
+     */
+    Optional<? extends CommandMapping> get(String alias, @Nullable CommandSource source);
 
     /**
      * Gets all the {@link CommandMapping}s associated with an alias.

@@ -291,18 +291,12 @@ public final class SimpleDispatcher implements Dispatcher {
         return get(alias, null);
     }
 
-    /**
-     * Get a given command in the context of a certain command source.
-     *
-     * @param alias The alias to look up
-     * @param source The source this alias is being looked up for
-     * @return the command if exactly one matches
-     */
+    @Override
     public synchronized Optional<CommandMapping> get(String alias, @Nullable CommandSource source) {
         List<CommandMapping> results = this.commands.get(alias.toLowerCase());
         if (results.size() == 1) {
             return Optional.of(results.get(0));
-        } else if (results.size() == 0 || source == null) {
+        } else if (results.size() == 0) {
             return Optional.empty();
         } else {
             return this.disambiguatorFunc.disambiguate(source, alias, results);

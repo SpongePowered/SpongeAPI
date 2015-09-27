@@ -59,6 +59,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 
 /**
@@ -206,6 +207,11 @@ public class SimpleCommandManager implements CommandManager {
     @Override
     public Optional<CommandMapping> get(String alias) {
         return this.dispatcher.get(alias);
+    }
+
+    @Override
+    public Optional<? extends CommandMapping> get(String alias, @Nullable CommandSource source) {
+        return this.dispatcher.get(alias, source);
     }
 
     @Override
