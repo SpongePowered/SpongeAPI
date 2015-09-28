@@ -48,14 +48,14 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
     BoundedValue<Integer> experienceSinceLevel();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the amount of experience
+     * Gets the {@link BoundedValue} for the amount of experience
      * required between the current {@link #level()} and the next level.
      * This can be presumed to be the supposed "maximum" for the
      * {@link #experienceSinceLevel()} amount.
      *
      * @return The immutable bounded required experience between levels
      */
-    ImmutableBoundedValue<Integer> getExperienceBetweenLevels();
+    BoundedValue<Integer> getExperienceBetweenLevels();
 
     /**
      * Gets the {@link BoundedValue} for the current "level" of
