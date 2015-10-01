@@ -33,4 +33,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(CookedFishes.class)
 public interface CookedFish extends CatalogType {
 
+    /**
+     * Gets this cooked fish type's corresponding {@link Fish} type.
+     *
+     * @return The raw fish type.
+     */
+    Fish getRawFish();
 }
