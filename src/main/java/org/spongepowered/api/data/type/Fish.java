@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.type;
 
+import com.google.common.base.Optional;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -33,4 +34,9 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(Fishes.class)
 public interface Fish extends CatalogType {
 
+    /**
+     * Gets this raw fish type's corresponding cooked fish type.
+     * @return The cooked fish type.
+     */
+    public Optional<CookedFish> getCookedFish();
 }
