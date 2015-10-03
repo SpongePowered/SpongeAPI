@@ -257,6 +257,11 @@ public abstract class Cause {
         public int hashCode() {
             return Objects.hashCode(this.cause);
         }
+
+        @Override
+        public String toString() {
+            return "Cause{" + Arrays.deepToString(this.cause) + "}";
+        }
     }
 
     private static final class EmptyCause extends Cause {
@@ -306,6 +311,11 @@ public abstract class Cause {
         @Override
         public int hashCode() {
             return 0x39e8a5b;
+        }
+
+        @Override
+        public String toString() {
+            return "Cause{}";
         }
     }
 
