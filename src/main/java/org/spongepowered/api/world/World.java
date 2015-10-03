@@ -265,5 +265,18 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
      */
     void triggerExplosion(Explosion explosion);
 
+    /**
+     * Gets the teleporter agent, used for manipulating teleporters.
+     *
+     * @return The teleporter agent
+     */
     TeleporterAgent getTeleporterAgent();
+
+    /**
+     * Gets the world's player simulator, used for simulating player actions
+     *
+     * @return The player simulator
+     */
+    PlayerSimulator getPlayerSimulator();
+
 }
