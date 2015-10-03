@@ -51,7 +51,6 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
@@ -510,74 +509,6 @@ public final class Location<E extends Extent> implements DataHolder {
     @Override
     public DataTransactionResult remove(Key<?> key) {
         return getExtent().remove(getBlockPosition(), key);
-    }
-
-    /**
-     * Simulates the interaction with this object as if a player had done so.
-     *
-     * @param side The side of the block to interact with
-     */
-    public void interactBlock(Direction side) {
-        getExtent().interactBlock(getBlockPosition(), side);
-    }
-
-    /**
-     * Simulates the interaction with this object using the given item as if
-     * the player had done so.
-     *
-     * @param itemStack The item
-     * @param side The side of the block to interact with
-     */
-    public void interactBlockWith(ItemStack itemStack, Direction side) {
-        getExtent().interactBlockWith(getBlockPosition(), itemStack, side);
-    }
-
-    /**
-     * Simulate the digging of the block as if a player had done so.
-     *
-     * @return Whether the block was destroyed
-     */
-    public boolean digBlock() {
-        return getExtent().digBlock(getBlockPosition());
-    }
-
-    /**
-     * Simulate the digging of the block with the given tool as if a player had
-     * done so.
-     *
-     * @param itemStack The tool
-     * @return Whether the block was destroyed
-     */
-    public boolean digBlockWith(ItemStack itemStack) {
-        return getExtent().digBlockWith(getBlockPosition(), itemStack);
-    }
-
-    /**
-     * Gets the time it takes to dig this block the specified item in ticks.
-     *
-     * @param itemStack The item to pretend-dig with
-     * @return The time in ticks
-     */
-    public int getBlockDigTimeWith(ItemStack itemStack) {
-        return getExtent().getBlockDigTimeWith(getBlockPosition(), itemStack);
-    }
-
-    /**
-     * Get all the faces of this block that are directly powered.
-     *
-     * @return Faces powered
-     */
-    public Collection<Direction> getPoweredBlockFaces() {
-        return getExtent().getPoweredBlockFaces(getBlockPosition());
-    }
-
-    /**
-     * Get all faces of this block that are indirectly powered.
-     *
-     * @return Faces indirectly powered
-     */
-    public Collection<Direction> getIndirectlyPoweredBlockFaces() {
-        return getExtent().getIndirectlyPoweredBlockFaces(getBlockPosition());
     }
 
     /**
