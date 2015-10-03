@@ -41,6 +41,9 @@ import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
+import java.util.Set;
+
+import javax.annotation.Nullable;
 
 /**
  * A type of {@link Location} based value store that can handle proxied
@@ -162,6 +165,7 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of element of data
      * @return The data or null
      */
+    @Nullable
     <E> E getOrNull(int x, int y, int z, Key<? extends BaseValue<E>> key);
 
     /**
@@ -318,7 +322,7 @@ public interface LocationCompositeValueStore {
      * @param coordinates The position of the block
      * @return The immutable set of values for the block
      */
-    ImmutableSet<Key<?>> getKeys(Vector3i coordinates);
+    Set<Key<?>> getKeys(Vector3i coordinates);
 
     /**
      * Gets an {@link ImmutableSet} of {@link Key}s for the block at
@@ -329,7 +333,7 @@ public interface LocationCompositeValueStore {
      * @param z The Z position
      * @return The immutable set of values for the block
      */
-    ImmutableSet<Key<?>> getKeys(int x, int y, int z);
+    Set<Key<?>> getKeys(int x, int y, int z);
 
     /**
      * Gets an {@link ImmutableSet} of {@link ImmutableValue}s for the block at
@@ -338,7 +342,7 @@ public interface LocationCompositeValueStore {
      * @param coordinates The position of the block
      * @return The immutable set of values for the block
      */
-    ImmutableSet<ImmutableValue<?>> getValues(Vector3i coordinates);
+    Set<ImmutableValue<?>> getValues(Vector3i coordinates);
 
     /**
      * Gets an {@link ImmutableSet} of {@link ImmutableValue}s for the block at
@@ -349,7 +353,7 @@ public interface LocationCompositeValueStore {
      * @param z The Z position
      * @return The immutable set of values for the block
      */
-    ImmutableSet<ImmutableValue<?>> getValues(int x, int y, int z);
+    Set<ImmutableValue<?>> getValues(int x, int y, int z);
 
     /**
      * Applies a transformation on the pre-existing value of the data keyed

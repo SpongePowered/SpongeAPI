@@ -86,8 +86,7 @@ public interface LocationBasePropertyHolder {
      */
     <T extends Property<?, ?>> Optional<T> getProperty(Vector3i coords, Direction direction, Class<T> propertyClass);
 
-
-
+    <T extends Property<?, ?>> Optional<T> getProperty(int x, int y, int z, Direction direction, Class<T> propertyClass);
 
     /**
      * Gets an immutable collection of all known {@link Property}s pertaining

@@ -563,26 +563,6 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Test whether the face in the given direction is powered.
-     *
-     * @param direction The direction
-     * @return Whether powered
-     */
-    public boolean isBlockFacePowered(Direction direction) {
-        return getExtent().isBlockFacePowered(getBlockPosition(), direction);
-    }
-
-    /**
-     * Test whether the face in the given direction is indirectly powered.
-     *
-     * @param direction The direction
-     * @return Whether powered
-     */
-    public boolean isBlockFaceIndirectlyPowered(Direction direction) {
-        return getExtent().isBlockFaceIndirectlyPowered(getBlockPosition(), direction);
-    }
-
-    /**
      * Get all the faces of this block that are directly powered.
      *
      * @return Faces powered
@@ -598,16 +578,6 @@ public final class Location<E extends Extent> implements DataHolder {
      */
     public Collection<Direction> getIndirectlyPoweredBlockFaces() {
         return getExtent().getIndirectlyPoweredBlockFaces(getBlockPosition());
-    }
-
-    /**
-     * Test whether the given face of the block can catch fire.
-     *
-     * @param direction The face of the block to check
-     * @return Is flammable
-     */
-    public boolean isBlockFaceFlammable(Direction direction) {
-        return getExtent().isBlockFlammable(getBlockPosition(), direction);
     }
 
     /**

@@ -335,46 +335,6 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
     int getBlockDigTimeWith(int x, int y, int z, ItemStack itemStack);
 
     /**
-     * Test whether the face in the given direction is powered.
-     *
-     * @param position The position of the block
-     * @param direction The direction
-     * @return Whether powered
-     */
-    boolean isBlockFacePowered(Vector3i position, Direction direction);
-
-    /**
-     * Test whether the face in the given direction is powered.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param direction The direction
-     * @return Whether powered
-     */
-    boolean isBlockFacePowered(int x, int y, int z, Direction direction);
-
-    /**
-     * Test whether the face in the given direction is indirectly powered.
-     *
-     * @param position The position of the block
-     * @param direction The direction
-     * @return Whether powered
-     */
-    boolean isBlockFaceIndirectlyPowered(Vector3i position, Direction direction);
-
-    /**
-     * Test whether the face in the given direction is indirectly powered.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param direction The direction
-     * @return Whether powered
-     */
-    boolean isBlockFaceIndirectlyPowered(int x, int y, int z, Direction direction);
-
-    /**
      * Get all the faces of this block that are directly powered.
      *
      * @param position The position of the block
@@ -409,26 +369,6 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @return Faces indirectly powered
      */
     Collection<Direction> getIndirectlyPoweredBlockFaces(int x, int y, int z);
-
-    /**
-     * Test whether the given face of the block can catch fire.
-     *
-     * @param position The position of the block
-     * @param faceDirection The face of the block to check
-     * @return Is flammable
-     */
-    boolean isBlockFlammable(Vector3i position, Direction faceDirection);
-
-    /**
-     * Test whether the given face of the block can catch fire.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param faceDirection The face of the block to check
-     * @return Is flammable
-     */
-    boolean isBlockFlammable(int x, int y, int z, Direction faceDirection);
 
     /**
      * Gets a list of {@link ScheduledBlockUpdate}s on this block.

@@ -27,6 +27,7 @@ package org.spongepowered.api.data.property;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.data.Property;
+import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -60,6 +61,8 @@ public interface PropertyStore<T extends Property<?, ?>> {
      * @return The type of property
      */
     Optional<T> getFor(Location<World> location);
+
+    Optional<T> getFor(Location<World> location, Direction direction);
 
     /**
      * Gets the priority of which this {@link PropertyStore} is used for
