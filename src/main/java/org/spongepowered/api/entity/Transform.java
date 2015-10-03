@@ -384,6 +384,15 @@ public final class Transform<E extends Extent> {
     }
 
     @Override
+    public int hashCode() {
+        int result = extent.hashCode();
+        result = 31 * result + position.hashCode();
+        result = 31 * result + rotation.hashCode();
+        result = 31 * result + scale.hashCode();
+        return result;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (this == other) {
             return true;
