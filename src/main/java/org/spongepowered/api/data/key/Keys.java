@@ -135,6 +135,7 @@ import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.potion.PotionEffect;
 import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.statistic.Statistic;
+import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Direction;
@@ -298,6 +299,10 @@ public final class Keys {
     public static final Key<Value<Integer>> REMAINING_COOK_TIME = null;
     public static final Key<Value<String>> LOCK_TOKEN = null;
     public static final Key<Value<NotePitch>> NOTE_PITCH = null;
+    public static final Key<Value<Boolean>> CAN_FLY = null;
+    public static final Key<MutableBoundedValue<Double>> WALKING_SPEED = null;
+    public static final Key<MutableBoundedValue<Double>> FLYING_SPEED = null;
+    public static final Key<SetValue<Achievement>> ACHIEVEMENTS = null;
 
 
     private Keys() {}

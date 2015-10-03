@@ -37,11 +37,10 @@ import org.spongepowered.api.entity.living.Human;
  */
 public interface FlyingData extends DataManipulator<FlyingData, ImmutableFlyingData> {
 
-
     /**
      * Gets the {@link Value} for the "flying" state.
      *
-     * @return The immutable value for the flying state
+     * @return The value for the flying state
      */
     Value<Boolean> flying();
 

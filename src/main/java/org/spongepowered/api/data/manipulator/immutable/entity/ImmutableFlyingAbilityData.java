@@ -25,23 +25,25 @@
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.AchievementData;
-import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
-import org.spongepowered.api.statistic.achievement.Achievement;
+import org.spongepowered.api.data.manipulator.mutable.entity.FlyingAbilityData;
+import org.spongepowered.api.data.manipulator.mutable.entity.FlyingData;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Human;
 
 /**
- * An {@link ImmutableDataManipulator} containing data related to having earned
- * {@link Achievement}s. The use of {@link ImmutableSetValue} is to prevent any
- * possible duplication when it comes to granting/removing {@link Achievement}s
- * without the worry of losing track.
+ * An {@link ImmutableDataManipulator} for the "flying" state of an
+ * {@link Entity}. This is usually marking that an entity is capable of
+ * flying unobtrusively in the air. Usually applicable to a {@link Human}
+ * while able to fly.
  */
-public interface ImmutableAchievementData extends ImmutableDataManipulator<ImmutableAchievementData, AchievementData> {
+public interface ImmutableFlyingAbilityData extends ImmutableDataManipulator<ImmutableFlyingAbilityData, FlyingAbilityData> {
 
     /**
-     * Gets the {@link ImmutableSetValue} for the {@link Achievement}s earned.
+     * Gets the {@link ImmutableValue} for whether the owner can "fly".
      *
-     * @return The immutable set value of achievements
+     * @return The immutable value for being able to toggle "flying"
      */
-    ImmutableSetValue<Achievement> achievements();
+    ImmutableValue<Boolean> canFly();
 
 }

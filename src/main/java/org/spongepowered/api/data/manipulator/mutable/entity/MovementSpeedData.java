@@ -22,26 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.data.manipulator.mutable.entity;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.AchievementData;
-import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
-import org.spongepowered.api.statistic.achievement.Achievement;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableMovementSpeedData;
+import org.spongepowered.api.data.manipulator.mutable.AttributeData;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.player.Player;
 
 /**
- * An {@link ImmutableDataManipulator} containing data related to having earned
- * {@link Achievement}s. The use of {@link ImmutableSetValue} is to prevent any
- * possible duplication when it comes to granting/removing {@link Achievement}s
- * without the worry of losing track.
+ * A {@link DataManipulator} that handles the various movement "speeds" that
+ * usually a {@link Player} can have. For other {@link Entity} instances,
+ * this is usually handled through {@link AttributeData}.
  */
-public interface ImmutableAchievementData extends ImmutableDataManipulator<ImmutableAchievementData, AchievementData> {
+public interface MovementSpeedData extends DataManipulator<MovementSpeedData, ImmutableMovementSpeedData> {
 
     /**
-     * Gets the {@link ImmutableSetValue} for the {@link Achievement}s earned.
+     * Gets the {@link MutableBoundedValue} for the "walking" speed.
      *
-     * @return The immutable set value of achievements
+     * @return The value for the walking speed
      */
-    ImmutableSetValue<Achievement> achievements();
+    MutableBoundedValue<Double> walkSpeed();
+
+    /**
+     * Gets the {@link MutableBoundedValue} for the "flying" speed.
+     *
+     * @return The value for the flying speed
+     */
+    MutableBoundedValue<Double> flySpeed();
 
 }

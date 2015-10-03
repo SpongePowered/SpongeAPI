@@ -41,7 +41,7 @@ public class CauseTest {
 
     @Test(expected = NullPointerException.class)
     public void testNullCause() {
-        Cause.of(null);
+        Cause.of((Object) null);
     }
 
     @Test
