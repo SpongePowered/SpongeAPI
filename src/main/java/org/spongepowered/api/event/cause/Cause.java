@@ -24,11 +24,14 @@
  */
 package org.spongepowered.api.event.cause;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
+import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
@@ -36,6 +39,7 @@ import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -144,7 +148,7 @@ public abstract class Cause {
      * @param target The class of the target type
      * @return True if found, false otherwise
      */
-    public abstract boolean any (Class<?> target);
+    public abstract boolean any(Class<?> target);
 
     /**
      * Gets an {@link ImmutableList} of all objects that are instances of the
@@ -162,6 +166,24 @@ public abstract class Cause {
      * @return An immutable list of all the causes
      */
     public abstract List<Object> all();
+
+    /**
+     * Creates a new {@link Cause} where the objects are added at the end of
+     * the cause array of objects.
+     *
+     * @param additional The additional objects to add
+     * @return The new cause
+     */
+    public abstract Cause with(Object... additional);
+
+    /**
+     * Creates a new {@link Cause} where the objects are added at the end of
+     * the cause array of objects.
+     *
+     * @param iterable The additional objects
+     * @return The new cause
+     */
+    public abstract Cause with(Iterable<?> iterable);
 
     /**
      * Returns {@code true} if {@code object} is a {@code Cause} instance, and
@@ -245,6 +267,25 @@ public abstract class Cause {
         }
 
         @Override
+        public Cause with(Object... additional) {
+            checkArgument(additional != null, "Cannot add a null argument!");
+            return of(ArrayUtils.addAll(this.cause, additional));
+        }
+
+        @Override
+        public Cause with(Iterable<?> iterable) {
+            List<Object> list = new ArrayList<Object>();
+            for (Object o : this.cause) {
+                list.add(o);
+            }
+            for (Object o : iterable) {
+                checkArgument(o != null, "Cannot add null causes");
+                list.add(o);
+            }
+            return of(list.toArray());
+        }
+
+        @Override
         public boolean equals(@Nullable Object object) {
             if (object instanceof PresentCause) {
                 PresentCause cause = ((PresentCause) object);
@@ -301,6 +342,20 @@ public abstract class Cause {
         @Override
         public List<Object> all() {
             return ImmutableList.of();
+        }
+
+        @Override
+        public Cause with(Object... additional) {
+            return of(additional);
+        }
+
+        @Override
+        public Cause with(Iterable<?> iterable) {
+            List<Object> list = new ArrayList<Object>();
+            for (Object o : iterable) {
+                list.add(o);
+            }
+            return of(list.toArray());
         }
 
         @Override
