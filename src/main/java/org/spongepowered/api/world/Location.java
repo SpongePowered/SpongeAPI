@@ -33,7 +33,7 @@ import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
@@ -150,7 +150,7 @@ public final class Location<E extends Extent> implements DataHolder {
 
     /**
      * Get the underlying extent.
-     * 
+     *
      * <p>Note: This can be null if the {@link Extent} is unloaded and garbage
      * collected.</p>
      *

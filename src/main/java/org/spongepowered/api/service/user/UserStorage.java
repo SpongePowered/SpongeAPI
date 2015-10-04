@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.service.user;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.service.profile.GameProfileResolver;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -42,7 +42,7 @@ public interface UserStorage {
      * Gets the data of a {@link User} by their unique id.
      *
      * @param uniqueId The UUID of the user
-     * @return {@link User} or Optional.absent() if not found
+     * @return {@link User} or Optional.empty() if not found
      */
     Optional<User> get(UUID uniqueId);
 
@@ -54,7 +54,7 @@ public interface UserStorage {
      * {@link GameProfileResolver} service.</p>
      *
      * @param lastKnownName The user name
-     * @return {@link User} or Optional.absent() if not found
+     * @return {@link User} or Optional.empty() if not found
      */
     Optional<User> get(String lastKnownName);
 
@@ -62,7 +62,7 @@ public interface UserStorage {
      * Gets the data of a {@link User} by their {@link GameProfile}.
      *
      * @param profile The profile
-     * @return {@link User} or Optional.absent() if not found
+     * @return {@link User} or Optional.empty() if not found
      */
     Optional<User> get(GameProfile profile);
 

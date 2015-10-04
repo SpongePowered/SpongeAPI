@@ -24,25 +24,28 @@
  */
 package org.spongepowered.api.scoreboard.objective.displaymode;
 
+import org.spongepowered.api.scoreboard.displayslot.DisplaySlots;
+import org.spongepowered.api.scoreboard.objective.Objective;
+
 /**
  * {@link ObjectiveDisplayMode}s which cause scores for an
- * {@link org.spongepowered.api.scoreboard.objective.Objective} to be be
+ * {@link Objective} to be be
  * displayed differently.
  */
 public final class ObjectiveDisplayModes {
 
     /**
-     * Causes the scores for an {@link org.spongepowered.api.scoreboard.objective.Objective}
+     * Causes the scores for an {@link Objective}
      * to be displayed as integers.
      */
     public static final ObjectiveDisplayMode INTEGER = null;
 
     /**
-     * Causes the scores for an {@link org.spongepowered.api.scoreboard.objective.Objective}
+     * Causes the scores for an {@link Objective}
      * to be displayed as hearts.
      *
-     * <p>This only has an effect for an {@link org.spongepowered.api.scoreboard.objective.Objective}
-     * with the display slot {@link org.spongepowered.api.scoreboard.displayslot.DisplaySlots#LIST}.</p>
+     * <p>This only has an effect for an {@link Objective}
+     * with the display slot {@link DisplaySlots#LIST}.</p>
      */
     public static final ObjectiveDisplayMode HEARTS = null;
 

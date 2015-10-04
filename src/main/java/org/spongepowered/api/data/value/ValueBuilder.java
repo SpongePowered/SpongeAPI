@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.value;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
@@ -36,6 +35,7 @@ import org.spongepowered.api.data.value.mutable.Value;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -168,7 +168,7 @@ public interface ValueBuilder {
 
     /**
      * Creates an {@link OptionalValue} where even the default value may be
-     * {@link Optional#absent()}. These types of values should be restricted
+     * {@link Optional#empty()}. These types of values should be restricted
      * to values that are live, that can be potentially large to retain a
      * reference to, and otherwise, not thread safe.
      *

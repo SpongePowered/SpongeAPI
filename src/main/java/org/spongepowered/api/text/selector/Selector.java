@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.text.selector;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.world.Location;
@@ -48,7 +48,7 @@ import java.util.Set;
  * 20 it would be {@code @a[r=20]}.
  * </p>
  * </p>
- * 
+ *
  * <p>
  * Additionally, Vanilla will ignore position data unless one of the following
  * arguments is present:
@@ -114,7 +114,7 @@ public interface Selector {
 
     /**
      * Checks for the presence of {@code type} in this {@link Selector}.
-     * 
+     *
      * @param type - The {@link ArgumentType} to check for
      * @return {@code true} if the given type is present in this
      *         {@link Selector}, otherwise {@code false}
@@ -123,7 +123,7 @@ public interface Selector {
 
     /**
      * Checks for the inversion state of {@code type} in this {@link Selector}.
-     * 
+     *
      * @param type - The invertible {@link ArgumentType} to check inversion
      *         status on
      * @return {@code true} if the given type is inverted in this

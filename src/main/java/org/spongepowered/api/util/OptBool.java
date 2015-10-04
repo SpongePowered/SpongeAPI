@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -54,7 +54,7 @@ public final class OptBool {
      * <p>Also a shorthand for constructing instances
      * with {@code Optional.&lt;Boolean&gt;absent()}.</p>
      */
-    public static final Optional<Boolean> ABSENT = Optional.absent();
+    public static final Optional<Boolean> ABSENT = Optional.empty();
 
     /**
      * Constructs a new {@code Optional&lt;Boolean&gt;} from the given boolean.
@@ -70,7 +70,7 @@ public final class OptBool {
      * Constructs a new {@code Optional&lt;Boolean&gt;} from the given {@link Boolean}.
      *
      * @param bool The boolean
-     * @return The constructed Optional, or {@link Optional#absent()}
+     * @return The constructed Optional, or {@link Optional#empty()}
      */
     public static Optional<Boolean> of(@Nullable Boolean bool) {
         if (bool != null) {
@@ -84,7 +84,7 @@ public final class OptBool {
      * Coerces the given {@code Optional&lt;Boolean&gt;} into one of the three stored states.
      *
      * @param bool The boolean
-     * @return The constructed Optional, or {@link Optional#absent()}
+     * @return The constructed Optional, or {@link Optional#empty()}
      */
     public static Optional<Boolean> of(Optional<Boolean> bool) {
         if (bool.isPresent()) {

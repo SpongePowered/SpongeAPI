@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.entity.living;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.data.manipulator.mutable.entity.FoodData;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
@@ -32,6 +31,8 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
+
+import java.util.Optional;
 
 /**
  * Represents a HumanEntity in game, such as {@link Player}.
@@ -51,7 +52,7 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      * currently viewing one.
      *
      * @return An inventory if this human entity is viewing one, otherwise
-     * {@link Optional#absent()}
+     * {@link Optional#empty()}
      */
     Optional<Inventory> getOpenInventory();
 

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util.command;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.spec.CommandSpec;
 
@@ -35,7 +35,7 @@ import java.util.List;
  * cases, higher-level tools should be used instead, like {@link CommandSpec}.
  *
  * <p>Implementations are not required to implement a sane
- * {@link java.lang.Object#equals(Object)} but really should.</p>
+ * {@link Object#equals(Object)} but really should.</p>
  */
 public interface CommandCallable {
 

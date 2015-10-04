@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.value;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;

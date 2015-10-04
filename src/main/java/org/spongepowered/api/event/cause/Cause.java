@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import org.apache.commons.lang3.ArrayUtils;
@@ -95,7 +95,7 @@ public abstract class Cause {
         return new PresentCause(checkNotNull(objects));
     }
 
-    public static Cause fromNullable(@Nullable Object... objects) {
+    public static Cause ofNullable(@Nullable Object... objects) {
         if (objects == null) {
             return EMPTY;
         } else {
@@ -226,7 +226,7 @@ public abstract class Cause {
                     return Optional.of((T) aCause);
                 }
             }
-            return Optional.absent();
+            return Optional.empty();
         }
 
         @Override
@@ -247,7 +247,7 @@ public abstract class Cause {
                     return Optional.of((T) this.cause[i]);
                 }
             }
-            return Optional.absent();
+            return Optional.empty();
         }
 
         @Override
@@ -316,17 +316,17 @@ public abstract class Cause {
 
         @Override
         public Optional<?> root() {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         @Override
         public <T> Optional<T> first(Class<T> target) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         @Override
         public <T> Optional<T> last(Class<T> target) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         @Override

@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.data.DataQuery.of;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
@@ -81,12 +81,12 @@ public final class BlockTransaction implements DataSerializable {
 
     /**
      * Gets the plugin/mod declared custom replacement {@link BlockSnapshot}.
-     * If one is not provided, {@link Optional#absent()} is returned.
+     * If one is not provided, {@link Optional#empty()} is returned.
      *
      * @return The custom declared replacement, if available
      */
     public Optional<BlockSnapshot> getCustomReplacement() {
-        return Optional.fromNullable(this.customReplacement);
+        return Optional.ofNullable(this.customReplacement);
     }
 
     /**

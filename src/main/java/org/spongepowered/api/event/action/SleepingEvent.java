@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.action;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.Cancellable;
@@ -66,7 +66,7 @@ public interface SleepingEvent extends GameEvent, TargetEntityEvent, CauseTracke
          *
          * <p>This may have not been set by the event, so checking
          * {@link #wasSpawnSet()} is advisable. If spawn has not been set,
-         * it will return {@link Optional#absent()}.</p>
+         * it will return {@link Optional#empty()}.</p>
          *
          * @return The humans new spawn transform, if available
          */

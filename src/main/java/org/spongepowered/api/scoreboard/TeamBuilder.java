@@ -26,6 +26,7 @@ package org.spongepowered.api.scoreboard;
 
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
+import org.spongepowered.api.text.format.TextColors;
 
 import java.util.Set;
 
@@ -51,7 +52,7 @@ public interface TeamBuilder {
      *
      * @param color The color to set
      * @return This builder
-     * @throws IllegalArgumentException If color is {@link org.spongepowered.api.text.format.TextColors#RESET}
+     * @throws IllegalArgumentException If color is {@link TextColors#RESET}
      */
     TeamBuilder color(TextColor color) throws IllegalArgumentException;
 

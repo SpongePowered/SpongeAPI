@@ -10,7 +10,7 @@ buildscript {
     dependencies {
         classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.2'
-        classpath 'org.spongepowered:event-impl-gen:0.4-SNAPSHOT'
+        classpath 'org.spongepowered:event-impl-gen:0.6-SNAPSHOT'
     }
 }
 
@@ -41,7 +41,7 @@ dependencies {
 
     compile 'org.ow2.asm:asm:5.0.3'
 
-    compile 'org.spongepowered:event-gen-core:0.4-SNAPSHOT'
+    compile 'org.spongepowered:event-gen-core:0.6-SNAPSHOT'
 }
 
 // JAR manifest configuration

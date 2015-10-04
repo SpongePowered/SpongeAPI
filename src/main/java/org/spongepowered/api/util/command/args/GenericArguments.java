@@ -30,7 +30,7 @@ import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Iterables;
@@ -312,7 +312,7 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            final String prefix = args.nextIfPresent().or("");
+            final String prefix = args.nextIfPresent().orElse("");
             return ImmutableList.copyOf(Iterables.filter(this.choices.keySet(), new StartsWithPredicate(prefix)));
         }
 

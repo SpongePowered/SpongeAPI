@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.block.tileentity.CommandBlock;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.DataManipulator;
@@ -74,7 +74,7 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * Gets the last command output.
      *
      * <p>This will only be available if {@link #doesTrackOutput()} is set to
-     * true, otherwise {@link Optional#absent()} will be returned.</p>
+     * true, otherwise {@link Optional#empty()} will be returned.</p>
      *
      * @return The last command output, if available
      */

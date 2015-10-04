@@ -25,13 +25,13 @@
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.google.common.base.Optional;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableRespawnLocation;
 import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.world.World;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -55,7 +55,7 @@ public interface RespawnLocationData extends DataManipulator<RespawnLocationData
     /**
      * Gets the {@link Vector3d} location for the spawn world if available.
      * If the respawn point for that world has not been set,
-     * {@link Optional#absent()} is returned.
+     * {@link Optional#empty()} is returned.
      *
      * @param world The world to check
      * @return The vector location

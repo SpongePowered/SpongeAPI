@@ -26,6 +26,8 @@ package org.spongepowered.api.service.profile;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.GameProfile;
+import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.service.user.UserStorage;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -121,9 +123,9 @@ public interface GameProfileResolver {
      * on the server!</p>
      *
      * <p>Use
-     * {@link org.spongepowered.api.service.user.UserStorage#match(String)} for
+     * {@link UserStorage#match(String)} for
      * a collection that only contains {@link GameProfile}s with attached
-     * {@link org.spongepowered.api.entity.living.player.User} data.</p>
+     * {@link User} data.</p>
      *
      * <p>This method only searches the local cache, so the data may not be up
      * to date.</p>

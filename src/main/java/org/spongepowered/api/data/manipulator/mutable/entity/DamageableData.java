@@ -24,18 +24,19 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableDamageableData;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 
+import java.util.Optional;
+
 /**
  * A {@link DataManipulator} for retaining the last known "attacker" for an
  * {@link Entity}. Usually, the last attacker is known, however, due to
  * the lifetime of the game, the last attacker may "expire" or die, in which
- * case, the {@link #lastAttacker()} may have an {@link Optional#absent()}
+ * case, the {@link #lastAttacker()} may have an {@link Optional#empty()}
  * value.
  */
 public interface DamageableData extends DataManipulator<DamageableData, ImmutableDamageableData> {

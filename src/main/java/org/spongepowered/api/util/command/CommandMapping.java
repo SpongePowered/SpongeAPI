@@ -30,7 +30,7 @@ import java.util.Set;
  * Provides information about a mapping between a command and its aliases.
  *
  * <p>Implementations are not required to implement a sane
- * {@link java.lang.Object#equals(Object)} but may choose to do so.</p>
+ * {@link Object#equals(Object)} but may choose to do so.</p>
  */
 public interface CommandMapping {
 

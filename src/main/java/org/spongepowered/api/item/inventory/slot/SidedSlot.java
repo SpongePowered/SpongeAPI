@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.slot;
 
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.util.Direction;
@@ -36,7 +37,7 @@ public interface SidedSlot extends Slot {
     /**
      * Get whether this slot can accept the specified item from the specified
      * direction.
-     * 
+     *
      * @param stack Stack to check
      * @param from Direction to check for insertion from
      * @return true if this inventory can accept the supplied stack from the
@@ -47,8 +48,8 @@ public interface SidedSlot extends Slot {
     /**
      * Attempts to insert the supplied stack into this inventory from the
      * specified direction.
-     * 
-     * @see org.spongepowered.api.item.inventory.Inventory#offer(ItemStack)
+     *
+     * @see Inventory#offer(ItemStack)
      * @param stack Stack to insert
      * @param from Direction to check for insertion from
      * @return true if this inventory can accept the supplied stack from the
@@ -59,12 +60,12 @@ public interface SidedSlot extends Slot {
     /**
      * Get whether automation can extract the specified item from the specified
      * direction.
-     * 
+     *
      * @param stack Stack to check
      * @param from Direction to check for retrieval from
      * @return true if automation can retrieve the supplied stack from the
      *      specified direction
      */
     boolean canGet(ItemStack stack, Direction from);
-    
+
 }

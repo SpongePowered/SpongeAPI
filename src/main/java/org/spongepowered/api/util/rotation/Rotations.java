@@ -25,12 +25,13 @@
 package org.spongepowered.api.util.rotation;
 
 
+import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
  * An enumeration of possible rotations for something that can rotate,
  * such as an {@link ItemStack} within
- * an {@link org.spongepowered.api.entity.hanging.ItemFrame}.
+ * an {@link ItemFrame}.
  */
 public final class Rotations {
 

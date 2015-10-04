@@ -25,12 +25,13 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.ItemTypes;
 
 import java.util.Map;
 import java.util.Set;
 
 /**
- * A GameDictionary is a store of {@link org.spongepowered.api.item.ItemTypes}.
+ * A GameDictionary is a store of {@link ItemTypes}.
  *
  * <p>Note that the GameDictionary's keys are different from Minecraft item
  * ids. Minecraft item IDs are namespaces, e.g. minecraft:carrot while

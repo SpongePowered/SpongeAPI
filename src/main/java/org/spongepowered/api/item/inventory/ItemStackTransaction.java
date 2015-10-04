@@ -28,7 +28,8 @@ package org.spongepowered.api.item.inventory;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
+
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -62,12 +63,12 @@ public final class ItemStackTransaction {
     /**
      * Gets the custom {@link ItemStackSnapshot} for the proposed offer. If
      * the custom {@link ItemStackSnapshot} is <code>null</code>,
-     * {@link Optional#absent()} is returned.
+     * {@link Optional#empty()} is returned.
      *
      * @return The optional item stack snapshot
      */
     public Optional<ItemStackSnapshot> getCustom() {
-        return Optional.fromNullable(this.custom);
+        return Optional.ofNullable(this.custom);
     }
 
     /**

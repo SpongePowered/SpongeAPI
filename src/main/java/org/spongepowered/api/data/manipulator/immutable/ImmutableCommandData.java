@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator.immutable;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.block.tileentity.CommandBlock;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
@@ -33,6 +32,8 @@ import org.spongepowered.api.data.value.immutable.ImmutableOptionalValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartCommandBlock;
 import org.spongepowered.api.text.Text;
+
+import java.util.Optional;
 
 /**
  * An {@link ImmutableDataManipulator} handling all related
@@ -74,7 +75,7 @@ public interface ImmutableCommandData extends ImmutableDataManipulator<Immutable
      * Gets the last command output.
      *
      * <p>This will only be available if {@link #doesTrackOutput()} is set to
-     * true, otherwise {@link Optional#absent()} will be returned.</p>
+     * true, otherwise {@link Optional#empty()} will be returned.</p>
      *
      * @return The last command output, if available
      */

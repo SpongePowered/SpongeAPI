@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.server;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
@@ -34,6 +33,7 @@ import org.spongepowered.api.status.StatusResponse;
 import org.spongepowered.api.text.Text;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 

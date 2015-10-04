@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.player.tab;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 
@@ -38,42 +38,42 @@ public interface TabList {
 
     /**
      * Gets this list's header.
-     * 
+     *
      * @return The current header
      */
     Text getHeader();
 
     /**
      * Sets this list's header.
-     * 
+     *
      * @param header The new header
      */
     void setHeader(Text header);
 
     /**
      * Gets this list's footer.
-     * 
+     *
      * @return The current footer
      */
     Text getFooter();
 
     /**
      * Sets this list's footer.
-     * 
+     *
      * @param footer The new footer
      */
     void setFooter(Text footer);
 
     /**
      * Gets the players on the list. The list should be immutable.
-     * 
+     *
      * @return The players on the list
      */
     List<PlayerTabInfo> getPlayers();
 
     /**
      * Adds a player to the list.
-     * 
+     *
      * @param player The player to add
      * @throws IllegalArgumentException when it attempts to add a player already
      *         on the list. This is to prevent modification of a
@@ -85,7 +85,7 @@ public interface TabList {
      * Removes a player from the list. This should only be used to completely
      * remove a player, not add it back later. Note that if this is used on a
      * player, but they remain visible in-game, their skin will not work.
-     * 
+     *
      * @param playerId the UUID of the player to remove
      * @return The {@link PlayerTabInfo} that was associated with the UUID
      */
@@ -93,7 +93,7 @@ public interface TabList {
 
     /**
      * Finds a {@link PlayerTabInfo} matching the specified UUID. If none were
-     * found, it returns Optional.absent().
+     * found, it returns Optional.empty().
      *
      * @param uuid The UUID to search for
      * @return An Optional containing a PlayerTabInfo if one was found

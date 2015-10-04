@@ -27,7 +27,7 @@ package org.spongepowered.api.util.command.args;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import org.spongepowered.api.util.command.CommandException;
@@ -73,9 +73,9 @@ public final class CommandContext {
     public <T> Optional<T> getOne(String key) {
         Collection<Object> values = this.parsedArgs.get(key);
         if (values.size() != 1) {
-            return Optional.absent();
+            return Optional.empty();
         } else {
-            return Optional.fromNullable((T) values.iterator().next());
+            return Optional.ofNullable((T) values.iterator().next());
         }
     }
 

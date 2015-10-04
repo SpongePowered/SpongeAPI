@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util.command;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -79,11 +79,11 @@ public class CommandResult {
      */
     CommandResult(@Nullable Integer successCount, @Nullable Integer affectedBlocks, @Nullable Integer affectedEntities,
             @Nullable Integer affectedItems, @Nullable Integer queryResult) {
-        this.successCount = Optional.fromNullable(successCount);
-        this.affectedBlocks = Optional.fromNullable(affectedBlocks);
-        this.affectedEntities = Optional.fromNullable(affectedEntities);
-        this.affectedItems = Optional.fromNullable(affectedItems);
-        this.queryResult = Optional.fromNullable(queryResult);
+        this.successCount = Optional.ofNullable(successCount);
+        this.affectedBlocks = Optional.ofNullable(affectedBlocks);
+        this.affectedEntities = Optional.ofNullable(affectedEntities);
+        this.affectedItems = Optional.ofNullable(affectedItems);
+        this.queryResult = Optional.ofNullable(queryResult);
     }
 
     /**

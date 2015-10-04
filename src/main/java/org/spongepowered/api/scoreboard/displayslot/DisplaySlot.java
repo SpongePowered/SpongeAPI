@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.scoreboard.displayslot;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.scoreboard.Team;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -36,9 +37,9 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 public interface DisplaySlot extends CatalogType {
 
     /**
-     * Gets the {@link org.spongepowered.api.scoreboard.Team} color that this objective will display for, if set.
+     * Gets the {@link Team} color that this objective will display for, if set.
      *
-     * @return The {@link org.spongepowered.api.scoreboard.Team} color that this objective will display for, if set
+     * @return The {@link Team} color that this objective will display for, if set
      */
     Optional<TextColor> getTeamColor();
 

@@ -31,19 +31,19 @@ public interface TristateResult {
 
     enum Result {
         /**
-         * Disallow the event from resolving. 
-         * 
-         * <p>Note: Normally, this means cancelling or reverting the default 
-         * behavior, but in some cases, especially when {@link #hasAllowResult} 
+         * Disallow the event from resolving.
+         *
+         * <p>Note: Normally, this means cancelling or reverting the default
+         * behavior, but in some cases, especially when {@link #hasAllowResult}
          * is true, this could be default behavior.</p>
          */
         DENY,
         /**
          * Let the event resolve with its normal behavior, as if the event was
-         * not handled at all. 
-         * 
-         * <p>Note: This will fall back to the "vanilla" behavior for this 
-         * event, or the plugin-defined behavior if it was originally created 
+         * not handled at all.
+         *
+         * <p>Note: This will fall back to the "vanilla" behavior for this
+         * event, or the plugin-defined behavior if it was originally created
          * by a plugin.</p>
          */
         DEFAULT,
@@ -51,7 +51,7 @@ public interface TristateResult {
          * Forcibly execute the action of this event when it resolves, even if
          * another condition would normally prevent this event from finishing
          * normally.
-         * 
+         *
          * <p>Note that not all events have an overridable behavior,
          * so {@link #hasAllowResult} should be checked before setting the
          * result to ALLOW.</p>
@@ -61,7 +61,7 @@ public interface TristateResult {
 
     /**
      * Returns whether the
-     * {@link org.spongepowered.api.event.TristateResult.Result#ALLOW} can be
+     * {@link TristateResult.Result#ALLOW} can be
      * used.
      */
     boolean hasAllowResult();
@@ -84,7 +84,7 @@ public interface TristateResult {
      *
      * @param value The new result
      * @throws IllegalStateException if
-     *    {@link org.spongepowered.api.event.TristateResult.Result#ALLOW} is
+     *    {@link TristateResult.Result#ALLOW} is
      *    given, but {@link #hasAllowResult} is {@code false}
      */
     void setResult(Result value) throws IllegalStateException;

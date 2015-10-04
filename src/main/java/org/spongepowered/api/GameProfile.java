@@ -25,12 +25,13 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.service.user.UserStorage;
 import org.spongepowered.api.util.Identifiable;
 
 /**
  * Represents a name and an associated unique identifier.
  *
- * <p>Use the {@link org.spongepowered.api.service.user.UserStorage} service to
+ * <p>Use the {@link UserStorage} service to
  * obtain the stored data associated with a profile.</p>
  */
 public interface GameProfile extends Identifiable, DataSerializable {

@@ -28,6 +28,7 @@ package org.spongepowered.api.scoreboard;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
+import org.spongepowered.api.text.format.TextColors;
 
 import java.util.Set;
 
@@ -77,7 +78,7 @@ public interface Team {
      * criteria.</p>
      *
      * @param color The team color
-     * @throws IllegalArgumentException If color is {@link org.spongepowered.api.text.format.TextColors#RESET}
+     * @throws IllegalArgumentException If color is {@link TextColors#RESET}
      */
     void setColor(TextColor color) throws IllegalArgumentException;
 

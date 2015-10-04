@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.explosion;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.world.World;
 

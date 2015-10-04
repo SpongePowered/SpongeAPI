@@ -25,11 +25,12 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.living.animal.Horse;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents the variant of a {@link org.spongepowered.api.entity.living.animal.Horse}.
+ * Represents the variant of a {@link Horse}.
  * <p>The variant of a horse defines the various behaviors the horse can have.
  * Some behaviors limit whether a horse can be chested, wear horse armor, or
  * can be saddled.</p>

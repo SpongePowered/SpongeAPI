@@ -28,7 +28,9 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
+
+import java.util.Map;
+import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterators;
 import org.spongepowered.api.text.action.ClickAction;
@@ -103,9 +105,9 @@ public abstract class Text implements TextRepresentable {
             @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction) {
         this.format = checkNotNull(format, "format");
         this.children = checkNotNull(children, "children");
-        this.clickAction = Optional.<ClickAction<?>>fromNullable(clickAction);
-        this.hoverAction = Optional.<HoverAction<?>>fromNullable(hoverAction);
-        this.shiftClickAction = Optional.<ShiftClickAction<?>>fromNullable(shiftClickAction);
+        this.clickAction = Optional.<ClickAction<?>>ofNullable(clickAction);
+        this.hoverAction = Optional.<HoverAction<?>>ofNullable(hoverAction);
+        this.shiftClickAction = Optional.<ShiftClickAction<?>>ofNullable(shiftClickAction);
     }
 
     /**
@@ -161,7 +163,7 @@ public abstract class Text implements TextRepresentable {
      * Returns the {@link ClickAction} executed on the client when this
      * {@link Text} gets clicked.
      *
-     * @return The click action of this text, or {@link Optional#absent()} if
+     * @return The click action of this text, or {@link Optional#empty()} if
      *         not set
      */
     public final Optional<ClickAction<?>> getClickAction() {
@@ -172,7 +174,7 @@ public abstract class Text implements TextRepresentable {
      * Returns the {@link HoverAction} executed on the client when this
      * {@link Text} gets hovered.
      *
-     * @return The hover action of this text, or {@link Optional#absent()} if
+     * @return The hover action of this text, or {@link Optional#empty()} if
      *         not set
      */
     public final Optional<HoverAction<?>> getHoverAction() {
@@ -183,7 +185,7 @@ public abstract class Text implements TextRepresentable {
      * Returns the {@link ShiftClickAction} executed on the client when this
      * {@link Text} gets shift-clicked.
      *
-     * @return The shift-click action of this text, or {@link Optional#absent()}
+     * @return The shift-click action of this text, or {@link Optional#empty()}
      *         if not set
      */
     public final Optional<ShiftClickAction<?>> getShiftClickAction() {
@@ -318,7 +320,7 @@ public abstract class Text implements TextRepresentable {
 
     /**
      * Represents a {@link Text} placeholder that can be replaced with another
-     * Text by {@link Texts#format(Text, java.util.Map)}.
+     * Text by {@link Texts#format(Text, Map)}.
      *
      * @see TextBuilder.Placeholder
      */
@@ -335,7 +337,7 @@ public abstract class Text implements TextRepresentable {
         Placeholder(String key, Text fallback) {
             checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
             this.key = key;
-            this.fallback = Optional.fromNullable(fallback);
+            this.fallback = Optional.ofNullable(fallback);
         }
 
         /**
@@ -358,7 +360,7 @@ public abstract class Text implements TextRepresentable {
             super(format, children, clickAction, hoverAction, shiftClickAction);
             checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
             this.key = key;
-            this.fallback = Optional.fromNullable(fallback);
+            this.fallback = Optional.ofNullable(fallback);
         }
 
         /**
@@ -597,7 +599,7 @@ public abstract class Text implements TextRepresentable {
 
         Score(org.spongepowered.api.scoreboard.Score score) {
             this.score = checkNotNull(score, "score");
-            this.override = Optional.absent();
+            this.override = Optional.empty();
         }
 
         /**
@@ -621,7 +623,7 @@ public abstract class Text implements TextRepresentable {
                 org.spongepowered.api.scoreboard.Score score, @Nullable String override) {
             super(format, children, clickAction, hoverAction, shiftClickAction);
             this.score = checkNotNull(score, "score");
-            this.override = Optional.fromNullable(override);
+            this.override = Optional.ofNullable(override);
         }
 
         /**
@@ -637,7 +639,7 @@ public abstract class Text implements TextRepresentable {
          * Returns a value that is displayed instead of the real score.
          *
          * @return The value displayed instead of the real score, or
-         *         {@link Optional#absent()} if the real score will be displayed
+         *         {@link Optional#empty()} if the real score will be displayed
          *         instead
          */
         public final Optional<String> getOverride() {

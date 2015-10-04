@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.scoreboard;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
+
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.Objective;
@@ -36,7 +38,7 @@ import javax.annotation.Nullable;
 
 /**
  * Represents a scoreboard, which contains {@link Team}s and {@link Objective}s.
- * The server has a default scoreboard, but each {@link org.spongepowered.api.entity.living.player.Player}
+ * The server has a default scoreboard, but each {@link Player}
  * can have their own scoreboard.
  *
  * @see <a href="http://minecraft.gamepedia.com/Scoreboard">Scoreboards on the Minecraft Wiki</a>
@@ -126,7 +128,7 @@ public interface Scoreboard {
      * Gets a {@link Text} member's {@link Team} on this scoreboard.
      *
      * @param member The {@link Text} to search for
-     * @return The {@link Text} member's {@link Team}, or Optional.absent()
+     * @return The {@link Text} member's {@link Team}, or Optional.empty()
      *     if the member has no team
      */
     Optional<Team> getMemberTeam(Text member);

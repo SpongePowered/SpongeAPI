@@ -25,10 +25,11 @@
 package org.spongepowered.api.scoreboard.objective.displaymode;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents the mode in which to display scores for an {@link org.spongepowered.api.scoreboard.objective.Objective}
+ * Represents the mode in which to display scores for an {@link Objective}
  */
 @CatalogedBy(ObjectiveDisplayModes.class)
 public interface ObjectiveDisplayMode extends CatalogType {

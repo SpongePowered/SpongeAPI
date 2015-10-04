@@ -77,7 +77,7 @@ public class SpongeEventFactoryUtils {
      * @return The generated event class.
      */
     @SuppressWarnings("unchecked")
-    public static <T> T createEventImpl(java.lang.Class<T> type, java.util.Map<java.lang.String, java.lang.Object> values) {
+    public static <T> T createEventImpl(Class<T> type, Map<String, Object> values) {
         return (T) factories.getUnchecked(type).apply(values);
     }
 

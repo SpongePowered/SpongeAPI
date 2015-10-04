@@ -25,7 +25,7 @@
 package org.spongepowered.api.data.property;
 
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;

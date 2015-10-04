@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.explosive;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.entity.living.Living;
 
 /**

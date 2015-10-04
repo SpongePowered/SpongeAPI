@@ -38,10 +38,10 @@ import org.spongepowered.api.world.TeleporterAgent;
 import org.spongepowered.api.world.World;
 
 /**
- * Called when an {@link org.spongepowered.api.entity.Entity} changes position 
+ * Called when an {@link Entity} changes position
  * (also known as undergoing displacement).
  *
- * <p>This encapsulates both continuous 
+ * <p>This encapsulates both continuous
  * ({@link DisplaceEntityEvent.Move}) and discrete
  * ({@link DisplaceEntityEvent.Teleport}) movement.
  * </p>

@@ -66,8 +66,8 @@ public final class DataTransactionBuilder {
     /**
      * Creates a {@link DataTransactionResult} with no data successfully added,
      * removed, or rejected, and with the
-     * {@link org.spongepowered.api.data.DataTransactionResult.Type} of
-     * {@link org.spongepowered.api.data.DataTransactionResult.Type#SUCCESS}
+     * {@link DataTransactionResult.Type} of
+     * {@link DataTransactionResult.Type#SUCCESS}
      * result type.
      *
      * @return A clean and empty data transaction
@@ -137,18 +137,6 @@ public final class DataTransactionBuilder {
      */
     public static DataTransactionResult failResult(final ImmutableValue<?> value) {
         return builder().reject(value).result(DataTransactionResult.Type.FAILURE).build();
-    }
-
-    /**
-     * Creates a new {@link DataTransactionResult} that ends in failure. The
-     * provided {@link ImmutableValue}s are considered "rejected" and were not
-     * successfully added.
-     *
-     * @param values The values that were rejected
-     * @return The new data transaction result
-     */
-    public static DataTransactionResult failResult(final ImmutableValue<?>... values) {
-        return builder().reject(values).result(DataTransactionResult.Type.FAILURE).build();
     }
 
     /**
@@ -229,26 +217,7 @@ public final class DataTransactionBuilder {
      * @param values The values to replace
      * @return This builder, for chaining
      */
-    public DataTransactionBuilder replace(final ImmutableValue<?> value, final ImmutableValue<?>... values) {
-        replace(checkNotNull(value));
-        for (ImmutableValue<?> additional : values) {
-            replace(checkNotNull(additional));
-        }
-        return this;
-    }
-
-    /**
-     * Adds the provided {@link ImmutableValue}s to the {@link List} of
-     * "replaced" {@link ImmutableValue}s. The replaced values are always
-     * copied for every {@link DataTransactionResult} for referencing. It is
-     * also possible to retrieve these replaced {@link ImmutableValue}s to
-     * {@link DataHolder#undo(DataTransactionResult)} at a later point in
-     * the lifespan of the {@link DataHolder}.
-     *
-     * @param values The values to replace
-     * @return This builder, for chaining
-     */
-    public DataTransactionBuilder replace(final Collection<ImmutableValue<?>> values) {
+    public DataTransactionBuilder replace(final Iterable<ImmutableValue<?>> values) {
         for (ImmutableValue<?> value : values) {
             replace(checkNotNull(value));
         }
@@ -271,24 +240,6 @@ public final class DataTransactionBuilder {
             this.rejected = Lists.newArrayList();
         }
         this.rejected.add(checkNotNull(value));
-        return this;
-    }
-
-    /**
-     * Adds the provided {@link ImmutableValue}s to the {@link List} of
-     * "rejected" {@link ImmutableValue}s. The rejected values are always
-     * copied for every {@link DataTransactionResult} for referencing. It is
-     * also possible to retrieve these rejected {@link ImmutableValue}s to
-     * {@link DataHolder#undo(DataTransactionResult)} at a later point in
-     * the lifespan of the {@link DataHolder}.
-     *
-     * @param values The values to reject
-     * @return This builder, for chaining
-     */
-    public DataTransactionBuilder reject(final ImmutableValue<?>... values) {
-        for (ImmutableValue<?> value : values) {
-            reject(checkNotNull(value));
-        }
         return this;
     }
 
@@ -326,24 +277,6 @@ public final class DataTransactionBuilder {
             this.successful = Lists.newArrayList();
         }
         this.successful.add(checkNotNull(value));
-        return this;
-    }
-
-    /**
-     * Adds the provided {@link ImmutableValue}s to the {@link List} of
-     * "successful" {@link ImmutableValue}s. The rejected values are always
-     * copied for every {@link DataTransactionResult} for referencing. It is
-     * also possible to retrieve these successful {@link ImmutableValue}s to
-     * {@link DataHolder#undo(DataTransactionResult)} at a later point in
-     * the lifespan of the {@link DataHolder}.
-     *
-     * @param values The values that were successfully provided
-     * @return This builder, for chaining
-     */
-    public DataTransactionBuilder success(final ImmutableValue<?>... values) {
-        for (ImmutableValue<?> value : values) {
-            success(checkNotNull(value));
-        }
         return this;
     }
 

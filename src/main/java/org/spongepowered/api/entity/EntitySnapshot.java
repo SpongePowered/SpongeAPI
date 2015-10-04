@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.data.LocateableSnapshot;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
@@ -50,7 +50,7 @@ public interface EntitySnapshot extends LocateableSnapshot<EntitySnapshot> {
     /**
      * Gets an {@link Optional} containing the {@link UUID} of the
      * {@link Entity} that this {@link EntitySnapshot} is representing. If the
-     * {@link Optional} is {@link Optional#absent()}, then this snapshot must
+     * {@link Optional} is {@link Optional#empty()}, then this snapshot must
      * have been created by an {@link EntitySnapshotBuilder} without an
      * {@link Entity} as a source.
      *

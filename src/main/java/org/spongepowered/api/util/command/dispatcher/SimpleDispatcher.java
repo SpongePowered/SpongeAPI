@@ -31,7 +31,7 @@ import static org.spongepowered.api.util.command.CommandMessageFormatting.SPACE_
 
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
@@ -185,7 +185,7 @@ public final class SimpleDispatcher implements Dispatcher {
 
             return Optional.of(mapping);
         } else {
-            return Optional.absent();
+            return Optional.empty();
         }
     }
 
@@ -239,7 +239,7 @@ public final class SimpleDispatcher implements Dispatcher {
             }
         }
 
-        return Optional.fromNullable(found);
+        return Optional.ofNullable(found);
     }
 
     /**
@@ -308,7 +308,7 @@ public final class SimpleDispatcher implements Dispatcher {
         if (results.size() == 1) {
             return Optional.of(results.get(0));
         } else if (results.size() == 0 || source == null) {
-            return Optional.absent();
+            return Optional.empty();
         } else {
             return this.disambiguatorFunc.disambiguate(source, alias, results);
         }
@@ -372,13 +372,13 @@ public final class SimpleDispatcher implements Dispatcher {
 
     @Override
     public Optional<Text> getShortDescription(CommandSource source) {
-        return Optional.absent();
+        return Optional.empty();
     }
 
     @Override
     public Optional<Text> getHelp(CommandSource source) {
         if (this.commands.isEmpty()) {
-            return Optional.absent();
+            return Optional.empty();
         }
         TextBuilder build = t("Available commands:\n").builder();
         for (Iterator<String> it = filterCommands(source).iterator(); it.hasNext();) {
@@ -393,7 +393,7 @@ public final class SimpleDispatcher implements Dispatcher {
                     .color(TextColors.GREEN)
                     .style(TextStyles.UNDERLINE)
                     .onClick(TextActions.suggestCommand("/" + mapping.getPrimaryAlias())).build(),
-                    SPACE_TEXT, description.or(mapping.getCallable().getUsage(source)));
+                    SPACE_TEXT, description.orElse(mapping.getCallable().getUsage(source)));
             if (it.hasNext()) {
                 build.append(NEWLINE_TEXT);
             }

@@ -25,13 +25,15 @@
 package org.spongepowered.api.item.inventory.type;
 
 import com.flowpowered.math.vector.Vector2i;
-import com.google.common.base.Optional;
+import java.util.Optional;
+
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
 
 /**
- * An GridInventory is an {@link org.spongepowered.api.item.inventory.Inventory}
+ * An GridInventory is an {@link Inventory}
  * which is ordered into a coherent grid format, meaning that its slots can be
  * referred to by X-Y coordinates as well as single indices.
  */
@@ -60,23 +62,23 @@ public interface GridInventory extends Inventory2D {
 
     /**
      * Get and remove the stack at the supplied position in this Inventory.
-     * 
-     * @see org.spongepowered.api.item.inventory.Inventory#poll()
+     *
+     * @see Inventory#poll()
      * @param x x coordinate
      * @param y y coordinate
-     * @return ItemStack at the specified position or {@link Optional#absent()}
+     * @return ItemStack at the specified position or {@link Optional#empty()}
      *      if the slot is empty or out of bounds
      */
     Optional<ItemStack> poll(int x, int y);
 
     /**
      * Get and remove the stack at the supplied position in this Inventory.
-     * 
-     * @see org.spongepowered.api.item.inventory.Inventory#poll()
+     *
+     * @see Inventory#poll()
      * @param x x coordinate
      * @param y y coordinate
      * @param limit item limit
-     * @return ItemStack at the specified position or {@link Optional#absent()}
+     * @return ItemStack at the specified position or {@link Optional#empty()}
      *      if the slot is empty or out of bounds
      */
     Optional<ItemStack> poll(int x, int y, int limit);
@@ -84,11 +86,11 @@ public interface GridInventory extends Inventory2D {
     /**
      * Get without removing the stack at the supplied position in this
      * Inventory.
-     * 
-     * @see org.spongepowered.api.item.inventory.Inventory#peek()
+     *
+     * @see Inventory#peek()
      * @param x x coordinate
      * @param y y coordinate
-     * @return ItemStack at the specified position or {@link Optional#absent()}
+     * @return ItemStack at the specified position or {@link Optional#empty()}
      *      if the slot is empty or out of bounds
      */
     Optional<ItemStack> peek(int x, int y);
@@ -96,20 +98,20 @@ public interface GridInventory extends Inventory2D {
     /**
      * Get without removing the stack at the supplied position in this
      * Inventory.
-     * 
-     * @see org.spongepowered.api.item.inventory.Inventory#peek()
+     *
+     * @see Inventory#peek()
      * @param x x coordinate
      * @param y y coordinate
      * @param limit item limit
-     * @return ItemStack at the specified position or {@link Optional#absent()}
+     * @return ItemStack at the specified position or {@link Optional#empty()}
      *      if the slot is empty or out of bounds
      */
     Optional<ItemStack> peek(int x, int y, int limit);
 
     /**
      * Set the item in the specified slot.
-     * 
-     * @see org.spongepowered.api.item.inventory.Inventory#set(ItemStack)
+     *
+     * @see Inventory#set(ItemStack)
      * @param x x coordinate
      * @param y y coordinate
      * @param stack Item stack to insert
@@ -119,30 +121,30 @@ public interface GridInventory extends Inventory2D {
 
     /**
      * Get the {@link Slot} at the specified position.
-     * 
+     *
      * @param x x coordinate
      * @param y y coordinate
      * @return {@link Slot} at the specified position or
-     *      {@link Optional#absent()} if the coordinates are out of bounds
+     *      {@link Optional#empty()} if the coordinates are out of bounds
      */
     Optional<Slot> getSlot(int x, int y);
 
     /**
      * Get the row at the specified index.
-     * 
+     *
      * @param y y coordinate
      * @return {@link InventoryRow} at the specified position or
-     *      {@link Optional#absent()} if the specified row is out of bounds
+     *      {@link Optional#empty()} if the specified row is out of bounds
      */
     Optional<InventoryRow> getRow(int y);
 
     /**
      * Get the column at the specified index.
-     * 
+     *
      * @param x x coordinate
      * @return {@link InventoryColumn} at the specified position or
-     *      {@link Optional#absent()} if the specified column is out of bounds
+     *      {@link Optional#empty()} if the specified column is out of bounds
      */
     Optional<InventoryColumn> getColumn(int x);
-    
+
 }

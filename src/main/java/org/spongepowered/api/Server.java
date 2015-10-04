@@ -25,7 +25,7 @@
 package org.spongepowered.api;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
@@ -68,7 +68,7 @@ public interface Server extends ChannelRegistrar {
      * Gets a {@link Player} by their unique id
      *
      * @param uniqueId The UUID to get the player from
-     * @return {@link Player} or Optional.absent() if not found
+     * @return {@link Player} or Optional.empty() if not found
      */
     Optional<Player> getPlayer(UUID uniqueId);
 
@@ -81,7 +81,7 @@ public interface Server extends ChannelRegistrar {
      * Notch of today may not be the Notch of yesterday.</b></p>
      *
      * @param name The name to get the player from
-     * @return {@link Player} or Optional.absent() if not found
+     * @return {@link Player} or Optional.empty() if not found
      */
     Optional<Player> getPlayer(String name);
 
@@ -218,11 +218,11 @@ public interface Server extends ChannelRegistrar {
     /**
      * Creates a world copy asynchronously using the new name given and returns
      * the new world properties if the copy was possible.
-     * 
+     *
      * <p>If the world is already loaded then the following will occur:</p>
-     * 
-     * <ul> 
-     * <li>World is saved.</li> 
+     *
+     * <ul>
+     * <li>World is saved.</li>
      * <li>World saving is disabled.</li>
      * <li>World is copied. </li>
      * <li>World saving is enabled.</li>
@@ -230,7 +230,7 @@ public interface Server extends ChannelRegistrar {
      *
      * @param worldProperties The world properties to copy
      * @param copyName The name for copied world
-     * @return An {@link Optional} containing the properties of the new world 
+     * @return An {@link Optional} containing the properties of the new world
      *         instance, if the copy was successful
      */
     ListenableFuture<Optional<WorldProperties>> copyWorld(WorldProperties worldProperties, String copyName);
@@ -239,9 +239,9 @@ public interface Server extends ChannelRegistrar {
      * Renames an unloaded world.
      *
      * @param worldProperties The world properties to rename
-     * @param newName The name that should be used as a replacement for the 
+     * @param newName The name that should be used as a replacement for the
      *        current world name
-     * @return An {@link Optional} containing the new {@link WorldProperties} 
+     * @return An {@link Optional} containing the new {@link WorldProperties}
      *         if the rename was successful
      */
     Optional<WorldProperties> renameWorld(WorldProperties worldProperties, String newName);
@@ -294,7 +294,7 @@ public interface Server extends ChannelRegistrar {
      * Gets the bound {@link InetSocketAddress} from where this server is accepting
      * connections.
      *
-     * @return The address or Optional.absent() if not found
+     * @return The address or Optional.empty() if not found
      */
     Optional<InetSocketAddress> getBoundAddress();
 
@@ -356,12 +356,12 @@ public interface Server extends ChannelRegistrar {
     ChunkLoadService getChunkLoadService();
 
     /**
-     * Gets the current ticks per second. A tick represents one cycle of the 
+     * Gets the current ticks per second. A tick represents one cycle of the
      * game loop.
-     * 
-     * <p>Note: The server aims to limit itself at 20 ticks per second. Lower 
-     * ticks per second may elude to the server taking more time to process 
-     * information per tick. Examples of overburdening the server per tick 
+     *
+     * <p>Note: The server aims to limit itself at 20 ticks per second. Lower
+     * ticks per second may elude to the server taking more time to process
+     * information per tick. Examples of overburdening the server per tick
      * include spawning 10,000 cows in a small area.</p>
      *
      * @return The current ticks per second
@@ -371,7 +371,7 @@ public interface Server extends ChannelRegistrar {
     /**
      * Gets the default resource pack. The default resource pack is sent to
      * players when they join the server.
-     * 
+     *
      * @return The default resource pack
      */
     Optional<ResourcePack> getDefaultResourcePack();

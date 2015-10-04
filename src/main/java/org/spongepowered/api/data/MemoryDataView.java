@@ -30,7 +30,7 @@ import static com.google.common.base.Preconditions.checkState;
 import static org.spongepowered.api.data.DataQuery.of;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -93,7 +93,7 @@ public class MemoryDataView implements DataView {
 
     @Override
     public Optional<DataView> getParent() {
-        return Optional.fromNullable(this.parent);
+        return Optional.ofNullable(this.parent);
     }
 
     @Override
@@ -187,14 +187,14 @@ public class MemoryDataView implements DataView {
                 }
                 return Optional.of(this.map.get(key));
             } else {
-                return Optional.absent();
+                return Optional.empty();
             }
         }
         DataQuery subQuery = queryParts.get(0);
         Optional<DataView> subViewOptional = this.getUnsafeView(subQuery);
         DataView subView;
         if (!subViewOptional.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         } else {
             subView = subViewOptional.get();
         }
@@ -390,7 +390,7 @@ public class MemoryDataView implements DataView {
                 return Optional.of((DataView) val.get());
             }
         }
-        return Optional.absent();
+        return Optional.empty();
     }
 
     @Override
@@ -414,7 +414,7 @@ public class MemoryDataView implements DataView {
                 return Optional.of((Map<?, ?>) val.get());
             }
         }
-        return Optional.absent();
+        return Optional.empty();
     }
 
     private Optional<DataView> getUnsafeView(DataQuery path) {
@@ -424,7 +424,7 @@ public class MemoryDataView implements DataView {
                 return Optional.of((DataView) val.get());
             }
         }
-        return Optional.absent();
+        return Optional.empty();
     }
 
     @Override
@@ -433,7 +433,7 @@ public class MemoryDataView implements DataView {
         if (val.isPresent()) {
             return Coerce.asBoolean(val.get());
         }
-        return Optional.absent();
+        return Optional.empty();
     }
 
     @Override
@@ -442,7 +442,7 @@ public class MemoryDataView implements DataView {
         if (val.isPresent()) {
             return Coerce.asInteger(val.get());
         }
-        return Optional.absent();
+        return Optional.empty();
     }
 
     @Override
@@ -451,7 +451,7 @@ public class MemoryDataView implements DataView {
         if (val.isPresent()) {
             return Coerce.asLong(val.get());
         }
-        return Optional.absent();
+        return Optional.empty();
     }
 
     @Override
@@ -460,7 +460,7 @@ public class MemoryDataView implements DataView {
         if (val.isPresent()) {
             return Coerce.asDouble(val.get());
         }
-        return Optional.absent();
+        return Optional.empty();
     }
 
     @Override
@@ -469,7 +469,7 @@ public class MemoryDataView implements DataView {
         if (val.isPresent()) {
             return Coerce.asString(val.get());
         }
-        return Optional.absent();
+        return Optional.empty();
     }
 
     @Override
@@ -483,7 +483,7 @@ public class MemoryDataView implements DataView {
                 return Optional.<List<?>>of(Lists.newArrayList((Object[]) val.get()));
             }
         }
-        return Optional.absent();
+        return Optional.empty();
     }
 
     @Override
@@ -491,7 +491,7 @@ public class MemoryDataView implements DataView {
         Optional<List<?>> list = getUnsafeList(path);
 
         if (!list.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         List<String> newList = Lists.newArrayList();
@@ -514,7 +514,7 @@ public class MemoryDataView implements DataView {
                 return Optional.<List<?>>of(Arrays.asList(((Object[]) val.get())));
             }
         }
-        return Optional.absent();
+        return Optional.empty();
     }
 
     @Override
@@ -522,7 +522,7 @@ public class MemoryDataView implements DataView {
         Optional<List<?>> list = getUnsafeList(path);
 
         if (!list.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         List<Character> newList = Lists.newArrayList();
@@ -541,7 +541,7 @@ public class MemoryDataView implements DataView {
         Optional<List<?>> list = getUnsafeList(path);
 
         if (!list.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         List<Boolean> newList = Lists.newArrayList();
@@ -560,7 +560,7 @@ public class MemoryDataView implements DataView {
         Optional<List<?>> list = getUnsafeList(path);
 
         if (!list.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         List<Byte> newList = Lists.newArrayList();
@@ -579,7 +579,7 @@ public class MemoryDataView implements DataView {
         Optional<List<?>> list = getUnsafeList(path);
 
         if (!list.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         List<Short> newList = Lists.newArrayList();
@@ -598,7 +598,7 @@ public class MemoryDataView implements DataView {
         Optional<List<?>> list = getUnsafeList(path);
 
         if (!list.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         List<Integer> newList = Lists.newArrayList();
@@ -617,7 +617,7 @@ public class MemoryDataView implements DataView {
         Optional<List<?>> list = getUnsafeList(path);
 
         if (!list.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         List<Long> newList = Lists.newArrayList();
@@ -636,7 +636,7 @@ public class MemoryDataView implements DataView {
         Optional<List<?>> list = getUnsafeList(path);
 
         if (!list.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         List<Float> newList = Lists.newArrayList();
@@ -655,7 +655,7 @@ public class MemoryDataView implements DataView {
         Optional<List<?>> list = getUnsafeList(path);
 
         if (!list.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         List<Double> newList = Lists.newArrayList();
@@ -674,7 +674,7 @@ public class MemoryDataView implements DataView {
         Optional<List<?>> list = getUnsafeList(path);
 
         if (!list.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         List<Map<?, ?>> newList = Lists.newArrayList();
@@ -693,7 +693,7 @@ public class MemoryDataView implements DataView {
         Optional<List<?>> list = getUnsafeList(path);
 
         if (!list.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         List<DataView> newList = Lists.newArrayList();
@@ -715,12 +715,12 @@ public class MemoryDataView implements DataView {
         Optional<DataView> optional = getUnsafeView(path);
 
         if (!optional.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         Optional<DataBuilder<T>> builderOptional = service.getBuilder(clazz);
         if (!builderOptional.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         } else {
             return builderOptional.get().build(optional.get());
         }
@@ -734,12 +734,12 @@ public class MemoryDataView implements DataView {
         Optional<List<DataView>> optional = getViewList(path);
 
         if (!optional.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         Optional<DataBuilder<T>> builderOptional = service.getBuilder(clazz);
         if (!builderOptional.isPresent()) {
-            return Optional.absent();
+            return Optional.empty();
         } else {
             List<T> newList = Lists.newArrayList();
             for (DataView view : optional.get()) {

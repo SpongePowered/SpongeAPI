@@ -24,17 +24,17 @@
  */
 package org.spongepowered.api.data.property;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.data.Property;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public interface PropertyHolder {
 
     /**
      * Attempts to retrieve a specific {@link Property} type of this
      * {@link PropertyHolder}. If the property is not applicable,
-     * {@link Optional#absent()} is returned.
+     * {@link Optional#empty()} is returned.
      *
      * <p>{@link Property}s can define various immutable information about a
      * {@link PropertyHolder} that is dependent on the instance of the holder.

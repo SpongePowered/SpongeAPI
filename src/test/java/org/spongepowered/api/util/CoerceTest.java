@@ -27,7 +27,7 @@ package org.spongepowered.api.util;
 
 import static org.junit.Assert.assertTrue;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.junit.Test;
 
 

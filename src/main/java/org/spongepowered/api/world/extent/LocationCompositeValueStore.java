@@ -26,7 +26,7 @@ package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Function;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
@@ -79,7 +79,7 @@ public interface LocationCompositeValueStore {
      * Gets an instance of the given data class for given block at the location.
      *
      * <p>If there is no pre-existing data that can be represented by the given
-     * {@link DataManipulator} class, {@link Optional#absent()} is returned.
+     * {@link DataManipulator} class, {@link Optional#empty()} is returned.
      * </p>
      *
      * @param coordinates The position of the block
@@ -93,7 +93,7 @@ public interface LocationCompositeValueStore {
      * Gets an instance of the given data class for given block at the location.
      *
      * <p>If there is no pre-existing data that can be represented by the given
-     * {@link DataManipulator} class, {@link Optional#absent()} is returned.
+     * {@link DataManipulator} class, {@link Optional#empty()} is returned.
      * </p>
      *
      * @param x The X position
@@ -112,7 +112,7 @@ public interface LocationCompositeValueStore {
      * {@link  DataManipulator} object is created with default values.
      *
      * <p>In the event the {@link DataManipulator} can not represent any data
-     * pertaining to the block at the location, {@link Optional#absent()} is
+     * pertaining to the block at the location, {@link Optional#empty()} is
      * returned.</p>
      *
      * @param coordinates The position of the block
@@ -129,7 +129,7 @@ public interface LocationCompositeValueStore {
      * {@link  DataManipulator} object is created with default values.
      *
      * <p>In the event the {@link DataManipulator} can not represent any data
-     * pertaining to the block at the location, {@link Optional#absent()} is
+     * pertaining to the block at the location, {@link Optional#empty()} is
      * returned.</p>
      *
      * @param x The X position

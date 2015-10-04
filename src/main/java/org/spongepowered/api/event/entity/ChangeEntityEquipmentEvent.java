@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.entity;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.Living;
@@ -45,7 +45,7 @@ import org.spongepowered.api.item.inventory.Slot;
  * a {@link Slot} belonging to an {@link Inventory} of an {@link Entity}
  * is filled with an {@link ItemStack}, emptied of an {@link ItemStack},
  * or swapped with an {@link ItemStack}. The requirement of course is
- * that if the {@link #getOriginalItemStack()} is {@link Optional#absent()}, then
+ * that if the {@link #getOriginalItemStack()} is {@link Optional#empty()}, then
  * the {@link #getItemStack()} must be present, and vice versa. In the event
  * that a change to the suggested {@link ItemStack}, the use of the
  * {@link ItemStackTransaction} is recommended.

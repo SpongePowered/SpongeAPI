@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.service.permission;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.service.permission.context.Context;
+import org.spongepowered.api.service.permission.context.ContextCalculator;
 import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.command.CommandSource;
 
@@ -173,8 +174,8 @@ public interface Subject {
     List<Subject> getParents(Set<Context> contexts);
 
     /**
-     * Calculate active contexts, using the {@link org.spongepowered.api.service.permission.context.ContextCalculator}s
-     * from {@link PermissionService#registerContextCalculator(org.spongepowered.api.service.permission.context.ContextCalculator)}.
+     * Calculate active contexts, using the {@link ContextCalculator}s
+     * from {@link PermissionService#registerContextCalculator(ContextCalculator)}.
      * The result of these calculations may be cached.
      *
      * @return An immutable set of active contexts

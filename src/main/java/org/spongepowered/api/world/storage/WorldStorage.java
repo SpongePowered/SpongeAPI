@@ -25,13 +25,14 @@
 package org.spongepowered.api.world.storage;
 
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.World;
 
 /**
- * Represents the storage manager of a particular {@link org.spongepowered.api.world.World}.
+ * Represents the storage manager of a particular {@link World}.
  *
  * <p>It should be noted that this can have direct access to the underlying
  * storage system of the world and interface with deleting and modifying
@@ -84,11 +85,11 @@ public interface WorldStorage {
      * @return The data container representing the chunk data, if available
      */
     ListenableFuture<Optional<DataContainer>> getChunkData(Vector3i chunkCoords);
-    
+
     /**
      * Gets the {@link WorldProperties} of this storage. In the vanilla storage
      * medium this represents the data available in the level.dat file.
-     * 
+     *
      * @return The world properties
      */
     WorldProperties getWorldProperties();

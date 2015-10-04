@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.entity.ArmorEquipable;
+import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
@@ -35,7 +36,7 @@ import org.spongepowered.api.item.inventory.type.CarriedInventory;
 import org.spongepowered.api.item.inventory.type.OrderedInventory;
 
 /**
- * Equipment inventory for {@link org.spongepowered.api.item.inventory.Carrier}s
+ * Equipment inventory for {@link Carrier}s
  * that can carry equipment.
  */
 public interface EquipmentInventory extends OrderedInventory, CarriedInventory<ArmorEquipable> {
@@ -43,7 +44,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     /**
      * Get and remove the stack for the specified equipment type in this
      * Inventory.
-     * 
+     *
      * @see Inventory#poll()
      * @param equipmentType Type of equipment slot to query for
      * @return removed ItemStack, per the semantics of {@link Inventory#poll()}
@@ -53,7 +54,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     /**
      * Get and remove the items from the stack for the specified equipment type
      * in this Inventory.
-     * 
+     *
      * @see Inventory#poll()
      * @param equipmentType Type of equipment slot to query for
      * @param limit item limit
@@ -64,7 +65,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     /**
      * Get and remove the stack for the specified equipment type in this
      * Inventory.
-     * 
+     *
      * @see Inventory#poll()
      * @param equipmentType Type of equipment slot to query for
      * @return removed ItemStack, per the semantics of {@link Inventory#poll()}
@@ -74,7 +75,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     /**
      * Get and remove the items from the stack for the specified equipment type
      * in this Inventory.
-     * 
+     *
      * @see Inventory#poll()
      * @param equipmentType Type of equipment slot to query for
      * @param limit item limit
@@ -85,7 +86,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     /**
      * Get without removing the stack for the specified equipment type in this
      * Inventory.
-     * 
+     *
      * @see Inventory#peek()
      * @param equipmentType Type of equipment slot to query for
      * @return removed ItemStack, per the semantics of {@link Inventory#peek()}
@@ -95,7 +96,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     /**
      * Get without removing the items from the stack for the specified equipment
      * type in this Inventory.
-     * 
+     *
      * @see Inventory#peek()
      * @param equipmentType Type of equipment slot to query for
      * @param limit item limit
@@ -106,7 +107,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     /**
      * Get without removing the stack for the specified equipment type in this
      * Inventory.
-     * 
+     *
      * @see Inventory#peek()
      * @param equipmentType Type of equipment slot to query for
      * @return removed ItemStack, per the semantics of {@link Inventory#peek()}
@@ -116,7 +117,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     /**
      * Get without removing the items from the stack for the specified equipment
      * type in this Inventory.
-     * 
+     *
      * @see Inventory#peek()
      * @param equipmentType Type of equipment slot to query for
      * @param limit item limit
@@ -126,7 +127,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
 
     /**
      * Set the item for the specified equipment type.
-     * 
+     *
      * @see Inventory#set(ItemStack)
      * @param equipmentType Type of equipment slot to set
      * @param stack stack to insert
@@ -136,7 +137,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
 
     /**
      * Set the item for the specified equipment type.
-     * 
+     *
      * @see Inventory#set(ItemStack)
      * @param equipmentType Type of equipment slot to set
      * @param stack stack to insert
@@ -146,17 +147,17 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
 
     /**
      * Get the {@link Slot} for the specified equipment type.
-     * 
+     *
      * @param equipmentType Type of equipment slot to set
-     * @return matching slot or {@link Optional#absent()} if no matching slot
+     * @return matching slot or {@link Optional#empty()} if no matching slot
      */
     Optional<Slot> getSlot(EquipmentSlotType equipmentType);
 
     /**
      * Get the {@link Slot} for the specified equipment type.
-     * 
+     *
      * @param equipmentType Type of equipment slot to set
-     * @return matching slot or {@link Optional#absent()} if no matching slot
+     * @return matching slot or {@link Optional#empty()} if no matching slot
      */
     Optional<Slot> getSlot(EquipmentType equipmentType);
 

@@ -25,11 +25,12 @@
 package org.spongepowered.api.entity.living.player.gamemode;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a game mode that a {@link org.spongepowered.api.entity.living.player.Player} may have.
+ * Represents a game mode that a {@link Player} may have.
  */
 @CatalogedBy(GameModes.class)
 public interface GameMode extends CatalogType, Translatable {

@@ -27,7 +27,6 @@ package org.spongepowered.api.util.command.args;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.base.Function;
-import com.google.common.base.Optional;
 import com.google.common.base.Predicates;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
@@ -35,6 +34,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandSource;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;

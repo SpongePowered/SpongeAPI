@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;

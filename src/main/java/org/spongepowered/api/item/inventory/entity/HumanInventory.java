@@ -25,6 +25,7 @@
 package org.spongepowered.api.item.inventory.entity;
 
 import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
 import org.spongepowered.api.item.inventory.type.CarriedInventory;
 
 /**
@@ -33,16 +34,16 @@ import org.spongepowered.api.item.inventory.type.CarriedInventory;
  * for:
  *
  * <ul><li>
- *   {@link org.spongepowered.api.item.inventory.crafting.CraftingInventory}
+ *   {@link CraftingInventory}
  * </li></ul>
  */
 public interface HumanInventory extends CarriedInventory<Human> {
 
     /**
      * Get the hotbar inventory.
-     * 
+     *
      * @return the hotbar
      */
     Hotbar getHotbar();
-    
+
 }

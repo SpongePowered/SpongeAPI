@@ -59,7 +59,7 @@ import static org.objectweb.asm.Opcodes.PUTFIELD;
 import static org.objectweb.asm.Opcodes.RETURN;
 import static org.objectweb.asm.Opcodes.V1_6;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import org.objectweb.asm.ClassWriter;
@@ -412,7 +412,7 @@ public class ClassGenerator {
         mv.visitVarInsn(getLoadOpcode(property.getType()), 1);
 
         if (property.getAccessor().getReturnType().equals(Optional.class)) {
-            mv.visitMethodInsn(INVOKESTATIC, "com/google/common/base/Optional", "fromNullable",
+            mv.visitMethodInsn(INVOKESTATIC, "com/google/common/base/Optional", "ofNullable",
                     "(Ljava/lang/Object;)Lcom/google/common/base/Optional;", false);
         }
 

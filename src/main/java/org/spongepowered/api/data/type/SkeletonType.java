@@ -25,10 +25,11 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents the type of skeleton a {@link org.spongepowered.api.entity.living.monster.Skeleton}
+ * Represents the type of skeleton a {@link Skeleton}
  * can be. Certain skeleton types define the items a skeleton can equip and
  * can define the various status immunities, such as withering.
  */

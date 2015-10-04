@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.item;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.util.Optional;
 
 /**
  * A type of item.

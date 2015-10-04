@@ -24,16 +24,17 @@
  */
 package org.spongepowered.api.entity;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.item.inventory.ItemStack;
+
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
 /**
  * <p>Represents an entity that can be equipped with armor and a held item. Each
- * method here is a shorthand for the appropriate {@link #getEquipped} or 
+ * method here is a shorthand for the appropriate {@link #getEquipped} or
  * {@link #equip} method call.</p>
- * 
+ *
  * <p>Classes implementing this interface should provide <b>all</b> of the
  * supplied equipment slot types. Classes which do not support all slot types in
  * this interface should instead implement {@link Equipable}.</p>
@@ -42,7 +43,7 @@ public interface ArmorEquipable extends Equipable {
 
     /**
      * Gets the helmet currently being worn by this entity.
-     * 
+     *
      * <p>Having the helmet as null will result in having nothing
      * equipped in the helmet slot.</p>
      *
@@ -52,7 +53,7 @@ public interface ArmorEquipable extends Equipable {
 
     /**
      * Sets the helmet currently being worn by this entity.
-     * 
+     *
      * <p>Having the helmet as null will result in having nothing
      * equipped in the helmet slot.</p>
      *
@@ -62,7 +63,7 @@ public interface ArmorEquipable extends Equipable {
 
     /**
      * Gets the chestplate currently being worn by this entity.
-     * 
+     *
      * <p>Having the chestplate as null will result in having nothing
      * equipped in the chestplate slot.</p>
      *
@@ -72,7 +73,7 @@ public interface ArmorEquipable extends Equipable {
 
     /**
      * Sets the chestplate currently being worn by this entity.
-     * 
+     *
      * <p>Having the chestplate as null will result in having nothing
      * equipped in the chestplate slot.</p>
      *
@@ -82,7 +83,7 @@ public interface ArmorEquipable extends Equipable {
 
     /**
      * Gets the leggings currently being worn by this entity.
-     * 
+     *
      * <p>Having the leggings as null will result in having nothing
      * equipped in the leggings slot.</p>
      *
@@ -92,7 +93,7 @@ public interface ArmorEquipable extends Equipable {
 
     /**
      * Sets the leggings currently being worn by this entity.
-     * 
+     *
      * <p>Having the leggings as null will result in having nothing
      * equipped in the leggings slot.</p>
      *
@@ -102,7 +103,7 @@ public interface ArmorEquipable extends Equipable {
 
     /**
      * Gets the boots currently being worn by this entity.
-     * 
+     *
      * <p>Having the boots as null will result in having nothing
      * equipped in the boots slot.</p>
      *
@@ -112,7 +113,7 @@ public interface ArmorEquipable extends Equipable {
 
     /**
      * Sets the boots currently being worn by this entity.
-     * 
+     *
      * <p>Having the boots as null will result in having nothing
      * equipped in the boots slot.</p>
      *
@@ -122,7 +123,7 @@ public interface ArmorEquipable extends Equipable {
 
     /**
      * Gets the current equipped item in hand if available.
-     * 
+     *
      * <p>Having the item in hand as null will result in having nothing
      * equipped in the item in hand slot.</p>
      *
@@ -132,7 +133,7 @@ public interface ArmorEquipable extends Equipable {
 
     /**
      * Sets the item in hand for this entity.
-     * 
+     *
      * <p>Having the item in hand as null will result in having nothing
      * equipped in the item in hand slot.</p>
      *
