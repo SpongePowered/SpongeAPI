@@ -29,13 +29,11 @@ package org.spongepowered.api.data.type;
  */
 public final class SkullTypes {
 
-    // These values will not be null at runtime
-
-    public static SkullType SKELETON = null;
-    public static SkullType WITHER_SKELETON = null;
-    public static SkullType ZOMBIE = null;
-    public static SkullType PLAYER = null;
-    public static SkullType CREEPER = null;
+    public static final SkullType SKELETON = null;
+    public static final SkullType WITHER_SKELETON = null;
+    public static final SkullType ZOMBIE = null;
+    public static final SkullType PLAYER = null;
+    public static final SkullType CREEPER = null;
 
     private SkullTypes() {
     }
