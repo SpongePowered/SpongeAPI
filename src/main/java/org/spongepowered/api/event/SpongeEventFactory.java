@@ -27,6 +27,12 @@ package org.spongepowered.api.event;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.collect.Maps;
+import java.net.InetSocketAddress;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.MinecraftVersion;
@@ -197,13 +203,6 @@ import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
-
-import java.net.InetSocketAddress;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
 
 public class SpongeEventFactory {
     /**
@@ -3516,6 +3515,22 @@ public class SpongeEventFactory {
         values.put("connection", connection);
         values.put("profile", profile);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Login.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.network.ClientConnectionEvent.Post}.
+     * 
+     * @param game The game
+     * @param targetEntity The target entity
+     * @return A new post client connection event
+     */
+    public static ClientConnectionEvent.Post createClientConnectionEventPost(Game game, Player targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Post.class, values);
     }
 
     /**

@@ -28,14 +28,19 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.network.ClientConnectionEvent;
 
 /**
  * Raised when an {@link Entity} is spawned. This usually follows the chain of
  * the various entity creation events: {@link ConstructEntityEvent.Pre},
  * {@link ConstructEntityEvent.Post}, and finally {@link SpawnEntityEvent}.
- * 
+ *
  * <p>Note: To determine the {@link Cause}, refer to package
  * org.spongepowered.api.event.cause.entity.spawn.</p>
+ *
+ * <p>For players, this event is fired before they have fully
+ * joined the world. {@link ClientConnectionEvent} is the
+ * reccomended event to interact with connecting players.</p>
  */
 public interface SpawnEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
 
