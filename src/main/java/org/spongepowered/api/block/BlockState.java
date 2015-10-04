@@ -104,6 +104,17 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
     Optional<BlockTrait<?>> getTrait(String blockTrait);
 
     /**
+     * Gets the {@link BlockState} with the appropriate value for the given
+     * {@link BlockTrait}. If the {@link BlockTrait} is not supported,
+     * {@link Optional#empty()} is returned.
+     *
+     * @param trait The trait
+     * @param value The value
+     * @return The blockstate, if supported
+     */
+    Optional<BlockState> withTrait(BlockTrait<?> trait, Comparable<?> value);
+
+    /**
      * Gets an immutable {@link Collection} of all applicable
      * {@link BlockTrait}s for this {@link BlockState}.
      *
