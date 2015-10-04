@@ -412,8 +412,8 @@ public class ClassGenerator {
         mv.visitVarInsn(getLoadOpcode(property.getType()), 1);
 
         if (property.getAccessor().getReturnType().equals(Optional.class)) {
-            mv.visitMethodInsn(INVOKESTATIC, "com/google/common/base/Optional", "ofNullable",
-                    "(Ljava/lang/Object;)Lcom/google/common/base/Optional;", false);
+            mv.visitMethodInsn(INVOKESTATIC, "java/util/Optional", "ofNullable",
+                    "(Ljava/lang/Object;)Ljava/util/Optional;", false);
         }
 
         if (!property.getType().isPrimitive()) {
