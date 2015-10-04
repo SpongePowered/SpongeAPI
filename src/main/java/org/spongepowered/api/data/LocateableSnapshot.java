@@ -25,10 +25,10 @@
 package org.spongepowered.api.data;
 
 import com.flowpowered.math.vector.Vector3i;
-import java.util.Optional;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**

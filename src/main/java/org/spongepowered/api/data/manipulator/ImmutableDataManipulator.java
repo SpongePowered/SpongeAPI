@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.data.manipulator;
 
-import java.util.Optional;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.Value;
+
+import java.util.Optional;
 
 /**
  * An {@code ImmutableDataManipulator} is an immutable {@link ValueContainer}

@@ -27,7 +27,6 @@ package org.spongepowered.api.event.impl;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -39,6 +38,7 @@ import org.spongepowered.api.util.Tuple;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 public abstract class AbstractAttackEntityEvent extends AbstractEvent implements InteractEntityEvent.Attack {
 

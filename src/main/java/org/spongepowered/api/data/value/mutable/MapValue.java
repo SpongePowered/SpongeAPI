@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.value.mutable;
 
-import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableSet;
@@ -32,6 +31,7 @@ import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
 
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.Function;
 
 /**
  * Represents a specialized type of {@link Value} that is different from

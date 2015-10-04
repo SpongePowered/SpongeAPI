@@ -25,9 +25,10 @@
 
 package org.spongepowered.api.event.cause.entity.health;
 
-import com.google.common.base.Function;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
+
+import java.util.function.Function;
 
 /**
  * Represents a modifier that will apply a function on a damage value to

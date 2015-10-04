@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.scoreboard;
 
-import java.util.Optional;
-
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.text.Text;
 
+import java.util.Optional;
 import java.util.Set;
 
 import javax.annotation.Nullable;

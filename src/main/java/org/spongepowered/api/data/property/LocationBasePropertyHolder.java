@@ -25,11 +25,11 @@
 package org.spongepowered.api.data.property;
 
 import com.flowpowered.math.vector.Vector3i;
-import java.util.Optional;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.util.Direction;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public interface LocationBasePropertyHolder {
 

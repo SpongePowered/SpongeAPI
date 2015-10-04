@@ -32,7 +32,6 @@ import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.imaginary.Quaterniond;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import java.util.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import org.spongepowered.api.block.BlockType;
@@ -45,6 +44,7 @@ import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 /**
  * A block ray which traces a line and returns all block boundaries intersected in order,
@@ -288,7 +288,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
             zIntersect();
         }
 
-        final BlockRayHit<E> hit = new BlockRayHit<E>(this.extent, this.xCurrent, this.yCurrent, this.zCurrent, this.direction, this.normalCurrent);
+        final BlockRayHit<E> hit = new BlockRayHit<>(this.extent, this.xCurrent, this.yCurrent, this.zCurrent, this.direction, this.normalCurrent);
 
         // Make sure we actually have a block
         if (!this.extent.containsBlock(hit.getBlockX(), hit.getBlockY(), hit.getBlockZ())) {
@@ -478,7 +478,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     public static <E extends Extent> BlockRayBuilder<E> from(E extent, Vector3d start) {
         checkNotNull(extent, "extent");
         checkNotNull(start, "start");
-        return new BlockRayBuilder<E>(extent, start);
+        return new BlockRayBuilder<>(extent, start);
     }
 
     /**
@@ -571,7 +571,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
             checkNotNull(end, "end");
             checkArgument(!this.position.equals(end), "Start and end cannot be equal");
             this.direction = end.sub(this.position).normalize();
-            return filter(new TargetBlockFilter<E>(end));
+            return filter(new TargetBlockFilter<>(end));
         }
 
         /**
@@ -608,7 +608,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
          */
         public BlockRay<E> build() {
             checkState(this.direction != null, "Either end point or direction needs to be set");
-            final BlockRay<E> blockRay = new BlockRay<E>(this.filter, this.extent, this.position, this.direction);
+            final BlockRay<E> blockRay = new BlockRay<>(this.filter, this.extent, this.position, this.direction);
             blockRay.setBlockLimit(this.blockLimit);
             return blockRay;
         }

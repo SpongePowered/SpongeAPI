@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.text.selector;
 
-import java.util.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.world.Location;
@@ -33,6 +32,7 @@ import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /**

@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.item.inventory.type;
 
-import java.util.Optional;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.property.SlotIndex;
 import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
+
+import java.util.Optional;
 
 /**
  * An Ordered Inventory contains {@link Slot}s in some pre-determined order with

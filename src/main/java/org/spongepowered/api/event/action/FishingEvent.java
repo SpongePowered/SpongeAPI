@@ -25,7 +25,6 @@
 
 package org.spongepowered.api.event.action;
 
-import java.util.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.projectile.FishHook;
@@ -37,6 +36,8 @@ import org.spongepowered.api.event.entity.TargetEntityEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.ItemStackTransaction;
+
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 

@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.service.sql;
 
-import java.util.Optional;
-
 import java.sql.SQLException;
+import java.util.Optional;
 
 import javax.annotation.concurrent.ThreadSafe;
 import javax.sql.DataSource;

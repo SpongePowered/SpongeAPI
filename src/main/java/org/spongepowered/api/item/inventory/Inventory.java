@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import java.util.Optional;
 import org.spongepowered.api.Nameable;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.ItemType;
@@ -32,6 +31,7 @@ import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult
 import org.spongepowered.api.text.translation.Translatable;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.Queue;
 
 import javax.annotation.Nullable;

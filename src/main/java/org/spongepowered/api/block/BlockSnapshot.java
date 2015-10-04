@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.block;
 
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.LocateableSnapshot;
 import org.spongepowered.api.world.Location;

@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.status;
 
-import java.util.Optional;
 import org.spongepowered.api.MinecraftVersion;
 
 import java.net.InetSocketAddress;
+import java.util.Optional;
 
 /**
  * Represents a client requesting a {@link StatusResponse}. Unlike normal player

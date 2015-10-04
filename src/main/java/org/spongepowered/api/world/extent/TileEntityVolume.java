@@ -25,11 +25,11 @@
 package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3i;
-import java.util.Optional;
 import com.google.common.base.Predicate;
 import org.spongepowered.api.block.tileentity.TileEntity;
 
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * A mutable block volume that also contains {@link TileEntity} instances.

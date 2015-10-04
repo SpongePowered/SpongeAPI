@@ -25,7 +25,6 @@
 package org.spongepowered.api.block.tileentity;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**

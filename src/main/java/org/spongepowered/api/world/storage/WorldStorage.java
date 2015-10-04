@@ -25,11 +25,12 @@
 package org.spongepowered.api.world.storage;
 
 import com.flowpowered.math.vector.Vector3i;
-import java.util.Optional;
 import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.World;
+
+import java.util.Optional;
 
 /**
  * Represents the storage manager of a particular {@link World}.

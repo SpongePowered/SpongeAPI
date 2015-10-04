@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.action;
 
-import java.util.Optional;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.Cancellable;
@@ -32,6 +31,8 @@ import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.TargetEntityEvent;
 import org.spongepowered.api.world.World;
+
+import java.util.Optional;
 
 /**
  * Called when a Human enters a bed to sleep in.

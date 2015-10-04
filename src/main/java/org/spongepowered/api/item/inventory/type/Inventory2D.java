@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.item.inventory.type;
 
-import java.util.Optional;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.property.SlotPos;
 import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
+
+import java.util.Optional;
 
 /**
  * Base interface for inventories with slots obtainable via SlotPos queries.

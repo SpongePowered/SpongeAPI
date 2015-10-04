@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.data.property;
 
-import java.util.Optional;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.util.Direction;
+
+import java.util.Optional;
 
 public interface DirectionRelativePropertyHolder {
 

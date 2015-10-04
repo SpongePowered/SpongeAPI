@@ -25,7 +25,6 @@
 package org.spongepowered.api.data.property.item;
 
 import org.spongepowered.api.data.property.DoubleProperty;
-import org.spongepowered.api.data.property.IntProperty;
 
 /**
  * Represents a property on an item that has an efficiency qualifier applied

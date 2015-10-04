@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator.immutable;
 
-import com.google.common.base.Function;
 import org.spongepowered.api.block.tileentity.MobSpawner;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
@@ -41,6 +40,7 @@ import org.spongepowered.api.util.weighted.WeightedEntity;
 
 import java.util.Collection;
 import java.util.Random;
+import java.util.function.Function;
 
 import javax.annotation.Nullable;
 

@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.world;
 
-import java.util.Optional;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.annotation.NonnullByDefault;
+
+import java.util.Optional;
 
 /**
  * Finds safe {@link Location}s for {@link Entity}s (typically ones that won't

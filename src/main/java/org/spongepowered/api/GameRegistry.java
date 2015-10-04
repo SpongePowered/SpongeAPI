@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api;
 
-import java.util.Optional;
 import org.spongepowered.api.attribute.AttributeBuilder;
 import org.spongepowered.api.attribute.AttributeCalculator;
 import org.spongepowered.api.attribute.AttributeModifierBuilder;
@@ -94,6 +93,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.UUID;
 
 /**

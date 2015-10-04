@@ -25,9 +25,10 @@
 package org.spongepowered.api.world.explosion;
 
 import com.flowpowered.math.vector.Vector3d;
-import java.util.Optional;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.world.World;
+
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 

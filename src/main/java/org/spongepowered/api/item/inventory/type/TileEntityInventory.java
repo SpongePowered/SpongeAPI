@@ -24,11 +24,12 @@
  */
 package org.spongepowered.api.item.inventory.type;
 
-import java.util.Optional;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
+
+import java.util.Optional;
 
 /**
  * An {@link Inventory} which is owned by a

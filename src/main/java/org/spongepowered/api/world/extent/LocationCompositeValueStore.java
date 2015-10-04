@@ -27,8 +27,6 @@ package org.spongepowered.api.world.extent;
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Function;
-import java.util.Optional;
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
@@ -44,7 +42,9 @@ import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 
 import javax.annotation.Nullable;
 

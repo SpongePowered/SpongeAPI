@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.service.command;
 
-import com.google.common.base.Function;
-import java.util.Optional;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.command.CommandCallable;
 import org.spongepowered.api.util.command.CommandMapping;
@@ -34,7 +32,9 @@ import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.dispatcher.Dispatcher;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 
 /**
  * A command dispatcher watches for commands (such as those said in chat)

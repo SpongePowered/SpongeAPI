@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.data.value.immutable;
 
-import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.data.value.mutable.CollectionValue;
 
 import java.util.Collection;
+import java.util.function.Function;
 
 /**
  * A {@link ImmutableValue} type that handles a {@link Collection} of elements

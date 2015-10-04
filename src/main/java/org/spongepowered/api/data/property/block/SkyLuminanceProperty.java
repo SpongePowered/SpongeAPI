@@ -25,7 +25,6 @@
 package org.spongepowered.api.data.property.block;
 
 import org.spongepowered.api.data.property.DoubleProperty;
-import org.spongepowered.api.data.property.IntProperty;
 
 /**
  * An property that represents the amount of light emitted from

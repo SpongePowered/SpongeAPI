@@ -24,11 +24,12 @@
  */
 package org.spongepowered.api.data.value;
 
-import java.util.Optional;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
+
+import java.util.Optional;
 
 /**
  * The abstract base interface for all of the "Value API". In short, a

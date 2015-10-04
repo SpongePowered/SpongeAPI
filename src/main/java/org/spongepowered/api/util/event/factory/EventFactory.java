@@ -24,11 +24,8 @@
  */
 package org.spongepowered.api.util.event.factory;
 
-import com.google.common.base.Function;
-
 import java.util.Map;
-
-import javax.annotation.Nonnull;
+import java.util.function.Function;
 
 /**
  * Generates a new instance of an event using a given map of parameters.

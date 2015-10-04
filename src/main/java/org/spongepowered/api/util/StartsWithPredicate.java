@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
@@ -44,7 +44,7 @@ public final class StartsWithPredicate implements Predicate<String> {
     }
 
     @Override
-    public boolean apply(@Nullable String input) {
+    public boolean test(@Nullable String input) {
         return input != null && input.toLowerCase().startsWith(this.test.toLowerCase());
     }
 }

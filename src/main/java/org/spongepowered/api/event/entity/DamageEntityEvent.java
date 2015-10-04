@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.entity;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.block.tileentity.carrier.Dispenser;
@@ -32,7 +31,6 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.Arrow;
-import org.spongepowered.api.event.impl.AbstractDamageEntityEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
@@ -40,6 +38,7 @@ import org.spongepowered.api.event.cause.entity.damage.DamageModifierBuilder;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
+import org.spongepowered.api.event.impl.AbstractDamageEntityEvent;
 import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -50,6 +49,7 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * Represents the base event for when an {@link Entity} is being "attacked".

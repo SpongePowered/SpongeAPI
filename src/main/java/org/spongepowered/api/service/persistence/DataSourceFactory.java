@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.service.persistence;
 
-import java.util.Optional;
 import ninja.leaping.configurate.ConfigurationNode;
 import org.spongepowered.api.data.DataSerializable;
+
+import java.util.Optional;
 
 /**
  * A standard factory to create {@link DataSource}s to serialize and deserialize

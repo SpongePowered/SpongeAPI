@@ -26,9 +26,10 @@ package org.spongepowered.api.data;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.Optional;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
+
+import java.util.Optional;
 
 /**
  * The default implementation of {@link DataContainer} that can be instantiated

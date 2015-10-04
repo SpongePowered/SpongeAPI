@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.plugin;
 
-import java.util.Optional;
 import org.slf4j.Logger;
 
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * The manager that manages plugins. This manager can retrieve

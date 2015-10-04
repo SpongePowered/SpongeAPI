@@ -28,9 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.google.common.base.Function;
 import com.google.common.base.Joiner;
-import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Iterables;
@@ -40,6 +38,7 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.command.CommandMessageFormatting;
 import org.spongepowered.api.util.command.CommandSource;
@@ -55,6 +54,9 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
@@ -313,7 +315,7 @@ public final class GenericArguments {
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             final String prefix = args.nextIfPresent().orElse("");
-            return ImmutableList.copyOf(Iterables.filter(this.choices.keySet(), new StartsWithPredicate(prefix)));
+            return this.choices.keySet().stream().filter(new StartsWithPredicate(prefix)).collect(GuavaCollectors.toImmutableList());
         }
 
         @Override
@@ -380,19 +382,15 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
-            return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements, new Function<CommandElement, Iterable<String>>() {
-                @Nullable
-                @Override
-                public Iterable<String> apply(@Nullable CommandElement input) {
-                    if (input == null) {
-                        return ImmutableList.of();
-                    }
-
-                    Object startState = args.getState();
-                    List<String> ret = input.complete(src, args, context);
-                    args.setState(startState);
-                    return ret;
+            return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements, input -> {
+                if (input == null) {
+                    return ImmutableList.of();
                 }
+
+                Object startState = args.getState();
+                List<String> ret = input.complete(src, args, context);
+                args.setState(startState);
+                return ret;
             })));
         }
 
@@ -754,13 +752,9 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Iterables.transform(Arrays.asList(this.type.getEnumConstants()), new Function<T, String>() {
-                @Nullable
-                @Override
-                public String apply(@Nullable T input) {
-                    return input == null ? null : input.name();
-                }
-            });
+            return Arrays.asList(this.type.getEnumConstants()).stream()
+                .map(input -> input == null ? null : input.name())
+                .collect(Collectors.toList());
         }
 
         @Override
@@ -917,13 +911,9 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Iterables.transform(this.game.getServer().getOnlinePlayers(), new Function<Player, String>() {
-                @Nullable
-                @Override
-                public String apply(@Nullable Player input) {
-                    return input == null ? null : input.getName();
-                }
-            });
+            return this.game.getServer().getOnlinePlayers().stream()
+                .map(input -> input == null ? null : input.getName())
+                .collect(Collectors.toList());
         }
 
         @Override
@@ -965,13 +955,9 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Iterables.transform(this.game.getServer().getAllWorldProperties(), new Function<WorldProperties, String>() {
-                @Nullable
-                @Override
-                public String apply(@Nullable WorldProperties input) {
-                    return input == null || !input.isEnabled() ? null : input.getWorldName();
-                }
-            });
+            return this.game.getServer().getAllWorldProperties().stream()
+                .map(input -> input == null || !input.isEnabled() ? null : input.getWorldName())
+                .collect(Collectors.toList());
         }
 
         @Override
@@ -1132,13 +1118,11 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Iterables.transform(this.game.getRegistry().getAllOf(this.catalogType), new Function<T, String>() {
-                @Nullable
-                @Override
-                public String apply(@Nullable T input) {
-                    return input == null ? null : input.getId(); // TODO: ids or names?
-                }
-            });
+            return this.game.getRegistry().getAllOf(this.catalogType).stream()
+                .map(input -> {
+                return input == null ? null : input.getId(); // TODO: ids or names?
+                })
+                .collect(Collectors.toList());
         }
 
         @Override

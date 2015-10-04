@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.value.immutable;
 
-import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.attribute.AttributeModifier;
@@ -32,6 +31,7 @@ import org.spongepowered.api.data.value.mutable.AttributeMapValue;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * A customized {@link ImmutableMapValue} specifically handling

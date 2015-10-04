@@ -28,9 +28,6 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
-
-import java.util.Map;
-import java.util.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterators;
 import org.spongepowered.api.text.action.ClickAction;
@@ -42,6 +39,8 @@ import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.translation.Translation;
 
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 

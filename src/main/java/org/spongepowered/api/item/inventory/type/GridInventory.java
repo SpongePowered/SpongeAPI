@@ -25,12 +25,12 @@
 package org.spongepowered.api.item.inventory.type;
 
 import com.flowpowered.math.vector.Vector2i;
-import java.util.Optional;
-
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
+
+import java.util.Optional;
 
 /**
  * An GridInventory is an {@link Inventory}
