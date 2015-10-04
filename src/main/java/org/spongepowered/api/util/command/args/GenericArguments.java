@@ -43,6 +43,7 @@ import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.command.CommandMessageFormatting;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.source.LocatedSource;
+import org.spongepowered.api.util.command.spec.CommandExecutor;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -382,16 +383,21 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
-            return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements, input -> {
-                if (input == null) {
-                    return ImmutableList.of();
-                }
+            return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements,
+                    new com.google.common.base.Function<CommandElement, List<String>>() {
 
-                Object startState = args.getState();
-                List<String> ret = input.complete(src, args, context);
-                args.setState(startState);
-                return ret;
-            })));
+                        @Override
+                        public List<String> apply(@Nullable CommandElement input) {
+                            if (input == null) {
+                                return ImmutableList.of();
+                            }
+
+                            Object startState = args.getState();
+                            List<String> ret = input.complete(src, args, context);
+                            args.setState(startState);
+                            return ret;
+                        }
+                    })));
         }
 
         @Override
