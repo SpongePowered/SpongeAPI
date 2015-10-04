@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.data.value;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Optional;
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.DataHolder;
@@ -77,7 +79,9 @@ public interface ValueContainer<C extends ValueContainer<C>> {
      * @return The value, or null if not set
      */
     @Nullable
-    <E> E getOrNull(Key<? extends BaseValue<E>> key);
+    default <E> E getOrNull(Key<? extends BaseValue<E>> key) {
+        return get(key).orElse(null);
+    }
 
     /**
      * Attempts to get the underlying value if available. If the value is not
@@ -89,7 +93,9 @@ public interface ValueContainer<C extends ValueContainer<C>> {
      * @param <E> The type of value
      * @return The value, or default if not set
      */
-    <E> E getOrElse(Key<? extends BaseValue<E>> key, E defaultValue);
+    default <E> E getOrElse(Key<? extends BaseValue<E>> key, E defaultValue) {
+        return get(key).orElse(checkNotNull(defaultValue, "Provided a null default value for 'getOrElse(Key, null)'!"));
+    }
 
     /**
      * Gets the {@link BaseValue} for the given {@link Key}.
@@ -116,7 +122,9 @@ public interface ValueContainer<C extends ValueContainer<C>> {
      * @param baseValue The base value to check
      * @return True if the base value is supported
      */
-    boolean supports(BaseValue<?> baseValue);
+    default boolean supports(BaseValue<?> baseValue) {
+        return supports(baseValue.getKey());
+    }
 
     /**
      * Creates a clone copy of this {@link ValueContainer} as a new

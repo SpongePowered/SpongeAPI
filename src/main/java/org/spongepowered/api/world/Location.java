@@ -598,7 +598,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
+    public <T> Optional<T> get(Key<? extends BaseValue<T>> key) {
         return getExtent().get(getBlockPosition(), key);
     }
 
@@ -607,19 +607,8 @@ public final class Location<E extends Extent> implements DataHolder {
         return getExtent().getOrCreate(getBlockPosition(), containerClass);
     }
 
-    @Nullable
     @Override
-    public <E> E getOrNull(Key<? extends BaseValue<E>> key) {
-        return getExtent().getOrNull(getBlockPosition(), key);
-    }
-
-    @Override
-    public <E> E getOrElse(Key<? extends BaseValue<E>> key, E defaultValue) {
-        return getExtent().getOrElse(getBlockPosition(), key, defaultValue);
-    }
-
-    @Override
-    public <E> DataTransactionResult offer(Key<? extends BaseValue<E>> key, E value) {
+    public <T> DataTransactionResult offer(Key<? extends BaseValue<T>> key, T value) {
         return getExtent().offer(getBlockPosition(), key, value);
     }
 
@@ -634,7 +623,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public <E> DataTransactionResult offer(BaseValue<E> value) {
+    public <T> DataTransactionResult offer(BaseValue<T> value) {
         return getExtent().offer(getBlockPosition(), value);
     }
 
@@ -664,12 +653,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public boolean supports(BaseValue<?> baseValue) {
-        return getExtent().supports(getBlockPosition(), baseValue);
-    }
-
-    @Override
-    public <E> DataTransactionResult transform(Key<? extends BaseValue<E>> key, Function<E, E> function) {
+    public <T> DataTransactionResult transform(Key<? extends BaseValue<T>> key, Function<T, T> function) {
         return getExtent().transform(getBlockPosition(), key, function);
     }
 
@@ -689,13 +673,13 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public <E, V extends BaseValue<E>> Optional<V> getValue(Key<V> key) {
+    public <T, V extends BaseValue<T>> Optional<V> getValue(Key<V> key) {
         return getExtent().getValue(getBlockPosition(), key);
     }
 
     @Override
     public DataHolder copy() {
-        return new Location<E>(this.extent.get(), getPosition());
+        return new Location<>(this.extent.get(), getPosition());
     }
 
     @Override

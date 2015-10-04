@@ -47,7 +47,9 @@ public interface ExtentBufferFactory {
      * @param zSize The size of the buffer on z
      * @return A new biome buffer
      */
-    MutableBiomeArea createBiomeBuffer(int xSize, int zSize);
+    default MutableBiomeArea createBiomeBuffer(int xSize, int zSize) {
+        return createBiomeBuffer(new Vector2i(xSize, zSize));
+    }
 
     /**
      * Returns a new biome buffer of the desired size.
@@ -66,7 +68,9 @@ public interface ExtentBufferFactory {
      * @param zSize The size of the buffer on z
      * @return A new biome buffer
      */
-    MutableBiomeArea createThreadSafeBiomeBuffer(int xSize, int zSize);
+    default MutableBiomeArea createThreadSafeBiomeBuffer(int xSize, int zSize) {
+        return createThreadSafeBiomeBuffer(new Vector2i(xSize, zSize));
+    }
 
     /**
      * Returns a new block buffer of the desired size.
@@ -84,7 +88,9 @@ public interface ExtentBufferFactory {
      * @param zSize The size of the buffer on z
      * @return A new block buffer
      */
-    MutableBlockVolume createBlockBuffer(int xSize, int ySize, int zSize);
+    default MutableBlockVolume createBlockBuffer(int xSize, int ySize, int zSize) {
+        return createBlockBuffer(new Vector3i(xSize, ySize, zSize));
+    }
 
     /**
      * Returns a new block buffer of the desired size.
@@ -104,6 +110,8 @@ public interface ExtentBufferFactory {
      * @param zSize The size of the buffer on z
      * @return A new block buffer
      */
-    MutableBlockVolume createThreadSafeBlockBuffer(int xSize, int ySize, int zSize);
+    default MutableBlockVolume createThreadSafeBlockBuffer(int xSize, int ySize, int zSize) {
+        return createThreadSafeBlockBuffer(new Vector3i(xSize, ySize, zSize));
+    }
 
 }

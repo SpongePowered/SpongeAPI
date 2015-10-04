@@ -48,7 +48,9 @@ public interface LocationBasePropertyHolder {
      * @param <T> The type of property
      * @return The property, if available
      */
-    <T extends Property<?, ?>> Optional<T> getProperty(Vector3i coords, Class<T> propertyClass);
+    default <T extends Property<?, ?>> Optional<T> getProperty(Vector3i coords, Class<T> propertyClass) {
+        return getProperty(coords.getX(), coords.getY(), coords.getZ(), propertyClass);
+    }
 
     /**
      * Attempts to retrieve a specific {@link Property} type of this
@@ -84,8 +86,27 @@ public interface LocationBasePropertyHolder {
      * @param <T> The type of property
      * @return The property, if available
      */
-    <T extends Property<?, ?>> Optional<T> getProperty(Vector3i coords, Direction direction, Class<T> propertyClass);
+    default <T extends Property<?, ?>> Optional<T> getProperty(Vector3i coords, Direction direction, Class<T> propertyClass) {
+        return getProperty(coords.getX(), coords.getY(), coords.getZ(), direction, propertyClass);
+    }
 
+    /**
+     * Attempts to retrieve a specific {@link Property} type of the
+     * block at the specific location. If the property is not applicable,
+     * {@link Optional#empty()} is returned.
+     *
+     * <p>{@link Property}s can define various immutable information about a
+     * {@link PropertyHolder} that is dependent on the instance of the holder.
+     * As {@link Property}s cannot be changed, the {@link PropertyHolder} can
+     * not change the information about it's own properties either.</p>
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @param propertyClass The property class
+     * @param <T> The type of property
+     * @return The property, if available
+     */
     <T extends Property<?, ?>> Optional<T> getProperty(int x, int y, int z, Direction direction, Class<T> propertyClass);
 
     /**
@@ -97,7 +118,9 @@ public interface LocationBasePropertyHolder {
      *
      * @return An immutable collection of all known {@link Property}s
      */
-    Collection<Property<?, ?>> getProperties(Vector3i coords);
+    default Collection<Property<?, ?>> getProperties(Vector3i coords) {
+        return getProperties(coords.getX(), coords.getY(), coords.getZ());
+    }
 
     Collection<Property<?, ?>> getProperties(int x, int y, int z);
 

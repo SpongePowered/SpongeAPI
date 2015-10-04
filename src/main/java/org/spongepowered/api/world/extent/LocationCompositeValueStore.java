@@ -24,12 +24,15 @@
  */
 package org.spongepowered.api.world.extent;
 
+import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
+
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Function;
 import java.util.Optional;
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataTransactionBuilder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.key.Key;
@@ -60,7 +63,9 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of element of data
      * @return The data, if available
      */
-    <E> Optional<E> get(Vector3i coordinates, Key<? extends BaseValue<E>> key);
+    default <E> Optional<E> get(Vector3i coordinates, Key<? extends BaseValue<E>> key) {
+        return get(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key);
+    }
 
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the
@@ -87,7 +92,9 @@ public interface LocationCompositeValueStore {
      * @param <T> The type of data
      * @return An instance of the class, if not available
      */
-    <T extends DataManipulator<?, ?>> Optional<T> get(Vector3i coordinates, Class<T> manipulatorClass);
+    default <T extends DataManipulator<?, ?>> Optional<T> get(Vector3i coordinates, Class<T> manipulatorClass) {
+        return get(coordinates.getX(), coordinates.getY(), coordinates.getZ(), manipulatorClass);
+    }
 
     /**
      * Gets an instance of the given data class for given block at the location.
@@ -120,7 +127,9 @@ public interface LocationCompositeValueStore {
      * @param <T> The type of data
      * @return An instance of the class, if not available
      */
-    <T extends DataManipulator<?, ?>> Optional<T> getOrCreate(Vector3i coordinates, Class<T> manipulatorClass);
+    default <T extends DataManipulator<?, ?>> Optional<T> getOrCreate(Vector3i coordinates, Class<T> manipulatorClass) {
+        return getOrCreate(coordinates.getX(), coordinates.getY(), coordinates.getZ(), manipulatorClass);
+    }
 
     /**
      * Gets or creates a new {@link DataManipulator} that can be accepted by
@@ -151,7 +160,10 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    <E> E getOrNull(Vector3i coordinates, Key<? extends BaseValue<E>> key);
+    @Nullable
+    default <E> E getOrNull(Vector3i coordinates, Key<? extends BaseValue<E>> key) {
+        return get(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key).orElse(null);
+    }
 
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the
@@ -166,7 +178,9 @@ public interface LocationCompositeValueStore {
      * @return The data or null
      */
     @Nullable
-    <E> E getOrNull(int x, int y, int z, Key<? extends BaseValue<E>> key);
+    default <E> E getOrNull(int x, int y, int z, Key<? extends BaseValue<E>> key) {
+        return get(x, y, z, key).orElse(null);
+    }
 
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the
@@ -179,7 +193,9 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    <E> E getOrElse(Vector3i coordinates, Key<? extends BaseValue<E>> key, E defaultValue);
+    default <E> E getOrElse(Vector3i coordinates, Key<? extends BaseValue<E>> key, E defaultValue) {
+        return get(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key).orElse(checkNotNull(defaultValue));
+    }
 
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the
@@ -194,7 +210,9 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    <E> E getOrElse(int x, int y, int z, Key<? extends BaseValue<E>> key, E defaultValue);
+    default <E> E getOrElse(int x, int y, int z, Key<? extends BaseValue<E>> key, E defaultValue) {
+        return get(x, y, z, key).orElse(checkNotNull(defaultValue));
+    }
 
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the
@@ -207,7 +225,9 @@ public interface LocationCompositeValueStore {
      * @param <V> The type of value
      * @return The base value, if available
      */
-    <E, V extends BaseValue<E>> Optional<V> getValue(Vector3i coordinates, Key<V> key);
+    default <E, V extends BaseValue<E>> Optional<V> getValue(Vector3i coordinates, Key<V> key) {
+        return getValue(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key);
+    }
 
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the
@@ -231,7 +251,9 @@ public interface LocationCompositeValueStore {
      * @param key The Key to the value of data
      * @return True if the block supports the data
      */
-    boolean supports(Vector3i coordinates, Key<?> key);
+    default boolean supports(Vector3i coordinates, Key<?> key) {
+        return supports(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key);
+    }
 
     /**
      * Checks if the provided {@link Key} to the data is supported by the block at
@@ -253,7 +275,9 @@ public interface LocationCompositeValueStore {
      * @param value The value of data
      * @return True if the block supports the data
      */
-    boolean supports(Vector3i coordinates, BaseValue<?> value);
+    default boolean supports(Vector3i coordinates, BaseValue<?> value) {
+        return supports(coordinates.getX(), coordinates.getY(), coordinates.getZ(), value.getKey());
+    }
 
     /**
      * Checks if the provided {@link BaseValue} is supported by the block at
@@ -265,7 +289,9 @@ public interface LocationCompositeValueStore {
      * @param value The value of data
      * @return True if the block supports the data
      */
-    boolean supports(int x, int y, int z, BaseValue<?> value);
+    default boolean supports(int x, int y, int z, BaseValue<?> value) {
+        return supports(x, y, z, value.getKey());
+    }
 
     /**
      * Checks if the given {@link DataManipulator} class is able to represent
@@ -276,7 +302,9 @@ public interface LocationCompositeValueStore {
      * @return True if the block at the given position can accept the
      *     {@link DataManipulator} object
      */
-    boolean supports(Vector3i coordinates, Class<? extends DataManipulator<?, ?>> manipulatorClass);
+    default boolean supports(Vector3i coordinates, Class<? extends DataManipulator<?, ?>> manipulatorClass) {
+        return supports(coordinates.getX(), coordinates.getY(), coordinates.getZ(), manipulatorClass);
+    }
 
     /**
      * Checks if the given {@link DataManipulator} class is able to represent
@@ -300,7 +328,10 @@ public interface LocationCompositeValueStore {
      * @return True if the block at the given position can accept the
      *     {@link DataManipulator} object
      */
-    boolean supports(Vector3i coordinates, DataManipulator<?, ?> manipulator);
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    default boolean supports(Vector3i coordinates, DataManipulator<?, ?> manipulator) {
+        return supports(coordinates.getX(), coordinates.getY(), coordinates.getZ(), (Class) manipulator.getClass());
+    }
 
     /**
      * Checks if the given {@link DataManipulator} class is able to represent
@@ -313,7 +344,10 @@ public interface LocationCompositeValueStore {
      * @return True if the block at the given position can accept the
      *     {@link DataManipulator} object
      */
-    boolean supports(int x, int y, int z, DataManipulator<?, ?> manipulator);
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    default boolean supports(int x, int y, int z, DataManipulator<?, ?> manipulator) {
+        return supports(x, y, z, (Class) manipulator.getClass());
+    }
 
     /**
      * Gets an {@link ImmutableSet} of {@link Key}s for the block at
@@ -322,7 +356,9 @@ public interface LocationCompositeValueStore {
      * @param coordinates The position of the block
      * @return The immutable set of values for the block
      */
-    Set<Key<?>> getKeys(Vector3i coordinates);
+    default Set<Key<?>> getKeys(Vector3i coordinates) {
+        return getKeys(coordinates.getX(), coordinates.getY(), coordinates.getZ());
+    }
 
     /**
      * Gets an {@link ImmutableSet} of {@link Key}s for the block at
@@ -342,7 +378,9 @@ public interface LocationCompositeValueStore {
      * @param coordinates The position of the block
      * @return The immutable set of values for the block
      */
-    Set<ImmutableValue<?>> getValues(Vector3i coordinates);
+    default Set<ImmutableValue<?>> getValues(Vector3i coordinates) {
+        return getValues(coordinates.getX(), coordinates.getY(), coordinates.getZ());
+    }
 
     /**
      * Gets an {@link ImmutableSet} of {@link ImmutableValue}s for the block at
@@ -366,7 +404,9 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of data
      * @return The transaction result
      */
-    <E> DataTransactionResult transform(Vector3i coordinates, Key<? extends BaseValue<E>> key, Function<E, E> function);
+    default <E> DataTransactionResult transform(Vector3i coordinates, Key<? extends BaseValue<E>> key, Function<E, E> function) {
+        return transform(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key, function);
+    }
 
     /**
      * Applies a transformation on the pre-existing value of the data keyed
@@ -381,7 +421,15 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of data
      * @return The transaction result
      */
-    <E> DataTransactionResult transform(int x, int y, int z, Key<? extends BaseValue<E>> key, Function<E, E> function);
+    default <E> DataTransactionResult transform(int x, int y, int z, Key<? extends BaseValue<E>> key, Function<E, E> function) {
+        if (supports(x, y, z, key)) {
+            final Optional<E> optional = get(x, y, z, key);
+            if (optional.isPresent()) {
+                return offer(x, y, z, key, function.apply(optional.get()));
+            }
+        }
+        return DataTransactionBuilder.failNoData();
+    }
 
     /**
      * Offers the given <code>E</code> value that is keyed by the provided
@@ -397,7 +445,9 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of data being offered
      * @return The transaction result
      */
-    <E> DataTransactionResult offer(Vector3i coordinates, Key<? extends BaseValue<E>> key, E value);
+    default <E> DataTransactionResult offer(Vector3i coordinates, Key<? extends BaseValue<E>> key, E value) {
+        return offer(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key, value);
+    }
 
     /**
      * Offers the given <code>E</code> value that is keyed by the provided
@@ -430,7 +480,9 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of the element wrapped by the value
      * @return The transaction result
      */
-    <E> DataTransactionResult offer(Vector3i coordinates, BaseValue<E> value);
+    default <E> DataTransactionResult offer(Vector3i coordinates, BaseValue<E> value) {
+        return offer(coordinates.getX(), coordinates.getY(), coordinates.getZ(), value.getKey(), value.get());
+    }
 
     /**
      * Offers the given {@link BaseValue} to the block at the given
@@ -447,7 +499,9 @@ public interface LocationCompositeValueStore {
      * @param <E> The type of the element wrapped by the value
      * @return The transaction result
      */
-    <E> DataTransactionResult offer(int x, int y, int z, BaseValue<E> value);
+    default <E> DataTransactionResult offer(int x, int y, int z, BaseValue<E> value) {
+        return offer(x, y, z, value.getKey(), value.get());
+    }
 
     /**
      * Offers the given {@link DataManipulator} to the block at the given
@@ -461,7 +515,9 @@ public interface LocationCompositeValueStore {
      * @param manipulator The manipulator data to offer
      * @return The transaction result
      */
-    DataTransactionResult offer(Vector3i coordinates, DataManipulator<?, ?> manipulator);
+    default DataTransactionResult offer(Vector3i coordinates, DataManipulator<?, ?> manipulator) {
+        return offer(coordinates.getX(), coordinates.getY(), coordinates.getZ(), manipulator, MergeFunction.IGNORE_ALL);
+    }
 
     /**
      * Offers the given {@link DataManipulator} to the block at the given
@@ -477,7 +533,9 @@ public interface LocationCompositeValueStore {
      * @param manipulator The manipulator data to offer
      * @return The transaction result
      */
-    DataTransactionResult offer(int x, int y, int z, DataManipulator<?, ?> manipulator);
+    default DataTransactionResult offer(int x, int y, int z, DataManipulator<?, ?> manipulator) {
+        return offer(x, y, z, manipulator, MergeFunction.IGNORE_ALL);
+    }
 
     /**
      * Offers the given {@link DataManipulator} to the block at the given
@@ -492,7 +550,9 @@ public interface LocationCompositeValueStore {
      * @param function The merge function to resolve conflicts
      * @return The transaction result
      */
-    DataTransactionResult offer(Vector3i coordinates, DataManipulator<?, ?> manipulator, MergeFunction function);
+    default DataTransactionResult offer(Vector3i coordinates, DataManipulator<?, ?> manipulator, MergeFunction function) {
+        return offer(coordinates.getX(), coordinates.getY(), coordinates.getZ(), manipulator, function);
+    }
 
     /**
      * Offers the given {@link DataManipulator} to the block at the given
@@ -523,7 +583,13 @@ public interface LocationCompositeValueStore {
      * @param manipulators The values to offer
      * @return The transaction result
      */
-    DataTransactionResult offer(Vector3i coordinates, Iterable<DataManipulator<?, ?>> manipulators);
+    default DataTransactionResult offer(Vector3i coordinates, Iterable<DataManipulator<?, ?>> manipulators) {
+        final DataTransactionBuilder builder = DataTransactionBuilder.builder();
+        for (DataManipulator<?, ?> manipulator : manipulators) {
+            builder.absorbResult(offer(coordinates.getX(), coordinates.getY(), coordinates.getZ(), manipulator, MergeFunction.IGNORE_ALL));
+        }
+        return builder.build();
+    }
 
     /**
      * Offers the provided {@link DataManipulator}s to the block at the given
@@ -539,7 +605,13 @@ public interface LocationCompositeValueStore {
      * @param manipulators The values to offer
      * @return The transaction result
      */
-    DataTransactionResult offer(int x, int y, int z, Iterable<DataManipulator<?, ?>> manipulators);
+    default DataTransactionResult offer(int x, int y, int z, Iterable<DataManipulator<?, ?>> manipulators) {
+        final DataTransactionBuilder builder = DataTransactionBuilder.builder();
+        for (DataManipulator<?, ?> manipulator : manipulators) {
+            builder.absorbResult(offer(x, y, z, manipulator, MergeFunction.IGNORE_ALL));
+        }
+        return builder.build();
+    }
 
     /**
      * Offers the provided {@link DataManipulator}s to the block at the given
@@ -557,7 +629,13 @@ public interface LocationCompositeValueStore {
      * @param function The merge function to resolve conflicts
      * @return The transaction result
      */
-    DataTransactionResult offer(Vector3i blockPosition, Iterable<DataManipulator<?,?>> values, MergeFunction function);
+    default DataTransactionResult offer(Vector3i blockPosition, Iterable<DataManipulator<?,?>> values, MergeFunction function) {
+        final DataTransactionBuilder builder = DataTransactionBuilder.builder();
+        for (DataManipulator<?, ?> manipulator : values) {
+            builder.absorbResult(offer(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ(), manipulator, function));
+        }
+        return builder.build();
+    }
 
     /**
      * Attempts to remove the given {@link DataManipulator} represented by
@@ -570,7 +648,9 @@ public interface LocationCompositeValueStore {
      * @param manipulatorClass The data class
      * @return If the manipulator was removed
      */
-    DataTransactionResult remove(Vector3i coordinates, Class<? extends DataManipulator<?, ?>> manipulatorClass);
+    default DataTransactionResult remove(Vector3i coordinates, Class<? extends DataManipulator<?, ?>> manipulatorClass) {
+        return remove(coordinates.getX(), coordinates.getY(), coordinates.getZ(), manipulatorClass);
+    }
 
     /**
      * Attempts to remove the given {@link DataManipulator} represented by
@@ -595,7 +675,9 @@ public interface LocationCompositeValueStore {
      * @param key The key to the data to remove
      * @return The transaction result
      */
-    DataTransactionResult remove(Vector3i coordinates, Key<?> key);
+    default DataTransactionResult remove(Vector3i coordinates, Key<?> key) {
+        return remove(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key);
+    }
 
     /**
      * Attempts to remove the data associated with the provided {@link Key}
@@ -618,7 +700,9 @@ public interface LocationCompositeValueStore {
      * @param result The transaction result to undo
      * @return The transaction result
      */
-    DataTransactionResult undo(Vector3i coordinates, DataTransactionResult result);
+    default DataTransactionResult undo(Vector3i coordinates, DataTransactionResult result) {
+        return undo(coordinates.getX(), coordinates.getY(), coordinates.getZ(), result);
+    }
 
     /**
      * Attempts to undo a {@link DataTransactionResult}. Specifically, all
@@ -641,7 +725,9 @@ public interface LocationCompositeValueStore {
      * @param from The data holder to copy data from
      * @return The transaction result
      */
-    DataTransactionResult copyFrom(Vector3i to, DataHolder from);
+    default DataTransactionResult copyFrom(Vector3i to, DataHolder from) {
+        return copyFrom(to.getX(), to.getY(), to.getZ(), from);
+    }
 
     /**
      * Attempts to copy all the relevant data from the provided
@@ -663,7 +749,11 @@ public interface LocationCompositeValueStore {
      * @param coordinatesFrom The coordinates of the block to copy data from
      * @return The transaction result
      */
-    DataTransactionResult copyFrom(Vector3i coordinatesTo, Vector3i coordinatesFrom);
+    default DataTransactionResult copyFrom(Vector3i coordinatesTo, Vector3i coordinatesFrom) {
+        return copyFrom(coordinatesTo.getX(), coordinatesTo.getY(), coordinatesTo.getZ(),
+                        coordinatesFrom.getX(), coordinatesFrom.getY(), coordinatesFrom.getZ(),
+                        MergeFunction.IGNORE_ALL);
+    }
 
     /**
      * Attempts to copy all {@link ImmutableValue}s from the provided block to
@@ -677,7 +767,9 @@ public interface LocationCompositeValueStore {
      * @param zFrom The Z position of the block to copy data from
      * @return The transaction result
      */
-    DataTransactionResult copyFrom(int xTo, int yTo, int zTo, int xFrom, int yFrom, int zFrom);
+    default DataTransactionResult copyFrom(int xTo, int yTo, int zTo, int xFrom, int yFrom, int zFrom) {
+        return copyFrom(xTo, yTo, zTo, xFrom, yFrom, zFrom, MergeFunction.IGNORE_ALL);
+    }
 
     /**
      * Attempts to copy all {@link ImmutableValue}s from the provided block to
@@ -689,7 +781,9 @@ public interface LocationCompositeValueStore {
      * @param function The merge function to resolve conflicts
      * @return The transaction result
      */
-    DataTransactionResult copyFrom(Vector3i to, DataHolder from, MergeFunction function);
+    default DataTransactionResult copyFrom(Vector3i to, DataHolder from, MergeFunction function) {
+        return copyFrom(to.getX(), to.getY(), to.getZ(), from, function);
+    }
 
     /**
      * Attempts to copy all {@link ImmutableValue}s from the provided block to
@@ -715,7 +809,10 @@ public interface LocationCompositeValueStore {
      * @param function The merge function to resolve conflicts
      * @return The transaction result
      */
-    DataTransactionResult copyFrom(Vector3i coordinatesTo, Vector3i coordinatesFrom, MergeFunction function);
+    default DataTransactionResult copyFrom(Vector3i coordinatesTo, Vector3i coordinatesFrom, MergeFunction function) {
+        return copyFrom(coordinatesTo.getX(), coordinatesTo.getY(), coordinatesTo.getZ(),
+                        coordinatesFrom.getX(), coordinatesFrom.getY(), coordinatesFrom.getZ(), function);
+    }
 
     /**
      * Attempts to copy all {@link ImmutableValue}s from the provided block to
@@ -743,7 +840,9 @@ public interface LocationCompositeValueStore {
      * @return A collection of copied data manipulators belonging to the block
      *     at the given position
      */
-    Collection<DataManipulator<?, ?>> getManipulators(Vector3i coordinates);
+    default Collection<DataManipulator<?, ?>> getManipulators(Vector3i coordinates) {
+        return getManipulators(coordinates.getX(), coordinates.getY(), coordinates.getZ());
+    }
 
     /**
      * Gets an copied collection of all known {@link DataManipulator}s
@@ -771,7 +870,9 @@ public interface LocationCompositeValueStore {
      * @param container The raw data to validate
      * @return True if the data is valid
      */
-    boolean validateRawData(Vector3i position, DataView container);
+    default boolean validateRawData(Vector3i position, DataView container) {
+        return validateRawData(position.getX(), position.getY(), position.getZ(), container);
+    }
 
     /**
      * Validates the container with known data required to set the raw data to
@@ -807,7 +908,9 @@ public interface LocationCompositeValueStore {
      * @throws InvalidDataException If the container is missing or has invalid
      *     data that this holder will refuse
      */
-    void setRawData(Vector3i position, DataView container) throws InvalidDataException;
+    default void setRawData(Vector3i position, DataView container) throws InvalidDataException {
+        setRawData(position.getX(), position.getY(), position.getZ(), container);
+    }
 
     /**
      * Attempts to set all data of the block at the given position according to

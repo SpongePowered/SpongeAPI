@@ -48,16 +48,24 @@ import java.util.UUID;
 public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
 
     @Override
-    Location<World> getLocation(Vector3i position);
+    default Location<World> getLocation(Vector3i position) {
+        return new Location<>(this, position);
+    }
 
     @Override
-    Location<World> getLocation(int x, int y, int z);
+    default Location<World> getLocation(int x, int y, int z) {
+        return getLocation(new Vector3i(x, y, z));
+    }
 
     @Override
-    Location<World> getLocation(Vector3d position);
+    default Location<World> getLocation(Vector3d position) {
+        return new Location<>(this, position);
+    }
 
     @Override
-    Location<World> getLocation(double x, double y, double z);
+    default Location<World> getLocation(double x, double y, double z) {
+        return getLocation(new Vector3d(x, y, z));
+    }
 
     /**
      * Gets the {@link Difficulty} setting for this world.

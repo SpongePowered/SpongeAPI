@@ -37,16 +37,24 @@ import org.spongepowered.api.world.extent.Extent;
 public interface Chunk extends Extent {
 
     @Override
-    Location<Chunk> getLocation(Vector3i position);
+    default Location<Chunk> getLocation(Vector3i position) {
+        return new Location<>(this, position);
+    }
 
     @Override
-    Location<Chunk> getLocation(int x, int y, int z);
+    default Location<Chunk> getLocation(int x, int y, int z) {
+        return getLocation(new Vector3i(x, y, z));
+    }
 
     @Override
-    Location<Chunk> getLocation(Vector3d position);
+    default Location<Chunk> getLocation(Vector3d position) {
+        return new Location<>(this, position);
+    }
 
     @Override
-    Location<Chunk> getLocation(double x, double y, double z);
+    default Location<Chunk> getLocation(double x, double y, double z) {
+        return getLocation(new Vector3d(x, y, z));
+    }
 
     /**
      * Get the position of the chunk.
