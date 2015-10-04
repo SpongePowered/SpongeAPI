@@ -1,4 +1,7 @@
+// Shared Gradle configuration for the Sponge projects
+
 apply plugin: 'java'
+// Plugins for IDE project generation
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
@@ -23,6 +26,7 @@ repositories {
 dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'org.hamcrest:hamcrest-library:1.3'
+
     testCompile 'org.mockito:mockito-core:1.10.19'
     testCompile 'org.powermock:powermock-module-junit4:1.6.3'
     testCompile 'org.powermock:powermock-api-mockito:1.6.3'
@@ -33,15 +37,13 @@ configure([compileJava, compileTestJava]) {
     options.compilerArgs += ['-Xlint:all', '-Xlint:-path']
     options.deprecation = true
     options.encoding = 'UTF-8'
-    options.compilerArgs += ['-AdisableTargetValidator=true']
 }
 
 test {
     testLogging {
-        exceptionFormat = 'full'
+        exceptionFormat = 'full' // Always print full stack trace if something goes wrong in the unit tests
     }
 }
-
 
 // Set manifest entries
 jar {
@@ -49,10 +51,19 @@ jar {
         attributes(
                 'Built-By': System.properties['user.name'],
                 'Created-By': "${System.properties['java.vm.version']} (${System.properties['java.vm.vendor']})",
+
                 'Implementation-Name': project.name,
+                'Implementation-Vendor': project.url
+        )
+    }
+}
+
+// The version can change until we're done configuring the project, so delay setting the manifest entries until that is final
+afterEvaluate {
+    jar.manifest {
+        attributes(
                 'Implementation-Version': project.version,
-                'Implementation-Vendor': project.url,
-                'git-commit': System.getenv().commit != null ? System.getenv().commit : 'unknown'
+                'Git-Commit': project.commit
         )
     }
 }
@@ -60,7 +71,6 @@ jar {
 javadoc {
     options.encoding = 'UTF-8'
     options.charSet = 'UTF-8'
-    options.jFlags('-Xms256m', '-Xmx512m')
     options.links(
             'http://www.slf4j.org/apidocs/',
             'http://docs.guava-libraries.googlecode.com/git-history/v17.0/javadoc/',
@@ -72,13 +82,9 @@ javadoc {
             'http://asm.ow2.org/asm50/javadoc/user/',
             'http://docs.oracle.com/javase/6/docs/api/'
     )
-}
 
-if (JavaVersion.current().isJava8Compatible()) {
-    tasks.withType(Javadoc) {
-        // Disable the crazy super-strict doclint tool in Java 8
-        options.addStringOption('Xdoclint:none', '-quiet')
-    }
+    // Disable the crazy super-strict doclint tool in Java 8
+    options.addStringOption('Xdoclint:none', '-quiet')
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
@@ -86,6 +92,8 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
+// Upload source JAR and javadoc JAR when deploying
+// sourceJar is separately configured for SpongeAPI and ForgeGradle projects, so add them after the project is fully configured
 afterEvaluate {
     artifacts {
         archives sourceJar
@@ -105,11 +113,11 @@ license {
         url = project.url
     }
 
-    header api.file('HEADER.txt')
+    header = api.file('HEADER.txt')
     include '**/*.java'
 
-    ignoreFailures false
-    strictCheck true
+    ignoreFailures = false
+    strictCheck = true
 
     mapping {
         java = 'SLASHSTAR_STYLE'
@@ -117,13 +125,13 @@ license {
 }
 
 processResources {
-    // Include in final JAR
+    // Include LICENSE in final JAR
     from 'LICENSE.txt'
 }
 
 dependencies {
-    // Add custom checkstyle dependency (fixes a few wrong warnings about imports and @param tags in annotations)
-    checkstyle 'org.spongepowered:checkstyle:6.1.1-sponge1'
+    // TODO: Verify if custom modifications for checkstyle are still necessary (import order, @return on annotations)
+    checkstyle 'com.puppycrawl.tools:checkstyle:6.11.2'
 }
 
 // Checkstyle settings
@@ -136,9 +144,10 @@ checkstyle {
     ]
 }
 
-// Deployment configuration
+// Apply deployment configuration
 apply from: api.file('gradle/deploy.gradle')
 
+// Gradle version used for generating the Gradle wrapper
 task wrapper(type: Wrapper) {
     gradleVersion = '2.8-rc-2'
 }
