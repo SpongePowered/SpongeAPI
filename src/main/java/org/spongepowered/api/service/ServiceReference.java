@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.service;
 
-import com.google.common.base.Predicate;
-
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * A reference to a service that may or may not be currently registered, but will be updated if a registration does happen.

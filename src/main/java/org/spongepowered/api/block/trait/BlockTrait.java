@@ -25,12 +25,12 @@
 
 package org.spongepowered.api.block.trait;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 
 import java.util.Collection;
+import java.util.function.Predicate;
 
 /**
  * Represents a possible trait in a {@link BlockType}s {@link BlockState}.

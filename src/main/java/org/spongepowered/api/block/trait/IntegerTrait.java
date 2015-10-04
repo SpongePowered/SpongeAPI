@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.block.trait;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 
 /**
  * Represents a type of {@link BlockTrait} that accepts {@link Integer} based

@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.data.value.immutable;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.data.meta.PatternLayer;
 import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.mutable.PatternListValue;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public interface ImmutablePatternListValue extends ImmutableListValue<PatternLayer> {
 

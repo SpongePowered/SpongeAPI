@@ -26,7 +26,6 @@ package org.spongepowered.api.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.MapMaker;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
@@ -38,6 +37,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
@@ -175,7 +175,7 @@ public class SimpleServiceManager implements ServiceManager {
             if (!this.service.isPresent()) {
                 this.actionsOnPresent.add(run);
             } else {
-                run.apply(this.service.get());
+                run.test(this.service.get());
             }
         }
 
@@ -188,7 +188,7 @@ public class SimpleServiceManager implements ServiceManager {
                 this.waitLock.unlock();
             }
             for (Predicate<T> func : this.actionsOnPresent) {
-                func.apply(service);
+                func.test(service);
             }
             this.actionsOnPresent.clear();
 

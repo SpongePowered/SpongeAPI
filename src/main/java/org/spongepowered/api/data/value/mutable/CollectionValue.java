@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.data.value.mutable;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.data.value.immutable.ImmutableCollectionValue;
 
 import java.util.Collection;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * Represents a {@link Value} that is backed by a {@link Collection} of

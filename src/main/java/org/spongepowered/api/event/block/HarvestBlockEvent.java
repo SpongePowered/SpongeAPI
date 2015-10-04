@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.block;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
@@ -32,6 +31,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
+import java.util.function.Predicate;
 
 /**
  * Base event for when a target {@link BlockState} at a {@link Location} is 

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.entity.item;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
@@ -32,6 +31,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public interface AffectItemEvent extends AffectEntityEvent {
 

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.item.inventory.Inventory;
@@ -32,6 +31,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackTransaction;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Fired when {@link ItemStack}s are generated into a {@link Inventory}

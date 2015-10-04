@@ -32,12 +32,11 @@ import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.imaginary.Quaterniond;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.property.entity.EyeLocationProperty;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.Functional;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.Extent;
@@ -45,6 +44,7 @@ import org.spongepowered.api.world.extent.Extent;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * A block ray which traces a line and returns all block boundaries intersected in order,
@@ -80,14 +80,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     @SuppressWarnings("rawtypes")
     private static final Predicate ONLY_AIR_FILTER = blockTypeFilter(BlockTypes.AIR);
     @SuppressWarnings("rawtypes")
-    private static final Predicate ALL_FILTER = new Predicate<BlockRayHit>() {
-
-        @Override
-        public boolean apply(BlockRayHit lastHit) {
-            return true;
-        }
-
-    };
+    private static final Predicate ALL_FILTER = input -> true;
 
     private static final Vector3d X_POSITIVE = Vector3d.UNIT_X;
     private static final Vector3d X_NEGATIVE = X_POSITIVE.negate();
@@ -296,7 +289,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
             throw new NoSuchElementException("Extent limit reached");
         }
         // Check the block filter
-        if (!this.filter.apply(hit)) {
+        if (!this.filter.test(hit)) {
             throw new NoSuchElementException("Filter limit reached");
         }
 
@@ -536,7 +529,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
             if (this.filter == ALL_FILTER) {
                 this.filter = filter;
             } else {
-                this.filter = Predicates.and(this.filter, filter);
+                this.filter = this.filter.and(filter);
             }
             return this;
         }
@@ -551,11 +544,11 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         public BlockRayBuilder<E> filter(final Predicate<BlockRayHit<E>>... filters) {
             checkNotNull(filters, "filters");
             @SuppressWarnings("RedundantTypeArguments") // For Apple JDK 6, don't remove
-            final Predicate<BlockRayHit<E>> filter = filters.length == 1 ? filters[0] : Predicates.<BlockRayHit<E>>and(filters);
+            final Predicate<BlockRayHit<E>> filter = filters.length == 1 ? filters[0] : Functional.predicateAnd(filters);
             if (this.filter == ALL_FILTER) {
                 this.filter = filter;
             } else {
-                this.filter = Predicates.and(this.filter, filter);
+                this.filter = this.filter.and(filter);
             }
             return this;
         }
@@ -659,14 +652,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      */
     public static <E extends Extent> Predicate<BlockRayHit<E>> blockTypeFilter(final BlockType type) {
 
-        return new Predicate<BlockRayHit<E>>() {
-
-            @Override
-            public boolean apply(BlockRayHit<E> lastHit) {
-                return lastHit.getExtent().getBlockType(lastHit.getBlockX(), lastHit.getBlockY(), lastHit.getBlockZ()).equals(type);
-            }
-
-        };
+        return lastHit -> lastHit.getExtent().getBlockType(lastHit.getBlockX(), lastHit.getBlockY(), lastHit.getBlockZ()).equals(type);
 
     }
 
@@ -686,15 +672,11 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
 
         final double distanceSquared = distance * distance;
 
-        return new Predicate<BlockRayHit<E>>() {
-
-            @Override
-            public boolean apply(BlockRayHit<E> lastHit) {
-                final double deltaX = lastHit.getX() - start.getX();
-                final double deltaY = lastHit.getY() - start.getY();
-                final double deltaZ = lastHit.getZ() - start.getZ();
-                return deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ < distanceSquared;
-            }
+        return lastHit -> {
+            final double deltaX = lastHit.getX() - start.getX();
+            final double deltaY = lastHit.getY() - start.getY();
+            final double deltaZ = lastHit.getZ() - start.getZ();
+            return deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ < distanceSquared;
         };
 
     }
@@ -708,7 +690,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         }
 
         @Override
-        public boolean apply(BlockRayHit<E> lastHit) {
+        public boolean test(BlockRayHit<E> lastHit) {
             return lastHit.getBlockX() != this.target.getX() || lastHit.getBlockY() != this.target.getY()
                 || lastHit.getBlockZ() != this.target.getZ();
         }

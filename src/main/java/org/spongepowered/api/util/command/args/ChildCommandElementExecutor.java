@@ -27,9 +27,7 @@ package org.spongepowered.api.util.command.args;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.util.command.CommandMessageFormatting.error;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Multimaps;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.Texts;
@@ -48,7 +46,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 

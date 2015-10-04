@@ -26,7 +26,6 @@ package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Predicate;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.entity.Entity;
@@ -38,6 +37,7 @@ import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * A container of {@link Entity} instances.

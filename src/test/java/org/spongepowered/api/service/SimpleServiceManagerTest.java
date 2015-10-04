@@ -29,13 +29,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Optional;
-import com.google.common.base.Predicate;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SimpleServiceManagerTest {
@@ -89,12 +88,9 @@ public class SimpleServiceManagerTest {
 
         final AtomicBoolean ran = new AtomicBoolean(false);
         ServiceReference<TestInterface> futureRef = serviceManager.potentiallyProvide(TestInterface.class);
-        futureRef.executeWhenPresent(new Predicate<TestInterface>() {
-            @Override
-            public boolean apply(TestInterface input) {
-                ran.set(true);
-                return true;
-            }
+        futureRef.executeWhenPresent(input -> {
+            ran.set(true);
+            return true;
         });
         assertFalse(ran.get());
         assertFalse(futureRef.ref().isPresent());

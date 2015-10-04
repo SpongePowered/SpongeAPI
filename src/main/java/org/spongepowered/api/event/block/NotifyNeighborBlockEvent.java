@@ -25,7 +25,6 @@
 
 package org.spongepowered.api.event.block;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
@@ -36,6 +35,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 import java.util.Map;
+import java.util.function.Predicate;
 
 /**
  * Called when a block at a {@link Location} triggers an update to one or more
