@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.entity;
 
-import java.util.Optional;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.data.LocateableSnapshot;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
@@ -32,6 +31,7 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**

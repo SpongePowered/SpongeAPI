@@ -36,6 +36,8 @@ public interface ThrownPotion extends Projectile {
      *
      * @return A copy of the represented item data
      */
-    RepresentedItemData getPotionItemData();
+    default RepresentedItemData getPotionItemData() {
+        return get(RepresentedItemData.class).get();
+    }
 
 }

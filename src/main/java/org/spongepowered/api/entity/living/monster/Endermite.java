@@ -36,6 +36,8 @@ public interface Endermite extends Monster {
      *
      * @return A copy of the expirable data
      */
-    ExpirableData getExpirableData();
+    default ExpirableData getExpirableData() {
+        return get(ExpirableData.class).get();
+    }
 
 }

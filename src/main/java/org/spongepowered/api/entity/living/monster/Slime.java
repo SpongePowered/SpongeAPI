@@ -36,6 +36,8 @@ public interface Slime extends Monster {
      *
      * @return A copy of the current slime data
      */
-    SlimeData getSlimeData();
+    default SlimeData getSlimeData() {
+        return get(SlimeData.class).get();
+    }
 
 }

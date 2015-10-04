@@ -74,6 +74,8 @@ public interface Human extends Living, ProjectileSource, ArmorEquipable, Tamer, 
      *
      * @return A copy of the current food data
      */
-    FoodData getFoodData();
+    default FoodData getFoodData() {
+        return get(FoodData.class).get();
+    }
 
 }

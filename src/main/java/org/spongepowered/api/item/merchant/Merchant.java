@@ -60,6 +60,8 @@ public interface Merchant extends DataHolder, Carrier {
      *
      * @return A copy of the trade offer data
      */
-    TradeOfferData getTradeOfferData();
+    default TradeOfferData getTradeOfferData() {
+        return get(TradeOfferData.class).get();
+    }
 
 }

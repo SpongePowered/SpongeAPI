@@ -79,14 +79,18 @@ public interface User extends DataHolder, Identifiable, ArmorEquipable, Tamer, D
      *
      * @return A copy of the achievement data
      */
-    AchievementData getAchievementData();
+    default AchievementData getAchievementData() {
+        return get(AchievementData.class).get();
+    }
 
     /**
      * Gets a copy of the {@link StatisticData} for this user.
      *
      * @return A copy of the statistic data
      */
-    StatisticData getStatisticData();
+    default StatisticData getStatisticData() {
+        return get(StatisticData.class).get();
+    }
 
     /**
      * Gets a copy of the current {@link BanData} for this user.

@@ -43,6 +43,8 @@ public interface Explosive extends Entity {
      *
      * @return A copy of the explosive radius data
      */
-    ExplosiveRadiusData getExplosiveRadiusData();
+    default ExplosiveRadiusData getExplosiveRadiusData() {
+        return get(ExplosiveRadiusData.class).get();
+    }
 
 }

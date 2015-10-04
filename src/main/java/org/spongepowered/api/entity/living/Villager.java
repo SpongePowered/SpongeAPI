@@ -47,6 +47,8 @@ public interface Villager extends Ageable, Merchant {
      *
      * @return A copy of the career data
      */
-    CareerData getCareerData();
+    default CareerData getCareerData() {
+        return get(CareerData.class).get();
+    }
 
 }

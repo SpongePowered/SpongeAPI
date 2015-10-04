@@ -38,6 +38,8 @@ public interface Egg extends Projectile {
      *
      * @return A copy of the damaging data
      */
-    DamagingData getDamagingData();
+    default DamagingData getDamagingData() {
+        return get(DamagingData.class).get();
+    }
 
 }

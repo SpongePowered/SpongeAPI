@@ -39,7 +39,9 @@ public interface Arrow extends Projectile {
      *
      * @return A copy of the damaging data
      */
-    DamagingData getDamagingData();
+    default DamagingData getDamagingData() {
+        return get(DamagingData.class).get();
+    }
 
     /**
      * Gets a copy of the current {@link KnockbackData} that this arrow
@@ -47,6 +49,8 @@ public interface Arrow extends Projectile {
      *
      * @return A copy of the knockback data
      */
-    KnockbackData getKnockbackData();
+    default KnockbackData getKnockbackData() {
+        return get(KnockbackData.class).get();
+    }
 
 }

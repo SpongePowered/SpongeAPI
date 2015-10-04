@@ -43,14 +43,18 @@ public interface Living extends Entity, TeamMember {
      *
      * @return A copy of the current health data
      */
-    HealthData getHealthData();
+    default HealthData getHealthData() {
+        return get(HealthData.class).get();
+    }
 
     /**
      * Gets a copy of the current {@link DamageableData}.
      *
      * @return A copy of the current damageable data
      */
-    DamageableData getMortalData();
+    default DamageableData getMortalData() {
+        return get(DamageableData.class).get();
+    }
 
 
 

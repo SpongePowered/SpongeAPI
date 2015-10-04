@@ -38,7 +38,9 @@ public interface ArmorStand extends Living, ArmorEquipable {
      *
      * @return A copy of the current body rotational data
      */
-    BodyPartRotationalData getBodyPartRotationalData();
+    default BodyPartRotationalData getBodyPartRotationalData() {
+        return get(BodyPartRotationalData.class).get();
+    }
 
     /**
      * Returns whether this armor stand is a small armor stand or not.

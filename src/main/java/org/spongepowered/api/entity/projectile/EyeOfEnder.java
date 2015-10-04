@@ -37,6 +37,8 @@ public interface EyeOfEnder extends Projectile {
      *
      * @return A copy of the targeted location data
      */
-    TargetedLocationData getTargetLocationData();
+    default TargetedLocationData getTargetLocationData() {
+        return get(TargetedLocationData.class).get();
+    }
 
 }
