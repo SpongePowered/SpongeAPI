@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.block;
 
-import java.util.Optional;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.block.trait.BlockTrait;
 import org.spongepowered.api.data.ImmutableDataHolder;
@@ -39,6 +38,7 @@ import org.spongepowered.api.world.World;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Represents a particular "state" that can exist at a {@link Location} with
@@ -106,13 +106,16 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
     /**
      * Gets the {@link BlockState} with the appropriate value for the given
      * {@link BlockTrait}. If the {@link BlockTrait} is not supported,
-     * {@link Optional#empty()} is returned.
+     * {@link Optional#empty()} is returned. If the object is not either
+     * an instance contained in {@link BlockTrait#getPossibleValues()} or
+     * an instance {@link Object#toString()}, {@link Optional#empty()} may be
+     * returned.
      *
      * @param trait The trait
      * @param value The value
      * @return The blockstate, if supported
      */
-    Optional<BlockState> withTrait(BlockTrait<?> trait, Comparable<?> value);
+    Optional<BlockState> withTrait(BlockTrait<?> trait, Object value);
 
     /**
      * Gets an immutable {@link Collection} of all applicable
