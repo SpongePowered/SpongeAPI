@@ -13,7 +13,7 @@ A Minecraft plugin API (not including an implementation). It is licensed under t
 * [Javadocs]
 
 ## Prerequisites
-* [Java] 6
+* [Java] 8
 
 ## Clone
 The following steps will ensure your project is cloned properly.  
