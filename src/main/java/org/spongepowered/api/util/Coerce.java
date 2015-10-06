@@ -267,9 +267,7 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Integer.valueOf(obj.toString()));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
 
@@ -324,9 +322,7 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Double.valueOf(obj.toString()));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
 
@@ -375,9 +371,7 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Float.valueOf(obj.toString()));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
 
@@ -425,9 +419,7 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Short.parseShort(Coerce.sanitiseNumber(obj)));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
         return Optional.empty();
@@ -472,9 +464,7 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Byte.parseByte(Coerce.sanitiseNumber(obj)));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
         return Optional.empty();
@@ -519,9 +509,7 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Long.parseLong(Coerce.sanitiseNumber(obj)));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
         return Optional.empty();

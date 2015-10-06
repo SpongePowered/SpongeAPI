@@ -87,9 +87,7 @@ public class ClassGeneratorProvider implements FactoryProvider {
 
         try {
             return (EventFactory<T>) factoryClass.newInstance();
-        } catch (InstantiationException e) {
-            throw new RuntimeException("Failed to create event factory", e);
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             throw new RuntimeException("Failed to create event factory", e);
         }
     }
