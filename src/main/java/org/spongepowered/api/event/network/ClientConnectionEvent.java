@@ -42,16 +42,17 @@ import org.spongepowered.api.world.World;
  *
  * <p>Together with {@link SpawnEntityEvent}, these events represent
  * the progression of a {@link Player} from first authenticating, to being
- * fully loaded in the world.
+ * fully loaded in the world.</p>
  *
- * The events are fired in the following order:
+ * <p>The events are fired in the following order:</p>
  *
- * #Auth -> #Login -> {@link SpawnEntityEvent} -> #Join #Post
+ * <p>{@link Auth} -> {@link Login} -> {@link SpawnEntityEvent} -> {@link Join}
+ * {@link Post}</p>
  *
- * {@link SpawnEntityEvent} is still fired for players, for consistency.
+ * <p>{@link SpawnEntityEvent} is still fired for players, for consistency.
  * However, the player is not at a well-defined state at that point.
- * It's reccomended to use the this event's subinterfaces to interact
- * with the player at well-defined moments during the connection process.
+ * It's recommended to use the this event's subinterfaces to interact
+ * with the player at well-defined moments during the connection process.</p>
  */
 public interface ClientConnectionEvent extends GameEvent {
 
@@ -106,11 +107,12 @@ public interface ClientConnectionEvent extends GameEvent {
      * <p>The {@link SpawnEntityEvent} for the {@link Player} is fired after
      * the #Login event. This event is fired after both.</p>
      *
-     * The event is fired after the corresponding {@link SpawnEntityEvent}. However,
-     * the player is still not fully in the world yet. More specifically, the client
-     * has not yet been informed of its position within the world.
+     * <p>The event is fired after the corresponding {@link SpawnEntityEvent}.
+     * However, the player is still not fully in the world yet. More
+     * specifically, the client has not yet been informed of its position
+     * within the world.</p>
      *
-     * Because of this, changes such as modifying {@link VehicleData}
+     * <p>Because of this, changes such as modifying {@link VehicleData}
      * should be done at #Post, when the player is fully in the world.</p>
      */
     interface Join extends ClientConnectionEvent, DisplaceEntityEvent.TargetPlayer, MessageSinkEvent {}
@@ -120,10 +122,10 @@ public interface ClientConnectionEvent extends GameEvent {
      *
      * <p>Note: This event is fired after #Join.</p>
      *
-     * The event is fired when the player is completely ready to be manipulated
+     * <p>The event is fired when the player is completely ready to be manipulated
      * in the world. It is intended to notify listeners of the earliest
      * possible moment when a {@link Player} can be considered to have
-     * fully joined the game.
+     * fully joined the game.</p>
      */
     interface Post extends ClientConnectionEvent, TargetPlayerEvent {}
 

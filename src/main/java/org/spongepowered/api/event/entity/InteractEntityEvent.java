@@ -58,14 +58,14 @@ public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
     /**
      * An event where the targeted entity is being interacted with the client's "primary" button.
      *
-     * This is usually left-click.
+     * <p>This is usually left-click.</p>
      */
     interface Primary extends InteractEntityEvent {}
 
     /**
      * An event where the targeted entity is being interacted with the client's "secondary" button.
      *
-     * This is usually right-click.
+     * <p>This is usually right-click.</p>
      */
     interface Secondary extends InteractEntityEvent {}
 

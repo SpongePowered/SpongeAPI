@@ -195,10 +195,10 @@ public final class Transform<E extends Extent> {
     /**
      * Returns the rotation as a quaternion.
      *
-     * Quaternions are objectively better than
+     * <p>Quaternions are objectively better than
      * the Euler angles preferred by Minecraft.
      * This is for compatibility with
-     * the flow-math library.
+     * the flow-math library.</p>
      *
      * @return The rotation
      */
@@ -213,10 +213,10 @@ public final class Transform<E extends Extent> {
      * Creates a copy of this transform and sets the rotation as
      * a quaternion.
      *
-     * Quaternions are objectively better than
+     * <p>Quaternions are objectively better than
      * the Euler angles preferred by Minecraft.
      * This is for compatibility with
-     * the flow-math library.
+     * the flow-math library.</p>
      *
      * @param rotation The new rotation
      * @return A new transform

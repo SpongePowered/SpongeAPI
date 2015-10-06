@@ -54,7 +54,7 @@ public interface TeleportHelper {
      * @param location The location to search nearby.
      * @return A safe location near the original location or the original
      *         location if it is deemed safe. If no safe location can be found,
-     *         {@link Optional#absent} will be returned.
+     *         {@link Optional#empty()} will be returned.
      */
     Optional<Location<World>> getSafeLocation(Location<World> location);
 
@@ -73,7 +73,7 @@ public interface TeleportHelper {
      * @param width The radius of blocks on the x and z-axis to search.
      * @return A safe location near the original location or the original
      *         location if it is deemed safe. If no safe location can be found,
-     *         {@link Optional#absent} will be returned
+     *         {@link Optional#empty()} will be returned
      */
     Optional<Location<World>> getSafeLocation(Location<World> location, int height, int width);
 }

@@ -88,7 +88,7 @@ public abstract class Cause {
      * {@link SpawnCause} for an {@link SpawnEntityEvent}.</p>
      *
      * @param objects The objects being the cause
-     * @return
+     * @return New cause from the provided objects
      */
     public static Cause of(Object... objects) {
         return new PresentCause(checkNotNull(objects));

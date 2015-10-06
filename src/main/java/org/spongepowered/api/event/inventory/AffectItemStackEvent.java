@@ -50,7 +50,7 @@ public interface AffectItemStackEvent extends TargetInventoryEvent, Cancellable,
     /**
      * Applies the provided {@link Predicate} to the {@link List} of
      * {@link ItemStackTransaction}s from {@link #getTransactions()} such that
-     * any time that {@link Predicate#apply(Object)} returns <code>false</code>
+     * any time that {@link Predicate#test(Object)} returns <code>false</code>
      * on a {@link ItemStackTransaction}, the {@link ItemStackTransaction} is
      * marked as "invalid" and will not apply post event.
      *

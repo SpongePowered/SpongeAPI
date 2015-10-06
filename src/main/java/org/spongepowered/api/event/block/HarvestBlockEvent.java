@@ -79,9 +79,8 @@ public interface HarvestBlockEvent extends TargetBlockEvent, ChangeEntityExperie
     /**
      * Gets the original chance unmodified by event changes.
      *
-     * @see HarvestBlockEvent#getDropChance()
-     *
      * @return The original chance
+     * @see HarvestBlockEvent#getDropChance()
      */
     float getOriginalDropChance();
 
@@ -104,10 +103,10 @@ public interface HarvestBlockEvent extends TargetBlockEvent, ChangeEntityExperie
      * of drop. Any value below 0.0f will be grounded at 0 and likewise any 
      * value above 1.0f will be capped at 1.0f.</p>
      *
-     * Keep in mind that your chance is not guaranteed; a plugin or mod could 
+     * <p>Keep in mind that your chance is not guaranteed; a plugin or mod could
      * change it afterwards. If the desire is to guarantee that the drop won't 
      * occur, use {@link Cancellable#setCancelled(boolean)} instead (make sure 
-     * to pass in true).
+     * to pass in true).</p>
      *
      * @param chance The chance
      */

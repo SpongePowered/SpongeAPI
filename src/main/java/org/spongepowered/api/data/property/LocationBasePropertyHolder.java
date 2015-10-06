@@ -82,6 +82,7 @@ public interface LocationBasePropertyHolder {
      * not change the information about it's own properties either.</p>
      *
      * @param coords The coordinates
+     * @param direction The direction
      * @param propertyClass The property class
      * @param <T> The type of property
      * @return The property, if available
@@ -103,6 +104,7 @@ public interface LocationBasePropertyHolder {
      * @param x The x coordinate
      * @param y The y coordinate
      * @param z The z coordinate
+     * @param direction The direction
      * @param propertyClass The property class
      * @param <T> The type of property
      * @return The property, if available
@@ -116,6 +118,7 @@ public interface LocationBasePropertyHolder {
      * <p>{@link Property}s can not be changed such that the property is
      * attached to the instance of the residing {@link PropertyHolder}.</p>
      *
+     * @param coords The coordinates
      * @return An immutable collection of all known {@link Property}s
      */
     default Collection<Property<?, ?>> getProperties(Vector3i coords) {

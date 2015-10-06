@@ -60,19 +60,17 @@ public interface TristateResult {
     }
 
     /**
-     * Returns whether the
-     * {@link TristateResult.Result#ALLOW} can be
-     * used.
+     * @return Whether the {@link TristateResult.Result#ALLOW} can be used
      */
     boolean hasAllowResult();
 
     /**
-     * Returns the original {@link Result} of this event.
+     * @return the original {@link Result} of this event
      */
     Result getOriginalResult();
 
     /**
-     * Returns the {@link Result} of this event.
+     * @return the {@link Result} of this event
      */
     Result getResult();
 

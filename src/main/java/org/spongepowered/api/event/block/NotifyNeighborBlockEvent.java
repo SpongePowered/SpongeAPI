@@ -68,7 +68,7 @@ public interface NotifyNeighborBlockEvent extends GameEvent, Cancellable, CauseT
     /**
      * Filters out {@link Direction}s of the {@link BlockState}s to be
      * marked as "valid" after this event. If the
-     * {@link Predicate#apply(Object)} returns <code>false</code>, the
+     * {@link Predicate#test(Object)} returns <code>false</code>, the
      * {@link BlockState} is removed from {@link #getRelatives()} map.
      *
      * @param predicate The predicate to use for filtering.

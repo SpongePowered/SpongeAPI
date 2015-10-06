@@ -553,6 +553,7 @@ public class ClassGenerator {
      * @param type The type
      * @param name The canonical of the generated class
      * @param parentType The parent type
+     * @param plugins Event factory plugins
      * @return The class' contents, to be loaded via a {@link ClassLoader}
      */
     public byte[] createClass(final Class<?> type, final String name, final Class<?> parentType, List<? extends EventFactoryPlugin> plugins) {

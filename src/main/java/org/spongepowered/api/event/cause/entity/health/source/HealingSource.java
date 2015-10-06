@@ -33,8 +33,8 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 /**
  * Represents a {@link Cause} for damage on the {@link Entity} being
  * damaged. Usually the {@link HealingSource} will have different properties
- * based on the source of damage, such as {@link EntityHealingSource}s,
- * {@link BlockHealingSource}s, and {@link FallingBlockHealingSource}s.
+ * based on the source of damage, such as {@link EntityHealingSource}s and
+ * {@link BlockHealingSource}s.
  *
  * <p>Almost always, the {@link HealingSource} will be the first element in
  * the {@link Cause} of the event. Any additional modifiers that "aid" the
