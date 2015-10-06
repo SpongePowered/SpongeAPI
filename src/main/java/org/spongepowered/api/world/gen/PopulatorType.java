@@ -22,14 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.world.Location;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Base event for when {@link BlockState}s at {@link Location <World>}s are
- * being broke.
+ * Describes a type of {@link Populator}.
  */
-public interface BreakBlockEvent extends ChangeBlockEvent {
+@CatalogedBy(PopulatorTypes.class)
+public interface PopulatorType extends CatalogType, Translatable {
+
+    /**
+     * Returns the populator class for this type.
+     *
+     * @return The populator class for this type
+     */
+    Class<? extends Populator> getPopulatorClass();
+
 }

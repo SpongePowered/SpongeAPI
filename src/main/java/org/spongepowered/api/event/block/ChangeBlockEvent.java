@@ -24,13 +24,23 @@
  */
 package org.spongepowered.api.event.block;
 
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTransaction;
+import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
 import org.spongepowered.api.event.impl.AbstractChangeBlockEvent;
 import org.spongepowered.api.event.world.TargetWorldEvent;
 import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -71,5 +81,65 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable, CauseTr
      * @return The filtered transactions
      */
     List<BlockTransaction> filterAll();
+
+    /**
+     * Called when there are block changes due to a {@link BlockType}
+     * having "ticked", in which the {@link Cause} will have a
+     * {@link BlockSnapshot}, or, in the case that an {@link Entity}
+     * has "ticked", in which the {@link Cause} will have an {@link Entity},
+     * or, in the case that a {@link TileEntity} "ticked", the {@link Cause}
+     * will have the {@link TileEntity}. Note that this event is fired before
+     * processing a {@link Break} or {@link Place} event.
+     *
+     * <p>The idea is that  a block, entity, or tile entity "ticks" in which
+     * during that "tick", they make a block change. If the block change is
+     * purely "placing" of blocks, the {@link Place} event is thrown. If the
+     * block changes are purely "breaking" of blocks, the {@link Break} event
+     * is thrown.</p>
+     */
+    interface Post extends ChangeBlockEvent {}
+
+    /**
+     * Called when specific {@link BlockType}s have a notion of "decaying"
+     * for various reasons such that the changes are always caused by
+     * themselves. This is also called after a {@link Tick} event.
+     */
+    interface Decay extends Post {}
+
+    /**
+     * Called when a {@link BlockType} decides to "grow" either other 
+     * blocks or itself or both. Usually considered to be plants or crops,
+     * this is called after a {@link Tick} event.
+     */
+    interface Grow extends Post {}
+
+    /**
+     * Called when {@link BlockState}s at {@link Location <World>}s are
+     * being broke. This usually occurs, whenever a {@link BlockState} changes
+     * to {@link BlockTypes#AIR}
+     * 
+     * <p>Note: This does not include fluids. See ChangeBlockEvent#Fluid</p>
+     */
+    interface Break extends Post {}
+
+    /**
+     * Called when one or more {@link BlockType}s are added to the world.
+     * 
+     * <p>Note: This does not include fluids. See ChangeBlockEvent#Fluid</p>
+     */
+    interface Place extends Post {}
+
+    /**
+     * Called when one or more {@link BlockType}s are modified in the world.
+     * 
+     * <p>Note: This does not include fluids. See ChangeBlockEvent#Fluid</p>
+     */
+    interface Modify extends Post {}
+
+    /**
+     * Called when one or more {@link BlockType}s are affected in the 
+     * world by a fluid.
+     */
+    interface Fluid extends Post {}
 
 }

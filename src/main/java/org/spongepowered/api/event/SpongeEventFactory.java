@@ -27,12 +27,6 @@ package org.spongepowered.api.event;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.collect.Maps;
-import java.net.InetSocketAddress;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.MinecraftVersion;
@@ -66,12 +60,10 @@ import org.spongepowered.api.event.action.InteractEvent;
 import org.spongepowered.api.event.action.LightningEvent;
 import org.spongepowered.api.event.action.MessageEvent;
 import org.spongepowered.api.event.action.SleepingEvent;
-import org.spongepowered.api.event.block.BreakBlockEvent;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.block.CollideBlockEvent;
 import org.spongepowered.api.event.block.DecayBlockEvent;
 import org.spongepowered.api.event.block.GrowBlockEvent;
-import org.spongepowered.api.event.block.HarvestBlockEvent;
 import org.spongepowered.api.event.block.InteractBlockEvent;
 import org.spongepowered.api.event.block.MoveBlockEvent;
 import org.spongepowered.api.event.block.NotifyNeighborBlockEvent;
@@ -137,7 +129,7 @@ import org.spongepowered.api.event.game.state.GameStoppedServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.event.inventory.AffectItemStackEvent;
 import org.spongepowered.api.event.inventory.CraftItemEvent;
-import org.spongepowered.api.event.inventory.DropItemStackEvent;
+import org.spongepowered.api.event.inventory.DropItemEvent;
 import org.spongepowered.api.event.inventory.InteractInventoryEvent;
 import org.spongepowered.api.event.inventory.PickUpItemEvent;
 import org.spongepowered.api.event.inventory.TargetContainerEvent;
@@ -173,7 +165,6 @@ import org.spongepowered.api.event.world.chunk.UnforcedChunkEvent;
 import org.spongepowered.api.event.world.chunk.UnloadChunkEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.ItemStackTransaction;
 import org.spongepowered.api.item.inventory.Slot;
@@ -201,8 +192,15 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gen.Populator;
+import org.spongepowered.api.world.gen.PopulatorType;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
+
+import java.net.InetSocketAddress;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
 
 public class SpongeEventFactory {
     /**
@@ -618,26 +616,6 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.block.BreakBlockEvent}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param targetWorld The target world
-     * @param transactions The transactions
-     * @return A new break block event
-     */
-    public static BreakBlockEvent createBreakBlockEvent(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("targetWorld", targetWorld);
-        values.put("transactions", transactions);
-        return SpongeEventFactoryUtils.createEventImpl(BreakBlockEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent}.
      * 
      * @param game The game
@@ -653,6 +631,146 @@ public class SpongeEventFactory {
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
         return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.ChangeBlockEvent.Break}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param targetWorld The target world
+     * @param transactions The transactions
+     * @return A new break change block event
+     */
+    public static ChangeBlockEvent.Break createChangeBlockEventBreak(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("targetWorld", targetWorld);
+        values.put("transactions", transactions);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.Break.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.ChangeBlockEvent.Decay}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param targetWorld The target world
+     * @param transactions The transactions
+     * @return A new decay change block event
+     */
+    public static ChangeBlockEvent.Decay createChangeBlockEventDecay(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("targetWorld", targetWorld);
+        values.put("transactions", transactions);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.Decay.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.ChangeBlockEvent.Fluid}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param targetWorld The target world
+     * @param transactions The transactions
+     * @return A new fluid change block event
+     */
+    public static ChangeBlockEvent.Fluid createChangeBlockEventFluid(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("targetWorld", targetWorld);
+        values.put("transactions", transactions);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.Fluid.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.ChangeBlockEvent.Grow}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param targetWorld The target world
+     * @param transactions The transactions
+     * @return A new grow change block event
+     */
+    public static ChangeBlockEvent.Grow createChangeBlockEventGrow(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("targetWorld", targetWorld);
+        values.put("transactions", transactions);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.Grow.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.ChangeBlockEvent.Modify}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param targetWorld The target world
+     * @param transactions The transactions
+     * @return A new modify change block event
+     */
+    public static ChangeBlockEvent.Modify createChangeBlockEventModify(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("targetWorld", targetWorld);
+        values.put("transactions", transactions);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.Modify.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.ChangeBlockEvent.Place}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param targetWorld The target world
+     * @param transactions The transactions
+     * @return A new place change block event
+     */
+    public static ChangeBlockEvent.Place createChangeBlockEventPlace(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("targetWorld", targetWorld);
+        values.put("transactions", transactions);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.Place.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param targetWorld The target world
+     * @param transactions The transactions
+     * @return A new post change block event
+     */
+    public static ChangeBlockEvent.Post createChangeBlockEventPost(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("targetWorld", targetWorld);
+        values.put("transactions", transactions);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.Post.class, values);
     }
 
     /**
@@ -715,38 +833,6 @@ public class SpongeEventFactory {
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
         return SpongeEventFactoryUtils.createEventImpl(GrowBlockEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.block.HarvestBlockEvent}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param originalDropChance The original drop chance
-     * @param dropChance The drop chance
-     * @param originalExperience The original experience
-     * @param experience The experience
-     * @param originalItemStacks The original item stacks
-     * @param itemStacks The item stacks
-     * @param targetBlock The target block
-     * @param targetEntity The target entity
-     * @return A new harvest block event
-     */
-    public static HarvestBlockEvent createHarvestBlockEvent(Game game, Cause cause, float originalDropChance, float dropChance, int originalExperience, int experience, Collection<ItemStack> originalItemStacks, Collection<ItemStack> itemStacks, BlockSnapshot targetBlock, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("originalDropChance", originalDropChance);
-        values.put("dropChance", dropChance);
-        values.put("originalExperience", originalExperience);
-        values.put("experience", experience);
-        values.put("originalItemStacks", originalItemStacks);
-        values.put("itemStacks", itemStacks);
-        values.put("targetBlock", targetBlock);
-        values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(HarvestBlockEvent.class, values);
     }
 
     /**
@@ -842,99 +928,17 @@ public class SpongeEventFactory {
      * 
      * @param game The game
      * @param cause The cause
-     * @param originalRelatives The original relatives
-     * @param relatives The relatives
+     * @param originalNeighbors The original neighbors
+     * @param neighbors The neighbors
      * @return A new notify neighbor block event
      */
-    public static NotifyNeighborBlockEvent createNotifyNeighborBlockEvent(Game game, Cause cause, Map<Direction, BlockSnapshot> originalRelatives, Map<Direction, Location<World>> relatives) {
+    public static NotifyNeighborBlockEvent createNotifyNeighborBlockEvent(Game game, Cause cause, Map<Direction, BlockState> originalNeighbors, Map<Direction, BlockState> neighbors) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
-        values.put("originalRelatives", originalRelatives);
-        values.put("relatives", relatives);
+        values.put("originalNeighbors", originalNeighbors);
+        values.put("neighbors", neighbors);
         return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Burn}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param originalRelatives The original relatives
-     * @param relatives The relatives
-     * @return A new burn notify neighbor block event
-     */
-    public static NotifyNeighborBlockEvent.Burn createNotifyNeighborBlockEventBurn(Game game, Cause cause, Map<Direction, BlockSnapshot> originalRelatives, Map<Direction, Location<World>> relatives) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("originalRelatives", originalRelatives);
-        values.put("relatives", relatives);
-        return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.Burn.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Ignite}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param originalRelatives The original relatives
-     * @param relatives The relatives
-     * @return A new ignite notify neighbor block event
-     */
-    public static NotifyNeighborBlockEvent.Ignite createNotifyNeighborBlockEventIgnite(Game game, Cause cause, Map<Direction, BlockSnapshot> originalRelatives, Map<Direction, Location<World>> relatives) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("originalRelatives", originalRelatives);
-        values.put("relatives", relatives);
-        return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.Ignite.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Power}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param originalRelatives The original relatives
-     * @param relatives The relatives
-     * @return A new power notify neighbor block event
-     */
-    public static NotifyNeighborBlockEvent.Power createNotifyNeighborBlockEventPower(Game game, Cause cause, Map<Direction, BlockSnapshot> originalRelatives, Map<Direction, Location<World>> relatives) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("originalRelatives", originalRelatives);
-        values.put("relatives", relatives);
-        return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.Power.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.block.NotifyNeighborBlockEvent.Spread}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param originalRelatives The original relatives
-     * @param relatives The relatives
-     * @param spreadingSnapshot The spreading snapshot
-     * @return A new spread notify neighbor block event
-     */
-    public static NotifyNeighborBlockEvent.Spread createNotifyNeighborBlockEventSpread(Game game, Cause cause, Map<Direction, BlockSnapshot> originalRelatives, Map<Direction, Location<World>> relatives, BlockSnapshot spreadingSnapshot) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("originalRelatives", originalRelatives);
-        values.put("relatives", relatives);
-        values.put("spreadingSnapshot", spreadingSnapshot);
-        return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.Spread.class, values);
     }
 
     /**
@@ -2462,6 +2466,60 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.SpawnEntityEvent.ChunkLoad}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @return A new chunk load spawn entity event
+     */
+    public static SpawnEntityEvent.ChunkLoad createSpawnEntityEventChunkLoad(Game game, Cause cause, Entity targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(SpawnEntityEvent.ChunkLoad.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.SpawnEntityEvent.MobSpawner}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @return A new mob spawner spawn entity event
+     */
+    public static SpawnEntityEvent.MobSpawner createSpawnEntityEventMobSpawner(Game game, Cause cause, Entity targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(SpawnEntityEvent.MobSpawner.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.SpawnEntityEvent.Spawner}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @return A new spawner spawn entity event
+     */
+    public static SpawnEntityEvent.Spawner createSpawnEntityEventSpawner(Game game, Cause cause, Entity targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(SpawnEntityEvent.Spawner.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.TameEntityEvent}.
      * 
      * @param game The game
@@ -3048,75 +3106,129 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.DropItemStackEvent}.
+     * {@link org.spongepowered.api.event.inventory.DropItemEvent}.
      * 
      * @param game The game
      * @param cause The cause
-     * @return A new drop item stack event
+     * @return A new drop item event
      */
-    public static DropItemStackEvent createDropItemStackEvent(Game game, Cause cause) {
+    public static DropItemEvent createDropItemEvent(Game game, Cause cause) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
-        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemEvent.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Drop}.
+     * {@link org.spongepowered.api.event.inventory.DropItemEvent.Destruct}.
      * 
      * @param game The game
      * @param cause The cause
      * @param entities The entities
      * @param entitySnapshots The entity snapshots
      * @param targetWorld The target world
-     * @return A new drop drop item stack event
+     * @return A new destruct drop item event
      */
-    public static DropItemStackEvent.Drop createDropItemStackEventDrop(Game game, Cause cause, List<Item> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
+    public static DropItemEvent.Destruct createDropItemEventDestruct(Game game, Cause cause, List<Item> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
-        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.Drop.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemEvent.Destruct.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Post}.
+     * {@link org.spongepowered.api.event.inventory.DropItemEvent.Dispense}.
      * 
      * @param game The game
      * @param cause The cause
-     * @return A new post drop item stack event
+     * @param entities The entities
+     * @param entitySnapshots The entity snapshots
+     * @param targetWorld The target world
+     * @return A new dispense drop item event
      */
-    public static DropItemStackEvent.Post createDropItemStackEventPost(Game game, Cause cause) {
+    public static DropItemEvent.Dispense createDropItemEventDispense(Game game, Cause cause, List<Item> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
-        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.Post.class, values);
+        values.put("entities", entities);
+        values.put("entitySnapshots", entitySnapshots);
+        values.put("targetWorld", targetWorld);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemEvent.Dispense.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.DropItemStackEvent.Pre}.
+     * {@link org.spongepowered.api.event.inventory.DropItemEvent.Harvest}.
      * 
      * @param game The game
      * @param cause The cause
-     * @param defaultDroppedItems The default dropped items
+     * @param originalDropChance The original drop chance
+     * @param dropChance The drop chance
+     * @param originalDroppedItems The original dropped items
      * @param droppedItems The dropped items
-     * @return A new pre drop item stack event
+     * @param targetBlock The target block
+     * @return A new harvest drop item event
      */
-    public static DropItemStackEvent.Pre createDropItemStackEventPre(Game game, Cause cause, List<ItemStackSnapshot> defaultDroppedItems, List<ItemStackTransaction> droppedItems) {
+    public static DropItemEvent.Harvest createDropItemEventHarvest(Game game, Cause cause, float originalDropChance, float dropChance, List<ItemStackSnapshot> originalDroppedItems, List<ItemStackSnapshot> droppedItems, BlockSnapshot targetBlock) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
-        values.put("defaultDroppedItems", defaultDroppedItems);
+        values.put("originalDropChance", originalDropChance);
+        values.put("dropChance", dropChance);
+        values.put("originalDroppedItems", originalDroppedItems);
         values.put("droppedItems", droppedItems);
-        return SpongeEventFactoryUtils.createEventImpl(DropItemStackEvent.Pre.class, values);
+        values.put("targetBlock", targetBlock);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemEvent.Harvest.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.DropItemEvent.Pre}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param originalDroppedItems The original dropped items
+     * @param droppedItems The dropped items
+     * @return A new pre drop item event
+     */
+    public static DropItemEvent.Pre createDropItemEventPre(Game game, Cause cause, List<ItemStackSnapshot> originalDroppedItems, List<ItemStackSnapshot> droppedItems) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("originalDroppedItems", originalDroppedItems);
+        values.put("droppedItems", droppedItems);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemEvent.Pre.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.DropItemEvent.Toss}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param entities The entities
+     * @param entitySnapshots The entity snapshots
+     * @param targetWorld The target world
+     * @return A new toss drop item event
+     */
+    public static DropItemEvent.Toss createDropItemEventToss(Game game, Cause cause, List<Item> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("entities", entities);
+        values.put("entitySnapshots", entitySnapshots);
+        values.put("targetWorld", targetWorld);
+        return SpongeEventFactoryUtils.createEventImpl(DropItemEvent.Toss.class, values);
     }
 
     /**
@@ -3470,12 +3582,10 @@ public class SpongeEventFactory {
      * @param message The message
      * @param originalSink The original sink
      * @param sink The sink
-     * @param fromTransform The from transform
-     * @param toTransform The to transform
      * @param targetEntity The target entity
      * @return A new join client connection event
      */
-    public static ClientConnectionEvent.Join createClientConnectionEventJoin(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Transform<World> fromTransform, Transform<World> toTransform, Player targetEntity) {
+    public static ClientConnectionEvent.Join createClientConnectionEventJoin(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Player targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3483,8 +3593,6 @@ public class SpongeEventFactory {
         values.put("message", message);
         values.put("originalSink", originalSink);
         values.put("sink", sink);
-        values.put("fromTransform", fromTransform);
-        values.put("toTransform", toTransform);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Join.class, values);
     }
@@ -3500,11 +3608,13 @@ public class SpongeEventFactory {
      * @param message The message
      * @param originalSink The original sink
      * @param sink The sink
+     * @param fromTransform The from transform
+     * @param toTransform The to transform
      * @param connection The connection
      * @param profile The profile
      * @return A new login client connection event
      */
-    public static ClientConnectionEvent.Login createClientConnectionEventLogin(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, RemoteConnection connection, GameProfile profile) {
+    public static ClientConnectionEvent.Login createClientConnectionEventLogin(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Transform<World> fromTransform, Transform<World> toTransform, RemoteConnection connection, GameProfile profile) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3512,25 +3622,11 @@ public class SpongeEventFactory {
         values.put("message", message);
         values.put("originalSink", originalSink);
         values.put("sink", sink);
+        values.put("fromTransform", fromTransform);
+        values.put("toTransform", toTransform);
         values.put("connection", connection);
         values.put("profile", profile);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Login.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.network.ClientConnectionEvent.Post}.
-     * 
-     * @param game The game
-     * @param targetEntity The target entity
-     * @return A new post client connection event
-     */
-    public static ClientConnectionEvent.Post createClientConnectionEventPost(Game game, Player targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Post.class, values);
     }
 
     /**
@@ -4290,13 +4386,15 @@ public class SpongeEventFactory {
      * 
      * @param game The game
      * @param cause The cause
+     * @param populatedTransactions The populated transactions
      * @param targetChunk The target chunk
      * @return A new post populate chunk event
      */
-    public static PopulateChunkEvent.Post createPopulateChunkEventPost(Game game, Cause cause, Chunk targetChunk) {
+    public static PopulateChunkEvent.Post createPopulateChunkEventPost(Game game, Cause cause, Map<PopulatorType, List<BlockTransaction>> populatedTransactions, Chunk targetChunk) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
+        values.put("populatedTransactions", populatedTransactions);
         values.put("targetChunk", targetChunk);
         return SpongeEventFactoryUtils.createEventImpl(PopulateChunkEvent.Post.class, values);
     }

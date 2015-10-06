@@ -31,7 +31,6 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.command.MessageSinkEvent;
-import org.spongepowered.api.event.entity.DisplaceEntityEvent;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
 import org.spongepowered.api.network.RemoteConnection;
@@ -46,11 +45,11 @@ import org.spongepowered.api.world.World;
  *
  * The events are fired in the following order:
  *
- * #Auth -> #Login -> {@link SpawnEntityEvent} -> #Join #Post
+ * #Auth -> #Login -> {@link SpawnEntityEvent} -> #Join
  *
  * {@link SpawnEntityEvent} is still fired for players, for consistency.
  * However, the player is not at a well-defined state at that point.
- * It's reccomended to use the this event's subinterfaces to interact
+ * It's recommended to use the this event's subinterfaces to interact
  * with the player at well-defined moments during the connection process.
  */
 public interface ClientConnectionEvent extends GameEvent {
@@ -81,9 +80,13 @@ public interface ClientConnectionEvent extends GameEvent {
      * Called after the client authenticates and attempts to login to the
      * server.
      *
-     * <p>Note: This event is fired after #Auth and is NOT async.</p>
+     * <p>Note: This event is fired after #Auth and is NOT async. Any changes 
+     * required for the {@link Player}s {@link Transform} should be done during 
+     * this event and NOT during #Join.
+     * </p>
      */
     interface Login extends ClientConnectionEvent, MessageSinkEvent, Cancellable {
+
         /**
          * Gets the {@link RemoteConnection} representing the client connection.
          *
@@ -97,6 +100,27 @@ public interface ClientConnectionEvent extends GameEvent {
          * @return The client's profile
          */
         GameProfile getProfile();
+
+        /**
+         * Gets the transform that the {@link Player} came from.
+         *
+         * @return the previous transform
+         */
+        Transform<World> getFromTransform();
+
+        /**
+         * Gets the new transform that the {@link Player} will change to.
+         *
+         * @return the new transform
+         */
+        Transform<World> getToTransform();
+
+        /**
+         * Sets the new transform that the {@link Player} will change to.
+         *
+         * @param transform The new transform
+         */
+        void setToTransform(Transform<World> transform);
     }
 
     /**
@@ -105,27 +129,9 @@ public interface ClientConnectionEvent extends GameEvent {
      *
      * <p>The {@link SpawnEntityEvent} for the {@link Player} is fired after
      * the #Login event. This event is fired after both.</p>
-     *
-     * The event is fired after the corresponding {@link SpawnEntityEvent}. However,
-     * the player is still not fully in the world yet. More specifically, the client
-     * has not yet been informed of its position within the world.
-     *
-     * Because of this, changes such as modifying {@link VehicleData}
-     * should be done at #Post, when the player is fully in the world.</p>
+     * </p>
      */
-    interface Join extends ClientConnectionEvent, DisplaceEntityEvent.TargetPlayer, MessageSinkEvent {}
-
-    /**
-     * Called when a {@link Player} has completely joined a world.
-     *
-     * <p>Note: This event is fired after #Join.</p>
-     *
-     * The event is fired when the player is completely ready to be manipulated
-     * in the world. It is intended to notify listeners of the earliest
-     * possible moment when a {@link Player} can be considered to have
-     * fully joined the game.
-     */
-    interface Post extends ClientConnectionEvent, TargetPlayerEvent {}
+    interface Join extends ClientConnectionEvent, TargetPlayerEvent, MessageSinkEvent {}
 
     /**
      * Called when a {@link Player} disconnects from the game.

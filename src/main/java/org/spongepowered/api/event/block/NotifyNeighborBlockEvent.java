@@ -25,75 +25,52 @@
 
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 import java.util.Map;
 import java.util.function.Predicate;
 
 /**
- * Called when a block at a {@link Location} triggers an update to one or more
- * {@link Location}s. There is a way to mark an "update" as being "invalid"
- * or "cancelled": {@link #filterDirections(Predicate)} will apply a
+ * Called when a block triggers an update to neighboring {link BlockType}s in
+ * one or more {@link Direction}s. There is a way to mark an "update" as being 
+ * "invalid" or "cancelled": {@link #filterDirections(Predicate)} will apply a
  * {@link Predicate} such that if the predicate returns <code>false</code>, the
- * {@link Location} removed from the {@link #getRelatives()} map.
+ * {@link Direction} will be removed from the {@link #getNeighbors()} map.
  */
 public interface NotifyNeighborBlockEvent extends GameEvent, Cancellable, CauseTracked {
 
     /**
-     * Gets the immutable {@link Map} of {@link Direction} to {@link Location}
-     * of the {@link BlockSnapshot} that would normally be notified of changes.
+     * Gets the immutable {@link Map} of {@link Direction} to {@link 
+     * BlockState} of the {@link BlockType} that would normally be
+     * notified of changes.
      *
      * @return The original directions map
      */
-    Map<Direction, BlockSnapshot> getOriginalRelatives();
+    Map<Direction, BlockState> getOriginalNeighbors();
 
     /**
      * Gets an immutable {@link Map} of {@link Direction} to
-     * {@link Location} of the {@link BlockState}s that will be notified of
+     * {@link BlockState} of the {@link BlockType} that will be notified of
      * an update. If a {@link Direction} is not required or needing to be
      * excluded from an update, {@link #filterDirections(Predicate)} will
      * perform that exclusion.
      *
      * @return The map
      */
-    Map<Direction, Location<World>> getRelatives();
+    Map<Direction, BlockState> getNeighbors();
 
     /**
      * Filters out {@link Direction}s of the {@link BlockState}s to be
      * marked as "valid" after this event. If the
      * {@link Predicate#apply(Object)} returns <code>false</code>, the
-     * {@link BlockState} is removed from {@link #getRelatives()} map.
+     * {@link BlockState} is removed from {@link #getNeighbors()} map.
      *
      * @param predicate The predicate to use for filtering.
      */
     void filterDirections(Predicate<Direction> predicate);
-
-    /**
-     * An event where the action is an "ingition" that notifies the neighbor
-     * blocks.
-     */
-    interface Ignite extends NotifyNeighborBlockEvent {}
-
-    interface Spread extends NotifyNeighborBlockEvent {
-
-        /**
-         * Gets the {@link BlockSnapshot} that is being spread.
-         *
-         * @return The BlockSnapshot
-         */
-        BlockSnapshot getSpreadingSnapshot();
-
-    }
-
-    interface Burn extends NotifyNeighborBlockEvent {}
-
-    interface Power extends NotifyNeighborBlockEvent {}
 
 }

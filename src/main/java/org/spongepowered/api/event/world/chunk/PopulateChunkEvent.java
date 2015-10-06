@@ -25,10 +25,13 @@
 
 package org.spongepowered.api.event.world.chunk;
 
+import org.spongepowered.api.block.BlockTransaction;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.gen.Populator;
+import org.spongepowered.api.world.gen.PopulatorType;
 
 import java.util.List;
+import java.util.Map;
 
 public interface PopulateChunkEvent extends TargetChunkEvent, CauseTracked {
 
@@ -45,6 +48,14 @@ public interface PopulateChunkEvent extends TargetChunkEvent, CauseTracked {
 
     interface Populate extends PopulateChunkEvent {}
 
-    interface Post extends PopulateChunkEvent {}
+    interface Post extends PopulateChunkEvent {
+        /**
+         * Returns an immutable map of all processed {@link PopulatorType}s
+         * along with all @{link BlockTransaction}s made by the populator.
+         *
+         * @return An immutable map of populator types with transactions
+         */
+        Map<PopulatorType, List<BlockTransaction>> getPopulatedTransactions();
+    }
 
 }

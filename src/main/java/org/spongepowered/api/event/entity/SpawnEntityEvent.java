@@ -44,4 +44,10 @@ import org.spongepowered.api.event.network.ClientConnectionEvent;
  */
 public interface SpawnEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
 
+    interface ChunkLoad extends SpawnEntityEvent {}
+
+    interface Spawner extends SpawnEntityEvent {}
+
+    interface MobSpawner extends SpawnEntityEvent {}
+
 }
