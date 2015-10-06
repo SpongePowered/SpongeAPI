@@ -25,7 +25,6 @@
 package org.spongepowered.api.item.inventory.property;
 
 import org.spongepowered.api.data.Property;
-import org.spongepowered.api.data.property.AbstractProperty;
 import org.spongepowered.api.item.inventory.InventoryProperty;
 
 import javax.annotation.Nullable;
@@ -37,7 +36,7 @@ import javax.annotation.Nullable;
  * @param <K> Key type, use {@link String} if no particular key type is required
  * @param <V> Value type
  */
-public abstract class AbstractInventoryProperty<K, V> extends AbstractProperty<K, V> implements InventoryProperty<K, V> {
+public abstract class AbstractInventoryProperty<K, V> implements InventoryProperty<K, V> {
 
     /**
      * Operator for comparing to other properties. Operators should always be
