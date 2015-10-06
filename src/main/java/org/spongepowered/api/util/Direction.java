@@ -27,7 +27,8 @@ package org.spongepowered.api.util;
 import com.flowpowered.math.vector.Vector3d;
 
 /**
- * Represent the 16 main and secondary cardinal directions plus up and down.
+ * Represent the 16 cardinal, ordinal, and secondary ordinal directions plus up
+ * and down.
  * With the following assumptions:
  * <ul>
  * <li>{@link #NORTH} targeting towards -Z</li>
