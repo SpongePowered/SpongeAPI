@@ -63,7 +63,7 @@ public class ArmorSlotType extends EquipmentSlotType {
      * @param operator logical operator (either EQUAL or NOTEQUAL) to apply
      */
     public ArmorSlotType(Object value, Operator operator) {
-        super(Coerce.<EquipmentTypeWorn>toPseudoEnum(value, EquipmentTypeWorn.class, EquipmentTypeWorn.class, EquipmentTypes.WORN), operator);
+        super(Coerce.toPseudoEnum(value, EquipmentTypeWorn.class, EquipmentTypeWorn.class, EquipmentTypes.WORN), operator);
     }
 
     /**

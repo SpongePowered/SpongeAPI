@@ -164,7 +164,7 @@ public final class GenericArguments {
      * @return the argument
      */
     public static <T extends CatalogType> CommandElement catalogedElement(Text key, Game game, Class<T> catalogType) {
-        return new CatalogedTypeCommandElement<T>(key, game, catalogType);
+        return new CatalogedTypeCommandElement<>(key, game, catalogType);
     }
 
     static class MarkTrueCommandElement extends CommandElement {
@@ -739,7 +739,7 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static <T extends Enum<T>> CommandElement enumValue(Text key, Class<T> type) {
-        return new EnumValueElement<T>(key, type);
+        return new EnumValueElement<>(key, type);
     }
 
     private static class EnumValueElement<T extends Enum<T>> extends PatternMatchingCommandElement {
@@ -1091,7 +1091,7 @@ public final class GenericArguments {
             WorldProperties targetWorldProps = ((WorldProperties) world);
             Optional<World> targetWorld = this.game.getServer().getWorld(targetWorldProps.getUniqueId());
             Vector3d vector = (Vector3d) vec;
-            return new Location<World>(targetWorld.get(), vector);
+            return new Location<>(targetWorld.get(), vector);
         }
 
         @Override

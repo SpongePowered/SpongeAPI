@@ -56,7 +56,7 @@ public final class CommandArgs {
      */
     public CommandArgs(String rawInput, List<SingleArg> args) {
         this.rawInput = rawInput;
-        this.args = new ArrayList<SingleArg>(args);
+        this.args = new ArrayList<>(args);
     }
 
     /**

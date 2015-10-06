@@ -114,7 +114,7 @@ public final class Coerce {
      */
     public static List<?> toList(@Nullable Object obj) {
         if (obj == null) {
-            return Collections.<Object>emptyList();
+            return Collections.emptyList();
         }
 
         if (obj instanceof List) {
@@ -769,13 +769,13 @@ public final class Coerce {
             return Doubles.asList((double[])obj);
         }
 
-        return Collections.<Object>emptyList();
+        return Collections.emptyList();
     }
 
     private static List<?> parseStringToList(String string) {
         Matcher candidate = Coerce.listPattern.matcher(string);
         if (!Coerce.listBracketsMatch(candidate)) {
-            return Collections.<Object>emptyList();
+            return Collections.emptyList();
         }
 
         List<String> list = Lists.newArrayList();

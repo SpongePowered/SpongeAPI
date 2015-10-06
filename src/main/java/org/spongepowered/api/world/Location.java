@@ -109,7 +109,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param position The position
      */
     public Location(E extent, Vector3d position) {
-        this.extent = new WeakReference<E>(checkNotNull(extent, "extent"));
+        this.extent = new WeakReference<>(checkNotNull(extent, "extent"));
         this.position = checkNotNull(position, "position");
     }
 
@@ -132,7 +132,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param blockPosition The position
      */
     public Location(E extent, Vector3i blockPosition) {
-        this.extent = new WeakReference<E>(checkNotNull(extent, "extent"));
+        this.extent = new WeakReference<>(checkNotNull(extent, "extent"));
         this.blockPosition = checkNotNull(blockPosition, "blockPosition");
     }
 
@@ -313,7 +313,7 @@ public final class Location<E extends Extent> implements DataHolder {
         if (position == getPosition()) {
             return this;
         }
-        return new Location<E>(getExtent(), position);
+        return new Location<>(getExtent(), position);
     }
 
     /**

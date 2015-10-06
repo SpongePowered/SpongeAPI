@@ -157,7 +157,7 @@ public abstract class AbstractAttackEntityEvent extends AbstractEvent implements
     public final List<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers() {
         ImmutableList.Builder<Tuple<DamageModifier, Function<? super Double, Double>>> builder = ImmutableList.builder();
         for (Map.Entry<DamageModifier, Function<? super Double, Double>> entry : this.modifierFunctions.entrySet()) {
-            builder.add(new Tuple<DamageModifier, Function<? super Double, Double>>(entry.getKey(), entry.getValue()));
+            builder.add(new Tuple<>(entry.getKey(), entry.getValue()));
         }
         return builder.build();
     }

@@ -273,7 +273,7 @@ public abstract class Cause {
 
         @Override
         public Cause with(Iterable<?> iterable) {
-            List<Object> list = new ArrayList<Object>();
+            List<Object> list = new ArrayList<>();
             for (Object o : this.cause) {
                 list.add(o);
             }
@@ -350,7 +350,7 @@ public abstract class Cause {
 
         @Override
         public Cause with(Iterable<?> iterable) {
-            List<Object> list = new ArrayList<Object>();
+            List<Object> list = new ArrayList<>();
             for (Object o : iterable) {
                 list.add(o);
             }

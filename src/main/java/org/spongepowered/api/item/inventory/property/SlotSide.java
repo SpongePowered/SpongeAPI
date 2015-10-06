@@ -62,7 +62,7 @@ public class SlotSide extends AbstractInventoryProperty<String, Direction> {
      * @param operator the operator to use when comparing with other properties
      */
     public SlotSide(Object value, Operator operator) {
-        super(Coerce.<Direction>toEnum(value, Direction.class, Direction.NONE), operator);
+        super(Coerce.toEnum(value, Direction.class, Direction.NONE), operator);
     }
 
     /* (non-Javadoc)

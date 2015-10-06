@@ -45,7 +45,7 @@ import java.util.List;
 public final class CallbackList implements Collection<EventCallback> {
 
     private static final Logger log = LoggerFactory.getLogger(CallbackList.class);
-    private final List<EventCallback> callbacks = new ArrayList<EventCallback>();
+    private final List<EventCallback> callbacks = new ArrayList<>();
 
     /**
      * Execute all callbacks in the correct order.

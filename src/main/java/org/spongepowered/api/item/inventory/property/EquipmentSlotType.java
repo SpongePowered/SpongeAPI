@@ -66,7 +66,7 @@ public class EquipmentSlotType extends AbstractInventoryProperty<String, Equipme
      *      properties
      */
     public EquipmentSlotType(Object value, Operator operator) {
-        super(Coerce.<EquipmentType>toPseudoEnum(value, EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN), operator);
+        super(Coerce.toPseudoEnum(value, EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN), operator);
     }
 
     /* (non-Javadoc)
@@ -80,7 +80,7 @@ public class EquipmentSlotType extends AbstractInventoryProperty<String, Equipme
 
         EquipmentType
                 otherValue =
-                Coerce.<EquipmentType>toPseudoEnum(other.getValue(), EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN);
+                Coerce.toPseudoEnum(other.getValue(), EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN);
         return this.getValue().getName().compareTo(otherValue.getName());
     }
 

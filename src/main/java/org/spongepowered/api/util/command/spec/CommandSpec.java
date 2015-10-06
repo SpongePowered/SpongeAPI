@@ -141,7 +141,7 @@ public final class CommandSpec implements CommandCallable {
         public Builder children(Map<List<String>, ? extends CommandCallable> children) {
             checkNotNull(children, "children");
             if (this.childCommandMap == null) {
-                this.childCommandMap = new HashMap<List<String>, CommandCallable>();
+                this.childCommandMap = new HashMap<>();
             }
             this.childCommandMap.putAll(children);
             return this;
@@ -159,7 +159,7 @@ public final class CommandSpec implements CommandCallable {
          */
         public Builder child(CommandCallable child, String... aliases) {
             if (this.childCommandMap == null) {
-                this.childCommandMap = new HashMap<List<String>, CommandCallable>();
+                this.childCommandMap = new HashMap<>();
             }
             this.childCommandMap.put(ImmutableList.copyOf(aliases), child);
             return this;

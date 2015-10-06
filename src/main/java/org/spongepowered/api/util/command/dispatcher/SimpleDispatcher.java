@@ -266,7 +266,7 @@ public final class SimpleDispatcher implements Dispatcher {
 
     @Override
     public synchronized Set<String> getPrimaryAliases() {
-        Set<String> aliases = new HashSet<String>();
+        Set<String> aliases = new HashSet<>();
 
         for (CommandMapping mapping : this.commands.values()) {
             aliases.add(mapping.getPrimaryAlias());
@@ -277,7 +277,7 @@ public final class SimpleDispatcher implements Dispatcher {
 
     @Override
     public synchronized Set<String> getAliases() {
-        Set<String> aliases = new HashSet<String>();
+        Set<String> aliases = new HashSet<>();
 
         for (CommandMapping mapping : this.commands.values()) {
             aliases.addAll(mapping.getAllAliases());

@@ -36,7 +36,7 @@ class SpaceSplitInputTokenizer implements InputTokenizer {
 
     @Override
     public List<SingleArg> tokenize(String arguments, boolean lenient) throws ArgumentParseException {
-        List<SingleArg> ret = new ArrayList<SingleArg>();
+        List<SingleArg> ret = new ArrayList<>();
         int lastIndex = 0;
         int spaceIndex;
         while ((spaceIndex = arguments.indexOf(" ")) != -1) {
