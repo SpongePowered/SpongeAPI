@@ -296,8 +296,8 @@ public class SimpleCommandService implements CommandService {
         try {
             final String[] argSplit = arguments.split(" ", 2);
             List<String> suggestions = new ArrayList<>(this.dispatcher.getSuggestions(src, arguments));
-            final TabCompleteCommandEvent event = SpongeEventFactory.createTabCompleteCommandEvent(this.game, Cause.of(src), argSplit.length > 1 ?
-                            argSplit[1] : "", argSplit[0], suggestions);
+            final TabCompleteCommandEvent event = SpongeEventFactory.createTabCompleteCommandEvent(this.game, Cause.of(src),
+                    argSplit.length > 1 ? argSplit[1] : "", argSplit[0], suggestions);
             this.game.getEventManager().post(event);
             if (event.isCancelled()) {
                 return ImmutableList.of();
