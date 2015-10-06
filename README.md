@@ -37,7 +37,7 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 [IntelliJ]: https://www.jetbrains.com/idea/
 [Issues]: https://issues.spongepowered.org/
 [Wiki]: https://github.com/SpongePowered/SpongeAPI/wiki/
-[Java]: http://www.java.com/en/download/
+[Java]: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 [Source]: https://github.com/SpongePowered/SpongeAPI/
 [MIT License]: https://www.tldrlegal.com/license/mit-license
 [Community Chat]: https://webchat.esper.net/?channels=sponge
