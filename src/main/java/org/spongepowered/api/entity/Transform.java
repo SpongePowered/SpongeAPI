@@ -385,10 +385,10 @@ public final class Transform<E extends Extent> {
 
     @Override
     public int hashCode() {
-        int result = extent.hashCode();
-        result = 31 * result + position.hashCode();
-        result = 31 * result + rotation.hashCode();
-        result = 31 * result + scale.hashCode();
+        int result = this.extent.hashCode();
+        result = 31 * result + this.position.hashCode();
+        result = 31 * result + this.rotation.hashCode();
+        result = 31 * result + this.scale.hashCode();
         return result;
     }
 
@@ -408,9 +408,9 @@ public final class Transform<E extends Extent> {
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
-                .add("location", location)
-                .add("rotation", rotation)
-                .add("scale", scale)
+                .add("location", this.location)
+                .add("rotation", this.rotation)
+                .add("scale", this.scale)
                 .toString();
     }
 

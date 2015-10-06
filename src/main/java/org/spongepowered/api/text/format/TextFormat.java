@@ -114,12 +114,12 @@ public final class TextFormat {
      * @return A new {@link TextFormat}
      */
     public final TextFormat color(TextColor color) {
-        return new TextFormat(this.style, color);
+        return new TextFormat(this.style, this.color);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(style, color);
+        return Objects.hashCode(this.style, this.color);
     }
 
     @Override
@@ -137,8 +137,8 @@ public final class TextFormat {
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
-                .add("style", style)
-                .add("color", color).toString();
+                .add("style", this.style)
+                .add("color", this.color).toString();
     }
 
 }
