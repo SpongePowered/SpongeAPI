@@ -164,7 +164,8 @@ public interface ValueBuilder {
      * @param <E> The type of value
      * @return The newly created value
      */
-    <E> MutableBoundedValue<E> createBoundedValue(Key<MutableBoundedValue<E>> key, E value, Comparator<E> comparator, E minimum, E maximum, E defaultElement);
+    <E> MutableBoundedValue<E>
+        createBoundedValue(Key<MutableBoundedValue<E>> key, E value, Comparator<E> comparator, E minimum, E maximum, E defaultElement);
 
     /**
      * Creates an {@link OptionalValue} where even the default value may be

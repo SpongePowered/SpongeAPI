@@ -272,7 +272,10 @@ public class ClassGenerator {
         }
     }
 
-    private void generateConstructor(ClassWriter classWriter, String internalName, Class<?> parentType, ImmutableSet<? extends Property<Class<?>, Method>> properties) {
+    private void generateConstructor(ClassWriter classWriter,
+                                     String internalName,
+                                     Class<?> parentType,
+                                     ImmutableSet<? extends Property<Class<?>, Method>> properties) {
         MethodVisitor mv =
                 classWriter.visitMethod(ACC_PUBLIC, "<init>", "(Ljava/util/Map;)V", "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V", null);
         mv.visitCode();
@@ -403,7 +406,12 @@ public class ClassGenerator {
      * @param fieldType The type of the field to mutate
      * @param property The {@link Property} containing the mutator method to generate for
      */
-    public static void generateMutator(ClassWriter cw, Class<?> type, String internalName, String fieldName, Class<?> fieldType, Property<Class<?>, Method> property) {
+    public static void generateMutator(ClassWriter cw,
+                                       Class<?> type,
+                                       String internalName,
+                                       String fieldName,
+                                       Class<?> fieldType,
+                                       Property<Class<?>, Method> property) {
         Method mutator = property.getMutator().get();
 
         MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, mutator.getName(), Type.getMethodDescriptor(mutator), null, null);
@@ -465,7 +473,11 @@ public class ClassGenerator {
         mv.visitEnd();
     }
 
-    private void generateAccessorsandMutator(ClassWriter cw, Class<?> type, Class<?> parentType, String internalName, Property<Class<?>, Method> property) {
+    private void generateAccessorsandMutator(ClassWriter cw,
+                                             Class<?> type,
+                                             Class<?> parentType,
+                                             String internalName,
+                                             Property<Class<?>, Method> property) {
         if (!hasImplementation(parentType, property.getAccessor())) {
             this.generateAccessor(cw, parentType, internalName, property);
         }
@@ -588,7 +600,13 @@ public class ClassGenerator {
         return cw.toByteArray();
     }
 
-    private void generateWithPlugins(ClassWriter cw, Class<?> eventClass, Class<?> parentType, String internalName, ImmutableSet<? extends Property<Class<?>, Method>> properties, MethodVisitor toStringMv, List<? extends EventFactoryPlugin> plugins) {
+    private void generateWithPlugins(ClassWriter cw,
+                                     Class<?> eventClass,
+                                     Class<?> parentType,
+                                     String internalName,
+                                     ImmutableSet<? extends Property<Class<?>, Method>> properties,
+                                     MethodVisitor toStringMv,
+                                     List<? extends EventFactoryPlugin> plugins) {
         for (Property<Class<?>, Method> property: properties) {
             boolean processed = false;
 
