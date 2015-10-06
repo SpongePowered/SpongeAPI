@@ -13,7 +13,7 @@ A Minecraft plugin API (not including an implementation). It is licensed under t
 * [Javadocs]
 
 ## Prerequisites
-* [Java] 6
+* [Java] 8
 
 ## Clone
 The following steps will ensure your project is cloned properly.  
@@ -37,7 +37,7 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 [IntelliJ]: https://www.jetbrains.com/idea/
 [Issues]: https://issues.spongepowered.org/
 [Wiki]: https://github.com/SpongePowered/SpongeAPI/wiki/
-[Java]: http://java.oracle.com/
+[Java]: http://www.java.com/en/download/
 [Source]: https://github.com/SpongePowered/SpongeAPI/
 [MIT License]: https://www.tldrlegal.com/license/mit-license
 [Community Chat]: https://webchat.esper.net/?channels=sponge
