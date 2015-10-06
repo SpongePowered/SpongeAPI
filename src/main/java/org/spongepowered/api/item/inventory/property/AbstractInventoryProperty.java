@@ -80,7 +80,7 @@ public abstract class AbstractInventoryProperty<K, V> extends AbstractProperty<K
      * @param value The property value
      * @param op The operator for the property
      */
-    protected AbstractInventoryProperty(@Nullable V value, Operator op) {
+    protected AbstractInventoryProperty(@Nullable V value, @Nullable Operator op) {
         this(null, value, op);
     }
 
@@ -94,7 +94,7 @@ public abstract class AbstractInventoryProperty<K, V> extends AbstractProperty<K
         this(key, value, null);
     }
 
-    protected AbstractInventoryProperty(@Nullable K key, @Nullable V value, Operator op) {
+    protected AbstractInventoryProperty(@Nullable K key, @Nullable V value, @Nullable Operator op) {
         this.key = key != null ? key : this.getDefaultKey(value);
         this.value = value;
         this.operator = op != null ? op : this.getDefaultOperator(this.key, value);
