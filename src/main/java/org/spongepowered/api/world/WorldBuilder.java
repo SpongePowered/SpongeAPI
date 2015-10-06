@@ -26,9 +26,9 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.data.type.GameMode;
 import org.spongepowered.api.data.type.GameModes;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.storage.WorldProperties;
 
