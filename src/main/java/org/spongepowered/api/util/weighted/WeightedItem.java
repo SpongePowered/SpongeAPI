@@ -131,9 +131,7 @@ public class WeightedItem extends WeightedObject<ItemType> implements DataSerial
         for (int i = 0; i < total;) {
             int n = (i + type.getMaxStackQuantity() > total) ? total - i : type.getMaxStackQuantity();
             builder.reset().itemType(type).quantity(n);
-            for (ImmutableDataManipulator<?, ?> data : this.additionalProperties) {
-                builder.itemData(data);
-            }
+            this.additionalProperties.forEach(builder::itemData);
             result.add(builder.build());
             i += n;
         }

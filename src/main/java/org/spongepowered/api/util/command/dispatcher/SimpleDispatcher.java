@@ -266,11 +266,8 @@ public final class SimpleDispatcher implements Dispatcher {
 
     @Override
     public synchronized Set<String> getPrimaryAliases() {
-        Set<String> aliases = new HashSet<>();
-
-        for (CommandMapping mapping : this.commands.values()) {
-            aliases.add(mapping.getPrimaryAlias());
-        }
+        Set<String> aliases = this.commands.values().stream()
+                .map(CommandMapping::getPrimaryAlias).collect(Collectors.toSet());
 
         return Collections.unmodifiableSet(aliases);
     }
