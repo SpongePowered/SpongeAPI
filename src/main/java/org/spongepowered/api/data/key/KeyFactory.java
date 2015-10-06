@@ -146,7 +146,7 @@ public final class KeyFactory {
 
             @Override
             public String toString() {
-                return "Key{Value:" + "SetValue<" + elementClass +">, Query: " + query.toString() + "}";
+                return "Key{Value:" + "SetValue<" + elementClass + ">, Query: " + query.toString() + "}";
             }
         };
     }
