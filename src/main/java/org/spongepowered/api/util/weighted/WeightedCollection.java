@@ -64,8 +64,7 @@ public class WeightedCollection<T extends WeightedObject<?>> implements Collecti
     public T get(Random rand) {
         int target = rand.nextInt(this.totalWeight);
         int current = 0;
-        for (Iterator<T> it = iterator(); it.hasNext();) {
-            T obj = it.next();
+        for (T obj : this) {
             current += obj.getWeight();
             if (current > target) {
                 return obj;
