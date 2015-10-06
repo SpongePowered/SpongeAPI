@@ -678,8 +678,10 @@ public class MemoryDataView implements DataView {
 
         List<Map<?, ?>> newList = Lists.newArrayList();
 
-        newList.addAll(list.get().stream().filter(object -> object instanceof Map)
-                .map(object -> (Map<?, ?>) object).collect(Collectors.toList()));
+        newList.addAll(list.get().stream()
+                .filter(object -> object instanceof Map)
+                .map(object -> (Map<?, ?>) object)
+                .collect(Collectors.toList()));
 
         return Optional.of(newList);
     }
@@ -694,8 +696,10 @@ public class MemoryDataView implements DataView {
 
         List<DataView> newList = Lists.newArrayList();
 
-        newList.addAll(list.get().stream().filter(object -> object instanceof DataView)
-                .map(object -> (DataView) object).collect(Collectors.toList()));
+        newList.addAll(list.get().stream()
+                .filter(object -> object instanceof DataView)
+                .map(object -> (DataView) object)
+                .collect(Collectors.toList()));
 
         return Optional.of(newList);
     }

@@ -267,7 +267,8 @@ public final class SimpleDispatcher implements Dispatcher {
     @Override
     public synchronized Set<String> getPrimaryAliases() {
         Set<String> aliases = this.commands.values().stream()
-                .map(CommandMapping::getPrimaryAlias).collect(Collectors.toSet());
+                .map(CommandMapping::getPrimaryAlias)
+                .collect(Collectors.toSet());
 
         return Collections.unmodifiableSet(aliases);
     }
@@ -345,7 +346,9 @@ public final class SimpleDispatcher implements Dispatcher {
         final String[] argSplit = arguments.split(" ", 2);
         Optional<CommandMapping> cmdOptional = get(argSplit[0], src);
         if (argSplit.length == 1) {
-            return filterCommands(src).stream().filter(new StartsWithPredicate(argSplit[0])).collect(GuavaCollectors.toImmutableList());
+            return filterCommands(src).stream()
+                    .filter(new StartsWithPredicate(argSplit[0]))
+                    .collect(GuavaCollectors.toImmutableList());
         } else if (!cmdOptional.isPresent()) {
             return ImmutableList.of();
         }

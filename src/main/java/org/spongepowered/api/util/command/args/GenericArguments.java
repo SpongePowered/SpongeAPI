@@ -314,7 +314,9 @@ public final class GenericArguments {
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             final String prefix = args.nextIfPresent().orElse("");
-            return this.choices.keySet().stream().filter(new StartsWithPredicate(prefix)).collect(GuavaCollectors.toImmutableList());
+            return this.choices.keySet().stream()
+                    .filter(new StartsWithPredicate(prefix))
+                    .collect(GuavaCollectors.toImmutableList());
         }
 
         @Override

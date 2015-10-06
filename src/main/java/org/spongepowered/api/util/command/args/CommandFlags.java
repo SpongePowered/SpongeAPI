@@ -262,7 +262,9 @@ class CommandFlags extends CommandElement {
                 } catch (ArgumentParseException ex) {
                     args.setState(position);
                     return ImmutableList.copyOf(
-                        element.complete(src, args, context).stream().map(input -> "--" + finalLongFlag + "=" + input).collect(Collectors.toList()));
+                        element.complete(src, args, context).stream()
+                                .map(input -> "--" + finalLongFlag + "=" + input)
+                                .collect(Collectors.toList()));
                 }
             }
         } else {

@@ -64,7 +64,8 @@ public final class CallbackList implements Collection<EventCallback> {
      * Cancel all callbacks.
      */
     public void cancelAll() {
-        this.callbacks.stream().filter(callback -> callback instanceof Cancellable)
+        this.callbacks.stream()
+                .filter(callback -> callback instanceof Cancellable)
                 .forEach(callback -> ((Cancellable) callback).setCancelled(true));
     }
 

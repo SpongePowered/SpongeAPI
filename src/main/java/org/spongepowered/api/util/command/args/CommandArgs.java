@@ -120,7 +120,9 @@ public final class CommandArgs {
      * @return all arguments
      */
     public List<String> getAll() {
-        return Collections.unmodifiableList(this.args.stream().map(SingleArg::getValue).collect(Collectors.toList()));
+        return Collections.unmodifiableList(this.args.stream()
+                .map(SingleArg::getValue)
+                .collect(Collectors.toList()));
     }
 
     List<SingleArg> getArgs() {
