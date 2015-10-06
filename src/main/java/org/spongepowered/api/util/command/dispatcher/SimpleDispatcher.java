@@ -411,12 +411,12 @@ public final class SimpleDispatcher implements Dispatcher {
         final TextBuilder build = Texts.builder();
         Iterable<String> filteredCommands = filterCommands(source).stream()
             .filter(input -> {
-                if (input == null) {
-                    return false;
-                }
-                final Optional<CommandMapping> ret = get(input, source);
-                return ret.isPresent() && ret.get().getPrimaryAlias().equals(input);
-            })
+                    if (input == null) {
+                        return false;
+                    }
+                    final Optional<CommandMapping> ret = get(input, source);
+                    return ret.isPresent() && ret.get().getPrimaryAlias().equals(input);
+                })
             .collect(Collectors.toList());
 
         for (Iterator<String> it = filteredCommands.iterator(); it.hasNext();) {

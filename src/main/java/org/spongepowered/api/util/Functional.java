@@ -121,12 +121,12 @@ public class Functional {
     public static <T> CompletableFuture<T> asyncFailableFuture(Callable<T> call, Executor exec) {
         CompletableFuture<T> ret = new CompletableFuture<>();
         exec.execute(() -> {
-            try {
-                ret.complete(call.call());
-            } catch (Exception e) {
-                ret.completeExceptionally(e);
-            }
-        });
+                try {
+                    ret.complete(call.call());
+                } catch (Exception e) {
+                    ret.completeExceptionally(e);
+                }
+            });
         return ret;
     }
 }

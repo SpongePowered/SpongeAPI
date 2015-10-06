@@ -106,10 +106,10 @@ public class MemoryDataView implements DataView {
         }
         if (deep) {
             this.map.entrySet().stream().filter(entry -> entry.getValue() instanceof DataView).forEach(entry -> {
-                for (DataQuery query : ((DataView) entry.getValue()).getKeys(true)) {
-                    builder.add(of(entry.getKey()).then(query));
-                }
-            });
+                    for (DataQuery query : ((DataView) entry.getValue()).getKeys(true)) {
+                        builder.add(of(entry.getKey()).then(query));
+                    }
+                });
         }
         return builder.build();
     }

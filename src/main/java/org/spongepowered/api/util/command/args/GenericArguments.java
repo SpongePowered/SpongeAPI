@@ -381,17 +381,16 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
-            return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements,
-                    input -> {
-                        if (input == null) {
-                            return ImmutableList.of();
-                        }
+            return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements, input -> {
+                    if (input == null) {
+                        return ImmutableList.of();
+                    }
 
-                        Object startState = args.getState();
-                        List<String> ret = input.complete(src, args, context);
-                        args.setState(startState);
-                        return ret;
-                    })));
+                    Object startState = args.getState();
+                    List<String> ret = input.complete(src, args, context);
+                    args.setState(startState);
+                    return ret;
+                })));
         }
 
         @Override
@@ -1120,8 +1119,8 @@ public final class GenericArguments {
         protected Iterable<String> getChoices(CommandSource source) {
             return this.game.getRegistry().getAllOf(this.catalogType).stream()
                 .map(input -> {
-                return input == null ? null : input.getId(); // TODO: ids or names?
-                })
+                        return input == null ? null : input.getId(); // TODO: ids or names?
+                    })
                 .collect(Collectors.toList());
         }
 

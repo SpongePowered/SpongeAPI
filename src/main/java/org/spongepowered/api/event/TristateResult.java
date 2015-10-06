@@ -82,8 +82,8 @@ public interface TristateResult {
      *
      * @param value The new result
      * @throws IllegalStateException if
-     *    {@link TristateResult.Result#ALLOW} is
-     *    given, but {@link #hasAllowResult} is {@code false}
+     *     {@link TristateResult.Result#ALLOW} is
+     *     given, but {@link #hasAllowResult} is {@code false}
      */
     void setResult(Result value) throws IllegalStateException;
 }

@@ -65,7 +65,7 @@ public interface DataManipulatorRegistry {
      * @return The builder, if available
      */
     <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>>
-    Optional<DataManipulatorBuilder<T, I>> getBuilder(Class<T> manipulatorClass);
+        Optional<DataManipulatorBuilder<T, I>> getBuilder(Class<T> manipulatorClass);
 
     /**
      * Attempts to retrieve the builder for the given
@@ -80,6 +80,6 @@ public interface DataManipulatorRegistry {
      * @return The DataManipulatorBuilder, if available
      */
     <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>>
-    Optional<DataManipulatorBuilder<T, I>> getBuilderForImmutable(Class<I> immutableManipulatorClass);
+        Optional<DataManipulatorBuilder<T, I>> getBuilderForImmutable(Class<I> immutableManipulatorClass);
 
 }
