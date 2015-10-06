@@ -30,38 +30,38 @@ import org.spongepowered.api.data.property.IntProperty;
  * An property that represents the amount of light emitted from
  * the owning block.
  */
-public class LightEmissionProperty extends IntProperty {
+public class LuminanceProperty extends IntProperty {
 
     /**
-     * Create a new {@link LightEmissionProperty} with the specified value.
+     * Create a new {@link LuminanceProperty} with the specified value.
      *
      * @param value value to match
      */
-    public LightEmissionProperty(int value) {
+    public LuminanceProperty(int value) {
         super(value);
     }
 
     /**
-     * Create a new {@link LightEmissionProperty} with the specified value and
+     * Create a new {@link LuminanceProperty} with the specified value and
      * logical operator.
      *
      * @param value value to match
      * @param operator logical operator to use when comparing to other
      *      properties
      */
-    public LightEmissionProperty(int value, Operator operator) {
+    public LuminanceProperty(int value, Operator operator) {
         super(value, operator);
     }
 
     /**
-     * Create a new {@link LightEmissionProperty} with the specified value and
+     * Create a new {@link LuminanceProperty} with the specified value and
      * logical operator.
      *
      * @param value value to match
      * @param operator logical operator to use when comparing to other
      *      properties
      */
-    public LightEmissionProperty(Object value, Operator operator) {
+    public LuminanceProperty(Object value, Operator operator) {
         super(value, operator);
     }
 }
