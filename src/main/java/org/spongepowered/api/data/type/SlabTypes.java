@@ -35,7 +35,7 @@ public final class SlabTypes {
     public static final SlabType COBBLESTONE = null;
     public static final SlabType BRICK = null;
     public static final SlabType SMOOTH_BRICK = null;
-    public static final SlabType NETHERBICK = null;
+    public static final SlabType NETHERBRICK = null;
     public static final SlabType QUARTZ = null;
     public static final SlabType RED_SAND = null;
 

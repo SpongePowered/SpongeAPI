@@ -703,7 +703,7 @@ public final class Coerce {
 
     /**
      * Sanitise a string containing a common representation of a number to make
-     * it parseable. Strips thousand-separating commas and trims later members
+     * it parsable. Strips thousand-separating commas and trims later members
      * of a comma-separated list. For example the string "(9.5, 10.6, 33.2)"
      * will be sanitised to "9.5".
      *

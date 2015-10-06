@@ -30,7 +30,7 @@ package org.spongepowered.api.item.inventory.equipment;
 public final class EquipmentTypes {
 
     /**
-     * Any type, all other types should sublass this to allow instanceof checks
+     * Any type, all other types should subclass this to allow instanceof checks
      * to succeed.
      */
     public static final EquipmentType ANY = null;

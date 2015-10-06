@@ -301,7 +301,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * Attempts to "revert" a {@link DataTransactionResult} such that any
      * of the {@link DataTransactionResult#getReplacedData()} are offered
      * back, and any {@link DataTransactionResult#getSuccessfulData()} are
-     * removed if they were not the same types as any exising in the
+     * removed if they were not the same types as any existing in the
      * replaced values.
      *
      * @param result The result to undo

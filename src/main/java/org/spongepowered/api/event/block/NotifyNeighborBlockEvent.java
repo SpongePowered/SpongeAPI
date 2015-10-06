@@ -76,7 +76,7 @@ public interface NotifyNeighborBlockEvent extends GameEvent, Cancellable, CauseT
     void filterDirections(Predicate<Direction> predicate);
 
     /**
-     * An event where the action is an "ingition" that notifies the neighbor
+     * An event where the action is an "ignition" that notifies the neighbor
      * blocks.
      */
     interface Ignite extends NotifyNeighborBlockEvent {}

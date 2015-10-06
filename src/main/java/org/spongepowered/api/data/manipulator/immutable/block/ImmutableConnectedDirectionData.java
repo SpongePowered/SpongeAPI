@@ -52,7 +52,7 @@ public interface ImmutableConnectedDirectionData extends ImmutableDataManipulato
      *
      * @return The immutable value for the north direction
      */
-    ImmutableValue<Boolean> conntectedNorth();
+    ImmutableValue<Boolean> connectedNorth();
 
 
     /**

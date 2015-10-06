@@ -36,7 +36,7 @@ import javax.annotation.Nullable;
 
 /**
  * This class provides translations for strings within SpongeAPI. Plugins
- * should consult an implementaion of Translation for help.
+ * should consult an implementation of Translation for help.
  *
  * <p>THIS IS AN API-INTERNAL CLASS -- DO NOT USE OUTSIDE OF API OR YOU WILL
  * LIVE A SAD AND LONELY LIFE</p>

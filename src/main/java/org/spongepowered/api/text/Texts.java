@@ -240,7 +240,7 @@ public final class Texts {
      * Creates a new Text instance with all {@link Placeholder}s replaced. All
      * placeholders without a non-null replacement are ignored. All replacements
      * will be wrapped in a {@link Text} using {@link Texts#of(Object...)} the
-     * color and the style from the placeholder are transfered to that method as
+     * color and the style from the placeholder are transferred to that method as
      * well.
      *
      * @param template The template text in which all {@link Placeholder}s
@@ -261,7 +261,7 @@ public final class Texts {
      * Creates a new Text instance with all {@link Placeholder}s replaced. All
      * placeholders without a non-null replacement are ignored. All replacements
      * will be wrapped in a {@link Text} using {@link Texts#of(Object...)} the
-     * color and the style from the placeholder are transfered to that method as
+     * color and the style from the placeholder are transferred to that method as
      * well.
      *
      * @param template The template text in which all {@link Placeholder}s

@@ -152,7 +152,7 @@ public interface ChunkLoadService {
          * Sets the number of chunks this ticket will load at once.
          *
          * @param numChunks The number of chunks this ticket can load at once
-         * @return True if sucessful, false if the number of chunks is above
+         * @return True if successful, false if the number of chunks is above
          *          the maximum allowed for this ticket
          */
         boolean setNumChunks(int numChunks);

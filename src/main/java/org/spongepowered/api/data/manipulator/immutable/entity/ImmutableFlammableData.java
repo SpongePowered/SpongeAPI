@@ -33,13 +33,13 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
  * This state is different from being set on fire as the entity is igniting
  * itself without taking damage.
  */
-public interface ImmutableFlamableData extends ImmutableDataManipulator<ImmutableFlamableData, FlammableData> {
+public interface ImmutableFlammableData extends ImmutableDataManipulator<ImmutableFlammableData, FlammableData> {
 
     /**
      * Gets the {@link ImmutableValue} for the "aflame" state.
      *
      * @return The immutable value for the aflame state
      */
-    ImmutableValue<Boolean> flamable();
+    ImmutableValue<Boolean> flammable();
 
 }

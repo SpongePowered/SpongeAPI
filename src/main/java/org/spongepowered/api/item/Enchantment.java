@@ -71,7 +71,7 @@ public interface Enchantment extends CatalogType, Translatable {
     int getMaximumLevel();
 
     /**
-     * Get the minimum item enchantibility for this level to be normally added
+     * Get the minimum item enchantability for this level to be normally added
      * by enchanting tables.
      *
      * @param level Enchantment level
@@ -80,7 +80,7 @@ public interface Enchantment extends CatalogType, Translatable {
     int getMinimumEnchantabilityForLevel(int level);
 
     /**
-     * Get the maximum item enchantibility for this level to be normally added
+     * Get the maximum item enchantability for this level to be normally added
      * by enchanting tables.
      *
      * @param level Enchantment level

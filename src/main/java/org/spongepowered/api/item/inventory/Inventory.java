@@ -83,7 +83,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      *
      * @param <T> expected inventory type, specified as generic to allow easy
      *      pseudo-duck-typing
-     * @return the next sibiling inventory, or an {@link EmptyInventory} if
+     * @return the next sibling inventory, or an {@link EmptyInventory} if
      *      there are no further siblings
      */
     <T extends Inventory> T next();
@@ -114,8 +114,8 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * the usual behaviour of {@link #poll()}, otherwise a new {@link ItemStack}
      * is returned containing the removed items, the contents of the stack in
      * the inventory are reduced by the number of items consumed. Note that this
-     * method attempts to consume items into the ouput up to <code>limit</code>,
-     * which may consume items from an abitrary number of internal slots.</p>
+     * method attempts to consume items into the output up to <code>limit</code>,
+     * which may consume items from an arbitrary number of internal slots.</p>
      *
      * <p>For example, assume an inventory containing 4 slots contains stacks as
      * follows:</p>
@@ -195,7 +195,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
 
     /**
      * Forcibly put the supplied stack into this inventory. Overwrites existing
-     * objects in the inventory as required to accomodate the entire stack. The
+     * objects in the inventory as required to accommodate the entire stack. The
      * entire stack is always consumed.
      *
      * <p>The general contract of this method is to prioritise insertion of the

@@ -111,7 +111,7 @@ public interface WorldBorder {
     /**
      * Get the center of the world border.
      *
-     * <p>The returned position is three-dimensional. As the worldborder extends
+     * <p>The returned position is three-dimensional. As the border extends
      * over the entire y-axis, the returned position will always have
      * a {@code y} set to 0.</p>
      *

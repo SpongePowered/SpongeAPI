@@ -55,9 +55,9 @@ import java.util.Set;
  *
  * <p>Due to the implicit inheritance, it is recommended that commands that allow a
  * user to "apply" an effect to other users use {@code example.function.self} as
- * the permission for applying this effect to one's self. This allows
+ * the permission for applying this effect to oneself. This allows
  * administrators to grant {@code example.function.self} to permit usage on
- * one's self and grant {@code example.function} to grant usage on other users.
+ * oneself and grant {@code example.function} to grant usage on other users.
  *
  * <p>Use a {@link PermissionService} to create instances.
  *

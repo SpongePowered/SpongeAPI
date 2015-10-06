@@ -34,7 +34,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
- * An {@link DataManipulator} handling the supposed targetted
+ * An {@link DataManipulator} handling the supposed targeted
  * {@link Location}. Usually for the case of {@link EnderPearl}s, the
  * targeted {@link Location} is where the {@link EnderPearl} will
  * move towards until it's expiration time. In the case of

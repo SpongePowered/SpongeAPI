@@ -87,7 +87,7 @@ public class AcceptsItems extends AbstractInventoryProperty<String, Collection<I
 
     /**
      * Returns true if <em>other</em> is also an {@link AcceptsItems} property
-     * and <b>any</b> item appearing in the other property's collecion appears
+     * and <b>any</b> item appearing in the other property's collection appears
      * in this property's collection. In formal terms, the method returns true
      * if the size of the intersection between the two item type collections is
      * greater than zero.

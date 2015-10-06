@@ -158,7 +158,7 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
                 yy = SkylandsUtil.getNextSolid(buffer, xx, yy, zz, yEnd);
                 int layerNumber = 0;
                 while (yy >= yEnd) {
-                    // only place on grass blockss
+                    // only place on grass blocks
                     if (buffer.getBlockType(xx, yy, zz) == BlockTypes.GRASS) {
                         // generate a new random value for the layer
                         final float value = SkylandsUtil.hashToFloat(xx, layerNumber, zz, seed);

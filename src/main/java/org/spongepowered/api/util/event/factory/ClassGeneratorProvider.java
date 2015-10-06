@@ -116,7 +116,7 @@ public class ClassGeneratorProvider implements FactoryProvider {
         }
 
         /**
-         * Defines the class by name and bytecode arrray.
+         * Defines the class by name and bytecode array.
          *
          * @param name The name of the class
          * @param b The bytecode array

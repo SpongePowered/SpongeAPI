@@ -473,11 +473,11 @@ public class ClassGenerator {
         mv.visitEnd();
     }
 
-    private void generateAccessorsandMutator(ClassWriter cw,
-                                             Class<?> type,
-                                             Class<?> parentType,
-                                             String internalName,
-                                             Property<Class<?>, Method> property) {
+    private void generateAccessorsAndMutators(ClassWriter cw,
+                                              Class<?> type,
+                                              Class<?> parentType,
+                                              String internalName,
+                                              Property<Class<?>, Method> property) {
         if (!hasImplementation(parentType, property.getAccessor())) {
             this.generateAccessor(cw, parentType, internalName, property);
         }
@@ -621,7 +621,7 @@ public class ClassGenerator {
 
             if (!processed) {
                 this.contributeField(cw, eventClass, property);
-                this.generateAccessorsandMutator(cw, eventClass, parentType, internalName, property);
+                this.generateAccessorsAndMutators(cw, eventClass, parentType, internalName, property);
             }
         }
     }

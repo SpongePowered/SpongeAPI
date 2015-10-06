@@ -110,7 +110,7 @@ public interface ImmutableCollectionValue<E, C extends Collection<E>, I extends 
      * the element and {@code true} is returned, the element will remain in the
      * new {@link ImmutableCollectionValue}.
      *
-     * @param predicate The predicte to apply
+     * @param predicate The predicate to apply
      * @return The new value
      */
     I withoutAll(Predicate<E> predicate);

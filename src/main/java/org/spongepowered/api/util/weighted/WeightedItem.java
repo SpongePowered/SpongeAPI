@@ -93,7 +93,7 @@ public class WeightedItem extends WeightedObject<ItemType> implements DataSerial
     /**
      * Gets a {@link VariableAmount} representing the quantity of the item.
      * 
-     * @return The varible quantity
+     * @return The variable quantity
      */
     public VariableAmount getQuantity() {
         return this.quantity;

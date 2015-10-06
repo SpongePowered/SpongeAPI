@@ -34,7 +34,7 @@ public interface TextFactory {
 
     /**
      * Returns a plain text representation of the {@link Text} without any
-     * formattings.
+     * formatting.
      *
      * @param text The text to convert
      * @return The text converted to plain text

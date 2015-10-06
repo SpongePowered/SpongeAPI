@@ -120,7 +120,7 @@ public final class CatalogTypes {
     public static final Class<Difficulty> DIFFICULTY = Difficulty.class;
     public static final Class<DimensionType> DIMENSION_TYPE = DimensionType.class;
     public static final Class<DirtType> DIRT_TYPE = DirtType.class;
-    public static final Class<DisguisedBlockType> DISGUSED_BLOCK_TYPE = DisguisedBlockType.class;
+    public static final Class<DisguisedBlockType> DISGUISED_BLOCK_TYPE = DisguisedBlockType.class;
     public static final Class<DoublePlantType> DOUBLE_SIZE_PLANT_TYPE = DoublePlantType.class;
     public static final Class<DyeColor> DYE_COLOR = DyeColor.class;
     public static final Class<Enchantment> ENCHANTMENT = Enchantment.class;

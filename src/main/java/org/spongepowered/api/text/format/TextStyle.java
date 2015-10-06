@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *
  * <p>Each individual style within a TextStyle, e.g. bold, italic is not just a
  * boolean, but an {@code Optional&lt;Boolean&gt;} since it can be unapplied
- * (or, in Optional terms, "absent"). These styles will hereafter be referred to
+ * (or, in Optional terms, "empty"). These styles will hereafter be referred to
  * as properties.<br> See the {@link OptBool} utility class for working with
  * properties.</p>
  *

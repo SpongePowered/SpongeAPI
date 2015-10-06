@@ -40,7 +40,7 @@ import org.spongepowered.api.event.network.ClientConnectionEvent;
  *
  * <p>For players, this event is fired before they have fully
  * joined the world. {@link ClientConnectionEvent} is the
- * reccomended event to interact with connecting players.</p>
+ * recommended event to interact with connecting players.</p>
  */
 public interface SpawnEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
 

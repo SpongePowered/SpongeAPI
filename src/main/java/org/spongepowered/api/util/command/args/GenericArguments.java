@@ -193,7 +193,7 @@ public final class GenericArguments {
     }
 
     /**
-     * Consumes a series of arguments. Usage is the elements concated
+     * Consumes a series of arguments. Usage is the elements concatenated
      *
      * @param elements The series of arguments to expect
      * @return the element to match the input
@@ -621,7 +621,10 @@ public final class GenericArguments {
     // -- Argument types for basic java types
 
     /**
-     * Parent class that specifies elemenents as having no tab completions. Useful for inputs with a very large domain, like strings and integers
+     * Parent class that specifies elements as having no tab completions.
+     *
+     * <p>Useful for inputs with a very large domain, like strings and
+     * integers.</p>
      */
     private abstract static class KeyElement extends CommandElement {
         private KeyElement(Text key) {
@@ -801,7 +804,7 @@ public final class GenericArguments {
 
         @Override
         public Text getUsage(CommandSource src) {
-            return Texts.of(CommandMessageFormatting.LT_TEXT, getKey(), CommandMessageFormatting.ELIPSES_TEXT, CommandMessageFormatting.GT_TEXT);
+            return Texts.of(CommandMessageFormatting.LT_TEXT, getKey(), CommandMessageFormatting.ELLIPSIS_TEXT, CommandMessageFormatting.GT_TEXT);
         }
     }
 
@@ -1031,7 +1034,7 @@ public final class GenericArguments {
             boolean relative = arg.startsWith("~");
             if (relative) {
                 if (relativeTo == null) {
-                    throw args.createError(t("Relative position specified but source does not have a postion"));
+                    throw args.createError(t("Relative position specified but source does not have a position"));
                 }
                 arg = arg.substring(1);
             }

@@ -157,13 +157,13 @@ public final class KeyFactory {
      * {@link DataQuery} for accessing the {@link Map} in {@link DataView}s.
      *
      * @param keyClass The key class of the map
-     * @param valueclass The value class of the map
+     * @param valueClass The value class of the map
      * @param query The query
      * @param <K> The type of keys
      * @param <V> The type of values
      * @return The generated key
      */
-    public static <K, V> Key<MapValue<K, V>> makeMapKey(final Class<K> keyClass, final Class<V> valueclass, final DataQuery query) {
+    public static <K, V> Key<MapValue<K, V>> makeMapKey(final Class<K> keyClass, final Class<V> valueClass, final DataQuery query) {
         return new Key<MapValue<K, V>>() {
             @Override
             public Class<MapValue<K, V>> getValueClass() {
@@ -177,12 +177,12 @@ public final class KeyFactory {
 
             @Override
             public int hashCode() {
-                return Objects.hashCode(keyClass, valueclass, query);
+                return Objects.hashCode(keyClass, valueClass, query);
             }
 
             @Override
             public String toString() {
-                return "Key{Value:" + "MapValue<" + keyClass + "," + valueclass + ">, Query: " + query.toString() + "}";
+                return "Key{Value:" + "MapValue<" + keyClass + "," + valueClass + ">, Query: " + query.toString() + "}";
             }
         };
     }

@@ -51,7 +51,7 @@ public abstract class AbstractAttackEntityEvent extends AbstractEvent implements
     @SetField protected double baseDamage;
 
     // These are left unused on purpose, because Aaron101 is too lazy to change the event generator.
-    // They prevent their respecive fields from being required in the event factory generator
+    // They prevent their respective fields from being required in the event factory generator
     @SetField protected double finalDamage;
     @SetField protected Map<DamageModifier, Double> originalDamages;
 
