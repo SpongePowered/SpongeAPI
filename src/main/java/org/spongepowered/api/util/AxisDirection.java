@@ -36,7 +36,7 @@ public enum AxisDirection {
 
     private final int signum;
 
-    AxisDirection(final int signum) {
+    private AxisDirection(final int signum) {
         this.signum = signum;
     }
 

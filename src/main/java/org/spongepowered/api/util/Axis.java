@@ -37,7 +37,7 @@ public enum Axis implements Cycleable<Axis> {
 
     private final Vector3d direction;
 
-    Axis(final Vector3d vector3d) {
+    private Axis(final Vector3d vector3d) {
         this.direction = vector3d;
     }
 
