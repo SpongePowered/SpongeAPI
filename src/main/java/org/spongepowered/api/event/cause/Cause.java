@@ -37,10 +37,7 @@ import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import javax.annotation.Nullable;
 
@@ -274,9 +271,7 @@ public abstract class Cause {
         @Override
         public Cause with(Iterable<?> iterable) {
             List<Object> list = new ArrayList<>();
-            for (Object o : this.cause) {
-                list.add(o);
-            }
+            Collections.addAll(list, this.cause);
             for (Object o : iterable) {
                 checkArgument(o != null, "Cannot add null causes");
                 list.add(o);
