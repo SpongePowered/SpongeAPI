@@ -294,12 +294,12 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param extent The new extent
      * @return A new instance
      */
-    public Location<E> setExtent(E extent) {
+    public Location<E> withExtent(E extent) {
         checkNotNull(extent, "extent");
         if (extent == getExtent()) {
             return this;
         }
-        return new Location<E>(extent, getPosition());
+        return new Location<>(extent, getPosition());
     }
 
     /**
@@ -308,7 +308,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param position The new position
      * @return A new instance
      */
-    public Location<E> setPosition(Vector3d position) {
+    public Location<E> withPosition(Vector3d position) {
         checkNotNull(position, "position");
         if (position == getPosition()) {
             return this;
@@ -337,7 +337,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @return A new instance
      */
     public Location<E> sub(double x, double y, double z) {
-        return setPosition(getPosition().sub(x, y, z));
+        return withPosition(getPosition().sub(x, y, z));
     }
 
     /**
@@ -361,7 +361,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @return A new instance
      */
     public Location<E> add(double x, double y, double z) {
-        return setPosition(getPosition().add(x, y, z));
+        return withPosition(getPosition().add(x, y, z));
     }
 
     /**
