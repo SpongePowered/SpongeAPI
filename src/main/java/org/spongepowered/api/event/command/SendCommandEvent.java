@@ -30,7 +30,7 @@ import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.util.command.CommandResult;
 
 /**
- * Fired when a command is sent
+ * Fired when a command is sent.
  */
 public interface SendCommandEvent extends GameEvent, Cancellable, CauseTracked {
 

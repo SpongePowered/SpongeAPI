@@ -70,7 +70,7 @@ public interface WorldBuilder {
     /**
      * Sets the world as enabled. A world which is enabled but unloaded may be
      * loaded automatically if an attempt is made to transfer an entity to the
-     * world using {@link Entity#transferToWorld} .
+     * world using {@link Entity#transferToWorld}.
      *
      * @param state Should be enabled
      * @return The builder, for chaining

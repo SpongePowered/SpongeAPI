@@ -37,8 +37,7 @@ public interface BlockSnapshotBuilder extends ImmutableDataBuilder<BlockSnapshot
     /**
      * Sets the {@link WorldProperties} for this {@link BlockSnapshot}.
      *
-     * <p>
-     *     This is used to grab the {@link UUID} of the World for this snapshot.
+     * <p>This is used to grab the {@link UUID} of the World for this snapshot.
      * </p>
      *
      * @param worldProperties The WorldProperties
@@ -47,7 +46,7 @@ public interface BlockSnapshotBuilder extends ImmutableDataBuilder<BlockSnapshot
     BlockSnapshotBuilder world(WorldProperties worldProperties);
 
     /**
-     * Sets the {@link BlockState} for this {@link BlockSnapshot}
+     * Sets the {@link BlockState} for this {@link BlockSnapshot}.
      *
      * @param blockState The BlockState
      * @return This builder, for chaining
@@ -64,6 +63,7 @@ public interface BlockSnapshotBuilder extends ImmutableDataBuilder<BlockSnapshot
 
     /**
      * Copies over block data from a {@link Location}<{@link World}>.
+     *
      * @param location The Location to copy from
      * @return This builder, for chaining
      */

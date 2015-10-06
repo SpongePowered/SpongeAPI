@@ -36,7 +36,7 @@ import java.util.concurrent.Executor;
 import java.util.function.Predicate;
 
 /**
- * Utility methods to help with function work
+ * Utility methods to help with function work.
  */
 public class Functional {
 

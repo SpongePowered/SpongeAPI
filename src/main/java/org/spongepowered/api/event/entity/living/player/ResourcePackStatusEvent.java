@@ -37,6 +37,8 @@ import java.util.Optional;
 public interface ResourcePackStatusEvent extends GameEvent {
 
     /**
+     * Gets the {@link Player}.
+     *
      * @return The player
      */
     Player getPlayer();

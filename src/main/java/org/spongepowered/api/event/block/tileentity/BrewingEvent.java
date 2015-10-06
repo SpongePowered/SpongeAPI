@@ -43,6 +43,8 @@ public interface BrewingEvent extends TargetTileEntityEvent, CauseTracked {
     BrewingStand getTargetTile();
 
     /**
+     * Get the ingredient.
+     *
      * @return The ingredient
      */
     ItemStackSnapshot getIngredient();
@@ -55,6 +57,7 @@ public interface BrewingEvent extends TargetTileEntityEvent, CauseTracked {
         /**
          * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
          * of the brew.
+         *
          * @return The brewed items
          */
         List<ItemStackSnapshot> getBrewedItemStacks();
@@ -65,6 +68,7 @@ public interface BrewingEvent extends TargetTileEntityEvent, CauseTracked {
         /**
          * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
          * of the brew.
+         *
          * @return The brewed items
          */
         List<ItemStackSnapshot> getBrewedItemStacks();

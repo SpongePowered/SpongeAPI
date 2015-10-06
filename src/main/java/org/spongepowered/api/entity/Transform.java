@@ -226,7 +226,7 @@ public final class Transform<E extends Extent> {
         return this.rotationQuaternion;
     }
     /**
-     * Gets the pitch component of this transform rotation
+     * Gets the pitch component of this transform rotation.
      *
      * @return The pitch
      */
@@ -235,7 +235,7 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * Gets the yaw component of this transform rotation
+     * Gets the yaw component of this transform rotation.
      *
      * @return The yaw
      */
@@ -244,7 +244,7 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * Gets the roll component of this transform rotation
+     * Gets the roll component of this transform rotation.
      *
      * @return The roll
      */

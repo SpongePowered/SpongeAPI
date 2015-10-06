@@ -281,7 +281,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
     TeleporterAgent getTeleporterAgent();
 
     /**
-     * Gets the world's player simulator, used for simulating player actions
+     * Gets the world's player simulator, used for simulating player actions.w
      *
      * @return The player simulator
      */

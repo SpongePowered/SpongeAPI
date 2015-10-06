@@ -115,7 +115,7 @@ public interface Explosion {
     boolean shouldPlaySmoke();
 
     /**
-     * Sets whether the explosion will show smoke to the client
+     * Sets whether the explosion will show smoke to the client.
      *
      * @param smoke Whether the explosion will play smoke
      */

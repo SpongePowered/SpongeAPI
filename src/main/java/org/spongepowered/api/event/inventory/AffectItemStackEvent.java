@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Fired when {@link ItemStack}s are generated into a {@link Inventory}
+ * Fired when {@link ItemStack}s are generated into a {@link Inventory}.
  */
 public interface AffectItemStackEvent extends TargetInventoryEvent, Cancellable, CauseTracked {
 

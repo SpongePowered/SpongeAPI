@@ -31,7 +31,7 @@ import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
 import org.spongepowered.api.statistic.achievement.Achievement;
 
 /**
- * Represents an event that is called when an {@link Achievement} is granted
+ * Represents an event that is called when an {@link Achievement} is granted.
  */
 public interface GrantAchievementEvent extends MessageSinkEvent, Cancellable, CauseTracked {
 
