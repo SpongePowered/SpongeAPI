@@ -60,6 +60,8 @@ public interface TristateResult {
     }
 
     /**
+     * Gets whether the {@link TristateResult.Result#ALLOW} can be used.
+     *
      * @return Whether the {@link TristateResult.Result#ALLOW} can be used
      */
     boolean hasAllowResult();
