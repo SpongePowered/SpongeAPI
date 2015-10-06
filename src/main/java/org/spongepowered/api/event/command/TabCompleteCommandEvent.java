@@ -36,7 +36,7 @@ import java.util.List;
 public interface TabCompleteCommandEvent extends GameEvent, Cancellable, CauseTracked {
 
     /**
-     * Get the command as a string, without any sort of command prefix.
+     * Gets the command as a string, without any sort of command prefix.
      *
      * <p>For example, if the message was {@code /example bob 3 -f}, then
      * the command would be {@code example}.</p>
@@ -46,7 +46,7 @@ public interface TabCompleteCommandEvent extends GameEvent, Cancellable, CauseTr
     String getCommand();
 
     /**
-     * Get the arguments as a string.
+     * Gets the arguments as a string.
      *
      * <p>For example, if the message was {@code /example bob 3 -f}, then
      * the arguments would be {@code bob 3 -f}.</p>
@@ -56,7 +56,7 @@ public interface TabCompleteCommandEvent extends GameEvent, Cancellable, CauseTr
     String getArguments();
 
     /**
-     * Get the list of available suggestions. This list is mutable, so any modifications should happen to this list.
+     * Gets the list of available suggestions. This list is mutable, so any modifications should happen to this list.
      * All suggestions will replace the last word in the arguments on the client.
      *
      * @return The list of suggestion

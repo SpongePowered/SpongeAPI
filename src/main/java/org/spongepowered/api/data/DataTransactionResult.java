@@ -81,7 +81,7 @@ public interface DataTransactionResult {
     }
 
     /**
-     * Get the type of result.
+     * Gets the type of result.
      *
      * @return the type of result
      */

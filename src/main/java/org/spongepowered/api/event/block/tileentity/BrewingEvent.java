@@ -43,7 +43,7 @@ public interface BrewingEvent extends TargetTileEntityEvent, CauseTracked {
     BrewingStand getTargetTile();
 
     /**
-     * Get the ingredient.
+     * Gets the ingredient.
      *
      * @return The ingredient
      */

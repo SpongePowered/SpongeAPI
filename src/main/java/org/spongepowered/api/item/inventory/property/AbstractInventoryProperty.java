@@ -100,7 +100,7 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
     }
 
     /**
-     * Get the default value for {@link #key}, used in case null is passed in
+     * Gets the default value for {@link #key}, used in case null is passed in
      * (since we can't have a null key). In general this should return the class
      * name of the property itself but subclasses are free to alter this
      * behaviour if they wish.

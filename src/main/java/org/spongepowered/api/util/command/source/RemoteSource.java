@@ -33,7 +33,7 @@ import org.spongepowered.api.util.command.CommandSource;
 public interface RemoteSource extends CommandSource {
 
     /**
-     * Get connection information for this source.
+     * Gets connection information for this source.
      *
      * @return This source's connection
      */

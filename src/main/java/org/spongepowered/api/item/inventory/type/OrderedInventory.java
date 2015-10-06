@@ -39,7 +39,7 @@ import java.util.Optional;
 public interface OrderedInventory extends Inventory {
 
     /**
-     * Get and remove the stack at the supplied index in this Inventory.
+     * Gets and remove the stack at the supplied index in this Inventory.
      *
      * @see Inventory#poll()
      * @param index slot index to query
@@ -48,7 +48,7 @@ public interface OrderedInventory extends Inventory {
     Optional<ItemStack> poll(SlotIndex index);
 
     /**
-     * Get and remove the stack at the supplied index in this Inventory.
+     * Gets and remove the stack at the supplied index in this Inventory.
      *
      * @see Inventory#poll()
      * @param index slot index to query
@@ -58,7 +58,7 @@ public interface OrderedInventory extends Inventory {
     Optional<ItemStack> poll(SlotIndex index, int limit);
 
     /**
-     * Get without removing the stack at the supplied index in this Inventory.
+     * Gets without removing the stack at the supplied index in this Inventory.
      *
      * @see Inventory#peek()
      * @param index slot index to query
@@ -67,7 +67,7 @@ public interface OrderedInventory extends Inventory {
     Optional<ItemStack> peek(SlotIndex index);
 
     /**
-     * Get without removing the stack at the supplied index in this Inventory.
+     * Gets without removing the stack at the supplied index in this Inventory.
      *
      * @see Inventory#peek()
      * @param index slot index to query
@@ -87,7 +87,7 @@ public interface OrderedInventory extends Inventory {
     InventoryOperationResult set(SlotIndex index, ItemStack stack);
 
     /**
-     * Get the {@link Slot} at the specified position.
+     * Gets the {@link Slot} at the specified position.
      *
      * @param index Slot index to retrieve
      * @return slot at the specified position, or {@link Optional#empty()} if

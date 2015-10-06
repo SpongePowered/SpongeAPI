@@ -53,7 +53,7 @@ public interface CommandCallable {
     CommandResult process(CommandSource source, String arguments) throws CommandException;
 
     /**
-     * Get a list of suggestions based on input.
+     * Gets a list of suggestions based on input.
      *
      * <p>If a suggestion is chosen by the user, it will replace the last
      * word.</p>
@@ -79,7 +79,7 @@ public interface CommandCallable {
     boolean testPermission(CommandSource source);
 
     /**
-     * Get a short one-line description of this command.
+     * Gets a short one-line description of this command.
      *
      * <p>The help system may display the description in the command list.</p>
      *
@@ -89,7 +89,7 @@ public interface CommandCallable {
     Optional<? extends Text> getShortDescription(CommandSource source);
 
     /**
-     * Get a longer formatted help message about this command.
+     * Gets a longer formatted help message about this command.
      *
      * <p>It is recommended to use the default text color and style. Sections
      * with text actions (e.g. hyperlinks) should be underlined.</p>
@@ -106,7 +106,7 @@ public interface CommandCallable {
     Optional<? extends Text> getHelp(CommandSource source);
 
     /**
-     * Get the usage string of this command.
+     * Gets the usage string of this command.
      *
      * <p>A usage string may look like
      * {@code [-w &lt;world&gt;] &lt;var1&gt; &lt;var2&gt;}.</p>

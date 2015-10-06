@@ -38,28 +38,28 @@ import java.util.List;
 public interface BiomeType extends CatalogType {
 
     /**
-     * Get the temperature of this biome.
+     * Gets the temperature of this biome.
      *
      * @return The temperature
      */
     double getTemperature();
 
     /**
-     * Get the humidity of this biome.
+     * Gets the humidity of this biome.
      *
      * @return The humidity
      */
     double getHumidity();
 
     /**
-     * Get the minimum terrain height of this biome.
+     * Gets the minimum terrain height of this biome.
      *
      * @return The min height
      */
     float getMinHeight();
 
     /**
-     * Get the maximum terrain height of this biome.
+     * Gets the maximum terrain height of this biome.
      *
      * @return The max height
      */

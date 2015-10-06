@@ -35,7 +35,7 @@ import org.spongepowered.api.util.Direction;
 public interface SidedSlot extends Slot {
 
     /**
-     * Get whether this slot can accept the specified item from the specified
+     * Gets whether this slot can accept the specified item from the specified
      * direction.
      *
      * @param stack Stack to check
@@ -58,7 +58,7 @@ public interface SidedSlot extends Slot {
     boolean offer(ItemStack stack, Direction from);
 
     /**
-     * Get whether automation can extract the specified item from the specified
+     * Gets whether automation can extract the specified item from the specified
      * direction.
      *
      * @param stack Stack to check

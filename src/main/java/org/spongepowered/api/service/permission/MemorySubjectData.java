@@ -76,7 +76,7 @@ public class MemorySubjectData implements OptionSubjectData {
     }
 
     /**
-     * Get the calculated node tree representation of the permissions for this subject data instance.
+     * Gets the calculated node tree representation of the permissions for this subject data instance.
      * If no data is present for the given context, returns null.
      *
      * @param contexts The contexts to get a node tree for

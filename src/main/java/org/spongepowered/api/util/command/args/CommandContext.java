@@ -51,7 +51,7 @@ public final class CommandContext {
     }
 
     /**
-     * Get all values for the given argument. May return an empty list if no values are present.
+     * Gets all values for the given argument. May return an empty list if no values are present.
      *
      * @param key The key to get values for
      * @param <T> the type of value to get

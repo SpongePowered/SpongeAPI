@@ -43,7 +43,7 @@ import java.util.Optional;
 public interface EquipmentInventory extends OrderedInventory, CarriedInventory<ArmorEquipable> {
 
     /**
-     * Get and remove the stack for the specified equipment type in this
+     * Gets and remove the stack for the specified equipment type in this
      * Inventory.
      *
      * @see Inventory#poll()
@@ -53,7 +53,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     Optional<ItemStack> poll(EquipmentSlotType equipmentType);
 
     /**
-     * Get and remove the items from the stack for the specified equipment type
+     * Gets and remove the items from the stack for the specified equipment type
      * in this Inventory.
      *
      * @see Inventory#poll()
@@ -64,7 +64,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     Optional<ItemStack> poll(EquipmentSlotType equipmentType, int limit);
 
     /**
-     * Get and remove the stack for the specified equipment type in this
+     * Gets and remove the stack for the specified equipment type in this
      * Inventory.
      *
      * @see Inventory#poll()
@@ -74,7 +74,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     Optional<ItemStack> poll(EquipmentType equipmentType);
 
     /**
-     * Get and remove the items from the stack for the specified equipment type
+     * Gets and remove the items from the stack for the specified equipment type
      * in this Inventory.
      *
      * @see Inventory#poll()
@@ -85,7 +85,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     Optional<ItemStack> poll(EquipmentType equipmentType, int limit);
 
     /**
-     * Get without removing the stack for the specified equipment type in this
+     * Gets without removing the stack for the specified equipment type in this
      * Inventory.
      *
      * @see Inventory#peek()
@@ -95,7 +95,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     Optional<ItemStack> peek(EquipmentSlotType equipmentType);
 
     /**
-     * Get without removing the items from the stack for the specified equipment
+     * Gets without removing the items from the stack for the specified equipment
      * type in this Inventory.
      *
      * @see Inventory#peek()
@@ -106,7 +106,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     Optional<ItemStack> peek(EquipmentSlotType equipmentType, int limit);
 
     /**
-     * Get without removing the stack for the specified equipment type in this
+     * Gets without removing the stack for the specified equipment type in this
      * Inventory.
      *
      * @see Inventory#peek()
@@ -116,7 +116,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     Optional<ItemStack> peek(EquipmentType equipmentType);
 
     /**
-     * Get without removing the items from the stack for the specified equipment
+     * Gets without removing the items from the stack for the specified equipment
      * type in this Inventory.
      *
      * @see Inventory#peek()
@@ -147,7 +147,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     InventoryOperationResult set(EquipmentType equipmentType, ItemStack stack);
 
     /**
-     * Get the {@link Slot} for the specified equipment type.
+     * Gets the {@link Slot} for the specified equipment type.
      *
      * @param equipmentType Type of equipment slot to set
      * @return matching slot or {@link Optional#empty()} if no matching slot
@@ -155,7 +155,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     Optional<Slot> getSlot(EquipmentSlotType equipmentType);
 
     /**
-     * Get the {@link Slot} for the specified equipment type.
+     * Gets the {@link Slot} for the specified equipment type.
      *
      * @param equipmentType Type of equipment slot to set
      * @return matching slot or {@link Optional#empty()} if no matching slot

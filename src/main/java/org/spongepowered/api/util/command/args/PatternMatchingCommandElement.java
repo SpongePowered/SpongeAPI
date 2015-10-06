@@ -86,7 +86,7 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
     }
 
     /**
-     * Get the available choices for this command source.
+     * Gets the available choices for this command source.
      *
      * @param source The source requesting choices
      * @return the possible choices
@@ -94,7 +94,7 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
     protected abstract Iterable<String> getChoices(CommandSource source);
 
     /**
-     * Get the value for a given choice. For any result in {@link #getChoices(CommandSource)}, this must return a non-null value. Otherwise, an
+     * Gets the value for a given choice. For any result in {@link #getChoices(CommandSource)}, this must return a non-null value. Otherwise, an
      * {@link IllegalArgumentException} may be throw.
      *
      * @param choice The specified choice

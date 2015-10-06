@@ -38,7 +38,7 @@ import java.util.Optional;
 public interface Inventory2D extends OrderedInventory {
 
     /**
-     * Get and remove the stack at the supplied position in this Inventory.
+     * Gets and remove the stack at the supplied position in this Inventory.
      *
      * @see Inventory#poll()
      * @param pos Slot position to query
@@ -47,7 +47,7 @@ public interface Inventory2D extends OrderedInventory {
     Optional<ItemStack> poll(SlotPos pos);
 
     /**
-     * Get and remove the stack at the supplied position in this Inventory.
+     * Gets and remove the stack at the supplied position in this Inventory.
      *
      * @see Inventory#poll()
      * @param pos Slot position to query
@@ -57,7 +57,7 @@ public interface Inventory2D extends OrderedInventory {
     Optional<ItemStack> poll(SlotPos pos, int limit);
 
     /**
-     * Get without removing the stack at the supplied position in this
+     * Gets without removing the stack at the supplied position in this
      * Inventory.
      *
      * @see Inventory#peek()
@@ -67,7 +67,7 @@ public interface Inventory2D extends OrderedInventory {
     Optional<ItemStack> peek(SlotPos pos);
 
     /**
-     * Get without removing the stack at the supplied position in this
+     * Gets without removing the stack at the supplied position in this
      * Inventory.
      *
      * @see Inventory#peek()
@@ -88,7 +88,7 @@ public interface Inventory2D extends OrderedInventory {
     InventoryOperationResult set(SlotPos pos, ItemStack stack);
 
     /**
-     * Get the {@link Slot} at the specified position.
+     * Gets the {@link Slot} at the specified position.
      *
      * @param pos Slot position to retrieve
      * @return slot at the specified position, or {@link Optional#empty()} if

@@ -35,7 +35,7 @@ import org.spongepowered.api.util.command.CommandResult;
 public interface SendCommandEvent extends GameEvent, Cancellable, CauseTracked {
 
     /**
-     * Get the command as a string, without any sort of command prefix.
+     * Gets the command as a string, without any sort of command prefix.
      *
      * <p>For example, if the message was {@code /example bob 3 -f}, then
      * the command would be {@code example}.</p>
@@ -45,7 +45,7 @@ public interface SendCommandEvent extends GameEvent, Cancellable, CauseTracked {
     String getCommand();
 
     /**
-     * Get the arguments as a string.
+     * Gets the arguments as a string.
      *
      * <p>For example, if the message was {@code /example bob 3 -f}, then
      * the arguments would be {@code bob 3 -f}.</p>

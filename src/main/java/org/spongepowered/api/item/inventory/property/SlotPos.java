@@ -89,7 +89,7 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
     }
 
     /**
-     * Get the X position of this slot within the queried parent.
+     * Gets the X position of this slot within the queried parent.
      * 
      * @return slot x coordinate
      */
@@ -98,7 +98,7 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
     }
 
     /**
-     * Get the Y position of this slot within the queried parent.
+     * Gets the Y position of this slot within the queried parent.
      * 
      * @return slot y coordinate
      */

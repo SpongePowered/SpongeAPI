@@ -50,7 +50,7 @@ public interface ItemType extends CatalogType, Translatable {
     String getName();
 
     /**
-     * Get the default maximum quantity for
+     * Gets the default maximum quantity for
      * {@link ItemStack}s of this item.
      *
      * @return Max stack quantity

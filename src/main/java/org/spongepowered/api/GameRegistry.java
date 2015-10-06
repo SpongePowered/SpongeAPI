@@ -172,14 +172,14 @@ public interface GameRegistry {
     EntitySnapshotBuilder createEntitySnapshotBuilder();
 
     /**
-     * Get an item stack builder.
+     * Gets an item stack builder.
      *
      * @return The item stack builder
      */
     ItemStackBuilder createItemBuilder();
 
     /**
-     * Get a trade offer builder.
+     * Gets a trade offer builder.
      *
      * @return The trade offer builder
      */
@@ -193,21 +193,21 @@ public interface GameRegistry {
     FireworkEffectBuilder createFireworkEffectBuilder();
 
     /**
-     * Get a potion effect builder.
+     * Gets a potion effect builder.
      *
      * @return The potion effect builder
      */
     PotionEffectBuilder createPotionEffectBuilder();
 
     /**
-     * Get an objective builder.
+     * Gets an objective builder.
      *
      * @return The objective builder
      */
     ObjectiveBuilder createObjectiveBuilder();
 
     /**
-     * Get a team builder.
+     * Gets a team builder.
      *
      * @return The team builder
      */

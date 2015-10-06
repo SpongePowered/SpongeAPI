@@ -32,7 +32,7 @@ import org.spongepowered.api.eventgencore.annotation.AbsoluteSortPosition;
 public interface CauseTracked {
 
     /**
-     * Get the cause for the event.
+     * Gets the cause for the event.
      *
      * @return The last cause
      */

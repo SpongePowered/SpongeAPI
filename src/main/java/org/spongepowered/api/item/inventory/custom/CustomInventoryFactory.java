@@ -30,7 +30,7 @@ package org.spongepowered.api.item.inventory.custom;
 public interface CustomInventoryFactory {
 
     /**
-     * Get a new builder for a custom inventory.
+     * Gets a new builder for a custom inventory.
      * 
      * @return a new {@link CustomInventoryBuilder}
      */

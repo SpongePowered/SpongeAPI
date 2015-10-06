@@ -33,7 +33,7 @@ import org.spongepowered.api.item.inventory.Inventory;
 public interface TargetInventoryEvent extends GameEvent {
 
     /**
-     * Get the target {@link Inventory}.
+     * Gets the target {@link Inventory}.
      *
      * @return The target {@link Inventory}
      */

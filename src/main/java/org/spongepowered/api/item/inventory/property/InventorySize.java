@@ -88,7 +88,7 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
     }
 
     /**
-     * Get the number of columns in this inventory.
+     * Gets the number of columns in this inventory.
      * 
      * @return column count
      */
@@ -97,7 +97,7 @@ public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
     }
 
     /**
-     * Get the number of rows in this inventory.
+     * Gets the number of rows in this inventory.
      * 
      * @return row count
      */

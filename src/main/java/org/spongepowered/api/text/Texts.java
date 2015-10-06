@@ -560,7 +560,7 @@ public final class Texts {
     }
 
     /**
-     * Get a {@link TextRepresentation} for the Mojangson representation of a
+     * Gets a {@link TextRepresentation} for the Mojangson representation of a
      * {@link Text} object.
      *
      *
@@ -571,7 +571,7 @@ public final class Texts {
     }
 
     /**
-     * Get a {@link TextRepresentation} for the TextXML representation of a
+     * Gets a {@link TextRepresentation} for the TextXML representation of a
      * {@link Text} object.
      *
      * @return The xml text serializer

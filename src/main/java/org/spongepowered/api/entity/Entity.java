@@ -59,7 +59,7 @@ import java.util.UUID;
 public interface Entity extends Identifiable, DataHolder, DataSerializable {
 
     /**
-     * Get the type of entity.
+     * Gets the type of entity.
      *
      * @return The type of entity
      */
@@ -79,7 +79,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
     EntitySnapshot createSnapshot();
 
     /**
-     * Get the location of this entity.
+     * Gets the location of this entity.
      *
      * @return The location
      */

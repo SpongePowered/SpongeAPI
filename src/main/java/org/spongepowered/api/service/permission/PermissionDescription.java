@@ -112,7 +112,7 @@ public interface PermissionDescription {
     Text getDescription();
 
     /**
-     * Get all subjects that have this permission set.
+     * Gets all subjects that have this permission set.
      *
      * <p>If you want to know to which role-templates this permission is
      * assigned use {@link PermissionService#SUBJECTS_ROLE_TEMPLATE}.

@@ -61,7 +61,7 @@ public class ClassGeneratorProvider implements FactoryProvider {
     }
 
     /**
-     * Get the canonical name used for a generated event class.
+     * Gets the canonical name used for a generated event class.
      *
      * @param clazz The class
      * @param classifier The classifier

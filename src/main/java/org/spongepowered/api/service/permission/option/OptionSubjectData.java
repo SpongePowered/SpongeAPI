@@ -40,7 +40,7 @@ public interface OptionSubjectData extends SubjectData {
     Map<Set<Context>, Map<String, String>> getAllOptions();
 
     /**
-     * Get options for a specific context combination.
+     * Gets options for a specific context combination.
      *
      * @param contexts The context combination to get options for
      * @return All available options, returning an empty map if none are present

@@ -81,7 +81,7 @@ public class Functional {
     }
 
     /**
-     * Get the value of an {@link Optional} as either a zero- or one-element immutable set.
+     * Gets the value of an {@link Optional} as either a zero- or one-element immutable set.
      *
      * @param value The value to get as a set
      * @param <T> The type

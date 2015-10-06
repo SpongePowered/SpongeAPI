@@ -52,14 +52,14 @@ public interface TextFactory {
     String toPlain(Text text, Locale locale);
 
     /**
-     * Get a {@link TextRepresentation} for the Mojangson representation of a {@link Text} object.
+     * Gets a {@link TextRepresentation} for the Mojangson representation of a {@link Text} object.
      *
      * @return The json serializer
      */
     TextRepresentation json();
 
     /**
-     * Get a {@link TextRepresentation} for the TextXML representation of a {@link Text} object.
+     * Gets a {@link TextRepresentation} for the TextXML representation of a {@link Text} object.
      *
      * @return The xml text serializer
      */

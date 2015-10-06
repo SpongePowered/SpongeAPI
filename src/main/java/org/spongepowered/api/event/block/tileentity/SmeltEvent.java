@@ -38,7 +38,7 @@ public interface SmeltEvent extends TargetTileEntityEvent, CauseTracked {
     Furnace getTargetTile();
 
     /**
-     * Get the fuel.
+     * Gets the fuel.
      *
      * @return The fuel
      */

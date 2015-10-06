@@ -290,7 +290,7 @@ public final class SimpleDispatcher implements Dispatcher {
     }
 
     /**
-     * Get a given command in the context of a certain command source.
+     * Gets a given command in the context of a certain command source.
      *
      * @param alias The alias to look up
      * @param source The source this alias is being looked up for
@@ -401,7 +401,7 @@ public final class SimpleDispatcher implements Dispatcher {
     }
 
     /**
-     * Get the number of registered aliases.
+     * Gets the number of registered aliases.
      *
      * @return The number of aliases
      */

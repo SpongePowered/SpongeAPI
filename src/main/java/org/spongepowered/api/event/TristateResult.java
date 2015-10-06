@@ -65,14 +65,14 @@ public interface TristateResult {
     boolean hasAllowResult();
 
     /**
-     * Get the original {@link Result} of this event.
+     * Gets the original {@link Result} of this event.
      *
      * @return The original {@link Result} of this event
      */
     Result getOriginalResult();
 
     /**
-     * Get the {@link Result} of this event.
+     * Gets the {@link Result} of this event.
      *
      * @return The {@link Result} of this event
      */

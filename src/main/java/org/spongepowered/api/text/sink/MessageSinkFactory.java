@@ -75,7 +75,7 @@ public interface MessageSinkFactory {
     MessageSink combined(MessageSink... sinks);
 
     /**
-     * Get a message sink that targets the given sources.
+     * Gets a message sink that targets the given sources.
      *
      * @param sources The sources to have as recipients
      * @return The sink

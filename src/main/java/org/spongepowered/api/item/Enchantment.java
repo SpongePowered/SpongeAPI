@@ -47,7 +47,7 @@ public interface Enchantment extends CatalogType, Translatable {
     String getName();
 
     /**
-     * Get the weight of the enchantment.
+     * Gets the weight of the enchantment.
      *
      * <p>Higher values are more common. This value is also used in the repair
      * cost calculation.</p>
@@ -57,21 +57,21 @@ public interface Enchantment extends CatalogType, Translatable {
     int getWeight();
 
     /**
-     * Get the minimum level of this enchantment allowed where it is present.
+     * Gets the minimum level of this enchantment allowed where it is present.
      *
      * @return The minimum level
      */
     int getMinimumLevel();
 
     /**
-     * Get the maximum level of this enchantment normally allowed.
+     * Gets the maximum level of this enchantment normally allowed.
      *
      * @return The maximum level
      */
     int getMaximumLevel();
 
     /**
-     * Get the minimum item enchantability for this level to be normally added
+     * Gets the minimum item enchantability for this level to be normally added
      * by enchanting tables.
      *
      * @param level Enchantment level
@@ -80,7 +80,7 @@ public interface Enchantment extends CatalogType, Translatable {
     int getMinimumEnchantabilityForLevel(int level);
 
     /**
-     * Get the maximum item enchantability for this level to be normally added
+     * Gets the maximum item enchantability for this level to be normally added
      * by enchanting tables.
      *
      * @param level Enchantment level

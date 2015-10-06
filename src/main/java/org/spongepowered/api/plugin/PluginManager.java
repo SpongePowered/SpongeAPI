@@ -37,7 +37,7 @@ import java.util.Optional;
 public interface PluginManager {
 
     /**
-     * Get the plugin container from an instance.
+     * Gets the plugin container from an instance.
      *
      * @param instance The instance
      * @return The container

@@ -37,7 +37,7 @@ import java.util.Set;
 public interface Dispatcher extends CommandCallable {
 
     /**
-     * Get a list of commands. Each command, regardless of how many aliases
+     * Gets a list of commands. Each command, regardless of how many aliases
      * it may have, will only appear once in the returned set.
      *
      * <p>The returned collection cannot be modified.</p>
@@ -47,7 +47,7 @@ public interface Dispatcher extends CommandCallable {
     Set<? extends CommandMapping> getCommands();
 
     /**
-     * Get a list of primary aliases.
+     * Gets a list of primary aliases.
      *
      * <p>The returned collection cannot be modified.</p>
      *
@@ -56,7 +56,7 @@ public interface Dispatcher extends CommandCallable {
     Set<String> getPrimaryAliases();
 
     /**
-     * Get a list of all the command aliases, which includes the primary alias.
+     * Gets a list of all the command aliases, which includes the primary alias.
      *
      * <p>A command may have more than one alias assigned to it. The returned
      * collection cannot be modified.</p>
@@ -66,7 +66,7 @@ public interface Dispatcher extends CommandCallable {
     Set<String> getAliases();
 
     /**
-     * Get the {@link CommandMapping} associated with an alias. Returns
+     * Gets the {@link CommandMapping} associated with an alias. Returns
      * null if no command is named by the given alias.
      *
      * @param alias The alias
@@ -83,7 +83,7 @@ public interface Dispatcher extends CommandCallable {
     Set<? extends CommandMapping> getAll(String alias);
 
     /**
-     * Get all commands currently registered with this dispatcher. The returned value is immutable.
+     * Gets all commands currently registered with this dispatcher. The returned value is immutable.
      *
      * @return a multimap from alias to mapping of every registered command
      */

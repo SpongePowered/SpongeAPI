@@ -40,7 +40,7 @@ public interface ChangeEntityExperienceEvent extends TargetEntityEvent, Cancella
     int getOriginalExperience();
 
     /**
-     * Get the experience after an event has been processed.
+     * Gets the experience after an event has been processed.
      *
      * @return The experience to receive
      */

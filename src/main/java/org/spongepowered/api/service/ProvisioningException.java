@@ -87,7 +87,7 @@ public class ProvisioningException extends RuntimeException {
     }
 
     /**
-     * Get the service that was requested.
+     * Gets the service that was requested.
      *
      * @return The service
      */

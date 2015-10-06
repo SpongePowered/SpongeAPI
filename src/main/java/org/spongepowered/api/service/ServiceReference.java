@@ -35,7 +35,7 @@ import java.util.function.Predicate;
 public interface ServiceReference<T> {
 
     /**
-     * Get the reference to the current state of this service.
+     * Gets the reference to the current state of this service.
      *
      * @return reference to the latest value of the service -- may not be present
      */

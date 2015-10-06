@@ -55,7 +55,7 @@ public class SpongeApiTranslationHelper {
     } // Prevent instance creation
 
     /**
-     * Get the translated text for a given string.
+     * Gets the translated text for a given string.
      *
      * @param key The translation key
      * @param args Translation parameters

@@ -130,7 +130,7 @@ public class ClassGenerator {
     }
 
     /**
-     * Get the opcode used for loading a local variable.
+     * Gets the opcode used for loading a local variable.
      *
      * @param type The type being loaded
      * @return The opcode
@@ -150,7 +150,7 @@ public class ClassGenerator {
     }
 
     /**
-     * Get the opcode used for returning from a method.
+     * Gets the opcode used for returning from a method.
      *
      * @param type The type being returned
      * @return The opcode
@@ -230,7 +230,7 @@ public class ClassGenerator {
     }
 
     /**
-     * Get the policy regarding how null parameters are handled.
+     * Gets the policy regarding how null parameters are handled.
      *
      * @return The null policy
      */

@@ -33,7 +33,7 @@ import org.spongepowered.api.event.GameEvent;
 public interface TargetBlockEvent extends GameEvent {
 
     /**
-     * Get the {@link BlockSnapshot}.
+     * Gets the {@link BlockSnapshot}.
      *
      * @return The {@link BlockSnapshot}
      */

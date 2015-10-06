@@ -250,7 +250,7 @@ public enum Direction {
     }
 
     /**
-     * Get the Vector3d.
+     * Gets the Vector3d.
      *
      * @return The Vector3d
      */
