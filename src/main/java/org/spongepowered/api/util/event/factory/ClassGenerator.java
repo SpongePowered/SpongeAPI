@@ -179,7 +179,7 @@ public class ClassGenerator {
 
     private static boolean fieldRequired(Class<?> clazz, String fieldName) {
         SetField setField = getSetField(clazz, fieldName);
-        return setField != null ? setField.isRequired() : true;
+        return setField == null || setField.isRequired();
     }
 
     private static int getModifiers(Class<?> clazz, String fieldName) {
@@ -595,7 +595,7 @@ public class ClassGenerator {
 
             for (EventFactoryPlugin plugin: plugins) {
                 processed = plugin.contributeProperty(eventClass, internalName, cw, property);
-                if (processed == true) {
+                if (processed) {
                     break;
                 }
             }
