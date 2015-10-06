@@ -116,7 +116,7 @@ public enum Direction {
      */
     public static Direction getClosest(Vector3d vector) {
         if (Math.pow(vector.getY(), 2) <= Math.pow(vector.getX(), 2) + Math.pow(vector.getZ(), 2)) {
-            return getClosestHorizonal(vector);
+            return getClosestHorizontal(vector);
         } else if (vector.getY() > 0) {
             return UP;
         } else {
@@ -132,7 +132,7 @@ public enum Direction {
      * @param vector The vector to convert to a direction
      * @return The closest horizontal direction.
      */
-    public static Direction getClosestHorizonal(Vector3d vector) {
+    public static Direction getClosestHorizontal(Vector3d vector) {
         if (vector.getX() == 0) {
             if (vector.getZ() == 0) {
                 return NONE;
