@@ -22,21 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.player.gamemode;
+package org.spongepowered.api.data.type;
+
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * A list of the game modes that Minecraft provides in vanilla.
+ * Represents a game mode that a {@link Player} may have.
  */
-public final class GameModes {
-
-    public static final GameMode SURVIVAL = null;
-    public static final GameMode CREATIVE = null;
-    public static final GameMode ADVENTURE = null;
-    public static final GameMode SPECTATOR = null;
-
-    public static final GameMode NOT_SET = null;
-
-    private GameModes() {
-    }
+@CatalogedBy(GameModes.class)
+public interface GameMode extends CatalogType, Translatable {
 
 }
