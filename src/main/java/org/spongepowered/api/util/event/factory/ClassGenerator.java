@@ -493,8 +493,6 @@ public class ClassGenerator {
 
     private void contributeToString(String internalName, Property<Class<?>, Method> property, MethodVisitor toStringMv) {
         if (property.isLeastSpecificType()) {
-            Type returnType = Type.getReturnType(property.getAccessor());
-
             toStringMv.visitVarInsn(ALOAD, 0);
 
             toStringMv.visitVarInsn(ALOAD, 1);
