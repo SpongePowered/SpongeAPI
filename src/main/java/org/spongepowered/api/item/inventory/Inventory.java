@@ -56,11 +56,11 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * Returns an iterable view of all {@link Slot}s (leaf nodes) in this
      * Inventory.
      *
-     * @param <T> expected inventory type, specified as generic to allow easy
+     * @param <T> expected slot type, specified as generic to allow easy
      *      pseudo-duck-typing
      * @return an iterable view of all Slots (leaf nodes) in this inventory
      */
-    <T extends Inventory> Iterable<T> slots();
+    <T extends Slot> Iterable<T> slots();
 
     /**
      * Return the first child inventory, effectively the same as
