@@ -84,7 +84,7 @@ public final class TextFormat {
      *
      * @return The style
      */
-    public final TextStyle getStyle() {
+    public TextStyle getStyle() {
         return this.style;
     }
 
@@ -93,7 +93,7 @@ public final class TextFormat {
      *
      * @return The color
      */
-    public final TextColor getColor() {
+    public TextColor getColor() {
         return this.color;
     }
 
@@ -103,7 +103,7 @@ public final class TextFormat {
      * @param style The style
      * @return A new {@link TextFormat}
      */
-    public final TextFormat style(TextStyle style) {
+    public TextFormat style(TextStyle style) {
         return new TextFormat(style, this.color);
     }
 
@@ -113,7 +113,7 @@ public final class TextFormat {
      * @param color The color
      * @return A new {@link TextFormat}
      */
-    public final TextFormat color(TextColor color) {
+    public TextFormat color(TextColor color) {
         return new TextFormat(this.style, this.color);
     }
 

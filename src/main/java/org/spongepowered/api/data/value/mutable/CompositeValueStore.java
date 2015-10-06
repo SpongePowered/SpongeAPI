@@ -251,7 +251,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * @return The transaction result
      */
     default DataTransactionResult offer(Iterable<H> valueContainers, MergeFunction function) {
-        final DataTransactionBuilder builder = DataTransactionBuilder.builder();
+        DataTransactionBuilder builder = DataTransactionBuilder.builder();
         for (H valueContainer : valueContainers) {
             builder.absorbResult(offer(valueContainer, function));
         }

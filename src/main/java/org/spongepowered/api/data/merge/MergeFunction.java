@@ -89,7 +89,7 @@ public interface MergeFunction {
      * @return The new {@link MergeFunction}
      */
     default MergeFunction andThen(final MergeFunction that) {
-        final MergeFunction self = this;
+        MergeFunction self = this;
         return new MergeFunction() {
             @Override
             public <C extends ValueContainer<?>> C merge(C original, C replacement) {

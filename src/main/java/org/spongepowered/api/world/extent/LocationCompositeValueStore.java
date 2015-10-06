@@ -423,7 +423,7 @@ public interface LocationCompositeValueStore {
      */
     default <E> DataTransactionResult transform(int x, int y, int z, Key<? extends BaseValue<E>> key, Function<E, E> function) {
         if (supports(x, y, z, key)) {
-            final Optional<E> optional = get(x, y, z, key);
+            Optional<E> optional = get(x, y, z, key);
             if (optional.isPresent()) {
                 return offer(x, y, z, key, function.apply(optional.get()));
             }
@@ -584,7 +584,7 @@ public interface LocationCompositeValueStore {
      * @return The transaction result
      */
     default DataTransactionResult offer(Vector3i coordinates, Iterable<DataManipulator<?, ?>> manipulators) {
-        final DataTransactionBuilder builder = DataTransactionBuilder.builder();
+        DataTransactionBuilder builder = DataTransactionBuilder.builder();
         for (DataManipulator<?, ?> manipulator : manipulators) {
             builder.absorbResult(offer(coordinates.getX(), coordinates.getY(), coordinates.getZ(), manipulator, MergeFunction.IGNORE_ALL));
         }
@@ -606,7 +606,7 @@ public interface LocationCompositeValueStore {
      * @return The transaction result
      */
     default DataTransactionResult offer(int x, int y, int z, Iterable<DataManipulator<?, ?>> manipulators) {
-        final DataTransactionBuilder builder = DataTransactionBuilder.builder();
+        DataTransactionBuilder builder = DataTransactionBuilder.builder();
         for (DataManipulator<?, ?> manipulator : manipulators) {
             builder.absorbResult(offer(x, y, z, manipulator, MergeFunction.IGNORE_ALL));
         }
@@ -630,7 +630,7 @@ public interface LocationCompositeValueStore {
      * @return The transaction result
      */
     default DataTransactionResult offer(Vector3i blockPosition, Iterable<DataManipulator<?,?>> values, MergeFunction function) {
-        final DataTransactionBuilder builder = DataTransactionBuilder.builder();
+        DataTransactionBuilder builder = DataTransactionBuilder.builder();
         for (DataManipulator<?, ?> manipulator : values) {
             builder.absorbResult(offer(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ(), manipulator, function));
         }
