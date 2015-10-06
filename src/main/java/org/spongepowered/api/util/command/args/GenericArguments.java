@@ -43,7 +43,6 @@ import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.command.CommandMessageFormatting;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.source.LocatedSource;
-import org.spongepowered.api.util.command.spec.CommandExecutor;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -56,7 +55,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
@@ -384,19 +382,15 @@ public final class GenericArguments {
         @Override
         public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
             return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements,
-                    new com.google.common.base.Function<CommandElement, List<String>>() {
-
-                        @Override
-                        public List<String> apply(@Nullable CommandElement input) {
-                            if (input == null) {
-                                return ImmutableList.of();
-                            }
-
-                            Object startState = args.getState();
-                            List<String> ret = input.complete(src, args, context);
-                            args.setState(startState);
-                            return ret;
+                    input -> {
+                        if (input == null) {
+                            return ImmutableList.of();
                         }
+
+                        Object startState = args.getState();
+                        List<String> ret = input.complete(src, args, context);
+                        args.setState(startState);
+                        return ret;
                     })));
         }
 
