@@ -38,8 +38,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Base event for when {@link BlockState}s at {@link Location<World>}s are being
- * changed.
+ * Base event for when {@link BlockState}s at {@link Location}<{@link World}>s
+ * are being changed.
  */
 @ImplementedBy(AbstractChangeBlockEvent.class)
 public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable, CauseTracked {

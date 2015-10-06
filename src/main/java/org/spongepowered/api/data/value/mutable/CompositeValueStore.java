@@ -264,7 +264,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * removed will be provided in
      * {@link DataTransactionResult#getReplacedData()}. If the data can not be
      * removed, the result will be an expected
-     * {@link DataTransactionResult.Type#FAILURE}.
+     * {@link org.spongepowered.api.data.DataTransactionResult.Type#FAILURE}.
      *
      * @param containerClass The container class
      * @return The transaction result
@@ -276,7 +276,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * successfully removed will be provided in
      * {@link DataTransactionResult#getReplacedData()}. If the data can not be
      * removed, the result will be an expected
-     * {@link DataTransactionResult.Type#FAILURE}.
+     * {@link org.spongepowered.api.data.DataTransactionResult.Type#FAILURE}.
      *
      * @param value The value to remove
      * @return The transaction result
@@ -290,7 +290,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * All values that were successfully removed will be provided in
      * {@link DataTransactionResult#getReplacedData()}. If the data can not be
      * removed, the result will be an expected
-     * {@link DataTransactionResult.Type#FAILURE}.
+     * {@link org.spongepowered.api.data.DataTransactionResult.Type#FAILURE}.
      *
      * @param key The key of the data
      * @return The transaction result

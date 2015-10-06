@@ -40,7 +40,7 @@ import java.util.function.Predicate;
 public interface HarvestBlockEvent extends TargetBlockEvent, ChangeEntityExperienceEvent {
 
     /**
-     * Gets a mutable copy of the original {@link Collection<ItemStack>} 
+     * Gets a mutable copy of the original {@link Collection}<{@link ItemStack}>
      * unaffected by changes to this event.
      *
      * @return The mutable Collection of ItemStack
@@ -48,16 +48,16 @@ public interface HarvestBlockEvent extends TargetBlockEvent, ChangeEntityExperie
     Collection<ItemStack> getOriginalItemStacks();
 
     /**
-     * Gets a mutable {@link Collection<ItemStack>} which will be dropped after
-     * event resolution.
+     * Gets a mutable {@link Collection}<{@link ItemStack}> which will be
+     * dropped after event resolution.
      *
      * @return The Collection of ItemStack
      */
     Collection<ItemStack> getItemStacks();
 
     /**
-     * Sets the {@link Collection<ItemStack>} that will be dropped after event 
-     * resolution.
+     * Sets the {@link Collection}<{@link ItemStack}> that will be dropped
+     * after event resolution.
      *
      * @param items The Collection of ItemStack
      */

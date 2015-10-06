@@ -230,7 +230,7 @@ public interface GameRegistry {
 
     /**
      * Creates a new
-     * {@link StatisticBuilder.EntityStatisticBuilder}
+     * {@link org.spongepowered.api.statistic.StatisticBuilder.EntityStatisticBuilder}
      * which may be used to create custom {@link EntityStatistic}s.
      *
      * @return The newly created entity statistic builder
@@ -239,7 +239,7 @@ public interface GameRegistry {
 
     /**
      * Creates a new
-     * {@link StatisticBuilder.BlockStatisticBuilder}
+     * {@link org.spongepowered.api.statistic.StatisticBuilder.BlockStatisticBuilder}
      * which may be used to create custom {@link BlockStatistic}s.
      *
      * @return The newly created block statistic builder
@@ -248,7 +248,7 @@ public interface GameRegistry {
 
     /**
      * Creates a new
-     * {@link StatisticBuilder.ItemStatisticBuilder}
+     * {@link org.spongepowered.api.statistic.StatisticBuilder.ItemStatisticBuilder}
      * which may be used to create custom {@link ItemStatistic}s.
      *
      * @return The newly created item statistic builder
@@ -257,7 +257,7 @@ public interface GameRegistry {
 
     /**
      * Creates a new
-     * {@link StatisticBuilder.TeamStatisticBuilder}
+     * {@link org.spongepowered.api.statistic.StatisticBuilder.TeamStatisticBuilder}
      * which may be used to create custom {@link TeamStatistic}s.
      *
      * @return The newly created team statistic builder

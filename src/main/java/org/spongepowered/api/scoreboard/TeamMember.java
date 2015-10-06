@@ -40,7 +40,8 @@ import java.util.UUID;
  *
  * <ul>
  *     <li>{@link Player}s, represented in Vanilla by their name</li>
- *     <li>Other {@link Living living entities}, represented in Vanilla by their {@link UUID}</li>
+ *     <li>Other {@link Living} entities}, represented in Vanilla by their
+ *     {@link UUID}</li>
  * </ul>
  *
  */
@@ -48,7 +49,7 @@ public interface TeamMember {
 
     /**
      * Gets an {@link Text} representing this team member, suitable for
-     * adding to an {@link Team} with {@link Team#addMember(Text).
+     * adding to an {@link Team} with {@link Team#addMember(Text)}.
      *
      * @return an {@link Text} representing this team member
      */
