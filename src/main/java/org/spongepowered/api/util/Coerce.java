@@ -493,7 +493,7 @@ public final class Coerce {
             return 0;
         }
         if (obj instanceof Number) {
-            return ((Number) obj).shortValue();
+            return ((Number) obj).longValue();
         }
 
         Long parsed = Long.parseLong(Coerce.sanitiseNumber(obj));
