@@ -192,22 +192,6 @@ public final class Transform<E extends Extent> {
         checkNotNull(rotation, "rotation");
         return setRotation(toAxesAngles(rotation));
     }
-    /**
-     * Returns the rotation as a quaternion.
-     *
-     * <p>Quaternions are objectively better than
-     * the Euler angles preferred by Minecraft.
-     * This is for compatibility with
-     * the flow-math library.</p>
-     *
-     * @return The rotation
-     */
-    public Quaterniond getRotationAsQuaternion() {
-        if (this.rotationQuaternion == null) {
-            this.rotationQuaternion = fromAxesAngles(this.rotation);
-        }
-        return this.rotationQuaternion;
-    }
 
     /**
      * Creates a copy of this transform and sets the rotation as
@@ -224,6 +208,22 @@ public final class Transform<E extends Extent> {
     public Transform<E> setRotation(Vector3d rotation) {
         checkNotNull(rotation, "rotation");
         return new Transform<>(getExtent(), getPosition(), rotation, getScale());
+    }
+    /**
+     * Returns the rotation as a quaternion.
+     *
+     * <p>Quaternions are objectively better than
+     * the Euler angles preferred by Minecraft.
+     * This is for compatibility with
+     * the flow-math library.</p>
+     *
+     * @return The rotation
+     */
+    public Quaterniond getRotationAsQuaternion() {
+        if (this.rotationQuaternion == null) {
+            this.rotationQuaternion = fromAxesAngles(this.rotation);
+        }
+        return this.rotationQuaternion;
     }
     /**
      * Gets the pitch component of this transform rotation

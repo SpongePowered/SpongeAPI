@@ -85,34 +85,6 @@ public final class Texts {
     }
 
     /**
-     * Creates a placeholder {@link Text} with the specified key. The created
-     * message won't have any formatting or events configured.
-     *
-     * @param key The key of the placeholder
-     * @return The created text
-     * @see Text.Placeholder
-     */
-    public static Text.Placeholder placeholder(String key) {
-        checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
-        return new Text.Placeholder(key);
-    }
-
-    /**
-     * Creates a placeholder {@link Text} with the specified key and fallback.
-     * The created message won't have any formatting or events configured.
-     *
-     * @param key The key of the placeholder
-     * @param fallback The fallback of the text if it is not replaced
-     * @return The created text
-     * @see Text.Placeholder
-     */
-    public static Text.Placeholder placeholder(String key, Text fallback) {
-        checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
-        checkNotNull(fallback, "fallback");
-        return new Text.Placeholder(key, fallback);
-    }
-
-    /**
      * Creates a new unformatted {@link Text.Translatable} with the given
      * {@link Translation} and arguments.
      *
@@ -234,6 +206,34 @@ public final class Texts {
         }
 
         return builder.build();
+    }
+
+    /**
+     * Creates a placeholder {@link Text} with the specified key. The created
+     * message won't have any formatting or events configured.
+     *
+     * @param key The key of the placeholder
+     * @return The created text
+     * @see Text.Placeholder
+     */
+    public static Text.Placeholder placeholder(String key) {
+        checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
+        return new Text.Placeholder(key);
+    }
+
+    /**
+     * Creates a placeholder {@link Text} with the specified key and fallback.
+     * The created message won't have any formatting or events configured.
+     *
+     * @param key The key of the placeholder
+     * @param fallback The fallback of the text if it is not replaced
+     * @return The created text
+     * @see Text.Placeholder
+     */
+    public static Text.Placeholder placeholder(String key, Text fallback) {
+        checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
+        checkNotNull(fallback, "fallback");
+        return new Text.Placeholder(key, fallback);
     }
 
     /**
@@ -362,19 +362,6 @@ public final class Texts {
     }
 
     /**
-     * Creates a new unformatted {@link TextBuilder.Placeholder} with the
-     * specified key.
-     *
-     * @param key The key of the placeholder
-     * @return The created placeholder builder
-     * @see Text.Placeholder
-     * @see TextBuilder.Placeholder
-     */
-    public static TextBuilder.Placeholder placeholderBuilder(String key) {
-        return new TextBuilder.Placeholder(key);
-    }
-
-    /**
      * Creates a new unformatted {@link TextBuilder.Translatable} with the given
      * {@link Translation} and arguments.
      *
@@ -484,6 +471,19 @@ public final class Texts {
      */
     public static TextBuilder.Score builder(Text text, Score score) {
         return new TextBuilder.Score(text, score);
+    }
+
+    /**
+     * Creates a new unformatted {@link TextBuilder.Placeholder} with the
+     * specified key.
+     *
+     * @param key The key of the placeholder
+     * @return The created placeholder builder
+     * @see Text.Placeholder
+     * @see TextBuilder.Placeholder
+     */
+    public static TextBuilder.Placeholder placeholderBuilder(String key) {
+        return new TextBuilder.Placeholder(key);
     }
 
     /**
