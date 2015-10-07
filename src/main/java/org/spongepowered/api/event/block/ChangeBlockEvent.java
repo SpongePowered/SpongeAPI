@@ -38,8 +38,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Base event for when {@link BlockState}s at {@link Location<World>}s are being
- * changed.
+ * Base event for when {@link BlockState}s at {@link Location}<{@link World}>s
+ * are being changed.
  */
 @ImplementedBy(AbstractChangeBlockEvent.class)
 public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable, CauseTracked {
@@ -56,7 +56,7 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable, CauseTr
     /**
      * Applies the provided {@link Predicate} to the {@link List} of
      * {@link BlockTransaction}s from {@link #getTransactions()} such that
-     * any time that {@link Predicate#apply(Object)} returns <code>false</code>
+     * any time that {@link Predicate#test(Object)} returns <code>false</code>
      * on a {@link BlockTransaction}, the {@link BlockTransaction} is
      * marked as "invalid" and will not apply post event.
      *

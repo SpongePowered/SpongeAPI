@@ -40,7 +40,7 @@ public class Inventories {
     private Inventories() {}
 
     /**
-     * Get a new custom inventory builder.
+     * Gets a new custom inventory builder.
      * 
      * @return new CustomInventoryBuilder
      */

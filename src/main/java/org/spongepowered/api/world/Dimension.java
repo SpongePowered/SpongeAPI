@@ -81,7 +81,7 @@ public interface Dimension extends Contextual {
     boolean hasSky();
 
     /**
-     * Get the type of dimension.
+     * Gets the type of dimension.
      *
      * @return The type of dimension
      */

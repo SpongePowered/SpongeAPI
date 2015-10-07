@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.block;
 
 /**
- * Called when a block is moved
+ * Called when a block is moved.
  */
 public interface MoveBlockEvent extends ChangeBlockEvent {
 }

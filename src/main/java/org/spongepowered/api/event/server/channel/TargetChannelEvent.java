@@ -27,12 +27,13 @@ package org.spongepowered.api.event.server.channel;
 import org.spongepowered.api.event.GameEvent;
 
 /**
- * Base event for when a channel is the target
+ * Base event for when a channel is the target.
  */
 public interface TargetChannelEvent extends GameEvent {
 
     /**
-     * Gets the name of the channel being targeted
+     * Gets the name of the channel being targeted.
+     *
      * @return The channel name
      */
     String getTargetChannel();

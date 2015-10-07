@@ -58,14 +58,14 @@ public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
     /**
      * An event where the targeted entity is being interacted with the client's "primary" button.
      *
-     * This is usually left-click.
+     * <p>This is usually left-click.</p>
      */
     interface Primary extends InteractEntityEvent {}
 
     /**
      * An event where the targeted entity is being interacted with the client's "secondary" button.
      *
-     * This is usually right-click.
+     * <p>This is usually right-click.</p>
      */
     interface Secondary extends InteractEntityEvent {}
 
@@ -113,7 +113,7 @@ public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
      * that are applied to the "base" damage. Given that {@link Cause} has a
      * unique capability of storing any and every {@link Object} willing to be
      * passed into it, we can easily represent these "sources" of "modifiers"
-     * in a {@link Cause}. Now, knowning the "source" will not provide enough
+     * in a {@link Cause}. Now, knowing the "source" will not provide enough
      * information, so a {@link DamageModifierType} is provided with a
      * {@link DamageModifier} to paint the fullest picture of "explaining" the
      * {@link DamageModifier} as to why it is present, and why it is
@@ -135,7 +135,7 @@ public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
      *  return damage;
      * }</pre> After which, the "final" damage is simply the summation of the
      * "base" damage and all "modified damage" for each {@link DamageModifier}
-     * prorivded in this event.</p>
+     * provided in this event.</p>
      *
      * <p>Coming forward, it is possible to further customize not only the
      * "base" damage, but override pre-existing {@link DamageModifier}
@@ -148,7 +148,7 @@ public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
      * {@link DamageModifierBuilder}, the provided pairing will be added at the
      * "end" of the list for "modifying" the "base" damage.</p>
      *
-     * <p>Note that this event is intended for processing incomming damage to
+     * <p>Note that this event is intended for processing incoming damage to
      * an {@link Entity} prior to any {@link DamageModifier}s associated with
      * the {@link #getTargetEntity()}. The {@link DamageEntityEvent} is used
      * to process the various {@link DamageModifier}s of which originate or are

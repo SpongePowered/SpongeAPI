@@ -87,7 +87,7 @@ public class MessageSinks {
     }
 
     /**
-     * Get a message sink that targets the given sources.
+     * Gets a message sink that targets the given sources.
      *
      * @param sources The sources to have as recipients
      * @return The sink

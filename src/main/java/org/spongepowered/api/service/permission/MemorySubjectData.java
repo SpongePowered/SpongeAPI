@@ -76,7 +76,7 @@ public class MemorySubjectData implements OptionSubjectData {
     }
 
     /**
-     * Get the calculated node tree representation of the permissions for this subject data instance.
+     * Gets the calculated node tree representation of the permissions for this subject data instance.
      * If no data is present for the given context, returns null.
      *
      * @param contexts The contexts to get a node tree for
@@ -198,7 +198,7 @@ public class MemorySubjectData implements OptionSubjectData {
             if (oldParents == null || !oldParents.contains(removeEnt)) {
                 return false;
             }
-            newParents = new ArrayList<Map.Entry<String, String>>(oldParents);
+            newParents = new ArrayList<>(oldParents);
             newParents.remove(removeEnt);
 
             if (updateCollection(this.parents, contexts, oldParents, Collections.unmodifiableList(newParents))) {
@@ -245,11 +245,11 @@ public class MemorySubjectData implements OptionSubjectData {
                 if (!origMap.containsKey(key)) {
                     return false;
                 }
-                newMap = new HashMap<String, String>();
+                newMap = new HashMap<>();
                 newMap.putAll(origMap);
                 newMap.remove(key);
             } else {
-                newMap = new HashMap<String, String>();
+                newMap = new HashMap<>();
                 newMap.putAll(origMap);
                 newMap.put(key, value);
             }

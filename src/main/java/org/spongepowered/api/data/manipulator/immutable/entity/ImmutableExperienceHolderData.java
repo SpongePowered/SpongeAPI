@@ -35,7 +35,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 /**
  * An {@link ImmutableDataManipulator} handling the "experience" held by a
  * {@link DataHolder}. Usually the mechanics of "experience" is that it is
- * accumilated by a {@link Human} and can be spent on creating
+ * accumulated by a {@link Human} and can be spent on creating
  * {@link ItemEnchantment}s or renaming {@link ItemStack}s.
  */
 public interface ImmutableExperienceHolderData extends ImmutableDataManipulator<ImmutableExperienceHolderData, ExperienceHolderData> {

@@ -49,7 +49,7 @@ import java.io.File;
 public interface ConfigRoot {
 
     /**
-     * Get the pathname to the default configuration file for the plugin.
+     * Gets the pathname to the default configuration file for the plugin.
      *
      * <p>If the configuration root is shared, then the returned pathname will
      * refer to the path {@code $config/$plugin_id.conf} (where "$config" is the
@@ -66,7 +66,7 @@ public interface ConfigRoot {
     File getConfigFile();
 
     /**
-     * Get the configuration file that utilizes the default configuration
+     * Gets the configuration file that utilizes the default configuration
      * pathname.
      *
      * @return A configuration object
@@ -75,7 +75,7 @@ public interface ConfigRoot {
     ConfigurationLoader<CommentedConfigurationNode> getConfig();
 
     /**
-     * Get the directory that this configuration root refers to.
+     * Gets the directory that this configuration root refers to.
      *
      * <p>The returned pathname may not refer to a directory that exists
      * yet.</p>

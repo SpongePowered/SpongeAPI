@@ -98,7 +98,7 @@ public class AccessorModifierEventFactoryPlugin implements EventFactoryPlugin {
         }
 
         mv.visitMethodInsn(opcode, Type.getInternalName(transformerMethod.getDeclaringClass()), transformerMethod.getName(),
-                Type.getMethodDescriptor(transformerMethod), opcode == INVOKEVIRTUAL ? false : true);
+                Type.getMethodDescriptor(transformerMethod), opcode != INVOKEVIRTUAL);
 
         mv.visitInsn(ClassGenerator.getReturnOpcode(property.getType()));
         mv.visitMaxs(0, 0);

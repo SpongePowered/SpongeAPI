@@ -35,7 +35,7 @@ import org.spongepowered.api.util.command.CommandSource;
 public interface SignSource extends ProxySource {
 
     /**
-     * Get the sign {@link TileEntity} that this source has been created for.
+     * Gets the sign {@link TileEntity} that this source has been created for.
      *
      * @return The {@link Sign}
      */

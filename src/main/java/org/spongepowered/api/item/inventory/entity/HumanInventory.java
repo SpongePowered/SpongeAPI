@@ -40,7 +40,7 @@ import org.spongepowered.api.item.inventory.type.CarriedInventory;
 public interface HumanInventory extends CarriedInventory<Human> {
 
     /**
-     * Get the hotbar inventory.
+     * Gets the hotbar inventory.
      *
      * @return the hotbar
      */

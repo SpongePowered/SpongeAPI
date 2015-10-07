@@ -22,46 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.property.block;
+package org.spongepowered.api.data.manipulator.immutable.entity;
 
-import org.spongepowered.api.data.property.IntProperty;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.entity.FlammableData;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
 /**
- * An property that represents the amount of light emitted from
- * the owning block.
+ * An {@link ImmutableDataManipulator} for the "flaming" state of an entity.
+ * This state is different from being set on fire as the entity is igniting
+ * itself without taking damage.
  */
-public class LightEmissionProperty extends IntProperty {
+public interface ImmutableFlammableData extends ImmutableDataManipulator<ImmutableFlammableData, FlammableData> {
 
     /**
-     * Create a new {@link LightEmissionProperty} with the specified value.
+     * Gets the {@link ImmutableValue} for the "aflame" state.
      *
-     * @param value value to match
+     * @return The immutable value for the aflame state
      */
-    public LightEmissionProperty(int value) {
-        super(value);
-    }
+    ImmutableValue<Boolean> flammable();
 
-    /**
-     * Create a new {@link LightEmissionProperty} with the specified value and
-     * logical operator.
-     *
-     * @param value value to match
-     * @param operator logical operator to use when comparing to other
-     *      properties
-     */
-    public LightEmissionProperty(int value, Operator operator) {
-        super(value, operator);
-    }
-
-    /**
-     * Create a new {@link LightEmissionProperty} with the specified value and
-     * logical operator.
-     *
-     * @param value value to match
-     * @param operator logical operator to use when comparing to other
-     *      properties
-     */
-    public LightEmissionProperty(Object value, Operator operator) {
-        super(value, operator);
-    }
 }

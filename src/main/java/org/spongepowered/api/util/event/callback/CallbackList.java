@@ -45,7 +45,7 @@ import java.util.List;
 public final class CallbackList implements Collection<EventCallback> {
 
     private static final Logger log = LoggerFactory.getLogger(CallbackList.class);
-    private final List<EventCallback> callbacks = new ArrayList<EventCallback>();
+    private final List<EventCallback> callbacks = new ArrayList<>();
 
     /**
      * Execute all callbacks in the correct order.
@@ -64,11 +64,9 @@ public final class CallbackList implements Collection<EventCallback> {
      * Cancel all callbacks.
      */
     public void cancelAll() {
-        for (EventCallback callback : this.callbacks) {
-            if (callback instanceof Cancellable) {
-                ((Cancellable) callback).setCancelled(true);
-            }
-        }
+        this.callbacks.stream()
+                .filter(callback -> callback instanceof Cancellable)
+                .forEach(callback -> ((Cancellable) callback).setCancelled(true));
     }
 
     @Override

@@ -179,7 +179,7 @@ class CommandFlags extends CommandElement {
 
     @Override
     public Text getUsage(CommandSource src) {
-        final List<Object> builder = new ArrayList<Object>();
+        final List<Object> builder = new ArrayList<>();
         for (Map.Entry<List<String>, CommandElement> arg : this.usageFlags.entrySet()) {
             builder.add("[");
             for (Iterator<String> it = arg.getKey().iterator(); it.hasNext();) {
@@ -262,7 +262,9 @@ class CommandFlags extends CommandElement {
                 } catch (ArgumentParseException ex) {
                     args.setState(position);
                     return ImmutableList.copyOf(
-                        element.complete(src, args, context).stream().map(input -> "--" + finalLongFlag + "=" + input).collect(Collectors.toList()));
+                        element.complete(src, args, context).stream()
+                                .map(input -> "--" + finalLongFlag + "=" + input)
+                                .collect(Collectors.toList()));
                 }
             }
         } else {
@@ -343,9 +345,9 @@ class CommandFlags extends CommandElement {
     }
 
     public static class Builder {
-        private final Map<List<String>, CommandElement> usageFlags = new HashMap<List<String>, CommandElement>();
-        private final Map<String, CommandElement> shortFlags = new HashMap<String, CommandElement>();
-        private final Map<String, CommandElement> longFlags = new HashMap<String, CommandElement>();
+        private final Map<List<String>, CommandElement> usageFlags = new HashMap<>();
+        private final Map<String, CommandElement> shortFlags = new HashMap<>();
+        private final Map<String, CommandElement> longFlags = new HashMap<>();
         private UnknownFlagBehavior unknownLongFlagBehavior = UnknownFlagBehavior.ERROR;
         private UnknownFlagBehavior unknownShortFlagBehavior = UnknownFlagBehavior.ERROR;
         private boolean anchorFlags = false;
@@ -361,7 +363,7 @@ class CommandFlags extends CommandElement {
         };
 
         private Builder flag(Function<String, CommandElement> func, String... specs) {
-            final List<String> availableFlags = new ArrayList<String>(specs.length);
+            final List<String> availableFlags = new ArrayList<>(specs.length);
             CommandElement el = null;
             for (String spec : specs) {
                 if (spec.startsWith("-")) {

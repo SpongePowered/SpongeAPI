@@ -36,7 +36,7 @@ import java.util.concurrent.Executor;
 import java.util.function.Predicate;
 
 /**
- * Utility methods to help with function work
+ * Utility methods to help with function work.
  */
 public class Functional {
 
@@ -81,7 +81,7 @@ public class Functional {
     }
 
     /**
-     * Get the value of an {@link Optional} as either a zero- or one-element immutable set.
+     * Gets the value of an {@link Optional} as either a zero- or one-element immutable set.
      *
      * @param value The value to get as a set
      * @param <T> The type
@@ -121,12 +121,12 @@ public class Functional {
     public static <T> CompletableFuture<T> asyncFailableFuture(Callable<T> call, Executor exec) {
         CompletableFuture<T> ret = new CompletableFuture<>();
         exec.execute(() -> {
-            try {
-                ret.complete(call.call());
-            } catch (Exception e) {
-                ret.completeExceptionally(e);
-            }
-        });
+                try {
+                    ret.complete(call.call());
+                } catch (Exception e) {
+                    ret.completeExceptionally(e);
+                }
+            });
         return ret;
     }
 }

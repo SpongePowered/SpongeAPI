@@ -36,7 +36,7 @@ import java.util.UUID;
  * Represents the UUID of the skin for a {@link Human}.
  *
  * <p>Unfortunately the actual binary data for the skin is not able to be
- * manipulated because it must be signed on mojang's server.</p>
+ * manipulated because it must be signed on Mojang's server.</p>
  */
 public interface SkinData extends DataManipulator<SkinData, ImmutableSkinData> {
 

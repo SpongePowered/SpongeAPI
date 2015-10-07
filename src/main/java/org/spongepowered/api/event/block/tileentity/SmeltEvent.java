@@ -38,7 +38,9 @@ public interface SmeltEvent extends TargetTileEntityEvent, CauseTracked {
     Furnace getTargetTile();
 
     /**
-     * @return The ingredient
+     * Gets the fuel.
+     *
+     * @return The fuel
      */
     ItemStackSnapshot getFuel();
 
@@ -52,6 +54,7 @@ public interface SmeltEvent extends TargetTileEntityEvent, CauseTracked {
         /**
          * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
          * of the smelt.
+         *
          * @return The smelt items
          */
         List<ItemStackSnapshot> getSmeltedItems();
@@ -61,6 +64,7 @@ public interface SmeltEvent extends TargetTileEntityEvent, CauseTracked {
         /**
          * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
          * of the smelt.
+         *
          * @return The smelt items
          */
         List<ItemStackSnapshot> getSmeltedItems();

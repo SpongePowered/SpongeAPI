@@ -114,7 +114,7 @@ public final class Coerce {
      */
     public static List<?> toList(@Nullable Object obj) {
         if (obj == null) {
-            return Collections.<Object>emptyList();
+            return Collections.emptyList();
         }
 
         if (obj instanceof List) {
@@ -267,9 +267,7 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Integer.valueOf(obj.toString()));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
 
@@ -324,9 +322,7 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Double.valueOf(obj.toString()));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
 
@@ -375,9 +371,7 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Float.valueOf(obj.toString()));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
 
@@ -425,9 +419,7 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Short.parseShort(Coerce.sanitiseNumber(obj)));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
         return Optional.empty();
@@ -472,9 +464,7 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Byte.parseByte(Coerce.sanitiseNumber(obj)));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
         return Optional.empty();
@@ -493,7 +483,7 @@ public final class Coerce {
             return 0;
         }
         if (obj instanceof Number) {
-            return ((Number) obj).shortValue();
+            return ((Number) obj).longValue();
         }
 
         Long parsed = Long.parseLong(Coerce.sanitiseNumber(obj));
@@ -519,9 +509,7 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Long.parseLong(Coerce.sanitiseNumber(obj)));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
         return Optional.empty();
@@ -715,7 +703,7 @@ public final class Coerce {
 
     /**
      * Sanitise a string containing a common representation of a number to make
-     * it parseable. Strips thousand-separating commas and trims later members
+     * it parsable. Strips thousand-separating commas and trims later members
      * of a comma-separated list. For example the string "(9.5, 10.6, 33.2)"
      * will be sanitised to "9.5".
      *
@@ -769,13 +757,13 @@ public final class Coerce {
             return Doubles.asList((double[])obj);
         }
 
-        return Collections.<Object>emptyList();
+        return Collections.emptyList();
     }
 
     private static List<?> parseStringToList(String string) {
         Matcher candidate = Coerce.listPattern.matcher(string);
         if (!Coerce.listBracketsMatch(candidate)) {
-            return Collections.<Object>emptyList();
+            return Collections.emptyList();
         }
 
         List<String> list = Lists.newArrayList();

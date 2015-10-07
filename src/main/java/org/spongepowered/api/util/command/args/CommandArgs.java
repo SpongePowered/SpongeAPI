@@ -56,7 +56,7 @@ public final class CommandArgs {
      */
     public CommandArgs(String rawInput, List<SingleArg> args) {
         this.rawInput = rawInput;
-        this.args = new ArrayList<SingleArg>(args);
+        this.args = new ArrayList<>(args);
     }
 
     /**
@@ -115,12 +115,14 @@ public final class CommandArgs {
     }
 
     /**
-     * Get a list of all arguments as a string. The returned list is immutable.
+     * Gets a list of all arguments as a string. The returned list is immutable.
      *
      * @return all arguments
      */
     public List<String> getAll() {
-        return Collections.unmodifiableList(this.args.stream().map(SingleArg::getValue).collect(Collectors.toList()));
+        return Collections.unmodifiableList(this.args.stream()
+                .map(SingleArg::getValue)
+                .collect(Collectors.toList()));
     }
 
     List<SingleArg> getArgs() {
@@ -201,7 +203,7 @@ public final class CommandArgs {
     }
 
     /**
-     * Get the current position in raw input.
+     * Gets the current position in raw input.
      *
      * @return the raw position
      */

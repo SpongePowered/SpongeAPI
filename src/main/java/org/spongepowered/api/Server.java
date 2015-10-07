@@ -283,7 +283,7 @@ public interface Server extends ChannelRegistrar {
     int getRunningTimeTicks();
 
     /**
-     * Get the sink that messages to be broadcast across the whole server
+     * Gets the sink that messages to be broadcast across the whole server
      * should be sent to.
      *
      * @return The server-wide broadcast sink

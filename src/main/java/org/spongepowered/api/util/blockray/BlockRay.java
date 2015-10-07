@@ -627,6 +627,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     /**
      * A filter that accepts all blocks. A {@link BlockRay} combined with no other filter than this
      * one could run endlessly.
+     *
+     * @return A filter accepting all blocks
      */
     @SuppressWarnings("unchecked")
     public static <E extends Extent> Predicate<BlockRayHit<E>> allFilter() {
@@ -638,6 +640,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      *
      * <p>This is provided for convenience, as the default behavior in previous systems was to pass
      * through air blocks only until a non-air block was hit.</p>
+     *
+     * @return A filter that only permits air as a transparent block
      */
     @SuppressWarnings("unchecked")
     public static <E extends Extent> Predicate<BlockRayHit<E>> onlyAirFilter() {

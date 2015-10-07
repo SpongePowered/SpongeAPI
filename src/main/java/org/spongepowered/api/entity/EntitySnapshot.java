@@ -38,7 +38,7 @@ import java.util.UUID;
  * Represents a snapshot of an {@link Entity} and all of it's related data in
  * the form of {@link ImmutableDataManipulator}s and {@link ImmutableValue}s.
  * While an {@link Entity} is a live instance and therefor residing in a
- * {@link World}, an {@link EntitySnapshot} may be snapshotted of a
+ * {@link World}, an {@link EntitySnapshot} may be taken of a
  * {@link World} that is not currently loaded, or may not exist any longer.
  *
  * <p>All data associated with the {@link EntitySnapshot} should be separated

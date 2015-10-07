@@ -22,21 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.player.gamemode;
+package org.spongepowered.api.data.property.block;
+
+import org.spongepowered.api.data.property.IntProperty;
 
 /**
- * A list of the game modes that Minecraft provides in vanilla.
+ * An property that represents the amount of light emitted from
+ * the owning block.
  */
-public final class GameModes {
+public class LuminanceProperty extends IntProperty {
 
-    public static final GameMode SURVIVAL = null;
-    public static final GameMode CREATIVE = null;
-    public static final GameMode ADVENTURE = null;
-    public static final GameMode SPECTATOR = null;
-
-    public static final GameMode NOT_SET = null;
-
-    private GameModes() {
+    /**
+     * Create a new {@link LuminanceProperty} with the specified value.
+     *
+     * @param value value to match
+     */
+    public LuminanceProperty(int value) {
+        super(value);
     }
 
+    /**
+     * Create a new {@link LuminanceProperty} with the specified value and
+     * logical operator.
+     *
+     * @param value value to match
+     * @param operator logical operator to use when comparing to other
+     *      properties
+     */
+    public LuminanceProperty(int value, Operator operator) {
+        super(value, operator);
+    }
+
+    /**
+     * Create a new {@link LuminanceProperty} with the specified value and
+     * logical operator.
+     *
+     * @param value value to match
+     * @param operator logical operator to use when comparing to other
+     *      properties
+     */
+    public LuminanceProperty(Object value, Operator operator) {
+        super(value, operator);
+    }
 }

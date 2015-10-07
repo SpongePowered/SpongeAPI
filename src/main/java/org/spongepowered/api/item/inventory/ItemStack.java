@@ -35,7 +35,7 @@ import org.spongepowered.api.text.translation.Translatable;
  * Represents a stack of a specific {@link ItemType}. Supports serialization and
  * can be compared using the comparators listed in {@link ItemStackComparators}.
  *
- * <p>{@link ItemStack}s have varying properties and data, it is adviseable to
+ * <p>{@link ItemStack}s have varying properties and data, it is advisable to
  * use {@link DataHolder#get(Class)} to retrieve different information
  * regarding this item stack.</p>
  */
@@ -67,7 +67,7 @@ public interface ItemStack extends DataHolder, DataSerializable, TextRepresentab
     void setQuantity(int quantity) throws IllegalArgumentException;
 
     /**
-     * Get the maximum quantity per stack. By default, returns
+     * Gets the maximum quantity per stack. By default, returns
      * {@link ItemType#getMaxStackQuantity()}, unless a
      * different value has been set for this specific stack.
      *

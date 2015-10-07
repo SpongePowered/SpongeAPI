@@ -272,8 +272,10 @@ public class DiscreteTransform2 {
         if (tileCornerY) {
             pointDouble = pointDouble.add(0, 0.5);
         }
-        return new DiscreteTransform2(this.matrix.translate(pointDouble.negate()).rotate(Complexd.fromAngleDeg(halfTurns * 180)).translate
-            (pointDouble));
+        return new DiscreteTransform2(this.matrix
+                .translate(pointDouble.negate())
+                .rotate(Complexd.fromAngleDeg(halfTurns * 180))
+                .translate(pointDouble));
     }
 
     /**
@@ -403,8 +405,9 @@ public class DiscreteTransform2 {
         if (tileCornerY) {
             pointDouble = pointDouble.add(0, 0.5);
         }
-        return new DiscreteTransform2(Matrix3d.createTranslation(pointDouble.negate()).rotate(Complexd.fromAngleDeg(halfTurns * 180)).translate
-            (pointDouble));
+        return new DiscreteTransform2(Matrix3d.createTranslation(pointDouble.negate())
+                .rotate(Complexd.fromAngleDeg(halfTurns * 180))
+                .translate(pointDouble));
     }
 
     /**

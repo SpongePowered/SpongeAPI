@@ -141,7 +141,7 @@ public final class CommandSpec implements CommandCallable {
         public Builder children(Map<List<String>, ? extends CommandCallable> children) {
             checkNotNull(children, "children");
             if (this.childCommandMap == null) {
-                this.childCommandMap = new HashMap<List<String>, CommandCallable>();
+                this.childCommandMap = new HashMap<>();
             }
             this.childCommandMap.putAll(children);
             return this;
@@ -159,7 +159,7 @@ public final class CommandSpec implements CommandCallable {
          */
         public Builder child(CommandCallable child, String... aliases) {
             if (this.childCommandMap == null) {
-                this.childCommandMap = new HashMap<List<String>, CommandCallable>();
+                this.childCommandMap = new HashMap<>();
             }
             this.childCommandMap.put(ImmutableList.copyOf(aliases), child);
             return this;
@@ -307,7 +307,7 @@ public final class CommandSpec implements CommandCallable {
     }
 
     /**
-     * Get the active executor for this command. Generally not a good idea to call this directly,
+     * Gets the active executor for this command. Generally not a good idea to call this directly,
      * unless you are handling arg parsing specially
      *
      * @return The active executor for this command
@@ -317,7 +317,7 @@ public final class CommandSpec implements CommandCallable {
     }
 
     /**
-     * Get the active input tokenizer used for this commmand.
+     * Gets the active input tokenizer used for this command.
      *
      * @return This command's input tokenizer
      */
@@ -346,7 +346,7 @@ public final class CommandSpec implements CommandCallable {
     }
 
     /**
-     * Get a short, one-line description used with this command if any is present
+     * Gets a short, one-line description used with this command if any is present
      *
      * @return the short description.
      */
@@ -356,7 +356,7 @@ public final class CommandSpec implements CommandCallable {
     }
 
     /**
-     * Get the usage for this command appropriate for the provided command source.
+     * Gets the usage for this command appropriate for the provided command source.
      *
      * @param source The source
      * @return the usage for the source

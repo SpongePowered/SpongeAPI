@@ -39,6 +39,7 @@ import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -88,7 +89,7 @@ public abstract class Cause {
      * {@link SpawnCause} for an {@link SpawnEntityEvent}.</p>
      *
      * @param objects The objects being the cause
-     * @return
+     * @return New cause from the provided objects
      */
     public static Cause of(Object... objects) {
         return new PresentCause(checkNotNull(objects));
@@ -273,10 +274,8 @@ public abstract class Cause {
 
         @Override
         public Cause with(Iterable<?> iterable) {
-            List<Object> list = new ArrayList<Object>();
-            for (Object o : this.cause) {
-                list.add(o);
-            }
+            List<Object> list = new ArrayList<>();
+            Collections.addAll(list, this.cause);
             for (Object o : iterable) {
                 checkArgument(o != null, "Cannot add null causes");
                 list.add(o);
@@ -350,7 +349,7 @@ public abstract class Cause {
 
         @Override
         public Cause with(Iterable<?> iterable) {
-            List<Object> list = new ArrayList<Object>();
+            List<Object> list = new ArrayList<>();
             for (Object o : iterable) {
                 list.add(o);
             }

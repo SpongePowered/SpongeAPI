@@ -28,7 +28,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.GameEvent;
 
 /**
- * Base event for when a {@link Entity} is a target
+ * Base event for when a {@link Entity} is a target.
  */
 public interface TargetEntityEvent extends GameEvent {
 

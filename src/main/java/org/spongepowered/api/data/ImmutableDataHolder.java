@@ -48,7 +48,7 @@ public interface ImmutableDataHolder<T extends ImmutableDataHolder<T>> extends D
                                                                                ImmutableValueStore<T, ImmutableDataManipulator<?, ?>> {
 
     /**
-     * Get a copy of all properties defined on this
+     * Gets a copy of all properties defined on this
      * {@link ImmutableDataHolder}, with their current values.
      *
      * @return A collection of all known manipulators

@@ -106,11 +106,11 @@ public interface ImmutableCollectionValue<E, C extends Collection<E>, I extends 
 
     /**
      * Creates a new {@link ImmutableCollectionValue} with elements that
-     * when the given {@link Predicate} is {@link Predicate#apply(Object)} on
+     * when the given {@link Predicate} is {@link Predicate#test(Object)} on
      * the element and {@code true} is returned, the element will remain in the
      * new {@link ImmutableCollectionValue}.
      *
-     * @param predicate The predicte to apply
+     * @param predicate The predicate to apply
      * @return The new value
      */
     I withoutAll(Predicate<E> predicate);

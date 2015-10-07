@@ -44,7 +44,7 @@ public final class SpawnTypes {
     public static final SpawnType WEATHER = null;
     public static final SpawnType CUSTOM = null;
     public static final SpawnType CHUNK_LOAD = null;
-    public static final SpawnType WORLD_SPANWER = null;
+    public static final SpawnType WORLD_SPAWNER = null;
     public static final SpawnType PLUGIN = null;
 
 }

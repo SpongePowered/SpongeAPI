@@ -40,7 +40,7 @@ public interface OptionSubjectData extends SubjectData {
     Map<Set<Context>, Map<String, String>> getAllOptions();
 
     /**
-     * Get options for a specific context combination.
+     * Gets options for a specific context combination.
      *
      * @param contexts The context combination to get options for
      * @return All available options, returning an empty map if none are present
@@ -61,7 +61,7 @@ public interface OptionSubjectData extends SubjectData {
      * Clear all options in the given context combination.
      *
      * @param contexts The context combination
-     * @return Whether the operation was successful (any options were remowed)
+     * @return Whether the operation was successful (any options were removed)
      */
     boolean clearOptions(Set<Context> contexts);
 

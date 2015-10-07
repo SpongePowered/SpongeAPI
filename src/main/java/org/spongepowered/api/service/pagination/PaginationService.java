@@ -32,7 +32,7 @@ import org.spongepowered.api.util.command.CommandSource;
 public interface PaginationService {
 
     /**
-     * Get a new pagination builder to send paginated output to a player.
+     * Gets a new pagination builder to send paginated output to a player.
      *
      * @return The pagination builder
      */

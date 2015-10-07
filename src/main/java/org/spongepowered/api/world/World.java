@@ -86,7 +86,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
     String getName();
 
     /**
-     * Get the loaded chunk at the given position.
+     * Gets the loaded chunk at the given position.
      *
      * @param position The position
      * @return The chunk, if available
@@ -94,7 +94,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
     Optional<Chunk> getChunk(Vector3i position);
 
     /**
-     * Get the loaded chunk at the given position.
+     * Gets the loaded chunk at the given position.
      *
      * @param x The x coordinate
      * @param y The y coordinate
@@ -104,7 +104,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
     Optional<Chunk> getChunk(int x, int y, int z);
 
     /**
-     * Get the chunk at the given position if it exists or if
+     * Gets the chunk at the given position if it exists or if
      * {@code shouldGenerate} is true and the chunk is generated.
      *
      * @param position The position
@@ -114,7 +114,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
     Optional<Chunk> loadChunk(Vector3i position, boolean shouldGenerate);
 
     /**
-     * Get the chunk at the given position if it exists or if
+     * Gets the chunk at the given position if it exists or if
      * {@code shouldGenerate} is true and the chunk is generated.
      *
      * @param x The x coordinate
@@ -145,7 +145,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
 
     /**
      * Gets the entity whose {@link UUID} matches the provided id, possibly
-     * returning no entity if the entity is not loaded or non-existant.
+     * returning no entity if the entity is not loaded or non-existent.
      *
      * <p>For world implementations, only some parts of the world is usually
      * loaded, so this method may return no entity if the entity is not
@@ -281,7 +281,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
     TeleporterAgent getTeleporterAgent();
 
     /**
-     * Gets the world's player simulator, used for simulating player actions
+     * Gets the world's player simulator, used for simulating player actions.w
      *
      * @return The player simulator
      */

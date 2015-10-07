@@ -28,12 +28,14 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.event.GameEvent;
 
 /**
- * Base event for when a {@link BlockSnapshot} is a target
+ * Base event for when a {@link BlockSnapshot} is a target.
  */
 public interface TargetBlockEvent extends GameEvent {
 
     /**
-     * @return The BlockSnapshot
+     * Gets the {@link BlockSnapshot}.
+     *
+     * @return The {@link BlockSnapshot}
      */
     BlockSnapshot getTargetBlock();
 }

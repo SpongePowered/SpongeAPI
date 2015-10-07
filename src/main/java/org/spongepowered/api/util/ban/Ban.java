@@ -44,7 +44,7 @@ public interface Ban {
     BanType getType();
 
     /**
-     * Get the reason for the ban.
+     * Gets the reason for the ban.
      *
      * @return The reason specified for the ban.
      */

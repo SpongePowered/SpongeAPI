@@ -33,14 +33,14 @@ import org.spongepowered.api.util.command.CommandSource;
 public interface PaginationCalculator<T extends CommandSource> {
 
     /**
-     * Get the maxinum number of lines that can be displayed on a source's screen.
+     * Gets the maximum number of lines that can be displayed on a source's screen.
      * @param source The source to check
      * @return The maximum number of displayable lines, or -1 for unlimited
      */
     int getLinesPerPage(T source);
 
     /**
-     * Get the length in lines of the provided text.
+     * Gets the length in lines of the provided text.
      *
      * @param source The source to check for
      * @param text The text to get the length of

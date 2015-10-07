@@ -22,4 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.entity.living.player.gamemode;
+package org.spongepowered.api.data.type;
+
+/**
+ * A list of the game modes that Minecraft provides in vanilla.
+ */
+public final class GameModes {
+
+    public static final GameMode SURVIVAL = null;
+    public static final GameMode CREATIVE = null;
+    public static final GameMode ADVENTURE = null;
+    public static final GameMode SPECTATOR = null;
+
+    public static final GameMode NOT_SET = null;
+
+    private GameModes() {
+    }
+
+}

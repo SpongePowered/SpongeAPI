@@ -102,7 +102,7 @@ public final class Transform<E extends Extent> {
      */
     public Location<E> getLocation() {
         if (this.location == null) {
-            this.location = new Location<E>(this.extent, this.position);
+            this.location = new Location<>(this.extent, this.position);
         }
         return this.location;
     }
@@ -116,7 +116,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> setLocation(Location<E> location) {
         checkNotNull(location, "location");
-        return new Transform<E>(location, getRotation(), getScale());
+        return new Transform<>(location, getRotation(), getScale());
     }
     /**
      * Gets the {@link Extent} this transform contains.
@@ -139,7 +139,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> setExtent(E extent) {
         checkNotNull(extent, "extent");
-        return new Transform<E>(extent, getPosition(), getRotation(), getScale());
+        return new Transform<>(extent, getPosition(), getRotation(), getScale());
     }
     /**
      * Gets the coordinates of this transform.
@@ -157,7 +157,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> setPosition(Vector3d position) {
         checkNotNull(position, "position");
-        return new Transform<E>(getExtent(), position, getRotation(), getScale());
+        return new Transform<>(getExtent(), position, getRotation(), getScale());
     }
     /**
      * Gets the rotation of this transform, as a {@link Vector3d}.
@@ -192,13 +192,30 @@ public final class Transform<E extends Extent> {
         checkNotNull(rotation, "rotation");
         return setRotation(toAxesAngles(rotation));
     }
+
+    /**
+     * Creates a copy of this transform and sets the rotation as
+     * a quaternion.
+     *
+     * <p>Quaternions are objectively better than
+     * the Euler angles preferred by Minecraft.
+     * This is for compatibility with
+     * the flow-math library.</p>
+     *
+     * @param rotation The new rotation
+     * @return A new transform
+     */
+    public Transform<E> setRotation(Vector3d rotation) {
+        checkNotNull(rotation, "rotation");
+        return new Transform<>(getExtent(), getPosition(), rotation, getScale());
+    }
     /**
      * Returns the rotation as a quaternion.
      *
-     * Quaternions are objectively better than
+     * <p>Quaternions are objectively better than
      * the Euler angles preferred by Minecraft.
      * This is for compatibility with
-     * the flow-math library.
+     * the flow-math library.</p>
      *
      * @return The rotation
      */
@@ -208,25 +225,8 @@ public final class Transform<E extends Extent> {
         }
         return this.rotationQuaternion;
     }
-
     /**
-     * Creates a copy of this transform and sets the rotation as
-     * a quaternion.
-     *
-     * Quaternions are objectively better than
-     * the Euler angles preferred by Minecraft.
-     * This is for compatibility with
-     * the flow-math library.
-     *
-     * @param rotation The new rotation
-     * @return A new transform
-     */
-    public Transform<E> setRotation(Vector3d rotation) {
-        checkNotNull(rotation, "rotation");
-        return new Transform<E>(getExtent(), getPosition(), rotation, getScale());
-    }
-    /**
-     * Gets the pitch component of this transform rotation
+     * Gets the pitch component of this transform rotation.
      *
      * @return The pitch
      */
@@ -235,7 +235,7 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * Gets the yaw component of this transform rotation
+     * Gets the yaw component of this transform rotation.
      *
      * @return The yaw
      */
@@ -244,7 +244,7 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * Gets the roll component of this transform rotation
+     * Gets the roll component of this transform rotation.
      *
      * @return The roll
      */
@@ -270,7 +270,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> setScale(Vector3d scale) {
         checkNotNull(scale, "scale");
-        return new Transform<E>(getExtent(), getPosition(), getRotation(), scale);
+        return new Transform<>(getExtent(), getPosition(), getRotation(), scale);
     }
     /**
      * "Adds" another transform to this one.
@@ -284,7 +284,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> add(Transform<E> other) {
         checkNotNull(other, "other");
-        return new Transform<E>(
+        return new Transform<>(
                 getExtent(),
                 getPosition().add(other.getPosition()),
                 toAxesAngles(other.getRotationAsQuaternion().mul(getRotationAsQuaternion())),
@@ -300,7 +300,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> addTranslation(Vector3d translation) {
         checkNotNull(translation, "translation");
-        return new Transform<E>(getExtent(), getPosition().add(translation));
+        return new Transform<>(getExtent(), getPosition().add(translation));
     }
     /**
      * Adds a rotation to this transform.
@@ -328,7 +328,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> addRotation(Quaterniond rotation) {
         checkNotNull(rotation, "rotation");
-        return new Transform<E>(getExtent(), getPosition(), toAxesAngles(rotation.mul(getRotationAsQuaternion())), getScale());
+        return new Transform<>(getExtent(), getPosition(), toAxesAngles(rotation.mul(getRotationAsQuaternion())), getScale());
     }
     /**
      * "Adds" a scale to this transform.
@@ -342,7 +342,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> addScale(Vector3d scale) {
         checkNotNull(scale, "scale");
-        return new Transform<E>(getExtent(), getPosition(), getRotation(), getScale().mul(scale));
+        return new Transform<>(getExtent(), getPosition(), getRotation(), getScale().mul(scale));
     }
     /**
      * Returns a matrix representation of this transform.
@@ -385,10 +385,10 @@ public final class Transform<E extends Extent> {
 
     @Override
     public int hashCode() {
-        int result = extent.hashCode();
-        result = 31 * result + position.hashCode();
-        result = 31 * result + rotation.hashCode();
-        result = 31 * result + scale.hashCode();
+        int result = this.extent.hashCode();
+        result = 31 * result + this.position.hashCode();
+        result = 31 * result + this.rotation.hashCode();
+        result = 31 * result + this.scale.hashCode();
         return result;
     }
 
@@ -408,9 +408,9 @@ public final class Transform<E extends Extent> {
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
-                .add("location", location)
-                .add("rotation", rotation)
-                .add("scale", scale)
+                .add("location", this.location)
+                .add("rotation", this.rotation)
+                .add("scale", this.scale)
                 .toString();
     }
 

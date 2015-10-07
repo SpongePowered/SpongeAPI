@@ -43,7 +43,6 @@ import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.command.CommandMessageFormatting;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.command.source.LocatedSource;
-import org.spongepowered.api.util.command.spec.CommandExecutor;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -56,7 +55,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
@@ -166,7 +164,7 @@ public final class GenericArguments {
      * @return the argument
      */
     public static <T extends CatalogType> CommandElement catalogedElement(Text key, Game game, Class<T> catalogType) {
-        return new CatalogedTypeCommandElement<T>(key, game, catalogType);
+        return new CatalogedTypeCommandElement<>(key, game, catalogType);
     }
 
     static class MarkTrueCommandElement extends CommandElement {
@@ -186,7 +184,7 @@ public final class GenericArguments {
     }
 
     /**
-     * Get a builder to create a command element that parses flags.
+     * Gets a builder to create a command element that parses flags.
      *
      * @return the newly created builder
      */
@@ -195,7 +193,7 @@ public final class GenericArguments {
     }
 
     /**
-     * Consumes a series of arguments. Usage is the elements concated
+     * Consumes a series of arguments. Usage is the elements concatenated
      *
      * @param elements The series of arguments to expect
      * @return the element to match the input
@@ -316,7 +314,9 @@ public final class GenericArguments {
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             final String prefix = args.nextIfPresent().orElse("");
-            return this.choices.keySet().stream().filter(new StartsWithPredicate(prefix)).collect(GuavaCollectors.toImmutableList());
+            return this.choices.keySet().stream()
+                    .filter(new StartsWithPredicate(prefix))
+                    .collect(GuavaCollectors.toImmutableList());
         }
 
         @Override
@@ -383,21 +383,16 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
-            return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements,
-                    new com.google.common.base.Function<CommandElement, List<String>>() {
+            return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements, input -> {
+                    if (input == null) {
+                        return ImmutableList.of();
+                    }
 
-                        @Override
-                        public List<String> apply(@Nullable CommandElement input) {
-                            if (input == null) {
-                                return ImmutableList.of();
-                            }
-
-                            Object startState = args.getState();
-                            List<String> ret = input.complete(src, args, context);
-                            args.setState(startState);
-                            return ret;
-                        }
-                    })));
+                    Object startState = args.getState();
+                    List<String> ret = input.complete(src, args, context);
+                    args.setState(startState);
+                    return ret;
+                })));
         }
 
         @Override
@@ -628,7 +623,10 @@ public final class GenericArguments {
     // -- Argument types for basic java types
 
     /**
-     * Parent class that specifies elemenents as having no tab completions. Useful for inputs with a very large domain, like strings and integers
+     * Parent class that specifies elements as having no tab completions.
+     *
+     * <p>Useful for inputs with a very large domain, like strings and
+     * integers.</p>
      */
     private abstract static class KeyElement extends CommandElement {
         private KeyElement(Text key) {
@@ -745,7 +743,7 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static <T extends Enum<T>> CommandElement enumValue(Text key, Class<T> type) {
-        return new EnumValueElement<T>(key, type);
+        return new EnumValueElement<>(key, type);
     }
 
     private static class EnumValueElement<T extends Enum<T>> extends PatternMatchingCommandElement {
@@ -808,7 +806,7 @@ public final class GenericArguments {
 
         @Override
         public Text getUsage(CommandSource src) {
-            return Texts.of(CommandMessageFormatting.LT_TEXT, getKey(), CommandMessageFormatting.ELIPSES_TEXT, CommandMessageFormatting.GT_TEXT);
+            return Texts.of(CommandMessageFormatting.LT_TEXT, getKey(), CommandMessageFormatting.ELLIPSIS_TEXT, CommandMessageFormatting.GT_TEXT);
         }
     }
 
@@ -1038,7 +1036,7 @@ public final class GenericArguments {
             boolean relative = arg.startsWith("~");
             if (relative) {
                 if (relativeTo == null) {
-                    throw args.createError(t("Relative position specified but source does not have a postion"));
+                    throw args.createError(t("Relative position specified but source does not have a position"));
                 }
                 arg = arg.substring(1);
             }
@@ -1097,7 +1095,7 @@ public final class GenericArguments {
             WorldProperties targetWorldProps = ((WorldProperties) world);
             Optional<World> targetWorld = this.game.getServer().getWorld(targetWorldProps.getUniqueId());
             Vector3d vector = (Vector3d) vec;
-            return new Location<World>(targetWorld.get(), vector);
+            return new Location<>(targetWorld.get(), vector);
         }
 
         @Override
@@ -1126,8 +1124,8 @@ public final class GenericArguments {
         protected Iterable<String> getChoices(CommandSource source) {
             return this.game.getRegistry().getAllOf(this.catalogType).stream()
                 .map(input -> {
-                return input == null ? null : input.getId(); // TODO: ids or names?
-                })
+                        return input == null ? null : input.getId(); // TODO: ids or names?
+                    })
                 .collect(Collectors.toList());
         }
 

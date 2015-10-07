@@ -36,12 +36,16 @@ import org.spongepowered.api.item.recipe.Recipe;
 public interface CraftItemEvent extends AffectItemStackEvent, Cancellable, CauseTracked {
 
     /**
+     * Gets the crafting inventory.
+     *
      * @return The crafting inventory
      */
     @Override
     CraftingInventory getTargetInventory();
 
     /**
+     * Gets the {@link Recipe}.
+     *
      * @return The {@link Recipe}
      */
     Recipe getRecipe();

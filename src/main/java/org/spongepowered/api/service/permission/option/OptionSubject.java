@@ -38,7 +38,7 @@ public interface OptionSubject extends Subject {
     OptionSubjectData getTransientSubjectData();
 
     /**
-     * Get the value of a given option in the given context.
+     * Gets the value of a given option in the given context.
      *
      * @param contexts The contexts to get the options from
      * @param key The key to get an option by. Case-insensitive.
@@ -47,7 +47,7 @@ public interface OptionSubject extends Subject {
     Optional<String> getOption(Set<Context> contexts, String key);
 
     /**
-     * Get the value of a given option in the subject's current context
+     * Gets the value of a given option in the subject's current context
      *
      * @param key The key to get an option by. Case-insensitive.
      * @return The value of the option, if any is present

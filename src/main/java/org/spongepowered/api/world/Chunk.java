@@ -57,7 +57,7 @@ public interface Chunk extends Extent {
     }
 
     /**
-     * Get the position of the chunk.
+     * Gets the position of the chunk.
      *
      * <p>The returned position is 3-dimensional with the Y-coordinate set to
      * be the base (lowest) Y-position of the chunk. As 3-dimensional chunks

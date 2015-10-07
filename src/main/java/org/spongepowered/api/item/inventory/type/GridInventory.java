@@ -61,7 +61,7 @@ public interface GridInventory extends Inventory2D {
     Vector2i getDimensions();
 
     /**
-     * Get and remove the stack at the supplied position in this Inventory.
+     * Gets and remove the stack at the supplied position in this Inventory.
      *
      * @see Inventory#poll()
      * @param x x coordinate
@@ -72,7 +72,7 @@ public interface GridInventory extends Inventory2D {
     Optional<ItemStack> poll(int x, int y);
 
     /**
-     * Get and remove the stack at the supplied position in this Inventory.
+     * Gets and remove the stack at the supplied position in this Inventory.
      *
      * @see Inventory#poll()
      * @param x x coordinate
@@ -84,7 +84,7 @@ public interface GridInventory extends Inventory2D {
     Optional<ItemStack> poll(int x, int y, int limit);
 
     /**
-     * Get without removing the stack at the supplied position in this
+     * Gets without removing the stack at the supplied position in this
      * Inventory.
      *
      * @see Inventory#peek()
@@ -96,7 +96,7 @@ public interface GridInventory extends Inventory2D {
     Optional<ItemStack> peek(int x, int y);
 
     /**
-     * Get without removing the stack at the supplied position in this
+     * Gets without removing the stack at the supplied position in this
      * Inventory.
      *
      * @see Inventory#peek()
@@ -120,7 +120,7 @@ public interface GridInventory extends Inventory2D {
     InventoryOperationResult set(int x, int y, ItemStack stack);
 
     /**
-     * Get the {@link Slot} at the specified position.
+     * Gets the {@link Slot} at the specified position.
      *
      * @param x x coordinate
      * @param y y coordinate
@@ -130,7 +130,7 @@ public interface GridInventory extends Inventory2D {
     Optional<Slot> getSlot(int x, int y);
 
     /**
-     * Get the row at the specified index.
+     * Gets the row at the specified index.
      *
      * @param y y coordinate
      * @return {@link InventoryRow} at the specified position or
@@ -139,7 +139,7 @@ public interface GridInventory extends Inventory2D {
     Optional<InventoryRow> getRow(int y);
 
     /**
-     * Get the column at the specified index.
+     * Gets the column at the specified index.
      *
      * @param x x coordinate
      * @return {@link InventoryColumn} at the specified position or

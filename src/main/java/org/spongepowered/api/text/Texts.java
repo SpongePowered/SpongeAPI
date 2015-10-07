@@ -85,34 +85,6 @@ public final class Texts {
     }
 
     /**
-     * Creates a placeholder {@link Text} with the specified key. The created
-     * message won't have any formatting or events configured.
-     *
-     * @param key The key of the placeholder
-     * @return The created text
-     * @see Text.Placeholder
-     */
-    public static Text.Placeholder placeholder(String key) {
-        checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
-        return new Text.Placeholder(key);
-    }
-
-    /**
-     * Creates a placeholder {@link Text} with the specified key and fallback.
-     * The created message won't have any formatting or events configured.
-     *
-     * @param key The key of the placeholder
-     * @param fallback The fallback of the text if it is not replaced
-     * @return The created text
-     * @see Text.Placeholder
-     */
-    public static Text.Placeholder placeholder(String key, Text fallback) {
-        checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
-        checkNotNull(fallback, "fallback");
-        return new Text.Placeholder(key, fallback);
-    }
-
-    /**
      * Creates a new unformatted {@link Text.Translatable} with the given
      * {@link Translation} and arguments.
      *
@@ -237,10 +209,38 @@ public final class Texts {
     }
 
     /**
+     * Creates a placeholder {@link Text} with the specified key. The created
+     * message won't have any formatting or events configured.
+     *
+     * @param key The key of the placeholder
+     * @return The created text
+     * @see Text.Placeholder
+     */
+    public static Text.Placeholder placeholder(String key) {
+        checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
+        return new Text.Placeholder(key);
+    }
+
+    /**
+     * Creates a placeholder {@link Text} with the specified key and fallback.
+     * The created message won't have any formatting or events configured.
+     *
+     * @param key The key of the placeholder
+     * @param fallback The fallback of the text if it is not replaced
+     * @return The created text
+     * @see Text.Placeholder
+     */
+    public static Text.Placeholder placeholder(String key, Text fallback) {
+        checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
+        checkNotNull(fallback, "fallback");
+        return new Text.Placeholder(key, fallback);
+    }
+
+    /**
      * Creates a new Text instance with all {@link Placeholder}s replaced. All
      * placeholders without a non-null replacement are ignored. All replacements
      * will be wrapped in a {@link Text} using {@link Texts#of(Object...)} the
-     * color and the style from the placeholder are transfered to that method as
+     * color and the style from the placeholder are transferred to that method as
      * well.
      *
      * @param template The template text in which all {@link Placeholder}s
@@ -261,7 +261,7 @@ public final class Texts {
      * Creates a new Text instance with all {@link Placeholder}s replaced. All
      * placeholders without a non-null replacement are ignored. All replacements
      * will be wrapped in a {@link Text} using {@link Texts#of(Object...)} the
-     * color and the style from the placeholder are transfered to that method as
+     * color and the style from the placeholder are transferred to that method as
      * well.
      *
      * @param template The template text in which all {@link Placeholder}s
@@ -273,7 +273,7 @@ public final class Texts {
     public static Text format(Text template, Object... replacements) {
         checkNotNull(template, "template");
         checkNotNull(replacements, "values");
-        Map<String, Object> replacementsMap = new HashMap<String, Object>();
+        Map<String, Object> replacementsMap = new HashMap<>();
         int index = 0;
         for (Object replacement : replacements) {
             replacementsMap.put(Integer.toString(index++), replacement);
@@ -288,7 +288,7 @@ public final class Texts {
             // Only replace
             if (replacement != null) {
                 // Copy color, style and text actions from placeholder
-                List<Object> formats = new ArrayList<Object>();
+                List<Object> formats = new ArrayList<>();
                 formats.add(template.getFormat());
                 Optional<HoverAction<?>> hoverAction = template.getHoverAction();
                 if (hoverAction.isPresent()) {
@@ -359,19 +359,6 @@ public final class Texts {
      */
     public static TextBuilder.Literal builder(Text text, String content) {
         return new TextBuilder.Literal(text, content);
-    }
-
-    /**
-     * Creates a new unformatted {@link TextBuilder.Placeholder} with the
-     * specified key.
-     *
-     * @param key The key of the placeholder
-     * @return The created placeholder builder
-     * @see Text.Placeholder
-     * @see TextBuilder.Placeholder
-     */
-    public static TextBuilder.Placeholder placeholderBuilder(String key) {
-        return new TextBuilder.Placeholder(key);
     }
 
     /**
@@ -487,6 +474,19 @@ public final class Texts {
     }
 
     /**
+     * Creates a new unformatted {@link TextBuilder.Placeholder} with the
+     * specified key.
+     *
+     * @param key The key of the placeholder
+     * @return The created placeholder builder
+     * @see Text.Placeholder
+     * @see TextBuilder.Placeholder
+     */
+    public static TextBuilder.Placeholder placeholderBuilder(String key) {
+        return new TextBuilder.Placeholder(key);
+    }
+
+    /**
      * Joins a sequence of text objects together.
      *
      * @param texts The texts to join
@@ -560,7 +560,7 @@ public final class Texts {
     }
 
     /**
-     * Get a {@link TextRepresentation} for the Mojangson representation of a
+     * Gets a {@link TextRepresentation} for the Mojangson representation of a
      * {@link Text} object.
      *
      *
@@ -571,7 +571,7 @@ public final class Texts {
     }
 
     /**
-     * Get a {@link TextRepresentation} for the TextXML representation of a
+     * Gets a {@link TextRepresentation} for the TextXML representation of a
      * {@link Text} object.
      *
      * @return The xml text serializer

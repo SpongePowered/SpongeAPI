@@ -42,7 +42,7 @@ import java.util.Optional;
  * a 2x2 or 3x3 crafting matrix.</p>
  *
  * <p>The requirements of a Recipe can be general, they just have to
- * eventually return a boolean given an itemgrid.</p>
+ * eventually return a boolean given an item grid.</p>
  */
 public interface Recipe {
 

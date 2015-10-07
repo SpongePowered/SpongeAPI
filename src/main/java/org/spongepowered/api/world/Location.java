@@ -109,7 +109,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param position The position
      */
     public Location(E extent, Vector3d position) {
-        this.extent = new WeakReference<E>(checkNotNull(extent, "extent"));
+        this.extent = new WeakReference<>(checkNotNull(extent, "extent"));
         this.position = checkNotNull(position, "position");
     }
 
@@ -132,7 +132,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param blockPosition The position
      */
     public Location(E extent, Vector3i blockPosition) {
-        this.extent = new WeakReference<E>(checkNotNull(extent, "extent"));
+        this.extent = new WeakReference<>(checkNotNull(extent, "extent"));
         this.blockPosition = checkNotNull(blockPosition, "blockPosition");
     }
 
@@ -149,7 +149,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the underlying extent.
+     * Gets the underlying extent.
      *
      * <p>Note: This can be null if the {@link Extent} is unloaded and garbage
      * collected.</p>
@@ -166,7 +166,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the underlying position.
+     * Gets the underlying position.
      *
      * @return The underlying position
      */
@@ -179,7 +179,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the underlying block position.
+     * Gets the underlying block position.
      *
      * @return The underlying block position
      */
@@ -204,7 +204,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the X component of this instance's position.
+     * Gets the X component of this instance's position.
      *
      * @return The x component
      */
@@ -213,7 +213,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the Y component of this instance's position.
+     * Gets the Y component of this instance's position.
      *
      * @return The y component
      */
@@ -222,7 +222,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the Z component of this instance's position.
+     * Gets the Z component of this instance's position.
      *
      * @return The z component
      */
@@ -231,7 +231,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the floored X component of this instance's position.
+     * Gets the floored X component of this instance's position.
      *
      * @return The floored x component
      */
@@ -240,7 +240,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the floored Y component of this instance's position.
+     * Gets the floored Y component of this instance's position.
      *
      * @return The floored y component
      */
@@ -249,7 +249,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the floored Z component of this instance's position.
+     * Gets the floored Z component of this instance's position.
      *
      * @return The floored z component
      */
@@ -294,12 +294,12 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param extent The new extent
      * @return A new instance
      */
-    public Location<E> setExtent(E extent) {
+    public Location<E> withExtent(E extent) {
         checkNotNull(extent, "extent");
         if (extent == getExtent()) {
             return this;
         }
-        return new Location<E>(extent, getPosition());
+        return new Location<>(extent, getPosition());
     }
 
     /**
@@ -308,12 +308,12 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param position The new position
      * @return A new instance
      */
-    public Location<E> setPosition(Vector3d position) {
+    public Location<E> withPosition(Vector3d position) {
         checkNotNull(position, "position");
         if (position == getPosition()) {
             return this;
         }
-        return new Location<E>(getExtent(), position);
+        return new Location<>(getExtent(), position);
     }
 
     /**
@@ -337,7 +337,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @return A new instance
      */
     public Location<E> sub(double x, double y, double z) {
-        return setPosition(getPosition().sub(x, y, z));
+        return withPosition(getPosition().sub(x, y, z));
     }
 
     /**
@@ -361,7 +361,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @return A new instance
      */
     public Location<E> add(double x, double y, double z) {
-        return setPosition(getPosition().add(x, y, z));
+        return withPosition(getPosition().add(x, y, z));
     }
 
     /**
@@ -384,7 +384,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the base type of block.
+     * Gets the base type of block.
      *
      * <p>The type does not include block data such as the contents of
      * inventories.</p>
@@ -396,7 +396,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the {@link BlockState} for this position.
+     * Gets the {@link BlockState} for this position.
      *
      * @return The block state
      */
@@ -512,7 +512,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get a snapshot of this block at the current point in time.
+     * Gets a snapshot of this block at the current point in time.
      *
      * <p>A snapshot is disconnected from the {@link Extent} that it was taken
      * from so changes to the original block do not affect the snapshot.</p>

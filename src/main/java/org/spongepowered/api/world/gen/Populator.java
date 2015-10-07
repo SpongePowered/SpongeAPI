@@ -81,10 +81,10 @@ public interface Populator {
      *   | . . . . .|          |
      *   +----------+----------+
      * </pre>
-     * <p><b>Figure 1</b> <i>The four chunks guanteed to be loaded, along
+     * <p><b>Figure 1</b> <i>The four chunks guaranteed to be loaded, along
      * with the area you are allowed to populate.</i></p>
      *
-     * <p>The following code guantantees that the center of your object is
+     * <p>The following code guarantees that the center of your object is
      * placed with its center in the recommend area:
      * <pre>
      *   {@link Vector3i} chunkStartBlockPos = chunk.getPosition().mul(16);

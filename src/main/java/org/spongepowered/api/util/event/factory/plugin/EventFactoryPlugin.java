@@ -42,7 +42,8 @@ public interface EventFactoryPlugin {
      *
      * <p>Returning {@code true} stops the processing of the provided {@link Property}.</p>
      *
-     * @oaram eventClass The {@link Class} of the event an implementation is being generated for
+     * @param eventClass The {@link Class} of the event an implementation is being generated for
+     * @param internalName The internal name
      * @param classWriter The {@link ClassWriter} being used to generate the event class implementation
      * @param property The {@link Property} being processed
      *

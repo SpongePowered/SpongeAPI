@@ -47,7 +47,7 @@ public final class ConfigurateTranslator implements DataTranslator<Configuration
     }
 
     /**
-     * Get the instance of this translator.
+     * Gets the instance of this translator.
      *
      * @return The instance of this translator
      */

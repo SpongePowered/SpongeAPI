@@ -83,7 +83,7 @@ public interface BlockVolume {
     boolean containsBlock(int x, int y, int z);
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets a representation of the block at the given position.
      *
      * @param position The position
      * @return The block
@@ -93,7 +93,7 @@ public interface BlockVolume {
     BlockState getBlock(Vector3i position);
 
     /**
-     * Get a representation of the block at the given position.
+     * Gets a representation of the block at the given position.
      *
      * @param x The X position
      * @param y The Y position
@@ -105,7 +105,7 @@ public interface BlockVolume {
     BlockState getBlock(int x, int y, int z);
 
     /**
-     * Get the base type of block.
+     * Gets the base type of block.
      *
      * <p>The type does not include block data such as the contents of
      * inventories.</p>
@@ -118,7 +118,7 @@ public interface BlockVolume {
     BlockType getBlockType(Vector3i position);
 
     /**
-     * Get the base type of block.
+     * Gets the base type of block.
      *
      * <p>The type does not include block data such as the contents of
      * inventories.</p>

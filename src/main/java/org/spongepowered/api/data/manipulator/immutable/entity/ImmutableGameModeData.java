@@ -26,8 +26,8 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
+import org.spongepowered.api.data.type.GameMode;
 import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 
 /**
  * An {@link ImmutableVariantData} for the current {@link GameMode} of a

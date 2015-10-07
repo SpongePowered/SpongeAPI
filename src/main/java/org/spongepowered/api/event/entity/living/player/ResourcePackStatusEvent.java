@@ -37,6 +37,8 @@ import java.util.Optional;
 public interface ResourcePackStatusEvent extends GameEvent {
 
     /**
+     * Gets the {@link Player}.
+     *
      * @return The player
      */
     Player getPlayer();
@@ -72,7 +74,7 @@ public interface ResourcePackStatusEvent extends GameEvent {
         /**
          * The client failed to download the resource pack.
          *
-         * <pIn some client versions, such as 1.8.0, this may only
+         * <p>In some client versions, such as 1.8.0, this may only
          * be send when the resource pack URL does not end in '.zip'.
          * Otherwise, {@link #SUCCESSFULLY_LOADED} will be sent.</p>
          */

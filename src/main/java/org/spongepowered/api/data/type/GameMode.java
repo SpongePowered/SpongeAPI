@@ -22,24 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.FlammableData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * An {@link ImmutableDataManipulator} for the "flaming" state of an entity.
- * This state is different from being set on fire as the entity is igniting
- * itself without taking damage.
+ * Represents a game mode that a {@link Player} may have.
  */
-public interface ImmutableFlamableData extends ImmutableDataManipulator<ImmutableFlamableData, FlammableData> {
-
-    /**
-     * Gets the {@link ImmutableValue} for the "aflame" state.
-     *
-     * @return The immutable value for the aflame state
-     */
-    ImmutableValue<Boolean> flamable();
+@CatalogedBy(GameModes.class)
+public interface GameMode extends CatalogType, Translatable {
 
 }

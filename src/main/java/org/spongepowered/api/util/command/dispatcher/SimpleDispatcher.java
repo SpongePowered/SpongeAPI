@@ -266,18 +266,16 @@ public final class SimpleDispatcher implements Dispatcher {
 
     @Override
     public synchronized Set<String> getPrimaryAliases() {
-        Set<String> aliases = new HashSet<String>();
-
-        for (CommandMapping mapping : this.commands.values()) {
-            aliases.add(mapping.getPrimaryAlias());
-        }
+        Set<String> aliases = this.commands.values().stream()
+                .map(CommandMapping::getPrimaryAlias)
+                .collect(Collectors.toSet());
 
         return Collections.unmodifiableSet(aliases);
     }
 
     @Override
     public synchronized Set<String> getAliases() {
-        Set<String> aliases = new HashSet<String>();
+        Set<String> aliases = new HashSet<>();
 
         for (CommandMapping mapping : this.commands.values()) {
             aliases.addAll(mapping.getAllAliases());
@@ -292,7 +290,7 @@ public final class SimpleDispatcher implements Dispatcher {
     }
 
     /**
-     * Get a given command in the context of a certain command source.
+     * Gets a given command in the context of a certain command source.
      *
      * @param alias The alias to look up
      * @param source The source this alias is being looked up for
@@ -348,7 +346,9 @@ public final class SimpleDispatcher implements Dispatcher {
         final String[] argSplit = arguments.split(" ", 2);
         Optional<CommandMapping> cmdOptional = get(argSplit[0], src);
         if (argSplit.length == 1) {
-            return filterCommands(src).stream().filter(new StartsWithPredicate(argSplit[0])).collect(GuavaCollectors.toImmutableList());
+            return filterCommands(src).stream()
+                    .filter(new StartsWithPredicate(argSplit[0]))
+                    .collect(GuavaCollectors.toImmutableList());
         } else if (!cmdOptional.isPresent()) {
             return ImmutableList.of();
         }
@@ -401,7 +401,7 @@ public final class SimpleDispatcher implements Dispatcher {
     }
 
     /**
-     * Get the number of registered aliases.
+     * Gets the number of registered aliases.
      *
      * @return The number of aliases
      */
@@ -414,12 +414,12 @@ public final class SimpleDispatcher implements Dispatcher {
         final TextBuilder build = Texts.builder();
         Iterable<String> filteredCommands = filterCommands(source).stream()
             .filter(input -> {
-                if (input == null) {
-                    return false;
-                }
-                final Optional<CommandMapping> ret = get(input, source);
-                return ret.isPresent() && ret.get().getPrimaryAlias().equals(input);
-            })
+                    if (input == null) {
+                        return false;
+                    }
+                    final Optional<CommandMapping> ret = get(input, source);
+                    return ret.isPresent() && ret.get().getPrimaryAlias().equals(input);
+                })
             .collect(Collectors.toList());
 
         for (Iterator<String> it = filteredCommands.iterator(); it.hasNext();) {

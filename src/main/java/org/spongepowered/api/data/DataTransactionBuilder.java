@@ -33,7 +33,6 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 
 import java.util.Collection;
 import java.util.List;
@@ -41,7 +40,7 @@ import java.util.List;
 /**
  * A type of builder for building {@link DataTransactionResult}s. The common
  * use is for both implementations of {@link DataHolder}s, and various
- * {@link ChangeDataHolderEvent.ValueChange}s.
+ * {@link org.spongepowered.api.event.data.ChangeDataHolderEvent.ValueChange}s.
  */
 public final class DataTransactionBuilder {
 

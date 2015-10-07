@@ -79,7 +79,7 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
      * @param value The property value
      * @param op The operator for the property
      */
-    protected AbstractInventoryProperty(@Nullable V value, Operator op) {
+    protected AbstractInventoryProperty(@Nullable V value, @Nullable Operator op) {
         this(null, value, op);
     }
 
@@ -93,14 +93,14 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
         this(key, value, null);
     }
 
-    protected AbstractInventoryProperty(@Nullable K key, @Nullable V value, Operator op) {
+    protected AbstractInventoryProperty(@Nullable K key, @Nullable V value, @Nullable Operator op) {
         this.key = key != null ? key : this.getDefaultKey(value);
         this.value = value;
         this.operator = op != null ? op : this.getDefaultOperator(this.key, value);
     }
 
     /**
-     * Get the default value for {@link #key}, used in case null is passed in
+     * Gets the default value for {@link #key}, used in case null is passed in
      * (since we can't have a null key). In general this should return the class
      * name of the property itself but subclasses are free to alter this
      * behaviour if they wish.

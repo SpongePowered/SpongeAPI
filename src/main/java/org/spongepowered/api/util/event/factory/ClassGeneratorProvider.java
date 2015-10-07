@@ -61,7 +61,7 @@ public class ClassGeneratorProvider implements FactoryProvider {
     }
 
     /**
-     * Get the canonical name used for a generated event class.
+     * Gets the canonical name used for a generated event class.
      *
      * @param clazz The class
      * @param classifier The classifier
@@ -87,9 +87,7 @@ public class ClassGeneratorProvider implements FactoryProvider {
 
         try {
             return (EventFactory<T>) factoryClass.newInstance();
-        } catch (InstantiationException e) {
-            throw new RuntimeException("Failed to create event factory", e);
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             throw new RuntimeException("Failed to create event factory", e);
         }
     }
@@ -118,7 +116,7 @@ public class ClassGeneratorProvider implements FactoryProvider {
         }
 
         /**
-         * Defines the class by name and bytecode arrray.
+         * Defines the class by name and bytecode array.
          *
          * @param name The name of the class
          * @param b The bytecode array

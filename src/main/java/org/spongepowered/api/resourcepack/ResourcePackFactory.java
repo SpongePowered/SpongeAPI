@@ -38,7 +38,7 @@ public interface ResourcePackFactory {
      *
      * @param uri The URI to look in
      * @return A ResourcePack with the specified URI
-     * @throws FileNotFoundException If a valid resourcepack could not be
+     * @throws FileNotFoundException If a valid resource pack could not be
      *         downloaded from the URI
      */
     ResourcePack fromUri(URI uri) throws FileNotFoundException;

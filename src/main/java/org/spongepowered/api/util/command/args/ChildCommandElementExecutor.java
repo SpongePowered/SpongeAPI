@@ -129,7 +129,8 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
     }
 
     private Set<String> filterCommands(final CommandSource src) {
-        return Multimaps.filterValues(this.dispatcher.getAll(), input -> input != null && input.getCallable().testPermission(src)).keys().elementSet();
+        return Multimaps.filterValues(this.dispatcher.getAll(),
+                input -> input != null && input.getCallable().testPermission(src)).keys().elementSet();
     }
 
     @Override

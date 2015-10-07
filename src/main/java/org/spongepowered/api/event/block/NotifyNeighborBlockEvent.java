@@ -68,7 +68,7 @@ public interface NotifyNeighborBlockEvent extends GameEvent, Cancellable, CauseT
     /**
      * Filters out {@link Direction}s of the {@link BlockState}s to be
      * marked as "valid" after this event. If the
-     * {@link Predicate#apply(Object)} returns <code>false</code>, the
+     * {@link Predicate#test(Object)} returns <code>false</code>, the
      * {@link BlockState} is removed from {@link #getRelatives()} map.
      *
      * @param predicate The predicate to use for filtering.
@@ -76,7 +76,7 @@ public interface NotifyNeighborBlockEvent extends GameEvent, Cancellable, CauseT
     void filterDirections(Predicate<Direction> predicate);
 
     /**
-     * An event where the action is an "ingition" that notifies the neighbor
+     * An event where the action is an "ignition" that notifies the neighbor
      * blocks.
      */
     interface Ignite extends NotifyNeighborBlockEvent {}

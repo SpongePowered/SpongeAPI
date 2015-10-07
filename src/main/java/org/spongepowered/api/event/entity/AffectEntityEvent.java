@@ -52,7 +52,7 @@ import java.util.function.Predicate;
 public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseTracked {
 
     /**
-     * Gets an {@link List<EntitySnapshot>} of the entity data
+     * Gets an {@link List}<{@link EntitySnapshot}> of the entity data
      * un-affected by event changes.
      *
      * @return The ImmutableList
@@ -60,7 +60,7 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseT
     List<EntitySnapshot> getEntitySnapshots();
 
     /**
-     * Gets the {@link List<Entity>} who will be affected after event
+     * Gets the {@link List}<{@link Entity}> who will be affected after event
      * resolution.
      *
      * @return The List
@@ -68,7 +68,7 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseT
     List<? extends Entity> getEntities();
 
     /**
-     * Filters out {@link Location<World>}'s from
+     * Filters out {@link Location}<{@link World}>s from
      * {@link AffectEntityEvent#getEntities()} to be affected by this event.
      *
      * @param predicate The predicate to use for filtering

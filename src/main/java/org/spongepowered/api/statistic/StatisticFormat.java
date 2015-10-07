@@ -37,7 +37,7 @@ public interface StatisticFormat extends CatalogType {
      * Formats the given value from the statistic to a human readable form.
      *
      * @param value The value to format
-     * @return The formated value
+     * @return The formatted value
      */
     String format(long value);
 

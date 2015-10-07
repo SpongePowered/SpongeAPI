@@ -56,7 +56,7 @@ public enum GameState {
 
     /**
      * Plugins have been initialized and should be ready for action. Loggers,
-     * configurations, and third party plugin API's should be prepared for
+     * configurations, and third party plugin APIs should be prepared for
      * interaction.
      */
     POST_INITIALIZATION,

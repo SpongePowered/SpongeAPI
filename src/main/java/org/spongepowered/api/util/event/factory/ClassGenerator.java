@@ -87,7 +87,7 @@ import javax.annotation.Nullable;
  */
 public class ClassGenerator {
 
-    private final PropertySearchStrategy<Class<?>, Method> propertySearch = new AccessorFirstStrategy<Class<?>, Method>();
+    private final PropertySearchStrategy<Class<?>, Method> propertySearch = new AccessorFirstStrategy<>();
     private NullPolicy nullPolicy = NullPolicy.DISABLE_PRECONDITIONS;
     private final List<String> primitivePropertyExceptions = ImmutableList.of("cancelled");
 
@@ -130,7 +130,7 @@ public class ClassGenerator {
     }
 
     /**
-     * Get the opcode used for loading a local variable.
+     * Gets the opcode used for loading a local variable.
      *
      * @param type The type being loaded
      * @return The opcode
@@ -150,7 +150,7 @@ public class ClassGenerator {
     }
 
     /**
-     * Get the opcode used for returning from a method.
+     * Gets the opcode used for returning from a method.
      *
      * @param type The type being returned
      * @return The opcode
@@ -179,7 +179,7 @@ public class ClassGenerator {
 
     private static boolean fieldRequired(Class<?> clazz, String fieldName) {
         SetField setField = getSetField(clazz, fieldName);
-        return setField != null ? setField.isRequired() : true;
+        return setField == null || setField.isRequired();
     }
 
     private static int getModifiers(Class<?> clazz, String fieldName) {
@@ -230,7 +230,7 @@ public class ClassGenerator {
     }
 
     /**
-     * Get the policy regarding how null parameters are handled.
+     * Gets the policy regarding how null parameters are handled.
      *
      * @return The null policy
      */
@@ -272,7 +272,10 @@ public class ClassGenerator {
         }
     }
 
-    private void generateConstructor(ClassWriter classWriter, String internalName, Class<?> parentType, ImmutableSet<? extends Property<Class<?>, Method>> properties) {
+    private void generateConstructor(ClassWriter classWriter,
+                                     String internalName,
+                                     Class<?> parentType,
+                                     ImmutableSet<? extends Property<Class<?>, Method>> properties) {
         MethodVisitor mv =
                 classWriter.visitMethod(ACC_PUBLIC, "<init>", "(Ljava/util/Map;)V", "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V", null);
         mv.visitCode();
@@ -403,7 +406,12 @@ public class ClassGenerator {
      * @param fieldType The type of the field to mutate
      * @param property The {@link Property} containing the mutator method to generate for
      */
-    public static void generateMutator(ClassWriter cw, Class<?> type, String internalName, String fieldName, Class<?> fieldType, Property<Class<?>, Method> property) {
+    public static void generateMutator(ClassWriter cw,
+                                       Class<?> type,
+                                       String internalName,
+                                       String fieldName,
+                                       Class<?> fieldType,
+                                       Property<Class<?>, Method> property) {
         Method mutator = property.getMutator().get();
 
         MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, mutator.getName(), Type.getMethodDescriptor(mutator), null, null);
@@ -465,7 +473,11 @@ public class ClassGenerator {
         mv.visitEnd();
     }
 
-    private void generateAccessorsandMutator(ClassWriter cw, Class<?> type, Class<?> parentType, String internalName, Property<Class<?>, Method> property) {
+    private void generateAccessorsAndMutators(ClassWriter cw,
+                                              Class<?> type,
+                                              Class<?> parentType,
+                                              String internalName,
+                                              Property<Class<?>, Method> property) {
         if (!hasImplementation(parentType, property.getAccessor())) {
             this.generateAccessor(cw, parentType, internalName, property);
         }
@@ -493,8 +505,6 @@ public class ClassGenerator {
 
     private void contributeToString(String internalName, Property<Class<?>, Method> property, MethodVisitor toStringMv) {
         if (property.isLeastSpecificType()) {
-            Type returnType = Type.getReturnType(property.getAccessor());
-
             toStringMv.visitVarInsn(ALOAD, 0);
 
             toStringMv.visitVarInsn(ALOAD, 1);
@@ -553,6 +563,7 @@ public class ClassGenerator {
      * @param type The type
      * @param name The canonical of the generated class
      * @param parentType The parent type
+     * @param plugins Event factory plugins
      * @return The class' contents, to be loaded via a {@link ClassLoader}
      */
     public byte[] createClass(final Class<?> type, final String name, final Class<?> parentType, List<? extends EventFactoryPlugin> plugins) {
@@ -589,13 +600,19 @@ public class ClassGenerator {
         return cw.toByteArray();
     }
 
-    private void generateWithPlugins(ClassWriter cw, Class<?> eventClass, Class<?> parentType, String internalName, ImmutableSet<? extends Property<Class<?>, Method>> properties, MethodVisitor toStringMv, List<? extends EventFactoryPlugin> plugins) {
+    private void generateWithPlugins(ClassWriter cw,
+                                     Class<?> eventClass,
+                                     Class<?> parentType,
+                                     String internalName,
+                                     ImmutableSet<? extends Property<Class<?>, Method>> properties,
+                                     MethodVisitor toStringMv,
+                                     List<? extends EventFactoryPlugin> plugins) {
         for (Property<Class<?>, Method> property: properties) {
             boolean processed = false;
 
             for (EventFactoryPlugin plugin: plugins) {
                 processed = plugin.contributeProperty(eventClass, internalName, cw, property);
-                if (processed == true) {
+                if (processed) {
                     break;
                 }
             }
@@ -604,7 +621,7 @@ public class ClassGenerator {
 
             if (!processed) {
                 this.contributeField(cw, eventClass, property);
-                this.generateAccessorsandMutator(cw, eventClass, parentType, internalName, property);
+                this.generateAccessorsAndMutators(cw, eventClass, parentType, internalName, property);
             }
         }
     }

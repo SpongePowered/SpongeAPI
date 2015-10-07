@@ -157,7 +157,7 @@ public interface DataView {
     /**
      * Removes the data associated to the given path relative to this
      * {@link DataView}'s path.
-     * <p>Path can not be emtpy, to remove this {@link DataView}, call
+     * <p>Path can not be empty, to remove this {@link DataView}, call
      * the associated parent to remove this views name.</p>
      *
      * @param path The path of data to remove

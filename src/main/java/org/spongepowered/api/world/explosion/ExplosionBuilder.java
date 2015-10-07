@@ -93,8 +93,8 @@ public interface ExplosionBuilder {
     /**
      * Attempts to create a {@link Explosion} from the specified parameters.
      *
-     * @throws IllegalArgumentException If any builder parameter is invalid
      * @return The explosion, if successful
+     * @throws IllegalArgumentException If any builder parameter is invalid
      */
     Explosion build() throws IllegalArgumentException;
 

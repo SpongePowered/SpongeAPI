@@ -36,7 +36,7 @@ import org.spongepowered.api.item.inventory.Inventory;
 public interface Interactable<T extends Entity> extends Inventory {
 
     /**
-     * Get whether the specified entity can interact with this object.
+     * Gets whether the specified entity can interact with this object.
      * 
      * @param entity the Entity wishing to interact with this Inventory
      * @return true if the Entity is able to interact with this Inventory

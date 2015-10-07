@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.entity.living.human;
 
+import org.spongepowered.api.data.type.GameMode;
 import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;

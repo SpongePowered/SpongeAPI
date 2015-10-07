@@ -206,7 +206,7 @@ public interface Team {
      *
      * <p>While any {@link Text} may be removed, the {@link Text}
      * to use should normally be obtained by calling {@link TeamMember#getTeamRepresentation()}
-     * on a {@link TeamMember}, such as a {@link Player}.</p
+     * on a {@link TeamMember}, such as a {@link Player}.</p>
      *
      * @param member The {@link Text} to remove
      * @return Whether the {@link Text} was on this team

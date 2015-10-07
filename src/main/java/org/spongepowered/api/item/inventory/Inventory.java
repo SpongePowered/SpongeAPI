@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 public interface Inventory extends Iterable<Inventory>, Nameable {
 
     /**
-     * Get the parent {@link Inventory} of this {@link Inventory}.
+     * Gets the parent {@link Inventory} of this {@link Inventory}.
      *
      * @return the parent inventory, returns null if there is no parent (this is
      *      a top-level inventory
@@ -83,13 +83,13 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      *
      * @param <T> expected inventory type, specified as generic to allow easy
      *      pseudo-duck-typing
-     * @return the next sibiling inventory, or an {@link EmptyInventory} if
+     * @return the next sibling inventory, or an {@link EmptyInventory} if
      *      there are no further siblings
      */
     <T extends Inventory> T next();
 
     /**
-     * Get and remove the first available stack from this Inventory.
+     * Gets and remove the first available stack from this Inventory.
      *
      * <p>'Available' has a different meaning for different inventory types. In
      * a single-slot inventory this has a fixed implication. However larger and
@@ -114,8 +114,8 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * the usual behaviour of {@link #poll()}, otherwise a new {@link ItemStack}
      * is returned containing the removed items, the contents of the stack in
      * the inventory are reduced by the number of items consumed. Note that this
-     * method attempts to consume items into the ouput up to <code>limit</code>,
-     * which may consume items from an abitrary number of internal slots.</p>
+     * method attempts to consume items into the output up to <code>limit</code>,
+     * which may consume items from an arbitrary number of internal slots.</p>
      *
      * <p>For example, assume an inventory containing 4 slots contains stacks as
      * follows:</p>
@@ -144,7 +144,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     Optional<ItemStack> poll(int limit);
 
     /**
-     * Get without removing the first available stack from this Inventory. For
+     * Gets without removing the first available stack from this Inventory. For
      * the definition of 'available', see {@link #poll}.
      *
      * @return First available itemstack, or {@link Optional#empty()} if
@@ -195,7 +195,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
 
     /**
      * Forcibly put the supplied stack into this inventory. Overwrites existing
-     * objects in the inventory as required to accomodate the entire stack. The
+     * objects in the inventory as required to accommodate the entire stack. The
      * entire stack is always consumed.
      *
      * <p>The general contract of this method is to prioritise insertion of the
@@ -406,8 +406,8 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * each child inventory which has the supplied property. Logical
      * <code>OR</code> is applied between operands. This method is effectively
      * the same as calling {@link #query} with an
-     * {@link Property.Operator} of
-     * {@link Property.Operator#EQUAL}.
+     * {@link org.spongepowered.api.data.Property.Operator} of
+     * {@link org.spongepowered.api.data.Property.Operator#EQUAL}.
      *
      * @param props inventory properties to query for
      * @param <T> expected inventory type, specified as generic to allow easy

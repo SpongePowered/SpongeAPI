@@ -373,7 +373,7 @@ public abstract class Text implements TextRepresentable {
         }
 
         /**
-         * Get the fallback text that will be used in place if this placeholder has no value.
+         * Gets the fallback text that will be used in place if this placeholder has no value.
          *
          * @return The fallback text
          */

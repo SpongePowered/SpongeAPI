@@ -79,7 +79,7 @@ public interface MergeFunction {
     /**
      * Creates a new {@link MergeFunction} chaining this current merge function
      * with the provided merge function. The order of the merge is this
-     * performes {@link #merge(ValueContainer, ValueContainer)} then, the
+     * performs {@link #merge(ValueContainer, ValueContainer)} then, the
      * provided {@link MergeFunction} merges the returned merged
      * {@link ValueContainer} and the {@code replacement}. This can be used to
      * apply a custom merge strategy after a pre-defined {@link MergeFunction}

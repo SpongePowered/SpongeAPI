@@ -94,7 +94,7 @@ public class SimpleServiceManager implements ServiceManager {
     @SuppressWarnings("unchecked")
     @Override
     public <T> ServiceReference<T> potentiallyProvide(Class<T> service) {
-        SimpleServiceReference<T> ref = new SimpleServiceReference<T>(provide(service));
+        SimpleServiceReference<T> ref = new SimpleServiceReference<>(provide(service));
         @SuppressWarnings("rawtypes")
         SimpleServiceReference newRef = this.potentials.putIfAbsent(service, ref);
         if (newRef != null) {
@@ -140,7 +140,7 @@ public class SimpleServiceManager implements ServiceManager {
 
     private static class SimpleServiceReference<T> implements ServiceReference<T> {
 
-        private final List<Predicate<T>> actionsOnPresent = new CopyOnWriteArrayList<Predicate<T>>();
+        private final List<Predicate<T>> actionsOnPresent = new CopyOnWriteArrayList<>();
         private final Lock waitLock = new ReentrantLock();
         private final Condition waitCondition = this.waitLock.newCondition();
         private volatile Optional<T> service;

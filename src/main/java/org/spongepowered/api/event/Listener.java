@@ -61,7 +61,7 @@ public @interface Listener {
     /**
      * Whether this listener should be called before any other server mods, such
      * as Forge mods. All Sponge event listeners are called after mods, unless
-     * they specify the {@link #beforeModifications()} flag to be true.
+     * they specify this flag to be true.
      *
      * @return If the listener should be fired before other server mods
      */

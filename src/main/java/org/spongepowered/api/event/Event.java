@@ -37,7 +37,7 @@ public interface Event {
     /**
      * Gets the {@link CallbackList} that is invoked after resolution of this event.
      *
-     * @return The callbacklist
+     * @return The callback list
      */
     CallbackList getCallbacks();
 

@@ -149,7 +149,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
     void setBlockType(int x, int y, int z, BlockType type, boolean notifyNeighbors);
 
     /**
-     * Get a snapshot of this block at the current point in time.
+     * Gets a snapshot of this block at the current point in time.
      *
      * <p>A snapshot is disconnected from the {@link Extent} that it was
      * taken from so changes to the original block do not affect the
@@ -161,7 +161,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
     BlockSnapshot createSnapshot(Vector3i position);
 
     /**
-     * Get a snapshot of this block at the current point in time.
+     * Gets a snapshot of this block at the current point in time.
      *
      * <p>A snapshot is disconnected from the {@link Extent} that it was
      * taken from so changes to the original block do not affect the

@@ -27,7 +27,8 @@ package org.spongepowered.api.util;
 import com.flowpowered.math.vector.Vector3d;
 
 /**
- * Represent the 16 main and secondary cardinal directions plus up and down.
+ * Represent the 16 cardinal, ordinal, and secondary ordinal directions plus up
+ * and down.
  * With the following assumptions:
  * <ul>
  * <li>{@link #NORTH} targeting towards -Z</li>
@@ -116,7 +117,7 @@ public enum Direction {
      */
     public static Direction getClosest(Vector3d vector) {
         if (Math.pow(vector.getY(), 2) <= Math.pow(vector.getX(), 2) + Math.pow(vector.getZ(), 2)) {
-            return getClosestHorizonal(vector);
+            return getClosestHorizontal(vector);
         } else if (vector.getY() > 0) {
             return UP;
         } else {
@@ -132,7 +133,7 @@ public enum Direction {
      * @param vector The vector to convert to a direction
      * @return The closest horizontal direction.
      */
-    public static Direction getClosestHorizonal(Vector3d vector) {
+    public static Direction getClosestHorizontal(Vector3d vector) {
         if (vector.getX() == 0) {
             if (vector.getZ() == 0) {
                 return NONE;
@@ -221,7 +222,7 @@ public enum Direction {
 
     /**
      * Return true if the direction is of an ordinal direction (northwest,
-     * southwest, southeast, northeaast).
+     * southwest, southeast, northeast).
      *
      * @return True if ordinal
      */
@@ -249,7 +250,7 @@ public enum Direction {
     }
 
     /**
-     * Get the Vector3d.
+     * Gets the Vector3d.
      *
      * @return The Vector3d
      */

@@ -30,6 +30,8 @@ import org.spongepowered.api.world.World;
 public interface TargetWorldEvent extends GameEvent {
 
     /**
+     * Gets the target {@link World}.
+     *
      * @return The target {@link World}
      */
     World getTargetWorld();

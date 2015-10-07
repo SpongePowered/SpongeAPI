@@ -40,7 +40,7 @@ import java.util.Optional;
 public interface SleepingEvent extends GameEvent, TargetEntityEvent, CauseTracked {
 
     /**
-     * Gets the {@link BlockSnapshot} of the bed being used to sleep
+     * Gets the {@link BlockSnapshot} of the bed being used to sleep.
      *
      * @return The location of the bed
      */
@@ -76,7 +76,7 @@ public interface SleepingEvent extends GameEvent, TargetEntityEvent, CauseTracke
         /**
          * Sets the new spawn transform of the human leaving the bed.
          *
-         * <p>If spawn {@link #wasSpawnSet} was not infact set by this event,
+         * <p>If spawn {@link #wasSpawnSet} was not in fact set by this event,
          * this does not override the return value. The given spawn should be
          * a valid location.</p>
          *

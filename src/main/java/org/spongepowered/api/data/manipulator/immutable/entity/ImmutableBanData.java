@@ -32,14 +32,14 @@ import org.spongepowered.api.util.ban.Ban;
 
 /**
  * An {@link ImmutableDataManipulator} for all set
- * {@link Ban.User}s that are applicable to a
+ * {@link org.spongepowered.api.util.ban.Ban.User}s that are applicable to a
  * {@link User}.
  */
 public interface ImmutableBanData extends ImmutableDataManipulator<ImmutableBanData, BanData> {
 
     /**
      * Gets the {@link ImmutableSetValue} for the
-     * {@link Ban.User} bans.
+     * {@link org.spongepowered.api.util.ban.Ban.User} bans.
      *
      * @return The immutable ban set value
      */

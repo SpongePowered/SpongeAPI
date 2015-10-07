@@ -48,6 +48,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
@@ -104,13 +105,11 @@ public class MemoryDataView implements DataView {
             builder.add(of(entry.getKey()));
         }
         if (deep) {
-            for (Map.Entry<String, Object> entry : this.map.entrySet()) {
-                if (entry.getValue() instanceof DataView) {
+            this.map.entrySet().stream().filter(entry -> entry.getValue() instanceof DataView).forEach(entry -> {
                     for (DataQuery query : ((DataView) entry.getValue()).getKeys(true)) {
                         builder.add(of(entry.getKey()).then(query));
                     }
-                }
-            }
+                });
         }
         return builder.build();
     }
@@ -679,11 +678,10 @@ public class MemoryDataView implements DataView {
 
         List<Map<?, ?>> newList = Lists.newArrayList();
 
-        for (Object object : list.get()) {
-            if (object instanceof Map) {
-                newList.add((Map<?, ?>) object);
-            }
-        }
+        newList.addAll(list.get().stream()
+                .filter(object -> object instanceof Map)
+                .map(object -> (Map<?, ?>) object)
+                .collect(Collectors.toList()));
 
         return Optional.of(newList);
     }
@@ -698,11 +696,10 @@ public class MemoryDataView implements DataView {
 
         List<DataView> newList = Lists.newArrayList();
 
-        for (Object object : list.get()) {
-            if (object instanceof DataView) {
-                newList.add((DataView) object);
-            }
-        }
+        newList.addAll(list.get().stream()
+                .filter(object -> object instanceof DataView)
+                .map(object -> (DataView) object)
+                .collect(Collectors.toList()));
 
         return Optional.of(newList);
     }

@@ -25,7 +25,7 @@
 package org.spongepowered.api.potion;
 
 /**
- * An enumaration of all possible {@link PotionEffectType}s in vanilla minecraft.
+ * An enumeration of all possible {@link PotionEffectType}s in vanilla minecraft.
  */
 public final class PotionEffectTypes {
 

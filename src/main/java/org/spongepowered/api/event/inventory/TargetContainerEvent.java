@@ -32,6 +32,8 @@ import org.spongepowered.api.item.inventory.Container;
  */
 public interface TargetContainerEvent extends GameEvent {
     /**
+     * Gets the target {@link Container}.
+     *
      * @return The target {@link Container}
      */
     Container getTargetContainer();

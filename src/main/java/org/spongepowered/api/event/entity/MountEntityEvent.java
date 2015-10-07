@@ -29,7 +29,7 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
- * Raised when an {@link Entity} is being mounted
+ * Raised when an {@link Entity} is being mounted.
  */
 public interface MountEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
 }

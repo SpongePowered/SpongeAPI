@@ -51,7 +51,7 @@ public abstract class AbstractAttackEntityEvent extends AbstractEvent implements
     @SetField protected double baseDamage;
 
     // These are left unused on purpose, because Aaron101 is too lazy to change the event generator.
-    // They prevent their respecive fields from being required in the event factory generator
+    // They prevent their respective fields from being required in the event factory generator
     @SetField protected double finalDamage;
     @SetField protected Map<DamageModifier, Double> originalDamages;
 
@@ -157,7 +157,7 @@ public abstract class AbstractAttackEntityEvent extends AbstractEvent implements
     public final List<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers() {
         ImmutableList.Builder<Tuple<DamageModifier, Function<? super Double, Double>>> builder = ImmutableList.builder();
         for (Map.Entry<DamageModifier, Function<? super Double, Double>> entry : this.modifierFunctions.entrySet()) {
-            builder.add(new Tuple<DamageModifier, Function<? super Double, Double>>(entry.getKey(), entry.getValue()));
+            builder.add(new Tuple<>(entry.getKey(), entry.getValue()));
         }
         return builder.build();
     }

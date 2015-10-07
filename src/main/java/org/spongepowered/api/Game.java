@@ -77,7 +77,7 @@ public interface Game {
     GameRegistry getRegistry();
 
     /**
-     * Get the game's instance of the service manager, which is the gateway
+     * Gets the game's instance of the service manager, which is the gateway
      * to various services provided by Sponge (command registration and so on).
      *
      * <p>Services registered by other plugins may be available too.</p>
@@ -94,7 +94,7 @@ public interface Game {
     SchedulerService getScheduler();
 
     /**
-     * Get the command dispatcher used for registering and dispatching
+     * Gets the command dispatcher used for registering and dispatching
      * registered commands.
      *
      * @return The command dispatcher

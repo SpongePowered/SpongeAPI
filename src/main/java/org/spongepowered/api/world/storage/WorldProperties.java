@@ -31,8 +31,8 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
+import org.spongepowered.api.data.type.GameMode;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.GeneratorType;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -333,7 +333,7 @@ public interface WorldProperties extends DataSerializable {
     /**
      * Gets the center of the world border.
      *
-     * <p>The returned position is three-dimensional. As the worldborder extends
+     * <p>The returned position is three-dimensional. As the border extends
      * over the entire y-axis, the returned position will always have a
      * {@code y} set to 0.</p>
      *
@@ -370,7 +370,7 @@ public interface WorldProperties extends DataSerializable {
     void setWorldBorderDiameter(double diameter);
 
     /**
-     * Get the time remaining until the world border stops expanding or
+     * Gets the time remaining until the world border stops expanding or
      * contracting.
      *
      * @return The time remaining, in milliseconds
@@ -408,7 +408,7 @@ public interface WorldProperties extends DataSerializable {
     void setWorldBorderTargetDiameter(double diameter);
 
     /**
-     * Get the distance a player may be outside the world border before taking
+     * Gets the distance a player may be outside the world border before taking
      * damage.
      *
      * @return The distance
@@ -424,7 +424,7 @@ public interface WorldProperties extends DataSerializable {
     void setWorldBorderDamageThreshold(double distance);
 
     /**
-     * Get the damage done to a player per block per tick when outside the
+     * Gets the damage done to a player per block per tick when outside the
      * buffer.
      *
      * @return The damage amount
@@ -440,7 +440,7 @@ public interface WorldProperties extends DataSerializable {
     void setWorldBorderDamageAmount(double damage);
 
     /**
-     * Get the time when a contracting world border will warn a player for whom
+     * Gets the time when a contracting world border will warn a player for whom
      * the world border will reach in {@code time} seconds.
      *
      * <p>In Minecraft, the warning is displayed in the form of a reddish
@@ -462,7 +462,7 @@ public interface WorldProperties extends DataSerializable {
     void setWorldBorderWarningTime(int time);
 
     /**
-     * Get the distance when a contracting world border will warn a player for
+     * Gets the distance when a contracting world border will warn a player for
      * whom the world border is {@code distance} blocks away.
      *
      * <p>In Minecraft, the warning is displayed in the form of a reddish

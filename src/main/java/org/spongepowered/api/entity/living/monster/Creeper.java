@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.living.monster;
 import org.spongepowered.api.entity.explosive.IgnitableExplosive;
 
 /**
- * Represents a Creeepr.
+ * Represents a Creeper.
  */
 public interface Creeper extends Monster, IgnitableExplosive {
 

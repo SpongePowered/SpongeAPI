@@ -40,7 +40,7 @@ import java.util.function.Predicate;
 public interface HarvestBlockEvent extends TargetBlockEvent, ChangeEntityExperienceEvent {
 
     /**
-     * Gets a mutable copy of the original {@link Collection<ItemStack>} 
+     * Gets a mutable copy of the original {@link Collection}<{@link ItemStack}>
      * unaffected by changes to this event.
      *
      * @return The mutable Collection of ItemStack
@@ -48,16 +48,16 @@ public interface HarvestBlockEvent extends TargetBlockEvent, ChangeEntityExperie
     Collection<ItemStack> getOriginalItemStacks();
 
     /**
-     * Gets a mutable {@link Collection<ItemStack>} which will be dropped after
-     * event resolution.
+     * Gets a mutable {@link Collection}<{@link ItemStack}> which will be
+     * dropped after event resolution.
      *
      * @return The Collection of ItemStack
      */
     Collection<ItemStack> getItemStacks();
 
     /**
-     * Sets the {@link Collection<ItemStack>} that will be dropped after event 
-     * resolution.
+     * Sets the {@link Collection}<{@link ItemStack}> that will be dropped
+     * after event resolution.
      *
      * @param items The Collection of ItemStack
      */
@@ -79,9 +79,8 @@ public interface HarvestBlockEvent extends TargetBlockEvent, ChangeEntityExperie
     /**
      * Gets the original chance unmodified by event changes.
      *
-     * @see HarvestBlockEvent#getDropChance()
-     *
      * @return The original chance
+     * @see HarvestBlockEvent#getDropChance()
      */
     float getOriginalDropChance();
 
@@ -104,10 +103,10 @@ public interface HarvestBlockEvent extends TargetBlockEvent, ChangeEntityExperie
      * of drop. Any value below 0.0f will be grounded at 0 and likewise any 
      * value above 1.0f will be capped at 1.0f.</p>
      *
-     * Keep in mind that your chance is not guaranteed; a plugin or mod could 
+     * <p>Keep in mind that your chance is not guaranteed; a plugin or mod could
      * change it afterwards. If the desire is to guarantee that the drop won't 
      * occur, use {@link Cancellable#setCancelled(boolean)} instead (make sure 
-     * to pass in true).
+     * to pass in true).</p>
      *
      * @param chance The chance
      */
