@@ -33,7 +33,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Optional;
 import java.util.Random;
 
 /**
@@ -57,19 +56,21 @@ public class WeightedCollection<T extends WeightedObject<?>> implements Collecti
     /**
      * Selects a random value from this list based on their weight.
      * 
+     * <p>If the list is empty then null will be returned.</p>
+     * 
      * @param rand The random object to use for selection
-     * @return The selected value, if the list is not empty
+     * @return The selected value, or null if the list was empty
      */
-    public Optional<T> get(Random rand) {
+    public T get(Random rand) {
         int target = rand.nextInt(this.totalWeight);
         int current = 0;
         for (T obj : this) {
             current += obj.getWeight();
             if (current > target) {
-                return Optional.of(obj);
+                return obj;
             }
         }
-        return Optional.empty();
+        return null;
     }
 
     private void rebuildWeight() {
