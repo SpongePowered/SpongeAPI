@@ -74,8 +74,11 @@ public interface ImmutableDataManipulator<I extends ImmutableDataManipulator<I, 
      */
     Optional<I> with(BaseValue<?> value);
 
+    @SuppressWarnings("unchecked")
     @Override
-    I copy();
+    default I copy() {
+        return (I) this;
+    }
 
     /**
      * Gets a {@link DataManipulator} copy of this
