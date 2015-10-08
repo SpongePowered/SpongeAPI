@@ -779,4 +779,13 @@ public class MemoryDataView implements DataView {
         return Objects.equal(this.map.entrySet(), other.map.entrySet())
                && Objects.equal(this.path, other.path);
     }
+
+    @Override
+    public String toString() {
+        final Objects.ToStringHelper helper = Objects.toStringHelper(this);
+        if (!this.path.toString().isEmpty()) {
+            helper.add("path", this.path);
+        }
+        return helper.add("map", this.map).toString();
+    }
 }

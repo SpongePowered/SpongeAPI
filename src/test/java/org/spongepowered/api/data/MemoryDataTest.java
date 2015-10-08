@@ -77,6 +77,36 @@ public class MemoryDataTest {
     }
 
     @Test
+    public void testToString() {
+        DataContainer container = new MemoryDataContainer();
+        DataQuery testQuery = of("foo", "bar", "baz");
+        List<Integer> intList = ImmutableList.of(1, 2, 3, 4);
+        container.set(testQuery, intList);
+        assertTrue(container.getIntegerList(testQuery).isPresent());
+        assertTrue(container.getIntegerList(testQuery).get().equals(intList));
+
+        List<Double> doubleList = ImmutableList.of(1.0D, 2.0D, 3.0D, 4.0D);
+        container.set(testQuery, doubleList);
+        assertTrue(container.getDoubleList(testQuery).isPresent());
+        assertTrue(container.getDoubleList(testQuery).get().equals(doubleList));
+
+        List<Short> shortList = ImmutableList.of((short) 1, (short) 2, (short) 3, (short) 4);
+        container.set(testQuery, shortList);
+        assertTrue(container.getShortList(testQuery).isPresent());
+        assertTrue(container.getShortList(testQuery).get().equals(shortList));
+
+        List<Byte> byteList = ImmutableList.of((byte) 1, (byte) 2, (byte) 3, (byte) 4);
+        container.set(testQuery, byteList);
+        List<SimpleData> list = Lists.newArrayList();
+        for (int i = 0; i < 1000; i++) {
+            String number = Integer.toString(i);
+            list.add(new SimpleData(i, 0.1 * i, "i", Lists.asList(number, new String[] {" foo", "bar"})));
+        }
+        container.set(of("SimpleData"), list);
+        String containerString = container.toString();
+    }
+
+    @Test
     public void testNumbers() {
         DataContainer container = new MemoryDataContainer();
         DataQuery testQuery = of("foo", "bar");
@@ -325,7 +355,7 @@ public class MemoryDataTest {
         DataView view = new MemoryDataContainer();
         view.set(of("Foo"), myMap);
 
-        Map<?, ?> retrievedMap = (Map<?, ?>) view.getMap(of("Foo")).get();
+        Map<?, ?> retrievedMap = view.getMap(of("Foo")).get();
         assertTrue(myMap.keySet().equals(retrievedMap.keySet()));
         assertTrue(myMap.entrySet().equals(retrievedMap.entrySet()));
     }

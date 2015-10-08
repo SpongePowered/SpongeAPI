@@ -26,6 +26,7 @@ package org.spongepowered.api.data;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Objects;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
 
@@ -62,4 +63,5 @@ public class MemoryDataContainer extends MemoryDataView implements DataContainer
     public DataContainer remove(DataQuery path) {
         return (DataContainer) super.remove(path);
     }
+
 }
