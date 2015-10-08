@@ -174,4 +174,5 @@ public interface EntityUniverse {
      * @return True if successful, false if not
      */
     boolean spawnEntity(Entity entity, Cause cause);
+    boolean spawnWeatherEntity(Entity entity, Cause cause);
 }
