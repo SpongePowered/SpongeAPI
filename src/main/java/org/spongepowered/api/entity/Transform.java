@@ -408,7 +408,7 @@ public final class Transform<E extends Extent> {
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
-                .add("location", location)
+                .add("location", getLocation())
                 .add("rotation", rotation)
                 .add("scale", scale)
                 .toString();
