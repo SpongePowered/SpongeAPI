@@ -42,12 +42,11 @@ import org.spongepowered.api.event.network.ClientConnectionEvent;
  * joined the world. {@link ClientConnectionEvent} is the
  * reccomended event to interact with connecting players.</p>
  */
-public interface SpawnEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
+public interface SpawnEntityEvent extends AffectEntityEvent, Cancellable, CauseTracked {
 
     interface ChunkLoad extends SpawnEntityEvent {}
 
     interface Spawner extends SpawnEntityEvent {}
 
-    interface MobSpawner extends SpawnEntityEvent {}
-
+    interface Custom extends SpawnEntityEvent {}
 }

@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import org.spongepowered.api.event.entity.item.AffectItemEvent;
+import org.spongepowered.api.event.entity.AffectEntityEvent;
 
-public interface PickUpItemEvent extends TargetInventoryEvent, AffectItemEvent {
+public interface PickUpItemEvent extends TargetInventoryEvent, AffectEntityEvent {
 
 }

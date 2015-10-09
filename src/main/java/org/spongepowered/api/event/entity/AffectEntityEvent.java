@@ -65,7 +65,7 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseT
      *
      * @return The List
      */
-    List<? extends Entity> getEntities();
+    List<Entity> getEntities();
 
     /**
      * Filters out {@link Location<World>}'s from
@@ -74,7 +74,7 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseT
      * @param predicate The predicate to use for filtering
      * @return The filtered list of entities
      */
-    List<? extends Entity> filterEntityLocations(Predicate<Location<World>> predicate);
+    List<Entity> filterEntityLocations(Predicate<Location<World>> predicate);
 
     /**
      * Filters out {@link Entity}'s from {@link AffectEntityEvent#getEntities()}
@@ -83,5 +83,5 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseT
      * @param predicate The predicate to use for filtering
      * @return The filtered list of entities
      */
-    List<? extends Entity> filterEntities(Predicate<Entity> predicate);
+    List<Entity> filterEntities(Predicate<Entity> predicate);
 }
