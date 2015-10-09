@@ -72,7 +72,6 @@ import org.spongepowered.api.event.block.GrowBlockEvent;
 import org.spongepowered.api.event.block.InteractBlockEvent;
 import org.spongepowered.api.event.block.MoveBlockEvent;
 import org.spongepowered.api.event.block.NotifyNeighborBlockEvent;
-import org.spongepowered.api.event.block.PlaceBlockEvent;
 import org.spongepowered.api.event.block.TargetBlockEvent;
 import org.spongepowered.api.event.block.TickBlockEvent;
 import org.spongepowered.api.event.block.tileentity.BrewingEvent;
@@ -938,26 +937,6 @@ public class SpongeEventFactory {
         values.put("originalNeighbors", originalNeighbors);
         values.put("neighbors", neighbors);
         return SpongeEventFactoryUtils.createEventImpl(NotifyNeighborBlockEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.block.PlaceBlockEvent}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param targetWorld The target world
-     * @param transactions The transactions
-     * @return A new place block event
-     */
-    public static PlaceBlockEvent createPlaceBlockEvent(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("targetWorld", targetWorld);
-        values.put("transactions", transactions);
-        return SpongeEventFactoryUtils.createEventImpl(PlaceBlockEvent.class, values);
     }
 
     /**

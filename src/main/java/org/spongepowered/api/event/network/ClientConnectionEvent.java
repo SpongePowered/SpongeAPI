@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.network;
 
 import org.spongepowered.api.GameProfile;
-import org.spongepowered.api.data.manipulator.mutable.entity.VehicleData;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
@@ -138,4 +137,3 @@ public interface ClientConnectionEvent extends GameEvent {
      */
     interface Disconnect extends ClientConnectionEvent, TargetPlayerEvent, MessageSinkEvent {}
 }
-
