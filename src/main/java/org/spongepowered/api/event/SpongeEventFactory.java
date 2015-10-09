@@ -27,6 +27,11 @@ package org.spongepowered.api.event;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.collect.Maps;
+import java.net.InetSocketAddress;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.MinecraftVersion;
@@ -195,12 +200,6 @@ import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.gen.PopulatorType;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
-
-import java.net.InetSocketAddress;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
 
 public class SpongeEventFactory {
     /**
@@ -1316,9 +1315,10 @@ public class SpongeEventFactory {
      * @param message The message
      * @param originalSink The original sink
      * @param sink The sink
+     * @param rawMessage The raw message
      * @return A new chat message sink event
      */
-    public static MessageSinkEvent.Chat createMessageSinkEventChat(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink) {
+    public static MessageSinkEvent.Chat createMessageSinkEventChat(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Text rawMessage) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -1326,6 +1326,7 @@ public class SpongeEventFactory {
         values.put("message", message);
         values.put("originalSink", originalSink);
         values.put("sink", sink);
+        values.put("rawMessage", rawMessage);
         return SpongeEventFactoryUtils.createEventImpl(MessageSinkEvent.Chat.class, values);
     }
 

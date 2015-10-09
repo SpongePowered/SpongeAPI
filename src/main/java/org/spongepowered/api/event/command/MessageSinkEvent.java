@@ -58,5 +58,17 @@ public interface MessageSinkEvent extends MessageEvent {
     /**
      * Fired when the {@link Text} being sent to a {@link MessageSink} was due to chatting.
      */
-    interface Chat extends MessageSinkEvent {}
+    interface Chat extends MessageSinkEvent {
+
+        /**
+         * Gets the 'raw' chat message.
+         *
+         * <p>This message is the original chat message, without any formatting whatsoever.
+         * In Vanilla, this is equivalent to what a player typed into the chat box
+         * (no name prefix or other elements).</p>
+         *
+         * @return The raw message
+         */
+        Text getRawMessage();
+    }
 }
