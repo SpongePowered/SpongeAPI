@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.data.manipulator;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
@@ -68,7 +71,9 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @return This {@link DataManipulator} with relevant data filled from the
      *     given {@link DataHolder}, if compatible
      */
-    Optional<M> fill(DataHolder dataHolder);
+    default Optional<M> fill(DataHolder dataHolder) {
+        return fill(dataHolder, MergeFunction.IGNORE_ALL);
+    }
 
     /**
      * Attempts to read data from the given {@link DataHolder} and fills the
@@ -128,7 +133,9 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @param value The actual value to set
      * @return This manipulator, for chaining
      */
-    M set(BaseValue<?> value);
+    default M set(BaseValue<?> value) {
+        return set((Key<? extends BaseValue<Object>>) value.getKey(), value.get());
+    }
 
     /**
      * Sets the supported {@link BaseValue}s onto this {@link DataManipulator}.
@@ -141,7 +148,17 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @param values The actual values to set
      * @return This manipulator, for chaining
      */
-    M set(BaseValue<?>... values);
+    @SuppressWarnings("unchecked")
+    default M set(BaseValue<?>... values) {
+        for (BaseValue<?> value : checkNotNull(values)) {
+            try {
+                set(checkNotNull(value, "A null value was provided!"));
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+        return (M) this;
+    }
 
     /**
      * Sets the supported {@link BaseValue}s onto this {@link DataManipulator}.
@@ -154,7 +171,17 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @param values The actual values to set
      * @return This manipulator, for chaining
      */
-    M set(Iterable<? extends BaseValue<?>> values);
+    @SuppressWarnings("unchecked")
+    default M set(Iterable<? extends BaseValue<?>> values) {
+        for (BaseValue<?> value : checkNotNull(values)) {
+            try {
+                set(checkNotNull(value, "A null value was provided!"));
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+        return (M) this;
+    }
 
     /**
      * Applies a transformation on the provided value if available. This is
@@ -165,7 +192,10 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @param <E> The type of element
      * @return This manipulator, for chaining
      */
-    <E> M transform(Key<? extends BaseValue<E>> key, Function<E, E> function);
+    default <E> M transform(Key<? extends BaseValue<E>> key, Function<E, E> function) {
+        checkArgument(supports(key), "The provided key is not supported!" + key.toString());
+        return set(key, checkNotNull(function.apply(get(key).get()), "The function can not be returning null!"));
+    }
 
     @TransformWith
     @Override
