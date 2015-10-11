@@ -32,10 +32,11 @@ import java.util.concurrent.TimeUnit;
 /**
  * A delegating ExecutionService that schedules all its tasks on
  * Sponge's {@link SchedulerService}.
+ *
  * <p>
- *     This class can be used to allow any libraries that support the
- *     standard concurrency interface to schedule their asynchronous
- *     tasks through Sponge.
+ * This class can be used to allow any libraries that support the
+ * standard concurrency interface to schedule their asynchronous
+ * tasks through Sponge.
  * </p>
  */
 public interface SpongeExecutorService extends ScheduledExecutorService {
@@ -55,8 +56,10 @@ public interface SpongeExecutorService extends ScheduledExecutorService {
     interface SpongeFuture<V> extends RunnableScheduledFuture<V> {
 
         /**
-         * @return The {@link SchedulerService} task that is responsible for
-         *         the execution of this future
+         * Retrieves the {@link SchedulerService} {@link Task} instance that
+         * is responsible for the execution of this future.
+         *
+         * @return The backing task
          */
         Task getTask();
     }
