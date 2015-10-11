@@ -89,4 +89,25 @@ public interface SchedulerService {
      * @return The preferred tick interval
      */
     int getPreferredTickInterval();
+
+    /**
+     * Creates a new ExecutorService that can be used to schedule synchronous
+     * tasks through the standard Java concurrency interfaces.
+     *
+     * @param plugin The plugin that will own the created tasks
+     * @return A new executor service that can be used to execute
+     *         synchronous tasks
+     */
+    SpongeExecutorService createSyncExecutor(Object plugin);
+
+    /**
+     * Creates a new ExecutorService that can be used to schedule asynchronous
+     * tasks through the standard Java concurrency interfaces.
+     *
+     * @param plugin The plugin that will own the created tasks
+     * @return A new executor service that can be used to execute
+     *         asynchronous tasks
+     * @see TaskBuilder#async()
+     */
+    SpongeExecutorService createAsyncExecutor(Object plugin);
 }
