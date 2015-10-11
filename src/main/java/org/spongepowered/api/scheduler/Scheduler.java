@@ -27,6 +27,7 @@ package org.spongepowered.api.scheduler;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
 
 /**
  * Represents a scheduler for running {@link Task}s.
@@ -89,4 +90,25 @@ public interface Scheduler {
      * @return The preferred tick interval
      */
     int getPreferredTickInterval();
+
+    /**
+     * Creates a new {@link ExecutorService} that can be used to schedule
+     * synchronous tasks through the standard Java concurrency interfaces.
+     *
+     * @param plugin The plugin that will own the created tasks
+     * @return A new executor service that can be used to execute
+     *     synchronous tasks
+     */
+    SpongeExecutorService createSyncExecutor(Object plugin);
+
+    /**
+     * Creates a new {@link ExecutorService} that can be used to schedule
+     * asynchronous tasks through the standard Java concurrency interfaces.
+     *
+     * @param plugin The plugin that will own the created tasks
+     * @return A new executor service that can be used to execute
+     *     asynchronous tasks
+     * @see Task.Builder#async()
+     */
+    SpongeExecutorService createAsyncExecutor(Object plugin);
 }
