@@ -49,8 +49,8 @@ public interface DataManipulatorRegistry {
      * @param <T> The type of data manipulator
      * @param <I> The type of immutable datamanipulator
      */
-    <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>> void register(Class<T> manipulatorClass,
-                                                                                              Class<I> immutableManipulatorClass,
+    <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>> void register(Class<? extends T> manipulatorClass,
+                                                                                              Class<? extends I> immutableManipulatorClass,
                                                                                               DataManipulatorBuilder<T, I> builder);
 
     /**
