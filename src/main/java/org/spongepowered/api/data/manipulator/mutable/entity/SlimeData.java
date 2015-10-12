@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSlimeData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.entity.living.monster.Slime;
 
 /**
@@ -37,10 +37,10 @@ import org.spongepowered.api.entity.living.monster.Slime;
 public interface SlimeData extends DataManipulator<SlimeData, ImmutableSlimeData> {
 
     /**
-     * Gets the {@link Value} for the "size" of a slime.
+     * Gets the {@link MutableBoundedValue} for the "size" of a slime.
      *
      * @return The value for a slime
      */
-    Value<Integer> size();
+    MutableBoundedValue<Integer> size();
 
 }
