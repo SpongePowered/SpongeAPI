@@ -113,4 +113,11 @@ public interface Game {
      */
     File getSavesDirectory();
 
+    /**
+     * Gets the current {@link GameState} that this game is currently in.
+     *
+     * @return The game state
+     */
+    GameState getState();
+
 }
