@@ -30,7 +30,6 @@ import com.google.common.base.Preconditions;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
@@ -45,22 +44,34 @@ public final class TextElements {
 
     public static Text DEFAULT_SEPARATOR = Texts.of(", ");
 
+    static TextElement<Text> IDENTITY = new TextElement<Text>() {
+        @Override
+        public Text create(Text value) {
+            return value;
+        }
+    };
+
     public static TextElement<Text> identity() {
-        return new TextElement<Text>() {
-            @Override
-            public Text create(Text value) {
-                return value;
-            }
-        };
+        return IDENTITY;
     }
 
-    public static <T> TextElement<T> always(final Text text) {
-        return new TextElement<T>() {
-            @Override
-            public Text create(T value) {
-                return text;
-            }
-        };
+    public static <T> AlwaysTextElement<T> always(final Text text) {
+        return new AlwaysTextElement<T>(text);
+    }
+
+    static class AlwaysTextElement<T> extends TextElement<T> {
+
+        final Text result;
+
+        public AlwaysTextElement(Text result) {
+            this.result = result;
+        }
+
+        @Override
+        public Text create(T value) {
+            return result;
+        }
+
     }
 
     public static <T> TextElement<T> function(final Function<T, Text> function) {

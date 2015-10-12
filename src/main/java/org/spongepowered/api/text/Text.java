@@ -287,8 +287,7 @@ public abstract class Text {
 
         @Override
         public boolean isEmpty() {
-            return content.equals("") && children.isEmpty() && !clickAction.isPresent() && !hoverAction.isPresent() &&
-                !shiftClickAction.isPresent();
+            return content.isEmpty() && children.isEmpty();
         }
 
         @Override

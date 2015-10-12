@@ -27,6 +27,7 @@ package org.spongepowered.api.text;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
@@ -37,6 +38,7 @@ import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.format.TextStyles;
 import org.spongepowered.api.text.selector.Selector;
+import org.spongepowered.api.text.template.TextElements;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
@@ -376,16 +378,17 @@ public final class Texts {
      * @param texts The text to join
      * @return A text object that joins the given text objects
      */
-    public static Text join(Text separator, Text... texts) {
-        switch (texts.length) {
+    public static Text join(Text separator, Iterable<? extends Text> texts) {
+        List<Text> textsList = Lists.newArrayList(texts);
+        switch (textsList.size()) {
             case 0:
                 return of();
             case 1:
-                return texts[0];
+                return textsList.get(0);
             default:
                 TextBuilder builder = builder();
                 boolean appendSeparator = false;
-                for (Text text : texts) {
+                for (Text text : textsList) {
                     if (appendSeparator) {
                         builder.append(separator);
                     } else {
