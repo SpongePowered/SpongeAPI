@@ -26,6 +26,7 @@ package org.spongepowered.api.event.cause;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.apache.commons.lang3.Validate.noNullElements;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
@@ -88,17 +89,28 @@ public abstract class Cause {
      * {@link SpawnCause} for an {@link SpawnEntityEvent}.</p>
      *
      * @param objects The objects being the cause
-     * @return
+     * @return The new cause
      */
     public static Cause of(Object... objects) {
-        return new PresentCause(checkNotNull(objects));
+        checkNotNull(objects, "The objects cannot be null!");
+        if (objects.length == 0) {
+            return EMPTY;
+        }
+        noNullElements(objects, "No elements in a cause can be null!");
+        return new PresentCause(objects);
     }
 
     public static Cause ofNullable(@Nullable Object... objects) {
-        if (objects == null) {
+        if (objects == null || objects.length == 0) {
             return EMPTY;
         } else {
-            return new PresentCause(objects);
+            List<Object> list = new ArrayList<>();
+            for (Object object : objects) {
+                if (object != null) {
+                    list.add(object);
+                }
+            }
+            return new PresentCause(list.toArray());
         }
     }
 
