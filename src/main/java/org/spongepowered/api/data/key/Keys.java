@@ -214,7 +214,7 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Double>> ATTACK_DAMAGE = null;
     public static final Key<MapValue<EntityType, Double>> DAMAGE_ENTITY_MAP = null;
     public static final Key<Value<Boolean>> ELDER_GUARDIAN = null;
-    public static final Key<MutableBoundedValue<Integer>> CONTAINED_EXPERIENCE = null;
+    public static final Key<Value<Integer>> CONTAINED_EXPERIENCE = null;
     public static final Key<MutableBoundedValue<Integer>> EXPERIENCE_SINCE_LEVEL = null;
     public static final Key<ImmutableBoundedValue<Integer>> EXPERIENCE_FROM_START_OF_LEVEL = null;
     public static final Key<MutableBoundedValue<Integer>> EXPERIENCE_LEVEL = null;
