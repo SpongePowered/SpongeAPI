@@ -27,6 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.tileentity;
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableFurnaceData;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.Value;
 
 /**
@@ -35,19 +36,19 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface FurnaceData extends DataManipulator<FurnaceData, ImmutableFurnaceData> {
 
     /**
-     * Gets the {@link Value} for the remaining burn time of the
+     * Gets the {@link MutableBoundedValue} for the remaining burn time of the
      * {@link Furnace}.
      *
      * @return The value for the remaining burn time
      */
-    Value<Integer> remainingBurnTime();
+    MutableBoundedValue<Integer> remainingBurnTime();
 
     /**
-     * Gets the {@link Value} for the remaining cook time of the
+     * Gets the {@link MutableBoundedValue} for the remaining cook time of the
      * {@link Furnace}.
      *
      * @return The value for the remaining cook time
      */
-    Value<Integer> remainingCookTime();
+    MutableBoundedValue<Integer> remainingCookTime();
 
 }

@@ -295,8 +295,8 @@ public final class Keys {
     public static final Key<PatternListValue> BANNER_PATTERNS = null;
     public static final Key<Value<Integer>> REMAINING_BREW_TIME = null;
     public static final Key<Value<Integer>> COOLDOWN = null;
-    public static final Key<Value<Integer>> REMAINING_BURN_TIME = null;
-    public static final Key<Value<Integer>> REMAINING_COOK_TIME = null;
+    public static final Key<MutableBoundedValue<Integer>> REMAINING_BURN_TIME = null;
+    public static final Key<MutableBoundedValue<Integer>> REMAINING_COOK_TIME = null;
     public static final Key<Value<String>> LOCK_TOKEN = null;
     public static final Key<Value<NotePitch>> NOTE_PITCH = null;
     public static final Key<Value<Boolean>> CAN_FLY = null;
