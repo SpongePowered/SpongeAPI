@@ -27,6 +27,8 @@ package org.spongepowered.api.service.scheduler;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.Identifiable;
 
+import java.util.function.Consumer;
+
 /**
  * Represents a task that has been scheduled.
  */
@@ -73,11 +75,11 @@ public interface Task extends Identifiable {
     boolean cancel();
 
     /**
-     * Gets the {@link Runnable} that this task is running.
+     * Gets the {@link Consumer}<{@link Task}> that this task is running.
      *
-     * @return The runnable
+     * @return The consumer
      */
-    Runnable getRunnable();
+    Consumer<Task> getConsumer();
 
     /**
      * Gets whether this task is asynchronous.

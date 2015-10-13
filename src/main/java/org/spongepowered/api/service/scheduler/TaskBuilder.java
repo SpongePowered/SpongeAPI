@@ -25,6 +25,7 @@
 package org.spongepowered.api.service.scheduler;
 
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 /**
  * Represents a builder to create a {@link Task}.
@@ -45,11 +46,9 @@ public interface TaskBuilder {
      * advised to <b>not</b> manipulate game data in asynchronous tasks.</p>
      *
      * <p>It is not possible to schedule a task in unit ticks when running
-     * asynchronously. If the delay or interval has been specified in ticks
-     * (methods {@link #delay(long)} and {@link #interval(long)}), it will be
-     * converted to the equivalent wall clock time by the implementation. After
-     * this point, calls to the two methods mentioned will set the time in
-     * milliseconds as mentioned in their javadoc.</p>
+     * asynchronously. If the delay or interval is specified in ticks, it will
+     * be converted to the equivalent wall clock time by multiplying the value
+     * by {@link SchedulerService#getPreferredTickInterval()}.</p>
      *
      * @return This builder, for chaining
      */
@@ -61,7 +60,17 @@ public interface TaskBuilder {
      * @param runnable The actual task to run
      * @return This builder, for chaining
      */
-    TaskBuilder execute(Runnable runnable);
+    default TaskBuilder execute(Runnable runnable) {
+        return this.execute(task -> runnable.run());
+    }
+
+    /**
+     * Sets the consumer that runs when this task executes.
+     *
+     * @param executor The executor to run
+     * @return This builder, for chaining
+     */
+    TaskBuilder execute(Consumer<Task> executor);
 
     /**
      * Sets the delay before the task runs. This delay is an initial offset,
@@ -76,16 +85,14 @@ public interface TaskBuilder {
     TaskBuilder delay(long delay, TimeUnit unit);
 
     /**
-     * Sets the delay before the task runs, in the default time unit. If
-     * {@link #async()} has <b>not</b> been called this represents the number of
-     * ticks. Otherwise this will set the delay in milliseconds.
+     * Sets the delay before the task runs, in unit ticks.
      *
-     * @param delay The delay in the default time unit
+     * @param ticks The delay in ticks
      * @return This builder, for chaining
      * @throws IllegalArgumentException If the delay is below 0
      * @see #delay(long, TimeUnit)
      */
-    TaskBuilder delay(long delay);
+    TaskBuilder delayTicks(long ticks);
 
     /**
      * Sets the interval between repetitions of the task. The task will not
@@ -106,17 +113,14 @@ public interface TaskBuilder {
     TaskBuilder interval(long interval, TimeUnit unit);
 
     /**
-     * Sets the interval in ticks between repetitions of the task, in the
-     * default time unit. If {@link #async()} has <b>not</b> been called this
-     * represents the number of ticks. Otherwise this will set the interval in
-     * milliseconds.
+     * Sets the interval in unit ticks between repetitions of the task.
      *
      * @param ticks The number of ticks between runs
      * @return This builder, for chaining
      * @throws IllegalArgumentException If the interval is below 0
      * @see #interval(long, TimeUnit)
      */
-    TaskBuilder interval(long ticks);
+    TaskBuilder intervalTicks(long ticks);
 
     /**
      * Sets the name of the task, the name cannot be blank.

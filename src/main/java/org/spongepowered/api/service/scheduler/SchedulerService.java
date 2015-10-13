@@ -81,4 +81,12 @@ public interface SchedulerService {
      * @return A set of scheduled tasks
      */
     Set<Task> getScheduledTasks(Object plugin);
+
+    /**
+     * Gets the ideal delay between ticks in milliseconds. The server aims to
+     * stabilise at this value.
+     *
+     * @return The preferred tick interval
+     */
+    int getPreferredTickInterval();
 }
