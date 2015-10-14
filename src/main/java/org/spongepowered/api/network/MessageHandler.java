@@ -22,18 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.server.channel;
+package org.spongepowered.api.network;
 
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.Platform;
 
 /**
- * Base event for when a channel is the target
+ * Represents a handler for a message that was received over the network.
  */
-public interface TargetChannelEvent extends GameEvent {
+public interface MessageHandler<M extends Message> {
 
     /**
-     * Gets the name of the channel being targeted
-     * @return The channel name
+     * Handles the message sent by a remote connection.
+     *
+     * @param message The message received
+     * @param connection The connection that sent the message
+     * @param side The side the message was received on (
+     *        {@link Platform.Type#CLIENT} or {@link Platform.Type#SERVER})
      */
-    String getTargetChannel();
+    void handleMessage(M message, RemoteConnection connection, Platform.Type side);
+
 }

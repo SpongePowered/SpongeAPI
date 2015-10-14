@@ -22,13 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.server.channel;
+package org.spongepowered.api.network;
 
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.Platform;
 
 /**
- * Fired when a channel is unregistered.
+ * Represents a listener for data being sent to a raw channel.
  */
-public interface UnRegisterChannelEvent extends TargetChannelEvent, CauseTracked {
+public interface RawDataListener {
 
+    /**
+     * Handles the given {@link ChannelBuf} data sent by a remote connection.
+     *
+     * @param data The raw data
+     * @param connection The remote connection
+     * @param side The side the data was received on (
+     *        {@link Platform.Type#CLIENT} or {@link Platform.Type#SERVER})
+     */
+    void handlePayload(ChannelBuf data, RemoteConnection connection, Platform.Type side);
 }

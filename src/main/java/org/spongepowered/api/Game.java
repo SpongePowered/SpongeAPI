@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api;
 
+import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.command.CommandService;
@@ -119,5 +120,12 @@ public interface Game {
      * @return The game state
      */
     GameState getState();
+
+    /**
+     * Gets the {@link ChannelRegistrar} for creating network channels.
+     *
+     * @return The channel registrar
+     */
+    ChannelRegistrar getChannelRegistrar();
 
 }

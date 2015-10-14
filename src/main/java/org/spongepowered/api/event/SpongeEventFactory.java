@@ -140,13 +140,11 @@ import org.spongepowered.api.event.inventory.TargetContainerEvent;
 import org.spongepowered.api.event.inventory.TargetInventoryEvent;
 import org.spongepowered.api.event.inventory.UseItemStackEvent;
 import org.spongepowered.api.event.network.BanIpEvent;
+import org.spongepowered.api.event.network.ChannelRegistrationEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.event.network.PardonIpEvent;
 import org.spongepowered.api.event.network.rcon.RconConnectionEvent;
 import org.spongepowered.api.event.server.ClientPingServerEvent;
-import org.spongepowered.api.event.server.channel.RegisterChannelEvent;
-import org.spongepowered.api.event.server.channel.TargetChannelEvent;
-import org.spongepowered.api.event.server.channel.UnRegisterChannelEvent;
 import org.spongepowered.api.event.server.query.QueryServerEvent;
 import org.spongepowered.api.event.statistic.ChangeStatisticEvent;
 import org.spongepowered.api.event.user.BanUserEvent;
@@ -3486,6 +3484,54 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.network.ChannelRegistrationEvent}.
+     * 
+     * @param cause The cause
+     * @param channel The channel
+     * @return A new channel registration event
+     */
+    public static ChannelRegistrationEvent createChannelRegistrationEvent(Cause cause, String channel) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("channel", channel);
+        return SpongeEventFactoryUtils.createEventImpl(ChannelRegistrationEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.network.ChannelRegistrationEvent.Register}.
+     * 
+     * @param cause The cause
+     * @param channel The channel
+     * @return A new register channel registration event
+     */
+    public static ChannelRegistrationEvent.Register createChannelRegistrationEventRegister(Cause cause, String channel) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("channel", channel);
+        return SpongeEventFactoryUtils.createEventImpl(ChannelRegistrationEvent.Register.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.network.ChannelRegistrationEvent.Unregister}.
+     * 
+     * @param cause The cause
+     * @param channel The channel
+     * @return A new unregister channel registration event
+     */
+    public static ChannelRegistrationEvent.Unregister createChannelRegistrationEventUnregister(Cause cause, String channel) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("channel", channel);
+        return SpongeEventFactoryUtils.createEventImpl(ChannelRegistrationEvent.Unregister.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.network.ClientConnectionEvent}.
      * 
      * @param game The game
@@ -3731,58 +3777,6 @@ public class SpongeEventFactory {
         values.put("max", max);
         values.put("online", online);
         return SpongeEventFactoryUtils.createEventImpl(ClientPingServerEvent.Response.Players.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.server.channel.RegisterChannelEvent}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param targetChannel The target channel
-     * @return A new register channel event
-     */
-    public static RegisterChannelEvent createRegisterChannelEvent(Game game, Cause cause, String targetChannel) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("targetChannel", targetChannel);
-        return SpongeEventFactoryUtils.createEventImpl(RegisterChannelEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.server.channel.TargetChannelEvent}.
-     * 
-     * @param game The game
-     * @param targetChannel The target channel
-     * @return A new target channel event
-     */
-    public static TargetChannelEvent createTargetChannelEvent(Game game, String targetChannel) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("targetChannel", targetChannel);
-        return SpongeEventFactoryUtils.createEventImpl(TargetChannelEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.server.channel.UnRegisterChannelEvent}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param targetChannel The target channel
-     * @return A new un register channel event
-     */
-    public static UnRegisterChannelEvent createUnRegisterChannelEvent(Game game, Cause cause, String targetChannel) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("targetChannel", targetChannel);
-        return SpongeEventFactoryUtils.createEventImpl(UnRegisterChannelEvent.class, values);
     }
 
     /**

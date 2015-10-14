@@ -22,26 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.event.network;
+
+import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
- * Represents a listener for data being sent by {@link PlayerConnection}s
- * over specific channels.
+ * Fired when a channel is registered or unregistered.
  */
-public interface ChannelListener {
+public interface ChannelRegistrationEvent extends CauseTracked {
 
     /**
-     * Handles the given {@link ChannelBuf} data sent by the
-     * {@link PlayerConnection} over the prescribed channel.
+     * Gets the name of the channel being registered or unregistered.
      *
-     * <p>The given channel stream passed in to the listener is always
-     * a copy of the original data received by the server to better
-     * handle concurrency across listeners.</p>
-     *
-     * @param client The client sending the data
-     * @param channel The channel being used
-     * @param data The actual raw data
+     * @return The channel name
      */
-    void handlePayload(PlayerConnection client, String channel, ChannelBuf data);
+    String getChannel();
 
+    /**
+     * Fired when a channel is registered.
+     */
+    interface Register extends ChannelRegistrationEvent {
+    }
+
+    /**
+     * Fired when a channel is unregistered.
+     */
+    interface Unregister extends ChannelRegistrationEvent {
+    }
 }

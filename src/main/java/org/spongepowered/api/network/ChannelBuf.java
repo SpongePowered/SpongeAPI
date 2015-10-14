@@ -515,7 +515,7 @@ public interface ChannelBuf {
      * @param data The boolean data
      * @return This stream for chaining
      */
-    ChannelBuf writeUuid(UUID data);
+    ChannelBuf writeUniqueId(UUID data);
 
     /**
      * Sets the {@link UUID} at the specified absolute index in this
@@ -526,7 +526,7 @@ public interface ChannelBuf {
      * @param data The boolean data
      * @return This stream for chaining
      */
-    ChannelBuf setUuid(int index, UUID data);
+    ChannelBuf setUniqueId(int index, UUID data);
 
     /**
      * Gets a UUID at the current readerIndex and increases the
@@ -534,7 +534,7 @@ public interface ChannelBuf {
      *
      * @return This stream for chaining
      */
-    UUID readUuid();
+    UUID readUniqueId();
 
     /**
      * Gets a {@link UUID} at the specified absolute index in this buffer.
@@ -542,7 +542,7 @@ public interface ChannelBuf {
      * @param index The index
      * @return The uuid
      */
-    UUID getUuid(int index);
+    UUID getUniqueId(int index);
 
     /**
      * Sets the specified {@link DataView} at the current writerIndex and

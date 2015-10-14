@@ -24,34 +24,65 @@
  */
 package org.spongepowered.api.network;
 
-import java.util.List;
+import org.spongepowered.api.Platform;
+
+import java.util.Set;
 
 /**
- * A registrar handling custom payloads via channels to and from
+ * A registrar handling custom payloads via {@link ChannelBinding}s to and from
  * {@link PlayerConnection}s and the server.
  */
 public interface ChannelRegistrar {
 
     /**
-     * Registers the given channel to the plugin.
+     * Creates a new channel binding for the given channel name. The channel can
+     * be used to send and receive messages.
      *
      * @param plugin The plugin registering the channel
-     * @param listener The listener that will listen for
      * @param channel The channel to register
+     * @return A new {@link ChannelBinding} instance bound to the channel name
      * @throws ChannelRegistrationException The channel name is too long
      * @throws ChannelRegistrationException The channel name is reserved
      */
-    void registerChannel(Object plugin, ChannelListener listener, String channel) throws ChannelRegistrationException;
+    ChannelBinding.IndexedMessageChannel createChannel(Object plugin, String channel) throws ChannelRegistrationException;
 
     /**
-     * Gets the list of registered channels.
+     * Creates a new raw channel binding. The channel can be used to send and
+     * Receive data from {@link ChannelBuf} objects.
      *
-     * <p>Channel registration is a global registration, all clients
-     * will automatically be registered with the given channels on the
-     * server and vice versa.</p>
+     * @param plugin The plugin registering the channel
+     * @param channel The channel to register
+     * @return A new {@link ChannelBinding} instance bound to the channel name
+     * @throws ChannelRegistrationException The channel name is too long
+     * @throws ChannelRegistrationException The channel name is reserved
+     * @see #createChannel
+     */
+    ChannelBinding.RawDataChannel createRawChannel(Object plugin, String channel) throws ChannelRegistrationException;
+
+    /**
+     * Remove the channel binding from this registrar, freeing up the channel
+     * name. All method calls on the channel binding instance will now throw
+     * {@link IllegalStateException}.
      *
+     * @param channel The channel to unbind
+     */
+    void unbindChannel(ChannelBinding channel);
+
+    /**
+     * Gets the set of registered channels.
+     *
+     * @param side The side to get the registered channels from
      * @return A copy of the list of channels
      */
-    List<String> getRegisteredChannels();
+    Set<String> getRegisteredChannels(Platform.Type side);
+
+    /**
+     * Returns whether the given channel name is available for creating with
+     * {@link #createChannel}.
+     *
+     * @param channelName The channel name to test
+     * @return True if available
+     */
+    boolean isChannelAvailable(String channelName);
 
 }

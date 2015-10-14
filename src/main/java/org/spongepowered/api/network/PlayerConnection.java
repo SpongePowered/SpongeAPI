@@ -45,22 +45,4 @@ public interface PlayerConnection extends RemoteConnection {
      */
     int getPing();
 
-    /**
-     * Sends a custom payload over the player connection backed by a
-     * {@link ChannelBuf}.
-     *
-     * @param plugin The instance of the plugin
-     * @param channel The channel to send to
-     * @param dataStream The data
-     */
-    void sendCustomPayload(Object plugin, String channel, ChannelBuf dataStream);
-
-    /**
-     * Sends a custom payload to the player connection.
-     *
-     * @param plugin The instance of the plugin
-     * @param channel The channel to send to
-     * @param data The data
-     */
-    void sendCustomPayload(Object plugin, String channel, byte[] data);
 }
