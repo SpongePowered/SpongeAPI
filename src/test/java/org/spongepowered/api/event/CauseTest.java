@@ -39,7 +39,7 @@ public class CauseTest {
         Cause.of("foo");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testNullCause() {
         Cause.of((Object) null);
     }
@@ -53,13 +53,13 @@ public class CauseTest {
         assert newCause.all().contains("bar");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testWithNullCause() {
         final Cause old = Cause.of("foo");
         final Cause newCause = old.with((Object) null);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testWithNullCauses() {
         final Cause old = Cause.empty();
         final Cause newCause = old.with(null, null);
