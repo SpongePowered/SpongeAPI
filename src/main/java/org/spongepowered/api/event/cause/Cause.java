@@ -155,6 +155,24 @@ public abstract class Cause {
     public abstract <T> Optional<T> last(Class<T> target);
 
     /**
+     * Gets the object immediately before the object that is an instance of
+     * the {@link Class} passed in.
+     *
+     * @param clazz The class of the object
+     * @return The object
+     */
+    public abstract Optional<?> before(Class<?> clazz);
+
+    /**
+     * Gets the object immediately after the object that is an instance of
+     * the {@link Class} passed in.
+     *
+     * @param clazz
+     * @return
+     */
+    public abstract Optional<?> after(Class<?> clazz);
+
+    /**
      * Returns whether the target class matches any object of this {@link Cause}.
      * @param target The class of the target type
      * @return True if found, false otherwise
@@ -170,6 +188,15 @@ public abstract class Cause {
      * @return An immutable list of the objects queried
      */
     public abstract <T> List<T> allOf(Class<T> target);
+
+    /**
+     * Gets an immutable {@link List} with all object causes that are not
+     * instances of the provided {@link Class}.
+     *
+     * @param ignoredClass The class of object types to ignore
+     * @return The list of objects not an instance of the provided class
+     */
+    public abstract List<Object> noneOf(Class<?> ignoredClass);
 
     /**
      * Gets an {@link List} of all causes within this {@link Cause}.
@@ -252,6 +279,17 @@ public abstract class Cause {
         }
 
         @Override
+        public List<Object> noneOf(Class<?> ignoredClass) {
+            ImmutableList.Builder<Object> builder = ImmutableList.builder();
+            for (Object cause : this.cause) {
+                if (!ignoredClass.isInstance(cause)) {
+                    builder.add(cause);
+                }
+            }
+            return builder.build();
+        }
+
+        @Override
         public <T> Optional<T> last(Class<T> target) {
             for (int i = this.cause.length - 1; i >= 0; i--) {
                 if (target.isInstance(this.cause[i])) {
@@ -262,7 +300,36 @@ public abstract class Cause {
         }
 
         @Override
+        public Optional<?> before(Class<?> clazz) {
+            checkArgument(clazz != null, "The provided class cannot be null!");
+            if (this.cause.length == 1) {
+                return Optional.empty();
+            }
+            for (int i = 0; i < this.cause.length; i++) {
+                if (clazz.isInstance(this.cause[i]) && i > 0) {
+                    return Optional.of(this.cause[i - 1]);
+                }
+            }
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<?> after(Class<?> clazz) {
+            checkArgument(clazz != null, "The provided class cannot be null!");
+            if (this.cause.length == 1) {
+                return Optional.empty();
+            }
+            for (int i = 0; i < this.cause.length; i++) {
+                if (clazz.isInstance(this.cause[i]) && i + 1 < this.cause.length) {
+                    return Optional.of(this.cause[i + 1]);
+                }
+            }
+            return Optional.empty();
+        }
+
+        @Override
         public boolean any(Class<?> target) {
+            checkArgument(target != null, "The provided class cannot be null!");
             for (Object aCause : this.cause) {
                 if (target.isInstance(aCause)) {
                     return true;
@@ -341,12 +408,27 @@ public abstract class Cause {
         }
 
         @Override
+        public Optional<?> before(Class<?> clazz) {
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<?> after(Class<?> clazz) {
+            return Optional.empty();
+        }
+
+        @Override
         public boolean any(Class<?> target) {
             return false;
         }
 
         @Override
         public <T> List<T> allOf(Class<T> target) {
+            return ImmutableList.of();
+        }
+
+        @Override
+        public List<Object> noneOf(Class<?> ignoredClass) {
             return ImmutableList.of();
         }
 

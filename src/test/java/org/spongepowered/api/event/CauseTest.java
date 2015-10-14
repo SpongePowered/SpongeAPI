@@ -27,6 +27,9 @@ package org.spongepowered.api.event;
 import org.junit.Test;
 import org.spongepowered.api.event.cause.Cause;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 public class CauseTest {
 
     @Test
@@ -69,7 +72,62 @@ public class CauseTest {
     public void testToString() {
         final Cause cause = Cause.of("foo", "bar", 1, 2, true, false);
         final String causeString = cause.toString();
-        System.err.println(causeString);
+        assert !causeString.isEmpty();
+    }
+
+    @Test
+    public void testBefore() {
+        final Cause cause = Cause.of("foo", 1, 2);
+        final Optional<?> optional = cause.before(Integer.class);
+        assert optional.isPresent() && optional.get().equals("foo");
+    }
+
+    @Test
+    public void testAfter() {
+        final Cause cause = Cause.of("foo", 1, 2);
+        final Optional<?> optional = cause.after(Integer.class);
+        assert optional.isPresent() && optional.get().equals(2);
+    }
+
+    @Test
+    public void testNoneAfter() {
+        final Cause cause = Cause.of("foo", 1);
+        final Optional<?> optional = cause.after(Integer.class);
+        assert !optional.isPresent();
+    }
+
+    @Test
+    public void testNoneBefore() {
+        final Cause cause = Cause.of("foo", 1);
+        final Optional<?> optional = cause.before(String.class);
+        assert !optional.isPresent();
+    }
+
+    @Test
+    public void testEmpty() {
+        final Cause empty = Cause.of();
+        assert empty.isEmpty();
+    }
+
+    @Test
+    public void testEmptyWithEmpty() {
+        final Cause empty = Cause.empty();
+        assert empty.with().isEmpty();
+    }
+
+    @Test
+    public void testNoneOf() {
+        final Cause cause = Cause.of("foo", 1, 2, 3);
+        assert cause.noneOf(Integer.class).size() == 1 && cause.noneOf(Integer.class).get(0) == "foo";
+    }
+
+    @Test
+    public void testJustBecauseIcan() {
+        final Cause cause = Cause.of();
+        final Cause testing = cause.with().with().with().with(new ArrayList<>()).with();
+        assert testing.isEmpty();
+        assert testing.allOf(String.class).isEmpty();
+        assert testing.noneOf(String.class).isEmpty();
     }
 
 }
