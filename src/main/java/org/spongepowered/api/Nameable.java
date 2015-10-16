@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.text.translation.Translation;
 
 /**
  * An object which has a name.
@@ -36,6 +36,6 @@ public interface Nameable {
      *
      * @return The name of this object
      */
-    Translatable getName();
+    Translation getName();
 
 }

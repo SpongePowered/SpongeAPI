@@ -28,7 +28,7 @@ import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
-import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
+import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 
 import java.util.Optional;
 
@@ -117,7 +117,7 @@ public interface GridInventory extends Inventory2D {
      * @param stack Item stack to insert
      * @return operation result
      */
-    InventoryOperationResult set(int x, int y, ItemStack stack);
+    InventoryTransactionResult set(int x, int y, ItemStack stack);
 
     /**
      * Get the {@link Slot} at the specified position.

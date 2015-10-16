@@ -30,7 +30,7 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.property.EquipmentSlotType;
-import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
+import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.item.inventory.type.CarriedInventory;
 import org.spongepowered.api.item.inventory.type.OrderedInventory;
 
@@ -134,7 +134,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
      * @param stack stack to insert
      * @return operation result, for details see {@link Inventory#set}
      */
-    InventoryOperationResult set(EquipmentSlotType equipmentType, ItemStack stack);
+    InventoryTransactionResult set(EquipmentSlotType equipmentType, ItemStack stack);
 
     /**
      * Set the item for the specified equipment type.
@@ -144,7 +144,7 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
      * @param stack stack to insert
      * @return operation result, for details see {@link Inventory#set}
      */
-    InventoryOperationResult set(EquipmentType equipmentType, ItemStack stack);
+    InventoryTransactionResult set(EquipmentType equipmentType, ItemStack stack);
 
     /**
      * Get the {@link Slot} for the specified equipment type.

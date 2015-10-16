@@ -22,54 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.data.Transaction;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.inventory.Slot;
+import org.spongepowered.api.item.recipe.Recipe;
 
-import java.util.Optional;
+public interface InteractInventoryEvent extends TargetContainerEvent, CauseTracked, Cancellable {
 
-/**
- * Fired when an {@link Inventory} is being changed due to a {@link Cause}.
- */
-public interface ChangeInventoryEvent extends InteractInventoryEvent {
-    /**
-     * Gets the previously equipped {@link ItemStack} as an
-     * {@link ItemStackSnapshot}.
-     *
-     * <p>The previously equipped item may have been empty.</p>
-     *
-     * @return The original itemstack, if available
-     */
-    Optional<ItemStackSnapshot> getOriginalItemStack();
+    Transaction<ItemStackSnapshot> getCursorTransaction();
 
-    /**
-     * Gets the new {@link ItemStack} that is being equipped in the relative
-     * armor slot.
-     *
-     * <p>The itemstack may not exist or the slot is being emptied.</p>
-     *
-     * @return The new item stack, if available
-     */
-    Transaction<ItemStackSnapshot> getItemStackTransaction();
+    interface Open extends InteractInventoryEvent {}
 
-    interface Click extends ChangeInventoryEvent {}
+    interface Close extends InteractInventoryEvent {}
 
-    interface Move extends ChangeInventoryEvent {}
-
-    interface Drag extends ChangeInventoryEvent {}
-
-    interface Equipment extends ChangeInventoryEvent {
-        @Override
-        Slot getTargetInventory();
+    interface NumberPress extends InteractInventoryEvent, AffectSlotEvent {
+        int getNumber();
     }
 
-    interface Held extends ChangeInventoryEvent {
-        @Override
-        Slot getTargetInventory();
+    interface Equipment extends InteractInventoryEvent, AffectSlotEvent {}
+
+    /**
+     * Fired when a {@link Living} changes it's held {@link ItemStack}.
+     */
+    interface Held extends InteractInventoryEvent, AffectSlotEvent {}
+
+    interface Craft extends InteractInventoryEvent, AffectSlotEvent {
+        Recipe getRecipe();
     }
 }

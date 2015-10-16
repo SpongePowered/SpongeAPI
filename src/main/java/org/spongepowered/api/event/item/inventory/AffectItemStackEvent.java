@@ -22,11 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.event.item.inventory;
 
 import com.google.common.collect.Lists;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -38,7 +39,7 @@ import java.util.function.Predicate;
 /**
  * Fired when {@link ItemStack}s are generated into a {@link Inventory}
  */
-public interface AffectItemStackEvent extends TargetInventoryEvent, Cancellable, CauseTracked {
+public interface AffectItemStackEvent extends GameEvent, Cancellable, CauseTracked {
 
     /**
      * Gets a list of the {@link Transaction}s for this event. If a
@@ -47,7 +48,7 @@ public interface AffectItemStackEvent extends TargetInventoryEvent, Cancellable,
      *
      * @return The unmodifiable list of transactions
      */
-    List<Transaction<ItemStackSnapshot>> getTransactions();
+    List<? extends Transaction<ItemStackSnapshot>> getTransactions();
 
     /**
      * Applies the provided {@link Predicate} to the {@link List} of
@@ -62,14 +63,12 @@ public interface AffectItemStackEvent extends TargetInventoryEvent, Cancellable,
      * @param predicate The predicate to use for filtering
      * @return The transactions for which the predicate returned <code>false</code>
      */
-    default List<Transaction<ItemStackSnapshot>> filter(Predicate<ItemStack> predicate) {
+    default List<? extends  Transaction<ItemStackSnapshot>> filter(Predicate<ItemStack> predicate) {
         List<Transaction<ItemStackSnapshot>> invalidatedTransactions = Lists.newArrayList();
-        for (Transaction<ItemStackSnapshot> transaction: this.getTransactions()) {
-            if (!predicate.test(transaction.getFinal().createStack())) {
-                transaction.setValid(false);
-                invalidatedTransactions.add(transaction);
-            }
-        }
+        this.getTransactions().stream().filter(transaction -> !predicate.test(transaction.getFinal().createStack())).forEach(transaction -> {
+            transaction.setValid(false);
+            invalidatedTransactions.add(transaction);
+        });
         return invalidatedTransactions;
     }
 

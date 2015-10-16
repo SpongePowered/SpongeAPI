@@ -33,7 +33,7 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.entity.living.human.TargetHumanEvent;
 import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
-import org.spongepowered.api.event.inventory.TargetInventoryEvent;
+import org.spongepowered.api.event.item.inventory.TargetInventoryEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;

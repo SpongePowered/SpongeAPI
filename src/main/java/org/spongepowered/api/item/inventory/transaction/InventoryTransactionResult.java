@@ -33,7 +33,7 @@ import java.util.Optional;
  * An interface for structs returned by inventory operations which encapsulate
  * the result of an attempted operation.
  */
-public interface InventoryOperationResult {
+public interface InventoryTransactionResult {
 
     enum Type {
 

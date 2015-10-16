@@ -22,17 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.event.item.inventory;
 
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.item.inventory.Container;
+public interface CreativeInventoryEvent extends ClickInventoryEvent {
 
-/**
- * Base event for all events with an {@link Container} as the target.
- */
-public interface TargetContainerEvent extends GameEvent {
-    /**
-     * @return The target {@link Container}
-     */
-    Container getTargetContainer();
+    interface Click extends CreativeInventoryEvent {}
+
+    interface Drop extends CreativeInventoryEvent, ClickInventoryEvent.Drop {}
 }

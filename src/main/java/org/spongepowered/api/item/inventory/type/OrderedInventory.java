@@ -28,7 +28,7 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.property.SlotIndex;
-import org.spongepowered.api.item.inventory.transaction.InventoryOperationResult;
+import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 
 import java.util.Optional;
 
@@ -84,7 +84,7 @@ public interface OrderedInventory extends Inventory {
      * @param stack Stack to insert
      * @return matching stacks, as per the semantics of {@link Inventory#set}
      */
-    InventoryOperationResult set(SlotIndex index, ItemStack stack);
+    InventoryTransactionResult set(SlotIndex index, ItemStack stack);
 
     /**
      * Get the {@link Slot} at the specified position.

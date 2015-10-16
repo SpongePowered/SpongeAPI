@@ -22,29 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.item.inventory;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.network.ClientConnectionEvent;
+public interface ClickInventoryEvent extends InteractInventoryEvent, AffectSlotEvent {
+    interface Primary extends ClickInventoryEvent {}
 
-/**
- * Raised when an {@link Entity} is spawned. This usually follows the chain of
- * the various entity creation events: {@link ConstructEntityEvent.Pre},
- * {@link ConstructEntityEvent.Post}, and finally {@link SpawnEntityEvent}.
- *
- * <p>Note: To determine the {@link Cause}, refer to package
- * org.spongepowered.api.event.cause.entity.spawn.</p>
- *
- * <p>For players, this event is fired before they have fully
- * joined the world. {@link ClientConnectionEvent} is the
- * reccomended event to interact with connecting players.</p>
- */
-public interface SpawnEntityEvent extends AffectEntityEvent {
+    interface Middle extends ClickInventoryEvent {}
 
-    interface ChunkLoad extends SpawnEntityEvent {}
+    interface Secondary extends ClickInventoryEvent {}
 
-    interface Spawner extends SpawnEntityEvent {}
+    interface Creative extends ClickInventoryEvent {}
+    
+    interface Shift extends ClickInventoryEvent {
+        interface Primary extends Shift, ClickInventoryEvent.Primary {}
 
-    interface Custom extends SpawnEntityEvent {}
+        interface Secondary extends Shift, ClickInventoryEvent.Secondary {}
+    }
+
+    interface Double extends ClickInventoryEvent.Primary {}
+
+    interface Drop extends ClickInventoryEvent, DropItemEvent.Dispense {
+        interface Single extends Drop {}
+
+        interface Full extends Drop {}
+
+        interface Outside extends Drop {
+            interface Primary extends Outside, ClickInventoryEvent.Primary {}
+
+            interface Secondary extends Outside, ClickInventoryEvent.Secondary {}
+        }
+    }
+
+    interface Drag extends ClickInventoryEvent {
+        interface Primary extends Drag, ClickInventoryEvent.Primary {}
+
+        interface Secondary extends Drag, ClickInventoryEvent.Secondary {}
+    }
 }

@@ -22,14 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.event.item.inventory;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
+import com.google.common.collect.Lists;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
 
-public interface InteractInventoryEvent extends TargetInventoryEvent, Cancellable, CauseTracked {
+import java.util.List;
+import java.util.function.Predicate;
 
-    interface Open extends InteractInventoryEvent {}
+public interface AffectSlotEvent extends AffectItemStackEvent {
+    @Override
+    List<SlotTransaction> getTransactions();
 
-    interface Close extends InteractInventoryEvent {}
+    @Override
+    default List<SlotTransaction> filter(Predicate<ItemStack> predicate) {
+        List<SlotTransaction> invalidatedTransactions = Lists.newArrayList();
+        this.getTransactions().stream().filter(transaction -> !predicate.test(transaction.getFinal().createStack())).forEach(transaction -> {
+            transaction.setValid(false);
+            invalidatedTransactions.add(transaction);
+        });
+        return invalidatedTransactions;
+    }
+
 }

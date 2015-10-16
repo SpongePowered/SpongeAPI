@@ -22,29 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.item.inventory.transaction;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.network.ClientConnectionEvent;
+import org.spongepowered.api.data.Transaction;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.Slot;
 
-/**
- * Raised when an {@link Entity} is spawned. This usually follows the chain of
- * the various entity creation events: {@link ConstructEntityEvent.Pre},
- * {@link ConstructEntityEvent.Post}, and finally {@link SpawnEntityEvent}.
- *
- * <p>Note: To determine the {@link Cause}, refer to package
- * org.spongepowered.api.event.cause.entity.spawn.</p>
- *
- * <p>For players, this event is fired before they have fully
- * joined the world. {@link ClientConnectionEvent} is the
- * reccomended event to interact with connecting players.</p>
- */
-public interface SpawnEntityEvent extends AffectEntityEvent {
+public final class SlotTransaction extends Transaction<ItemStackSnapshot> {
+    private final Slot slot;
 
-    interface ChunkLoad extends SpawnEntityEvent {}
+    public SlotTransaction(Slot slot, ItemStackSnapshot original, ItemStackSnapshot defaultReplacement) {
+        super(original, defaultReplacement);
+        this.slot = slot;
+    }
 
-    interface Spawner extends SpawnEntityEvent {}
+    public final void setCustom(ItemStack stack) {
+        setCustom(stack.createSnapshot());
+    }
 
-    interface Custom extends SpawnEntityEvent {}
+    public final Slot getSlot() {
+        return slot;
+    }
+
+    @Override public String toString() {
+        return com.google.common.base.Objects.toStringHelper(this)
+                .add("slot", this.slot)
+                .add("original", getOriginal())
+                .add("default", getDefault())
+                .add("custom", getCustom())
+                .add("valid", isValid())
+                .toString();
+    }
 }

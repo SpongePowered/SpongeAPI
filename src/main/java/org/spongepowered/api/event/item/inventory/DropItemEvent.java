@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.inventory;
+package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.entity.Entity;
@@ -35,29 +35,58 @@ import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+
+import java.util.List;
 
 /**
  * Handles when one or more {@link Item} or {@link ItemStack} are about to be 
  * "dropped" onto the ground. This will happen before they are physically 
  * dropped, let alone spawned.
  */
-public interface DropItemEvent extends SpawnEntityEvent, GameEvent, Cancellable, CauseTracked {
+public interface DropItemEvent extends GameEvent, Cancellable, CauseTracked {
+
+    /**
+     * Handles {@link ItemStack}s and may be called before an {@link Item}
+     * entity is actually constructed.
+     *
+     * <p>Note: This is not guaranteed to fire due to custom handling within
+     * a mod or plugin.</p>
+     */
+    interface Pre extends DropItemEvent {
+
+        /**
+         * Gets the original immutable list of {@link ItemStackSnapshot}s to be
+         * dropped.
+         *
+         * @return The original list of dropped items
+         */
+        List<ItemStackSnapshot> getOriginalDroppedItems();
+
+        /**
+         * Gets the mutable list of {@link ItemStackSnapshot}s to be dropped.
+         *
+         * @return The list of dropped itemstacks
+         */
+        List<ItemStackSnapshot> getDroppedItems();
+
+    }
 
     /**
      * Called when one or more {@link Item} drops are triggered by an 
      * object such as an {@link Entity} or {@link BlockType} destruction.
      */
-    interface Destruct extends DropItemEvent {}
+    interface Destruct extends DropItemEvent, SpawnEntityEvent {}
 
     /**
      * Called whenever an {@link Item} is dispensed from a type of
      * {@link Inventory} such as a {@link Player} or {@link Container}.
-     * 
+     *
      * <p>This does not include cases where the holder is destroyed resulting in
      * dropped {@link Item}s.</p>
-     * 
+     *
      */
-    interface Dispense extends DropItemEvent {}
+    interface Dispense extends DropItemEvent, SpawnEntityEvent {}
 
     interface Custom extends DropItemEvent, SpawnEntityEvent.Custom {}
 

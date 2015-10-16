@@ -32,7 +32,7 @@ import java.util.Optional;
 
 import javax.annotation.Nullable;
 
-public final class Transaction<T extends DataSerializable> implements DataSerializable {
+public class Transaction<T extends DataSerializable> implements DataSerializable {
 
     public static final DataQuery TYPE_CLASS = of("TypeClass");
     public static final DataQuery ORIGINAL = of("Original");
@@ -55,7 +55,7 @@ public final class Transaction<T extends DataSerializable> implements DataSerial
      *
      * @return The original snapshot
      */
-    public T getOriginal() {
+    public final T getOriginal() {
         return this.original;
     }
 
@@ -64,7 +64,7 @@ public final class Transaction<T extends DataSerializable> implements DataSerial
      *
      * @return The default replacement
      */
-    public T getDefaultReplacement() {
+    public final T getDefault() {
         return this.defaultReplacement;
     }
 
@@ -73,28 +73,28 @@ public final class Transaction<T extends DataSerializable> implements DataSerial
      *
      * @return The custom snapshot, if available
      */
-    public Optional<T> getCustom() {
+    public final Optional<T> getCustom() {
         return Optional.ofNullable(this.custom);
     }
 
     /**
      * Sets the custom snapshot. If setting <code>null</code>, this will
-     * reset to use the {@link #getDefaultReplacement()} snapshot.
+     * reset to use the {@link #getDefault()} snapshot.
      *
      * @param custom The custom snapshot
      */
-    public void setCustom(@Nullable T custom) {
+    public final void setCustom(@Nullable T custom) {
         this.custom = custom;
     }
 
     /**
      * Gets the proposed final snapshot, if the {@link #getCustom()} returns
      * {@link Optional#isPresent()}, the custom is returned, otherwise,
-     * {@link #getDefaultReplacement()} is returned.
+     * {@link #getDefault()} is returned.
      *
      * @return The proposed final snapshot
      */
-    public T getFinal() {
+    public final T getFinal() {
         return this.custom == null ? this.defaultReplacement : this.custom;
     }
 
@@ -103,7 +103,7 @@ public final class Transaction<T extends DataSerializable> implements DataSerial
      *
      * @return The valid state of this transaction
      */
-    public boolean isValid() {
+    public final boolean isValid() {
         return this.valid;
     }
 
@@ -112,7 +112,7 @@ public final class Transaction<T extends DataSerializable> implements DataSerial
      *
      * @param valid The valid state of this transaction
      */
-    public void setValid(boolean valid) {
+    public final void setValid(boolean valid) {
         this.valid = valid;
     }
 
@@ -140,11 +140,11 @@ public final class Transaction<T extends DataSerializable> implements DataSerial
     @Override
     public String toString() {
         return com.google.common.base.Objects.toStringHelper(this)
-            .add("original", this.original)
-            .add("defaultReplacement", this.defaultReplacement)
-            .add("valid", this.valid)
-            .add("custom", this.custom)
-            .toString();
+                .add("original", this.original)
+                .add("default", this.defaultReplacement)
+                .add("custom", this.custom)
+                .add("valid", this.valid)
+                .toString();
     }
 
     @Override

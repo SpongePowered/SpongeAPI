@@ -22,5 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.item.inventory;
 
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.inventory;
+import org.spongepowered.api.item.inventory.Container;
+
+/**
+ * Base event for all events with an {@link Container} as the target.
+ */
+public interface TargetContainerEvent extends TargetInventoryEvent {
+    @Override
+    Container getTargetInventory();
+}
