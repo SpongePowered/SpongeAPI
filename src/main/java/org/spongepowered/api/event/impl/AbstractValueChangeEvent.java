@@ -24,29 +24,24 @@
  */
 package org.spongepowered.api.event.impl;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.eventgencore.annotation.SetField;
+import org.spongepowered.api.data.DataTransactionResult;
+import org.spongepowered.api.event.data.ChangeDataHolderEvent;
+import org.spongepowered.api.eventgencore.annotation.UseField;
 
-/**
- * The abstract base class for {@link Cancellable}, used to prevent
- * the need to pass in 'cancelled' to the event factory.
- *
- * <p>This class was actually created because @Aaron1011 didn't
- * want to add yet another annotation for the event generator.
- */
-public abstract class AbstractCancellable extends AbstractEvent implements Cancellable {
+public abstract class AbstractValueChangeEvent implements ChangeDataHolderEvent.ValueChange {
 
-    @SetField
-    protected boolean cancelled;
+    @UseField
+    protected DataTransactionResult originalChanges;
+    @UseField
+    protected DataTransactionResult endResult;
 
-    @Override
-    public boolean isCancelled() {
-        return this.cancelled;
+    protected void init() {
+        this.endResult = originalChanges;
     }
 
     @Override
-    public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
+    public ValueChange proposeChanges(DataTransactionResult result) {
+        this.endResult = result;
+        return this;
     }
-
 }

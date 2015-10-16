@@ -24,13 +24,11 @@
  */
 package org.spongepowered.api.event;
 
-import org.spongepowered.api.event.impl.AbstractCancellable;
-import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
+import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 
 /**
  * Represents an event that can be cancelled.
  */
-@ImplementedBy(AbstractCancellable.class)
 public interface Cancellable {
 
     /**
@@ -38,14 +36,11 @@ public interface Cancellable {
      *
      * @return Is this event cancelled
      */
+    @PropertySettings(requiredParameter = false)
     boolean isCancelled();
 
     /**
      * Sets the cancelled state of the {@link Event}.
-     *
-     * <p>This will also cancel any callbacks on the event if {@code cancel}
-     * is {@code true}. However, no callbacks will be un-cancelled if
-     * {@code cancel} is {@code false}.</p>
      *
      * @param cancel The new cancelled state
      */

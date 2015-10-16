@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.entity;
 
+import com.google.common.collect.Lists;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
@@ -57,12 +58,21 @@ public interface CollideEntityEvent extends TargetWorldEvent, Cancellable, Cause
 
     /**
      * Filters out {@link Location<World>}'s from
-     * {@link AffectEntityEvent#getEntities()} to be affected by this event.
+     * {@link #getEntities()} to be affected by this event.
      *
      * @param predicate The predicate to use for filtering
-     * @return The filtered list of entities
+     * @return The entities removed from {@link #getEntities()}
      */
-    List<Entity> filterEntityLocations(Predicate<Location<World>> predicate);
+    default List<Entity> filterEntityLocations(Predicate<Location<World>> predicate) {
+        List<Entity> removedEntites = Lists.newArrayList();
+        for (Entity entity: this.getEntities()) {
+            if (!predicate.test(entity.getLocation())) {
+                removedEntites.add(entity);
+            }
+        }
+        this.getEntities().removeAll(removedEntites);
+        return removedEntites;
+    }
 
     /**
      * Filters out {@link Entity}'s from {@link AffectEntityEvent#getEntities()}
@@ -71,5 +81,14 @@ public interface CollideEntityEvent extends TargetWorldEvent, Cancellable, Cause
      * @param predicate The predicate to use for filtering
      * @return The filtered list of entities
      */
-    List<Entity> filterEntities(Predicate<Entity> predicate);
+    default List<Entity> filterEntities(Predicate<Entity> predicate) {
+        List<Entity> removedEntites = Lists.newArrayList();
+        for (Entity entity: this.getEntities()) {
+            if (!predicate.test(entity)) {
+                removedEntites.add(entity);
+            }
+        }
+        this.getEntities().removeAll(removedEntites);
+        return removedEntites;
+    }
 }

@@ -40,6 +40,7 @@ import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.event.impl.AbstractDamageEntityEvent;
 import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
+import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Tuple;
@@ -151,6 +152,7 @@ public interface DamageEntityEvent extends TargetEntityEvent, CauseTracked {
      *
      * @return The final amount of damage to originally deal
      */
+    @PropertySettings(requiredParameter = false, generateMethods = false)
     double getOriginalFinalDamage();
 
     /**
@@ -160,6 +162,7 @@ public interface DamageEntityEvent extends TargetEntityEvent, CauseTracked {
      *
      * @return An immutable map of the original modified damages
      */
+    @PropertySettings(requiredParameter = false, generateMethods = false)
     Map<DamageModifier, Double> getOriginalDamages();
 
     /**
@@ -188,6 +191,7 @@ public interface DamageEntityEvent extends TargetEntityEvent, CauseTracked {
      *
      * @return The base damage
      */
+    @PropertySettings(requiredParameter = false, generateMethods = false)
     double getBaseDamage();
 
     /**
@@ -208,6 +212,7 @@ public interface DamageEntityEvent extends TargetEntityEvent, CauseTracked {
      *
      * @return The final damage to deal
      */
+    @PropertySettings(requiredParameter = false, generateMethods = false)
     double getFinalDamage();
 
     /**
@@ -254,6 +259,7 @@ public interface DamageEntityEvent extends TargetEntityEvent, CauseTracked {
      *
      * @return A list of damage modifiers to functions
      */
+    @PropertySettings(requiredParameter = false, generateMethods = false)
     List<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers();
 
 }

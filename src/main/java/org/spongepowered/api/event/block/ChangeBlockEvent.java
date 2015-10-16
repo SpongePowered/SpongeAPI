@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.block;
 
+import com.google.common.collect.Lists;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTransaction;
@@ -31,16 +32,10 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
-import org.spongepowered.api.event.impl.AbstractChangeBlockEvent;
 import org.spongepowered.api.event.world.TargetWorldEvent;
-import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -51,7 +46,6 @@ import java.util.function.Predicate;
  * Base event for when {@link BlockState}s at {@link Location<World>}s are being
  * changed.
  */
-@ImplementedBy(AbstractChangeBlockEvent.class)
 public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable, CauseTracked {
 
     /**
@@ -66,21 +60,35 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable, CauseTr
     /**
      * Applies the provided {@link Predicate} to the {@link List} of
      * {@link BlockTransaction}s from {@link #getTransactions()} such that
-     * any time that {@link Predicate#apply(Object)} returns <code>false</code>
-     * on a {@link BlockTransaction}, the {@link BlockTransaction} is
+     * any time that {@link Predicate#test(Object)} returns <code>false</code>
+     * on the location of the {@link BlockTransaction}, the {@link BlockTransaction} is
      * marked as "invalid" and will not apply post event.
      *
+     * <p>{@link BlockTransaction#getOriginal()} is used to get the {@link Location}</p>
+     *
      * @param predicate The predicate to use for filtering
-     * @return The filtered transactions
+     * @return The transactions for which the predicate returned <code>false</code>
      */
-    List<BlockTransaction> filter(Predicate<Location<World>> predicate);
+    default List<BlockTransaction> filter(Predicate<Location<World>> predicate) {
+        List<BlockTransaction> invalidatedTransactions = Lists.newArrayList();
+        for (BlockTransaction transaction: this.getTransactions()) {
+            if (!predicate.test(transaction.getOriginal().getLocation().get())) {
+                transaction.setIsValid(false);
+                invalidatedTransactions.add(transaction);
+            }
+        }
+        return invalidatedTransactions;
+    }
 
     /**
      * Invalidates the list as such that all {@link BlockTransaction}s are
      * marked as "invalid" and will not apply post event.
-     * @return The filtered transactions
      */
-    List<BlockTransaction> filterAll();
+    default void filterAll() {
+        for (BlockTransaction transaction: this.getTransactions()) {
+            transaction.setIsValid(false);
+        }
+    }
 
     /**
      * Called when there are block changes due to a {@link BlockType}
@@ -107,7 +115,7 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable, CauseTr
     interface Decay extends Post {}
 
     /**
-     * Called when a {@link BlockType} decides to "grow" either other 
+     * Called when a {@link BlockType} decides to "grow" either other
      * blocks or itself or both. Usually considered to be plants or crops,
      * this is called after a {@link Tick} event.
      */
@@ -117,27 +125,27 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable, CauseTr
      * Called when {@link BlockState}s at {@link Location <World>}s are
      * being broke. This usually occurs, whenever a {@link BlockState} changes
      * to {@link BlockTypes#AIR}
-     * 
+     *
      * <p>Note: This does not include fluids. See ChangeBlockEvent#Fluid</p>
      */
     interface Break extends Post {}
 
     /**
      * Called when one or more {@link BlockType}s are added to the world.
-     * 
+     *
      * <p>Note: This does not include fluids. See ChangeBlockEvent#Fluid</p>
      */
     interface Place extends Post {}
 
     /**
      * Called when one or more {@link BlockType}s are modified in the world.
-     * 
+     *
      * <p>Note: This does not include fluids. See ChangeBlockEvent#Fluid</p>
      */
     interface Modify extends Post {}
 
     /**
-     * Called when one or more {@link BlockType}s are affected in the 
+     * Called when one or more {@link BlockType}s are affected in the
      * world by a fluid.
      */
     interface Fluid extends Post {}

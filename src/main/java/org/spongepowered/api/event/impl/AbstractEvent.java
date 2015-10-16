@@ -25,22 +25,12 @@
 package org.spongepowered.api.event.impl;
 
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.eventgencore.annotation.SetField;
-import org.spongepowered.api.util.event.callback.CallbackList;
 
 /**
  * An abstract event that can be extended for any and all custom events as
  * necessary.
  */
 public abstract class AbstractEvent implements Event {
-
-    @SetField
-    protected final CallbackList callbacks = new CallbackList();
-
-    @Override
-    public CallbackList getCallbacks() {
-        return this.callbacks;
-    }
 
     /**
      * Called once all fields have been set by the generated

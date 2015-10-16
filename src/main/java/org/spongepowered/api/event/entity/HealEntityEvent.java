@@ -27,9 +27,13 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.health.HealthModifier;
 import org.spongepowered.api.event.cause.entity.health.HealthModifierBuilder;
 import org.spongepowered.api.event.cause.entity.health.source.HealingSource;
+import org.spongepowered.api.event.impl.AbstractHealEntityEvent;
+import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
+import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 import org.spongepowered.api.util.Tuple;
 
 import java.util.List;
@@ -41,6 +45,7 @@ import java.util.function.Function;
  * after a certain amount of "heal amount" the entity is destroyed. Similar to
  * the {@link InteractEntityEvent.Attack}, this event uses various modifiers
  */
+@ImplementedBy(AbstractHealEntityEvent.class)
 public interface HealEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
 
     /**
@@ -51,12 +56,24 @@ public interface HealEntityEvent extends TargetEntityEvent, Cancellable, CauseTr
     double getOriginalHealAmount();
 
     /**
+     * Gets the original "final" amount of healing after all original
+     * {@link HealthModifier}s are applied to {@link #getOriginalHealAmount()} ()}.
+     * The "final" heal amount is considered the amount gained by the
+     * {@link Entity}, if health is tracked.
+     *
+     * @return The final amount of healing to originally deal
+     */
+    @PropertySettings(requiredParameter = false, generateMethods = false)
+    double getOriginalFinalHealAmount();
+
+    /**
      * Gets an {@link Map} of all original {@link HealthModifier}s
      * and their associated "modified" heal amount. Note that ordering is not
      * retained.
      *
      * @return An immutable map of the original modified heal amounts
      */
+    @PropertySettings(requiredParameter = false, generateMethods = false)
     Map<HealthModifier, Double> getOriginalHealingAmounts();
 
     /**
@@ -68,6 +85,7 @@ public interface HealEntityEvent extends TargetEntityEvent, Cancellable, CauseTr
      *
      * @return The final heal amount to deal
      */
+    @PropertySettings(requiredParameter = false, generateMethods = false)
     double getFinalHealAmount();
 
     /**
@@ -89,7 +107,6 @@ public interface HealEntityEvent extends TargetEntityEvent, Cancellable, CauseTr
      */
     List<Tuple<HealthModifier, Function<? super Double, Double>>> getOriginalFunctions();
 
-
     /**
      * Gets the "base" healing amount to apply to the targeted {@link Entity}.
      * The "base" heal amount is the original value before passing along the chain
@@ -97,6 +114,7 @@ public interface HealEntityEvent extends TargetEntityEvent, Cancellable, CauseTr
      *
      * @return The base heal amount
      */
+    @PropertySettings(requiredParameter = false, generateMethods = false)
     double getBaseHealAmount();
 
     /**
@@ -128,7 +146,7 @@ public interface HealEntityEvent extends TargetEntityEvent, Cancellable, CauseTr
     double getHealAmount(HealthModifier healthModifier);
 
     /**
-     * Sets the provided {@link Function} to be used for the given
+     * ns the provided {@link Function} to be used for the given
      * {@link HealthModifier}. If the {@link HealthModifier} is already
      * included in {@link #getModifiers()}, the {@link Function} replaces
      * the existing function. If there is no {@link Tuple} for the
@@ -152,6 +170,7 @@ public interface HealEntityEvent extends TargetEntityEvent, Cancellable, CauseTr
      *
      * @return A list of heal amount modifiers to functions
      */
+    @PropertySettings(requiredParameter = false, generateMethods = false)
     List<Tuple<HealthModifier, Function<? super Double, Double>>> getModifiers();
 
 }

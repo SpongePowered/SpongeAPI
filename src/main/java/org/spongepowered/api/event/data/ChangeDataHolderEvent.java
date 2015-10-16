@@ -30,6 +30,9 @@ import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.impl.AbstractValueChangeEvent;
+import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
+import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 
 /**
  * An event that is associated with a {@link DataHolder} that may have some
@@ -46,6 +49,7 @@ public interface ChangeDataHolderEvent extends GameEvent, Cancellable {
      */
     DataHolder getTargetHolder();
 
+    @ImplementedBy(AbstractValueChangeEvent.class)
     interface ValueChange extends ChangeDataHolderEvent {
 
         /**
@@ -77,6 +81,7 @@ public interface ChangeDataHolderEvent extends GameEvent, Cancellable {
          *
          * @return The final transaction details to be submitted
          */
+        @PropertySettings(requiredParameter = false)
         DataTransactionResult getEndResult();
     }
 }

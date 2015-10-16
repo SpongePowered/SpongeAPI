@@ -32,7 +32,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
-import org.spongepowered.api.eventgencore.annotation.SetField;
+import org.spongepowered.api.eventgencore.annotation.UseField;
 import org.spongepowered.api.util.Tuple;
 
 import java.util.LinkedHashMap;
@@ -40,64 +40,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-public abstract class AbstractDamageEntityEvent extends AbstractEvent implements DamageEntityEvent {
+public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<DamageModifier> implements DamageEntityEvent {
 
-    @SetField(isRequired = true)
-    protected double originalDamage;
-    @SetField(isRequired = true)
-    protected List<Tuple<DamageModifier, Function<? super Double, Double>>> functions;
+    @UseField protected double originalDamage;
+    @UseField protected List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions;
 
-    private double originalFinalDamage;
-    private ImmutableMap<DamageModifier, Double> originalModifiers;
-    private ImmutableList<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions;
-    private final LinkedHashMap<DamageModifier, Double> modifiers = Maps.newLinkedHashMap();
-    private final LinkedHashMap<DamageModifier, Function<? super Double, Double>> modifierFunctions = Maps.newLinkedHashMap();
-    private double baseDamage;
+    @UseField protected double baseDamage;
 
     @Override
-    protected void init() {
-        final double damage = this.originalDamage;
-        final ImmutableMap.Builder<DamageModifier, Double> modifierMapBuilder = ImmutableMap.builder();
-        final ImmutableList.Builder<Tuple<DamageModifier, Function<? super Double, Double>>> functionListBuilder = ImmutableList.builder();
-        double finalDamage = damage;
-        for (Tuple<DamageModifier, Function<? super Double, Double>> tuple : this.functions) {
-            this.modifierFunctions.put(tuple.getFirst(), tuple.getSecond());
-            double tempDamage = checkNotNull(tuple.getSecond().apply(finalDamage));
-            finalDamage += tempDamage;
-            modifierMapBuilder.put(tuple.getFirst(), tempDamage);
-            this.modifiers.put(tuple.getFirst(), tempDamage);
-            functionListBuilder.add(tuple);
-        }
-        this.originalFinalDamage = finalDamage;
-        this.originalModifiers = modifierMapBuilder.build();
-        this.originalFunctions = functionListBuilder.build();
-    }
-
-    private void recalculateDamages() {
-        double tempDamage = this.baseDamage;
-        for (Map.Entry<DamageModifier, Function<? super Double, Double>> entry : this.modifierFunctions.entrySet()) {
-            double oldDamage = this.modifiers.get(entry.getKey());
-            double modifierDamage = checkNotNull(entry.getValue().apply(tempDamage));
-            double difference = oldDamage - modifierDamage;
-            if (oldDamage > 0) {
-                this.modifiers.put(entry.getKey(), Math.max(0, oldDamage - difference));
-            } else {
-                this.modifiers.put(entry.getKey(), Math.min(0, oldDamage - difference));
-            }
-            tempDamage += modifierDamage;
-        }
-    }
-
-    @Override
-    public final double getOriginalDamage() {
-        return this.originalDamage;
+    protected final void init() {
+        this.originalFunctions = this.init(this.originalDamage, this.originalFunctions);
+        this.baseDamage = this.originalDamage;
     }
 
     @Override
     public final double getOriginalModifierDamage(DamageModifier damageModifier) {
         checkArgument(this.originalModifiers.containsKey(checkNotNull(damageModifier)), "The provided damage modifier is not applicable : "
-                                                                                        + damageModifier.toString());
+                + damageModifier.toString());
         return this.originalModifiers.get(checkNotNull(damageModifier));
+    }
+
+    @Override
+    public final double getOriginalFinalDamage() {
+        return this.originalFinalAmount;
     }
 
     @Override
@@ -106,32 +71,8 @@ public abstract class AbstractDamageEntityEvent extends AbstractEvent implements
     }
 
     @Override
-    public final List<Tuple<DamageModifier, Function<? super Double, Double>>> getOriginalFunctions() {
-        return this.originalFunctions;
-    }
-
-    @Override
-    public final double getOriginalFinalDamage() {
-        return this.originalFinalDamage;
-    }
-
-    @Override
-    public final double getBaseDamage() {
-        return this.baseDamage;
-    }
-
-    @Override
-    public final void setBaseDamage(double baseDamage) {
-        this.baseDamage = baseDamage;
-    }
-
-    @Override
     public final double getFinalDamage() {
-        double damage = this.baseDamage;
-        for (Map.Entry<DamageModifier, Function<? super Double, Double>> entry : this.modifierFunctions.entrySet()) {
-            damage += checkNotNull(entry.getValue().apply(damage));
-        }
-        return damage;
+        return this.getFinalAmount(this.baseDamage);
     }
 
     @Override
@@ -142,23 +83,25 @@ public abstract class AbstractDamageEntityEvent extends AbstractEvent implements
     @Override
     public final double getDamage(DamageModifier damageModifier) {
         checkArgument(this.modifierFunctions.containsKey(checkNotNull(damageModifier)), "The provided damage modifier is not applicable : "
-                                                                                        + damageModifier.toString());
+                + damageModifier.toString());
         return this.modifiers.get(checkNotNull(damageModifier));
     }
 
     @Override
     public final void setDamage(DamageModifier damageModifier, Function<? super Double, Double> function) {
         this.modifierFunctions.put(checkNotNull(damageModifier), checkNotNull(function));
-        recalculateDamages();
+        this.recalculateDamages(this.baseDamage);
     }
 
     @Override
-    public final List<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers() {
-        ImmutableList.Builder<Tuple<DamageModifier, Function<? super Double, Double>>> builder = ImmutableList.builder();
-        for (Map.Entry<DamageModifier, Function<? super Double, Double>> entry : this.modifierFunctions.entrySet()) {
-            builder.add(new Tuple<DamageModifier, Function<? super Double, Double>>(entry.getKey(), entry.getValue()));
-        }
-        return builder.build();
+    public double getBaseDamage() {
+        return this.baseDamage;
+    }
+
+    @Override
+    public final void setBaseDamage(double baseDamage) {
+        this.baseDamage = baseDamage;
+        this.recalculateDamages(this.baseDamage);
     }
 
 }

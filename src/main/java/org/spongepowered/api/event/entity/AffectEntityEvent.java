@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.event.entity;
 
+import com.google.common.collect.Lists;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.impl.AbstractAffectEntityEvent;
 import org.spongepowered.api.event.world.TargetWorldEvent;
-import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -48,7 +47,6 @@ import java.util.function.Predicate;
  * {@link Explosion} "damaging" a varying amount of {@link Entity} instances.
  * Other cases will be included as necessary.
  */
-@ImplementedBy(AbstractAffectEntityEvent.class)
 public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseTracked {
 
     /**
@@ -71,17 +69,41 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseT
      * Filters out {@link Location<World>}'s from
      * {@link AffectEntityEvent#getEntities()} to be affected by this event.
      *
+     * <p>Locations for which the predicate returns <code>false</code> will
+     * be removed from {@link #getEntities()}.</p>
+     *
      * @param predicate The predicate to use for filtering
-     * @return The filtered list of entities
+     * @return The entities removed from {@link #getEntities()}
      */
-    List<Entity> filterEntityLocations(Predicate<Location<World>> predicate);
+    default List<Entity> filterEntityLocations(Predicate<Location<World>> predicate) {
+        List<Entity> removedEntites = Lists.newArrayList();
+        for (Entity entity: this.getEntities()) {
+            if (!predicate.test(entity.getLocation())) {
+                removedEntites.add(entity);
+            }
+        }
+        this.getEntities().removeAll(removedEntites);
+        return removedEntites;
+    }
 
     /**
      * Filters out {@link Entity}'s from {@link AffectEntityEvent#getEntities()}
      * to be affected by this event.
      *
+     * <p>Entities for which the predicate returns <code>false</code> will
+     * be removed from {@link #getEntities()}.</p>
+     *
      * @param predicate The predicate to use for filtering
-     * @return The filtered list of entities
+     * @return The entities removed from {@link #getEntities()}
      */
-    List<Entity> filterEntities(Predicate<Entity> predicate);
+    default List<? extends Entity> filterEntities(Predicate<Entity> predicate) {
+        List<Entity> removedEntites = Lists.newArrayList();
+        for (Entity entity: this.getEntities()) {
+            if (!predicate.test(entity)) {
+                removedEntites.add(entity);
+            }
+        }
+        this.getEntities().removeAll(removedEntites);
+        return removedEntites;
+    }
 }

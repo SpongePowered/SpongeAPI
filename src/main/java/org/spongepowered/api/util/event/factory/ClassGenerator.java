@@ -69,10 +69,12 @@ import org.objectweb.asm.Type;
 import org.spongepowered.api.eventgencore.AccessorFirstStrategy;
 import org.spongepowered.api.eventgencore.Property;
 import org.spongepowered.api.eventgencore.PropertySearchStrategy;
-import org.spongepowered.api.eventgencore.annotation.SetField;
+import org.spongepowered.api.eventgencore.annotation.PropertySettings;
+import org.spongepowered.api.eventgencore.annotation.UseField;
 import org.spongepowered.api.eventgencore.classwrapper.reflection.ReflectionClassWrapper;
 import org.spongepowered.api.util.event.factory.plugin.EventFactoryPlugin;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.List;
@@ -169,49 +171,32 @@ public class ClassGenerator {
         }
     }
 
-    private static SetField getSetField(Class<?> clazz, String fieldName) {
+    private static PropertySettings getPropertySettings(Property<Class<?>, Method> property) {
+        return property.getAccessor().getAnnotation(PropertySettings.class);
+    }
+
+    private static boolean isRequired(Property<Class<?>, Method> property) {
+        PropertySettings settings = getPropertySettings(property);
+        if (settings != null) {
+            return settings.requiredParameter();
+        }
+        return true;
+    }
+
+    private static boolean generateMethods(Property<Class<?>, Method> property) {
+        PropertySettings settings = getPropertySettings(property);
+        if (settings != null) {
+            return settings.generateMethods();
+        }
+        return true;
+    }
+
+    private static UseField getUseField(Class<?> clazz, String fieldName) {
         try {
-            return clazz.getDeclaredField(fieldName).getAnnotation(SetField.class);
+            return clazz.getDeclaredField(fieldName).getAnnotation(UseField.class);
         } catch (NoSuchFieldException e) {
             return null;
         }
-    }
-
-    private static boolean fieldRequired(Class<?> clazz, String fieldName) {
-        SetField setField = getSetField(clazz, fieldName);
-        return setField != null ? setField.isRequired() : true;
-    }
-
-    private static int getModifiers(Class<?> clazz, String fieldName) {
-        try {
-            return clazz.getDeclaredField(fieldName).getModifiers();
-        } catch (NoSuchFieldException e) {
-            return 0;
-        }
-    }
-
-    /**
-     * Tests whether a method has been implemented.
-     *
-     * @param type The type
-     * @param method The method
-     * @return Whether the method has been implemented
-     */
-    public static boolean hasImplementation(@Nullable Class<?> type, final Method method) {
-        while (type != null) {
-            try {
-                Method found = type.getMethod(method.getName(), method.getParameterTypes());
-                if (!Modifier.isAbstract(found.getModifiers())) {
-                    return true;
-                }
-            } catch (NoSuchMethodException ignored) {
-                // Try the superclass
-            }
-
-            type = type.getSuperclass();
-        }
-
-        return false;
     }
 
     public static boolean hasDeclaredMethod(Class<?> type, String name, Class<?>... params) {
@@ -227,6 +212,19 @@ public class ClassGenerator {
         }
 
         return false;
+    }
+
+    public static Field getField(Class<?> type, String fieldName) {
+        while (type != null) {
+            try {
+                return type.getDeclaredField(fieldName);
+            } catch (NoSuchFieldException ignored) {
+                // Try the superclass
+            }
+
+            type = type.getSuperclass();
+        }
+        return null;
     }
 
     /**
@@ -263,11 +261,15 @@ public class ClassGenerator {
 
     private void contributeField(ClassWriter classWriter, Class<?> parentType, Property<Class<?>, Method> property) {
         if (property.isLeastSpecificType()) {
-            if (getSetField(parentType, property.getName()) == null) {
+            Field field = getField(parentType, property.getName());
+            if (field == null || field.getAnnotation(UseField.class) == null) {
                 generateField(classWriter, property);
-            } else if ((getModifiers(parentType, property.getName()) & Modifier.PRIVATE) != 0) {
+            } else if ((field.getModifiers() & Modifier.PRIVATE) != 0) {
                 throw new RuntimeException("You've annotated the field " + property.getName() + " with @SetField, "
                         + "but it's private. This just won't work.");
+            } else if (!property.getType().isAssignableFrom(property.getType())) {
+                throw new RuntimeException("You've specified a field of type " + field.getType().getCanonicalName()
+                        + "but the property has the type of " + property.getType().getCanonicalName());
             }
         }
     }
@@ -282,8 +284,7 @@ public class ClassGenerator {
         mv.visitMethodInsn(INVOKESPECIAL, Type.getInternalName(parentType), "<init>", "()V", false);
 
         for (Property<Class<?>, Method> property : properties) {
-            if (((hasImplementation(parentType, property.getAccessor()) && getSetField(parentType, property.getName()) == null)
-                         || !property.isLeastSpecificType())) {
+            if (!property.isLeastSpecificType()) {
                 continue;
             }
 
@@ -293,14 +294,15 @@ public class ClassGenerator {
             mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Map", "remove", "(Ljava/lang/Object;)Ljava/lang/Object;", true);
             mv.visitVarInsn(ASTORE, 2);
 
+
             // Only if we have a null policy:
             // if (value == null) throw new NullPointerException(...)
             if (this.nullPolicy != NullPolicy.DISABLE_PRECONDITIONS) {
-                boolean useNullTest = ((this.nullPolicy == NullPolicy.NON_NULL_BY_DEFAULT && !this.hasNullable(property.getAccessor()))
+                boolean useNullTest = (((this.nullPolicy == NullPolicy.NON_NULL_BY_DEFAULT && !this.hasNullable(property.getAccessor()))
                                                || (this.nullPolicy == NullPolicy.NULL_BY_DEFAULT && this.hasNonnull(property.getAccessor())))
-                        && fieldRequired(parentType, property.getName());
+                        && isRequired(property));
 
-                if (useNullTest && (!property.getType().isPrimitive() || !this.primitivePropertyExceptions.contains(property.getName()))) {
+                if (useNullTest) {
                     Label afterNullTest = new Label();
                     mv.visitVarInsn(ALOAD, 2);
                     mv.visitJumpInsn(IFNONNULL, afterNullTest);
@@ -313,7 +315,7 @@ public class ClassGenerator {
                 }
             }
 
-            final boolean hasSetField = getSetField(parentType, property.getName()) != null;
+            final boolean hasUseField = getUseField(parentType, property.getName()) != null;
 
             Label afterPut = new Label();
 
@@ -329,7 +331,7 @@ public class ClassGenerator {
             visitUnboxingMethod(mv, property.getType());
 
             // this.field = newValue
-            if (hasSetField) {
+            if (hasUseField) {
                 mv.visitFieldInsn(PUTFIELD, Type.getInternalName(parentType), property.getName(), Type.getDescriptor(property.getType()));
             } else {
                 mv.visitFieldInsn(PUTFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
@@ -466,15 +468,14 @@ public class ClassGenerator {
     }
 
     private void generateAccessorsandMutator(ClassWriter cw, Class<?> type, Class<?> parentType, String internalName, Property<Class<?>, Method> property) {
-        if (!hasImplementation(parentType, property.getAccessor())) {
+        if (generateMethods(property)) {
             this.generateAccessor(cw, parentType, internalName, property);
-        }
 
-        Optional<Method> mutatorOptional = property.getMutator();
-        if (mutatorOptional.isPresent() && !hasImplementation(parentType, mutatorOptional.get())) {
-            generateMutator(cw, type, internalName, property.getName(), property.getType(), property);
+            Optional<Method> mutatorOptional = property.getMutator();
+            if (mutatorOptional.isPresent()) {
+                generateMutator(cw, type, internalName, property.getName(), property.getType(), property);
+            }
         }
-
     }
 
     private MethodVisitor initializeToString(ClassWriter cw, Class<?> type) {
@@ -507,7 +508,7 @@ public class ClassGenerator {
                     .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
 
             toStringMv.visitVarInsn(ALOAD, 0);
-            toStringMv.visitFieldInsn(GETFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
+            toStringMv.visitMethodInsn(INVOKESPECIAL, internalName, property.getAccessor().getName(), Type.getMethodDescriptor(property.getAccessor()), false);
 
             String desc = property.getType().isPrimitive() ? Type.getDescriptor(property.getType()) : "Ljava/lang/Object;";
 
@@ -603,7 +604,7 @@ public class ClassGenerator {
             this.contributeToString(internalName, property, toStringMv);
 
             if (!processed) {
-                this.contributeField(cw, eventClass, property);
+                this.contributeField(cw, parentType, property);
                 this.generateAccessorsandMutator(cw, eventClass, parentType, internalName, property);
             }
         }

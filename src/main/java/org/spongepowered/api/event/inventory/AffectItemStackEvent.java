@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.event.inventory;
 
+import com.google.common.collect.Lists;
+import org.spongepowered.api.block.BlockTransaction;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.item.inventory.Inventory;
@@ -50,13 +52,25 @@ public interface AffectItemStackEvent extends TargetInventoryEvent, Cancellable,
     /**
      * Applies the provided {@link Predicate} to the {@link List} of
      * {@link ItemStackTransaction}s from {@link #getTransactions()} such that
-     * any time that {@link Predicate#apply(Object)} returns <code>false</code>
+     * any time that {@link Predicate#test(Object)} returns <code>false</code>
      * on a {@link ItemStackTransaction}, the {@link ItemStackTransaction} is
      * marked as "invalid" and will not apply post event.
      *
+     * <p>{@link ItemStackTransaction#getSnapshot()} is used to construct
+     * the {@link ItemStack} to pass to the predicate</p>
+     *
      * @param predicate The predicate to use for filtering
-     * @return The filtered transactions
+     * @return The transactions for which the predicate returned <code>false</code>
      */
-    List<ItemStackTransaction> filter(Predicate<ItemStack> predicate);
+    default List<ItemStackTransaction> filter(Predicate<ItemStack> predicate) {
+        List<ItemStackTransaction> invalidatedTransactions = Lists.newArrayList();
+        for (ItemStackTransaction transaction: this.getTransactions()) {
+            if (!predicate.test(transaction.getSnapshot().createStack())) {
+                transaction.setIsValid(false);
+                invalidatedTransactions.add(transaction);
+            }
+        }
+        return invalidatedTransactions;
+    }
 
 }

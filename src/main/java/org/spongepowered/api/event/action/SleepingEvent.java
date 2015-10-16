@@ -60,7 +60,7 @@ public interface SleepingEvent extends GameEvent, TargetEntityEvent, CauseTracke
          *
          * @return Whether the spawn transform for the human was set
          */
-        boolean wasSpawnSet();
+        boolean isSpawnSet();
 
         /**
          * Gets a copy of the spawn transform of the human when leaving the bed.

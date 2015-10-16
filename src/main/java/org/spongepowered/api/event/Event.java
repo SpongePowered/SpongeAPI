@@ -26,19 +26,14 @@ package org.spongepowered.api.event;
 
 import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
-import org.spongepowered.api.util.event.callback.CallbackList;
 
 /**
  * An event called within Sponge.
+ *
+ * <p>This is a marker interface, which must be implemented
+ * by any event used with the Sponge event bus.</p>
  */
 @ImplementedBy(AbstractEvent.class)
 public interface Event {
-
-    /**
-     * Gets the {@link CallbackList} that is invoked after resolution of this event.
-     *
-     * @return The callbacklist
-     */
-    CallbackList getCallbacks();
 
 }

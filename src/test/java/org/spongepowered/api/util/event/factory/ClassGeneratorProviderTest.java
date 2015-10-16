@@ -35,6 +35,7 @@ import com.google.common.collect.Maps;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.spongepowered.api.event.SpongeEventFactoryUtils;
+import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 import org.spongepowered.api.util.annotation.TransformResult;
 import org.spongepowered.api.util.annotation.TransformWith;
 
@@ -368,6 +369,32 @@ public class ClassGeneratorProviderTest {
         overriden.setObject(new Object());
     }
 
+    @Test
+    public void testCreate_UnrequiredPrimitives() {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("doubleValue", 2.0);
+
+        ClassGeneratorProvider provider = createProvider();
+        EventFactory<UnrequiredPrimtiveInterface> factory = provider.create(UnrequiredPrimtiveInterface.class, Object.class, SpongeEventFactoryUtils.plugins);
+        UnrequiredPrimtiveInterface generated = factory.apply(values);
+
+        assertThat(generated.getBooleanValue(), is(false));
+        assertThat(generated.getIntValue(), is(0));
+        assertThat(generated.getDoubleValue(), is(closeTo(2.0, ERROR)));
+
+        generated.setBooleanValue(true);
+        generated.setIntValue(5);
+        generated.setDoubleValue(20);
+
+        assertThat(generated.getBooleanValue(), is(true));
+        assertThat(generated.getIntValue(), is(5));
+        assertThat(generated.getDoubleValue(), is(closeTo(20, ERROR)));
+
+        generated.setBooleanValue(false);
+
+        assertThat(generated.getBooleanValue(), is(false));
+    }
+
     public interface OptionalGetter {
 
         Optional<String> getName();
@@ -545,6 +572,7 @@ public class ClassGeneratorProviderTest {
 
     public interface AbstractImplContainer {
 
+        @PropertySettings(generateMethods = false)
         String getName();
 
         void setName(String name);
@@ -607,6 +635,25 @@ public class ClassGeneratorProviderTest {
         String getObject();
 
         void setObject(String object);
+    }
+
+    public interface UnrequiredPrimtiveInterface {
+
+        @PropertySettings(requiredParameter = false)
+        boolean getBooleanValue();
+
+        void setBooleanValue(boolean value);
+
+        @PropertySettings(requiredParameter = true)
+        int getIntValue();
+
+        void setIntValue(int value);
+
+        double getDoubleValue();
+
+        void setDoubleValue(double value);
+
+
     }
 
 }
