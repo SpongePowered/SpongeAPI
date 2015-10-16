@@ -185,8 +185,8 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Double>> HEALTH = null;
     public static final Key<MutableBoundedValue<Double>> MAX_HEALTH = null;
     public static final Key<Value<UUID>> SKIN = null;
-    public static final Key<Value<PotionEffectType>> BEACON_PRIMARY_EFFECT = null;
-    public static final Key<Value<PotionEffectType>> BEACON_SECONDARY_EFFECT = null;
+    public static final Key<OptionalValue<PotionEffectType>> BEACON_PRIMARY_EFFECT = null;
+    public static final Key<OptionalValue<PotionEffectType>> BEACON_SECONDARY_EFFECT = null;
     public static final Key<Value<Career>> CAREER = null;
     public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY = null;
     public static final Key<ListValue<Text>> ITEM_LORE = null;
