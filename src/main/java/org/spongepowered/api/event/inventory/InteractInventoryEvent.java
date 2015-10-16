@@ -24,41 +24,12 @@
  */
 package org.spongepowered.api.event.inventory;
 
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.Item;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.SpawnEntityEvent;
-import org.spongepowered.api.item.inventory.Container;
-import org.spongepowered.api.item.inventory.Inventory;
-import org.spongepowered.api.item.inventory.ItemStack;
 
-/**
- * Handles when one or more {@link Item} or {@link ItemStack} are about to be 
- * "dropped" onto the ground. This will happen before they are physically 
- * dropped, let alone spawned.
- */
-public interface DropItemEvent extends SpawnEntityEvent, GameEvent, Cancellable, CauseTracked {
+public interface InteractInventoryEvent extends TargetInventoryEvent, Cancellable, CauseTracked {
 
-    /**
-     * Called when one or more {@link Item} drops are triggered by an 
-     * object such as an {@link Entity} or {@link BlockType} destruction.
-     */
-    interface Destruct extends DropItemEvent {}
+    interface Open extends InteractInventoryEvent {}
 
-    /**
-     * Called whenever an {@link Item} is dispensed from a type of
-     * {@link Inventory} such as a {@link Player} or {@link Container}.
-     * 
-     * <p>This does not include cases where the holder is destroyed resulting in
-     * dropped {@link Item}s.</p>
-     * 
-     */
-    interface Dispense extends DropItemEvent {}
-
-    interface Custom extends DropItemEvent, SpawnEntityEvent.Custom {}
-
+    interface Close extends InteractInventoryEvent {}
 }
