@@ -25,12 +25,51 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.world.TargetWorldEvent;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
+
+import java.util.List;
+import java.util.function.Predicate;
 
 /**
- * Fired when something collides a {@link Entity} due to a {@link Cause}.
+ * Fired when something collides with one or more {@link Entity}'s.
  */
-public interface CollideEntityEvent extends TargetEntityEvent, CauseTracked {
+public interface CollideEntityEvent extends TargetWorldEvent, Cancellable, CauseTracked {
 
+    /**
+     * Gets the immutable list of {@link List<Entity>} who will be affected after event
+     * resolution.
+     *
+     * @return The immutable List
+     */
+    List<Entity> getOriginalEntities();
+
+    /**
+     * Gets the {@link List<Entity>} who will be affected after event
+     * resolution.
+     *
+     * @return The List
+     */
+    List<Entity> getEntities();
+
+    /**
+     * Filters out {@link Location<World>}'s from
+     * {@link AffectEntityEvent#getEntities()} to be affected by this event.
+     *
+     * @param predicate The predicate to use for filtering
+     * @return The filtered list of entities
+     */
+    List<Entity> filterEntityLocations(Predicate<Location<World>> predicate);
+
+    /**
+     * Filters out {@link Entity}'s from {@link AffectEntityEvent#getEntities()}
+     * to be affected by this event.
+     *
+     * @param predicate The predicate to use for filtering
+     * @return The filtered list of entities
+     */
+    List<Entity> filterEntities(Predicate<Entity> predicate);
 }

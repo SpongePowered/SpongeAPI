@@ -25,14 +25,45 @@
 package org.spongepowered.api.event.inventory;
 
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.ItemStackTransaction;
 
-public interface InteractInventoryEvent extends TargetInventoryEvent, CauseTracked {
-    interface Click extends InteractInventoryEvent, Cancellable {}
+import java.util.Optional;
 
-    interface Close extends InteractInventoryEvent {}
+/**
+ * Fired when an {@link Inventory} is being changed due to a {@link Cause}.
+ */
+public interface ChangeInventoryEvent extends TargetInventoryEvent, Cancellable, CauseTracked {
 
-    interface Move extends InteractInventoryEvent {}
+    /**
+     * Gets the previously equipped {@link ItemStack} as an
+     * {@link ItemStackSnapshot}.
+     *
+     * <p>The previously equipped item may have been empty.</p>
+     *
+     * @return The original itemstack, if available
+     */
+    Optional<ItemStackSnapshot> getOriginalItemStack();
 
-    interface Drag extends InteractInventoryEvent {}
+    /**
+     * Gets the new {@link ItemStack} that is being equipped in the relative
+     * armor slot.
+     *
+     * <p>The itemstack may not exist or the slot is being emptied.</p>
+     *
+     * @return The new item stack, if available
+     */
+    ItemStackTransaction getItemStackTransaction();
+
+    interface Click extends ChangeInventoryEvent {}
+
+    interface Close extends ChangeInventoryEvent {}
+
+    interface Move extends ChangeInventoryEvent {}
+
+    interface Drag extends ChangeInventoryEvent {}
 }

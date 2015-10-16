@@ -27,6 +27,11 @@ package org.spongepowered.api.event;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.collect.Maps;
+import java.net.InetSocketAddress;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.GameState;
@@ -127,10 +132,9 @@ import org.spongepowered.api.event.game.state.GameStateEvent;
 import org.spongepowered.api.event.game.state.GameStoppedServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.event.inventory.AffectItemStackEvent;
+import org.spongepowered.api.event.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.event.inventory.CraftItemEvent;
 import org.spongepowered.api.event.inventory.DropItemEvent;
-import org.spongepowered.api.event.inventory.InteractInventoryEvent;
-import org.spongepowered.api.event.inventory.PickUpItemEvent;
 import org.spongepowered.api.event.inventory.TargetContainerEvent;
 import org.spongepowered.api.event.inventory.TargetInventoryEvent;
 import org.spongepowered.api.event.inventory.UseItemStackEvent;
@@ -192,12 +196,6 @@ import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.gen.PopulatorType;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
-
-import java.net.InetSocketAddress;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
 
 public class SpongeEventFactory {
     /**
@@ -1683,14 +1681,18 @@ public class SpongeEventFactory {
      * 
      * @param game The game
      * @param cause The cause
-     * @param targetEntity The target entity
+     * @param originalEntities The original entities
+     * @param entities The entities
+     * @param targetWorld The target world
      * @return A new collide entity event
      */
-    public static CollideEntityEvent createCollideEntityEvent(Game game, Cause cause, Entity targetEntity) {
+    public static CollideEntityEvent createCollideEntityEvent(Game game, Cause cause, List<Entity> originalEntities, List<Entity> entities, World targetWorld) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
-        values.put("targetEntity", targetEntity);
+        values.put("originalEntities", originalEntities);
+        values.put("entities", entities);
+        values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(CollideEntityEvent.class, values);
     }
 
@@ -3079,6 +3081,116 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.ChangeInventoryEvent}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackTransaction The item stack transaction
+     * @param originalItemStack The original item stack
+     * @param targetInventory The target inventory
+     * @return A new change inventory event
+     */
+    public static ChangeInventoryEvent createChangeInventoryEvent(Game game, Cause cause, ItemStackTransaction itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Inventory targetInventory) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackTransaction", itemStackTransaction);
+        values.put("originalItemStack", originalItemStack);
+        values.put("targetInventory", targetInventory);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeInventoryEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.ChangeInventoryEvent.Click}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackTransaction The item stack transaction
+     * @param originalItemStack The original item stack
+     * @param targetInventory The target inventory
+     * @return A new click change inventory event
+     */
+    public static ChangeInventoryEvent.Click createChangeInventoryEventClick(Game game, Cause cause, ItemStackTransaction itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Inventory targetInventory) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackTransaction", itemStackTransaction);
+        values.put("originalItemStack", originalItemStack);
+        values.put("targetInventory", targetInventory);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeInventoryEvent.Click.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.ChangeInventoryEvent.Close}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackTransaction The item stack transaction
+     * @param originalItemStack The original item stack
+     * @param targetInventory The target inventory
+     * @return A new close change inventory event
+     */
+    public static ChangeInventoryEvent.Close createChangeInventoryEventClose(Game game, Cause cause, ItemStackTransaction itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Inventory targetInventory) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackTransaction", itemStackTransaction);
+        values.put("originalItemStack", originalItemStack);
+        values.put("targetInventory", targetInventory);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeInventoryEvent.Close.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.ChangeInventoryEvent.Drag}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackTransaction The item stack transaction
+     * @param originalItemStack The original item stack
+     * @param targetInventory The target inventory
+     * @return A new drag change inventory event
+     */
+    public static ChangeInventoryEvent.Drag createChangeInventoryEventDrag(Game game, Cause cause, ItemStackTransaction itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Inventory targetInventory) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackTransaction", itemStackTransaction);
+        values.put("originalItemStack", originalItemStack);
+        values.put("targetInventory", targetInventory);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeInventoryEvent.Drag.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.inventory.ChangeInventoryEvent.Move}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param itemStackTransaction The item stack transaction
+     * @param originalItemStack The original item stack
+     * @param targetInventory The target inventory
+     * @return A new move change inventory event
+     */
+    public static ChangeInventoryEvent.Move createChangeInventoryEventMove(Game game, Cause cause, ItemStackTransaction itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Inventory targetInventory) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("itemStackTransaction", itemStackTransaction);
+        values.put("originalItemStack", originalItemStack);
+        values.put("targetInventory", targetInventory);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeInventoryEvent.Move.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.inventory.CraftItemEvent}.
      * 
      * @param game The game
@@ -3184,120 +3296,6 @@ public class SpongeEventFactory {
         values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(DropItemEvent.Dispense.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.InteractInventoryEvent}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param targetInventory The target inventory
-     * @return A new interact inventory event
-     */
-    public static InteractInventoryEvent createInteractInventoryEvent(Game game, Cause cause, Inventory targetInventory) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("targetInventory", targetInventory);
-        return SpongeEventFactoryUtils.createEventImpl(InteractInventoryEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.InteractInventoryEvent.Click}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param targetInventory The target inventory
-     * @return A new click interact inventory event
-     */
-    public static InteractInventoryEvent.Click createInteractInventoryEventClick(Game game, Cause cause, Inventory targetInventory) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("targetInventory", targetInventory);
-        return SpongeEventFactoryUtils.createEventImpl(InteractInventoryEvent.Click.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.InteractInventoryEvent.Close}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param targetInventory The target inventory
-     * @return A new close interact inventory event
-     */
-    public static InteractInventoryEvent.Close createInteractInventoryEventClose(Game game, Cause cause, Inventory targetInventory) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("targetInventory", targetInventory);
-        return SpongeEventFactoryUtils.createEventImpl(InteractInventoryEvent.Close.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.InteractInventoryEvent.Drag}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param targetInventory The target inventory
-     * @return A new drag interact inventory event
-     */
-    public static InteractInventoryEvent.Drag createInteractInventoryEventDrag(Game game, Cause cause, Inventory targetInventory) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("targetInventory", targetInventory);
-        return SpongeEventFactoryUtils.createEventImpl(InteractInventoryEvent.Drag.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.InteractInventoryEvent.Move}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param targetInventory The target inventory
-     * @return A new move interact inventory event
-     */
-    public static InteractInventoryEvent.Move createInteractInventoryEventMove(Game game, Cause cause, Inventory targetInventory) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("targetInventory", targetInventory);
-        return SpongeEventFactoryUtils.createEventImpl(InteractInventoryEvent.Move.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.inventory.PickUpItemEvent}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param entities The entities
-     * @param entitySnapshots The entity snapshots
-     * @param targetInventory The target inventory
-     * @param targetWorld The target world
-     * @return A new pick up item event
-     */
-    public static PickUpItemEvent createPickUpItemEvent(Game game, Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Inventory targetInventory, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
-        values.put("targetInventory", targetInventory);
-        values.put("targetWorld", targetWorld);
-        return SpongeEventFactoryUtils.createEventImpl(PickUpItemEvent.class, values);
     }
 
     /**
