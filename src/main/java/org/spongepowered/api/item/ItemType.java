@@ -25,6 +25,7 @@
 package org.spongepowered.api.item;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.translation.Translatable;
@@ -37,6 +38,13 @@ import java.util.Optional;
  */
 @CatalogedBy(ItemTypes.class)
 public interface ItemType extends CatalogType, Translatable {
+
+    /**
+     * Gets the corresponding {@link BlockType} of this item if one exists.
+     * 
+     *  @return The Block
+     */
+    Optional<BlockType> getBlock();
 
     /**
      * Gets the id of this item.

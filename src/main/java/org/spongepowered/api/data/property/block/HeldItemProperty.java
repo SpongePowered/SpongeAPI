@@ -27,16 +27,16 @@ package org.spongepowered.api.data.property.block;
 
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.property.AbstractProperty;
-import org.spongepowered.api.item.ItemBlock;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.util.Coerce;
 
-public class HeldItemProperty extends AbstractProperty<String, ItemBlock> {
+public class HeldItemProperty extends AbstractProperty<String, ItemType> {
 
-    public HeldItemProperty(ItemBlock value) {
+    public HeldItemProperty(ItemType value) {
         super(value);
     }
 
-    public HeldItemProperty(ItemBlock value, Operator op) {
+    public HeldItemProperty(ItemType value, Operator op) {
         super(value, op);
     }
 
