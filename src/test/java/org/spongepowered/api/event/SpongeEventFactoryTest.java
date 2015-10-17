@@ -26,24 +26,20 @@ package org.spongepowered.api.event;
 
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.withSettings;
 
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
-import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.HealEntityEvent;
-import org.spongepowered.api.event.entity.InteractEntityEvent;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.inventory.ItemStackTransaction;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.event.factory.EventFactory;
 import org.spongepowered.api.world.Location;
@@ -54,16 +50,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.net.InetSocketAddress;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.function.UnaryOperator;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(Transaction.class)
 public class SpongeEventFactoryTest {
 
     private Set<Class<?>> excludedEvents;
@@ -151,7 +143,7 @@ public class SpongeEventFactoryTest {
         }
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public static Object mockParam(final Class<?> paramType) {
         if (paramType == byte.class) {
             return (byte) 0;
@@ -179,8 +171,8 @@ public class SpongeEventFactoryTest {
             return new Location<>((Extent) mockParam(Extent.class), 0, 0, 0);
         } else if (paramType == Transform.class) {
             return new Transform<>((Location<World>) mockParam(Location.class));
-        } else if (paramType == ItemStackTransaction.class) {
-            return new ItemStackTransaction((ItemStackSnapshot) mockParam(ItemStackSnapshot.class));
+        } else if (paramType == Transaction.class) {
+            return PowerMockito.mock(Transaction.class);
         } else if (paramType == Text[].class) {
             return new Text[] {};
         } else if (InetSocketAddress.class.isAssignableFrom(paramType)){

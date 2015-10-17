@@ -37,6 +37,8 @@ import org.spongepowered.api.item.ItemType;
  */
 public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot> {
 
+    ItemStackSnapshot NONE = null;
+
     /**
      * Gets the {@link ItemType} of this {@link ItemStackSnapshot}. The
      * {@link ItemType} is always available.

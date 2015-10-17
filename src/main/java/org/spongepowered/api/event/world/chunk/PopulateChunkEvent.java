@@ -25,7 +25,8 @@
 
 package org.spongepowered.api.event.world.chunk;
 
-import org.spongepowered.api.block.BlockTransaction;
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.gen.PopulatorType;
@@ -51,11 +52,11 @@ public interface PopulateChunkEvent extends TargetChunkEvent, CauseTracked {
     interface Post extends PopulateChunkEvent {
         /**
          * Returns an immutable map of all processed {@link PopulatorType}s
-         * along with all @{link BlockTransaction}s made by the populator.
+         * along with all {@link Transaction}s made by the populator.
          *
          * @return An immutable map of populator types with transactions
          */
-        Map<PopulatorType, List<BlockTransaction>> getPopulatedTransactions();
+        Map<PopulatorType, List<Transaction<BlockSnapshot>>> getPopulatedTransactions();
     }
 
 }

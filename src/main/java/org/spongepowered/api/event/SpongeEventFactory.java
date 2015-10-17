@@ -38,13 +38,13 @@ import org.spongepowered.api.GameState;
 import org.spongepowered.api.MinecraftVersion;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockTransaction;
 import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
+import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
 import org.spongepowered.api.entity.Entity;
@@ -168,7 +168,6 @@ import org.spongepowered.api.event.world.chunk.UnloadChunkEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.inventory.ItemStackTransaction;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
 import org.spongepowered.api.item.recipe.Recipe;
@@ -382,7 +381,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new stop fishing event
      */
-    public static FishingEvent.Stop createFishingEventStop(Game game, Cause cause, Optional<EntitySnapshot> originalCaughtEntity, Optional<Entity> caughtEntity, int originalExperience, int experience, EntitySnapshot originalFishHook, FishHook fishHook, Optional<ItemStackTransaction> itemStackTransaction, Entity targetEntity) {
+    public static FishingEvent.Stop createFishingEventStop(Game game, Cause cause, Optional<EntitySnapshot> originalCaughtEntity, Optional<Entity> caughtEntity, int originalExperience, int experience, EntitySnapshot originalFishHook, FishHook fishHook, Optional<Transaction<ItemStackSnapshot>> itemStackTransaction, Entity targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -476,7 +475,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new strike lightning event
      */
-    public static LightningEvent.Strike createLightningEventStrike(Game game, Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld, List<BlockTransaction> transactions) {
+    public static LightningEvent.Strike createLightningEventStrike(Game game, Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -622,7 +621,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new change block event
      */
-    public static ChangeBlockEvent createChangeBlockEvent(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+    public static ChangeBlockEvent createChangeBlockEvent(Game game, Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -642,7 +641,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new break change block event
      */
-    public static ChangeBlockEvent.Break createChangeBlockEventBreak(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+    public static ChangeBlockEvent.Break createChangeBlockEventBreak(Game game, Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -662,7 +661,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new decay change block event
      */
-    public static ChangeBlockEvent.Decay createChangeBlockEventDecay(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+    public static ChangeBlockEvent.Decay createChangeBlockEventDecay(Game game, Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -682,7 +681,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new fluid change block event
      */
-    public static ChangeBlockEvent.Fluid createChangeBlockEventFluid(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+    public static ChangeBlockEvent.Fluid createChangeBlockEventFluid(Game game, Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -702,7 +701,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new grow change block event
      */
-    public static ChangeBlockEvent.Grow createChangeBlockEventGrow(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+    public static ChangeBlockEvent.Grow createChangeBlockEventGrow(Game game, Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -722,7 +721,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new modify change block event
      */
-    public static ChangeBlockEvent.Modify createChangeBlockEventModify(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+    public static ChangeBlockEvent.Modify createChangeBlockEventModify(Game game, Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -742,7 +741,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new place change block event
      */
-    public static ChangeBlockEvent.Place createChangeBlockEventPlace(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+    public static ChangeBlockEvent.Place createChangeBlockEventPlace(Game game, Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -762,7 +761,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new post change block event
      */
-    public static ChangeBlockEvent.Post createChangeBlockEventPost(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+    public static ChangeBlockEvent.Post createChangeBlockEventPost(Game game, Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -804,7 +803,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new decay block event
      */
-    public static DecayBlockEvent createDecayBlockEvent(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+    public static DecayBlockEvent createDecayBlockEvent(Game game, Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -824,7 +823,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new grow block event
      */
-    public static GrowBlockEvent createGrowBlockEvent(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+    public static GrowBlockEvent createGrowBlockEvent(Game game, Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -910,7 +909,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new move block event
      */
-    public static MoveBlockEvent createMoveBlockEvent(Game game, Cause cause, World targetWorld, List<BlockTransaction> transactions) {
+    public static MoveBlockEvent createMoveBlockEvent(Game game, Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -1050,7 +1049,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new start brewing event
      */
-    public static BrewingEvent.Start createBrewingEventStart(Game game, Cause cause, ItemStackSnapshot ingredient, Inventory targetInventory, BrewingStand targetTile, List<ItemStackTransaction> transactions) {
+    public static BrewingEvent.Start createBrewingEventStart(Game game, Cause cause, ItemStackSnapshot ingredient, Inventory targetInventory, BrewingStand targetTile, List<Transaction<ItemStackSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -1074,7 +1073,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new tick brewing event
      */
-    public static BrewingEvent.Tick createBrewingEventTick(Game game, Cause cause, ItemStackSnapshot ingredient, Inventory targetInventory, BrewingStand targetTile, List<ItemStackTransaction> transactions) {
+    public static BrewingEvent.Tick createBrewingEventTick(Game game, Cause cause, ItemStackSnapshot ingredient, Inventory targetInventory, BrewingStand targetTile, List<Transaction<ItemStackSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -1140,7 +1139,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new consume fuel smelt event
      */
-    public static SmeltEvent.ConsumeFuel createSmeltEventConsumeFuel(Game game, Cause cause, ItemStackSnapshot fuel, Inventory targetInventory, Furnace targetTile, List<ItemStackTransaction> transactions) {
+    public static SmeltEvent.ConsumeFuel createSmeltEventConsumeFuel(Game game, Cause cause, ItemStackSnapshot fuel, Inventory targetInventory, Furnace targetTile, List<Transaction<ItemStackSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -1208,7 +1207,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new start smelt event
      */
-    public static SmeltEvent.Start createSmeltEventStart(Game game, Cause cause, ItemStackSnapshot fuel, Inventory targetInventory, Furnace targetTile, List<ItemStackTransaction> transactions) {
+    public static SmeltEvent.Start createSmeltEventStart(Game game, Cause cause, ItemStackSnapshot fuel, Inventory targetInventory, Furnace targetTile, List<Transaction<ItemStackSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -1232,7 +1231,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new tick smelt event
      */
-    public static SmeltEvent.Tick createSmeltEventTick(Game game, Cause cause, ItemStackSnapshot fuel, Inventory targetInventory, Furnace targetTile, List<ItemStackTransaction> transactions) {
+    public static SmeltEvent.Tick createSmeltEventTick(Game game, Cause cause, ItemStackSnapshot fuel, Inventory targetInventory, Furnace targetTile, List<Transaction<ItemStackSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -1489,7 +1488,7 @@ public class SpongeEventFactory {
      * @param targetInventory The target inventory
      * @return A new change entity equipment event
      */
-    public static ChangeEntityEquipmentEvent createChangeEntityEquipmentEvent(Game game, Optional<ItemStackSnapshot> originalItemStack, Optional<ItemStackTransaction> itemStack, Entity targetEntity, Slot targetInventory) {
+    public static ChangeEntityEquipmentEvent createChangeEntityEquipmentEvent(Game game, Optional<ItemStackSnapshot> originalItemStack, Optional<Transaction<ItemStackSnapshot>> itemStack, Entity targetEntity, Slot targetInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("originalItemStack", originalItemStack);
@@ -1511,7 +1510,7 @@ public class SpongeEventFactory {
      * @param targetInventory The target inventory
      * @return A new target human change entity equipment event
      */
-    public static ChangeEntityEquipmentEvent.TargetHuman createChangeEntityEquipmentEventTargetHuman(Game game, Optional<ItemStackSnapshot> originalItemStack, Optional<ItemStackTransaction> itemStack, Human targetEntity, Slot targetInventory) {
+    public static ChangeEntityEquipmentEvent.TargetHuman createChangeEntityEquipmentEventTargetHuman(Game game, Optional<ItemStackSnapshot> originalItemStack, Optional<Transaction<ItemStackSnapshot>> itemStack, Human targetEntity, Slot targetInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("originalItemStack", originalItemStack);
@@ -1533,7 +1532,7 @@ public class SpongeEventFactory {
      * @param targetInventory The target inventory
      * @return A new target living change entity equipment event
      */
-    public static ChangeEntityEquipmentEvent.TargetLiving createChangeEntityEquipmentEventTargetLiving(Game game, Optional<ItemStackSnapshot> originalItemStack, Optional<ItemStackTransaction> itemStack, Living targetEntity, Slot targetInventory) {
+    public static ChangeEntityEquipmentEvent.TargetLiving createChangeEntityEquipmentEventTargetLiving(Game game, Optional<ItemStackSnapshot> originalItemStack, Optional<Transaction<ItemStackSnapshot>> itemStack, Living targetEntity, Slot targetInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("originalItemStack", originalItemStack);
@@ -1555,7 +1554,7 @@ public class SpongeEventFactory {
      * @param targetInventory The target inventory
      * @return A new target player change entity equipment event
      */
-    public static ChangeEntityEquipmentEvent.TargetPlayer createChangeEntityEquipmentEventTargetPlayer(Game game, Optional<ItemStackSnapshot> originalItemStack, Optional<ItemStackTransaction> itemStack, Player targetEntity, Slot targetInventory) {
+    public static ChangeEntityEquipmentEvent.TargetPlayer createChangeEntityEquipmentEventTargetPlayer(Game game, Optional<ItemStackSnapshot> originalItemStack, Optional<Transaction<ItemStackSnapshot>> itemStack, Player targetEntity, Slot targetInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("originalItemStack", originalItemStack);
@@ -3028,7 +3027,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new affect item stack event
      */
-    public static AffectItemStackEvent createAffectItemStackEvent(Game game, Cause cause, Inventory targetInventory, List<ItemStackTransaction> transactions) {
+    public static AffectItemStackEvent createAffectItemStackEvent(Game game, Cause cause, Inventory targetInventory, List<Transaction<ItemStackSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3049,7 +3048,7 @@ public class SpongeEventFactory {
      * @param targetInventory The target inventory
      * @return A new change inventory event
      */
-    public static ChangeInventoryEvent createChangeInventoryEvent(Game game, Cause cause, ItemStackTransaction itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Inventory targetInventory) {
+    public static ChangeInventoryEvent createChangeInventoryEvent(Game game, Cause cause, Transaction<ItemStackSnapshot> itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Inventory targetInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3071,7 +3070,7 @@ public class SpongeEventFactory {
      * @param targetInventory The target inventory
      * @return A new click change inventory event
      */
-    public static ChangeInventoryEvent.Click createChangeInventoryEventClick(Game game, Cause cause, ItemStackTransaction itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Inventory targetInventory) {
+    public static ChangeInventoryEvent.Click createChangeInventoryEventClick(Game game, Cause cause, Transaction<ItemStackSnapshot> itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Inventory targetInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3093,7 +3092,7 @@ public class SpongeEventFactory {
      * @param targetInventory The target inventory
      * @return A new drag change inventory event
      */
-    public static ChangeInventoryEvent.Drag createChangeInventoryEventDrag(Game game, Cause cause, ItemStackTransaction itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Inventory targetInventory) {
+    public static ChangeInventoryEvent.Drag createChangeInventoryEventDrag(Game game, Cause cause, Transaction<ItemStackSnapshot> itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Inventory targetInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3115,7 +3114,7 @@ public class SpongeEventFactory {
      * @param targetInventory The target inventory
      * @return A new equipment change inventory event
      */
-    public static ChangeInventoryEvent.Equipment createChangeInventoryEventEquipment(Game game, Cause cause, ItemStackTransaction itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Slot targetInventory) {
+    public static ChangeInventoryEvent.Equipment createChangeInventoryEventEquipment(Game game, Cause cause, Transaction<ItemStackSnapshot> itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Slot targetInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3137,7 +3136,7 @@ public class SpongeEventFactory {
      * @param targetInventory The target inventory
      * @return A new held change inventory event
      */
-    public static ChangeInventoryEvent.Held createChangeInventoryEventHeld(Game game, Cause cause, ItemStackTransaction itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Slot targetInventory) {
+    public static ChangeInventoryEvent.Held createChangeInventoryEventHeld(Game game, Cause cause, Transaction<ItemStackSnapshot> itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Slot targetInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3159,7 +3158,7 @@ public class SpongeEventFactory {
      * @param targetInventory The target inventory
      * @return A new move change inventory event
      */
-    public static ChangeInventoryEvent.Move createChangeInventoryEventMove(Game game, Cause cause, ItemStackTransaction itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Inventory targetInventory) {
+    public static ChangeInventoryEvent.Move createChangeInventoryEventMove(Game game, Cause cause, Transaction<ItemStackSnapshot> itemStackTransaction, Optional<ItemStackSnapshot> originalItemStack, Inventory targetInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3181,7 +3180,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new craft item event
      */
-    public static CraftItemEvent createCraftItemEvent(Game game, Cause cause, Recipe recipe, CraftingInventory targetInventory, List<ItemStackTransaction> transactions) {
+    public static CraftItemEvent createCraftItemEvent(Game game, Cause cause, Recipe recipe, CraftingInventory targetInventory, List<Transaction<ItemStackSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3377,7 +3376,7 @@ public class SpongeEventFactory {
      * @param itemStackInUse The item stack in use
      * @return A new use item stack event
      */
-    public static UseItemStackEvent createUseItemStackEvent(Game game, Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackTransaction itemStackInUse) {
+    public static UseItemStackEvent createUseItemStackEvent(Game game, Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3400,7 +3399,7 @@ public class SpongeEventFactory {
      * @param itemStackResult The item stack result
      * @return A new finish use item stack event
      */
-    public static UseItemStackEvent.Finish createUseItemStackEventFinish(Game game, Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackTransaction itemStackInUse, ItemStackTransaction itemStackResult) {
+    public static UseItemStackEvent.Finish createUseItemStackEventFinish(Game game, Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse, Transaction<ItemStackSnapshot> itemStackResult) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3423,7 +3422,7 @@ public class SpongeEventFactory {
      * @param itemStackInUse The item stack in use
      * @return A new start use item stack event
      */
-    public static UseItemStackEvent.Start createUseItemStackEventStart(Game game, Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackTransaction itemStackInUse) {
+    public static UseItemStackEvent.Start createUseItemStackEventStart(Game game, Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3445,7 +3444,7 @@ public class SpongeEventFactory {
      * @param itemStackInUse The item stack in use
      * @return A new stop use item stack event
      */
-    public static UseItemStackEvent.Stop createUseItemStackEventStop(Game game, Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackTransaction itemStackInUse) {
+    public static UseItemStackEvent.Stop createUseItemStackEventStop(Game game, Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -3467,7 +3466,7 @@ public class SpongeEventFactory {
      * @param itemStackInUse The item stack in use
      * @return A new tick use item stack event
      */
-    public static UseItemStackEvent.Tick createUseItemStackEventTick(Game game, Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackTransaction itemStackInUse) {
+    public static UseItemStackEvent.Tick createUseItemStackEventTick(Game game, Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -4131,7 +4130,7 @@ public class SpongeEventFactory {
      * @param transactions The transactions
      * @return A new detonate explosion event
      */
-    public static ExplosionEvent.Detonate createExplosionEventDetonate(Game game, Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Explosion explosion, World targetWorld, List<BlockTransaction> transactions) {
+    public static ExplosionEvent.Detonate createExplosionEventDetonate(Game game, Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Explosion explosion, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -4374,7 +4373,7 @@ public class SpongeEventFactory {
      * @param targetChunk The target chunk
      * @return A new post populate chunk event
      */
-    public static PopulateChunkEvent.Post createPopulateChunkEventPost(Game game, Cause cause, Map<PopulatorType, List<BlockTransaction>> populatedTransactions, Chunk targetChunk) {
+    public static PopulateChunkEvent.Post createPopulateChunkEventPost(Game game, Cause cause, Map<PopulatorType, List<Transaction<BlockSnapshot>>> populatedTransactions, Chunk targetChunk) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.Living;
@@ -36,7 +37,6 @@ import org.spongepowered.api.event.inventory.TargetInventoryEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.inventory.ItemStackTransaction;
 import org.spongepowered.api.item.inventory.Slot;
 
 import java.util.Optional;
@@ -49,7 +49,7 @@ import java.util.Optional;
  * that if the {@link #getOriginalItemStack()} is {@link Optional#empty()}, then
  * the {@link #getItemStack()} must be present, and vice versa. In the event
  * that a change to the suggested {@link ItemStack}, the use of the
- * {@link ItemStackTransaction} is recommended.
+ * {@link Transaction} is recommended.
  */
 public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInventoryEvent, Cancellable {
 
@@ -71,7 +71,7 @@ public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInv
      *
      * @return The new item stack, if available
      */
-    Optional<ItemStackTransaction> getItemStack();
+    Optional<Transaction<ItemStackSnapshot>> getItemStack();
 
     @Override
     Slot getTargetInventory();

@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.event.inventory;
 
+import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.ItemStackTransaction;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.potion.PotionEffectType;
 
 public interface UseItemStackEvent extends GameEvent, Cancellable, CauseTracked {
@@ -60,7 +61,7 @@ public interface UseItemStackEvent extends GameEvent, Cancellable, CauseTracked 
      *
      * @return The item being consumed
      */
-    ItemStackTransaction getItemStackInUse();
+    Transaction<ItemStackSnapshot> getItemStackInUse();
 
     /**
      * Called before {@link UseItemStackEvent.Tick} when a player starts using an
@@ -130,7 +131,7 @@ public interface UseItemStackEvent extends GameEvent, Cancellable, CauseTracked 
          *
          * @return The result {@link ItemStack}
          */
-        ItemStackTransaction getItemStackResult();
+        Transaction<ItemStackSnapshot> getItemStackResult();
     }
 
 }

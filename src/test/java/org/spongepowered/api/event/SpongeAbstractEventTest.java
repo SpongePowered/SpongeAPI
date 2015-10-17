@@ -26,35 +26,25 @@ package org.spongepowered.api.event;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.array;
-import static org.hamcrest.Matchers.closeTo;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.stub;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.collect.Lists;
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.block.BlockTransaction;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionBuilder;
 import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
-import org.spongepowered.api.event.entity.DamageEntityEvent;
-import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 
 public class SpongeAbstractEventTest {
 
@@ -62,7 +52,7 @@ public class SpongeAbstractEventTest {
 
     @Test
     public void testChangeBlockEvent_filter() {
-        BlockTransaction transaction = new BlockTransaction(mockParam(BlockSnapshot.class), mockParam(BlockSnapshot.class));
+        Transaction<BlockSnapshot> transaction = new Transaction<>(mockParam(BlockSnapshot.class), mockParam(BlockSnapshot.class));
 
         stub(transaction.getOriginal().getLocation()).toReturn(Optional.of(new Location<>(mockParam(World.class), Vector3d.ZERO)));
 

@@ -25,12 +25,12 @@
 package org.spongepowered.api.event.inventory;
 
 import com.google.common.collect.Lists;
-import org.spongepowered.api.block.BlockTransaction;
+import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.ItemStackTransaction;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -41,32 +41,32 @@ import java.util.function.Predicate;
 public interface AffectItemStackEvent extends TargetInventoryEvent, Cancellable, CauseTracked {
 
     /**
-     * Gets a list of the {@link ItemStackTransaction}s for this event. If a
+     * Gets a list of the {@link Transaction}s for this event. If a
      * transaction is requested to be marked as "invalid",
-     * {@link ItemStackTransaction#setIsValid(boolean)} can be used.
+     * {@link Transaction#setValid(boolean)} can be used.
      *
      * @return The unmodifiable list of transactions
      */
-    List<ItemStackTransaction> getTransactions();
+    List<Transaction<ItemStackSnapshot>> getTransactions();
 
     /**
      * Applies the provided {@link Predicate} to the {@link List} of
-     * {@link ItemStackTransaction}s from {@link #getTransactions()} such that
+     * {@link Transaction}s from {@link #getTransactions()} such that
      * any time that {@link Predicate#test(Object)} returns <code>false</code>
-     * on a {@link ItemStackTransaction}, the {@link ItemStackTransaction} is
+     * on a {@link Transaction}, the {@link Transaction} is
      * marked as "invalid" and will not apply post event.
      *
-     * <p>{@link ItemStackTransaction#getSnapshot()} is used to construct
+     * <p>{@link Transaction#getFinal()} is used to construct
      * the {@link ItemStack} to pass to the predicate</p>
      *
      * @param predicate The predicate to use for filtering
      * @return The transactions for which the predicate returned <code>false</code>
      */
-    default List<ItemStackTransaction> filter(Predicate<ItemStack> predicate) {
-        List<ItemStackTransaction> invalidatedTransactions = Lists.newArrayList();
-        for (ItemStackTransaction transaction: this.getTransactions()) {
-            if (!predicate.test(transaction.getSnapshot().createStack())) {
-                transaction.setIsValid(false);
+    default List<Transaction<ItemStackSnapshot>> filter(Predicate<ItemStack> predicate) {
+        List<Transaction<ItemStackSnapshot>> invalidatedTransactions = Lists.newArrayList();
+        for (Transaction<ItemStackSnapshot> transaction: this.getTransactions()) {
+            if (!predicate.test(transaction.getFinal().createStack())) {
+                transaction.setValid(false);
                 invalidatedTransactions.add(transaction);
             }
         }

@@ -27,10 +27,10 @@ package org.spongepowered.api.event.block;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockTransaction;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.Cause;
@@ -49,31 +49,31 @@ import java.util.function.Predicate;
 public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable, CauseTracked {
 
     /**
-     * Gets a list of the {@link BlockTransaction}s for this event. If a
+     * Gets a list of the {@link Transaction}s for this event. If a
      * transaction is requested to be marked as "invalid",
-     * {@link BlockTransaction#setIsValid(boolean)} can be used.
+     * {@link Transaction<BlockSnapshot>#setIsValid(boolean)} can be used.
      *
      * @return The unmodifiable list of transactions
      */
-    List<BlockTransaction> getTransactions();
+    List<Transaction<BlockSnapshot>> getTransactions();
 
     /**
      * Applies the provided {@link Predicate} to the {@link List} of
-     * {@link BlockTransaction}s from {@link #getTransactions()} such that
+     * {@link Transaction}s from {@link #getTransactions()} such that
      * any time that {@link Predicate#test(Object)} returns <code>false</code>
-     * on the location of the {@link BlockTransaction}, the {@link BlockTransaction} is
+     * on the location of the {@link Transaction}, the {@link Transaction} is
      * marked as "invalid" and will not apply post event.
      *
-     * <p>{@link BlockTransaction#getOriginal()} is used to get the {@link Location}</p>
+     * <p>{@link Transaction#getOriginal()} is used to get the {@link Location}</p>
      *
      * @param predicate The predicate to use for filtering
      * @return The transactions for which the predicate returned <code>false</code>
      */
-    default List<BlockTransaction> filter(Predicate<Location<World>> predicate) {
-        List<BlockTransaction> invalidatedTransactions = Lists.newArrayList();
-        for (BlockTransaction transaction: this.getTransactions()) {
+    default List<Transaction<BlockSnapshot>> filter(Predicate<Location<World>> predicate) {
+        List<Transaction<BlockSnapshot>> invalidatedTransactions = Lists.newArrayList();
+        for (Transaction<BlockSnapshot> transaction: this.getTransactions()) {
             if (!predicate.test(transaction.getOriginal().getLocation().get())) {
-                transaction.setIsValid(false);
+                transaction.setValid(false);
                 invalidatedTransactions.add(transaction);
             }
         }
@@ -81,12 +81,12 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable, CauseTr
     }
 
     /**
-     * Invalidates the list as such that all {@link BlockTransaction}s are
+     * Invalidates the list as such that all {@link Transaction}s are
      * marked as "invalid" and will not apply post event.
      */
     default void filterAll() {
-        for (BlockTransaction transaction: this.getTransactions()) {
-            transaction.setIsValid(false);
+        for (Transaction<BlockSnapshot> transaction: this.getTransactions()) {
+            transaction.setValid(false);
         }
     }
 

@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.event.action;
 
+import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.projectile.FishHook;
@@ -35,7 +36,6 @@ import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
 import org.spongepowered.api.event.entity.TargetEntityEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.inventory.ItemStackTransaction;
 
 import java.util.Optional;
 
@@ -100,14 +100,13 @@ public interface FishingEvent extends GameEvent, CauseTracked {
     interface Stop extends FishingEvent, ChangeEntityExperienceEvent, Cancellable {
 
         /**
-         * Gets the {@link ItemStackTransaction} that is the transaction
+         * Gets the {@link Transaction} that is the transaction
          * involving the {@link ItemStack}, if available. If you wish to
-         * change the itemstack result, use {@link
-         * ItemStackTransaction#setCustom(ItemStackSnapshot)}
+         * change the itemstack result, use {@link Transaction#setCustom(Object)}
          *
          * @return The itemstack transaction, if available
          */
-        Optional<ItemStackTransaction> getItemStackTransaction();
+        Optional<Transaction<ItemStackSnapshot>> getItemStackTransaction();
 
         /**
          * Gets the original caught {@link Entity} if available.

@@ -24,8 +24,12 @@
  */
 package org.spongepowered.api.event.inventory;
 
+import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.item.inventory.*;
+import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.Slot;
 
 import java.util.Optional;
 
@@ -51,7 +55,7 @@ public interface ChangeInventoryEvent extends InteractInventoryEvent {
      *
      * @return The new item stack, if available
      */
-    ItemStackTransaction getItemStackTransaction();
+    Transaction<ItemStackSnapshot> getItemStackTransaction();
 
     interface Click extends ChangeInventoryEvent {}
 
