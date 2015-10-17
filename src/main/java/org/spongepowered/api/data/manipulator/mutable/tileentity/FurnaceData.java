@@ -28,7 +28,6 @@ import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableFurnaceData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.Value;
 
 /**
  * Represents the data for a {@link Furnace}.
@@ -36,32 +35,29 @@ import org.spongepowered.api.data.value.mutable.Value;
 public interface FurnaceData extends DataManipulator<FurnaceData, ImmutableFurnaceData> {
 
     /**
-     * Gets the {@link MutableBoundedValue} for the remaining burn time of the
-     * {@link Furnace}.
+     * Gets the {@link MutableBoundedValue} for the remaining burn time of the {@link Furnace}.
      *
      * @return The value for the remaining burn time
      */
     MutableBoundedValue<Integer> remainingBurnTime();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the remaining cook time of the
-     * {@link Furnace}.
+     * Gets the {@link MutableBoundedValue} for the remaining cook time of the {@link Furnace}.
      *
-     * The {@link #remainingCookTime()} is the subtraction of the {@link #maxCookTime()} and
-     * the time the item already cooked.
+     * The {@link #remainingCookTime()} is the subtraction of the {@link #maxCookTime()} and the
+     * time the item already cooked.
      *
      * @return The value for the remaining cook time
      */
     MutableBoundedValue<Integer> remainingCookTime();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the cook time of the
-     * {@link org.spongepowered.api.entity.Item} that should be cooked.
+     * Gets the {@link MutableBoundedValue} for the cook time of the {@link
+     * org.spongepowered.api.entity.Item} that should be cooked.
      *
-     * Its named "maxCookTime" because the client calculate the
-     * {@link #remainingCookTime()} from the "maxCookTime" minus the
-     * time the item cooked already. So this value it the maximum of
-     * the {@link #remainingCookTime()}
+     * Its named "maxCookTime" because the client calculate the {@link #remainingCookTime()} from
+     * the "maxCookTime" minus the time the item cooked already. So this value it the maximum of the
+     * {@link #remainingCookTime()}
      *
      * @return The value for the maximum cook time
      */
