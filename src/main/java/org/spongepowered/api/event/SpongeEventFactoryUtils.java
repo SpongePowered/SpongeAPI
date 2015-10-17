@@ -91,6 +91,7 @@ public class SpongeEventFactoryUtils {
     public static <T extends GameStateEvent> T createState(Class<T> type, Game game) {
         Map<String, Object> values = Maps.newHashMapWithExpectedSize(1);
         values.put("game", game);
+        values.put("state", game.getState());
         return SpongeEventFactoryUtils.createEventImpl(type, values);
     }
 
