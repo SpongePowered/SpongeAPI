@@ -103,7 +103,7 @@ public final class TextArgs {
     }
 
     public static TextArgs of() {
-        return new TextArgs(ImmutableList.<Object>of(), ImmutableMap.<String, Object>of());
+        return new TextArgs(ImmutableList.of(), ImmutableMap.of());
     }
 
     public static TextArgs of(Object... args) {
