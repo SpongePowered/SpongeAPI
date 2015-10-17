@@ -41,7 +41,7 @@ public interface ImmutableFurnaceData extends ImmutableDataManipulator<Immutable
      * Gets the {@link ImmutableBoundedValue} for the remaining burn time of the
      * {@link Furnace}.
      *
-     * @return The immutable value for the remaining burn time
+     * @return The value for the remaining burn time
      */
     ImmutableBoundedValue<Integer> remainingBurnTime();
 
@@ -49,8 +49,24 @@ public interface ImmutableFurnaceData extends ImmutableDataManipulator<Immutable
      * Gets the {@link ImmutableBoundedValue} for the remaining cook time of the
      * {@link Furnace}.
      *
+     * The {@link #remainingCookTime()} is the subtraction of the {@link #maxCookTime()} and
+     * the time the item already cooked.
+     *
      * @return The immutable value for the remaining cook time
      */
     ImmutableBoundedValue<Integer> remainingCookTime();
+
+    /**
+     * Gets the {@link ImmutableBoundedValue} for the cook time of the
+     * {@link org.spongepowered.api.entity.Item} that should be cooked.
+     *
+     * Its named "maxCookTime" because the client calculate the
+     * {@link #remainingCookTime()} from the "maxCookTime" minus the
+     * time the item cooked already. So this value it the maximum of
+     * the {@link #remainingCookTime()}
+     *
+     * @return The immutable value for the maximum cook time
+     */
+    ImmutableBoundedValue<Integer> maxCookTime();
 
 }
