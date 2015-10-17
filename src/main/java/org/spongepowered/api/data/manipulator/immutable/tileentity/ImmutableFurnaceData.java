@@ -28,29 +28,40 @@ import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.FurnaceData;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
 /**
- * An {@link ImmutableDataManipulator} representing the {@link Furnace}
- * information such as the {@link #remainingBurnTime()} and
- * {@link #remainingCookTime()}.
+ * An {@link ImmutableDataManipulator} representing the {@link Furnace} information such as the
+ * {@link #remainingBurnTime()} and {@link #remainingCookTime()}.
  */
 public interface ImmutableFurnaceData extends ImmutableDataManipulator<ImmutableFurnaceData, FurnaceData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the remaining burn time of the
-     * {@link Furnace}.
+     * Gets the {@link ImmutableBoundedValue} for the remaining burn time of the {@link Furnace}.
      *
      * @return The immutable value for the remaining burn time
      */
     ImmutableBoundedValue<Integer> remainingBurnTime();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the remaining cook time of the
-     * {@link Furnace}.
+     * Gets the {@link ImmutableBoundedValue} for the remaining cook time of the {@link Furnace}.
+     *
+     * The {@link #remainingCookTime()} is the subtraction of the {@link #maxCookTime()} and the
+     * time the item already cooked. So the maximum of it is the {@link #maxCookTime()}.
      *
      * @return The immutable value for the remaining cook time
      */
     ImmutableBoundedValue<Integer> remainingCookTime();
+
+    /**
+     * Gets the {@link ImmutableBoundedValue} for the cook time of the {@link
+     * org.spongepowered.api.entity.Item} that should be cooked.
+     *
+     * Its named "maxCookTime" because the client calculate the {@link #remainingCookTime()} from
+     * the "maxCookTime" minus the time the item cooked already. So this value it the maximum of the
+     * {@link #remainingCookTime()}
+     *
+     * @return The immutable value for the maximum cook time
+     */
+    ImmutableBoundedValue<Integer> maxCookTime();
 
 }
