@@ -41,7 +41,7 @@ public interface ImmutableFurnaceData extends ImmutableDataManipulator<Immutable
      * Gets the {@link ImmutableBoundedValue} for the remaining burn time of the
      * {@link Furnace}.
      *
-     * @return The value for the remaining burn time
+     * @return The immutable value for the remaining burn time
      */
     ImmutableBoundedValue<Integer> remainingBurnTime();
 
