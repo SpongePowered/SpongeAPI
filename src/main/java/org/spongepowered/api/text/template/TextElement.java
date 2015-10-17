@@ -25,17 +25,29 @@
 package org.spongepowered.api.text.template;
 
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.Texts;
 
-public abstract class TextElement<T> {
+import java.util.function.Function;
 
-    public abstract Text create(T value);
+@FunctionalInterface
+public interface TextElement<T> {
 
-    public TextArg.Named<T> name(String name) {
-        return new TextArg.Named<T>(name, this);
+    Text create(T value);
+
+    default <U> TextElement<U> contramap(Function<? super U, ? extends T> function) {
+        return value -> create(function.apply(value));
     }
 
-    public TextArg.Pos<T> pos(int position) {
-        return new TextArg.Pos<T>(position, this);
+    default TextElement<T> map(Function<Text, Text> function) {
+        return value -> function.apply(create(value));
+    }
+
+    default TextArg.Named<T> name(String name) {
+        return new TextArg.Named<>(name, this);
+    }
+
+    default TextArg.Pos<T> pos(int position) {
+        return new TextArg.Pos<>(position, this);
     }
 
 }

@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.text.template;
 
-import com.google.common.base.Function;
-import com.google.common.base.Optional;
-import com.google.common.base.Preconditions;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.BaseValue;
@@ -39,99 +36,52 @@ import org.spongepowered.api.text.translation.Translatable;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Optional;
+import java.util.function.Function;
 
 public final class TextElements {
 
     public static Text DEFAULT_SEPARATOR = Texts.of(", ");
 
-    static TextElement<Text> IDENTITY = new TextElement<Text>() {
-        @Override
-        public Text create(Text value) {
-            return value;
-        }
-    };
+    static TextElement<Text> IDENTITY = value -> value;
 
     public static TextElement<Text> identity() {
         return IDENTITY;
     }
 
-    public static <T> AlwaysTextElement<T> always(final Text text) {
-        return new AlwaysTextElement<T>(text);
-    }
-
-    static class AlwaysTextElement<T> extends TextElement<T> {
-
-        final Text result;
-
-        public AlwaysTextElement(Text result) {
-            this.result = result;
-        }
-
-        @Override
-        public Text create(T value) {
-            return result;
-        }
-
+    public static <T> TextElement<T> always(final Text text) {
+        return value -> text;
     }
 
     public static <T> TextElement<T> function(final Function<T, Text> function) {
-        return new TextElement<T>() {
-            @Override
-            public Text create(T value) {
-                return Preconditions.checkNotNull(function.apply(value));
-            }
-        };
-    }
-
-    public static <T, U> TextElement<U> compose(final TextElement<T> element, final Function<U, T> function) {
-        return new TextElement<U>() {
-            @Override
-            public Text create(U value) {
-                return element.create(Preconditions.checkNotNull(function.apply(value)));
-            }
-        };
-    }
-
-    public static <T> TextElement<T> map(final TextElement<T> element, final Function<Text, Text> function) {
-        return new TextElement<T>() {
-            @Override
-            public Text create(T value) {
-                return Preconditions.checkNotNull(function.apply(element.create(value)));
-            }
-        };
+        return function::apply;
     }
 
     public static <E> TextElement<Optional<E>> optional(final TextElement<E> singleArg) {
-        return new TextElement<Optional<E>>() {
-            @Override
-            public Text create(Optional<E> value) {
-                if (value.isPresent()) {
-                    return singleArg.create(value.get());
-                } else {
-                    return Texts.of();
-                }
+        return value -> {
+            if (value.isPresent()) {
+                return singleArg.create(value.get());
+            } else {
+                return Texts.of();
             }
         };
     }
 
     public static <E> TextElement<Iterator<E>> iterator(final TextElement<E> singleArg, final Text separator) {
-        return new TextElement<Iterator<E>>() {
-            @Override
-            public Text create(Iterator<E> iterator) {
-                TextBuilder builder = Texts.builder();
-                boolean first = true;
-                while (iterator.hasNext()) {
-                    Text next = singleArg.create(iterator.next());
-                    if (!next.isEmpty()) {
-                        if (!first) {
-                            builder.append(separator);
-                        }
-                        first = false;
-                        builder.append(next);
+        return iterator -> {
+            TextBuilder builder = Texts.builder();
+            boolean first = true;
+            while (iterator.hasNext()) {
+                Text next = singleArg.create(iterator.next());
+                if (!next.isEmpty()) {
+                    if (!first) {
+                        builder.append(separator);
                     }
+                    first = false;
+                    builder.append(next);
                 }
-                return builder.build();
             }
+            return builder.build();
         };
     }
 
@@ -140,12 +90,7 @@ public final class TextElements {
     }
 
     public static <E> TextElement<Iterable<E>> iterable(final TextElement<E> singleArg, final Text separator) {
-        return new TextElement<Iterable<E>>() {
-            @Override
-            public Text create(Iterable<E> value) {
-                return iterator(singleArg, separator).create(value.iterator());
-            }
-        };
+        return iterator(singleArg, separator).contramap(Iterable::iterator);
     }
 
     public static <E> TextElement<Iterable<E>> iterable(final TextElement<E> singleArg) {
@@ -153,40 +98,22 @@ public final class TextElements {
     }
 
     public static <T> TextElement<T> fallback(final TextElement<T> thatArg, final TextElement<T> fallbackArg) {
-        return new TextElement<T>() {
-            @Override
-            public Text create(T value) {
-                Text result = thatArg.create(value);
-                if (result.isEmpty()) {
-                    return fallbackArg.create(value);
-                } else {
-                    return result;
-                }
+        return value -> {
+            Text result = thatArg.create(value);
+            if (result.isEmpty()) {
+                return fallbackArg.create(value);
+            } else {
+                return result;
             }
         };
     }
 
     public static <T> TextElement<T> fallback(final TextElement<T> thatArg, final Text fallback) {
-        return new TextElement<T>() {
-            @Override
-            public Text create(T value) {
-                Text result = thatArg.create(value);
-                if (result.isEmpty()) {
-                    return fallback;
-                } else {
-                    return result;
-                }
-            }
-        };
+        return fallback(thatArg, always(fallback));
     }
 
     public static <T extends Translatable> TextElement<T> translatable() {
-        return new TextElement<T>() {
-            @Override
-            public Text create(T value) {
-                return Texts.of(value);
-            }
-        };
+        return Texts::of;
     }
 
     public static TextElement<Player> playerDisplayName() {
@@ -195,42 +122,55 @@ public final class TextElements {
 
     public static <C extends CompositeValueStore<?, ?>> TextElement<C> key(
         final Key<? extends BaseValue<Text>> key) {
-        return new TextElement<C>() {
-            @Override
-            public Text create(C value) {
-                return value.get(key).or(Texts.of());
-            }
-        };
+        return value -> value.get(key).orElse(Texts.of());
     }
 
-    // collectionKey(Keys.SIGN_LINES, iterable(identity()));
+    /**
+     *
+     * Example:
+     *
+     * <code>
+     *     TextElements.collectionKey(Keys.SIGN_LINES, iterable(identity()));
+     * </code>
+     *
+     * @param key
+     * @param join
+     * @param <C>
+     * @param <L>
+     * @return
+     */
     public static <C extends CompositeValueStore<?, ?>, L extends Collection<Text>> TextElement<C> collectionKey(
         final Key<? extends BaseValue<L>> key, final TextElement<? super L> join) {
-        return new TextElement<C>() {
-            @Override
-            public Text create(C value) {
-                Optional<L> possibleColl = value.get(key);
-                if (possibleColl.isPresent()) {
-                    return join.create(possibleColl.get());
-                } else {
-                    return Texts.of();
-                }
+        return value -> {
+            Optional<L> possibleColl = value.get(key);
+            if (possibleColl.isPresent()) {
+                return join.create(possibleColl.get());
+            } else {
+                return Texts.of();
             }
         };
     }
 
-    // optionalKey(Keys.LAST_COMMAND_OUTPUT);
+    /**
+     *
+     * Example:
+     *
+     * <code>
+     *     TextElements.optionalKey(Keys.LAST_COMMAND_OUTPUT);
+     * </code>
+     *
+     * @param key
+     * @param <C>
+     * @return
+     */
     public static <C extends CompositeValueStore<?, ?>> TextElement<C> optionalKey(
         final Key<? extends BaseValue<Optional<Text>>> key) {
-        return new TextElement<C>() {
-            @Override
-            public Text create(C value) {
-                Optional<Text> possibleColl = value.getOrElse(key, Optional.<Text>absent());
-                if (possibleColl.isPresent()) {
-                    return possibleColl.get();
-                } else {
-                    return Texts.of();
-                }
+        return value -> {
+            Optional<Text> possibleColl = value.getOrElse(key, Optional.empty());
+            if (possibleColl.isPresent()) {
+                return possibleColl.get();
+            } else {
+                return Texts.of();
             }
         };
     }
