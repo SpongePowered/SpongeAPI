@@ -50,7 +50,7 @@ public interface ImmutableFurnaceData extends ImmutableDataManipulator<Immutable
      * {@link Furnace}.
      *
      * The {@link #remainingCookTime()} is the subtraction of the {@link #maxCookTime()} and
-     * the time the item already cooked.
+     * the time the item already cooked. So the maximum of it is the {@link #maxCookTime()}.
      *
      * @return The immutable value for the remaining cook time
      */
