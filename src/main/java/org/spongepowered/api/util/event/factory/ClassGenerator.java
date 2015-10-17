@@ -308,7 +308,7 @@ public class ClassGenerator {
                     mv.visitJumpInsn(IFNONNULL, afterNullTest);
                     mv.visitTypeInsn(NEW, "java/lang/NullPointerException");
                     mv.visitInsn(DUP);
-                    mv.visitLdcInsn(property.getName());
+                    mv.visitLdcInsn("The property '" + property.getName() + "' was not provided!");
                     mv.visitMethodInsn(INVOKESPECIAL, "java/lang/NullPointerException", "<init>", "(Ljava/lang/String;)V", false);
                     mv.visitInsn(ATHROW);
                     mv.visitLabel(afterNullTest);
