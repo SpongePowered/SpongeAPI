@@ -28,7 +28,7 @@ import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableFurnaceData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.Item;
 
 /**
  * Represents the data for a {@link Furnace}.
@@ -47,8 +47,25 @@ public interface FurnaceData extends DataManipulator<FurnaceData, ImmutableFurna
      * Gets the {@link MutableBoundedValue} for the remaining cook time of the
      * {@link Furnace}.
      *
+     * <p>The {@link #remainingCookTime()} is the difference of {@link #maxCookTime()} and
+     * the time the item has already been cooked.</p>
+     *
      * @return The value for the remaining cook time
      */
     MutableBoundedValue<Integer> remainingCookTime();
+
+    /**
+     * Gets the {@link MutableBoundedValue} for the cook time of the
+     * {@link Item} that should be cooked.
+     *
+     * <p>This is called "maxCookTime" because the client calculates
+     * {@link #remainingCookTime()} from the "maxCookTime" minus the
+     * time the item cooked already.</p>
+     *
+     * <p>This is the maximum of {@link #remainingCookTime()}.</p>
+     *
+     * @return The value for the maximum cook time
+     */
+    MutableBoundedValue<Integer> maxCookTime();
 
 }
