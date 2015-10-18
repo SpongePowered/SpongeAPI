@@ -30,6 +30,7 @@ import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.title.Title;
+import org.spongepowered.api.text.title.Titles;
 
 /**
  * A Viewer is something that sees effects.
@@ -119,11 +120,15 @@ public interface Viewer {
      * Removes the currently displayed {@link Title} from the player and resets
      * all settings back to default values.
      */
-    void resetTitle();
+    default void resetTitle() {
+        sendTitle(Titles.RESET);
+    }
 
     /**
      * Removes the currently displayed {@link Title} from the player's screen.
      */
-    void clearTitle();
+    default void clearTitle() {
+        sendTitle(Titles.CLEAR);
+    }
 
 }
