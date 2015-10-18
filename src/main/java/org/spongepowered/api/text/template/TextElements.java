@@ -296,10 +296,6 @@ public final class TextElements {
         return key(key, joiner);
     }
 
-    static {
-        TextElement<Player> elem = key(Keys.TRADE_OFFERS, iterable(string().contramap(TradeOffer::toString)));
-    }
-
     /**
      * Returns a text element that tries to access the given key on a value store, applying the
      * given element to that object if it exists, and returning the empty text if that
