@@ -29,6 +29,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
@@ -36,43 +37,105 @@ import org.spongepowered.api.text.translation.Translatable;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
+/**
+ * Container of methods that create text elements.
+ */
 public final class TextElements {
+    private TextElements() {}
 
+    /**
+     * The default separator for iterator-based text elements.
+     */
     public static Text DEFAULT_SEPARATOR = Texts.of(", ");
 
-    static TextElement<Text> IDENTITY = value -> value;
+    /**
+     * The identity text element, one that returns whatever was passed in.
+     */
+    private static TextElement<Text> IDENTITY = value -> value;
 
+    /**
+     * Returns an identity text element, one that returns whatever was
+     * passed in.
+     *
+     * @return The text element
+     */
     public static TextElement<Text> identity() {
         return IDENTITY;
     }
 
+    /**
+     * Returns a text element that builds a literal text object out of the given string.
+     *
+     * @return The text element
+     */
+    public static TextElement<String> string() {
+        return Texts::of;
+    }
+
+    /**
+     * Returns a text element that always returns a certain text value.
+     *
+     * @param text The text value to constantly return
+     * @param <T> The type of value the text element accepts
+     * @return The text element
+     */
     public static <T> TextElement<T> always(final Text text) {
         return value -> text;
     }
 
+    /**
+     * Returns a text element, given a function that performs the same task.
+     *
+     * @param function The function that returns a text object
+     * @param <T> The type of value the function/text element accepts
+     * @return The text element
+     */
     public static <T> TextElement<T> function(final Function<T, Text> function) {
         return function::apply;
     }
 
-    public static <E> TextElement<Optional<E>> optional(final TextElement<E> singleArg) {
+    /**
+     * Returns a text element that takes in optional values of a certain type, given a text
+     * element that takes in present values of a certain type.
+     *
+     * The returned text element returns an empty text object when given an absent optional.
+     *
+     * @param element A text element that takes in values of type {@link E}
+     * @param <E> The type of values that the text element accepts
+     * @return The text element
+     */
+    public static <E> TextElement<Optional<E>> optional(final TextElement<E> element) {
         return value -> {
             if (value.isPresent()) {
-                return singleArg.create(value.get());
+                return element.create(value.get());
             } else {
                 return Texts.of();
             }
         };
     }
 
-    public static <E> TextElement<Iterator<E>> iterator(final TextElement<E> singleArg, final Text separator) {
+    /**
+     * Returns a text element that takes in an iterator of objects, given a text element that takes
+     * in those individual objects and a separator.
+     *
+     * The returned text object consists of objects created by the given text element, separated
+     * by the given separator.
+     *
+     * @param element A text element that takes in values of type {@link E}
+     * @param separator The separator between objects in the returned text element
+     * @param <E> The type of values of the iterator that the text element accepts
+     * @return The text element
+     */
+    public static <E> TextElement<Iterator<E>> iterator(final TextElement<E> element, final Text separator) {
         return iterator -> {
             TextBuilder builder = Texts.builder();
             boolean first = true;
             while (iterator.hasNext()) {
-                Text next = singleArg.create(iterator.next());
+                Text next = element.create(iterator.next());
                 if (!next.isEmpty()) {
                     if (!first) {
                         builder.append(separator);
@@ -85,66 +148,111 @@ public final class TextElements {
         };
     }
 
-    public static <E> TextElement<Iterator<E>> iterator(final TextElement<E> singleArg) {
-        return iterator(singleArg, DEFAULT_SEPARATOR);
+    /**
+     * Returns a text element that takes an iterator of objects, given a text element that takes in
+     * those individual objects.
+     *
+     * This is a default for {@link #iterator(TextElement, Text)}
+     *
+     * @param element A text element that takes in values of type {@link E}
+     * @param <E> The type of values of the iterator that the text element accepts
+     * @return The text element
+     * @see #iterator(TextElement, Text)
+     */
+    public static <E> TextElement<Iterator<E>> iterator(final TextElement<E> element) {
+        return iterator(element, DEFAULT_SEPARATOR);
     }
 
-    public static <E> TextElement<Iterable<E>> iterable(final TextElement<E> singleArg, final Text separator) {
-        return iterator(singleArg, separator).contramap(Iterable::iterator);
+    /**
+     * Returns a text element that takes in an iterable of objects, given a text element that takes
+     * in those individual objects and a separator.
+     *
+     * The returned text object consists of objects created by the given text element, separated
+     * by the given separator.
+     *
+     * @param element A text element that takes in values of type {@link E}
+     * @param separator The separator between objects in the returned text element
+     * @param <E> The type of values of the iterable that the text element accepts
+     * @return The text element
+     */
+    public static <E> TextElement<Iterable<E>> iterable(final TextElement<E> element, final Text separator) {
+        return iterator(element, separator).contramap(Iterable::iterator);
     }
 
-    public static <E> TextElement<Iterable<E>> iterable(final TextElement<E> singleArg) {
-        return iterable(singleArg, DEFAULT_SEPARATOR);
+    /**
+     * Returns a text element that takes an iterable of objects, given a text element that takes in
+     * those individual objects.
+     *
+     * This is a default for {@link #iterable(TextElement, Text)}
+     *
+     * @param element A text element that takes in values of type {@link E}
+     * @param <E> The type of values of the iterable that the text element accepts
+     * @return The text element
+     * @see #iterable(TextElement, Text)
+     */
+    public static <E> TextElement<Iterable<E>> iterable(final TextElement<E> element) {
+        return iterable(element, DEFAULT_SEPARATOR);
     }
 
-    public static <T> TextElement<T> fallback(final TextElement<T> thatArg, final TextElement<T> fallbackArg) {
+    /**
+     * Returns a text element that tries the first text element first, then the second one if the
+     * first one is empty.
+     *
+     * @param element The first text element to try
+     * @param fallback The fallback text element, only used if the first one returns an empty text
+     * @param <T> The type of values the text element accepts
+     * @return The text element
+     */
+    public static <T> TextElement<T> fallback(final TextElement<T> element, final TextElement<T> fallback) {
         return value -> {
-            Text result = thatArg.create(value);
+            Text result = element.create(value);
             if (result.isEmpty()) {
-                return fallbackArg.create(value);
+                return fallback.create(value);
             } else {
                 return result;
             }
         };
     }
 
-    public static <T> TextElement<T> fallback(final TextElement<T> thatArg, final Text fallback) {
-        return fallback(thatArg, always(fallback));
+    /**
+     * Returns a text element that tries the given text element, then falls back to the given value
+     * if the text element returns an empty text.
+     *
+     * @param element The text element to try
+     * @param fallback The fallback text object
+     * @param <T> The type of values the text element accepts
+     * @return The text element
+     */
+    public static <T> TextElement<T> fallback(final TextElement<T> element, final Text fallback) {
+        return fallback(element, always(fallback));
     }
 
+    /**
+     * Returns a text element that takes in translatable objects and turns them into text.
+     *
+     * @param <T> The type of {@link Translatable}s to take
+     * @return The text element
+     */
     public static <T extends Translatable> TextElement<T> translatable() {
         return Texts::of;
     }
 
-    public static TextElement<Player> playerDisplayName() {
-        return key(Keys.DISPLAY_NAME);
-    }
-
-    public static <C extends CompositeValueStore<?, ?>> TextElement<C> key(
-        final Key<? extends BaseValue<Text>> key) {
-        return value -> value.get(key).orElse(Texts.of());
-    }
-
     /**
+     * Returns a text element that tries to access the given key on a value store, and apply it to
+     * the given text element, returning the empty text if that key does not exist.
      *
-     * Example:
-     *
-     * <code>
-     *     TextElements.collectionKey(Keys.SIGN_LINES, iterable(identity()));
-     * </code>
-     *
-     * @param key
-     * @param join
-     * @param <C>
-     * @param <L>
-     * @return
+     * @param key The key to lookup on a value store
+     * @param element The text element to
+     * @param <C> The type of value store
+     * @return The text element
+     * @see #key(Key)
      */
-    public static <C extends CompositeValueStore<?, ?>, L extends Collection<Text>> TextElement<C> collectionKey(
-        final Key<? extends BaseValue<L>> key, final TextElement<? super L> join) {
+    public static <C extends CompositeValueStore<?, ?>, T> TextElement<C> key(
+        Key<? extends BaseValue<T>> key, TextElement<? super T> element) {
         return value -> {
-            Optional<L> possibleColl = value.get(key);
-            if (possibleColl.isPresent()) {
-                return join.create(possibleColl.get());
+            Optional<T> possible = value.get(key);
+            if (possible.isPresent()) {
+                return element.create(possible.get());
             } else {
                 return Texts.of();
             }
@@ -152,6 +260,65 @@ public final class TextElements {
     }
 
     /**
+     * Returns a text element that tries to access the given key on a value store, returning the
+     * empty text if that key does not exist.
+     *
+     * @param key The key to lookup on a value store
+     * @param <C> The type of value store
+     * @return The text element
+     * @see #key(Key)
+     */
+    public static <C extends CompositeValueStore<?, ?>> TextElement<C> key(
+        Key<? extends BaseValue<Text>> key) {
+        return key(key, identity());
+    }
+
+    /**
+     * Returns a text element that tries to access the given key on a value store, joining the
+     * result into a text object with the given joiner, and returning the empty text if that
+     * key does not exist.
+     *
+     * Example:
+     *
+     * <code>
+     *     TextElements.iterableKey(Keys.SIGN_LINES, iterable(identity()));
+     * </code>
+     *
+     * @param key The key to lookup on a value store
+     * @param joiner A text element that takes a {@code L}
+     * @param <C> The type of value store
+     * @param <T> The type of value that joiner takes
+     * @param <L> The type of collection of text
+     * @return The text element
+     */
+    public static <C extends CompositeValueStore<?, ?>, T, L extends Iterable<? extends T>> TextElement<C> iterableKey(
+        Key<? extends BaseValue<L>> key, final TextElement<? super L> joiner) {
+        return key(key, joiner);
+    }
+
+    static {
+        TextElement<Player> elem = key(Keys.TRADE_OFFERS, iterable(string().contramap(TradeOffer::toString)));
+    }
+
+    /**
+     * Returns a text element that tries to access the given key on a value store, applying the
+     * given element to that object if it exists, and returning the empty text if that
+     * key does not exist.
+     *
+     * @param key The key to use
+     * @param element The text element
+     * @param <C> The type of value store
+     * @param <T> The type of value that element takes
+     * @return The text element
+     */
+    public static <C extends CompositeValueStore<?, ?>, T> TextElement<C> optionalKey(
+        Key<? extends BaseValue<Optional<T>>> key, TextElement<T> element) {
+        return optional(element).contramap(value -> value.get(key).orElse(Optional.empty()));
+    }
+
+    /**
+     * Returns a text element that tries to access the given key on a value store, returning the
+     * empty text if that key does not exist.
      *
      * Example:
      *
@@ -159,20 +326,23 @@ public final class TextElements {
      *     TextElements.optionalKey(Keys.LAST_COMMAND_OUTPUT);
      * </code>
      *
-     * @param key
-     * @param <C>
-     * @return
+     * @param key The key to use
+     * @param <C> The
+     * @return The text element
+     * @see #optionalKey(Key, TextElement)
      */
     public static <C extends CompositeValueStore<?, ?>> TextElement<C> optionalKey(
-        final Key<? extends BaseValue<Optional<Text>>> key) {
-        return value -> {
-            Optional<Text> possibleColl = value.getOrElse(key, Optional.empty());
-            if (possibleColl.isPresent()) {
-                return possibleColl.get();
-            } else {
-                return Texts.of();
-            }
-        };
+        Key<? extends BaseValue<Optional<Text>>> key) {
+        return optionalKey(key, identity());
+    }
+
+    /**
+     * Returns a text element that gets the display name of a player, since this is often used.
+     *
+     * @return The text element
+     */
+    public static TextElement<Player> playerDisplayName() {
+        return key(Keys.DISPLAY_NAME);
     }
 
 }

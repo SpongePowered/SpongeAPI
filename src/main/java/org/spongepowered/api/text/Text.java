@@ -287,7 +287,19 @@ public abstract class Text {
 
         @Override
         public boolean isEmpty() {
-            return content.isEmpty() && children.isEmpty();
+            if (!content.isEmpty()) {
+                return false;
+            }
+
+            if (!children.isEmpty()) {
+                for (Text child: children) {
+                    if (!child.isEmpty()) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         @Override
