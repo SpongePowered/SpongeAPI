@@ -48,7 +48,7 @@ public interface ImmutableFurnaceData extends ImmutableDataManipulator<Immutable
      * with the used fuel item.
      *
      * It is represented by the flame icon in the {@link Furnace}, if the flame is 100% filled the
-     * value is exact this one. So its the maximum of the {@link #passedBurnTime()}.
+     * value is exactly this one. So its the maximum of the {@link #passedBurnTime()}.
      *
      * @return The immutable value for the maximum amount of fuel that can be supplied with the used
      * fuel item
