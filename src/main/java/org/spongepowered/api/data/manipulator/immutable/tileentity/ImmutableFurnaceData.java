@@ -30,32 +30,36 @@ import org.spongepowered.api.data.manipulator.mutable.tileentity.FurnaceData;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 
 /**
- * An {@link ImmutableDataManipulator} representing the {@link Furnace} information such as the .
+ * An {@link ImmutableDataManipulator} representing the {@link Furnace}.
  */
 public interface ImmutableFurnaceData extends ImmutableDataManipulator<ImmutableFurnaceData, FurnaceData> {
 
     /**
      * Gets the {@link ImmutableBoundedValue} for the already passed burn time of the {@link
-     * Furnace}. When the this is equals the {@link #maxBurnTime()} the current used fuel is
-     * depleted.
+     * Furnace}. When the {@link #passedBurnTime()} is equals the {@link #maxBurnTime()}, the
+     * current used fuel is depleted.
      *
      * @return The immutable value for the already passed burn time
      */
     ImmutableBoundedValue<Integer> passedBurnTime();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the time the current fuel in the {@link Furnace}
-     * can burn totally.
+     * Gets the {@link ImmutableBoundedValue} for the maximum amount of fuel that can be supplied
+     * with the used fuel item.
      *
-     * @return The immutable value for the time the current fuel can burn totally.
+     * Its represented by the flame icon in the {@link Furnace}, if the flame is 100% filled the
+     * value is exact this one. So its the maximum of the {@link #passedBurnTime()}.
+     *
+     * @return The immutable value for the maximum amount of fuel that can be supplied with the used
+     * fuel item
      */
     ImmutableBoundedValue<Integer> maxBurnTime();
 
     /**
      * Gets the {@link ImmutableBoundedValue} for the already passed cook time of the {@link
-     * org.spongepowered.api.item.inventory.ItemStack} that cooks in the {@link Furnace}. When the
-     * this is equals the {@link #maxCookTime()} the {@link
-     * org.spongepowered.api.item.inventory.ItemStack} is cooked.
+     * org.spongepowered.api.item.inventory.ItemStack} in the {@link Furnace}. When this is equals
+     * to the {@link #maxCookTime()}, the {@link org.spongepowered.api.item.inventory.ItemStack} is
+     * cooked.
      *
      * @return The immutable value for the already passed cook time
      */

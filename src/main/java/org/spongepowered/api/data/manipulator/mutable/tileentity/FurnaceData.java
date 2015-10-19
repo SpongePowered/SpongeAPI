@@ -36,8 +36,7 @@ public interface FurnaceData extends DataManipulator<FurnaceData, ImmutableFurna
 
     /**
      * Gets the {@link MutableBoundedValue} for the already passed burn time of the {@link Furnace}.
-     * When the {@link #passedBurnTime()} is equals the {@link #maxBurnTime()} the current used fuel
-     * is depleted.
+     * When this is equals to the {@link #maxBurnTime()}, the current used fuel is depleted.
      *
      * @return The value for the already passed burn time
      */
@@ -56,9 +55,9 @@ public interface FurnaceData extends DataManipulator<FurnaceData, ImmutableFurna
 
     /**
      * Gets the {@link MutableBoundedValue} for the already passed cook time of the {@link
-     * org.spongepowered.api.item.inventory.ItemStack} in the {@link Furnace}. When the {@link
-     * #passedCookTime()} is equals the {@link #maxCookTime()} the {@link
-     * org.spongepowered.api.item.inventory.ItemStack} is cooked.
+     * org.spongepowered.api.item.inventory.ItemStack} in the {@link Furnace}. When this is equals
+     * to the {@link #maxCookTime()}, the {@link org.spongepowered.api.item.inventory.ItemStack} is
+     * cooked.
      *
      * @return The value for the already passed cook time
      */
