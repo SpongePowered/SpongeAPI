@@ -29,6 +29,7 @@ import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 import org.spongepowered.api.data.manipulator.mutable.block.AttachedData;
 import org.spongepowered.api.data.manipulator.mutable.block.AxisData;
@@ -494,48 +495,48 @@ public final class Keys {
     public static final Key<Value<InstrumentType>> INSTRUMENT_TYPE = null;
 
     /**
-     * Represents the {@link Key} for representing the {@link BigMushroomType}
-     * of a {@link BlockState}.
+     * Represents the {@link Key} for representing the "in-wall" state of
+     * {@link BlockTypes#FENCE}s.
      *
      * @see InWallData#inWall()
      */
     public static final Key<Value<Boolean>> IN_WALL = null;
 
     /**
-     * Represents the {@link Key} for representing the {@link BigMushroomType}
-     * of a {@link BlockState}.
+     * Represents the {@link Key} for representing the "layer" value of
+     * {@link BlockTypes#SNOW_LAYER} and other possible layered blocks.
      *
      * @see LayeredData#layer()
      */
-    public static final Key<Value<Integer>> LAYER = null;
+    public static final Key<MutableBoundedValue<Integer>> LAYER = null;
 
     /**
-     * Represents the {@link Key} for representing the {@link BigMushroomType}
-     * of a {@link BlockState}.
+     * Represents the {@link Key} for representing the "moisture" state of
+     * {@link BlockTypes#FARMLAND}.
      *
      * @see MoistureData#moisture()
      */
-    public static final Key<Value<Integer>> MOISTURE = null;
+    public static final Key<MutableBoundedValue<Integer>> MOISTURE = null;
 
     /**
-     * Represents the {@link Key} for representing the {@link BigMushroomType}
-     * of a {@link BlockState}.
+     * Represents the {@link Key} for representing the "occupied" state of
+     * {@link BlockTypes#BED}.
      *
      * @see OccupiedData#occupied()
      */
     public static final Key<Value<Boolean>> OCCUPIED = null;
 
     /**
-     * Represents the {@link Key} for representing the {@link BigMushroomType}
-     * of a {@link BlockState}.
+     * Represents the {@link Key} for representing the "open" state of
+     * various door typed blocks.
      *
      * @see OpenData#open()
      */
     public static final Key<Value<Boolean>> OPEN = null;
 
     /**
-     * Represents the {@link Key} for representing the {@link BigMushroomType}
-     * of a {@link BlockState}.
+     * Represents the {@link Key} for representing the {@link PistonType}
+     * of a {@link BlockTypes#PISTON}.
      *
      * @see PistonData#type()
      */

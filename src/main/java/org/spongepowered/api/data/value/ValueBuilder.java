@@ -67,7 +67,7 @@ public interface ValueBuilder {
 
     /**
      * Creates a new {@link ListValue} with the provided {@link Key} and
-     * {@link List} of elements.
+     * {@link List} of elements. The default value will be an empty list.
      *
      * @param key The key for the value
      * @param elements The list of elements
@@ -138,33 +138,13 @@ public interface ValueBuilder {
     <K, V> MapValue<K, V> createMapValue(Key<MapValue<K, V>> key, Map<K, V> map, Map<K, V> defaults);
 
     /**
-     * Creates a {@link MutableBoundedValue} for the provided {@link Key} with the provided
-     * {@link Comparator} and <code>E</code> minimum and maximum values.
+     * Creates a {@link BoundedValueBuilder}
      *
      * @param key The key to the value
-     * @param value The actual value
-     * @param comparator The comparator
-     * @param minimum The minimum limit
-     * @param maximum The maximum limit
      * @param <E> The type of value
      * @return The newly created value
      */
-    <E> MutableBoundedValue<E> createBoundedValue(Key<MutableBoundedValue<E>> key, E value, Comparator<E> comparator, E minimum, E maximum);
-
-    /**
-     * Creates a {@link MutableBoundedValue} for the provided {@link Key} with the provided
-     * {@link Comparator} and <code>E</code> minimum and maximum values.
-     *
-     * @param key The key to the value
-     * @param value The actual value
-     * @param comparator The comparator
-     * @param minimum The minimum limit
-     * @param maximum The maximum limit
-     * @param defaultElement The default value
-     * @param <E> The type of value
-     * @return The newly created value
-     */
-    <E> MutableBoundedValue<E> createBoundedValue(Key<MutableBoundedValue<E>> key, E value, Comparator<E> comparator, E minimum, E maximum, E defaultElement);
+    <E> BoundedValueBuilder<E> createBoundedValueBuilder(Key<MutableBoundedValue<E>> key);
 
     /**
      * Creates an {@link OptionalValue} where even the default value may be
@@ -192,4 +172,70 @@ public interface ValueBuilder {
      */
     <E> OptionalValue<E> createOptionalValue(Key<OptionalValue<E>> key, @Nullable E element, E defaultElement);
 
+    /**
+     * A builder pattern for constructing {@link MutableBoundedValue}s without the hassle of
+     * keeping track of the order of arguments.
+     *
+     * @param <E> The type of element
+     */
+    interface BoundedValueBuilder<E> {
+
+        /**
+         * If <code>E</code> is not {@link Comparable}, a {@link Comparator}
+         * is required. The builder by default will attempt to check if
+         * the type is a {@link Comparable} and delegate to the default
+         * {@link Comparable#compareTo(Object)} for comparisons. In short, the
+         * {@link Comparator} is only required if the element is not
+         * {@link Comparable}, or custom comparisons are required.
+         *
+         * @param comparator The comparator to use
+         * @return This builder, for chaining
+         */
+        BoundedValueBuilder<E> comparator(Comparator<E> comparator);
+
+        /**
+         * Sets the minimum supported value.
+         *
+         * @param min The minimum supported value
+         * @return This builder, for chaining
+         */
+        BoundedValueBuilder<E> minimum(E min);
+
+        /**
+         * Sets the maximum supported value.
+         *
+         * @param max The maximum supported value
+         * @return This builder, for chaining
+         */
+        BoundedValueBuilder<E> maximum(E max);
+
+        /**
+         * Sets the default value. This is required. If no value is set,
+         * the default value transitively sets the value.
+         *
+         * @param defaultValue The defualt value
+         * @return This bulder, for chaining
+         */
+        BoundedValueBuilder<E> defaultValue(E defaultValue);
+
+        /**
+         * Sets the actual value. Though not required, if the value is
+         * different from the {@link #defaultValue(Object)}, it should be
+         * set.
+         *
+         * @param actual The actaul value
+         * @return This builder, for chaining
+         */
+        BoundedValueBuilder<E> actualValue(E actual);
+
+        /**
+         * Builds a new {@link MutableBoundedValue}. The requirements are
+         * that the {@link #minimum(Object)}, {@link #maximum(Object)},
+         * {@link #defaultValue(Object)} are set, and if the <code>E</code> is
+         * not {@link Comparable}, {@link #comparator(Comparator)} is set.
+         *
+         * @return The newly constructed value
+         */
+        MutableBoundedValue<E> build();
+    }
 }
