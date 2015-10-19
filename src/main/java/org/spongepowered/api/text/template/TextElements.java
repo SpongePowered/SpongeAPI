@@ -29,15 +29,12 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.text.translation.Translatable;
 
-import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -280,9 +277,9 @@ public final class TextElements {
      *
      * Example:
      *
-     * <code>
+     * <pre>
      *     TextElements.iterableKey(Keys.SIGN_LINES, iterable(identity()));
-     * </code>
+     * </pre>
      *
      * @param key The key to lookup on a value store
      * @param joiner A text element that takes a {@code L}
@@ -318,9 +315,9 @@ public final class TextElements {
      *
      * Example:
      *
-     * <code>
+     * <pre>
      *     TextElements.optionalKey(Keys.LAST_COMMAND_OUTPUT);
-     * </code>
+     * </pre>
      *
      * @param key The key to use
      * @param <C> The
