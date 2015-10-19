@@ -24,10 +24,10 @@ uploadArchives {
             configuration = configurations.deployerJars
 
             // This is set by the build server when deploying to the repo
-            if (project.hasProperty('deployRepo')) {
-                repository(url: project.deployRepo) {
-                    if (project.hasProperty('deployUsername') && project.hasProperty('deployPassword')) {
-                        authentication(userName: project.deployUsername, password: project.deployPassword)
+            if (project.hasProperty('spongeRepo')) {
+                repository(url: project.spongeRepo) {
+                    if (project.hasProperty('spongeUsername') && project.hasProperty('spongePassword')) {
+                        authentication(userName: project.spongeUsername, password: project.spongePassword)
                     }
                 }
             }
