@@ -44,10 +44,13 @@ public interface FurnaceData extends DataManipulator<FurnaceData, ImmutableFurna
     MutableBoundedValue<Integer> passedBurnTime();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the time the current fuel in the {@link Furnace} can
-     * burn totally.
+     * Gets the {@link MutableBoundedValue} for the maximum amount of fuel that can be supplied with
+     * the used fuel item.
      *
-     * @return The value for the time the current fuel can burn totally.
+     * Its represented by the flame icon in the {@link Furnace}, if the flame is 100% filled the
+     * value is exact this one. So its the maximum of the {@link #passedBurnTime()}.
+     *
+     * @return The value for the maximum amount of fuel that can be supplied with the used fuel item
      */
     MutableBoundedValue<Integer> maxBurnTime();
 
@@ -64,6 +67,9 @@ public interface FurnaceData extends DataManipulator<FurnaceData, ImmutableFurna
     /**
      * Gets the {@link MutableBoundedValue} for the total time the {@link
      * org.spongepowered.api.item.inventory.ItemStack} have to cook until it is cooked.
+     *
+     * Its represented by the arrow icon in the {@link Furnace}, if the arrow is 100% filled the
+     * value is exact this one. So its the maximum of the {@link #passedCookTime()}.
      *
      * @return The value for the time the item have to cook
      */
