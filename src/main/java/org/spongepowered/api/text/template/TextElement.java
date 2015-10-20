@@ -25,10 +25,15 @@
 package org.spongepowered.api.text.template;
 
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.Texts;
 
 import java.util.function.Function;
 
+/**
+ * Represents a wrapped function that can transform a value of type {@link T} into a Text object.
+ *
+ * @param <T>
+ * @see TextElements
+ */
 @FunctionalInterface
 public interface TextElement<T> {
 
@@ -38,16 +43,16 @@ public interface TextElement<T> {
         return value -> create(function.apply(value));
     }
 
-    default TextElement<T> map(Function<Text, Text> function) {
+    default TextElement<T> andThen(Function<Text, Text> function) {
         return value -> function.apply(create(value));
     }
 
-    default TextArg.Named<T> name(String name) {
-        return new TextArg.Named<>(name, this);
+    default TextArgsElement<T> name(String name) {
+        return new TextArgsElement.Named<>(name, this);
     }
 
-    default TextArg.Pos<T> pos(int position) {
-        return new TextArg.Pos<>(position, this);
+    default TextArgsElement<T> pos(int position) {
+        return new TextArgsElement.Pos<>(position, this);
     }
 
 }

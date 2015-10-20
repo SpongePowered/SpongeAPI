@@ -26,11 +26,20 @@ package org.spongepowered.api.text.template;
 
 import org.spongepowered.api.text.Text;
 
-public abstract class TextArg<T> {
+/**
+ * Represents a function that pulls a value out of a {@link TextArgs} object. Pass this in when
+ * creating a {@link TextTemplate} to use that value in the template.
+ *
+ * The only way to construct one of these is through {@link TextElement#name(String)} or
+ * {@link TextElement#pos(int)}.
+ *
+ * @param <T> The type of value to get from text arguments
+ */
+public abstract class TextArgsElement<T> {
 
     protected final TextElement<T> element;
 
-    public TextArg(TextElement<T> element) {
+    public TextArgsElement(TextElement<T> element) {
         this.element = element;
     }
 
@@ -40,7 +49,7 @@ public abstract class TextArg<T> {
 
     public abstract Text lookup(TextArgs args);
 
-    static final class Named<T> extends TextArg<T> {
+    static final class Named<T> extends TextArgsElement<T> {
 
         private final String name;
 
@@ -57,7 +66,7 @@ public abstract class TextArg<T> {
 
     }
 
-    static final class Pos<T> extends TextArg<T> {
+    static final class Pos<T> extends TextArgsElement<T> {
 
         private final int position;
 

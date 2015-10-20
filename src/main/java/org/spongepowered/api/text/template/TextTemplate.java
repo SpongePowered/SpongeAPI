@@ -28,11 +28,11 @@ import org.spongepowered.api.text.Text;
 
 public class TextTemplate {
 
-    public static TextTemplate of(Object... args) {
+    public Text build(TextArgs args) {
         return null;
     }
 
-    public Text build(TextArgs args) {
+    public static TextTemplate of(Object... args) {
         return null;
     }
 
