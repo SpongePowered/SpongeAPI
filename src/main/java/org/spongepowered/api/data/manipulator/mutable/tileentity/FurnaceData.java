@@ -28,7 +28,6 @@ import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableFurnaceData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.entity.Item;
 
 /**
  * Represents the data for a {@link Furnace}.
@@ -36,36 +35,42 @@ import org.spongepowered.api.entity.Item;
 public interface FurnaceData extends DataManipulator<FurnaceData, ImmutableFurnaceData> {
 
     /**
-     * Gets the {@link MutableBoundedValue} for the remaining burn time of the
-     * {@link Furnace}.
+     * Gets the {@link MutableBoundedValue} for the already passed burn time of the {@link Furnace}.
+     * When this is equal to the {@link #maxBurnTime()}, the current used fuel is depleted.
      *
-     * @return The value for the remaining burn time
+     * @return The value for the already passed burn time
      */
-    MutableBoundedValue<Integer> remainingBurnTime();
+    MutableBoundedValue<Integer> passedBurnTime();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the remaining cook time of the
-     * {@link Furnace}.
+     * Gets the {@link MutableBoundedValue} for the maximum amount of fuel that can be supplied with
+     * the used fuel item.
      *
-     * <p>The {@link #remainingCookTime()} is the difference of {@link #maxCookTime()} and
-     * the time the item has already been cooked.</p>
+     * It is represented by the flame icon in the {@link Furnace}, if the flame is 100% filled the
+     * value is exactly this one. So its the maximum of the {@link #passedBurnTime()}.
      *
-     * @return The value for the remaining cook time
+     * @return The value for the maximum amount of fuel that can be supplied with the used fuel item
      */
-    MutableBoundedValue<Integer> remainingCookTime();
+    MutableBoundedValue<Integer> maxBurnTime();
 
     /**
-     * Gets the {@link MutableBoundedValue} for the cook time of the
-     * {@link Item} that should be cooked.
+     * Gets the {@link MutableBoundedValue} for the already passed cook time of the {@link
+     * org.spongepowered.api.item.inventory.ItemStack} in the {@link Furnace}. When this is equal
+     * to the {@link #maxCookTime()}, the {@link org.spongepowered.api.item.inventory.ItemStack} is
+     * cooked.
      *
-     * <p>This is called "maxCookTime" because the client calculates
-     * {@link #remainingCookTime()} from the "maxCookTime" minus the
-     * time the item cooked already.</p>
+     * @return The value for the already passed cook time
+     */
+    MutableBoundedValue<Integer> passedCookTime();
+
+    /**
+     * Gets the {@link MutableBoundedValue} for the total time the {@link
+     * org.spongepowered.api.item.inventory.ItemStack} has to cook until it is cooked.
      *
-     * <p>This is the maximum of {@link #remainingCookTime()}.</p>
+     * It is represented by the arrow icon in the {@link Furnace}, if the arrow is 100% filled the
+     * value is exact this one. So its the maximum of the {@link #passedCookTime()}.
      *
-     * @return The value for the maximum cook time
+     * @return The value for the time the item has to cook
      */
     MutableBoundedValue<Integer> maxCookTime();
-
 }
