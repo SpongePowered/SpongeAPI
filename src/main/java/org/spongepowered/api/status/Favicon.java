@@ -27,9 +27,9 @@ package org.spongepowered.api.status;
 import org.spongepowered.api.GameRegistry;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Path;
 
 /**
  * Represents an icon for the server sent in the {@link StatusResponse}. It can
@@ -37,7 +37,7 @@ import java.net.URL;
  * .
  *
  * @see GameRegistry#loadFavicon(String)
- * @see GameRegistry#loadFavicon(File)
+ * @see GameRegistry#loadFavicon(Path)
  * @see GameRegistry#loadFavicon(URL)
  * @see GameRegistry#loadFavicon(InputStream)
  */

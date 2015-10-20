@@ -84,11 +84,11 @@ import org.spongepowered.api.world.gen.PopulatorFactory;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
@@ -256,14 +256,14 @@ public interface GameRegistry {
     Favicon loadFavicon(String raw) throws IOException;
 
     /**
-     * Loads a favicon from a specified {@link File}.
+     * Loads a favicon from a specified {@link Path}.
      *
-     * @param file The favicon file
+     * @param path The path to the favicon
      * @return The loaded favicon from the file
      * @throws IOException If the favicon couldn't be loaded
      * @throws FileNotFoundException If the file doesn't exist
      */
-    Favicon loadFavicon(File file) throws IOException;
+    Favicon loadFavicon(Path path) throws IOException;
 
     /**
      * Loads a favicon from a specified {@link URL}.

@@ -34,7 +34,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
 
-import java.io.File;
+import java.nio.file.Path;
 
 /**
  * The core accessor of the API. The implementation uses this to pass
@@ -119,7 +119,7 @@ public interface Game {
      * Gets the saves directory where {@link World} data currently resides.
      * @return The directory
      */
-    File getSavesDirectory();
+    Path getSavesDirectory();
 
     /**
      * Gets the current {@link GameState} that this game is currently in.

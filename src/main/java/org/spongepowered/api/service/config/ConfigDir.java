@@ -32,11 +32,12 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.nio.file.Path;
 
 /**
  * Provides an convenient injection for {@link ConfigRoot#getDirectory()}.
  *
- * <p>Use this annotation on a {@link File}. Remember that
+ * <p>Use this annotation on a {@link File} or {@link Path}. Remember that
  * {@link Inject} is also necessary.</p>
  *
  * @see ConfigService For getting configuration without injection
@@ -50,7 +51,7 @@ public @interface ConfigDir {
      * Whether the the shared root for configuration should be used, or instead,
      * the plugin-specific configuration directory.
      *
-     * @see ConfigRoot#getConfigFile() For information on what the shared root is
+     * @see ConfigRoot#getConfigPath() For information on what the shared root is
      *
      * @return True to use a shared root configuration
      */

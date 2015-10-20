@@ -27,7 +27,7 @@ package org.spongepowered.api.service.config;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
 
-import java.io.File;
+import java.nio.file.Path;
 
 /**
  * A configuration root is a representation of where configuration
@@ -39,7 +39,7 @@ import java.io.File;
  * type of configuration root.</p>
  *
  * <p>A default configuration file is provided via both
- * {@link #getConfigFile()} and {@link #getConfig()}, but other or additional
+ * {@link #getConfigPath()} and {@link #getConfig()}, but other or additional
  * configuration files can be stored in the directory returned by
  * {@link #getDirectory()} (as long as it's
  * not the shared configuration folder).</p>
@@ -63,14 +63,14 @@ public interface ConfigRoot {
      * @return A file, which may not yet exist
      * @see DefaultConfig
      */
-    File getConfigFile();
+    Path getConfigPath();
 
     /**
      * Get the configuration file that utilizes the default configuration
      * pathname.
      *
      * @return A configuration object
-     * @see #getConfigFile()
+     * @see #getConfigPath()
      */
     ConfigurationLoader<CommentedConfigurationNode> getConfig();
 
@@ -82,6 +82,6 @@ public interface ConfigRoot {
      *
      * @return A directory
      */
-    File getDirectory();
+    Path getDirectory();
 
 }

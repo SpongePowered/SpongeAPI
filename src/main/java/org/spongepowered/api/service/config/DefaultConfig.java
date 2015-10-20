@@ -33,13 +33,14 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.nio.file.Path;
 
 /**
  * Provides an convenient injection for {@link ConfigRoot#getConfig()} or
- * {@link ConfigRoot#getConfigFile()}.
+ * {@link ConfigRoot#getConfigPath()}.
  *
- * <p>Use this annotation on a {@link File} if you want the pathname to
- * the default configuration. Or instead, use this annotation on a
+ * <p>Use this annotation on a {@link File} or {@link Path} if you want the
+ * pathname to the default configuration. Or instead, use this annotation on a
  * {@link ConfigurationLoader} to get an instance of that. Remember that
  * {@link Inject} is also necessary.</p>
  *
@@ -53,7 +54,7 @@ public @interface DefaultConfig {
     /**
      * Whether the the shared root for configuration should be used.
      *
-     * @see ConfigRoot#getConfigFile() For information on what the shared root is
+     * @see ConfigRoot#getConfigPath() For information on what the shared root is
      *
      * @return True to use a shared root configuration
      */

@@ -56,7 +56,7 @@ public interface ConfigService {
      * configurations.</p>
      *
      * <p>The plugin parameter is used to determine the filename for
-     * {@link ConfigRoot#getConfigFile()}.</p>
+     * {@link ConfigRoot#getConfigPath()}.</p>
      *
      * @param instance The plugin instance
      * @return A shared configuration root
