@@ -28,6 +28,7 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.trait.BlockTrait;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.property.PropertyHolder;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -62,6 +63,12 @@ public interface BlockType extends CatalogType, Translatable, PropertyHolder {
      * @return The default state
      */
     BlockState getDefaultState();
+
+    /**
+     * Return the {@link ItemType} that represents this block.
+     * @return
+     */
+    ItemType getItem();
 
     /**
      * Gets if this BlockType is set to receive random block ticks.
