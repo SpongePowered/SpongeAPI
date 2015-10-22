@@ -66,9 +66,9 @@ public interface BlockType extends CatalogType, Translatable, PropertyHolder {
 
     /**
      * Return the {@link ItemType} that represents this block.
-     * @return
+     * @return The item type or {@link Optional#empty()} otherwise
      */
-    ItemType getItem();
+    Optional<ItemType> getItem();
 
     /**
      * Gets if this BlockType is set to receive random block ticks.
