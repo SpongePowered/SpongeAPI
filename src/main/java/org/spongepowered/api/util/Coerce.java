@@ -402,8 +402,11 @@ public final class Coerce {
             return ((Number) obj).shortValue();
         }
 
-        Short parsed = Short.parseShort(Coerce.sanitiseNumber(obj));
-        return parsed != null ? parsed : (short) 0;
+        try {
+            return Short.parseShort(Coerce.sanitiseNumber(obj));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 
     /**
@@ -449,8 +452,11 @@ public final class Coerce {
             return ((Number) obj).byteValue();
         }
 
-        Byte parsed = Byte.parseByte(Coerce.sanitiseNumber(obj));
-        return parsed != null ? parsed : 0;
+        try {
+            return Byte.parseByte(Coerce.sanitiseNumber(obj));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 
     /**
@@ -496,8 +502,11 @@ public final class Coerce {
             return ((Number) obj).shortValue();
         }
 
-        Long parsed = Long.parseLong(Coerce.sanitiseNumber(obj));
-        return parsed != null ? parsed : 0;
+        try {
+            return Long.parseLong(Coerce.sanitiseNumber(obj));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 
     /**
