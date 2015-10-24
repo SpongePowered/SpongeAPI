@@ -301,47 +301,23 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.action.FishingEvent.Finish}.
+     * {@link org.spongepowered.api.event.action.FishingEvent.HookEntity}.
      * 
      * @param game The game
      * @param cause The cause
      * @param originalFishHook The original fish hook
      * @param fishHook The fish hook
-     * @return A new finish fishing event
-     */
-    public static FishingEvent.Finish createFishingEventFinish(Game game, Cause cause, EntitySnapshot originalFishHook, FishHook fishHook) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("originalFishHook", originalFishHook);
-        values.put("fishHook", fishHook);
-        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Finish.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.action.FishingEvent.Hook}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param originalFishHook The original fish hook
-     * @param fishHook The fish hook
-     * @param originalHookedEntity The original hooked entity
-     * @param hookedEntity The hooked entity
      * @param targetEntity The target entity
-     * @return A new hook fishing event
+     * @return A new hook entity fishing event
      */
-    public static FishingEvent.Hook createFishingEventHook(Game game, Cause cause, EntitySnapshot originalFishHook, FishHook fishHook, EntitySnapshot originalHookedEntity, Optional<Entity> hookedEntity, Entity targetEntity) {
+    public static FishingEvent.HookEntity createFishingEventHookEntity(Game game, Cause cause, EntitySnapshot originalFishHook, FishHook fishHook, Entity targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("originalFishHook", originalFishHook);
         values.put("fishHook", fishHook);
-        values.put("originalHookedEntity", originalHookedEntity);
-        values.put("hookedEntity", hookedEntity);
         values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.Hook.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(FishingEvent.HookEntity.class, values);
     }
 
     /**
@@ -371,8 +347,6 @@ public class SpongeEventFactory {
      * 
      * @param game The game
      * @param cause The cause
-     * @param originalCaughtEntity The original caught entity
-     * @param caughtEntity The caught entity
      * @param originalExperience The original experience
      * @param experience The experience
      * @param originalFishHook The original fish hook
@@ -381,12 +355,10 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new stop fishing event
      */
-    public static FishingEvent.Stop createFishingEventStop(Game game, Cause cause, Optional<EntitySnapshot> originalCaughtEntity, Optional<Entity> caughtEntity, int originalExperience, int experience, EntitySnapshot originalFishHook, FishHook fishHook, Optional<Transaction<ItemStackSnapshot>> itemStackTransaction, Entity targetEntity) {
+    public static FishingEvent.Stop createFishingEventStop(Game game, Cause cause, int originalExperience, int experience, EntitySnapshot originalFishHook, FishHook fishHook, Transaction<ItemStackSnapshot> itemStackTransaction, Entity targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
-        values.put("originalCaughtEntity", originalCaughtEntity);
-        values.put("caughtEntity", caughtEntity);
         values.put("originalExperience", originalExperience);
         values.put("experience", experience);
         values.put("originalFishHook", originalFishHook);
