@@ -38,6 +38,8 @@ import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.format.TextStyles;
 import org.spongepowered.api.text.selector.Selector;
+import org.spongepowered.api.text.template.TextArgsElement;
+import org.spongepowered.api.text.template.TextElement;
 import org.spongepowered.api.text.template.TextElements;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
@@ -56,7 +58,6 @@ public final class Texts {
 
     private static TextFactory factory = null;
     static final Text.Literal EMPTY = new Text.Literal();
-    static final TextFormat EMPTY_FORMAT = new TextFormat();
 
     private Texts() {
     }
@@ -149,7 +150,7 @@ public final class Texts {
      */
     public static Text of(Object... objects) {
         TextBuilder builder = builder();
-        TextFormat format = EMPTY_FORMAT;
+        TextFormat format = TextFormat.empty();
         HoverAction<?> hoverAction = null;
         ClickAction<?> clickAction = null;
         ShiftClickAction<?> shiftClickAction = null;
@@ -169,8 +170,14 @@ public final class Texts {
                 } else if (obj instanceof ShiftClickAction) {
                     shiftClickAction = (ShiftClickAction<?>) obj;
                 } else {
-                    // Unsupported TextAction
+                    throw new IllegalArgumentException("Unsupported type of TextAction supplied to Texts.of");
                 }
+            } else if (obj instanceof TextElement) {
+                throw new IllegalArgumentException("Texts.of does not support taking text elements, " +
+                    "use TextTemplate.of instead");
+            } else if (obj instanceof TextArgsElement) {
+                throw new IllegalArgumentException("Texts.of does not support taking text argument elements, " +
+                    "use TextTemplate.of instead");
             } else {
                 TextBuilder childBuilder;
 

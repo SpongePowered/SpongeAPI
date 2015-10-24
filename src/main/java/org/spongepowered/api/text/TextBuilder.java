@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  */
 public abstract class TextBuilder {
 
-    protected TextFormat format = new TextFormat();
+    protected TextFormat format = TextFormat.empty();
     protected List<Text> children = Lists.newArrayList();
     @Nullable protected ClickAction<?> clickAction;
     @Nullable protected HoverAction<?> hoverAction;

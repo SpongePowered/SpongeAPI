@@ -85,7 +85,7 @@ public abstract class Text {
     };
 
     Text() {
-        this(new TextFormat(), ImmutableList.<Text>of(), null, null, null);
+        this(TextFormat.empty(), ImmutableList.<Text>of(), null, null, null);
     }
 
     /**
