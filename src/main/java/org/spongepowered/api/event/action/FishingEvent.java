@@ -25,15 +25,22 @@
 
 package org.spongepowered.api.event.action;
 
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.Transaction;
+import org.spongepowered.api.data.type.Fish;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
+import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.projectile.FishHook;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.block.CollideBlockEvent;
+import org.spongepowered.api.event.block.TargetBlockEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
 import org.spongepowered.api.event.entity.TargetEntityEvent;
+import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
@@ -61,74 +68,49 @@ public interface FishingEvent extends GameEvent, CauseTracked {
     FishHook getFishHook();
 
     /**
-     * An event where the {@link FishHook} is casted.
+     * An event where the {@link FishHook} is cast.
+     *
+     * <p>This is fired before the {@link FishHook} has been spawned in the world.</p>
      */
     interface Start extends FishingEvent, Cancellable {}
 
     /**
-     * An event where an {@link Entity} is "hooked" by the {@link FishHook}.
+     * Fired when an {@link org.spongepowered.api.entity.Entity} is hooked.
+     *
+     * <p>{@link CollideBlockEvent} is fired when a {@link FishHook}
+     * becomes stuck in a block. This may be called multiple times
+     * before {@link Stop} is fired, such as in the case where
+     * the block the {@link FishHook} is stuck in is broken.</p>
      */
-    interface Hook extends FishingEvent, TargetEntityEvent, Cancellable {
-
-        /**
-         * Gets the original hooked {@link Entity}.
-         *
-         * @return The {@link Entity} snapshot
-         */
-        EntitySnapshot getOriginalHookedEntity();
-
-        /**
-         * Gets the {@link Entity} hooked, if available.
-         *
-         * @return The hooked {@link Entity}, if available
-         */
-        Optional<Entity> getHookedEntity();
-
-        /**
-         * Sets the {@link Entity} hooked, if available.
-         *
-         * @param entity The hooked {@link Entity} to set
-         */
-        void setHookedEntity(@Nullable Entity entity);
-
-    }
+    interface HookEntity extends FishingEvent, TargetEntityEvent, Cancellable {}
 
     /**
      * A specific {@link FishingEvent} where the {@link FishHook} is retracted
      * or "reeled in".
+     *
+     * <p>If the {@link FishHook} was cast into water, an {@link ItemStack} may
+     * be hooken when it is retracted. If the event is not cancelled, Vanilla
+     * will send the @link ItemStackby spawning an {@link Item},
+     * and sending it moving towards the player.
+     *
+     * If the {@link FishHook} has an entity hooked, Vanilla will pull
+     * the hooked entity towards the caster, if the event is not cancelled.</p>
+     *
+     * <p>In Vanilla, {@link Transaction#getOriginal() the original {@link ItemStack}}
+     * will usually be a {@link Fish}, or miscellaneous item.</p>
      */
     interface Stop extends FishingEvent, ChangeEntityExperienceEvent, Cancellable {
 
         /**
          * Gets the {@link Transaction} that is the transaction
-         * involving the {@link ItemStack}, if available. If you wish to
-         * change the itemstack result, use {@link Transaction#setCustom(Object)}
+         * involving the {@link ItemStack}, If you wish to
+         * change the itemstack result, use {@link Transaction#setCustom(DataSerializable)}
          *
-         * @return The itemstack transaction, if available
-         */
-        Optional<Transaction<ItemStackSnapshot>> getItemStackTransaction();
-
-        /**
-         * Gets the original caught {@link Entity} if available.
+         * <p>The special item type {@link ItemTypes#NONE} is used to represent
+         * no item being caught,</p>
          *
-         * @return The {@link Entity} snapshot, if available
+         * @return The itemstack transaction
          */
-        Optional<EntitySnapshot> getOriginalCaughtEntity();
-
-        /**
-         * Gets the {@link Entity} hooked, if available.
-         *
-         * @return The hooked {@link Entity}
-         */
-        Optional<Entity> getCaughtEntity();
-
-        /**
-         * Sets the {@link Entity} hooked, if available.
-         *
-         * @param entity The hooked {@link Entity} to set
-         */
-        void setCaughtEntity(@Nullable Entity entity);
+        Transaction<ItemStackSnapshot> getItemStackTransaction();
     }
-
-    interface Finish extends FishingEvent {}
 }
