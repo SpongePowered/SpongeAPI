@@ -401,20 +401,38 @@ public class MemoryDataView implements DataView {
             if (val.get() instanceof DataView) {
                 ImmutableMap.Builder<String, Object> builder = ImmutableMap.builder();
                 for (Map.Entry<DataQuery, Object> entry : ((DataView) val.get()).getValues(false).entrySet()) {
-                    if (entry.getValue() instanceof Collection) {
-                        builder.put(entry.getKey().asString('.'), ImmutableList.copyOf((Collection) entry.getValue()));
-                    } else if (entry.getValue() instanceof Map) {
-                        builder.put(entry.getKey().asString('.'), ImmutableMap.copyOf((Map) entry.getValue()));
-                    } else {
-                        builder.put(entry.getKey().asString('.'), entry.getValue());
-                    }
+                    builder.put(entry.getKey().asString('.'), ensureMappingOf(entry.getValue()));
                 }
                 return Optional.of(builder.build());
             } else if (val.get() instanceof Map) {
-                return Optional.of((Map<?, ?>) val.get());
+                return Optional.of((Map<?, ?>) ensureMappingOf(val.get()));
             }
         }
         return Optional.empty();
+    }
+
+    private Object ensureMappingOf(Object object) {
+        if (object instanceof DataView) {
+            final ImmutableMap.Builder<String, Object> builder = ImmutableMap.builder();
+            for (Map.Entry<DataQuery, Object> entry : ((DataView) object).getValues(false).entrySet()) {
+                builder.put(entry.getKey().asString('.'), ensureMappingOf(entry.getValue()));
+            }
+            return builder.build();
+        } else if (object instanceof Map) {
+            final ImmutableMap.Builder<Object, Object> builder = ImmutableMap.builder();
+            for (Map.Entry<?, ?> entry : ((Map<?, ?>) object).entrySet()) {
+                builder.put(entry.getKey().toString(), ensureMappingOf(entry.getValue()));
+            }
+            return builder.build();
+        } else if (object instanceof Collection) {
+            final ImmutableList.Builder<Object> builder = ImmutableList.builder();
+            for (Object entry : (Collection) object) {
+                builder.add(ensureMappingOf(entry));
+            }
+            return builder.build();
+        } else {
+            return object;
+        }
     }
 
     private Optional<DataView> getUnsafeView(DataQuery path) {

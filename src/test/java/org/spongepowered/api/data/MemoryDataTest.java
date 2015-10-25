@@ -323,9 +323,6 @@ public class MemoryDataTest {
         Map<DataQuery, Object> shallowValues = view.getValues(false);
         assertTrue(shallowValues.entrySet().equals(shallowMap.entrySet()));
 
-        // Since we also support getting deep values, this has the uncommon side effect
-        // of actually having every possible DataQuery created for every possible value
-        // from the top level root node.
         final Map<DataQuery, Object> deepMap = Maps.newLinkedHashMap();
         deepMap.put(of("bar"), 1);
         deepMap.put(of("foo", "bar", "foo"), "foo");

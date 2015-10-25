@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.translator;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.spongepowered.api.data.DataQuery.of;
 
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.SimpleConfigurationNode;
@@ -58,10 +59,7 @@ public final class ConfigurateTranslator implements DataTranslator<Configuration
     private static void populateNode(ConfigurationNode node, DataView container) {
         checkNotNull(node, "node");
         checkNotNull(container, "container");
-        Map<DataQuery, Object> values = container.getValues(false);
-        for (Map.Entry<DataQuery, Object> entry : values.entrySet()) {
-            node.getNode(entry.getKey().getParts()).setValue(entry.getValue());
-        }
+        node.setValue(container.getMap(of()).get());
     }
 
     private static DataView translateFromNode(ConfigurationNode node) {
@@ -71,7 +69,7 @@ public final class ConfigurateTranslator implements DataTranslator<Configuration
             if (node.getKey() == null) {
                 translateMapOrList(node, dataContainer);
             } else {
-                dataContainer.set(DataQuery.of('.', node.getKey().toString()), node.getValue());
+                dataContainer.set(of('.', node.getKey().toString()), node.getValue());
             }
         }
         return dataContainer;
@@ -82,10 +80,10 @@ public final class ConfigurateTranslator implements DataTranslator<Configuration
         Object value = node.getValue();
         if (value instanceof Map) {
             for (Map.Entry<Object, Object> entry : ((Map<Object, Object>) value).entrySet()) {
-                container.set(DataQuery.of('.', entry.getKey().toString()), entry.getValue());
+                container.set(of('.', entry.getKey().toString()), entry.getValue());
             }
         } else if (value != null) {
-            container.set(DataQuery.of(node.getKey().toString()), value);
+            container.set(of(node.getKey().toString()), value);
         }
 
     }
