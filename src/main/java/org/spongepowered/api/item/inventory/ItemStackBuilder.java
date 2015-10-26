@@ -24,6 +24,15 @@
  */
 package org.spongepowered.api.item.inventory;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.item.ItemType;
@@ -76,6 +85,52 @@ public interface ItemStackBuilder {
      * @return This builder, for chaining
      */
     ItemStackBuilder fromItemStack(ItemStack itemStack);
+
+    /**
+     * Sets the data to recreate a {@link BlockState} in a held {@link ItemStack}
+     * state.
+     *
+     * @param blockState The block state to use
+     * @return This builder, for chaining
+     */
+    default ItemStackBuilder fromBlockState(BlockState blockState) {
+        checkNotNull(blockState);
+        final BlockType blockType= blockState.getType();
+        checkArgument(blockType.getItem().isPresent(), "Missing valid ItemType for BlockType: " + blockType.getId());
+        itemType(blockType.getItem().get());
+        blockState.getContainers().forEach(this::itemData);
+        return this;
+    }
+
+    /**
+     * Attempts to reconstruct the builder with all of the data from
+     * {@link ItemStack#toContainer()} including all custom data.
+     *
+     * @param container The container to deserialize
+     * @return This bulder, for chaining
+     */
+    ItemStackBuilder fromContainer(DataView container);
+
+    /**
+     * Reconstructs this builder to use the {@link ItemStackSnapshot}
+     * for all the values and data it may contain.
+     *
+     * @param snapshot The snapshot
+     * @return This builder, for chaining
+     */
+    default ItemStackBuilder fromSnapshot(ItemStackSnapshot snapshot) {
+        return fromItemStack(snapshot.createStack());
+    }
+
+    /**
+     * Attempts to reconstruct a {@link BlockSnapshot} including all data
+     * and {@link TileEntity} related data if necessary for creating an
+     * {@link ItemStack} representation.
+     *
+     * @param blockSnapshot The snapshot to use
+     * @return This builder, for chaining
+     */
+    ItemStackBuilder fromBlockSnapshot(BlockSnapshot blockSnapshot);
 
     /**
      * Resets all information regarding the item stack to be created.
