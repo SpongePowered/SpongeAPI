@@ -31,6 +31,9 @@ import org.spongepowered.api.util.command.source.ConsoleSource;
 
 import javax.annotation.Nullable;
 
+/**
+ * Utility class for creating and configuring timings.
+ */
 public final class Timings {
 
     private static final TimingsFactory factory = null;
@@ -52,9 +55,9 @@ public final class Timings {
     /**
      * Gets a handler that has a groupHandler timer handler. Parent timers
      * should not have their start/stop methods called directly, as the children
-     * will call it for you. <p/> Parent Timers are used to group multiple
-     * subsections togethers and get a summary of them combined Parent Handler
-     * can not be changed after first call
+     * will call it for you. <p/> Parent timers are used to group multiple
+     * subsections together and get a summary of them combined parent handler
+     * can not be changed after first call.
      *
      * @param plugin The plugin instance to own the timing
      * @param name Name of the timing
@@ -66,38 +69,49 @@ public final class Timings {
     }
 
     /**
-     * Returns a Timing object after starting it, useful for Java7
+     * Returns a {@link Timing} object after starting it, useful for
      * try-with-resources.</p>
      *
-     * <code> try (Timing ignored = Timings.ofStart(plugin, someName)) { //
-     * timed section } </code>
+     * <pre>
+     * try (Timing ignored = Timings.ofStart(plugin, someName)) {
+     *     // timed section
+     * }
+     * </pre>
      *
-     * @param plugin Plugin to own the Timing
-     * @param name Name of Timing
-     * @return Timing Handler
+     * @param plugin Plugin to own the timing
+     * @param name Name of timing
+     * @return A {@link Timing} instance
      */
     public static Timing ofStart(Object plugin, String name) {
-        return factory.ofStart(checkNotNull(plugin, "plugin"), checkNotNull(name, "name"), null);
+        Timing timing = of(plugin, name);
+        timing.startTimingIfSync();
+        return timing;
     }
 
     /**
-     * Returns a Timing object after starting it, useful for Java7
+     * Returns a {@link Timing} object after starting it, useful for
      * try-with-resources.</p>
      *
-     * <code> try (Timing ignored = Timings.ofStart(plugin, someName,
-     * groupHandler)) { // timed section } </code>
+     * <pre>
+     * try (Timing ignored = Timings.ofStart(plugin, someName,
+     *         groupHandler)) {
+     *     // timed section
+     * }
+     * </pre>
      *
-     * @param plugin Plugin to own the Timing
-     * @param name Name of Timing
-     * @param groupHandler Parent handler to mirror .start/stop calls to
-     * @return Timing Handler
+     * @param plugin Plugin to own the timing
+     * @param name Name of timing
+     * @param groupHandler Parent handler to mirror start/stop calls to
+     * @return A {@link Timing} instance
      */
     public static Timing ofStart(Object plugin, String name, Timing groupHandler) {
-        return factory.ofStart(checkNotNull(plugin, "plugin"), checkNotNull(name, "name"), checkNotNull(groupHandler, "groupHandler"));
+        Timing timing = of(plugin, name, groupHandler);
+        timing.startTimingIfSync();
+        return timing;
     }
 
     /**
-     * Gets whether or not the Sponge Timings system is enabled
+     * Gets whether or not the timings system is enabled.
      *
      * @return Enabled or not
      */
@@ -106,8 +120,8 @@ public final class Timings {
     }
 
     /**
-     * Sets whether or not the Spigot Timings system should be enabled <p/>
-     * Calling this will reset timing data.
+     * Sets whether or not the timings system should be enabled. <p/> Calling
+     * this will reset timing data.
      *
      * @param enabled Should timings be reported
      */
@@ -116,8 +130,8 @@ public final class Timings {
     }
 
     /**
-     * Gets whether or not the Verbose level of timings is enabled. <p/> When
-     * Verbose is disabled, high-frequency timings will not be available
+     * Gets whether or not the verbose level of timings is enabled. <p/> When
+     * verbose is disabled, high-frequency timings will not be available.
      *
      * @return Enabled or not
      */
@@ -126,8 +140,8 @@ public final class Timings {
     }
 
     /**
-     * Sets whether or not the Timings should monitor at Verbose level. <p/>
-     * When Verbose is disabled, high-frequency timings will not be available.
+     * Sets whether or not the timings should monitor at verbose level. <p/>
+     * When verbose is disabled, high-frequency timings will not be available.
      * Calling this will reset timing data.
      *
      * @param enabled Should high-frequency timings be reported
@@ -137,8 +151,7 @@ public final class Timings {
     }
 
     /**
-     * Gets the interval between Timing History report generation. <p/> Defaults
-     * to 5 minutes (6000 ticks)
+     * Gets the interval between timing history report generation.
      *
      * @return Interval in ticks
      */
@@ -147,10 +160,9 @@ public final class Timings {
     }
 
     /**
-     * Sets the interval between Timing History report generations. <p/>
-     * Defaults to 5 minutes (6000 ticks)
+     * Sets the interval between timing history report generations.
      *
-     * This will recheck your history length, so lowering this value will lower
+     * This will re-check your history length, so lowering this value will lower
      * your history length if you need more than 60 history windows.
      *
      * @param interval Interval in ticks
@@ -160,25 +172,21 @@ public final class Timings {
     }
 
     /**
-     * Gets how long in ticks Timings history is kept for the server.
+     * Gets how long in ticks timings history is kept for the server.
      *
-     * Defaults to 1 hour (72000 ticks)
-     *
-     * @return Duration in Ticks
+     * @return Duration in ticks
      */
     public static int getHistoryLength() {
         return factory.getHistoryLength();
     }
 
     /**
-     * Sets how long Timing History reports are kept for the server.
-     *
-     * Defaults to 1 hours(72000 ticks)
+     * Sets how long timing history reports are kept for the server.
      *
      * This value is capped at a maximum of getHistoryInterval() *
-     * MAX_HISTORY_FRAMES (12)
+     * MAX_HISTORY_FRAMES (12).
      *
-     * Will not reset Timing Data but may truncate old history if the new length
+     * Will not reset timing data but may truncate old history if the new length
      * is less than old length.
      *
      * @param length Duration in ticks
@@ -188,21 +196,21 @@ public final class Timings {
     }
 
     /**
-     * Resets all Timing Data
+     * Resets all timing data.
      */
     public static void reset() {
         factory.reset();
     }
 
     /**
-     * Generates a report and sends it to the specified command sender.
+     * Generates a report and sends it to the specified command source.
      *
-     * If sender is null, {@link ConsoleSource} will be used.
+     * If source is null, the {@link ConsoleSource} will be used.
      *
-     * @param sender
+     * @param source The source to show the report to
      */
-    public static void generateReport(@Nullable CommandSource sender) {
-        factory.generateReport(sender);
+    public static void generateReport(@Nullable CommandSource source) {
+        factory.generateReport(source);
     }
 
 }

@@ -26,30 +26,89 @@ package co.aikar.timings;
 
 import org.spongepowered.api.util.command.CommandSource;
 
+import javax.annotation.Nullable;
+
+/**
+ * A factory for the required implementation of {@link Timings}.
+ */
 public interface TimingsFactory {
 
-    Timing of(Object plugin, String name, Timing groupHandler);
+    /**
+     * Gets or creates a timing instance for the plugin with the given name.
+     *
+     * @param plugin Plugin owning the timing
+     * @param name Name of the timing
+     * @param groupHandler The handler, can be null for no parent
+     * @return A timing instance
+     */
+    Timing of(Object plugin, String name, @Nullable Timing groupHandler);
 
-    Timing ofStart(Object plugin, String name, Timing groupHandler);
-
+    /**
+     * Gets whether the timing system is enabled.
+     *
+     * @return Whether enabled
+     */
     boolean isTimingsEnabled();
 
+    /**
+     * Sets whether the timing system is enabled.
+     *
+     * @param enabled Is enabled or not
+     */
     void setTimingsEnabled(boolean enabled);
 
+    /**
+     * Gets whether verbose mode is enabled.
+     *
+     * @return Whether verbose mode is enabled
+     */
     boolean isVerboseTimingsEnabled();
 
+    /**
+     * Sets whether verbose mode is enabled.
+     *
+     * @param enabled Is enabled
+     */
     void setVerboseTimingsEnabled(boolean enabled);
 
+    /**
+     * Gets the history interval.
+     *
+     * @return The history interval in ticks
+     */
     int getHistoryInterval();
 
+    /**
+     * Sets the history interval.
+     *
+     * @param interval The interval in ticks
+     */
     void setHistoryInterval(int interval);
 
+    /**
+     * Gets the history length.
+     *
+     * @return History length
+     */
     int getHistoryLength();
 
+    /**
+     * Sets the history length.
+     *
+     * @param length History length
+     */
     void setHistoryLength(int length);
 
+    /**
+     * Resets the timing data.
+     */
     void reset();
 
-    void generateReport(CommandSource sender);
+    /**
+     * Generates a report and sends to the given source.
+     *
+     * @param source Source to send to, null for console source
+     */
+    void generateReport(@Nullable CommandSource source);
 
 }

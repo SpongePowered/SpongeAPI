@@ -25,35 +25,34 @@
 package co.aikar.timings;
 
 /**
- * Provides an ability to time sections of code within the Minecraft Server
+ * Provides an ability to time sections of code within the server.
  */
 public interface Timing extends AutoCloseable {
 
     /**
-     * Starts timing the execution until {@link #stopTiming()} is called.
+     * Starts timing the execution until {@link #stopTiming} is called.
      */
     void startTiming();
 
     /**
      * Stops timing and records the data. Propagates the data up to group
-     * handlers. <p/> Will automatically be called when this Timing is used with
-     * try-with-resources
+     * handlers. <p/> Will automatically be called when this timing is used with
+     * try-with-resources.
      */
     void stopTiming();
 
     /**
-     * Starts timing the execution until {@link #stopTiming()} is called.
-     *
-     * But only if we are on the primary thread.
+     * Starts timing the execution until {@link #stopTiming} is called only if
+     * called from the main server thread.
      */
     void startTimingIfSync();
 
     /**
      * Stops timing and records the data. Propagates the data up to group
-     * handlers. <p/> Will automatically be called when this Timing is used with
-     * try-with-resources
+     * handlers. <p/> Will automatically be called when this timing is used with
+     * try-with-resources.
      *
-     * But only if we are on the primary thread.
+     * But only if called from the main server thread.
      */
     void stopTimingIfSync();
 
@@ -61,5 +60,8 @@ public interface Timing extends AutoCloseable {
      * Stops timing and disregards current timing data.
      */
     void abort();
+
+    @Override
+    void close();
 
 }
