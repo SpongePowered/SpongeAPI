@@ -34,6 +34,7 @@ import com.flowpowered.math.vector.Vector3i;
 import com.flowpowered.math.vector.Vector4d;
 import com.google.common.base.Preconditions;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 /**
@@ -369,7 +370,8 @@ public class DiscreteTransform3 {
      */
     public static Optional<DiscreteTransform3> of(Matrix4d matrix) {
         for (int i = 0; i < 4; i++) {
-            if (MathUtil.sumValues(matrix.getRow(i)) % 1 == 0) {
+            double sumRow = Arrays.stream(matrix.getRow(i).toArray()).sum();
+            if (Math.rint(sumRow) != sumRow) {
                 return Optional.empty();
             }
         }

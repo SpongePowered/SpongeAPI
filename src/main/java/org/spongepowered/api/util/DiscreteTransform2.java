@@ -32,6 +32,7 @@ import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Preconditions;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 /**
@@ -322,7 +323,8 @@ public class DiscreteTransform2 {
      */
     public static Optional<DiscreteTransform2> of(Matrix3d matrix) {
         for (int i = 0; i < 3; i++) {
-            if (MathUtil.sumValues(matrix.getRow(i)) % 1 == 0) {
+            double sumRow = Arrays.stream(matrix.getRow(i).toArray()).sum();
+            if (Math.rint(sumRow) != sumRow) {
                 return Optional.empty();
             }
         }
