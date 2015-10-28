@@ -295,7 +295,7 @@ public final class Keys {
     public static final Key<ListValue<ItemEnchantment>> STORED_ENCHANTMENTS = null;
     public static final Key<Value<DyeColor>> BANNER_BASE_COLOR = null;
     public static final Key<PatternListValue> BANNER_PATTERNS = null;
-    public static final Key<Value<Integer>> REMAINING_BREW_TIME = null;
+    public static final Key<MutableBoundedValue<Integer>> REMAINING_BREW_TIME = null;
     public static final Key<Value<Integer>> COOLDOWN = null;
     public static final Key<MutableBoundedValue<Integer>> PASSED_BURN_TIME = null;
     public static final Key<MutableBoundedValue<Integer>> MAX_BURN_TIME = null;
