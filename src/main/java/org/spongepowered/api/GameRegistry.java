@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.attribute.AttributeBuilder;
-import org.spongepowered.api.attribute.AttributeCalculator;
-import org.spongepowered.api.attribute.AttributeModifierBuilder;
 import org.spongepowered.api.block.BlockSnapshotBuilder;
 import org.spongepowered.api.block.BlockStateBuilder;
 import org.spongepowered.api.block.BlockType;
@@ -141,7 +138,6 @@ public interface GameRegistry {
 
     /**
      * Gets a builder of the desired class type, examples may include:
-     * {@link AttributeBuilder},
      * {@link FireworkEffectBuilder}, etc.
      *
      * @param builderClass The class of the builder
@@ -271,27 +267,6 @@ public interface GameRegistry {
      * @return The newly created achievement builder
      */
     AchievementBuilder createAchievementBuilder();
-
-    /**
-     * Gets a new {@link AttributeModifierBuilder}.
-     *
-     * @return A new AttributeModifierBuilder
-     */
-    AttributeModifierBuilder createAttributeModifierBuilder();
-
-    /**
-     * Gets the {@link AttributeCalculator}.
-     *
-     * @return The {@link AttributeCalculator}
-     */
-    AttributeCalculator getAttributeCalculator();
-
-    /**
-     * Gets a new {@link AttributeBuilder}.
-     *
-     * @return A new AttributeBuilder
-     */
-    AttributeBuilder createAttributeBuilder();
 
     /**
      * Gets a new {@link WorldBuilder} for creating {@link World}s or

@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.entity;
 
 import com.google.common.collect.ImmutableMap;
-import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.block.tileentity.carrier.Dispenser;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.monster.Skeleton;
@@ -88,7 +87,7 @@ import java.util.function.Function;
  * is modified or added onto after various unknown methods are called or
  * processed on the damage. Optimally, these modifiers can be traced to a
  * particular object, be it an {@link ItemStack}, {@link Difficulty}, or
- * simply an {@link Attribute}. The interesting part is that these "modifiers"
+ * simply an an attribute. The interesting part is that these "modifiers"
  * do not just define a static value to add to the "base" damage, they
  * are usually a loose form of a {@link Function} that are applied to
  * the "base" damage. Given that {@link Cause} has a unique capability of

@@ -24,11 +24,9 @@
  */
 package org.spongepowered.api.data.manipulator.catalog;
 
-import org.spongepowered.api.attribute.AttributeModifier;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.tileentity.EnchantmentTable;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.AttributeData;
 import org.spongepowered.api.data.manipulator.mutable.ColoredData;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.DyeableData;
@@ -73,11 +71,6 @@ import java.awt.Color;
  */
 public final class CatalogItemData {
 
-    /**
-     * Signifies that an item contains {@link AttributeModifier}s. The modifiers
-     * may affect any entity that is "holding" the owning item.
-     */
-    public static final Class<AttributeData> ATTRIBUTE_DATA = AttributeData.class;
     /**
      * Represents the {@link BlockState} that the item is representing.
      */

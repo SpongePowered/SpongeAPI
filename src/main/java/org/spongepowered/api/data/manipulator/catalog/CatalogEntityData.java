@@ -24,10 +24,8 @@
  */
 package org.spongepowered.api.data.manipulator.catalog;
 
-import org.spongepowered.api.attribute.Attribute;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.AttributeData;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.DyeableData;
 import org.spongepowered.api.data.manipulator.mutable.FireworkData;
@@ -188,11 +186,7 @@ public final class CatalogEntityData {
      * displayed. It is applicable for {@link Painting} entities.
      */
     public static final Class<ArtData> ART_DATA = ArtData.class;
-    /**
-     * The {@link AttributeData} for many entities signifying various
-     * {@link Attribute}s applied and manipulated.
-     */
-    public static final Class<AttributeData> ATTRIBUTE_DATA = AttributeData.class;
+
     /**
      * The {@link BanData} mainly for {@link User}s and their {@link Ban}s.
      */

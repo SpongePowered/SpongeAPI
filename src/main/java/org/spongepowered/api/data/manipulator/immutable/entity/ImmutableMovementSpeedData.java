@@ -25,7 +25,6 @@
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.AttributeData;
 import org.spongepowered.api.data.manipulator.mutable.entity.MovementSpeedData;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.entity.Entity;
@@ -33,8 +32,7 @@ import org.spongepowered.api.entity.living.player.Player;
 
 /**
  * A {@link ImmutableDataManipulator} that handles the various movement
- * "speeds" that usually a {@link Player} can have. For other {@link Entity}
- * instances, this is usually handled through {@link AttributeData}.
+ * "speeds" that usually a {@link Player} can have.
  */
 public interface ImmutableMovementSpeedData extends ImmutableDataManipulator<ImmutableMovementSpeedData, MovementSpeedData> {
 

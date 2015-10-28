@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.attribute.Attribute;
-import org.spongepowered.api.attribute.Operation;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.tileentity.TileEntityType;
 import org.spongepowered.api.data.type.Art;
@@ -104,7 +102,6 @@ public final class CatalogTypes {
 
     public static final Class<Achievement> ACHIEVEMENT = Achievement.class;
     public static final Class<Art> ART = Art.class;
-    public static final Class<Attribute> ATTRIBUTE = Attribute.class;
     public static final Class<BannerPatternShape> BANNER_PATTERN_SHAPE = BannerPatternShape.class;
     public static final Class<BigMushroomType> BIG_MUSHROOM_TYPE = BigMushroomType.class;
     public static final Class<BiomeType> BIOME_TYPE = BiomeType.class;
@@ -140,7 +137,6 @@ public final class CatalogTypes {
     public static final Class<ItemType> ITEM_TYPE = ItemType.class;
     public static final Class<ObjectiveDisplayMode> OBJECTIVE_DISPLAY_MODE = ObjectiveDisplayMode.class;
     public static final Class<OcelotType> OCELOT_TYPE = OcelotType.class;
-    public static final Class<Operation> OPERATION = Operation.class;
     public static final Class<ParticleType> PARTICLE_TYPE = ParticleType.class;
     public static final Class<PistonType> PISTON_TYPE = PistonType.class;
     public static final Class<PlantType> PLANT_TYPE = PlantType.class;
