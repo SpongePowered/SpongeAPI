@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.command;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.action.MessageEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.sink.MessageSink;
@@ -58,7 +59,7 @@ public interface MessageSinkEvent extends MessageEvent {
     /**
      * Fired when the {@link Text} being sent to a {@link MessageSink} was due to chatting.
      */
-    interface Chat extends MessageSinkEvent {
+    interface Chat extends MessageSinkEvent, Cancellable {
 
         /**
          * Gets the 'raw' chat message.

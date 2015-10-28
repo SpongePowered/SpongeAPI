@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.text.Text;
@@ -33,7 +32,7 @@ import org.spongepowered.api.util.command.CommandSource;
 /**
  * Describes events when a {@link CommandSource} sends a {@link Text} message.
  */
-public interface MessageEvent extends GameEvent, Cancellable, CauseTracked {
+public interface MessageEvent extends GameEvent, CauseTracked {
 
     /**
      * Gets the {@link Text} message created by the {@link CommandSource} before
