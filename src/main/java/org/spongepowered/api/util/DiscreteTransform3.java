@@ -183,6 +183,30 @@ public class DiscreteTransform3 {
     }
 
     /**
+     * Returns a transform that is the composition of this transform and the given transform.
+     *
+     * The result will apply this transformation after the given one.
+     *
+     * @param that The transform to compose with
+     * @return The new composed transform
+     */
+    public DiscreteTransform3 compose(DiscreteTransform3 that) {
+        return new DiscreteTransform3(this.matrix.mul(that.matrix));
+    }
+
+    /**
+     * Returns a transform that is the composition of the given transform with this transform.
+     *
+     * The result will apply the given transformation after this one.
+     *
+     * @param that The transform to compose with
+     * @return The new composed transform
+     */
+    public DiscreteTransform3 andThen(DiscreteTransform3 that) {
+        return that.compose(this);
+    }
+
+    /**
      * Adds a translation to this transform and returns
      * it as a new transform.
      *
@@ -332,6 +356,16 @@ public class DiscreteTransform3 {
      */
     public DiscreteTransform3 withTransformation(DiscreteTransform3 transform) {
         return new DiscreteTransform3(transform.getMatrix().mul(getMatrix()));
+    }
+
+    /**
+     * Returns a new transform from the given transformation matrix.
+     *
+     * @param matrix The matrix to use for the transform
+     * @return The new transform
+     */
+    public static DiscreteTransform3 of(Matrix4d matrix) {
+        return new DiscreteTransform3(matrix);
     }
 
     /**
