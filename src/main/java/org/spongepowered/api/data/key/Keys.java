@@ -75,6 +75,7 @@ import org.spongepowered.api.data.manipulator.mutable.block.SuspendedData;
 import org.spongepowered.api.data.manipulator.mutable.block.TreeData;
 import org.spongepowered.api.data.manipulator.mutable.block.WallData;
 import org.spongepowered.api.data.manipulator.mutable.block.WireAttachmentData;
+import org.spongepowered.api.data.manipulator.mutable.entity.FallDistanceData;
 import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.data.type.Art;
 import org.spongepowered.api.data.type.BigMushroomType;
@@ -454,6 +455,14 @@ public final class Keys {
      * @see ExtendedData#extended()
      */
     public static final Key<Value<Boolean>> EXTENDED = null;
+
+    /**
+     * Represents the {@link Key} for representing the distance an entity has
+     * fallen.
+     *
+     * @see FallDistanceData#fallDistance()
+     */
+    public static final Key<MutableBoundedValue<Float>> FALL_DISTANCE = null;
 
     /**
      * Represents the {@link Key} for representing the {@link BigMushroomType}
