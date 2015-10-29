@@ -462,7 +462,7 @@ public final class Keys {
      *
      * @see FallDistanceData#fallDistance()
      */
-    public static final Key<Value<Integer>> FALL_DISTANCE = null;
+    public static final Key<MutableBoundedValue<Float>> FALL_DISTANCE = null;
 
     /**
      * Represents the {@link Key} for representing the {@link BigMushroomType}

@@ -2,6 +2,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.FallDistanceData;
+import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
 /**
@@ -15,6 +16,6 @@ public interface ImmutableFallDistanceData extends ImmutableDataManipulator<Immu
      * Gets the {@link ImmutableValue} for the current fall distance.
      * @return The value for the fall distance
      */
-    ImmutableValue<Integer> fallDistance();
+    ImmutableBoundedValue<Float> fallDistance();
 
 }
