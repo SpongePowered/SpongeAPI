@@ -117,7 +117,6 @@ import org.spongepowered.api.data.type.StoneType;
 import org.spongepowered.api.data.type.TreeType;
 import org.spongepowered.api.data.type.WallType;
 import org.spongepowered.api.data.type.WireAttachmentType;
-import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
@@ -157,7 +156,7 @@ import java.util.UUID;
 public final class Keys {
 
     public static final Key<Value<String>> COMMAND = null;
-    public static final Key<Value<Integer>> SUCCESS_COUNT = null;
+    public static final Key<MutableBoundedValue<Integer>> SUCCESS_COUNT = null;
     public static final Key<Value<Boolean>> TRACKS_OUTPUT = null;
     public static final Key<OptionalValue<Text>> LAST_COMMAND_OUTPUT = null;
     public static final Key<Value<Color>> COLOR = null;
@@ -166,7 +165,7 @@ public final class Keys {
     public static final Key<Value<Text>> DISPLAY_NAME = null;
     public static final Key<Value<Boolean>> SHOWS_DISPLAY_NAME = null;
     public static final Key<Value<DyeColor>> DYE_COLOR = null;
-    public static final Key<BoundedValue<Integer>> FIREWORK_FLIGHT_MODIFIER = null;
+    public static final Key<MutableBoundedValue<Integer>> FIREWORK_FLIGHT_MODIFIER = null;
     public static final Key<ListValue<FireworkEffect>> FIREWORK_EFFECTS = null;
     public static final Key<MutableBoundedValue<Short>> SPAWNER_REMAINING_DELAY = null;
     public static final Key<MutableBoundedValue<Short>> SPAWNER_MINIMUM_DELAY = null;
@@ -223,7 +222,7 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Integer>> EXPERIENCE_LEVEL = null;
     public static final Key<MutableBoundedValue<Integer>> TOTAL_EXPERIENCE = null;
     public static final Key<MutableBoundedValue<Integer>> EXPIRATION_TICKS = null;
-    public static final Key<Value<Integer>> EXPLOSIVE_RADIUS = null;
+    public static final Key<MutableBoundedValue<Integer>> EXPLOSIVE_RADIUS = null;
     public static final Key<MutableBoundedValue<Double>> FALL_DAMAGE_PER_BLOCK = null;
     public static final Key<MutableBoundedValue<Double>> MAX_FALL_DAMAGE = null;
     public static final Key<Value<BlockState>> FALLING_BLOCK_STATE = null;
@@ -246,7 +245,7 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Integer>> FIRE_DAMAGE_DELAY = null;
     public static final Key<Value<Boolean>> INVISIBLE = null;
     public static final Key<SetValue<UUID>> INVISIBLE_TO_PLAYER_IDS = null;
-    public static final Key<Value<Integer>> INVULNERABILITY_TICKS = null;
+    public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY_TICKS = null;
     public static final Key<Value<Date>> FIRST_DATE_PLAYED = null;
     public static final Key<Value<Date>> LAST_DATE_PLAYED = null;
     public static final Key<MutableBoundedValue<Integer>> KNOCKBACK_STRENGTH = null;
@@ -265,8 +264,8 @@ public final class Keys {
     public static final Key<Value<Boolean>> WILL_SHATTER = null;
     public static final Key<Value<Boolean>> IS_SHEARED = null;
     public static final Key<Value<Boolean>> IS_SITTING = null;
-    public static final Key<Value<Float>> BASE_SIZE = null;
-    public static final Key<Value<Float>> HEIGHT = null;
+    public static final Key<MutableBoundedValue<Float>> BASE_SIZE = null;
+    public static final Key<MutableBoundedValue<Float>> HEIGHT = null;
     public static final Key<MutableBoundedValue<Float>> SCALE = null;
     public static final Key<Value<SkeletonType>> SKELETON_TYPE = null;
     public static final Key<Value<UUID>> SKIN_UUID = null;
@@ -297,7 +296,7 @@ public final class Keys {
     public static final Key<Value<DyeColor>> BANNER_BASE_COLOR = null;
     public static final Key<PatternListValue> BANNER_PATTERNS = null;
     public static final Key<MutableBoundedValue<Integer>> REMAINING_BREW_TIME = null;
-    public static final Key<Value<Integer>> COOLDOWN = null;
+    public static final Key<MutableBoundedValue<Integer>> COOLDOWN = null;
     public static final Key<MutableBoundedValue<Integer>> PASSED_BURN_TIME = null;
     public static final Key<MutableBoundedValue<Integer>> MAX_BURN_TIME = null;
     public static final Key<MutableBoundedValue<Integer>> PASSED_COOK_TIME = null;
@@ -305,8 +304,8 @@ public final class Keys {
     public static final Key<Value<String>> LOCK_TOKEN = null;
     public static final Key<Value<NotePitch>> NOTE_PITCH = null;
     public static final Key<Value<Boolean>> CAN_FLY = null;
-    public static final Key<MutableBoundedValue<Double>> WALKING_SPEED = null;
-    public static final Key<MutableBoundedValue<Double>> FLYING_SPEED = null;
+    public static final Key<Value<Double>> WALKING_SPEED = null;
+    public static final Key<Value<Double>> FLYING_SPEED = null;
     public static final Key<SetValue<Achievement>> ACHIEVEMENTS = null;
 
 
@@ -486,7 +485,7 @@ public final class Keys {
      *
      * @see GrowthData#growthStage()
      */
-    public static final Key<Value<Integer>> GROWTH_STAGE = null;
+    public static final Key<MutableBoundedValue<Integer>> GROWTH_STAGE = null;
 
     /**
      * Represents the {@link Key} for representing the {@link Hinge}
