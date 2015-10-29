@@ -322,11 +322,9 @@ public class DiscreteTransform2 {
      * @return The new transform, or {@link Optional#empty()}
      */
     public static Optional<DiscreteTransform2> of(Matrix3d matrix) {
-        for (int i = 0; i < 3; i++) {
-            double sumRow = Arrays.stream(matrix.getRow(i).toArray()).sum();
-            if (Math.rint(sumRow) != sumRow) {
-                return Optional.empty();
-            }
+        if (Arrays.stream(matrix.toArray())
+            .anyMatch(value -> Math.rint(value) != value)) {
+            return Optional.empty();
         }
         return Optional.of(new DiscreteTransform2(matrix));
     }
