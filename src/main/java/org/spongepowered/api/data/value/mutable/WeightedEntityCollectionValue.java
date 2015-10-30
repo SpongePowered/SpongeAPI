@@ -26,25 +26,26 @@ package org.spongepowered.api.data.value.mutable;
 
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.value.immutable.ImmutableWeightedEntityCollectionValue;
+import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.util.weighted.WeightedEntity;
+import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 
 import java.util.Collection;
 
 /**
  * Represents a {@link WeightedCollectionValue} that uses a
- * {@link WeightedEntity} as the element type. This is mainly used to simplify
+ * {@link WeightedSerializableObject} as the element type. This is mainly used to simplify
  * various {@link CollectionValue}s to use the {@link WeightedCollectionValue}.
  */
-public interface WeightedEntityCollectionValue extends WeightedCollectionValue<WeightedEntity, WeightedEntityCollectionValue,
+public interface WeightedEntityCollectionValue extends WeightedCollectionValue<WeightedSerializableObject<EntitySnapshot>, WeightedEntityCollectionValue,
     ImmutableWeightedEntityCollectionValue> {
 
     /**
-     * Adds a new {@link WeightedEntity} with the provided {@link EntityType}
+     * Adds a new {@link WeightedSerializableObject} with the provided {@link EntityType}
      * and a {@link Collection} of {@link DataManipulator}s. The default weight
      * will be set to 1 for the weighted entity.
      *
-     * @param entityType The entity type of the {@link WeightedEntity}
+     * @param entityType The entity type of the {@link WeightedSerializableObject}
      * @param entityData The extra data to provide to the weighted entity
      * @return This value, for chaining
      */

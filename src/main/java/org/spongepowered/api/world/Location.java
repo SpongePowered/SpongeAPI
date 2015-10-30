@@ -26,7 +26,6 @@ package org.spongepowered.api.world;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
-import static org.spongepowered.api.data.DataQuery.of;
 
 import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
@@ -40,10 +39,10 @@ import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
@@ -80,18 +79,6 @@ import javax.annotation.Nullable;
  * @param <E> The type of extent containing this location
  */
 public final class Location<E extends Extent> implements DataHolder {
-
-    // These queries are finalized such that most all are used in a
-    // DataContainer for any location.
-    public static final DataQuery WORLD_NAME = of("WorldName");
-    public static final DataQuery WORLD_ID = of("WorldUuid");
-    public static final DataQuery CHUNK_X = of("ChunkX");
-    public static final DataQuery CHUNK_Y = of("ChunkY");
-    public static final DataQuery CHUNK_Z = of("ChunkZ");
-    public static final DataQuery BLOCK_TYPE = of("BlockType");
-    public static final DataQuery POSITION_X = of("X");
-    public static final DataQuery POSITION_Y = of("Y");
-    public static final DataQuery POSITION_Z = of("Z");
 
     private final WeakReference<E> extent;
     // Lazily computed, either position or blockPosition is set by the constructor
@@ -576,19 +563,19 @@ public final class Location<E extends Extent> implements DataHolder {
     public DataContainer toContainer() {
         final DataContainer container = new MemoryDataContainer();
         if (getExtent() instanceof World) {
-            container.set(WORLD_NAME, ((World) getExtent()).getName());
-            container.set(WORLD_ID, getExtent().getUniqueId().toString());
+            container.set(Queries.WORLD_NAME, ((World) getExtent()).getName());
+            container.set(Queries.WORLD_ID, getExtent().getUniqueId().toString());
         } else if (getExtent() instanceof Chunk) {
-            container.set(CHUNK_X, ((Chunk) getExtent()).getPosition().getX())
-                .set(CHUNK_Y, ((Chunk) getExtent()).getPosition().getY())
-                .set(CHUNK_Z, ((Chunk) getExtent()).getPosition().getZ())
-                .set(WORLD_NAME, ((Chunk) getExtent()).getWorld().getName())
-                .set(WORLD_ID, ((Chunk) getExtent()).getWorld().getUniqueId().toString());
+            container.set(Queries.CHUNK_X, ((Chunk) getExtent()).getPosition().getX())
+                .set(Queries.CHUNK_Y, ((Chunk) getExtent()).getPosition().getY())
+                .set(Queries.CHUNK_Z, ((Chunk) getExtent()).getPosition().getZ())
+                .set(Queries.WORLD_NAME, ((Chunk) getExtent()).getWorld().getName())
+                .set(Queries.WORLD_ID, ((Chunk) getExtent()).getWorld().getUniqueId().toString());
         }
-        container.set(BLOCK_TYPE, this.getExtent().getBlockType(getBlockPosition()).getId())
-            .set(POSITION_X, this.getX())
-            .set(POSITION_Y, this.getY())
-            .set(POSITION_Z, this.getZ());
+        container.set(Queries.BLOCK_TYPE, this.getExtent().getBlockType(getBlockPosition()).getId())
+            .set(Queries.POSITION_X, this.getX())
+            .set(Queries.POSITION_Y, this.getY())
+            .set(Queries.POSITION_Z, this.getZ());
         return container;
     }
 

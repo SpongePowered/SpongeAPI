@@ -26,13 +26,12 @@ package org.spongepowered.api.data.meta;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.data.DataQuery.of;
 
 import com.google.common.base.Objects;
 import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
+import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
 
@@ -42,9 +41,6 @@ import org.spongepowered.api.item.inventory.ItemStack;
  * {@link Enchantment}'s {@link #getLevel()} can never be lower than 0.
  */
 public final class ItemEnchantment implements DataSerializable {
-
-    public static final DataQuery ENCHANTMENT_ID = of("Enchantment");
-    public static final DataQuery LEVEL = of("Level");
 
     private final Enchantment enchantment;
     private final int level;
@@ -83,8 +79,8 @@ public final class ItemEnchantment implements DataSerializable {
     @Override
     public DataContainer toContainer() {
         return new MemoryDataContainer()
-                .set(ENCHANTMENT_ID, this.enchantment.getId())
-                .set(LEVEL, this.level);
+                .set(Queries.ENCHANTMENT_ID, this.enchantment.getId())
+                .set(Queries.LEVEL, this.level);
     }
 
     @Override

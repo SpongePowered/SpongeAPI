@@ -68,7 +68,7 @@ public interface ImmutablePatternListValue extends ImmutableListValue<PatternLay
     ImmutablePatternListValue with(List<PatternLayer> collection);
 
     @Override
-    ImmutablePatternListValue with(PatternLayer... elements);
+    ImmutablePatternListValue withElement(PatternLayer elements);
 
     @Override
     ImmutablePatternListValue withAll(Iterable<PatternLayer> elements);

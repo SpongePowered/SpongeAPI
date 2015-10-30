@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.util;
 
-import static org.spongepowered.api.data.DataQuery.of;
 
 import com.flowpowered.math.GenericMath;
 import com.google.common.base.Objects;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
+import org.spongepowered.api.data.Queries;
 
 import java.util.Random;
 
@@ -173,7 +173,7 @@ public abstract class VariableAmount implements DataSerializable {
         @Override
         public DataContainer toContainer() {
             return new MemoryDataContainer()
-                .set(of("Amount"), this.amount);
+                .set(Queries.VARIABLE_AMOUNT, this.amount);
         }
     }
 
@@ -217,8 +217,8 @@ public abstract class VariableAmount implements DataSerializable {
         @Override
         public DataContainer toContainer() {
             return new MemoryDataContainer()
-                .set(of("Base"), this.base)
-                .set(of("Variance"), this.variance);
+                .set(Queries.VARIABLE_BASE, this.base)
+                .set(Queries.VARIABLE_VARIANCE, this.variance);
         }
     }
 
@@ -274,9 +274,9 @@ public abstract class VariableAmount implements DataSerializable {
         @Override
         public DataContainer toContainer() {
             return new MemoryDataContainer()
-                .set(of("Chance"), this.chance)
-                .set(of("Base"), this.base)
-                .set(of("Variance"), this.inner);
+                .set(Queries.VARIABLE_CHANCE, this.chance)
+                .set(Queries.VARIABLE_BASE, this.base)
+                .set(Queries.VARIABLE_VARIANCE, this.inner);
         }
     }
 

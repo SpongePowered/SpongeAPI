@@ -25,7 +25,6 @@
 package org.spongepowered.api.data;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.data.DataQuery.of;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -33,12 +32,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 public class Transaction<T extends DataSerializable> implements DataSerializable {
-
-    public static final DataQuery TYPE_CLASS = of("TypeClass");
-    public static final DataQuery ORIGINAL = of("Original");
-    public static final DataQuery DEFAULT_REPLACEMENT = of("DefaultReplacement");
-    public static final DataQuery CUSTOM_REPLACEMENT = of("CustomReplacement");
-    public static final DataQuery VALID = of("IsValid");
 
     private final T original;
     private final T defaultReplacement;
@@ -150,12 +143,12 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
     @Override
     public DataContainer toContainer() {
         final DataContainer container = new MemoryDataContainer()
-            .set(TYPE_CLASS, this.original.getClass().getName())
-            .set(ORIGINAL, this.original)
-            .set(DEFAULT_REPLACEMENT, this.defaultReplacement)
-            .set(VALID, this.valid);
+            .set(Queries.TYPE_CLASS, this.original.getClass().getName())
+            .set(Queries.ORIGINAL, this.original)
+            .set(Queries.DEFAULT_REPLACEMENT, this.defaultReplacement)
+            .set(Queries.VALID, this.valid);
         if (this.custom != null) {
-            container.set(CUSTOM_REPLACEMENT, this.custom);
+            container.set(Queries.CUSTOM_REPLACEMENT, this.custom);
         }
         return container;
     }

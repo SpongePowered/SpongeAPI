@@ -24,20 +24,19 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import static org.spongepowered.api.data.DataQuery.of;
-
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
+import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackBuilder;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.VariableAmount;
 
 import java.util.Collection;
@@ -48,45 +47,19 @@ import java.util.Random;
  * Represents an item stack with a range of possible quantities and a numerical
  * weight used for random selection from a collection of weighted types.
  */
-public class WeightedItem extends WeightedObject<ItemType> implements DataSerializable {
+public class WeightedItem extends WeightedSerializableObject<ItemStackSnapshot> implements DataSerializable {
 
-    public static final DataQuery WEIGHTED_ITEM_TYPE = of("ItemType");
-    public static final DataQuery WEIGHTED_ITEM_WEIGHT = of("Weight");
-    public static final DataQuery WEIGHTED_ITEM_DATA = of("Data");
-    public static final DataQuery WEIGHTED_ITEM_QUANTITY = of("Quantity");
-
-    private ImmutableList<ImmutableDataManipulator<?, ?>> additionalProperties;
     private VariableAmount quantity;
 
     /**
-     * Creates a new {@link WeightedEntity} with no additional properties.
+     * Creates a new {@link WeightedItem} with no additional properties.
      * 
      * @param object The entity type
      * @param quantity The item quantity
      * @param weight The weight
      */
-    public WeightedItem(ItemType object, VariableAmount quantity, int weight) {
+    public WeightedItem(ItemStackSnapshot object, VariableAmount quantity, int weight) {
         super(object, weight);
-        this.additionalProperties = ImmutableList.of();
-        this.quantity = quantity;
-    }
-
-    /**
-     * Creates a new {@link WeightedEntity} with the given additional
-     * properties.
-     * 
-     * @param object The entity type
-     * @param quantity The item quantity
-     * @param weight The weight
-     * @param collection The additional properties to apply to the entity
-     */
-    public WeightedItem(ItemType object, VariableAmount quantity, int weight, Collection<? extends DataManipulator<?, ?>> collection) {
-        super(object, weight);
-        ImmutableList.Builder<ImmutableDataManipulator<?, ?>> builder = ImmutableList.builder();
-        for (DataManipulator<?, ?> property : collection) {
-            builder.add(property.asImmutable());
-        }
-        this.additionalProperties = builder.build();
         this.quantity = quantity;
     }
 
@@ -97,15 +70,6 @@ public class WeightedItem extends WeightedObject<ItemType> implements DataSerial
      */
     public VariableAmount getQuantity() {
         return this.quantity;
-    }
-
-    /**
-     * Gets the additional properties to apply to the item.
-     *
-     * @return The additional properties
-     */
-    public List<ImmutableDataManipulator<?, ?>> getAdditionalProperties() {
-        return this.additionalProperties;
     }
 
     /**
@@ -122,18 +86,15 @@ public class WeightedItem extends WeightedObject<ItemType> implements DataSerial
         if (total <= 0) {
             return Lists.newArrayList();
         }
-        ItemType type = get();
-        int max = type.getMaxStackQuantity();
+        ItemStackSnapshot type = get();
+        int max = type.getType().getMaxStackQuantity();
         if (total / max > maxStacks) {
             total = maxStacks * max;
         }
         List<ItemStack> result = Lists.newArrayList();
         for (int i = 0; i < total;) {
-            int n = (i + type.getMaxStackQuantity() > total) ? total - i : type.getMaxStackQuantity();
-            builder.reset().itemType(type).quantity(n);
-            for (ImmutableDataManipulator<?, ?> data : this.additionalProperties) {
-                builder.itemData(data);
-            }
+            int n = (i + type.getType().getMaxStackQuantity() > total) ? total - i : type.getType().getMaxStackQuantity();
+            builder.reset().fromSnapshot(type).quantity(n);
             result.add(builder.build());
             i += n;
         }
@@ -146,7 +107,6 @@ public class WeightedItem extends WeightedObject<ItemType> implements DataSerial
                 .add("object", this.object)
                 .add("weight", this.weight)
                 .add("quantity", this.quantity)
-                .add("additionalProperties", this.additionalProperties)
                 .toString();
     }
 
@@ -165,18 +125,14 @@ public class WeightedItem extends WeightedObject<ItemType> implements DataSerial
         if (!this.quantity.equals(object.quantity)) {
             return false;
         }
-        if (!this.additionalProperties.equals(object.additionalProperties)) {
-            return false;
-        }
         return this.weight == object.weight;
     }
 
     @Override
     public DataContainer toContainer() {
         return new MemoryDataContainer()
-            .set(WEIGHTED_ITEM_TYPE, this.get().getId())
-            .set(WEIGHTED_ITEM_DATA, this.additionalProperties)
-            .set(WEIGHTED_ITEM_WEIGHT, this.weight)
-            .set(WEIGHTED_ITEM_QUANTITY, this.quantity);
+            .set(Queries.WEIGHTED_SERIALIZABLE, this.get())
+            .set(Queries.WEIGHTED_SERIALIZABLE_WEIGHT, this.weight)
+            .set(Queries.WEIGHTED_ITEM_QUANTITY, this.quantity);
     }
 }

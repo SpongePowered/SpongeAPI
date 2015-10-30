@@ -25,9 +25,10 @@
 package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
+import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.util.weighted.WeightedCollection;
-import org.spongepowered.api.util.weighted.WeightedEntity;
 import org.spongepowered.api.util.weighted.WeightedItem;
+import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.world.gen.Populator;
 
 import java.util.Collection;
@@ -173,22 +174,22 @@ public interface Dungeon extends Populator {
         Builder spawnRange(short range);
 
         /**
-         * Defines a number of {@link WeightedEntity}s from which the type
+         * Defines a number of {@link WeightedSerializableObject}s from which the type
          * of each batch will be randomly selected based on the weighting value.
          *
          * @param entities The possible entities
          * @return This builder, for chaining
          */
-        Builder possibleEntities(WeightedEntity... entities);
+        Builder possibleEntities(WeightedSerializableObject<EntitySnapshot>... entities);
 
         /**
-         * Defines a number of {@link WeightedEntity}s from which the type
+         * Defines a number of {@link WeightedSerializableObject}s from which the type
          * of each batch will be randomly selected based on the weighting value.
          *
          * @param entities The possible entities
          * @return This builder, for chaining
          */
-        Builder possibleEntities(Collection<WeightedEntity> entities);
+        Builder possibleEntities(Collection<WeightedSerializableObject<EntitySnapshot>> entities);
 
         /**
          * Defines a number of {@link WeightedItem}s from which items

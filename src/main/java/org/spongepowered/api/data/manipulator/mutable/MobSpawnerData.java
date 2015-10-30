@@ -30,9 +30,10 @@ import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.data.value.mutable.WeightedEntityCollectionValue;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.util.weighted.WeightedEntity;
+import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 
 import java.util.Collection;
 import java.util.Random;
@@ -110,9 +111,9 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
 
     /**
      * Gets the {@link NextEntityToSpawnValue} for the overridden
-     * {@link WeightedEntity} to spawn next. If possible, the next entity to
-     * spawn may be chosen from the already provided
-     * {@link #possibleEntitiesToSpawn()}.
+     * {@link WeightedSerializableObject}{@code <EntitySnapshot>} to spawn
+     * next. If possible, the next entity to spawn may be chosen from the
+     * already provided {@link #possibleEntitiesToSpawn()}.
      *
      * @return The next possible entity to spawn
      */
@@ -121,9 +122,10 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
     /**
      * Gets the {@link WeightedEntityCollectionValue} of all possible
      * {@link Entity} instances that can be spawned by the spawner. As they
-     * are all {@link WeightedEntity} instances, their weight is defined as
-     * a {@link Random} to determine the next {@link Entity} that will be
-     * spawned, unless overriden by {@link #nextEntityToSpawn()}.
+     * are all {@link WeightedSerializableObject}{@code <EntitySnapshot>}
+     * instances, their weight is defined as a {@link Random} to determine
+     * the next {@link Entity} that will be spawned, unless overriden by
+     * {@link #nextEntityToSpawn()}.
      *
      * @return The immutable weighted entity collection value of entities
      */
@@ -131,12 +133,12 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
 
     /**
      * Represents a custom {@link Value} dealing with the next
-     * {@link WeightedEntity} such that the next {@link Entity} to spawn may
-     * be pulled from the owning {@link #possibleEntitiesToSpawn()} with a
-     * default {@link Random}, or it may be custom defined on a case by
-     * case basis.
+     * {@link WeightedSerializableObject}{@code <EntitySnapshot>} such that
+     * the next {@link Entity} to spawn may be pulled from the owning
+     * {@link #possibleEntitiesToSpawn()} with a default {@link Random},
+     * or it may be custom defined on a case by case basis.
      */
-    interface NextEntityToSpawnValue extends Value<WeightedEntity> {
+    interface NextEntityToSpawnValue extends Value<WeightedSerializableObject<EntitySnapshot>> {
 
         /**
          * Sets this value with the provided {@link EntityType} and
