@@ -25,11 +25,14 @@
 
 package org.spongepowered.api.block.trait;
 
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Represents a type of {@link BlockTrait} that accepts an unknown {@link Enum}
  * set of values. Due to type erasure and implementation, most all enum types
  * may not be exposed in the API.
  */
+@CatalogedBy(EnumTraits.class)
 public interface EnumTrait<E extends Enum<E>> extends BlockTrait<E> {
 
 }

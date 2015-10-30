@@ -78,6 +78,13 @@ public interface Game {
     GameRegistry getRegistry();
 
     /**
+     * Retrieves the GameDictionary (item dictionary) for this GameRegistry.
+     *
+     * @return The item dictionary
+     */
+    GameDictionary getGameDictionary();
+
+    /**
      * Get the game's instance of the service manager, which is the gateway
      * to various services provided by Sponge (command registration and so on).
      *

@@ -143,159 +143,10 @@ public interface GameRegistry {
      * @param builderClass The class of the builder
      * @param <T> The type of builder
      * @return The builder, if available
+     * @throws IllegalArgumentException If there is no supplier for the given builder class
      */
-    <T> Optional<T> createBuilderOfType(Class<T> builderClass);
+    <T> T createBuilder(Class<T> builderClass) throws IllegalArgumentException;
 
-    /**
-     * Gets an {@link BlockStateBuilder}.
-     *
-     * @return The BlockStateBuilder
-     */
-    BlockStateBuilder createBlockStateBuilder();
-
-    /**
-     * Gets an {@link BlockSnapshotBuilder}.
-     *
-     * @return The BlockSnapshotBuilder
-     */
-    BlockSnapshotBuilder createBlockSnapshotBuilder();
-
-    /**
-     * Gets an {@link EntitySnapshotBuilder}.
-     *
-     * @return The EntitySnapshotBuilder
-     */
-    EntitySnapshotBuilder createEntitySnapshotBuilder();
-
-    /**
-     * Get an item stack builder.
-     *
-     * @return The item stack builder
-     */
-    ItemStackBuilder createItemBuilder();
-
-    /**
-     * Get a trade offer builder.
-     *
-     * @return The trade offer builder
-     */
-    TradeOfferBuilder createTradeOfferBuilder();
-
-    /**
-     * Gets a new {@link FireworkEffectBuilder}.
-     *
-     * @return A new firework effect builder
-     */
-    FireworkEffectBuilder createFireworkEffectBuilder();
-
-    /**
-     * Get a potion effect builder.
-     *
-     * @return The potion effect builder
-     */
-    PotionEffectBuilder createPotionEffectBuilder();
-
-    /**
-     * Get an objective builder.
-     *
-     * @return The objective builder
-     */
-    ObjectiveBuilder createObjectiveBuilder();
-
-    /**
-     * Get a team builder.
-     *
-     * @return The team builder
-     */
-    TeamBuilder createTeamBuilder();
-
-    /**
-     * Gets a scoreboard builder.
-     *
-     * @return The scoreboard builder
-     */
-    ScoreboardBuilder createScoreboardBuilder();
-
-    /**
-     * Creates a new {@link StatisticBuilder} which may be used to create custom
-     * {@link Statistic}s.
-     *
-     * @return The newly created simple statistic builder
-     */
-    StatisticBuilder createStatisticBuilder();
-
-    /**
-     * Creates a new
-     * {@link StatisticBuilder.EntityStatisticBuilder}
-     * which may be used to create custom {@link EntityStatistic}s.
-     *
-     * @return The newly created entity statistic builder
-     */
-    StatisticBuilder.EntityStatisticBuilder createEntityStatisticBuilder();
-
-    /**
-     * Creates a new
-     * {@link StatisticBuilder.BlockStatisticBuilder}
-     * which may be used to create custom {@link BlockStatistic}s.
-     *
-     * @return The newly created block statistic builder
-     */
-    StatisticBuilder.BlockStatisticBuilder createBlockStatisticBuilder();
-
-    /**
-     * Creates a new
-     * {@link StatisticBuilder.ItemStatisticBuilder}
-     * which may be used to create custom {@link ItemStatistic}s.
-     *
-     * @return The newly created item statistic builder
-     */
-    StatisticBuilder.ItemStatisticBuilder createItemStatisticBuilder();
-
-    /**
-     * Creates a new
-     * {@link StatisticBuilder.TeamStatisticBuilder}
-     * which may be used to create custom {@link TeamStatistic}s.
-     *
-     * @return The newly created team statistic builder
-     */
-    StatisticBuilder.TeamStatisticBuilder createTeamStatisticBuilder();
-
-    /**
-     * Creates a new {@link AchievementBuilder} which may be used to create
-     * custom {@link Achievement}s.
-     *
-     * @return The newly created achievement builder
-     */
-    AchievementBuilder createAchievementBuilder();
-
-    /**
-     * Gets a new {@link WorldBuilder} for creating {@link World}s or
-     * {@link WorldCreationSettings}s.
-     *
-     * @return A new builder
-     */
-    WorldBuilder createWorldBuilder();
-
-    /**
-     * Gets a new {@link ExplosionBuilder} for creating {@link Explosion}s.
-     *
-     * @return A new builder
-     */
-    ExplosionBuilder createExplosionBuilder();
-
-    /**
-     * Gets a new {@link ValueBuilder} for creating {@link Value}s.
-     *
-     * @return A new builder
-     */
-    ValueBuilder createValueBuilder();
-
-    /**
-     * Gets a new particle builder for the {@link ParticleType}.
-     *
-     * @param particle The particle type
-     * @return The particle effect builder
-     */
     ParticleEffectBuilder createParticleEffectBuilder(ParticleType particle);
 
     /**
@@ -442,13 +293,6 @@ public interface GameRegistry {
     Favicon loadFavicon(BufferedImage image) throws IOException;
 
     /**
-     * Retrieves the GameDictionary (item dictionary) for this GameRegistry.
-     *
-     * @return The item dictionary
-     */
-    GameDictionary getGameDictionary();
-
-    /**
      * Retrieves the RecipeRegistry for this GameRegistry.
      *
      * @return The recipe registry
@@ -476,7 +320,7 @@ public interface GameRegistry {
      * @return The ResourcePack with the specified ID, or Optional.empty() if
      *         none could be found
      */
-    Optional<ResourcePack> getById(String id);
+    Optional<ResourcePack> getResourcePackById(String id);
 
     /**
      * Gets a {@link DisplaySlot} which displays only for teams
@@ -518,27 +362,5 @@ public interface GameRegistry {
      * @return The {@link Translation} with the given ID or Optional.empty() if not found
      */
     Optional<Translation> getTranslationById(String id);
-
-    BlockDamageSourceBuilder createBlockDamageSourceBuilder();
-
-    DamageSourceBuilder createDamageSourceBuilder();
-
-    EntityDamageSourceBuilder createEntityDamageSourceBuilder();
-
-    FallingBlockDamageSourceBuilder createFallingBlockDamageSourceBuilder();
-
-    ProjectileDamageSourceBuilder createProjectileDamageSourceBuilder();
-
-    SpawnCauseBuilder createSpawnCauseBuilder();
-
-    BlockSpawnCauseBuilder createBlockSpawnCauseBuilder();
-
-    EntitySpawnCauseBuilder createEntitySpawnCauseBuilder();
-
-    BreedingSpawnCauseBuilder createBreedingSpawnCauseBuilder();
-
-    MobSpawnerSpawnCauseBuilder createMobSpawnerSpawnCauseBuilder();
-
-    WeatherSpawnCauseBuilder createWeatherSpawnCauseBuilder();
 
 }

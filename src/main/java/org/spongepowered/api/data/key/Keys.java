@@ -267,7 +267,6 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Float>> HEIGHT = null;
     public static final Key<MutableBoundedValue<Float>> SCALE = null;
     public static final Key<Value<SkeletonType>> SKELETON_TYPE = null;
-    public static final Key<Value<UUID>> SKIN_UUID = null;
     public static final Key<Value<Boolean>> IS_SLEEPING = null;
     public static final Key<MutableBoundedValue<Integer>> SLIME_SIZE = null;
     public static final Key<Value<Boolean>> IS_SNEAKING = null;
