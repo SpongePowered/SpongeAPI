@@ -32,7 +32,7 @@ public interface Timing extends AutoCloseable {
     /**
      * Starts timing the execution until {@link #stopTiming} is called.
      */
-    void startTiming();
+    Timing startTiming();
 
     /**
      * Stops timing and records the data. Propagates the data up to group
