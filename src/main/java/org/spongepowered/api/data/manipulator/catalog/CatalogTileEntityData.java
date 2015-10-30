@@ -44,12 +44,12 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.CommandData;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
-import org.spongepowered.api.data.manipulator.mutable.RepresentedPlayerData;
 import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
+import org.spongepowered.api.data.manipulator.mutable.RepresentedPlayerData;
 import org.spongepowered.api.data.manipulator.mutable.block.ComparatorData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BannerData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BeaconData;
-import org.spongepowered.api.data.manipulator.mutable.tileentity.BrewingData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.BrewingStandData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.CooldownData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.FurnaceData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.LockableData;
@@ -76,7 +76,7 @@ public final class CatalogTileEntityData {
     /**
      * Represents the information for a {@link BrewingStand}.
      */
-    public static final Class<BrewingData> BREWING_DATA = BrewingData.class;
+    public static final Class<BrewingStandData> BREWING_DATA = BrewingStandData.class;
     /**
      * Represents the {@link CommandData} for a {@link CommandBlock}.
      */
