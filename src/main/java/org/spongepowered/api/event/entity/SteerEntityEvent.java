@@ -50,7 +50,7 @@ public interface SteerEntityEvent extends TargetEntityEvent, CauseTracked {
      * going forwards or backwards; 0.3 (rounded up from 0.29400003) while
      * sneaking.</p>
      */
-    public float getForwardSpeed();
+    float getForwardSpeed();
 
     /**
      * Returns the strafing speed, a value between -1 and 1, at which the
@@ -63,15 +63,15 @@ public interface SteerEntityEvent extends TargetEntityEvent, CauseTracked {
      * <p>A notchian client will, in most cases usually send a value of 0.98
      * going sideways; 0.3 (rounded up from 0.29400003) while sneaking.</p>
      */
-    public float getStrafeSpeed();
+    float getStrafeSpeed();
 
     /**
      * Returns whether or not the mounted player was sneaking while steering.
      */
-    public boolean isSneaking();
+    boolean isSneaking();
 
     /**
      * Returns whether or not the mounted player jumped while steering.
      */
-    public boolean isJumping();
+    boolean isJumping();
 }
