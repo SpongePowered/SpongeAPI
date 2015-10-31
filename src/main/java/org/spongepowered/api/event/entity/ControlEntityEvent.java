@@ -35,7 +35,7 @@ import org.spongepowered.api.event.cause.CauseTracked;
  * moves; it is only thrown when a player attempts to steer a mounted
  * entity.</p>
  */
-public interface SteerEntityEvent extends TargetEntityEvent, CauseTracked {
+public interface ControlEntityEvent extends TargetEntityEvent, CauseTracked {
 
     /**
      * Returns the forward speed, a float value between -1 and 1, at which the
