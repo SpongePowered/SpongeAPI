@@ -157,11 +157,11 @@ public enum Direction {
     public static Direction getFromAxis(final Axis axis) {
         switch (axis) {
             case X:
-                return SOUTH;
+                return EAST;
             case Y:
                 return UP;
             case Z:
-                return EAST;
+                return SOUTH;
             default:
                 throw new IllegalStateException("Not capable of handling the " + axis.name() + " axis!");
         }
