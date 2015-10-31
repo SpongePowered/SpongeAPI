@@ -22,20 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command.source;
+package org.spongepowered.api.logging;
 
-import org.spongepowered.api.logging.SpongeLogger;
-import org.spongepowered.api.util.command.CommandSource;
+import com.google.common.collect.ImmutableSet;
+
+import java.util.function.Predicate;
 
 /**
- * Represents the server console.
+ * A log target that does nothing.
  */
-public interface ConsoleSource extends CommandSource {
+class NullLogTarget implements LogTarget {
 
-    /**
-     * Get the global game logger. All plugin loggers are children of this logger.
-     * @return The game's global logger
-     */
-    SpongeLogger getLogger();
+    @Override
+    public void accept(LogMessage message) {
+    }
 
+    @Override
+    public LogTarget filteredBy(Predicate<LogMessage> filter) {
+        return this;
+    }
+
+    @Override
+    public LogTarget with(LogTarget... others) {
+        return new MultiLogTarget(ImmutableSet.copyOf(others));
+    }
 }

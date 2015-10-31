@@ -22,20 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command.source;
+package org.spongepowered.api.logging.action;
 
 import org.spongepowered.api.logging.SpongeLogger;
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.text.sink.MessageSink;
 
 /**
- * Represents the server console.
+ * A logger that can accept actions with defined sources and targets, and log the action while appropriately notifying relevant parties.
  */
-public interface ConsoleSource extends CommandSource {
+public interface ActionLogger<M extends ActionMessage> extends SpongeLogger {
 
-    /**
-     * Get the global game logger. All plugin loggers are children of this logger.
-     * @return The game's global logger
-     */
-    SpongeLogger getLogger();
+    void trace(MessageSink source, MessageSink affected, M msg);
 
+    void debug(MessageSink source, MessageSink affected, M msg);
+
+    void info(MessageSink source, MessageSink affected, M msg);
+
+    void warn(MessageSink source, MessageSink affected, M msg);
+
+    void error(MessageSink source, MessageSink affected, M msg);
 }
+

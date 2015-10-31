@@ -22,58 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.logging;
 
-import org.spongepowered.api.logging.SpongeLogger;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.Texts;
 
-import java.util.Collection;
 import java.util.Optional;
 
 /**
- * The manager that manages plugins. This manager can retrieve
- * {@link PluginContainer}s from {@link Plugin} instances, getting
- * {@link SpongeLogger}s, etc.
+ * Represents a log message that may be either a {@link Text} or {@link String}.
  */
-public interface PluginManager {
+public interface LogMessage {
 
     /**
-     * Get the plugin container from an instance.
+     * If an exception was logged along with this message, the return value of this method will contain it.
      *
-     * @param instance The instance
-     * @return The container
+     * @return An optional exception to be logged as part of this message
      */
-    Optional<PluginContainer> fromInstance(Object instance);
+    Optional<Throwable> getThrowable();
 
     /**
-     * Retrieves a {@link PluginContainer} based on its ID.
+     * Get the time this message was logged at.
      *
-     * @param id The plugin ID
-     * @return The plugin, if available
+     * @return THe time this message was logged at
      */
-    Optional<PluginContainer> getPlugin(String id);
+    long getTime();
 
     /**
-     * Gets the {@link SpongeLogger} for the {@link PluginContainer}.
-     *
-     * @param plugin The plugin
-     * @return The logger
+     * Get the formatted {@link Text} representation of this message. If this message was not originally provided as a Text, it will be converted
+     * on first use
+     * @return The message as formattable Text
      */
-    SpongeLogger getLogger(PluginContainer plugin);
+    Text getMessage();
 
     /**
-     * Gets a {@link Collection} of all {@link PluginContainer}s.
+     * Get the plain message if a String message was passed, or return the Text message converted using {@link Texts#toPlain(Text)}.
      *
-     * @return The plugins
+     * @return The plain message
      */
-    Collection<PluginContainer> getPlugins();
-
-    /**
-     * Checks if a plugin is loaded based on its ID.
-     * This may contain plugins/mods from other systems in some implementations.
-     *
-     * @param id the id of the {@link Plugin}
-     * @return {@code true} if loaded {@code false} if not loaded.
-     */
-    boolean isLoaded(String id);
-
+    String getPlainMessage();
 }

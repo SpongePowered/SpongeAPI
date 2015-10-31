@@ -22,20 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command.source;
+package org.spongepowered.api.logging;
 
-import org.spongepowered.api.logging.SpongeLogger;
-import org.spongepowered.api.util.command.CommandSource;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * Represents the server console.
+ * A log target that multiplexes to multiple other targets.
  */
-public interface ConsoleSource extends CommandSource {
+class MultiLogTarget implements LogTarget {
+    private final Set<LogTarget> targets;
 
-    /**
-     * Get the global game logger. All plugin loggers are children of this logger.
-     * @return The game's global logger
-     */
-    SpongeLogger getLogger();
+    MultiLogTarget(Set<LogTarget> targets) {
+        this.targets = targets;
+    }
 
+    @Override
+    public void accept(LogMessage message) {
+        this.targets.forEach(target -> target.accept(message));
+    }
+
+    @Override
+    public LogTarget with(LogTarget... others) {
+        if (others.length == 0) {
+            return this;
+        }
+        Set<LogTarget> newTargets = new HashSet<>(this.targets);
+        newTargets.addAll(Arrays.asList(others));
+        return new MultiLogTarget(newTargets);
+    }
+
+    @Override
+    public LogTarget without(LogTarget... others) {
+        if (others.length == 0) {
+            return this;
+        }
+        Set<LogTarget> newTargets = new HashSet<>(this.targets);
+        newTargets.removeAll(Arrays.asList(others));
+        return new MultiLogTarget(newTargets);
+    }
 }

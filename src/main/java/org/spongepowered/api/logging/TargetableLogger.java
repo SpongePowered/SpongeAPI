@@ -22,58 +22,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
+package org.spongepowered.api.logging;
 
-import org.spongepowered.api.logging.SpongeLogger;
+import org.slf4j.Logger;
+import org.spongepowered.api.text.Text;
 
-import java.util.Collection;
 import java.util.Optional;
+import java.util.Set;
 
 /**
- * The manager that manages plugins. This manager can retrieve
- * {@link PluginContainer}s from {@link Plugin} instances, getting
- * {@link SpongeLogger}s, etc.
+ * Created by zml on 9/18/15.
  */
-public interface PluginManager {
+public interface TargetableLogger extends Logger {
 
     /**
-     * Get the plugin container from an instance.
+     * Set the output target for this logger.
      *
-     * @param instance The instance
-     * @return The container
+     * @param target The logger output target
      */
-    Optional<PluginContainer> fromInstance(Object instance);
+    void setTarget(LogTarget target);
 
     /**
-     * Retrieves a {@link PluginContainer} based on its ID.
      *
-     * @param id The plugin ID
-     * @return The plugin, if available
+     * @return
      */
-    Optional<PluginContainer> getPlugin(String id);
+    LogTarget getTarget();
 
     /**
-     * Gets the {@link SpongeLogger} for the {@link PluginContainer}.
-     *
-     * @param plugin The plugin
-     * @return The logger
+     * Create a new child logger with no additional tags.
+     * @see #newChild(Text) for information on what will be inherited
+     * @return
      */
-    SpongeLogger getLogger(PluginContainer plugin);
+    TargetableLogger newChild();
 
     /**
-     * Gets a {@link Collection} of all {@link PluginContainer}s.
+     * Create a new child logger with the given tag. This tag will be added after any existing tags parents may have.
+     * A child logger will log to all of its parent's log targets, adding changes to the parent
      *
-     * @return The plugins
+     * @param tag The tag to log with in the child logger
+     * @return The child logger
      */
-    Collection<PluginContainer> getPlugins();
+    TargetableLogger newChild(Text tag);
 
-    /**
-     * Checks if a plugin is loaded based on its ID.
-     * This may contain plugins/mods from other systems in some implementations.
-     *
-     * @param id the id of the {@link Plugin}
-     * @return {@code true} if loaded {@code false} if not loaded.
-     */
-    boolean isLoaded(String id);
-
+    Optional<? extends TargetableLogger> getParent();
 }
+

@@ -22,20 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command.source;
+package org.spongepowered.api.logging;
 
-import org.spongepowered.api.logging.SpongeLogger;
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.logging.action.ActionLogger;
+import org.spongepowered.api.logging.action.ActionMessage;
+import org.spongepowered.api.text.Text;
+
+import java.util.Optional;
 
 /**
- * Represents the server console.
+ * Combination of targetable logger and TextLogger interfaces representing the full capabilities provided to plugin loggers.
  */
-public interface ConsoleSource extends CommandSource {
+public interface SpongeLogger extends TargetableLogger, TextLogger {
+    @Override
+    SpongeLogger newChild();
 
-    /**
-     * Get the global game logger. All plugin loggers are children of this logger.
-     * @return The game's global logger
-     */
-    SpongeLogger getLogger();
+    @Override
+    SpongeLogger newChild(Text tag);
 
+    @Override
+    Optional<? extends SpongeLogger> getParent();
+
+    <M extends ActionMessage> ActionLogger<M> newActionChild(Text tag, Class<M> messageType);
 }

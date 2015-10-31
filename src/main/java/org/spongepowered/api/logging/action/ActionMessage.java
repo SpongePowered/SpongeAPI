@@ -22,20 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command.source;
+package org.spongepowered.api.logging.action;
 
-import org.spongepowered.api.logging.SpongeLogger;
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.text.Text;
 
 /**
- * Represents the server console.
+ * A holder for the different messages that can go to an action's receivers. An implementation of ActionMessage
  */
-public interface ConsoleSource extends CommandSource {
+public interface ActionMessage {
 
     /**
-     * Get the global game logger. All plugin loggers are children of this logger.
-     * @return The game's global logger
+     * Message to be sent to the source/cause
+     * @return
      */
-    SpongeLogger getLogger();
+    Text getSourceMessage();
+
+    /**
+     * Message to be sent to the source when the source is the target
+     * @return
+     */
+    Text getSourceTargetMessage();
+
+    /**
+     * Message to be sent to a target of the action
+     * @return
+     */
+    Text getTargetMessage();
+
+    /**
+     * Message to be sent to any target not directly involved in the event
+     * @return
+     */
+    Text getLogMessage();
 
 }

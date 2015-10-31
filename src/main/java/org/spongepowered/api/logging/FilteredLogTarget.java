@@ -22,20 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.command.source;
+package org.spongepowered.api.logging;
 
-import org.spongepowered.api.logging.SpongeLogger;
-import org.spongepowered.api.util.command.CommandSource;
+import java.util.function.Predicate;
 
 /**
- * Represents the server console.
+ * A log target that filters with a certain predicate.
  */
-public interface ConsoleSource extends CommandSource {
+class FilteredLogTarget implements LogTarget {
+    private final Predicate<LogMessage> filter;
+    private final LogTarget wrapped;
 
-    /**
-     * Get the global game logger. All plugin loggers are children of this logger.
-     * @return The game's global logger
-     */
-    SpongeLogger getLogger();
+    FilteredLogTarget(Predicate<LogMessage> filter, LogTarget wrapped) {
+        this.filter = filter;
+        this.wrapped = wrapped;
+    }
 
+    @Override
+    public void accept(LogMessage message) {
+        if (this.filter.test(message)) {
+            this.wrapped.accept(message);
+        }
+    }
+
+    @Override
+    public LogTarget filteredBy(Predicate<LogMessage> filter) {
+        return filter == null ? this.wrapped : new FilteredLogTarget(this.filter.and(filter), this.wrapped);
+    }
 }
