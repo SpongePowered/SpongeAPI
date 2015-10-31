@@ -44,6 +44,15 @@ public interface BlockSnapshot extends LocateableSnapshot<BlockSnapshot> {
     BlockState getState();
 
     /**
+     * Gets the extended {@link BlockState}. This applies extended properties
+     * that are usually located around the associated {@link BlockType}. Check
+     * {@link BlockState#withExtendedProperties(Location)} for more info.
+     *
+     * @return The extended BlockState
+     */
+    BlockState getExtendedState();
+
+    /**
      * Creates a copy of the {@link BlockSnapshot} with the provided 
      * {@link BlockState}. Any additional data associated with a
      * {@link TileEntity} or custom data may be lost.

@@ -60,6 +60,29 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
     BlockType getType();
 
     /**
+     * Applies extended properties for the current @{link BlockType} if any to 
+     * the current {@link BlockState}. This usually is gathered from surrounding
+     * {@link BlockState}'s.
+     * 
+     * <p>Note: This should only be called for live {@link BlockState}'s at
+     * a specific {@link Location} for accurate results.</p>
+     * 
+     * <p>
+     * Examples of some extended properties are:
+     * </p>
+     *
+     * <ul>
+     *     <li>snow on podzul dirt block</li>
+     *     <li>occupied status for beds</li>
+     *     <li>fence connections</li>
+     * </ul>
+     * 
+     * @param location The location used to search for extended properties
+     * @return The blockstate with extended properties included if any
+     */
+    BlockState withExtendedProperties(Location<World> location);
+
+    /**
      * Gets the associated {@link BlockState} with the cycled
      * {@link BaseValue}. Note that only {@link Cycleable} values can be
      * cycled. To change a particular {@link Key}'ed {@link Value}, usage
