@@ -36,7 +36,7 @@ import org.spongepowered.api.event.cause.CauseTracked;
  * entity.</p>
  */
 public interface ControlEntityEvent extends TargetEntityEvent, CauseTracked {
-    
+
     /**
      * Returns the forward speed, a float value between -1 and 1, at which the
      * mounted {@link Player} is attempting to move at.
@@ -49,9 +49,12 @@ public interface ControlEntityEvent extends TargetEntityEvent, CauseTracked {
      * <p>A notchian client will, in most cases usually send a value of 0.98
      * going forwards or backwards; 0.3 (rounded up from 0.29400003) while
      * sneaking.</p>
+     * 
+     * @return a float value between -1 and 1 as the forward speed of the
+     *         control event
      */
     float getForwardSpeed();
-    
+
     /**
      * Sets the forward speed of control within this control event.
      * 
@@ -61,7 +64,7 @@ public interface ControlEntityEvent extends TargetEntityEvent, CauseTracked {
      * @param speed the speed at which the forward control movement is going
      */
     void setForwardSpeed(float speed);
-    
+
     /**
      * Returns the strafing speed, a value between -1 and 1, at which the
      * mounted {@link Player} is attempting to move at.
@@ -72,9 +75,12 @@ public interface ControlEntityEvent extends TargetEntityEvent, CauseTracked {
      * 
      * <p>A notchian client will, in most cases usually send a value of 0.98
      * going sideways; 0.3 (rounded up from 0.29400003) while sneaking.</p>
+     * 
+     * @return a float value between -1 and 1 as the strafe speed of the control
+     *         event
      */
     float getStrafeSpeed();
-    
+
     /**
      * Sets the strafe speed of control within this control event.
      * 
@@ -84,13 +90,15 @@ public interface ControlEntityEvent extends TargetEntityEvent, CauseTracked {
      * @param speed the speed at which the strafing control movement is going
      */
     void setStrafeSpeed(float speed);
-    
+
     /**
      * Returns whether or not the mounted player was sneaking during this
      * control event.
+     * 
+     * @return a boolean as whether or not the mounted player was sneaking
      */
     boolean isSneaking();
-    
+
     /**
      * Sets whether or not the mounted player was sneaking during this control
      * event.
@@ -98,18 +106,20 @@ public interface ControlEntityEvent extends TargetEntityEvent, CauseTracked {
      * @param flag whether or not the player was sneaking
      */
     void setSneaking(boolean flag);
-    
+
     /**
      * Returns whether or not the mounted player jumped during this control
      * event.
+     * 
+     * @return a boolean as whether or not the mounted player was jumping
      */
     boolean isJumping();
-    
+
     /**
      * Sets whether or not the mounted player was jumping during this control
      * event.
      * 
      * @param flag whether or not the player was jumping
      */
-    boolean setJumping(boolean flag);
+    void setJumping(boolean flag);
 }
