@@ -42,6 +42,6 @@ public interface ImmutableBrewingStandData extends ImmutableDataManipulator<Immu
      *
      * @return The immutable value for the remaining brew time
      */
-    ImmutableBoundedValue<Integer> remainingBrewingTime();
+    ImmutableBoundedValue<Integer> remainingBrewTime();
 
 }
