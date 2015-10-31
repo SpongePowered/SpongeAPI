@@ -32,6 +32,9 @@ import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Preconditions;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 /**
  * Represents a transform. It is 2 dimensional and discrete.
  * It will never cause aliasing.
@@ -312,13 +315,18 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Returns a new transform from the given transformation matrix.
+     * Returns a new transform from the given transformation matrix, if the resulting transform
+     * would be discrete.
      *
      * @param matrix The matrix to use for the transform
-     * @return The new transform
+     * @return The new transform, or {@link Optional#empty()}
      */
-    public static DiscreteTransform2 of(Matrix3d matrix) {
-        return new DiscreteTransform2(matrix);
+    public static Optional<DiscreteTransform2> of(Matrix3d matrix) {
+        if (Arrays.stream(matrix.toArray())
+            .anyMatch(value -> Math.rint(value) != value)) {
+            return Optional.empty();
+        }
+        return Optional.of(new DiscreteTransform2(matrix));
     }
 
     /**
