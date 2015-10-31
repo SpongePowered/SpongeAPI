@@ -1,26 +1,26 @@
 /*
  * This file is part of SpongeAPI, licensed under the MIT License (MIT).
- *
- * Copyright (c) SpongePowered <https://www.spongepowered.org>
- * Copyright (c) contributors
- *
+ * 
+ * Copyright (c) SpongePowered <https://www.spongepowered.org> Copyright (c)
+ * contributors
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 package org.spongepowered.api.event.entity;
 
@@ -36,7 +36,7 @@ import org.spongepowered.api.event.cause.CauseTracked;
  * entity.</p>
  */
 public interface ControlEntityEvent extends TargetEntityEvent, CauseTracked {
-
+    
     /**
      * Returns the forward speed, a float value between -1 and 1, at which the
      * mounted {@link Player} is attempting to move at.
@@ -51,7 +51,17 @@ public interface ControlEntityEvent extends TargetEntityEvent, CauseTracked {
      * sneaking.</p>
      */
     float getForwardSpeed();
-
+    
+    /**
+     * Sets the forward speed of control within this control event.
+     * 
+     * <p>The forward speed must be a value between -1 and 1. Positive values go
+     * forward, negatives go backward.</p>
+     * 
+     * @param speed the speed at which the forward control movement is going
+     */
+    void setForwardSpeed(float speed);
+    
     /**
      * Returns the strafing speed, a value between -1 and 1, at which the
      * mounted {@link Player} is attempting to move at.
@@ -64,14 +74,42 @@ public interface ControlEntityEvent extends TargetEntityEvent, CauseTracked {
      * going sideways; 0.3 (rounded up from 0.29400003) while sneaking.</p>
      */
     float getStrafeSpeed();
-
+    
     /**
-     * Returns whether or not the mounted player was sneaking while steering.
+     * Sets the strafe speed of control within this control event.
+     * 
+     * <p>The strafe speed must be a value between -1 and 1. Positive values
+     * strafe left, negative values strafe right.</p>
+     * 
+     * @param speed the speed at which the strafing control movement is going
+     */
+    void setStrafeSpeed(float speed);
+    
+    /**
+     * Returns whether or not the mounted player was sneaking during this
+     * control event.
      */
     boolean isSneaking();
-
+    
     /**
-     * Returns whether or not the mounted player jumped while steering.
+     * Sets whether or not the mounted player was sneaking during this control
+     * event.
+     * 
+     * @param flag whether or not the player was sneaking
+     */
+    void setSneaking(boolean flag);
+    
+    /**
+     * Returns whether or not the mounted player jumped during this control
+     * event.
      */
     boolean isJumping();
+    
+    /**
+     * Sets whether or not the mounted player was jumping during this control
+     * event.
+     * 
+     * @param flag whether or not the player was jumping
+     */
+    boolean setJumping(boolean flag);
 }
