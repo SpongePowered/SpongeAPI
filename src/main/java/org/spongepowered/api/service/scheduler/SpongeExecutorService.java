@@ -25,12 +25,13 @@
 package org.spongepowered.api.service.scheduler;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.RunnableScheduledFuture;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A delegating ExecutionService that schedules all its tasks on
+ * A delegating {@link ExecutorService} that schedules all its tasks on
  * Sponge's {@link SchedulerService}.
  *
  * <p>
