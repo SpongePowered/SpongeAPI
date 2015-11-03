@@ -25,12 +25,9 @@
 package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.data.Transaction;
-import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.recipe.Recipe;
 
 public interface InteractInventoryEvent extends TargetContainerEvent, CauseTracked, Cancellable {
 
@@ -39,19 +36,4 @@ public interface InteractInventoryEvent extends TargetContainerEvent, CauseTrack
     interface Open extends InteractInventoryEvent {}
 
     interface Close extends InteractInventoryEvent {}
-
-    interface NumberPress extends InteractInventoryEvent, AffectSlotEvent {
-        int getNumber();
-    }
-
-    interface Equipment extends InteractInventoryEvent, AffectSlotEvent {}
-
-    /**
-     * Fired when a {@link Living} changes it's held {@link ItemStack}.
-     */
-    interface Held extends InteractInventoryEvent, AffectSlotEvent {}
-
-    interface Craft extends InteractInventoryEvent, AffectSlotEvent {
-        Recipe getRecipe();
-    }
 }

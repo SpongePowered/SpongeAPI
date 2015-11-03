@@ -24,42 +24,24 @@
  */
 package org.spongepowered.api.event.item.inventory;
 
-public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInventoryEvent {
-    interface Primary extends ClickInventoryEvent {}
+import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.item.inventory.ItemStack;
 
-    interface Middle extends ClickInventoryEvent {}
+public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEvent, CauseTracked, Cancellable {
 
-    interface Secondary extends ClickInventoryEvent {}
+    /**
+     * Fired when a {@link Living} changes it's equipment.
+     */
+    interface Equipment extends ChangeInventoryEvent {}
 
-    interface Creative extends ClickInventoryEvent {}
-    
-    interface Shift extends ClickInventoryEvent {
-        interface Primary extends Shift, ClickInventoryEvent.Primary {}
+    /**
+     * Fired when a {@link Living} changes it's held {@link ItemStack}.
+     */
+    interface Held extends ChangeInventoryEvent {}
 
-        interface Secondary extends Shift, ClickInventoryEvent.Secondary {}
-    }
+    interface Transfer extends ChangeInventoryEvent {}
 
-    interface Double extends ClickInventoryEvent.Primary {}
-
-    interface Drop extends ClickInventoryEvent, DropItemEvent.Dispense {
-        interface Single extends Drop {}
-
-        interface Full extends Drop {}
-
-        interface Outside extends Drop {
-            interface Primary extends Outside, ClickInventoryEvent.Primary {}
-
-            interface Secondary extends Outside, ClickInventoryEvent.Secondary {}
-        }
-    }
-
-    interface Drag extends ClickInventoryEvent {
-        interface Primary extends Drag, ClickInventoryEvent.Primary {}
-
-        interface Secondary extends Drag, ClickInventoryEvent.Secondary {}
-    }
-
-    interface NumberPress extends ClickInventoryEvent {
-        int getNumber();
-    }
+    interface Pickup extends ChangeInventoryEvent {}
 }
