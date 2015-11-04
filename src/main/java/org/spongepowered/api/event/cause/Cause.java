@@ -498,18 +498,34 @@ public abstract class Cause {
         @Override
         public Cause with(Object... additional) {
             checkArgument(additional != null, "Cannot add a null argument!");
-            return of(ArrayUtils.addAll(this.cause, additional));
+            Object[] objects = new Object[this.cause.length + additional.length];
+            for (int i = 0; i < this.cause.length; i++) {
+                objects[i] = NamedCause.of(this.names[i], this.cause[i]);
+            }
+            for (int i = 0; i < additional.length; i++) {
+                final Object object = additional[i];
+                if (object instanceof NamedCause) {
+                    objects[this.cause.length + i] = object;
+                } else {
+                    objects[this.cause.length + i] = NamedCause.of("unknown" + object, object);
+                }
+            }
+            return of(objects);
         }
 
         @Override
         public Cause with(Iterable<?> iterable) {
             List<Object> list = new ArrayList<Object>();
-            for (Object o : this.cause) {
-                list.add(o);
+            for (int i = 0; i < this.cause.length; i++) {
+                list.add(NamedCause.of(this.names[i], this.cause[i]));
             }
             for (Object o : iterable) {
                 checkArgument(o != null, "Cannot add null causes");
-                list.add(o);
+                if (o instanceof NamedCause) {
+                    list.add(o);
+                } else {
+                    list.add(NamedCause.of("unknown" + o, o));
+                }
             }
             return of(list.toArray());
         }
