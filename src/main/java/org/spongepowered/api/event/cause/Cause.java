@@ -504,6 +504,7 @@ public abstract class Cause {
             }
             for (int i = 0; i < additional.length; i++) {
                 final Object object = additional[i];
+                checkArgument(object != null, "Cannot add a null argument!");
                 if (object instanceof NamedCause) {
                     objects[this.cause.length + i] = object;
                 } else {
