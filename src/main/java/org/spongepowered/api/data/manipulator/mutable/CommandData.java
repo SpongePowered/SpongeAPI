@@ -28,6 +28,7 @@ import org.spongepowered.api.block.tileentity.CommandBlock;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableCommandData;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartCommandBlock;
@@ -61,7 +62,7 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      *
      * @return The last success count
      */
-    Value<Integer> successCount();
+    MutableBoundedValue<Integer> successCount();
 
     /**
      * Gets whether this command block will keep track of the output from the
