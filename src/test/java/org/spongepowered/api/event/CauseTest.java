@@ -26,11 +26,14 @@ package org.spongepowered.api.event;
 
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.NamedCause;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class CauseTest {
@@ -157,6 +160,63 @@ public class CauseTest {
         final NamedCause namedB = NamedCause.of(NamedCause.OWNER, playerB);
         final Cause cause = Cause.of(namedA, namedB);
         // The line above should throw an exception!
+    }
+
+    @Test
+    public void testNamedCauseMap() {
+        final Player player = Mockito.mock(Player.class);
+        final NamedCause owner = NamedCause.of(NamedCause.OWNER, player);
+        final Living entity = Mockito.mock(Living.class);
+        final NamedCause living = NamedCause.of("summoned", entity);
+        final Cause cause = Cause.of(living, owner);
+        final Map<String, Object> map = cause.getNamedCauses();
+        assert map.containsKey(NamedCause.OWNER) && map.containsKey("summoned");
+        int index = 0;
+        final List<Object> all = cause.all();
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            assert all.get(index).equals(entry.getValue());
+            index++;
+        }
+    }
+
+    @Test
+    public void testNamedBefore() {
+        final Player player = Mockito.mock(Player.class);
+        final NamedCause owner = NamedCause.of(NamedCause.OWNER, player);
+        final Living entity = Mockito.mock(Living.class);
+        final NamedCause living = NamedCause.of("summoned", entity);
+        final Cause cause = Cause.of(living, owner);
+        final Optional<?> optional = cause.before(NamedCause.OWNER);
+        assert optional.isPresent();
+    }
+
+    @Test
+    public void testNoNamedBefore() {
+        final Player player = Mockito.mock(Player.class);
+        final NamedCause owner = NamedCause.of(NamedCause.OWNER, player);
+        final Cause cause = Cause.of(owner);
+        final Optional<?> optional = cause.before(NamedCause.OWNER);
+        assert !optional.isPresent();
+    }
+
+    @Test
+    public void testNamedAfter() {
+        final Player player = Mockito.mock(Player.class);
+        final NamedCause owner = NamedCause.of(NamedCause.OWNER, player);
+        final Living entity = Mockito.mock(Living.class);
+        final NamedCause living = NamedCause.of("summoned", entity);
+        final Cause cause = Cause.of(living, owner);
+        final Optional<?> optional = cause.after("summoned");
+        assert optional.isPresent();
+    }
+
+    @Test
+    public void testNoNamedAfter() {
+        final Player player = Mockito.mock(Player.class);
+        final NamedCause owner = NamedCause.of(NamedCause.OWNER, player);
+        final Cause cause = Cause.of(owner);
+        final Optional<?> optional = cause.after(NamedCause.OWNER);
+        assert !optional.isPresent();
     }
 
 }

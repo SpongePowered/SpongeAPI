@@ -30,6 +30,7 @@ import static org.apache.commons.lang3.Validate.noNullElements;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Event;
@@ -41,6 +42,7 @@ import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -267,6 +269,16 @@ public abstract class Cause {
     public abstract Cause with(Iterable<?> iterable);
 
     /**
+     * Gets an immutable {@link Map} of the named object causes that can be
+     * used for analysis. Note that the map should retain proper order of
+     * entries such that the order of entries should coincide with the order
+     * of objects in {@link #all()}.
+     *
+     * @return An immutable map of the names of cause objects to the objects
+     */
+    public abstract Map<String, Object> getNamedCauses();
+
+    /**
      * Returns {@code true} if {@code object} is a {@code Cause} instance, and
      * either the contained references are {@linkplain Object#equals equal} to
      * each other or both are absent.
@@ -283,6 +295,9 @@ public abstract class Cause {
     private static final class PresentCause extends Cause {
         private final Object[] cause;
         private final String[] names;
+
+        // lazy load
+        @Nullable private Map<String, Object> namedObjectMap;
 
         PresentCause(Object... causes) {
             final List<Object> list = new ArrayList<>(causes.length);
@@ -500,6 +515,18 @@ public abstract class Cause {
         }
 
         @Override
+        public Map<String, Object> getNamedCauses() {
+            if (this.namedObjectMap == null) {
+                final ImmutableMap.Builder<String, Object> builder = ImmutableMap.builder();
+                for (int i = 0; i < this.names.length; i++) {
+                    builder.put(this.names[i], this.cause[i]);
+                }
+                this.namedObjectMap = builder.build();
+            }
+            return this.namedObjectMap;
+        }
+
+        @Override
         public boolean equals(@Nullable Object object) {
             if (object instanceof PresentCause) {
                 PresentCause cause = ((PresentCause) object);
@@ -610,6 +637,11 @@ public abstract class Cause {
                 list.add(o);
             }
             return of(list.toArray());
+        }
+
+        @Override
+        public Map<String, Object> getNamedCauses() {
+            return ImmutableMap.of();
         }
 
         @Override
