@@ -145,6 +145,15 @@ public abstract class Cause {
     public abstract <T> Optional<T> first(Class<T> target);
 
     /**
+     * Gets the first object associated with the provided name.
+     *
+     * @param named The name associated with the object cause
+     * @param <T> The type of the object expected
+     * @return The object, if the type is correct and the name was associated
+     */
+    public abstract <T> Optional<T> first(String named);
+
+    /**
      * Gets the last object instance of the {@link Class} of type
      * <code>T</code>.
      *
@@ -153,6 +162,15 @@ public abstract class Cause {
      * @return The last element of the type, if available
      */
     public abstract <T> Optional<T> last(Class<T> target);
+
+    /**
+     * Gets the last object associated with the provided name.
+     *
+     * @param named The name associated with the object cause
+     * @param <T> The type of the object expected
+     * @return The object, if the type is correct and the name was associated
+     */
+    public abstract <T> Optional<T> last(String named);
 
     /**
      * Gets the object immediately before the object that is an instance of
@@ -164,13 +182,30 @@ public abstract class Cause {
     public abstract Optional<?> before(Class<?> clazz);
 
     /**
+     * Gets the object immediate before the named object cause. The
+     * type of object is unknown.
+     *
+     * @param named The name associated with the cause object
+     * @return The object, if available
+     */
+    public abstract Optional<?> before(String named);
+
+    /**
      * Gets the object immediately after the object that is an instance of
      * the {@link Class} passed in.
      *
-     * @param clazz
-     * @return
+     * @param clazz The class to type check
+     * @return The object after, if available
      */
     public abstract Optional<?> after(Class<?> clazz);
+
+    /**
+     * Gets the object immediately after the named object cause.
+     *
+     * @param named The name associated with the cause object
+     * @return The object after, if available
+     */
+    public abstract Optional<?> after(String named);
 
     /**
      * Returns whether the target class matches any object of this {@link Cause}.
@@ -178,6 +213,14 @@ public abstract class Cause {
      * @return True if found, false otherwise
      */
     public abstract boolean any(Class<?> target);
+
+    /**
+     * Returns whether there are any objects associated with the provided name.
+     *
+     * @param named The name associated with a cause object
+     * @return True if found, false otherwise
+     */
+    public abstract boolean any(String named);
 
     /**
      * Gets an {@link ImmutableList} of all objects that are instances of the
@@ -239,12 +282,25 @@ public abstract class Cause {
 
     private static final class PresentCause extends Cause {
         private final Object[] cause;
+        private final String[] names;
 
         PresentCause(Object... causes) {
+            final List<Object> list = new ArrayList<>(causes.length);
+            final List<String> names = new ArrayList<>(causes.length);
             for (Object aCause : causes) {
                 checkNotNull(aCause, "Null cause element!");
+                if (aCause instanceof NamedCause) {
+                    list.add(((NamedCause) aCause).getCauseObject());
+                    checkArgument(!names.contains(((NamedCause) aCause).getName()), "Names need to be unique!");
+                    names.add(((NamedCause) aCause).getName());
+                } else {
+                    list.add(aCause);
+                    names.add("unknown" + aCause);
+                }
             }
-            this.cause = Arrays.copyOf(causes, causes.length);
+
+            this.cause = list.toArray();
+            this.names = names.toArray(new String[names.size()]);
         }
 
         @Override
@@ -262,6 +318,17 @@ public abstract class Cause {
             for (Object aCause : this.cause) {
                 if (target.isInstance(aCause)) {
                     return Optional.of((T) aCause);
+                }
+            }
+            return Optional.empty();
+        }
+
+        @Override
+        public <T> Optional<T> first(String named) {
+            checkArgument(named != null, "The name cannot be null!");
+            for (int i = 0; i < this.names.length; i++) {
+                if (this.names[i].equalsIgnoreCase(named)) {
+                    return getCauseAtIndex(i);
                 }
             }
             return Optional.empty();
@@ -300,6 +367,26 @@ public abstract class Cause {
         }
 
         @Override
+        public <T> Optional<T> last(String named) {
+            checkArgument(named != null, "The name cannot be null!");
+            for (int i = this.names.length - 1; i >= 0; i--) {
+                if (this.names[i].equalsIgnoreCase(named)) {
+                    return getCauseAtIndex(i);
+                }
+            }
+            return Optional.empty();
+        }
+
+        private <T> Optional<T> getCauseAtIndex(int index) {
+            try {
+                final Object object = this.cause[index];
+                return Optional.of((T) object);
+            } catch (Exception e) {
+                return Optional.empty();
+            }
+        }
+
+        @Override
         public Optional<?> before(Class<?> clazz) {
             checkArgument(clazz != null, "The provided class cannot be null!");
             if (this.cause.length == 1) {
@@ -308,6 +395,25 @@ public abstract class Cause {
             for (int i = 0; i < this.cause.length; i++) {
                 if (clazz.isInstance(this.cause[i]) && i > 0) {
                     return Optional.of(this.cause[i - 1]);
+                }
+            }
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<?> before(String named) {
+            checkArgument(named != null, "The name cannot be null!");
+            if (this.cause.length == 1) {
+                return Optional.empty();
+            }
+            for (int i = 0; i < this.names.length; i++) {
+                if (this.names[i].equalsIgnoreCase(named)) {
+                    try {
+                        final Object object = this.cause[i - 1];
+                        return Optional.of(object);
+                    } catch (Exception e) {
+                        return Optional.empty();
+                    }
                 }
             }
             return Optional.empty();
@@ -328,6 +434,25 @@ public abstract class Cause {
         }
 
         @Override
+        public Optional<?> after(String named) {
+            checkArgument(named != null, "The name cannot be null!");
+            if (this.cause.length == 1) {
+                return Optional.empty();
+            }
+            for (int i = 0; i < this.names.length; i++) {
+                if (this.names[i].equalsIgnoreCase(named) && i + 1 < this.cause.length) {
+                    try {
+                        final Object object = this.cause[i + 1];
+                        return Optional.of(object);
+                    } catch (Exception e) {
+                        return Optional.empty();
+                    }
+                }
+            }
+            return Optional.empty();
+        }
+
+        @Override
         public boolean any(Class<?> target) {
             checkArgument(target != null, "The provided class cannot be null!");
             for (Object aCause : this.cause) {
@@ -336,6 +461,17 @@ public abstract class Cause {
                 }
             }
 
+            return false;
+        }
+
+        @Override
+        public boolean any(String named) {
+            checkArgument(named != null, "The name cannot be null!");
+            for (String name : this.names) {
+                if (name.equalsIgnoreCase(named)) {
+                    return true;
+                }
+            }
             return false;
         }
 
@@ -403,7 +539,17 @@ public abstract class Cause {
         }
 
         @Override
+        public <T> Optional<T> first(String named) {
+            return Optional.empty();
+        }
+
+        @Override
         public <T> Optional<T> last(Class<T> target) {
+            return Optional.empty();
+        }
+
+        @Override
+        public <T> Optional<T> last(String named) {
             return Optional.empty();
         }
 
@@ -413,12 +559,27 @@ public abstract class Cause {
         }
 
         @Override
+        public Optional<?> before(String named) {
+            return Optional.empty();
+        }
+
+        @Override
         public Optional<?> after(Class<?> clazz) {
             return Optional.empty();
         }
 
         @Override
+        public Optional<?> after(String named) {
+            return Optional.empty();
+        }
+
+        @Override
         public boolean any(Class<?> target) {
+            return false;
+        }
+
+        @Override
+        public boolean any(String named) {
             return false;
         }
 

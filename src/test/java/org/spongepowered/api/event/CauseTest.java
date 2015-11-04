@@ -25,7 +25,10 @@
 package org.spongepowered.api.event;
 
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.NamedCause;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -128,6 +131,32 @@ public class CauseTest {
         assert testing.isEmpty();
         assert testing.allOf(String.class).isEmpty();
         assert testing.noneOf(String.class).isEmpty();
+    }
+
+    @Test
+    public void testNamedCause() {
+        final Player player = Mockito.mock(Player.class);
+        final NamedCause ownerCause = NamedCause.of(NamedCause.OWNER, player);
+        final Cause playerCause = Cause.of(ownerCause);
+        Optional<Player> optional = playerCause.first(NamedCause.OWNER);
+        assert optional.isPresent();
+    }
+
+    @Test
+    public void testAbsentNamedCause() {
+        final Cause emptyCause = Cause.of();
+        final Optional<Object> optional = emptyCause.first(NamedCause.OWNER);
+        assert !optional.isPresent();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testIllegalNamedCause() {
+        final Player player = Mockito.mock(Player.class);
+        final Player playerB = Mockito.mock(Player.class);
+        final NamedCause namedA = NamedCause.of(NamedCause.OWNER, player);
+        final NamedCause namedB = NamedCause.of(NamedCause.OWNER, playerB);
+        final Cause cause = Cause.of(namedA, namedB);
+        // The line above should throw an exception!
     }
 
 }
