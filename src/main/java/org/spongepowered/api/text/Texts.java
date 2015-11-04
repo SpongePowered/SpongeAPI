@@ -233,6 +233,11 @@ public final class Texts {
             }
         }
 
+        if (builder.children.size() == 1) {
+            // Single content, reduce Text depth
+            return builder.children.get(0);
+        }
+
         return builder.build();
     }
 
