@@ -22,23 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.data.manipulator.mutable;
 
-import org.spongepowered.api.data.manipulator.mutable.FireworkEffectData;
-import org.spongepowered.api.entity.explosive.FusedExplosive;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableFireworkRocketData;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.entity.projectile.Firework;
+import org.spongepowered.api.item.ItemTypes;
 
 /**
- * Represents a firework.
+ * An {@link DataManipulator} representing the flight modifier of a
+ * {@link Firework} or {@link ItemTypes#FIREWORKS} item.
  */
-public interface Firework extends Projectile, FusedExplosive {
+public interface FireworkRocketData extends DataManipulator<FireworkRocketData, ImmutableFireworkRocketData> {
 
     /**
-     * Gets a copy of the {@link FireworkEffectData} for this firework.
+     * Gets the flight modifier for this firework.
      *
-     * @return A copy of the firework data
+     * <p>Flight modifiers are tiered ranks of flight duration. Generally,
+     * the modifier is used to calculate the fuse time of a firework when
+     * launched. This can be approximated by multiplying 10 and the modifier,
+     * and adding a random number between 0 and 13. Again, this is a general
+     * approximation of what vanilla Minecraft performs.</p>
+     *
+     * @return The flight modifier
      */
-    default FireworkEffectData getFireworkData() {
-        return get(FireworkEffectData.class).get();
-    }
-
+    MutableBoundedValue<Integer> flightModifier();
 }
