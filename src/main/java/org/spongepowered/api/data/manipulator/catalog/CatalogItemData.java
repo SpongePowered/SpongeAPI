@@ -30,7 +30,8 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.ColoredData;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.DyeableData;
-import org.spongepowered.api.data.manipulator.mutable.FireworkData;
+import org.spongepowered.api.data.manipulator.mutable.FireworkEffectData;
+import org.spongepowered.api.data.manipulator.mutable.FireworkRocketData;
 import org.spongepowered.api.data.manipulator.mutable.PotionEffectData;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.data.manipulator.mutable.item.BlockItemData;
@@ -118,9 +119,14 @@ public final class CatalogItemData {
      */
     public static final Class<EnchantmentData> ENCHANTMENT_DATA = EnchantmentData.class;
     /**
-     * Represents the {@link FireworkEffect}s of a firework.
+     * Represents the {@link FireworkEffect}s of {@link ItemTypes#FIREWORKS}
+     * or a {@link ItemTypes#FIREWORK_CHARGE}.
      */
-    public static final Class<FireworkData> FIREWORK_DATA = FireworkData.class;
+    public static final Class<FireworkEffectData> FIREWORK_EFFECT_DATA = FireworkEffectData.class;
+    /**
+     * Represents the flight time of {@link ItemTypes#FIREWORKS}.
+     */
+    public static final Class<FireworkRocketData> FIREWORK_ROCKET_DATA = FireworkRocketData.class;
     /**
      * Represents the {@link Fish} type of a {@link ItemTypes#FISH}.
      */

@@ -28,7 +28,8 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.DyeableData;
-import org.spongepowered.api.data.manipulator.mutable.FireworkData;
+import org.spongepowered.api.data.manipulator.mutable.FireworkEffectData;
+import org.spongepowered.api.data.manipulator.mutable.FireworkRocketData;
 import org.spongepowered.api.data.manipulator.mutable.PotionEffectData;
 import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
@@ -141,6 +142,7 @@ import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.Firework;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.item.FireworkEffect;
+import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.potion.PotionEffect;
@@ -273,7 +275,11 @@ public final class CatalogEntityData {
      * Represents the {@link FireworkEffect}s that a {@link Firework} will have
      * upon detonation.
      */
-    public static final Class<FireworkData> FIREWORK_DATA = FireworkData.class;
+    public static final Class<FireworkEffectData> FIREWORK_EFFECT_DATA = FireworkEffectData.class;
+    /**
+     * Represents the flight time of a {@link Firework}.
+     */
+    public static final Class<FireworkRocketData> FIREWORK_ROCKET_DATA = FireworkRocketData.class;
     /**
      * Represents when an entity is considering to be "flying". Applicable for
      * almost all types of {@link Entity}.

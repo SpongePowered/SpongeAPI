@@ -22,42 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable;
+package org.spongepowered.api.data.manipulator.mutable;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.FireworkData;
-import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.immutable.ImmutableListValue;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableFireworkEffectData;
+import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.entity.projectile.Firework;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * An {@link ImmutableDataManipulator} handling the various
+ * A {@link DataManipulator} handling the various
  * {@link FireworkEffect}s associated with a {@link Firework} and
- * an {@link ItemStack} that is of the {@link ItemTypes#FIREWORKS}.
+ * an {@link ItemStack} that is of the {@link ItemTypes#FIREWORKS} or {@link ItemTypes#FIREWORK_CHARGE}.
  */
-public interface ImmutableFireworkData extends ImmutableDataManipulator<ImmutableFireworkData, FireworkData> {
+public interface FireworkEffectData extends DataManipulator<FireworkEffectData, ImmutableFireworkEffectData> {
 
     /**
-     * Gets the {@link ImmutableListValue} of {@link FireworkEffect}s.
+     * Gets the {@link ListValue} of {@link FireworkEffect}s.
      *
-     * @return The immutable list value of fire work effects
+     * <p>Note that for {@link ItemTypes#FIREWORK_CHARGE} only the first effect
+     * will apply to the charge.</p>
+     *
+     * @return The list value of firework effects
      */
-    ImmutableListValue<FireworkEffect> effects();
-
-    /**
-     * Gets the {@link ImmutableBoundedValue} for the flight modifier.
-     *
-     * <p>Flight modifiers are tiered ranks of flight duration. Generally,
-     * the modifier is used to calculate the fuse time of a firework when
-     * launched. This can be approximated by multiplying 10 and the modifier,
-     * and adding a random number between 0 and 13. Again, this is a general
-     * approximation of what vanilla Minecraft performs.</p>
-     *
-     * @return The flight modifier
-     */
-    ImmutableBoundedValue<Integer> flightModifier();
-
+    ListValue<FireworkEffect> effects();
 }
