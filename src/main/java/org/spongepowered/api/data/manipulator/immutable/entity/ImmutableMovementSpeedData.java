@@ -38,14 +38,14 @@ import org.spongepowered.api.entity.living.player.Player;
 public interface ImmutableMovementSpeedData extends ImmutableDataManipulator<ImmutableMovementSpeedData, MovementSpeedData> {
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the "walking" speed.
+     * Gets the {@link ImmutableValue} for the "walking" speed.
      *
      * @return The immutable value for the walking speed
      */
     ImmutableValue<Double> walkSpeed();
 
     /**
-     * Gets the {@link ImmutableBoundedValue} for the "flying" speed.
+     * Gets the {@link ImmutableValue} for the "flying" speed.
      *
      * @return The immutable value for the flying speed
      */
