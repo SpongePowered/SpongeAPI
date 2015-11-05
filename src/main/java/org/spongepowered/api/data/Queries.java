@@ -63,6 +63,11 @@ public final class Queries {
     public static final DataQuery VARIABLE_VARIANCE = of("Variance");
     public static final DataQuery VARIABLE_AMOUNT = of("Amount");
 
+    // Color
+    public static final DataQuery COLOR_RED = of("Red");
+    public static final DataQuery COLOR_BLUE = of("Blue");
+    public static final DataQuery COLOR_GREEN = of("Green");
+
     private Queries() {
     }
 

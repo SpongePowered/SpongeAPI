@@ -140,13 +140,13 @@ import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Axis;
+import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.ban.Ban;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
-import java.awt.Color;
 import java.util.Date;
 import java.util.UUID;
 

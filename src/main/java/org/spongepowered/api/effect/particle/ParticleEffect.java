@@ -27,6 +27,7 @@ package org.spongepowered.api.effect.particle;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.Color;
 
 /**
  * Represents a particle effect that can be send to the Minecraft client.

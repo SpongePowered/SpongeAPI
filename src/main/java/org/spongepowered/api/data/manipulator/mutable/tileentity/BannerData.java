@@ -32,8 +32,6 @@ import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.mutable.PatternListValue;
 import org.spongepowered.api.data.value.mutable.Value;
 
-import java.awt.Color;
-
 /**
  * An {@link DataManipulator} handling the various information for a
  * {@link Banner} including the {@link PatternLayer}s that customize the
@@ -42,7 +40,7 @@ import java.awt.Color;
 public interface BannerData extends DataManipulator<BannerData, ImmutableBannerData> {
 
     /**
-     * Gets the {@link Value} for the base {@link Color}.
+     * Gets the {@link Value} for the base {@link DyeColor}.
      *
      * @return The value for the base color
      */

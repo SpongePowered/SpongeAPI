@@ -29,8 +29,7 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.ColoredData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.item.inventory.ItemStack;
-
-import java.awt.Color;
+import org.spongepowered.api.util.Color;
 
 /**
  * An {@link ImmutableDataManipulator} for handling the {@link Color} of
