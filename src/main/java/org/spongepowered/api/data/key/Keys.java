@@ -129,6 +129,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -526,6 +527,12 @@ public final class Keys {
     public static final Key<Value<Boolean>> OCCUPIED = null;
 
     /**
+     * Represents the {@link Key} for representing a block's offset when inside
+     * a {@link Minecart}.
+     */
+    public static final Key<Value<Integer>> OFFSET = null;
+
+    /**
      * Represents the {@link Key} for representing the "open" state of
      * various door typed blocks.
      *
@@ -588,6 +595,12 @@ public final class Keys {
      * @see RailDirectionData#type()
      */
     public static final Key<Value<RailDirection>> RAIL_DIRECTION = null;
+
+    /**
+     * Represents the {@link Key} for representing the {@link BlockState}
+     * inside a {@link Minecart}.
+     */
+    public static final Key<Value<BlockState>> REPRESENTED_BLOCK = null;
 
     /**
      * Represents the {@link Key} for representing the {@link BigMushroomType}
