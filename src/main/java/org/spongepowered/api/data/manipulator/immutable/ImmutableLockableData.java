@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.tileentity;
+package org.spongepowered.api.data.manipulator.immutable;
 
 import org.spongepowered.api.block.tileentity.carrier.TileEntityCarrier;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.tileentity.LockableData;
+import org.spongepowered.api.data.manipulator.mutable.LockableData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.item.inventory.ItemStack;
 
