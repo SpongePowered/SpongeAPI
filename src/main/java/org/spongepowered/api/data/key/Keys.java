@@ -25,14 +25,12 @@
 package org.spongepowered.api.data.key;
 
 import com.flowpowered.math.vector.Vector3d;
-
 import org.spongepowered.api.GameProfile;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 import org.spongepowered.api.data.manipulator.mutable.block.AttachedData;
-import org.spongepowered.api.data.manipulator.mutable.block.AxisData;
 import org.spongepowered.api.data.manipulator.mutable.block.BigMushroomData;
 import org.spongepowered.api.data.manipulator.mutable.block.BrickData;
 import org.spongepowered.api.data.manipulator.mutable.block.ComparatorData;
@@ -50,7 +48,6 @@ import org.spongepowered.api.data.manipulator.mutable.block.FluidLevelData;
 import org.spongepowered.api.data.manipulator.mutable.block.GrowthData;
 import org.spongepowered.api.data.manipulator.mutable.block.HingeData;
 import org.spongepowered.api.data.manipulator.mutable.block.InWallData;
-import org.spongepowered.api.data.manipulator.mutable.block.InstrumentData;
 import org.spongepowered.api.data.manipulator.mutable.block.LayeredData;
 import org.spongepowered.api.data.manipulator.mutable.block.MoistureData;
 import org.spongepowered.api.data.manipulator.mutable.block.OccupiedData;
@@ -96,7 +93,6 @@ import org.spongepowered.api.data.type.Hinge;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.HorseVariant;
-import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.LogAxis;
 import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.data.type.OcelotType;
@@ -141,7 +137,6 @@ import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.ban.Ban;
 import org.spongepowered.api.util.rotation.Rotation;
@@ -322,14 +317,6 @@ public final class Keys {
     public static final Key<Value<Boolean>> ATTACHED = null;
 
     /**
-     * Represents the {@link Key} for representing the {@link Axis} direction
-     * of a {@link BlockState}.
-     *
-     * @see AxisData#type()
-     */
-    public static final Key<Value<Axis>> AXIS = null;
-
-    /**
      * Represents the {@link Key} for representing the {@link BigMushroomType}
      * of a {@link BlockState}.
      *
@@ -496,14 +483,6 @@ public final class Keys {
      * @see HingeData#type()
      */
     public static final Key<Value<Hinge>> HINGE_POSITION = null;
-
-    /**
-     * Represents the {@link Key} for representing the {@link InstrumentType}
-     * of a {@link BlockState}.
-     *
-     * @see InstrumentData#type()
-     */
-    public static final Key<Value<InstrumentType>> INSTRUMENT_TYPE = null;
 
     /**
      * Represents the {@link Key} for representing the "in-wall" state of
