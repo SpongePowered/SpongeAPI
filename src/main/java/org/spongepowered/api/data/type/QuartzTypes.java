@@ -28,6 +28,8 @@ public final class QuartzTypes {
 
     public static final QuartzType DEFAULT = null;
     public static final QuartzType CHISELED = null;
-    public static final QuartzType COLUMN = null;
+    public static final QuartzType LINES_X = null;
+    public static final QuartzType LINES_Y = null;
+    public static final QuartzType LINES_Z = null;
 
 }

@@ -30,7 +30,6 @@ import org.spongepowered.api.data.manipulator.mutable.DyeableData;
 import org.spongepowered.api.data.manipulator.mutable.RotationalData;
 import org.spongepowered.api.data.manipulator.mutable.WetData;
 import org.spongepowered.api.data.manipulator.mutable.block.AttachedData;
-import org.spongepowered.api.data.manipulator.mutable.block.AxisData;
 import org.spongepowered.api.data.manipulator.mutable.block.BigMushroomData;
 import org.spongepowered.api.data.manipulator.mutable.block.BrickData;
 import org.spongepowered.api.data.manipulator.mutable.block.ConnectedDirectionData;
@@ -47,7 +46,6 @@ import org.spongepowered.api.data.manipulator.mutable.block.FluidLevelData;
 import org.spongepowered.api.data.manipulator.mutable.block.GrowthData;
 import org.spongepowered.api.data.manipulator.mutable.block.HingeData;
 import org.spongepowered.api.data.manipulator.mutable.block.InWallData;
-import org.spongepowered.api.data.manipulator.mutable.block.InstrumentData;
 import org.spongepowered.api.data.manipulator.mutable.block.LayeredData;
 import org.spongepowered.api.data.manipulator.mutable.block.MoistureData;
 import org.spongepowered.api.data.manipulator.mutable.block.OccupiedData;
@@ -74,7 +72,6 @@ import org.spongepowered.api.data.manipulator.mutable.block.WireAttachmentData;
 import org.spongepowered.api.data.type.BrickType;
 import org.spongepowered.api.data.type.DisguisedBlockType;
 import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.PistonType;
 import org.spongepowered.api.data.type.PrismarineType;
 import org.spongepowered.api.data.type.QuartzType;
@@ -88,7 +85,6 @@ import org.spongepowered.api.data.type.StoneType;
 import org.spongepowered.api.data.type.TreeType;
 import org.spongepowered.api.data.type.WallType;
 import org.spongepowered.api.data.type.WireAttachmentType;
-import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.rotation.Rotation;
 
@@ -102,10 +98,6 @@ public final class CatalogBlockData {
      * Usually applicable for {@link BlockTypes#TRIPWIRE}.
      */
     public static final Class<AttachedData> ATTACHED_DATA = AttachedData.class;
-    /**
-     * Signifies that a block relies on {@link Axis}.
-     */
-    public static final Class<AxisData> AXIS_DATA = AxisData.class;
     /**
      * Represents data related to {@link BlockTypes#BROWN_MUSHROOM_BLOCK} and
      * {@link BlockTypes#RED_MUSHROOM_BLOCK}.
@@ -184,11 +176,6 @@ public final class CatalogBlockData {
      * applicable to {@link BlockTypes#TRAPDOOR} and other doors.
      */
     public static final Class<HingeData> HINGE_DATA = HingeData.class;
-    /**
-     * Represents the {@link InstrumentType}. Usually applicable to
-     * {@link BlockTypes#NOTEBLOCK}.
-     */
-    public static final Class<InstrumentData> INSTRUMENT_DATA = InstrumentData.class;
     /**
      * Signifies that the owner is "connected" to a wall. Usually applicable to
      * {@link BlockTypes#FENCE_GATE}.
