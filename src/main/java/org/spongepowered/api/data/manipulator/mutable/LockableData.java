@@ -24,18 +24,19 @@
  */
 package org.spongepowered.api.data.manipulator.mutable;
 
-
 import org.spongepowered.api.block.tileentity.carrier.TileEntityCarrier;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableLockableData;
 import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.vehicle.minecart.MinecartContainer;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
  * An {@link DataManipulator} handling the "locking" information for a
- * {@link TileEntityCarrier} that can be "locked" such that it can only be
+ * {@link DataHolder} that can be "locked" such that it can only be
  * interacted with if the "lock" has a matching {@link ItemStack} of the same
- * name.
+ * name. Examples of targets are {@link TileEntityCarrier}s and
+ * {@link MinecartContainer}s.
  */
 public interface LockableData extends DataManipulator<LockableData, ImmutableLockableData> {
 
