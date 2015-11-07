@@ -31,6 +31,7 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 import org.spongepowered.api.data.manipulator.mutable.block.AttachedData;
+import org.spongepowered.api.data.manipulator.mutable.block.AxisData;
 import org.spongepowered.api.data.manipulator.mutable.block.BigMushroomData;
 import org.spongepowered.api.data.manipulator.mutable.block.BrickData;
 import org.spongepowered.api.data.manipulator.mutable.block.ComparatorData;
@@ -137,6 +138,7 @@ import org.spongepowered.api.potion.PotionEffectType;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.ban.Ban;
 import org.spongepowered.api.util.rotation.Rotation;
@@ -315,6 +317,14 @@ public final class Keys {
      * @see AttachedData#attached()
      */
     public static final Key<Value<Boolean>> ATTACHED = null;
+
+    /**
+     * Represents the {@link Key} for representing the {@link Axis} direction
+     * of a {@link BlockState}.
+     *
+     * @see AxisData#type()
+     */
+    public static final Key<Value<Axis>> AXIS = null;
 
     /**
      * Represents the {@link Key} for representing the {@link BigMushroomType}
