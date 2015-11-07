@@ -40,6 +40,7 @@ import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.HealEntityEvent;
+import org.spongepowered.api.event.entity.ai.AITaskEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.event.factory.EventFactory;
 import org.spongepowered.api.world.Location;
@@ -63,7 +64,7 @@ public class SpongeEventFactoryTest {
 
     @Before
     public void setUp() {
-        this.excludedEvents = Sets.newHashSet(DamageEntityEvent.class, HealEntityEvent.class);
+        this.excludedEvents = Sets.newHashSet(DamageEntityEvent.class, HealEntityEvent.class, AITaskEvent.class, AITaskEvent.Add.class, AITaskEvent.Remove.class);
     }
 
     @Test

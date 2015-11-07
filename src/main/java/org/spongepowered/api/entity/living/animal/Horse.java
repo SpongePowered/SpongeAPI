@@ -40,5 +40,4 @@ public interface Horse extends Animal, Carrier {
     default HorseData getHorseData() {
         return get(HorseData.class).get();
     }
-
 }

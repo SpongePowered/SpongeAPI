@@ -27,11 +27,11 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFoodData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 
 /**
  * An {@link DataManipulator} handling the various aspects of "hunger"
- * which has various effects on health and speed of {@link Human} entities.
+ * which has various effects on health and speed of {@link Humanoid} entities.
  */
 public interface FoodData extends DataManipulator<FoodData, ImmutableFoodData> {
 
@@ -52,7 +52,7 @@ public interface FoodData extends DataManipulator<FoodData, ImmutableFoodData> {
      * <p>When the exhaustion level reaches 0, saturation is usually diminished
      * such that saturation is decreased and then exhaustion is reset to the
      * maximum. This type of effect occurs over time and can be modified by
-     * movements and actions performed by the {@link Human} entity.</p>
+     * movements and actions performed by the {@link Humanoid} entity.</p>
      *
      * @return The immutable bounded value of exhaustion
      */
@@ -65,7 +65,7 @@ public interface FoodData extends DataManipulator<FoodData, ImmutableFoodData> {
      * diminished such that the food level is decreased by 1, then
      * saturation is reset to the maximum value. This type of effect occurs
      * over time and can be modified by movements and actions performed by the
-     * {@link Human} entity.</p>
+     * {@link Humanoid} entity.</p>
      *
      * @return The immutable bounded value of saturation
      */

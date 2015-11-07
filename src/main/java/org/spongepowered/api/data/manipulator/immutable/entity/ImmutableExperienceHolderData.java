@@ -29,13 +29,13 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExperienceHolderData;
 import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
  * An {@link ImmutableDataManipulator} handling the "experience" held by a
  * {@link DataHolder}. Usually the mechanics of "experience" is that it is
- * accumilated by a {@link Human} and can be spent on creating
+ * accumilated by a {@link Humanoid} and can be spent on creating
  * {@link ItemEnchantment}s or renaming {@link ItemStack}s.
  */
 public interface ImmutableExperienceHolderData extends ImmutableDataManipulator<ImmutableExperienceHolderData, ExperienceHolderData> {

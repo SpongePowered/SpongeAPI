@@ -29,8 +29,12 @@ import org.spongepowered.api.data.ImmutableDataRegistry;
 import org.spongepowered.api.data.manipulator.DataManipulatorRegistry;
 import org.spongepowered.api.data.value.ValueFactory;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.ai.task.AITaskType;
+import org.spongepowered.api.entity.ai.task.AbstractAITask;
+import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.statistic.BlockStatistic;
@@ -281,6 +285,17 @@ public interface GameRegistry {
      * @param modifier The modifier to register
      */
     void registerWorldGeneratorModifier(WorldGeneratorModifier modifier);
+
+    /**
+     * Registers a new {@link AbstractAITask} with an {@link Agent} as the owner. The complete id
+     * will be in the format of <code>{@link PluginContainer#getId()}:id</code>.
+     *
+     * @param plugin The plugin who owns it
+     * @param id The id that represents the task type
+     * @param aiClass The class of the task
+     * @return The type
+     */
+    AITaskType registerAITaskType(Object plugin, String id, String name, Class<? extends AbstractAITask<? extends Agent>> aiClass);
 
     /**
      * Gets the {@link PopulatorFactory} for creating {@link Populator}s and

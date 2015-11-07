@@ -24,24 +24,24 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.type.Interactable;
 
 import java.util.Set;
 
 /**
  * A Container is effectively a <em>ViewModel</em> for a particular set of
- * {@link Inventory} objects used to allow players ({@link Human}s) to interact
+ * {@link Inventory} objects used to allow players ({@link Humanoid}s) to interact
  * with the Inventories, usually via a GUI (the View).
  */
-public interface Container extends Interactable<Human> {
+public interface Container extends Interactable<Humanoid> {
 
     /**
      * Gets the current viewers looking at this Inventory.
      *
      * @return The current viewers of this inventory
      */
-    Set<Human> getViewers();
+    Set<Humanoid> getViewers();
 
     /**
      * Checks for whether this Inventory currently has viewers.
@@ -55,13 +55,13 @@ public interface Container extends Interactable<Human> {
      *
      * @param viewer The viewer to show this inventory to
      */
-    void open(Human viewer);
+    void open(Humanoid viewer);
 
     /**
      * Stops showing this Inventory to the given viewer.
      *
      * @param viewer The viewer to stop showing this inventory to
      */
-    void close(Human viewer);
+    void close(Humanoid viewer);
 
 }

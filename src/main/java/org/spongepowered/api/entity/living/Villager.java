@@ -34,7 +34,7 @@ public interface Villager extends Ageable, Merchant {
 
     /**
      * Returns true if this villager is currently trading with another
-     * {@link Human}. A villager is normally
+     * {@link Humanoid}. A villager is normally
      * unable to trade with multiple HumanEntities at the same time.
      *
      * @return True if this villager is trading with another player

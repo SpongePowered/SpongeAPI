@@ -26,6 +26,7 @@ package org.spongepowered.api.event;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
 import java.net.InetSocketAddress;
 import java.util.List;
@@ -52,8 +53,11 @@ import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.Transform;
+import org.spongepowered.api.entity.ai.Goal;
+import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.living.Ageable;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
@@ -107,8 +111,10 @@ import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.entity.TameEntityEvent;
 import org.spongepowered.api.event.entity.TargetEntityEvent;
 import org.spongepowered.api.event.entity.UnleashEntityEvent;
+import org.spongepowered.api.event.entity.ai.AITaskEvent;
 import org.spongepowered.api.event.entity.item.ItemMergeItemEvent;
 import org.spongepowered.api.event.entity.item.TargetItemEvent;
+import org.spongepowered.api.event.entity.living.TargetAgentEvent;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.entity.living.human.ChangeGameModeEvent;
 import org.spongepowered.api.event.entity.living.human.ChangeLevelEvent;
@@ -1454,7 +1460,7 @@ public class SpongeEventFactory {
      * @param targetInventory The target inventory
      * @return A new target human change entity equipment event
      */
-    public static ChangeEntityEquipmentEvent.TargetHuman createChangeEntityEquipmentEventTargetHuman(Game game, Optional<ItemStackSnapshot> originalItemStack, Optional<Transaction<ItemStackSnapshot>> itemStack, Human targetEntity, Slot targetInventory) {
+    public static ChangeEntityEquipmentEvent.TargetHuman createChangeEntityEquipmentEventTargetHuman(Game game, Optional<ItemStackSnapshot> originalItemStack, Optional<Transaction<ItemStackSnapshot>> itemStack, Humanoid targetEntity, Slot targetInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("originalItemStack", originalItemStack);
@@ -1845,7 +1851,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new target human move displace entity event
      */
-    public static DisplaceEntityEvent.Move.TargetHuman createDisplaceEntityEventMoveTargetHuman(Game game, Transform<World> fromTransform, Transform<World> toTransform, Human targetEntity) {
+    public static DisplaceEntityEvent.Move.TargetHuman createDisplaceEntityEventMoveTargetHuman(Game game, Transform<World> fromTransform, Transform<World> toTransform, Humanoid targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("fromTransform", fromTransform);
@@ -1905,7 +1911,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new target human displace entity event
      */
-    public static DisplaceEntityEvent.TargetHuman createDisplaceEntityEventTargetHuman(Game game, Transform<World> fromTransform, Transform<World> toTransform, Human targetEntity) {
+    public static DisplaceEntityEvent.TargetHuman createDisplaceEntityEventTargetHuman(Game game, Transform<World> fromTransform, Transform<World> toTransform, Humanoid targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("fromTransform", fromTransform);
@@ -1994,7 +2000,7 @@ public class SpongeEventFactory {
      * @param keepsVelocity The keeps velocity
      * @return A new target human teleport displace entity event
      */
-    public static DisplaceEntityEvent.Teleport.TargetHuman createDisplaceEntityEventTeleportTargetHuman(Game game, Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Human targetEntity, TeleporterAgent teleporterAgent, boolean keepsVelocity) {
+    public static DisplaceEntityEvent.Teleport.TargetHuman createDisplaceEntityEventTeleportTargetHuman(Game game, Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Humanoid targetEntity, TeleporterAgent teleporterAgent, boolean keepsVelocity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -2128,7 +2134,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new target human harvest entity event
      */
-    public static HarvestEntityEvent.TargetHuman createHarvestEntityEventTargetHuman(Game game, Cause cause, int originalExperience, int experience, Human targetEntity) {
+    public static HarvestEntityEvent.TargetHuman createHarvestEntityEventTargetHuman(Game game, Cause cause, int originalExperience, int experience, Humanoid targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -2471,6 +2477,76 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.ai.AITaskEvent}.
+     * 
+     * @param game The game
+     * @param goal The goal
+     * @param targetEntity The target entity
+     * @param task The task
+     * @param priority The priority
+     * @return A new a i task event
+     */
+    public static AITaskEvent createAITaskEvent(Game game, Goal<? extends Agent> goal, Agent targetEntity, AITask<? extends Agent> task, int priority) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("goal", goal);
+        values.put("targetEntity", targetEntity);
+        values.put("task", task);
+        values.put("priority", priority);
+        return SpongeEventFactoryUtils.createEventImpl(AITaskEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.ai.AITaskEvent.Add}.
+     * 
+     * @param game The game
+     * @param originalPriority The original priority
+     * @param priority The priority
+     * @param goal The goal
+     * @param targetEntity The target entity
+     * @param task The task
+     * @return A new add a i task event
+     */
+    public static AITaskEvent.Add createAITaskEventAdd(Game game, int originalPriority, int priority, Goal<? extends Agent> goal, Agent targetEntity, AITask<? extends Agent> task) {
+        Preconditions.checkArgument(((goal.getOwner()) == targetEntity), String.format("The target entity \'%s\' is not the owner of the goal \'%s\'!", goal, targetEntity));
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("originalPriority", originalPriority);
+        values.put("priority", priority);
+        values.put("goal", goal);
+        values.put("targetEntity", targetEntity);
+        values.put("task", task);
+        return SpongeEventFactoryUtils.createEventImpl(AITaskEvent.Add.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.ai.AITaskEvent.Remove}.
+     * 
+     * @param game The game
+     * @param goal The goal
+     * @param targetEntity The target entity
+     * @param task The task
+     * @param priority The priority
+     * @return A new remove a i task event
+     */
+    public static AITaskEvent.Remove createAITaskEventRemove(Game game, Goal<? extends Agent> goal, Agent targetEntity, AITask<? extends Agent> task, int priority) {
+        Preconditions.checkArgument(((goal.getOwner()) == targetEntity), String.format("The target entity \'%s\' is not the owner of the goal \'%s\'!", goal, targetEntity));
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("goal", goal);
+        values.put("targetEntity", targetEntity);
+        values.put("task", task);
+        values.put("priority", priority);
+        return SpongeEventFactoryUtils.createEventImpl(AITaskEvent.Remove.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.item.ItemMergeItemEvent}.
      * 
      * @param game The game
@@ -2502,6 +2578,22 @@ public class SpongeEventFactory {
         values.put("game", game);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(TargetItemEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.living.TargetAgentEvent}.
+     * 
+     * @param game The game
+     * @param targetEntity The target entity
+     * @return A new target agent event
+     */
+    public static TargetAgentEvent createTargetAgentEvent(Game game, Agent targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(TargetAgentEvent.class, values);
     }
 
     /**
@@ -2552,7 +2644,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new target human change game mode event
      */
-    public static ChangeGameModeEvent.TargetHuman createChangeGameModeEventTargetHuman(Game game, Cause cause, GameMode originalGameMode, GameMode gameMode, Human targetEntity) {
+    public static ChangeGameModeEvent.TargetHuman createChangeGameModeEventTargetHuman(Game game, Cause cause, GameMode originalGameMode, GameMode gameMode, Humanoid targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -2616,7 +2708,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new target human change level event
      */
-    public static ChangeLevelEvent.TargetHuman createChangeLevelEventTargetHuman(Game game, Cause cause, int originalLevel, int level, Human targetEntity) {
+    public static ChangeLevelEvent.TargetHuman createChangeLevelEventTargetHuman(Game game, Cause cause, int originalLevel, int level, Humanoid targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -2657,7 +2749,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new target human event
      */
-    public static TargetHumanEvent createTargetHumanEvent(Game game, Human targetEntity) {
+    public static TargetHumanEvent createTargetHumanEvent(Game game, Humanoid targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetEntity", targetEntity);

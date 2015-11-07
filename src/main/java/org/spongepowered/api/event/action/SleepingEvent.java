@@ -35,7 +35,7 @@ import org.spongepowered.api.world.World;
 import java.util.Optional;
 
 /**
- * Called when a Human enters a bed to sleep in.
+ * Called when a Humanoid enters a bed to sleep in.
  */
 public interface SleepingEvent extends GameEvent, TargetEntityEvent, CauseTracked {
 

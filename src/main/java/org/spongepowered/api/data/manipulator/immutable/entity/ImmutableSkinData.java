@@ -27,22 +27,22 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.SkinData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.player.Player;
 
 import java.util.UUID;
 
 /**
  * An {@link ImmutableDataManipulator} handling the {@link UUID} for  the
- * {@link Human} skin used. Usually this is meant where the {@link UUID}
+ * {@link Humanoid} skin used. Usually this is meant where the {@link UUID}
  * belongs to a {@link Player} but without relying on a {@link Player},
- * the {@link Human} will use the same skin url on the server.
+ * the {@link Humanoid} will use the same skin url on the server.
  */
 public interface ImmutableSkinData extends ImmutableDataManipulator<ImmutableSkinData, SkinData> {
 
     /**
      * Gets the {@link ImmutableValue} for the {@link UUID} of the skin to
-     * display on a {@link Human} entity for customization.
+     * display on a {@link Humanoid} entity for customization.
      *
      * @return The immutable value for the skin uuid
      */

@@ -89,7 +89,7 @@ import org.spongepowered.api.data.manipulator.mutable.entity.SlimeData;
 import org.spongepowered.api.data.manipulator.mutable.entity.SneakingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.StatisticData;
 import org.spongepowered.api.data.manipulator.mutable.entity.TameableData;
-import org.spongepowered.api.data.manipulator.mutable.entity.TargetLivingData;
+import org.spongepowered.api.data.manipulator.mutable.entity.TargetMultipleLivingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.VehicleData;
 import org.spongepowered.api.data.manipulator.mutable.entity.VelocityData;
 import org.spongepowered.api.data.manipulator.mutable.entity.VillagerZombieData;
@@ -115,7 +115,7 @@ import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Aquatic;
 import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.Villager;
 import org.spongepowered.api.entity.living.animal.Animal;
@@ -197,7 +197,7 @@ public final class CatalogEntityData {
     public static final Class<BanData> BAN_DATA = BanData.class;
     /**
      * Represents the mapped rotational data for all known body parts. Usually
-     * applicable to {@link Human}s and {@link ArmorStand}s.
+     * applicable to {@link Humanoid}s and {@link ArmorStand}s.
      */
     public static final Class<BodyPartRotationalData> BODY_PART_ROTATIONAL_DATA = BodyPartRotationalData.class;
     /**
@@ -304,7 +304,7 @@ public final class CatalogEntityData {
     public static final Class<GameModeData> GAME_MODE_DATA = GameModeData.class;
     /**
      * Signifies that an entity can modify blocks in the world. Usually applies
-     * to {@link Enderman} and {@link Human}s.
+     * to {@link Enderman} and {@link Humanoid}s.
      */
     public static final Class<GriefingData> GRIEFING_DATA = GriefingData.class;
     /**
@@ -441,7 +441,7 @@ public final class CatalogEntityData {
     public static final Class<SkeletonData> SKELETON_DATA = SkeletonData.class;
     /**
      * Signifies that the owner is currently "sleeping". This will usually
-     * apply to {@link Human}s and {@link Bat}s.
+     * apply to {@link Humanoid}s and {@link Bat}s.
      */
     public static final Class<SleepingData> SLEEPING_DATA = SleepingData.class;
     /**
@@ -469,7 +469,7 @@ public final class CatalogEntityData {
      * Represents the current targets of an owner that is "targeting" some
      * {@link Living} entities. Usually applicable to almost all {@link Agent}s.
      */
-    public static final Class<TargetLivingData> TARGET_LIVING_DATA = TargetLivingData.class;
+    public static final Class<TargetMultipleLivingData> TARGET_LIVING_DATA = TargetMultipleLivingData.class;
     /**
      * Signifies that an entity is currently being ridden by another
      * {@link Entity}.

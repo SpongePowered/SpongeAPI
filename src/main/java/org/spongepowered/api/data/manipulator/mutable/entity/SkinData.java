@@ -28,12 +28,12 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSkinData;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 
 import java.util.UUID;
 
 /**
- * Represents the UUID of the skin for a {@link Human}.
+ * Represents the UUID of the skin for a {@link Humanoid}.
  *
  * <p>Unfortunately the actual binary data for the skin is not able to be
  * manipulated because it must be signed on mojang's server.</p>
@@ -42,7 +42,7 @@ public interface SkinData extends DataManipulator<SkinData, ImmutableSkinData> {
 
     /**
      * Gets the {@link Value} for the {@link UUID} of the skin to display on a
-     * {@link Human} entity for customization.
+     * {@link Humanoid} entity for customization.
      *
      * @return The value for the skin uuid
      */

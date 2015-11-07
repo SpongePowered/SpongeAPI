@@ -32,14 +32,14 @@ import org.spongepowered.api.item.inventory.type.InventoryRow;
 public interface Hotbar extends InventoryRow {
 
     /**
-     * Gets the index of the slot that is currently selected by the Human.
+     * Gets the index of the slot that is currently selected by the Humanoid.
      *
      * @return The slot being currently held as an integer from 0-8, inclusive
      */
     int getSelectedSlotIndex();
 
     /**
-     * Sets the slot selected by the Human.
+     * Sets the slot selected by the Humanoid.
      *
      * @param index The slot to hold as an integer from 0-8, inclusive
      */

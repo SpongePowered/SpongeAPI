@@ -25,6 +25,10 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.manipulator.mutable.entity.AgentData;
+import org.spongepowered.api.entity.ai.Goal;
+import org.spongepowered.api.entity.ai.GoalType;
+
+import java.util.Optional;
 
 /**
  * An Agent represents a {@link Living} that has AI. In the future Sponge will
@@ -41,4 +45,12 @@ public interface Agent extends Living {
         return get(AgentData.class).get();
     }
 
+    /**
+     * Gets a {@link Goal} based on the {@link GoalType}.
+     *
+     * @param type GoalType to lookup
+     * @param <T> Inferred agent type
+     * @return The goal or {@link Optional#empty()} if not found.
+     */
+    <T extends Agent> Optional<Goal<T>> getGoal(GoalType type);
 }

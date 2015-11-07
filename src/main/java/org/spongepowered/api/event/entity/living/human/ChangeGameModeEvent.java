@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.entity.living.human;
 
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
@@ -32,7 +32,7 @@ import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
 
 /**
- * Called when a {@link Human} changes {@link GameMode}.
+ * Called when a {@link Humanoid} changes {@link GameMode}.
  */
 public interface ChangeGameModeEvent extends GameEvent, Cancellable, CauseTracked {
 
