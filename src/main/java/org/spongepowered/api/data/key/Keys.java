@@ -76,6 +76,7 @@ import org.spongepowered.api.data.manipulator.mutable.block.TreeData;
 import org.spongepowered.api.data.manipulator.mutable.block.WallData;
 import org.spongepowered.api.data.manipulator.mutable.block.WireAttachmentData;
 import org.spongepowered.api.data.manipulator.mutable.entity.FallDistanceData;
+import org.spongepowered.api.data.manipulator.mutable.item.SplashPotionData;
 import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.data.type.Art;
 import org.spongepowered.api.data.type.BigMushroomType;
@@ -132,6 +133,7 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.item.FireworkEffect;
+import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.potion.PotionEffect;
@@ -734,5 +736,13 @@ public final class Keys {
      * @see WireAttachmentData#wireAttachmentNorth()
      */
     public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = null;
+
+    /**
+     * Represents the {@link Key} for representing the "splash" state of a
+     * {@link ItemTypes#POTION}.
+     *
+     * @see SplashPotionData#splash()
+     */
+    public static final Key<Value<Boolean>> IS_SPLASH_POTION = null;
 
 }
