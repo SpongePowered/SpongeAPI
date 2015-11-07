@@ -42,6 +42,7 @@ import org.spongepowered.api.service.persistence.DataBuilder;
 import org.spongepowered.api.service.persistence.SerializationService;
 import org.spongepowered.api.util.Coerce;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -130,7 +131,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public boolean contains(DataQuery path) {
+    public final boolean contains(DataQuery path) {
         checkNotNull(path, "path");
         List<DataQuery> queryParts = path.getQueryParts();
 
@@ -149,6 +150,26 @@ public class MemoryDataView implements DataView {
             }
             return subViewOptional.get().contains(of(subParts));
         }
+    }
+
+    @Override
+    public boolean contains(DataQuery path, DataQuery... paths) {
+        checkNotNull(path, "DataQuery cannot be null!");
+        checkNotNull(paths, "DataQuery varargs cannot be null!");
+        if (paths.length == 0) {
+            return contains(path);
+        }
+        List<DataQuery> queries = new ArrayList<>();
+        queries.add(path);
+        for (DataQuery query : paths) {
+            queries.add(checkNotNull(query, "No null queries!"));
+        }
+        for (DataQuery query : queries) {
+            if (!contains(query)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override

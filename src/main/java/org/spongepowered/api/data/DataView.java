@@ -125,6 +125,15 @@ public interface DataView {
     boolean contains(DataQuery path);
 
     /**
+     * Returns whether this {@link DataView} contains an entry for all
+     * provided {@link DataQuery} objects.
+     *
+     * @param path The path relative to this data view
+     * @return True if all paths exist
+     */
+    boolean contains(DataQuery path, DataQuery... paths);
+
+    /**
      * Gets an object from the desired path. If the path is not defined,
      * an absent Optional is returned.
      *
