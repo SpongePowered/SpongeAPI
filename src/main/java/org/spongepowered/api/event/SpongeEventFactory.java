@@ -68,7 +68,6 @@ import org.spongepowered.api.event.action.MessageEvent;
 import org.spongepowered.api.event.action.SleepingEvent;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.block.CollideBlockEvent;
-import org.spongepowered.api.event.block.DecayBlockEvent;
 import org.spongepowered.api.event.block.GrowBlockEvent;
 import org.spongepowered.api.event.block.InteractBlockEvent;
 import org.spongepowered.api.event.block.MoveBlockEvent;
@@ -763,26 +762,6 @@ public class SpongeEventFactory {
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
         return SpongeEventFactoryUtils.createEventImpl(CollideBlockEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.block.DecayBlockEvent}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param targetWorld The target world
-     * @param transactions The transactions
-     * @return A new decay block event
-     */
-    public static DecayBlockEvent createDecayBlockEvent(Game game, Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("targetWorld", targetWorld);
-        values.put("transactions", transactions);
-        return SpongeEventFactoryUtils.createEventImpl(DecayBlockEvent.class, values);
     }
 
     /**

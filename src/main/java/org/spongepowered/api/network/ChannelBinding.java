@@ -60,7 +60,7 @@ public interface ChannelBinding {
     PluginContainer getOwner();
 
     /**
-     * Represents a channel binding that sends an receives messages.
+     * Represents a channel binding that sends and receives messages.
      */
     interface IndexedMessageChannel extends ChannelBinding {
 
