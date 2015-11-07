@@ -28,7 +28,7 @@ import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
 import org.spongepowered.api.data.manipulator.mutable.entity.JoinData;
 import org.spongepowered.api.effect.Viewer;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
@@ -48,7 +48,7 @@ import java.util.Locale;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer {
+public interface Player extends Humanoid, User, LocatedSource, RemoteSource, Viewer {
 
     /**
      * Gets the locale used by the player.

@@ -38,6 +38,7 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.EnumSet;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -77,6 +78,12 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @return The snapshot
      */
     EntitySnapshot createSnapshot();
+
+    /**
+     * Gets the RNG for this entity.
+     * @return The RNG
+     */
+    Random getRandom();
 
     /**
      * Get the location of this entity.

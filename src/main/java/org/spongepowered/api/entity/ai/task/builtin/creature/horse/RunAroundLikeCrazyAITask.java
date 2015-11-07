@@ -22,46 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory;
+package org.spongepowered.api.entity.ai.task.builtin.creature.horse;
 
-import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.item.inventory.type.Interactable;
+import org.spongepowered.api.entity.ai.task.AITask;
+import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.entity.living.animal.Horse;
 
-import java.util.Set;
+public interface RunAroundLikeCrazyAITask extends AITask<Horse> {
 
-/**
- * A Container is effectively a <em>ViewModel</em> for a particular set of
- * {@link Inventory} objects used to allow players ({@link Humanoid}s) to interact
- * with the Inventories, usually via a GUI (the View).
- */
-public interface Container extends Interactable<Humanoid> {
+    double getSpeed();
 
-    /**
-     * Gets the current viewers looking at this Inventory.
-     *
-     * @return The current viewers of this inventory
-     */
-    Set<Humanoid> getViewers();
+    RunAroundLikeCrazyAITask setSpeed(double speed);
 
-    /**
-     * Checks for whether this Inventory currently has viewers.
-     *
-     * @return True if viewers are currently looking at this inventory
-     */
-    boolean hasViewers();
+    interface Builder extends AITaskBuilder<Horse, RunAroundLikeCrazyAITask, Builder> {
 
-    /**
-     * Shows this Inventory to the given viewer.
-     *
-     * @param viewer The viewer to show this inventory to
-     */
-    void open(Humanoid viewer);
+        Builder speed(double speed);
 
-    /**
-     * Stops showing this Inventory to the given viewer.
-     *
-     * @param viewer The viewer to stop showing this inventory to
-     */
-    void close(Humanoid viewer);
-
+    }
 }

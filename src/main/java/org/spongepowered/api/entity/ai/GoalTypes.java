@@ -22,46 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory;
+package org.spongepowered.api.entity.ai;
 
-import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.item.inventory.type.Interactable;
+import org.spongepowered.api.entity.living.Agent;
 
-import java.util.Set;
-
-/**
- * A Container is effectively a <em>ViewModel</em> for a particular set of
- * {@link Inventory} objects used to allow players ({@link Humanoid}s) to interact
- * with the Inventories, usually via a GUI (the View).
- */
-public interface Container extends Interactable<Humanoid> {
+public final class GoalTypes {
 
     /**
-     * Gets the current viewers looking at this Inventory.
-     *
-     * @return The current viewers of this inventory
+     * {@link Goal} that is the default set of tasks for most {@link Agent}s.
      */
-    Set<Humanoid> getViewers();
+    public static final GoalType NORMAL = null;
 
     /**
-     * Checks for whether this Inventory currently has viewers.
+     * {@link Goal} that is the "target" set of tasks.
      *
-     * @return True if viewers are currently looking at this inventory
+     * In this goal, the objective is to formulate the target so that the
+     * {@link Agent} can act on it. The best example is how monsters like
+     * zombie and skeleton attack enemies: they seek out a target and if
+     * a task in their normal goal sees that they have a target, they act
+     * accordingly.
      */
-    boolean hasViewers();
-
-    /**
-     * Shows this Inventory to the given viewer.
-     *
-     * @param viewer The viewer to show this inventory to
-     */
-    void open(Humanoid viewer);
-
-    /**
-     * Stops showing this Inventory to the given viewer.
-     *
-     * @param viewer The viewer to stop showing this inventory to
-     */
-    void close(Humanoid viewer);
-
+    public static final GoalType TARGET = null;
 }

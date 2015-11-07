@@ -22,46 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory;
+package org.spongepowered.api.entity.ai;
 
-import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.item.inventory.type.Interactable;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.Set;
-
-/**
- * A Container is effectively a <em>ViewModel</em> for a particular set of
- * {@link Inventory} objects used to allow players ({@link Humanoid}s) to interact
- * with the Inventories, usually via a GUI (the View).
- */
-public interface Container extends Interactable<Humanoid> {
+@CatalogedBy(GoalTypes.class)
+public interface GoalType extends CatalogType {
 
     /**
-     * Gets the current viewers looking at this Inventory.
+     * Gets the {@link Goal} class that this type represents.
      *
-     * @return The current viewers of this inventory
+     * @return The goal class
      */
-    Set<Humanoid> getViewers();
-
-    /**
-     * Checks for whether this Inventory currently has viewers.
-     *
-     * @return True if viewers are currently looking at this inventory
-     */
-    boolean hasViewers();
-
-    /**
-     * Shows this Inventory to the given viewer.
-     *
-     * @param viewer The viewer to show this inventory to
-     */
-    void open(Humanoid viewer);
-
-    /**
-     * Stops showing this Inventory to the given viewer.
-     *
-     * @param viewer The viewer to stop showing this inventory to
-     */
-    void close(Humanoid viewer);
-
+    Class<? extends Goal<?>> getGoalClass();
 }

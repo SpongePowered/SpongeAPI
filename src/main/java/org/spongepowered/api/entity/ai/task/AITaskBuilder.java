@@ -22,46 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory;
+package org.spongepowered.api.entity.ai.task;
 
-import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.item.inventory.type.Interactable;
-
-import java.util.Set;
+import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.util.ResettableBuilder;
 
 /**
- * A Container is effectively a <em>ViewModel</em> for a particular set of
- * {@link Inventory} objects used to allow players ({@link Humanoid}s) to interact
- * with the Inventories, usually via a GUI (the View).
+ * A utility to assist in building {@link AITask}s.
+ *
+ * @param <O> The type of agent
+ * @param <A> The type of task
+ * @param <B> The type of builder, self-referencing
  */
-public interface Container extends Interactable<Humanoid> {
+public interface AITaskBuilder<O extends Agent, A extends AITask<O>, B extends AITaskBuilder<O, A, B>> extends ResettableBuilder<B> {
 
     /**
-     * Gets the current viewers looking at this Inventory.
+     * Builds the {@link AITask}.
      *
-     * @return The current viewers of this inventory
+     * @param owner The owner of the task
+     * @return The task
      */
-    Set<Humanoid> getViewers();
-
-    /**
-     * Checks for whether this Inventory currently has viewers.
-     *
-     * @return True if viewers are currently looking at this inventory
-     */
-    boolean hasViewers();
-
-    /**
-     * Shows this Inventory to the given viewer.
-     *
-     * @param viewer The viewer to show this inventory to
-     */
-    void open(Humanoid viewer);
-
-    /**
-     * Stops showing this Inventory to the given viewer.
-     *
-     * @param viewer The viewer to stop showing this inventory to
-     */
-    void close(Humanoid viewer);
-
+    A build(O owner);
 }

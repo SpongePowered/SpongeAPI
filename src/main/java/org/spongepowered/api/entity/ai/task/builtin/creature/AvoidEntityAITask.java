@@ -22,46 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory;
+package org.spongepowered.api.entity.ai.task.builtin.creature;
 
-import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.item.inventory.type.Interactable;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.ai.task.AITask;
+import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.entity.living.Creature;
 
-import java.util.Set;
+import java.util.function.Predicate;
 
-/**
- * A Container is effectively a <em>ViewModel</em> for a particular set of
- * {@link Inventory} objects used to allow players ({@link Humanoid}s) to interact
- * with the Inventories, usually via a GUI (the View).
- */
-public interface Container extends Interactable<Humanoid> {
+public interface AvoidEntityAITask extends AITask<Creature> {
 
-    /**
-     * Gets the current viewers looking at this Inventory.
-     *
-     * @return The current viewers of this inventory
-     */
-    Set<Humanoid> getViewers();
+    AvoidEntityAITask setTargetSelector(Predicate<Entity> predicate);
 
-    /**
-     * Checks for whether this Inventory currently has viewers.
-     *
-     * @return True if viewers are currently looking at this inventory
-     */
-    boolean hasViewers();
+    float getSearchDistance();
 
-    /**
-     * Shows this Inventory to the given viewer.
-     *
-     * @param viewer The viewer to show this inventory to
-     */
-    void open(Humanoid viewer);
+    AvoidEntityAITask setSearchDistance(float distance);
 
-    /**
-     * Stops showing this Inventory to the given viewer.
-     *
-     * @param viewer The viewer to stop showing this inventory to
-     */
-    void close(Humanoid viewer);
+    double getCloseRangeSpeed();
 
+    AvoidEntityAITask setCloseRangeSpeed(double speed);
+
+    double getFarRangeSpeed();
+
+    AvoidEntityAITask setFarRangeSpeed(double speed);
+
+    interface Builder extends AITaskBuilder<Creature, AvoidEntityAITask, Builder> {
+
+        Builder targetSelector(Predicate<Entity> predicate);
+
+        Builder searchDistance(float distance);
+
+        Builder closeRangeSpeed(double speed);
+
+        Builder farRangeSpeed(double speed);
+
+    }
 }

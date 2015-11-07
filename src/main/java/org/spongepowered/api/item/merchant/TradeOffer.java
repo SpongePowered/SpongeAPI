@@ -26,7 +26,7 @@ package org.spongepowered.api.item.merchant;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.DataBuilder;
 
@@ -34,7 +34,7 @@ import java.util.Optional;
 
 /**
  * <p>Represents a trade offer that a {@link Merchant} may offer a
- * {@link Human}.</p>
+ * {@link Humanoid}.</p>
  *
  * <p>TradeOffers usually have a limited amount of times they can be used.</p>
  *

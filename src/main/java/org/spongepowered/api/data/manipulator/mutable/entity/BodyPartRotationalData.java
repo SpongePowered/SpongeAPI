@@ -31,11 +31,11 @@ import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.ArmorStand;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 
 /**
  * Represents the mapped rotational data for all known body parts. Usually
- * applicable to {@link Human}s and {@link ArmorStand}s.
+ * applicable to {@link Humanoid}s and {@link ArmorStand}s.
  */
 public interface BodyPartRotationalData extends DataManipulator<BodyPartRotationalData, ImmutableBodyPartRotationalData> {
 

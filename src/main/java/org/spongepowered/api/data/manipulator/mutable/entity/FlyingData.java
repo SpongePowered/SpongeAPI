@@ -28,12 +28,12 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFlyingData;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 
 /**
  * An {@link DataManipulator} for the "flying" state of an {@link Entity}. This
  * is usually marking that an entity is capable of flying unobtrusively in the
- * air. Usually applicable to a {@link Human} while able to fly.
+ * air. Usually applicable to a {@link Humanoid} while able to fly.
  */
 public interface FlyingData extends DataManipulator<FlyingData, ImmutableFlyingData> {
 

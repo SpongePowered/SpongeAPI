@@ -26,7 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
@@ -82,7 +82,7 @@ public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInv
     interface TargetLiving extends ChangeEntityEquipmentEvent, TargetLivingEvent { }
 
     /**
-     * An event where a {@link Human} entity is targeted.
+     * An event where a {@link Humanoid} entity is targeted.
      */
     interface TargetHuman extends TargetLiving, TargetHumanEvent { }
 

@@ -22,46 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory;
+package org.spongepowered.api.entity.ai.task;
 
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.item.inventory.type.Interactable;
+import org.spongepowered.api.entity.living.animal.Horse;
 
-import java.util.Set;
+import java.util.function.Predicate;
 
-/**
- * A Container is effectively a <em>ViewModel</em> for a particular set of
- * {@link Inventory} objects used to allow players ({@link Humanoid}s) to interact
- * with the Inventories, usually via a GUI (the View).
- */
-public interface Container extends Interactable<Humanoid> {
+public final class AITaskTypes {
 
     /**
-     * Gets the current viewers looking at this Inventory.
-     *
-     * @return The current viewers of this inventory
+     * {@link AITask} where {@link Creature}s walk around.
      */
-    Set<Humanoid> getViewers();
+    public static final AITaskType WANDER = null;
 
     /**
-     * Checks for whether this Inventory currently has viewers.
-     *
-     * @return True if viewers are currently looking at this inventory
+     * {@link AITask} where {@link Horse}s run around while {@link Humanoid}s attempt to tame them.
      */
-    boolean hasViewers();
+    public static final AITaskType RUN_AROUND_LIKE_CRAZY = null;
 
     /**
-     * Shows this Inventory to the given viewer.
-     *
-     * @param viewer The viewer to show this inventory to
+     * {@link AITask} where {@link Creature}s avoid other {@link Agent}s based on a {@link Predicate}.
      */
-    void open(Humanoid viewer);
+    public static final AITaskType AVOID_ENTITY = null;
 
     /**
-     * Stops showing this Inventory to the given viewer.
-     *
-     * @param viewer The viewer to stop showing this inventory to
+     * {@link AITask} where {@link Agent}s swim in liquids.
      */
-    void close(Humanoid viewer);
+    public static final AITaskType SWIMMING = null;
 
+    /**
+     * {@link AITask} where {@link Agent}s will "watch" other {@link Entity}s.
+     */
+    public static final AITaskType WATCH_CLOSEST = null;
 }
