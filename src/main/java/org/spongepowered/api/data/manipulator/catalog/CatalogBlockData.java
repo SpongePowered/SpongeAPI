@@ -30,10 +30,12 @@ import org.spongepowered.api.data.manipulator.mutable.DyeableData;
 import org.spongepowered.api.data.manipulator.mutable.RotationalData;
 import org.spongepowered.api.data.manipulator.mutable.WetData;
 import org.spongepowered.api.data.manipulator.mutable.block.AttachedData;
+import org.spongepowered.api.data.manipulator.mutable.block.AxisData;
 import org.spongepowered.api.data.manipulator.mutable.block.BigMushroomData;
 import org.spongepowered.api.data.manipulator.mutable.block.BrickData;
 import org.spongepowered.api.data.manipulator.mutable.block.ConnectedDirectionData;
 import org.spongepowered.api.data.manipulator.mutable.block.DecayableData;
+import org.spongepowered.api.data.manipulator.mutable.block.DelayableData;
 import org.spongepowered.api.data.manipulator.mutable.block.DirectionalData;
 import org.spongepowered.api.data.manipulator.mutable.block.DirtData;
 import org.spongepowered.api.data.manipulator.mutable.block.DisarmedData;
@@ -85,6 +87,7 @@ import org.spongepowered.api.data.type.StoneType;
 import org.spongepowered.api.data.type.TreeType;
 import org.spongepowered.api.data.type.WallType;
 import org.spongepowered.api.data.type.WireAttachmentType;
+import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.rotation.Rotation;
 
@@ -98,6 +101,10 @@ public final class CatalogBlockData {
      * Usually applicable for {@link BlockTypes#TRIPWIRE}.
      */
     public static final Class<AttachedData> ATTACHED_DATA = AttachedData.class;
+    /**
+     * Signifies that a block relies on {@link Axis}.      
+     */        
+    public static final Class<AxisData> AXIS_DATA = AxisData.class;               
     /**
      * Represents data related to {@link BlockTypes#BROWN_MUSHROOM_BLOCK} and
      * {@link BlockTypes#RED_MUSHROOM_BLOCK}.
@@ -120,6 +127,10 @@ public final class CatalogBlockData {
      * {@link BlockTypes#LEAVES2}.
      */
     public static final Class<DecayableData> DECAYABLE_DATA = DecayableData.class;
+    /**
+     * Represents the delay of a redstone repeater.    
+     */        
+    public static final Class<DelayableData> DELAYABLE_DATA = DelayableData.class;       
     /**
      * Signifies that a block has a {@link Direction}. Usually applies
      * to "rotational" blocks, such as {@link BlockTypes#LOG} and

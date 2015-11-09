@@ -306,6 +306,7 @@ public final class Keys {
     public static final Key<Value<Double>> WALKING_SPEED = null;
     public static final Key<Value<Double>> FLYING_SPEED = null;
     public static final Key<SetValue<Achievement>> ACHIEVEMENTS = null;
+    public static final Key<MutableBoundedValue<Integer>> DELAY = null;
 
 
     private Keys() {}
