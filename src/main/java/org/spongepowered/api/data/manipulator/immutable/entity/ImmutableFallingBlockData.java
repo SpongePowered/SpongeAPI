@@ -76,4 +76,19 @@ public interface ImmutableFallingBlockData extends ImmutableDataManipulator<Immu
      */
     ImmutableValue<Boolean> canDropAsItem();
 
+    /**
+     * Gets the time the block has been falling
+     * if spawning a entity in air this will need to be set to 1 or it will be instantly removed
+     *
+     * @return The time the block has been falling
+     */
+    ImmutableValue<Integer> fallTime();
+
+    /**
+     * Gets whether this falling block will damage entities where it lands
+     *
+     * @return Whether this falling block will damage entities where it lands
+     */
+    ImmutableValue<Boolean> canHurtEntities();
+
 }

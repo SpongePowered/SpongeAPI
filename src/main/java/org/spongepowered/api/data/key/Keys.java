@@ -305,6 +305,8 @@ public final class Keys {
     public static final Key<Value<Double>> WALKING_SPEED = null;
     public static final Key<Value<Double>> FLYING_SPEED = null;
     public static final Key<SetValue<Achievement>> ACHIEVEMENTS = null;
+    public static final Key<Value<Integer>> FALL_TIME = null;
+    public static final Key<Value<Boolean>> FALLING_BLOCK_CAN_HURT_ENTITIES = null;
 
 
     private Keys() {}
