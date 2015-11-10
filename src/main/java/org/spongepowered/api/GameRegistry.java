@@ -24,59 +24,27 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.block.BlockSnapshotBuilder;
-import org.spongepowered.api.block.BlockStateBuilder;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.ImmutableDataRegistry;
 import org.spongepowered.api.data.manipulator.DataManipulatorRegistry;
-import org.spongepowered.api.data.type.Career;
-import org.spongepowered.api.data.type.Profession;
-import org.spongepowered.api.data.value.ValueBuilder;
-import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
-import org.spongepowered.api.entity.EntitySnapshotBuilder;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.event.cause.entity.damage.source.BlockDamageSourceBuilder;
-import org.spongepowered.api.event.cause.entity.damage.source.DamageSourceBuilder;
-import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSourceBuilder;
-import org.spongepowered.api.event.cause.entity.damage.source.FallingBlockDamageSourceBuilder;
-import org.spongepowered.api.event.cause.entity.damage.source.ProjectileDamageSourceBuilder;
-import org.spongepowered.api.event.cause.entity.spawn.BlockSpawnCauseBuilder;
-import org.spongepowered.api.event.cause.entity.spawn.BreedingSpawnCauseBuilder;
-import org.spongepowered.api.event.cause.entity.spawn.EntitySpawnCauseBuilder;
-import org.spongepowered.api.event.cause.entity.spawn.MobSpawnerSpawnCauseBuilder;
-import org.spongepowered.api.event.cause.entity.spawn.SpawnCauseBuilder;
-import org.spongepowered.api.event.cause.entity.spawn.WeatherSpawnCauseBuilder;
 import org.spongepowered.api.item.FireworkEffectBuilder;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStackBuilder;
-import org.spongepowered.api.item.merchant.TradeOfferBuilder;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
-import org.spongepowered.api.potion.PotionEffectBuilder;
 import org.spongepowered.api.resourcepack.ResourcePack;
-import org.spongepowered.api.scoreboard.ScoreboardBuilder;
-import org.spongepowered.api.scoreboard.TeamBuilder;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
-import org.spongepowered.api.scoreboard.objective.ObjectiveBuilder;
 import org.spongepowered.api.statistic.BlockStatistic;
 import org.spongepowered.api.statistic.EntityStatistic;
 import org.spongepowered.api.statistic.ItemStatistic;
 import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.statistic.StatisticBuilder;
 import org.spongepowered.api.statistic.StatisticGroup;
 import org.spongepowered.api.statistic.TeamStatistic;
-import org.spongepowered.api.statistic.achievement.Achievement;
-import org.spongepowered.api.statistic.achievement.AchievementBuilder;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.rotation.Rotation;
-import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.WorldBuilder;
-import org.spongepowered.api.world.WorldCreationSettings;
-import org.spongepowered.api.world.explosion.Explosion;
-import org.spongepowered.api.world.explosion.ExplosionBuilder;
 import org.spongepowered.api.world.extent.ExtentBufferFactory;
 import org.spongepowered.api.world.gen.GeneratorPopulator;
 import org.spongepowered.api.world.gen.Populator;
@@ -148,14 +116,6 @@ public interface GameRegistry {
     <T> T createBuilder(Class<T> builderClass) throws IllegalArgumentException;
 
     ParticleEffectBuilder createParticleEffectBuilder(ParticleType particle);
-
-    /**
-     * Gets all available villager {@link Career}s for the given profession.
-     *
-     * @param profession The villager profession to collection careers from
-     * @return A collection of all villager careers associated with the profession
-     */
-    Collection<Career> getCareers(Profession profession);
 
     /**
      * Gets a {@link Collection} of the default GameRules.
