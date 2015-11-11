@@ -22,27 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.text.template;
 
-package org.spongepowered.api.text;
+import org.spongepowered.api.text.Text;
 
-import org.spongepowered.api.text.action.HoverAction;
-import org.spongepowered.api.text.action.TextAction;
+import java.util.function.Function;
 
 /**
- * Represents an instance that have a {@link Text} representation that should be
- * used when this instance should be used inside a {@link Text}.
+ * Represents a wrapped function that can transform a value of type {@link T} into a Text object.
+ *
+ * @param <T>
+ * @see TextElements
  */
-public interface TextRepresentable {
+@FunctionalInterface
+public interface TextElement<T> {
 
-    /**
-     * Gets the textual representation of this instance for its usage in other
-     * {@link Text} objects. This may but does not need to include
-     * {@link HoverAction hover texts} or other {@link TextAction actions}. This
-     * method is basically the {@link Object#toString() toString()} equivalent
-     * for {@link Text}s.
-     *
-     * @return The text instance representing this instance
-     */
-    Text toText();
+    Text create(T value);
+
+    default <U> TextElement<U> contramap(Function<? super U, ? extends T> function) {
+        return value -> create(function.apply(value));
+    }
+
+    default TextElement<T> andThen(Function<Text, Text> function) {
+        return value -> function.apply(create(value));
+    }
+
+    default TextArgsElement<T> name(String name) {
+        return new TextArgsElement.Named<>(name, this);
+    }
+
+    default TextArgsElement<T> pos(int position) {
+        return new TextArgsElement.Pos<>(position, this);
+    }
 
 }

@@ -29,9 +29,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.Objects;
 
 /**
- * Represents a pair of {@link TextStyle and {@link TextColor}}.
+ * Represents a pair of {@link TextStyle} and {@link TextColor}.
  */
 public final class TextFormat {
+
+    /**
+     * The canonical empty TextFormat instance.
+     */
+    private static final TextFormat EMPTY = new TextFormat();
 
     /**
      * The text style.
@@ -75,7 +80,7 @@ public final class TextFormat {
     /**
      * Constructs a new {@link TextFormat} with the default style and color.
      */
-    public TextFormat() {
+    private TextFormat() {
         this(TextStyles.NONE, TextColors.NONE);
     }
 
@@ -115,6 +120,15 @@ public final class TextFormat {
      */
     public final TextFormat color(TextColor color) {
         return new TextFormat(this.style, color);
+    }
+
+    /**
+     * Returns the empty {@link TextFormat}.
+     *
+     * @return An empty {@link TextFormat}
+     */
+    public static TextFormat empty() {
+        return EMPTY;
     }
 
     @Override

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.text;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
@@ -64,7 +63,7 @@ import javax.annotation.Nullable;
  * @see Selector
  * @see Score
  */
-public abstract class Text implements TextRepresentable {
+public abstract class Text {
 
     protected final TextFormat format;
     protected final ImmutableList<Text> children;
@@ -86,7 +85,7 @@ public abstract class Text implements TextRepresentable {
     };
 
     Text() {
-        this(new TextFormat(), ImmutableList.<Text>of(), null, null, null);
+        this(TextFormat.empty(), ImmutableList.<Text>of(), null, null, null);
     }
 
     /**
@@ -200,6 +199,8 @@ public abstract class Text implements TextRepresentable {
      */
     public abstract TextBuilder builder();
 
+    public abstract boolean isEmpty();
+
     @Override
     public boolean equals(@Nullable Object o) {
         if (this == o) {
@@ -231,11 +232,6 @@ public abstract class Text implements TextRepresentable {
                 .add("hoverAction", this.hoverAction)
                 .add("shiftClickAction", this.shiftClickAction)
                 .toString();
-    }
-
-    @Override
-    public final Text toText() {
-        return this;
     }
 
     /**
@@ -290,6 +286,23 @@ public abstract class Text implements TextRepresentable {
         }
 
         @Override
+        public boolean isEmpty() {
+            if (!content.isEmpty()) {
+                return false;
+            }
+
+            if (!children.isEmpty()) {
+                for (Text child: children) {
+                    if (!child.isEmpty()) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        @Override
         public boolean equals(@Nullable Object o) {
             if (this == o) {
                 return true;
@@ -312,104 +325,6 @@ public abstract class Text implements TextRepresentable {
             return Objects.toStringHelper(this)
                     .addValue(super.toString())
                     .add("content", this.content)
-                    .toString();
-        }
-
-    }
-
-    /**
-     * Represents a {@link Text} placeholder that can be replaced with another
-     * Text by {@link Texts#format(Text, Map)}.
-     *
-     * @see TextBuilder.Placeholder
-     */
-    public static class Placeholder extends Text {
-
-        protected final String key;
-        private final Optional<Text> fallback;
-
-
-        Placeholder(String key) {
-            this(key, null);
-        }
-
-        Placeholder(String key, Text fallback) {
-            checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
-            this.key = key;
-            this.fallback = Optional.ofNullable(fallback);
-        }
-
-        /**
-         * Constructs a new immutable {@link Placeholder} for the given plain
-         * text content with the specified formatting and text actions applied.
-         *
-         * @param format The format of the text
-         * @param children The immutable list of children of the text
-         * @param clickAction The click action of the text, or {@code null} for
-         *        none
-         * @param hoverAction The hover action of the text, or {@code null} for
-         *        none
-         * @param shiftClickAction The shift click action of the text, or
-         *        {@code null} for none
-         * @param key The key of the placeholder
-         * @param fallback The fallback text if this does not get replaced
-         */
-        Placeholder(TextFormat format, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
-                @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, String key, Text fallback) {
-            super(format, children, clickAction, hoverAction, shiftClickAction);
-            checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
-            this.key = key;
-            this.fallback = Optional.ofNullable(fallback);
-        }
-
-        /**
-         * Returns the placeholder key used to replace this placeholder with the
-         * real content.
-         *
-         * @return The template key of this template
-         */
-        public final String getKey() {
-            return this.key;
-        }
-
-        /**
-         * Get the fallback text that will be used in place if this placeholder has no value.
-         *
-         * @return The fallback text
-         */
-        public Optional<Text> getFallback() {
-            return this.fallback;
-        }
-
-        @Override
-        public TextBuilder.Placeholder builder() {
-            return new TextBuilder.Placeholder(this);
-        }
-
-        @Override
-        public boolean equals(@Nullable Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (!(o instanceof Placeholder) || !super.equals(o)) {
-                return false;
-            }
-
-            Placeholder that = (Placeholder) o;
-            return Objects.equal(this.key, that.key) && Objects.equal(this.fallback, that.fallback);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hashCode(super.hashCode(), this.key);
-        }
-
-        @Override
-        public String toString() {
-            return Objects.toStringHelper(this)
-                    .add("key", this.key)
-                    .add("fallback", this.fallback)
-                    .addValue(super.toString())
                     .toString();
         }
 
@@ -476,6 +391,11 @@ public abstract class Text implements TextRepresentable {
         @Override
         public TextBuilder.Translatable builder() {
             return new TextBuilder.Translatable(this);
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return false;
         }
 
         @Override
@@ -556,6 +476,11 @@ public abstract class Text implements TextRepresentable {
         @Override
         public TextBuilder.Selector builder() {
             return new TextBuilder.Selector(this);
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return false;
         }
 
         @Override
@@ -648,6 +573,11 @@ public abstract class Text implements TextRepresentable {
         @Override
         public TextBuilder.Score builder() {
             return new TextBuilder.Score(this);
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return false;
         }
 
         @Override
