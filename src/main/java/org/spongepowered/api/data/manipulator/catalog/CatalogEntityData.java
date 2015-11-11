@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.catalog;
 
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
@@ -68,6 +69,7 @@ import org.spongepowered.api.data.manipulator.mutable.entity.InvisibilityData;
 import org.spongepowered.api.data.manipulator.mutable.entity.JoinData;
 import org.spongepowered.api.data.manipulator.mutable.entity.KnockbackData;
 import org.spongepowered.api.data.manipulator.mutable.entity.LeashData;
+import org.spongepowered.api.data.manipulator.mutable.entity.MinecartBlockData;
 import org.spongepowered.api.data.manipulator.mutable.entity.OcelotData;
 import org.spongepowered.api.data.manipulator.mutable.entity.PassengerData;
 import org.spongepowered.api.data.manipulator.mutable.entity.PersistingData;
@@ -141,6 +143,7 @@ import org.spongepowered.api.entity.projectile.Arrow;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.Firework;
 import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -351,6 +354,10 @@ public final class CatalogEntityData {
      * towards. Usually applicable for {@link EyeOfEnder}s.
      */
     public static final Class<TargetedLocationData> LOCATION_DATA = TargetedLocationData.class;
+    /**
+     * Represents a {@link Minecart} with a {@link BlockState} shown inside.
+     */
+    public static final Class<MinecartBlockData> MINECART_BLOCK_DATA = MinecartBlockData.class;
     /**
      * Represents the {@link OcelotType} of an {@link Ocelot}.
      */
