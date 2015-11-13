@@ -43,26 +43,45 @@ import java.util.ResourceBundle;
 public interface Translation {
 
     /**
-     * Returns identifier for this {@link Translation}.
+     * Gets the identifier for this {@link Translation}.
      *
      * @return The translation identifier of this translation
      */
     String getId();
 
     /**
-     * Gets the default translation without any parameters replaced.
+     * Gets the default translation without extra parameters.
      *
-     * @param locale The language to get the translated format string for
-     * @return The default translation without any parameters
+     * @return The default translation
      */
-    String get(Locale locale);
+    default String get() {
+        return get(Locale.US);
+    }
 
     /**
      * Gets the default translation format with the specified parameters.
      *
-     * @param locale The language to get the translated string for
      * @param args The parameters for this translation
      * @return The default translation with the specified parameters
+     */
+    default String get(Object... args) {
+        return get(Locale.US, args);
+    }
+
+    /**
+     * Gets the translation without any parameters replaced.
+     *
+     * @param locale The language to get the translated format string for
+     * @return The translation without any parameters
+     */
+    String get(Locale locale);
+
+    /**
+     * Gets the translation format with the specified parameters.
+     *
+     * @param locale The language to get the translated string for
+     * @param args The parameters for this translation
+     * @return The translation with the specified parameters
      */
     String get(Locale locale, Object... args);
 }

@@ -25,6 +25,7 @@
 package org.spongepowered.api.item;
 
 import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.awt.Color;
 import java.util.List;
@@ -33,7 +34,7 @@ import java.util.List;
  * Represents a firework explosion.
  *
  * <p>{@link FireworkEffect}s are immutable once created. To change one
- * or create one, use {@link FireworkEffectBuilder}.</p>
+ * or create one, use {@link Builder}.</p>
  */
 public interface FireworkEffect extends DataSerializable {
 
@@ -79,4 +80,107 @@ public interface FireworkEffect extends DataSerializable {
      * @return The explosion shape
      */
     FireworkShape getShape();
+
+    interface Builder extends ResettableBuilder {
+
+        /**
+         * Sets whether the {@link FireworkEffect} is going to have a trail
+         * or not.
+         *
+         * @param trail Whether the firework will have a trail
+         * @return This builder, for chaining
+         */
+        Builder trail(boolean trail);
+
+        /**
+         * Sets whether the {@link FireworkEffect} is going to flicker
+         * on explosion.
+         *
+         * @param flicker Whether the explosion will flicker
+         * @return This builder, for chaining
+         */
+        Builder flicker(boolean flicker);
+
+        /**
+         * Adds the given {@link Color} to the initial explosion colors.
+         *
+         * <p>Colors can be mixed and matched in the order they are added
+         * in.</p>
+         *
+         * @param color The color to add to the explosion
+         * @return This builder, for chaining
+         */
+        Builder color(Color color);
+
+        /**
+         * Adds the given {@link Color}s to the initial explosion colors.
+         *
+         * <p>Colors can be mixed and matched in the order they are added
+         * in.</p>
+         *
+         * @param colors The colors to add to the explosion
+         * @return This builder, for chaining
+         */
+        Builder colors(Color... colors);
+
+        /**
+         * Adds the given {@link Color}s to the initial explosion colors.
+         *
+         * <p>Colors can be mixed and matched in the order they are added
+         * in.</p>
+         *
+         * @param colors The colors to add to the explosion
+         * @return This builder, for chaining
+         */
+        Builder colors(Iterable<Color> colors);
+
+        /**
+         * Adds the given {@link Color} to the fade colors.
+         *
+         * <p>Colors can be mixed and matched in the order they are added
+         * in.</p>
+         *
+         * @param color The colors to add to the fade
+         * @return This builder, for chaining
+         */
+        Builder fade(Color color);
+
+        /**
+         * Adds the given {@link Color}s to the fade colors.
+         *
+         * <p>Colors can be mixed and matched in the order they are added
+         * in.</p>
+         *
+         * @param colors The colors to add to the fade
+         * @return This builder, for chaining
+         */
+        Builder fades(Color... colors);
+
+        /**
+         * Adds the given {@link Color}s to the fade colors.
+         *
+         * <p>Colors can be mixed and matched in the order they are added
+         * in.</p>
+         *
+         * @param colors The colors to add to the fade
+         * @return This builder, for chaining
+         */
+        Builder fades(Iterable<Color> colors);
+
+        /**
+         * Sets the shape of the {@link FireworkEffect} explosion.
+         *
+         * @param shape The shape of the explosion
+         * @return This builder, for chaining
+         */
+        Builder shape(FireworkShape shape);
+
+        /**
+         * Builds a {@link FireworkEffect} based on the current state of this
+         * builder.
+         *
+         * @return A newly created firework effect
+         */
+        FireworkEffect build();
+    }
 }

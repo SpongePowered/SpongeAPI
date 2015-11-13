@@ -30,7 +30,6 @@ import org.spongepowered.api.data.manipulator.DataManipulatorRegistry;
 import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.item.FireworkEffectBuilder;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.resourcepack.ResourcePack;

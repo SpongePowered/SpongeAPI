@@ -25,9 +25,12 @@
 package org.spongepowered.api.item.recipe;
 
 import com.flowpowered.math.vector.Vector2i;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * A ShapedRecipe is a Recipe that has shape and fits into a grid.
@@ -65,4 +68,75 @@ public interface ShapedRecipe extends Recipe {
      */
     Optional<ItemStack> getIngredient(Vector2i pos);
 
+    interface Builder extends ResettableBuilder {
+        /**
+         * Sets the width of the grid for the ShapedRecipe.
+         *
+         * @param width The width of the grid
+         * @return fluent interface
+         */
+        Builder width(int width);
+
+        /**
+         * Sets the height of the grid for the ShapedRecipe.
+         *
+         * @param height The height of the grid
+         * @return fluent interface
+         */
+        Builder height(int height);
+
+        /**
+         * Sets the dimensions of the grid for the ShapedRecipe in one method call.
+         *
+         * @param dimensions The dimensions of the grid
+         * @return fluent interface
+         */
+        Builder dimensions(Vector2i dimensions);
+
+        /**
+         * Sets the ingredient required by the recipe in the given coordinates.
+         *
+         * @param x The x coordinate
+         * @param y The y coordinate
+         * @param ingredient The ingredient to set, or remove if null
+         * @return fluent interface
+         */
+        Builder ingredient(int x, int y, @Nullable ItemStack ingredient);
+
+        /**
+         * Sets the ingredient required by the recipe in the given position.
+         *
+         * @param pos The position
+         * @param ingredient The ingredient to set, or remove if null
+         * @return fluent interface
+         */
+        Builder ingredient(Vector2i pos, @Nullable ItemStack ingredient);
+
+        /**
+         * Sets the ingredients required by the recipe in the given row.
+         *
+         * @param row The number of the row
+         * @param ingredients A list of ItemStacks to set as ingredients. If one
+         *                    of them is null the ingredient in that position is
+         *                    not added.
+         * @return fluent interface
+         */
+        Builder row(int row, ItemStack... ingredients);
+
+        /**
+         * Adds a resultant ItemStack for when this ShapedRecipe is correctly
+         * crafted.
+         *
+         * @param result The result
+         * @return fluent interface
+         */
+        Builder addResult(ItemStack result);
+
+        /**
+         * Builds a ShapedRecipe from this builder.
+         *
+         * @return A new ShapedRecipe
+         */
+        ShapedRecipe build();        
+    }
 }

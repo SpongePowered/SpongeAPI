@@ -25,17 +25,12 @@
 package org.spongepowered.api.util.weighted;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.ItemStackBuilder;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.VariableAmount;
 
@@ -81,7 +76,7 @@ public class WeightedItem extends WeightedSerializableObject<ItemStackSnapshot> 
      * @param maxStacks The maximum number of item stacks that may be created
      * @return The item stacks
      */
-    public Collection<ItemStack> getRandomItem(ItemStackBuilder builder, Random rand, int maxStacks) {
+    public Collection<ItemStack> getRandomItem(ItemStack.Builder builder, Random rand, int maxStacks) {
         int total = this.quantity.getFlooredAmount(rand);
         if (total <= 0) {
             return Lists.newArrayList();
@@ -94,7 +89,8 @@ public class WeightedItem extends WeightedSerializableObject<ItemStackSnapshot> 
         List<ItemStack> result = Lists.newArrayList();
         for (int i = 0; i < total;) {
             int n = (i + type.getType().getMaxStackQuantity() > total) ? total - i : type.getType().getMaxStackQuantity();
-            builder.reset().fromSnapshot(type).quantity(n);
+            builder.reset();
+            builder.fromSnapshot(type).quantity(n);
             result.add(builder.build());
             i += n;
         }

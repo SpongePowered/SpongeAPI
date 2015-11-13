@@ -22,36 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.util;
 
-import org.spongepowered.api.item.inventory.ItemStack;
-
-/**
- * A ShapelessRecipeBuilder builds shapeless recipes.
- */
-public interface ShapelessRecipeBuilder {
-
-    /**
-     * Adds an ingredient to the requirements of this ShapelessRecipe.
-     *
-     * @param ingredient The ingredient
-     * @return fluent interface
-     */
-    ShapelessRecipeBuilder addIngredient(ItemStack ingredient);
-
-    /**
-     * Adds a resultant ItemStack for when this ShapelessRecipe is
-     * correctly crafted.
-     *
-     * @param result The result
-     * @return fluent interface
-     */
-    ShapelessRecipeBuilder addResult(ItemStack result);
-
-    /**
-     * Builds a new ShapelessRecipe from this builder.
-     *
-     * @return A new ShapelessRecipe
-     */
-    ShapelessRecipe build();
+public interface ResettableBuilder {
+    void reset();
 }

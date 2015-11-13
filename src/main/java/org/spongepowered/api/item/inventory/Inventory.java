@@ -55,13 +55,16 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
         return Optional.empty();
     }
 
+
     /**
-     * Returns an iterable view of all {@link Inventory}s (leaf nodes) in this
+     * Returns an iterable view of all {@link Slot}s (leaf nodes) in this
      * Inventory.
      *
-     * @return an iterable view of all children inventories (leaf nodes) in this inventory
+     * @param <T> expected inventory type, specified as generic to allow easy
+     *      pseudo-duck-typing
+     * @return an iterable view of all Slots (leaf nodes) in this inventory
      */
-    default <T extends Inventory> Iterable<T> children() {
+    default <T extends Inventory> Iterable<T> slots() {
         return Collections.emptyList();
     }
 
@@ -72,6 +75,8 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * to allow easy pseudo-duck-typing. If no children, then returns
      * <code>this</code>.
      *
+     * @param <T> expected inventory type, specified as generic to allow easy
+     *      pseudo-duck-typing
      * @return the first child inventory, if there are no children then simply
      *      returns <code>this</code>
      */
@@ -84,7 +89,9 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * hierarchy without using an iterator. If no more children, returns an
      * {@link EmptyInventory}.
      *
-     * @return the next sibling inventory, or an {@link EmptyInventory} if
+     * @param <T> expected inventory type, specified as generic to allow easy
+     *      pseudo-duck-typing
+     * @return the next sibiling inventory, or an {@link EmptyInventory} if
      *      there are no further siblings
      */
     default <T extends Inventory> T next() {
@@ -207,7 +214,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * existing contents ejected (at the discretion of the target Inventory).
      * For multi-slot inventories the insertion order is up to the target
      * inventory to decide, and does not have to match the traversal order of
-     * the leaf nodes as supplied by {@link #children()}, although this is
+     * the leaf nodes as supplied by {@link #slots()}, although this is
      * generally recommended. Inventories should document their specific
      * insertion logic where the insertion order differs from the traversal
      * order.</p>

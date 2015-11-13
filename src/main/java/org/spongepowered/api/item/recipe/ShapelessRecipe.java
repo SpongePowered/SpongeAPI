@@ -25,6 +25,7 @@
 package org.spongepowered.api.item.recipe;
 
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Collection;
 
@@ -41,4 +42,29 @@ public interface ShapelessRecipe extends Recipe {
      */
     Collection<ItemStack> getIngredients();
 
+    interface Builder extends ResettableBuilder {
+        /**
+         * Adds an ingredient to the requirements of this ShapelessRecipe.
+         *
+         * @param ingredient The ingredient
+         * @return fluent interface
+         */
+        Builder addIngredient(ItemStack ingredient);
+
+        /**
+         * Adds a resultant ItemStack for when this ShapelessRecipe is
+         * correctly crafted.
+         *
+         * @param result The result
+         * @return fluent interface
+         */
+        Builder addResult(ItemStack result);
+
+        /**
+         * Builds a new ShapelessRecipe from this builder.
+         *
+         * @return A new ShapelessRecipe
+         */
+        ShapelessRecipe build();        
+    }
 }
