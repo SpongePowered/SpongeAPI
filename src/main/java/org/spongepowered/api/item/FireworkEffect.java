@@ -81,7 +81,7 @@ public interface FireworkEffect extends DataSerializable {
      */
     FireworkShape getShape();
 
-    interface Builder extends ResettableBuilder {
+    interface Builder extends ResettableBuilder<Builder> {
 
         /**
          * Sets whether the {@link FireworkEffect} is going to have a trail

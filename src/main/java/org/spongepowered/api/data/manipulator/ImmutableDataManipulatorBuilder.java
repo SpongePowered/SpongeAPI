@@ -27,6 +27,7 @@ package org.spongepowered.api.data.manipulator;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.service.persistence.DataBuilder;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
 
@@ -58,4 +59,7 @@ public interface ImmutableDataManipulatorBuilder<I extends ImmutableDataManipula
     Optional<I> createFrom(DataHolder dataHolder);
 
     Optional<I> createFrom(ImmutableDataHolder<?> dataHolder);
+
+    @Override
+    ImmutableDataManipulatorBuilder<I, M> reset();
 }

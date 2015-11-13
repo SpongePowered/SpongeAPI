@@ -29,10 +29,13 @@ import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Collection;
 import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents an in-game achievement which may be earned by or given to players.
@@ -78,4 +81,73 @@ public interface Achievement extends CatalogType, Translatable, TextRepresentabl
      */
     Optional<Long> getStatisticTargetValue();
 
+    /**
+     * Represents a builder interface to create new and custom instances of
+     * {@link Achievement}s.
+     */
+    interface Builder extends ResettableBuilder<Builder> {
+
+        /**
+         * Sets the internal name for the {@link Achievement}.
+         *
+         * @param name The name of this achievement
+         * @return This builder, for chaining
+         */
+        Builder name(String name);
+
+        /**
+         * Sets the translation for the {@link Achievement}.
+         *
+         * @param translation The translation for the achievement
+         * @return This builder, for chaining
+         */
+        Builder translation(Translation translation);
+
+        /**
+         * Sets the description that describes this {@link Achievement}.
+         *
+         * @param description The description of this achievement
+         * @return This builder, for chaining
+         */
+        Builder description(Translation description);
+
+        /**
+         * Sets the parent of this {@link Achievement}, if there is one.
+         *
+         * @param parent The parent of this achievement
+         * @return This builder, for chaining
+         */
+        Builder parent(@Nullable Achievement parent);
+
+        /**
+         * Sets a statistic which will be used for tracking this achievement. May be
+         * null if this achievement is not backed by a statistic but is manually
+         * awarded instead. If the statistic is not null then the
+         * {@link #targetValue(long)} must be set as well. This defaults to null if
+         * not set.
+         *
+         * @param stat The statistic, or null if not backed by a statistic
+         * @return This builder, for chaining
+         */
+        Builder sourceStatistic(@Nullable Statistic stat);
+
+        /**
+         * Sets the target value of the statistic backing this achievement. If the
+         * source statistic is not set then this value will be ignored if set.
+         * Defaults to 1 if not set.
+         *
+         * @param value The target value
+         * @return This builder, for chaining
+         */
+        Builder targetValue(long value);
+
+        /**
+         * Builds and registers an instance of an {@link Achievement}.
+         *
+         * @return A new instance of a achievement
+         * @throws IllegalStateException If the achievement is not completed
+         */
+        Achievement buildAndRegister() throws IllegalStateException;
+
+    }
 }

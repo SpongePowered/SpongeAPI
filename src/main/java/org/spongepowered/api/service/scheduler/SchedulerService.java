@@ -34,11 +34,11 @@ import java.util.UUID;
 public interface SchedulerService {
 
     /**
-     * Gets a new instance of a {@link TaskBuilder}.
+     * Gets a new instance of a {@link Task.Builder}.
      *
      * @return A new task builder
      */
-    TaskBuilder createTaskBuilder();
+    Task.Builder createTaskBuilder();
 
     /**
      * Retrieves a scheduled or running task by its unique ID.

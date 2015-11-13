@@ -22,15 +22,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util;
+package org.spongepowered.api.effect.particle;
 
-public interface ResettableBuilder<T extends ResettableBuilder<T>> {
+import com.flowpowered.math.vector.Vector3d;
+
+/**
+ * Represents a resized particle effect.
+ */
+public interface ResizableParticle extends ParticleEffect {
 
     /**
-     * Resets this builder to a "default" state such that there is no
-     * remaining data to set. This is to be the presumed
-     * "default" state.
+     * Gets the size of the particle effect.
+     *
+     * @return The size
      */
-    T reset();
+    float getSize();
 
+    /**
+     * Represents a particle builder to create a {@link ResizableParticle}.
+     */
+    interface Builder extends ParticleEffect.Builder {
+
+        /**
+         * Sets the size of the particle effect.
+         *
+         * <p>The default size is retrieved from the resizable particle type,
+         * by using {@link ParticleType.Resizable#getDefaultSize()}.</p>
+         *
+         * @param size The size
+         * @return This builder
+         */
+        Builder size(float size);
+
+        @Override
+        Builder type(ParticleType particleType);
+
+        @Override
+        Builder motion(Vector3d motion);
+
+        @Override
+        Builder offset(Vector3d offset);
+
+        @Override
+        Builder count(int count);
+
+        @Override
+        ResizableParticle build();
+
+        @Override
+        Builder reset();
+
+    }
 }

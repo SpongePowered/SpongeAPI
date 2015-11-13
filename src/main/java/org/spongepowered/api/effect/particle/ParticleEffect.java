@@ -25,7 +25,9 @@
 package org.spongepowered.api.effect.particle;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.awt.Color;
 
@@ -63,61 +65,57 @@ public interface ParticleEffect {
     int getCount();
 
     /**
-     * Represents a colored particle effect.
+     * Represents a builder to create a {@link ParticleEffect}.
      */
-    interface Colorable extends ParticleEffect {
+    interface Builder extends ResettableBuilder<Builder> {
 
         /**
-         * Gets the color of the particle effect.
+         * Sets the particle type for the particle effect.
          *
-         * @return The color
+         * @param particleType The particle type
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException If the particle type is not
+         *     compatible with this builder
          */
-        Color getColor();
-
-    }
-
-    /**
-     * Represents a resized particle effect.
-     */
-    interface Resizable extends ParticleEffect {
+        Builder type(ParticleType particleType);
 
         /**
-         * Gets the size of the particle effect.
+         * Sets the motion vector of the particle effect.
          *
-         * @return The size
+         * <p>The default motion vector is {@link Vector3d#ZERO}.</p>
+         *
+         * @param motion The motion vector
+         * @return This builder, for chaining
          */
-        float getSize();
-
-    }
-
-    /**
-     * Represents a particle effect that uses a note value.
-     */
-    interface Note extends ParticleEffect {
+        Builder motion(Vector3d motion);
 
         /**
-         * Gets the note value of the particle effect.
+         * Sets the offset vector of the particle effect.
          *
-         * <p>The value scales between 0 and 24.</p>
+         * <p>The default offset vector is {@link Vector3d#ZERO}.</p>
          *
-         * @return The note value
+         * @param offset The offset vector
+         * @return This builder, for chaining
          */
-        float getNote();
-
-    }
-
-    /**
-     * Represents a particle effect that needs a item stack to be rendered on the client.
-     */
-    interface Material extends ParticleEffect {
+        Builder offset(Vector3d offset);
 
         /**
-         * Gets the item stack of the particle effect.
+         * Sets the amount of particles of the particle effect.
          *
-         * @return The item stack
+         * <p>The default count is 1.</p>
+         *
+         * @param count The count particles
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException If the count is less than one
          */
-        ItemStack getItem();
+        Builder count(int count) throws IllegalArgumentException;
+
+        /**
+         * Builds an instance of a ParticleEffect.
+         *
+         * @return A new instance of a ParticleEffect
+         */
+        ParticleEffect build();
 
     }
-
 }

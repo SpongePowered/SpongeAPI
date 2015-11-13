@@ -28,6 +28,8 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.mutable.PotionEffectData;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.service.persistence.DataBuilder;
+import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * Represents an effect of a {@link PotionEffectType} for a specified
@@ -76,4 +78,65 @@ public interface PotionEffect extends DataSerializable, PropertyHolder {
      */
     boolean getShowParticles();
 
+    /**
+     * Represents a builder interface to create a {@link PotionEffect}.
+     */
+    interface Builder extends DataBuilder<PotionEffect> {
+
+        Builder from(PotionEffect potionEffect);
+
+        /**
+         * Sets the {@link PotionEffectType} of the potion.
+         *
+         * @param potionEffectType The type of item
+         * @return This builder, for chaining
+         */
+        Builder potionType(PotionEffectType potionEffectType);
+
+        /**
+         * Sets the duration of the potion effect.
+         *
+         * @param duration The duration of this effect
+         * @return This builder, for chaining
+         */
+        Builder duration(int duration);
+
+        /**
+         * Sets the amplifier power of the potion effect.
+         *
+         * <p>Amplifiers must be above zero.</p>
+         *
+         * @param amplifier The amplifier power
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException If the amplifier is less than zero
+         */
+        Builder amplifier(int amplifier) throws IllegalArgumentException;
+
+        /**
+         * Sets the potion effect to be ambient or not.
+         *
+         * @param ambience Whether the potion effect is ambient
+         * @return This builder, for chaining
+         */
+        Builder ambience(boolean ambience);
+
+        /**
+         * Sets the potion effect to show particles when applied or not.
+         *
+         * @param showsParticles Whether the potion effect will show particles
+         * @return This builder, for chaining
+         */
+        Builder particles(boolean showsParticles);
+
+        /**
+         * Builds an instance of a PotionEffect.
+         *
+         * @return A new instance of a PotionEffect
+         * @throws IllegalStateException If the potion effect is not completed
+         */
+        PotionEffect build() throws IllegalStateException;
+
+        @Override
+        Builder reset();
+    }
 }

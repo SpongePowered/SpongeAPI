@@ -22,50 +22,58 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.scoreboard;
+package org.spongepowered.api.effect.particle;
 
-import org.spongepowered.api.scoreboard.objective.Objective;
-
-import java.util.List;
+import com.flowpowered.math.vector.Vector3d;
 
 /**
- * Represents a builder to create {@link Scoreboard} instances.
+ * Represents a particle effect that uses a note value.
  */
-public interface ScoreboardBuilder {
+public interface NoteParticle extends ParticleEffect {
 
     /**
-     * Sets the list of {@link Objective}s of the {@link Scoreboard}.
+     * Gets the note value of the particle effect.
      *
-     * <p>By default, this is the empty list.</p>
+     * <p>The value scales between 0 and 24.</p>
      *
-     * @param objectives The list of {@link Objective}s to set
-     * @return This builder
+     * @return The note value
      */
-    ScoreboardBuilder objectives(List<Objective> objectives);
+    float getNote();
 
     /**
-     * Sets the list of {@link Team}s of the {@link Scoreboard}.
-     *
-     * <p>By default, this is the empty list.</p>
-     *
-     * @param teams The list of {@link Team}s to set
-     * @return This builder
+     * Represents a particle builder to create a {@link NoteParticle}.
      */
-    ScoreboardBuilder teams(List<Team> teams);
+    interface Builder extends ParticleEffect.Builder {
 
-    /**
-     * Resets all information regarding the {@link Scoreboard} to be created.
-     *
-     * @return This builder
-     */
-    ScoreboardBuilder reset();
+        /**
+         * Sets the note value of the particle effect.
+         *
+         * <p>The value scales between 0 and 24.</p>
+         * <p>The default note value is retrieved from the note particle type,
+         * by using {@link ParticleType.Note#getDefaultNote()}.</p>
+         *
+         * @param note The note
+         * @return This builder
+         */
+        Builder note(float note);
 
-    /**
-     * Builds an instance of a {@link Scoreboard}.
-     *
-     * @return A new instance of a {@link Scoreboard}
-     * @throws IllegalStateException if the {@link Scoreboard} is not complete
-     */
-    Scoreboard build() throws IllegalStateException;
+        @Override
+        Builder type(ParticleType particleType);
 
+        @Override
+        Builder motion(Vector3d motion);
+
+        @Override
+        Builder offset(Vector3d offset);
+
+        @Override
+        Builder count(int count);
+
+        @Override
+        NoteParticle build();
+
+        @Override
+        Builder reset();
+
+    }
 }

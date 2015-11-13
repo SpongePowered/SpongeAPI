@@ -22,32 +22,57 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block;
+package org.spongepowered.api.effect.particle;
 
-import org.spongepowered.api.data.ImmutableDataBuilder;
-import org.spongepowered.api.data.manipulator.DataManipulator;
+import com.flowpowered.math.vector.Vector3d;
+
+import java.awt.Color;
 
 /**
- * An {@link ImmutableDataBuilder} for a {@link BlockState}. Just like the
- * {@link ImmutableDataBuilder}, the {@link DataManipulator}s passed in to
- * create a {@link BlockState} are copied on creation.
- *
- * <p>Note that upon creation, the {@link BlockType} must be set for validation
- * of {@link DataManipulator}s, otherwise exceptions may be thrown.</p>
+ * Represents a colored particle effect.
  */
-public interface BlockStateBuilder extends ImmutableDataBuilder<BlockState, BlockStateBuilder> {
+public interface ColoredParticle extends ParticleEffect {
 
     /**
-     * Sets the {@link BlockType} for the {@link BlockState} to build.
+     * Gets the color of the particle effect.
      *
-     * <p>The {@link BlockType} is used for some pre-validation on addition of
-     * {@link DataManipulator}s through {@link #add(DataManipulator)}. It is
-     * important to understand that not all manipulators are compatible with
-     * all {@link BlockType}s.</p>
-     *
-     * @param blockType The block type
-     * @return This builder, for chaining
+     * @return The color
      */
-    BlockStateBuilder blockType(BlockType blockType);
+    Color getColor();
 
+    /**
+     * Represents a particle builder to create a {@link ColoredParticle}.
+     */
+    interface Builder extends ParticleEffect.Builder {
+
+        /**
+         * Sets the color of the particle effect.
+         *
+         * <p>The default color is retrieved from the colorable particle type,
+         * by using {@link ParticleType.Colorable#getDefaultColor()}.</p>
+         *
+         * @param color The color
+         * @return This builder
+         */
+        Builder color(Color color);
+
+        @Override
+        Builder type(ParticleType particleType);
+
+        @Override
+        Builder motion(Vector3d motion);
+
+        @Override
+        Builder offset(Vector3d offset);
+
+        @Override
+        Builder count(int count);
+
+        @Override
+        ColoredParticle build();
+
+        @Override
+        Builder reset();
+
+    }
 }

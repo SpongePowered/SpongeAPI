@@ -57,4 +57,9 @@ class SimpleDataBuilder implements DataBuilder<SimpleData> {
                                                       testString.get(),
                                                       testList.get()));
     }
+
+    @Override
+    public DataBuilder<SimpleData> reset() {
+        return this;
+    }
 }

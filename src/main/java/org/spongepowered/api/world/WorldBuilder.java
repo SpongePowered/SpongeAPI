@@ -29,6 +29,7 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.storage.WorldProperties;
 
@@ -37,7 +38,7 @@ import java.util.Optional;
 /**
  * A builder for {@link World}s and {@link WorldCreationSettings}.
  */
-public interface WorldBuilder {
+public interface WorldBuilder extends ResettableBuilder<WorldBuilder> {
 
     /**
      * Fills this {@link WorldBuilder} for creating {@link World}s or
@@ -168,13 +169,6 @@ public interface WorldBuilder {
     WorldBuilder generatorSettings(DataContainer settings);
 
     WorldBuilder teleporterAgent(TeleporterAgent agent);
-
-    /**
-     * Resets this builder to a clean state.
-     *
-     * @return This builder, for chaining
-     */
-    WorldBuilder reset();
 
     /**
      * Attempts to create a {@link World} from the specified parameters.

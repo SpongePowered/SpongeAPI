@@ -27,6 +27,7 @@ package org.spongepowered.api.data;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.service.persistence.DataBuilder;
+import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * A builder, much like a normal {@link DataBuilder} except that it builds
@@ -67,19 +68,12 @@ public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extend
     E from(H holder);
 
     /**
-     * Resets this builder to a "default" state such that there is no
-     * remaining {@link DataManipulator}s to set. This is to be the presumed
-     * "default" state.
-     *
-     * @return This builder, for chaining
-     */
-    E reset();
-
-    /**
      * Attempts to build a new {@link ImmutableDataHolder}.
      *
      * @return The new immutable data holder
      */
     H build();
 
+    @Override
+    E reset();
 }

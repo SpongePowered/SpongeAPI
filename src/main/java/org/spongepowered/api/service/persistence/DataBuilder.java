@@ -27,6 +27,7 @@ package org.spongepowered.api.service.persistence;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
 
@@ -37,7 +38,7 @@ import java.util.Optional;
  *
  * @param <T> The type of data serializable this builder can build
  */
-public interface DataBuilder<T extends DataSerializable> {
+public interface DataBuilder<T extends DataSerializable> extends ResettableBuilder<DataBuilder<T>> {
 
     /**
      * Attempts to build the provided {@link DataSerializable} from the given
@@ -51,5 +52,10 @@ public interface DataBuilder<T extends DataSerializable> {
      *     properly construct the data serializable from the data view
      */
     Optional<T> build(DataView container) throws InvalidDataException;
+
+    @Override
+    default DataBuilder<T> reset() {
+        return this;
+    }
 
 }

@@ -26,9 +26,13 @@ package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents some statistic in Minecraft with a string ID.
@@ -52,4 +56,52 @@ public interface Statistic extends CatalogType, Translatable {
      */
     StatisticGroup getGroup();
 
+    /**
+     * Represents a builder to create new and custom instances of {@link Statistic}
+     * s.
+     */
+    interface Builder extends ResettableBuilder<Builder> {
+
+        /**
+         * Sets the internal name for the {@link Statistic}.
+         *
+         * @param name The name of this achievement
+         * @return This builder, for chaining
+         */
+        Builder name(String name);
+
+        /**
+         * Sets the translation for the {@link Statistic}.
+         *
+         * @param translation The translation for the statistic
+         * @return This builder, for chaining
+         */
+        Builder translation(Translation translation);
+
+        /**
+         * Sets the format of the {@link Statistic}. May be null in which case the
+         * group default format will be used instead.
+         *
+         * @param format The format of the statistic
+         * @return This builder, for chaining
+         */
+        Builder format(@Nullable StatisticFormat format);
+
+        /**
+         * Sets the {@link StatisticGroup} the {@link Statistic} belongs to.
+         *
+         * @param group The statistic group the statistic belongs to
+         * @return This builder, for chaining
+         */
+        Builder group(StatisticGroup group);
+
+        /**
+         * Builds and registers an instance of a {@link Statistic}.
+         *
+         * @return A new instance of a statistic
+         * @throws IllegalStateException If the statistic is not completed
+         */
+        Statistic buildAndRegister() throws IllegalStateException;
+
+    }
 }

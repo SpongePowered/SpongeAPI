@@ -24,11 +24,18 @@
  */
 package org.spongepowered.api.block;
 
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataView;
+import org.spongepowered.api.data.ImmutableDataBuilder;
 import org.spongepowered.api.data.LocateableSnapshot;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.storage.WorldProperties;
+
+import java.util.UUID;
 
 /**
  * An immutable representation of a {@link BlockState} and any extra data that
@@ -70,7 +77,7 @@ public interface BlockSnapshot extends LocateableSnapshot<BlockSnapshot> {
     /**
      * Creates a copy of the {@link BlockSnapshot} with the provided
      * {@link DataContainer}. Note that this is equal to calling
-     * {@link BlockSnapshotBuilder#build(DataView)}. All data is
+     * {@link Builder#build(DataView)}. All data is
      * validated and
      *
      * @param container The data container
@@ -97,4 +104,42 @@ public interface BlockSnapshot extends LocateableSnapshot<BlockSnapshot> {
      * @return true if the restore was successful, false otherwise
      */
     boolean restore(boolean force, boolean notifyNeighbors);
+
+    interface Builder extends ImmutableDataBuilder<BlockSnapshot, Builder> {
+
+        /**
+         * Sets the {@link WorldProperties} for this {@link BlockSnapshot}.
+         *
+         * <p>
+         *     This is used to grab the {@link UUID} of the World for this snapshot.
+         * </p>
+         *
+         * @param worldProperties The WorldProperties
+         * @return This builder, for chaining
+         */
+        Builder world(WorldProperties worldProperties);
+
+        /**
+         * Sets the {@link BlockState} for this {@link BlockSnapshot}
+         *
+         * @param blockState The BlockState
+         * @return This builder, for chaining
+         */
+        Builder blockState(BlockState blockState);
+
+        /**
+         * Sets the coordinates of this {@link BlockSnapshot} from a {@link Vector3i}.
+         *
+         * @param position The Vector3i representing the coordinates
+         * @return This builder, for chaining
+         */
+        Builder position(Vector3i position);
+
+        /**
+         * Copies over block data from a {@link Location< World >}.
+         * @param location The Location to copy from
+         * @return This builder, for chaining
+         */
+        Builder from(Location<World> location);
+    }
 }

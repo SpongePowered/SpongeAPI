@@ -29,6 +29,7 @@ import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Map;
 import java.util.Set;
@@ -126,4 +127,52 @@ public interface Objective {
      */
     Set<Scoreboard> getScoreboards();
 
+    /**
+     * Represents a builder to create {@link Objective} instances.
+     */
+    interface Builder extends ResettableBuilder {
+
+        /**
+         * Sets the name of the {@link Objective}.
+         *
+         * @param name The name to set
+         * @return This builder
+         */
+        Builder name(String name);
+
+        /**
+         * Sets the display name of the {@link Objective}.
+         *
+         * @param displayName The display name to set
+         * @return This builder
+         */
+        Builder displayName(Text displayName);
+
+        /**
+         * Sets the {@link Criterion} of the {@link Objective}.
+         *
+         * @param criterion The {@link Criterion} to set
+         * @return This builder
+         */
+        Builder criterion(Criterion criterion);
+
+        /**
+         * Sets the {@link ObjectiveDisplayMode} of the {@link Objective}.
+         *
+         * @param objectiveDisplayMode The {@link ObjectiveDisplayMode} to set
+         * @return This builder
+         */
+        Builder objectiveDisplayMode(ObjectiveDisplayMode objectiveDisplayMode);
+
+        /**
+         * Builds an instance of an {@link Objective}.
+         *
+         * @return A new instance of an {@link Objective}
+         * @throws IllegalStateException if the {@link Objective} is not complete
+         */
+        Objective build() throws IllegalStateException;
+
+        @Override
+        ResettableBuilder reset();
+    }
 }

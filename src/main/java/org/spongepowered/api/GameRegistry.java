@@ -27,10 +27,9 @@ package org.spongepowered.api;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.ImmutableDataRegistry;
 import org.spongepowered.api.data.manipulator.DataManipulatorRegistry;
-import org.spongepowered.api.effect.particle.ParticleEffectBuilder;
-import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
@@ -43,6 +42,7 @@ import org.spongepowered.api.statistic.TeamStatistic;
 import org.spongepowered.api.status.Favicon;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.extent.ExtentBufferFactory;
 import org.spongepowered.api.world.gen.GeneratorPopulator;
@@ -105,16 +105,14 @@ public interface GameRegistry {
 
     /**
      * Gets a builder of the desired class type, examples may include:
-     * {@link FireworkEffectBuilder}, etc.
+     * {@link org.spongepowered.api.item.inventory.ItemStack.Builder}, etc.
      *
      * @param builderClass The class of the builder
      * @param <T> The type of builder
      * @return The builder, if available
      * @throws IllegalArgumentException If there is no supplier for the given builder class
      */
-    <T> T createBuilder(Class<T> builderClass) throws IllegalArgumentException;
-
-    ParticleEffectBuilder createParticleEffectBuilder(ParticleType particle);
+    <T extends ResettableBuilder<T>> T createBuilder(Class<T> builderClass) throws IllegalArgumentException;
 
     /**
      * Gets a {@link Collection} of the default GameRules.

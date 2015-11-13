@@ -25,6 +25,10 @@
 package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.ResettableBuilder;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a {@link Statistic} for an {@link ItemType}.
@@ -38,4 +42,37 @@ public interface ItemStatistic extends Statistic {
      */
     ItemType getItemType();
 
+    /**
+     * Represents a builder to create new and custom instances of
+     * {@link ItemStatistic}s.
+     */
+    interface Builder extends Statistic.Builder {
+
+        /**
+         * Sets the {@link ItemType} of this {@link ItemStatistic}.
+         *
+         * @param item The item
+         * @return This builder, for chaining
+         */
+        Builder item(ItemType item);
+
+        @Override
+        Builder name(String name);
+
+        @Override
+        Builder translation(Translation translation);
+
+        @Override
+        Builder format(@Nullable StatisticFormat format);
+
+        @Override
+        Builder group(StatisticGroup group);
+
+        @Override
+        ItemStatistic buildAndRegister() throws IllegalStateException;
+
+        @Override
+        Builder reset();
+
+    }
 }

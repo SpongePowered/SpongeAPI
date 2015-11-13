@@ -26,6 +26,7 @@ package org.spongepowered.api.world.explosion;
 
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.World;
 
 import java.util.Optional;
@@ -135,4 +136,69 @@ public interface Explosion {
      * @param destroy Whether the affected blocks should be destroyed
      */
     void shouldBreakBlocks(boolean destroy);
+    /**
+     * A builder for {@link Explosion}.
+     */
+    interface Builder extends ResettableBuilder {
+
+        /**
+         * Sets the {@link World} the explosion will occur in.
+         *
+         * @param world The world
+         * @return The builder, for chaining
+         */
+        Builder world(World world);
+
+        /**
+         * Sets the source explosive of the explosion.
+         *
+         * @param source The source entity
+         * @return The builder, for chaining
+         */
+        Builder sourceExplosive(@Nullable Explosive source);
+
+        /**
+         * Sets the radius of the explosion.
+         *
+         * @param radius The radius
+         * @return The builder, for chaining
+         */
+        Builder radius(float radius);
+
+        /**
+         * Sets the origin of the explosion.
+         *
+         * @param origin The origin
+         * @return The builder, for chaining
+         */
+        Builder origin(Vector3d origin);
+
+        /**
+         * Sets whether the affected blocks have a chance to catch on fire.
+         *
+         * @param fire Whether the affected blocks can catch on fire
+         * @return The builder, for chaining
+         */
+        Builder canCauseFire(boolean fire);
+
+        /**
+         * Sets whether the affected blocks should be destroyed on explosion.
+         *
+         * @param destroy Whether the affected blocks should be destroyed
+         * @return The builder, for chaining
+         */
+        Builder shouldBreakBlocks(boolean destroy);
+
+        @Override
+        ResettableBuilder reset();
+
+        /**
+         * Attempts to create a {@link Explosion} from the specified parameters.
+         *
+         * @throws IllegalArgumentException If any builder parameter is invalid
+         * @return The explosion, if successful
+         */
+        Explosion build() throws IllegalArgumentException;
+
+    }
 }

@@ -27,6 +27,7 @@ package org.spongepowered.api.scoreboard.displayslot;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.scoreboard.Team;
 import org.spongepowered.api.text.format.TextColor;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -44,4 +45,25 @@ public interface DisplaySlot extends CatalogType {
      */
     Optional<TextColor> getTeamColor();
 
+    interface Builder extends ResettableBuilder {
+
+        /**
+         * Sets the {@link TextColor} of the display slot.
+         *
+         * @param color The color to set
+         * @return This builder
+         */
+        Builder sidebarTeamColor(TextColor color);
+
+        /**
+         * Builds an instance of a {@link DisplaySlot}.
+         *
+         * @return A new instance of an {@link DisplaySlot}
+         * @throws IllegalStateException if the {@link DisplaySlot} is not completed
+         */
+        DisplaySlot build() throws IllegalStateException;
+
+        @Override
+        ResettableBuilder reset();
+    }
 }

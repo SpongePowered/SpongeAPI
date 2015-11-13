@@ -22,15 +22,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util;
+package org.spongepowered.api.effect.particle;
 
-public interface ResettableBuilder<T extends ResettableBuilder<T>> {
+import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+
+/**
+ * Represents a particle effect that needs a item stack to be rendered on the client.
+ */
+public interface ItemParticle extends ParticleEffect {
 
     /**
-     * Resets this builder to a "default" state such that there is no
-     * remaining data to set. This is to be the presumed
-     * "default" state.
+     * Gets the item stack of the particle effect.
+     *
+     * @return The item stack
      */
-    T reset();
+    ItemStackSnapshot getItem();
 
+    /**
+     * Represents a particle builder to create a {@link ItemParticle}.
+     */
+    interface Builder extends ParticleEffect.Builder {
+
+        /**
+         * Sets the item type of the particle effect.
+         *
+         * @param item The item type
+         * @return This builder
+         */
+        Builder item(ItemStackSnapshot item);
+
+        @Override
+        Builder type(ParticleType particleType);
+
+        @Override
+        Builder motion(Vector3d motion);
+
+        @Override
+        Builder offset(Vector3d offset);
+
+        @Override
+        Builder count(int count);
+
+        @Override
+        ItemParticle build();
+
+        @Override
+        Builder reset();
+
+    }
 }

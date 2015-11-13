@@ -25,6 +25,10 @@
 package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.ResettableBuilder;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a {@link Statistic} for an {@link EntityType}.
@@ -38,4 +42,37 @@ public interface EntityStatistic extends Statistic {
      */
     EntityType getEntityType();
 
+    /**
+     * Represents a builder to create new and custom instances of
+     * {@link EntityStatistic}s.
+     */
+    interface Builder extends Statistic.Builder {
+
+        /**
+         * Sets the {@link EntityType} of this {@link EntityStatistic}.
+         *
+         * @param entity The entity
+         * @return This builder, for chaining
+         */
+        Builder entity(EntityType entity);
+
+        @Override
+        Builder name(String name);
+
+        @Override
+        Builder translation(Translation translation);
+
+        @Override
+        Builder format(@Nullable StatisticFormat format);
+
+        @Override
+        Builder group(StatisticGroup group);
+
+        @Override
+        EntityStatistic buildAndRegister() throws IllegalStateException;
+
+        @Override
+        Builder reset();
+
+    }
 }

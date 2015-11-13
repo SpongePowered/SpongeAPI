@@ -25,6 +25,10 @@
 package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.ResettableBuilder;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a {@link Statistic} for a {@link BlockType}.
@@ -38,4 +42,37 @@ public interface BlockStatistic extends Statistic {
      */
     BlockType getBlockType();
 
+    /**
+     * Represents a builder to create new and custom instances of
+     * {@link BlockStatistic}s.
+     */
+    interface Builder extends Statistic.Builder {
+
+        /**
+         * Sets the {@link BlockType} of this {@link BlockStatistic}.
+         *
+         * @param block The block
+         * @return This builder, for chaining
+         */
+        Builder block(BlockType block);
+
+        @Override
+        Builder name(String name);
+
+        @Override
+        Builder translation(Translation translation);
+
+        @Override
+        Builder format(@Nullable StatisticFormat format);
+
+        @Override
+        Builder group(StatisticGroup group);
+
+        @Override
+        BlockStatistic buildAndRegister() throws IllegalStateException;
+
+        @Override
+        Builder reset();
+
+    }
 }

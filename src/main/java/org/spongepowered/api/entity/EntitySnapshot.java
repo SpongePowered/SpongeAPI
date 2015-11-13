@@ -24,12 +24,16 @@
  */
 package org.spongepowered.api.entity;
 
+import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Game;
+import org.spongepowered.api.data.ImmutableDataBuilder;
 import org.spongepowered.api.data.LocateableSnapshot;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -51,7 +55,7 @@ public interface EntitySnapshot extends LocateableSnapshot<EntitySnapshot> {
      * Gets an {@link Optional} containing the {@link UUID} of the
      * {@link Entity} that this {@link EntitySnapshot} is representing. If the
      * {@link Optional} is {@link Optional#empty()}, then this snapshot must
-     * have been created by an {@link EntitySnapshotBuilder} without an
+     * have been created by an {@link Builder} without an
      * {@link Entity} as a source.
      *
      * @return The Optional where the UUID may be present
@@ -84,4 +88,47 @@ public interface EntitySnapshot extends LocateableSnapshot<EntitySnapshot> {
      * @return the restored entity if successful
      */
     Optional<Entity> restore();
+
+    /**
+     * An {@link ImmutableDataBuilder} for building {@link EntitySnapshot}s. The
+     * requirements
+     */
+    interface Builder extends ImmutableDataBuilder<EntitySnapshot, Builder> {
+
+        /**
+         * Sets the {@link WorldProperties} for this {@link EntitySnapshot}.
+         *
+         * <p>
+         *     This is used to grab the {@link UUID} of the World for this snapshot.
+         * </p>
+         *
+         * @param worldProperties The WorldProperties
+         * @return This builder, for chaining
+         */
+        Builder world(WorldProperties worldProperties);
+
+        /**
+         * Sets the {@link EntityType} for this {@link EntitySnapshot}.
+         *
+         * @param entityType The EntityType
+         * @return This builder, for chaining
+         */
+        Builder type(EntityType entityType);
+
+        /**
+         * Sets the coordinates of this {@link EntitySnapshot} from a {@link Vector3i}.
+         *
+         * @param position The Vector3i representing the coordinates
+         * @return This builder, for chaining
+         */
+        Builder position(Vector3d position);
+
+        /**
+         * Copies over data from an {@link Entity}.
+         *
+         * @param entity The Entity
+         * @return This builder, for chaining
+         */
+        Builder from(Entity entity);
+    }
 }

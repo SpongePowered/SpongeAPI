@@ -26,8 +26,10 @@ package org.spongepowered.api.block;
 
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.block.trait.BlockTrait;
+import org.spongepowered.api.data.ImmutableDataBuilder;
 import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
@@ -166,4 +168,28 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
      */
     Map<BlockTrait<?>, ?> getTraitMap();
 
+    /**
+     * An {@link ImmutableDataBuilder} for a {@link BlockState}. Just like the
+     * {@link ImmutableDataBuilder}, the {@link DataManipulator}s passed in to
+     * create a {@link BlockState} are copied on creation.
+     *
+     * <p>Note that upon creation, the {@link BlockType} must be set for validation
+     * of {@link DataManipulator}s, otherwise exceptions may be thrown.</p>
+     */
+    interface Builder extends ImmutableDataBuilder<BlockState, Builder> {
+
+        /**
+         * Sets the {@link BlockType} for the {@link BlockState} to build.
+         *
+         * <p>The {@link BlockType} is used for some pre-validation on addition of
+         * {@link DataManipulator}s through {@link #add(DataManipulator)}. It is
+         * important to understand that not all manipulators are compatible with
+         * all {@link BlockType}s.</p>
+         *
+         * @param blockType The block type
+         * @return This builder, for chaining
+         */
+        Builder blockType(BlockType blockType);
+
+    }
 }

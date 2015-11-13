@@ -22,26 +22,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.scoreboard.displayslot;
-
-import org.spongepowered.api.text.format.TextColor;
-
-public interface DisplaySlotBuilder {
-
-    /**
-     * Sets the {@link TextColor} of the display slot.
-     *
-     * @param color The color to set
-     * @return This builder
-     */
-    DisplaySlotBuilder sidebarTeamColor(TextColor color);
-
-    /**
-     * Builds an instance of a {@link DisplaySlot}.
-     *
-     * @return A new instance of an {@link DisplaySlot}
-     * @throws IllegalStateException if the {@link DisplaySlot} is not completed
-     */
-    DisplaySlot build() throws IllegalStateException;
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.world.explosion;

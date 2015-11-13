@@ -29,7 +29,9 @@ import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -171,4 +173,38 @@ public interface Scoreboard {
      */
     void clearSlot(DisplaySlot slot);
 
+    /**
+     * Represents a builder to create {@link Scoreboard} instances.
+     */
+    interface Builder extends ResettableBuilder<Builder> {
+
+        /**
+         * Sets the list of {@link Objective}s of the {@link Scoreboard}.
+         *
+         * <p>By default, this is the empty list.</p>
+         *
+         * @param objectives The list of {@link Objective}s to set
+         * @return This builder
+         */
+        Builder objectives(List<Objective> objectives);
+
+        /**
+         * Sets the list of {@link Team}s of the {@link Scoreboard}.
+         *
+         * <p>By default, this is the empty list.</p>
+         *
+         * @param teams The list of {@link Team}s to set
+         * @return This builder
+         */
+        Builder teams(List<Team> teams);
+
+        /**
+         * Builds an instance of a {@link Scoreboard}.
+         *
+         * @return A new instance of a {@link Scoreboard}
+         * @throws IllegalStateException if the {@link Scoreboard} is not complete
+         */
+        Scoreboard build() throws IllegalStateException;
+
+    }
 }
