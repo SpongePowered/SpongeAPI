@@ -35,7 +35,7 @@ import org.spongepowered.api.util.ResettableBuilder;
  */
 public interface CustomInventory extends OrderedInventory, Identifiable {
 
-    interface Builder extends ResettableBuilder {
+    interface Builder extends ResettableBuilder<Builder> {
         /**
          * Sets the title of the custom inventory, viewable by players looking
          * at the inventory.

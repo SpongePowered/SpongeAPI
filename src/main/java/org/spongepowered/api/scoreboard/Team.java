@@ -226,7 +226,7 @@ public interface Team {
     /**
      * Represents a builder tp create {@link Team} instances.
      */
-    interface Builder extends ResettableBuilder {
+    interface Builder extends ResettableBuilder<Builder> {
 
         /**
          * Sets the name of the {@link Team}.
@@ -335,7 +335,5 @@ public interface Team {
          */
         Team build() throws IllegalStateException;
 
-        @Override
-        ResettableBuilder reset();
     }
 }

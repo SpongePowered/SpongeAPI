@@ -130,7 +130,7 @@ public interface Objective {
     /**
      * Represents a builder to create {@link Objective} instances.
      */
-    interface Builder extends ResettableBuilder {
+    interface Builder extends ResettableBuilder<Builder> {
 
         /**
          * Sets the name of the {@link Objective}.
@@ -172,7 +172,5 @@ public interface Objective {
          */
         Objective build() throws IllegalStateException;
 
-        @Override
-        ResettableBuilder reset();
     }
 }

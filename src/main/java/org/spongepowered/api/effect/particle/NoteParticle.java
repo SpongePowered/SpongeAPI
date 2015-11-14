@@ -25,6 +25,7 @@
 package org.spongepowered.api.effect.particle;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.data.type.NotePitch;
 
 /**
  * Represents a particle effect that uses a note value.
@@ -38,7 +39,7 @@ public interface NoteParticle extends ParticleEffect {
      *
      * @return The note value
      */
-    float getNote();
+    NotePitch getNote();
 
     /**
      * Represents a particle builder to create a {@link NoteParticle}.
@@ -55,7 +56,7 @@ public interface NoteParticle extends ParticleEffect {
          * @param note The note
          * @return This builder
          */
-        Builder note(float note);
+        Builder note(NotePitch note);
 
         @Override
         Builder type(ParticleType particleType);

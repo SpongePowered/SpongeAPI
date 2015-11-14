@@ -139,7 +139,7 @@ public interface Explosion {
     /**
      * A builder for {@link Explosion}.
      */
-    interface Builder extends ResettableBuilder {
+    interface Builder extends ResettableBuilder<Builder> {
 
         /**
          * Sets the {@link World} the explosion will occur in.
@@ -188,9 +188,6 @@ public interface Explosion {
          * @return The builder, for chaining
          */
         Builder shouldBreakBlocks(boolean destroy);
-
-        @Override
-        ResettableBuilder reset();
 
         /**
          * Attempts to create a {@link Explosion} from the specified parameters.
