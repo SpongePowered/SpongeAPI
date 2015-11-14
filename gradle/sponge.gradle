@@ -42,6 +42,7 @@ configure([compileJava, compileTestJava]) {
 test {
     testLogging {
         exceptionFormat = 'full' // Always print full stack trace if something goes wrong in the unit tests
+        showStandardStreams = true
     }
 }
 
