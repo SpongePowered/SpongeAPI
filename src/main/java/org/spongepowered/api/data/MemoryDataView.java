@@ -295,6 +295,7 @@ public class MemoryDataView implements DataView {
         return set(checkNotNull(key, "Key was null!").getQuery(), value);
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     private void setCollection(String key, Collection<?> value) {
         ImmutableList.Builder<Object> builder = ImmutableList.builder();
         for (Object object : value) {
@@ -308,14 +309,47 @@ public class MemoryDataView implements DataView {
                 }
                 builder.add(view);
             } else if (object instanceof Map) {
-                builder.add(ImmutableMap.copyOf((Map<?, ?>) object));
+                builder.add(ensureSerialization((Map) object));
             } else if (object instanceof Collection) {
-                builder.add(ImmutableList.copyOf((Collection<?>) object));
+                builder.add(ensureSerialization((Collection) object));
             } else {
                 builder.add(object);
             }
         }
         this.map.put(key, builder.build());
+    }
+
+    @SuppressWarnings("rawtypes")
+    private ImmutableList<Object> ensureSerialization(Collection<?> collection) {
+        ImmutableList.Builder<Object> objectBuilder = ImmutableList.builder();
+        collection.forEach(element -> {
+            if (element instanceof Collection) {
+                objectBuilder.add(ensureSerialization((Collection) element));
+            } else if (element instanceof DataSerializable) {
+                objectBuilder.add(((DataSerializable) element).toContainer());
+            } else {
+                objectBuilder.add(element);
+            }
+        });
+        return objectBuilder.build();
+
+    }
+
+    @SuppressWarnings("rawtypes")
+    private ImmutableMap<?, ?> ensureSerialization(Map<?, ?> map) {
+        ImmutableMap.Builder<Object, Object> builder = ImmutableMap.builder();
+        map.entrySet().forEach(entry -> {
+            if (entry.getValue() instanceof Map) {
+                builder.put(entry.getKey(), ensureSerialization((Map) entry.getValue()));
+            } else if (entry.getValue() instanceof DataSerializable) {
+                builder.put(entry.getKey(), ((DataSerializable) entry.getValue()).toContainer());
+            } else if (entry.getValue() instanceof Collection) {
+                builder.put(entry.getKey(), ensureSerialization((Collection) entry.getValue()));
+            } else {
+                builder.put(entry.getKey(), entry.getValue());
+            }
+        });
+        return builder.build();
     }
 
     private void setMap(String key, Map<?, ?> value) {

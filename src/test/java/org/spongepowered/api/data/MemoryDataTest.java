@@ -377,4 +377,26 @@ public class MemoryDataTest {
         containertest.set(new DataQuery("test1", "test2", "test3"), containertest2);
     }
 
+    @Test
+    public void testDeepSerialization() {
+        List<List> values = Lists.newArrayList();
+        List<List> sub = Lists.newArrayList();
+        values.add(sub);
+
+        SimpleData data1 = new SimpleData(1, 2.0, "3", Arrays.asList("foo", "bar", "baz"));
+        SimpleData data2 = new SimpleData(2, 3.0, "4", Arrays.asList("bar", "baz", "foo"));
+        SimpleData data3 = new SimpleData(3, 4.0, "5", Arrays.asList("baz", "foo", "bar"));
+
+        sub.add(ImmutableList.of(data1));
+        sub.add(ImmutableList.of(data2));
+
+        DataContainer main = new MemoryDataContainer();
+
+        main.set(DataQuery.of("ROOT"), data3);
+        main.set(DataQuery.of("SINGLE"), ImmutableList.of(data2));
+        main.set(DataQuery.of("SUB"), values);
+
+        Map<?, ?> map = main.getMap(of()).get();
+    }
+
 }
