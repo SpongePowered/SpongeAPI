@@ -72,7 +72,7 @@ public class AbstractModifierEvent<T> extends AbstractEvent {
         double tempAmount = baseAmount;
         for (Map.Entry<T, Function<? super Double, Double>> entry : this.modifierFunctions.entrySet()) {
             double modifierAmount = checkNotNull(entry.getValue().apply(tempAmount));
-            if (modifiers.containsKey(entry.getKey())) {
+            if (this.modifiers.containsKey(entry.getKey())) {
                 double oldAmount = this.modifiers.get(entry.getKey());
                 double difference = oldAmount - modifierAmount;
                 if (oldAmount > 0) {

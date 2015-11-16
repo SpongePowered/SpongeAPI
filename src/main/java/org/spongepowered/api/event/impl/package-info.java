@@ -22,26 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+@org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.event.impl;
-
-import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.event.data.ChangeDataHolderEvent;
-import org.spongepowered.api.eventgencore.annotation.UseField;
-
-public abstract class AbstractValueChangeEvent implements ChangeDataHolderEvent.ValueChange {
-
-    @UseField
-    protected DataTransactionResult originalChanges;
-    @UseField
-    protected DataTransactionResult endResult;
-
-    protected void init() {
-        this.endResult = this.originalChanges;
-    }
-
-    @Override
-    public ValueChange proposeChanges(DataTransactionResult result) {
-        this.endResult = result;
-        return this;
-    }
-}

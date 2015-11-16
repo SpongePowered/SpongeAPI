@@ -34,6 +34,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -41,7 +42,7 @@ import java.util.stream.Collectors;
 /**
  * An event that affects multiple {@link Entity} instances as a bulk action.
  * The constraint is that if an action can be deemed as necessary for selective
- * individualized processing, such as {@link InteractEntityEvent.Attack},
+ * individualized processing, such as {@link DamageEntityEvent},
  * the actioned {@link Event} is handled individually. If a bulk of
  * {@link Entity} instances are being affected, for example by an
  * {@link Explosion} "damaging" a varying amount of {@link Entity} instances.
@@ -76,11 +77,13 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseT
      * @return The entities removed from {@link #getEntities()}
      */
     default List<Entity> filterEntityLocations(Predicate<Location<World>> predicate) {
-        List<Entity> removedEntites = this.getEntities().stream()
-            .filter(entity -> !predicate.test(entity.getLocation()))
-            .collect(Collectors.toList());
-        this.getEntities().removeAll(removedEntites);
-        return removedEntites;
+        List<Entity> removedEntiies = new ArrayList<>();
+        for (Entity entity : this.getEntities()) {
+            if (!predicate.test(entity.getLocation())) {
+                removedEntiies.add(entity);
+            }
+        }
+        return removedEntiies;
     }
 
     /**
@@ -94,10 +97,12 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseT
      * @return The entities removed from {@link #getEntities()}
      */
     default List<? extends Entity> filterEntities(Predicate<Entity> predicate) {
-        List<Entity> removedEntites = this.getEntities().stream()
-            .filter(entity -> !predicate.test(entity))
-            .collect(Collectors.toList());
-        this.getEntities().removeAll(removedEntites);
-        return removedEntites;
+        List<Entity> removedEntiies = new ArrayList<>();
+        for (Entity entity : this.getEntities()) {
+            if (!predicate.test(entity)) {
+                removedEntiies.add(entity);
+            }
+        }
+        return removedEntiies;
     }
 }

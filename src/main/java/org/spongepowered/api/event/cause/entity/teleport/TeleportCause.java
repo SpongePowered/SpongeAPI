@@ -29,9 +29,10 @@ import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.event.entity.DisplaceEntityEvent;
 
 /**
- * Represents a cause for a {@link DisplaceEntityEvent.Teleport} such that there is an
- * associated {@link TeleportType} and possibly, an object associated with the
- * type.
+ * Represents a cause for a
+ * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport} such
+ * that there is an associated {@link TeleportType} and possibly, an object
+ * associated with the type.
  *
  * Examples may include {@link EntityTeleportCause} for an {@link Enderman}
  * teleporting away from rain, or a {@link Entity} entering a nether portal.

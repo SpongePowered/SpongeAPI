@@ -85,6 +85,7 @@ public interface BlockTrait<T extends Comparable<T>> extends CatalogType {
      *
      * @return The trait name
      */
+    @Override
     String getName();
 
     /**
@@ -106,7 +107,7 @@ public interface BlockTrait<T extends Comparable<T>> extends CatalogType {
     /**
      * Gets the {@link Predicate} used to determine valid values for this
      * {@link BlockTrait}. Any "value" that returns <code>true</code> when
-     * {@link Predicate#apply(Object)} is called is valid. The
+     * {@link Predicate#test(Object)} is called is valid. The
      * {@link Predicate} is specific to this trait.
      * 
      * @return The predicate
