@@ -309,6 +309,7 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Integer>> DELAY = null;
     public static final Key<Value<Integer>> FALL_TIME = null;
     public static final Key<Value<Boolean>> FALLING_BLOCK_CAN_HURT_ENTITIES = null;
+    public static final Key<MutableBoundedValue<Double>> HEALTH_SCALE = null;
 
 
     private Keys() {}
