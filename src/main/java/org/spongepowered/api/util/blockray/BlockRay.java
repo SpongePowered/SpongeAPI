@@ -541,7 +541,9 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
          * @param filters The filters to add
          * @return This for chained calls
          */
-        public BlockRayBuilder<E> filter(final Predicate<BlockRayHit<E>>... filters) {
+        @SafeVarargs
+        @SuppressWarnings("varargs")
+        public final BlockRayBuilder<E> filter(final Predicate<BlockRayHit<E>>... filters) {
             checkNotNull(filters, "filters");
             @SuppressWarnings("RedundantTypeArguments") // For Apple JDK 6, don't remove
             final Predicate<BlockRayHit<E>> filter = filters.length == 1 ? filters[0] : Functional.predicateAnd(filters);

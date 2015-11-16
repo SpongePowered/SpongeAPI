@@ -133,6 +133,7 @@ public interface DataManipulator<M extends DataManipulator<M, I>, I extends Immu
      * @param value The actual value to set
      * @return This manipulator, for chaining
      */
+    @SuppressWarnings("unchecked")
     default M set(BaseValue<?> value) {
         return set((Key<? extends BaseValue<Object>>) value.getKey(), value.get());
     }

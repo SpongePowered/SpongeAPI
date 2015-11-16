@@ -180,6 +180,7 @@ public interface Dungeon extends Populator {
          * @param entities The possible entities
          * @return This builder, for chaining
          */
+        @SuppressWarnings({"unchecked", "varargs"})
         Builder possibleEntities(WeightedSerializableObject<EntitySnapshot>... entities);
 
         /**

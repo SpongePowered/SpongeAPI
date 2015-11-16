@@ -72,6 +72,7 @@ public interface ImmutableDataManipulator<I extends ImmutableDataManipulator<I, 
      * @param value The value to set
      * @return The new immutable data manipulator, if compatible
      */
+    @SuppressWarnings("unchecked")
     default Optional<I> with(BaseValue<?> value) {
         return with((Key<? extends BaseValue<Object>>) value.getKey(), value.get());
     }

@@ -80,6 +80,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @return the first child inventory, if there are no children then simply
      *      returns <code>this</code>
      */
+    @SuppressWarnings("unchecked")
     default <T extends Inventory> T first() {
         return (T) this;
     }
@@ -94,6 +95,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @return the next sibiling inventory, or an {@link EmptyInventory} if
      *      there are no further siblings
      */
+    @SuppressWarnings("unchecked")
     default <T extends Inventory> T next() {
         return (T) EMPTY;
     }

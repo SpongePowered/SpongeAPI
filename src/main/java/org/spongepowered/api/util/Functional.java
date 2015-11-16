@@ -51,6 +51,7 @@ public class Functional {
      * @return The combined predicate
      */
     @SafeVarargs
+    @SuppressWarnings("varargs")
     public static <E> Predicate<E> predicateAnd(Predicate<E>... predicates) {
         return predicateAnd(Arrays.asList(predicates));
     }

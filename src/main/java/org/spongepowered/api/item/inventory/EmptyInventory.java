@@ -132,36 +132,43 @@ public class EmptyInventory implements Inventory {
         return Optional.empty();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T extends Inventory> T query(Class<?>... types) {
         return (T) this;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T extends Inventory> T query(ItemType... types) {
         return (T) this;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T extends Inventory> T query(ItemStack... types) {
         return (T) this;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T extends Inventory> T query(InventoryProperty<?, ?>... props) {
         return (T) this;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T extends Inventory> T query(Translatable... names) {
         return (T) this;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T extends Inventory> T query(String... names) {
         return (T) this;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T extends Inventory> T query(Object... args) {
         return (T) this;
