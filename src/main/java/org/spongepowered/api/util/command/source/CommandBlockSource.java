@@ -24,9 +24,21 @@
  */
 package org.spongepowered.api.util.command.source;
 
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.manipulator.mutable.CommandData;
+
 /**
  * Represents a CommandBlock source, either a placed block or a MinecartCommandBlock.
  */
-public interface CommandBlockSource extends LocatedSource {
+public interface CommandBlockSource extends LocatedSource, DataHolder {
+
+    /**
+     * Gets the {@link CommandData} for this source.
+     *
+     * @return The command data
+     */
+    default CommandData getCommandData() {
+        return get(CommandData.class).get();
+    }
 
 }
