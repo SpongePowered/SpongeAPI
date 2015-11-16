@@ -66,7 +66,7 @@ public final class ImmutableCommandMapping implements CommandMapping {
         checkNotNull(primary, "primary");
         checkNotNull(aliases, "aliases");
         this.primary = primary;
-        this.aliases = new HashSet<String>(aliases);
+        this.aliases = new HashSet<>(aliases);
         this.aliases.add(primary);
         this.callable = checkNotNull(callable, "callable");
     }

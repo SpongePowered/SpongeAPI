@@ -25,28 +25,21 @@
 
 package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.data.type.Fish;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.projectile.FishHook;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.block.CollideBlockEvent;
-import org.spongepowered.api.event.block.TargetBlockEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
 import org.spongepowered.api.event.entity.TargetEntityEvent;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-
-import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * An event when a "fishing" action is performed. Always involves a

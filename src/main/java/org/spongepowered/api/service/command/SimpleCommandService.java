@@ -130,7 +130,7 @@ public class SimpleCommandService implements CommandService {
 
         synchronized (this.lock) {
             // <namespace>:<alias> for all commands
-            List<String> aliasesWithPrefix = new ArrayList<String>(aliases.size() * 2);
+            List<String> aliasesWithPrefix = new ArrayList<>(aliases.size() * 2);
             for (String alias : aliases) {
                 final Collection<CommandMapping> ownedCommands = this.owners.get(container);
                 for (CommandMapping mapping : this.dispatcher.getAll(alias)) {
@@ -295,7 +295,7 @@ public class SimpleCommandService implements CommandService {
     public List<String> getSuggestions(CommandSource src, String arguments) {
         try {
             final String[] argSplit = arguments.split(" ", 2);
-            List<String> suggestions = new ArrayList<String>(this.dispatcher.getSuggestions(src, arguments));
+            List<String> suggestions = new ArrayList<>(this.dispatcher.getSuggestions(src, arguments));
             final TabCompleteCommandEvent event = SpongeEventFactory.createTabCompleteCommandEvent(this.game, Cause.of(src), argSplit.length > 1 ?
                             argSplit[1] : "", argSplit[0], suggestions);
             this.game.getEventManager().post(event);

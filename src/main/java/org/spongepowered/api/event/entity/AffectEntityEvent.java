@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.entity;
 
-import com.google.common.collect.Lists;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.Cancellable;
@@ -37,6 +36,7 @@ import org.spongepowered.api.world.explosion.Explosion;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * An event that affects multiple {@link Entity} instances as a bulk action.
@@ -76,12 +76,9 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseT
      * @return The entities removed from {@link #getEntities()}
      */
     default List<Entity> filterEntityLocations(Predicate<Location<World>> predicate) {
-        List<Entity> removedEntites = Lists.newArrayList();
-        for (Entity entity: this.getEntities()) {
-            if (!predicate.test(entity.getLocation())) {
-                removedEntites.add(entity);
-            }
-        }
+        List<Entity> removedEntites = this.getEntities().stream()
+            .filter(entity -> !predicate.test(entity.getLocation()))
+            .collect(Collectors.toList());
         this.getEntities().removeAll(removedEntites);
         return removedEntites;
     }
@@ -97,12 +94,9 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseT
      * @return The entities removed from {@link #getEntities()}
      */
     default List<? extends Entity> filterEntities(Predicate<Entity> predicate) {
-        List<Entity> removedEntites = Lists.newArrayList();
-        for (Entity entity: this.getEntities()) {
-            if (!predicate.test(entity)) {
-                removedEntites.add(entity);
-            }
-        }
+        List<Entity> removedEntites = this.getEntities().stream()
+            .filter(entity -> !predicate.test(entity))
+            .collect(Collectors.toList());
         this.getEntities().removeAll(removedEntites);
         return removedEntites;
     }

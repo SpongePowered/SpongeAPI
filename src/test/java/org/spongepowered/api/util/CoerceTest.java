@@ -27,8 +27,9 @@ package org.spongepowered.api.util;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.Optional;
 import org.junit.Test;
+
+import java.util.Optional;
 
 
 public class CoerceTest {

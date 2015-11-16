@@ -26,8 +26,6 @@ package org.spongepowered.api.util.command.args;
 
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.args.parsing.SingleArg;
 
@@ -35,10 +33,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
-
-import javax.annotation.Nullable;
 
 /**
  * Holder for command arguments.
@@ -56,7 +51,7 @@ public final class CommandArgs {
      */
     public CommandArgs(String rawInput, List<SingleArg> args) {
         this.rawInput = rawInput;
-        this.args = new ArrayList<SingleArg>(args);
+        this.args = new ArrayList<>(args);
     }
 
     /**

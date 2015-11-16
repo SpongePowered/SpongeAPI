@@ -31,7 +31,6 @@ import static org.apache.commons.lang3.Validate.noNullElements;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
@@ -516,7 +515,7 @@ public abstract class Cause {
 
         @Override
         public Cause with(Iterable<?> iterable) {
-            List<Object> list = new ArrayList<Object>();
+            List<Object> list = new ArrayList<>();
             for (int i = 0; i < this.cause.length; i++) {
                 list.add(NamedCause.of(this.names[i], this.cause[i]));
             }
@@ -649,7 +648,7 @@ public abstract class Cause {
 
         @Override
         public Cause with(Iterable<?> iterable) {
-            List<Object> list = new ArrayList<Object>();
+            List<Object> list = new ArrayList<>();
             for (Object o : iterable) {
                 list.add(o);
             }

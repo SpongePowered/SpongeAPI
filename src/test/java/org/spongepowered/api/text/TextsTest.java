@@ -46,10 +46,10 @@ public class TextsTest {
         // Need to wrap this in another Text since Text.format does that as well
         Text expected = build(Texts.of((Object) killer), Texts.of((Object) killed), Texts.of((Object) weapon));
 
-        Text notFormated = Texts.format(template, new HashMap<String, Object>());
+        Text notFormated = Texts.format(template, new HashMap<>());
         assertEquals(template, notFormated);
 
-        Map<String, Object> replacements = new HashMap<String, Object>();
+        Map<String, Object> replacements = new HashMap<>();
         replacements.put("killer", killer);
         replacements.put("killed", killed);
         replacements.put("weapon", weapon);
@@ -70,7 +70,7 @@ public class TextsTest {
         // Need to wrap this in another Text since Text.format does that as well
         Text expected = build(Texts.of((Object) killer), Texts.of((Object) killed), Texts.of((Object) weapon));
 
-        Text notFormated = Texts.format(template, new HashMap<String, Object>());
+        Text notFormated = Texts.format(template, new HashMap<>());
         assertEquals(template, notFormated);
 
         Text formated = Texts.format(template, killer, killed, weapon);

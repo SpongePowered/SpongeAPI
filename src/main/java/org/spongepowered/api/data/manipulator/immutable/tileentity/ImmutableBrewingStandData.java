@@ -28,7 +28,6 @@ import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BrewingStandData;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
 /**
  * An {@link ImmutableDataManipulator} handling the {@link BrewingStand} information, such as the remaining brew time.

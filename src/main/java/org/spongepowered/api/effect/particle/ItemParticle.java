@@ -25,8 +25,6 @@
 package org.spongepowered.api.effect.particle;
 
 import com.flowpowered.math.vector.Vector3d;
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**

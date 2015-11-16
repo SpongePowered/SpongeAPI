@@ -89,7 +89,7 @@ import javax.annotation.Nullable;
  */
 public class ClassGenerator {
 
-    private final PropertySearchStrategy<Class<?>, Method> propertySearch = new AccessorFirstStrategy<Class<?>, Method>();
+    private final PropertySearchStrategy<Class<?>, Method> propertySearch = new AccessorFirstStrategy<>();
     private NullPolicy nullPolicy = NullPolicy.DISABLE_PRECONDITIONS;
     private final List<String> primitivePropertyExceptions = ImmutableList.of("cancelled");
 

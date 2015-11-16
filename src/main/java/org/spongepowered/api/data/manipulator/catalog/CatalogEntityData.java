@@ -145,7 +145,6 @@ import org.spongepowered.api.entity.projectile.Firework;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.item.FireworkEffect;
-import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.potion.PotionEffect;

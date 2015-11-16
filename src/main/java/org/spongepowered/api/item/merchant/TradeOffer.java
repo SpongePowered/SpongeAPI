@@ -28,7 +28,6 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.service.persistence.DataBuilder;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
 

@@ -27,7 +27,6 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.health.HealthModifier;
 import org.spongepowered.api.event.cause.entity.health.HealthModifierBuilder;
 import org.spongepowered.api.event.cause.entity.health.source.HealingSource;

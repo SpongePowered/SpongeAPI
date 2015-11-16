@@ -300,7 +300,7 @@ public class ClassGeneratorProviderTest {
 
         IncorrectMutatorContainer result = factory.apply(Collections.<String, Object>emptyMap());
         assertThat(result.getAddress(), is(Matchers.nullValue()));
-        result.setAddress(new ArrayList<Object>()); // Nonconforming method
+        result.setAddress(new ArrayList<>()); // Nonconforming method
     }
 
     @Test

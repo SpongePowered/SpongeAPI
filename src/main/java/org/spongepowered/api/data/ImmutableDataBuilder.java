@@ -27,7 +27,6 @@ package org.spongepowered.api.data;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.service.persistence.DataBuilder;
-import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * A builder, much like a normal {@link DataBuilder} except that it builds

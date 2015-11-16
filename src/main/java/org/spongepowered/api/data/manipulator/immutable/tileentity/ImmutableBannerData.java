@@ -28,9 +28,9 @@ import org.spongepowered.api.block.tileentity.Banner;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BannerData;
 import org.spongepowered.api.data.meta.PatternLayer;
+import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.immutable.ImmutablePatternListValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.type.DyeColor;
 
 /**
  * An {@link ImmutableDataManipulator} handling the various information for a

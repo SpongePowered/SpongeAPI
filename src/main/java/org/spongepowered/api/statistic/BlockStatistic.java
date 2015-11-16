@@ -26,7 +26,6 @@ package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.text.translation.Translation;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import javax.annotation.Nullable;
 

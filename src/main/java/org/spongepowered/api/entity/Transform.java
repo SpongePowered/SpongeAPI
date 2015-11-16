@@ -102,7 +102,7 @@ public final class Transform<E extends Extent> {
      */
     public Location<E> getLocation() {
         if (this.location == null) {
-            this.location = new Location<E>(this.extent, this.position);
+            this.location = new Location<>(this.extent, this.position);
         }
         return this.location;
     }
@@ -116,7 +116,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> setLocation(Location<E> location) {
         checkNotNull(location, "location");
-        return new Transform<E>(location, getRotation(), getScale());
+        return new Transform<>(location, getRotation(), getScale());
     }
     /**
      * Gets the {@link Extent} this transform contains.
@@ -139,7 +139,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> setExtent(E extent) {
         checkNotNull(extent, "extent");
-        return new Transform<E>(extent, getPosition(), getRotation(), getScale());
+        return new Transform<>(extent, getPosition(), getRotation(), getScale());
     }
     /**
      * Gets the coordinates of this transform.
@@ -157,7 +157,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> setPosition(Vector3d position) {
         checkNotNull(position, "position");
-        return new Transform<E>(getExtent(), position, getRotation(), getScale());
+        return new Transform<>(getExtent(), position, getRotation(), getScale());
     }
     /**
      * Gets the rotation of this transform, as a {@link Vector3d}.
@@ -223,7 +223,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> setRotation(Vector3d rotation) {
         checkNotNull(rotation, "rotation");
-        return new Transform<E>(getExtent(), getPosition(), rotation, getScale());
+        return new Transform<>(getExtent(), getPosition(), rotation, getScale());
     }
     /**
      * Gets the pitch component of this transform rotation
@@ -270,7 +270,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> setScale(Vector3d scale) {
         checkNotNull(scale, "scale");
-        return new Transform<E>(getExtent(), getPosition(), getRotation(), scale);
+        return new Transform<>(getExtent(), getPosition(), getRotation(), scale);
     }
     /**
      * "Adds" another transform to this one.
@@ -284,11 +284,11 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> add(Transform<E> other) {
         checkNotNull(other, "other");
-        return new Transform<E>(
-                getExtent(),
-                getPosition().add(other.getPosition()),
-                toAxesAngles(other.getRotationAsQuaternion().mul(getRotationAsQuaternion())),
-                getScale().mul(other.getScale())
+        return new Transform<>(
+            getExtent(),
+            getPosition().add(other.getPosition()),
+            toAxesAngles(other.getRotationAsQuaternion().mul(getRotationAsQuaternion())),
+            getScale().mul(other.getScale())
         );
     }
     /**
@@ -300,7 +300,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> addTranslation(Vector3d translation) {
         checkNotNull(translation, "translation");
-        return new Transform<E>(getExtent(), getPosition().add(translation));
+        return new Transform<>(getExtent(), getPosition().add(translation));
     }
     /**
      * Adds a rotation to this transform.
@@ -328,7 +328,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> addRotation(Quaterniond rotation) {
         checkNotNull(rotation, "rotation");
-        return new Transform<E>(getExtent(), getPosition(), toAxesAngles(rotation.mul(getRotationAsQuaternion())), getScale());
+        return new Transform<>(getExtent(), getPosition(), toAxesAngles(rotation.mul(getRotationAsQuaternion())), getScale());
     }
     /**
      * "Adds" a scale to this transform.
@@ -342,7 +342,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> addScale(Vector3d scale) {
         checkNotNull(scale, "scale");
-        return new Transform<E>(getExtent(), getPosition(), getRotation(), getScale().mul(scale));
+        return new Transform<>(getExtent(), getPosition(), getRotation(), getScale().mul(scale));
     }
     /**
      * Returns a matrix representation of this transform.

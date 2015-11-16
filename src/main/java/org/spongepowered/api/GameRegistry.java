@@ -29,7 +29,6 @@ import org.spongepowered.api.data.ImmutableDataRegistry;
 import org.spongepowered.api.data.manipulator.DataManipulatorRegistry;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
