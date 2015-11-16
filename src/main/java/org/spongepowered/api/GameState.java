@@ -37,12 +37,6 @@ public enum GameState {
     CONSTRUCTION,
 
     /**
-     * All plugin initialization should be completed. All plugins
-     * initialization should be complete.
-     */
-    LOAD_COMPLETE,
-
-    /**
      * Plugins are able to access a default logger instance and access
      * configuration files.
      */
@@ -60,6 +54,12 @@ public enum GameState {
      * interaction.
      */
     POST_INITIALIZATION,
+
+    /**
+     * All plugin initialization and registration should be completed. The
+     * server is now ready to start.
+     */
+    LOAD_COMPLETE,
 
     /**
      * The {@link Server} instance exists, but worlds have not yet loaded.
@@ -87,6 +87,10 @@ public enum GameState {
      * to the worlds are not saved.
      */
     SERVER_STOPPED,
+
+    GAME_STOPPING,
+
+    GAME_STOPPED,
     ;
 
 }

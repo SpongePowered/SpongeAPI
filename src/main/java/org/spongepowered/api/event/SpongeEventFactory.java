@@ -128,7 +128,9 @@ import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStartingServerEvent;
 import org.spongepowered.api.event.game.state.GameStateEvent;
+import org.spongepowered.api.event.game.state.GameStoppedEvent;
 import org.spongepowered.api.event.game.state.GameStoppedServerEvent;
+import org.spongepowered.api.event.game.state.GameStoppingEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.event.item.inventory.AffectItemStackEvent;
 import org.spongepowered.api.event.item.inventory.AffectSlotEvent;
@@ -2929,6 +2931,22 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.game.state.GameStoppedEvent}.
+     * 
+     * @param game The game
+     * @param state The state
+     * @return A new game stopped event
+     */
+    public static GameStoppedEvent createGameStoppedEvent(Game game, GameState state) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("state", state);
+        return SpongeEventFactoryUtils.createEventImpl(GameStoppedEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.game.state.GameStoppedServerEvent}.
      * 
      * @param game The game
@@ -2940,6 +2958,22 @@ public class SpongeEventFactory {
         values.put("game", game);
         values.put("state", state);
         return SpongeEventFactoryUtils.createEventImpl(GameStoppedServerEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.game.state.GameStoppingEvent}.
+     * 
+     * @param game The game
+     * @param state The state
+     * @return A new game stopping event
+     */
+    public static GameStoppingEvent createGameStoppingEvent(Game game, GameState state) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("state", state);
+        return SpongeEventFactoryUtils.createEventImpl(GameStoppingEvent.class, values);
     }
 
     /**
