@@ -22,23 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal;
+package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.HorseData;
-import org.spongepowered.api.item.inventory.Carrier;
-
-/**
- * Represents a Horse.
- */
-public interface Horse extends Animal, Carrier {
-
-    /**
-     * Gets a copy of the {@link HorseData} representing this {@link Horse}.
-     *
-     * @return A copy of the horse data
-     */
-    default HorseData getHorseData() {
-        return get(HorseData.class).get();
-    }
+public interface Creature extends Agent {
 
 }

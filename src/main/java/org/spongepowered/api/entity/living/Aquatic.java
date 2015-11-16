@@ -27,6 +27,6 @@ package org.spongepowered.api.entity.living;
 /**
  * Represents an aquatic living entity that may normally spawn in water.
  */
-public interface Aquatic extends Agent {
+public interface Aquatic extends Creature {
 
 }
