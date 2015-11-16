@@ -116,7 +116,7 @@ public interface Explosion {
     boolean shouldPlaySmoke();
 
     /**
-     * Sets whether the explosion will show smoke to the client
+     * Sets whether the explosion will show smoke to the client.
      *
      * @param smoke Whether the explosion will play smoke
      */
@@ -192,8 +192,8 @@ public interface Explosion {
         /**
          * Attempts to create a {@link Explosion} from the specified parameters.
          *
-         * @throws IllegalArgumentException If any builder parameter is invalid
          * @return The explosion, if successful
+         * @throws IllegalArgumentException If any builder parameter is invalid
          */
         Explosion build() throws IllegalArgumentException;
 

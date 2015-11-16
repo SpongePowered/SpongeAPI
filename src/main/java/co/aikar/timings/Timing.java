@@ -31,6 +31,8 @@ public interface Timing extends AutoCloseable {
 
     /**
      * Starts timing the execution until {@link #stopTiming} is called.
+     *
+     * @return This timing, for chaining
      */
     Timing startTiming();
 
@@ -52,7 +54,7 @@ public interface Timing extends AutoCloseable {
      * handlers. <p/> Will automatically be called when this timing is used with
      * try-with-resources.
      *
-     * But only if called from the main server thread.
+     * <p>But only if called from the main server thread.</p>
      */
     void stopTimingIfSync();
 

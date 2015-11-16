@@ -88,8 +88,22 @@ public enum GameState {
      */
     SERVER_STOPPED,
 
+    /**
+     * The game is stopping, all network connections should be closed, all
+     * plugins should prepare for shutdown, closing all files.
+     *
+     * <p>Note: In the case that the JVM is terminated, this state may never
+     * be reached.</p>
+     */
     GAME_STOPPING,
 
+    /**
+     * The game has stopped and the JVM will exit. Plugins shouldn't expect to
+     * receive this event as all files and connections should be terminated.
+     *
+     * <p>Note: In the case that the JVM is terminated, this state may never
+     * be reached.</p>
+     */
     GAME_STOPPED,
     ;
 

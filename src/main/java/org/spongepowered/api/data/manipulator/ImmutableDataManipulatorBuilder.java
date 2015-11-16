@@ -57,6 +57,13 @@ public interface ImmutableDataManipulatorBuilder<I extends ImmutableDataManipula
      */
     Optional<I> createFrom(DataHolder dataHolder);
 
+    /**
+     * Creates the desired {@link ImmutableDataManipulator} from the provided
+     * {@link ImmutableDataHolder}, if it is supported.
+     *
+     * @param dataHolder The data holder
+     * @return The immutable manipulator, if available
+     */
     Optional<I> createFrom(ImmutableDataHolder<?> dataHolder);
 
     @Override

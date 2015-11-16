@@ -50,6 +50,7 @@ public class Functional {
      * @param <E> The type to accept
      * @return The combined predicate
      */
+    @SafeVarargs
     public static <E> Predicate<E> predicateAnd(Predicate<E>... predicates) {
         return predicateAnd(Arrays.asList(predicates));
     }

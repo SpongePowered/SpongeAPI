@@ -119,7 +119,7 @@ public interface BlockSnapshot extends LocateableSnapshot<BlockSnapshot> {
         Builder world(WorldProperties worldProperties);
 
         /**
-         * Sets the {@link BlockState} for this {@link BlockSnapshot}
+         * Sets the {@link BlockState} for this {@link BlockSnapshot}.
          *
          * @param blockState The BlockState
          * @return This builder, for chaining
@@ -135,7 +135,8 @@ public interface BlockSnapshot extends LocateableSnapshot<BlockSnapshot> {
         Builder position(Vector3i position);
 
         /**
-         * Copies over block data from a {@link Location< World >}.
+         * Copies over block data from a {@link Location}.
+         *
          * @param location The Location to copy from
          * @return This builder, for chaining
          */

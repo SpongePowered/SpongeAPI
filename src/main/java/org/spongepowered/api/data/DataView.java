@@ -129,6 +129,7 @@ public interface DataView {
      * provided {@link DataQuery} objects.
      *
      * @param path The path relative to this data view
+     * @param paths The additional paths to check
      * @return True if all paths exist
      */
     boolean contains(DataQuery path, DataQuery... paths);

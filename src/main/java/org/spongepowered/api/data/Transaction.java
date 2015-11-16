@@ -38,6 +38,12 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
     private boolean valid = true;
     @Nullable private T custom;
 
+    /**
+     * Creates a new transaction.
+     *
+     * @param original The original object being replaced
+     * @param defaultReplacement The default replacement
+     */
     public Transaction(T original, T defaultReplacement) {
         this.original = checkNotNull(original);
         this.defaultReplacement = checkNotNull(defaultReplacement);

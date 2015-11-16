@@ -131,6 +131,14 @@ public class AccessorModifierEventFactoryPlugin implements EventFactoryPlugin {
 
         private Property<Class<?>, Method> property;
 
+        /**
+         * Creates a new {@link MethodPair}.
+         *
+         * @param name The name
+         * @param callerMethod The caller method
+         * @param transformerMethod The transformer method
+         * @param property The property
+         */
         public MethodPair(String name, Method callerMethod, Method transformerMethod, Property<Class<?>, Method> property) {
             this.name = name;
             this.callerMethod = callerMethod;

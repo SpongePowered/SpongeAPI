@@ -27,7 +27,12 @@ package org.spongepowered.api.event.game.state;
 import org.spongepowered.api.GameState;
 
 /**
- * Represents a {@link GameState#GAME_STOPPING} event.
+ * Represents a {@link GameState#GAME_STOPPING} event. The game is stopping,
+ * all network connections should be closed, all plugins should prepare for
+ * shutdown, closing all files.
+ *
+ * <p>Note: In the case that the JVM is terminated, this state may never
+ * be reached.</p>
  */
 public interface GameStoppingEvent extends GameStateEvent {
 

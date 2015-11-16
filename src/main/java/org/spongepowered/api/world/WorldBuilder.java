@@ -168,6 +168,12 @@ public interface WorldBuilder extends ResettableBuilder<WorldBuilder> {
      */
     WorldBuilder generatorSettings(DataContainer settings);
 
+    /**
+     * Sets the desired {@link TeleporterAgent} for the world to be created.
+     *
+     * @param agent The agent
+     * @return This builder, for chaining
+     */
     WorldBuilder teleporterAgent(TeleporterAgent agent);
 
     /**

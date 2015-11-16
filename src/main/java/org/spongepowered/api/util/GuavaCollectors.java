@@ -38,14 +38,12 @@ public class GuavaCollectors {
 
     private static final Collector<Object, ImmutableList.Builder<Object>, ImmutableList<Object>> IMMUTABLE_LIST_COLLECTOR =
         Collector.of(ImmutableList::builder,
-                     ImmutableList.Builder::add,
-                     (ImmutableList.Builder<Object> a, ImmutableList.Builder<Object> b) -> a.addAll(b.build()),
+                     ImmutableList.Builder::add, (ImmutableList.Builder<Object> a, ImmutableList.Builder<Object> b) -> a.addAll(b.build()),
                      ImmutableList.Builder::build);
 
     private static final Collector<Object, ImmutableSet.Builder<Object>, ImmutableSet<Object>> IMMUTABLE_SET_COLLECTOR =
         Collector.of(ImmutableSet::builder,
-                     ImmutableSet.Builder::add,
-                     (ImmutableSet.Builder<Object> a, ImmutableSet.Builder<Object> b) -> a.addAll(b.build()),
+                     ImmutableSet.Builder::add, (ImmutableSet.Builder<Object> a, ImmutableSet.Builder<Object> b) -> a.addAll(b.build()),
                      ImmutableSet.Builder::build,
                      Collector.Characteristics.UNORDERED);
 

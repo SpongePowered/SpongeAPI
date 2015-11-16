@@ -96,6 +96,7 @@ public final class KeyFactory {
      */
     public static <E> Key<ListValue<E>> makeListKey(final Class<E> elementClass, final DataQuery query) {
         return new Key<ListValue<E>>() {
+            @SuppressWarnings("rawtypes")
             @Override
             public Class<ListValue<E>> getValueClass() {
                 return (Class<ListValue<E>>) (Class) ListValue.class;
@@ -129,6 +130,7 @@ public final class KeyFactory {
      */
     public static <E> Key<SetValue<E>> makeSetKey(final Class<E> elementClass, final DataQuery query) {
         return new Key<SetValue<E>>() {
+            @SuppressWarnings("rawtypes")
             @Override
             public Class<SetValue<E>> getValueClass() {
                 return (Class<SetValue<E>>) (Class) SetValue.class;
@@ -146,7 +148,7 @@ public final class KeyFactory {
 
             @Override
             public String toString() {
-                return "Key{Value:" + "SetValue<" + elementClass +">, Query: " + query.toString() + "}";
+                return "Key{Value:" + "SetValue<" + elementClass + ">, Query: " + query.toString() + "}";
             }
         };
     }
@@ -165,6 +167,7 @@ public final class KeyFactory {
      */
     public static <K, V> Key<MapValue<K, V>> makeMapKey(final Class<K> keyClass, final Class<V> valueclass, final DataQuery query) {
         return new Key<MapValue<K, V>>() {
+            @SuppressWarnings("rawtypes")
             @Override
             public Class<MapValue<K, V>> getValueClass() {
                 return (Class<MapValue<K, V>>) (Class) MapValue.class;

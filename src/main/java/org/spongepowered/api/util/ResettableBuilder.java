@@ -30,6 +30,8 @@ public interface ResettableBuilder<T extends ResettableBuilder<T>> {
      * Resets this builder to a "default" state such that there is no
      * remaining data to set. This is to be the presumed
      * "default" state.
+     *
+     * @return This builder, for chaining
      */
     T reset();
 

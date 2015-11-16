@@ -162,8 +162,8 @@ public final class Timings {
     /**
      * Sets the interval between timing history report generations.
      *
-     * This will re-check your history length, so lowering this value will lower
-     * your history length if you need more than 60 history windows.
+     * <p>This will re-check your history length, so lowering this value will lower
+     * your history length if you need more than 60 history windows.</p>
      *
      * @param interval Interval in ticks
      */
@@ -183,11 +183,11 @@ public final class Timings {
     /**
      * Sets how long timing history reports are kept for the server.
      *
-     * This value is capped at a maximum of getHistoryInterval() *
-     * MAX_HISTORY_FRAMES (12).
+     * <p>This value is capped at a maximum of getHistoryInterval() *
+     * MAX_HISTORY_FRAMES (12).</p>
      *
-     * Will not reset timing data but may truncate old history if the new length
-     * is less than old length.
+     * <p>Will not reset timing data but may truncate old history if the new length
+     * is less than old length.</p>
      *
      * @param length Duration in ticks
      */
@@ -205,7 +205,7 @@ public final class Timings {
     /**
      * Generates a report and sends it to the specified command source.
      *
-     * If source is null, the {@link ConsoleSource} will be used.
+     * <p>If source is null, the {@link ConsoleSource} will be used.</p>
      *
      * @param source The source to show the report to
      */
