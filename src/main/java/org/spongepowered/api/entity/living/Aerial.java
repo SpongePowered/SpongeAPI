@@ -27,6 +27,6 @@ package org.spongepowered.api.entity.living;
 /**
  * Represents an entity that flies, such as a bat.
  */
-public interface Aerial extends Creature {
+public interface Aerial extends Agent {
 
 }
