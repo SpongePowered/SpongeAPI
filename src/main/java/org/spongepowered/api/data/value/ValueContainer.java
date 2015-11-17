@@ -80,7 +80,14 @@ public interface ValueContainer<C extends ValueContainer<C>> {
      */
     @Nullable
     default <E> E getOrNull(Key<? extends BaseValue<E>> key) {
-        return get(key).orElse(null);
+        Optional<E> value = get(key);
+        if (value.isPresent()) {
+            return value.get();
+        }
+        if (!supports(key)) {
+            throw new UnsupportedOperationException("Key not supported. Key: " + key);
+        }
+        return null;
     }
 
     /**

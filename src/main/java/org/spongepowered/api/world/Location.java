@@ -686,7 +686,7 @@ public final class Location<E extends Extent> implements DataHolder {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.extent, this.getPosition());
+        return Objects.hashCode(this.extent.get(), this.getPosition());
     }
 
     @Override
@@ -695,7 +695,8 @@ public final class Location<E extends Extent> implements DataHolder {
             return false;
         }
         Location<?> otherLoc = (Location<?>) other;
-        return otherLoc.extent.equals(this.extent) && otherLoc.getPosition().equals(this.getPosition());
+        return otherLoc.getExtent().equals(this.getExtent())
+                && otherLoc.getPosition().equals(this.getPosition());
     }
 
 }

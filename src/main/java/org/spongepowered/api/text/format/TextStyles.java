@@ -35,7 +35,18 @@ public final class TextStyles {
     /**
      * Represents an empty {@link TextStyle}.
      */
-    public static final TextStyle NONE = new TextStyle();
+    public static final TextStyle.Base NONE = new TextStyle.Base() {
+
+        @Override
+        public String getId() {
+            return "NONE";
+        }
+
+        @Override
+        public String getName() {
+            return "NONE";
+        }
+    };
 
     public static final TextStyle.Base OBFUSCATED = null;
     public static final TextStyle.Base BOLD = null;

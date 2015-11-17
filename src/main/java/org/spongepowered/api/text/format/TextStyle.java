@@ -132,20 +132,6 @@ public class TextStyle {
     }
 
     /**
-     * Constructs an empty {@link TextStyle}.
-     */
-    TextStyle() {
-        this(
-                OptBool.ABSENT,
-                OptBool.ABSENT,
-                OptBool.ABSENT,
-                OptBool.ABSENT,
-                OptBool.ABSENT
-        );
-
-    }
-
-    /**
      * Returns whether this {@link TextStyle} is a composite of multiple text
      * styles.
      *
@@ -541,6 +527,17 @@ public class TextStyle {
                     strikethrough,
                     obfuscated
             );
+        }
+
+        Base() {
+            super(
+                    OptBool.ABSENT,
+                    OptBool.ABSENT,
+                    OptBool.ABSENT,
+                    OptBool.ABSENT,
+                    OptBool.ABSENT
+            );
+
         }
 
         @Override
