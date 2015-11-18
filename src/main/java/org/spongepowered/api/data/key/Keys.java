@@ -310,6 +310,7 @@ public final class Keys {
     public static final Key<Value<Integer>> FALL_TIME = null;
     public static final Key<Value<Boolean>> FALLING_BLOCK_CAN_HURT_ENTITIES = null;
     public static final Key<MutableBoundedValue<Double>> HEALTH_SCALE = null;
+    public static final Key<Value<ItemStackSnapshot>> INSERTED_RECORD = null;
 
 
     private Keys() {}
