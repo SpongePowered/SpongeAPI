@@ -309,7 +309,7 @@ public abstract class Cause {
                     names.add(((NamedCause) aCause).getName());
                 } else {
                     list.add(aCause);
-                    names.add("unknown" + list.size() + aCause);
+                    names.add("unknown" + list.size() + aCause.getClass().getSimpleName());
                 }
             }
 
@@ -507,7 +507,7 @@ public abstract class Cause {
                 if (object instanceof NamedCause) {
                     objects[this.cause.length + i] = object;
                 } else {
-                    objects[this.cause.length + i] = NamedCause.of("unknown" + i + object, object);
+                    objects[this.cause.length + i] = NamedCause.of("unknown" + i + object.getClass().getSimpleName(), object);
                 }
             }
             return of(objects);
@@ -524,7 +524,7 @@ public abstract class Cause {
                 if (o instanceof NamedCause) {
                     list.add(o);
                 } else {
-                    list.add(NamedCause.of("unknown" + list.size() + o, o));
+                    list.add(NamedCause.of("unknown" + list.size() + o.getClass().getSimpleName(), o));
                 }
             }
             return of(list.toArray());
