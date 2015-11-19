@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.cause;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.entity.living.player.Player;
@@ -45,6 +46,8 @@ public final class NamedCause {
     public static final String NOTIFIER = "Notifier";
 
     public static NamedCause of(String name, Object object) {
+        checkArgument(!name.isEmpty(), "The name cannot be empty!");
+        checkArgument(!(object instanceof NamedCause), "Cannot nest a named cause in a named cause!");
         return new NamedCause(name, object);
     }
 
