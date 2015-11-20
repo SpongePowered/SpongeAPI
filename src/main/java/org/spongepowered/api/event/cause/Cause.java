@@ -306,10 +306,11 @@ public abstract class Cause {
             for (Object aCause : causes) {
                 checkNotNull(aCause, "Null cause element!");
                 if (aCause instanceof NamedCause) {
-                    checkArgument(!(((NamedCause) aCause).getCauseObject() instanceof NamedCause), "A named cause cannot wrap around a named cause!");
-                    list.add(((NamedCause) aCause).getCauseObject());
-                    checkArgument(!names.contains(((NamedCause) aCause).getName()), "Names need to be unique! There is already a named cause of: "
-                    + ((NamedCause) aCause).getName());
+                    Object object = ((NamedCause) aCause).getCauseObject();
+                    checkArgument(!names.contains(((NamedCause) aCause).getName()), "Names need to be unique!"
+                                                                                    + " There is already a named cause of: "
+                                                                                    + ((NamedCause) aCause).getName());
+                    list.add(object);
                     names.add(((NamedCause) aCause).getName());
                 } else {
                     list.add(aCause);
@@ -499,21 +500,7 @@ public abstract class Cause {
 
         @Override
         public Cause with(Object... additional) {
-            checkArgument(additional != null, "Cannot add a null argument!");
-            Object[] objects = new Object[this.cause.length + additional.length];
-            for (int i = 0; i < this.cause.length; i++) {
-                objects[i] = NamedCause.of(this.names[i], this.cause[i]);
-            }
-            for (int i = 0; i < additional.length; i++) {
-                final Object object = additional[i];
-                checkArgument(object != null, "Cannot add a null argument!");
-                if (object instanceof NamedCause) {
-                    objects[this.cause.length + i] = object;
-                } else {
-                    objects[this.cause.length + i] = NamedCause.of("unknown" + (this.cause.length + i) + object.getClass().getName(), object);
-                }
-            }
-            return of(objects);
+            return with(ImmutableList.copyOf(additional));
         }
 
         @Override

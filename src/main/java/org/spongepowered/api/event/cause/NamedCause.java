@@ -27,6 +27,7 @@ package org.spongepowered.api.event.cause;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Objects;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.command.args.CommandArgs;
 
@@ -48,6 +49,8 @@ public final class NamedCause {
     public static final String IGNITER = "Igniter";
 
     public static NamedCause of(String name, Object object) {
+        checkNotNull(name, "Cannot have a null name!");
+        checkNotNull(object, "Cannot have a null object!");
         checkArgument(!name.isEmpty(), "The name cannot be empty!");
         checkArgument(!(object instanceof NamedCause), "Cannot nest a named cause in a named cause!");
         return new NamedCause(name, object);
@@ -70,4 +73,29 @@ public final class NamedCause {
         return this.object;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.name, this.object);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final NamedCause other = (NamedCause) obj;
+        return Objects.equal(this.name, other.name)
+               && Objects.equal(this.object, other.object);
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+            .add("name", this.name)
+            .add("object", this.object)
+            .toString();
+    }
 }
