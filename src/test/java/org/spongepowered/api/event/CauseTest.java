@@ -24,10 +24,20 @@
  */
 package org.spongepowered.api.event;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.NamedCause;
 
@@ -57,9 +67,9 @@ public class CauseTest {
     public void testWithCause() {
         final Cause old = Cause.of("foo");
         final Cause newCause = old.with("bar");
-        assert old != newCause;
-        assert newCause.all().contains("foo");
-        assert newCause.all().contains("bar");
+        assertThat(old, not(newCause));
+        assertThat(newCause.all().contains("foo"), is(true));
+        assertThat(newCause.all().contains("bar"), is(true));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -78,62 +88,65 @@ public class CauseTest {
     public void testToString() {
         final Cause cause = Cause.of("foo", "bar", 1, 2, true, false);
         final String causeString = cause.toString();
-        assert !causeString.isEmpty();
+        assertThat(causeString.isEmpty(), is(false));
     }
 
     @Test
     public void testBefore() {
         final Cause cause = Cause.of("foo", 1, 2);
         final Optional<?> optional = cause.before(Integer.class);
-        assert optional.isPresent() && optional.get().equals("foo");
+        assertThat(optional.isPresent(), is(true));
+        assertThat(optional.get(), is("foo"));
     }
 
     @Test
     public void testAfter() {
         final Cause cause = Cause.of("foo", 1, 2);
         final Optional<?> optional = cause.after(Integer.class);
-        assert optional.isPresent() && optional.get().equals(2);
+        assertThat(optional.isPresent(), is(true));
+        assertThat(optional.get(), is(2));
     }
 
     @Test
     public void testNoneAfter() {
         final Cause cause = Cause.of("foo", 1);
         final Optional<?> optional = cause.after(Integer.class);
-        assert !optional.isPresent();
+        assertThat(optional.isPresent(), is(false));
     }
 
     @Test
     public void testNoneBefore() {
         final Cause cause = Cause.of("foo", 1);
         final Optional<?> optional = cause.before(String.class);
-        assert !optional.isPresent();
+        assertThat(optional.isPresent(), is(false));
     }
 
     @Test
     public void testEmpty() {
         final Cause empty = Cause.of();
-        assert empty.isEmpty();
+        assertThat(empty.isEmpty(), is(true));
     }
 
     @Test
     public void testEmptyWithEmpty() {
         final Cause empty = Cause.empty();
-        assert empty.with().isEmpty();
+        assertThat(empty.with().isEmpty(), is(true));
     }
 
     @Test
     public void testNoneOf() {
         final Cause cause = Cause.of("foo", 1, 2, 3);
-        assert cause.noneOf(Integer.class).size() == 1 && cause.noneOf(Integer.class).get(0) == "foo";
+        assertThat(cause.noneOf(Integer.class), hasSize(1));
+        assertThat(cause.noneOf(Integer.class).get(0), is("foo"));
     }
 
     @Test
     public void testJustBecauseIcan() {
         final Cause cause = Cause.of();
         final Cause testing = cause.with().with().with().with(new ArrayList<>()).with();
-        assert testing.isEmpty();
-        assert testing.allOf(String.class).isEmpty();
-        assert testing.noneOf(String.class).isEmpty();
+        assertThat(testing.isEmpty(), is(true));
+        assertThat(testing.allOf(String.class), hasSize(0));
+        assertThat(testing.noneOf(String.class), hasSize(0));
     }
 
     @Test
@@ -142,14 +155,14 @@ public class CauseTest {
         final NamedCause ownerCause = NamedCause.of(NamedCause.OWNER, player);
         final Cause playerCause = Cause.of(ownerCause);
         Optional<Player> optional = playerCause.first(NamedCause.OWNER);
-        assert optional.isPresent();
+        assertThat(optional.isPresent(), is(true));
     }
 
     @Test
     public void testAbsentNamedCause() {
         final Cause emptyCause = Cause.of();
         final Optional<Object> optional = emptyCause.first(NamedCause.OWNER);
-        assert !optional.isPresent();
+        assertThat(optional.isPresent(), is(false));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -170,11 +183,12 @@ public class CauseTest {
         final NamedCause living = NamedCause.of("summoned", entity);
         final Cause cause = Cause.of(living, owner);
         final Map<String, Object> map = cause.getNamedCauses();
-        assert map.containsKey(NamedCause.OWNER) && map.containsKey("summoned");
+        assertThat(map.containsKey(NamedCause.OWNER), is(true));
+        assertThat(map.containsKey("summoned"), is(true));
         int index = 0;
         final List<Object> all = cause.all();
         for (Map.Entry<String, Object> entry : map.entrySet()) {
-            assert all.get(index).equals(entry.getValue());
+            assertThat(all.get(index), equalTo(entry.getValue()));
             index++;
         }
     }
@@ -187,7 +201,7 @@ public class CauseTest {
         final NamedCause living = NamedCause.of("summoned", entity);
         final Cause cause = Cause.of(living, owner);
         final Optional<?> optional = cause.before(NamedCause.OWNER);
-        assert optional.isPresent();
+        assertThat(optional.isPresent(), is(true));
     }
 
     @Test
@@ -196,7 +210,7 @@ public class CauseTest {
         final NamedCause owner = NamedCause.of(NamedCause.OWNER, player);
         final Cause cause = Cause.of(owner);
         final Optional<?> optional = cause.before(NamedCause.OWNER);
-        assert !optional.isPresent();
+        assertThat(optional.isPresent(), is(false));
     }
 
     @Test
@@ -207,7 +221,7 @@ public class CauseTest {
         final NamedCause living = NamedCause.of("summoned", entity);
         final Cause cause = Cause.of(living, owner);
         final Optional<?> optional = cause.after("summoned");
-        assert optional.isPresent();
+        assertThat(optional.isPresent(), is(true));
     }
 
     @Test
@@ -216,7 +230,21 @@ public class CauseTest {
         final NamedCause owner = NamedCause.of(NamedCause.OWNER, player);
         final Cause cause = Cause.of(owner);
         final Optional<?> optional = cause.after(NamedCause.OWNER);
-        assert !optional.isPresent();
+        assertThat(optional.isPresent(), is(false));
+    }
+
+    @Test
+    public void testNamedWith() {
+        final Cause cause = Cause.of(NamedCause.of("Test Block", Mockito.mock(BlockSnapshot.class)));
+        User user = Mockito.mock(User.class);
+        User owner = Mockito.mock(User.class);
+        final Cause enhanced = cause.with(NamedCause.of(NamedCause.NOTIFIER, user)).with(NamedCause.of(NamedCause.OWNER, owner));
+        final Map<String, Object> causes = enhanced.getNamedCauses();
+
+        final Optional<User> optional = enhanced.first(User.class);
+        assertThat(optional.isPresent(), is(true));
+        List<Object> allCauses = enhanced.all();
+        assertThat(allCauses, hasSize(3));
     }
 
 }
