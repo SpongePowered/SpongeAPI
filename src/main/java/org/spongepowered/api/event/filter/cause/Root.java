@@ -22,39 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event;
+package org.spongepowered.api.event.filter.cause;
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import org.spongepowered.api.event.cause.Cause;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Used to annotate a method as an {@link EventListener}.
- *
- * <p>The method being targeted must be public and must be in a class that is
- * also public.</p>
+ * Sets the parameter to the root object in the cause chain, an additional check
+ * is done to ensure that the root object is of the correct type and the filter
+ * fails if this is not the case.
+ * 
+ * @see Cause#root()
  */
-@Retention(RUNTIME)
-@Target(METHOD)
-public @interface Listener {
-
-    /**
-     * The order this listener should be called in relation to other listeners in
-     * the {@link EventManager}.
-     *
-     * @return The order the listener should be called in
-     */
-    Order order() default Order.DEFAULT;
-
-    /**
-     * Whether this listener should be called before any other server mods, such
-     * as Forge mods. All Sponge event listeners are called after mods, unless
-     * they specify the {@link #beforeModifications()} flag to be true.
-     *
-     * @return If the listener should be fired before other server mods
-     */
-    boolean beforeModifications() default false;
+@Target(ElementType.PARAMETER)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Root {
 
 }

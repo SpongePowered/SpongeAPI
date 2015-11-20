@@ -22,39 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event;
+package org.spongepowered.api.event.filter.data;
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.manipulator.DataManipulator;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Used to annotate a method as an {@link EventListener}.
- *
- * <p>The method being targeted must be public and must be in a class that is
- * also public.</p>
+ * Filters out events where the annotated parameter does not have the specified
+ * data manipulator type.
+ * 
+ * <p>The annotated parameter type <strong>MUST</strong> extend
+ * {@link DataHolder}.</p>
+ * 
+ * @see DataHolder#get(Class)
  */
-@Retention(RUNTIME)
-@Target(METHOD)
-public @interface Listener {
+@Target(ElementType.PARAMETER)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Has {
 
     /**
-     * The order this listener should be called in relation to other listeners in
-     * the {@link EventManager}.
-     *
-     * @return The order the listener should be called in
+     * Gets the {@link DataManipulator} type to test for.
+     * 
+     * @return The manipulator type
      */
-    Order order() default Order.DEFAULT;
+    Class<? extends DataManipulator<?, ?>> value();
 
     /**
-     * Whether this listener should be called before any other server mods, such
-     * as Forge mods. All Sponge event listeners are called after mods, unless
-     * they specify the {@link #beforeModifications()} flag to be true.
-     *
-     * @return If the listener should be fired before other server mods
+     * If true the standard behavior of this filter is reversed and events where
+     * the annotated parameter <string>does have</strong> the specified data
+     * manipulator type are filtered out.
+     * 
+     * @return If the behavior should be reversed
      */
-    boolean beforeModifications() default false;
+    boolean inverse() default false;
 
 }

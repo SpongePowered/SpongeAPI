@@ -22,39 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event;
+package org.spongepowered.api.event.filter;
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.util.Tristate;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Used to annotate a method as an {@link EventListener}.
- *
- * <p>The method being targeted must be public and must be in a class that is
- * also public.</p>
+ * Filters out events which do not match the specified cancellation state
+ * (represented by a {@link Tristate}). If the state is set to undefined then
+ * the listener will be called regardless of the cancellation state.
+ * 
+ * <p>If this annotation is not present then the behavior is as normal, which is
+ * to say that the listener is only called if the event is not cancelled.</p>
+ * 
+ * <p> The event type of the annotated event listener <strong>MUST</strong> be
+ * cancellable (eg. must extend {@link Cancellable}). </p>
  */
-@Retention(RUNTIME)
-@Target(METHOD)
-public @interface Listener {
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface IsCancelled {
 
     /**
-     * The order this listener should be called in relation to other listeners in
-     * the {@link EventManager}.
-     *
-     * @return The order the listener should be called in
+     * Gets the required cancellation state of the event for the annotated
+     * listener to be called.
+     * 
+     * @return The cancellation state
      */
-    Order order() default Order.DEFAULT;
-
-    /**
-     * Whether this listener should be called before any other server mods, such
-     * as Forge mods. All Sponge event listeners are called after mods, unless
-     * they specify the {@link #beforeModifications()} flag to be true.
-     *
-     * @return If the listener should be fired before other server mods
-     */
-    boolean beforeModifications() default false;
+    Tristate value() default Tristate.TRUE;
 
 }
