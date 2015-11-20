@@ -274,6 +274,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_SPRINTING = null;
     public static final Key<MapValue<Statistic, Long>> STATISTICS = null;
     public static final Key<OptionalValue<UUID>> TAMED_OWNER = null;
+    public static final Key<Value<Living>> TARGET = null;
     public static final Key<ImmutableListValue<Living>> TARGETS = null;
     public static final Key<Value<Boolean>> IS_VILLAGER_ZOMBIE = null;
     public static final Key<Value<Boolean>> IS_WHITELISTED = null;

@@ -25,21 +25,23 @@
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.TargetLivingData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.manipulator.mutable.entity.TargetMultipleLivingData;
+import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.monster.Wither;
 
 /**
- * An {@link ImmutableDataManipulator} handling the present "targeted" {@link Living}. Applicable to
- * any entity but {@link Wither} (see {@link ImmutableTargetMultipleLivingData} for that).
+ * An {@link ImmutableDataManipulator} handling the present "targeted"
+ * {@link Living} entities. Usually applicable to {@link Wither}s as they can
+ * target up to three {@link Living} entities.
  */
-public interface ImmutableTargetLivingData extends ImmutableDataManipulator<ImmutableTargetLivingData, TargetLivingData> {
+public interface ImmutableTargetMultipleLivingData extends ImmutableDataManipulator<ImmutableTargetMultipleLivingData, TargetMultipleLivingData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the targeted {@link Living}.
+     * Gets the {@link ImmutableListValue} for the targeted living entities.
      *
-     * @return The targeted living
+     * @return The immutable list value for the targeted living entities
      */
-    ImmutableValue<Living> target();
+    ImmutableListValue<Living> targets();
+
 }
