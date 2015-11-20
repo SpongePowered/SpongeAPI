@@ -156,7 +156,8 @@ public abstract class Cause {
     public abstract <T> Optional<T> last(Class<T> target);
 
     /**
-     * Gets the first object associated with the provided name.
+     * Gets the object associated with the provided name. Note that
+     * all objects in a cause are uniquely named.
      *
      * @param named The name associated with the object cause
      * @param <T> The type of the object expected
@@ -205,6 +206,16 @@ public abstract class Cause {
      * @return True if found, false otherwise
      */
     public abstract boolean any(Class<?> target);
+
+    /**
+     * Checks if this cause contains of any of the provided {@link Object}. This
+     * is the equivalent to checking based on {@link #equals(Object)} for each
+     * object in this cause.
+     *
+     * @param object The object to check if it is contained
+     * @return True if the object is contained within this cause
+     */
+    public abstract boolean contains(Object object);
 
     /**
      * Returns whether there are any objects associated with the provided name.
@@ -300,7 +311,7 @@ public abstract class Cause {
                     names.add(((NamedCause) aCause).getName());
                 } else {
                     list.add(aCause);
-                    names.add("unknown" + list.size() + aCause.getClass().getSimpleName());
+                    names.add("unknown" + list.size() + aCause.getClass().getName());
                 }
             }
 
@@ -459,6 +470,16 @@ public abstract class Cause {
         }
 
         @Override
+        public boolean contains(Object object) {
+            for (Object aCause : this.cause) {
+                if (aCause.equals(object)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        @Override
         public boolean any(String named) {
             checkArgument(named != null, "The name cannot be null!");
             for (String name : this.names) {
@@ -487,7 +508,7 @@ public abstract class Cause {
                 if (object instanceof NamedCause) {
                     objects[this.cause.length + i] = object;
                 } else {
-                    objects[this.cause.length + i] = NamedCause.of("unknown" + i + object.getClass().getSimpleName(), object);
+                    objects[this.cause.length + i] = NamedCause.of("unknown" + i + object.getClass().getName(), object);
                 }
             }
             return of(objects);
@@ -504,7 +525,7 @@ public abstract class Cause {
                 if (o instanceof NamedCause) {
                     list.add(o);
                 } else {
-                    list.add(NamedCause.of("unknown" + list.size() + o.getClass().getSimpleName(), o));
+                    list.add(NamedCause.of("unknown" + list.size() + o.getClass().getName(), o));
                 }
             }
             return of(list.toArray());
