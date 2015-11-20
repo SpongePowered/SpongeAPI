@@ -22,52 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task;
+package org.spongepowered.api.event.entity.living;
 
-import com.google.common.base.Preconditions;
-import org.spongepowered.api.GameRegistry;
-import org.spongepowered.api.entity.ai.Goal;
 import org.spongepowered.api.entity.living.Agent;
 
-import java.util.Optional;
-
-/**
- * An abstract implementation of a {@link AITask} that a {@link Goal} can run.
- *
- * It is required for anyone wanting to write their own logic that a Goal can
- * run to utilize this class. If you desire to use the builtin AI included with
- * Minecraft, use {@link GameRegistry#createBuilder(Class)} and pass a builder to
- * it instead.
- *
- * @param <O> The type of Agent
- */
-public abstract class AbstractAITask<O extends Agent> implements AITask<O> {
-
-    private final AITaskType type;
-
-    public AbstractAITask(AITaskType type) {
-        Preconditions.checkNotNull(type);
-        this.type = type;
-    }
+public interface TargetAgentEvent extends TargetLivingEvent {
 
     @Override
-    public final AITaskType getType() {
-        return this.type;
-    }
+    Agent getTargetEntity();
 
-    @Override
-    public final Optional<Goal<O>> getGoal() {
-        // Assigned by implementation
-        return Optional.empty();
-    }
-
-    public abstract void start();
-
-    public abstract boolean shouldUpdate();
-
-    public abstract void update();
-
-    public abstract boolean continueUpdating();
-
-    public abstract void reset();
 }

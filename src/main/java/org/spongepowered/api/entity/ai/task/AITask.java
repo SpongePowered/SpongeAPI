@@ -27,6 +27,8 @@ package org.spongepowered.api.entity.ai.task;
 import org.spongepowered.api.entity.ai.Goal;
 import org.spongepowered.api.entity.living.Agent;
 
+import java.util.Optional;
+
 /**
  * Represents a task performed by {@link Agent}s. If you desire to create your own, see
  * {@link AbstractAITask}.
@@ -43,19 +45,19 @@ public interface AITask<O extends Agent> {
     AITaskType getType();
 
     /**
-     * Gets the {@link Goal} that is executing this task.
+     * Gets the {@link Goal} that is updating this task, if any.
      *
-     * @return The goal
+     * @return The goal or {@link Optional#empty()} if not present
      */
-    Goal<O> getGoal();
+    Optional<Goal<O>> getGoal();
 
     /**
-     * Gets the {@link Agent} that owns this task.
+     * Gets the {@link Agent} that owns this task, if any.
      *
-     * @return The owner
+     * @return The owner or {@link Optional#empty()} if not present
      */
-    default O getOwner() {
-        return getGoal().getOwner();
+    default Optional<O> getOwner() {
+        return getGoal().isPresent() ? Optional.of(getGoal().get().getOwner()) : Optional.empty();
     }
 
     /**
