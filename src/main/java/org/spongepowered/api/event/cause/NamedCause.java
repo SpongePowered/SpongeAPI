@@ -44,6 +44,8 @@ public final class NamedCause {
 
     public static final String OWNER = "Owner";
     public static final String NOTIFIER = "Notifier";
+    public static final String THROWER = "Thrower";
+    public static final String IGNITER = "Igniter";
 
     public static NamedCause of(String name, Object object) {
         checkArgument(!name.isEmpty(), "The name cannot be empty!");

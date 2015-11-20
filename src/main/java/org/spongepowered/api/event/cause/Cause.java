@@ -618,6 +618,11 @@ public abstract class Cause {
         }
 
         @Override
+        public boolean contains(Object object) {
+            return false;
+        }
+
+        @Override
         public boolean any(String named) {
             return false;
         }
