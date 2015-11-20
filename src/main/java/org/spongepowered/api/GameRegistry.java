@@ -292,12 +292,10 @@ public interface GameRegistry {
      *
      * @param plugin The plugin who owns it
      * @param id The id that represents the task type
-     * @param ownerClass The class of the owner
      * @param aiClass The class of the task
      * @return The type
      */
-    <T extends Agent> AITaskType registerAITaskType(Object plugin, String id, String name, Class<T> ownerClass, Class<? extends
-            AbstractAITask<T>> aiClass);
+    AITaskType registerAITaskType(Object plugin, String id, String name, AbstractAITask<? extends Agent> aiClass);
 
     /**
      * Gets the {@link PopulatorFactory} for creating {@link Populator}s and

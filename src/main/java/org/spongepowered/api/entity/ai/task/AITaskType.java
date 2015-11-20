@@ -25,20 +25,10 @@
 package org.spongepowered.api.entity.ai.task;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-
-import java.util.Optional;
 
 @CatalogedBy(AITaskTypes.class)
 public interface AITaskType extends CatalogType {
-
-    /**
-     * Gets the {@link Agent} class that this type is owned by.
-     *
-     * @return The owner class
-     */
-    Optional<Class<? extends Agent>> getOwnerClass();
 
     /**
      * Gets the {@link AITask} class that this type represents.
