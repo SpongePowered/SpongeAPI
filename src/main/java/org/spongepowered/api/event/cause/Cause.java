@@ -510,7 +510,7 @@ public abstract class Cause {
                 if (object instanceof NamedCause) {
                     objects[this.cause.length + i] = object;
                 } else {
-                    objects[this.cause.length + i] = NamedCause.of("unknown" + i + object.getClass().getName(), object);
+                    objects[this.cause.length + i] = NamedCause.of("unknown" + (this.cause.length + i) + object.getClass().getName(), object);
                 }
             }
             return of(objects);
