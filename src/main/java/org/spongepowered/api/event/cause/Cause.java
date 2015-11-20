@@ -500,6 +500,10 @@ public abstract class Cause {
 
         @Override
         public Cause with(Object... additional) {
+            checkArgument(additional != null, "No null arguments allowed!");
+            for (Object object : additional) {
+                checkArgument(object != null, "Cannot add null objects!");
+            }
             return with(ImmutableList.copyOf(additional));
         }
 
@@ -514,7 +518,7 @@ public abstract class Cause {
                 if (o instanceof NamedCause) {
                     list.add(o);
                 } else {
-                    list.add(NamedCause.of("unknown" + list.size() + o.getClass().getName(), o));
+                    list.add(NamedCause.of("unknown" + list.size() + 1 + o.getClass().getName(), o));
                 }
             }
             return of(list.toArray());
