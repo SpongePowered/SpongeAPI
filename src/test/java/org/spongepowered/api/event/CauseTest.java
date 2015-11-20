@@ -31,7 +31,6 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -154,14 +153,14 @@ public class CauseTest {
         final Player player = Mockito.mock(Player.class);
         final NamedCause ownerCause = NamedCause.of(NamedCause.OWNER, player);
         final Cause playerCause = Cause.of(ownerCause);
-        Optional<Player> optional = playerCause.first(NamedCause.OWNER);
+        Optional<Player> optional = playerCause.get(NamedCause.OWNER);
         assertThat(optional.isPresent(), is(true));
     }
 
     @Test
     public void testAbsentNamedCause() {
         final Cause emptyCause = Cause.of();
-        final Optional<Object> optional = emptyCause.first(NamedCause.OWNER);
+        final Optional<Object> optional = emptyCause.get(NamedCause.OWNER);
         assertThat(optional.isPresent(), is(false));
     }
 

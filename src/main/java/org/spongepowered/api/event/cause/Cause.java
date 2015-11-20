@@ -146,15 +146,6 @@ public abstract class Cause {
     public abstract <T> Optional<T> first(Class<T> target);
 
     /**
-     * Gets the first object associated with the provided name.
-     *
-     * @param named The name associated with the object cause
-     * @param <T> The type of the object expected
-     * @return The object, if the type is correct and the name was associated
-     */
-    public abstract <T> Optional<T> first(String named);
-
-    /**
      * Gets the last object instance of the {@link Class} of type
      * <code>T</code>.
      *
@@ -165,13 +156,13 @@ public abstract class Cause {
     public abstract <T> Optional<T> last(Class<T> target);
 
     /**
-     * Gets the last object associated with the provided name.
+     * Gets the first object associated with the provided name.
      *
      * @param named The name associated with the object cause
      * @param <T> The type of the object expected
      * @return The object, if the type is correct and the name was associated
      */
-    public abstract <T> Optional<T> last(String named);
+    public abstract <T> Optional<T> get(String named);
 
     /**
      * Gets the object immediately before the object that is an instance of
@@ -338,7 +329,7 @@ public abstract class Cause {
         }
 
         @Override
-        public <T> Optional<T> first(String named) {
+        public <T> Optional<T> get(String named) {
             checkArgument(named != null, "The name cannot be null!");
             for (int i = 0; i < this.names.length; i++) {
                 if (this.names[i].equalsIgnoreCase(named)) {
@@ -375,17 +366,6 @@ public abstract class Cause {
             for (int i = this.cause.length - 1; i >= 0; i--) {
                 if (target.isInstance(this.cause[i])) {
                     return Optional.of((T) this.cause[i]);
-                }
-            }
-            return Optional.empty();
-        }
-
-        @Override
-        public <T> Optional<T> last(String named) {
-            checkArgument(named != null, "The name cannot be null!");
-            for (int i = this.names.length - 1; i >= 0; i--) {
-                if (this.names[i].equalsIgnoreCase(named)) {
-                    return getCauseAtIndex(i);
                 }
             }
             return Optional.empty();
@@ -582,17 +562,12 @@ public abstract class Cause {
         }
 
         @Override
-        public <T> Optional<T> first(String named) {
+        public <T> Optional<T> get(String named) {
             return Optional.empty();
         }
 
         @Override
         public <T> Optional<T> last(Class<T> target) {
-            return Optional.empty();
-        }
-
-        @Override
-        public <T> Optional<T> last(String named) {
             return Optional.empty();
         }
 
