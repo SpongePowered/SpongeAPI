@@ -308,7 +308,8 @@ public abstract class Cause {
                 if (aCause instanceof NamedCause) {
                     checkArgument(!(((NamedCause) aCause).getCauseObject() instanceof NamedCause), "A named cause cannot wrap around a named cause!");
                     list.add(((NamedCause) aCause).getCauseObject());
-                    checkArgument(!names.contains(((NamedCause) aCause).getName()), "Names need to be unique!");
+                    checkArgument(!names.contains(((NamedCause) aCause).getName()), "Names need to be unique! There is already a named cause of: "
+                    + ((NamedCause) aCause).getName());
                     names.add(((NamedCause) aCause).getName());
                 } else {
                     list.add(aCause);
