@@ -518,7 +518,7 @@ public abstract class Cause {
                 if (o instanceof NamedCause) {
                     list.add(o);
                 } else {
-                    list.add(NamedCause.of("unknown" + list.size() + 1 + o.getClass().getName(), o));
+                    list.add(NamedCause.of("unknown" + (list.size() + 1) + o.getClass().getName(), o));
                 }
             }
             return of(list.toArray());
