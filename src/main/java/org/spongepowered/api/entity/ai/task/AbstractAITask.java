@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.ai.task;
 
 import com.google.common.base.Preconditions;
-import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.entity.ai.Goal;
 import org.spongepowered.api.entity.living.Agent;
@@ -47,10 +46,7 @@ public abstract class AbstractAITask<O extends Agent> implements AITask<O> {
 
     public AbstractAITask(AITaskType type, Goal<O> goal) {
         Preconditions.checkNotNull(type);
-        Preconditions.checkArgument(type.getOwnerClass().isPresent());
         Preconditions.checkNotNull(goal);
-        final TypeToken<O> taskTypeToken = new TypeToken<O>(getClass()) {};
-        Preconditions.checkArgument(taskTypeToken.isAssignableFrom(type.getOwnerClass().get()));
         this.type = type;
         this.goal = goal;
     }

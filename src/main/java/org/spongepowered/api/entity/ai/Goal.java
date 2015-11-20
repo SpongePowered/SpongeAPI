@@ -32,10 +32,10 @@ import org.spongepowered.api.entity.living.monster.Monster;
 import java.util.List;
 
 /**
- * Represents a series of tasks meant to achieve a "goal".
+ * Represents a set of tasks that will be updated together by an {@link Agent}.
  *
- * In Minecraft, most {@link Agent}s have just one goal which is living or simulating, or
- * whichever term you want to call it. Other agents, such as {@link Monster}s, have a
+ * In Minecraft, most agents have just one goal which is living or simulating, or
+ * whichever term you want to call it. Other agents, such as {@link Monster}s, use a
  * "target" goal which serves to seek out potential victims and execute a series of attack
  * tasks.
  *
