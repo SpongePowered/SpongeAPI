@@ -529,17 +529,6 @@ public class TextStyle {
             );
         }
 
-        Base() {
-            super(
-                    OptBool.ABSENT,
-                    OptBool.ABSENT,
-                    OptBool.ABSENT,
-                    OptBool.ABSENT,
-                    OptBool.ABSENT
-            );
-
-        }
-
         @Override
         public boolean isComposite() {
             // By definition, base TextStyles are not composites

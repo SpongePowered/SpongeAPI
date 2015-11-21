@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.text.format;
 
+import org.spongepowered.api.CatalogType;
+
 /**
  * Represents a list of the text styles provided by Vanilla Minecraft.
  */
@@ -35,18 +37,7 @@ public final class TextStyles {
     /**
      * Represents an empty {@link TextStyle}.
      */
-    public static final TextStyle.Base NONE = new TextStyle.Base() {
-
-        @Override
-        public String getId() {
-            return "NONE";
-        }
-
-        @Override
-        public String getName() {
-            return "NONE";
-        }
-    };
+    public static final TextStyle NONE = new NoneTextStyle();
 
     public static final TextStyle.Base OBFUSCATED = null;
     public static final TextStyle.Base BOLD = null;
@@ -78,6 +69,35 @@ public final class TextStyles {
      */
     public static TextStyle of(TextStyle... styles) {
         return NONE.and(styles);
+    }
+
+    /**
+     * A private class that represents the type of the {@link #NONE} text style.
+     */
+    private static final class NoneTextStyle extends TextStyle implements CatalogType {
+
+        /**
+         * Constructs a new {@link NoneTextStyle}.
+         */
+        private NoneTextStyle() {
+            super(
+                null,
+                null,
+                null,
+                null,
+                null
+            );
+        }
+
+        @Override
+        public String getId() {
+            return "NONE";
+        }
+
+        @Override
+        public String getName() {
+            return "NONE";
+        }
     }
 
 }
