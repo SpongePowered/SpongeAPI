@@ -33,7 +33,7 @@ import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.command.CommandService;
 import org.spongepowered.api.service.event.EventManager;
-import org.spongepowered.api.service.persistence.SerializationService;
+import org.spongepowered.api.service.persistence.SerializationManager;
 import org.spongepowered.api.service.scheduler.SchedulerService;
 
 public final class Sponge {
@@ -61,7 +61,7 @@ public final class Sponge {
         return getGame().getScheduler();
     }
 
-    public static SerializationService getSerializationService() {
+    public static SerializationManager getSerializationService() {
         return getGame().getSerializationService();
     }
 

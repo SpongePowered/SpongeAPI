@@ -34,7 +34,7 @@ import java.util.Optional;
  * A service that manages {@link DataBuilder}s and sometimes the
  * deserialization of various {@link DataSerializable}s.
  */
-public interface SerializationService {
+public interface SerializationManager {
 
     /**
      * Registers a {@link DataBuilder} that will dynamically build

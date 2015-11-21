@@ -27,7 +27,7 @@ package org.spongepowered.api.data;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.service.persistence.DataBuilder;
-import org.spongepowered.api.service.persistence.SerializationService;
+import org.spongepowered.api.service.persistence.SerializationManager;
 
 import java.util.List;
 import java.util.Map;
@@ -431,7 +431,7 @@ public interface DataView {
      * <p>If a {@link DataSerializable} exists, but is not the proper class
      * type, or there is no data at the path given, an absent is returned.</p>
      *
-     * <p>It is important that the {@link SerializationService} provided is
+     * <p>It is important that the {@link SerializationManager} provided is
      * the same one that has registered many of the
      * {@link DataBuilder}s to ensure the {@link DataSerializable}
      * requested can be returned.</p>
@@ -443,7 +443,7 @@ public interface DataView {
      * @param <T> The type of {@link DataSerializable} object
      * @return The deserialized object, if available
      */
-    <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz, SerializationService service);
+    <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz, SerializationManager service);
 
     /**
      * Gets the {@link List} of {@link DataSerializable} by path, if available.
@@ -453,7 +453,7 @@ public interface DataView {
      * considered {@link DataSerializable} or are not of the proper type of
      * {@link DataSerializable}, an absent is returned.</p>
      *
-     * <p>It is important that the {@link SerializationService} provided is
+     * <p>It is important that the {@link SerializationManager} provided is
      * the same one that has registered many of the
      * {@link DataBuilder}s to ensure the {@link DataSerializable}
      * requested can be returned.</p>
@@ -465,7 +465,7 @@ public interface DataView {
      * @param <T> The type of {@link DataSerializable} object
      * @return The deserialized objects in a list, if available
      */
-    <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz, SerializationService service);
+    <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz, SerializationManager service);
 
     /**
      * Copies this {@link DataView} and all of it's contents into a new

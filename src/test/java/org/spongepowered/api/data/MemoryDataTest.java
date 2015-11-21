@@ -35,7 +35,7 @@ import com.google.common.collect.Sets;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.spongepowered.api.service.persistence.DataBuilder;
-import org.spongepowered.api.service.persistence.SerializationService;
+import org.spongepowered.api.service.persistence.SerializationManager;
 
 import java.util.Arrays;
 import java.util.List;
@@ -241,7 +241,7 @@ public class MemoryDataTest {
     @Test
     public void testGetSerializable() {
         // Need to mock the service Sadly, this takes the most amount of time
-        SerializationService service = Mockito.mock(SerializationService.class);
+        SerializationManager service = Mockito.mock(SerializationManager.class);
         DataBuilder<SimpleData> builder = new SimpleDataBuilder();
         Mockito.stub(service.getBuilder(SimpleData.class)).toReturn(Optional.of(builder));
 
@@ -260,7 +260,7 @@ public class MemoryDataTest {
 
     @Test
     public void testGetSerializableList() {
-        SerializationService service = Mockito.mock(SerializationService.class);
+        SerializationManager service = Mockito.mock(SerializationManager.class);
         DataBuilder<SimpleData> builder = new SimpleDataBuilder();
         Mockito.stub(service.getBuilder(SimpleData.class)).toReturn(Optional.of(builder));
 

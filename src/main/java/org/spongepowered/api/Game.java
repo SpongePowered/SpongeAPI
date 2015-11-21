@@ -27,13 +27,15 @@ package org.spongepowered.api;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.ImmutableDataRegistry;
 import org.spongepowered.api.data.manipulator.DataManipulatorRegistry;
+import org.spongepowered.api.data.property.PropertyRegistry;
+import org.spongepowered.api.data.property.PropertyStore;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.service.command.CommandService;
 import org.spongepowered.api.service.event.EventManager;
 import org.spongepowered.api.service.persistence.DataBuilder;
-import org.spongepowered.api.service.persistence.SerializationService;
+import org.spongepowered.api.service.persistence.SerializationManager;
 import org.spongepowered.api.service.scheduler.SchedulerService;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
@@ -107,13 +109,20 @@ public interface Game {
     SchedulerService getScheduler();
 
     /**
-     * Gets the {@link SerializationService} instance to register
+     * Gets the {@link SerializationManager} instance to register
      * {@link DataSerializable}s, and get the related {@link DataBuilder}s.
      *
      * @return The serialization service
      */
-    SerializationService getSerializationService();
+    SerializationManager getSerializationService();
 
+    /**
+     * Gets the {@link PropertyRegistry} instance to register
+     * {@link PropertyStore}s.
+     *
+     * @return The property registry
+     */
+    PropertyRegistry getPropertyRegistry();
 
     /**
      * Retrieves the {@link DataManipulatorRegistry} for this {@link GameRegistry}.
