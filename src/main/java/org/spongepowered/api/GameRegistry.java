@@ -256,20 +256,6 @@ public interface GameRegistry {
     RecipeRegistry getRecipeRegistry();
 
     /**
-     * Retrieves the {@link DataManipulatorRegistry} for this {@link GameRegistry}.
-     *
-     * @return The manipulator registry
-     */
-    DataManipulatorRegistry getManipulatorRegistry();
-
-    /**
-     * Retrieves the {@link ImmutableDataRegistry} for this {@link GameRegistry}.
-     *
-     * @return The immutable data registry
-     */
-    ImmutableDataRegistry getImmutableDataRegistry();
-
-    /**
      * Gets a {@link ResourcePack} that's already been created by its ID.
      *
      * @param id The ID of the pack

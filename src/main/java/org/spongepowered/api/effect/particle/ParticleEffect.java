@@ -25,12 +25,23 @@
 package org.spongepowered.api.effect.particle;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * Represents a particle effect that can be send to the Minecraft client.
  */
 public interface ParticleEffect {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link ParticleEffect}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     /**
      * Gets the type of the particle effect.

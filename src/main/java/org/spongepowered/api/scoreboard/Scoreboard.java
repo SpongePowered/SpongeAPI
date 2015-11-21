@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.scoreboard;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
@@ -45,6 +46,15 @@ import javax.annotation.Nullable;
  * @see <a href="http://minecraft.gamepedia.com/Scoreboard">Scoreboards on the Minecraft Wiki</a>
  */
 public interface Scoreboard {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link Scoreboard}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets an {@link Objective} on this scoreboard by name, if it exists.

@@ -27,6 +27,7 @@ package org.spongepowered.api.item.inventory;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
@@ -50,6 +51,28 @@ import org.spongepowered.api.util.ResettableBuilder;
  * regarding this item stack.</p>
  */
 public interface ItemStack extends DataHolder, DataSerializable, TextRepresentable, Translatable {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link ItemStack}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Creates a new {@link ItemStack} of the provided {@link ItemType}
+     * and quantity.
+     *
+     * @param itemType The item type
+     * @param quantity The quantity
+     * @return The new item stack
+     */
+    static ItemStack of(ItemType itemType, int quantity) {
+        return builder().itemType(itemType).quantity(quantity).build();
+    }
+
 
     /**
      * Gets the {@link ItemType} of this {@link ItemStack}.

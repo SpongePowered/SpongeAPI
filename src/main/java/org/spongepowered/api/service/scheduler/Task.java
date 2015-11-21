@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.service.scheduler;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -35,6 +36,16 @@ import java.util.function.Consumer;
  * Represents a task that has been scheduled.
  */
 public interface Task extends Identifiable {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link Task}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     /**
      * Gets the name of this task.

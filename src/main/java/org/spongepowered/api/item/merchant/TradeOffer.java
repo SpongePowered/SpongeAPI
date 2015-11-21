@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.merchant;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -40,6 +41,15 @@ import java.util.Optional;
  * <p>Also, trade offers are not guaranteed to have two buying items.</p>
  */
 public interface TradeOffer extends DataSerializable {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link TradeOffer}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the first buying item.

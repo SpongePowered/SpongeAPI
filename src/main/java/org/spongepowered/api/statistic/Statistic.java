@@ -25,6 +25,7 @@
 package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -39,6 +40,16 @@ import javax.annotation.Nullable;
  */
 @CatalogedBy(Statistics.class)
 public interface Statistic extends CatalogType, Translatable {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link Statistic}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     /**
      * Gets the {@link StatisticFormat} of this statistic. If this is not

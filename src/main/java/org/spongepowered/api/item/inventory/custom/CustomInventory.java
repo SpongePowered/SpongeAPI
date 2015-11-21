@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.custom;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.type.OrderedInventory;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.Identifiable;
@@ -34,6 +35,16 @@ import org.spongepowered.api.util.ResettableBuilder;
  * created by plugins.
  */
 public interface CustomInventory extends OrderedInventory, Identifiable {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link CustomInventory}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     interface Builder extends ResettableBuilder<Builder> {
         /**

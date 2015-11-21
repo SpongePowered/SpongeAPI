@@ -25,6 +25,7 @@
 package org.spongepowered.api.effect.particle;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.Sponge;
 
 import java.awt.Color;
 
@@ -32,6 +33,15 @@ import java.awt.Color;
  * Represents a colored particle effect.
  */
 public interface ColoredParticle extends ParticleEffect {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link ColoredParticle}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the color of the particle effect.

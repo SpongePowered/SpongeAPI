@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.explosion;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.World;
@@ -37,6 +38,16 @@ import javax.annotation.Nullable;
  * Represents an explosion in a {@link World}.
  */
 public interface Explosion {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link Explosion}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     /**
      * Gets the world the explosion will occur in.

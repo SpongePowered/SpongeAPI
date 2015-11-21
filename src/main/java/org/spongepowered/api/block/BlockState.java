@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.block.trait.BlockTrait;
 import org.spongepowered.api.data.ImmutableDataBuilder;
@@ -50,6 +51,15 @@ import java.util.Optional;
  * a particular instance may be cached for various uses.
  */
 public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRelativePropertyHolder {
+
+    /**
+     * Creates a new {@link Builder} for building {@link BlockState}s.
+     *
+     * @return The builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the base type of block.

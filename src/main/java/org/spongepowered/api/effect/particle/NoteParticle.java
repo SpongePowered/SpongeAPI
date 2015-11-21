@@ -25,12 +25,23 @@
 package org.spongepowered.api.effect.particle;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.type.NotePitch;
 
 /**
  * Represents a particle effect that uses a note value.
  */
 public interface NoteParticle extends ParticleEffect {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link NoteParticle}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     /**
      * Gets the note value of the particle effect.

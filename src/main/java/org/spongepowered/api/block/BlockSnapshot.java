@@ -25,6 +25,7 @@
 package org.spongepowered.api.block;
 
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataView;
@@ -41,6 +42,15 @@ import java.util.UUID;
  * may be associated with it, including {@link TileEntity} related data..
  */
 public interface BlockSnapshot extends LocateableSnapshot<BlockSnapshot> {
+
+    /**
+     * Creates a {@link Builder} to get {@link BlockSnapshot}s.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the {@link BlockState}.

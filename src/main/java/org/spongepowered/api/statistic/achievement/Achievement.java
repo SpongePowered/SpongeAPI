@@ -25,6 +25,7 @@
 package org.spongepowered.api.statistic.achievement;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.text.translation.Translatable;
@@ -42,6 +43,16 @@ import javax.annotation.Nullable;
  */
 @CatalogedBy(Achievements.class)
 public interface Achievement extends CatalogType, Translatable, TextRepresentable {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link Achievement}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     /**
      * Returns the description that describes this achievement.

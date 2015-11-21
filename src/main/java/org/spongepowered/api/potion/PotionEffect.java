@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.potion;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.mutable.PotionEffectData;
 import org.spongepowered.api.data.property.PropertyHolder;
@@ -38,6 +39,30 @@ import org.spongepowered.api.service.persistence.DataBuilder;
  * the {@link PotionEffectData}.
  */
 public interface PotionEffect extends DataSerializable, PropertyHolder {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link PotionEffect}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Creates a new {@link PotionEffect} with the provided
+     * {@link PotionEffectType}, the provided amplifier, and the provided
+     * duration.
+     *
+     * @param type The potion type
+     * @param amplifier The amplifier
+     * @param duration The duration
+     * @return The potion effect
+     */
+    static PotionEffect of(PotionEffectType type, int amplifier, int duration) {
+        return builder().potionType(type).amplifier(amplifier).duration(duration).build();
+    }
+
 
     /**
      * Gets the {@link PotionEffectType} of this potion.

@@ -25,11 +25,22 @@
 package org.spongepowered.api.effect.particle;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.Sponge;
 
 /**
  * Represents a resized particle effect.
  */
 public interface ResizableParticle extends ParticleEffect {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link ResizableParticle}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     /**
      * Gets the size of the particle effect.

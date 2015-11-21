@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.recipe;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.ResettableBuilder;
 
@@ -34,6 +35,16 @@ import java.util.Collection;
  * list of ingredients.
  */
 public interface ShapelessRecipe extends Recipe {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link ShapelessRecipe}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     /**
      * Gets the ingredients for this ShapelessRecipe.

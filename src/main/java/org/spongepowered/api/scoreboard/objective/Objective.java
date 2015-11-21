@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.scoreboard.objective;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
@@ -41,6 +42,15 @@ import java.util.Set;
  * on their {@link Criterion}.</p>
  */
 public interface Objective {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link Objective}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the name of this Objective.

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.util.ResettableBuilder;
 
@@ -37,6 +38,16 @@ import java.util.List;
  * or create one, use {@link Builder}.</p>
  */
 public interface FireworkEffect extends DataSerializable {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link FireworkEffect}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     /**
      * Gets whether this {@link FireworkEffect} will flicker when

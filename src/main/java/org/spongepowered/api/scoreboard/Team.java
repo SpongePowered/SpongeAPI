@@ -25,6 +25,7 @@
 package org.spongepowered.api.scoreboard;
 
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
@@ -45,6 +46,16 @@ import java.util.Set;
  * the team they are on.</p>
  */
 public interface Team {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link Team}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     /**
      * Gets the name of this team.

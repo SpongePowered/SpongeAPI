@@ -25,12 +25,23 @@
 package org.spongepowered.api.effect.particle;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
  * Represents a particle effect that needs a item stack to be rendered on the client.
  */
 public interface ItemParticle extends ParticleEffect {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link ItemParticle}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     /**
      * Gets the item stack of the particle effect.
