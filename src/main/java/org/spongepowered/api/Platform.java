@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api;
 
+import org.spongepowered.api.plugin.PluginContainer;
+
 import java.util.Map;
 
 /**
- * Represents a possible platform, or implementation, a {@link Game} could be
+ * Represents a possible platform or implementation a {@link Game} could be
  * running on.
  */
 public interface Platform {
@@ -51,32 +53,21 @@ public interface Platform {
     Type getExecutionType();
 
     /**
-     * Retrieves the current platform name.
+     * Returns the current API plugin container.
      *
-     * @return The platform name
+     * @return The API plugin container
      */
-    String getName();
+    PluginContainer getApi();
 
     /**
-     * Retrieves the current platform version.
+     * Returns the current implementation plugin container.
      *
-     * <p>This version can be in any format, like a build number or
-     * <a href="http://semver.org/">semantic versioning</a>.</p>
-     *
-     * @return The platform version, as a string
+     * @return The implementation plugin container
      */
-    String getVersion();
+    PluginContainer getImplementation();
 
     /**
-     * Retrieves the current Sponge API version that this platform is
-     * implementing.
-     *
-     * @return The API version
-     */
-    String getApiVersion();
-
-    /**
-     * Gets current Minecraft version of this platform.
+     * Gets the current Minecraft version of this platform.
      *
      * @return The Minecraft version
      */
@@ -145,7 +136,7 @@ public interface Platform {
          * @return False if the platform is {@link #UNKNOWN}, true otherwise
          */
         public boolean isKnown() {
-            return !(this == UNKNOWN);
+            return this != UNKNOWN;
         }
 
     }

@@ -24,6 +24,11 @@
  */
 package org.spongepowered.api.plugin;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Optional;
+
 /**
  * A wrapper around a class marked with an {@link Plugin} annotation to retrieve
  * information from the annotation for easier use.
@@ -52,10 +57,19 @@ public interface PluginContainer {
     String getVersion();
 
     /**
-     * Returns the created instance of {@link Plugin}.
+     * Returns the assigned logger to this {@link Plugin}.
      *
-     * @return The instance
+     * @return The assigned logger
      */
-    Object getInstance();
+    default Logger getLogger() {
+        return LoggerFactory.getLogger(getId());
+    }
+
+    /**
+     * Returns the created instance of {@link Plugin} if it is available.
+     *
+     * @return The instance if available
+     */
+    Optional<Object> getInstance();
 
 }
