@@ -28,7 +28,6 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.cause.entity.health.HealthModifier;
-import org.spongepowered.api.event.cause.entity.health.HealthModifierBuilder;
 import org.spongepowered.api.event.cause.entity.health.source.HealingSource;
 import org.spongepowered.api.event.impl.AbstractHealEntityEvent;
 import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
@@ -42,7 +41,7 @@ import java.util.function.Function;
 /**
  * An event where an {@link Entity} is "healed". This can usually mean that
  * after a certain amount of "heal amount" the entity is destroyed. Similar to
- * the {@link InteractEntityEvent.Attack}, this event uses various modifiers
+ * the {@link DamageEntityEvent}, this event uses various modifiers
  */
 @ImplementedBy(AbstractHealEntityEvent.class)
 public interface HealEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
@@ -154,7 +153,7 @@ public interface HealEntityEvent extends TargetEntityEvent, Cancellable, CauseTr
      * {@link #getBaseHealAmount()}.
      *
      * <p>If needing to create a custom {@link HealthModifier} is required,
-     * usage of the {@link HealthModifierBuilder} is recommended.</p>
+     * usage of the {@link HealthModifier.Builder} is recommended.</p>
      *
      * @param healthModifier The heal amount modifier
      * @param function The function to map to the modifier

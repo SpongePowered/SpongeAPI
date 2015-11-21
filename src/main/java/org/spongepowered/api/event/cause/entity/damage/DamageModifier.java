@@ -24,8 +24,13 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
+
+import com.google.common.base.Objects;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.function.Function;
 
@@ -36,6 +41,10 @@ import java.util.function.Function;
  * to the {@link Entity}.
  */
 public interface DamageModifier {
+
+    static DamageModifierBuilder builder() {
+        return new DamageModifierBuilder();
+    }
 
     /**
      * Gets the {@link DamageModifierType} for this {@link DamageModifier}.
@@ -51,4 +60,107 @@ public interface DamageModifier {
      */
     Cause getCause();
 
+    /**
+     * A builder that creates {@link DamageModifier}s, for use in both plugin and
+     * implementation requirements.
+     */
+    final class DamageModifierBuilder implements ResettableBuilder<DamageModifierBuilder> {
+
+        private DamageModifierType type;
+        private Cause cause;
+
+        private DamageModifierBuilder() {
+        }
+
+
+        /**
+         * Sets the {@link DamageModifierType} for the {@link DamageModifier} to
+         * build.
+         *
+         * @param damageModifierType The damage modifier type
+         * @return This builder, for chaining
+         */
+        public DamageModifierBuilder type(DamageModifierType damageModifierType) {
+            this.type = checkNotNull(damageModifierType);
+            return this;
+        }
+
+        /**
+         * Sets the {@link Cause} for the {@link DamageModifier} to build.
+         *
+         * @param cause The cause for the damage modifier
+         * @return This builder, for chaining
+         */
+        public DamageModifierBuilder cause(Cause cause) {
+            this.cause = checkNotNull(cause);
+            return this;
+        }
+
+        /**
+         * Creates a new {@link DamageModifier} with this builder's provided
+         * {@link Cause} and {@link DamageModifierType}.
+         *
+         * @return The newly created damage modifier
+         */
+        public DamageModifier build() {
+            checkState(this.type != null, "The DamageModifierType must not be null!");
+            checkState(this.cause != null, "The cause for the DamageModifier must not be null!");
+            return new ImplementedDamageModifier(this);
+        }
+
+        @Override
+        public DamageModifierBuilder reset() {
+            this.type = null;
+            this.cause = null;
+            return this;
+        }
+
+
+        private static class ImplementedDamageModifier implements DamageModifier {
+            private final DamageModifierType type;
+            private final Cause cause;
+
+            private ImplementedDamageModifier(DamageModifierBuilder builder) {
+                this.type = builder.type;
+                this.cause = builder.cause;
+            }
+
+            @Override
+            public DamageModifierType getType() {
+                return this.type;
+            }
+
+            @Override
+            public Cause getCause() {
+                return this.cause;
+            }
+
+            @Override
+            public int hashCode() {
+                return Objects.hashCode(this.type, this.cause);
+            }
+
+            @Override
+            public boolean equals(Object obj) {
+                if (this == obj) {
+                    return true;
+                }
+                if (obj == null || getClass() != obj.getClass()) {
+                    return false;
+                }
+                final ImplementedDamageModifier other = (ImplementedDamageModifier) obj;
+                return Objects.equal(this.type, other.type)
+                       && Objects.equal(this.cause, other.cause);
+            }
+
+            @Override
+            public String toString() {
+                return Objects.toStringHelper("DamageModifier")
+                    .add("type", this.type)
+                    .add("cause", this.cause)
+                    .toString();
+            }
+        }
+
+    }
 }

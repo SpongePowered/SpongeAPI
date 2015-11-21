@@ -25,8 +25,14 @@
 
 package org.spongepowered.api.event.cause.entity.health;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
+
+import com.google.common.base.Objects;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.function.Function;
 
@@ -37,6 +43,10 @@ import java.util.function.Function;
  * to the {@link Entity}.
  */
 public interface HealthModifier {
+
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the {@link HealthModifierType} for this {@link HealthModifier}.
@@ -52,4 +62,115 @@ public interface HealthModifier {
      */
     Cause getCause();
 
+    /**
+     * A builder that creates {@link HealthModifier}s, for use in both plugin and
+     * implementation requirements.
+     */
+    final class Builder implements ResettableBuilder<Builder> {
+
+        private HealthModifierType type;
+        private Cause cause;
+
+        private Builder() {
+        }
+
+        /**
+         * Creates a new {@link Builder}.
+         *
+         * @return The new builder instance
+         */
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        /**
+         * Sets the {@link HealthModifierType} for the {@link HealthModifier} to
+         * build.
+         *
+         * @param healthModifierType The health modifier type
+         * @return This builder, for chaining
+         */
+        public Builder type(HealthModifierType healthModifierType) {
+            this.type = checkNotNull(healthModifierType);
+            return this;
+        }
+
+        /**
+         * Sets the {@link Cause} for the {@link HealthModifier} to build.
+         *
+         * @param cause The cause for the health modifier
+         * @return This builder, for chaining
+         */
+        public Builder cause(Cause cause) {
+            this.cause = checkNotNull(cause);
+            return this;
+        }
+
+        /**
+         * Creates a new {@link HealthModifier} with this builder's provided
+         * {@link Cause} and {@link HealthModifierType}.
+         *
+         * @return The newly created health modifier
+         */
+        public HealthModifier build() {
+            checkState(this.type != null, "The HealthModifierType must not be null!");
+            checkState(this.cause != null, "The cause for the HealthModifier must not be null!");
+            return new ImplementedHealthModifier(this);
+        }
+
+        @Override
+        public Builder reset() {
+            this.type = null;
+            this.cause = null;
+            return this;
+        }
+
+
+        private static class ImplementedHealthModifier implements HealthModifier {
+            private final HealthModifierType type;
+            private final Cause cause;
+
+            private ImplementedHealthModifier(Builder builder) {
+                this.type = builder.type;
+                this.cause = builder.cause;
+            }
+
+            @Override
+            public HealthModifierType getType() {
+                return this.type;
+            }
+
+            @Override
+            public Cause getCause() {
+                return this.cause;
+            }
+
+            @Override
+            public int hashCode() {
+                return Objects.hashCode(this.type, this.cause);
+            }
+
+            @Override
+            public boolean equals(Object obj) {
+                if (this == obj) {
+                    return true;
+                }
+                if (obj == null || getClass() != obj.getClass()) {
+                    return false;
+                }
+                final ImplementedHealthModifier other = (ImplementedHealthModifier) obj;
+                return Objects.equal(this.type, other.type)
+                       && Objects.equal(this.cause, other.cause);
+            }
+
+            @Override
+            public String toString() {
+                return Objects.toStringHelper(this)
+                    .add("type", this.type)
+                    .add("cause", this.cause)
+                    .toString();
+            }
+        }
+
+    }
 }

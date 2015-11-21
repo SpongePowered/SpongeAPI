@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.cause.entity.damage.source;
 
 import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -44,4 +45,46 @@ public interface BlockDamageSource extends DamageSource {
      */
     BlockSnapshot getBlockSnapshot();
 
+    interface Builder extends DamageSource.Builder {
+
+        @Override
+        Builder scalesWithDifficulty();
+
+        @Override
+        Builder bypassesArmor();
+
+        @Override
+        Builder explosion();
+
+        @Override
+        Builder absolute();
+
+        @Override
+        Builder magical();
+
+        @Override
+        Builder type(DamageType damageType);
+
+        /**
+         * Sets the {@link Location} to use as a "source".
+         *
+         * @param location The location of the block as the damage source
+         * @return This builder, for chaining
+         */
+        Builder block(Location<World> location);
+
+        /**
+         * Sets the {@link BlockSnapshot} to act as the "damage source".
+         *
+         * @param blockState The block snapshot to use as the damage source
+         * @return This builder, for chaining
+         */
+        Builder block(BlockSnapshot blockState);
+
+        @Override
+        BlockDamageSource build() throws IllegalStateException;
+
+        @Override
+        Builder reset();
+    }
 }

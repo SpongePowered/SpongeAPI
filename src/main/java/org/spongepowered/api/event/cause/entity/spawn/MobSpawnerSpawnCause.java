@@ -24,10 +24,31 @@
  */
 package org.spongepowered.api.event.cause.entity.spawn;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableMobSpawnerData;
 
 public interface MobSpawnerSpawnCause extends BlockSpawnCause {
 
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+
     ImmutableMobSpawnerData getMobSpawnerData();
 
+    interface Builder extends BlockSpawnCause.Builder {
+
+        Builder spawnerData(ImmutableMobSpawnerData spawnerData);
+
+        @Override
+        Builder block(BlockSnapshot blockSnapshot);
+
+        @Override
+        Builder type(SpawnType spawnType);
+
+        @Override
+        MobSpawnerSpawnCause build();
+
+    }
 }

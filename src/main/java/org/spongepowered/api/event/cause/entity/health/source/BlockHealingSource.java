@@ -26,6 +26,7 @@
 package org.spongepowered.api.event.cause.entity.health.source;
 
 import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.event.cause.entity.health.HealType;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -35,4 +36,31 @@ public interface BlockHealingSource extends HealingSource {
 
     BlockSnapshot getBlockState();
 
+    interface BlockHealingSourceBuilder extends Builder {
+
+        @Override
+        BlockHealingSourceBuilder scalesWithDifficulty();
+
+        @Override
+        BlockHealingSourceBuilder bypassesArmor();
+
+        @Override
+        BlockHealingSourceBuilder explosion();
+
+        @Override
+        BlockHealingSourceBuilder absolute();
+
+        @Override
+        BlockHealingSourceBuilder magical();
+
+        @Override
+        BlockHealingSourceBuilder type(HealType damageType);
+
+        BlockHealingSourceBuilder block(Location<World> location);
+
+        BlockHealingSourceBuilder block(BlockSnapshot blockState);
+
+        @Override
+        BlockHealingSource build() throws IllegalStateException;
+    }
 }

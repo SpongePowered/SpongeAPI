@@ -27,6 +27,7 @@ package org.spongepowered.api.event.cause.entity.damage.source;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 
 /**
@@ -87,4 +88,21 @@ public interface DamageSource {
      */
     boolean isMagic();
 
+    interface Builder extends ResettableBuilder<Builder> {
+
+        Builder scalesWithDifficulty();
+
+        Builder bypassesArmor();
+
+        Builder explosion();
+
+        Builder absolute();
+
+        Builder magical();
+
+        Builder type(DamageType damageType);
+
+        DamageSource build() throws IllegalStateException;
+
+    }
 }

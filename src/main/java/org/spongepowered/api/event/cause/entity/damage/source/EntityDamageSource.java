@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.cause.entity.damage.source;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.entity.damage.DamageType;
 
 public interface EntityDamageSource extends DamageSource {
 
@@ -35,4 +36,38 @@ public interface EntityDamageSource extends DamageSource {
      */
     Entity getSource();
 
+    interface Builder extends DamageSource.Builder {
+
+        @Override
+        Builder scalesWithDifficulty();
+
+        @Override
+        Builder bypassesArmor();
+
+        @Override
+        Builder explosion();
+
+        @Override
+        Builder absolute();
+
+        @Override
+        Builder magical();
+
+        @Override
+        Builder type(DamageType damageType);
+
+        /**
+         * Sets the {@link Entity} as the damage "source".
+         *
+         * @param entity The entity
+         * @return This builder, for chaining
+         */
+        Builder entity(Entity entity);
+
+        @Override
+        EntityDamageSource build() throws IllegalStateException;
+
+        @Override
+        Builder reset();
+    }
 }

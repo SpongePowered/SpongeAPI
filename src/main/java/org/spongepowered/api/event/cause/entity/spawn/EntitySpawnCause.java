@@ -24,10 +24,30 @@
  */
 package org.spongepowered.api.event.cause.entity.spawn;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 
 public interface EntitySpawnCause extends SpawnCause {
 
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+
     EntitySnapshot getEntity();
 
+    interface Builder extends SpawnCause.Builder {
+
+        Builder entity(Entity entity);
+
+        Builder entity(EntitySnapshot snapshot);
+
+        @Override
+        Builder type(SpawnType spawnType);
+
+        @Override
+        EntitySpawnCause build();
+
+    }
 }

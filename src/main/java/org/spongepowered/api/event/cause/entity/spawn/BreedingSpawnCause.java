@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.cause.entity.spawn;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 
@@ -33,6 +34,29 @@ import org.spongepowered.api.entity.EntitySnapshot;
  */
 public interface BreedingSpawnCause extends EntitySpawnCause {
 
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
     EntitySnapshot getMate();
 
+    interface Builder extends EntitySpawnCause.Builder {
+
+        Builder mate(Entity entity);
+
+        Builder mate(EntitySnapshot snapshot);
+
+        @Override
+        Builder entity(Entity entity);
+
+        @Override
+        Builder entity(EntitySnapshot snapshot);
+
+        @Override
+        Builder type(SpawnType spawnType);
+
+        @Override
+        BreedingSpawnCause build();
+
+    }
 }

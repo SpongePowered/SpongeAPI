@@ -24,10 +24,26 @@
  */
 package org.spongepowered.api.event.cause.entity.spawn;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 
 public interface BlockSpawnCause extends SpawnCause {
 
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
     BlockSnapshot getBlockSnapshot();
 
+    interface Builder extends SpawnCause.Builder {
+
+        Builder block(BlockSnapshot blockSnapshot);
+
+        @Override
+        Builder type(SpawnType spawnType);
+
+        @Override
+        BlockSpawnCause build();
+
+    }
 }

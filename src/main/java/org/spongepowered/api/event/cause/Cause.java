@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.apache.commons.lang3.Validate.noNullElements;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -43,6 +44,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.StringJoiner;
 
 import javax.annotation.Nullable;
 
@@ -552,7 +554,12 @@ public abstract class Cause {
 
         @Override
         public String toString() {
-            return "Cause{" + Arrays.deepToString(this.cause) + "}";
+            String causeString = "Cause[";
+            StringJoiner joiner = new StringJoiner(", ");
+            for (int i = 0; i < this.cause.length; i++) {
+                joiner.add("{Name=" + this.names[i] + ", Object={" + this.cause[i].toString() + "}}");
+            }
+            return causeString + joiner.toString() + "]";
         }
     }
 
@@ -666,7 +673,7 @@ public abstract class Cause {
 
         @Override
         public String toString() {
-            return "Cause{}";
+            return "Cause[]";
         }
     }
 

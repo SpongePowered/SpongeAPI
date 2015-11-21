@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.cause.entity.spawn;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.weather.Weather;
 
@@ -31,6 +32,11 @@ import org.spongepowered.api.world.weather.Weather;
  * Signifies that a spawn was caused by a specific {@link Weather} state.
  */
 public interface WeatherSpawnCause extends SpawnCause {
+
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     /**
      * Gets the current {@link Weather} state that caused the {@link Entity} to
@@ -40,4 +46,15 @@ public interface WeatherSpawnCause extends SpawnCause {
      */
     Weather getWeather();
 
+    interface Builder extends SpawnCause.Builder {
+
+        Builder weather(Weather weather);
+
+        @Override
+        Builder type(SpawnType spawnType);
+
+        @Override
+        WeatherSpawnCause build();
+
+    }
 }

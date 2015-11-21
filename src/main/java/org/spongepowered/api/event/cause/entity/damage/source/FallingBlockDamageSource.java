@@ -25,7 +25,9 @@
 package org.spongepowered.api.event.cause.entity.damage.source;
 
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFallingBlockData;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.FallingBlock;
+import org.spongepowered.api.event.cause.entity.damage.DamageType;
 
 public interface FallingBlockDamageSource extends EntityDamageSource {
 
@@ -39,4 +41,37 @@ public interface FallingBlockDamageSource extends EntityDamageSource {
      * @return The falling block data
      */
     ImmutableFallingBlockData getFallingBlockData();
+
+
+    interface Builder extends EntityDamageSource.Builder {
+
+        @Override
+        Builder scalesWithDifficulty();
+
+        @Override
+        Builder bypassesArmor();
+
+        @Override
+        Builder explosion();
+
+        @Override
+        Builder absolute();
+
+        @Override
+        Builder magical();
+
+        @Override
+        Builder entity(Entity entity);
+
+        @Override
+        Builder type(DamageType damageType);
+
+        Builder fallingBlock(ImmutableFallingBlockData fallingBlock);
+
+        @Override
+        FallingBlockDamageSource build() throws IllegalStateException;
+
+        @Override
+        Builder reset();
+    }
 }

@@ -25,10 +25,43 @@
 
 package org.spongepowered.api.event.cause.entity.health.source;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.entity.health.HealType;
 
 public interface EntityHealingSource extends HealingSource {
 
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+
     Entity getSource();
 
+    interface Builder extends HealingSource.Builder {
+
+        @Override
+        Builder scalesWithDifficulty();
+
+        @Override
+        Builder bypassesArmor();
+
+        @Override
+        Builder explosion();
+
+        @Override
+        Builder absolute();
+
+        @Override
+        Builder magical();
+
+        @Override
+        Builder type(HealType healType);
+
+        Builder entity(Entity entity);
+
+        @Override
+        EntityHealingSource build() throws IllegalStateException;
+
+    }
 }

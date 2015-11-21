@@ -25,9 +25,12 @@
 
 package org.spongepowered.api.event.cause.entity.health.source;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.event.cause.entity.health.HealType;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 
 /**
@@ -41,6 +44,11 @@ import org.spongepowered.api.world.difficulty.Difficulty;
  * {@link Cause} of the event will be listed subsequently.</p>
  */
 public interface HealingSource {
+
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     DamageType getDamageType();
 
@@ -91,4 +99,21 @@ public interface HealingSource {
      */
     boolean isMagic();
 
+    interface Builder extends ResettableBuilder<Builder> {
+
+        Builder scalesWithDifficulty();
+
+        Builder bypassesArmor();
+
+        Builder explosion();
+
+        Builder absolute();
+
+        Builder magical();
+
+        Builder type(HealType healType);
+
+        HealingSource build() throws IllegalStateException;
+
+    }
 }

@@ -23,21 +23,4 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.cause.entity.spawn;
-
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntitySnapshot;
-
-public interface EntitySpawnCauseBuilder extends SpawnCauseBuilder {
-
-    EntitySpawnCauseBuilder entity(Entity entity);
-
-    EntitySpawnCauseBuilder entity(EntitySnapshot snapshot);
-
-    @Override
-    EntitySpawnCauseBuilder type(SpawnType spawnType);
-
-    @Override
-    EntitySpawnCause build();
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.cause.entity.health;

@@ -22,37 +22,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.cause.entity.damage.source;
 
-package org.spongepowered.api.event.cause.entity.health.source;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.event.cause.entity.damage.DamageType;
 
-import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.event.cause.entity.health.HealType;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+public interface IndirectEntityDamageSource extends EntityDamageSource {
 
-public interface BlockHealingSourceBuilder extends HealingSourceBuilder {
-    @Override
-    BlockHealingSourceBuilder scalesWithDifficulty();
+    /**
+     * Gets the {@link Entity} that is indirectly using the {@link #getSource()}
+     * to cause damage.
+     *
+     * @return The indirect source
+     */
+    Entity getIndirectSource();
 
-    @Override
-    BlockHealingSourceBuilder bypassesArmor();
+    interface Builder extends EntityDamageSource.Builder {
 
-    @Override
-    BlockHealingSourceBuilder explosion();
+        @Override
+        Builder scalesWithDifficulty();
 
-    @Override
-    BlockHealingSourceBuilder absolute();
+        @Override
+        Builder bypassesArmor();
 
-    @Override
-    BlockHealingSourceBuilder magical();
+        @Override
+        Builder explosion();
 
-    @Override
-    BlockHealingSourceBuilder type(HealType damageType);
+        @Override
+        Builder absolute();
 
-    BlockHealingSourceBuilder block(Location<World> location);
+        @Override
+        Builder magical();
 
-    BlockHealingSourceBuilder block(BlockSnapshot blockState);
+        @Override
+        Builder entity(Entity entity);
 
-    @Override
-    BlockHealingSource build() throws IllegalStateException;
+        @Override
+        Builder type(DamageType damageType);
+
+        Builder proxySource(Entity projectile);
+
+        @Override
+        IndirectEntityDamageSource build() throws IllegalStateException;
+
+        @Override
+        Builder reset();
+    }
 }

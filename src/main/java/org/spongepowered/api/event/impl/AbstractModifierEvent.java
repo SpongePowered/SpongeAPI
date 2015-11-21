@@ -34,6 +34,7 @@ import org.spongepowered.api.event.entity.HealEntityEvent;
 import org.spongepowered.api.eventgencore.annotation.UseField;
 import org.spongepowered.api.util.Tuple;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,42 +47,47 @@ import java.util.function.Function;
 public class AbstractModifierEvent<T> extends AbstractEvent {
 
     protected double originalFinalAmount;
-    protected Map<T, Double> originalModifiers;
+    protected List<Tuple<T, Double>> originalModifiers;
+    protected Map<T, Double> originalModifierMap;
     @UseField protected final LinkedHashMap<T, Double> modifiers = Maps.newLinkedHashMap();
-    protected final LinkedHashMap<T, Function<? super Double, Double>> modifierFunctions = Maps.newLinkedHashMap();
+    protected final List<Tuple<T, Function<? super Double, Double>>> modifierFunctions = new ArrayList<>();
 
     protected ImmutableList<Tuple<T, Function<? super Double, Double>>> init(double originalValue, List<Tuple<T, Function<? super Double, Double>>> originalFunctions) {
         final double damage = originalValue;
-        final ImmutableMap.Builder<T, Double> modifierMapBuilder = ImmutableMap.builder();
+        final ImmutableList.Builder<Tuple<T, Double>> modifierMapBuilder = ImmutableList.builder();
         final ImmutableList.Builder<Tuple<T, Function<? super Double, Double>>> functionListBuilder = ImmutableList.builder();
+        final ImmutableMap.Builder<T, Double> mapBuilder = ImmutableMap.builder();
         double finalDamage = damage;
         for (Tuple<T, Function<? super Double, Double>> tuple : originalFunctions) {
-            this.modifierFunctions.put(tuple.getFirst(), tuple.getSecond());
+            this.modifierFunctions.add(new Tuple<>(tuple.getFirst(), tuple.getSecond()));
             double tempDamage = checkNotNull(tuple.getSecond().apply(finalDamage));
             finalDamage += tempDamage;
-            modifierMapBuilder.put(tuple.getFirst(), tempDamage);
+            modifierMapBuilder.add(new Tuple<>(tuple.getFirst(), tempDamage));
+            mapBuilder.put(tuple.getFirst(), tempDamage);
             this.modifiers.put(tuple.getFirst(), tempDamage);
             functionListBuilder.add(tuple);
         }
         this.originalFinalAmount = finalDamage;
         this.originalModifiers = modifierMapBuilder.build();
+        this.originalModifierMap = mapBuilder.build();
         return functionListBuilder.build();
     }
 
     protected void recalculateDamages(double baseAmount) {
         double tempAmount = baseAmount;
-        for (Map.Entry<T, Function<? super Double, Double>> entry : this.modifierFunctions.entrySet()) {
-            double modifierAmount = checkNotNull(entry.getValue().apply(tempAmount));
-            if (this.modifiers.containsKey(entry.getKey())) {
-                double oldAmount = this.modifiers.get(entry.getKey());
+        this.modifiers.clear();
+        for (Tuple<T, Function<? super Double, Double>> entry : this.modifierFunctions) {
+            double modifierAmount = checkNotNull(entry.getSecond().apply(tempAmount));
+            if (this.modifiers.containsKey(entry.getFirst())) {
+                double oldAmount = this.modifiers.get(entry.getFirst());
                 double difference = oldAmount - modifierAmount;
                 if (oldAmount > 0) {
-                    this.modifiers.put(entry.getKey(), Math.max(0, oldAmount - difference));
+                    this.modifiers.put(entry.getFirst(), Math.max(0, oldAmount - difference));
                 } else {
-                    this.modifiers.put(entry.getKey(), Math.min(0, oldAmount - difference));
+                    this.modifiers.put(entry.getFirst(), Math.min(0, oldAmount - difference));
                 }
             } else {
-                this.modifiers.put(entry.getKey(), modifierAmount);
+                this.modifiers.put(entry.getFirst(), modifierAmount);
             }
             tempAmount += modifierAmount;
         }
@@ -89,16 +95,16 @@ public class AbstractModifierEvent<T> extends AbstractEvent {
 
     protected double getFinalAmount(double baseAmount) {
         double damage = baseAmount;
-        for (Map.Entry<T, Function<? super Double, Double>> entry : this.modifierFunctions.entrySet()) {
-            damage += checkNotNull(entry.getValue().apply(damage));
+        for (Tuple<T, Function<? super Double, Double>> entry : this.modifierFunctions) {
+            damage += checkNotNull(entry.getSecond().apply(damage));
         }
         return damage;
     }
 
     public final List<Tuple<T, Function<? super Double, Double>>> getModifiers() {
         ImmutableList.Builder<Tuple<T, Function<? super Double, Double>>> builder = ImmutableList.builder();
-        for (Map.Entry<T, Function<? super Double, Double>> entry : this.modifierFunctions.entrySet()) {
-            builder.add(new Tuple<>(entry.getKey(), entry.getValue()));
+        for (Tuple<T, Function<? super Double, Double>> entry : this.modifierFunctions) {
+            builder.add(new Tuple<>(entry.getFirst(), entry.getSecond()));
         }
         return builder.build();
     }

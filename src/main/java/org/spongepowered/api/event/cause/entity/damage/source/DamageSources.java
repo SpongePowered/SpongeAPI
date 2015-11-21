@@ -44,7 +44,6 @@ public final class DamageSources {
 
     public static final DamageSource POISON = null;
     public static final DamageSource MELTING = null;
-    public static final DamageSource IN_FIRE = null;
     public static final DamageSource FIRE_TICK = null;
     public static final DamageSource DROWNING = null;
     public static final DamageSource FALLING = null;
