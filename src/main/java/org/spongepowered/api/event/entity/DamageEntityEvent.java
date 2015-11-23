@@ -263,7 +263,8 @@ public interface DamageEntityEvent extends TargetEntityEvent, CauseTracked {
 
     /**
      * Returns whether or not this event will cause the entity to die if the
-     * event is not cancelled.
+     * event is not cancelled. Only supported for living entities, returns false
+     * if {@link #getTargetEntity()} is not a living entity.
      *
      * @return Whether the entity will die
      */

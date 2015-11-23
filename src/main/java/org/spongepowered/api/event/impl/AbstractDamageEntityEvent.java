@@ -35,6 +35,7 @@ import org.spongepowered.api.util.Tuple;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<DamageModifier> implements DamageEntityEvent {
@@ -103,7 +104,8 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
 
     @Override
     public boolean willCauseDeath() {
-        return getTargetEntity().get(Keys.HEALTH).get() - getFinalDamage() <= 0;
+        Optional<Double> health = getTargetEntity().get(Keys.HEALTH);
+        return health.isPresent() ? health.get() - getFinalDamage() <= 0 : false;
     }
 
 }
