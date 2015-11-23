@@ -261,4 +261,13 @@ public interface DamageEntityEvent extends TargetEntityEvent, CauseTracked {
     @PropertySettings(requiredParameter = false, generateMethods = false)
     List<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers();
 
+    /**
+     * Returns whether or not this event will cause the entity to die if the
+     * event is not cancelled.
+     *
+     * @return Whether the entity will die
+     */
+    @PropertySettings(requiredParameter = false, generateMethods = false)
+    boolean willCauseDeath();
+
 }

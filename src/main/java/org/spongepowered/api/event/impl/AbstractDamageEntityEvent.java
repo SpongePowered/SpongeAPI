@@ -27,6 +27,7 @@ package org.spongepowered.api.event.impl;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.eventgencore.annotation.UseField;
@@ -98,6 +99,11 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
     public final void setBaseDamage(double baseDamage) {
         this.baseDamage = baseDamage;
         this.recalculateDamages(this.baseDamage);
+    }
+
+    @Override
+    public boolean willCauseDeath() {
+        return getTargetEntity().get(Keys.HEALTH).get() - getFinalDamage() <= 0;
     }
 
 }

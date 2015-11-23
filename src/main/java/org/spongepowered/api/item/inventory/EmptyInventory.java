@@ -28,7 +28,6 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionBuilder;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.text.translation.FixedTranslation;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
 import java.util.Collection;
@@ -158,7 +157,7 @@ public class EmptyInventory implements Inventory {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T extends Inventory> T query(Translatable... names) {
+    public <T extends Inventory> T query(Translation... names) {
         return (T) this;
     }
 

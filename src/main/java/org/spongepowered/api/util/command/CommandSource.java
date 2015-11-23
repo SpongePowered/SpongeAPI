@@ -49,7 +49,7 @@ public interface CommandSource extends Subject {
      *
      * @param messages The message(s)
      */
-    void sendMessage(Text... messages);
+    void sendMessages(Text... messages);
 
     /**
      * Sends the formatted text message(s) to source when possible. If text formatting
@@ -57,7 +57,7 @@ public interface CommandSource extends Subject {
      *
      * @param messages The messages
      */
-    void sendMessage(Iterable<Text> messages);
+    void sendMessages(Iterable<Text> messages);
 
     /**
      * Return the message sink that messages from this source should be broadcast to.

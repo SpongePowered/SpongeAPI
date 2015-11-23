@@ -99,7 +99,7 @@ public interface Viewer {
      * @param type The chat type to send the messages to
      * @param messages The message(s) to send
      */
-    void sendMessage(ChatType type, Text... messages);
+    void sendMessages(ChatType type, Text... messages);
 
     /**
      * Sends the message(s) with the specified {@link ChatType} on the client.
@@ -107,7 +107,7 @@ public interface Viewer {
      * @param type The chat type to send the messages to
      * @param messages The message(s) to send
      */
-    void sendMessage(ChatType type, Iterable<Text> messages);
+    void sendMessages(ChatType type, Iterable<Text> messages);
 
     /**
      * Sends a {@link Title} to this player.

@@ -255,17 +255,17 @@ public class SimpleCommandService implements CommandService {
             } catch (CommandPermissionException ex) {
                 Text text = ex.getText();
                 if (text != null) {
-                    source.sendMessage(error(text));
+                    source.sendMessages(error(text));
                 }
             } catch (CommandException ex) {
                 Text text = ex.getText();
                 if (text != null) {
-                    source.sendMessage(error(text));
+                    source.sendMessages(error(text));
                 }
 
                 final Optional<CommandMapping> mapping = this.dispatcher.get(argSplit[0], source);
                 if (mapping.isPresent()) {
-                    source.sendMessage(error(t("Usage: /%s %s", argSplit[0], mapping.get().getCallable().getUsage(source))));
+                    source.sendMessages(error(t("Usage: /%s %s", argSplit[0], mapping.get().getCallable().getUsage(source))));
                 }
             }
         } catch (Throwable thr) {
@@ -284,7 +284,7 @@ public class SimpleCommandService implements CommandService {
                         .replace("\r\n", "\n")
                         .replace("\r", "\n")))); // I mean I guess somebody could be running this on like OS 9?
             }
-            source.sendMessage(error(t("Error occurred while executing command: %s", excBuilder.build())));
+            source.sendMessages(error(t("Error occurred while executing command: %s", excBuilder.build())));
             this.log.error(Texts.toPlain(t("Error occurred while executing command '%s' for source %s: %s", commandLine, source.toString(), String
                     .valueOf(thr.getMessage()))), thr);
         }
@@ -305,7 +305,7 @@ public class SimpleCommandService implements CommandService {
                 return ImmutableList.copyOf(event.getTabCompletions());
             }
         } catch (CommandException e) {
-            src.sendMessage(error(t("Error getting suggestions: %s", e.getText())));
+            src.sendMessages(error(t("Error getting suggestions: %s", e.getText())));
             return Collections.emptyList();
         }
     }

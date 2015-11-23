@@ -28,7 +28,7 @@ import org.spongepowered.api.Nameable;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
-import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.text.translation.Translation;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -414,7 +414,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @param names the names of the inventories to search for
      * @return the query result
      */
-    <T extends Inventory> T query(Translatable... names);
+    <T extends Inventory> T query(Translation... names);
 
     /**
      * Query this inventory for inventories matching any of the supplied titles.
