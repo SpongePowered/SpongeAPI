@@ -44,6 +44,14 @@ public interface CommandSource extends Subject {
     String getName();
 
     /**
+     * Sends the formatted text message to source when possible. If text formatting
+     * is not supported in the implementation it will be displayed as plain text.
+     *
+     * @param message The message
+     */
+    void sendMessage(Text message);
+
+    /**
      * Sends the formatted text message(s) to source when possible. If text formatting
      * is not supported in the implementation it will be displayed as plain text.
      *

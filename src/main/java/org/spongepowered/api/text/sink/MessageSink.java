@@ -39,7 +39,7 @@ public abstract class MessageSink {
     public final void sendMessage(Text text) {
         for (CommandSource recipient : getRecipients()) {
             Text transformed = transformMessage(recipient, text);
-            recipient.sendMessages(transformed == null ? text : transformed);
+            recipient.sendMessage(transformed == null ? text : transformed);
         }
     }
 

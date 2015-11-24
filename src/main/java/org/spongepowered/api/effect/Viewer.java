@@ -94,6 +94,14 @@ public interface Viewer {
     void playSound(SoundType sound, Vector3d position, double volume, double pitch, double minVolume);
 
     /**
+     * Sends the message with the specified {@link ChatType} on the client.
+     *
+     * @param type The chat type to send the messages to
+     * @param message The message to send
+     */
+    void sendMessage(ChatType type, Text message);
+
+    /**
      * Sends the message(s) with the specified {@link ChatType} on the client.
      *
      * @param type The chat type to send the messages to
