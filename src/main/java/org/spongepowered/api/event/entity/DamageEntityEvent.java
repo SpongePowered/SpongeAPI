@@ -130,7 +130,7 @@ import java.util.function.Function;
  * that aims to alter the "final" damage based on some custom circumstances,
  * calling {@link #setDamage(DamageModifier, Function)} on a <em>new</em>
  * {@link DamageModifier} instance, easily created from the
- * {@link DamageModifier.DamageModifierBuilder}, the provided pairing will be added at the
+ * {@link DamageModifier.Builder}, the provided pairing will be added at the
  * "end" of the list for "modifying" the "base" damage.</p>
  *
  * <p>Note that this event is intended for processing incomming damage to
@@ -326,7 +326,7 @@ public interface DamageEntityEvent extends TargetEntityEvent, CauseTracked, Canc
      * {@link #getBaseDamage()}.
      *
      * <p>If needing to create a custom {@link DamageModifier} is required,
-     * usage of the {@link DamageModifier.DamageModifierBuilder} is recommended.</p>
+     * usage of the {@link DamageModifier.Builder} is recommended.</p>
      *
      * @param damageModifier The damage modifier
      * @param function The function to map to the modifier

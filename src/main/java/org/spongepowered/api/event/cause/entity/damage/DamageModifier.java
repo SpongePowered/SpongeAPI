@@ -42,8 +42,8 @@ import java.util.function.Function;
  */
 public interface DamageModifier {
 
-    static DamageModifierBuilder builder() {
-        return new DamageModifierBuilder();
+    static Builder builder() {
+        return new Builder();
     }
 
     /**
@@ -64,12 +64,12 @@ public interface DamageModifier {
      * A builder that creates {@link DamageModifier}s, for use in both plugin and
      * implementation requirements.
      */
-    final class DamageModifierBuilder implements ResettableBuilder<DamageModifierBuilder> {
+    final class Builder implements ResettableBuilder<Builder> {
 
         private DamageModifierType type;
         private Cause cause;
 
-        private DamageModifierBuilder() {
+        private Builder() {
         }
 
 
@@ -80,7 +80,7 @@ public interface DamageModifier {
          * @param damageModifierType The damage modifier type
          * @return This builder, for chaining
          */
-        public DamageModifierBuilder type(DamageModifierType damageModifierType) {
+        public Builder type(DamageModifierType damageModifierType) {
             this.type = checkNotNull(damageModifierType);
             return this;
         }
@@ -91,7 +91,7 @@ public interface DamageModifier {
          * @param cause The cause for the damage modifier
          * @return This builder, for chaining
          */
-        public DamageModifierBuilder cause(Cause cause) {
+        public Builder cause(Cause cause) {
             this.cause = checkNotNull(cause);
             return this;
         }
@@ -109,7 +109,7 @@ public interface DamageModifier {
         }
 
         @Override
-        public DamageModifierBuilder reset() {
+        public Builder reset() {
             this.type = null;
             this.cause = null;
             return this;
@@ -120,7 +120,7 @@ public interface DamageModifier {
             private final DamageModifierType type;
             private final Cause cause;
 
-            private ImplementedDamageModifier(DamageModifierBuilder builder) {
+            private ImplementedDamageModifier(Builder builder) {
                 this.type = builder.type;
                 this.cause = builder.cause;
             }
@@ -136,8 +136,8 @@ public interface DamageModifier {
             }
 
             @Override
-            public int hashCode() {
-                return Objects.hashCode(this.type, this.cause);
+            public int hashCode(){
+                    return Objects.hashCode(this.type, this.cause);
             }
 
             @Override
