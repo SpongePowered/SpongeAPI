@@ -29,6 +29,8 @@ import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.living.TargetAgentEvent;
+import org.spongepowered.api.eventgencore.annotation.codecheck.CompareTo;
+import org.spongepowered.api.eventgencore.annotation.codecheck.FactoryCodeCheck;
 
 public interface AITaskEvent extends TargetAgentEvent, Cancellable {
 
@@ -37,6 +39,7 @@ public interface AITaskEvent extends TargetAgentEvent, Cancellable {
      *
      * @return The goal
      */
+    @CompareTo(method = "getOwner", position = 1)
     Goal<? extends Agent> getGoal();
 
     /**
@@ -56,6 +59,7 @@ public interface AITaskEvent extends TargetAgentEvent, Cancellable {
     /**
      * Fired when an {@link AITask} is added to an {@link Agent}'s {@link Goal}.
      */
+    @FactoryCodeCheck(errorMessage = "The target entity '%s' is not the owner of the goal '%s'!")
     interface Add extends AITaskEvent {
         /**
          * Gets the original priority that {@link AITaskEvent#getTask()} will be assigned to. See {@link AITaskEvent#getPriority()}.
@@ -75,6 +79,7 @@ public interface AITaskEvent extends TargetAgentEvent, Cancellable {
     /**
      * Fired when an {@link AITask} is removed from an {@link Agent}'s {@link Goal}.
      */
+    @FactoryCodeCheck(errorMessage = "The target entity '%s' is not the owner of the goal '%s'!")
     interface Remove extends AITaskEvent {
 
     }

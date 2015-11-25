@@ -26,6 +26,7 @@ package org.spongepowered.api.event;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
 import java.net.InetSocketAddress;
 import java.util.List;
@@ -2509,6 +2510,7 @@ public class SpongeEventFactory {
      * @return A new add a i task event
      */
     public static AITaskEvent.Add createAITaskEventAdd(Game game, int originalPriority, int priority, Goal<? extends Agent> goal, Agent targetEntity, AITask<? extends Agent> task) {
+        Preconditions.checkArgument(((goal.getOwner()) == targetEntity), String.format("The target entity \'%s\' is not the owner of the goal \'%s\'!", goal, targetEntity));
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("originalPriority", originalPriority);
@@ -2532,6 +2534,7 @@ public class SpongeEventFactory {
      * @return A new remove a i task event
      */
     public static AITaskEvent.Remove createAITaskEventRemove(Game game, Goal<? extends Agent> goal, Agent targetEntity, AITask<? extends Agent> task, int priority) {
+        Preconditions.checkArgument(((goal.getOwner()) == targetEntity), String.format("The target entity \'%s\' is not the owner of the goal \'%s\'!", goal, targetEntity));
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("goal", goal);
