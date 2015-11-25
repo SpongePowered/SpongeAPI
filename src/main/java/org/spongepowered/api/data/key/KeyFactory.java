@@ -40,7 +40,7 @@ import java.util.Map;
  * and for plugins wishing to provide their own {@link Key}s without having
  * to remain afraid of having to cast back and forth.
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"unchecked", "rawtypes"})
 public final class KeyFactory {
 
     private KeyFactory() {}
@@ -58,14 +58,16 @@ public final class KeyFactory {
      * @param valueClass The value class
      * @param query The query
      * @param <E> The type of element
-     * @param <V> The type of value
+     * @param <T> The type of base value class
+     * @param <V> The inferred return type
      * @return The generated key
      */
-    public static <E, V extends BaseValue<E>> Key<V> makeSingleKey(final Class<E> elementClass, final Class<V> valueClass, final DataQuery query) {
+    public static <E, T extends BaseValue, V extends BaseValue<E>> Key<V> makeSingleKey(final Class<E> elementClass, final Class<T> valueClass, final DataQuery query) {
         return new Key<V>() {
+            @SuppressWarnings("rawtypes")
             @Override
             public Class<V> getValueClass() {
-                return valueClass;
+                return (Class<V>) (Class) valueClass;
             }
 
             @Override
