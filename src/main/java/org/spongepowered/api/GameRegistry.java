@@ -27,6 +27,7 @@ package org.spongepowered.api;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.ImmutableDataRegistry;
 import org.spongepowered.api.data.manipulator.DataManipulatorRegistry;
+import org.spongepowered.api.data.value.ValueFactory;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
@@ -296,6 +297,13 @@ public interface GameRegistry {
      * @return The extent buffer factory
      */
     ExtentBufferFactory getExtentBufferFactory();
+
+    /**
+     * Gets the {@link ValueFactory} for creating values.
+     *
+     * @return The value factory
+     */
+    ValueFactory getValueFactory();
 
     /**
      * Gets the {@link Translation} with the provided ID.

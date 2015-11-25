@@ -40,7 +40,7 @@ import java.util.Set;
 
 import javax.annotation.Nullable;
 
-public interface ValueBuilder {
+public interface ValueFactory {
 
     /**
      * Creates a new {@link Value} with the provided {@link Key} and the
