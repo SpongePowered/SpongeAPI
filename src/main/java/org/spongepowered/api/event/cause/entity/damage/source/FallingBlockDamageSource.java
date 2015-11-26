@@ -61,6 +61,9 @@ public interface FallingBlockDamageSource extends EntityDamageSource {
         Builder magical();
 
         @Override
+        Builder creative();
+
+        @Override
         Builder entity(Entity entity);
 
         @Override

@@ -47,7 +47,7 @@ public interface DamageSource {
      *
      * @return The damage type
      */
-    DamageType getDamageType();
+    DamageType getType();
 
     /**
      * Gets whether this {@link DamageSource} can not be modified and the
@@ -71,14 +71,14 @@ public interface DamageSource {
      *
      * @return True if the damage from this source is scaled
      */
-    boolean isDifficultyScaled();
+    boolean isScaledByDifficulty();
 
     /**
      * Gets whether this {@link DamageSource} is an explosion.
      *
      * @return True if this damage source is an explosion
      */
-    boolean isExplosion();
+    boolean isExplosive();
 
     /**
      * Gets whether this {@link DamageSource} is considered to be magical
@@ -87,6 +87,8 @@ public interface DamageSource {
      * @return If this damage is magic based
      */
     boolean isMagic();
+
+    boolean doesAffectCreative();
 
     interface Builder extends ResettableBuilder<Builder> {
 
@@ -99,6 +101,8 @@ public interface DamageSource {
         Builder absolute();
 
         Builder magical();
+
+        Builder creative();
 
         Builder type(DamageType damageType);
 

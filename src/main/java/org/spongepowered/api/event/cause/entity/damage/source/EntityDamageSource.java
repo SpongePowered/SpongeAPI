@@ -54,6 +54,9 @@ public interface EntityDamageSource extends DamageSource {
         Builder magical();
 
         @Override
+        Builder creative();
+
+        @Override
         Builder type(DamageType damageType);
 
         /**

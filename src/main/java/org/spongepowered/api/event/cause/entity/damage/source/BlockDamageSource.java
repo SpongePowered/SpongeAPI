@@ -63,6 +63,9 @@ public interface BlockDamageSource extends DamageSource {
         Builder magical();
 
         @Override
+        Builder creative();
+
+        @Override
         Builder type(DamageType damageType);
 
         /**
