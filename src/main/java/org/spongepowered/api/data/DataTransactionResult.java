@@ -88,6 +88,15 @@ public interface DataTransactionResult {
     Type getType();
 
     /**
+     * Gets whether this {@link DataTransactionResult} was successful or not.
+     *
+     * @return True if this result was successful
+     */
+    default boolean isSuccessful() {
+        return getType() == Type.SUCCESS;
+    }
+
+    /**
      * If any {@link BaseValue}s applied onto a {@link CompositeValueStore} were
      * successful, they'll be stored in the given list.
      *
