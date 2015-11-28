@@ -220,13 +220,13 @@ public final class Texts {
                 }
 
                 if (hoverAction != null) {
-                    builder.onHover(hoverAction);
+                    childBuilder.onHover(hoverAction);
                 }
                 if (clickAction != null) {
-                    builder.onClick(clickAction);
+                    childBuilder.onClick(clickAction);
                 }
                 if (shiftClickAction != null) {
-                    builder.onShiftClick(shiftClickAction);
+                    childBuilder.onShiftClick(shiftClickAction);
                 }
 
                 builder.append(childBuilder.format(format).build());
