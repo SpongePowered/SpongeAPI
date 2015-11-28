@@ -24,32 +24,26 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature;
 
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
-import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.entity.living.Creature;
+import org.spongepowered.api.entity.living.Living;
 
-public interface WatchClosestAITask extends AITask<Agent> {
+public interface AttackEntityAITask extends AITask<Creature> {
 
-    Class<? extends Entity> getWatchedClass();
+    Class<? extends Living> getTargetClass();
 
-    WatchClosestAITask setWatchedClass(Class<? extends Entity> watchedClass);
+    AttackEntityAITask setTargetClass(Class<? extends Living> targetClass);
 
-    float getMaxDistance();
+    boolean hasLongMemory();
 
-    WatchClosestAITask setMaxDistance(float maxDistance);
+    AttackEntityAITask setLongMemory(boolean longMemory);
 
-    float getChance();
+    interface Builder extends AITaskBuilder<Creature, AttackEntityAITask, Builder> {
 
-    WatchClosestAITask setChance(float chance);
+        Builder target(Class<? extends Living> targetClass);
 
-    interface Builder extends AITaskBuilder<Agent, WatchClosestAITask, Builder> {
-
-        Builder watch(Class<? extends Entity> watchClass);
-
-        Builder maxDistance(float maxDistance);
-
-        Builder chance(float chance);
+        Builder longMemory();
 
     }
 }

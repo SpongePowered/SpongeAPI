@@ -22,34 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin.creature;
+package org.spongepowered.api.entity.ai.task.builtin.creature.target;
 
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
-import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.entity.living.Creature;
 
-public interface WatchClosestAITask extends AITask<Agent> {
+public interface TargetAITask<A extends TargetAITask> extends AITask<Creature> {
 
-    Class<? extends Entity> getWatchedClass();
+    boolean shouldCheckSight();
 
-    WatchClosestAITask setWatchedClass(Class<? extends Entity> watchedClass);
+    A setCheckSight(boolean checkSight);
 
-    float getMaxDistance();
+    boolean onlyNearby();
 
-    WatchClosestAITask setMaxDistance(float maxDistance);
+    A setOnlyNearby(boolean nearby);
 
-    float getChance();
+    int getSearchStatus();
 
-    WatchClosestAITask setChance(float chance);
+    A setSearchStatus(int status);
 
-    interface Builder extends AITaskBuilder<Agent, WatchClosestAITask, Builder> {
+    int getSearchDelay();
 
-        Builder watch(Class<? extends Entity> watchClass);
+    A setSearchDelay(int delay);
 
-        Builder maxDistance(float maxDistance);
+    int getInterruptIfTargetUnseenTicks();
 
-        Builder chance(float chance);
+    A setInterruptIfTargetUnseenTicks(int ticks);
+
+    interface Builder<A extends TargetAITask<A>> extends AITaskBuilder<Creature, A, Builder<A>> {
+
+        Builder checkSight();
+
+        Builder onlyNearby();
+
+        Builder searchDelay(int delayTicks);
+
+        Builder interruptTargetUnseenTicks(int unseenTicks);
 
     }
 }

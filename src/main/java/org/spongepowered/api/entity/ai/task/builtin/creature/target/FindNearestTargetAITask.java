@@ -22,34 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin.creature;
+package org.spongepowered.api.entity.ai.task.builtin.creature.target;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
-import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.entity.living.Living;
 
-public interface WatchClosestAITask extends AITask<Agent> {
+import java.util.function.Predicate;
 
-    Class<? extends Entity> getWatchedClass();
+public interface FindNearestTargetAITask extends TargetAITask<FindNearestTargetAITask> {
+    
+    Class<? extends Living> getTargetClass();
 
-    WatchClosestAITask setWatchedClass(Class<? extends Entity> watchedClass);
+    FindNearestTargetAITask setTargetClass(Class<? extends Living> targetClass);
 
-    float getMaxDistance();
+    FindNearestTargetAITask filter(Predicate<Living> predicate);
 
-    WatchClosestAITask setMaxDistance(float maxDistance);
+    interface Builder extends TargetAITask.Builder<FindNearestTargetAITask> {
 
-    float getChance();
+        Builder target(Class<? extends Living> targetClass);
 
-    WatchClosestAITask setChance(float chance);
-
-    interface Builder extends AITaskBuilder<Agent, WatchClosestAITask, Builder> {
-
-        Builder watch(Class<? extends Entity> watchClass);
-
-        Builder maxDistance(float maxDistance);
-
-        Builder chance(float chance);
+        Builder filter(Predicate<? extends Living> predicate);
 
     }
 }
