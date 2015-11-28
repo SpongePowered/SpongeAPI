@@ -149,6 +149,7 @@ import org.spongepowered.api.event.network.PardonIpEvent;
 import org.spongepowered.api.event.network.rcon.RconConnectionEvent;
 import org.spongepowered.api.event.server.ClientPingServerEvent;
 import org.spongepowered.api.event.server.query.QueryServerEvent;
+import org.spongepowered.api.event.service.error.ErrorReportEvent;
 import org.spongepowered.api.event.statistic.ChangeStatisticEvent;
 import org.spongepowered.api.event.user.BanUserEvent;
 import org.spongepowered.api.event.user.PardonUserEvent;
@@ -176,6 +177,7 @@ import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.potion.PotionEffect;
 import org.spongepowered.api.resourcepack.ResourcePack;
+import org.spongepowered.api.service.error.ErrorReport;
 import org.spongepowered.api.service.world.ChunkLoadService;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
@@ -4350,6 +4352,20 @@ public class SpongeEventFactory {
         values.put("playerCount", playerCount);
         values.put("size", size);
         return SpongeEventFactoryUtils.createEventImpl(QueryServerEvent.Full.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.service.error.ErrorReportEvent}.
+     * 
+     * @param errorReport The error report
+     * @return A new error report event
+     */
+    public static ErrorReportEvent createErrorReportEvent(ErrorReport errorReport) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("errorReport", errorReport);
+        return SpongeEventFactoryUtils.createEventImpl(ErrorReportEvent.class, values);
     }
 
     /**
