@@ -50,7 +50,7 @@ public interface TargetAITask<A extends TargetAITask> extends AITask<Creature> {
 
     A setInterruptIfTargetUnseenTicks(int ticks);
 
-    interface Builder<A extends TargetAITask<A>> extends AITaskBuilder<Creature, A, Builder<A>> {
+    interface Builder<A extends TargetAITask<A>, B extends Builder<A, B>> extends AITaskBuilder<Creature, A, B> {
 
         Builder checkSight();
 
@@ -60,5 +60,7 @@ public interface TargetAITask<A extends TargetAITask> extends AITask<Creature> {
 
         Builder interruptTargetUnseenTicks(int unseenTicks);
 
+        @Override
+        B reset();
     }
 }

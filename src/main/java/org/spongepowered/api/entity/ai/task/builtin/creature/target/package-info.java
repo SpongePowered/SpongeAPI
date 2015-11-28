@@ -22,25 +22,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin.creature.target;
-
-import org.spongepowered.api.entity.living.Living;
-
-import java.util.function.Predicate;
-
-public interface FindNearestTargetAITask extends TargetAITask<FindNearestTargetAITask> {
-    
-    Class<? extends Living> getTargetClass();
-
-    FindNearestTargetAITask setTargetClass(Class<? extends Living> targetClass);
-
-    FindNearestTargetAITask filter(Predicate<Living> predicate);
-
-    interface Builder extends TargetAITask.Builder<FindNearestTargetAITask, Builder> {
-
-        Builder target(Class<? extends Living> targetClass);
-
-        Builder filter(Predicate<? extends Living> predicate);
-
-    }
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.entity.ai.task.builtin.creature.target;
