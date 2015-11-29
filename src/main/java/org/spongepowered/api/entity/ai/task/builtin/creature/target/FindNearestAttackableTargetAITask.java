@@ -22,28 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin.creature;
+package org.spongepowered.api.entity.ai.task.builtin.creature.target;
 
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
-import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Living;
 
-public interface AttackEntityAITask extends AITask<Creature> {
+import java.util.function.Predicate;
 
+public interface FindNearestAttackableTargetAITask extends TargetAITask<FindNearestAttackableTargetAITask> {
+    
     Class<? extends Living> getTargetClass();
 
-    AttackEntityAITask setTargetClass(Class<? extends Living> targetClass);
+    FindNearestAttackableTargetAITask setTargetClass(Class<? extends Living> targetClass);
 
-    boolean hasLongMemory();
+    int getChance();
 
-    AttackEntityAITask setLongMemory(boolean longMemory);
+    FindNearestAttackableTargetAITask setChance(int chance);
 
-    interface Builder extends AITaskBuilder<Creature, AttackEntityAITask, Builder> {
+    FindNearestAttackableTargetAITask filter(Predicate<Living> predicate);
+
+    interface Builder extends TargetAITask.Builder<FindNearestAttackableTargetAITask, Builder> {
 
         Builder target(Class<? extends Living> targetClass);
 
-        Builder longMemory();
+        Builder chance(int chance);
+
+        Builder filter(Predicate<? extends Living> predicate);
 
     }
 }

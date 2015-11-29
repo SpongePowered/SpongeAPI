@@ -52,13 +52,13 @@ public interface TargetAITask<A extends TargetAITask> extends AITask<Creature> {
 
     interface Builder<A extends TargetAITask<A>, B extends Builder<A, B>> extends AITaskBuilder<Creature, A, B> {
 
-        Builder checkSight();
+        B checkSight();
 
-        Builder onlyNearby();
+        B onlyNearby();
 
-        Builder searchDelay(int delayTicks);
+        B searchDelay(int delayTicks);
 
-        Builder interruptTargetUnseenTicks(int unseenTicks);
+        B interruptTargetUnseenTicks(int unseenTicks);
 
         @Override
         B reset();

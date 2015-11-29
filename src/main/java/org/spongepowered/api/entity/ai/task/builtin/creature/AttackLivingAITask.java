@@ -22,25 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin.creature.target;
+package org.spongepowered.api.entity.ai.task.builtin.creature;
 
+import org.spongepowered.api.entity.ai.task.AITask;
+import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Living;
 
-import java.util.function.Predicate;
+public interface AttackLivingAITask extends AITask<Creature> {
 
-public interface FindNearestTargetAITask extends TargetAITask<FindNearestTargetAITask> {
-    
     Class<? extends Living> getTargetClass();
 
-    FindNearestTargetAITask setTargetClass(Class<? extends Living> targetClass);
+    AttackLivingAITask setTargetClass(Class<? extends Living> targetClass);
 
-    FindNearestTargetAITask filter(Predicate<Living> predicate);
+    double getSpeed();
 
-    interface Builder extends TargetAITask.Builder<FindNearestTargetAITask, Builder> {
+    AttackLivingAITask setSpeed(double speed);
+
+    boolean hasLongMemory();
+
+    AttackLivingAITask setLongMemory(boolean longMemory);
+
+    interface Builder extends AITaskBuilder<Creature, AttackLivingAITask, Builder> {
 
         Builder target(Class<? extends Living> targetClass);
 
-        Builder filter(Predicate<? extends Living> predicate);
+        Builder speed(double speed);
+
+        Builder longMemory();
 
     }
 }
