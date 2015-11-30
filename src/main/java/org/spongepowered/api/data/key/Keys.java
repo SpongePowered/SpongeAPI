@@ -25,7 +25,9 @@
 package org.spongepowered.api.data.key;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.data.manipulator.mutable.entity.AffectsSpawningData;
 import org.spongepowered.api.data.manipulator.mutable.item.HideData;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.block.BlockState;
@@ -800,5 +802,13 @@ public final class Keys {
      * @see HideData#hideMiscellaneous()
      */
     public static final Key<Value<Boolean>> HIDE_MISCELLANEOUS = null;
+
+    /**
+     * Represents the {@link Key} for the "affecting spawning" state of
+     * {@link Humanoid}s.
+     *
+     * @see AffectsSpawningData#affectsSpawning()
+     */
+    public static final Key<Value<Boolean>> AFFECTS_SPAWNING = null;
 
 }
