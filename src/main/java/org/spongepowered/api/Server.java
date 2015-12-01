@@ -26,6 +26,7 @@ package org.spongepowered.api;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.util.concurrent.ListenableFuture;
+import org.spongepowered.api.context.ContextViewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.channel.MessageChannel;
@@ -44,6 +45,8 @@ import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a typical Minecraft Server.
@@ -84,6 +87,21 @@ public interface Server {
      * @return {@link Player} or Optional.empty() if not found
      */
     Optional<Player> getPlayer(String name);
+
+    /**
+     * Gets a {@link Player} by their name, as seen by the
+     * provided viewer.
+     *
+     * <p>This only works for online players.</p>
+     *
+     * <p><b>Note: Do not use names for persistent storage, the
+     * Notch of today may not be the Notch of yesterday.</b></p>
+     *
+     * @param name The name to get the player from
+     * @param viewer The viewer of the request
+     * @return {@link Player} or Optional.empty() if not found
+     */
+    Optional<Player> getPlayer(String name, @Nullable ContextViewer viewer);
 
     /**
      * Gets all currently loaded {@link World}s.
