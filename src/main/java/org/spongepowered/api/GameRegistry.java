@@ -87,9 +87,10 @@ public interface GameRegistry {
      * game version changes.</p>
      *
      * @param typeClass The class of the type of {@link CatalogType}
-     * @param id The string id of the catalog type
+     * @param id The case insensitive string id of the catalog type
      * @param <T> The type of catalog type
      * @return The found catalog type, if available
+     * @see CatalogType
      */
     <T extends CatalogType> Optional<T> getType(Class<T> typeClass, String id);
 
