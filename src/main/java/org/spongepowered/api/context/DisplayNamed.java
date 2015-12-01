@@ -22,41 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.context;
 
-import org.spongepowered.api.context.ContextViewer;
-import org.spongepowered.api.context.NamedContextual;
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.translation.locale.Locales;
+import org.spongepowered.api.text.Text;
 
-import java.util.Locale;
+import javax.annotation.Nullable;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
+ * Represents an object with a display name.
  */
-public interface CommandSource extends ContextViewer, MessageReceiver, NamedContextual, Subject {
+public interface DisplayNamed {
 
     /**
-     * Gets the name identifying this command source.
+     * Gets the current display name for this {@link DisplayNamed}.
      *
-     * @return The name of this command source
+     * @return The display name
      */
-    @Override
-    String getName();
+    Text getDisplayName();
 
     /**
-     * Gets the locale used by this command source. If this
-     * {@link CommandSource} does have a {@link Locale} configured or does not
-     * support configuring a {@link Locale}, {@link Locales#DEFAULT} is used.
+     * Gets the current display name for this {@link DisplayNamed}, as
+     * seen by the provided viewer.
      *
-     * @return The locale used by this command source
+     * @param viewer The viewer to consider when fetching the name
+     * @return The display name
      */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
-    }
+    Text getDisplayName(@Nullable ContextViewer viewer);
+
+    /**
+     * Clears all set display names
+     */
+    void clearDisplayNames();
 
 }

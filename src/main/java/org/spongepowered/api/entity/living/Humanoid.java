@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.living;
 
+import org.spongepowered.api.context.ContextViewer;
+import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.FoodData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -31,6 +33,11 @@ import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.profile.property.ProfileProperty;
+
+import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a human-like entity in game, such as {@link Player} or {@link Human}s.
@@ -87,5 +94,45 @@ public interface Humanoid extends Living, ProjectileSource, ArmorEquipable, Tame
     default MutableBoundedValue<Double> saturation() {
         return getValue(Keys.SATURATION).get();
     }
+
+    /**
+     * Gets this {@link Humanoid}'s textures.
+     *
+     * @return The textures property
+     */
+    Optional<ProfileProperty> getTextures();
+
+    /**
+     * Gets this {@link Humanoid}'s textures, as seen by the viewer.
+     *
+     * @param viewer The viewer of the request
+     * @return The textures property, as seen by the viewer
+     */
+    Optional<ProfileProperty> getTextures(@Nullable ContextViewer viewer);
+
+    /**
+     * Sets the fake name and textures
+     *
+     * @param viewer The viewer of the request
+     * @param name The fake name
+     * @param property The textures property
+     * @return The transaction result
+     */
+    DataTransactionResult setFakeNameAndTextures(ContextViewer viewer, @Nullable String name, @Nullable ProfileProperty property);
+
+    /**
+     * Clears all fake named.
+     */
+    void clearFakeNames();
+
+    /**
+     * Clears all textures.
+     */
+    void clearTextures();
+
+    /**
+     * Clears all fake names and textures.
+     */
+    void clearFakeNamesAndTextures();
 
 }

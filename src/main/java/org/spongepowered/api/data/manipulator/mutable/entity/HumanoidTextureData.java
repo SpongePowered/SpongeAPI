@@ -22,41 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.data.manipulator.mutable.entity;
 
-import org.spongepowered.api.context.ContextViewer;
-import org.spongepowered.api.context.NamedContextual;
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.translation.locale.Locales;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableHumanoidTextureData;
+import org.spongepowered.api.data.value.mutable.OptionalValue;
+import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.profile.property.ProfileProperty;
 
-import java.util.Locale;
+import java.util.UUID;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
+ * A {@link DataManipulator} for the textures of a {@link Humanoid}.
  */
-public interface CommandSource extends ContextViewer, MessageReceiver, NamedContextual, Subject {
+public interface HumanoidTextureData extends DataManipulator<HumanoidTextureData, ImmutableHumanoidTextureData> {
 
     /**
-     * Gets the name identifying this command source.
+     * Gets the {@link OptionalValue} for the textures property.
      *
-     * @return The name of this command source
+     * @return The optional value for the textures property
      */
-    @Override
-    String getName();
+    OptionalValue<ProfileProperty> property();
 
     /**
-     * Gets the locale used by this command source. If this
-     * {@link CommandSource} does have a {@link Locale} configured or does not
-     * support configuring a {@link Locale}, {@link Locales#DEFAULT} is used.
+     * Gets the {@link OptionalValue} for the textures unique id.
      *
-     * @return The locale used by this command source
+     * @return The optional value for the textures unique id
      */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
-    }
+    OptionalValue<UUID> uniqueId();
 
 }

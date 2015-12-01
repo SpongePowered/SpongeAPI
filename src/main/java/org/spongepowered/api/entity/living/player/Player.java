@@ -30,6 +30,7 @@ import org.spongepowered.api.command.source.RemoteSource;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
+import org.spongepowered.api.data.manipulator.mutable.entity.HumanoidTextureData;
 import org.spongepowered.api.data.manipulator.mutable.entity.JoinData;
 import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -42,6 +43,7 @@ import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
@@ -293,5 +295,23 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      * @return Whether the respawn was successful
      */
     boolean respawnPlayer();
+
+    /**
+     * Gets this {@link Player}'s real textures property.
+     *
+     * @return The real textures property
+     */
+    Optional<ProfileProperty> getRealTextures();
+
+    /**
+     * Gets this {@link Player}'s textures.
+     *
+     * <p>This can either be {@link #getRealTextures()}, or a
+     * {@link HumanoidTextureData data}-based value.</p>
+     *
+     * @return The textures property
+     */
+    @Override
+    Optional<ProfileProperty> getTextures();
 
 }

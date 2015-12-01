@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.profile.property;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.profile.GameProfile;
 
@@ -40,6 +42,11 @@ import javax.annotation.Nullable;
  * @see #of(String, String, String)
  */
 public interface ProfileProperty {
+
+    /**
+     * The name of the textures property.
+     */
+    String TEXTURES = "textures";
 
     /**
      * Creates a new property.
@@ -65,6 +72,16 @@ public interface ProfileProperty {
      */
     static ProfileProperty of(String name, String value, @Nullable String signature) {
         return Sponge.getServer().getGameProfileManager().createProfileProperty(name, value, signature);
+    }
+
+    /**
+     * Creates a new textures property.
+     *
+     * @param value The value of the property
+     * @param signature The signature of the property
+     */
+    static ProfileProperty textures(String value, String signature) {
+        return of(TEXTURES, value, checkNotNull(signature, "signature"));
     }
 
     /**
