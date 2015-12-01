@@ -24,15 +24,34 @@
  */
 package org.spongepowered.api.data.meta;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BannerData;
 import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.service.persistence.DataBuilder;
+import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * A representation on a single layer of a {@link BannerData}'s pattern.
  */
 public interface PatternLayer extends DataSerializable {
+
+    /**
+     * Creates a {@link PatternLayer} with the desired
+     * {@link BannerPatternShape} and {@link DyeColor}.
+     *
+     * @param shape The shape
+     * @param color The color
+     * @return The new pattern layer
+     */
+    static PatternLayer of(BannerPatternShape shape, DyeColor color) {
+        return Sponge.getRegistry()
+            .createBuilder(Builder.class)
+            .pattern(shape)
+            .color(color)
+            .build();
+    }
 
     /**
      * Gets the pattern shape for this layer.
@@ -47,5 +66,35 @@ public interface PatternLayer extends DataSerializable {
      * @return The color
      */
     DyeColor getColor();
+
+    interface Builder extends DataBuilder<PatternLayer> {
+
+        /**
+         * Sets the {@link BannerPatternShape} to be used.
+         *
+         * @param shape The shape
+         * @return This builder, for chaining
+         */
+        Builder pattern(BannerPatternShape shape);
+
+        /**
+         * Sets the {@link DyeColor} to be used.
+         *
+         * @param color The color
+         * @return This builder, for chaining
+         */
+        Builder color(DyeColor color);
+
+        /**
+         * Builds a {@link PatternLayer} provided that the
+         * color and pattern are set.
+         *
+         * @return The new pattern layer
+         */
+        PatternLayer build();
+
+        @Override
+        Builder reset();
+    }
 
 }
