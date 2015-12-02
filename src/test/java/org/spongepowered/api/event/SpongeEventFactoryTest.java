@@ -171,7 +171,7 @@ public class SpongeEventFactoryTest {
         } else if (Location.class.isAssignableFrom(paramType)) {
             return new Location<>((Extent) mockParam(Extent.class), 0, 0, 0);
         } else if (paramType == Transform.class) {
-            return new Transform<>((Location<World>) mockParam(Location.class));
+            return new Transform<>((Extent) mockParam(Extent.class));
         } else if (paramType == Transaction.class) {
             return PowerMockito.mock(Transaction.class);
         } else if (paramType == Text[].class) {
