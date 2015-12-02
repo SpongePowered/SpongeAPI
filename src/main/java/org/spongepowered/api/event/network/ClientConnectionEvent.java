@@ -84,7 +84,7 @@ public interface ClientConnectionEvent extends GameEvent {
      * this event and NOT during #Join.
      * </p>
      */
-    interface Login extends ClientConnectionEvent, MessageSinkEvent, Cancellable {
+    interface Login extends ClientConnectionEvent, TargetPlayerEvent, MessageSinkEvent, Cancellable {
 
         /**
          * Gets the {@link RemoteConnection} representing the client connection.
