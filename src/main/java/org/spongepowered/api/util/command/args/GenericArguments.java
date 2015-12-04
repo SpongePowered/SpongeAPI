@@ -691,6 +691,34 @@ public final class GenericArguments {
         }
     }
 
+    /**
+     * Require an argument to be an double-precision floating point number.
+     * Gives values of type {@link Double}
+     *
+     * @param key The key to store the parsed argument under
+     * @return the element to match the input
+     */
+    public static CommandElement decimal(Text key) {
+        return new DecimalElement(key);
+    }
+
+    private static class DecimalElement extends KeyElement {
+
+        private IntegerElement(Text key) {
+            super(key);
+        }
+
+        @Override
+        public Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            final String input = args.next();
+            try {
+                return Double.parseDouble(input);
+            } catch (NumberFormatException ex) {
+                throw args.createError(t("Expected an decimal, but input '%s' was not", input));
+            }
+        }
+    }
+
     private static final Map<String, Boolean> BOOLEAN_CHOICES = ImmutableMap.<String, Boolean>builder()
             .put("true", true)
             .put("t", true)
