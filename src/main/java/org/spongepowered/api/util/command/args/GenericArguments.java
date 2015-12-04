@@ -714,7 +714,7 @@ public final class GenericArguments {
             try {
                 return Double.parseDouble(input);
             } catch (NumberFormatException ex) {
-                throw args.createError(t("Expected an decimal, but input '%s' was not", input));
+                throw args.createError(t("Expected a decimal, but input '%s' was not", input));
             }
         }
     }
