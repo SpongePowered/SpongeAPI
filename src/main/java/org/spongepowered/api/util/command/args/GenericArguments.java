@@ -704,7 +704,7 @@ public final class GenericArguments {
 
     private static class DecimalElement extends KeyElement {
 
-        private IntegerElement(Text key) {
+        private DecimalElement(Text key) {
             super(key);
         }
 
