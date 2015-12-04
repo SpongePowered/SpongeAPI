@@ -22,4 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.entity.vehicle.minecart;
+
+/**
+ * Classes for
+ * {@link org.spongepowered.api.entity.vehicle.minecart.Minecart minecart}.
+ */
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.entity.vehicle.minecart;

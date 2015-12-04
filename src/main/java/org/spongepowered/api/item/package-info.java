@@ -22,5 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+/**
+ * Classes related to {@link org.spongepowered.api.item.inventory.ItemStack
+ * item stacks} and
+ * {@link org.spongepowered.api.item.inventory.Inventory inventories}.
+ */
 @org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.item;

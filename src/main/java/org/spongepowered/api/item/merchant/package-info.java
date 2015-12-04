@@ -22,5 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+/**
+ * Classes related to {@link org.spongepowered.api.item.merchant.Merchant
+ * merchants} and item {@link org.spongepowered.api.item.merchant.TradeOffer
+ * trading}.
+ */
 @org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.item.merchant;

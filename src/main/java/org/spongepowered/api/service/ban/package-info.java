@@ -22,5 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+/**
+ * Service classes related to
+ * {@link org.spongepowered.api.service.ban.BanService ban management}.
+ *
+ * <p>The ban service is the default service used to check whether a player or
+ * any connection can access the server or relevant resources. It also can be
+ * used to manage existing bans or add new ones.</p>
+ */
 @org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.service.ban;

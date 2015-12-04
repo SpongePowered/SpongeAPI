@@ -22,4 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.service.permission;
+
+/**
+ * Service classes related to
+ * {@link org.spongepowered.api.service.permission.PermissionService
+ * permission management}.
+ */
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.service.permission;

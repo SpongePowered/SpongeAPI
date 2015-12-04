@@ -22,4 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.entity.living.animal;
+
+/**
+ * Classes for living {@link org.spongepowered.api.entity.living.animal.Animal}s
+ * such as cows and sheeps. Usually none hostile.
+ */
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.entity.living.animal;

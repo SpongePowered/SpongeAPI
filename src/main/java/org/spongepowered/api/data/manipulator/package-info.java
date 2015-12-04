@@ -22,5 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+/**
+ * Data classes that can be used to add, alter, copy and delete data from
+ * {@link org.spongepowered.api.data.DataHolder}s.
+ */
 @org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.data.manipulator;

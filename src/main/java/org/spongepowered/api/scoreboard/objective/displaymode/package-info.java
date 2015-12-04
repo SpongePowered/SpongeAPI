@@ -22,5 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+/**
+ * Classes defining the
+ * {@link org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode
+ * look} of the values displayed by
+ * {@link org.spongepowered.api.scoreboard.Scoreboard scoreboards}.
+ */
 @org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.scoreboard.objective.displaymode;

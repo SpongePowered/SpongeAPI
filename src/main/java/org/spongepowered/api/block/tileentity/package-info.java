@@ -22,4 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.block.tileentity;
+
+/**
+ * Classes that represents special data holder blocks. That usually contain
+ * extra data about the blocks features. This usually applies to blocks with
+ * visual components, special game mechanics or inventories.
+ */
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.block.tileentity;
