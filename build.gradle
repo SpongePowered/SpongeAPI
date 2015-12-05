@@ -24,7 +24,7 @@ apply from: 'gradle/sponge.gradle'
 // Project dependencies
 dependencies {
     // Logging
-    compile 'org.slf4j:slf4j-api:1.7.12'
+    compile 'org.slf4j:slf4j-api:1.7.13'
 
     // Dependencies provided by Minecraft
     compile 'com.google.guava:guava:17.0'
