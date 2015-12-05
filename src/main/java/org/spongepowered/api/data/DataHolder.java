@@ -27,7 +27,7 @@ package org.spongepowered.api.data;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
-import org.spongepowered.api.service.persistence.InvalidDataException;
+import org.spongepowered.api.util.persistence.InvalidDataException;
 
 /**
  * A data holder object allows the access of additional data on the object

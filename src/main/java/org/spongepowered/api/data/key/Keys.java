@@ -25,7 +25,7 @@
 package org.spongepowered.api.data.key;
 
 import com.flowpowered.math.vector.Vector3d;
-import org.spongepowered.api.GameProfile;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
@@ -134,8 +134,8 @@ import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.merchant.TradeOffer;
-import org.spongepowered.api.potion.PotionEffect;
-import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.effect.potion.PotionEffect;
+import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;

@@ -28,7 +28,7 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.action.MessageEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.sink.MessageSink;
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.command.CommandSource;
 
 /**
  * Describes events when a {@link CommandSource} sends a {@link Text} message.

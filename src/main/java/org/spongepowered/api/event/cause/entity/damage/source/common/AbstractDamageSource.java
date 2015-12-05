@@ -25,14 +25,20 @@
 package org.spongepowered.api.event.cause.entity.damage.source.common;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 
+/**
+ * An abstract implementation of {@link DamageSource} to allow plugins to create
+ * their own damage sources without having to implement all the required methods.
+ *
+ * <p>Note that extending this class at the least is a requirement for custom
+ * damage sources as not doing so will simply not work.</p>
+ */
 public abstract class AbstractDamageSource implements DamageSource {
 
-    private final DamageType damageType;
+    private final DamageType apiDamageType;
     private final boolean absolute;
     private final boolean bypassesArmor;
     private final boolean scales;
@@ -41,7 +47,7 @@ public abstract class AbstractDamageSource implements DamageSource {
     private final boolean creative;
 
     protected AbstractDamageSource(AbstractDamageSourceBuilder builder) {
-        this.damageType = checkNotNull(builder.damageType, "DamageType cannot be null!");
+        this.apiDamageType = checkNotNull(builder.damageType, "DamageType cannot be null!");
         this.absolute = builder.absolute;
         this.bypassesArmor = builder.bypassesArmor;
         this.scales = builder.scales;
@@ -52,7 +58,7 @@ public abstract class AbstractDamageSource implements DamageSource {
 
     @Override
     public DamageType getType() {
-        return this.damageType;
+        return this.apiDamageType;
     }
 
     @Override

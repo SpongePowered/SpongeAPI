@@ -29,7 +29,7 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BeaconData;
 import org.spongepowered.api.data.value.immutable.ImmutableOptionalValue;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.effect.potion.PotionEffectType;
 
 import java.util.Optional;
 

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.catalog;
 
-import org.spongepowered.api.GameProfile;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.block.tileentity.Banner;
 import org.spongepowered.api.block.tileentity.CommandBlock;
 import org.spongepowered.api.block.tileentity.Comparator;

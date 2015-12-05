@@ -28,7 +28,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.property.AbstractProperty;
-import org.spongepowered.api.potion.PotionEffect;
+import org.spongepowered.api.effect.potion.PotionEffect;
 
 import java.util.Set;
 

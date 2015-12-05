@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.block.tileentity;
 
-import org.spongepowered.api.util.command.source.CommandBlockSource;
+import org.spongepowered.api.command.source.CommandBlockSource;
 
 /**
  * Represents a Command Block.

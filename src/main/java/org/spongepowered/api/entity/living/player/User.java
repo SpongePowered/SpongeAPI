@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.player;
 
-import org.spongepowered.api.GameProfile;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.mutable.entity.AchievementData;

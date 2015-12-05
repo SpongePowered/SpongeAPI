@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.event.server;
 
-import org.spongepowered.api.GameProfile;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.status.Favicon;
-import org.spongepowered.api.status.StatusClient;
-import org.spongepowered.api.status.StatusResponse;
+import org.spongepowered.api.network.status.Favicon;
+import org.spongepowered.api.network.status.StatusClient;
+import org.spongepowered.api.network.status.StatusResponse;
 import org.spongepowered.api.text.Text;
 
 import java.util.List;

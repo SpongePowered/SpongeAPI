@@ -31,7 +31,7 @@ import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.effect.potion.PotionEffectType;
 
 public interface UseItemStackEvent extends GameEvent, Cancellable, CauseTracked {
 

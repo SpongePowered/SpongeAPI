@@ -27,8 +27,6 @@ package org.spongepowered.api.event;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-import org.spongepowered.api.service.event.EventManager;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 

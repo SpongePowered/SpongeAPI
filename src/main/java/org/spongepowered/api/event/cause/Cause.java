@@ -69,17 +69,6 @@ public abstract class Cause {
     private static final Cause EMPTY = new EmptyCause();
 
     /**
-     * Gets the "empty" {@link Cause}. If a {@link Cause} is required, but
-     * there is no {@link Object} that can be stated as the direct "cause" of
-     * an {@link Event}, an "empty" {@link Cause} can be used.
-     *
-     * @return The empty cause instance
-     */
-    public static Cause empty() {
-        return EMPTY;
-    }
-
-    /**
      * Creates a new {@link Cause} of the provided {@link Object}s. Note that
      * none of the provided {@link Object}s can be <code>null</code>. The order
      * of the objects should represent the "priority" that the object aided in

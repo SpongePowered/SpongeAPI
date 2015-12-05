@@ -30,12 +30,25 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSource;
 
-public abstract class AbstractEntityDamageSource extends AbstractDamageSource implements EntityDamageSource {
+public abstract class AbstractEntityDamageSource implements EntityDamageSource {
 
+    private final DamageType apiDamageType;
+    private final boolean absolute;
+    private final boolean bypassesArmor;
+    private final boolean scales;
+    private final boolean explosive;
+    private final boolean magic;
+    private final boolean creative;
     private final Entity source;
 
     protected AbstractEntityDamageSource(AbstractEntityDamageSourceBuilder builder) {
-        super(builder);
+        this.apiDamageType = checkNotNull(builder.damageType, "DamageType cannot be null!");
+        this.absolute = builder.absolute;
+        this.bypassesArmor = builder.bypassesArmor;
+        this.scales = builder.scales;
+        this.explosive = builder.explosive;
+        this.magic = builder.magic;
+        this.creative = builder.creative;
         this.source = checkNotNull(builder.source, "Entity source cannot be null!");
     }
 
@@ -44,9 +57,51 @@ public abstract class AbstractEntityDamageSource extends AbstractDamageSource im
         return this.source;
     }
 
-    public static abstract class AbstractEntityDamageSourceBuilder extends AbstractDamageSourceBuilder implements EntityDamageSource.Builder {
+    @Override
+    public DamageType getType() {
+        return this.apiDamageType;
+    }
+
+    @Override
+    public boolean isAbsolute() {
+        return this.absolute;
+    }
+
+    @Override
+    public boolean isBypassingArmor() {
+        return this.bypassesArmor;
+    }
+
+    @Override
+    public boolean isScaledByDifficulty() {
+        return this.scales;
+    }
+
+    @Override
+    public boolean isExplosive() {
+        return this.explosive;
+    }
+
+    @Override
+    public boolean isMagic() {
+        return this.magic;
+    }
+
+    @Override
+    public boolean doesAffectCreative() {
+        return this.creative;
+    }
+
+    public static abstract class AbstractEntityDamageSourceBuilder implements EntityDamageSource.Builder {
 
         private Entity source;
+        private DamageType damageType;
+        private boolean absolute;
+        private boolean bypassesArmor;
+        private boolean scales;
+        private boolean explosive;
+        private boolean magic;
+        private boolean creative;
 
         @Override
         public EntityDamageSource.Builder entity(Entity entity) {
@@ -55,51 +110,55 @@ public abstract class AbstractEntityDamageSource extends AbstractDamageSource im
         }
 
         @Override
-        public EntityDamageSource.Builder scalesWithDifficulty() {
-            super.scalesWithDifficulty();
+        public Builder scalesWithDifficulty() {
+            this.scales = true;
             return this;
         }
 
         @Override
-        public EntityDamageSource.Builder bypassesArmor() {
-            super.bypassesArmor();
+        public Builder bypassesArmor() {
+            this.bypassesArmor = true;
             return this;
         }
 
         @Override
-        public EntityDamageSource.Builder explosion() {
-            super.explosion();
+        public Builder explosion() {
+            this.explosive = true;
             return this;
         }
 
         @Override
-        public EntityDamageSource.Builder absolute() {
-            super.absolute();
+        public Builder absolute() {
+            this.absolute = true;
             return this;
         }
 
         @Override
-        public EntityDamageSource.Builder magical() {
-            super.magical();
+        public Builder magical() {
+            this.magic = true;
             return this;
         }
 
         @Override
-        public EntityDamageSource.Builder creative() {
-            super.creative();
+        public Builder creative() {
+            this.creative = true;
             return this;
         }
 
         @Override
-        public EntityDamageSource.Builder type(DamageType damageType) {
-            super.type(damageType);
+        public Builder type(DamageType damageType) {
+            this.damageType = checkNotNull(damageType, "DamageType cannot be null!");
             return this;
         }
 
         @Override
-        public EntityDamageSource.Builder reset() {
-            super.reset();
-            this.source = null;
+        public Builder reset() {
+            this.damageType = null;
+            this.absolute = false;
+            this.bypassesArmor = false;
+            this.explosive = false;
+            this.magic = false;
+            this.creative = false;
             return this;
         }
     }

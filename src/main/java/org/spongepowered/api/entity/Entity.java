@@ -29,7 +29,9 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.NamedCause;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
+import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Location;
@@ -294,15 +296,27 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
     void remove();
 
     /**
+     * Damages this {@link Entity} with the given {@link DamageSource}.
+     *
+     * @param damage The damage to deal
+     * @param damageSource The cause of the damage
+     * @return True if damaging the entity was successful
+     */
+    default boolean damage(double damage, DamageSource damageSource) {
+        return damage(damage, damageSource, Cause.of());
+    }
+
+    /**
      * Damages this {@link Entity} with the given {@link Cause}. It is
      * imperative that a {@link DamageSource} is included
      * with the cause for maximum compatibility with plugins and the game
      * itself.
      *
      * @param damage The damage to deal
-     * @param cause The cause of the damage
+     * @param damageSource The source of damage
+     * @param cause The cause containing auxiliary objects
      * @return True if damaging the entity was successful
      */
-    boolean damage(double damage, Cause cause);
+    boolean damage(double damage, DamageSource damageSource, Cause cause);
 
 }

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.scoreboard.critieria;
 
-import org.spongepowered.api.potion.PotionEffectTypes;
+import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.scoreboard.objective.Objective;
 
 /**

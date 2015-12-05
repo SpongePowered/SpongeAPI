@@ -25,7 +25,7 @@
 package org.spongepowered.api.text.sink;
 
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.command.CommandSource;
 
 /**
  * Represents a function that takes a message and transforms it for distribution to the given targets.

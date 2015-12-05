@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.util.command.args.CommandArgs;
+import org.spongepowered.api.command.args.CommandArgs;
 
 /**
  * A pseudo naming schema for "named" Cause objects. This can be considered

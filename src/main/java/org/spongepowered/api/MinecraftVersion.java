@@ -25,7 +25,7 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.event.server.ClientPingServerEvent;
-import org.spongepowered.api.status.StatusResponse;
+import org.spongepowered.api.network.status.StatusResponse;
 
 /**
  * Represents a specific Minecraft version of a client or a server.

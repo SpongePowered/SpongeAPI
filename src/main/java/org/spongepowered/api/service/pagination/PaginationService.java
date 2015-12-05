@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service.pagination;
 
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.command.CommandSource;
 
 /**
  * This service allows pagination of output to users.

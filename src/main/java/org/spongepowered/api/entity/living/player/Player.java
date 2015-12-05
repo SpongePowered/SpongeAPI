@@ -34,8 +34,8 @@ import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.command.source.LocatedSource;
-import org.spongepowered.api.util.command.source.RemoteSource;
+import org.spongepowered.api.command.source.LocatedSource;
+import org.spongepowered.api.command.source.RemoteSource;
 
 import java.util.Date;
 import java.util.Locale;

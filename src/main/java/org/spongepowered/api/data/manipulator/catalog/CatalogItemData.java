@@ -61,7 +61,7 @@ import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.potion.PotionEffect;
+import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.text.Text;
 
 import java.awt.Color;

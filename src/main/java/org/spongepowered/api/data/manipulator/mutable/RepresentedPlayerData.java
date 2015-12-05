@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable;
 
-import org.spongepowered.api.GameProfile;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.block.tileentity.Skull;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataHolder;

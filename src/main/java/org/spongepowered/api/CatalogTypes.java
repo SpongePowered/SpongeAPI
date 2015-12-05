@@ -74,7 +74,7 @@ import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
-import org.spongepowered.api.potion.PotionEffectType;
+import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.scoreboard.Visibility;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;

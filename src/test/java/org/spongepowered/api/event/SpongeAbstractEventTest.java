@@ -56,7 +56,7 @@ public class SpongeAbstractEventTest {
 
         stub(transaction.getOriginal().getLocation()).toReturn(Optional.of(new Location<>(mockParam(World.class), Vector3d.ZERO)));
 
-        ChangeBlockEvent event = SpongeEventFactory.createChangeBlockEvent(mockParam(Game.class), Cause.empty(), mockParam(World.class), Lists.newArrayList(transaction));
+        ChangeBlockEvent event = SpongeEventFactory.createChangeBlockEvent(mockParam(Game.class), Cause.of(), mockParam(World.class), Lists.newArrayList(transaction));
         event.filter(location -> false);
 
         assertThat(transaction.isValid(), is(false));

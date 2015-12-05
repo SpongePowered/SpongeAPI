@@ -24,7 +24,7 @@
  */
 package co.aikar.timings;
 
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.command.CommandSource;
 
 import javax.annotation.Nullable;
 

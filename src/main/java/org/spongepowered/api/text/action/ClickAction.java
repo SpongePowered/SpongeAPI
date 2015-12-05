@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.text.action;
 
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.command.CommandSource;
 
 import java.net.URL;
 import java.util.function.Consumer;

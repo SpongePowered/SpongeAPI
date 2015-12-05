@@ -26,8 +26,8 @@ package co.aikar.timings;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.util.command.CommandSource;
-import org.spongepowered.api.util.command.source.ConsoleSource;
+import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.command.source.ConsoleSource;
 
 import javax.annotation.Nullable;
 

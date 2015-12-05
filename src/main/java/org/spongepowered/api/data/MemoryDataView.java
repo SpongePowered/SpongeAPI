@@ -38,8 +38,8 @@ import com.google.common.collect.Maps;
 import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.service.persistence.DataBuilder;
-import org.spongepowered.api.service.persistence.SerializationManager;
+import org.spongepowered.api.util.persistence.DataBuilder;
+import org.spongepowered.api.util.persistence.SerializationManager;
 import org.spongepowered.api.util.Coerce;
 
 import java.util.ArrayList;

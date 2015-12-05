@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api;
 
+import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.ImmutableDataRegistry;
 import org.spongepowered.api.data.manipulator.DataManipulatorRegistry;
@@ -32,11 +33,12 @@ import org.spongepowered.api.data.property.PropertyStore;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.ServiceManager;
-import org.spongepowered.api.service.command.CommandService;
-import org.spongepowered.api.service.event.EventManager;
-import org.spongepowered.api.service.persistence.DataBuilder;
-import org.spongepowered.api.service.persistence.SerializationManager;
-import org.spongepowered.api.service.scheduler.SchedulerService;
+import org.spongepowered.api.command.CommandManager;
+import org.spongepowered.api.event.EventManager;
+import org.spongepowered.api.util.persistence.DataBuilder;
+import org.spongepowered.api.util.persistence.SerializationManager;
+import org.spongepowered.api.scheduler.Scheduler;
+import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
@@ -106,7 +108,7 @@ public interface Game {
      *
      * @return The scheduler
      */
-    SchedulerService getScheduler();
+    Scheduler getScheduler();
 
     /**
      * Gets the {@link SerializationManager} instance to register
@@ -114,7 +116,7 @@ public interface Game {
      *
      * @return The serialization service
      */
-    SerializationManager getSerializationService();
+    SerializationManager getSerializationManager();
 
     /**
      * Gets the {@link PropertyRegistry} instance to register
@@ -144,13 +146,21 @@ public interface Game {
      *
      * @return The command dispatcher
      */
-    CommandService getCommandDispatcher();
+    CommandManager getCommandManager();
 
     /**
      * Gets the {@link TeleportHelper}, used to find safe {@link Location}s.
      * @return The teleport helper
      */
     TeleportHelper getTeleportHelper();
+
+    /**
+     * Gets the {@link ConfigManager} used to load and manage configuration files
+     * for plugins.
+     *
+     * @return The configuration manager
+     */
+    ConfigManager getConfigManager();
 
     /**
      * Gets the saves directory where {@link World} data currently resides.

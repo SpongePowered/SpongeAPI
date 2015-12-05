@@ -26,7 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.potion.PotionEffect;
+import org.spongepowered.api.effect.potion.PotionEffect;
 
 import java.util.List;
 

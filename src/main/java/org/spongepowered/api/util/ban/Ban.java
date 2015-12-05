@@ -24,17 +24,52 @@
  */
 package org.spongepowered.api.util.ban;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.net.InetAddress;
 import java.util.Date;
 import java.util.Optional;
 
+import javax.annotation.Nullable;
+
 /**
  * Represents a ban made on an object.
  */
 public interface Ban {
+
+    /**
+     * Creates a new Builder.
+     *
+     * @return A new ban builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Creates an indefinite ban on a user.
+     *
+     * @param user The user
+     * @return The created ban
+     */
+    static Ban of(org.spongepowered.api.entity.living.player.User user) {
+        return builder().user(user).build();
+    }
+
+    /**
+     * Creates an indefinite ban with a reason on a user.
+     *
+     * @param user The user
+     * @param reason The reason
+     * @return The created ban
+     */
+    static Ban of(org.spongepowered.api.entity.living.player.User user, Text.Literal reason) {
+        return builder().user(user).reason(reason).build();
+    }
 
     /**
      * Gets the type of this ban.
@@ -106,4 +141,77 @@ public interface Ban {
 
     }
 
+    /**
+     * Represents a builder that creates bans.
+     */
+    interface Builder extends ResettableBuilder<Builder> {
+
+        /**
+         * Sets the user to be banned.
+         *
+         * <p>This can only be done if the {@link BanType} has been set to {@link BanType#USER_BAN}.</p>
+         *
+         * @param user The user
+         * @return This builder
+         */
+        Builder user(org.spongepowered.api.entity.living.player.User user);
+
+        /**
+         * Sets the IP address to be banned.
+         *
+         * <p>This can only be done if the {@link BanType} has been set to {@link BanType#IP_BAN}.</p>
+         *
+         * @param address The IP address
+         * @return This builder
+         */
+        Builder address(InetAddress address);
+
+        /**
+         * Sets the type of the ban.
+         *
+         * @param type The type to be set
+         * @return This builder
+         */
+        Builder type(BanType type);
+
+        /**
+         * Sets the reason for the ban.
+         *
+         * @param reason The reason
+         * @return This builder
+         */
+        Builder reason(Text.Literal reason);
+
+        /**
+         * Sets the date that the ban starts.
+         *
+         * @param date The start date
+         * @return This builder
+         */
+        Builder startDate(Date date);
+
+        /**
+         * Sets the expiration date of the ban, or removes it.
+         *
+         * @param date The expiration date, or null in order to remove it
+         * @return This builder
+         */
+        Builder expirationDate(@Nullable Date date);
+
+        /**
+         * Sets the source of the ban, or removes it if {@code null} is passed in.
+         *
+         * @param source The source of the ban, or {@code null}
+         * @return This builder
+         */
+        Builder source(@Nullable CommandSource source);
+
+        /**
+         * Creates a new Ban from this builder.
+         *
+         * @return A new Ban
+         */
+        Ban build();
+
+    }
 }

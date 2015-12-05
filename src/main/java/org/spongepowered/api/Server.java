@@ -28,11 +28,12 @@ import com.flowpowered.math.vector.Vector3d;
 import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
-import org.spongepowered.api.service.world.ChunkLoadService;
+import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.sink.MessageSink;
-import org.spongepowered.api.util.command.source.ConsoleSource;
+import org.spongepowered.api.command.source.ConsoleSource;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBuilder;
 import org.spongepowered.api.world.WorldCreationSettings;
@@ -348,11 +349,18 @@ public interface Server {
     ConsoleSource getConsole();
 
     /**
-     * Gets the ChunkLoadService used for requesting tickets to force load chunks.
+     * Gets the ChunkTicketManager used for requesting tickets to force load chunks.
      *
      * @return This server's chunk load service
      */
-    ChunkLoadService getChunkLoadService();
+    ChunkTicketManager getChunkTicketManager();
+
+    /**
+     * Gets the {@link GameProfileManager} for resolving game profiles.
+     *
+     * @return This server's game profile manager
+     */
+    GameProfileManager getGameProfileManager();
 
     /**
      * Gets the current ticks per second. A tick represents one cycle of the

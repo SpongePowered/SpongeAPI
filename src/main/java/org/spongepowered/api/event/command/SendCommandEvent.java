@@ -27,7 +27,7 @@ package org.spongepowered.api.event.command;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.util.command.CommandResult;
+import org.spongepowered.api.command.CommandResult;
 
 /**
  * Fired when a command is sent

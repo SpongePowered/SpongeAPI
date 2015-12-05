@@ -29,8 +29,7 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BannerData;
 import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.service.persistence.DataBuilder;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.persistence.DataBuilder;
 
 /**
  * A representation on a single layer of a {@link BannerData}'s pattern.

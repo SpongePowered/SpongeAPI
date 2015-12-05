@@ -48,11 +48,6 @@ import java.util.Optional;
 public class CauseTest {
 
     @Test
-    public void testEmptyCause() {
-        Cause.empty();
-    }
-
-    @Test
     public void testPopulatedCause() {
         Cause.of("foo");
     }
@@ -79,7 +74,7 @@ public class CauseTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testWithNullCauses() {
-        final Cause old = Cause.empty();
+        final Cause old = Cause.of();
         final Cause newCause = old.with(null, null);
     }
 
@@ -128,7 +123,7 @@ public class CauseTest {
 
     @Test
     public void testEmptyWithEmpty() {
-        final Cause empty = Cause.empty();
+        final Cause empty = Cause.of();
         assertThat(empty.with().isEmpty(), is(true));
     }
 

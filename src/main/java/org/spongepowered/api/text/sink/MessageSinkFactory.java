@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.text.sink;
 
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.command.CommandSource;
 
 import java.util.Set;
 

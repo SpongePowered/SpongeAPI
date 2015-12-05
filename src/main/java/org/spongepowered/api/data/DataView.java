@@ -26,8 +26,8 @@ package org.spongepowered.api.data;
 
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.service.persistence.DataBuilder;
-import org.spongepowered.api.service.persistence.SerializationManager;
+import org.spongepowered.api.util.persistence.DataBuilder;
+import org.spongepowered.api.util.persistence.SerializationManager;
 
 import java.util.List;
 import java.util.Map;

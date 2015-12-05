@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import org.spongepowered.api.Game;
-import org.spongepowered.api.GameProfile;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.GameState;
 import org.spongepowered.api.MinecraftVersion;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -180,20 +180,20 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
 import org.spongepowered.api.network.RemoteConnection;
-import org.spongepowered.api.potion.PotionEffect;
+import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.resourcepack.ResourcePack;
-import org.spongepowered.api.service.world.ChunkLoadService;
+import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
-import org.spongepowered.api.status.Favicon;
-import org.spongepowered.api.status.StatusClient;
+import org.spongepowered.api.network.status.Favicon;
+import org.spongepowered.api.network.status.StatusClient;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.sink.MessageSink;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.ban.Ban;
-import org.spongepowered.api.util.command.CommandResult;
-import org.spongepowered.api.util.command.source.RconSource;
+import org.spongepowered.api.command.CommandResult;
+import org.spongepowered.api.command.source.RconSource;
 import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleporterAgent;
@@ -4877,7 +4877,7 @@ public class SpongeEventFactory {
      * @param ticket The ticket
      * @return A new forced chunk event
      */
-    public static ForcedChunkEvent createForcedChunkEvent(Game game, Vector3i chunkCoords, Chunk targetChunk, ChunkLoadService.LoadingTicket ticket) {
+    public static ForcedChunkEvent createForcedChunkEvent(Game game, Vector3i chunkCoords, Chunk targetChunk, ChunkTicketManager.LoadingTicket ticket) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("chunkCoords", chunkCoords);
@@ -5007,7 +5007,7 @@ public class SpongeEventFactory {
      * @param ticket The ticket
      * @return A new unforced chunk event
      */
-    public static UnforcedChunkEvent createUnforcedChunkEvent(Game game, Cause cause, Vector3i chunkCoords, ChunkLoadService.LoadingTicket ticket) {
+    public static UnforcedChunkEvent createUnforcedChunkEvent(Game game, Cause cause, Vector3i chunkCoords, ChunkTicketManager.LoadingTicket ticket) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);

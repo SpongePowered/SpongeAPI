@@ -34,8 +34,8 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.spongepowered.api.service.persistence.DataBuilder;
-import org.spongepowered.api.service.persistence.SerializationManager;
+import org.spongepowered.api.util.persistence.DataBuilder;
+import org.spongepowered.api.util.persistence.SerializationManager;
 
 import java.util.Arrays;
 import java.util.List;

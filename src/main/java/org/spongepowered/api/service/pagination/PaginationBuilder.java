@@ -25,7 +25,7 @@
 package org.spongepowered.api.service.pagination;
 
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.command.CommandSource;
 
 import java.util.List;
 

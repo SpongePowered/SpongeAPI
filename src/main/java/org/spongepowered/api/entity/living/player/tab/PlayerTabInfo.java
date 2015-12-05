@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.player.tab;
 
-import org.spongepowered.api.GameProfile;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.text.Text;
 

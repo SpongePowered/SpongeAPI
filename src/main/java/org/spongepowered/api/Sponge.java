@@ -31,10 +31,10 @@ import org.spongepowered.api.data.manipulator.DataManipulatorRegistry;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.ServiceManager;
-import org.spongepowered.api.service.command.CommandService;
-import org.spongepowered.api.service.event.EventManager;
-import org.spongepowered.api.service.persistence.SerializationManager;
-import org.spongepowered.api.service.scheduler.SchedulerService;
+import org.spongepowered.api.command.CommandManager;
+import org.spongepowered.api.event.EventManager;
+import org.spongepowered.api.util.persistence.SerializationManager;
+import org.spongepowered.api.scheduler.Scheduler;
 
 public final class Sponge {
 
@@ -57,12 +57,12 @@ public final class Sponge {
         return getGame().getEventManager();
     }
 
-    public static SchedulerService getScheduler() {
+    public static Scheduler getScheduler() {
         return getGame().getScheduler();
     }
 
     public static SerializationManager getSerializationService() {
-        return getGame().getSerializationService();
+        return getGame().getSerializationManager();
     }
 
     public static PluginManager getPluginManager() {
@@ -77,8 +77,8 @@ public final class Sponge {
         return getGame().getGameDictionary();
     }
 
-    public static CommandService getCommandDispatcher() {
-        return getGame().getCommandDispatcher();
+    public static CommandManager getCommandDispatcher() {
+        return getGame().getCommandManager();
     }
 
     public static ChannelRegistrar getChannelRegistrar() {
