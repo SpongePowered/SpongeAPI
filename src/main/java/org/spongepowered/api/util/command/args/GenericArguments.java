@@ -698,13 +698,13 @@ public final class GenericArguments {
      * @param key The key to store the parsed argument under
      * @return the element to match the input
      */
-    public static CommandElement decimal(Text key) {
-        return new DecimalElement(key);
+    public static CommandElement doubleNum(Text key) {
+        return new DoubleNumElement(key);
     }
 
-    private static class DecimalElement extends KeyElement {
+    private static class DoubleNumElement extends KeyElement {
 
-        private DecimalElement(Text key) {
+        private DoubleNumElement(Text key) {
             super(key);
         }
 
