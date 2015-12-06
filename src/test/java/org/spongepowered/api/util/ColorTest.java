@@ -95,7 +95,7 @@ public class ColorTest {
 
     @Test
     public void testGetGreen() {
-        assertTrue(0x00FF00 == Color.GREEN.getGreen());
+        assertTrue(0x80 == Color.GREEN.getGreen());
     }
 
     @Test
@@ -108,7 +108,7 @@ public class ColorTest {
 
     @Test
     public void testGetBlue() {
-        assertTrue(0x0000FF == Color.BLUE.getBlue());
+        assertTrue(0xFF == Color.BLUE.getBlue());
     }
 
     @Test
@@ -147,7 +147,7 @@ public class ColorTest {
 
     @Test
     public void testEquals() {
-        assertTrue(Color.GREEN.equals(Color.ofRgb(0x00FF00)));
+        assertTrue(Color.GREEN.equals(Color.ofRgb(0x008000)));
         assertTrue(!Color.GREEN.equals(Color.GRAY));
     }
 
