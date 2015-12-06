@@ -4225,9 +4225,10 @@ public class SpongeEventFactory {
      * @param toTransform The to transform
      * @param connection The connection
      * @param profile The profile
+     * @param targetEntity The target entity
      * @return A new login client connection event
      */
-    public static ClientConnectionEvent.Login createClientConnectionEventLogin(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Transform<World> fromTransform, Transform<World> toTransform, RemoteConnection connection, GameProfile profile) {
+    public static ClientConnectionEvent.Login createClientConnectionEventLogin(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Transform<World> fromTransform, Transform<World> toTransform, RemoteConnection connection, GameProfile profile, Player targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -4239,6 +4240,7 @@ public class SpongeEventFactory {
         values.put("toTransform", toTransform);
         values.put("connection", connection);
         values.put("profile", profile);
+        values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Login.class, values);
     }
 
