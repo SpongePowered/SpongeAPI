@@ -22,5 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+/**
+ * Classes related to (crafting)
+ * {@link org.spongepowered.api.item.recipe.Recipe recipes}.
+ */
 @org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.item.recipe;

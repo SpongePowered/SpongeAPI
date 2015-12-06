@@ -22,5 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+/**
+ * Enum like classes used in {@link org.spongepowered.api.data.DataManipulator
+ * DataManipulator}s. You can obtain instances by name or all at once using the
+ * {@link org.spongepowered.api.GameRegistry GameRegistry}.
+ */
 @org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.data.type;

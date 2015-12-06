@@ -22,4 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.command;
+
+/**
+ * Service classes related to
+ * {@link org.spongepowered.api.command.CommandManager command management}.
+ */
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.command;

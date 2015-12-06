@@ -22,4 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.text.format;
+
+/**
+ * Classes related to Text formating such as
+ * {@link org.spongepowered.api.text.format.TextColor colors} and
+ * {@link org.spongepowered.api.text.format.TextStyle style}.
+ */
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.text.format;

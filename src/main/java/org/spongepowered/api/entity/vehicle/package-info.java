@@ -22,4 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.entity.vehicle;
+
+/**
+ * Classes for vehicles such as boats and Minecarts.
+ */
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.entity.vehicle;

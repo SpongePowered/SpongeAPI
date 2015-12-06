@@ -22,4 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.text.action;
+
+/**
+ * Classes related to actions bound to text parts.
+ */
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.text.action;

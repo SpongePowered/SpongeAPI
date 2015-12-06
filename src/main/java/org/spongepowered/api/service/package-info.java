@@ -22,4 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.service;
+
+/**
+ * Classes related to {@link org.spongepowered.api.service.ServiceManager
+ * service management} as well as service definitions.
+ *
+ * <p>Services are features that are used across multiple plugins or in the
+ * server itself. Before services can be used they must be registered at the
+ * {@link org.spongepowered.api.service.ServiceManager service manager}. You can
+ * fetch the service via the abstract declaration class either directly or as a
+ * lazy {@link org.spongepowered.api.service.ServiceReference service reference}
+ * .</p>
+ */
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.service;

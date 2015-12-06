@@ -22,4 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.world;
+
+/**
+ * {@link org.spongepowered.api.event.Event Events} related to the
+ * {@link org.spongepowered.api.world.World world}.
+ */
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.event.world;

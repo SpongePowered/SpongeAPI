@@ -22,5 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+/**
+ * Classes used to store and {@link org.spongepowered.api.data.DataManipulator
+ * manipulate} data on a wide variety of
+ * {@link org.spongepowered.api.data.DataHolder data holders}, replaces the
+ * insecure NBT access.
+ */
 @org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.data;

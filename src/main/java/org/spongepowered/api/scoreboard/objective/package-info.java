@@ -22,5 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+/**
+ * Classes related to tracking the actual
+ * {@link org.spongepowered.api.scoreboard.objective.Objective score value} for
+ * the entiries in {@link org.spongepowered.api.scoreboard.Scoreboard
+ * scoreboards}.
+ */
 @org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.scoreboard.objective;

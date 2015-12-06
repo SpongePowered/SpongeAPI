@@ -22,4 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.entity.living;
+
+/**
+ * Classes for {@link org.spongepowered.api.entity.living.Living living}
+ * entities such as players and monsters.
+ */
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.entity.living;

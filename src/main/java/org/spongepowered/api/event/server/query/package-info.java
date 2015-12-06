@@ -22,5 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+/**
+ * {@link org.spongepowered.api.event.Event Events} related to the
+ * {@link org.spongepowered.api.Server} queries.
+ */
 @org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.event.server.query;
