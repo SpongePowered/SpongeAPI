@@ -242,7 +242,7 @@ public class MemoryDataTest {
         // Need to mock the service Sadly, this takes the most amount of time
         DataManager service = Mockito.mock(DataManager.class);
         DataBuilder<SimpleData> builder = new SimpleDataBuilder();
-        Mockito.stub(service.getManipulatorBuilder(SimpleData.class)).toReturn(Optional.of(builder));
+        Mockito.stub(service.getBuilder(SimpleData.class)).toReturn(Optional.of(builder));
 
         List<String> myList = ImmutableList.of("foo", "bar", "baz");
 
@@ -261,7 +261,7 @@ public class MemoryDataTest {
     public void testGetSerializableList() {
         DataManager service = Mockito.mock(DataManager.class);
         DataBuilder<SimpleData> builder = new SimpleDataBuilder();
-        Mockito.stub(service.getManipulatorBuilder(SimpleData.class)).toReturn(Optional.of(builder));
+        Mockito.stub(service.getBuilder(SimpleData.class)).toReturn(Optional.of(builder));
 
         List<SimpleData> list = Lists.newArrayList();
         for (int i = 0; i < 1000; i++) {
