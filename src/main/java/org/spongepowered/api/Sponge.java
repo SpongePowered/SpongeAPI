@@ -26,14 +26,12 @@ package org.spongepowered.api;
 
 import static com.google.common.base.Preconditions.checkState;
 
-import org.spongepowered.api.data.ImmutableDataRegistry;
-import org.spongepowered.api.data.manipulator.DataManipulatorRegistry;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.event.EventManager;
-import org.spongepowered.api.util.persistence.SerializationManager;
+import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.scheduler.Scheduler;
 
 public final class Sponge {
@@ -61,8 +59,8 @@ public final class Sponge {
         return getGame().getScheduler();
     }
 
-    public static SerializationManager getSerializationService() {
-        return getGame().getSerializationManager();
+    public static DataManager getDataManager() {
+        return getGame().getDataManager();
     }
 
     public static PluginManager getPluginManager() {
@@ -83,14 +81,6 @@ public final class Sponge {
 
     public static ChannelRegistrar getChannelRegistrar() {
         return getGame().getChannelRegistrar();
-    }
-
-    public static DataManipulatorRegistry getManipulatorRegistry() {
-        return getGame().getManipulatorRegistry();
-    }
-
-    public static ImmutableDataRegistry getImmutableManipulatorRegistry() {
-        return getGame().getImmutableDataRegistry();
     }
 
 }

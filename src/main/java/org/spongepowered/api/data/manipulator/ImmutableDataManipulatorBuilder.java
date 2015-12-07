@@ -32,7 +32,6 @@ import java.util.Optional;
 
 public interface ImmutableDataManipulatorBuilder<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>> extends DataBuilder<I> {
 
-
     /**
      * Creates a new specific {@link ImmutableDataManipulator} for consumption.
      *

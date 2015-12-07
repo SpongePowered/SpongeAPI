@@ -26,8 +26,6 @@ package org.spongepowered.api;
 
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.ImmutableDataRegistry;
-import org.spongepowered.api.data.manipulator.DataManipulatorRegistry;
 import org.spongepowered.api.data.property.PropertyRegistry;
 import org.spongepowered.api.data.property.PropertyStore;
 import org.spongepowered.api.network.ChannelRegistrar;
@@ -36,9 +34,8 @@ import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.util.persistence.DataBuilder;
-import org.spongepowered.api.util.persistence.SerializationManager;
+import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.scheduler.Scheduler;
-import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
@@ -111,12 +108,12 @@ public interface Game {
     Scheduler getScheduler();
 
     /**
-     * Gets the {@link SerializationManager} instance to register
+     * Gets the {@link DataManager} instance to register
      * {@link DataSerializable}s, and get the related {@link DataBuilder}s.
      *
      * @return The serialization service
      */
-    SerializationManager getSerializationManager();
+    DataManager getDataManager();
 
     /**
      * Gets the {@link PropertyRegistry} instance to register
@@ -125,20 +122,6 @@ public interface Game {
      * @return The property registry
      */
     PropertyRegistry getPropertyRegistry();
-
-    /**
-     * Retrieves the {@link DataManipulatorRegistry} for this {@link GameRegistry}.
-     *
-     * @return The manipulator registry
-     */
-    DataManipulatorRegistry getManipulatorRegistry();
-
-    /**
-     * Retrieves the {@link ImmutableDataRegistry} for this {@link GameRegistry}.
-     *
-     * @return The immutable data registry
-     */
-    ImmutableDataRegistry getImmutableDataRegistry();
 
     /**
      * Get the command dispatcher used for registering and dispatching

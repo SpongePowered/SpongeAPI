@@ -39,7 +39,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.util.persistence.DataBuilder;
-import org.spongepowered.api.util.persistence.SerializationManager;
 import org.spongepowered.api.util.Coerce;
 
 import java.util.ArrayList;
@@ -781,7 +780,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz, SerializationManager service) {
+    public <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz, DataManager service) {
         checkNotNull(path, "path");
         checkNotNull(clazz, "clazz");
         checkNotNull(service, "service");
@@ -800,7 +799,7 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz, SerializationManager service) {
+    public <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz, DataManager service) {
         checkNotNull(path, "path");
         checkNotNull(clazz, "clazz");
         checkNotNull(service, "service");

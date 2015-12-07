@@ -45,7 +45,7 @@ import java.util.List;
  * Represents a transaction taking place where a {@link DataHolder} is
  * accepting {@link DataManipulator}s.
  */
-public interface DataTransactionResult {
+public final class DataTransactionResult {
 
     /**
      * Gets a new {@link Builder} to build a new
@@ -53,7 +53,7 @@ public interface DataTransactionResult {
      *
      * @return The new builder, for chaining
      */
-    static Builder builder() {
+    public static Builder builder() {
         return new Builder();
     }
 
@@ -66,7 +66,7 @@ public interface DataTransactionResult {
      *
      * @return A clean and empty data transaction
      */
-    static DataTransactionResult successNoData() {
+    public static DataTransactionResult successNoData() {
         return builder().result(Type.SUCCESS).build();
     }
 
@@ -82,7 +82,7 @@ public interface DataTransactionResult {
      * @param value The successfully added immutable value
      * @return The new data transaction result
      */
-    static DataTransactionResult successResult(final ImmutableValue<?> value) {
+    public static DataTransactionResult successResult(final ImmutableValue<?> value) {
         return builder().success(value).result(Type.SUCCESS).build();
     }
 
@@ -99,7 +99,7 @@ public interface DataTransactionResult {
      * @param replaced The replaced value
      * @return The new data transaction result
      */
-    static DataTransactionResult successReplaceResult(final ImmutableValue<?> successful, final ImmutableValue<?> replaced) {
+    public static DataTransactionResult successReplaceResult(final ImmutableValue<?> successful, final ImmutableValue<?> replaced) {
         return builder().result(Type.SUCCESS).success(successful).replace(replaced).build();
     }
 
@@ -117,7 +117,7 @@ public interface DataTransactionResult {
      * @param replaced The successfully replaced immutable values
      * @return The new data transaction result
      */
-    static DataTransactionResult successReplaceResult(Collection<ImmutableValue<?>> successful, Collection<ImmutableValue<?>> replaced) {
+    public static DataTransactionResult successReplaceResult(Collection<ImmutableValue<?>> successful, Collection<ImmutableValue<?>> replaced) {
         return builder().success(successful).replace(replaced).result(Type.SUCCESS).build();
     }
 
@@ -132,7 +132,7 @@ public interface DataTransactionResult {
      * @param removed The successfully removed values
      * @return The new data transaction result
      */
-    static DataTransactionResult successRemove(Collection<ImmutableValue<?>> removed) {
+    public static DataTransactionResult successRemove(Collection<ImmutableValue<?>> removed) {
         return builder().replace(removed).result(Type.SUCCESS).build();
     }
 
@@ -144,7 +144,7 @@ public interface DataTransactionResult {
      * @param value The value that was rejected
      * @return The new data transaction result
      */
-    static DataTransactionResult failResult(final ImmutableValue<?> value) {
+    public static DataTransactionResult failResult(final ImmutableValue<?> value) {
         return builder().reject(value).result(Type.FAILURE).build();
     }
 
@@ -156,7 +156,7 @@ public interface DataTransactionResult {
      * @param values The values that were rejected
      * @return The new data transaction result
      */
-    static DataTransactionResult failResult(final Iterable<ImmutableValue<?>> values) {
+    public static DataTransactionResult failResult(final Iterable<ImmutableValue<?>> values) {
         return builder().reject(values).result(Type.FAILURE).build();
     }
 
@@ -166,7 +166,7 @@ public interface DataTransactionResult {
      *
      * @return The new data transaction result
      */
-    static DataTransactionResult failNoData() {
+    public static DataTransactionResult failNoData() {
         return builder().result(Type.FAILURE).build();
     }
 
@@ -178,14 +178,14 @@ public interface DataTransactionResult {
      * @param value The value that was incompatible or errored
      * @return The new data transaction result
      */
-    static DataTransactionResult errorResult(final ImmutableValue<?> value) {
+    public static DataTransactionResult errorResult(final ImmutableValue<?> value) {
         return builder().result(Type.ERROR).reject(value).build();
     }
 
     /**
      * The type of transaction result.
      */
-    enum Type {
+    public enum Type {
 
         /**
          * The actual result of the operation is undefined, this probably
@@ -224,19 +224,46 @@ public interface DataTransactionResult {
         ;
     }
 
+    private final Type type;
+    private final ImmutableList<ImmutableValue<?>> rejected;
+    private final ImmutableList<ImmutableValue<?>> replaced;
+    private final ImmutableList<ImmutableValue<?>> success;
+
+    private DataTransactionResult(final Builder builder) {
+        this.type = builder.resultType;
+        if (builder.rejected != null) {
+            this.rejected = ImmutableList.copyOf(builder.rejected);
+        } else {
+            this.rejected = ImmutableList.of();
+        }
+        if (builder.replaced != null) {
+            this.replaced = ImmutableList.copyOf(builder.replaced);
+        } else {
+            this.replaced = ImmutableList.of();
+        }
+        if (builder.successful != null) {
+            this.success = ImmutableList.copyOf(builder.successful);
+        } else {
+            this.success = ImmutableList.of();
+        }
+    }
+
+
     /**
      * Get the type of result.
      *
      * @return the type of result
      */
-    Type getType();
+    public Type getType() {
+        return this.type;
+    }
 
     /**
      * Gets whether this {@link DataTransactionResult} was successful or not.
      *
      * @return True if this result was successful
      */
-    default boolean isSuccessful() {
+    public boolean isSuccessful() {
         return getType() == Type.SUCCESS;
     }
 
@@ -246,7 +273,9 @@ public interface DataTransactionResult {
      *
      * @return An immutable list of the values successfully offered
      */
-    List<ImmutableValue<?>> getSuccessfulData();
+    public List<ImmutableValue<?>> getSuccessfulData() {
+        return this.success;
+    }
 
     /**
      * If {@link Value}s were supplied to the operation, this
@@ -255,7 +284,9 @@ public interface DataTransactionResult {
      *
      * @return Any data that was rejected from the operation
      */
-    List<ImmutableValue<?>> getRejectedData();
+    public List<ImmutableValue<?>> getRejectedData() {
+        return this.rejected;
+    }
 
     /**
      * If the operation replaced any {@link Value}s, this returns a collection
@@ -263,14 +294,16 @@ public interface DataTransactionResult {
      *
      * @return Any data that was replaced
      */
-    List<ImmutableValue<?>> getReplacedData();
+    public List<ImmutableValue<?>> getReplacedData() {
+        return this.replaced;
+    }
 
     /**
      * A type of builder for building {@link DataTransactionResult}s. The common
      * use is for both implementations of {@link DataHolder}s, and various
      * {@link ChangeDataHolderEvent.ValueChange}s.
      */
-    final class Builder implements ResettableBuilder<Builder> {
+    public static final class Builder implements ResettableBuilder<Builder> {
 
         private List<ImmutableValue<?>> rejected;
         private List<ImmutableValue<?>> replaced;
@@ -573,7 +606,7 @@ public interface DataTransactionResult {
          */
         public DataTransactionResult build() {
             checkState(this.resultType != null);
-            return new BuilderResult(this);
+            return new DataTransactionResult(this);
         }
 
         @Override
@@ -583,53 +616,6 @@ public interface DataTransactionResult {
             this.successful = null;
             this.resultType = null;
             return this;
-        }
-
-        private static final class BuilderResult implements DataTransactionResult {
-
-            private final Type type;
-            private final ImmutableList<ImmutableValue<?>> rejected;
-            private final ImmutableList<ImmutableValue<?>> replaced;
-            private final ImmutableList<ImmutableValue<?>> success;
-
-            BuilderResult(final Builder builder) {
-                this.type = builder.resultType;
-                if (builder.rejected != null) {
-                    this.rejected = ImmutableList.copyOf(builder.rejected);
-                } else {
-                    this.rejected = ImmutableList.of();
-                }
-                if (builder.replaced != null) {
-                    this.replaced = ImmutableList.copyOf(builder.replaced);
-                } else {
-                    this.replaced = ImmutableList.of();
-                }
-                if (builder.successful != null) {
-                    this.success = ImmutableList.copyOf(builder.successful);
-                } else {
-                    this.success = ImmutableList.of();
-                }
-            }
-
-            @Override
-            public Type getType() {
-                return this.type;
-            }
-
-            @Override
-            public List<ImmutableValue<?>> getSuccessfulData() {
-                return this.success;
-            }
-
-            @Override
-            public List<ImmutableValue<?>> getRejectedData() {
-                return this.rejected;
-            }
-
-            @Override
-            public List<ImmutableValue<?>> getReplacedData() {
-                return this.replaced;
-            }
         }
 
     }

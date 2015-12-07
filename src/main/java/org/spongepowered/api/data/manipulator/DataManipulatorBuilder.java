@@ -26,6 +26,7 @@ package org.spongepowered.api.data.manipulator;
 
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.util.persistence.DataBuilder;
+import org.spongepowered.api.data.DataManager;
 
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ import java.util.Optional;
  * customized data prior to applying to a {@link DataHolder}.
  *
  * <p>{@link DataManipulatorBuilder}s must be registered with the
- * {@link DataManipulatorRegistry} before they can be used by the game
+ * {@link DataManager} before they can be used by the game
  * and plugins. Failure to do so may prevent the {@link DataManipulator} from
  * being used.</p>
  *
