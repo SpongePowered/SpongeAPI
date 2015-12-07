@@ -26,7 +26,6 @@ package org.spongepowered.api.data.value.mutable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.data.DataTransactionBuilder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.merge.MergeFunction;
@@ -166,7 +165,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
         if (supports(key)) {
             return offer(key, checkNotNull(function.apply(get(key).orElse(null))));
         }
-        return DataTransactionBuilder.failNoData();
+        return DataTransactionResult.failNoData();
     }
 
     /**
@@ -251,7 +250,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * @return The transaction result
      */
     default DataTransactionResult offer(Iterable<H> valueContainers, MergeFunction function) {
-        final DataTransactionBuilder builder = DataTransactionBuilder.builder();
+        final DataTransactionResult.Builder builder = DataTransactionResult.builder();
         for (H valueContainer : valueContainers) {
             builder.absorbResult(offer(valueContainer, function));
         }

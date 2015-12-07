@@ -30,7 +30,6 @@ import com.flowpowered.math.vector.Vector3i;
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataTransactionBuilder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.key.Key;
@@ -428,7 +427,7 @@ public interface LocationCompositeValueStore {
                 return offer(x, y, z, key, function.apply(optional.get()));
             }
         }
-        return DataTransactionBuilder.failNoData();
+        return DataTransactionResult.failNoData();
     }
 
     /**
@@ -584,7 +583,7 @@ public interface LocationCompositeValueStore {
      * @return The transaction result
      */
     default DataTransactionResult offer(Vector3i coordinates, Iterable<DataManipulator<?, ?>> manipulators) {
-        final DataTransactionBuilder builder = DataTransactionBuilder.builder();
+        final DataTransactionResult.Builder builder = DataTransactionResult.builder();
         for (DataManipulator<?, ?> manipulator : manipulators) {
             builder.absorbResult(offer(coordinates.getX(), coordinates.getY(), coordinates.getZ(), manipulator, MergeFunction.IGNORE_ALL));
         }
@@ -606,7 +605,7 @@ public interface LocationCompositeValueStore {
      * @return The transaction result
      */
     default DataTransactionResult offer(int x, int y, int z, Iterable<DataManipulator<?, ?>> manipulators) {
-        final DataTransactionBuilder builder = DataTransactionBuilder.builder();
+        final DataTransactionResult.Builder builder = DataTransactionResult.builder();
         for (DataManipulator<?, ?> manipulator : manipulators) {
             builder.absorbResult(offer(x, y, z, manipulator, MergeFunction.IGNORE_ALL));
         }
@@ -630,7 +629,7 @@ public interface LocationCompositeValueStore {
      * @return The transaction result
      */
     default DataTransactionResult offer(Vector3i blockPosition, Iterable<DataManipulator<?,?>> values, MergeFunction function) {
-        final DataTransactionBuilder builder = DataTransactionBuilder.builder();
+        final DataTransactionResult.Builder builder = DataTransactionResult.builder();
         for (DataManipulator<?, ?> manipulator : values) {
             builder.absorbResult(offer(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ(), manipulator, function));
         }

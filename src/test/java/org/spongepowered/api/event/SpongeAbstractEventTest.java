@@ -35,7 +35,6 @@ import org.junit.Test;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataTransactionBuilder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
@@ -64,8 +63,8 @@ public class SpongeAbstractEventTest {
 
     @Test
     public void testValueChangeEvent() {
-        DataTransactionResult original = DataTransactionBuilder.failNoData();
-        DataTransactionResult modified = DataTransactionBuilder.successNoData();
+        DataTransactionResult original = DataTransactionResult.failNoData();
+        DataTransactionResult modified = DataTransactionResult.successNoData();
 
         ChangeDataHolderEvent.ValueChange event = SpongeEventFactory.createChangeDataHolderEventValueChange(mockParam(Game.class),
                 original, mockParam(DataHolder.class));

@@ -42,8 +42,8 @@ public class DataTransactionBuilderTest {
     }
     
     private Type absorbedType(Type builderType, Type resultType) {
-        DataTransactionResult result = DataTransactionBuilder.builder().result(resultType).build();
-        DataTransactionResult absorbed = DataTransactionBuilder.builder().result(builderType).absorbResult(result).build();
+        DataTransactionResult result = DataTransactionResult.builder().result(resultType).build();
+        DataTransactionResult absorbed = DataTransactionResult.builder().result(builderType).absorbResult(result).build();
         return absorbed.getType();
     }
 
