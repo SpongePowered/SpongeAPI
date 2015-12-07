@@ -36,6 +36,7 @@ import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
@@ -180,6 +181,8 @@ public class SpongeEventFactoryTest {
             return new InetSocketAddress(12345);
         } else if (paramType == UUID.class) {
             return UUID.randomUUID();
+        } else if (paramType == DataTransactionResult.class) {
+            return DataTransactionResult.successNoData();
         } else {
             return mock(paramType, withSettings().defaultAnswer(Mockito.RETURNS_MOCKS));
         }
