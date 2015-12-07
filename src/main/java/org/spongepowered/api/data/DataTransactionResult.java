@@ -27,6 +27,7 @@ package org.spongepowered.api.data;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.data.key.Key;
@@ -296,6 +297,16 @@ public final class DataTransactionResult {
      */
     public List<ImmutableValue<?>> getReplacedData() {
         return this.replaced;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("resultType", this.type)
+                .add("rejectedData", this.rejected)
+                .add("replacedData", this.replaced)
+                .add("successfulData", this.success)
+                .toString();
     }
 
     /**

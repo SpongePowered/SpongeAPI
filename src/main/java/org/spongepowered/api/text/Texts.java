@@ -335,7 +335,7 @@ public final class Texts {
      *
      * @return A new text builder with empty text
      */
-    public static TextBuilder builder() {
+    public static TextBuilder.Literal builder() {
         return new TextBuilder.Literal();
     }
 
