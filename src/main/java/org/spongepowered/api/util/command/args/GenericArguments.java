@@ -686,7 +686,7 @@ public final class GenericArguments {
             try {
                 return Integer.parseInt(input);
             } catch (NumberFormatException ex) {
-                throw args.createError(t("Expected an integer, but input '%s' was not", input));
+                throw args.createError(t("Expected a whole number, but input '%s' was not", input));
             }
         }
     }
@@ -714,7 +714,7 @@ public final class GenericArguments {
             try {
                 return Double.parseDouble(input);
             } catch (NumberFormatException ex) {
-                throw args.createError(t("Expected a decimal, but input '%s' was not", input));
+                throw args.createError(t("Expected a whole number or decimal, but input '%s' was not", input));
             }
         }
     }
