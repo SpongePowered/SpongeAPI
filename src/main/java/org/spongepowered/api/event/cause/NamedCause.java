@@ -43,10 +43,24 @@ import org.spongepowered.api.command.args.CommandArgs;
  */
 public final class NamedCause {
 
+    public static final String SOURCE = "Source";
     public static final String OWNER = "Owner";
     public static final String NOTIFIER = "Notifier";
     public static final String THROWER = "Thrower";
     public static final String IGNITER = "Igniter";
+
+    public static NamedCause source(Object object) {
+        return of(SOURCE, object);
+    }
+
+    public static NamedCause owner(Object object) {
+        return of(OWNER, object);
+    }
+
+    public static NamedCause notifier(Object obj) {
+        return of(NOTIFIER, obj);
+    }
+
 
     public static NamedCause of(String name, Object object) {
         checkNotNull(name, "Cannot have a null name!");

@@ -69,6 +69,15 @@ public abstract class Cause {
     private static final Cause EMPTY = new EmptyCause();
 
     /**
+     * Gets an empty {@link Cause}.
+     *
+     * @return The empty cause
+     */
+    public static Cause of() {
+        return EMPTY;
+    }
+
+    /**
      * Creates a new {@link Cause} of the provided {@link Object}s. Note that
      * none of the provided {@link Object}s can be <code>null</code>. The order
      * of the objects should represent the "priority" that the object aided in

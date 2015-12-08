@@ -36,6 +36,7 @@ import org.slf4j.Logger;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.SpongeEventFactory;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.NamedCause;
 import org.spongepowered.api.event.command.SendCommandEvent;
 import org.spongepowered.api.event.command.TabCompleteCommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -237,8 +238,8 @@ public class SimpleCommandManager implements CommandManager {
     @Override
     public CommandResult process(CommandSource source, String commandLine) {
         final String[] argSplit = commandLine.split(" ", 2);
-        final SendCommandEvent event = SpongeEventFactory.createSendCommandEvent(this.game, Cause.of(source), argSplit.length > 1 ? argSplit[1] : "",
-                argSplit[0], CommandResult.empty());
+        final SendCommandEvent event = SpongeEventFactory.createSendCommandEvent(this.game, Cause.of(NamedCause.source(source)),
+            argSplit.length > 1 ? argSplit[1] : "", argSplit[0], CommandResult.empty());
         this.game.getEventManager().post(event);
         if (event.isCancelled()) {
             return event.getResult();
@@ -295,8 +296,8 @@ public class SimpleCommandManager implements CommandManager {
         try {
             final String[] argSplit = arguments.split(" ", 2);
             List<String> suggestions = new ArrayList<>(this.dispatcher.getSuggestions(src, arguments));
-            final TabCompleteCommandEvent event = SpongeEventFactory.createTabCompleteCommandEvent(this.game, Cause.of(src), argSplit.length > 1 ?
-                            argSplit[1] : "", argSplit[0], suggestions);
+            final TabCompleteCommandEvent event = SpongeEventFactory.createTabCompleteCommandEvent(this.game, Cause.of(NamedCause.source(src)),
+                argSplit.length > 1 ? argSplit[1] : "", argSplit[0], suggestions);
             this.game.getEventManager().post(event);
             if (event.isCancelled()) {
                 return ImmutableList.of();

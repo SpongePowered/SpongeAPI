@@ -47,4 +47,6 @@ import org.spongepowered.api.item.inventory.ItemStack;
  */
 public interface TameEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
 
+    String USED_ITEM = "UsedItem";
+
 }
