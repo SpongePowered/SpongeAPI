@@ -34,7 +34,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import org.spongepowered.api.Game;
-import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.GameState;
 import org.spongepowered.api.MinecraftVersion;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -43,11 +42,14 @@ import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
+import org.spongepowered.api.command.CommandResult;
+import org.spongepowered.api.command.source.RconSource;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
+import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
@@ -180,21 +182,19 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
 import org.spongepowered.api.network.RemoteConnection;
-import org.spongepowered.api.effect.potion.PotionEffect;
-import org.spongepowered.api.resourcepack.ResourcePack;
-import org.spongepowered.api.world.ChunkTicketManager;
-import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.network.status.StatusClient;
+import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.resourcepack.ResourcePack;
+import org.spongepowered.api.statistic.Statistic;
+import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.sink.MessageSink;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.ban.Ban;
-import org.spongepowered.api.command.CommandResult;
-import org.spongepowered.api.command.source.RconSource;
 import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleporterAgent;
 import org.spongepowered.api.world.World;
@@ -4225,9 +4225,10 @@ public class SpongeEventFactory {
      * @param toTransform The to transform
      * @param connection The connection
      * @param profile The profile
+     * @param targetUser The target user
      * @return A new login client connection event
      */
-    public static ClientConnectionEvent.Login createClientConnectionEventLogin(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Transform<World> fromTransform, Transform<World> toTransform, RemoteConnection connection, GameProfile profile) {
+    public static ClientConnectionEvent.Login createClientConnectionEventLogin(Game game, Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Transform<World> fromTransform, Transform<World> toTransform, RemoteConnection connection, GameProfile profile, User targetUser) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -4239,6 +4240,7 @@ public class SpongeEventFactory {
         values.put("toTransform", toTransform);
         values.put("connection", connection);
         values.put("profile", profile);
+        values.put("targetUser", targetUser);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Login.class, values);
     }
 
