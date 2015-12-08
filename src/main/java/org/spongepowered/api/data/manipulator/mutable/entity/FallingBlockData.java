@@ -75,8 +75,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
     Value<Boolean> canDropAsItem();
 
     /**
-     * Gets the time the block has been falling
-     * if spawning a entity in air this will need to be set to 1 or it will be instantly removed
+     * Gets the time the block has been falling. Defaults to a value of 1.
      *
      * @return The time the block has been falling
      */
