@@ -68,7 +68,7 @@ public interface SubjectCollection {
      *
      * @return An iterable providing all subjects stored by this collection.
      */
-    Iterable<Subject> getAllSubjects();
+    Iterable<? extends Subject> getAllSubjects();
 
     /**
      * Return all known subjects with the given permission information. Because
@@ -79,7 +79,7 @@ public interface SubjectCollection {
      * @return Any subject known to have this permission set, and the value this
      *         permission is set to
      */
-    Map<Subject, Boolean> getAllWithPermission(String permission);
+    Map<? extends Subject, Boolean> getAllWithPermission(String permission);
 
     /**
      * Return all known subjects with the given permission information.
@@ -89,5 +89,5 @@ public interface SubjectCollection {
      * @return Any subject known to have this permission set, and the value this
      *         permission is set to
      */
-    Map<Subject, Boolean> getAllWithPermission(Set<Context> contexts, String permission);
+    Map<? extends Subject, Boolean> getAllWithPermission(Set<Context> contexts, String permission);
 }
