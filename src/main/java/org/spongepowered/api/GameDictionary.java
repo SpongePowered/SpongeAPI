@@ -24,44 +24,90 @@
  */
 package org.spongepowered.api;
 
+import com.google.common.collect.SetMultimap;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
-import java.util.Map;
 import java.util.Set;
 
 /**
- * A GameDictionary is a store of {@link ItemTypes}.
+ * A GameDictionary is a store of {@link GameDictionary.Entry}s.
  *
- * <p>Note that the GameDictionary's keys are different from Minecraft item
- * ids. Minecraft item IDs are namespaces, e.g. minecraft:carrot while
- * ItemDictionary keys are not, by design(e.g. carrot). This is mainly to keep
- * supporting the existing Forge 'ore dictionary'.</p>
+ * <p>Note that the GameDictionary's keys are different from Minecraft item ids.
+ * Minecraft item IDs are namespaces, e.g. minecraft:carrot while ItemDictionary
+ * keys are not, by design(e.g. carrot). This is mainly to keep supporting the
+ * existing Forge 'ore dictionary'.</p>
  */
 public interface GameDictionary {
 
     /**
-     * Registers an ItemType in the dictionary with a String key.
+     * Registers an {@link GameDictionary.Entry} in the dictionary with a String
+     * key. The stack size is ignored.
      *
      * @param key The key of the item as a String
-     * @param type The item type to register
+     * @param entry The item to register
      */
-    void register(String key, ItemType type);
+    void register(String key, Entry entry);
 
     /**
-     * Retrieves the item types registered for the given key.
+     * Retrieves the entries registered for the given key. The stack sizes are set
+     * to 1.
      *
-     * @param key The key of the items as a String
-     * @return The item types registered for the given key
+     * @param key The key of the entries as a String
+     * @return The entries registered for the given key
      */
-    Set<ItemType> get(String key);
+    Set<Entry> get(String key);
 
     /**
-     * Retrieves all items registered in this item dictionary, mapped by
-     * their key.
+     * Retrieves all entries registered in this game dictionary, mapped by their
+     * key.
      *
-     * @return A map of all items registered
+     * @return A map of all entries registered
      */
-    Map<String, Set<ItemType>> getAllItems();
+    SetMultimap<String, Entry> getAll();
+
+    interface Entry {
+
+        /**
+         * Returns the type of item contained by this entry.
+         *
+         * @return The item type
+         */
+        ItemType getType();
+
+        /**
+         * Tests whether the provided item stack matches this entry's
+         * specifications.
+         *
+         * @param stack The item stack to test
+         * @return {@code true} if the stack matches this entry
+         */
+        boolean matches(ItemStack stack);
+
+        /**
+         * Returns whether this entry checks against the item type and extra
+         * data associated with the stack. If this returns {@link true}, any
+         * {@link ItemStack} whose {@link ItemType} and manipulators match
+         * those of the {@linkplain #getTemplate() template} will {@linkplain
+         * #matches(ItemStack) match} this entry; however, not all manipulators
+         * present in the template are required to match those in the item
+         * stack to cause them to match. If this returns {@code false}, any
+         * item stack whose {@link ItemType} matches that of the entry will
+         * match this entry.
+         *
+         * @return {@code true} if the entry checks extra data on the stack
+         */
+        boolean isSpecific();
+
+        /**
+         * Returns an item stack snapshot for plugins to inspect this entry.
+         * The returned snapshot will {@linkplain #matches(ItemStack) match}
+         * this entry. The size of the snapshot will always be 1.
+         *
+         * @return A snapshot that matches this entry
+         */
+        ItemStackSnapshot getTemplate();
+    }
 
 }
