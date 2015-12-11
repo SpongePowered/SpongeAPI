@@ -22,4 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.event.entity.living.humanoid.player;
+
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.command.MessageSinkEvent;
+
+/**
+ * Fired when a {@link Player} is kicked.
+ */
+public interface KickPlayerEvent extends TargetPlayerEvent, MessageSinkEvent {
+
+}

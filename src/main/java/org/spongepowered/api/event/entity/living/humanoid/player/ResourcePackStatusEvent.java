@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.event.entity.living.humanoid.player;
 
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.GameEvent;
@@ -31,7 +31,7 @@ import org.spongepowered.api.resourcepack.ResourcePack;
 import java.util.Optional;
 
 /**
- * Called when a player notifies the server of the status of a resource pack
+ * Called when a {@link Player} notifies the server of the status of a resource pack
  * change request.
  */
 public interface ResourcePackStatusEvent extends GameEvent {

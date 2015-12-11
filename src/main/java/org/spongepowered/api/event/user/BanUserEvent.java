@@ -26,7 +26,7 @@ package org.spongepowered.api.event.user;
 
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
+import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.util.ban.Ban;
 
 /**

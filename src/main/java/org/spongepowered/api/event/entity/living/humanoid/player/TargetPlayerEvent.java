@@ -22,19 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.human;
+package org.spongepowered.api.event.entity.living.humanoid.player;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.event.entity.living.TargetLivingEvent;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.entity.living.humanoid.TargetHumanoidEvent;
 
-public interface TargetHumanEvent extends TargetLivingEvent {
+public interface TargetPlayerEvent extends TargetHumanoidEvent {
 
     /**
-     * Gets the target {@link Entity}.
+     * Gets the target {@link Player}.
      *
      * @return The entity
      */
-    @Override Humanoid getTargetEntity();
+    @Override
+    Player getTargetEntity();
 
 }

@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.event.entity.living.humanoid.player;
 
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.living.player.Player;
@@ -30,7 +30,7 @@ import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.World;
 
 /**
- * Called when a player respawns.
+ * Called when a {@link Player} re-spawns.
  */
 public interface RespawnPlayerEvent extends TargetPlayerEvent, CauseTracked {
 

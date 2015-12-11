@@ -26,6 +26,7 @@ package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.entity.Transform;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
@@ -35,7 +36,7 @@ import org.spongepowered.api.world.World;
 import java.util.Optional;
 
 /**
- * Called when a Humanoid enters a bed to sleep in.
+ * Called when a {@link Humanoid} enters a bed to sleep in.
  */
 public interface SleepingEvent extends GameEvent, TargetEntityEvent, CauseTracked {
 
@@ -66,7 +67,7 @@ public interface SleepingEvent extends GameEvent, TargetEntityEvent, CauseTracke
          * Gets a copy of the spawn transform of the human when leaving the bed.
          *
          * <p>This may have not been set by the event, so checking
-         * {@link #wasSpawnSet()} is advisable. If spawn has not been set,
+         * {@link #isSpawnSet()} is advisable. If spawn has not been set,
          * it will return {@link Optional#empty()}.</p>
          *
          * @return The humans new spawn transform, if available
@@ -76,7 +77,7 @@ public interface SleepingEvent extends GameEvent, TargetEntityEvent, CauseTracke
         /**
          * Sets the new spawn transform of the human leaving the bed.
          *
-         * <p>If spawn {@link #wasSpawnSet} was not infact set by this event,
+         * <p>If spawn {@link #isSpawnSet()} was not infact set by this event,
          * this does not override the return value. The given spawn should be
          * a valid location.</p>
          *

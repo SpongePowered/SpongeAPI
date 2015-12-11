@@ -31,8 +31,8 @@ import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
-import org.spongepowered.api.event.entity.living.human.TargetHumanEvent;
-import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
+import org.spongepowered.api.event.entity.living.humanoid.TargetHumanoidEvent;
+import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.event.item.inventory.TargetInventoryEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -84,10 +84,10 @@ public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInv
     /**
      * An event where a {@link Humanoid} entity is targeted.
      */
-    interface TargetHuman extends TargetLiving, TargetHumanEvent { }
+    interface TargetHumanoid extends TargetLiving, TargetHumanoidEvent { }
 
     /**
      * An event where a {@link Player} entity is targeted.
      */
-    interface TargetPlayer extends TargetHuman, TargetPlayerEvent { }
+    interface TargetPlayer extends TargetHumanoid, TargetPlayerEvent { }
 }

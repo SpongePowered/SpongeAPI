@@ -22,19 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.human;
+package org.spongepowered.api.event.entity.living.humanoid;
 
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
+import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 
 /**
  * Called when a {@link Humanoid} changes {@link GameMode}.
  */
-public interface ChangeGameModeEvent extends GameEvent, Cancellable, CauseTracked {
+public interface ChangeGameModeEvent extends TargetHumanoidEvent, Cancellable, CauseTracked {
 
     /**
      * Gets the original {@link GameMode}.
@@ -57,7 +56,5 @@ public interface ChangeGameModeEvent extends GameEvent, Cancellable, CauseTracke
      */
     void setGameMode(GameMode gameMode);
 
-    interface TargetHuman extends ChangeGameModeEvent, TargetHumanEvent {}
-
-    interface TargetPlayer extends TargetHuman, TargetPlayerEvent {}
+    interface TargetPlayer extends ChangeGameModeEvent, TargetPlayerEvent {}
 }

@@ -32,7 +32,7 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.GameEvent;
 import org.spongepowered.api.event.command.MessageSinkEvent;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
-import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
+import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.world.World;
 

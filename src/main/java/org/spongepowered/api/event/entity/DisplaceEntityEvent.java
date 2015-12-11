@@ -32,8 +32,8 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
-import org.spongepowered.api.event.entity.living.human.TargetHumanEvent;
-import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
+import org.spongepowered.api.event.entity.living.humanoid.TargetHumanoidEvent;
+import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.world.TeleporterAgent;
 import org.spongepowered.api.world.World;
 
@@ -85,13 +85,13 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
          * A {@link Move} event where the target entity is a {@link Humanoid}
          * entity.
          */
-        interface TargetHuman extends TargetLiving, DisplaceEntityEvent.TargetHuman { }
+        interface TargetHumanoid extends TargetLiving, TargetHumanoid { }
 
         /**
          * A {@link Move} event where the target entity is a {@link Player}
          * entity.
          */
-        interface TargetPlayer extends TargetHuman, DisplaceEntityEvent.TargetPlayer { }
+        interface TargetPlayer extends TargetHumanoid, DisplaceEntityEvent.TargetPlayer { }
     }
 
     interface Teleport extends DisplaceEntityEvent, CauseTracked {
@@ -130,12 +130,12 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
         /**
          * An event where the target entity is a {@link Humanoid} entity.
          */
-        interface TargetHuman extends TargetLiving, DisplaceEntityEvent.TargetHuman { }
+        interface TargetHumanoid extends TargetLiving, TargetHumanoid { }
 
         /**
          * An event where the target entity is a {@link Player} entity.
          */
-        interface TargetPlayer extends TargetHuman, DisplaceEntityEvent.TargetPlayer { }
+        interface TargetPlayer extends TargetHumanoid, DisplaceEntityEvent.TargetPlayer { }
     }
 
     /**
@@ -146,11 +146,11 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
     /**
      * An event where the target entity is a {@link Humanoid} entity.
      */
-    interface TargetHuman extends TargetLiving, TargetHumanEvent { }
+    interface TargetHumanoid extends TargetLiving, TargetHumanoidEvent { }
 
     /**
      * An event where the target entity is a {@link Player} entity.
      */
-    interface TargetPlayer extends TargetHuman, TargetPlayerEvent { }
+    interface TargetPlayer extends TargetHumanoid, TargetPlayerEvent { }
 
 }

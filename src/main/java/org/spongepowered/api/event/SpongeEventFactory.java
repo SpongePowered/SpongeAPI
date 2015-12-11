@@ -118,13 +118,13 @@ import org.spongepowered.api.event.entity.item.ItemMergeItemEvent;
 import org.spongepowered.api.event.entity.item.TargetItemEvent;
 import org.spongepowered.api.event.entity.living.TargetAgentEvent;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
-import org.spongepowered.api.event.entity.living.human.ChangeGameModeEvent;
-import org.spongepowered.api.event.entity.living.human.ChangeLevelEvent;
-import org.spongepowered.api.event.entity.living.human.TargetHumanEvent;
-import org.spongepowered.api.event.entity.living.player.KickPlayerEvent;
-import org.spongepowered.api.event.entity.living.player.ResourcePackStatusEvent;
-import org.spongepowered.api.event.entity.living.player.RespawnPlayerEvent;
-import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
+import org.spongepowered.api.event.entity.living.humanoid.ChangeGameModeEvent;
+import org.spongepowered.api.event.entity.living.humanoid.ChangeLevelEvent;
+import org.spongepowered.api.event.entity.living.humanoid.TargetHumanoidEvent;
+import org.spongepowered.api.event.entity.living.humanoid.player.KickPlayerEvent;
+import org.spongepowered.api.event.entity.living.humanoid.player.ResourcePackStatusEvent;
+import org.spongepowered.api.event.entity.living.humanoid.player.RespawnPlayerEvent;
+import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent;
 import org.spongepowered.api.event.entity.projectile.TargetProjectileEvent;
 import org.spongepowered.api.event.game.state.GameAboutToStartServerEvent;
@@ -1432,7 +1432,7 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetHuman}.
+     * {@link ChangeEntityEquipmentEvent.TargetHumanoid}.
      * 
      * @param game The game
      * @param originalItemStack The original item stack
@@ -1441,14 +1441,14 @@ public class SpongeEventFactory {
      * @param targetInventory The target inventory
      * @return A new target human change entity equipment event
      */
-    public static ChangeEntityEquipmentEvent.TargetHuman createChangeEntityEquipmentEventTargetHuman(Game game, Optional<ItemStackSnapshot> originalItemStack, Optional<Transaction<ItemStackSnapshot>> itemStack, Humanoid targetEntity, Slot targetInventory) {
+    public static ChangeEntityEquipmentEvent.TargetHumanoid createChangeEntityEquipmentEventTargetHuman(Game game, Optional<ItemStackSnapshot> originalItemStack, Optional<Transaction<ItemStackSnapshot>> itemStack, Humanoid targetEntity, Slot targetInventory) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("originalItemStack", originalItemStack);
         values.put("itemStack", itemStack);
         values.put("targetEntity", targetEntity);
         values.put("targetInventory", targetInventory);
-        return SpongeEventFactoryUtils.createEventImpl(ChangeEntityEquipmentEvent.TargetHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeEntityEquipmentEvent.TargetHumanoid.class, values);
     }
 
     /**
@@ -1824,7 +1824,7 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Move.TargetHuman}.
+     * {@link DisplaceEntityEvent.Move.TargetHumanoid}.
      * 
      * @param game The game
      * @param fromTransform The from transform
@@ -1832,13 +1832,13 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new target human move displace entity event
      */
-    public static DisplaceEntityEvent.Move.TargetHuman createDisplaceEntityEventMoveTargetHuman(Game game, Transform<World> fromTransform, Transform<World> toTransform, Humanoid targetEntity) {
+    public static DisplaceEntityEvent.Move.TargetHumanoid createDisplaceEntityEventMoveTargetHuman(Game game, Transform<World> fromTransform, Transform<World> toTransform, Humanoid targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
         values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Move.TargetHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Move.TargetHumanoid.class, values);
     }
 
     /**
@@ -1884,7 +1884,7 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetHuman}.
+     * {@link DisplaceEntityEvent.TargetHumanoid}.
      * 
      * @param game The game
      * @param fromTransform The from transform
@@ -1892,13 +1892,13 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new target human displace entity event
      */
-    public static DisplaceEntityEvent.TargetHuman createDisplaceEntityEventTargetHuman(Game game, Transform<World> fromTransform, Transform<World> toTransform, Humanoid targetEntity) {
+    public static DisplaceEntityEvent.TargetHumanoid createDisplaceEntityEventTargetHuman(Game game, Transform<World> fromTransform, Transform<World> toTransform, Humanoid targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
         values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.TargetHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.TargetHumanoid.class, values);
     }
 
     /**
@@ -1970,7 +1970,7 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetHuman}.
+     * {@link DisplaceEntityEvent.Teleport.TargetHumanoid}.
      * 
      * @param game The game
      * @param cause The cause
@@ -1981,7 +1981,7 @@ public class SpongeEventFactory {
      * @param keepsVelocity The keeps velocity
      * @return A new target human teleport displace entity event
      */
-    public static DisplaceEntityEvent.Teleport.TargetHuman createDisplaceEntityEventTeleportTargetHuman(Game game, Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Humanoid targetEntity, TeleporterAgent teleporterAgent, boolean keepsVelocity) {
+    public static DisplaceEntityEvent.Teleport.TargetHumanoid createDisplaceEntityEventTeleportTargetHuman(Game game, Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Humanoid targetEntity, TeleporterAgent teleporterAgent, boolean keepsVelocity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
@@ -1990,7 +1990,7 @@ public class SpongeEventFactory {
         values.put("targetEntity", targetEntity);
         values.put("teleporterAgent", teleporterAgent);
         values.put("keepsVelocity", keepsVelocity);
-        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.TargetHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.TargetHumanoid.class, values);
     }
 
     /**
@@ -2106,7 +2106,7 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.HarvestEntityEvent.TargetHuman}.
+     * {@link HarvestEntityEvent.TargetHumanoid}.
      * 
      * @param game The game
      * @param cause The cause
@@ -2115,14 +2115,14 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new target human harvest entity event
      */
-    public static HarvestEntityEvent.TargetHuman createHarvestEntityEventTargetHuman(Game game, Cause cause, int originalExperience, int experience, Humanoid targetEntity) {
+    public static HarvestEntityEvent.TargetHumanoid createHarvestEntityEventTargetHuman(Game game, Cause cause, int originalExperience, int experience, Humanoid targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("originalExperience", originalExperience);
         values.put("experience", experience);
         values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(HarvestEntityEvent.TargetHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(HarvestEntityEvent.TargetHumanoid.class, values);
     }
 
     /**
@@ -2596,7 +2596,7 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.living.human.ChangeGameModeEvent}.
+     * {@link ChangeGameModeEvent}.
      * 
      * @param game The game
      * @param cause The cause
@@ -2616,7 +2616,7 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.living.human.ChangeGameModeEvent.TargetHuman}.
+     * {@link ChangeGameModeEvent.TargetHumanoid}.
      * 
      * @param game The game
      * @param cause The cause
@@ -2625,20 +2625,20 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new target human change game mode event
      */
-    public static ChangeGameModeEvent.TargetHuman createChangeGameModeEventTargetHuman(Game game, Cause cause, GameMode originalGameMode, GameMode gameMode, Humanoid targetEntity) {
+    public static ChangeGameModeEvent.TargetHumanoid createChangeGameModeEventTargetHuman(Game game, Cause cause, GameMode originalGameMode, GameMode gameMode, Humanoid targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("originalGameMode", originalGameMode);
         values.put("gameMode", gameMode);
         values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(ChangeGameModeEvent.TargetHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeGameModeEvent.TargetHumanoid.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.living.human.ChangeGameModeEvent.TargetPlayer}.
+     * {@link ChangeGameModeEvent.TargetPlayer}.
      * 
      * @param game The game
      * @param cause The cause
@@ -2660,7 +2660,7 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.living.human.ChangeLevelEvent}.
+     * {@link ChangeLevelEvent}.
      * 
      * @param game The game
      * @param cause The cause
@@ -2680,7 +2680,7 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.living.human.ChangeLevelEvent.TargetHuman}.
+     * {@link ChangeLevelEvent.TargetHumanoid}.
      * 
      * @param game The game
      * @param cause The cause
@@ -2689,20 +2689,20 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new target human change level event
      */
-    public static ChangeLevelEvent.TargetHuman createChangeLevelEventTargetHuman(Game game, Cause cause, int originalLevel, int level, Humanoid targetEntity) {
+    public static ChangeLevelEvent.TargetHumanoid createChangeLevelEventTargetHuman(Game game, Cause cause, int originalLevel, int level, Humanoid targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", cause);
         values.put("originalLevel", originalLevel);
         values.put("level", level);
         values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(ChangeLevelEvent.TargetHuman.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeLevelEvent.TargetHumanoid.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.living.human.ChangeLevelEvent.TargetPlayer}.
+     * {@link ChangeLevelEvent.TargetPlayer}.
      * 
      * @param game The game
      * @param cause The cause
@@ -2724,23 +2724,23 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.living.human.TargetHumanEvent}.
+     * {@link TargetHumanoidEvent}.
      * 
      * @param game The game
      * @param targetEntity The target entity
      * @return A new target human event
      */
-    public static TargetHumanEvent createTargetHumanEvent(Game game, Humanoid targetEntity) {
+    public static TargetHumanoidEvent createTargetHumanEvent(Game game, Humanoid targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(TargetHumanEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TargetHumanoidEvent.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.living.player.KickPlayerEvent}.
+     * {@link KickPlayerEvent}.
      * 
      * @param game The game
      * @param cause The cause
@@ -2766,7 +2766,7 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.living.player.ResourcePackStatusEvent}.
+     * {@link ResourcePackStatusEvent}.
      * 
      * @param game The game
      * @param pack The pack
@@ -2786,7 +2786,7 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.living.player.RespawnPlayerEvent}.
+     * {@link RespawnPlayerEvent}.
      * 
      * @param game The game
      * @param cause The cause
@@ -2810,7 +2810,7 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.living.player.TargetPlayerEvent}.
+     * {@link TargetPlayerEvent}.
      * 
      * @param game The game
      * @param targetEntity The target entity

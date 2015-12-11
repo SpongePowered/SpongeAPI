@@ -22,43 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.human;
+package org.spongepowered.api.event.entity.living.humanoid;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 
-/**
- * Called when a human's level is changed.
- */
-public interface ChangeLevelEvent extends GameEvent, Cancellable, CauseTracked {
+public interface TargetHumanoidEvent extends TargetLivingEvent {
 
     /**
-     * Gets the original level of the human.
+     * Gets the target {@link Entity}.
      *
-     * @return The original level of the human
+     * @return The entity
      */
-    int getOriginalLevel();
+    @Override
+    Humanoid getTargetEntity();
 
-    /**
-     * Gets the new level of the human.
-     *
-     * @return The new level of the human
-     */
-    int getLevel();
-
-    /**
-     * Sets the new level of the human.
-     *
-     * <p>Technically, this can be set to the same level to
-     * cancel effects of the level being changed.</p>
-     *
-     * @param level The new level to change to
-     */
-    void setLevel(int level);
-
-    interface TargetHuman extends ChangeLevelEvent, TargetHumanEvent {}
-
-    interface TargetPlayer extends TargetHuman, TargetPlayerEvent {}
 }

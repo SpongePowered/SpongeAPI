@@ -27,7 +27,7 @@ package org.spongepowered.api.event.achievement;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.command.MessageSinkEvent;
-import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
+import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.statistic.achievement.Achievement;
 
 /**
