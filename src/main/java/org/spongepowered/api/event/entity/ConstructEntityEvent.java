@@ -28,7 +28,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.World;
 
@@ -36,7 +36,7 @@ import org.spongepowered.api.world.World;
  * Base event during the construction of an {@link Entity}.
  *
  */
-public interface ConstructEntityEvent extends GameEvent, CauseTracked {
+public interface ConstructEntityEvent extends Event, CauseTracked {
 
     /**
      * Gets the {@link Transform} that the {@link Entity} will be constructed with.

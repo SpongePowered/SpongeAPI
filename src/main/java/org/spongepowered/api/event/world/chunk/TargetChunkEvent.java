@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.event.world.chunk;
 
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.Chunk;
 
 /**
  * Base event for anything targeting a {@link Chunk}.
  */
-public interface TargetChunkEvent extends GameEvent {
+public interface TargetChunkEvent extends Event {
 
     /**
      * Gets the {@link Chunk} being changed.

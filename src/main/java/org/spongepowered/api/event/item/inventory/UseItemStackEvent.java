@@ -25,15 +25,15 @@
 package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.data.Transaction;
+import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.effect.potion.PotionEffectType;
 
-public interface UseItemStackEvent extends GameEvent, Cancellable, CauseTracked {
+public interface UseItemStackEvent extends Event, Cancellable, CauseTracked {
 
     /**
      * Gets the original remaining duration of {@link ItemStack} in use.

@@ -24,15 +24,15 @@
  */
 package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.command.CommandSource;
 
 /**
  * Describes events when a {@link CommandSource} sends a {@link Text} message.
  */
-public interface MessageEvent extends GameEvent, CauseTracked {
+public interface MessageEvent extends Event, CauseTracked {
 
     /**
      * Gets the {@link Text} message created by the {@link CommandSource} before

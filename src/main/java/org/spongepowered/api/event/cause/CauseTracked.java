@@ -36,7 +36,7 @@ public interface CauseTracked {
      *
      * @return The last cause
      */
-    @AbsoluteSortPosition(1)
+    @AbsoluteSortPosition(0)
     Cause getCause();
 
 }

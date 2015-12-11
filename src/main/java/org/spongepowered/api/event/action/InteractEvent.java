@@ -26,7 +26,7 @@ package org.spongepowered.api.event.action;
 
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.CauseTracked;
 
 import java.util.Optional;
@@ -34,7 +34,7 @@ import java.util.Optional;
 /**
  * Base event for all interactions.
  */
-public interface InteractEvent extends GameEvent, Cancellable, CauseTracked {
+public interface InteractEvent extends Event, Cancellable, CauseTracked {
 
     /**
      * Gets the point of interaction where the interaction occurred as a

@@ -85,7 +85,7 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
          * A {@link Move} event where the target entity is a {@link Humanoid}
          * entity.
          */
-        interface TargetHumanoid extends TargetLiving, TargetHumanoid { }
+        interface TargetHumanoid extends TargetLiving, DisplaceEntityEvent.TargetHumanoid { }
 
         /**
          * A {@link Move} event where the target entity is a {@link Player}
@@ -130,7 +130,7 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
         /**
          * An event where the target entity is a {@link Humanoid} entity.
          */
-        interface TargetHumanoid extends TargetLiving, TargetHumanoid { }
+        interface TargetHumanoid extends TargetLiving, DisplaceEntityEvent.TargetHumanoid { }
 
         /**
          * An event where the target entity is a {@link Player} entity.

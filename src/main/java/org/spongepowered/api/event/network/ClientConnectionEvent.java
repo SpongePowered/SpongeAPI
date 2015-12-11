@@ -24,16 +24,16 @@
  */
 package org.spongepowered.api.event.network;
 
-import org.spongepowered.api.event.user.TargetUserEvent;
-import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.command.MessageSinkEvent;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
+import org.spongepowered.api.event.user.TargetUserEvent;
 import org.spongepowered.api.network.RemoteConnection;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.world.World;
 
 /**
@@ -52,7 +52,7 @@ import org.spongepowered.api.world.World;
  * It's recommended to use the this event's subinterfaces to interact
  * with the player at well-defined moments during the connection process.
  */
-public interface ClientConnectionEvent extends GameEvent {
+public interface ClientConnectionEvent extends Event {
 
     /**
      * Called asynchronously when the client attempts to authenticate against

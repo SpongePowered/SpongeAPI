@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -33,7 +33,7 @@ import org.spongepowered.api.world.storage.WorldProperties;
  * An event for when a world has been created. Often paired with a
  * {@link LoadWorldEvent}, but that is not guaranteed.
  */
-public interface ConstructWorldEvent extends GameEvent, CauseTracked {
+public interface ConstructWorldEvent extends Event, CauseTracked {
 
     /**
      * Gets the properties of the newly created world.

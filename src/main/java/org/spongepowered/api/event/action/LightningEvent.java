@@ -25,12 +25,12 @@
 package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
 
-public interface LightningEvent extends GameEvent, CauseTracked {
+public interface LightningEvent extends Event, CauseTracked {
 
     interface Pre extends LightningEvent, Cancellable {}
 

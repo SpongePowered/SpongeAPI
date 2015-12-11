@@ -25,12 +25,12 @@
 package org.spongepowered.api.event.game.state;
 
 import org.spongepowered.api.GameState;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 
 /**
  * Represents all {@link GameState} events.
  */
-public interface GameStateEvent extends GameEvent {
+public interface GameStateEvent extends Event {
 
     /**
      * Gets the {@link GameState} that this event represents

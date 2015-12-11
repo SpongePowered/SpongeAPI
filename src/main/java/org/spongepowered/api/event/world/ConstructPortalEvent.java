@@ -26,7 +26,7 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.Location;
@@ -36,7 +36,7 @@ import org.spongepowered.api.world.World;
  * An event where a portal is created. Usually, this happens after a
  * {@link ChangeBlockEvent} from any source.
  */
-public interface ConstructPortalEvent extends GameEvent, Cancellable, CauseTracked {
+public interface ConstructPortalEvent extends Event, Cancellable, CauseTracked {
 
     Location<World> getPortalLocation();
 

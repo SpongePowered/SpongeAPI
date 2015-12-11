@@ -26,8 +26,9 @@
 package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.util.Direction;
 
@@ -41,7 +42,7 @@ import java.util.function.Predicate;
  * {@link Predicate} such that if the predicate returns <code>false</code>, the
  * {@link Direction} will be removed from the {@link #getNeighbors()} map.
  */
-public interface NotifyNeighborBlockEvent extends GameEvent, Cancellable, CauseTracked {
+public interface NotifyNeighborBlockEvent extends Event, Cancellable, CauseTracked {
 
     /**
      * Gets the immutable {@link Map} of {@link Direction} to {@link 
@@ -66,7 +67,7 @@ public interface NotifyNeighborBlockEvent extends GameEvent, Cancellable, CauseT
     /**
      * Filters out {@link Direction}s of the {@link BlockState}s to be
      * marked as "valid" after this event. If the
-     * {@link Predicate#apply(Object)} returns <code>false</code>, the
+     * {@link Predicate#test(Object)} returns <code>false</code>, the
      * {@link BlockState} is removed from {@link #getNeighbors()} map.
      *
      * @param predicate The predicate to use for filtering.

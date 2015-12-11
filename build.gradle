@@ -77,7 +77,6 @@ genEventImpl {
             'src/main/java/org/spongepowered/api/event/user/',
             'src/main/java/org/spongepowered/api/event/world/',
             'src/main/java/org/spongepowered/api/event/Event.java',
-            'src/main/java/org/spongepowered/api/event/GameEvent.java'
     ]
     excludeSrc = []
     outputDir = 'src/main/java/'

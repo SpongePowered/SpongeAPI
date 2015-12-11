@@ -26,12 +26,12 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 
 /**
  * An event where a {@link TileEntity} is being targeted.
  */
-public interface TargetTileEntityEvent extends GameEvent {
+public interface TargetTileEntityEvent extends Event {
 
     /**
      * Gets the target tile entity.

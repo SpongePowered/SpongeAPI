@@ -84,7 +84,7 @@ public class SpongeEventFactoryUtils {
      * Creates a new {@link GameStateEvent} of the given type.
      *
      * @param type The type of the state event
-     * @param game The game instance for this {@link GameEvent}
+     * @param game The game instance for this {@link Event}
      * @param <T> The type of the state event
      * @return A new instance of the event
      */

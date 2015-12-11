@@ -26,12 +26,12 @@ package org.spongepowered.api.event.world.chunk;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.ChunkTicketManager;
 
 // NOTE: This does not extend TargetChunkEvent as Chunk may not be currently loaded.
-public interface UnforcedChunkEvent extends GameEvent, CauseTracked, Cancellable {
+public interface UnforcedChunkEvent extends Event, CauseTracked, Cancellable {
 
     /**
      * Gets the ticket that the chunk was removed from.
