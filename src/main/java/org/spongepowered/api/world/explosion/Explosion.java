@@ -57,25 +57,11 @@ public interface Explosion {
     World getWorld();
 
     /**
-     * Sets the world the explosion will occur in.
-     *
-     * @param world The world
-     */
-    void setWorld(World world);
-
-    /**
      * Gets the source {@link Explosive} of the explosion.
      *
      * @return The source explosive or null if there is no source
      */
     Optional<Explosive> getSourceExplosive();
-
-    /**
-     * Sets the source explosive of the explosion.
-     *
-     * @param source The source explosive
-     */
-    void setSourceExplosive(@Nullable Explosive source);
 
     /**
      * Gets the radius of the explosion.
@@ -85,25 +71,11 @@ public interface Explosion {
     float getRadius();
 
     /**
-     * Sets the radius of the explosion.
-     *
-     * @param radius The radius
-     */
-    void setRadius(float radius);
-
-    /**
      * Gets a copy of the explosion's origin.
      *
      * @return A copy of the origin
      */
     Vector3d getOrigin();
-
-    /**
-     * Sets the origin of the explosion.
-     *
-     * @param origin The origin
-     */
-    void setOrigin(Vector3d origin);
 
     /**
      * Gets whether the affected blocks have a chance to catch on fire.
@@ -113,25 +85,11 @@ public interface Explosion {
     boolean canCauseFire();
 
     /**
-     * Sets whether the affected blocks have a chance to catch on fire.
-     *
-     * @param fire Whether the affected blocks can catch on fire
-     */
-    void canCauseFire(boolean fire);
-
-    /**
      * Gets whether the explosion will play a smoke effect.
      *
      * @return Whether the explosion will play smoke
      */
     boolean shouldPlaySmoke();
-
-    /**
-     * Sets whether the explosion will show smoke to the client.
-     *
-     * @param smoke Whether the explosion will play smoke
-     */
-    void canPlaySmoke(boolean smoke);
 
     /**
      * Gets whether the affected blocks should be destroyed on explosion.
@@ -140,13 +98,6 @@ public interface Explosion {
      */
     boolean shouldBreakBlocks();
 
-    /**
-     * If true, blocks will be set to BlockTypes.AIR and items dropped.
-     * If false, blocks will be unaffected.
-     *
-     * @param destroy Whether the affected blocks should be destroyed
-     */
-    void shouldBreakBlocks(boolean destroy);
     /**
      * A builder for {@link Explosion}.
      */
@@ -191,6 +142,14 @@ public interface Explosion {
          * @return The builder, for chaining
          */
         Builder canCauseFire(boolean fire);
+
+        /**
+         * Sets whether the explosion will have smoke particles.
+         *
+         * @param smoke Whether the explosion will have smoke particles
+         * @return This builder, for chaining
+         */
+        Builder shouldPlaySmoke(boolean smoke);
 
         /**
          * Sets whether the affected blocks should be destroyed on explosion.

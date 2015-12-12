@@ -46,7 +46,18 @@ public interface ExplosionEvent extends TargetWorldEvent, CauseTracked {
     /**
      * An event that is fired before the explosion occurs.
      */
-    interface Pre extends ExplosionEvent, Cancellable {}
+    interface Pre extends ExplosionEvent, Cancellable {
+
+        /**
+         * Sets the {@link Explosion} involved for this event. This
+         * will override the explosion used before calculations
+         * take place with regards to the blocks and entities affected.
+         *
+         * @param explosion The new explosion
+         */
+        void setExplosion(Explosion explosion);
+
+    }
 
     /**
      * An event that is fired as the explosion is going to start affecting
