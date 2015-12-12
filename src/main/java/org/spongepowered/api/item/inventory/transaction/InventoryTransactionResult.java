@@ -24,16 +24,27 @@
  */
 package org.spongepowered.api.item.inventory.transaction;
 
-import org.spongepowered.api.item.inventory.ItemStack;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
+import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.util.ResettableBuilder;
+
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Optional;
+import java.util.List;
 
 /**
  * An interface for structs returned by inventory operations which encapsulate
  * the result of an attempted operation.
  */
-public interface InventoryTransactionResult {
+public final class InventoryTransactionResult {
+
+    public static Builder builder() {
+        return new Builder();
+    }
 
     enum Type {
 
@@ -70,12 +81,24 @@ public interface InventoryTransactionResult {
         CANCELLED
     }
 
+    private final Type type;
+    private final ImmutableList<ItemStackSnapshot> rejected;
+    private final ImmutableList<ItemStackSnapshot> replaced;
+
+    private InventoryTransactionResult(Builder builder) {
+        this.type = builder.resultType;
+        this.rejected = ImmutableList.copyOf(builder.rejected);
+        this.replaced = ImmutableList.copyOf(builder.replaced);
+    }
+
     /**
      * Get the type of result.
      *
      * @return the type of result
      */
-    Type getType();
+    public Type getType() {
+        return this.type;
+    }
 
     /**
      * If items were supplied to the operation, this collection will return any
@@ -83,7 +106,9 @@ public interface InventoryTransactionResult {
      *
      * @return any items which were rejected as part of the inventory operation
      */
-    Optional<Collection<ItemStack>> getRejectedItems();
+    public Collection<ItemStackSnapshot> getRejectedItems() {
+        return this.rejected;
+    }
 
     /**
      * If the operation replaced items in the inventory, this collection returns
@@ -91,6 +116,70 @@ public interface InventoryTransactionResult {
      *
      * @return any items which were ejected as part of the inventory operation
      */
-    Optional<Collection<ItemStack>> getReplacedItems();
+    public Collection<ItemStackSnapshot> getReplacedItems() {
+        return this.replaced;
+    }
 
+    public static final class Builder implements ResettableBuilder<Builder> {
+        private Type resultType;
+        private List<ItemStackSnapshot> rejected;
+        private List<ItemStackSnapshot> replaced;
+
+        private Builder() {}
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public static InventoryTransactionResult successNoTransactions() {
+            return builder().result(Type.SUCCESS).build();
+        }
+
+        public static InventoryTransactionResult failNoTransactions() {
+            return builder().result(Type.ERROR).build();
+        }
+
+        public Builder result(final Type type) {
+            this.resultType = checkNotNull(type);
+            return this;
+        }
+
+        public Builder reject(ItemStack... itemStacks) {
+            if (this.rejected == null) {
+                this.rejected = new ArrayList<>();
+            }
+            for (ItemStack itemStack1 : itemStacks) {
+                if (itemStack1 != null) {
+                    this.rejected.add(itemStack1.createSnapshot());
+                }
+            }
+            return this;
+        }
+
+        public Builder replace(ItemStack... itemStacks) {
+            if (this.replaced == null) {
+                this.replaced = new ArrayList<>();
+            }
+            for (ItemStack itemStack1 : itemStacks) {
+                if (itemStack1 != null) {
+                    this.replaced.add(itemStack1.createSnapshot());
+                }
+            }
+            return this;
+        }
+
+        public InventoryTransactionResult build() {
+            checkState(this.resultType != null);
+            return new InventoryTransactionResult(this);
+        }
+
+        @Override
+        public Builder reset() {
+            this.resultType = null;
+            this.rejected = null;
+            this.replaced = null;
+            return this;
+        }
+
+    }
 }

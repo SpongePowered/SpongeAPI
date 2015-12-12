@@ -25,7 +25,6 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.transaction.InventoryTransactionBuilder;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.text.translation.FixedTranslation;
 import org.spongepowered.api.text.translation.Translation;
@@ -64,12 +63,12 @@ public class EmptyInventory implements Inventory {
 
     @Override
     public InventoryTransactionResult offer(ItemStack stack) {
-        return InventoryTransactionBuilder.failNoTransactions();
+        return InventoryTransactionResult.Builder.failNoTransactions();
     }
 
     @Override
     public InventoryTransactionResult set(ItemStack stack) {
-        return InventoryTransactionBuilder.failNoTransactions();
+        return InventoryTransactionResult.Builder.failNoTransactions();
     }
 
     @Override
