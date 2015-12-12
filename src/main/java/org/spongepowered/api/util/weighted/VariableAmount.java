@@ -203,6 +203,11 @@ public interface VariableAmount extends DataSerializable {
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    default public int getContentVersion() {
+        return 0;
+    }
+
     /**
      * Represents a fixed amount, calls to {@link #getAmount} will always return
      * the same fixed value.
@@ -300,8 +305,14 @@ public interface VariableAmount extends DataSerializable {
         @Override
         public DataContainer toContainer() {
             return new MemoryDataContainer()
+                    .set(Queries.CONTENT_VERSION, getContentVersion())
                     .set(Queries.VARIABLE_BASE, this.base)
                     .set(Queries.VARIABLE_VARIANCE, this.variance);
+        }
+
+        @Override
+        public int getContentVersion() {
+            return 1;
         }
 
     }
@@ -354,8 +365,14 @@ public interface VariableAmount extends DataSerializable {
         @Override
         public DataContainer toContainer() {
             return new MemoryDataContainer()
+                    .set(Queries.CONTENT_VERSION, getContentVersion())
                     .set(Queries.VARIABLE_BASE, this.base)
                     .set(Queries.VARIABLE_VARIANCE, this.addition);
+        }
+
+        @Override
+        public int getContentVersion() {
+            return 1;
         }
     }
 
@@ -413,9 +430,15 @@ public interface VariableAmount extends DataSerializable {
         @Override
         public DataContainer toContainer() {
             return new MemoryDataContainer()
+                    .set(Queries.CONTENT_VERSION, getContentVersion())
                     .set(Queries.VARIABLE_CHANCE, this.chance)
                     .set(Queries.VARIABLE_BASE, this.base)
                     .set(Queries.VARIABLE_VARIANCE, this.inner);
+        }
+
+        @Override
+        public int getContentVersion() {
+            return 1;
         }
     }
 

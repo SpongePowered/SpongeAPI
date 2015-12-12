@@ -28,6 +28,9 @@ import static org.spongepowered.api.data.DataQuery.of;
 
 public final class Queries {
 
+    // Content version
+    public static final DataQuery CONTENT_VERSION = of("ContentVersion");
+
     // Transaction
     public static final DataQuery TYPE_CLASS = of("TypeClass");
     public static final DataQuery ORIGINAL = of("Original");

@@ -560,8 +560,14 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
+    public int getContentVersion() {
+        return 1;
+    }
+
+    @Override
     public DataContainer toContainer() {
         final DataContainer container = new MemoryDataContainer();
+        container.set(Queries.CONTENT_VERSION, getContentVersion());
         if (getExtent() instanceof World) {
             container.set(Queries.WORLD_NAME, ((World) getExtent()).getName());
             container.set(Queries.WORLD_ID, getExtent().getUniqueId().toString());

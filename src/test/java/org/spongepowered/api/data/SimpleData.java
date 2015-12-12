@@ -61,6 +61,11 @@ class SimpleData implements DataSerializable {
     }
 
     @Override
+    public int getContentVersion() {
+        return 1;
+    }
+
+    @Override
     public DataContainer toContainer() {
         DataContainer container = new MemoryDataContainer();
         container.set(new DataQuery("myInt"), this.testInt);

@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.MemoryDataContainer;
+import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
@@ -68,10 +69,6 @@ public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataMani
     @Override
     public abstract M asMutable();
 
-    @Override
-    public DataContainer toContainer() {
-        return new MemoryDataContainer();
-    }
 
     @Override
     protected final void registerGetters() {

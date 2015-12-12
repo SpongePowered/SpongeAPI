@@ -69,6 +69,7 @@ public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I exten
 
     @Override
     public DataContainer toContainer() {
-        return super.toContainer().set(this.usedKey.getQuery(), this.value.name());
+        return super.toContainer()
+                .set(this.usedKey.getQuery(), this.value.name());
     }
 }

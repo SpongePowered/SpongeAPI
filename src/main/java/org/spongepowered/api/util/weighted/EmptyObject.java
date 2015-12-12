@@ -43,8 +43,14 @@ public class EmptyObject<T> extends TableEntry<T> implements DataSerializable {
     }
 
     @Override
+    public int getContentVersion() {
+        return 1;
+    }
+
+    @Override
     public DataContainer toContainer() {
         return new MemoryDataContainer()
+                .set(Queries.CONTENT_VERSION, getContentVersion())
                 .set(Queries.WEIGHTED_SERIALIZABLE_WEIGHT, getWeight());
     }
 

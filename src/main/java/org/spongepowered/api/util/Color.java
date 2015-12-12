@@ -30,6 +30,7 @@ import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3f;
 import com.flowpowered.math.vector.Vector3i;
 import org.apache.commons.lang3.Validate;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
@@ -37,6 +38,7 @@ import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.util.persistence.DataBuilder;
+import org.spongepowered.api.util.persistence.DataContentUpdater;
 import org.spongepowered.api.util.persistence.InvalidDataException;
 
 import java.util.Objects;
@@ -196,8 +198,14 @@ public final class Color implements DataSerializable {
     }
 
     @Override
+    public int getContentVersion() {
+        return 1;
+    }
+
+    @Override
     public DataContainer toContainer() {
         return new MemoryDataContainer()
+            .set(Queries.CONTENT_VERSION, getContentVersion())
             .set(Queries.COLOR_RED, this.getRed())
             .set(Queries.COLOR_GREEN, this.getGreen())
             .set(Queries.COLOR_BLUE, this.getBlue());
@@ -233,6 +241,18 @@ public final class Color implements DataSerializable {
 
         @Override
         public Optional<Color> build(DataView container) throws InvalidDataException {
+            if (container.contains(Queries.CONTENT_VERSION)) {
+                int version  = container.getInt(Queries.CONTENT_VERSION).get();
+                if (version < 1) {
+                    Optional<DataContentUpdater> optional = Sponge.getDataManager().getWrappedContentUpdater(Color.class, version, 1);
+                    if (!optional.isPresent()) {
+                        throw new InvalidDataException("The container for Color either contained an invalid version or there's no DataContentUpdater"
+                        + " available for " + version+ " version.");
+                    } else {
+                        container = optional.get().update(container);
+                    }
+                }
+            }
             if (!container.contains(Queries.COLOR_RED, Queries.COLOR_GREEN, Queries.COLOR_BLUE)) {
                 return Optional.empty();
             }

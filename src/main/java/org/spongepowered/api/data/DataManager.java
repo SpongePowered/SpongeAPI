@@ -29,6 +29,7 @@ import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulatorBuilder;
 import org.spongepowered.api.util.persistence.DataBuilder;
+import org.spongepowered.api.util.persistence.DataContentUpdater;
 
 import java.util.Optional;
 
@@ -58,6 +59,10 @@ public interface DataManager {
      * @param <T> The type of data serializable
      */
     <T extends DataSerializable> void registerBuilder(Class<T> clazz, DataBuilder<T> builder);
+
+    <T extends DataSerializable> void registerContentUpdater(Class<T> clazz, DataContentUpdater updater);
+
+    <T extends DataSerializable> Optional<DataContentUpdater> getWrappedContentUpdater(Class<T> clazz, int fromVersion, int toVersion);
 
     /**
      * Attempts to retrieve the {@link DataBuilder} for the desired
