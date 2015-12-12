@@ -25,6 +25,8 @@
 package org.spongepowered.api.data.key;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.data.manipulator.mutable.item.HideData;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
@@ -750,5 +752,53 @@ public final class Keys {
      * @see SplashPotionData#splash()
      */
     public static final Key<Value<Boolean>> IS_SPLASH_POTION = null;
+
+    /**
+     * Represents the {@link Key} for representing the "enchantments hidden"
+     * state of a {@link ItemStack}
+     *
+     * @see HideData#hideEnchantments()
+     */
+    public static final Key<Value<Boolean>> HIDE_ENCHANTMENTS = null;
+
+    /**
+     * Represents the {@link Key} for representing the "attributes hidden"
+     * state of a {@link ItemStack}
+     *
+     * @see HideData#hideAttributes()
+     */
+    public static final Key<Value<Boolean>> HIDE_ATTRIBUTES = null;
+
+    /**
+     * Represents the {@link Key} for representing the "unbreakable hidden"
+     * state of a {@link ItemStack}
+     *
+     * @see HideData#hideUnbreakable()
+     */
+    public static final Key<Value<Boolean>> HIDE_UNBREAKABLE = null;
+
+    /**
+     * Represents the {@link Key} for representing the "can destroy hidden"
+     * state of a {@link ItemStack}
+     *
+     * @see HideData#hideCanDestroy()
+     */
+    public static final Key<Value<Boolean>> HIDE_CAN_DESTROY = null;
+
+    /**
+     * Represents the {@link Key} for representing the "can place hidden"
+     * state of a {@link ItemStack}
+     *
+     * @see HideData#hideCanPlace()
+     */
+    public static final Key<Value<Boolean>> HIDE_CAN_PLACE = null;
+
+    /**
+     * Represents the {@link Key} for representing the "miscellaneous hidden"
+     * state of a {@link ItemStack}
+     *
+     * @see HideData#hideMiscellaneous()
+     */
+    public static final Key<Value<Boolean>> HIDE_MISCELLANEOUS = null;
 
 }
