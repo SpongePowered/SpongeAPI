@@ -29,7 +29,6 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.util.Direction;
 
 import java.util.Map;
@@ -42,7 +41,7 @@ import java.util.function.Predicate;
  * {@link Predicate} such that if the predicate returns <code>false</code>, the
  * {@link Direction} will be removed from the {@link #getNeighbors()} map.
  */
-public interface NotifyNeighborBlockEvent extends Event, Cancellable, CauseTracked {
+public interface NotifyNeighborBlockEvent extends Event, Cancellable {
 
     /**
      * Gets the immutable {@link Map} of {@link Direction} to {@link 

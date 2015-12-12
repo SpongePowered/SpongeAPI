@@ -26,13 +26,12 @@ package org.spongepowered.api.event.entity.living.humanoid.player;
 
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.World;
 
 /**
  * Called when a {@link Player} re-spawns.
  */
-public interface RespawnPlayerEvent extends TargetPlayerEvent, CauseTracked {
+public interface RespawnPlayerEvent extends TargetPlayerEvent {
 
     /**
      * Gets a copy of the transform that the entity came from.

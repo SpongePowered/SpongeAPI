@@ -25,12 +25,11 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * An event that is related to experience.
  */
-public interface ChangeEntityExperienceEvent extends TargetEntityEvent, Cancellable, CauseTracked {
+public interface ChangeEntityExperienceEvent extends TargetEntityEvent, Cancellable {
 
     /**
      * Gets the original experience unmodified by event changes.

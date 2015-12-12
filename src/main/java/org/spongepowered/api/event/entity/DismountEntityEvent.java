@@ -27,7 +27,6 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.animal.Horse;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * Raised when the targeted {@link Entity} is being dismounted from another
@@ -35,6 +34,6 @@ import org.spongepowered.api.event.cause.CauseTracked;
  * {@link Horse}, and the {@link Player} "dismounts", the {@link Horse}
  * would be the {@link #getTargetEntity()} in this event.
  */
-public interface DismountEntityEvent extends TargetEntityEvent, CauseTracked {
+public interface DismountEntityEvent extends TargetEntityEvent {
 
 }

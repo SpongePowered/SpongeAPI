@@ -27,14 +27,13 @@ package org.spongepowered.api.event.world.chunk;
 
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.Transaction;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.gen.PopulatorType;
 
 import java.util.List;
 import java.util.Map;
 
-public interface PopulateChunkEvent extends TargetChunkEvent, CauseTracked {
+public interface PopulateChunkEvent extends TargetChunkEvent {
 
     interface Pre extends PopulateChunkEvent {
 

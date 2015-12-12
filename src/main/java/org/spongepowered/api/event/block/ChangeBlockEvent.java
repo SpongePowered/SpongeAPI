@@ -34,7 +34,6 @@ import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.world.TargetWorldEvent;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -46,7 +45,7 @@ import java.util.function.Predicate;
  * Base event for when {@link BlockState}s at {@link Location<World>}s are being
  * changed.
  */
-public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable, CauseTracked {
+public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable {
 
     /**
      * Gets a list of the {@link Transaction}s for this event. If a

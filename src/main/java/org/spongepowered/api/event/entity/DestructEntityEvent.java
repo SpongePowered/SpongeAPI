@@ -26,7 +26,6 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.command.MessageSinkEvent;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 
@@ -34,7 +33,7 @@ import org.spongepowered.api.event.entity.living.TargetLivingEvent;
  * An event where the {@link Entity} is being either removed usually due to
  * the {@link Entity} being marked as "dead". Happens before {@link HarvestEntityEvent}.
  */
-public interface DestructEntityEvent extends TargetEntityEvent, MessageSinkEvent, CauseTracked {
+public interface DestructEntityEvent extends TargetEntityEvent, MessageSinkEvent {
 
     /**
      * A derivative of {@link DestructEntityEvent} where the removal of the {@link Living}, the {@link TargetLivingEvent#getTargetEntity()},

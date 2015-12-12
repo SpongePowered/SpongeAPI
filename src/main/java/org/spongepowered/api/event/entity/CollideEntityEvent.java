@@ -27,7 +27,6 @@ package org.spongepowered.api.event.entity;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.world.TargetWorldEvent;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -38,7 +37,7 @@ import java.util.function.Predicate;
 /**
  * Fired when something collides with one or more {@link Entity}'s.
  */
-public interface CollideEntityEvent extends TargetWorldEvent, Cancellable, CauseTracked {
+public interface CollideEntityEvent extends TargetWorldEvent, Cancellable {
 
     /**
      * Gets the immutable list of {@link List<Entity>} who will be affected after event

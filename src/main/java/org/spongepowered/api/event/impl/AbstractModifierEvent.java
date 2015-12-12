@@ -44,7 +44,7 @@ import java.util.function.Function;
  * An abstract base class for implementations of {@link DamageEntityEvent} and {@link HealEntityEvent}
  * @param <T> The modifier type to use
  */
-public class AbstractModifierEvent<T> extends AbstractEvent {
+public abstract class AbstractModifierEvent<T> extends AbstractEvent {
 
     protected double originalFinalAmount;
     protected List<Tuple<T, Double>> originalModifiers;
@@ -53,11 +53,10 @@ public class AbstractModifierEvent<T> extends AbstractEvent {
     protected final List<Tuple<T, Function<? super Double, Double>>> modifierFunctions = new ArrayList<>();
 
     protected ImmutableList<Tuple<T, Function<? super Double, Double>>> init(double originalValue, List<Tuple<T, Function<? super Double, Double>>> originalFunctions) {
-        final double damage = originalValue;
         final ImmutableList.Builder<Tuple<T, Double>> modifierMapBuilder = ImmutableList.builder();
         final ImmutableList.Builder<Tuple<T, Function<? super Double, Double>>> functionListBuilder = ImmutableList.builder();
         final ImmutableMap.Builder<T, Double> mapBuilder = ImmutableMap.builder();
-        double finalDamage = damage;
+        double finalDamage = originalValue;
         for (Tuple<T, Function<? super Double, Double>> tuple : originalFunctions) {
             this.modifierFunctions.add(new Tuple<>(tuple.getFirst(), tuple.getSecond()));
             double tempDamage = checkNotNull(tuple.getSecond().apply(finalDamage));
@@ -108,5 +107,4 @@ public class AbstractModifierEvent<T> extends AbstractEvent {
         }
         return builder.build();
     }
-
 }

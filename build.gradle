@@ -70,13 +70,10 @@ genEventImpl {
             'src/main/java/org/spongepowered/api/event/game/',
             'src/main/java/org/spongepowered/api/event/item/inventory/',
             'src/main/java/org/spongepowered/api/event/network/',
-            'src/main/java/org/spongepowered/api/event/plugin/',
-            'src/main/java/org/spongepowered/api/event/rcon/',
             'src/main/java/org/spongepowered/api/event/server/',
             'src/main/java/org/spongepowered/api/event/statistic/',
             'src/main/java/org/spongepowered/api/event/user/',
             'src/main/java/org/spongepowered/api/event/world/',
-            'src/main/java/org/spongepowered/api/event/Event.java',
     ]
     excludeSrc = []
     outputDir = 'src/main/java/'

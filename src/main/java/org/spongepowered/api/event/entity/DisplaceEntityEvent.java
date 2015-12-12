@@ -30,7 +30,6 @@ import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.entity.living.humanoid.TargetHumanoidEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
@@ -94,7 +93,7 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
         interface TargetPlayer extends TargetHumanoid, DisplaceEntityEvent.TargetPlayer { }
     }
 
-    interface Teleport extends DisplaceEntityEvent, CauseTracked {
+    interface Teleport extends DisplaceEntityEvent {
 
         /// TODO review teleporter stuff.
 

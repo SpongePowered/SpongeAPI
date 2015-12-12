@@ -26,7 +26,6 @@ package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -34,7 +33,7 @@ import org.spongepowered.api.world.explosion.Explosion;
 /**
  * Called when an {@link Explosion} occurs in a {@link World}.
  */
-public interface ExplosionEvent extends TargetWorldEvent, CauseTracked {
+public interface ExplosionEvent extends TargetWorldEvent {
 
     /**
      * Gets the {@link Explosion} involved in this event.

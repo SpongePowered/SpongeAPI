@@ -26,14 +26,13 @@ package org.spongepowered.api.event.command;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.cause.CauseTracked;
 
 import java.util.List;
 
 /**
  * Fired when a command is tab complete.
  */
-public interface TabCompleteCommandEvent extends Event, Cancellable, CauseTracked {
+public interface TabCompleteCommandEvent extends Event, Cancellable {
 
     /**
      * Get the command as a string, without any sort of command prefix.

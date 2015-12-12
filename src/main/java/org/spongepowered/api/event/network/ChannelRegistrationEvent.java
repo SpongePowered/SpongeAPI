@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.event.network;
 
-import org.spongepowered.api.event.cause.CauseTracked;
+import org.spongepowered.api.event.Event;
 
 /**
  * Fired when a channel is registered or unregistered.
  */
-public interface ChannelRegistrationEvent extends CauseTracked {
+public interface ChannelRegistrationEvent extends Event {
 
     /**
      * Gets the name of the channel being registered or unregistered.

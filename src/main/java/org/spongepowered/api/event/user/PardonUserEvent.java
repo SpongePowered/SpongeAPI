@@ -25,14 +25,13 @@
 package org.spongepowered.api.event.user;
 
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.util.ban.Ban;
 
 /**
  * Occurs when a user is pardoned.
  */
-public interface PardonUserEvent extends TargetUserEvent, CauseTracked {
+public interface PardonUserEvent extends TargetUserEvent {
 
     /**
      * Gets the ban involved in this event.

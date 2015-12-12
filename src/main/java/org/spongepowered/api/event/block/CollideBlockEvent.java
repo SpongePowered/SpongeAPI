@@ -28,7 +28,6 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -36,7 +35,7 @@ import org.spongepowered.api.world.World;
 /**
  * Fired when something collides a {@link BlockState} due to a {@link Cause}.
  */
-public interface CollideBlockEvent extends Event, Cancellable, CauseTracked {
+public interface CollideBlockEvent extends Event, Cancellable {
 
     /**
      * Gets the target {@link Location} being interacted with.

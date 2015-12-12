@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.achievement;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.command.MessageSinkEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.statistic.achievement.Achievement;
@@ -33,7 +32,7 @@ import org.spongepowered.api.statistic.achievement.Achievement;
 /**
  * Represents an event that is called when an {@link Achievement} is granted
  */
-public interface GrantAchievementEvent extends MessageSinkEvent, Cancellable, CauseTracked {
+public interface GrantAchievementEvent extends MessageSinkEvent, Cancellable {
 
     /**
      * Gets the achievement being targeted.

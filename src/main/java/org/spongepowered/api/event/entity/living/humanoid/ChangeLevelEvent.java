@@ -25,13 +25,12 @@
 package org.spongepowered.api.event.entity.living.humanoid;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 
 /**
  * Called when a human's level is changed.
  */
-public interface ChangeLevelEvent extends TargetHumanoidEvent, Cancellable, CauseTracked {
+public interface ChangeLevelEvent extends TargetHumanoidEvent, Cancellable {
 
     /**
      * Gets the original level of the human.

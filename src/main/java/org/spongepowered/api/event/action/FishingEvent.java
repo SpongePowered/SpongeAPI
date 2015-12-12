@@ -34,7 +34,6 @@ import org.spongepowered.api.entity.projectile.FishHook;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.block.CollideBlockEvent;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
 import org.spongepowered.api.event.entity.TargetEntityEvent;
 import org.spongepowered.api.item.ItemTypes;
@@ -45,7 +44,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
  * An event when a "fishing" action is performed. Always involves a
  * {@link FishHook}.
  */
-public interface FishingEvent extends Event, CauseTracked {
+public interface FishingEvent extends Event {
 
     /**
      * Gets the original {@link FishHook}, as a {@link EntitySnapshot}.

@@ -28,7 +28,6 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.world.TargetWorldEvent;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -37,7 +36,6 @@ import org.spongepowered.api.world.explosion.Explosion;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * An event that affects multiple {@link Entity} instances as a bulk action.
@@ -48,7 +46,7 @@ import java.util.stream.Collectors;
  * {@link Explosion} "damaging" a varying amount of {@link Entity} instances.
  * Other cases will be included as necessary.
  */
-public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseTracked {
+public interface AffectEntityEvent extends TargetWorldEvent, Cancellable {
 
     /**
      * Gets an {@link List<EntitySnapshot>} of the entity data

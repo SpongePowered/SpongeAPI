@@ -238,7 +238,7 @@ public class SimpleCommandManager implements CommandManager {
     @Override
     public CommandResult process(CommandSource source, String commandLine) {
         final String[] argSplit = commandLine.split(" ", 2);
-        final SendCommandEvent event = SpongeEventFactory.createSendCommandEvent(this.game, Cause.of(NamedCause.source(source)),
+        final SendCommandEvent event = SpongeEventFactory.createSendCommandEvent(Cause.of(NamedCause.source(source)),
             argSplit.length > 1 ? argSplit[1] : "", argSplit[0], CommandResult.empty());
         this.game.getEventManager().post(event);
         if (event.isCancelled()) {
@@ -296,7 +296,7 @@ public class SimpleCommandManager implements CommandManager {
         try {
             final String[] argSplit = arguments.split(" ", 2);
             List<String> suggestions = new ArrayList<>(this.dispatcher.getSuggestions(src, arguments));
-            final TabCompleteCommandEvent event = SpongeEventFactory.createTabCompleteCommandEvent(this.game, Cause.of(NamedCause.source(src)),
+            final TabCompleteCommandEvent event = SpongeEventFactory.createTabCompleteCommandEvent(Cause.of(NamedCause.source(src)),
                 argSplit.length > 1 ? argSplit[1] : "", argSplit[0], suggestions);
             this.game.getEventManager().post(event);
             if (event.isCancelled()) {

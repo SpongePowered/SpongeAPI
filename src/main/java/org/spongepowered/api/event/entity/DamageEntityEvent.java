@@ -33,8 +33,6 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.Arrow;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.cause.NamedCause;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierTypes;
@@ -141,7 +139,7 @@ import java.util.function.Function;
  * associated with the targeted {@link Entity}.</p>
  */
 @ImplementedBy(AbstractDamageEntityEvent.class)
-public interface DamageEntityEvent extends TargetEntityEvent, CauseTracked, Cancellable {
+public interface DamageEntityEvent extends TargetEntityEvent, Cancellable {
 
     /**
      * For use with the {@link DamageSource} that is known as the "source"

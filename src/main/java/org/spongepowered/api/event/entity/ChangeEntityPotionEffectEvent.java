@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.effect.potion.PotionEffect;
 
 import java.util.List;
@@ -33,7 +32,7 @@ import java.util.List;
 /**
  * An event that involves a living entity having effects added and removed.
  */
-public interface ChangeEntityPotionEffectEvent extends TargetEntityEvent, Cancellable, CauseTracked {
+public interface ChangeEntityPotionEffectEvent extends TargetEntityEvent, Cancellable {
 
     /**
      * Gets a copy of all current effects applied on the entity.

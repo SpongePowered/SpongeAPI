@@ -26,10 +26,9 @@ package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.item.inventory.ItemStack;
 
-public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEvent, CauseTracked, Cancellable {
+public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEvent, Cancellable {
 
     /**
      * Fired when a {@link Living} changes it's equipment.

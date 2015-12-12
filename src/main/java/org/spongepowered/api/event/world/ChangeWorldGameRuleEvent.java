@@ -25,12 +25,11 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * Called when a GameRule is changed.
  */
-public interface ChangeWorldGameRuleEvent extends TargetWorldEvent, Cancellable, CauseTracked {
+public interface ChangeWorldGameRuleEvent extends TargetWorldEvent, Cancellable {
 
     /**
      * Gets the original value of the GameRule.

@@ -26,11 +26,10 @@ package org.spongepowered.api.event.entity.projectile;
 
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * Called when a {@link Projectile} is launched.
  */
-public interface LaunchProjectileEvent extends TargetProjectileEvent, Cancellable, CauseTracked {
+public interface LaunchProjectileEvent extends TargetProjectileEvent, Cancellable {
 
 }

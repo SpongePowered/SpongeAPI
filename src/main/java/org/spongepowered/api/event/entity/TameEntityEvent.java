@@ -28,7 +28,6 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
@@ -45,7 +44,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
  *         <tr><td>{@link ItemStack}</td><td>The {@link ItemStack} used to tame the entity</td></tr>
  *     </tbody></table>
  */
-public interface TameEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
+public interface TameEntityEvent extends TargetEntityEvent, Cancellable {
 
     String USED_ITEM = "UsedItem";
 
