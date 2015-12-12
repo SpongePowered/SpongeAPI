@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.text;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
@@ -48,6 +47,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * Utility class to work with and create {@link Text}.
@@ -93,7 +94,6 @@ public final class Texts {
      * @see Text.Placeholder
      */
     public static Text.Placeholder placeholder(String key) {
-        checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
         return new Text.Placeholder(key);
     }
 
@@ -106,9 +106,7 @@ public final class Texts {
      * @return The created text
      * @see Text.Placeholder
      */
-    public static Text.Placeholder placeholder(String key, Text fallback) {
-        checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
-        checkNotNull(fallback, "fallback");
+    public static Text.Placeholder placeholder(String key, @Nullable Text fallback) {
         return new Text.Placeholder(key, fallback);
     }
 

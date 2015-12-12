@@ -333,7 +333,7 @@ public abstract class Text implements TextRepresentable {
             this(key, null);
         }
 
-        Placeholder(String key, Text fallback) {
+        Placeholder(String key, @Nullable Text fallback) {
             checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
             this.key = key;
             this.fallback = Optional.ofNullable(fallback);

@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.Objects;
 
 /**
- * Represents a pair of {@link TextStyle and {@link TextColor}}.
+ * Represents a pair of {@link TextStyle} and {@link TextColor}.
  */
 public final class TextFormat {
 
@@ -119,7 +119,7 @@ public final class TextFormat {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(style, color);
+        return Objects.hashCode(this.style, this.color);
     }
 
     @Override
@@ -137,8 +137,9 @@ public final class TextFormat {
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
-                .add("style", style)
-                .add("color", color).toString();
+                .add("style", this.style)
+                .add("color", this.color)
+                .toString();
     }
 
 }
