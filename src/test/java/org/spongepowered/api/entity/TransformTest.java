@@ -24,13 +24,15 @@
  */
 package org.spongepowered.api.entity;
 
-import com.flowpowered.math.imaginary.Quaterniond;
-import com.flowpowered.math.matrix.Matrix4d;
-import com.flowpowered.math.vector.Vector3d;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import com.flowpowered.math.imaginary.Quaterniond;
+import com.flowpowered.math.matrix.Matrix4d;
+import com.flowpowered.math.vector.Vector3d;
+
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
@@ -87,7 +89,6 @@ public class TransformTest {
         Assert.assertEquals(rotation1.getZ(), transform.getRoll(), EPSILON);
 
         transform = transform.addRotation(rotation2);
-        System.out.println(rotationQuat1Plus2 + " " + transform.getRotationAsQuaternion());
         assertEquals(rotationQuat1Plus2, transform.getRotationAsQuaternion());
         assertEquals(rotation1Plus2, transform.getRotation());
     }
@@ -117,9 +118,7 @@ public class TransformTest {
 
     @Test
     public void testMatrix() {
-        // TODO DDoS, this test will need more...tests?
         final Vector3d position = new Vector3d(1, 2, 3);
-        final Quaterniond rotation = Quaterniond.fromAxesAnglesDeg(20, 30, 60);
         final Vector3d scale = new Vector3d(4, 5, 6);
 
         assertEquals(Matrix4d.createTranslation(position), new Transform<>(this.mockExtent1, position).toMatrix());
