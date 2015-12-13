@@ -27,11 +27,11 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAffectsSpawningData;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.player.Player;
 
 /**
  * A {@link DataManipulator} for the "affects spawning" state of a
- * {@link Human}.
+ * {@link Player}.
  */
 public interface AffectsSpawningData extends DataManipulator<AffectsSpawningData, ImmutableAffectsSpawningData> {
 
