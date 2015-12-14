@@ -177,6 +177,14 @@ public interface WorldBuilder extends ResettableBuilder<WorldBuilder> {
     WorldBuilder teleporterAgent(TeleporterAgent agent);
 
     /**
+     * Sets whether PVP combat is enabled in this world.
+     *
+     * @param enabled Whether PVP is enabled
+     * @return The builder, for chaining
+     */
+    WorldBuilder pvpEnabled(boolean enabled);
+
+    /**
      * Attempts to create a {@link World} from the specified parameters.
      *
      * @return The world, if successful

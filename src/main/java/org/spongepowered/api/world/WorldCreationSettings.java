@@ -132,6 +132,13 @@ public interface WorldCreationSettings {
     DimensionType getDimensionType();
 
     /**
+     * Gets whether PVP combat is enabled in this world.
+     *
+     * @return Whether PVP is enabled
+     */
+    boolean isPVPEnabled();
+
+    /**
      * Gets a {@link DataContainer} of any extra settings required by the
      * generator.
      *

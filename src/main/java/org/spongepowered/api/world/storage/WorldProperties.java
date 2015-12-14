@@ -188,6 +188,20 @@ public interface WorldProperties extends DataSerializable {
     DimensionType getDimensionType();
 
     /**
+     * Gets whether PVP combat is enabled in this world.
+     *
+     * @return Whether PVP is enabled
+     */
+    boolean isPVPEnabled();
+
+    /**
+     * Sets whether PVP combat is enabled in this world.
+     *
+     * @param enabled Whether PVP is enabled
+     */
+    void setPVPEnabled(boolean enabled);
+
+    /**
      * Gets whether this world is currently experiencing rain/snow/cloud-cover
      * (depending on the biome of a specific location).
      *
