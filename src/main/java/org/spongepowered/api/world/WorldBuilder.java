@@ -182,7 +182,7 @@ public interface WorldBuilder extends ResettableBuilder<WorldBuilder> {
      * @param enabled Whether PVP is enabled
      * @return The builder, for chaining
      */
-    WorldBuilder pvpEnabled(boolean enabled);
+    WorldBuilder pvp(boolean enabled);
 
     /**
      * Attempts to create a {@link World} from the specified parameters.
