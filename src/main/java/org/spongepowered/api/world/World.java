@@ -164,6 +164,17 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
     WorldBorder getWorldBorder();
 
     /**
+     * Returns a new builder for creating a task to pre-generate the chunks
+     * inside a square border with a given center and diameter.
+     *
+     * @param center The center of the border
+     * @param diameter The diameter of the border
+     * @return The builder for the chunk pre-generate task
+     * @see WorldBorder.ChunkPreGenerate
+     */
+    WorldBorder.ChunkPreGenerate newChunkPreGenerate(Vector3d center, double diameter);
+
+    /**
      * Gets the specified GameRule value.
      **
      * @param gameRule The name of the GameRule.

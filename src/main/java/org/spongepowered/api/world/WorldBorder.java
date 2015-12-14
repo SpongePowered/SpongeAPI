@@ -25,6 +25,13 @@
 package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.slf4j.Logger;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.scheduler.Scheduler;
+import org.spongepowered.api.scheduler.Task;
+import org.spongepowered.api.util.ResettableBuilder;
+
+import javax.annotation.Nullable;
 
 /**
  * A world border is a square boundary, extending through the entire y-axis.
@@ -194,4 +201,109 @@ public interface WorldBorder {
      * @param damage The damage amount
      */
     void setDamageAmount(double damage);
+
+    /**
+     * Returns a new builder for creating a task to pre-generate the chunks
+     * inside the border. The current state of the border is "snapshoted" for
+     * the builder. It is not backed by this instance. If the border size is
+     * changing then the target size is used.
+     *
+     * @param world The target world
+     * @return The builder for the chunk pre-generate task
+     * @see ChunkPreGenerate
+     */
+    ChunkPreGenerate newChunkPreGenerate(World world);
+
+    /**
+     * A builder for submitting a task to pre-generate chunks inside a world
+     * border.
+     *
+     * <p>The task is synchronous and repeating with a given interval and
+     * either a target number of chunks per ticks and/or a percentage of the
+     * tick time.</p>
+     *
+     * <p>Chunk order is not defined but a proper implementation should use
+     * and "inside-out" strategy for better results if the task is
+     * cancelled.</p>
+     *
+     * @see WorldBorder#newChunkPreGenerate(World)
+     * @see World#newChunkPreGenerate(Vector3d, double)
+     */
+    interface ChunkPreGenerate extends ResettableBuilder<ChunkPreGenerate> {
+
+        /**
+         * Sets the owner of the resulting task.
+         *
+         * <p>Mandatory.</p>
+         *
+         * @param plugin The owner plugin
+         * @return This for chained calls
+         */
+        ChunkPreGenerate owner(Object plugin);
+
+        /**
+         * Sets the logger for logging generator efforts.
+         *
+         * <p>Optional.</p>
+         *
+         * @param logger A logger for the generator
+         * @return This for chained calls
+         */
+        ChunkPreGenerate logger(@Nullable Logger logger);
+
+        /**
+         * Sets the interval between generation runs.
+         *
+         * <p>Must be greater than 0.</p>
+         *
+         * <p>Optional.</p>
+         *
+         * <p>Default is 10.</p>
+         *
+         * @param tickInterval The tick interval
+         * @return This for chained calls
+         */
+        ChunkPreGenerate tickInterval(int tickInterval);
+
+        /**
+         * Sets maximum number of chunks per tick to generate.
+         *
+         * <p>Use a value smaller or equal to 0 to disable.</p>
+         *
+         * <p>Optional if {@link #tickPercentLimit(float)} is used.</p>
+         *
+         * <p>Default is disabled.</p>
+         *
+         * @param chunkCount The maximum number of chunks to generate
+         * @return This for chained calls
+         */
+        ChunkPreGenerate chunksPerTick(int chunkCount);
+
+        /**
+         * Sets the limit of tick time that can be used to generate chunks
+         * as a percentage of {@link Scheduler#getPreferredTickInterval()}. The
+         * percentage should be a value in the range (0, 1]. No estimation is
+         * used to decide when to stop so the actual value will always be
+         * somewhere above the given percentage.
+         *
+         * <p>Use a value smaller or equal to 0 to disable.</p>
+         *
+         * <p>Optional if {@link #chunksPerTick(int)} is used.</p>
+         *
+         * <p>Default is 15%.</p>
+         *
+         * @param tickPercent The
+         * @return This for chained calls
+         */
+        ChunkPreGenerate tickPercentLimit(float tickPercent);
+
+        /**
+         * Schedules the task with the {@link Game#getScheduler()}.
+         *
+         * @return The resulting task
+         */
+        Task start();
+
+    }
+
 }
