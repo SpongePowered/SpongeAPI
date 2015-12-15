@@ -126,28 +126,19 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable, CauseTr
      * being broke. This usually occurs, whenever a {@link BlockState} changes
      * to {@link BlockTypes#AIR}
      *
-     * <p>Note: This does not include fluids. See ChangeBlockEvent#Fluid</p>
      */
     interface Break extends Post {}
 
     /**
      * Called when one or more {@link BlockType}s are added to the world.
      *
-     * <p>Note: This does not include fluids. See ChangeBlockEvent#Fluid</p>
      */
     interface Place extends Post {}
 
     /**
      * Called when one or more {@link BlockType}s are modified in the world.
      *
-     * <p>Note: This does not include fluids. See ChangeBlockEvent#Fluid</p>
      */
     interface Modify extends Post {}
-
-    /**
-     * Called when one or more {@link BlockType}s are affected in the
-     * world by a fluid.
-     */
-    interface Fluid extends Post {}
 
 }

@@ -653,26 +653,6 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.block.ChangeBlockEvent.Fluid}.
-     * 
-     * @param game The game
-     * @param cause The cause
-     * @param targetWorld The target world
-     * @param transactions The transactions
-     * @return A new fluid change block event
-     */
-    public static ChangeBlockEvent.Fluid createChangeBlockEventFluid(Game game, Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
-        values.put("cause", cause);
-        values.put("targetWorld", targetWorld);
-        values.put("transactions", transactions);
-        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.Fluid.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.Grow}.
      * 
      * @param game The game
