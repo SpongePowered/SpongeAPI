@@ -63,12 +63,12 @@ public class EmptyInventory implements Inventory {
 
     @Override
     public InventoryTransactionResult offer(ItemStack stack) {
-        return InventoryTransactionResult.Builder.failNoTransactions();
+        return InventoryTransactionResult.failNoTransactions();
     }
 
     @Override
     public InventoryTransactionResult set(ItemStack stack) {
-        return InventoryTransactionResult.Builder.failNoTransactions();
+        return InventoryTransactionResult.failNoTransactions();
     }
 
     @Override

@@ -62,20 +62,15 @@ public class CauseTest {
         final Cause old = Cause.of("foo");
         final Cause newCause = old.with("bar");
         assertThat(old, not(newCause));
-        assertThat(newCause.all().contains("foo"), is(true));
-        assertThat(newCause.all().contains("bar"), is(true));
+        List<?> list = newCause.all();
+        assertThat(list.contains("foo"), is(true));
+        assertThat(list.contains("bar"), is(true));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testWithNullCause() {
         final Cause old = Cause.of("foo");
         final Cause newCause = old.with((Object) null);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testWithNullCauses() {
-        final Cause old = Cause.of();
-        final Cause newCause = old.with(null, null);
     }
 
     @Test
@@ -116,31 +111,10 @@ public class CauseTest {
     }
 
     @Test
-    public void testEmpty() {
-        final Cause empty = Cause.of();
-        assertThat(empty.isEmpty(), is(true));
-    }
-
-    @Test
-    public void testEmptyWithEmpty() {
-        final Cause empty = Cause.of();
-        assertThat(empty.with().isEmpty(), is(true));
-    }
-
-    @Test
     public void testNoneOf() {
         final Cause cause = Cause.of("foo", 1, 2, 3);
         assertThat(cause.noneOf(Integer.class), hasSize(1));
         assertThat(cause.noneOf(Integer.class).get(0), is("foo"));
-    }
-
-    @Test
-    public void testJustBecauseIcan() {
-        final Cause cause = Cause.of();
-        final Cause testing = cause.with().with().with().with(new ArrayList<>()).with();
-        assertThat(testing.isEmpty(), is(true));
-        assertThat(testing.allOf(String.class), hasSize(0));
-        assertThat(testing.noneOf(String.class), hasSize(0));
     }
 
     @Test
@@ -150,13 +124,6 @@ public class CauseTest {
         final Cause playerCause = Cause.of(ownerCause);
         Optional<Player> optional = playerCause.get(NamedCause.OWNER);
         assertThat(optional.isPresent(), is(true));
-    }
-
-    @Test
-    public void testAbsentNamedCause() {
-        final Cause emptyCause = Cause.of();
-        final Optional<Object> optional = emptyCause.get(NamedCause.OWNER);
-        assertThat(optional.isPresent(), is(false));
     }
 
     @Test(expected = IllegalArgumentException.class)

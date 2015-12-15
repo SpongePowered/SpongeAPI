@@ -4459,14 +4459,12 @@ public class SpongeEventFactory {
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.SaveWorldEvent}.
      * 
-     * @param game The game
      * @param cause The cause
      * @param targetWorld The target world
      * @return A new save world event
      */
-    public static SaveWorldEvent createSaveWorldEvent(Game game, Cause cause, World targetWorld) {
+    public static SaveWorldEvent createSaveWorldEvent(Cause cause, World targetWorld) {
         Map<String, Object> values = Maps.newHashMap();
-        values.put("game", game);
         values.put("cause", cause);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(SaveWorldEvent.class, values);

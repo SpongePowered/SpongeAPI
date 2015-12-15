@@ -46,6 +46,14 @@ public final class InventoryTransactionResult {
         return new Builder();
     }
 
+    public static InventoryTransactionResult successNoTransactions() {
+        return Builder.builder().result(Type.SUCCESS).build();
+    }
+
+    public static InventoryTransactionResult failNoTransactions() {
+        return Builder.builder().result(Type.ERROR).build();
+    }
+
     enum Type {
 
         /**
@@ -129,14 +137,6 @@ public final class InventoryTransactionResult {
 
         public static Builder builder() {
             return new Builder();
-        }
-
-        public static InventoryTransactionResult successNoTransactions() {
-            return builder().result(Type.SUCCESS).build();
-        }
-
-        public static InventoryTransactionResult failNoTransactions() {
-            return builder().result(Type.ERROR).build();
         }
 
         public Builder result(final Type type) {

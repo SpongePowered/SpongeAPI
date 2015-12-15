@@ -303,7 +303,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @return True if damaging the entity was successful
      */
     default boolean damage(double damage, DamageSource damageSource) {
-        return damage(damage, damageSource, Cause.of());
+        return damage(damage, damageSource, Cause.of(NamedCause.source(damageSource)));
     }
 
     /**

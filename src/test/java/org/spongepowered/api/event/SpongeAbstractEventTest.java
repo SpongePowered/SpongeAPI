@@ -55,7 +55,7 @@ public class SpongeAbstractEventTest {
 
         stub(transaction.getOriginal().getLocation()).toReturn(Optional.of(new Location<>(mockParam(World.class), Vector3d.ZERO)));
 
-        ChangeBlockEvent event = SpongeEventFactory.createChangeBlockEvent(mockParam(Game.class), Cause.of(), mockParam(World.class), Lists.newArrayList(transaction));
+        ChangeBlockEvent event = SpongeEventFactory.createChangeBlockEvent(Cause.of("none"), mockParam(World.class), Lists.newArrayList(transaction));
         event.filter(location -> false);
 
         assertThat(transaction.isValid(), is(false));
@@ -66,8 +66,8 @@ public class SpongeAbstractEventTest {
         DataTransactionResult original = DataTransactionResult.failNoData();
         DataTransactionResult modified = DataTransactionResult.successNoData();
 
-        ChangeDataHolderEvent.ValueChange event = SpongeEventFactory.createChangeDataHolderEventValueChange(mockParam(Game.class),
-                original, mockParam(DataHolder.class));
+        ChangeDataHolderEvent.ValueChange event = SpongeEventFactory.createChangeDataHolderEventValueChange(Cause.of("none"), original,
+            mockParam(DataHolder.class));
 
         assertThat(event.getOriginalChanges(), is(equalTo(original)));
 

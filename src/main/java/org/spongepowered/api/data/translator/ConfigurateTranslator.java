@@ -84,7 +84,6 @@ public final class ConfigurateTranslator implements DataTranslator<Configuration
         } else if (value != null) {
             container.set(of(node.getKey().toString()), value);
         }
-
     }
 
     @Override

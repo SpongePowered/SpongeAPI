@@ -25,12 +25,11 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.World;
 
 /**
  * Base event for when a {@link World} is saved.
  */
-public interface SaveWorldEvent extends TargetWorldEvent, Cancellable, CauseTracked {
+public interface SaveWorldEvent extends TargetWorldEvent, Cancellable {
 
 }

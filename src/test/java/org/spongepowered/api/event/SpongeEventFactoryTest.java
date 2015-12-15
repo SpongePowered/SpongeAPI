@@ -28,6 +28,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.withSettings;
 
+import com.flowpowered.math.vector.Vector3d;
 import com.google.common.collect.Sets;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,6 +40,8 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Transform;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.NamedCause;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.HealEntityEvent;
 import org.spongepowered.api.event.entity.ai.AITaskEvent;
@@ -183,6 +186,10 @@ public class SpongeEventFactoryTest {
             return UUID.randomUUID();
         } else if (paramType == DataTransactionResult.class) {
             return DataTransactionResult.successNoData();
+        } else if (paramType == Cause.class) {
+            return Cause.of(NamedCause.source("none"));
+        } else if (paramType == Location.class) {
+            return new Location<>(mock(World.class), Vector3d.ZERO);
         } else {
             return mock(paramType, withSettings().defaultAnswer(Mockito.RETURNS_MOCKS));
         }
