@@ -168,6 +168,7 @@ import org.spongepowered.api.event.world.ConstructWorldEvent;
 import org.spongepowered.api.event.world.ExplosionEvent;
 import org.spongepowered.api.event.world.GenerateChunkEvent;
 import org.spongepowered.api.event.world.LoadWorldEvent;
+import org.spongepowered.api.event.world.SaveWorldEvent;
 import org.spongepowered.api.event.world.TargetWorldEvent;
 import org.spongepowered.api.event.world.UnloadWorldEvent;
 import org.spongepowered.api.event.world.chunk.ForcedChunkEvent;
@@ -4812,6 +4813,24 @@ public class SpongeEventFactory {
         values.put("cause", cause);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(LoadWorldEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.SaveWorldEvent}.
+     * 
+     * @param game The game
+     * @param cause The cause
+     * @param targetWorld The target world
+     * @return A new save world event
+     */
+    public static SaveWorldEvent createSaveWorldEvent(Game game, Cause cause, World targetWorld) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("game", game);
+        values.put("cause", cause);
+        values.put("targetWorld", targetWorld);
+        return SpongeEventFactoryUtils.createEventImpl(SaveWorldEvent.class, values);
     }
 
     /**
