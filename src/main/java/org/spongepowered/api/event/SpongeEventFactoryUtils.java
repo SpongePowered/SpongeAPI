@@ -30,6 +30,8 @@ import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.Game;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.NamedCause;
 import org.spongepowered.api.event.game.state.GameStateEvent;
 import org.spongepowered.api.eventgencore.classwrapper.reflection.ReflectionUtils;
 import org.spongepowered.api.util.event.factory.ClassGeneratorProvider;
@@ -89,9 +91,9 @@ public class SpongeEventFactoryUtils {
      * @return A new instance of the event
      */
     public static <T extends GameStateEvent> T createState(Class<T> type, Game game) {
-        Map<String, Object> values = Maps.newHashMapWithExpectedSize(1);
-        values.put("game", game);
+        Map<String, Object> values = Maps.newHashMapWithExpectedSize(2);
         values.put("state", game.getState());
+        values.put("cause", Cause.of(NamedCause.source(game)));
         return SpongeEventFactoryUtils.createEventImpl(type, values);
     }
 
