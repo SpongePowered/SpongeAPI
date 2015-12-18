@@ -189,7 +189,7 @@ public class SpongeEventFactoryTest {
         } else if (paramType == Cause.class) {
             return Cause.of(NamedCause.source("none"));
         } else if (paramType == Location.class) {
-            return new Location<>(mock(World.class), Vector3d.ZERO);
+            return new Location<>(mock(Extent.class), Vector3d.ZERO);
         } else {
             return mock(paramType, withSettings().defaultAnswer(Mockito.RETURNS_MOCKS));
         }
