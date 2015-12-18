@@ -24,7 +24,11 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
+import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
  * Represents an Item entity.
@@ -39,6 +43,16 @@ public interface Item extends Entity {
      */
     default RepresentedItemData getItemData() {
         return get(RepresentedItemData.class).get();
+    }
+
+    /**
+     * Gets the {@link Value} for the represented {@link ItemStack} as
+     * an {@link ItemStackSnapshot}.
+     *
+     * @return The value for the item stack snapshot
+     */
+    default Value<ItemStackSnapshot> item() {
+        return getValue(Keys.REPRESENTED_ITEM).get();
     }
 
 }

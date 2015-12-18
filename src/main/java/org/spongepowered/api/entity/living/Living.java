@@ -24,8 +24,12 @@
  */
 package org.spongepowered.api.entity.living;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.DamageableData;
 import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.mutable.OptionalValue;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.scoreboard.TeamMember;
@@ -48,6 +52,35 @@ public interface Living extends Entity, TeamMember {
     }
 
     /**
+     * Returns the health amount.
+     *
+     * <p>The range of the health depends on the object on which this
+     * method is defined. For players in Minecraft, the nominal range is
+     * between 0 and 20, inclusive, but the range can be adjusted.</p>
+     *
+     * <p>Convention dictates that health does not follow below 0 but this
+     * convention may be broken.</p>
+     *
+     * @return Health value
+     */
+    default MutableBoundedValue<Double> health() {
+        return getValue(Keys.HEALTH).get();
+    }
+
+    /**
+     * Gets the current maximum health.
+     *
+     * <p>The maximum health set here may affect the attribute increasing
+     * health points. The base health should be minded that it may be lower
+     * than the total maximum health of this entity.</p>
+     *
+     * @return This entities maximum health
+     */
+    default MutableBoundedValue<Double> maxHealth() {
+        return getValue(Keys.MAX_HEALTH).get();
+    }
+
+    /**
      * Gets a copy of the current {@link DamageableData}.
      *
      * @return A copy of the current damageable data
@@ -56,6 +89,22 @@ public interface Living extends Entity, TeamMember {
         return get(DamageableData.class).get();
     }
 
+    /**
+     * Gets the {@link OptionalValue} for the last attacker.
+     *
+     * @return The last attacker as an optional value
+     */
+    default OptionalValue<Living> lastAttacker() {
+        return getValue(Keys.LAST_ATTACKER).get();
+    }
 
+    /**
+     * Gets the last amount of damage dealt as an optional value.
+     *
+     * @return The last damage dealt as an optional value
+     */
+    default OptionalValue<Double> lastDamage() {
+        return getValue(Keys.LAST_DAMAGE).get();
+    }
 
 }

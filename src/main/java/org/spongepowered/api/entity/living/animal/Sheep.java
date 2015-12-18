@@ -24,7 +24,10 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DyeableData;
+import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.value.mutable.Value;
 
 /**
  * Represents a Sheep.
@@ -39,6 +42,10 @@ public interface Sheep extends Animal {
      */
     default DyeableData getDyeData() {
         return get(DyeableData.class).get();
+    }
+
+    default Value<DyeColor> color() {
+        return getValue(Keys.DYE_COLOR).get();
     }
 
 }

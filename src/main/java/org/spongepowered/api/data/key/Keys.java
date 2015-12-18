@@ -178,7 +178,7 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Short>> SPAWNER_MAXIMUM_DELAY = null;
     public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_COUNT = null;
     public static final Key<MutableBoundedValue<Short>> SPAWNER_MAXIMUM_NEARBY_ENTITIES = null;
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_REQURED_PLAYER_RANGE = null;
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_REQUIRED_PLAYER_RANGE = null;
     public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_RANGE = null;
     public static final Key<MobSpawnerData.NextEntityToSpawnValue> SPAWNER_NEXT_ENTITY_TO_SPAWN = null;
     public static final Key<WeightedCollectionValue<EntitySnapshot>> SPAWNER_ENTITIES = null;

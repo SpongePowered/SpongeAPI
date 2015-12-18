@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.entity.living;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.AgentData;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.ai.Goal;
 import org.spongepowered.api.entity.ai.GoalType;
 
@@ -43,6 +45,15 @@ public interface Agent extends Living {
      */
     default AgentData getAgentData() {
         return get(AgentData.class).get();
+    }
+
+    /**
+     * Gets the {@link Value} for whether AI tasks are enabled or not.
+     *
+     * @return The value for the current "enabled" state of ai tasks
+     */
+    default Value<Boolean> aiEnabled() {
+        return getValue(Keys.AI_ENABLED).get();
     }
 
     /**

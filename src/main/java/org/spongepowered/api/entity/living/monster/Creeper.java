@@ -24,11 +24,17 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.explosive.IgnitableExplosive;
 
 /**
  * Represents a Creeepr.
  */
 public interface Creeper extends Monster, IgnitableExplosive {
+
+    default Value<Boolean> charged() {
+        return getValue(Keys.CREEPER_CHARGED).get();
+    }
 
 }

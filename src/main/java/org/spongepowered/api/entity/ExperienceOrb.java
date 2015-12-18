@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExpOrbData;
+import org.spongepowered.api.data.value.mutable.Value;
 
 /**
  * Represents an experience orb.
@@ -39,6 +41,15 @@ public interface ExperienceOrb extends Entity {
      */
     default ExpOrbData experienceHeld() {
         return get(ExpOrbData.class).get();
+    }
+
+    /**
+     * Gets the {@link Value} for the amount of "experience" stored.
+     *
+     * @return The immutable value for the amount of "experience" stored
+     */
+    default Value<Integer> experience() {
+        return getValue(Keys.HELD_EXPERIENCE).get();
     }
 
 }

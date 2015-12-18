@@ -24,11 +24,14 @@
  */
 package org.spongepowered.api.entity.living.player;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
 import org.spongepowered.api.data.manipulator.mutable.entity.JoinData;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
@@ -138,6 +141,15 @@ public interface Player extends Humanoid, User, LocatedSource, RemoteSource, Vie
      */
     default GameModeData getGameModeData() {
         return get(GameModeData.class).get();
+    }
+
+    /**
+     * Gets the current {@link GameMode} for this {@link Player}.
+     *
+     * @return The current game mode value
+     */
+    default Value<GameMode> gameMode() {
+        return getValue(Keys.GAME_MODE).get();
     }
 
     /**

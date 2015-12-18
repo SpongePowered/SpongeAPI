@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.entity.explosive;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.FuseData;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 
 /**
  * Represents an explosive that detonates after its fuse has expired.
@@ -40,6 +42,15 @@ public interface FusedExplosive extends Explosive {
      */
     default FuseData getFuseData() {
         return get(FuseData.class).get();
+    }
+
+    /**
+     * Gets the {@link MutableBoundedValue} for the remaining fuse duration.
+     *
+     * @return The fuse duration
+     */
+    default MutableBoundedValue<Integer> getFuseDuration() {
+        return getValue(Keys.FUSE_DURATION).get();
     }
 
 }
