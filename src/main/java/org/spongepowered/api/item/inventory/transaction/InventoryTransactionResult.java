@@ -47,14 +47,14 @@ public final class InventoryTransactionResult {
     }
 
     public static InventoryTransactionResult successNoTransactions() {
-        return Builder.builder().result(Type.SUCCESS).build();
+        return builder().result(Type.SUCCESS).build();
     }
 
     public static InventoryTransactionResult failNoTransactions() {
-        return Builder.builder().result(Type.ERROR).build();
+        return builder().result(Type.ERROR).build();
     }
 
-    enum Type {
+    public enum Type {
 
         /**
          * The actual result of the operation is undefined, this probably
@@ -134,10 +134,6 @@ public final class InventoryTransactionResult {
         private List<ItemStackSnapshot> replaced;
 
         private Builder() {}
-
-        public static Builder builder() {
-            return new Builder();
-        }
 
         public Builder result(final Type type) {
             this.resultType = checkNotNull(type);
