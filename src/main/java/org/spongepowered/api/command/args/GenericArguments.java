@@ -33,16 +33,16 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Iterables;
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.Game;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.command.CommandMessageFormatting;
+import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.command.source.LocatedSource;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
-import org.spongepowered.api.command.CommandMessageFormatting;
-import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.command.source.LocatedSource;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -89,11 +89,10 @@ public final class GenericArguments {
      * Gives value of type {@link Player}
      *
      * @param key The key to store under
-     * @param game The game to find players in
      * @return the argument
      */
-    public static CommandElement playerOrSource(Text key, Game game) {
-        return new PlayerCommandElement(key, game, true);
+    public static CommandElement playerOrSource(Text key) {
+        return new PlayerCommandElement(key, true);
     }
 
     /**
@@ -101,11 +100,10 @@ public final class GenericArguments {
      * Gives value of type {@link Player}
      *
      * @param key The key to store under
-     * @param game The game to find players in
      * @return the argument
      */
-    public static CommandElement player(Text key, Game game) {
-        return new PlayerCommandElement(key, game, false);
+    public static CommandElement player(Text key) {
+        return new PlayerCommandElement(key, false);
     }
 
     /**
@@ -114,11 +112,10 @@ public final class GenericArguments {
      * Gives values of type {@link WorldProperties}
      *
      * @param key The key to store under
-     * @param game The game to find worlds from
      * @return the argument
      */
-    public static CommandElement world(Text key, Game game) {
-        return new WorldPropertiesCommandElement(key, game);
+    public static CommandElement world(Text key) {
+        return new WorldPropertiesCommandElement(key);
     }
 
     /**
@@ -126,11 +123,10 @@ public final class GenericArguments {
      * Gives values of tye {@link DimensionType}
      *
      * @param key The key to store under
-     * @param game The game to find dimensions from
      * @return the argument
      */
-    public static CommandElement dimension(Text key, Game game) {
-        return catalogedElement(key, game, DimensionType.class);
+    public static CommandElement dimension(Text key) {
+        return catalogedElement(key, DimensionType.class);
     }
 
     /**
@@ -147,24 +143,22 @@ public final class GenericArguments {
      * Expect an argument to represent a {@link Location}.
      *
      * @param key The key to store under
-     * @param game The game to find worlds from
      * @return the argument
      */
-    public static CommandElement location(Text key, Game game) {
-        return new LocationCommandElement(key, game);
+    public static CommandElement location(Text key) {
+        return new LocationCommandElement(key);
     }
 
     /**
      * Expect an argument that is a member of the specified catalog type T.
      *
      * @param key The key to store the resolved value under
-     * @param game The game to get the registry from
      * @param catalogType The type expected
      * @param <T> The type to return
      * @return the argument
      */
-    public static <T extends CatalogType> CommandElement catalogedElement(Text key, Game game, Class<T> catalogType) {
-        return new CatalogedTypeCommandElement<>(key, game, catalogType);
+    public static <T extends CatalogType> CommandElement catalogedElement(Text key, Class<T> catalogType) {
+        return new CatalogedTypeCommandElement<>(key, catalogType);
     }
 
     static class MarkTrueCommandElement extends CommandElement {
@@ -884,12 +878,10 @@ public final class GenericArguments {
     }
 
     private static class PlayerCommandElement extends PatternMatchingCommandElement {
-        private final Game game;
         private final boolean returnSource;
 
-        protected PlayerCommandElement(Text key, Game game, boolean returnSource) {
+        protected PlayerCommandElement(Text key, boolean returnSource) {
             super(key);
-            this.game = game;
             this.returnSource = returnSource;
         }
 
@@ -915,14 +907,14 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return this.game.getServer().getOnlinePlayers().stream()
+            return Sponge.getGame().getServer().getOnlinePlayers().stream()
                 .map(input -> input == null ? null : input.getName())
                 .collect(Collectors.toList());
         }
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            Optional<Player> ret = this.game.getServer().getPlayer(choice);
+            Optional<Player> ret = Sponge.getGame().getServer().getPlayer(choice);
             if (!ret.isPresent()) {
                 throw new IllegalArgumentException("Input value " + choice + " was not a player");
             }
@@ -944,11 +936,9 @@ public final class GenericArguments {
     }
 
     private static class WorldPropertiesCommandElement extends PatternMatchingCommandElement {
-        private final Game game;
 
-        protected WorldPropertiesCommandElement(@Nullable Text key, Game game) {
+        protected WorldPropertiesCommandElement(@Nullable Text key) {
             super(key);
-            this.game = game;
         }
 
         @Nullable
@@ -959,14 +949,14 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return this.game.getServer().getAllWorldProperties().stream()
+            return Sponge.getGame().getServer().getAllWorldProperties().stream()
                 .map(input -> input == null || !input.isEnabled() ? null : input.getWorldName())
                 .collect(Collectors.toList());
         }
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            Optional<WorldProperties> ret = this.game.getServer().getWorldProperties(choice);
+            Optional<WorldProperties> ret = Sponge.getGame().getServer().getWorldProperties(choice);
             if (!ret.isPresent()) {
                 throw new IllegalArgumentException("Provided argument " + choice + " did not match a WorldProperties");
             }
@@ -1050,14 +1040,12 @@ public final class GenericArguments {
     }
 
     private static class LocationCommandElement extends CommandElement {
-        private final Game game;
         private final WorldPropertiesCommandElement worldParser;
         private final Vector3dCommandElement vectorParser;
 
-        protected LocationCommandElement(Text key, Game game) {
+        protected LocationCommandElement(Text key) {
             super(key);
-            this.game = game;
-            this.worldParser = new WorldPropertiesCommandElement(null, game);
+            this.worldParser = new WorldPropertiesCommandElement(null);
             this.vectorParser = new Vector3dCommandElement(null);
         }
 
@@ -1093,7 +1081,7 @@ public final class GenericArguments {
                 world = ((Collection<?>) world).iterator().next();
             }
             WorldProperties targetWorldProps = ((WorldProperties) world);
-            Optional<World> targetWorld = this.game.getServer().getWorld(targetWorldProps.getUniqueId());
+            Optional<World> targetWorld = Sponge.getGame().getServer().getWorld(targetWorldProps.getUniqueId());
             Vector3d vector = (Vector3d) vec;
             return new Location<>(targetWorld.get(), vector);
         }
@@ -1111,18 +1099,16 @@ public final class GenericArguments {
     }
 
     private static class CatalogedTypeCommandElement<T extends CatalogType> extends PatternMatchingCommandElement {
-        private final Game game;
         private final Class<T> catalogType;
 
-        protected CatalogedTypeCommandElement(Text key, Game game, Class<T> catalogType) {
+        protected CatalogedTypeCommandElement(Text key, Class<T> catalogType) {
             super(key);
-            this.game = game;
             this.catalogType = catalogType;
         }
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return this.game.getRegistry().getAllOf(this.catalogType).stream()
+            return Sponge.getGame().getRegistry().getAllOf(this.catalogType).stream()
                 .map(input -> {
                 return input == null ? null : input.getId(); // TODO: ids or names?
                 })
@@ -1131,7 +1117,7 @@ public final class GenericArguments {
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            final Optional<T> ret = this.game.getRegistry().getType(this.catalogType, choice);
+            final Optional<T> ret = Sponge.getGame().getRegistry().getType(this.catalogType, choice);
             if (!ret.isPresent()) {
                 throw new IllegalArgumentException("Invalid input " + choice + " was found");
             }

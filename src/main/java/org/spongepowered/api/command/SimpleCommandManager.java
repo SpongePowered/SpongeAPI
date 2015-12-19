@@ -25,15 +25,17 @@
 package org.spongepowered.api.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.command.CommandMessageFormatting.error;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import org.slf4j.Logger;
-import org.spongepowered.api.Game;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.command.dispatcher.Disambiguator;
+import org.spongepowered.api.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.event.SpongeEventFactory;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.NamedCause;
@@ -45,8 +47,6 @@ import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.text.action.TextActions;
 import org.spongepowered.api.util.TextMessageException;
-import org.spongepowered.api.command.dispatcher.Disambiguator;
-import org.spongepowered.api.command.dispatcher.SimpleDispatcher;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -68,7 +68,6 @@ import javax.inject.Inject;
  * This service calls the appropriate events for a command.
  */
 public class SimpleCommandManager implements CommandManager {
-    private final Game game;
     private final Logger log;
     private final SimpleDispatcher dispatcher;
     private final Multimap<PluginContainer, CommandMapping> owners = HashMultimap.create();
@@ -77,24 +76,20 @@ public class SimpleCommandManager implements CommandManager {
     /**
      * Construct a simple {@link CommandManager}.
      *
-     * @param game The game to use for this CommandManager
      * @param logger The logger to log error messages to
      */
     @Inject
-    public SimpleCommandManager(Game game, Logger logger) {
-        this(game, logger, SimpleDispatcher.FIRST_DISAMBIGUATOR);
+    public SimpleCommandManager(Logger logger) {
+        this(logger, SimpleDispatcher.FIRST_DISAMBIGUATOR);
     }
 
     /**
      * Construct a simple {@link CommandManager}.
      *
-     * @param game The game to use for this CommandManager
      * @param logger The logger to log error messages to
      * @param disambiguator The function to resolve a single command when multiple options are available
      */
-    public SimpleCommandManager(Game game, Logger logger, Disambiguator disambiguator) {
-        checkNotNull(game, "game");
-        this.game = game;
+    public SimpleCommandManager(Logger logger, Disambiguator disambiguator) {
         this.log = logger;
         this.dispatcher = new SimpleDispatcher(disambiguator);
     }
@@ -114,7 +109,7 @@ public class SimpleCommandManager implements CommandManager {
             Function<List<String>, List<String>> callback) {
         checkNotNull(plugin, "plugin");
 
-        Optional<PluginContainer> containerOptional = this.game.getPluginManager().fromInstance(plugin);
+        Optional<PluginContainer> containerOptional = Sponge.getGame().getPluginManager().fromInstance(plugin);
         if (!containerOptional.isPresent()) {
             throw new IllegalArgumentException(
                     "The provided plugin object does not have an associated plugin container "
@@ -184,7 +179,7 @@ public class SimpleCommandManager implements CommandManager {
 
     @Override
     public Set<CommandMapping> getOwnedBy(Object instance) {
-        Optional<PluginContainer> container = this.game.getPluginManager().fromInstance(instance);
+        Optional<PluginContainer> container = Sponge.getGame().getPluginManager().fromInstance(instance);
         if (!container.isPresent()) {
             throw new IllegalArgumentException("The provided plugin object does not have an associated plugin container "
                             + "(in other words, is 'plugin' actually your plugin object?)");
@@ -240,7 +235,7 @@ public class SimpleCommandManager implements CommandManager {
         final String[] argSplit = commandLine.split(" ", 2);
         final SendCommandEvent event = SpongeEventFactory.createSendCommandEvent(Cause.of(NamedCause.source(source)),
             argSplit.length > 1 ? argSplit[1] : "", argSplit[0], CommandResult.empty());
-        this.game.getEventManager().post(event);
+        Sponge.getGame().getEventManager().post(event);
         if (event.isCancelled()) {
             return event.getResult();
         }
@@ -298,7 +293,7 @@ public class SimpleCommandManager implements CommandManager {
             List<String> suggestions = new ArrayList<>(this.dispatcher.getSuggestions(src, arguments));
             final TabCompleteCommandEvent event = SpongeEventFactory.createTabCompleteCommandEvent(Cause.of(NamedCause.source(src)),
                 argSplit.length > 1 ? argSplit[1] : "", argSplit[0], suggestions);
-            this.game.getEventManager().post(event);
+            Sponge.getGame().getEventManager().post(event);
             if (event.isCancelled()) {
                 return ImmutableList.of();
             } else {
