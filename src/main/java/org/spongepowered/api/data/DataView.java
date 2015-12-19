@@ -435,14 +435,12 @@ public interface DataView {
      * {@link DataBuilder}s to ensure the {@link DataSerializable}
      * requested can be returned.</p>
      *
+     * @param <T> The type of {@link DataSerializable} object
      * @param path The path of the value to get
      * @param clazz The class of the {@link DataSerializable}
-     * @param service The serialization service to use for retrieving data
-     *     serializable builders
-     * @param <T> The type of {@link DataSerializable} object
      * @return The deserialized object, if available
      */
-    <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz, DataManager service);
+    <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz);
 
     /**
      * Gets the {@link List} of {@link DataSerializable} by path, if available.
@@ -457,14 +455,12 @@ public interface DataView {
      * {@link DataBuilder}s to ensure the {@link DataSerializable}
      * requested can be returned.</p>
      *
+     * @param <T> The type of {@link DataSerializable} object
      * @param path The path of the list value to get
      * @param clazz The class of the {@link DataSerializable}
-     * @param service The serialization service to use for retrieving data
-     *     serializable builders
-     * @param <T> The type of {@link DataSerializable} object
      * @return The deserialized objects in a list, if available
      */
-    <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz, DataManager service);
+    <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz);
 
     /**
      * Copies this {@link DataView} and all of it's contents into a new

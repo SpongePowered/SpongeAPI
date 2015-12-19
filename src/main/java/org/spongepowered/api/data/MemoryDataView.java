@@ -36,6 +36,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.ArrayUtils;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.util.persistence.DataBuilder;
@@ -780,17 +781,17 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz, DataManager service) {
+    public <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz) {
         checkNotNull(path, "path");
         checkNotNull(clazz, "clazz");
-        checkNotNull(service, "service");
+        DataManager manager = Sponge.getDataManager();
         Optional<DataView> optional = getUnsafeView(path);
 
         if (!optional.isPresent()) {
             return Optional.empty();
         }
 
-        Optional<DataBuilder<T>> builderOptional = service.getBuilder(clazz);
+        Optional<DataBuilder<T>> builderOptional = manager.getBuilder(clazz);
         if (!builderOptional.isPresent()) {
             return Optional.empty();
         } else {
@@ -799,17 +800,17 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    public <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz, DataManager service) {
+    public <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz) {
         checkNotNull(path, "path");
         checkNotNull(clazz, "clazz");
-        checkNotNull(service, "service");
+        DataManager manager = Sponge.getDataManager();
         Optional<List<DataView>> optional = getViewList(path);
 
         if (!optional.isPresent()) {
             return Optional.empty();
         }
 
-        Optional<DataBuilder<T>> builderOptional = service.getBuilder(clazz);
+        Optional<DataBuilder<T>> builderOptional = manager.getBuilder(clazz);
         if (!builderOptional.isPresent()) {
             return Optional.empty();
         } else {

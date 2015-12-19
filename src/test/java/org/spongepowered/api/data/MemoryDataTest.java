@@ -25,6 +25,8 @@
 package org.spongepowered.api.data;
 
 import static org.junit.Assert.assertTrue;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.when;
 import static org.spongepowered.api.data.DataQuery.of;
 
 import com.google.common.base.Objects;
@@ -33,7 +35,11 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.persistence.DataBuilder;
 
 import java.util.Arrays;
@@ -42,6 +48,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(Sponge.class)
 public class MemoryDataTest {
 
     @Test
@@ -242,14 +250,15 @@ public class MemoryDataTest {
         // Need to mock the service Sadly, this takes the most amount of time
         DataManager service = Mockito.mock(DataManager.class);
         DataBuilder<SimpleData> builder = new SimpleDataBuilder();
+        mockStatic(Sponge.class);
+        when(Sponge.getDataManager()).thenReturn(service);
         Mockito.stub(service.getBuilder(SimpleData.class)).toReturn(Optional.of(builder));
 
         List<String> myList = ImmutableList.of("foo", "bar", "baz");
 
         SimpleData temp = new SimpleData(1, 2.0, "foo", myList);
         DataContainer container = temp.toContainer();
-
-        Optional<SimpleData> fromContainer = container.getSerializable(of(), SimpleData.class, service);
+        Optional<SimpleData> fromContainer = container.getSerializable(of(), SimpleData.class);
         assertTrue(fromContainer.isPresent());
         assertTrue(Objects.equal(fromContainer.get(), temp));
         assertTrue(container.contains(of("myStringList")));
@@ -261,6 +270,8 @@ public class MemoryDataTest {
     public void testGetSerializableList() {
         DataManager service = Mockito.mock(DataManager.class);
         DataBuilder<SimpleData> builder = new SimpleDataBuilder();
+        mockStatic(Sponge.class);
+        when(Sponge.getDataManager()).thenReturn(service);
         Mockito.stub(service.getBuilder(SimpleData.class)).toReturn(Optional.of(builder));
 
         List<SimpleData> list = Lists.newArrayList();
@@ -271,7 +282,7 @@ public class MemoryDataTest {
         DataContainer container = new MemoryDataContainer();
         container.set(of("foo", "bar"), list);
         assertTrue(container.contains(of("foo", "bar")));
-        Optional<List<SimpleData>> fromContainer = container.getSerializableList(of("foo", "bar"), SimpleData.class, service);
+        Optional<List<SimpleData>> fromContainer = container.getSerializableList(of("foo", "bar"), SimpleData.class);
         assertTrue(fromContainer.isPresent());
         List<SimpleData> memoryList = fromContainer.get();
         assertTrue(Objects.equal(memoryList, list));
