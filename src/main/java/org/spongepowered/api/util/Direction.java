@@ -41,42 +41,46 @@ import com.flowpowered.math.vector.Vector3d;
  * </ul>
  */
 public enum Direction {
-    NORTH(new Vector3d(0, 0, -1), Flag.CARDINAL),
-    NORTH_NORTHEAST(new Vector3d(C.S8, 0, -C.C8), Flag.SECONDARY_ORDINAL),
-    NORTHEAST(new Vector3d(1, 0, -1), Flag.ORDINAL),
-    EAST_NORTHEAST(new Vector3d(C.C8, 0, -C.S8), Flag.SECONDARY_ORDINAL),
+    NORTH(new Vector3d(0, 0, -1), Division.CARDINAL),
+    NORTH_NORTHEAST(new Vector3d(C.S8, 0, -C.C8), Division.SECONDARY_ORDINAL),
+    NORTHEAST(new Vector3d(1, 0, -1), Division.ORDINAL),
+    EAST_NORTHEAST(new Vector3d(C.C8, 0, -C.S8), Division.SECONDARY_ORDINAL),
 
-    EAST(new Vector3d(1, 0, 0), Flag.CARDINAL),
-    EAST_SOUTHEAST(new Vector3d(C.C8, 0, C.S8), Flag.SECONDARY_ORDINAL),
-    SOUTHEAST(new Vector3d(1, 0, 1), Flag.ORDINAL),
-    SOUTH_SOUTHEAST(new Vector3d(C.S8, 0, C.C8), Flag.SECONDARY_ORDINAL),
+    EAST(new Vector3d(1, 0, 0), Division.CARDINAL),
+    EAST_SOUTHEAST(new Vector3d(C.C8, 0, C.S8), Division.SECONDARY_ORDINAL),
+    SOUTHEAST(new Vector3d(1, 0, 1), Division.ORDINAL),
+    SOUTH_SOUTHEAST(new Vector3d(C.S8, 0, C.C8), Division.SECONDARY_ORDINAL),
 
-    SOUTH(new Vector3d(0, 0, 1), Flag.CARDINAL),
-    SOUTH_SOUTHWEST(new Vector3d(-C.S8, 0, C.C8), Flag.SECONDARY_ORDINAL),
-    SOUTHWEST(new Vector3d(-1, 0, 1), Flag.ORDINAL),
-    WEST_SOUTHWEST(new Vector3d(-C.C8, 0, C.S8), Flag.SECONDARY_ORDINAL),
+    SOUTH(new Vector3d(0, 0, 1), Division.CARDINAL),
+    SOUTH_SOUTHWEST(new Vector3d(-C.S8, 0, C.C8), Division.SECONDARY_ORDINAL),
+    SOUTHWEST(new Vector3d(-1, 0, 1), Division.ORDINAL),
+    WEST_SOUTHWEST(new Vector3d(-C.C8, 0, C.S8), Division.SECONDARY_ORDINAL),
 
-    WEST(new Vector3d(-1, 0, 0), Flag.CARDINAL),
-    WEST_NORTHWEST(new Vector3d(-C.C8, 0, -C.S8), Flag.SECONDARY_ORDINAL),
-    NORTHWEST(new Vector3d(-1, 0, -1), Flag.ORDINAL),
-    NORTH_NORTHWEST(new Vector3d(-C.S8, 0, -C.C8), Flag.SECONDARY_ORDINAL),
+    WEST(new Vector3d(-1, 0, 0), Division.CARDINAL),
+    WEST_NORTHWEST(new Vector3d(-C.C8, 0, -C.S8), Division.SECONDARY_ORDINAL),
+    NORTHWEST(new Vector3d(-1, 0, -1), Division.ORDINAL),
+    NORTH_NORTHWEST(new Vector3d(-C.S8, 0, -C.C8), Division.SECONDARY_ORDINAL),
 
-    UP(new Vector3d(0, 1, 0), Flag.UPRIGHT),
-    DOWN(new Vector3d(0, -1, 0), Flag.UPRIGHT),
+    UP(new Vector3d(0, 1, 0), Division.CARDINAL),
+    DOWN(new Vector3d(0, -1, 0), Division.CARDINAL),
 
-    NONE(new Vector3d(0, 0, 0), 0);
+    NONE(new Vector3d(0, 0, 0), Division.NONE);
 
-    private static final Direction[] FULL_COMPASS = {
+    private static final Direction[] SECONDARY_ORDINAL_SET = {
             NORTH, NORTH_NORTHEAST, NORTHEAST, EAST_NORTHEAST,
             EAST, EAST_SOUTHEAST, SOUTHEAST, SOUTH_SOUTHEAST,
             SOUTH, SOUTH_SOUTHWEST, SOUTHWEST, WEST_SOUTHWEST,
             WEST, WEST_NORTHWEST, NORTHWEST, NORTH_NORTHWEST,
     };
-    private static final Direction[] CARDINAL_ONLY = {
+    private static final Direction[] ORDINAL_SET = {
+            NORTH, NORTHEAST, EAST, SOUTHEAST,
+            SOUTH, SOUTHWEST, WEST, NORTHWEST,
+    };
+    private static final Direction[] CARDINAL_SET = {
             NORTH, EAST, SOUTH, WEST
     };
     private final Vector3d direction;
-    private final int flags;
+    private final Division division;
     private Direction opposite;
 
     static {
@@ -105,14 +109,14 @@ public enum Direction {
         SOUTH_SOUTHWEST.opposite = NORTH_NORTHEAST;
     }
 
-    Direction(Vector3d vector3d, int flags) {
+    Direction(Vector3d vector3d, Division division) {
         if (vector3d.lengthSquared() == 0) {
             // Prevent normalization of the zero direction
             this.direction = vector3d;
         } else {
             this.direction = vector3d.normalize();
         }
-        this.flags = flags;
+        this.division = division;
     }
 
     /**
@@ -126,7 +130,7 @@ public enum Direction {
      * @return The closest horizontal direction.
      */
     public static Direction getClosest(Vector3d vector) {
-        return getClosest(vector, false);
+        return getClosest(vector, Division.SECONDARY_ORDINAL);
     }
 
     /**
@@ -137,12 +141,12 @@ public enum Direction {
      * be selected.
      *
      * @param vector The vector to convert to a direction
-     * @param cardinalOnly Only return cardinal directions
+     * @param smallestDivision The smallest compass division that can be returned
      * @return The closest horizontal direction.
      */
-    public static Direction getClosest(Vector3d vector, boolean cardinalOnly) {
+    public static Direction getClosest(Vector3d vector, Division smallestDivision) {
         if (vector.getY() * vector.getY() <= vector.getX() * vector.getX() + vector.getZ() * vector.getZ()) {
-            return getClosestHorizontal(vector, cardinalOnly);
+            return getClosestHorizontal(vector, smallestDivision);
         } else if (vector.getY() > 0) {
             return UP;
         } else {
@@ -160,7 +164,7 @@ public enum Direction {
      * @return The closest horizontal direction.
      */
     public static Direction getClosestHorizontal(Vector3d vector) {
-        return getClosestHorizontal(vector, false);
+        return getClosestHorizontal(vector, Division.SECONDARY_ORDINAL);
     }
 
     /**
@@ -170,10 +174,10 @@ public enum Direction {
      * be selected.
      *
      * @param vector The vector to convert to a direction
-     * @param cardinalOnly Only return cardinal directions
+     * @param smallestDivision The smallest compass division that can be returned
      * @return The closest horizontal direction.
      */
-    public static Direction getClosestHorizontal(Vector3d vector, boolean cardinalOnly) {
+    public static Direction getClosestHorizontal(Vector3d vector, Division smallestDivision) {
         // Ignore vectors not in the xz plane
         if (Math.abs(vector.getX()) <= GenericMath.DBL_EPSILON && Math.abs(vector.getZ()) <= GenericMath.DBL_EPSILON) {
             return NONE;
@@ -188,7 +192,20 @@ public enum Direction {
         // Make the angle positive, offset for MC's system, then wrap in [0, 2pi)
         angle = (angle + TrigMath.TWO_PI + TrigMath.HALF_PI) % TrigMath.TWO_PI;
         // Use a direction set; it needs to be sorted and the directions evenly spaced
-        final Direction[] set = cardinalOnly ? CARDINAL_ONLY : FULL_COMPASS;
+        final Direction[] set;
+        switch (smallestDivision) {
+            case CARDINAL:
+                set = CARDINAL_SET;
+                break;
+            case ORDINAL:
+                set = ORDINAL_SET;
+                break;
+            case SECONDARY_ORDINAL:
+                set = SECONDARY_ORDINAL_SET;
+                break;
+            default:
+                throw new IllegalArgumentException(smallestDivision.name());
+        }
         // Round to the closest index in the direction set
         return set[(int) Math.round(angle * set.length / TrigMath.TWO_PI)];
     }
@@ -248,7 +265,7 @@ public enum Direction {
      * @return True if it is opposite
      */
     public boolean isOpposite(Direction d) {
-        return this.opposite.equals(d);
+        return this.opposite == d;
     }
 
     /**
@@ -261,7 +278,7 @@ public enum Direction {
      * @return True if cardinal
      */
     public boolean isCardinal() {
-        return (this.flags & Flag.CARDINAL) > 0;
+        return this.division == Division.CARDINAL;
     }
 
     /**
@@ -271,7 +288,7 @@ public enum Direction {
      * @return True if ordinal
      */
     public boolean isOrdinal() {
-        return (this.flags & Flag.ORDINAL) > 0;
+        return this.division == Division.ORDINAL;
     }
 
     /**
@@ -281,7 +298,7 @@ public enum Direction {
      * @return True if secondary ordinal
      */
     public boolean isSecondaryOrdinal() {
-        return (this.flags & Flag.SECONDARY_ORDINAL) > 0;
+        return this.division == Division.SECONDARY_ORDINAL;
     }
 
     /**
@@ -290,7 +307,7 @@ public enum Direction {
      * @return True if the Y component is non-zero
      */
     public boolean isUpright() {
-        return (this.flags & Flag.UPRIGHT) > 0;
+        return this == UP || this == DOWN;
     }
 
     /**
@@ -306,19 +323,19 @@ public enum Direction {
 
         double C8 = Math.cos(Math.PI / 8);
         double S8 = Math.sin(Math.PI / 8);
+
     }
 
-    public static final class Flag {
+    /**
+     * The compass division supported by this direction implementation.
+     */
+    public enum Division {
 
-        public static final int CARDINAL = 0x1;
-        public static final int ORDINAL = 0x2;
-        public static final int SECONDARY_ORDINAL = 0x4;
-        public static final int UPRIGHT = 0x8;
+        CARDINAL,
+        ORDINAL,
+        SECONDARY_ORDINAL,
+        NONE
 
-        public static final int ALL = CARDINAL | ORDINAL | SECONDARY_ORDINAL | UPRIGHT;
-
-        private Flag() {
-        }
     }
 
 }

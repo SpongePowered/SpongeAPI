@@ -26,7 +26,7 @@ package org.spongepowered.api.world.storage;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.util.Direction.Flag;
+import org.spongepowered.api.util.Direction.Division;
 
 import java.util.Optional;
 
@@ -210,20 +210,20 @@ public interface ChunkLayout {
 
     /**
      * Moves chunk coordinates one step in the given direction. Returns nothing
-     * if the new coordinates are not valid. {@link Flag#SECONDARY_ORDINAL}
+     * if the new coordinates are not valid. {@link Division#SECONDARY_ORDINAL}
      * directions are not a valid argument. These will throw an exception.
      *
      * @param chunkCoords The chunk coordinates to move from
      * @param direction The direction in which to move a step
      * @return The new chunk coordinates if they are valid
      * @throws IllegalArgumentException If the direction is a
-     *     {@link Flag#SECONDARY_ORDINAL}
+     *     {@link Direction.Division#SECONDARY_ORDINAL}
      */
     Optional<Vector3i> moveToChunk(Vector3i chunkCoords, Direction direction);
 
     /**
      * Moves chunk coordinates one step in the given direction. Returns nothing
-     * if the new coordinates are not valid. {@link Flag#SECONDARY_ORDINAL}
+     * if the new coordinates are not valid. {@link Direction.Division#SECONDARY_ORDINAL}
      * directions are not a valid argument. These will throw an exception.
      *
      * @param x The x chunk coordinate to move from
@@ -232,14 +232,14 @@ public interface ChunkLayout {
      * @param direction The direction in which to move a step
      * @return The new chunk coordinates if they are valid
      * @throws IllegalArgumentException If the direction is a
-     *     {@link Flag#SECONDARY_ORDINAL}
+     *     {@link Division#SECONDARY_ORDINAL}
      */
     Optional<Vector3i> moveToChunk(int x, int y, int z, Direction direction);
 
     /**
      * Moves chunk coordinates a number of steps in the given direction.
      * Returns nothing if the new coordinates are not valid.
-     * {@link Flag#SECONDARY_ORDINAL} directions are not a valid argument.
+     * {@link Direction.Division#SECONDARY_ORDINAL} directions are not a valid argument.
      * These will throw an exception.
      *
      * @param chunkCoords The chunk coordinates to move from
@@ -247,14 +247,14 @@ public interface ChunkLayout {
      * @param steps The number of steps to take
      * @return The new chunk coordinates if they are valid
      * @throws IllegalArgumentException If the direction is a
-     *     {@link Flag#SECONDARY_ORDINAL}
+     *     {@link Direction.Division#SECONDARY_ORDINAL}
      */
     Optional<Vector3i> moveToChunk(Vector3i chunkCoords, Direction direction, int steps);
 
     /**
      * Moves chunk coordinates a number of steps in the given direction.
      * Returns nothing if the new coordinates are not valid.
-     * {@link Flag#SECONDARY_ORDINAL} directions are not a valid argument.
+     * {@link Direction.Division#SECONDARY_ORDINAL} directions are not a valid argument.
      * These will throw an exception.
      *
      * @param x The x chunk coordinate to move from
@@ -264,7 +264,7 @@ public interface ChunkLayout {
      * @param steps The number of steps to take
      * @return The new chunk coordinates if they are valid
      * @throws IllegalArgumentException If the direction is a
-     *      {@link Flag#SECONDARY_ORDINAL}
+     *      {@link Direction.Division#SECONDARY_ORDINAL}
      */
     Optional<Vector3i> moveToChunk(int x, int y, int z, Direction direction, int steps);
 
