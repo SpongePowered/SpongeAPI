@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.network;
 
+import org.spongepowered.api.Platform;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
@@ -34,7 +35,12 @@ import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEve
 import org.spongepowered.api.event.user.TargetUserEvent;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.service.ban.BanService;
+import org.spongepowered.api.service.whitelist.WhitelistService;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.world.World;
+
+import java.net.InetAddress;
 
 /**
  * Represents an event fired during the login process.
@@ -80,10 +86,22 @@ public interface ClientConnectionEvent extends Event {
      * Called after the client authenticates and attempts to login to the
      * server.
      *
-     * <p>Note: This event is fired after #Auth and is NOT async. Any changes 
-     * required for the {@link Player}s {@link Transform} should be done during 
+     * <p>Note: This event is fired after #Auth and is NOT async. Any changes
+     * required for the {@link Player}s {@link Transform} should be done during
      * this event and NOT during #Join.
      * </p>
+     *
+     * <p>If the registered {@link BanService} or {@link WhitelistService}
+     * indicates that a player should not be allowed to join
+     * ({@link GameProfile} or {@link InetAddress} has an ban, or is
+     * not on the whitelist), then this event will automatically cancelled by
+     * the {@link Platform#getImplementation() 'game' plugin}, with the proper
+     * message set through {@link MessageSinkEvent#setMessage(Text)}. No action
+     * on the part of the registered {@link BanService} or
+     * {@link WhitelistService} is required for this to occur.
+     *
+     * Plugins may uncancel the event to allow a client to join, regardless of
+     * its ban/whitelist status.</p>
      */
     interface Login extends ClientConnectionEvent, MessageSinkEvent, TargetUserEvent, Cancellable {
 

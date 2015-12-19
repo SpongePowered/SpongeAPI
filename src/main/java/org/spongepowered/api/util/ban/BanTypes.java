@@ -22,27 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.util.ban;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.BanData;
-import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
-import org.spongepowered.api.entity.living.player.User;
-import org.spongepowered.api.util.ban.Ban;
-
-/**
- * An {@link ImmutableDataManipulator} for all set
- * {@link Ban.User}s that are applicable to a
- * {@link User}.
- */
-public interface ImmutableBanData extends ImmutableDataManipulator<ImmutableBanData, BanData> {
+public class BanTypes {
 
     /**
-     * Gets the {@link ImmutableSetValue} for the
-     * {@link Ban.User} bans.
-     *
-     * @return The immutable ban set value
+     * Represents a {@link Ban.Profile}
      */
-    ImmutableSetValue<Ban.User> bans();
+    public static final BanType PROFILE = null;
+
+    /**
+     * Represents a {@link Ban.Ip}
+     */
+    public static final BanType IP = null;
+
+    private BanTypes() {
+    }
 
 }

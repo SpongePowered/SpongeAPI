@@ -204,7 +204,6 @@ public final class Keys {
     public static final Key<Value<Boolean>> ANGRY = null;
     public static final Key<MutableBoundedValue<Integer>> ANGER = null;
     public static final Key<Value<Art>> ART = null;
-    public static final Key<SetValue<Ban.User>> USER_BANS = null;
     public static final Key<MapValue<BodyPart, Vector3d>> BODY_ROTATIONS = null;
     public static final Key<Value<Vector3d>> HEAD_ROTATION = null;
     public static final Key<Value<Vector3d>> CHEST_ROTATION = null;
@@ -283,7 +282,6 @@ public final class Keys {
     public static final Key<Value<Living>> TARGET = null;
     public static final Key<ImmutableListValue<Living>> TARGETS = null;
     public static final Key<Value<Boolean>> IS_VILLAGER_ZOMBIE = null;
-    public static final Key<Value<Boolean>> IS_WHITELISTED = null;
     public static final Key<Value<Text>> BOOK_AUTHOR = null;
     public static final Key<Value<BlockState>> ITEM_BLOCKSTATE = null;
     public static final Key<SetValue<BlockType>> BREAKABLE_BLOCK_TYPES = null;

@@ -41,7 +41,6 @@ import org.spongepowered.api.data.manipulator.mutable.entity.AgentData;
 import org.spongepowered.api.data.manipulator.mutable.entity.AggressiveData;
 import org.spongepowered.api.data.manipulator.mutable.entity.AngerableData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ArtData;
-import org.spongepowered.api.data.manipulator.mutable.entity.BanData;
 import org.spongepowered.api.data.manipulator.mutable.entity.BodyPartRotationalData;
 import org.spongepowered.api.data.manipulator.mutable.entity.BreathingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.BreedableData;
@@ -93,7 +92,6 @@ import org.spongepowered.api.data.manipulator.mutable.entity.TargetMultipleLivin
 import org.spongepowered.api.data.manipulator.mutable.entity.VehicleData;
 import org.spongepowered.api.data.manipulator.mutable.entity.VelocityData;
 import org.spongepowered.api.data.manipulator.mutable.entity.VillagerZombieData;
-import org.spongepowered.api.data.manipulator.mutable.entity.WhitelistData;
 import org.spongepowered.api.data.type.Art;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.HorseColor;
@@ -150,7 +148,6 @@ import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
-import org.spongepowered.api.util.ban.Ban;
 import org.spongepowered.api.world.weather.Weather;
 
 /**
@@ -191,10 +188,6 @@ public final class CatalogEntityData {
      */
     public static final Class<ArtData> ART_DATA = ArtData.class;
 
-    /**
-     * The {@link BanData} mainly for {@link User}s and their {@link Ban}s.
-     */
-    public static final Class<BanData> BAN_DATA = BanData.class;
     /**
      * Represents the mapped rotational data for all known body parts. Usually
      * applicable to {@link Humanoid}s and {@link ArmorStand}s.
@@ -490,11 +483,6 @@ public final class CatalogEntityData {
      * {@link Wolf} entities.
      */
     public static final Class<WetData> WET_DATA = WetData.class;
-    /**
-     * Signifies that a {@link Player} or {@link User} is "whitelisted" on the
-     * server.
-     */
-    public static final Class<WhitelistData> WHITELIST_DATA = WhitelistData.class;
 
     private CatalogEntityData() {
     }

@@ -4148,7 +4148,7 @@ public class SpongeEventFactory {
      * @param targetUser The target user
      * @return A new ban user event
      */
-    public static BanUserEvent createBanUserEvent(Cause cause, Ban.User ban, User targetUser) {
+    public static BanUserEvent createBanUserEvent(Cause cause, Ban.Profile ban, User targetUser) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("ban", ban);
@@ -4167,7 +4167,7 @@ public class SpongeEventFactory {
      * @param targetUser The target user
      * @return A new target player ban user event
      */
-    public static BanUserEvent.TargetPlayer createBanUserEventTargetPlayer(Cause cause, Ban.User ban, Player targetEntity, User targetUser) {
+    public static BanUserEvent.TargetPlayer createBanUserEventTargetPlayer(Cause cause, Ban.Profile ban, Player targetEntity, User targetUser) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("ban", ban);
@@ -4186,7 +4186,7 @@ public class SpongeEventFactory {
      * @param targetUser The target user
      * @return A new pardon user event
      */
-    public static PardonUserEvent createPardonUserEvent(Cause cause, Ban.User ban, User targetUser) {
+    public static PardonUserEvent createPardonUserEvent(Cause cause, Ban.Profile ban, User targetUser) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("ban", ban);
@@ -4205,7 +4205,7 @@ public class SpongeEventFactory {
      * @param targetUser The target user
      * @return A new target player pardon user event
      */
-    public static PardonUserEvent.TargetPlayer createPardonUserEventTargetPlayer(Cause cause, Ban.User ban, Player targetEntity, Player targetUser) {
+    public static PardonUserEvent.TargetPlayer createPardonUserEventTargetPlayer(Cause cause, Ban.Profile ban, Player targetEntity, Player targetUser) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("ban", ban);

@@ -24,19 +24,20 @@
  */
 package org.spongepowered.api.util.ban;
 
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 /**
  * Represents the possible types of bans.
  */
-public enum BanType {
+@CatalogedBy(BanTypes.class)
+public interface BanType extends CatalogType {
 
     /**
-     * A ban made on an IP.
+     * Gets the {@link Ban} class that this type represents.
+     *
+     * @return The ban class
      */
-    IP_BAN,
-
-    /**
-     * A ban made on a user.
-     */
-    USER_BAN
+    Class<? extends Ban> getBanClass();
 
 }

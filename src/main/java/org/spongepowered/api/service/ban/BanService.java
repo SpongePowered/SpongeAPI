@@ -24,14 +24,23 @@
  */
 package org.spongepowered.api.service.ban;
 
-import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.ban.Ban;
 
 import java.net.InetAddress;
 import java.util.Collection;
+import java.util.Optional;
 
 /**
- * Represents the service with which to ban users.
+ * Represents a service with which to ban things, such as {@link GameProfile}s or IP addresses.
+ *
+ * <p>Implementors of this service should treat expired bans as non-existent,
+ * even if they choose to retain them in a way not accessible through the ban
+ * service API (e.g. writing them to a database). In essence, expired bans
+ * should be treated the same as user-removed bans.
+ *
+ * For example, {@link #getBans()} would not include any expired bans,
+ * and {@link #hasBan(Ban)} would return <code>false</code>.
  */
 public interface BanService {
 
@@ -40,14 +49,14 @@ public interface BanService {
      *
      * @return All registered bans
      */
-    Collection<Ban> getBans();
+    Collection<? extends Ban> getBans();
 
     /**
-     * Gets all user bans registered.
+     * Gets all {@link GameProfile} bans registered.
      *
-     * @return All registered User bans
+     * @return All registered {@link GameProfile} bans
      */
-    Collection<Ban.User> getUserBans();
+    Collection<Ban.Profile> getProfileBans();
 
     /**
      * Gets all IP bans registered.
@@ -57,70 +66,77 @@ public interface BanService {
     Collection<Ban.Ip> getIpBans();
 
     /**
-     * Gets all bans registered to the given user.
+     * Gets the ban for the given {@link GameProfile}, if available.
      *
-     * @param user The user
-     * @return The bans
+     * @param profile The profile
+     * @return The ban, if available
      */
-    Collection<Ban.User> getBansFor(User user);
+    Optional<Ban.Profile> getBanFor(GameProfile profile);
 
     /**
-     * Gets all IP bans registered to the given address.
+     * Gets the ban for the given address, if available.
      *
      * @param address The address.
      * @return All registered IP bans
      */
-    Collection<Ban.Ip> getBansFor(InetAddress address);
+    Optional<Ban.Ip> getBanFor(InetAddress address);
 
     /**
-     * Checks if a user has any bans.
+     * Checks if a {@link GameProfile} has a ban.
      *
-     * @param user The user
-     * @return True if the user has any bans, false otherwise
+     * @param profile The profile
+     * @return True if the profile has a ban, false otherwise
      */
-    boolean isBanned(User user);
+    boolean isBanned(GameProfile profile);
 
     /**
-     * Checks if an IP has any bans.
+     * Checks if an IP has a ban.
      *
      * @param address The address
-     * @return True if the address has any bans, false otherwise
+     * @return True if the address has a ban, false otherwise
      */
     boolean isBanned(InetAddress address);
 
     /**
-     * Pardons a user, or removes all their bans.
+     * Pardons a profile, or removes its ban, if present.
      *
-     * @param user The user
+     * @param profile The profile
+     * @return Whether the profile had a ban present
      */
-    void pardon(User user);
+    boolean pardon(GameProfile profile);
 
     /**
-     * Pardons an IP address, or removes all the bans against that IP.
+     * Pardons an IP address, or removes its ban, if present.
      *
      * @param address The IP address
+     * @return Whether the address had a ban present
      */
-    void pardon(InetAddress address);
+    boolean pardon(InetAddress address);
 
     /**
-     * Pardons a ban.
+     * Removes a ban.
      *
      * @param ban The ban
+     * @return Whether the ban was present in this ban service
      */
-    void pardon(Ban ban);
+    boolean removeBan(Ban ban);
 
     /**
      * Adds a ban.
      *
-     * @param ban The ban to put on the user
+     * <p>If the GameProfile or IP address of the ban already has a ban set,
+     * the passed in ban will replace the existing ban.</p>
+     *
+     * @param ban The ban to add to this ban service
+     * @return The previous ban, if available
      */
-    void ban(Ban ban);
+    Optional<? extends Ban> addBan(Ban ban);
 
     /**
-     * Checks if the specified ban has been set.
+     * Checks if the specified ban is present.
      *
      * @param ban The ban
-     * @return True if the ban exists in this provider, false otherwise
+     * @return True if the ban exists in this ban service, false otherwise
      */
     boolean hasBan(Ban ban);
 

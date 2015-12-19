@@ -22,28 +22,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
-
-import org.spongepowered.api.Server;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.WhitelistData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.living.player.Player;
-
-/**
- * An {@link ImmutableDataManipulator} handling the "whitelisted" state of a
- * {@link Player}. If a {@link Player} is "whitelisted", and the {@link Server}
- * is in a "whitelist only" mode, then the {@link Player} is free to join. If
- * the {@link Player} is NOT "whitelisted", they will be unable to join.
- */
-public interface ImmutableWhitelistData extends ImmutableDataManipulator<ImmutableWhitelistData, WhitelistData> {
-
-    /**
-     * Gets the {@link ImmutableValue} for the "whitelisted" state of the
-     * {@link Player}.
-     *
-     * @return The immutable value for the "whitelisted" state
-     */
-    ImmutableValue<Boolean> whitelisted();
-
-}
+package org.spongepowered.api.service.whitelist;
