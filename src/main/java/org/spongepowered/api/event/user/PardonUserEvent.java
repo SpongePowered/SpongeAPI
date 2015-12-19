@@ -38,7 +38,7 @@ public interface PardonUserEvent extends TargetUserEvent {
      *
      * @return The ban
      */
-    Ban.User getBan();
+    Ban.Profile getBan();
 
     /**
      * An event where a {@link Player} is the target.

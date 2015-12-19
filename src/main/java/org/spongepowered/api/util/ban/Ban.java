@@ -25,9 +25,10 @@
 package org.spongepowered.api.util.ban;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.living.player.User;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.service.ban.BanService;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.net.InetAddress;
@@ -51,24 +52,24 @@ public interface Ban {
     }
 
     /**
-     * Creates an indefinite ban on a user.
+     * Creates an indefinite ban on a profile.
      *
-     * @param user The user
+     * @param profile The profile
      * @return The created ban
      */
-    static Ban of(org.spongepowered.api.entity.living.player.User user) {
-        return builder().user(user).build();
+    static Ban of(GameProfile profile) {
+        return builder().profile(profile).build();
     }
 
     /**
-     * Creates an indefinite ban with a reason on a user.
+     * Creates an indefinite ban with a reason on a profile.
      *
-     * @param user The user
+     * @param profile The profile
      * @param reason The reason
      * @return The created ban
      */
-    static Ban of(org.spongepowered.api.entity.living.player.User user, Text.Literal reason) {
-        return builder().user(user).reason(reason).build();
+    static Ban of(GameProfile profile, Text reason) {
+        return builder().profile(profile).reason(reason).build();
     }
 
     /**
@@ -83,21 +84,42 @@ public interface Ban {
      *
      * @return The reason specified for the ban.
      */
-    Text.Literal getReason();
+    Text getReason();
 
     /**
-     * Gets the start date of the ban.
+     * Gets the creation date of the ban.
+     *
+     * <p>Note that this {@link Date} has no effect on whether or not a ban is
+     * active. Any ban for which {@link BanService#hasBan(Ban)} returns
+     * <code>true</code> will be used (when checking if a player can join,
+     * for example), regardless of its creation date.</p>
      *
      * @return Creation date of the ban
      */
-    Date getStartDate();
+    Date getCreationDate();
 
     /**
-     * Gets the source that banned the user, if available.
+     * Gets the source that created this ban, if available
+     *
+     * <p>Depending on the implementation, the returned {@link Text}
+     * may represent a {@link CommandSource}. {@link #getBanCommandSource()} can be
+     * used to attempt to convert the source to a {@link CommandSource}.</p>
+     *
+     * @return the source of this ban, if available
+     */
+    Optional<Text> getBanSource();
+
+    /**
+     * Gets the source that created this ban in {@link CommandSource} form, if available
+     *
+     * <p>Depending on the implementation, it may not be possible to determine
+     * the {@link CommandSource} responsible for this ban. Because of this,
+     * it is reccomended to check {@link #getBanSource()} if this method
+     * returns {@link Optional#empty()}.</p>
      *
      * @return The banning source or {@link Optional#empty()}
      */
-    Optional<CommandSource> getSource();
+    Optional<CommandSource> getBanCommandSource();
 
     /**
      * Gets the expiration date of this ban, if available.
@@ -111,19 +133,21 @@ public interface Ban {
      *
      * @return True if this ban has no expiration date, otherwise false
      */
-    boolean isIndefinite();
+    default boolean isIndefinite() {
+        return !this.getExpirationDate().isPresent();
+    }
 
     /**
-     * Represents a ban made on a user.
+     * Represents a ban made on a {@link GameProfile}.
      */
-    interface User extends Ban {
+    interface Profile extends Ban {
 
         /**
-         * Gets the user this ban applies to.
+         * Gets the {@link GameProfile} this ban applies to.
          *
-         * @return The user
+         * @return The {@link GameProfile}
          */
-        org.spongepowered.api.entity.living.player.User getUser();
+        GameProfile getProfile();
 
     }
 
@@ -147,19 +171,19 @@ public interface Ban {
     interface Builder extends ResettableBuilder<Builder> {
 
         /**
-         * Sets the user to be banned.
+         * Sets the profile to be banned.
          *
-         * <p>This can only be done if the {@link BanType} has been set to {@link BanType#USER_BAN}.</p>
+         * <p>This can only be done if the {@link BanType} has been set to {@link BanTypes#PROFILE}.</p>
          *
-         * @param user The user
+         * @param profile The profile
          * @return This builder
          */
-        Builder user(org.spongepowered.api.entity.living.player.User user);
+        Builder profile(GameProfile profile);
 
         /**
          * Sets the IP address to be banned.
          *
-         * <p>This can only be done if the {@link BanType} has been set to {@link BanType#IP_BAN}.</p>
+         * <p>This can only be done if the {@link BanType} has been set to {@link BanTypes#IP}.</p>
          *
          * @param address The IP address
          * @return This builder
@@ -180,7 +204,7 @@ public interface Ban {
          * @param reason The reason
          * @return This builder
          */
-        Builder reason(Text.Literal reason);
+        Builder reason(Text reason);
 
         /**
          * Sets the date that the ban starts.
@@ -205,6 +229,15 @@ public interface Ban {
          * @return This builder
          */
         Builder source(@Nullable CommandSource source);
+
+        /**
+         * Sets the source of the ban as a {@link Text}, or removes it if
+         * {@code null} is passed in.
+         *
+         * @param source The source of the ban, or {@code null}
+         * @return This builder
+         */
+        Builder source(@Nullable Text source);
 
         /**
          * Creates a new Ban from this builder.
