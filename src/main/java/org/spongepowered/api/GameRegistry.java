@@ -35,6 +35,8 @@ import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.registry.CatalogRegistryModule;
+import org.spongepowered.api.registry.RegistryModule;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.statistic.BlockStatistic;
@@ -63,6 +65,7 @@ import java.util.Collection;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 /**
  * Provides an easy way to retrieve types from a {@link Game}.
@@ -107,6 +110,38 @@ public interface GameRegistry {
      * @return A collection of all known types of the requested catalog type
      */
     <T extends CatalogType> Collection<T> getAllOf(Class<T> typeClass);
+
+    /**
+     * Registers the {@link CatalogRegistryModule} for catalog registration and handling.
+     * By default, the only supported modules that can be registered are dependent that
+     * plugins are not attempting to register new modules for API provided {@link CatalogType}s.
+     *
+     * @param catalogClass The catalog class itself
+     * @param registryModule The registry module
+     * @param <T> The type of catalog
+     * @throws IllegalArgumentException If there is a module already registered
+     * @throws UnsupportedOperationException If the
+     */
+    <T extends CatalogType> GameRegistry registerModule(Class<T> catalogClass, CatalogRegistryModule<T> registryModule)
+            throws IllegalArgumentException, UnsupportedOperationException;
+
+    /**
+     * Registers the desired {@link RegistryModule}.
+     *
+     * @param module The module to register
+     * @return This registry, for chaining
+     */
+    GameRegistry registerModule(RegistryModule module) throws IllegalArgumentException, UnsupportedOperationException;
+
+    /**
+     * Registers a {@link Supplier} for creating the desired {@link ResettableBuilder}.
+     *
+     * @param builderClass The builder class
+     * @param supplier The supplier
+     * @param <T> The type of builder/supplier
+     * @return This registry, for chaining
+     */
+    <T> GameRegistry registerBuilderSupplier(Class<T> builderClass, Supplier<? extends T> supplier);
 
     /**
      * Gets a builder of the desired class type, examples may include:
