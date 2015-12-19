@@ -207,7 +207,7 @@ public enum Direction {
                 throw new IllegalArgumentException(smallestDivision.name());
         }
         // Round to the closest index in the direction set
-        return set[(int) Math.round(angle * set.length / TrigMath.TWO_PI)];
+        return set[(int) Math.round(angle * set.length / TrigMath.TWO_PI) % set.length];
     }
 
     /**
