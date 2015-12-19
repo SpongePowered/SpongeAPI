@@ -35,7 +35,6 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.sink.MessageSink;
 import org.spongepowered.api.command.source.ConsoleSource;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.WorldBuilder;
 import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.storage.ChunkLayout;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -198,7 +197,7 @@ public interface Server {
     /**
      * Creates a new world from the given {@link WorldCreationSettings}. For the
      * creation of the WorldCreationSettings please see
-     * {@link WorldBuilder}.
+     * {@link WorldCreationSettings.Builder}.
      *
      * <p>If the world already exists then the existing {@link WorldProperties}
      * are returned else a new world is created and the new WorldProperties
@@ -213,7 +212,7 @@ public interface Server {
      * @param settings The settings for creation
      * @return The new or existing world properties, if creation was successful
      */
-    Optional<WorldProperties> createWorld(WorldCreationSettings settings);
+    Optional<WorldProperties> createWorldProperties(WorldCreationSettings settings);
 
     /**
      * Creates a world copy asynchronously using the new name given and returns
