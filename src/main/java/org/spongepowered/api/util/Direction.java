@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util;
 
+import com.flowpowered.math.GenericMath;
+import com.flowpowered.math.TrigMath;
 import com.flowpowered.math.vector.Vector3d;
 
 /**
@@ -64,19 +66,18 @@ public enum Direction {
 
     NONE(new Vector3d(0, 0, 0), 0);
 
+    private static final Direction[] FULL_COMPASS = {
+            NORTH, NORTH_NORTHEAST, NORTHEAST, EAST_NORTHEAST,
+            EAST, EAST_SOUTHEAST, SOUTHEAST, SOUTH_SOUTHEAST,
+            SOUTH, SOUTH_SOUTHWEST, SOUTHWEST, WEST_SOUTHWEST,
+            WEST, WEST_NORTHWEST, NORTHWEST, NORTH_NORTHWEST,
+    };
+    private static final Direction[] CARDINAL_ONLY = {
+            NORTH, EAST, SOUTH, WEST
+    };
     private final Vector3d direction;
     private final int flags;
     private Direction opposite;
-
-    Direction(Vector3d vector3d, int flags) {
-        if (vector3d.lengthSquared() == 0) {
-            // Prevent normalization of the zero direction
-            this.direction = vector3d;
-        } else {
-            this.direction = vector3d.normalize();
-        }
-        this.flags = flags;
-    }
 
     static {
         NORTH.opposite = SOUTH;
@@ -104,19 +105,44 @@ public enum Direction {
         SOUTH_SOUTHWEST.opposite = NORTH_NORTHEAST;
     }
 
+    Direction(Vector3d vector3d, int flags) {
+        if (vector3d.lengthSquared() == 0) {
+            // Prevent normalization of the zero direction
+            this.direction = vector3d;
+        } else {
+            this.direction = vector3d.normalize();
+        }
+        this.flags = flags;
+    }
+
     /**
      * Gets the closest direction from the given vector. If the vector is the
      * 0-Vector, this method returns {@link #NONE}. If the vector has the same
      * horizontal and vertical length, a horizontal direction will be returned.
-     * If the vector has the same angle to two directions the clockwise next
-     * will be selected.
+     * If the vector is halfway between two directions the clockwise next will
+     * be selected.
      *
      * @param vector The vector to convert to a direction
      * @return The closest horizontal direction.
      */
     public static Direction getClosest(Vector3d vector) {
-        if (Math.pow(vector.getY(), 2) <= Math.pow(vector.getX(), 2) + Math.pow(vector.getZ(), 2)) {
-            return getClosestHorizonal(vector);
+        return getClosest(vector, false);
+    }
+
+    /**
+     * Gets the closest direction from the given vector. If the vector is the
+     * 0-Vector, this method returns {@link #NONE}. If the vector has the same
+     * horizontal and vertical length, a horizontal direction will be returned.
+     * If the vector is halfway between two directions the clockwise next will
+     * be selected.
+     *
+     * @param vector The vector to convert to a direction
+     * @param cardinalOnly Only return cardinal directions
+     * @return The closest horizontal direction.
+     */
+    public static Direction getClosest(Vector3d vector, boolean cardinalOnly) {
+        if (vector.getY() * vector.getY() <= vector.getX() * vector.getX() + vector.getZ() * vector.getZ()) {
+            return getClosestHorizontal(vector, cardinalOnly);
         } else if (vector.getY() > 0) {
             return UP;
         } else {
@@ -126,26 +152,45 @@ public enum Direction {
 
     /**
      * Gets the closest horizontal direction from the given vector. If the
-     * vector is the 0-Vector, this method returns {@link #NONE}. If the vector
-     * has the same angle to two directions the clockwise next will be selected.
+     * vector is the 0-Vector (ignoring y), this method returns {@link #NONE}.
+     * If the vector is halfway between two directions the clockwise next will
+     * be selected.
      *
      * @param vector The vector to convert to a direction
      * @return The closest horizontal direction.
      */
-    public static Direction getClosestHorizonal(Vector3d vector) {
-        if (vector.getX() == 0) {
-            if (vector.getZ() == 0) {
-                return NONE;
-            } else if (vector.getZ() < 0) {
-                return NORTH;
-            } else {
-                return SOUTH;
-            }
-        } else {
-            final double angle = Math.atan2(vector.getX(), -vector.getZ());
-            final int ordinal = (int) (angle * 8 / Math.PI + 16.5) % 16;
-            return values()[ordinal];
+    public static Direction getClosestHorizontal(Vector3d vector) {
+        return getClosestHorizontal(vector, false);
+    }
+
+    /**
+     * Gets the closest horizontal direction from the given vector. If the
+     * vector is the 0-Vector (ignoring y), this method returns {@link #NONE}.
+     * If the vector is halfway between two directions the clockwise next will
+     * be selected.
+     *
+     * @param vector The vector to convert to a direction
+     * @param cardinalOnly Only return cardinal directions
+     * @return The closest horizontal direction.
+     */
+    public static Direction getClosestHorizontal(Vector3d vector, boolean cardinalOnly) {
+        // Ignore vectors not in the xz plane
+        if (Math.abs(vector.getX()) <= GenericMath.DBL_EPSILON && Math.abs(vector.getZ()) <= GenericMath.DBL_EPSILON) {
+            return NONE;
         }
+        // Normalize so it lies on the unit circle in xz
+        vector = vector.normalize();
+        // Get the angle from the x component and correct for complement with z
+        double angle = TrigMath.acos(vector.getX());
+        if (vector.getZ() < 0) {
+            angle = TrigMath.TWO_PI - angle;
+        }
+        // Make the angle positive, offset for MC's system, then wrap in [0, 2pi)
+        angle = (angle + TrigMath.TWO_PI + TrigMath.HALF_PI) % TrigMath.TWO_PI;
+        // Use a direction set; it needs to be sorted and the directions evenly spaced
+        final Direction[] set = cardinalOnly ? CARDINAL_ONLY : FULL_COMPASS;
+        // Round to the closest index in the direction set
+        return set[(int) Math.round(angle * set.length / TrigMath.TWO_PI)];
     }
 
     /**
@@ -163,7 +208,7 @@ public enum Direction {
             case Z:
                 return SOUTH;
             default:
-                throw new IllegalStateException("Not capable of handling the " + axis.name() + " axis!");
+                throw new IllegalArgumentException(axis.name());
         }
     }
 
@@ -183,7 +228,7 @@ public enum Direction {
             case MINUS:
                 return getFromAxis(axis).getOpposite();
             default:
-                throw new IllegalStateException("Not capable of handling the " + direction.name() + " direction!");
+                throw new IllegalArgumentException(axis.name());
         }
     }
 
