@@ -43,11 +43,12 @@ import org.spongepowered.api.command.args.CommandArgs;
  */
 public final class NamedCause {
 
-    public static final String SOURCE = "Source";
-    public static final String OWNER = "Owner";
-    public static final String NOTIFIER = "Notifier";
-    public static final String THROWER = "Thrower";
     public static final String IGNITER = "Igniter";
+    public static final String NOTIFIER = "Notifier";
+    public static final String OWNER = "Owner";
+    public static final String PHYSICAL = "Physical";
+    public static final String SOURCE = "Source";
+    public static final String THROWER = "Thrower";
 
     public static NamedCause source(Object object) {
         return of(SOURCE, object);
