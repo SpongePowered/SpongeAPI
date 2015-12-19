@@ -27,6 +27,7 @@ package org.spongepowered.api.world.gen;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.WorldCreationSettings;
 
 /**
@@ -44,6 +45,7 @@ import org.spongepowered.api.world.WorldCreationSettings;
  * <p>Implementations of this interface must be registered using 
  * {@link GameRegistry#registerWorldGeneratorModifier(WorldGeneratorModifier)}.</p>
  */
+@CatalogedBy(WorldGeneratorModifiers.class)
 public interface WorldGeneratorModifier extends CatalogType {
 
     /**
@@ -67,16 +69,5 @@ public interface WorldGeneratorModifier extends CatalogType {
      * @see WorldGenerator Additional information on the generation process
      */
     void modifyWorldGenerator(WorldCreationSettings world, DataContainer settings, WorldGenerator worldGenerator);
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>This name must be something unique and may not contain spaces. The
-     * same name must be returned every time the method is invoked.</p>
-     *
-     * @return {@inheritDoc}
-     */
-    @Override
-    String getId();
 
 }
