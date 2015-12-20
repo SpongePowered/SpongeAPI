@@ -44,7 +44,7 @@ public interface SpawnCause {
 
     SpawnType getType();
 
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<SpawnCause, Builder> {
 
         Builder type(SpawnType spawnType);
 

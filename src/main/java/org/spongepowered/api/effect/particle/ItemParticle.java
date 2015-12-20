@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.effect.particle;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
@@ -53,7 +52,7 @@ public interface ItemParticle extends ParticleEffect {
     /**
      * Represents a particle builder to create a {@link ItemParticle}.
      */
-    interface Builder extends ParticleEffect.Builder {
+    interface Builder extends ParticleEffect.ParticleBuilder<ItemParticle, Builder> {
 
         /**
          * Sets the item type of the particle effect.
@@ -62,24 +61,6 @@ public interface ItemParticle extends ParticleEffect {
          * @return This builder
          */
         Builder item(ItemStackSnapshot item);
-
-        @Override
-        Builder type(ParticleType particleType);
-
-        @Override
-        Builder motion(Vector3d motion);
-
-        @Override
-        Builder offset(Vector3d offset);
-
-        @Override
-        Builder count(int count);
-
-        @Override
-        ItemParticle build();
-
-        @Override
-        Builder reset();
 
     }
 }

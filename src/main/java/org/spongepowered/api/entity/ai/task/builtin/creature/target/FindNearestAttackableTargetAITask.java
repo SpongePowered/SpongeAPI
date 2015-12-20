@@ -40,6 +40,8 @@ public interface FindNearestAttackableTargetAITask extends TargetAITask<FindNear
 
     FindNearestAttackableTargetAITask filter(Predicate<Living> predicate);
 
+    Predicate<Living> getFilter();
+
     interface Builder extends TargetAITask.Builder<FindNearestAttackableTargetAITask, Builder> {
 
         Builder target(Class<? extends Living> targetClass);

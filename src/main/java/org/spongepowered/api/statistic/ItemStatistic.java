@@ -45,7 +45,7 @@ public interface ItemStatistic extends Statistic {
      * Represents a builder to create new and custom instances of
      * {@link ItemStatistic}s.
      */
-    interface Builder extends Statistic.Builder {
+    interface Builder extends StatisticBuilder<ItemStatistic, Builder> {
 
         /**
          * Sets the {@link ItemType} of this {@link ItemStatistic}.
@@ -54,24 +54,6 @@ public interface ItemStatistic extends Statistic {
          * @return This builder, for chaining
          */
         Builder item(ItemType item);
-
-        @Override
-        Builder name(String name);
-
-        @Override
-        Builder translation(Translation translation);
-
-        @Override
-        Builder format(@Nullable StatisticFormat format);
-
-        @Override
-        Builder group(StatisticGroup group);
-
-        @Override
-        ItemStatistic buildAndRegister() throws IllegalStateException;
-
-        @Override
-        Builder reset();
 
     }
 }

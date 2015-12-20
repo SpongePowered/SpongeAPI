@@ -45,7 +45,7 @@ public interface BlockStatistic extends Statistic {
      * Represents a builder to create new and custom instances of
      * {@link BlockStatistic}s.
      */
-    interface Builder extends Statistic.Builder {
+    interface Builder extends StatisticBuilder<BlockStatistic, Builder> {
 
         /**
          * Sets the {@link BlockType} of this {@link BlockStatistic}.
@@ -54,24 +54,6 @@ public interface BlockStatistic extends Statistic {
          * @return This builder, for chaining
          */
         Builder block(BlockType block);
-
-        @Override
-        Builder name(String name);
-
-        @Override
-        Builder translation(Translation translation);
-
-        @Override
-        Builder format(@Nullable StatisticFormat format);
-
-        @Override
-        Builder group(StatisticGroup group);
-
-        @Override
-        BlockStatistic buildAndRegister() throws IllegalStateException;
-
-        @Override
-        Builder reset();
 
     }
 }

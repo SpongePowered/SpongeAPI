@@ -98,7 +98,7 @@ public interface NetherFire extends Populator {
     /**
      * A builder for constructing {@link NetherFire} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<NetherFire, Builder> {
 
         /**
          * Sets the number of clusters to attempt to spawn per chunk, must be

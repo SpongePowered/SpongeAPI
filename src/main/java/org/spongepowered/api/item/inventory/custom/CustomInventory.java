@@ -46,7 +46,7 @@ public interface CustomInventory extends OrderedInventory, Identifiable {
     }
 
 
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<CustomInventory, Builder> {
         /**
          * Sets the title of the custom inventory, viewable by players looking
          * at the inventory.

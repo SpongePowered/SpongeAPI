@@ -72,7 +72,7 @@ public interface WaterLily extends Populator {
     /**
      * A builder for constructing {@link WaterLily} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<WaterLily, Builder> {
 
         /**
          * Sets the number of water lilies to attempt to spawn per chunk, must

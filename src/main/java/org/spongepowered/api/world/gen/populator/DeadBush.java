@@ -72,7 +72,7 @@ public interface DeadBush extends Populator {
     /**
      * A builder for constructing {@link DeadBush} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<DeadBush, Builder> {
 
         /**
          * Sets the number of bushes to attempt to spawn per chunk, must be

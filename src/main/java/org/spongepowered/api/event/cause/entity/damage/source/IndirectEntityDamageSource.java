@@ -39,38 +39,11 @@ public interface IndirectEntityDamageSource extends EntityDamageSource {
      */
     Entity getIndirectSource();
 
-    interface Builder extends EntityDamageSource.Builder {
+    interface Builder extends DamageSourceBuilder<IndirectEntityDamageSource, Builder> {
 
-        @Override
-        Builder scalesWithDifficulty();
-
-        @Override
-        Builder bypassesArmor();
-
-        @Override
-        Builder explosion();
-
-        @Override
-        Builder absolute();
-
-        @Override
-        Builder magical();
-
-        @Override
-        Builder creative();
-
-        @Override
         Builder entity(Entity entity);
-
-        @Override
-        Builder type(DamageType damageType);
 
         Builder proxySource(Entity projectile);
 
-        @Override
-        IndirectEntityDamageSource build() throws IllegalStateException;
-
-        @Override
-        Builder reset();
     }
 }

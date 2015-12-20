@@ -152,7 +152,7 @@ public interface SeaFloor extends Populator {
     /**
      * A builder for constructing {@link SeaFloor} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<SeaFloor, Builder> {
 
         /**
          * Sets the {@link BlockState} to place down.

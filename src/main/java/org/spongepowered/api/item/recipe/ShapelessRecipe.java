@@ -53,7 +53,7 @@ public interface ShapelessRecipe extends Recipe {
      */
     Collection<ItemStack> getIngredients();
 
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<ShapelessRecipe, Builder> {
         /**
          * Adds an ingredient to the requirements of this ShapelessRecipe.
          *

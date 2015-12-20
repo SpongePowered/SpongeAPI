@@ -24,7 +24,14 @@
  */
 package org.spongepowered.api.util;
 
-public interface ResettableBuilder<T extends ResettableBuilder<T>> {
+public interface ResettableBuilder<T, B extends ResettableBuilder<T, B>> {
+
+    /**
+     *
+     * @param value
+     * @return
+     */
+    B from(T value);
 
     /**
      * Resets this builder to a "default" state such that there is no
@@ -33,6 +40,6 @@ public interface ResettableBuilder<T extends ResettableBuilder<T>> {
      *
      * @return This builder, for chaining
      */
-    T reset();
+    B reset();
 
 }

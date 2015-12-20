@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.effect.particle;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.type.NotePitch;
 
@@ -55,7 +54,7 @@ public interface NoteParticle extends ParticleEffect {
     /**
      * Represents a particle builder to create a {@link NoteParticle}.
      */
-    interface Builder extends ParticleEffect.Builder {
+    interface Builder extends ParticleEffect.ParticleBuilder<NoteParticle, Builder> {
 
         /**
          * Sets the note value of the particle effect.
@@ -68,24 +67,6 @@ public interface NoteParticle extends ParticleEffect {
          * @return This builder
          */
         Builder note(NotePitch note);
-
-        @Override
-        Builder type(ParticleType particleType);
-
-        @Override
-        Builder motion(Vector3d motion);
-
-        @Override
-        Builder offset(Vector3d offset);
-
-        @Override
-        Builder count(int count);
-
-        @Override
-        NoteParticle build();
-
-        @Override
-        Builder reset();
 
     }
 }

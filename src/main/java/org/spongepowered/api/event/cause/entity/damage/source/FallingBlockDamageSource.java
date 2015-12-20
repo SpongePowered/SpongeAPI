@@ -43,38 +43,9 @@ public interface FallingBlockDamageSource extends EntityDamageSource {
     ImmutableFallingBlockData getFallingBlockData();
 
 
-    interface Builder extends EntityDamageSource.Builder {
-
-        @Override
-        Builder scalesWithDifficulty();
-
-        @Override
-        Builder bypassesArmor();
-
-        @Override
-        Builder explosion();
-
-        @Override
-        Builder absolute();
-
-        @Override
-        Builder magical();
-
-        @Override
-        Builder creative();
-
-        @Override
-        Builder entity(Entity entity);
-
-        @Override
-        Builder type(DamageType damageType);
+    interface Builder extends EntityDamageSource.EntityDamageSourceBuilder<FallingBlockDamageSource, Builder> {
 
         Builder fallingBlock(ImmutableFallingBlockData fallingBlock);
 
-        @Override
-        FallingBlockDamageSource build() throws IllegalStateException;
-
-        @Override
-        Builder reset();
     }
 }

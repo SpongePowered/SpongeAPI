@@ -122,7 +122,7 @@ public interface DoublePlant extends Populator {
     /**
      * A builder for constructing {@link DoublePlant} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<DoublePlant, Builder> {
 
         /**
          * Sets which plant types may be spawned in by this populator.
@@ -135,7 +135,7 @@ public interface DoublePlant extends Populator {
         /**
          * Adds a plant type to the list that may be spawned in by this populator.
          * 
-         * @param types The new plant type
+         * @param type The new plant type
          * @param weight The weight
          * @return This builder, for chaining
          */
@@ -174,7 +174,7 @@ public interface DoublePlant extends Populator {
          * @param override The new supplier override, or null
          * @return This builder, for chaining
          */
-        Builder supplier(Function<Location<Chunk>, DoublePlantType> override);
+        Builder supplier(@Nullable Function<Location<Chunk>, DoublePlantType> override);
 
         /**
          * Builds a new instance of a {@link DoublePlant} populator with the

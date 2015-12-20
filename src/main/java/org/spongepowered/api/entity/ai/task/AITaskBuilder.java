@@ -34,7 +34,7 @@ import org.spongepowered.api.util.ResettableBuilder;
  * @param <A> The type of task
  * @param <B> The type of builder, self-referencing
  */
-public interface AITaskBuilder<O extends Agent, A extends AITask<O>, B extends AITaskBuilder<O, A, B>> extends ResettableBuilder<B> {
+public interface AITaskBuilder<O extends Agent, A extends AITask<O>, B extends AITaskBuilder<O, A, B>> extends ResettableBuilder<A, B> {
 
     /**
      * Builds the {@link AITask}.

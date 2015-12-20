@@ -72,7 +72,7 @@ public interface Melon extends Populator {
     /**
      * A builder for constructing {@link Melon} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Melon, Builder> {
 
         /**
          * Sets the number of melons to attempt to spawn per chunk. The default

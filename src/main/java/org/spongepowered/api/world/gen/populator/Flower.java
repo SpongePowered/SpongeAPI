@@ -123,7 +123,7 @@ public interface Flower extends Populator {
     /**
      * A builder for constructing {@link Flower} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Flower, Builder> {
 
         /**
          * Sets the number of flowers to attempt to spawn per chunk, must be

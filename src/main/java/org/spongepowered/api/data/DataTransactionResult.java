@@ -39,6 +39,7 @@ import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -314,7 +315,7 @@ public final class DataTransactionResult {
      * use is for both implementations of {@link DataHolder}s, and various
      * {@link ChangeDataHolderEvent.ValueChange}s.
      */
-    public static final class Builder implements ResettableBuilder<Builder> {
+    public static final class Builder implements ResettableBuilder<DataTransactionResult, Builder> {
 
         private List<ImmutableValue<?>> rejected;
         private List<ImmutableValue<?>> replaced;
@@ -618,6 +619,15 @@ public final class DataTransactionResult {
         public DataTransactionResult build() {
             checkState(this.resultType != null);
             return new DataTransactionResult(this);
+        }
+
+        @Override
+        public Builder from(DataTransactionResult value) {
+            this.resultType = value.type;
+            this.rejected = new ArrayList<>(value.getRejectedData());
+            this.replaced = new ArrayList<>(value.getReplacedData());
+            this.successful = new ArrayList<>(value.getSuccessfulData());
+            return this;
         }
 
         @Override

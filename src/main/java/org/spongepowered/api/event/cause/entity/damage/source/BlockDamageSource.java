@@ -45,28 +45,7 @@ public interface BlockDamageSource extends DamageSource {
      */
     BlockSnapshot getBlockSnapshot();
 
-    interface Builder extends DamageSource.Builder {
-
-        @Override
-        Builder scalesWithDifficulty();
-
-        @Override
-        Builder bypassesArmor();
-
-        @Override
-        Builder explosion();
-
-        @Override
-        Builder absolute();
-
-        @Override
-        Builder magical();
-
-        @Override
-        Builder creative();
-
-        @Override
-        Builder type(DamageType damageType);
+    interface Builder extends DamageSource.DamageSourceBuilder<BlockDamageSource, Builder> {
 
         /**
          * Sets the {@link Location} to use as a "source".
@@ -84,10 +63,5 @@ public interface BlockDamageSource extends DamageSource {
          */
         Builder block(BlockSnapshot blockState);
 
-        @Override
-        BlockDamageSource build() throws IllegalStateException;
-
-        @Override
-        Builder reset();
     }
 }

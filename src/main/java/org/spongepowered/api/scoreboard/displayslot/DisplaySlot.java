@@ -45,7 +45,7 @@ public interface DisplaySlot extends CatalogType {
      */
     Optional<TextColor> getTeamColor();
 
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<DisplaySlot, Builder> {
 
         /**
          * Sets the {@link TextColor} of the display slot.

@@ -75,7 +75,11 @@ public interface ParticleEffect {
     /**
      * Represents a builder to create a {@link ParticleEffect}.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ParticleBuilder<ParticleEffect, Builder> {
+
+    }
+
+    interface ParticleBuilder<T extends ParticleEffect, B extends ParticleBuilder<T, B>> extends ResettableBuilder<T, B> {
 
         /**
          * Sets the particle type for the particle effect.
@@ -85,7 +89,7 @@ public interface ParticleEffect {
          * @throws IllegalArgumentException If the particle type is not
          *     compatible with this builder
          */
-        Builder type(ParticleType particleType);
+        B type(ParticleType particleType);
 
         /**
          * Sets the motion vector of the particle effect.
@@ -95,7 +99,7 @@ public interface ParticleEffect {
          * @param motion The motion vector
          * @return This builder, for chaining
          */
-        Builder motion(Vector3d motion);
+        B motion(Vector3d motion);
 
         /**
          * Sets the offset vector of the particle effect.
@@ -105,7 +109,7 @@ public interface ParticleEffect {
          * @param offset The offset vector
          * @return This builder, for chaining
          */
-        Builder offset(Vector3d offset);
+        B offset(Vector3d offset);
 
         /**
          * Sets the amount of particles of the particle effect.
@@ -116,14 +120,13 @@ public interface ParticleEffect {
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the count is less than one
          */
-        Builder count(int count) throws IllegalArgumentException;
+        B count(int count) throws IllegalArgumentException;
 
         /**
          * Builds an instance of a ParticleEffect.
          *
          * @return A new instance of a ParticleEffect
          */
-        ParticleEffect build();
-
+        T build();
     }
 }

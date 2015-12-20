@@ -143,7 +143,7 @@ public interface Ore extends Populator {
     /**
      * A builder for constructing {@link Ore} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Ore, Builder> {
 
         /**
          * Sets the block to place as ore.

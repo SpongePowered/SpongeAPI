@@ -109,7 +109,7 @@ public interface EnderCrystalPlatform extends Populator {
     /**
      * A builder for constructing {@link EnderCrystalPlatform} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<EnderCrystalPlatform, Builder> {
 
         /**
          * Sets the probability of a pillar spawning in a chunk. The default

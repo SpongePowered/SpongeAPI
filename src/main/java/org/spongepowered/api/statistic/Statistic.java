@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public interface Statistic extends CatalogType, Translatable {
 
     /**
-     * Creates a new {@link Builder} to build a {@link Statistic}.
+     * Creates a new {@link StatisticBuilder} to build a {@link Statistic}.
      *
      * @return The new builder
      */
@@ -67,11 +67,15 @@ public interface Statistic extends CatalogType, Translatable {
      */
     StatisticGroup getGroup();
 
+    interface Builder extends StatisticBuilder<Statistic, Builder> {
+
+    }
+
     /**
      * Represents a builder to create new and custom instances of {@link Statistic}
      * s.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface StatisticBuilder<T extends Statistic, B extends StatisticBuilder<T, B>> extends ResettableBuilder<T, B> {
 
         /**
          * Sets the internal name for the {@link Statistic}.
@@ -79,7 +83,7 @@ public interface Statistic extends CatalogType, Translatable {
          * @param name The name of this achievement
          * @return This builder, for chaining
          */
-        Builder name(String name);
+        B name(String name);
 
         /**
          * Sets the translation for the {@link Statistic}.
@@ -87,7 +91,7 @@ public interface Statistic extends CatalogType, Translatable {
          * @param translation The translation for the statistic
          * @return This builder, for chaining
          */
-        Builder translation(Translation translation);
+        B translation(Translation translation);
 
         /**
          * Sets the format of the {@link Statistic}. May be null in which case the
@@ -96,7 +100,7 @@ public interface Statistic extends CatalogType, Translatable {
          * @param format The format of the statistic
          * @return This builder, for chaining
          */
-        Builder format(@Nullable StatisticFormat format);
+        B format(@Nullable StatisticFormat format);
 
         /**
          * Sets the {@link StatisticGroup} the {@link Statistic} belongs to.
@@ -104,7 +108,7 @@ public interface Statistic extends CatalogType, Translatable {
          * @param group The statistic group the statistic belongs to
          * @return This builder, for chaining
          */
-        Builder group(StatisticGroup group);
+        B group(StatisticGroup group);
 
         /**
          * Builds and registers an instance of a {@link Statistic}.
@@ -112,7 +116,12 @@ public interface Statistic extends CatalogType, Translatable {
          * @return A new instance of a statistic
          * @throws IllegalStateException If the statistic is not completed
          */
-        Statistic buildAndRegister() throws IllegalStateException;
+        T buildAndRegister() throws IllegalStateException;
 
+        @Override
+        B from(T value);
+
+        @Override
+        B reset();
     }
 }

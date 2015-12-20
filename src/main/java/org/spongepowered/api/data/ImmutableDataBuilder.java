@@ -64,6 +64,7 @@ public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extend
      * @param holder The {@link ImmutableDataHolder} to copy from
      * @return This builder for chaining
      */
+    @Override
     E from(H holder);
 
     /**

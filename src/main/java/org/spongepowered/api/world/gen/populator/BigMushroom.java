@@ -127,7 +127,7 @@ public interface BigMushroom extends Populator {
     /**
      * A builder for constructing {@link BigMushroom} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<BigMushroom, Builder> {
 
         /**
          * Sets the weighted {@link PopulatorObject}s to select from during

@@ -76,7 +76,7 @@ public interface DesertWell extends Populator {
     /**
      * A builder for constructing {@link DesertWell} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<DesertWell, Builder> {
 
         /**
          * Sets the probability of a desert well spawning.

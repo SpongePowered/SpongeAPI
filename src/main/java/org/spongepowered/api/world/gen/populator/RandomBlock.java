@@ -122,7 +122,7 @@ public interface RandomBlock extends Populator {
     /**
      * A builder for constructing {@link RandomBlock} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<RandomBlock, Builder> {
 
         /**
          * Sets the {@link BlockState} that this populator will randomly

@@ -90,23 +90,25 @@ public interface DamageSource {
 
     boolean doesAffectCreative();
 
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends DamageSourceBuilder<DamageSource, Builder> { }
 
-        Builder scalesWithDifficulty();
+    interface DamageSourceBuilder<T extends DamageSource, B extends DamageSourceBuilder<T, B>> extends ResettableBuilder<T, B> {
 
-        Builder bypassesArmor();
+        B scalesWithDifficulty();
 
-        Builder explosion();
+        B bypassesArmor();
 
-        Builder absolute();
+        B explosion();
 
-        Builder magical();
+        B absolute();
 
-        Builder creative();
+        B magical();
 
-        Builder type(DamageType damageType);
+        B creative();
 
-        DamageSource build() throws IllegalStateException;
+        B type(DamageType damageType);
+
+        T build() throws IllegalStateException;
 
     }
 }

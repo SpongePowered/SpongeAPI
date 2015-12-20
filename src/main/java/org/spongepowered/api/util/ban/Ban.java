@@ -168,7 +168,7 @@ public interface Ban {
     /**
      * Represents a builder that creates bans.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Ban, Builder> {
 
         /**
          * Sets the profile to be banned.

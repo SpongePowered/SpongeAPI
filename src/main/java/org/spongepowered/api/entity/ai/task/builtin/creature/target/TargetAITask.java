@@ -28,7 +28,7 @@ import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 
-public interface TargetAITask<A extends TargetAITask> extends AITask<Creature> {
+public interface TargetAITask<A extends TargetAITask<A>> extends AITask<Creature> {
 
     boolean shouldCheckSight();
 

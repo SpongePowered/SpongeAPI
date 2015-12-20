@@ -24,10 +24,8 @@
  */
 package org.spongepowered.api.effect.particle;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
  * Represents a particle effect that needs a {@link BlockState} to be
@@ -55,7 +53,7 @@ public interface BlockParticle extends ParticleEffect {
     /**
      * Represents a particle builder to create a {@link BlockParticle}.
      */
-    interface Builder extends ParticleEffect.Builder {
+    interface Builder extends ParticleEffect.ParticleBuilder<BlockParticle, Builder> {
 
         /**
          * Sets the {@link BlockState} of the particle effect.
@@ -64,24 +62,6 @@ public interface BlockParticle extends ParticleEffect {
          * @return This builder
          */
         Builder block(BlockState blockState);
-
-        @Override
-        Builder type(ParticleType particleType);
-
-        @Override
-        Builder motion(Vector3d motion);
-
-        @Override
-        Builder offset(Vector3d offset);
-
-        @Override
-        Builder count(int count);
-
-        @Override
-        BlockParticle build();
-
-        @Override
-        Builder reset();
 
     }
 }

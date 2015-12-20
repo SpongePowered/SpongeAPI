@@ -66,7 +66,7 @@ public interface HealthModifier {
      * A builder that creates {@link HealthModifier}s, for use in both plugin and
      * implementation requirements.
      */
-    final class Builder implements ResettableBuilder<Builder> {
+    final class Builder implements ResettableBuilder<HealthModifier, Builder> {
 
         private HealthModifierType type;
         private Cause cause;
@@ -116,6 +116,14 @@ public interface HealthModifier {
             checkState(this.type != null, "The HealthModifierType must not be null!");
             checkState(this.cause != null, "The cause for the HealthModifier must not be null!");
             return new ImplementedHealthModifier(this);
+        }
+
+        @Override
+        public Builder from(HealthModifier value) {
+            reset();
+            this.type = value.getType();
+            this.cause = value.getCause();
+            return this;
         }
 
         @Override

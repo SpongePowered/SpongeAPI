@@ -44,10 +44,10 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
     protected AbstractEntityDamageSource(AbstractEntityDamageSourceBuilder builder) {
         this.apiDamageType = checkNotNull(builder.damageType, "DamageType cannot be null!");
         this.absolute = builder.absolute;
-        this.bypassesArmor = builder.bypassesArmor;
+        this.bypassesArmor = builder.bypasses;
         this.scales = builder.scales;
-        this.explosive = builder.explosive;
-        this.magic = builder.magic;
+        this.explosive = builder.explosion;
+        this.magic = builder.magical;
         this.creative = builder.creative;
         this.source = checkNotNull(builder.source, "Entity source cannot be null!");
     }
@@ -92,16 +92,10 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
         return this.creative;
     }
 
-    public static abstract class AbstractEntityDamageSourceBuilder implements EntityDamageSource.Builder {
+    public static abstract class AbstractEntityDamageSourceBuilder extends AbstractDamageSourceBuilder<EntityDamageSource, EntityDamageSource.Builder>
+    implements EntityDamageSource.Builder {
 
-        private Entity source;
-        private DamageType damageType;
-        private boolean absolute;
-        private boolean bypassesArmor;
-        private boolean scales;
-        private boolean explosive;
-        private boolean magic;
-        private boolean creative;
+        protected Entity source;
 
         @Override
         public EntityDamageSource.Builder entity(Entity entity) {
@@ -110,55 +104,9 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
         }
 
         @Override
-        public Builder scalesWithDifficulty() {
-            this.scales = true;
-            return this;
-        }
-
-        @Override
-        public Builder bypassesArmor() {
-            this.bypassesArmor = true;
-            return this;
-        }
-
-        @Override
-        public Builder explosion() {
-            this.explosive = true;
-            return this;
-        }
-
-        @Override
-        public Builder absolute() {
-            this.absolute = true;
-            return this;
-        }
-
-        @Override
-        public Builder magical() {
-            this.magic = true;
-            return this;
-        }
-
-        @Override
-        public Builder creative() {
-            this.creative = true;
-            return this;
-        }
-
-        @Override
-        public Builder type(DamageType damageType) {
-            this.damageType = checkNotNull(damageType, "DamageType cannot be null!");
-            return this;
-        }
-
-        @Override
         public Builder reset() {
+            super.reset();
             this.damageType = null;
-            this.absolute = false;
-            this.bypassesArmor = false;
-            this.explosive = false;
-            this.magic = false;
-            this.creative = false;
             return this;
         }
     }

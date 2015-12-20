@@ -45,7 +45,7 @@ public interface EntityStatistic extends Statistic {
      * Represents a builder to create new and custom instances of
      * {@link EntityStatistic}s.
      */
-    interface Builder extends Statistic.Builder {
+    interface Builder extends StatisticBuilder<EntityStatistic, Builder> {
 
         /**
          * Sets the {@link EntityType} of this {@link EntityStatistic}.
@@ -54,24 +54,6 @@ public interface EntityStatistic extends Statistic {
          * @return This builder, for chaining
          */
         Builder entity(EntityType entity);
-
-        @Override
-        Builder name(String name);
-
-        @Override
-        Builder translation(Translation translation);
-
-        @Override
-        Builder format(@Nullable StatisticFormat format);
-
-        @Override
-        Builder group(StatisticGroup group);
-
-        @Override
-        EntityStatistic buildAndRegister() throws IllegalStateException;
-
-        @Override
-        Builder reset();
 
     }
 }

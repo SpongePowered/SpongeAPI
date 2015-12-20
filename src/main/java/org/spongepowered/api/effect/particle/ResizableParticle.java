@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.effect.particle;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 
 /**
@@ -52,7 +51,7 @@ public interface ResizableParticle extends ParticleEffect {
     /**
      * Represents a particle builder to create a {@link ResizableParticle}.
      */
-    interface Builder extends ParticleEffect.Builder {
+    interface Builder extends ParticleEffect.ParticleBuilder<ResizableParticle, Builder> {
 
         /**
          * Sets the size of the particle effect.
@@ -64,24 +63,6 @@ public interface ResizableParticle extends ParticleEffect {
          * @return This builder
          */
         Builder size(float size);
-
-        @Override
-        Builder type(ParticleType particleType);
-
-        @Override
-        Builder motion(Vector3d motion);
-
-        @Override
-        Builder offset(Vector3d offset);
-
-        @Override
-        Builder count(int count);
-
-        @Override
-        ResizableParticle build();
-
-        @Override
-        Builder reset();
 
     }
 }

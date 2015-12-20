@@ -112,7 +112,7 @@ public interface BlockBlob extends Populator {
     /**
      * A builder for constructing {@link BlockBlob} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<BlockBlob, Builder> {
 
         /**
          * Sets the {@link BlockState} that this populator will place down to

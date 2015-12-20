@@ -95,7 +95,7 @@ public interface IcePath extends Populator {
     /**
      * A builder for constructing {@link IcePath} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<IcePath, Builder> {
 
         /**
          * Sets the radius of the path to spawn, cannot be negative.

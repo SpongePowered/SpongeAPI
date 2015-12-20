@@ -58,7 +58,7 @@ public interface Shrub extends Populator {
      * 
      * @return The shrub types
      */
-    WeightedTable<ShrubType> getType();
+    WeightedTable<ShrubType> getTypes();
 
     /**
      * Gets the number of shrubs to attempt to spawn per chunk, must be greater
@@ -115,7 +115,7 @@ public interface Shrub extends Populator {
     /**
      * A builder for constructing {@link Shrub} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Shrub, Builder> {
 
         /**
          * Sets the number of shrubs to attempt to spawn per chunk, must be
@@ -161,7 +161,7 @@ public interface Shrub extends Populator {
          * @param override The new supplier override, or null
          * @return This builder, for chaining
          */
-        Builder supplier(Function<Location<Chunk>, ShrubType> override);
+        Builder supplier(@Nullable Function<Location<Chunk>, ShrubType> override);
 
         /**
          * Builds a new instance of a {@link Shrub} populator with the settings

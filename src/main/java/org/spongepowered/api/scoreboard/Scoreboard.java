@@ -186,7 +186,7 @@ public interface Scoreboard {
     /**
      * Represents a builder to create {@link Scoreboard} instances.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Scoreboard, Builder> {
 
         /**
          * Sets the list of {@link Objective}s of the {@link Scoreboard}.

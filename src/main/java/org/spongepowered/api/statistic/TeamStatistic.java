@@ -45,7 +45,7 @@ public interface TeamStatistic extends Statistic {
      * Represents a builder to create new and custom instances of
      * {@link TeamStatistic}s.
      */
-    interface Builder extends Statistic.Builder {
+    interface Builder extends StatisticBuilder<TeamStatistic, Builder> {
 
         /**
          * Sets the {@link TextColor} of this {@link TeamStatistic}.
@@ -54,24 +54,6 @@ public interface TeamStatistic extends Statistic {
          * @return This builder, for chaining
          */
         Builder teamColor(TextColor color);
-
-        @Override
-        Builder name(String name);
-
-        @Override
-        Builder translation(Translation translation);
-
-        @Override
-        Builder format(@Nullable StatisticFormat format);
-
-        @Override
-        Builder group(StatisticGroup group);
-
-        @Override
-        TeamStatistic buildAndRegister() throws IllegalStateException;
-
-        @Override
-        Builder reset();
 
     }
 }

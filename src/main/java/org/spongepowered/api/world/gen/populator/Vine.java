@@ -73,7 +73,7 @@ public interface Vine extends Populator {
     /**
      * A builder for constructing {@link Vine} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Vine, Builder> {
 
         /**
          * Sets the number of vines to attempt to spawn per chunk. The default

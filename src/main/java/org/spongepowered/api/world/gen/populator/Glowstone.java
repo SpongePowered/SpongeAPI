@@ -135,7 +135,7 @@ public interface Glowstone extends Populator {
     /**
      * A builder for constructing {@link Glowstone} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Glowstone, Builder> {
 
         /**
          * Sets the number of clusters to attempt to spawn per chunk, must be

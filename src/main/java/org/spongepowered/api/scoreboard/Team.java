@@ -237,7 +237,7 @@ public interface Team {
     /**
      * Represents a builder tp create {@link Team} instances.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Team, Builder> {
 
         /**
          * Sets the name of the {@link Team}.

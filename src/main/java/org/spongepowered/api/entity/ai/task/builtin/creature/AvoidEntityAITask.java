@@ -33,6 +33,8 @@ import java.util.function.Predicate;
 
 public interface AvoidEntityAITask extends AITask<Creature> {
 
+    Predicate<Entity> getTargetSelector();
+
     AvoidEntityAITask setTargetSelector(Predicate<Entity> predicate);
 
     float getSearchDistance();

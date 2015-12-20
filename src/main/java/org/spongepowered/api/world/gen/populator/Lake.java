@@ -92,7 +92,7 @@ public interface Lake extends Populator {
     /**
      * A builder for constructing {@link Lake} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Lake, Builder> {
 
         /**
          * Sets the {@link BlockState} of the liquid to fill the lake with.

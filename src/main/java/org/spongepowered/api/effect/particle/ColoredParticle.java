@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.effect.particle;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.Color;
 
@@ -52,7 +51,7 @@ public interface ColoredParticle extends ParticleEffect {
     /**
      * Represents a particle builder to create a {@link ColoredParticle}.
      */
-    interface Builder extends ParticleEffect.Builder {
+    interface Builder extends ParticleEffect.ParticleBuilder<ColoredParticle, Builder> {
 
         /**
          * Sets the color of the particle effect.
@@ -64,24 +63,6 @@ public interface ColoredParticle extends ParticleEffect {
          * @return This builder
          */
         Builder color(Color color);
-
-        @Override
-        Builder type(ParticleType particleType);
-
-        @Override
-        Builder motion(Vector3d motion);
-
-        @Override
-        Builder offset(Vector3d offset);
-
-        @Override
-        Builder count(int count);
-
-        @Override
-        ColoredParticle build();
-
-        @Override
-        Builder reset();
 
     }
 }

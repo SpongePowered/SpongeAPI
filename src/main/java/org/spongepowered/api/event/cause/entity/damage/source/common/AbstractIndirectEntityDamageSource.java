@@ -46,10 +46,10 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
     protected AbstractIndirectEntityDamageSource(AbstractEntityDamageSourceBuilder builder) {
         this.apiDamageType = checkNotNull(builder.damageType, "DamageType cannot be null!");
         this.absolute = builder.absolute;
-        this.bypassesArmor = builder.bypassesArmor;
+        this.bypassesArmor = builder.bypasses;
         this.scales = builder.scales;
-        this.explosive = builder.explosive;
-        this.magic = builder.magic;
+        this.explosive = builder.explosion;
+        this.magic = builder.magical;
         this.creative = builder.creative;
         this.source = checkNotNull(builder.source, "Entity source cannot be null!");
         this.indirect = checkNotNull(builder.indirect, "Indirect source cannot be null!");
@@ -100,17 +100,11 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
         return this.indirect;
     }
 
-    public static abstract class AbstractEntityDamageSourceBuilder implements Builder {
+    public static abstract class AbstractEntityDamageSourceBuilder extends AbstractDamageSourceBuilder<IndirectEntityDamageSource,
+        IndirectEntityDamageSource.Builder> implements Builder {
 
         private Entity source;
         private Entity indirect;
-        private DamageType damageType;
-        private boolean absolute;
-        private boolean bypassesArmor;
-        private boolean scales;
-        private boolean explosive;
-        private boolean magic;
-        private boolean creative;
 
         @Override
         public Builder entity(Entity entity) {
@@ -118,47 +112,6 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
             return this;
         }
 
-        @Override
-        public Builder scalesWithDifficulty() {
-            this.scales = true;
-            return this;
-        }
-
-        @Override
-        public Builder bypassesArmor() {
-            this.bypassesArmor = true;
-            return this;
-        }
-
-        @Override
-        public Builder explosion() {
-            this.explosive = true;
-            return this;
-        }
-
-        @Override
-        public Builder absolute() {
-            this.absolute = true;
-            return this;
-        }
-
-        @Override
-        public Builder magical() {
-            this.magic = true;
-            return this;
-        }
-
-        @Override
-        public Builder creative() {
-            this.creative = true;
-            return this;
-        }
-
-        @Override
-        public Builder type(DamageType damageType) {
-            this.damageType = checkNotNull(damageType, "DamageType cannot be null!");
-            return this;
-        }
 
         @Override
         public Builder proxySource(Entity projectile) {
@@ -168,12 +121,7 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
 
         @Override
         public Builder reset() {
-            this.damageType = null;
-            this.absolute = false;
-            this.bypassesArmor = false;
-            this.explosive = false;
-            this.magic = false;
-            this.creative = false;
+            super.reset();
             this.source = null;
             this.indirect = null;
             return this;

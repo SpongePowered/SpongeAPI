@@ -96,7 +96,7 @@ public interface Achievement extends CatalogType, Translatable, TextRepresentabl
      * Represents a builder interface to create new and custom instances of
      * {@link Achievement}s.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Achievement, Builder> {
 
         /**
          * Sets the internal name for the {@link Achievement}.

@@ -102,7 +102,7 @@ public interface Cactus extends Populator {
     /**
      * A builder for constructing {@link Cactus} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Cactus, Builder> {
 
         /**
          * Sets the number of cacti to spawn per chunk, cannot be negative.

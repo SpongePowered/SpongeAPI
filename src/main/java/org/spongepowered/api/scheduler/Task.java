@@ -104,7 +104,7 @@ public interface Task extends Identifiable {
     /**
      * Represents a builder to create a {@link Task}.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Task, Builder> {
 
         /**
          * Sets whether the task should run asynchronous, outside of the main loop,

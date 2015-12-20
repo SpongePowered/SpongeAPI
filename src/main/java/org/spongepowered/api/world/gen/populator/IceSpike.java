@@ -130,7 +130,7 @@ public interface IceSpike extends Populator {
     /**
      * A builder for constructing {@link IceSpike} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<IceSpike, Builder> {
 
         /**
          * Sets the number of spikes to generate per chunk.

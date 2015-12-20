@@ -229,7 +229,7 @@ public interface WorldBorder {
      * @see WorldBorder#newChunkPreGenerate(World)
      * @see World#newChunkPreGenerate(Vector3d, double)
      */
-    interface ChunkPreGenerate extends ResettableBuilder<ChunkPreGenerate> {
+    interface ChunkPreGenerate extends ResettableBuilder<Task, ChunkPreGenerate> {
 
         /**
          * Sets the owner of the resulting task.

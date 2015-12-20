@@ -128,7 +128,7 @@ public final class InventoryTransactionResult {
         return this.replaced;
     }
 
-    public static final class Builder implements ResettableBuilder<Builder> {
+    public static final class Builder implements ResettableBuilder<InventoryTransactionResult, Builder> {
         private Type resultType;
         private List<ItemStackSnapshot> rejected;
         private List<ItemStackSnapshot> replaced;
@@ -167,6 +167,11 @@ public final class InventoryTransactionResult {
         public InventoryTransactionResult build() {
             checkState(this.resultType != null);
             return new InventoryTransactionResult(this);
+        }
+
+        @Override
+        public Builder from(InventoryTransactionResult value) {
+            return null;
         }
 
         @Override

@@ -121,7 +121,7 @@ public interface RandomObject extends Populator {
     /**
      * A builder for constructing {@link RandomBlock} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<RandomObject, Builder> {
 
         /**
          * Sets the number of fires to attempt to spawn per chunk, must be

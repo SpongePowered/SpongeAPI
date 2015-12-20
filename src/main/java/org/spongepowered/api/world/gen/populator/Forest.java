@@ -117,7 +117,7 @@ public interface Forest extends Populator {
     /**
      * A builder for constructing {@link Forest} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Forest, Builder> {
 
         /**
          * Sets the number of trees to attempt to spawn per chunk, must be
@@ -163,7 +163,7 @@ public interface Forest extends Populator {
          * @param override The new supplier override, or null
          * @return This builder, for chaining
          */
-        Builder supplier(Function<Location<Chunk>, PopulatorObject> override);
+        Builder supplier(@Nullable Function<Location<Chunk>, PopulatorObject> override);
 
         /**
          * Builds a new instance of a {@link Forest} populator with the settings

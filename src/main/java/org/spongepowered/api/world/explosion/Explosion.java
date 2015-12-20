@@ -101,7 +101,7 @@ public interface Explosion {
     /**
      * A builder for {@link Explosion}.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Explosion, Builder> {
 
         /**
          * Sets the {@link World} the explosion will occur in.

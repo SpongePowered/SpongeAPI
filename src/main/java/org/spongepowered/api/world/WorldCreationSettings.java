@@ -156,7 +156,7 @@ public interface WorldCreationSettings {
      */
     DataContainer getGeneratorSettings();
 
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<WorldCreationSettings, Builder> {
         /**
          * Fills this {@link Builder} for creating {@link World}s or
          * {@link WorldCreationSettings}s, the builder is then seeded with the

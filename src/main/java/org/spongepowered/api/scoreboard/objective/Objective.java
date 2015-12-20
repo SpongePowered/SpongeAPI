@@ -140,7 +140,7 @@ public interface Objective {
     /**
      * Represents a builder to create {@link Objective} instances.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Objective, Builder> {
 
         /**
          * Sets the name of the {@link Objective}.

@@ -68,7 +68,7 @@ public interface ShapedRecipe extends Recipe {
      */
     Optional<ItemStack> getIngredient(Vector2i pos);
 
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<ShapedRecipe, Builder> {
         /**
          * Sets the width of the grid for the ShapedRecipe.
          *

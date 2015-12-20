@@ -61,7 +61,7 @@ public interface Mushroom extends Populator {
      * 
      * @return The weighted list
      */
-    ChanceTable<MushroomType> getType();
+    ChanceTable<MushroomType> getTypes();
 
     /**
      * Gets a representation of the amount of mushrooms which will be attempted
@@ -130,7 +130,7 @@ public interface Mushroom extends Populator {
     /**
      * A builder for constructing {@link Mushroom} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Mushroom, Builder> {
 
         /**
          * Sets the weighted {@link MushroomType}s to select from during
@@ -184,7 +184,7 @@ public interface Mushroom extends Populator {
          * @param override The new supplier override, or null
          * @return This builder, for chaining
          */
-        Builder supplier(Function<Location<Chunk>, MushroomType> override);
+        Builder supplier(@Nullable Function<Location<Chunk>, MushroomType> override);
 
         /**
          * Builds a new instance of a {@link Mushroom} populator with the

@@ -64,7 +64,7 @@ public interface DamageModifier {
      * A builder that creates {@link DamageModifier}s, for use in both plugin and
      * implementation requirements.
      */
-    final class Builder implements ResettableBuilder<Builder> {
+    final class Builder implements ResettableBuilder<DamageModifier, Builder> {
 
         private DamageModifierType type;
         private Cause cause;
@@ -106,6 +106,13 @@ public interface DamageModifier {
             checkState(this.type != null, "The DamageModifierType must not be null!");
             checkState(this.cause != null, "The cause for the DamageModifier must not be null!");
             return new ImplementedDamageModifier(this);
+        }
+
+        @Override
+        public Builder from(DamageModifier value) {
+            this.type = value.getType();
+            this.cause = value.getCause();
+            return this;
         }
 
         @Override

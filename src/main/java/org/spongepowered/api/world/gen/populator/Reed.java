@@ -87,7 +87,7 @@ public interface Reed extends Populator {
     /**
      * A builder for constructing {@link Reed} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Reed, Builder> {
 
         /**
          * Sets the number of reeds to attempt to spawn per chunk, must be

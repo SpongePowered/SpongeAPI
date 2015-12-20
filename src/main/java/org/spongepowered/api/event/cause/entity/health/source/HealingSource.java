@@ -99,7 +99,7 @@ public interface HealingSource {
      */
     boolean isMagic();
 
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<HealingSource, Builder> {
 
         Builder scalesWithDifficulty();
 

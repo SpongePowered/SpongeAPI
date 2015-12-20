@@ -88,7 +88,7 @@ public interface Pumpkin extends Populator {
     /**
      * A builder for constructing {@link Pumpkin} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Pumpkin, Builder> {
 
         /**
          * Sets the number of pumpkins to attempt to spawn per patch, must be

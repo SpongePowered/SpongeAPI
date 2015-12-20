@@ -36,28 +36,11 @@ public interface EntityDamageSource extends DamageSource {
      */
     Entity getSource();
 
-    interface Builder extends DamageSource.Builder {
+    interface Builder extends EntityDamageSourceBuilder<EntityDamageSource, Builder> {
 
-        @Override
-        Builder scalesWithDifficulty();
+    }
 
-        @Override
-        Builder bypassesArmor();
-
-        @Override
-        Builder explosion();
-
-        @Override
-        Builder absolute();
-
-        @Override
-        Builder magical();
-
-        @Override
-        Builder creative();
-
-        @Override
-        Builder type(DamageType damageType);
+    interface EntityDamageSourceBuilder<T extends EntityDamageSource, B extends EntityDamageSourceBuilder<T, B>> extends DamageSourceBuilder<T, B> {
 
         /**
          * Sets the {@link Entity} as the damage "source".
@@ -65,12 +48,7 @@ public interface EntityDamageSource extends DamageSource {
          * @param entity The entity
          * @return This builder, for chaining
          */
-        Builder entity(Entity entity);
+        B entity(Entity entity);
 
-        @Override
-        EntityDamageSource build() throws IllegalStateException;
-
-        @Override
-        Builder reset();
     }
 }

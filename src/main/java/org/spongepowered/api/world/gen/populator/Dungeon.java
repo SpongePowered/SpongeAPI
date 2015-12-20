@@ -96,7 +96,7 @@ public interface Dungeon extends Populator {
     /**
      * A builder for constructing {@link Dungeon} populators.
      */
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<Dungeon, Builder> {
 
         /**
          * Sets the number of attempts at randomly spawning a generator per

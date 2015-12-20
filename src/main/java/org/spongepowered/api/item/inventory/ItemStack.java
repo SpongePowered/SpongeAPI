@@ -120,7 +120,7 @@ public interface ItemStack extends DataHolder, DataSerializable, TextRepresentab
     @Override
     ItemStack copy();
     
-    interface Builder extends ResettableBuilder<Builder> {
+    interface Builder extends ResettableBuilder<ItemStack, Builder> {
         
         /**
          * Sets the {@link ItemType} of the item stack.
