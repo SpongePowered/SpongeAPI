@@ -72,7 +72,6 @@ import org.spongepowered.api.event.achievement.GrantAchievementEvent;
 import org.spongepowered.api.event.action.FishingEvent;
 import org.spongepowered.api.event.action.InteractEvent;
 import org.spongepowered.api.event.action.LightningEvent;
-import org.spongepowered.api.event.action.MessageEvent;
 import org.spongepowered.api.event.action.SleepingEvent;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.block.CollideBlockEvent;
@@ -89,7 +88,6 @@ import org.spongepowered.api.event.block.tileentity.TargetTileEntityEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.health.HealthModifier;
-import org.spongepowered.api.event.command.MessageSinkEvent;
 import org.spongepowered.api.event.command.SendCommandEvent;
 import org.spongepowered.api.event.command.TabCompleteCommandEvent;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
@@ -154,6 +152,8 @@ import org.spongepowered.api.event.item.inventory.InteractInventoryEvent;
 import org.spongepowered.api.event.item.inventory.TargetContainerEvent;
 import org.spongepowered.api.event.item.inventory.TargetInventoryEvent;
 import org.spongepowered.api.event.item.inventory.UseItemStackEvent;
+import org.spongepowered.api.event.message.MessageChannelEvent;
+import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.event.network.BanIpEvent;
 import org.spongepowered.api.event.network.ChannelRegistrationEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
@@ -195,8 +195,8 @@ import org.spongepowered.api.service.economy.transaction.TransactionResult;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.chat.ChatVisibility;
-import org.spongepowered.api.text.sink.MessageSink;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.ban.Ban;
@@ -219,20 +219,20 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.achievement.GrantAchievementEvent}.
      * 
      * @param cause The cause
+     * @param originalChannel The original channel
+     * @param channel The channel
      * @param originalMessage The original message
      * @param message The message
-     * @param originalSink The original sink
-     * @param sink The sink
      * @param achievement The achievement
      * @return A new grant achievement event
      */
-    public static GrantAchievementEvent createGrantAchievementEvent(Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Achievement achievement) {
+    public static GrantAchievementEvent createGrantAchievementEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Achievement achievement) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
+        values.put("originalChannel", originalChannel);
+        values.put("channel", channel);
         values.put("originalMessage", originalMessage);
         values.put("message", message);
-        values.put("originalSink", originalSink);
-        values.put("sink", sink);
         values.put("achievement", achievement);
         return SpongeEventFactoryUtils.createEventImpl(GrantAchievementEvent.class, values);
     }
@@ -243,21 +243,21 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.achievement.GrantAchievementEvent.TargetPlayer}.
      * 
      * @param cause The cause
+     * @param originalChannel The original channel
+     * @param channel The channel
      * @param originalMessage The original message
      * @param message The message
-     * @param originalSink The original sink
-     * @param sink The sink
      * @param achievement The achievement
      * @param targetEntity The target entity
      * @return A new target player grant achievement event
      */
-    public static GrantAchievementEvent.TargetPlayer createGrantAchievementEventTargetPlayer(Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Achievement achievement, Player targetEntity) {
+    public static GrantAchievementEvent.TargetPlayer createGrantAchievementEventTargetPlayer(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Achievement achievement, Player targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
+        values.put("originalChannel", originalChannel);
+        values.put("channel", channel);
         values.put("originalMessage", originalMessage);
         values.put("message", message);
-        values.put("originalSink", originalSink);
-        values.put("sink", sink);
         values.put("achievement", achievement);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(GrantAchievementEvent.TargetPlayer.class, values);
@@ -423,24 +423,6 @@ public class SpongeEventFactory {
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
         return SpongeEventFactoryUtils.createEventImpl(LightningEvent.Strike.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.action.MessageEvent}.
-     * 
-     * @param cause The cause
-     * @param originalMessage The original message
-     * @param message The message
-     * @return A new message event
-     */
-    public static MessageEvent createMessageEvent(Cause cause, Text originalMessage, Text message) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("originalMessage", originalMessage);
-        values.put("message", message);
-        return SpongeEventFactoryUtils.createEventImpl(MessageEvent.class, values);
     }
 
     /**
@@ -1084,52 +1066,6 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.command.MessageSinkEvent}.
-     * 
-     * @param cause The cause
-     * @param originalMessage The original message
-     * @param message The message
-     * @param originalSink The original sink
-     * @param sink The sink
-     * @return A new message sink event
-     */
-    public static MessageSinkEvent createMessageSinkEvent(Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("originalMessage", originalMessage);
-        values.put("message", message);
-        values.put("originalSink", originalSink);
-        values.put("sink", sink);
-        return SpongeEventFactoryUtils.createEventImpl(MessageSinkEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.command.MessageSinkEvent.Chat}.
-     * 
-     * @param cause The cause
-     * @param originalMessage The original message
-     * @param message The message
-     * @param originalSink The original sink
-     * @param sink The sink
-     * @param rawMessage The raw message
-     * @return A new chat message sink event
-     */
-    public static MessageSinkEvent.Chat createMessageSinkEventChat(Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Text rawMessage) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("originalMessage", originalMessage);
-        values.put("message", message);
-        values.put("originalSink", originalSink);
-        values.put("sink", sink);
-        values.put("rawMessage", rawMessage);
-        return SpongeEventFactoryUtils.createEventImpl(MessageSinkEvent.Chat.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
      * {@link org.spongepowered.api.event.command.SendCommandEvent}.
      * 
      * @param cause The cause
@@ -1589,20 +1525,20 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.DestructEntityEvent}.
      * 
      * @param cause The cause
+     * @param originalChannel The original channel
+     * @param channel The channel
      * @param originalMessage The original message
      * @param message The message
-     * @param originalSink The original sink
-     * @param sink The sink
      * @param targetEntity The target entity
      * @return A new destruct entity event
      */
-    public static DestructEntityEvent createDestructEntityEvent(Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Entity targetEntity) {
+    public static DestructEntityEvent createDestructEntityEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Entity targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
+        values.put("originalChannel", originalChannel);
+        values.put("channel", channel);
         values.put("originalMessage", originalMessage);
         values.put("message", message);
-        values.put("originalSink", originalSink);
-        values.put("sink", sink);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(DestructEntityEvent.class, values);
     }
@@ -1613,20 +1549,20 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.DestructEntityEvent.Death}.
      * 
      * @param cause The cause
+     * @param originalChannel The original channel
+     * @param channel The channel
      * @param originalMessage The original message
      * @param message The message
-     * @param originalSink The original sink
-     * @param sink The sink
      * @param targetEntity The target entity
      * @return A new death destruct entity event
      */
-    public static DestructEntityEvent.Death createDestructEntityEventDeath(Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Living targetEntity) {
+    public static DestructEntityEvent.Death createDestructEntityEventDeath(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Living targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
+        values.put("originalChannel", originalChannel);
+        values.put("channel", channel);
         values.put("originalMessage", originalMessage);
         values.put("message", message);
-        values.put("originalSink", originalSink);
-        values.put("sink", sink);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(DestructEntityEvent.Death.class, values);
     }
@@ -2513,20 +2449,20 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.living.humanoid.player.KickPlayerEvent}.
      * 
      * @param cause The cause
+     * @param originalChannel The original channel
+     * @param channel The channel
      * @param originalMessage The original message
      * @param message The message
-     * @param originalSink The original sink
-     * @param sink The sink
      * @param targetEntity The target entity
      * @return A new kick player event
      */
-    public static KickPlayerEvent createKickPlayerEvent(Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Player targetEntity) {
+    public static KickPlayerEvent createKickPlayerEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Player targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
+        values.put("originalChannel", originalChannel);
+        values.put("channel", channel);
         values.put("originalMessage", originalMessage);
         values.put("message", message);
-        values.put("originalSink", originalSink);
-        values.put("sink", sink);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(KickPlayerEvent.class, values);
     }
@@ -3744,8 +3680,72 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.message.MessageChannelEvent}.
+     *
+     * @param cause The cause
+     * @param originalChannel The original channel
+     * @param channel The channel
+     * @param originalMessage The original message
+     * @param message The message
+     * @return A new message channel event
+     */
+    public static MessageChannelEvent createMessageChannelEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("originalChannel", originalChannel);
+        values.put("channel", channel);
+        values.put("originalMessage", originalMessage);
+        values.put("message", message);
+        return SpongeEventFactoryUtils.createEventImpl(MessageChannelEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.message.MessageChannelEvent.Chat}.
+     *
+     * @param cause The cause
+     * @param originalChannel The original channel
+     * @param channel The channel
+     * @param originalMessage The original message
+     * @param message The message
+     * @param rawMessage The raw message
+     * @return A new chat message channel event
+     */
+    public static MessageChannelEvent.Chat createMessageChannelEventChat(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Text rawMessage) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("originalChannel", originalChannel);
+        values.put("channel", channel);
+        values.put("originalMessage", originalMessage);
+        values.put("message", message);
+        values.put("rawMessage", rawMessage);
+        return SpongeEventFactoryUtils.createEventImpl(MessageChannelEvent.Chat.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.message.MessageEvent}.
+     *
+     * @param cause The cause
+     * @param originalMessage The original message
+     * @param message The message
+     * @return A new message event
+     */
+    public static MessageEvent createMessageEvent(Cause cause, Optional<Text> originalMessage, Optional<Text> message) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("originalMessage", originalMessage);
+        values.put("message", message);
+        return SpongeEventFactoryUtils.createEventImpl(MessageEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.network.BanIpEvent}.
-     * 
+     *
      * @param cause The cause
      * @param ban The ban
      * @return A new ban ip event
@@ -3827,19 +3827,15 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param originalMessage The original message
      * @param message The message
-     * @param originalSink The original sink
-     * @param sink The sink
      * @param connection The connection
      * @param profile The profile
      * @return A new auth client connection event
      */
-    public static ClientConnectionEvent.Auth createClientConnectionEventAuth(Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, RemoteConnection connection, GameProfile profile) {
+    public static ClientConnectionEvent.Auth createClientConnectionEventAuth(Cause cause, Optional<Text> originalMessage, Optional<Text> message, RemoteConnection connection, GameProfile profile) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("originalMessage", originalMessage);
         values.put("message", message);
-        values.put("originalSink", originalSink);
-        values.put("sink", sink);
         values.put("connection", connection);
         values.put("profile", profile);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Auth.class, values);
@@ -3851,20 +3847,20 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.network.ClientConnectionEvent.Disconnect}.
      * 
      * @param cause The cause
+     * @param originalChannel The original channel
+     * @param channel The channel
      * @param originalMessage The original message
      * @param message The message
-     * @param originalSink The original sink
-     * @param sink The sink
      * @param targetEntity The target entity
      * @return A new disconnect client connection event
      */
-    public static ClientConnectionEvent.Disconnect createClientConnectionEventDisconnect(Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Player targetEntity) {
+    public static ClientConnectionEvent.Disconnect createClientConnectionEventDisconnect(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Player targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
+        values.put("originalChannel", originalChannel);
+        values.put("channel", channel);
         values.put("originalMessage", originalMessage);
         values.put("message", message);
-        values.put("originalSink", originalSink);
-        values.put("sink", sink);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Disconnect.class, values);
     }
@@ -3875,20 +3871,20 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.network.ClientConnectionEvent.Join}.
      * 
      * @param cause The cause
+     * @param originalChannel The original channel
+     * @param channel The channel
      * @param originalMessage The original message
      * @param message The message
-     * @param originalSink The original sink
-     * @param sink The sink
      * @param targetEntity The target entity
      * @return A new join client connection event
      */
-    public static ClientConnectionEvent.Join createClientConnectionEventJoin(Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Player targetEntity) {
+    public static ClientConnectionEvent.Join createClientConnectionEventJoin(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Player targetEntity) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
+        values.put("originalChannel", originalChannel);
+        values.put("channel", channel);
         values.put("originalMessage", originalMessage);
         values.put("message", message);
-        values.put("originalSink", originalSink);
-        values.put("sink", sink);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Join.class, values);
     }
@@ -3901,8 +3897,6 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param originalMessage The original message
      * @param message The message
-     * @param originalSink The original sink
-     * @param sink The sink
      * @param fromTransform The from transform
      * @param toTransform The to transform
      * @param connection The connection
@@ -3910,13 +3904,11 @@ public class SpongeEventFactory {
      * @param targetUser The target user
      * @return A new login client connection event
      */
-    public static ClientConnectionEvent.Login createClientConnectionEventLogin(Cause cause, Text originalMessage, Text message, MessageSink originalSink, MessageSink sink, Transform<World> fromTransform, Transform<World> toTransform, RemoteConnection connection, GameProfile profile, User targetUser) {
+    public static ClientConnectionEvent.Login createClientConnectionEventLogin(Cause cause, Optional<Text> originalMessage, Optional<Text> message, Transform<World> fromTransform, Transform<World> toTransform, RemoteConnection connection, GameProfile profile, User targetUser) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
         values.put("originalMessage", originalMessage);
         values.put("message", message);
-        values.put("originalSink", originalSink);
-        values.put("sink", sink);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
         values.put("connection", connection);

@@ -29,7 +29,8 @@ import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.command.MessageSinkEvent;
+import org.spongepowered.api.event.message.MessageEvent;
+import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.event.user.TargetUserEvent;
@@ -66,7 +67,7 @@ public interface ClientConnectionEvent extends Event {
      *
      * <p>Note: This event is fired before #Login.</p>
      */
-    interface Auth extends ClientConnectionEvent, MessageSinkEvent, Cancellable {
+    interface Auth extends ClientConnectionEvent, MessageEvent, Cancellable {
         /**
          * Gets the {@link RemoteConnection} representing the client connection.
          *
@@ -96,14 +97,14 @@ public interface ClientConnectionEvent extends Event {
      * ({@link GameProfile} or {@link InetAddress} has an ban, or is
      * not on the whitelist), then this event will automatically cancelled by
      * the {@link Platform#getImplementation() 'game' plugin}, with the proper
-     * message set through {@link MessageSinkEvent#setMessage(Text)}. No action
+     * message set through {@link MessageEvent#setMessage(Text)}. No action
      * on the part of the registered {@link BanService} or
      * {@link WhitelistService} is required for this to occur.
      *
      * Plugins may uncancel the event to allow a client to join, regardless of
      * its ban/whitelist status.</p>
      */
-    interface Login extends ClientConnectionEvent, MessageSinkEvent, TargetUserEvent, Cancellable {
+    interface Login extends ClientConnectionEvent, MessageEvent, TargetUserEvent, Cancellable {
 
         /**
          * Gets the {@link RemoteConnection} representing the client connection.
@@ -149,10 +150,10 @@ public interface ClientConnectionEvent extends Event {
      * the #Login event. This event is fired after both.</p>
      * </p>
      */
-    interface Join extends ClientConnectionEvent, TargetPlayerEvent, MessageSinkEvent {}
+    interface Join extends ClientConnectionEvent, TargetPlayerEvent, MessageChannelEvent {}
 
     /**
      * Called when a {@link Player} disconnects from the game.
      */
-    interface Disconnect extends ClientConnectionEvent, TargetPlayerEvent, MessageSinkEvent {}
+    interface Disconnect extends ClientConnectionEvent, TargetPlayerEvent, MessageChannelEvent {}
 }

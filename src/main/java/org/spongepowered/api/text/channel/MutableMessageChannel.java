@@ -22,22 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
-
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.message.MessageChannelEvent;
-import org.spongepowered.api.event.entity.living.TargetLivingEvent;
+package org.spongepowered.api.text.channel;
 
 /**
- * An event where the {@link Entity} is being either removed usually due to
- * the {@link Entity} being marked as "dead". Happens before {@link HarvestEntityEvent}.
+ * Represents a channel that takes a message and transforms it for distribution
+ * to a mutable list of members.
  */
-public interface DestructEntityEvent extends TargetEntityEvent, MessageChannelEvent {
+public interface MutableMessageChannel extends MessageChannel {
 
     /**
-     * A derivative of {@link DestructEntityEvent} where the removal of the {@link Living}, the {@link TargetLivingEvent#getTargetEntity()},
-     * is due to it losing its health.
+     * Adds a member to this channel.
+     *
+     * @param member The member to add
+     * @return {@code true} if this channel did not already contain the member
      */
-    interface Death extends DestructEntityEvent, TargetLivingEvent {}
+    boolean addMember(MessageReceiver member);
+
+    /**
+     * Removes a member from this channel.
+     *
+     * @param member The member to remove
+     * @return {@code true} if this channel contained the specified member
+     */
+    boolean removeMember(MessageReceiver member);
+
+    /**
+     * Removes all of the members from this channel.
+     */
+    void clearMembers();
+
+    @Override
+    default MutableMessageChannel asMutable() {
+        // We're already mutable.
+        return this;
+    }
+
 }

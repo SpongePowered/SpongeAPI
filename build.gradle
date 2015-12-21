@@ -70,6 +70,7 @@ genEventImpl {
             'src/main/java/org/spongepowered/api/event/entity/',
             'src/main/java/org/spongepowered/api/event/game/',
             'src/main/java/org/spongepowered/api/event/item/inventory/',
+            'src/main/java/org/spongepowered/api/event/message/',
             'src/main/java/org/spongepowered/api/event/network/',
             'src/main/java/org/spongepowered/api/event/server/',
             'src/main/java/org/spongepowered/api/event/statistic/',

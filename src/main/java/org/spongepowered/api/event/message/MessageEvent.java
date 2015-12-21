@@ -22,47 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.sink;
+package org.spongepowered.api.event.message;
 
-import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.text.Text;
 
+import java.util.Optional;
+
+import javax.annotation.Nullable;
+
 /**
- * Represents a function that takes a message and transforms it for distribution
- * to the given targets.
+ * Describes events when a involving a {@link Text} message.
  */
-public abstract class MessageSink {
+public interface MessageEvent extends Event {
 
     /**
-     * Process a message using this sink, transforming and sending it to the
-     * appropriate recipients.
+     * Gets the original {@link Text} message.
      *
-     * @param text The text to send
+     * @return The message if present, otherwise {@link Optional#empty()}
      */
-    public final void sendMessage(Text text) {
-        for (CommandSource recipient : getRecipients()) {
-            Text transformed = transformMessage(recipient, text);
-            recipient.sendMessage(transformed == null ? text : transformed);
-        }
-    }
+    Optional<Text> getOriginalMessage();
 
     /**
-     * Handle transforming the input message appropriately.
+     * Gets the new {@link Text} message.
      *
-     * @param target The target to transform the message for
-     * @param text The message to send
-     * @return The transformed text. May be input.
+     * @return The new message if present, otherwise {@link Optional#empty()}
      */
-    public Text transformMessage(CommandSource target, Text text) {
-        return text;
-    }
+    Optional<Text> getMessage();
 
     /**
-     * Return all command sources that will receive messages sent through to
-     * this sink.
+     * Sets the new {@link Text} message.
      *
-     * @return An iterable of all possible receivers of messages
+     * @param message The new message
      */
-    public abstract Iterable<CommandSource> getRecipients();
+    void setMessage(@Nullable Text message);
 
 }

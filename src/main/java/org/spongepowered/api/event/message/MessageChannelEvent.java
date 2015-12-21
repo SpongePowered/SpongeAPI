@@ -22,44 +22,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.command;
+package org.spongepowered.api.event.message;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.action.MessageEvent;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.sink.MessageSink;
-import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.text.channel.MessageChannel;
+
+import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
- * Describes events when a {@link CommandSource} sends a {@link Text} message.
+ * Describes events when a involving a {@link Text} message and {@link MessageChannel}s.
  */
-public interface MessageSinkEvent extends MessageEvent {
+public interface MessageChannelEvent extends MessageEvent {
 
     /**
-     * Gets the original sink that this message will be sent to.
+     * Gets the original channel that this message will be sent to.
      *
-     * @return The original message sink to send to
+     * @return The original message channel to send to
      */
-    MessageSink getOriginalSink();
+    MessageChannel getOriginalChannel();
 
     /**
-     * Gets the current sink that this message will be sent to.
+     * Gets the current channel that this message will be sent to.
      *
-     * @return The message sink the message in this event will be sent to
-     */
-    MessageSink getSink();
-
-    /**
-     * Set the target for this message to go to.
+     * <p>Note that an {@link Optional#empty()} channel is different from a
+     * {@link MessageChannel#TO_NONE} channel.</p>
      *
-     * @param sink The sink to set
+     * @return The message channel the message in this event will be sent to
      */
-    void setSink(MessageSink sink);
+    Optional<MessageChannel> getChannel();
 
     /**
-     * Fired when the {@link Text} being sent to a {@link MessageSink} was due to chatting.
+     * Set the channel for this message to go to.
+     *
+     * <p>Note that an {@link Optional#empty()} channel is different from a
+     * {@link MessageChannel#TO_NONE} channel.</p>
+     *
+     * @param channel The channel to set
      */
-    interface Chat extends MessageSinkEvent, Cancellable {
+    void setChannel(@Nullable MessageChannel channel);
+
+    /**
+     * Fired when the {@link Text} being sent to a {@link MessageChannel} was due to chatting.
+     */
+    interface Chat extends MessageChannelEvent, Cancellable {
 
         /**
          * Gets the 'raw' chat message.

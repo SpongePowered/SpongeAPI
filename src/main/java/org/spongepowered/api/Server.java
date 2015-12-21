@@ -28,12 +28,12 @@ import com.flowpowered.math.vector.Vector3d;
 import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.sink.MessageSink;
 import org.spongepowered.api.command.source.ConsoleSource;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldCreationSettings;
@@ -298,12 +298,18 @@ public interface Server {
     int getRunningTimeTicks();
 
     /**
-     * Get the sink that messages to be broadcast across the whole server
-     * should be sent to.
+     * Gets the message channel that server-wide messages are sent through.
      *
-     * @return The server-wide broadcast sink
+     * @return The server-wide broadcast channel
      */
-    MessageSink getBroadcastSink();
+    MessageChannel getBroadcastChannel();
+
+    /**
+     * Sets the channel that server-wide messages should be sent through.
+     *
+     * @param channel The broadcast channel
+     */
+    void setBroadcastChannel(MessageChannel channel);
 
     /**
      * Gets the bound {@link InetSocketAddress} from where this server is accepting

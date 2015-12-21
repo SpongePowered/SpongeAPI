@@ -22,22 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
-
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.message.MessageChannelEvent;
-import org.spongepowered.api.event.entity.living.TargetLivingEvent;
-
-/**
- * An event where the {@link Entity} is being either removed usually due to
- * the {@link Entity} being marked as "dead". Happens before {@link HarvestEntityEvent}.
- */
-public interface DestructEntityEvent extends TargetEntityEvent, MessageChannelEvent {
-
-    /**
-     * A derivative of {@link DestructEntityEvent} where the removal of the {@link Living}, the {@link TargetLivingEvent#getTargetEntity()},
-     * is due to it losing its health.
-     */
-    interface Death extends DestructEntityEvent, TargetLivingEvent {}
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.event.message;
