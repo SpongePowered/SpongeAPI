@@ -65,6 +65,17 @@ public interface TabList {
     void setFooter(Text footer);
 
     /**
+     * Sets this list's header and footer.
+     *
+     * @param header The new header
+     * @param footer The new footer
+     */
+    default void setHeaderAndFooter(Text header, Text footer) {
+        this.setHeader(header);
+        this.setFooter(footer);
+    }
+
+    /**
      * Gets the players on the list. The list should be immutable.
      *
      * @return The players on the list
