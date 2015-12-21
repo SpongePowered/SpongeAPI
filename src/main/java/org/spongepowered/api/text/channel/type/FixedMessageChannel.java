@@ -22,22 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.text.channel.type;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.message.MessageChannelEvent;
-import org.spongepowered.api.event.entity.living.TargetLivingEvent;
+import com.google.common.collect.ImmutableSet;
+import org.spongepowered.api.text.channel.MessageChannel;
+import org.spongepowered.api.text.channel.MessageReceiver;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Set;
+import java.util.WeakHashMap;
 
 /**
- * An event where the {@link Entity} is being either removed usually due to
- * the {@link Entity} being marked as "dead". Happens before {@link HarvestEntityEvent}.
+ * A message channel that targets the given recipients.
  */
-public interface DestructEntityEvent extends TargetEntityEvent, MessageChannelEvent {
+public class FixedMessageChannel implements MessageChannel {
 
-    /**
-     * A derivative of {@link DestructEntityEvent} where the removal of the {@link Living}, the {@link TargetLivingEvent#getTargetEntity()},
-     * is due to it losing its health.
-     */
-    interface Death extends DestructEntityEvent, TargetLivingEvent {}
+    protected final Set<MessageReceiver> recipients;
+
+    public FixedMessageChannel(MessageReceiver... recipients) {
+        this(Arrays.asList(recipients));
+    }
+
+    public FixedMessageChannel(Collection<? extends MessageReceiver> provided) {
+        Set<MessageReceiver> recipients = Collections.newSetFromMap(new WeakHashMap<>());
+        recipients.addAll(provided);
+        this.recipients = recipients;
+    }
+
+    @Override
+    public Collection<MessageReceiver> getMembers() {
+        return ImmutableSet.copyOf(this.recipients);
+    }
+
 }

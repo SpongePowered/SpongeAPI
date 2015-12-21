@@ -22,37 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.action;
-
-import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.text.Text;
-
-/**
- * Describes events when a {@link CommandSource} sends a {@link Text} message.
- */
-public interface MessageEvent extends Event {
-
-    /**
-     * Gets the {@link Text} message created by the {@link CommandSource} before
-     * the calling of this event.
-     *
-     * @return The message
-     */
-    Text getOriginalMessage();
-
-    /**
-     * Gets the new {@link Text} message.
-     *
-     * @return The new message
-     */
-    Text getMessage();
-
-    /**
-     * Sets the new {@link Text} message.
-     *
-     * @param message The new message
-     */
-    void setMessage(Text message);
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.text.channel;

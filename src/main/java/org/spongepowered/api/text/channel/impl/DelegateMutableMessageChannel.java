@@ -22,22 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.text.channel.impl;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.message.MessageChannelEvent;
-import org.spongepowered.api.event.entity.living.TargetLivingEvent;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.channel.AbstractMutableMessageChannel;
+import org.spongepowered.api.text.channel.MessageChannel;
+import org.spongepowered.api.text.channel.MessageReceiver;
+
+import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
- * An event where the {@link Entity} is being either removed usually due to
- * the {@link Entity} being marked as "dead". Happens before {@link HarvestEntityEvent}.
+ * A mutable message channel that leaves transforming and
+ * members to the delegate channel passed.
  */
-public interface DestructEntityEvent extends TargetEntityEvent, MessageChannelEvent {
+public class DelegateMutableMessageChannel extends AbstractMutableMessageChannel {
 
-    /**
-     * A derivative of {@link DestructEntityEvent} where the removal of the {@link Living}, the {@link TargetLivingEvent#getTargetEntity()},
-     * is due to it losing its health.
-     */
-    interface Death extends DestructEntityEvent, TargetLivingEvent {}
+    protected final MessageChannel delegate;
+
+    public DelegateMutableMessageChannel(final MessageChannel delegate) {
+        super();
+        this.delegate = checkNotNull(delegate, "delegate");
+        this.members.addAll(this.delegate.getMembers());
+    }
+
+    @Override
+    public Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original) {
+        return this.delegate.transformMessage(sender, recipient, original);
+    }
+
 }
