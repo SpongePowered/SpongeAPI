@@ -81,7 +81,7 @@ javadoc {
             'http://flowpowered.com/math/',
             'http://flowpowered.com/noise/',
             'http://asm.ow2.org/asm50/javadoc/user/',
-            'http://docs.oracle.com/javase/6/docs/api/'
+            'http://docs.oracle.com/javase/8/docs/api/'
     )
 
     // Disable the crazy super-strict doclint tool in Java 8
