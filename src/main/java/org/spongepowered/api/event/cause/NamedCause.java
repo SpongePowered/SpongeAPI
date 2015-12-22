@@ -30,6 +30,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.Objects;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.command.args.CommandArgs;
+import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.profile.GameProfile;
 
 /**
  * A pseudo naming schema for "named" Cause objects. This can be considered
@@ -49,6 +51,7 @@ public final class NamedCause {
     public static final String PHYSICAL = "Physical";
     public static final String SOURCE = "Source";
     public static final String THROWER = "Thrower";
+    public static final String PLAYER_SIMULATED = "PlayerSimulated";
 
     public static NamedCause source(Object object) {
         return of(SOURCE, object);
@@ -62,6 +65,23 @@ public final class NamedCause {
         return of(NOTIFIER, obj);
     }
 
+    public static NamedCause simulated(Object object) {
+        checkArgument(object instanceof Player || object instanceof User || object instanceof GameProfile,
+            "Invalid object provided for player simulated methods");
+        return of(PLAYER_SIMULATED, object);
+    }
+
+    public static NamedCause simulated(Player player) {
+        return of(PLAYER_SIMULATED, player);
+    }
+
+    public static NamedCause simulated(User user) {
+        return of(PLAYER_SIMULATED, user);
+    }
+
+    public static NamedCause simulated(GameProfile profile) {
+        return of(PLAYER_SIMULATED, profile);
+    }
 
     public static NamedCause of(String name, Object object) {
         checkNotNull(name, "Cannot have a null name!");

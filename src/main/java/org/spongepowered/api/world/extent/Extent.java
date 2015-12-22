@@ -42,7 +42,7 @@ import java.util.Collection;
  * A mutable object containing blocks, tile entities, entities, and possibly other game objects.
  */
 public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeArea, LocationCompositeValueStore, Identifiable,
-                                LocationBasePropertyHolder {
+                                LocationBasePropertyHolder, InteractableVolume {
 
     /**
      * Gets a location in this extent at the given position.
