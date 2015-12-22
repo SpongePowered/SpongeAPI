@@ -43,7 +43,7 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
     private final Entity source;
     private final Entity indirect;
 
-    protected AbstractIndirectEntityDamageSource(AbstractEntityDamageSourceBuilder builder) {
+    protected AbstractIndirectEntityDamageSource(AbstractIndirectEntityDamageSourceBuilder<?, ?> builder) {
         this.apiDamageType = checkNotNull(builder.damageType, "DamageType cannot be null!");
         this.absolute = builder.absolute;
         this.bypassesArmor = builder.bypasses;
@@ -100,31 +100,33 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
         return this.indirect;
     }
 
-    public static abstract class AbstractEntityDamageSourceBuilder extends AbstractDamageSourceBuilder<IndirectEntityDamageSource,
-        IndirectEntityDamageSource.Builder> implements Builder {
+    @SuppressWarnings("unchecked")
+    public static abstract class AbstractIndirectEntityDamageSourceBuilder<T extends IndirectEntityDamageSource, B extends AbstractIndirectEntityDamageSourceBuilder<T, B>>
+        extends AbstractEntityDamageSource.AbstractEntityDamageSourceBuilder<T,
+        B> implements IndirectEntityDamageSource.AbstractBuilder<T, B> {
 
         private Entity source;
         private Entity indirect;
 
         @Override
-        public Builder entity(Entity entity) {
+        public B entity(Entity entity) {
             this.source = checkNotNull(entity, "Entity source cannot be null!");
-            return this;
+            return (B) this;
         }
 
 
         @Override
-        public Builder proxySource(Entity projectile) {
+        public B proxySource(Entity projectile) {
             this.indirect = checkNotNull(projectile);
-            return this;
+            return (B) this;
         }
 
         @Override
-        public Builder reset() {
+        public B reset() {
             super.reset();
             this.source = null;
             this.indirect = null;
-            return this;
+            return (B) this;
         }
     }
 }

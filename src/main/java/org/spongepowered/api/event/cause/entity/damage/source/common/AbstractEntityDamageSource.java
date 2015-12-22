@@ -41,7 +41,7 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
     private final boolean creative;
     private final Entity source;
 
-    protected AbstractEntityDamageSource(AbstractEntityDamageSourceBuilder builder) {
+    protected AbstractEntityDamageSource(AbstractEntityDamageSourceBuilder<?, ?> builder) {
         this.apiDamageType = checkNotNull(builder.damageType, "DamageType cannot be null!");
         this.absolute = builder.absolute;
         this.bypassesArmor = builder.bypasses;
@@ -92,22 +92,24 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
         return this.creative;
     }
 
-    public static abstract class AbstractEntityDamageSourceBuilder extends AbstractDamageSourceBuilder<EntityDamageSource, EntityDamageSource.Builder>
-    implements EntityDamageSource.Builder {
+    @SuppressWarnings("unchecked")
+    public static abstract class AbstractEntityDamageSourceBuilder<T extends EntityDamageSource, B extends AbstractEntityDamageSourceBuilder<T, B>>
+        extends AbstractDamageSourceBuilder<T, B>
+    implements EntityDamageSourceBuilder<T, B> {
 
         protected Entity source;
 
         @Override
-        public EntityDamageSource.Builder entity(Entity entity) {
+        public B entity(Entity entity) {
             this.source = checkNotNull(entity, "Entity source cannot be null!");
-            return this;
+            return (B) this;
         }
 
         @Override
-        public Builder reset() {
+        public B reset() {
             super.reset();
             this.damageType = null;
-            return this;
+            return (B) this;
         }
     }
 }

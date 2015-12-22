@@ -39,11 +39,13 @@ public interface IndirectEntityDamageSource extends EntityDamageSource {
      */
     Entity getIndirectSource();
 
-    interface Builder extends DamageSourceBuilder<IndirectEntityDamageSource, Builder> {
+    interface Builder extends AbstractBuilder<IndirectEntityDamageSource, Builder> {
 
-        Builder entity(Entity entity);
+    }
 
-        Builder proxySource(Entity projectile);
+    interface AbstractBuilder<T extends IndirectEntityDamageSource, B extends AbstractBuilder<T, B>> extends EntityDamageSourceBuilder<T, B> {
+
+        B proxySource(Entity proxy);
 
     }
 }

@@ -46,7 +46,7 @@ public abstract class AbstractDamageSource implements DamageSource {
     private final boolean magic;
     private final boolean creative;
 
-    protected AbstractDamageSource(AbstractBuilder builder) {
+    protected AbstractDamageSource(AbstractDamageSourceBuilder<?, ?> builder) {
         this.apiDamageType = checkNotNull(builder.damageType, "DamageType cannot be null!");
         this.absolute = builder.absolute;
         this.bypassesArmor = builder.bypasses;
@@ -91,7 +91,4 @@ public abstract class AbstractDamageSource implements DamageSource {
         return this.creative;
     }
 
-    public static abstract class AbstractBuilder extends AbstractDamageSourceBuilder<DamageSource, DamageSource.Builder> {
-
-    }
 }
