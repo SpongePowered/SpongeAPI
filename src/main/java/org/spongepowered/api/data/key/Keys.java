@@ -153,6 +153,7 @@ import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.UUID;
 
@@ -251,8 +252,8 @@ public final class Keys {
     public static final Key<Value<Boolean>> INVISIBLE = null;
     public static final Key<SetValue<UUID>> INVISIBLE_TO_PLAYER_IDS = null;
     public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY_TICKS = null;
-    public static final Key<Value<Date>> FIRST_DATE_PLAYED = null;
-    public static final Key<Value<Date>> LAST_DATE_PLAYED = null;
+    public static final Key<Value<Instant>> FIRST_DATE_PLAYED = null;
+    public static final Key<Value<Instant>> LAST_DATE_PLAYED = null;
     public static final Key<MutableBoundedValue<Integer>> KNOCKBACK_STRENGTH = null;
     public static final Key<Value<Entity>> LEASH_HOLDER = null;
     public static final Key<Value<OcelotType>> OCELOT_TYPE = null;

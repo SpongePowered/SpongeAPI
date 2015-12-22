@@ -31,29 +31,29 @@ import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 
-import java.util.Date;
+import java.time.Instant;
 
 /**
- * Represents the original join {@link Date} that a {@link User} or
+ * Represents the original join {@link Instant} that a {@link User} or
  * {@link Player} originally joined a server with.
  */
 public interface JoinData extends DataManipulator<JoinData, ImmutableJoinData> {
 
     /**
-     * Gets the {@link Value} of the {@link Date} that a {@link Player} joined
+     * Gets the {@link Value} of the {@link Instant} that a {@link Player} joined
      * the {@link Server} the first time.
      *
      * @return The value for the first time a player joined
      */
-    Value<Date> firstPlayed();
+    Value<Instant> firstPlayed();
 
     /**
-     * Gets the {@link Value} of the {@link Date} that a {@link Player} joined
+     * Gets the {@link Value} of the {@link Instant} that a {@link Player} joined
      * the {@link Server} the last time.
      *
      * @return The value for the last time a player joined
      */
-    Value<Date> lastPlayed();
+    Value<Instant> lastPlayed();
 
 
 }

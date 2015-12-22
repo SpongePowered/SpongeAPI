@@ -32,7 +32,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.net.InetAddress;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -89,14 +89,14 @@ public interface Ban {
     /**
      * Gets the creation date of the ban.
      *
-     * <p>Note that this {@link Date} has no effect on whether or not a ban is
+     * <p>Note that this {@link Instant} has no effect on whether or not a ban is
      * active. Any ban for which {@link BanService#hasBan(Ban)} returns
      * <code>true</code> will be used (when checking if a player can join,
      * for example), regardless of its creation date.</p>
      *
      * @return Creation date of the ban
      */
-    Date getCreationDate();
+    Instant getCreationDate();
 
     /**
      * Gets the source that created this ban, if available
@@ -126,7 +126,7 @@ public interface Ban {
      *
      * @return Expiration time of the ban or {@link Optional#empty()}
      */
-    Optional<Date> getExpirationDate();
+    Optional<Instant> getExpirationDate();
 
     /**
      * Gets whether this ban is indefinitely long, e.g. has no expiration date.
@@ -209,18 +209,18 @@ public interface Ban {
         /**
          * Sets the date that the ban starts.
          *
-         * @param date The start date
+         * @param instant The start date
          * @return This builder
          */
-        Builder startDate(Date date);
+        Builder startDate(Instant instant);
 
         /**
          * Sets the expiration date of the ban, or removes it.
          *
-         * @param date The expiration date, or null in order to remove it
+         * @param instant The expiration date, or null in order to remove it
          * @return This builder
          */
-        Builder expirationDate(@Nullable Date date);
+        Builder expirationDate(@Nullable Instant instant);
 
         /**
          * Sets the source of the ban, or removes it if {@code null} is passed in.

@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.entity.living.player;
 
+import org.spongepowered.api.Server;
+import org.spongepowered.api.command.source.LocatedSource;
+import org.spongepowered.api.command.source.RemoteSource;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
@@ -37,10 +40,8 @@ import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.command.source.LocatedSource;
-import org.spongepowered.api.command.source.RemoteSource;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.Locale;
 
 /**
@@ -115,7 +116,7 @@ public interface Player extends Humanoid, User, LocatedSource, RemoteSource, Vie
      *
      * <p>Since a {@link Player} is already online, it means that the player
      * has joined the server at least once, meaning there is a guaranteed
-     * initial join {@link Date}. Users may not have ever joined a server
+     * initial join {@link Instant}. Users may not have ever joined a server
      * before.</p>
      *
      * @return A copy of the join data
@@ -124,11 +125,23 @@ public interface Player extends Humanoid, User, LocatedSource, RemoteSource, Vie
         return get(JoinData.class).get();
     }
 
-    default Value<Date> firstPlayed() {
+    /**
+     * Gets the {@link Value} of the {@link Instant} that a {@link Player} joined
+     * the {@link Server} the first time.
+     *
+     * @return The value for the first time a player joined
+     */
+    default Value<Instant> firstPlayed() {
         return getValue(Keys.FIRST_DATE_PLAYED).get();
     }
 
-    default Value<Date> lastPlayed() {
+    /**
+     * Gets the {@link Value} of the {@link Instant} that a {@link Player} joined
+     * the {@link Server} the last time.
+     *
+     * @return The value for the last time a player joined
+     */
+    default Value<Instant> lastPlayed() {
         return getValue(Keys.LAST_DATE_PLAYED).get();
     }
 
