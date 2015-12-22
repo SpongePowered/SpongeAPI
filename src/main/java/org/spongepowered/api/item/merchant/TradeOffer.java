@@ -199,6 +199,7 @@ public interface TradeOffer extends DataSerializable {
          * @param offer The offer to copy
          * @return This builder
          */
+        @Override
         Builder from(TradeOffer offer);
 
         /**

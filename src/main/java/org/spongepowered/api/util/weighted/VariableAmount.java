@@ -198,6 +198,7 @@ public interface VariableAmount extends DataSerializable {
 
     // This is overridden to allow this to be a functional interface as this
     // greatly increases the usability of the interface.
+    @Override
     default DataContainer toContainer() {
         throw new UnsupportedOperationException();
     }

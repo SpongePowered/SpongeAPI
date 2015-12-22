@@ -107,6 +107,7 @@ public interface PotionEffect extends DataSerializable, PropertyHolder {
      */
     interface Builder extends DataBuilder<PotionEffect> {
 
+        @Override
         Builder from(PotionEffect potionEffect);
 
         /**
