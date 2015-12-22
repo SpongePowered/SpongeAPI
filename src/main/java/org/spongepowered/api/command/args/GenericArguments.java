@@ -1109,7 +1109,7 @@ public final class GenericArguments {
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
             return Sponge.getGame().getRegistry().getAllOf(this.catalogType).stream()
-                .map(input -> {
+                .<String>map(input -> {
                 return input == null ? null : input.getId(); // TODO: ids or names?
                 })
                 .collect(Collectors.toList());
