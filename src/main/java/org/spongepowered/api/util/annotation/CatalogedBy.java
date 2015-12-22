@@ -26,6 +26,7 @@ package org.spongepowered.api.util.annotation;
 
 import org.spongepowered.api.CatalogType;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
@@ -63,6 +64,7 @@ import javax.annotation.Nonnull;
 @Nonnull
 @Target(ElementType.TYPE)
 @Inherited
+@Documented
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CatalogedBy {
 
