@@ -49,7 +49,7 @@ public interface FusedExplosive extends Explosive {
      *
      * @return The fuse duration
      */
-    default MutableBoundedValue<Integer> getFuseDuration() {
+    default MutableBoundedValue<Integer> fuseDuration() {
         return getValue(Keys.FUSE_DURATION).get();
     }
 

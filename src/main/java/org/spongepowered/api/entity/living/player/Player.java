@@ -124,6 +124,14 @@ public interface Player extends Humanoid, User, LocatedSource, RemoteSource, Vie
         return get(JoinData.class).get();
     }
 
+    default Value<Date> firstPlayed() {
+        return getValue(Keys.FIRST_DATE_PLAYED).get();
+    }
+
+    default Value<Date> lastPlayed() {
+        return getValue(Keys.LAST_DATE_PLAYED).get();
+    }
+
     /**
      * Gets a copy of the current {@link DisplayNameData} for this
      * {@link Player}.
