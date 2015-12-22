@@ -178,6 +178,7 @@ public final class Texts {
         HoverAction<?> hoverAction = null;
         ClickAction<?> clickAction = null;
         ShiftClickAction<?> shiftClickAction = null;
+        boolean changedFormat = false;
 
         if (objects.length == 1 && objects[0] instanceof TextRepresentable) {
             return ((TextRepresentable) objects[0]).toText();
@@ -185,14 +186,19 @@ public final class Texts {
 
         for (Object obj : objects) {
             if (obj instanceof TextFormat) {
+                changedFormat = true;
                 format = (TextFormat) obj;
             } else if (obj instanceof TextColor) {
+                changedFormat = true;
                 format = format.color((TextColor) obj);
             } else if (obj instanceof TextStyle) {
+                changedFormat = true;
                 format = format.style(obj.equals(TextStyles.RESET) ? TextStyles.NONE : format.getStyle().and((TextStyle) obj));
             } else if (obj instanceof TextRepresentable) {
+                changedFormat = false;
                 builder.append(((TextRepresentable) obj).toText());
             } else if (obj instanceof TextAction) {
+                changedFormat = true;
                 if (obj instanceof HoverAction) {
                     hoverAction = (HoverAction<?>) obj;
                 } else if (obj instanceof ClickAction) {
@@ -203,6 +209,7 @@ public final class Texts {
                     // Unsupported TextAction
                 }
             } else {
+                changedFormat = false;
                 TextBuilder childBuilder;
 
                 if (obj instanceof String) {
@@ -231,6 +238,21 @@ public final class Texts {
             }
         }
 
+        if (changedFormat) {
+            // Did the formatting change without being applied to something?
+            // Then just append an empty text with that formatting
+            final TextBuilder childBuilder = builder();
+            if (hoverAction != null) {
+                childBuilder.onHover(hoverAction);
+            }
+            if (clickAction != null) {
+                childBuilder.onClick(clickAction);
+            }
+            if (shiftClickAction != null) {
+                childBuilder.onShiftClick(shiftClickAction);
+            }
+            builder.append(childBuilder.format(format).build());
+        }
         if (builder.children.size() == 1) {
             // Single content, reduce Text depth
             return builder.children.get(0);
