@@ -58,7 +58,7 @@ public interface Ban {
      * @return The created ban
      */
     static Ban of(GameProfile profile) {
-        return builder().profile(profile).build();
+        return builder().type(BanTypes.PROFILE).profile(profile).build();
     }
 
     /**
@@ -69,7 +69,7 @@ public interface Ban {
      * @return The created ban
      */
     static Ban of(GameProfile profile, Text reason) {
-        return builder().profile(profile).reason(reason).build();
+        return builder().type(BanTypes.PROFILE).profile(profile).reason(reason).build();
     }
 
     /**
