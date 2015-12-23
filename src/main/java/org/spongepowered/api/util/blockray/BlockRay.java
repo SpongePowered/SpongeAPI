@@ -133,6 +133,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     private boolean ahead;
 
     private BlockRay(Predicate<BlockRayHit<E>> filter, E extent, Vector3d position, Vector3d direction) {
+        checkArgument(direction.lengthSquared() != 0, "Direction cannot be the zero vector");
+
         this.filter = filter;
 
         this.extent = extent;
@@ -216,87 +218,6 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         this.hit = null;
     }
 
-    private void advance() {
-        // Check the block limit if in use
-        if (this.blockLimit >= 0 && this.blockCount >= this.blockLimit) {
-            this.hit = null;
-            throw new NoSuchElementException("Block limit reached");
-        }
-
-        /*
-            The ray can be modeled using the following parametric equations:
-                x = d_x * t + p_x
-                y = d_y * t + p_y
-                z = d_z * t + p_z
-            Where d is the direction vector, p the starting point and t is in |R.
-
-            The block boundary grid can be modeled as an infinity of perpendicular planes
-            on the x, y and z axes, on integer coordinates, spaced 1 unit away.
-
-            Such a plane has an equation:
-                A = n
-            Where A is the axis label and n is in |Z
-
-            The solution of the intersection between the above ray and such a plane is:
-                n = d_A * t_s + p_A
-                t_s = (n - p_A) / d_A
-
-                x_s = d_x * t_s + p_x
-                y_s = d_y * t_s + p_y
-                z_s = d_z * t_s + p_z
-
-            Where t_s is the solution parameter and x_s, y_s, z_s are the intersection coordinates.
-            A small optimization is that x_A = n, which also helps with rounding errors.
-
-            The iterator solves these equations and provides the solutions in increasing order with respect to t_s.
-        */
-
-        if (this.xPlaneT == this.yPlaneT) {
-            if (this.xPlaneT == this.zPlaneT) {
-                // xPlaneT, yPlaneT and zPlaneT are equal
-                xyzIntersect();
-            } else {
-                // xPlaneT and yPlaneT are equal
-                xyIntersect();
-            }
-        } else if (this.xPlaneT == this.zPlaneT) {
-            // xPlaneT and zPlaneT are equal
-            xzIntersect();
-        } else if (this.yPlaneT == this.zPlaneT) {
-            // yPlaneT and zPlaneT are equal
-            yzIntersect();
-        } else if (this.xPlaneT < this.yPlaneT) {
-            if (this.xPlaneT < this.zPlaneT) {
-                // xPlaneT is smallest
-                xIntersect();
-            } else {
-                // zPlaneT is smallest
-                zIntersect();
-            }
-        } else if (this.yPlaneT < this.zPlaneT) {
-            // yPlaneT is smallest
-            yIntersect();
-        } else {
-            // zPlaneT is smallest
-            zIntersect();
-        }
-
-        final BlockRayHit<E> hit = new BlockRayHit<>(this.extent, this.xCurrent, this.yCurrent, this.zCurrent, this.direction, this.normalCurrent);
-
-        // Make sure we actually have a block
-        if (!this.extent.containsBlock(hit.getBlockX(), hit.getBlockY(), hit.getBlockZ())) {
-            this.hit = null;
-            throw new NoSuchElementException("Extent limit reached");
-        }
-        // Check the block filter
-        if (!this.filter.test(hit)) {
-            throw new NoSuchElementException("Filter limit reached");
-        }
-
-        this.hit = hit;
-        this.blockCount++;
-    }
-
     @Override
     public boolean hasNext() {
         if (this.ahead) {
@@ -335,6 +256,113 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
             next();
         }
         return Optional.ofNullable(this.hit);
+    }
+
+    private void advance() {
+        // Check the block limit if in use
+        if (this.blockLimit >= 0 && this.blockCount >= this.blockLimit) {
+            this.hit = null;
+            throw new NoSuchElementException("Block limit reached");
+        }
+
+        /*
+            The ray can be modeled using the following parametric equations:
+                x = d_x * t + p_x
+                y = d_y * t + p_y
+                z = d_z * t + p_z
+            Where d is the direction vector, p the starting point and t is in |R.
+
+            The block boundary grid can be modeled as an infinity of perpendicular planes
+            on the x, y and z axes, on integer coordinates, spaced 1 unit away.
+
+            Such a plane has an equation:
+                A = n
+            Where A is the axis label and n is in |Z
+
+            The solution of the intersection between the above ray and such a plane is:
+                n = d_A * t_s + p_A
+                t_s = (n - p_A) / d_A
+
+                x_s = d_x * t_s + p_x
+                y_s = d_y * t_s + p_y
+                z_s = d_z * t_s + p_z
+
+            Where t_s is the solution parameter and x_s, y_s, z_s are the intersection coordinates.
+            A small optimization is that x_A = n, which also helps with rounding errors.
+
+            The iterator solves these equations and provides the solutions in increasing order with respect to t_s.
+        */
+
+        if (this.direction.getX() == 0) {
+            if (this.direction.getY() == 0) {
+                // Only zPlaneT exists
+                zIntersect();
+            } else if (this.direction.getZ() == 0) {
+                // Only yPlaneT exists
+                yIntersect();
+            } else {
+                // yPlaneT and zPlaneT exist
+                solveIntersections();
+            }
+        } else if (this.direction.getY() == 0) {
+            if (this.direction.getZ() == 0) {
+                // Only xPlaneT exists
+                xIntersect();
+            } else {
+                // xPlaneT and zPlaneT exist
+                solveIntersections();
+            }
+        } else {
+            // xPlaneT and yPlaneT exist
+            solveIntersections();
+        }
+
+        final BlockRayHit<E> hit = new BlockRayHit<>(this.extent, this.xCurrent, this.yCurrent, this.zCurrent, this.direction, this.normalCurrent);
+
+        // Make sure we actually have a block
+        if (!this.extent.containsBlock(hit.getBlockX(), hit.getBlockY(), hit.getBlockZ())) {
+            this.hit = null;
+            throw new NoSuchElementException("Extent limit reached");
+        }
+        // Check the block filter
+        if (!this.filter.test(hit)) {
+            throw new NoSuchElementException("Filter limit reached");
+        }
+
+        this.hit = hit;
+        this.blockCount++;
+    }
+
+    private void solveIntersections() {
+        if (this.xPlaneT == this.yPlaneT) {
+            if (this.xPlaneT == this.zPlaneT) {
+                // xPlaneT, yPlaneT and zPlaneT are equal
+                xyzIntersect();
+            } else {
+                // xPlaneT and yPlaneT are equal
+                xyIntersect();
+            }
+        } else if (this.xPlaneT == this.zPlaneT) {
+            // xPlaneT and zPlaneT are equal
+            xzIntersect();
+        } else if (this.yPlaneT == this.zPlaneT) {
+            // yPlaneT and zPlaneT are equal
+            yzIntersect();
+        } else if (this.xPlaneT < this.yPlaneT) {
+            if (this.xPlaneT < this.zPlaneT) {
+                // xPlaneT is smallest
+                xIntersect();
+            } else {
+                // zPlaneT is smallest
+                zIntersect();
+            }
+        } else if (this.yPlaneT < this.zPlaneT) {
+            // yPlaneT is smallest
+            yIntersect();
+        } else {
+            // zPlaneT is smallest
+            zIntersect();
+        }
     }
 
     private void xyzIntersect() {
@@ -443,11 +471,6 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
             this.yzNormal = this.yNormal.add(this.zNormal).normalize();
         }
         return this.yzNormal;
-    }
-
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException("Removal is not supported by this iterator");
     }
 
     /**
