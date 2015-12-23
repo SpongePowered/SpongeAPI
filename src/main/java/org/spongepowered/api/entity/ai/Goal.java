@@ -98,4 +98,9 @@ public interface Goal<O extends Agent> {
      * @return The tasks
      */
     List<? super AITask<O>> getTasks();
+
+    /**
+     * Clears all {@link AITask}s from this goal.
+     */
+    void clear();
 }
