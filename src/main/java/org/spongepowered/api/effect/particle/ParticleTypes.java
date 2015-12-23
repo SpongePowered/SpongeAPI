@@ -65,9 +65,9 @@ public final class ParticleTypes {
     public static final ParticleType SLIME = null;
     public static final ParticleType HEART = null;
     public static final ParticleType BARRIER = null;
-    public static final ParticleType.Material ITEM_CRACK = null;
-    public static final ParticleType.Material BLOCK_CRACK = null;
-    public static final ParticleType.Material BLOCK_DUST = null;
+    public static final ParticleType.Item ITEM_CRACK = null;
+    public static final ParticleType.Block BLOCK_CRACK = null;
+    public static final ParticleType.Block BLOCK_DUST = null;
     public static final ParticleType WATER_DROP = null;
     public static final ParticleType ITEM_TAKE = null;
     public static final ParticleType MOB_APPEARANCE = null;

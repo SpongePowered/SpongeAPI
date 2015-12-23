@@ -54,7 +54,7 @@ public interface NoteParticle extends ParticleEffect {
     /**
      * Represents a particle builder to create a {@link NoteParticle}.
      */
-    interface Builder extends ParticleEffect.ParticleBuilder<NoteParticle, Builder> {
+    interface Builder extends ParticleEffect.ParticleBuilder<NoteParticle, ParticleType.Note, Builder> {
 
         /**
          * Sets the note value of the particle effect.

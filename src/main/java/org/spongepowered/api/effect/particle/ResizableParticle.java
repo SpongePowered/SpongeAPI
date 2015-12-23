@@ -51,7 +51,7 @@ public interface ResizableParticle extends ParticleEffect {
     /**
      * Represents a particle builder to create a {@link ResizableParticle}.
      */
-    interface Builder extends ParticleEffect.ParticleBuilder<ResizableParticle, Builder> {
+    interface Builder extends ParticleEffect.ParticleBuilder<ResizableParticle, ParticleType.Resizable, Builder> {
 
         /**
          * Sets the size of the particle effect.

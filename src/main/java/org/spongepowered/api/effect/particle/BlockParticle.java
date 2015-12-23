@@ -53,7 +53,7 @@ public interface BlockParticle extends ParticleEffect {
     /**
      * Represents a particle builder to create a {@link BlockParticle}.
      */
-    interface Builder extends ParticleEffect.ParticleBuilder<BlockParticle, Builder> {
+    interface Builder extends ParticleEffect.ParticleBuilder<BlockParticle, ParticleType.Block, Builder> {
 
         /**
          * Sets the {@link BlockState} of the particle effect.

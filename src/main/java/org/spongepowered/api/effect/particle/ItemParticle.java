@@ -52,7 +52,7 @@ public interface ItemParticle extends ParticleEffect {
     /**
      * Represents a particle builder to create a {@link ItemParticle}.
      */
-    interface Builder extends ParticleEffect.ParticleBuilder<ItemParticle, Builder> {
+    interface Builder extends ParticleEffect.ParticleBuilder<ItemParticle, ParticleType.Item, Builder> {
 
         /**
          * Sets the item type of the particle effect.

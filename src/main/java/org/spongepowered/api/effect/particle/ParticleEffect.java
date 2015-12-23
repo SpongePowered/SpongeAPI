@@ -27,7 +27,6 @@ package org.spongepowered.api.effect.particle;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
-import org.spongepowered.api.util.Color;
 
 /**
  * Represents a particle effect that can be send to the Minecraft client.
@@ -75,11 +74,19 @@ public interface ParticleEffect {
     /**
      * Represents a builder to create a {@link ParticleEffect}.
      */
-    interface Builder extends ParticleBuilder<ParticleEffect, Builder> {
+    interface Builder extends ParticleBuilder<ParticleEffect, ParticleType, Builder> {
 
     }
 
-    interface ParticleBuilder<T extends ParticleEffect, B extends ParticleBuilder<T, B>> extends ResettableBuilder<T, B> {
+    /**
+     * An inherently abstract builder for building a particular type of
+     * {@link ParticleEffect}.
+     *
+     * @param <P> The type of the particle effect
+     * @param <T> The type of particle type
+     * @param <B> The self referencing builder
+     */
+    interface ParticleBuilder<P extends ParticleEffect,T extends ParticleType, B extends ParticleBuilder<P,T, B>> extends ResettableBuilder<P, B> {
 
         /**
          * Sets the particle type for the particle effect.
@@ -89,7 +96,7 @@ public interface ParticleEffect {
          * @throws IllegalArgumentException If the particle type is not
          *     compatible with this builder
          */
-        B type(ParticleType particleType);
+        B type(T particleType);
 
         /**
          * Sets the motion vector of the particle effect.
@@ -127,6 +134,6 @@ public interface ParticleEffect {
          *
          * @return A new instance of a ParticleEffect
          */
-        T build();
+        P build();
     }
 }

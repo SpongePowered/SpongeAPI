@@ -25,6 +25,7 @@
 package org.spongepowered.api.effect.particle;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -92,7 +93,7 @@ public interface ParticleType extends CatalogType {
      * Represents a particle that utilizes a item stack to be
      * able to render on the client.
      */
-    interface Material extends ParticleType {
+    interface Item extends ParticleType {
 
         /**
          * Gets the default item type of this particle.
@@ -101,6 +102,16 @@ public interface ParticleType extends CatalogType {
          */
         ItemStack getDefaultItem();
 
+    }
+
+    interface Block extends ParticleType {
+
+        /**
+         * Gets the default block state for this particle.
+         *
+         * @return The block state
+         */
+        BlockState getDefaultBlockState();
     }
 
 }

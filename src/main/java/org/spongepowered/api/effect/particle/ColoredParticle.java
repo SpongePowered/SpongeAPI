@@ -51,7 +51,7 @@ public interface ColoredParticle extends ParticleEffect {
     /**
      * Represents a particle builder to create a {@link ColoredParticle}.
      */
-    interface Builder extends ParticleEffect.ParticleBuilder<ColoredParticle, Builder> {
+    interface Builder extends ParticleEffect.ParticleBuilder<ColoredParticle, ParticleType.Colorable, Builder> {
 
         /**
          * Sets the color of the particle effect.
