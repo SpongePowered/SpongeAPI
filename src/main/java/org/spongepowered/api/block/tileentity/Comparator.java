@@ -24,21 +24,9 @@
  */
 package org.spongepowered.api.block.tileentity;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.block.ComparatorData;
-import org.spongepowered.api.data.type.ComparatorType;
-import org.spongepowered.api.data.value.mutable.Value;
-
 /**
  * Represents a Redstone Comparator.
  */
 public interface Comparator extends TileEntity {
 
-    default ComparatorData getComparatorData() {
-        return get(ComparatorData.class).get();
-    }
-
-    default Value<ComparatorType> comparatorType() {
-        return getValue(Keys.COMPARATOR_TYPE).get();
-    }
 }
