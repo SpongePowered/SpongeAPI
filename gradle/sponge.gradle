@@ -150,5 +150,5 @@ apply from: api.file('gradle/deploy.gradle')
 
 // Gradle version used for generating the Gradle wrapper
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.8'
+    gradleVersion = '2.10'
 }
