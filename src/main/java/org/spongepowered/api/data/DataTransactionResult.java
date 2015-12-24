@@ -139,6 +139,22 @@ public final class DataTransactionResult {
     }
 
     /**
+     * Creates a {@link DataTransactionResult} with the provided
+     * {@link ImmutableValue} being successfully removed. The result type is
+     * still {@link Type#SUCCESS}. If a {@link Value} is necessary, use
+     * {@link Value#asImmutable()} to use this method. A
+     * {@link DataTransactionResult} is always immutable once created, and a
+     * {@link BaseValue} should be provided as an {@link ImmutableValue} or
+     * transformed into an {@link ImmutableValue}.
+     *
+     * @param removed The successfully removed value
+     * @return The new data transaction result
+     */
+    public static DataTransactionResult successRemove(ImmutableValue<?> removed) {
+        return builder().replace(removed).result(Type.SUCCESS).build();
+    }
+
+    /**
      * Creates a new {@link DataTransactionResult} that ends in failure. The
      * provided {@link ImmutableValue} is considered "rejected" and was not
      * successfully added.
