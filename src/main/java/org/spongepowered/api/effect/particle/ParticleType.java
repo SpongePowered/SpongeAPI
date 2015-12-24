@@ -26,6 +26,7 @@ package org.spongepowered.api.effect.particle;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -85,7 +86,7 @@ public interface ParticleType extends CatalogType {
          *
          * @return The default note
          */
-        float getDefaultNote();
+        NotePitch getDefaultNote();
 
     }
 
