@@ -24,7 +24,10 @@
  */
 package org.spongepowered.api.world.extent;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.cause.Cause;
@@ -41,8 +44,8 @@ public interface InteractableVolume extends BlockVolume {
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
      * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these
-     * will result in an {@link IllegalArgumentException} being thrown.</p>
+     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param position The position of the block
      * @param side The side of the block to interact with
@@ -50,7 +53,7 @@ public interface InteractableVolume extends BlockVolume {
      * @return True if the interact succeeded
      */
     default boolean hitBlock(Vector3i position, Direction side, Cause cause) {
-        return hitBlock(position.getX(), position.getY(), position.getZ(), side, cause);
+        return hitBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), side, cause);
     }
 
     /**
@@ -59,8 +62,8 @@ public interface InteractableVolume extends BlockVolume {
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
      * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these
-     * will result in an {@link IllegalArgumentException} being thrown.</p>
+     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param x The X position
      * @param y The Y position
@@ -77,8 +80,8 @@ public interface InteractableVolume extends BlockVolume {
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
      * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these
-     * will result in an {@link IllegalArgumentException} being thrown.</p>
+     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param position The position of the block
      * @param side The side of the block to interact with
@@ -86,7 +89,7 @@ public interface InteractableVolume extends BlockVolume {
      * @return True if the interact succeeded
      */
     default boolean interactBlock(Vector3i position, Direction side, Cause cause) {
-        return interactBlock(position.getX(), position.getY(), position.getZ(), side, cause);
+        return interactBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), side, cause);
     }
 
     /**
@@ -95,8 +98,8 @@ public interface InteractableVolume extends BlockVolume {
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
      * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these
-     * will result in an {@link IllegalArgumentException} being thrown.</p>
+     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param x The X position
      * @param y The Y position
@@ -108,14 +111,14 @@ public interface InteractableVolume extends BlockVolume {
     boolean interactBlock(int x, int y, int z, Direction side, Cause cause);
 
     /**
-     * Simulates the interaction the block using the given item as if
-     * the player had done so.
+     * Simulates the interaction the block using the given item as if the player
+     * had done so.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
      * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these
-     * will result in an {@link IllegalArgumentException} being thrown.</p>
+     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param position The position of the block
      * @param itemStack The item
@@ -124,18 +127,44 @@ public interface InteractableVolume extends BlockVolume {
      * @return True if the interact succeeded
      */
     default boolean interactBlockWith(Vector3i position, ItemStack itemStack, Direction side, Cause cause) {
-        return interactBlockWith(position.getX(), position.getY(), position.getZ(), itemStack, side, cause);
+        return interactBlockWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, side, cause);
     }
 
     /**
-     * Simulates the interaction the block using the given item as if
-     * the player had done so.
+     * Simulates the placement of a block at the given location as if a player
+     * had done so.
+     *
+     * @param position The position of the block
+     * @param block The block state to be set to
+     * @param cause The cause containing either a player, user, or game profile
+     * @return Whether the block was successfully set
+     */
+    default boolean placeBlock(Vector3i position, BlockState block, Cause cause) {
+        return placeBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), block, cause);
+    }
+
+    /**
+     * Simulates the placement of a block at the given location as if a player
+     * had done so.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param block The block state to be set to
+     * @param cause The cause containing either a player, user, or game profile
+     * @return Whether the block was successfully set
+     */
+    boolean placeBlock(int x, int y, int z, BlockState block, Cause cause);
+
+    /**
+     * Simulates the interaction the block using the given item as if the player
+     * had done so.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
      * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these
-     * will result in an {@link IllegalArgumentException} being thrown.</p>
+     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param x The X position
      * @param y The Y position
@@ -153,15 +182,15 @@ public interface InteractableVolume extends BlockVolume {
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
      * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these
-     * will result in an {@link IllegalArgumentException} being thrown.</p>
+     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param position The position of the block
      * @param cause The cause containing either a player, user, or game profile
      * @return Whether the block was destroyed
      */
     default boolean digBlock(Vector3i position, Cause cause) {
-        return digBlock(position.getX(), position.getY(), position.getZ(), cause);
+        return digBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), cause);
     }
 
     /**
@@ -170,8 +199,8 @@ public interface InteractableVolume extends BlockVolume {
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
      * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these
-     * will result in an {@link IllegalArgumentException} being thrown.</p>
+     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param x The X position
      * @param y The Y position
@@ -182,14 +211,14 @@ public interface InteractableVolume extends BlockVolume {
     boolean digBlock(int x, int y, int z, Cause cause);
 
     /**
-     * Simulate the digging of the block with the given tool as if a player
-     * had done so.
+     * Simulate the digging of the block with the given tool as if a player had
+     * done so.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
      * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these
-     * will result in an {@link IllegalArgumentException} being thrown.</p>
+     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param position The position of the block
      * @param itemStack The tool
@@ -197,18 +226,18 @@ public interface InteractableVolume extends BlockVolume {
      * @return Whether the block was destroyed
      */
     default boolean digBlockWith(Vector3i position, ItemStack itemStack, Cause cause) {
-        return digBlockWith(position.getX(), position.getY(), position.getZ(), itemStack, cause);
+        return digBlockWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, cause);
     }
 
     /**
-     * Simulate the digging of the block with the given tool as if a player
-     * had done so.
+     * Simulate the digging of the block with the given tool as if a player had
+     * done so.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
      * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these
-     * will result in an {@link IllegalArgumentException} being thrown.</p>
+     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param x The X position
      * @param y The Y position
@@ -225,8 +254,8 @@ public interface InteractableVolume extends BlockVolume {
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
      * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these
-     * will result in an {@link IllegalArgumentException} being thrown.</p>
+     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param position The position of the block
      * @param itemStack The item to pretend-dig with
@@ -234,7 +263,7 @@ public interface InteractableVolume extends BlockVolume {
      * @return The time in ticks
      */
     default int getBlockDigTimeWith(Vector3i position, ItemStack itemStack, Cause cause) {
-        return getBlockDigTimeWith(position.getX(), position.getY(), position.getZ(), itemStack, cause);
+        return getBlockDigTimeWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, cause);
     }
 
     /**
@@ -243,8 +272,8 @@ public interface InteractableVolume extends BlockVolume {
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
      * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these
-     * will result in an {@link IllegalArgumentException} being thrown.</p>
+     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param x The X position
      * @param y The Y position
