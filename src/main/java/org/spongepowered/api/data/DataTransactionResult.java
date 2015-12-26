@@ -49,6 +49,10 @@ import java.util.List;
  */
 public final class DataTransactionResult {
 
+    private static final DataTransactionResult SUCCESS_NODATA = builder().result(Type.SUCCESS).build();
+    private static final DataTransactionResult FAIL_NODATA = builder().result(Type.FAILURE).build();
+
+
     /**
      * Gets a new {@link Builder} to build a new
      * {@link DataTransactionResult}.
@@ -69,7 +73,7 @@ public final class DataTransactionResult {
      * @return A clean and empty data transaction
      */
     public static DataTransactionResult successNoData() {
-        return builder().result(Type.SUCCESS).build();
+        return SUCCESS_NODATA;
     }
 
     /**
@@ -185,7 +189,7 @@ public final class DataTransactionResult {
      * @return The new data transaction result
      */
     public static DataTransactionResult failNoData() {
-        return builder().result(Type.FAILURE).build();
+        return FAIL_NODATA;
     }
 
     /**
