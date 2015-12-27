@@ -26,6 +26,7 @@ package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -33,6 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * {@link BlockTypes#TALLGRASS}.
  */
 @CatalogedBy(ShrubTypes.class)
-public interface ShrubType extends CatalogType {
+public interface ShrubType extends CatalogType, Translatable {
 
 }

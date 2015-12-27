@@ -33,6 +33,7 @@ import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.util.Identifiable;
 
 import java.util.Optional;
@@ -41,7 +42,7 @@ import java.util.Optional;
  * A User is the data usually associated with a Player that is persisted across server restarts.
  * This is in contrast to Player which represents the ingame entity associated with an online User.
  */
-public interface User extends DataHolder, Identifiable, ArmorEquipable, Tamer, DataSerializable, Subject, Carrier {
+public interface User extends DataHolder, Identifiable, ArmorEquipable, Tamer, DataSerializable, Subject, Carrier, TextRepresentable {
 
     /**
      * Gets the associated {@link GameProfile} of this player.
