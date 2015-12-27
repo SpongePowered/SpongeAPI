@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.entity;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
@@ -31,7 +34,6 @@ import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.NamedCause;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
-import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Location;
@@ -39,9 +41,11 @@ import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.storage.WorldProperties;
 
+import java.util.Collection;
 import java.util.EnumSet;
 import java.util.Random;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 /**
  * An entity is a Minecraft entity.
@@ -318,5 +322,29 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @return True if damaging the entity was successful
      */
     boolean damage(double damage, DamageSource damageSource, Cause cause);
+
+    /**
+     * Gets the nearby entities within the desired distance.
+     *
+     * @see World#getEntities(Predicate)
+     * @param distance The distance
+     * @return The collection of nearby entities
+     */
+    default Collection<Entity> getNearbyEntities(double distance) {
+        checkArgument(distance > 0, "Distance must be above zero!");
+        return getNearbyEntities(entity -> entity.getTransform().getPosition().distance(this.getTransform().getPosition()) <= distance);
+    }
+
+    /**
+     * Gets the nearby entities that satisfy the desired predicate.
+     *
+     * @see World#getEntities(Predicate)
+     * @param predicate The predicate to use
+     * @return The collection of entities
+     */
+    default Collection<Entity> getNearbyEntities(Predicate<Entity> predicate) {
+        checkNotNull(predicate, "Null predicate!");
+        return getWorld().getEntities(predicate::test);
+    }
 
 }
