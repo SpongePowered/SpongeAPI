@@ -24,12 +24,17 @@
  */
 package org.spongepowered.api.event.cause.entity.damage.source;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 public interface BlockDamageSource extends DamageSource {
+
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the location of the {@link BlockSnapshot}.

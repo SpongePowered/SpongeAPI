@@ -24,10 +24,15 @@
  */
 package org.spongepowered.api.event.cause.entity.damage.source;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 
 public interface EntityDamageSource extends DamageSource {
+
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the {@link Entity} that is the source.

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.cause.entity.damage.source;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
@@ -41,6 +42,10 @@ import org.spongepowered.api.world.difficulty.Difficulty;
  * {@link Cause} of the event will be listed subsequently.</p>
  */
 public interface DamageSource {
+
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the {@link DamageType} of this source.
