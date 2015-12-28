@@ -39,7 +39,11 @@ import org.spongepowered.api.util.Direction;
 public interface InteractableVolume extends BlockVolume {
 
     /**
-     * Simulates the interaction the block as if a player had done so.
+     * Simulates hitting a block as if a player had done so.
+     *
+     * <p>The difference between this and {@link #digBlock} is that this will
+     * only do a single instantaneous "click" whereas digBlock will simulate
+     * holding the primary mouse button until the block breaks.</p>
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
@@ -57,7 +61,11 @@ public interface InteractableVolume extends BlockVolume {
     }
 
     /**
-     * Simulates the "hitting" the block if a player had done so.
+     * Simulates hitting a block as if a player had done so.
+     *
+     * <p>The difference between this and {@link #digBlock} is that this will
+     * only do a single instantaneous "click" whereas digBlock will simulate
+     * holding the primary mouse button until the block breaks.</p>
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
@@ -134,27 +142,41 @@ public interface InteractableVolume extends BlockVolume {
      * Simulates the placement of a block at the given location as if a player
      * had done so.
      *
+     * <p>Note that the requirement in the {@link Cause} is that it contains
+     * either a {@link Player}, {@link User}, or {@link GameProfile}.
+     * Additionally, the {@link NamedCause} must be
+     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * result in an {@link IllegalArgumentException} being thrown.</p>
+     *
      * @param position The position of the block
      * @param block The block state to be set to
+     * @param side The face of the block to place on
      * @param cause The cause containing either a player, user, or game profile
      * @return Whether the block was successfully set
      */
-    default boolean placeBlock(Vector3i position, BlockState block, Cause cause) {
-        return placeBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), block, cause);
+    default boolean placeBlock(Vector3i position, BlockState block, Direction side, Cause cause) {
+        return placeBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), block, side, cause);
     }
 
     /**
      * Simulates the placement of a block at the given location as if a player
      * had done so.
      *
+     * <p>Note that the requirement in the {@link Cause} is that it contains
+     * either a {@link Player}, {@link User}, or {@link GameProfile}.
+     * Additionally, the {@link NamedCause} must be
+     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * result in an {@link IllegalArgumentException} being thrown.</p>
+     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      * @param block The block state to be set to
+     * @param side The face of the block to place on
      * @param cause The cause containing either a player, user, or game profile
      * @return Whether the block was successfully set
      */
-    boolean placeBlock(int x, int y, int z, BlockState block, Cause cause);
+    boolean placeBlock(int x, int y, int z, BlockState block, Direction side, Cause cause);
 
     /**
      * Simulates the interaction the block using the given item as if the player
@@ -249,7 +271,8 @@ public interface InteractableVolume extends BlockVolume {
     boolean digBlockWith(int x, int y, int z, ItemStack itemStack, Cause cause);
 
     /**
-     * Gets the time it takes to dig this block the specified item in ticks.
+     * Gets the time it takes to dig this block with the specified item in
+     * ticks.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
@@ -267,7 +290,8 @@ public interface InteractableVolume extends BlockVolume {
     }
 
     /**
-     * Gets the time it takes to dig this block the specified item in ticks.
+     * Gets the time it takes to dig this block with the specified item in
+     * ticks.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
      * either a {@link Player}, {@link User}, or {@link GameProfile}.
