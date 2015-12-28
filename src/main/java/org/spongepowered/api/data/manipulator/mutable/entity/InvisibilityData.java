@@ -35,10 +35,7 @@ import java.util.UUID;
 
 /**
  * A {@link DataManipulator} for the "invisible" state. If the value is true,
- * the {@link Entity} is rendered "invisible". Alternatively, the
- * {@link Entity} can be rendered invisible to a specific {@link Player} by
- * including the {@link Player#getUniqueId()} in the
- * {@link #invisibleToPlayerIds()}.
+ * the {@link Entity} is rendered "invisible".
  */
 public interface InvisibilityData extends DataManipulator<InvisibilityData, ImmutableInvisibilityData> {
 
@@ -48,15 +45,5 @@ public interface InvisibilityData extends DataManipulator<InvisibilityData, Immu
      * @return The value of the invisible state
      */
     Value<Boolean> isInvisible();
-
-    /**
-     * Gets the {@link SetValue} of {@link Player} {@link UUID}s that the
-     * owning {@link Entity} is rendered "invisible" to. If a {@link Player}'s
-     * {@link UUID} is NOT included in the {@link SetValue}, then the entity is
-     * not "invisible".
-     *
-     * @return The set value of player id's the entity is invisible to
-     */
-    SetValue<UUID> invisibleToPlayerIds();
 
 }

@@ -26,29 +26,21 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.InvisibilityData;
-import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.player.Player;
-
-import java.util.UUID;
 
 /**
  * An {@link ImmutableDataManipulator} for the "invisible" state. If present,
- * the {@link Entity} is rendered "invisible". Alternatively, the
- * {@link Entity} can be rendered invisible to a specific {@link Player} by
- * including the {@link Player#getUniqueId()} in the
- * {@link #invisibleToPlayerIds()}.
+ * the {@link Entity} is rendered "invisible".
  */
 public interface ImmutableInvisibilityData extends ImmutableDataManipulator<ImmutableInvisibilityData, InvisibilityData> {
 
     /**
-     * Gets the {@link ImmutableSetValue} of {@link Player} {@link UUID}s that
-     * the owning {@link Entity} is rendered "invisible" to. If a
-     * {@link Player}'s {@link UUID} is NOT included in the
-     * {@link ImmutableSetValue}, then the entity is not "invisible".
+     * Gets the {@link ImmutableValue} of the "invisible" state of an
+     * {@link Entity}.
      *
-     * @return The set value of player id's the entity is invisible to
+     * @return The immutable value of the invisible state
      */
-    ImmutableSetValue<UUID> invisibleToPlayerIds();
+    ImmutableValue<Boolean> isInvisible();
 
 }
