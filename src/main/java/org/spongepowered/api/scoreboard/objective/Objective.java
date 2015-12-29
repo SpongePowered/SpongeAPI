@@ -33,6 +33,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -71,7 +72,7 @@ public interface Objective {
      *
      * @param displayName Display name to set
      * @throws IllegalArgumentException if displayName is longer than 32
-     *     characters
+     *     characters (in its legacy representation)
      */
     void setDisplayName(Text displayName) throws IllegalArgumentException;
 
@@ -104,6 +105,14 @@ public interface Objective {
     Map<Text, Score> getScores();
 
     /**
+     * Returns whether this objective has a {@link Score} with the given name.
+     *
+     * @param name The name of the {@link Score} to check for.
+     * @return Whether this objective has a {@link Score} with the given name.
+     */
+    boolean hasScore(Text name);
+
+    /**
      * Adds the specified {@link Score} to this objective.
      *
      * @param score The {@link Score} to add
@@ -112,21 +121,43 @@ public interface Objective {
     void addScore(Score score) throws IllegalArgumentException;
 
     /**
-     * Gets an entry's {@link Score} for this Objective.
+     * Gets an entry's {@link Score} for this objective, if it exists.
+     *
+     * @param name The name of the {@link Score} to get.
+     * @return The {@link Score} for te specified {@link Text}, if it exists.
+     */
+    default Optional<Score> getScore(Text name) {
+        if (!this.hasScore(name)) {
+            return Optional.empty();
+        }
+        return Optional.of(this.getOrCreateScore(name));
+    }
+
+    /**
+     * Gets an entry's {@link Score} for this objective.
      *
      * <p>If the {@link Score} does not exist, it will be created.</p>
      *
      * @param name The name of the {@link Score} to get
      * @return The {@link Score} for the specified {@link Text}
      */
-    Score getScore(Text name);
+    Score getOrCreateScore(Text name);
 
     /**
-     * Removes the specified {@link Score} to this objective.
+     * Removes the specified {@link Score} from this objective, if present.
      *
      * @param score The {@link Score} to remove
+     * @return Whether the score existed on this objective
      */
-    void removeScore(Score score);
+    boolean removeScore(Score score);
+
+    /**
+     * Removes the {@link Score} with the specified name from this objectie, if present.
+     *
+     * @param name The name of the {@link Score} to remove.
+     * @return Whether the score existed on this objective
+     */
+    boolean removeScore(Text name);
 
     /**
      * Returns a {@link Set} of parent {@link Scoreboard}s this

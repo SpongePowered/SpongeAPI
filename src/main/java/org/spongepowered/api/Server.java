@@ -30,6 +30,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
+import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.sink.MessageSink;
@@ -261,6 +262,21 @@ public interface Server {
      * @return True if the save was successful
      */
     boolean saveWorldProperties(WorldProperties properties);
+
+    /**
+     * Gets the 'server' scoreboard. In Vanilla, this is the scoreboard of
+     * dimension 0 (the overworld).
+     *
+     * <p>The sever scoreboard is used with the Vanilla /scoreboard command,
+     * automatic score updating through criteria, and other things.</p>
+     *
+     * <p>The server scoreboard may not be available if dimension 0
+     * is not yet loaded. In Vanilla, this will only occur when the
+     * server is first starting, as dimension 0 is normally always loaded.</p>
+     *
+     * @return the server scoreboard, if available.
+     */
+    Optional<Scoreboard> getServerScoreboard();
 
     /**
      * Returns information about the chunk layout used by this server

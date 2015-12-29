@@ -28,7 +28,6 @@ import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.permission.context.Contextual;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -234,20 +233,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
     WorldStorage getWorldStorage();
 
     /**
-     * Gets the @link Scoreboard} for this world.
-     *
-     * @return The associated {@link Scoreboard}
-     */
-    Scoreboard getScoreboard();
-
-    /**
-     * Sets the {@link Scoreboard} for this world.
-     *
-     * @param scoreboard The scoreboard to set
-     */
-    void setScoreboard(Scoreboard scoreboard);
-
-    /**
      * Gets the {@link WorldCreationSettings} which were used to create this
      * world.
      *
@@ -264,7 +249,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
 
     /**
      * Gets the {@link Location} of the spawn point.
-     * 
+     *
      * @return The location
      */
     Location<World> getSpawnLocation();
