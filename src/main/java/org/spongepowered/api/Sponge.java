@@ -71,6 +71,10 @@ public final class Sponge {
         return getGame().getPlatform();
     }
 
+    public static Server getServer() {
+        return getGame().getServer();
+    }
+
     public static GameDictionary getDictionary() {
         return getGame().getGameDictionary();
     }
