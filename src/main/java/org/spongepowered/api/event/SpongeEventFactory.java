@@ -29,6 +29,7 @@ import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
 import java.net.InetSocketAddress;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -129,6 +130,7 @@ import org.spongepowered.api.event.entity.living.humanoid.player.RespawnPlayerEv
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent;
 import org.spongepowered.api.event.entity.projectile.TargetProjectileEvent;
+import org.spongepowered.api.event.game.plugin.PluginFingerprintViolationEvent;
 import org.spongepowered.api.event.game.state.GameAboutToStartServerEvent;
 import org.spongepowered.api.event.game.state.GameConstructionEvent;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
@@ -190,6 +192,7 @@ import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.network.status.StatusClient;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.service.ProviderRegistration;
@@ -2627,6 +2630,26 @@ public class SpongeEventFactory {
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(TargetProjectileEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.game.plugin.PluginFingerprintViolationEvent}.
+     *
+     * @param cause The cause
+     * @param expectedFingerprint The expected fingerprint
+     * @param fingerprints The fingerprints
+     * @param plugin The plugin
+     * @return A new plugin fingerprint violation event
+     */
+    public static PluginFingerprintViolationEvent createPluginFingerprintViolationEvent(Cause cause, String expectedFingerprint, Collection<String> fingerprints, PluginContainer plugin) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("expectedFingerprint", expectedFingerprint);
+        values.put("fingerprints", fingerprints);
+        values.put("plugin", plugin);
+        return SpongeEventFactoryUtils.createEventImpl(PluginFingerprintViolationEvent.class, values);
     }
 
     /**
