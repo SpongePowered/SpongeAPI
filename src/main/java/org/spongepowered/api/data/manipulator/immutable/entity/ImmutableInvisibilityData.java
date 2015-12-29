@@ -41,6 +41,6 @@ public interface ImmutableInvisibilityData extends ImmutableDataManipulator<Immu
      *
      * @return The immutable value of the invisible state
      */
-    ImmutableValue<Boolean> isInvisible();
+    ImmutableValue<Boolean> invisible();
 
 }

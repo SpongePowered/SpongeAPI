@@ -44,6 +44,6 @@ public interface InvisibilityData extends DataManipulator<InvisibilityData, Immu
      *
      * @return The value of the invisible state
      */
-    Value<Boolean> isInvisible();
+    Value<Boolean> invisible();
 
 }
