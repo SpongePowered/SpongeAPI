@@ -22,24 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.data.manipulator.mutable.entity;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.AffectsSpawningData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableStuckArrowsData;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.entity.living.Living;
 
 /**
- * An {@link ImmutableDataManipulator} for the "affects spawning" state of
- * a {@link Player}.
+ * A {@link DataManipulator} for the number of "stuck arrows" in
+ * {@link Living} entities.
  */
-public interface ImmutableAffectsSpawningData extends ImmutableDataManipulator<ImmutableAffectsSpawningData, AffectsSpawningData> {
+public interface StuckArrowsData extends DataManipulator<StuckArrowsData, ImmutableStuckArrowsData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "affects spawning" state.
+     * Gets the {@link MutableBoundedValue} for the stuck arrows.
      *
-     * @return The immutable value for the affects spawning state
+     * @return The mutable value of stuck arrows
      */
-    ImmutableValue<Boolean> affectsSpawning();
+    MutableBoundedValue<Integer> stuckArrows();
 
 }

@@ -75,6 +75,7 @@ import org.spongepowered.api.data.manipulator.mutable.block.TreeData;
 import org.spongepowered.api.data.manipulator.mutable.entity.AffectsSpawningData;
 import org.spongepowered.api.data.manipulator.mutable.entity.FallDistanceData;
 import org.spongepowered.api.data.manipulator.mutable.entity.MinecartBlockData;
+import org.spongepowered.api.data.manipulator.mutable.entity.StuckArrowsData;
 import org.spongepowered.api.data.manipulator.mutable.item.HideData;
 import org.spongepowered.api.data.manipulator.mutable.item.SplashPotionData;
 import org.spongepowered.api.data.meta.ItemEnchantment;
@@ -881,6 +882,14 @@ public final class Keys {
      * @see StoneData#type()
      */
     public static final Key<Value<StoneType>> STONE_TYPE = null;
+
+    /**
+     * Represents the {@link Key} for representing the amount of "stuck arrows"
+     * in {@link Living} entities.
+     *
+     * @see StuckArrowsData#stuckArrows()
+     */
+    public static final Key<MutableBoundedValue<Integer>> STUCK_ARROWS = null;
 
     /**
      * Represents the {@link Key} for representing the "suspended" state
