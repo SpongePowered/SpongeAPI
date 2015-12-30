@@ -88,7 +88,6 @@ import org.spongepowered.api.data.manipulator.mutable.entity.SlimeData;
 import org.spongepowered.api.data.manipulator.mutable.entity.SneakingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.StatisticData;
 import org.spongepowered.api.data.manipulator.mutable.entity.TameableData;
-import org.spongepowered.api.data.manipulator.mutable.entity.TargetMultipleLivingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.VehicleData;
 import org.spongepowered.api.data.manipulator.mutable.entity.VelocityData;
 import org.spongepowered.api.data.manipulator.mutable.entity.VillagerZombieData;
@@ -458,11 +457,6 @@ public final class CatalogEntityData {
      * to {@link Horse}s, {@link Ocelot}s, and {@link Wolf} entities.
      */
     public static final Class<TameableData> TAMEABLE_DATA = TameableData.class;
-    /**
-     * Represents the current targets of an owner that is "targeting" some
-     * {@link Living} entities. Usually applicable to almost all {@link Agent}s.
-     */
-    public static final Class<TargetMultipleLivingData> TARGET_LIVING_DATA = TargetMultipleLivingData.class;
     /**
      * Signifies that an entity is currently being ridden by another
      * {@link Entity}.

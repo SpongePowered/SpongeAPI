@@ -28,6 +28,7 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutablePassengerData;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntitySnapshot;
 
 /**
  * Signifies that an {@link Entity} is a "passenger" of another {@link Entity}.
@@ -40,6 +41,6 @@ public interface PassengerData extends DataManipulator<PassengerData, ImmutableP
      *
      * @return The value for the passenger entity
      */
-    Value<Entity> passenger();
+    Value<EntitySnapshot> passenger();
 
 }

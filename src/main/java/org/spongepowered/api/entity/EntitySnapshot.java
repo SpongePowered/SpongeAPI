@@ -27,6 +27,7 @@ package org.spongepowered.api.entity;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Game;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.ImmutableDataBuilder;
 import org.spongepowered.api.data.LocateableSnapshot;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
@@ -50,6 +51,15 @@ import java.util.UUID;
  * and manipulation can take place.</p>
  */
 public interface EntitySnapshot extends LocateableSnapshot<EntitySnapshot> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link EntitySnapshot}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets an {@link Optional} containing the {@link UUID} of the

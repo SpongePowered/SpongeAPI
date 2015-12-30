@@ -206,7 +206,7 @@ public final class Keys {
 
     public static final Key<MutableBoundedValue<Float>> BASE_SIZE = null;
 
-    public static final Key<Value<Entity>> BASE_VEHICLE = null;
+    public static final Key<Value<EntitySnapshot>> BASE_VEHICLE = null;
 
     public static final Key<OptionalValue<PotionEffectType>> BEACON_PRIMARY_EFFECT = null;
 
@@ -468,8 +468,6 @@ public final class Keys {
 
     public static final Key<MutableBoundedValue<Integer>> HELD_EXPERIENCE = null;
 
-    public static final Key<Value<WeakReference<Entity>>> HEALING_SOURCE = null;
-
     public static final Key<Value<HorseColor>> HORSE_COLOR = null;
 
     public static final Key<Value<HorseStyle>> HORSE_STYLE = null;
@@ -604,7 +602,7 @@ public final class Keys {
 
     public static final Key<Value<Instant>> LAST_DATE_PLAYED = null;
 
-    public static final Key<Value<WeakReference<Entity>>> LEASH_HOLDER = null;
+    public static final Key<Value<EntitySnapshot>> LEASH_HOLDER = null;
 
     public static final Key<Value<String>> LOCK_TOKEN = null;
 
@@ -661,7 +659,7 @@ public final class Keys {
 
     public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = null;
 
-    public static final Key<Value<Entity>> PASSENGER = null;
+    public static final Key<Value<EntitySnapshot>> PASSENGER = null;
 
     public static final Key<Value<Boolean>> PERSISTS = null;
 
@@ -897,11 +895,7 @@ public final class Keys {
 
     public static final Key<OptionalValue<UUID>> TAMED_OWNER = null;
 
-    public static final Key<Value<Living>> TARGET = null;
-
     public static final Key<Value<Location<World>>> TARGETED_LOCATION = null;
-
-    public static final Key<ImmutableListValue<Living>> TARGETS = null;
 
     public static final Key<MutableBoundedValue<Integer>> TOTAL_EXPERIENCE = null;
 
@@ -919,7 +913,7 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> UNBREAKABLE = null;
 
-    public static final Key<Value<Entity>> VEHICLE = null;
+    public static final Key<Value<EntitySnapshot>> VEHICLE = null;
 
     public static final Key<Value<Vector3d>> VELOCITY = null;
 
