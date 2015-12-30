@@ -24,21 +24,24 @@
  */
 package org.spongepowered.api.text.translation;
 
+import org.spongepowered.api.text.translation.locale.Locales;
+import org.spongepowered.api.text.translation.locale.NamedLocales;
+
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
  * Represents an identifier for text that can be translated into multiple
- * languages. Minecraft-included translations are generally translated clientside.
- * Translations not included in Minecraft are generally expected to
+ * languages. Minecraft-included translations are generally translated
+ * clientside. Translations not included in Minecraft are generally expected to
  * be translated server-side, for example using Gettext or a
  * {@link ResourceBundle}
  *
  * <p>Some translations require parameters to be sent together with them, if
  * they're not given they will be filled with empty text.</p>
  *
- * <p>While the client has multiple locales available, server-side vanilla translations
- * support only {@link Locale#ENGLISH}.</p>
+ * <p>While the client has multiple locales available, server-side vanilla
+ * translations usually support only {@link NamedLocales#AMERICAN_ENGLISH}.</p>
  */
 public interface Translation {
 
@@ -55,7 +58,7 @@ public interface Translation {
      * @return The default translation
      */
     default String get() {
-        return get(Locale.US);
+        return get(Locales.DEFAULT);
     }
 
     /**
@@ -65,7 +68,7 @@ public interface Translation {
      * @return The default translation with the specified parameters
      */
     default String get(Object... args) {
-        return get(Locale.US, args);
+        return get(Locales.DEFAULT, args);
     }
 
     /**

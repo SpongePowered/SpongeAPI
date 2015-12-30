@@ -25,7 +25,6 @@
 package org.spongepowered.api.util;
 
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.Texts;
 
 import javax.annotation.Nullable;
 
@@ -80,7 +79,7 @@ public class TextMessageException extends Exception {
     @Nullable
     public String getMessage() {
         Text message = getText();
-        return message == null ? null : Texts.toPlain(message);
+        return message == null ? null : message.toPlain();
     }
 
     /**

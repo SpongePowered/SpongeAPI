@@ -44,6 +44,9 @@ import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticGroup;
 import org.spongepowered.api.statistic.TeamStatistic;
 import org.spongepowered.api.text.format.TextColor;
+import org.spongepowered.api.text.selector.SelectorFactory;
+import org.spongepowered.api.text.serializer.TextSerializerFactory;
+import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.rotation.Rotation;
@@ -57,6 +60,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -310,6 +314,32 @@ public interface GameRegistry {
      * @return The value factory
      */
     ValueFactory getValueFactory();
+
+    /**
+     * Gets the internal {@link TextSerializerFactory}.
+     *
+     * @return The text serializer factory
+     * @deprecated Use {@link TextSerializers} instead
+     */
+    @Deprecated
+    TextSerializerFactory getTextSerializerFactory();
+
+    /**
+     * Gets the internal {@link SelectorFactory}.
+     *
+     * @return The selector factory
+     * @deprecated Use the appropriate class in the selector package instead
+     */
+    @Deprecated
+    SelectorFactory getSelectorFactory();
+
+    /**
+     * Gets a locale for the specified locale code, e.g. {@code en_US}.
+     *
+     * @param locale The locale to lookup (e.g. {@code en_US}.
+     * @return The locale
+     */
+    Locale getLocale(String locale);
 
     /**
      * Gets the {@link Translation} with the provided ID.

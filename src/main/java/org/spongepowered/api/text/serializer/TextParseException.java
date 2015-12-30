@@ -22,37 +22,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.selector;
+package org.spongepowered.api.text.serializer;
 
 /**
- * Utility class to work with and create Selectors.
+ * Thrown if a string fails to be parsed as formatted Text instance.
  */
-public final class Selectors {
+public class TextParseException extends RuntimeException {
 
-    static final SelectorFactory factory = null;
+    private static final long serialVersionUID = 564822839621455085L;
 
-    private Selectors() {
+    /**
+     * Constructs a new {@link TextParseException}.
+     */
+    public TextParseException() {
     }
 
     /**
-     * Creates a {@link SelectorBuilder} with the specified type and no
-     * arguments.
+     * Constructs a new {@link TextParseException} with the specified message.
      *
-     * @param type The type of the selector
-     * @return A new selector builder with the specified type
+     * @param message The exception message
      */
-    public static SelectorBuilder builder(SelectorType type) {
-        return factory.createBuilder(type);
+    public TextParseException(String message) {
+        super(message);
     }
 
     /**
-     * Parses a {@link Selector} from the given selector string.
+     * Constructs a new {@link TextParseException} with the specified message
+     * and cause.
      *
-     * @param selector The raw selector string
-     * @return A new selector containing the given selector data
+     * @param message The exception message
+     * @param cause The cause of this exception
      */
-    public static Selector parse(String selector) {
-        return factory.parseRawSelector(selector);
+    public TextParseException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    /**
+     * Constructs a new {@link TextParseException} with the specified cause.
+     *
+     * @param cause The cause of this exception
+     */
+    public TextParseException(Throwable cause) {
+        super(cause);
     }
 
 }

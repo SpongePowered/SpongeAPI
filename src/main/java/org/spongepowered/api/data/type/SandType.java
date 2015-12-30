@@ -25,12 +25,13 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of "sand".
  */
 @CatalogedBy(SandTypes.class)
-public interface SandType extends CatalogType {
+public interface SandType extends CatalogType, Translatable {
 
 }

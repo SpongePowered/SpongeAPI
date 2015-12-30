@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.util.test;
 
-import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.text.serializer.TextSerializers;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TestHooks {
@@ -38,13 +39,21 @@ public class TestHooks {
     public static void initialize()  {
         if (INITIALIZED.compareAndSet(false, true)) {
             try {
-                Field textField = Texts.class.getDeclaredField("factory");
-                textField.setAccessible(true);
-                textField.set(null, new TestTextFactory());
-            } catch (Exception e) {
+                setStaticFinalField(TextSerializers.class.getDeclaredField("PLAIN"), new TestPlainTextSerializer());
+            } catch (ReflectiveOperationException e) {
                 throw new ExceptionInInitializerError(e);
             }
         }
+    }
+
+    public static void setStaticFinalField(Field field, Object value) throws ReflectiveOperationException {
+        field.setAccessible(true);
+
+        Field modifiersField = Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+
+        field.set(null, value);
     }
 
 }

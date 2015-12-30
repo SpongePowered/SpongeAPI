@@ -44,7 +44,6 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.chat.ChatVisibility;
 
 import java.time.Instant;
-import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -56,13 +55,6 @@ import java.util.Set;
  * that persists across server restarts.</p>
  */
 public interface Player extends Humanoid, User, LocatedSource, RemoteSource, Viewer {
-
-    /**
-     * Gets the locale used by the player.
-     *
-     * @return The player's locale
-     */
-    Locale getLocale();
 
     /**
      * Gets the view distance setting of the player. This value represents the

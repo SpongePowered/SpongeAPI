@@ -26,7 +26,6 @@ package org.spongepowered.api.command.args;
 
 import com.google.common.base.Strings;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.command.CommandException;
 
 /**
@@ -71,9 +70,9 @@ public class ArgumentParseException extends CommandException {
         if (this.source == null || this.source.isEmpty()) {
             return super.getText();
         } else if (superText == null) {
-            return Texts.of(getAnnotatedPosition());
+            return Text.of(getAnnotatedPosition());
         } else {
-            return Texts.of(superText, '\n', getAnnotatedPosition());
+            return Text.of(superText, '\n', getAnnotatedPosition());
         }
     }
 

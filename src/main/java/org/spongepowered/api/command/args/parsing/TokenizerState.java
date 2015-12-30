@@ -25,7 +25,6 @@
 package org.spongepowered.api.command.args.parsing;
 
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.command.args.ArgumentParseException;
 
 class TokenizerState {
@@ -45,14 +44,14 @@ class TokenizerState {
 
     public int peek() throws ArgumentParseException {
         if (!hasMore()) {
-            throw createException(Texts.of("Buffer overrun while parsing args"));
+            throw createException(Text.of("Buffer overrun while parsing args"));
         }
         return this.buffer.codePointAt(this.index + 1);
     }
 
     public int next() throws ArgumentParseException {
         if (!hasMore()) {
-            throw createException(Texts.of("Buffer overrun while parsing args"));
+            throw createException(Text.of("Buffer overrun while parsing args"));
         }
         return this.buffer.codePointAt(++this.index);
     }

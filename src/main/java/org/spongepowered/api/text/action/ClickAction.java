@@ -120,7 +120,8 @@ public abstract class ClickAction<R> extends TextAction<R> {
 
         /**
          * Constructs a new {@link ExecuteCallback} that will execute the given
-         * runnable on the server when clicked. The callback will expire after some amount of time (not particularly instantly, but not like
+         * runnable on the server when clicked. The callback will expire after
+         * some amount of time (not particularly instantly, but not like
          * overnight really either).
          *
          * @param result The callback

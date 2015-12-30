@@ -32,8 +32,10 @@ import java.util.ResourceBundle;
 import java.util.function.Function;
 
 /**
- * A translation class designed to be used for ResourceBundles. For convenience, most users will want to wrap this in a class that keeps track of
- * resource bundles. A simple implementation would look like:
+ * A translation class designed to be used for ResourceBundles. For convenience,
+ * most users will want to wrap this in a class that keeps track of resource
+ * bundles. A simple implementation would look like:
+ *
  * <pre>
  *     public class TranslationHelper {
  *         private static final Function&lt;Locale, ResourceBundle&gt; LOOKUP_FUNC = new Function&lt;Locale, ResourceBundle&gt;() {
@@ -54,11 +56,13 @@ import java.util.function.Function;
  * </pre>
  */
 public class ResourceBundleTranslation implements Translation {
+
     private final String key;
     private final Function<Locale, ResourceBundle> bundleFunction;
 
     /**
-     * Create a ResourceBundle-backed translation for the given key and bundle factory.
+     * Create a ResourceBundle-backed translation for the given key and bundle
+     * factory.
      *
      * @param key The key to use
      * @param bundleFunction The bundle function to get a bundle from

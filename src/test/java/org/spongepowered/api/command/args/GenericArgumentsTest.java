@@ -46,12 +46,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
-import org.spongepowered.api.command.args.ArgumentParseException;
-import org.spongepowered.api.command.args.CommandArgs;
-import org.spongepowered.api.command.args.CommandContext;
-import org.spongepowered.api.command.args.CommandElement;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
@@ -78,7 +73,7 @@ public class GenericArgumentsTest {
     }
 
     private static Text untr(String string) {
-        return Texts.of(string);
+        return Text.of(string);
     }
 
     @Rule

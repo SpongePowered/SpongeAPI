@@ -30,6 +30,7 @@ import java.util.Locale;
  * A translation providing a fixed value.
  */
 public class FixedTranslation implements Translation {
+
     private final String value;
 
     /**

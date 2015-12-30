@@ -25,17 +25,19 @@
 package org.spongepowered.api.command;
 
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.text.format.TextColors;
 
 public class CommandMessageFormatting {
-    public static final Text PIPE_TEXT = Texts.of("|");
-    public static final Text SPACE_TEXT = Texts.of(" ");
-    public static final Text PLUS_TEXT = Texts.of("*");
-    public static final Text NEWLINE_TEXT = Texts.of('\n');
-    public static final Text LT_TEXT = Texts.of("<");
-    public static final Text GT_TEXT = Texts.of(">");
-    public static final Text ELIPSES_TEXT = Texts.of("…");
+
+    private CommandMessageFormatting() {
+    }
+
+    public static final Text PIPE_TEXT = Text.of("|");
+    public static final Text SPACE_TEXT = Text.of(" ");
+    public static final Text STAR_TEXT = Text.of("*");
+    public static final Text LT_TEXT = Text.of("<");
+    public static final Text GT_TEXT = Text.of(">");
+    public static final Text ELLIPSIS_TEXT = Text.of("…");
 
     /**
      * Format text to be output as an error directly to a sender. Not necessary when creating an exception to be thrown
@@ -44,7 +46,7 @@ public class CommandMessageFormatting {
      * @return The formatted error message.
      */
     public static Text error(Text error) {
-        return error.builder().color(TextColors.RED).build();
+        return error.toBuilder().color(TextColors.RED).build();
     }
 
     /**
@@ -54,7 +56,7 @@ public class CommandMessageFormatting {
      * @return The formatted debug message.
      */
     public static Text debug(Text debug) {
-        return debug.builder().color(TextColors.GRAY).build();
+        return debug.toBuilder().color(TextColors.GRAY).build();
     }
 
 }
