@@ -27,16 +27,36 @@ package org.spongepowered.api.entity.living;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.AgentData;
 import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.Goal;
 import org.spongepowered.api.entity.ai.GoalType;
+import org.spongepowered.api.entity.ai.task.AITask;
 
 import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * An Agent represents a {@link Living} that has AI. In the future Sponge will
  * allow for custom AIs, but for now vanilla behavior can only be disabled.
  */
 public interface Agent extends Living {
+
+    /**
+     * Gets the current target, usually according to the various
+     * {@link AITask}s that are acting on this agent.
+     *
+     * @return The target entity, if available
+     */
+    Optional<Entity> getTarget();
+
+    /**
+     * Sets the current target, usually to bypass what the {@link AITask}s are
+     * deciding to be the target.
+     *
+     * @param target The target entity, or null
+     */
+    void setTarget(@Nullable Entity target);
 
     /**
      * Gets a copy of the {@link AgentData} associated with this {@link Agent}.
