@@ -42,16 +42,27 @@ import java.util.List;
  */
 public final class InventoryTransactionResult {
 
+    /**
+     * Begin building a new InventoryTransactionResult.
+     */
     public static Builder builder() {
         return new Builder();
     }
-
+    
+    /**
+     * Returns a builder which indicates that the transaction succeeded, but the
+     * transaction result was no-op.
+     */
     public static InventoryTransactionResult successNoTransactions() {
-        return builder().result(Type.SUCCESS).build();
+        return InventoryTransactionResult.builder().type(Type.SUCCESS).build();
     }
 
+    /**
+     * Returns a builder which indicates that the transaction failed, and the
+     * transaction result was no-op.
+     */
     public static InventoryTransactionResult failNoTransactions() {
-        return builder().result(Type.ERROR).build();
+        return InventoryTransactionResult.builder().type(Type.ERROR).build();
     }
 
     public enum Type {
@@ -87,13 +98,14 @@ public final class InventoryTransactionResult {
          * was cancelled). The condition of the inventory is unchanged.
          */
         CANCELLED
+        
     }
 
     private final Type type;
     private final ImmutableList<ItemStackSnapshot> rejected;
     private final ImmutableList<ItemStackSnapshot> replaced;
 
-    private InventoryTransactionResult(Builder builder) {
+    InventoryTransactionResult(Builder builder) {
         this.type = builder.resultType;
         this.rejected = ImmutableList.copyOf(builder.rejected);
         this.replaced = ImmutableList.copyOf(builder.replaced);
@@ -129,13 +141,14 @@ public final class InventoryTransactionResult {
     }
 
     public static final class Builder implements ResettableBuilder<InventoryTransactionResult, Builder> {
-        private Type resultType;
-        private List<ItemStackSnapshot> rejected;
-        private List<ItemStackSnapshot> replaced;
 
-        private Builder() {}
+        Type resultType;
+        List<ItemStackSnapshot> rejected;
+        List<ItemStackSnapshot> replaced;
 
-        public Builder result(final Type type) {
+        Builder() {}
+
+        public Builder type(final Type type) {
             this.resultType = checkNotNull(type);
             return this;
         }

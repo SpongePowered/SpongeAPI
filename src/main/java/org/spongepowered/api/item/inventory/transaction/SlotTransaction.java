@@ -32,6 +32,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 
 public final class SlotTransaction extends Transaction<ItemStackSnapshot> {
+    
     private final Slot slot;
 
     public SlotTransaction(Slot slot, ItemStackSnapshot original, ItemStackSnapshot defaultReplacement) {
@@ -44,7 +45,7 @@ public final class SlotTransaction extends Transaction<ItemStackSnapshot> {
     }
 
     public final Slot getSlot() {
-        return slot;
+        return this.slot;
     }
 
     @Override public String toString() {
@@ -56,4 +57,5 @@ public final class SlotTransaction extends Transaction<ItemStackSnapshot> {
                 .add("valid", isValid())
                 .toString();
     }
+    
 }
