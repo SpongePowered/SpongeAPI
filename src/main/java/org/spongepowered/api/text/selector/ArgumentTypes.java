@@ -26,6 +26,7 @@ package org.spongepowered.api.text.selector;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.scoreboard.Team;
@@ -34,8 +35,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 /**
- * Represents the default {@link ArgumentType}s available in Vanilla
- * Minecraft.
+ * Represents the default {@link ArgumentType}s available in Vanilla Minecraft.
  */
 public final class ArgumentTypes {
 
@@ -118,8 +118,8 @@ public final class ArgumentTypes {
     /**
      * The argument type filtering targets within a specific rotation range.
      *
-     * <p>In Vanilla, the {@link Double}s will be floored to {@link Integer}s and
-     * the third float is completely ignored. It is represented by the
+     * <p>In Vanilla, the {@link Double}s will be floored to {@link Integer}s
+     * and the third float is completely ignored. It is represented by the
      * {@code rx}/{@code ry} (for minimum) and {@code rxm}/{@code rym} selector
      * keys.</p>
      */
@@ -132,6 +132,11 @@ public final class ArgumentTypes {
      */
     public static final ArgumentType.Invertible<EntityType> ENTITY_TYPE = null;
 
+    @SuppressWarnings("deprecation")
+    static SelectorFactory getFactory() {
+        return Sponge.getRegistry().getSelectorFactory();
+    }
+
     /**
      * Creates a minimum and maximum {@link ArgumentType} filtering depending on
      * the score of the specified objective.
@@ -140,17 +145,18 @@ public final class ArgumentTypes {
      * @return The created argument type
      */
     public static ArgumentHolder.Limit<ArgumentType<Integer>> score(String name) {
-        return Selectors.factory.createScoreArgumentType(name);
+        return getFactory().createScoreArgumentType(name);
     }
 
     /**
      * Gets the {@link ArgumentType} with the provided name.
      *
      * @param name The name of the argument type
-     * @return The {@link ArgumentType} with the given name or Optional.empty() if not found
+     * @return The {@link ArgumentType} with the given name or Optional.empty()
+     *         if not found
      */
     public static Optional<ArgumentType<?>> valueOf(String name) {
-        return Selectors.factory.getArgumentType(name);
+        return getFactory().getArgumentType(name);
     }
 
     /**
@@ -159,7 +165,7 @@ public final class ArgumentTypes {
      * @return The list of all available {@link ArgumentType}s
      */
     public static Collection<ArgumentType<?>> values() {
-        return Selectors.factory.getArgumentTypes();
+        return getFactory().getArgumentTypes();
     }
 
     /**
@@ -169,7 +175,7 @@ public final class ArgumentTypes {
      * @return The created argument type
      */
     public static ArgumentType<String> create(String key) {
-        return Selectors.factory.createArgumentType(key);
+        return getFactory().createArgumentType(key);
     }
 
     /**
@@ -181,7 +187,7 @@ public final class ArgumentTypes {
      * @return The created argument type
      */
     public static <T> ArgumentType<T> create(String key, Class<T> type) {
-        return Selectors.factory.createArgumentType(key, type);
+        return getFactory().createArgumentType(key, type);
     }
 
 }

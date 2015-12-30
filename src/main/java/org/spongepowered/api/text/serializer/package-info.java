@@ -22,34 +22,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text;
-
-import java.util.Comparator;
-
-/**
- * Represents a comparator for {@link Text} that works based on the plain version of that text,
- * or the best string representation that text can have using {@link Texts#toPlain(Text)}. Once
- * that conversion is made, the order is essentially lexicographic order with strings.
- */
-public class TextPlainComparator implements Comparator<Text> {
-
-    /**
-     * The instance that is held for static access in {@link #getInstance()}.
-     */
-    private static final TextPlainComparator INSTANCE = new TextPlainComparator();
-
-    @Override
-    public int compare(Text o1, Text o2) {
-        return Texts.toPlain(o1).compareTo(Texts.toPlain(o2));
-    }
-
-    /**
-     * Retrieves the available {@link TextPlainComparator} instance from this singleton.
-     *
-     * @return An instance
-     */
-    public static TextPlainComparator getInstance() {
-        return INSTANCE;
-    }
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.text.serializer;

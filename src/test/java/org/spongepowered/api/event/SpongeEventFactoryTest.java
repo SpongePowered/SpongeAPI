@@ -207,6 +207,8 @@ public class SpongeEventFactoryTest {
             return new Location<>(mock(Extent.class), Vector3d.ZERO);
         } else if (paramType == Locale.class) {
             return Locale.ROOT;
+        } else if (paramType == Text.class) {
+            return Text.of();
         } else {
             return mock(paramType, withSettings().defaultAnswer(Mockito.RETURNS_MOCKS));
         }

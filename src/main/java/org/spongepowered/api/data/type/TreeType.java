@@ -25,9 +25,10 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(TreeTypes.class)
-public interface TreeType extends CatalogType {
+public interface TreeType extends CatalogType, Translatable {
 
 }

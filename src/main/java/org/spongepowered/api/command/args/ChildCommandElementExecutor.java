@@ -30,7 +30,6 @@ import static org.spongepowered.api.command.CommandMessageFormatting.error;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimaps;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.command.CommandCallable;
@@ -65,7 +64,7 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
      *     {@link GenericArguments#optional(CommandElement)}
      */
     public ChildCommandElementExecutor(@Nullable CommandExecutor fallbackExecutor) {
-        super(Texts.of("child" + COUNTER.getAndIncrement()));
+        super(Text.of("child" + COUNTER.getAndIncrement()));
         this.fallbackExecutor = fallbackExecutor;
     }
 

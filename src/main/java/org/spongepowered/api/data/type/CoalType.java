@@ -25,12 +25,13 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the type of coal.
  */
 @CatalogedBy(CoalTypes.class)
-public interface CoalType extends CatalogType {
+public interface CoalType extends CatalogType, Translatable {
 
 }

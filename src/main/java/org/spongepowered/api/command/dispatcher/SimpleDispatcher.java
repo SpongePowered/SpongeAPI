@@ -26,7 +26,6 @@ package org.spongepowered.api.command.dispatcher;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
-import static org.spongepowered.api.command.CommandMessageFormatting.NEWLINE_TEXT;
 import static org.spongepowered.api.command.CommandMessageFormatting.SPACE_TEXT;
 
 import com.google.common.collect.ArrayListMultimap;
@@ -37,8 +36,6 @@ import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.TextBuilder;
-import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.text.action.TextActions;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyles;
@@ -369,7 +366,7 @@ public final class SimpleDispatcher implements Dispatcher {
         if (this.commands.isEmpty()) {
             return Optional.empty();
         }
-        TextBuilder build = t("Available commands:\n").builder();
+        Text.Builder build = t("Available commands:\n").toBuilder();
         for (Iterator<String> it = filterCommands(source).iterator(); it.hasNext();) {
             final Optional<CommandMapping> mappingOpt = get(it.next(), source);
             if (!mappingOpt.isPresent()) {
@@ -378,13 +375,13 @@ public final class SimpleDispatcher implements Dispatcher {
             CommandMapping mapping = mappingOpt.get();
             @SuppressWarnings("unchecked")
             final Optional<Text> description = (Optional<Text>) mapping.getCallable().getShortDescription(source);
-            build.append(Texts.builder(mapping.getPrimaryAlias())
+            build.append(Text.builder(mapping.getPrimaryAlias())
                     .color(TextColors.GREEN)
                     .style(TextStyles.UNDERLINE)
                     .onClick(TextActions.suggestCommand("/" + mapping.getPrimaryAlias())).build(),
                     SPACE_TEXT, description.orElse(mapping.getCallable().getUsage(source)));
             if (it.hasNext()) {
-                build.append(NEWLINE_TEXT);
+                build.append(Text.NEW_LINE);
             }
         }
         return Optional.of(build.build());
@@ -405,7 +402,7 @@ public final class SimpleDispatcher implements Dispatcher {
 
     @Override
     public Text getUsage(final CommandSource source) {
-        final TextBuilder build = Texts.builder();
+        final Text.Builder build = Text.builder();
         Iterable<String> filteredCommands = filterCommands(source).stream()
             .filter(input -> {
                 if (input == null) {
@@ -417,7 +414,7 @@ public final class SimpleDispatcher implements Dispatcher {
             .collect(Collectors.toList());
 
         for (Iterator<String> it = filteredCommands.iterator(); it.hasNext();) {
-            build.append(Texts.of(it.next()));
+            build.append(Text.of(it.next()));
             if (it.hasNext()) {
                 build.append(CommandMessageFormatting.PIPE_TEXT);
             }

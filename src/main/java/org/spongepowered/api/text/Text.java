@@ -24,69 +24,96 @@
  */
 package org.spongepowered.api.text;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterators;
+import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.text.action.ShiftClickAction;
+import org.spongepowered.api.text.action.TextAction;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.text.format.TextStyle;
+import org.spongepowered.api.text.format.TextStyles;
+import org.spongepowered.api.text.selector.Selector;
+import org.spongepowered.api.text.serializer.TextSerializers;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
 
 /**
- * Represents an immutable instance of formatted text that can be displayed on
- * the client. Each instance consists of content and a list of children texts
- * appended after the content of this text. The content of the text is available
- * through one of the subclasses.
+ * Represents an immutable tree-structure of formatted (text) components. Each
+ * instance consists of content and a list of children texts appended after the
+ * content of this text. The content of the text is available through one of the
+ * subclasses.
  *
  * <p>Text is primarily used for sending formatted chat messages to players, but
  * also in other places like books or signs.</p>
  *
- * <p>Text instances can be either directly created through the available
- * constructor or using the {@link TextBuilder} available through one of the
- * {@link Texts#builder()} methods, which is the recommended way.</p>
+ * <p>Text instances can be created through the available {@link #of()} methods
+ * or using one of the {@link Builder}s available through one of the
+ * {@link #builder()} methods.</p>
  *
- * @see Texts#builder()
- * @see TextBuilder
- * @see Literal
- * @see Translatable
- * @see Selector
- * @see Score
+ * @see Text#builder()
+ * @see Builder
+ * @see LiteralText
+ * @see TranslatableText
+ * @see SelectorText
+ * @see ScoreText
  */
 public abstract class Text implements TextRepresentable {
 
-    protected final TextFormat format;
-    protected final ImmutableList<Text> children;
-    protected final Optional<ClickAction<?>> clickAction;
-    protected final Optional<HoverAction<?>> hoverAction;
-    protected final Optional<ShiftClickAction<?>> shiftClickAction;
+    /**
+     * The empty, unformatted {@link Text} instance.
+     */
+    public static final Text EMPTY = LiteralText.EMPTY;
+
+    static final char NEW_LINE_CHAR = '\n';
+    static final String NEW_LINE_STRING = "\n";
+
+    /**
+     * An unformatted {@link Text} that will start a new line (if supported).
+     */
+    public static final LiteralText NEW_LINE = new LiteralText(NEW_LINE_STRING);
+
+    /**
+     * A {@link Comparator} for texts that compares the plain text of two text
+     * instances.
+     */
+    public static Comparator<Text> PLAIN_COMPARATOR = (text1, text2) -> text1.toPlain().compareTo(text2.toPlain());
+
+    final TextFormat format;
+    final ImmutableList<Text> children;
+    final Optional<ClickAction<?>> clickAction;
+    final Optional<HoverAction<?>> hoverAction;
+    final Optional<ShiftClickAction<?>> shiftClickAction;
 
     /**
      * An {@link Iterable} providing an {@link Iterator} over this {@link Text}
      * as well as all children text and their children.
      */
-    protected final Iterable<Text> childrenIterable = new Iterable<Text>() {
-
-        @Override
-        public Iterator<Text> iterator() {
-            return Text.this.children.isEmpty() ? Iterators.singletonIterator(Text.this) : new TextIterator(Text.this);
-        }
-
-    };
+    final Iterable<Text> childrenIterable;
 
     Text() {
-        this(new TextFormat(), ImmutableList.<Text>of(), null, null, null);
+        this.format = TextFormat.NONE; // TODO
+        this.children = ImmutableList.of();
+        this.clickAction = Optional.empty();
+        this.hoverAction = Optional.empty();
+        this.shiftClickAction = Optional.empty();
+        this.childrenIterable = () -> Iterators.singletonIterator(this);
     }
 
     /**
@@ -104,9 +131,10 @@ public abstract class Text implements TextRepresentable {
             @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction) {
         this.format = checkNotNull(format, "format");
         this.children = checkNotNull(children, "children");
-        this.clickAction = Optional.<ClickAction<?>>ofNullable(clickAction);
-        this.hoverAction = Optional.<HoverAction<?>>ofNullable(hoverAction);
-        this.shiftClickAction = Optional.<ShiftClickAction<?>>ofNullable(shiftClickAction);
+        this.clickAction = Optional.ofNullable(clickAction);
+        this.hoverAction = Optional.ofNullable(hoverAction);
+        this.shiftClickAction = Optional.ofNullable(shiftClickAction);
+        this.childrenIterable = () -> new TextIterator(this);
     }
 
     /**
@@ -162,8 +190,8 @@ public abstract class Text implements TextRepresentable {
      * Returns the {@link ClickAction} executed on the client when this
      * {@link Text} gets clicked.
      *
-     * @return The click action of this text, or {@link Optional#empty()} if
-     *         not set
+     * @return The click action of this text, or {@link Optional#empty()} if not
+     *         set
      */
     public final Optional<ClickAction<?>> getClickAction() {
         return this.clickAction;
@@ -173,8 +201,8 @@ public abstract class Text implements TextRepresentable {
      * Returns the {@link HoverAction} executed on the client when this
      * {@link Text} gets hovered.
      *
-     * @return The hover action of this text, or {@link Optional#empty()} if
-     *         not set
+     * @return The hover action of this text, or {@link Optional#empty()} if not
+     *         set
      */
     public final Optional<HoverAction<?>> getHoverAction() {
         return this.hoverAction;
@@ -192,13 +220,32 @@ public abstract class Text implements TextRepresentable {
     }
 
     /**
-     * Returns a new {@link TextBuilder} with the content, formatting and
-     * actions of this text. This can be used to edit an otherwise immutable
-     * {@link Text} instance.
+     * Returns whether this {@link Text} is empty.
+     *
+     * @return {@code true} if this text is empty
+     */
+    public final boolean isEmpty() {
+        return this == EMPTY;
+    }
+
+    /**
+     * Returns a new {@link Builder} with the content, formatting and actions of
+     * this text. This can be used to edit an otherwise immutable {@link Text}
+     * instance.
      *
      * @return A new message builder with the content of this text
      */
-    public abstract TextBuilder builder();
+    public abstract Builder toBuilder();
+
+    /**
+     * Returns a plain text representation of this {@link Text} without any
+     * formatting.
+     *
+     * @return This text converted to plain text
+     */
+    public final String toPlain() {
+        return TextSerializers.PLAIN.serialize(this);
+    }
 
     @Override
     public boolean equals(@Nullable Object o) {
@@ -222,15 +269,19 @@ public abstract class Text implements TextRepresentable {
         return Objects.hashCode(this.format, this.children, this.clickAction, this.hoverAction, this.shiftClickAction);
     }
 
-    @Override
-    public String toString() {
+    Objects.ToStringHelper toStringHelper() {
         return Objects.toStringHelper(Text.class)
-                .add("format", this.format)
-                .add("children", this.children)
-                .add("clickAction", this.clickAction)
-                .add("hoverAction", this.hoverAction)
-                .add("shiftClickAction", this.shiftClickAction)
-                .toString();
+                .omitNullValues()
+                .add("format", this.format.isEmpty() ? null : this.format)
+                .add("children", this.children.isEmpty() ? null : this.children)
+                .add("clickAction", this.clickAction.orElse(null))
+                .add("hoverAction", this.hoverAction.orElse(null))
+                .add("shiftClickAction", this.shiftClickAction.orElse(null));
+    }
+
+    @Override
+    public final String toString() {
+        return toStringHelper().toString();
     }
 
     @Override
@@ -239,444 +290,894 @@ public abstract class Text implements TextRepresentable {
     }
 
     /**
-     * Represents a {@link Text} containing a plain text {@link String}.
+     * Represents a builder class to create immutable {@link Text} instances.
      *
-     * @see TextBuilder.Literal
+     * @see Text
      */
-    public static class Literal extends Text {
+    public static abstract class Builder implements TextRepresentable {
 
-        protected final String content;
+        TextFormat format = TextFormat.NONE;
+        List<Text> children = new ArrayList<>();
+        @Nullable ClickAction<?> clickAction;
+        @Nullable HoverAction<?> hoverAction;
+        @Nullable ShiftClickAction<?> shiftClickAction;
 
-        Literal() {
-            this("");
-        }
-
-        Literal(String content) {
-            this.content = checkNotNull(content, "content");
+        /**
+         * Constructs a new empty {@link Builder}.
+         */
+        Builder() {
         }
 
         /**
-         * Constructs a new immutable {@link Literal} for the given plain text
-         * content with the specified formatting and text actions applied.
+         * Constructs a new {@link Builder} with the properties of the given
+         * {@link Text} as initial values.
          *
-         * @param format The format of the text
-         * @param children The immutable list of children of the text
-         * @param clickAction The click action of the text, or {@code null} for
-         *        none
-         * @param hoverAction The hover action of the text, or {@code null} for
-         *        none
-         * @param shiftClickAction The shift click action of the text, or
-         *        {@code null} for none
-         * @param content The plain text content of the text
+         * @param text The text to copy the values from
          */
-        Literal(TextFormat format, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
-                @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, String content) {
-            super(format, children, clickAction, hoverAction, shiftClickAction);
-            this.content = checkNotNull(content, "content");
+        Builder(Text text) {
+            this.format = text.format;
+            this.children = new ArrayList<>(text.children);
+            this.clickAction = text.clickAction.orElse(null);
+            this.hoverAction = text.hoverAction.orElse(null);
+            this.shiftClickAction = text.shiftClickAction.orElse(null);
         }
 
         /**
-         * Returns the plain text content of this {@link Text}.
+         * Returns the current format of the {@link Text} in this builder.
          *
-         * @return The content of this text
+         * @return The current format
+         * @see Text#getFormat()
          */
-        public final String getContent() {
-            return this.content;
+        public final TextFormat getFormat() {
+            return this.format;
         }
 
-        @Override
-        public TextBuilder.Literal builder() {
-            return new TextBuilder.Literal(this);
+        /**
+         * Sets the {@link TextFormat} of this text.
+         *
+         * @param format The new text format for this text
+         * @return The text builder
+         * @see Text#getFormat()
+         */
+        public Builder format(TextFormat format) {
+            this.format = checkNotNull(format, "format");
+            return this;
         }
+
+        /**
+         * Returns the current color of the {@link Text} in this builder.
+         *
+         * @return The current color
+         * @see Text#getColor()
+         */
+        public final TextColor getColor() {
+            return this.format.getColor();
+        }
+
+        /**
+         * Sets the {@link TextColor} of this text.
+         *
+         * @param color The new text color for this text
+         * @return This text builder
+         * @see Text#getColor()
+         */
+        public Builder color(TextColor color) {
+            this.format = this.format.color(color);
+            return this;
+        }
+
+        /**
+         * Returns the current style of the {@link Text} in this builder.
+         *
+         * @return The current style
+         * @see Text#getStyle()
+         */
+        public final TextStyle getStyle() {
+            return this.format.getStyle();
+        }
+
+        /**
+         * Sets the text styles of this text. This will construct a composite
+         * {@link TextStyle} of the current style and the specified styles first
+         * and set it to the text.
+         *
+         * @param styles The text styles to apply
+         * @return This text builder
+         * @see Text#getStyle()
+         */
+        // TODO: Make sure this is the correct behaviour
+        public Builder style(TextStyle... styles) {
+            this.format = this.format.style(this.format.getStyle().and(styles));
+            return this;
+        }
+
+        /**
+         * Returns the current {@link ClickAction} of this builder.
+         *
+         * @return The current click action or {@link Optional#empty()} if none
+         * @see Text#getClickAction()
+         */
+        public final Optional<ClickAction<?>> getClickAction() {
+            return Optional.ofNullable(this.clickAction);
+        }
+
+        /**
+         * Sets the {@link ClickAction} that will be executed if the text is
+         * clicked in the chat.
+         *
+         * @param clickAction The new click action for the text
+         * @return This text builder
+         * @see Text#getClickAction()
+         */
+        public Builder onClick(@Nullable ClickAction<?> clickAction) {
+            this.clickAction = clickAction;
+            return this;
+        }
+
+        /**
+         * Returns the current {@link HoverAction} of this builder.
+         *
+         * @return The current hover action or {@link Optional#empty()} if none
+         * @see Text#getHoverAction()
+         */
+        public final Optional<HoverAction<?>> getHoverAction() {
+            return Optional.ofNullable(this.hoverAction);
+        }
+
+        /**
+         * Sets the {@link HoverAction} that will be executed if the text is
+         * hovered in the chat.
+         *
+         * @param hoverAction The new hover action for the text
+         * @return This text builder
+         * @see Text#getHoverAction()
+         */
+        public Builder onHover(@Nullable HoverAction<?> hoverAction) {
+            this.hoverAction = hoverAction;
+            return this;
+        }
+
+        /**
+         * Returns the current {@link ShiftClickAction} of this builder.
+         *
+         * @return The current shift click action or {@link Optional#empty()} if
+         *         none
+         * @see Text#getShiftClickAction()
+         */
+        public final Optional<ShiftClickAction<?>> getShiftClickAction() {
+            return Optional.ofNullable(this.shiftClickAction);
+        }
+
+        /**
+         * Sets the {@link ShiftClickAction} that will be executed if the text
+         * is shift-clicked in the chat.
+         *
+         * @param shiftClickAction The new shift click action for the text
+         * @return This text builder
+         * @see Text#getShiftClickAction()
+         */
+        public Builder onShiftClick(@Nullable ShiftClickAction<?> shiftClickAction) {
+            this.shiftClickAction = shiftClickAction;
+            return this;
+        }
+
+        /**
+         * Returns a view of the current children of this builder.
+         *
+         * <p>The returned list is unmodifiable, but not immutable. It will
+         * change if new children get added through this builder.</p>
+         *
+         * @return An unmodifiable list of the current children
+         * @see Text#getChildren()
+         */
+        public final List<Text> getChildren() {
+            return Collections.unmodifiableList(this.children);
+        }
+
+        /**
+         * Appends the specified {@link Text} to the end of this text.
+         *
+         * @param children The texts to append
+         * @return This text builder
+         * @see Text#getChildren()
+         */
+        public Builder append(Text... children) {
+            Collections.addAll(this.children, children);
+            return this;
+        }
+
+        /**
+         * Appends the specified {@link Text} to the end of this text.
+         *
+         * @param children The texts to append
+         * @return This text builder
+         * @see Text#getChildren()
+         */
+        public Builder append(Collection<? extends Text> children) {
+            this.children.addAll(children);
+            return this;
+        }
+
+        /**
+         * Appends the specified {@link Text} to the end of this text.
+         *
+         * @param children The texts to append
+         * @return This text builder
+         * @see Text#getChildren()
+         */
+        public Builder append(Iterable<? extends Text> children) {
+            for (Text child : children) {
+                this.children.add(child);
+            }
+            return this;
+        }
+
+        /**
+         * Appends the specified {@link Text} to the end of this text.
+         *
+         * @param children The texts to append
+         * @return This text builder
+         * @see Text#getChildren()
+         */
+        public Builder append(Iterator<? extends Text> children) {
+            while (children.hasNext()) {
+                this.children.add(children.next());
+            }
+            return this;
+        }
+
+        /**
+         * Inserts the specified {@link Text} at the given position of this
+         * builder.
+         *
+         * @param pos The position to insert the texts to
+         * @param children The texts to insert
+         * @return This text builder
+         * @throws IndexOutOfBoundsException If the position is out of bounds
+         * @see Text#getChildren()
+         */
+        public Builder insert(int pos, Text... children) {
+            this.children.addAll(pos, Arrays.asList(children));
+            return this;
+        }
+
+        /**
+         * Inserts the specified {@link Text} at the given position of this
+         * builder.
+         *
+         * @param pos The position to insert the texts to
+         * @param children The texts to insert
+         * @return This text builder
+         * @throws IndexOutOfBoundsException If the position is out of range
+         * @see Text#getChildren()
+         */
+        public Builder insert(int pos, Collection<? extends Text> children) {
+            this.children.addAll(pos, children);
+            return this;
+        }
+
+        /**
+         * Inserts the specified {@link Text} at the given position of this
+         * builder.
+         *
+         * @param pos The position to insert the texts to
+         * @param children The texts to insert
+         * @return This text builder
+         * @throws IndexOutOfBoundsException If the position is out of range
+         * @see Text#getChildren()
+         */
+        public Builder insert(int pos, Iterable<? extends Text> children) {
+            for (Text child : children) {
+                this.children.add(pos++, child);
+            }
+            return this;
+        }
+
+        /**
+         * Inserts the specified {@link Text} at the given position of this
+         * builder.
+         *
+         * @param pos The position to insert the texts to
+         * @param children The texts to insert
+         * @return This text builder
+         * @throws IndexOutOfBoundsException If the position is out of range
+         * @see Text#getChildren()
+         */
+        public Builder insert(int pos, Iterator<? extends Text> children) {
+            while (children.hasNext()) {
+                this.children.add(pos++, children.next());
+            }
+            return this;
+        }
+
+        /**
+         * Removes the specified {@link Text} from this builder.
+         *
+         * @param children The texts to remove
+         * @return This text builder
+         * @see Text#getChildren()
+         */
+        public Builder remove(Text... children) {
+            this.children.removeAll(Arrays.asList(children));
+            return this;
+        }
+
+        /**
+         * Removes the specified {@link Text} from this builder.
+         *
+         * @param children The texts to remove
+         * @return This text builder
+         * @see Text#getChildren()
+         */
+        public Builder remove(Collection<? extends Text> children) {
+            this.children.removeAll(children);
+            return this;
+        }
+
+        /**
+         * Removes the specified {@link Text} from this builder.
+         *
+         * @param children The texts to remove
+         * @return This text builder
+         * @see Text#getChildren()
+         */
+        public Builder remove(Iterable<? extends Text> children) {
+            for (Text child : children) {
+                this.children.remove(child);
+            }
+            return this;
+        }
+
+        /**
+         * Removes the specified {@link Text} from this builder.
+         *
+         * @param children The texts to remove
+         * @return This text builder
+         * @see Text#getChildren()
+         */
+        public Builder remove(Iterator<? extends Text> children) {
+            while (children.hasNext()) {
+                this.children.remove(children.next());
+            }
+            return this;
+        }
+
+        /**
+         * Removes all children from this builder.
+         *
+         * @return This text builder
+         * @see Text#getChildren()
+         */
+        public Builder removeAll() {
+            this.children.clear();
+            return this;
+        }
+
+        /**
+         * Builds an immutable instance of the current state of this text
+         * builder.
+         *
+         * @return An immutable {@link Text} with the current properties of this
+         *         builder
+         */
+        public abstract Text build();
 
         @Override
         public boolean equals(@Nullable Object o) {
             if (this == o) {
                 return true;
             }
-            if (!(o instanceof Literal) || !super.equals(o)) {
+            if (!(o instanceof Builder)) {
                 return false;
             }
 
-            Literal that = (Literal) o;
-            return this.content.equals(that.content);
+            Builder that = (Builder) o;
+            return Objects.equal(this.format, that.format)
+                    && Objects.equal(this.clickAction, that.clickAction)
+                    && Objects.equal(this.hoverAction, that.hoverAction)
+                    && Objects.equal(this.shiftClickAction, that.shiftClickAction)
+                    && Objects.equal(this.children, that.children);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hashCode(super.hashCode(), this.content);
+            return Objects.hashCode(this.format, this.clickAction, this.hoverAction, this.shiftClickAction, this.children);
+        }
+
+        Objects.ToStringHelper toStringHelper() {
+            return Objects.toStringHelper(Builder.class)
+                    .omitNullValues()
+                    .add("format", this.format.isEmpty() ? null : this.format)
+                    .add("children", this.children.isEmpty() ? null : this.children)
+                    .add("clickAction", this.clickAction)
+                    .add("hoverAction", this.hoverAction)
+                    .add("shiftClickAction", this.shiftClickAction);
         }
 
         @Override
-        public String toString() {
-            return Objects.toStringHelper(this)
-                    .addValue(super.toString())
-                    .add("content", this.content)
-                    .toString();
+        public final String toString() {
+            return toStringHelper().toString();
+        }
+
+        @Override
+        public final Text toText() {
+            return build();
         }
 
     }
 
     /**
-     * Represents a {@link Text} placeholder that can be replaced with another
-     * Text by {@link Texts#format(Text, Map)}.
+     * Returns an empty, unformatted {@link Text} instance.
      *
-     * @see TextBuilder.Placeholder
+     * @return An empty text
      */
-    public static class Placeholder extends Text {
-
-        protected final String key;
-        private final Optional<Text> fallback;
-
-
-        Placeholder(String key) {
-            this(key, null);
-        }
-
-        Placeholder(String key, @Nullable Text fallback) {
-            checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
-            this.key = key;
-            this.fallback = Optional.ofNullable(fallback);
-        }
-
-        /**
-         * Constructs a new immutable {@link Placeholder} for the given plain
-         * text content with the specified formatting and text actions applied.
-         *
-         * @param format The format of the text
-         * @param children The immutable list of children of the text
-         * @param clickAction The click action of the text, or {@code null} for
-         *        none
-         * @param hoverAction The hover action of the text, or {@code null} for
-         *        none
-         * @param shiftClickAction The shift click action of the text, or
-         *        {@code null} for none
-         * @param key The key of the placeholder
-         * @param fallback The fallback text if this does not get replaced
-         */
-        Placeholder(TextFormat format, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
-                @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, String key, Text fallback) {
-            super(format, children, clickAction, hoverAction, shiftClickAction);
-            checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
-            this.key = key;
-            this.fallback = Optional.ofNullable(fallback);
-        }
-
-        /**
-         * Returns the placeholder key used to replace this placeholder with the
-         * real content.
-         *
-         * @return The template key of this template
-         */
-        public final String getKey() {
-            return this.key;
-        }
-
-        /**
-         * Get the fallback text that will be used in place if this placeholder has no value.
-         *
-         * @return The fallback text
-         */
-        public Optional<Text> getFallback() {
-            return this.fallback;
-        }
-
-        @Override
-        public TextBuilder.Placeholder builder() {
-            return new TextBuilder.Placeholder(this);
-        }
-
-        @Override
-        public boolean equals(@Nullable Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (!(o instanceof Placeholder) || !super.equals(o)) {
-                return false;
-            }
-
-            Placeholder that = (Placeholder) o;
-            return Objects.equal(this.key, that.key) && Objects.equal(this.fallback, that.fallback);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hashCode(super.hashCode(), this.key);
-        }
-
-        @Override
-        public String toString() {
-            return Objects.toStringHelper(this)
-                    .add("key", this.key)
-                    .add("fallback", this.fallback)
-                    .addValue(super.toString())
-                    .toString();
-        }
-
+    public static Text of() {
+        return EMPTY;
     }
 
     /**
-     * Represents a {@link Text} containing a {@link Translation} identifier
-     * that gets translated into the current locale on the client.
+     * Creates a {@link Text} with the specified plain text. The created text
+     * won't have any formatting or events configured.
      *
-     * @see TextBuilder.Translatable
+     * @param content The content of the text
+     * @return The created text
+     * @see LiteralText
      */
-    public static class Translatable extends Text {
-
-        protected final Translation translation;
-        protected final ImmutableList<Object> arguments;
-
-        Translatable(Translation translation, ImmutableList<Object> arguments) {
-            this.translation = checkNotNull(translation, "translation");
-            this.arguments = checkNotNull(arguments, "arguments");
+    public static LiteralText of(String content) {
+        if (checkNotNull(content, "content").isEmpty()) {
+            return LiteralText.EMPTY;
+        } else if (content.equals(NEW_LINE_STRING)) {
+            return NEW_LINE;
+        } else {
+            return new LiteralText(content);
         }
-
-        /**
-         * Constructs a new immutable {@link Translatable} for the given
-         * translation with the specified formatting and text actions applied.
-         *
-         * @param format The format of the text
-         * @param children The immutable list of children of the text
-         * @param clickAction The click action of the text, or {@code null} for
-         *        none
-         * @param hoverAction The hover action of the text, or {@code null} for
-         *        none
-         * @param shiftClickAction The shift click action of the text, or
-         *        {@code null} for none
-         * @param translation The translation of the text
-         * @param arguments The arguments for the translation
-         */
-        Translatable(TextFormat format, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
-                @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, Translation translation,
-                ImmutableList<Object> arguments) {
-            super(format, children, clickAction, hoverAction, shiftClickAction);
-            this.translation = checkNotNull(translation, "translation");
-            this.arguments = checkNotNull(arguments, "arguments");
-        }
-
-        /**
-         * Returns the translation of this {@link Text}.
-         *
-         * @return The translation of this text
-         */
-        public final Translation getTranslation() {
-            return this.translation;
-        }
-
-        /**
-         * Returns the list of {@link Translation} arguments used to format this
-         * {@link Text}.
-         *
-         * @return The list of translation arguments
-         */
-        public final ImmutableList<Object> getArguments() {
-            return this.arguments;
-        }
-
-        @Override
-        public TextBuilder.Translatable builder() {
-            return new TextBuilder.Translatable(this);
-        }
-
-        @Override
-        public boolean equals(@Nullable Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (!(o instanceof Translatable) || !super.equals(o)) {
-                return false;
-            }
-
-            Translatable that = (Translatable) o;
-            return this.translation.equals(that.translation)
-                    && this.arguments.equals(that.arguments);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hashCode(super.hashCode(), this.translation, this.arguments);
-        }
-
-        @Override
-        public String toString() {
-            return Objects.toStringHelper(this)
-                    .addValue(super.toString())
-                    .add("translation", this.translation)
-                    .add("arguments", this.arguments)
-                    .toString();
-        }
-
     }
 
     /**
-     * Represents a {@link Text} containing a selector that will be replaced by
-     * the names of the matching entities on the client.
+     * Creates a {@link Text} with the specified char as plain text. The created
+     * text won't have any formatting or events configured.
      *
-     * @see org.spongepowered.api.text.selector.Selector
-     * @see TextBuilder.Score
+     * @param content The contant of the text as char
+     * @return The created text
+     * @see LiteralText
      */
-    public static class Selector extends Text {
-
-        protected final org.spongepowered.api.text.selector.Selector selector;
-
-        Selector(org.spongepowered.api.text.selector.Selector selector) {
-            this.selector = checkNotNull(selector, "selector");
+    public static LiteralText of(char content) {
+        if (content == NEW_LINE_CHAR) {
+            return NEW_LINE;
+        } else {
+            return new LiteralText(String.valueOf(content));
         }
-
-        /**
-         * Constructs a new immutable {@link Selector} for the given selector
-         * with the specified formatting and text actions applied.
-         *
-         * @param format The format of the text
-         * @param children The immutable list of children of the text
-         * @param clickAction The click action of the text, or {@code null} for
-         *        none
-         * @param hoverAction The hover action of the text, or {@code null} for
-         *        none
-         * @param shiftClickAction The shift click action of the text, or
-         *        {@code null} for none
-         * @param selector The selector of the text
-         */
-        Selector(TextFormat format, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
-                @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction,
-                org.spongepowered.api.text.selector.Selector selector) {
-            super(format, children, clickAction, hoverAction, shiftClickAction);
-            this.selector = checkNotNull(selector, "selector");
-        }
-
-        /**
-         * Returns the selector used in this {@link Text}.
-         *
-         * @return The selector of this text
-         */
-        public final org.spongepowered.api.text.selector.Selector getSelector() {
-            return this.selector;
-        }
-
-        @Override
-        public TextBuilder.Selector builder() {
-            return new TextBuilder.Selector(this);
-        }
-
-        @Override
-        public boolean equals(@Nullable Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (!(o instanceof Selector) || !super.equals(o)) {
-                return false;
-            }
-
-            Selector that = (Selector) o;
-            return this.selector.equals(that.selector);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hashCode(super.hashCode(), this.selector);
-        }
-
-        @Override
-        public String toString() {
-            return Objects.toStringHelper(this)
-                    .addValue(super.toString())
-                    .add("selector", this.selector)
-                    .toString();
-        }
-
     }
 
     /**
-     * Represents a {@link Text} displaying the current score of a player.
+     * Creates a new unformatted {@link TranslatableText} with the given
+     * {@link Translation} and arguments.
      *
-     * @see TextBuilder.Score
+     * @param translation The translation for the text
+     * @param args The arguments for the translation
+     * @return The created text
+     * @see TranslatableText
      */
-    public static class Score extends Text {
+    public static TranslatableText of(Translation translation, Object... args) {
+        return new TranslatableText(translation, ImmutableList.copyOf(checkNotNull(args, "args")));
+    }
 
-        protected final org.spongepowered.api.scoreboard.Score score;
-        protected final Optional<String> override;
+    /**
+     * Creates a new unformatted {@link TranslatableText} from the given
+     * {@link Translatable}.
+     *
+     * @param translatable The translatable for the text
+     * @param args The arguments for the translation
+     * @return The created text
+     * @see TranslatableText
+     */
+    public static TranslatableText of(Translatable translatable, Object... args) {
+        return of(checkNotNull(translatable, "translatable").getTranslation(), args);
+    }
 
-        Score(org.spongepowered.api.scoreboard.Score score) {
-            this.score = checkNotNull(score, "score");
-            this.override = Optional.empty();
+    /**
+     * Creates a new unformatted {@link SelectorText} with the given selector.
+     *
+     * @param selector The selector for the text
+     * @return The created text
+     * @see SelectorText
+     */
+    public static SelectorText of(Selector selector) {
+        return new SelectorText(selector);
+    }
+
+    /**
+     * Creates a new unformatted {@link ScoreText} with the given score.
+     *
+     * @param score The score for the text
+     * @return The created text
+     * @see ScoreText
+     */
+    public static ScoreText of(Score score) {
+        return new ScoreText(score);
+    }
+
+    /**
+     * Builds a {@link Text} from a given array of objects.
+     *
+     * <p>For instance, you can use this like
+     * <code>Texts.of(TextColors.DARK_AQUA, "Hi", TextColors.AQUA, "Bye")</code>
+     * </p>
+     *
+     * <p>This will create the correct {@link Text} instance if the input object
+     * is the input for one of the {@link Text} types or convert the object to a
+     * string otherwise.</p>
+     *
+     * @param objects The object array
+     * @return The built text object
+     */
+    public static Text of(Object... objects) {
+        // Shortcut for lonely TextRepresentables
+        if (objects.length == 1 && objects[0] instanceof TextRepresentable) {
+            return ((TextRepresentable) objects[0]).toText();
         }
 
-        /**
-         * Constructs a new immutable {@link Score} for the given score with the
-         * specified formatting and text actions applied.
-         *
-         * @param format The format of the text
-         * @param children The immutable list of children of the text
-         * @param clickAction The click action of the text, or {@code null} for
-         *        none
-         * @param hoverAction The hover action of the text, or {@code null} for
-         *        none
-         * @param shiftClickAction The shift click action of the text, or
-         *        {@code null} for none
-         * @param score The score of the text
-         * @param override The text to override the score with, or {@code null}
-         *        for none
-         */
-        Score(TextFormat format, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
-                @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction,
-                org.spongepowered.api.scoreboard.Score score, @Nullable String override) {
-            super(format, children, clickAction, hoverAction, shiftClickAction);
-            this.score = checkNotNull(score, "score");
-            this.override = Optional.ofNullable(override);
-        }
+        final Text.Builder builder = builder();
+        TextFormat format = TextFormat.NONE;
+        HoverAction<?> hoverAction = null;
+        ClickAction<?> clickAction = null;
+        ShiftClickAction<?> shiftClickAction = null;
+        boolean changedFormat = false;
 
-        /**
-         * Returns the score displayed by this {@link Text}.
-         *
-         * @return The score in this text
-         */
-        public final org.spongepowered.api.scoreboard.Score getScore() {
-            return this.score;
-        }
+        for (Object obj : objects) {
+            // Text formatting + actions
+            if (obj instanceof TextFormat) {
+                changedFormat = true;
+                format = (TextFormat) obj;
+            } else if (obj instanceof TextColor) {
+                changedFormat = true;
+                format = format.color((TextColor) obj);
+            } else if (obj instanceof TextStyle) {
+                changedFormat = true;
+                format = format.style(obj.equals(TextStyles.RESET) ? TextStyles.NONE : format.getStyle().and((TextStyle) obj));
+            } else if (obj instanceof TextAction) {
+                changedFormat = true;
+                if (obj instanceof HoverAction) {
+                    hoverAction = (HoverAction<?>) obj;
+                } else if (obj instanceof ClickAction) {
+                    clickAction = (ClickAction<?>) obj;
+                } else if (obj instanceof ShiftClickAction) {
+                    shiftClickAction = (ShiftClickAction<?>) obj;
+                } else {
+                    // Unsupported TextAction
+                }
 
-        /**
-         * Returns a value that is displayed instead of the real score.
-         *
-         * @return The value displayed instead of the real score, or
-         *         {@link Optional#empty()} if the real score will be displayed
-         *         instead
-         */
-        public final Optional<String> getOverride() {
-            return this.override;
-        }
+            } else if (obj instanceof TextRepresentable) {
+                // Special content
+                changedFormat = false;
+                Text.Builder childBuilder = ((TextRepresentable) obj).toText().toBuilder();
+                // Overwrite TextActions if present
+                if (hoverAction != null) {
+                    childBuilder.onHover(hoverAction);
+                }
+                if (clickAction != null) {
+                    childBuilder.onClick(clickAction);
+                }
+                if (shiftClickAction != null) {
+                    childBuilder.onShiftClick(shiftClickAction);
+                }
+                // Merge instead of overwrite format
+                childBuilder.format(childBuilder.getFormat().merge(format));
+                builder.append(childBuilder.build());
 
-        @Override
-        public TextBuilder.Score builder() {
-            return new TextBuilder.Score(this);
-        }
+            } else {
+                // Simple content
+                changedFormat = false;
+                Text.Builder childBuilder;
 
-        @Override
-        public boolean equals(@Nullable Object o) {
-            if (this == o) {
-                return true;
+                if (obj instanceof String) {
+                    childBuilder = builder((String) obj);
+                } else if (obj instanceof Translation) {
+                    childBuilder = builder((Translation) obj);
+                } else if (obj instanceof Translatable) {
+                    childBuilder = builder(((Translatable) obj).getTranslation());
+                } else if (obj instanceof Selector) {
+                    childBuilder = builder((Selector) obj);
+                } else if (obj instanceof Score) {
+                    childBuilder = builder((Score) obj);
+                } else {
+                    childBuilder = builder(String.valueOf(obj));
+                }
+
+                if (hoverAction != null) {
+                    childBuilder.onHover(hoverAction);
+                }
+                if (clickAction != null) {
+                    childBuilder.onClick(clickAction);
+                }
+                if (shiftClickAction != null) {
+                    childBuilder.onShiftClick(shiftClickAction);
+                }
+
+                builder.append(childBuilder.format(format).build());
             }
-            if (!(o instanceof Score) || !super.equals(o)) {
-                return false;
+        }
+
+        if (changedFormat) {
+            // Did the formatting change without being applied to something?
+            // Then just append an empty text with that formatting
+            final Text.Builder childBuilder = builder();
+            if (hoverAction != null) {
+                childBuilder.onHover(hoverAction);
             }
-
-            Score that = (Score) o;
-            return this.score.equals(that.score) && this.override.equals(that.override);
+            if (clickAction != null) {
+                childBuilder.onClick(clickAction);
+            }
+            if (shiftClickAction != null) {
+                childBuilder.onShiftClick(shiftClickAction);
+            }
+            builder.append(childBuilder.format(format).build());
         }
 
-        @Override
-        public int hashCode() {
-            return Objects.hashCode(super.hashCode(), this.score, this.override);
+        if (builder.children.size() == 1) {
+            // Single content, reduce Text depth
+            return builder.children.get(0);
         }
 
-        @Override
-        public String toString() {
-            return Objects.toStringHelper(this)
-                    .addValue(super.toString())
-                    .add("score", this.score)
-                    .add("override", this.override)
-                    .toString();
+        return builder.build();
+    }
+
+    /**
+     * Creates a {@link Text.Builder} with empty text.
+     *
+     * @return A new text builder with empty text
+     */
+    public static Text.Builder builder() {
+        return new LiteralText.Builder();
+    }
+
+    /**
+     * Creates a new unformatted {@link LiteralText.Builder} with the specified
+     * content.
+     *
+     * @param content The content of the text
+     * @return The created text builder
+     * @see LiteralText
+     * @see LiteralText.Builder
+     */
+    public static LiteralText.Builder builder(String content) {
+        return new LiteralText.Builder(content);
+    }
+
+    /**
+     * Creates a new unformatted {@link LiteralText.Builder} with the specified
+     * content.
+     *
+     * @param content The content of the text as char
+     * @return The created text builder
+     * @see LiteralText
+     * @see LiteralText.Builder
+     */
+    public static LiteralText.Builder builder(char content) {
+        return builder(String.valueOf(content));
+    }
+
+    /**
+     * Creates a new {@link LiteralText.Builder} with the formatting and actions
+     * of the specified {@link Text} and the given content.
+     *
+     * @param text The text to apply the properties from
+     * @param content The content for the text builder
+     * @return The created text builder
+     * @see LiteralText
+     * @see LiteralText.Builder
+     */
+    public static LiteralText.Builder builder(Text text, String content) {
+        return new LiteralText.Builder(text, content);
+    }
+
+    /**
+     * Creates a new unformatted {@link TranslatableText.Builder} with the given
+     * {@link Translation} and arguments.
+     *
+     * @param translation The translation for the builder
+     * @param args The arguments for the translation
+     * @return The created text builder
+     * @see TranslatableText
+     * @see TranslatableText.Builder
+     */
+    public static TranslatableText.Builder builder(Translation translation, Object... args) {
+        return new TranslatableText.Builder(translation, args);
+    }
+
+    /**
+     * Creates a new unformatted {@link TranslatableText.Builder} from the given
+     * {@link Translatable}.
+     *
+     * @param translatable The translatable for the builder
+     * @param args The arguments for the translation
+     * @return The created text builder
+     * @see TranslatableText
+     * @see TranslatableText.Builder
+     */
+    public static TranslatableText.Builder builder(Translatable translatable, Object... args) {
+        return new TranslatableText.Builder(translatable, args);
+    }
+
+    /**
+     * Creates a new {@link TranslatableText.Builder} with the formatting and
+     * actions of the specified {@link Text} and the given {@link Translation}
+     * and arguments.
+     *
+     * @param text The text to apply the properties from
+     * @param translation The translation for the builder
+     * @param args The arguments for the translation
+     * @return The created text builder
+     * @see TranslatableText
+     * @see TranslatableText.Builder
+     */
+    public static TranslatableText.Builder builder(Text text, Translation translation, Object... args) {
+        return new TranslatableText.Builder(text, translation, args);
+    }
+
+    /**
+     * Creates a new {@link TranslatableText.Builder} with the formatting and
+     * actions of the specified {@link Text} and the given {@link Translatable}.
+     *
+     * @param text The text to apply the properties from
+     * @param translatable The translatable for the builder
+     * @param args The arguments for the translation
+     * @return The created text builder
+     * @see TranslatableText
+     * @see TranslatableText.Builder
+     */
+    public static TranslatableText.Builder builder(Text text, Translatable translatable, Object... args) {
+        return new TranslatableText.Builder(text, translatable, args);
+    }
+
+    /**
+     * Creates a new unformatted {@link SelectorText.Builder} with the given
+     * selector.
+     *
+     * @param selector The selector for the builder
+     * @return The created text builder
+     * @see SelectorText
+     * @see SelectorText.Builder
+     */
+    public static SelectorText.Builder builder(Selector selector) {
+        return new SelectorText.Builder(selector);
+    }
+
+    /**
+     * Creates a new {@link SelectorText.Builder} with the formatting and
+     * actions of the specified {@link Text} and the given selector.
+     *
+     * @param text The text to apply the properties from
+     * @param selector The selector for the builder
+     * @return The created text builder
+     * @see SelectorText
+     * @see SelectorText.Builder
+     */
+    public static SelectorText.Builder builder(Text text, Selector selector) {
+        return new SelectorText.Builder(text, selector);
+    }
+
+    /**
+     * Creates a new unformatted {@link ScoreText.Builder} with the given score.
+     *
+     * @param score The score for the text builder
+     * @return The created text builder
+     * @see ScoreText
+     * @see ScoreText.Builder
+     */
+    public static ScoreText.Builder builder(Score score) {
+        return new ScoreText.Builder(score);
+    }
+
+    /**
+     * Creates a new {@link ScoreText.Builder} with the formatting and actions
+     * of the specified {@link Text} and the given score.
+     *
+     * @param text The text to apply the properties from
+     * @param score The score for the text builder
+     * @return The created text builder
+     * @see ScoreText
+     * @see ScoreText.Builder
+     */
+    public static ScoreText.Builder builder(Text text, Score score) {
+        return new ScoreText.Builder(text, score);
+    }
+
+    /**
+     * Joins a sequence of text objects together.
+     *
+     * @param texts The texts to join
+     * @return A text object that joins the given text objects
+     */
+    public static Text join(Text... texts) {
+        return builder().append(texts).build();
+    }
+
+    /**
+     * Joins a sequence of text objects together.
+     *
+     * @param texts The texts to join
+     * @return A text object that joins the given text objects
+     */
+    public static Text join(Iterable<? extends Text> texts) {
+        return builder().append(texts).build();
+    }
+
+    /**
+     * Joins a sequence of text objects together.
+     *
+     * @param texts The texts to join
+     * @return A text object that joins the given text objects
+     */
+    public static Text join(Iterator<? extends Text> texts) {
+        return builder().append(texts).build();
+    }
+
+    /**
+     * Joins a sequence of text objects together along with a separator.
+     *
+     * @param separator The separator
+     * @param texts The texts to join
+     * @return A text object that joins the given text objects
+     */
+    public static Text joinWith(Text separator, Text... texts) {
+        switch (texts.length) {
+            case 0:
+                return EMPTY;
+            case 1:
+                return texts[0];
+            default:
+                Text.Builder builder = builder();
+                boolean appendSeparator = false;
+                for (Text text : texts) {
+                    if (appendSeparator) {
+                        builder.append(separator);
+                    } else {
+                        appendSeparator = true;
+                    }
+
+                    builder.append(text);
+                }
+
+                return builder.build();
+        }
+    }
+
+    /**
+     * Joins a sequence of text objects together along with a separator.
+     *
+     * @param separator The separator
+     * @param texts The texts to join
+     * @return A text object that joins the given text objects
+     */
+    public static Text joinWith(Text separator, Iterable<? extends Text> texts) {
+        return joinWith(separator, texts.iterator());
+    }
+
+    /**
+     * Joins a sequence of text objects together along with a separator.
+     *
+     * @param separator The separator
+     * @param texts An iterator for the texts to join
+     * @return A text object that joins the given text objects
+     */
+    public static Text joinWith(Text separator, Iterator<? extends Text> texts) {
+        if (!texts.hasNext()) {
+            return EMPTY;
         }
 
+        Text first = texts.next();
+        if (!texts.hasNext()) {
+            return first;
+        }
+
+        Text.Builder builder = builder().append(first);
+        do {
+            builder.append(separator);
+            builder.append(texts.next());
+        } while (texts.hasNext());
+
+        return builder.build();
     }
 
 }

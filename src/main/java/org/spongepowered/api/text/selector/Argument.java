@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.text.selector;
 
+import static org.spongepowered.api.text.selector.ArgumentTypes.getFactory;
+
+import java.util.Set;
+
 /**
  * Represents the argument of a {@link Selector selector}. An Argument is one or
  * more key-to-value mappings ({@code key=value}) with the key represented by an
@@ -32,6 +36,64 @@ package org.spongepowered.api.text.selector;
  * @param <T> The type of the value
  */
 public interface Argument<T> {
+
+    /**
+     * Creates a new {@link Argument} using the specified type and value.
+     *
+     * <p>If the type is invertible, the {@link Argument} will not be
+     * inverted.</p>
+     *
+     * @param type The type of the argument
+     * @param value The value of the argument
+     * @param <T> The type of the argument value
+     * @return The created argument
+     */
+    static <T> Argument<T> create(ArgumentType<T> type, T value) {
+        return getFactory().createArgument(type, value);
+    }
+
+    /**
+     * Creates a new {@link Argument.Invertible} using the specified type and
+     * value. The created {@link Argument} will be inverted based on the given
+     * parameter.
+     *
+     * @param type The type of the invertible argument
+     * @param value The value of the invertible argument
+     * @param inverted {@code true} if the argument should be inverted
+     * @param <T> The type of the argument value
+     * @return The created invertible argument
+     */
+    static <T> Argument.Invertible<T> create(ArgumentType.Invertible<T> type, T value, boolean inverted) {
+        return getFactory().createArgument(type, value, inverted);
+    }
+
+    /**
+     * Creates a new set of {@link Argument}s using the specified type and
+     * value.
+     *
+     * @param type The type of the arguments
+     * @param value The value of the arguments
+     * @param <T> The type of the arguments' joined value
+     * @param <V> The type of the arguments' sub-values
+     * @return The created argument
+     */
+    static <T, V> Set<Argument<T>> createSet(ArgumentHolder<? extends ArgumentType<T>> type, V value) {
+        return getFactory().createArguments(type, value);
+    }
+
+    /**
+     * Parses an {@link Argument} from the given argument string.
+     *
+     * <p>In Vanilla, it should be formatted like {@code key=value}.</p>
+     *
+     * @param argument The argument string
+     * @return The parsed argument
+     * @throws IllegalArgumentException If the argument couldn't be parsed (e.g.
+     *         due to invalid format)
+     */
+    static Argument<?> parse(String argument) throws IllegalArgumentException {
+        return getFactory().parseArgument(argument);
+    }
 
     /**
      * Returns the type of this {@link Argument}.

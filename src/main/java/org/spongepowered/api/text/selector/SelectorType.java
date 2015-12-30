@@ -30,7 +30,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 /**
  * Represents a selector type.
  *
- * @see Selectors
+ * @see Selector
  */
 @CatalogedBy(SelectorTypes.class)
 public interface SelectorType extends CatalogType {

@@ -24,15 +24,18 @@
  */
 package org.spongepowered.api.text.sink;
 
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.text.Text;
 
 /**
- * Represents a function that takes a message and transforms it for distribution to the given targets.
+ * Represents a function that takes a message and transforms it for distribution
+ * to the given targets.
  */
 public abstract class MessageSink {
+
     /**
-     * Process a message using this sink, transforming and sending it to the appropriate recipients.
+     * Process a message using this sink, transforming and sending it to the
+     * appropriate recipients.
      *
      * @param text The text to send
      */
@@ -55,9 +58,11 @@ public abstract class MessageSink {
     }
 
     /**
-     * Return all command sources that will receive messages sent through to this sink.
+     * Return all command sources that will receive messages sent through to
+     * this sink.
      *
      * @return An iterable of all possible receivers of messages
      */
     public abstract Iterable<CommandSource> getRecipients();
+
 }

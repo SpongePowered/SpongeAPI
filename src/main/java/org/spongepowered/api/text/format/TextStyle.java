@@ -258,8 +258,7 @@ public class TextStyle {
     /**
      * Checks for whether text where this style is applied has an underline.
      *
-     * @return The value for the underline property, or
-     *         {@link Optional#empty()}
+     * @return The value for the underline property, or {@link Optional#empty()}
      */
     public Optional<Boolean> hasUnderline() {
         return this.underline;
@@ -433,7 +432,7 @@ public class TextStyle {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return Objects.toStringHelper(TextStyle.class)
                 .omitNullValues()
                 .add("bold", this.bold.orElse(null))
                 .add("italic", this.italic.orElse(null))
@@ -490,7 +489,8 @@ public class TextStyle {
 
     /**
      * Represents a {@link TextStyle} that is not a composite, for example
-     * {@link TextStyles#BOLD}. It is a base text style in Minecraft with a name.
+     * {@link TextStyles#BOLD}. It is a base text style in Minecraft with a
+     * name.
      *
      * @see TextStyle
      * @see Base

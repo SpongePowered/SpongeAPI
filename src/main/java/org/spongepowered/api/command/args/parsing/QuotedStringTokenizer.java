@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.command.args.parsing;
 
-import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.command.args.ArgumentParseException;
+import org.spongepowered.api.text.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -101,7 +101,7 @@ class QuotedStringTokenizer implements InputTokenizer {
         // Consume the start quotation character
         int nextCodePoint = state.next();
         if (nextCodePoint != startQuotation) {
-            throw state.createException(Texts.of(String.format("Actual next character '%c' did not match expected quotation character '%c'",
+            throw state.createException(Text.of(String.format("Actual next character '%c' did not match expected quotation character '%c'",
                     nextCodePoint, startQuotation)));
         }
 
@@ -110,7 +110,7 @@ class QuotedStringTokenizer implements InputTokenizer {
                 if (state.isLenient() || this.forceLenient) {
                     return;
                 } else {
-                    throw state.createException(Texts.of("Unterminated quoted string found"));
+                    throw state.createException(Text.of("Unterminated quoted string found"));
                 }
             }
             nextCodePoint = state.next();

@@ -43,8 +43,6 @@ import org.spongepowered.api.event.command.SendCommandEvent;
 import org.spongepowered.api.event.command.TabCompleteCommandEvent;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.TextBuilder;
-import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.text.action.TextActions;
 import org.spongepowered.api.util.TextMessageException;
 
@@ -264,24 +262,24 @@ public class SimpleCommandManager implements CommandManager {
                 }
             }
         } catch (Throwable thr) {
-            TextBuilder excBuilder;
+            Text.Builder excBuilder;
             if (thr instanceof TextMessageException) {
                 Text text = ((TextMessageException) thr).getText();
-                excBuilder = text == null ? Texts.builder("null") : text.builder();
+                excBuilder = text == null ? Text.builder("null") : text.toBuilder();
             } else {
-                excBuilder = Texts.builder(String.valueOf(thr.getMessage()));
+                excBuilder = Text.builder(String.valueOf(thr.getMessage()));
             }
             if (source.hasPermission("sponge.debug.hover-stacktrace")) {
                 final StringWriter writer = new StringWriter();
                 thr.printStackTrace(new PrintWriter(writer));
-                excBuilder.onHover(TextActions.showText(Texts.of(writer.toString()
+                excBuilder.onHover(TextActions.showText(Text.of(writer.toString()
                         .replace("\t", "    ")
                         .replace("\r\n", "\n")
                         .replace("\r", "\n")))); // I mean I guess somebody could be running this on like OS 9?
             }
             source.sendMessage(error(t("Error occurred while executing command: %s", excBuilder.build())));
-            this.log.error(Texts.toPlain(t("Error occurred while executing command '%s' for source %s: %s", commandLine, source.toString(), String
-                    .valueOf(thr.getMessage()))), thr);
+            this.log.error(t("Error occurred while executing command '%s' for source %s: %s", commandLine, source.toString(), String
+                    .valueOf(thr.getMessage())).toPlain(), thr);
         }
         return CommandResult.empty();
     }

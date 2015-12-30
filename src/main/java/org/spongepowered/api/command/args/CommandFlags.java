@@ -31,7 +31,6 @@ import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.command.CommandSource;
@@ -135,7 +134,7 @@ class CommandFlags extends CommandElement {
                         context.putArg(longFlag, true);
                         break;
                     case ACCEPT_VALUE:
-                        string(Texts.of(longFlag)).parse(source, args, context);
+                        string(Text.of(longFlag)).parse(source, args, context);
                         break;
                     case IGNORE:
                         return false;
@@ -166,7 +165,7 @@ class CommandFlags extends CommandElement {
                         context.putArg(flagChar, true);
                         break;
                     case ACCEPT_VALUE:
-                        string(Texts.of(flagChar)).parse(source, args, context);
+                        string(Text.of(flagChar)).parse(source, args, context);
                         break;
                     default:
                         throw new Error("New UnknownFlagBehavior added without corresponding case clauses");
@@ -191,7 +190,7 @@ class CommandFlags extends CommandElement {
                 }
             }
             Text usage = arg.getValue().getUsage(src);
-            if (Texts.toPlain(usage).trim().length() > 0) {
+            if (usage.toPlain().trim().length() > 0) {
                 builder.add(" ");
                 builder.add(usage);
             }
@@ -202,7 +201,7 @@ class CommandFlags extends CommandElement {
         if (this.childElement != null) {
             builder.add(this.childElement.getUsage(src));
         }
-        return Texts.of(builder.toArray());
+        return Text.of(builder.toArray());
     }
 
     @Override

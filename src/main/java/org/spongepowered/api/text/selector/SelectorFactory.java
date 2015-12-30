@@ -32,18 +32,19 @@ import java.util.Set;
 
 /**
  * Represents the required implementation for the static methods in
- * {@link Selectors}, {@link Arguments} and {@link ArgumentTypes}.
+ * {@link Selector}, {@link Argument} and {@link ArgumentTypes}.
+ *
+ * @deprecated Internal use only.
  */
+@Deprecated
 public interface SelectorFactory {
 
     /**
-     * Creates a {@link SelectorBuilder} with the specified type and no
-     * arguments.
+     * Creates a {@link Selector.Builder}.
      *
-     * @param type The type of the selector
      * @return A new selector builder with the specified type
      */
-    SelectorBuilder createBuilder(SelectorType type);
+    Selector.Builder createBuilder();
 
     /**
      * Parses a {@link Selector} from the given selector string.
@@ -66,7 +67,8 @@ public interface SelectorFactory {
      * Gets the {@link ArgumentType} with the provided name.
      *
      * @param name The name of the argument type
-     * @return The {@link ArgumentType} with the given name or Optional.empty() if not found
+     * @return The {@link ArgumentType} with the given name or Optional.empty()
+     *         if not found
      */
     Optional<ArgumentType<?>> getArgumentType(String name);
 
@@ -119,7 +121,8 @@ public interface SelectorFactory {
     <T> Argument.Invertible<T> createArgument(ArgumentType.Invertible<T> type, T value, boolean inverted);
 
     /**
-     * Creates a new set of {@link Argument}s using the specified type and value.
+     * Creates a new set of {@link Argument}s using the specified type and
+     * value.
      *
      * @param type The type of the arguments
      * @param value The value of the arguments

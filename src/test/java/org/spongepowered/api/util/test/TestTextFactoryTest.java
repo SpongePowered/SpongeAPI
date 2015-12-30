@@ -28,7 +28,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.text.translation.FixedTranslation;
 
 public class TestTextFactoryTest {
@@ -38,14 +37,14 @@ public class TestTextFactoryTest {
 
     @Test
     public void testToPlainLiterals() {
-        Text testText = Texts.builder("Hello ").append(Texts.of("world"), Texts.of(", this is here")).build();
-        assertEquals("Hello world, this is here", Texts.toPlain(testText));
+        Text testText = Text.builder("Hello ").append(Text.of("world"), Text.of(", this is here")).build();
+        assertEquals("Hello world, this is here", testText.toPlain());
     }
 
     @Test
     public void testToPlainTranslatables() {
-        Text testText = Texts.of(new FixedTranslation("This is a translated %s"), Texts.of("string"));
-        assertEquals("This is a translated string", Texts.toPlain(testText));
+        Text testText = Text.of(new FixedTranslation("This is a translated %s"), Text.of("string"));
+        assertEquals("This is a translated string", testText.toPlain());
     }
 
 }

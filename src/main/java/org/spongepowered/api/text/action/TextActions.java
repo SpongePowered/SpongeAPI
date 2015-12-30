@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.text.action;
 
+import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.command.CommandSource;
 
 import java.net.URL;
 import java.util.UUID;
@@ -90,9 +90,9 @@ public final class TextActions {
     }
 
     /**
-     * Creates a new {@link ClickAction} that will execute the given
-     * runnable on the server when clicked. The callback will expire after some amount of time (not particularly instantly, but not like
-     * overnight really either).
+     * Creates a new {@link ClickAction} that will execute the given runnable on
+     * the server when clicked. The callback will expire after some amount of
+     * time (not particularly instantly, but not like overnight really either).
      *
      * @param callback The callback to execute
      * @return The created click action instance

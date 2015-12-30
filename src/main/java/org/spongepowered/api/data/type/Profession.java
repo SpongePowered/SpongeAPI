@@ -25,7 +25,6 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Collection;
@@ -35,7 +34,7 @@ import java.util.Collection;
  * trade offers a villager may offer to a player.
  */
 @CatalogedBy(Professions.class)
-public interface Profession extends CatalogType, Translatable {
+public interface Profession extends CatalogType {
 
     /**
      * Gets the collection of available {@link Career}s.
