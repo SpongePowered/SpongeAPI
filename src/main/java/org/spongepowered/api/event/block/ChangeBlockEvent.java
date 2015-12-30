@@ -90,35 +90,18 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable {
     }
 
     /**
-     * Called when there are block changes due to a {@link BlockType}
-     * having "ticked", in which the {@link Cause} will have a
-     * {@link BlockSnapshot}, or, in the case that an {@link Entity}
-     * has "ticked", in which the {@link Cause} will have an {@link Entity},
-     * or, in the case that a {@link TileEntity} "ticked", the {@link Cause}
-     * will have the {@link TileEntity}. Note that this event is fired before
-     * processing a {@link Break} or {@link Place} event.
-     *
-     * <p>The idea is that  a block, entity, or tile entity "ticks" in which
-     * during that "tick", they make a block change. If the block change is
-     * purely "placing" of blocks, the {@link Place} event is thrown. If the
-     * block changes are purely "breaking" of blocks, the {@link Break} event
-     * is thrown.</p>
-     */
-    interface Post extends ChangeBlockEvent {}
-
-    /**
      * Called when specific {@link BlockType}s have a notion of "decaying"
      * for various reasons such that the changes are always caused by
      * themselves. This is also called after a {@link Tick} event.
      */
-    interface Decay extends Post {}
+    interface Decay extends ChangeBlockEvent {}
 
     /**
      * Called when a {@link BlockType} decides to "grow" either other
      * blocks or itself or both. Usually considered to be plants or crops,
      * this is called after a {@link Tick} event.
      */
-    interface Grow extends Post {}
+    interface Grow extends ChangeBlockEvent {}
 
     /**
      * Called when {@link BlockState}s at {@link Location <World>}s are
@@ -126,18 +109,45 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable {
      * to {@link BlockTypes#AIR}
      *
      */
-    interface Break extends Post {}
+    interface Break extends ChangeBlockEvent {}
 
     /**
      * Called when one or more {@link BlockType}s are added to the world.
      *
      */
-    interface Place extends Post {}
+    interface Place extends ChangeBlockEvent {}
 
     /**
      * Called when one or more {@link BlockType}s are modified in the world.
      *
      */
-    interface Modify extends Post {}
+    interface Modify extends ChangeBlockEvent {}
 
+    /**
+     * Called when there are multiple block changes due to a
+     * {@link BlockType} having "ticked", in which the {@link Cause} will
+     * have a {@link BlockSnapshot}, or, in the case that an {@link Entity}
+     * has "ticked", in which the {@link Cause} will have an {@link Entity},
+     * or, in the case that a {@link TileEntity} "ticked", the {@link Cause}
+     * will have the {@link TileEntity}.
+     *
+     * <p>The {@link Cause} may contain {@link Event}s, such as {@link Break},
+     * {@link Place}, and {@link Modify}. These events may be cancelled,
+     * or have their transactions modified, just like normal events.</p>
+     *
+     * <p>The idea is that  a block, entity, or tile entity "ticks" in which
+     * during that "tick", they make different types of block changes. If the
+     * block change is purely one type then the corresponding event is thrown
+     * instead. For example, If the block change is purely "placing" of
+     * blocks, the {@link Place} event would be thrown instead.</p>
+     *
+     * <p>For example, a piston extension would cause this event to be fired.
+     * A piston extension involves multiple distinct transactions -
+     * the piston head moving, and the adjacent block being set in a new
+     * position.</p>
+     *
+     * Note: This event is fired after processing all other
+     * ChangeBlockEvent's.
+     */
+    interface Post extends ChangeBlockEvent {}
 }
