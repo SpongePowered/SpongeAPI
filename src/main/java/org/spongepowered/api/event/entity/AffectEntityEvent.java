@@ -57,12 +57,21 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable {
     List<EntitySnapshot> getEntitySnapshots();
 
     /**
-     * Gets the {@link List<Entity>} who will be affected after event
+     * Gets the {@link List} who will be affected after event
      * resolution.
      *
      * @return The List
      */
     List<Entity> getEntities();
+
+    /**
+     * Sets the {@link List} of entities who will be affected
+     * after the event resolution. Note that new entities are
+     * not going to be affected.
+     *
+     * @param entities The entities to affect
+     */
+    void setEntities(List<Entity> entities);
 
     /**
      * Filters out {@link Location<World>}'s from
@@ -76,11 +85,15 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable {
      */
     default List<Entity> filterEntityLocations(Predicate<Location<World>> predicate) {
         List<Entity> removedEntiies = new ArrayList<>();
+        List<Entity> newEntities = new ArrayList<>();
         for (Entity entity : this.getEntities()) {
             if (!predicate.test(entity.getLocation())) {
                 removedEntiies.add(entity);
+            } else {
+                newEntities.add(entity);
             }
         }
+        setEntities(newEntities);
         return removedEntiies;
     }
 
@@ -96,11 +109,15 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable {
      */
     default List<? extends Entity> filterEntities(Predicate<Entity> predicate) {
         List<Entity> removedEntiies = new ArrayList<>();
+        List<Entity> newEntities = new ArrayList<>();
         for (Entity entity : this.getEntities()) {
             if (!predicate.test(entity)) {
                 removedEntiies.add(entity);
+            } else {
+                newEntities.add(entity);
             }
         }
+        setEntities(newEntities);
         return removedEntiies;
     }
 }
