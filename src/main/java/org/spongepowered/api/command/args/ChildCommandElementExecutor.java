@@ -41,6 +41,8 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 import java.util.List;
 import java.util.Optional;
@@ -92,7 +94,7 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
     }
 
     @Override
-    public List<String> complete(final CommandSource src, CommandArgs args, CommandContext context) {
+    public List<String> complete(final CommandSource src, CommandArgs args, CommandContext context, Location<World> location) {
         final Optional<String> commandComponent = args.nextIfPresent();
         if (commandComponent.isPresent()) {
             if (args.hasNext()) {
@@ -101,7 +103,7 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
                     return ImmutableList.of();
                 }
                 if (child.get().getCallable() instanceof CommandSpec) {
-                    return ((CommandSpec) child.get().getCallable()).complete(src, args, context);
+                    return ((CommandSpec) child.get().getCallable()).complete(src, args, context, location);
                 } else {
                     args.nextIfPresent();
                     final String arguments = args.getRaw().substring(args.getRawPosition());
@@ -109,7 +111,7 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
                         args.nextIfPresent();
                     }
                     try {
-                        return child.get().getCallable().getSuggestions(src, arguments);
+                        return child.get().getCallable().getSuggestions(src, arguments, location);
                     } catch (CommandException e) {
                         Text eText = e.getText();
                         if (eText != null) {

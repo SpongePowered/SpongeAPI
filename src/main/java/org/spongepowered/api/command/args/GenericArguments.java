@@ -172,7 +172,7 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context, Location<World> location) {
             return Collections.emptyList();
         }
     }
@@ -217,7 +217,7 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context, Location<World> location) {
             for (Iterator<CommandElement> it = this.elements.iterator(); it.hasNext(); ) {
                 CommandElement element = it.next();
                 Object startState = args.getState();
@@ -226,7 +226,7 @@ public final class GenericArguments {
                     Object endState = args.getState();
                     if (!args.hasNext()) {
                         args.setState(startState);
-                        List<String> inputs = element.complete(src, args, context);
+                        List<String> inputs = element.complete(src, args, context, location);
                         args.previous();
                         if (!inputs.contains(args.next())) { // Tabcomplete returns results to complete the last word in an argument.
                             // If the last word is one of the completions, the command is most likely complete
@@ -237,7 +237,7 @@ public final class GenericArguments {
                     }
                 } catch (ArgumentParseException e) {
                     args.setState(startState);
-                    return element.complete(src, args, context);
+                    return element.complete(src, args, context, location);
                 }
 
                 if (!it.hasNext()) {
@@ -306,7 +306,7 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context, Location<World> location) {
             final String prefix = args.nextIfPresent().orElse("");
             return this.choices.keySet().stream().filter(new StartsWithPredicate(prefix)).collect(GuavaCollectors.toImmutableList());
         }
@@ -374,7 +374,7 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
+        public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context, Location<World> location) {
             return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements,
                     new com.google.common.base.Function<CommandElement, List<String>>() {
 
@@ -385,7 +385,7 @@ public final class GenericArguments {
                             }
 
                             Object startState = args.getState();
-                            List<String> ret = input.complete(src, args, context);
+                            List<String> ret = input.complete(src, args, context, location);
                             args.setState(startState);
                             return ret;
                         }
@@ -500,8 +500,8 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            return this.element.complete(src, args, context);
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context, Location<World> location) {
+            return this.element.complete(src, args, context, location);
         }
 
         @Override
@@ -546,14 +546,14 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context, Location<World> location) {
             for (int i = 0; i < this.times; ++i) {
                 Object startState = args.getState();
                 try {
                     this.element.parse(src, args, context);
                 } catch (ArgumentParseException e) {
                     args.setState(startState);
-                    return this.element.complete(src, args, context);
+                    return this.element.complete(src, args, context, location);
                 }
             }
             return Collections.emptyList();
@@ -598,14 +598,14 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context, Location<World> location) {
             while (args.hasNext()) {
                 Object startState = args.getState();
                 try {
                     this.element.parse(src, args, context);
                 } catch (ArgumentParseException e) {
                     args.setState(startState);
-                    return this.element.complete(src, args, context);
+                    return this.element.complete(src, args, context, location);
                 }
             }
             return Collections.emptyList();
@@ -628,7 +628,7 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context, Location<World> location) {
             return Collections.emptyList();
         }
     }
@@ -881,7 +881,7 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context, Location<World> location) {
             for (String arg : this.expectedArgs) {
                 final Optional<String> next = args.nextIfPresent();
                 if (!next.isPresent()) {
@@ -1031,7 +1031,7 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context, Location<World> location) {
             Optional<String> arg = args.nextIfPresent();
             // Traverse through the possible arguments. We can't really complete arbitrary integers
             if (arg.isPresent()) {
@@ -1115,12 +1115,12 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context, Location<World> location) {
             Object state = args.getState();
             List<String> ret;
-            if ((ret = this.worldParser.complete(src, args, context)).isEmpty()) {
+            if ((ret = this.worldParser.complete(src, args, context, location)).isEmpty()) {
                 args.setState(state);
-                ret = this.vectorParser.complete(src, args, context);
+                ret = this.vectorParser.complete(src, args, context, location);
             }
             return ret;
         }
@@ -1191,8 +1191,8 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            return this.element.complete(src, args, context);
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context, Location<World> location) {
+            return this.element.complete(src, args, context, location);
         }
     }
 
@@ -1231,11 +1231,11 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context, Location<World> location) {
             if (!src.hasPermission(this.permission)) {
                 return ImmutableList.of();
             }
-            return this.element.complete(src, args, context);
+            return this.element.complete(src, args, context, location);
         }
 
         @Override

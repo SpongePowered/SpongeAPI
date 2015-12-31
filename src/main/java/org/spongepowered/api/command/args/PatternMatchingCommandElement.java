@@ -30,6 +30,8 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 import java.util.List;
 import java.util.Optional;
@@ -68,7 +70,7 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
     }
 
     @Override
-    public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+    public List<String> complete(CommandSource src, CommandArgs args, CommandContext context, Location<World> location) {
         Iterable<String> choices = getChoices(src);
         final Optional<String> nextArg = args.nextIfPresent();
         if (nextArg.isPresent()) {

@@ -25,12 +25,14 @@
 package org.spongepowered.api.command.spec;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.spongepowered.api.command.args.GenericArguments.location;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.command.args.GenericArguments.firstParsing;
 import static org.spongepowered.api.command.args.GenericArguments.optional;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextBuilder;
 import org.spongepowered.api.text.Texts;
@@ -48,6 +50,8 @@ import org.spongepowered.api.command.args.CommandElement;
 import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.command.args.parsing.InputTokenizer;
 import org.spongepowered.api.command.args.parsing.InputTokenizers;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 import java.util.HashMap;
 import java.util.List;
@@ -298,11 +302,12 @@ public final class CommandSpec implements CommandCallable {
      * @param source The source to parse arguments for
      * @param args The arguments object
      * @param context The context object
+     * @param location The location being looked at by the client, if available
      * @return possible completions, or an empty list if none
      */
-    public List<String> complete(CommandSource source, CommandArgs args, CommandContext context) {
+    public List<String> complete(CommandSource source, CommandArgs args, CommandContext context, @Nullable Location<World> location) {
         checkNotNull(source, "source");
-        List<String> ret = this.args.complete(source, args, context);
+        List<String> ret = this.args.complete(source, args, context, location);
         return ret == null ? ImmutableList.<String>of() : ImmutableList.copyOf(ret);
     }
 
@@ -335,9 +340,9 @@ public final class CommandSpec implements CommandCallable {
     }
 
     @Override
-    public List<String> getSuggestions(CommandSource source, String arguments) throws CommandException {
+    public List<String> getSuggestions(CommandSource source, String arguments, @Nullable Location<World> location) throws CommandException {
         CommandArgs args = new CommandArgs(arguments, getInputTokenizer().tokenize(arguments, true));
-        return complete(source, args, new CommandContext());
+        return complete(source, args, new CommandContext(), location);
     }
 
     @Override
