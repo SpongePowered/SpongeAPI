@@ -22,19 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.context;
+package org.spongepowered.api.event.economy;
+
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.service.economy.EconomyService;
+import org.spongepowered.api.service.economy.transaction.TransactionResult;
 
 /**
- * A common interface for objects that have a relevant context.
+ * Fired when the {@link EconomyService} has processed a transaction.
  */
-public interface Contextual {
+public interface EconomyTransactionEvent extends Event {
 
     /**
-     * Returns the context most relevant to this object. This context may be the
-     * same across multiple invocations (but may not, so don't count on this
-     * being true).
+     * Gets the {@link TransactionResult} for the transaction that occured.
      *
-     * @return A given context
+     * @return The {@link TransactionResult}
      */
-    Context getContext();
+    TransactionResult getTransactionResult();
+
 }

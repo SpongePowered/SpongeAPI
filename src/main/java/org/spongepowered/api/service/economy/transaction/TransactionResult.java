@@ -22,35 +22,60 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.option;
+package org.spongepowered.api.service.economy.transaction;
 
 import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.service.economy.Currency;
+import org.spongepowered.api.service.economy.account.Account;
 
-import java.util.Optional;
+import java.math.BigDecimal;
 import java.util.Set;
 
-public interface OptionSubject extends Subject {
-    @Override
-    OptionSubjectData getSubjectData();
-
-    @Override
-    OptionSubjectData getTransientSubjectData();
-
-    /**
-     * Get the value of a given option in the given context.
-     *
-     * @param contexts The contexts to get the options from
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
-     */
-    Optional<String> getOption(Set<Context> contexts, String key);
+/**
+ * Represents the result of a particular transaction, such as a deposit
+ * or withdrawal.
+ */
+public interface TransactionResult {
 
     /**
-     * Get the value of a given option in the subject's current context
+     * Gets the {@link Account} involved in the transaction.
      *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
+     * @return The {@link Account}
      */
-    Optional<String> getOption(String key);
+    Account getAccount();
+
+    /**
+     * Gets the {@link Currency} involved in the transaction.
+     *
+     * @return The {@link Currency}
+     */
+    Currency getCurrency();
+
+    /**
+     * Gets the amount of the {@link Currency} involved in the transaction.
+     *
+     * @return The amount
+     */
+    BigDecimal getAmount();
+
+    /**
+     * Returns the set of {@link Context}s used to perform the
+     * transaction.
+     *
+     * @return optional set of contexts
+     */
+    Set<Context> getContexts();
+
+    /**
+     * Get the {@link ResultType} of this transaction
+     * @return resultType
+     */
+    ResultType getResult();
+
+    /**
+     * Returns the {@link TransactionType} of this result
+     *
+     * @return type of Transaction
+     */
+    TransactionType getType();
 }

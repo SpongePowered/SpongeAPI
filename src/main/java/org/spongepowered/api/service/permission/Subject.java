@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.service.permission;
 
-import org.spongepowered.api.service.permission.context.Context;
-import org.spongepowered.api.service.permission.context.ContextCalculator;
+import org.spongepowered.api.service.context.Context;
+import org.spongepowered.api.service.context.ContextCalculator;
+import org.spongepowered.api.service.context.Contextual;
 import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.command.CommandSource;
 
@@ -63,15 +64,7 @@ import java.util.Set;
  *
  * @see PermissionService
  */
-public interface Subject {
-
-    /**
-     * Returns the identifier associated with this subject. May not be
-     * human-readable, but always refers to a single subject
-     *
-     * @return The unique identifier for this subject
-     */
-    String getIdentifier();
+public interface Subject extends Contextual {
 
     /**
      * If this subject represents an actual user currently connected, this
@@ -111,7 +104,7 @@ public interface Subject {
     /**
      * Test whether the subject is permitted to perform an action given as the
      * given permission string.
-
+     *
      * @param contexts The set of contexts that represents the subject's current environment
      * @param permission The permission string
      * @return True if permission is granted
@@ -172,13 +165,4 @@ public interface Subject {
      * @return An immutable list of parents
      */
     List<Subject> getParents(Set<Context> contexts);
-
-    /**
-     * Calculate active contexts, using the {@link ContextCalculator}s
-     * from {@link PermissionService#registerContextCalculator(ContextCalculator)}.
-     * The result of these calculations may be cached.
-     *
-     * @return An immutable set of active contexts
-     */
-    Set<Context> getActiveContexts();
 }

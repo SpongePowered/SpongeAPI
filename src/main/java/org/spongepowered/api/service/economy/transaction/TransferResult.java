@@ -22,35 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.option;
+package org.spongepowered.api.service.economy.transaction;
 
-import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.service.economy.Currency;
+import org.spongepowered.api.service.economy.account.Account;
 
-import java.util.Optional;
-import java.util.Set;
-
-public interface OptionSubject extends Subject {
-    @Override
-    OptionSubjectData getSubjectData();
-
-    @Override
-    OptionSubjectData getTransientSubjectData();
+/**
+ * Represents a {@link TransactionResult} specific to a transaction
+ * of type {@link TransactionTypes#TRANSFER}.
+ */
+public interface TransferResult extends TransactionResult {
 
     /**
-     * Get the value of a given option in the given context.
+     * Gets the {@link Account} that an amount of a {@link Currency} is being transferred to.
      *
-     * @param contexts The contexts to get the options from
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
+     * <p>{@link #getAccount()} can be used to get the {@link Account} that the currency
+     * is being transferred from.</p>
+     *
+     * @return The {@link Account}
      */
-    Optional<String> getOption(Set<Context> contexts, String key);
+    Account getAccountTo();
 
-    /**
-     * Get the value of a given option in the subject's current context
-     *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
-     */
-    Optional<String> getOption(String key);
 }

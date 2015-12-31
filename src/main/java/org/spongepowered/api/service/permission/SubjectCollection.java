@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service.permission;
 
-import org.spongepowered.api.service.permission.context.Context;
+import org.spongepowered.api.service.context.Context;
 
 import java.util.Map;
 import java.util.Set;

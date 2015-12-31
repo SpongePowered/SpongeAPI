@@ -22,35 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.option;
+package org.spongepowered.api.service.economy.transaction;
 
 import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.permission.Subject;
 
-import java.util.Optional;
-import java.util.Set;
-
-public interface OptionSubject extends Subject {
-    @Override
-    OptionSubjectData getSubjectData();
-
-    @Override
-    OptionSubjectData getTransientSubjectData();
+/**
+ * Represents the success or failure state of a {@link TransactionResult}.
+ */
+public enum ResultType {
 
     /**
-     * Get the value of a given option in the given context.
-     *
-     * @param contexts The contexts to get the options from
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
+     * Transaction finished with no errors
      */
-    Optional<String> getOption(Set<Context> contexts, String key);
+    SUCCESS,
 
     /**
-     * Get the value of a given option in the subject's current context
-     *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
+     * The transaction attempt resulted in a difference in {@link Context}s.
      */
-    Optional<String> getOption(String key);
+    CONTEXT_MISMATCH,
+
+    /**
+     * The transaction failed for an unspecific reason.
+     */
+    FAILED,
+
+    /**
+     * The account did not have enough funds requested.
+     */
+    ACCOUNT_NO_FUNDS,
+
+    /**
+     * The account would be put past it's maximum capacity, so the transaction failed.
+     */
+    ACCOUNT_NO_SPACE
 }

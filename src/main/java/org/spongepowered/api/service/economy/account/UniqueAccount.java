@@ -22,35 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.option;
+package org.spongepowered.api.service.economy.account;
 
-import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.profile.GameProfile;
 
-import java.util.Optional;
-import java.util.Set;
+import java.util.UUID;
 
-public interface OptionSubject extends Subject {
-    @Override
-    OptionSubjectData getSubjectData();
-
-    @Override
-    OptionSubjectData getTransientSubjectData();
-
-    /**
-     * Get the value of a given option in the given context.
-     *
-     * @param contexts The contexts to get the options from
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
-     */
-    Optional<String> getOption(Set<Context> contexts, String key);
+/**
+ * Represents an {@link Account} identified by a {@link UUID}.
+ *
+ * <p>This is usually linked to a particular {@link User}'s {@link GameProfile},
+ * through the {@link UUID}</p>.
+ */
+public interface UniqueAccount extends Account {
 
     /**
-     * Get the value of a given option in the subject's current context
+     * Gets the UUID of the associated {@link User}.
      *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
+     * @return The uuid
      */
-    Optional<String> getOption(String key);
+    UUID getUUID();
+
 }
