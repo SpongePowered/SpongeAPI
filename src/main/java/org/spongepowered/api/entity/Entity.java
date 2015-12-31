@@ -30,6 +30,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.NamedCause;
@@ -43,9 +44,12 @@ import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.Collection;
 import java.util.EnumSet;
+import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 import java.util.function.Predicate;
+
+import javax.annotation.Nullable;
 
 /**
  * An entity is a Minecraft entity.
@@ -271,6 +275,48 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable {
      * @return True if the teleport was successful
      */
     boolean transferToWorld(UUID uuid, Vector3d position);
+
+    /**
+     * Gets the entity passenger that rides this entity, if available.
+     *
+     * @return The passenger entity, if it exists
+     */
+    Optional<Entity> getPassenger();
+
+    /**
+     * Sets the passenger entity(the entity that rides this one).
+     *
+     * @param entity The entity passenger, or null to eject
+     * @return True if the set was successful
+     */
+    DataTransactionResult setPassenger(@Nullable Entity entity);
+
+    /**
+     * Gets the entity vehicle that this entity is riding, if available.
+     *
+     * @return The vehicle entity, if it exists
+     */
+    Optional<Entity> getVehicle();
+
+    /**
+     * Sets the vehicle entity(the entity that is ridden by this one).
+     *
+     * @param entity The entity vehicle, or null to dismount
+     * @return True if the set was successful
+     */
+    DataTransactionResult setVehicle(@Nullable Entity entity);
+
+    /**
+     * Gets the entity vehicle that is the base of what ever stack the
+     * current entity is a part of. This can be the current entity, if it is
+     * not riding any vehicle.
+     *
+     * <p>The returned entity can never ride another entity, that would make
+     * the ridden entity the base of the stack.</p>
+     *
+     * @return The vehicle entity, if available
+     */
+    Entity getBaseVehicle();
 
     /**
      * Returns whether this entity is on the ground (not in the air) or not.
