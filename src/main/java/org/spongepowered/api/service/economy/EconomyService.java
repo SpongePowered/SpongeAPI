@@ -31,6 +31,7 @@ import org.spongepowered.api.service.economy.account.VirtualAccount;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -54,16 +55,18 @@ public interface EconomyService extends ContextualService<Account> {
     Currency getDefaultCurrency();
 
     /**
-     * Returns the {@link Collection} of supported {@link Currency} objects that are
+     * Returns the {@link Set} of supported {@link Currency} objects that are
      * implemented by this EconomyService.
      *
-     * <p>The collection returned is only a view of all currencies available in the
-     * EconomyService. Attempting to inject new currencies may or may not work and
-     * may cause an exception to be raised depending on implementation.</p>
+     * <p>The economy service provider may only support one currency, in which case
+     * {@link #getDefaultCurrency()} will be the only member of the set.</p>
      *
-     * @return Collection of all Currencies
+     * <p>The set returned is a read-only a view of all currencies available in the
+     * EconomyService.</p>
+     *
+     * @return The {@link Set} of all {@link Currency}s
      */
-    Collection<Currency> getCurrencies();
+    Set<Currency> getCurrencies();
 
     /**
      * Gets the {@link UniqueAccount} with the specified {@link UUID}, if available.
