@@ -22,35 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.option;
+package org.spongepowered.api.service.context;
 
-import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.permission.Subject;
 
-import java.util.Optional;
-import java.util.Set;
-
-public interface OptionSubject extends Subject {
-    @Override
-    OptionSubjectData getSubjectData();
-
-    @Override
-    OptionSubjectData getTransientSubjectData();
+public interface ContextualService<T extends Contextual> {
 
     /**
-     * Get the value of a given option in the given context.
+     * Register a function that calculates {@link Context}s relevant to a 
+     * {@link Contextual} given at the time the function is called.
      *
-     * @param contexts The contexts to get the options from
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
+     * @param calculator The context calculator to register
      */
-    Optional<String> getOption(Set<Context> contexts, String key);
-
-    /**
-     * Get the value of a given option in the subject's current context
-     *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
-     */
-    Optional<String> getOption(String key);
+    void registerContextCalculator(ContextCalculator<T> calculator);
 }

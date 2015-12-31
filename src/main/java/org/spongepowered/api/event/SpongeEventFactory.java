@@ -93,6 +93,7 @@ import org.spongepowered.api.event.command.MessageSinkEvent;
 import org.spongepowered.api.event.command.SendCommandEvent;
 import org.spongepowered.api.event.command.TabCompleteCommandEvent;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
+import org.spongepowered.api.event.economy.EconomyTransactionEvent;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
 import org.spongepowered.api.event.entity.BreedEntityEvent;
 import org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent;
@@ -190,6 +191,7 @@ import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.network.status.StatusClient;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.resourcepack.ResourcePack;
+import org.spongepowered.api.service.economy.transaction.TransactionResult;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
@@ -1197,6 +1199,22 @@ public class SpongeEventFactory {
         values.put("originalChanges", originalChanges);
         values.put("targetHolder", targetHolder);
         return SpongeEventFactoryUtils.createEventImpl(ChangeDataHolderEvent.ValueChange.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.economy.EconomyTransactionEvent}.
+     * 
+     * @param cause The cause
+     * @param transactionResult The transaction result
+     * @return A new economy transaction event
+     */
+    public static EconomyTransactionEvent createEconomyTransactionEvent(Cause cause, TransactionResult transactionResult) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("transactionResult", transactionResult);
+        return SpongeEventFactoryUtils.createEventImpl(EconomyTransactionEvent.class, values);
     }
 
     /**

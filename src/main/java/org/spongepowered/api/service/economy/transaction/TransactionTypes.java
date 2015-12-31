@@ -22,35 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.option;
+package org.spongepowered.api.service.economy.transaction;
 
-import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.service.economy.Currency;
+import org.spongepowered.api.service.economy.account.Account;
 
-import java.util.Optional;
-import java.util.Set;
-
-public interface OptionSubject extends Subject {
-    @Override
-    OptionSubjectData getSubjectData();
-
-    @Override
-    OptionSubjectData getTransientSubjectData();
+public final class TransactionTypes {
 
     /**
-     * Get the value of a given option in the given context.
-     *
-     * @param contexts The contexts to get the options from
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
+     * Represents a transaction where an {@link Account} received some amount of a {@link Currency}.
      */
-    Optional<String> getOption(Set<Context> contexts, String key);
+    public static final TransactionType DEPOSIT = null;
 
     /**
-     * Get the value of a given option in the subject's current context
-     *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
+     * Represents a transaction where an {@link Account} lost some amount of a {@link Currency}.
      */
-    Optional<String> getOption(String key);
+    public static final TransactionType WITHDRAW = null;
+
+    /**
+     * Represents a transaction where an {@link Account} transferred some amount of a currency to another {@link Account}.
+     */
+    public static final TransactionType TRANSFER = null;
+
+    private TransactionTypes() {
+    }
+
 }

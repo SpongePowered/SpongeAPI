@@ -22,35 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.option;
+package org.spongepowered.api.service.context;
 
-import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.permission.Subject;
-
-import java.util.Optional;
 import java.util.Set;
 
-public interface OptionSubject extends Subject {
-    @Override
-    OptionSubjectData getSubjectData();
-
-    @Override
-    OptionSubjectData getTransientSubjectData();
-
-    /**
-     * Get the value of a given option in the given context.
-     *
-     * @param contexts The contexts to get the options from
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
-     */
-    Optional<String> getOption(Set<Context> contexts, String key);
+/**
+ * A common interface for objects that have an identifier and are bound by
+ * {@link Context}s.
+ *
+ */
+public interface Contextual {
 
     /**
-     * Get the value of a given option in the subject's current context
+     * Returns the identifier associated with this Contextual. Not guaranteed to
+     * be human-readable.
      *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
+     * @return The unique identifier for this subject
      */
-    Optional<String> getOption(String key);
+    String getIdentifier();
+
+    /**
+     * Calculate active contexts, using the {@link ContextCalculator}s for the
+     * service.
+     *
+     * <p>The result of these calculations may be cached.</p>
+     *
+     * @return An immutable set of active contexts
+     */
+    Set<Context> getActiveContexts();
 }

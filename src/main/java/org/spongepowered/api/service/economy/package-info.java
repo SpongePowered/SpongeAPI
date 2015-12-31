@@ -22,35 +22,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.option;
-
-import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.permission.Subject;
-
-import java.util.Optional;
-import java.util.Set;
-
-public interface OptionSubject extends Subject {
-    @Override
-    OptionSubjectData getSubjectData();
-
-    @Override
-    OptionSubjectData getTransientSubjectData();
-
-    /**
-     * Get the value of a given option in the given context.
-     *
-     * @param contexts The contexts to get the options from
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
-     */
-    Optional<String> getOption(Set<Context> contexts, String key);
-
-    /**
-     * Get the value of a given option in the subject's current context
-     *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
-     */
-    Optional<String> getOption(String key);
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.service.economy;

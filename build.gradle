@@ -66,6 +66,7 @@ genEventImpl {
             'src/main/java/org/spongepowered/api/event/block/',
             'src/main/java/org/spongepowered/api/event/command/',
             'src/main/java/org/spongepowered/api/event/data/',
+            'src/main/java/org/spongepowered/api/event/economy/',
             'src/main/java/org/spongepowered/api/event/entity/',
             'src/main/java/org/spongepowered/api/event/game/',
             'src/main/java/org/spongepowered/api/event/item/inventory/',

@@ -30,7 +30,8 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
-import org.spongepowered.api.service.permission.context.Context;
+
+import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.permission.option.OptionSubjectData;
 import org.spongepowered.api.util.Tristate;
 

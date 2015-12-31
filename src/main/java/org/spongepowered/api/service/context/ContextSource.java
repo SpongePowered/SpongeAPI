@@ -22,35 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.permission.option;
+package org.spongepowered.api.service.context;
 
-import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.permission.Subject;
-
-import java.util.Optional;
-import java.util.Set;
-
-public interface OptionSubject extends Subject {
-    @Override
-    OptionSubjectData getSubjectData();
-
-    @Override
-    OptionSubjectData getTransientSubjectData();
+/**
+ * A common interface for objects that have a relevant context.
+ */
+public interface ContextSource {
 
     /**
-     * Get the value of a given option in the given context.
+     * Returns the context most relevant to this object. This context may be the
+     * same across multiple invocations (but may not, so don't count on this
+     * being true).
      *
-     * @param contexts The contexts to get the options from
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
+     * @return A given context
      */
-    Optional<String> getOption(Set<Context> contexts, String key);
-
-    /**
-     * Get the value of a given option in the subject's current context
-     *
-     * @param key The key to get an option by. Case-insensitive.
-     * @return The value of the option, if any is present
-     */
-    Optional<String> getOption(String key);
+    Context getContext();
 }
