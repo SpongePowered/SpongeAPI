@@ -256,10 +256,14 @@ public final class Color implements DataSerializable {
             if (!container.contains(Queries.COLOR_RED, Queries.COLOR_GREEN, Queries.COLOR_BLUE)) {
                 return Optional.empty();
             }
-            final int red = container.getInt(Queries.COLOR_RED).get();
-            final int green = container.getInt(Queries.COLOR_GREEN).get();
-            final int blue = container.getInt(Queries.COLOR_BLUE).get();
-            return Optional.of(Color.ofRgb(red, green, blue));
+            try {
+                final int red = container.getInt(Queries.COLOR_RED).get();
+                final int green = container.getInt(Queries.COLOR_GREEN).get();
+                final int blue = container.getInt(Queries.COLOR_BLUE).get();
+                return Optional.of(Color.ofRgb(red, green, blue));
+            } catch (Exception e) {
+                throw new InvalidDataException("Could not parse some data.", e);
+            }
         }
     }
 }

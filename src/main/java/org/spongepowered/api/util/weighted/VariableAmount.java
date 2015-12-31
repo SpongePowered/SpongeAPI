@@ -252,7 +252,13 @@ public interface VariableAmount extends DataSerializable {
         @Override
         public DataContainer toContainer() {
             return new MemoryDataContainer()
+                    .set(Queries.CONTENT_VERSION, getContentVersion())
                     .set(Queries.VARIABLE_AMOUNT, this.amount);
+        }
+
+        @Override
+        public int getContentVersion() {
+            return 1;
         }
     }
 
