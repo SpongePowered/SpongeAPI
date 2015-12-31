@@ -116,6 +116,23 @@ public interface GameRegistry {
     <T extends ResettableBuilder<?, ? super T>> T createBuilder(Class<T> builderClass) throws IllegalArgumentException;
 
     /**
+     * Registers a new {@link CatalogType} instance if registration for that
+     * type is supported.
+     * 
+     * <p>Note that this is intended only for registering new instances of
+     * already existing CatalogTypes, not for registering entirely new
+     * CatalogType classes.</p>
+     * 
+     * @param type The CatalogType class
+     * @param obj The catalog type instance
+     * @throws IllegalArgumentException If there is an id conflict with the
+     *         given type and an existing type
+     * @throws UnsupportedOperationException If registration for the given type
+     *         is not supported
+     */
+    <T extends CatalogType> void register(Class<T> type, T obj) throws IllegalArgumentException, UnsupportedOperationException;
+
+    /**
      * Gets a {@link Collection} of the default GameRules.
      *
      * @return The default GameRules.
@@ -178,13 +195,6 @@ public interface GameRegistry {
      * @return An immutable collection containing all statistics in the group
      */
     Collection<Statistic> getStatistics(StatisticGroup statisticGroup);
-
-    /**
-     * Registers a custom statistic.
-     *
-     * @param stat The custom statistic
-     */
-    void registerStatistic(Statistic stat);
 
     /**
      * Gets the {@link Rotation} with the provided degrees.
@@ -274,14 +284,6 @@ public interface GameRegistry {
      * @return The {@link DisplaySlot} with the provided color, or Optional.empty() if not found
      */
     Optional<DisplaySlot> getDisplaySlotForColor(TextColor color);
-
-    /**
-     * Registers a {@link WorldGeneratorModifier}, so that the server is able to
-     * use it for modifying the world generator of a new world.
-     *
-     * @param modifier The modifier to register
-     */
-    void registerWorldGeneratorModifier(WorldGeneratorModifier modifier);
 
     /**
      * Registers a new {@link AbstractAITask} with an {@link Agent} as the owner. The complete id

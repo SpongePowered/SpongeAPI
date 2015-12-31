@@ -4609,12 +4609,14 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Populate}.
      * 
      * @param cause The cause
+     * @param populator The populator
      * @param targetChunk The target chunk
      * @return A new populate populate chunk event
      */
-    public static PopulateChunkEvent.Populate createPopulateChunkEventPopulate(Cause cause, Chunk targetChunk) {
+    public static PopulateChunkEvent.Populate createPopulateChunkEventPopulate(Cause cause, Populator populator, Chunk targetChunk) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
+        values.put("populator", populator);
         values.put("targetChunk", targetChunk);
         return SpongeEventFactoryUtils.createEventImpl(PopulateChunkEvent.Populate.class, values);
     }

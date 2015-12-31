@@ -27,6 +27,7 @@ package org.spongepowered.api.event.world.chunk;
 
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.Transaction;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.gen.PopulatorType;
 
@@ -35,6 +36,9 @@ import java.util.Map;
 
 public interface PopulateChunkEvent extends TargetChunkEvent {
 
+    /**
+     * Called before a chunk begins populating.
+     */
     interface Pre extends PopulateChunkEvent {
 
         /**
@@ -46,8 +50,23 @@ public interface PopulateChunkEvent extends TargetChunkEvent {
 
     }
 
-    interface Populate extends PopulateChunkEvent {}
+    /**
+     * Called when a populator is about to run against a chunk.
+     */
+    interface Populate extends PopulateChunkEvent, Cancellable {
 
+        /**
+         * Gets the populator which is about to be run.
+         * 
+         * @return The populator
+         */
+        Populator getPopulator();
+
+    }
+
+    /**
+     * Called when a chunk finishes populating.
+     */
     interface Post extends PopulateChunkEvent {
         /**
          * Returns an immutable map of all processed {@link PopulatorType}s

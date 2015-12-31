@@ -34,11 +34,4 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(PopulatorTypes.class)
 public interface PopulatorType extends CatalogType, Translatable {
 
-    /**
-     * Returns the populator class for this type.
-     *
-     * @return The populator class for this type
-     */
-    Class<? extends Populator> getPopulatorClass();
-
 }

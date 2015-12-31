@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.world.gen.type;
 
-import com.google.common.base.Optional;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.gen.PopulatorObject;
+
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
