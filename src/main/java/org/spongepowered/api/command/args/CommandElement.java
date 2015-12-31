@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.command.args;
 
+import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.Texts;
-import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 import java.util.List;
 
@@ -122,9 +124,10 @@ public abstract class CommandElement {
      * @param src The source requesting tab completions
      * @param args The arguments currently provided
      * @param context The context to store state in
+     * @param location
      * @return Any relevant completions
      */
-    public abstract List<String> complete(CommandSource src, CommandArgs args, CommandContext context);
+    public abstract List<String> complete(CommandSource src, CommandArgs args, CommandContext context, @Nullable Location<World> location);
 
     /**
      * Return a usage message for this specific argument.

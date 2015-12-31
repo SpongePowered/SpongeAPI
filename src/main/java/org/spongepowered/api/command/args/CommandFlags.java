@@ -35,6 +35,8 @@ import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -211,7 +213,7 @@ class CommandFlags extends CommandElement {
     }
 
     @Override
-    public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+    public List<String> complete(CommandSource src, CommandArgs args, CommandContext context, Location<World> location) {
         Object startIdx = args.getState();
         Optional<String> arg;
         while (args.hasNext()) {
@@ -220,13 +222,13 @@ class CommandFlags extends CommandElement {
                 Object flagStartIdx = args.getState();
                 if (arg.get().startsWith("--")) { // Long flag
                     String longFlag = arg.get().substring(2);
-                    List<String> ret = tabCompleteLongFlag(longFlag, src, args, context);
+                    List<String> ret = tabCompleteLongFlag(longFlag, src, args, context, location);
                     if (ret != null) {
                         return ret;
                     }
                 } else {
                     final String argStr = arg.get().substring(1);
-                    List<String> ret = tabCompleteShortFlags(argStr, src, args, context);
+                    List<String> ret = tabCompleteShortFlags(argStr, src, args, context, location);
                     if (ret != null) {
                         return ret;
                     }
@@ -239,14 +241,14 @@ class CommandFlags extends CommandElement {
 
         args.setState(startIdx);
         if (this.childElement != null) {
-            return this.childElement.complete(src, args, context);
+            return this.childElement.complete(src, args, context, location);
         } else {
             return Collections.emptyList();
         }
     }
 
     @Nullable
-    private List<String> tabCompleteLongFlag(String longFlag, CommandSource src, CommandArgs args, CommandContext context) {
+    private List<String> tabCompleteLongFlag(String longFlag, CommandSource src, CommandArgs args, CommandContext context, @Nullable Location<World> location) {
         if (longFlag.contains("=")) {
             final String[] flagSplit = longFlag.split("=", 2);
             longFlag = flagSplit[0];
@@ -263,7 +265,7 @@ class CommandFlags extends CommandElement {
                 } catch (ArgumentParseException ex) {
                     args.setState(position);
                     return ImmutableList.copyOf(
-                        element.complete(src, args, context).stream().map(input -> "--" + finalLongFlag + "=" + input).collect(Collectors.toList()));
+                        element.complete(src, args, context, location).stream().map(input -> "--" + finalLongFlag + "=" + input).collect(Collectors.toList()));
                 }
             }
         } else {
@@ -291,7 +293,7 @@ class CommandFlags extends CommandElement {
                 }
                 if (complete) {
                     args.setState(state);
-                    return element.complete(src, args, context);
+                    return element.complete(src, args, context, location);
                 }
             }
         }
@@ -299,7 +301,7 @@ class CommandFlags extends CommandElement {
     }
 
     @Nullable
-    private List<String> tabCompleteShortFlags(String shortFlags, CommandSource src, CommandArgs args, CommandContext context) {
+    private List<String> tabCompleteShortFlags(String shortFlags, CommandSource src, CommandArgs args, CommandContext context, @Nullable Location<World> location) {
         for (int i = 0; i < shortFlags.length(); ++i) {
             final String flagChar = shortFlags.substring(i, i + 1);
             CommandElement element = this.shortFlags.get(flagChar);
@@ -316,7 +318,7 @@ class CommandFlags extends CommandElement {
                 element.parse(src, args, context);
             } catch (ArgumentParseException ex) {
                 args.setState(start);
-                return element.complete(src, args, context);
+                return element.complete(src, args, context, location);
             }
         }
         return null;
