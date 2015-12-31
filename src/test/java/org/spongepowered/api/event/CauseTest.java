@@ -122,7 +122,7 @@ public class CauseTest {
         final Player player = Mockito.mock(Player.class);
         final NamedCause ownerCause = NamedCause.of(NamedCause.OWNER, player);
         final Cause playerCause = Cause.of(ownerCause);
-        Optional<Player> optional = playerCause.get(NamedCause.OWNER);
+        Optional<Player> optional = playerCause.get(NamedCause.OWNER, Player.class);
         assertThat(optional.isPresent(), is(true));
     }
 

@@ -121,6 +121,7 @@ public final class Cause {
     private final Object[] cause;
     private final String[] names;
 
+
     // lazy load
     @Nullable private Map<String, Object> namedObjectMap;
 
@@ -196,14 +197,20 @@ public final class Cause {
      * all objects in a cause are uniquely named.
      *
      * @param named The name associated with the object cause
+     * @param expected The expected class type of the cause object
      * @param <T> The type of the object expected
      * @return The object, if the type is correct and the name was associated
      */
-    public <T> Optional<T> get(String named) {
+    public <T> Optional<T> get(String named, Class<T> expected) {
         checkArgument(named != null, "The name cannot be null!");
+        checkArgument(expected != null, "The expected class cannot be null!");
         for (int i = 0; i < this.names.length; i++) {
             if (this.names[i].equalsIgnoreCase(named)) {
-                return getCauseAtIndex(i);
+                final Object object = this.cause[i];
+                if (expected.isInstance(object)) {
+                    return Optional.of((T) object);
+                }
+                return Optional.empty();
             }
         }
         return Optional.empty();
@@ -451,15 +458,6 @@ public final class Cause {
             this.namedObjectMap = builder.build();
         }
         return this.namedObjectMap;
-    }
-
-    private <T> Optional<T> getCauseAtIndex(int index) {
-        try {
-            final Object object = this.cause[index];
-            return Optional.of((T) object);
-        } catch (Exception e) {
-            return Optional.empty();
-        }
     }
 
     @Override
