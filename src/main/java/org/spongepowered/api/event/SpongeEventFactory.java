@@ -161,6 +161,7 @@ import org.spongepowered.api.event.network.PardonIpEvent;
 import org.spongepowered.api.event.network.rcon.RconConnectionEvent;
 import org.spongepowered.api.event.server.ClientPingServerEvent;
 import org.spongepowered.api.event.server.query.QueryServerEvent;
+import org.spongepowered.api.event.service.ChangeServiceProviderEvent;
 import org.spongepowered.api.event.statistic.ChangeStatisticEvent;
 import org.spongepowered.api.event.user.BanUserEvent;
 import org.spongepowered.api.event.user.PardonUserEvent;
@@ -191,6 +192,7 @@ import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.network.status.StatusClient;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.resourcepack.ResourcePack;
+import org.spongepowered.api.service.ProviderRegistration;
 import org.spongepowered.api.service.economy.transaction.TransactionResult;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
@@ -4135,6 +4137,24 @@ public class SpongeEventFactory {
         values.put("playerCount", playerCount);
         values.put("size", size);
         return SpongeEventFactoryUtils.createEventImpl(QueryServerEvent.Full.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.service.ChangeServiceProviderEvent}.
+     * 
+     * @param cause The cause
+     * @param newProviderRegistration The new provider registration
+     * @param previousProviderRegistration The previous provider registration
+     * @return A new change service provider event
+     */
+    public static ChangeServiceProviderEvent createChangeServiceProviderEvent(Cause cause, ProviderRegistration<?> newProviderRegistration, Optional<ProviderRegistration<?>> previousProviderRegistration) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("newProviderRegistration", newProviderRegistration);
+        values.put("previousProviderRegistration", previousProviderRegistration);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeServiceProviderEvent.class, values);
     }
 
     /**

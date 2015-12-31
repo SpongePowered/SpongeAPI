@@ -35,6 +35,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
+import org.mockito.stubbing.Answer;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.cause.Cause;
@@ -43,7 +44,9 @@ import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.HealEntityEvent;
 import org.spongepowered.api.event.entity.ai.AITaskEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
+import org.spongepowered.api.service.ProviderRegistration;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.PEBKACException;
 import org.spongepowered.api.util.event.factory.EventFactory;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
@@ -68,6 +71,10 @@ public class SpongeEventFactoryTest {
     // We need to keep a reference to any mocked Extent passed into a Location,
     // to ensure that it is not GC'd for the duration of a test. This list
     private static List<Extent> extents = new ArrayList<>();
+
+    private static final Answer<Object> EVENT_MOCKING_ANSWER = (invoc -> {
+        return invoc.getMethod().getReturnType().equals(Class.class) ? PEBKACException.class : Mockito.RETURNS_MOCKS.answer(invoc);
+    });
 
     @Parameterized.Parameters(name = "{0}")
     public static List<Object[]> getMethods() {
@@ -210,7 +217,7 @@ public class SpongeEventFactoryTest {
         } else if (paramType == Text.class) {
             return Text.of();
         } else {
-            return mock(paramType, withSettings().defaultAnswer(Mockito.RETURNS_MOCKS));
+            return mock(paramType, withSettings().defaultAnswer(EVENT_MOCKING_ANSWER));
         }
     }
 

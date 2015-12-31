@@ -30,18 +30,27 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(Sponge.class)
 public class SimpleServiceManagerTest {
 
-    private static final PluginManager manager = Mockito.mock(PluginManager.class);
-    private static final Object testPlugin = new Object();
-    private static final PluginContainer testPluginContainer = Mockito.mock(PluginContainer.class);
+    private final PluginManager manager = Mockito.mock(PluginManager.class);
+    private final Object testPlugin = new Object();
+    private final PluginContainer testPluginContainer = Mockito.mock(PluginContainer.class);
+    private final EventManager testEventManager = Mockito.mock(EventManager.class);
 
     {
         Mockito.when(testPluginContainer.getId()).thenReturn("TestPlugin");
@@ -49,7 +58,10 @@ public class SimpleServiceManagerTest {
     }
 
     @Test
-    public void testRegisterService() throws ProviderExistsException {
+    public void testRegisterService() {
+        PowerMockito.mockStatic(Sponge.class);
+        PowerMockito.when(Sponge.getEventManager()).thenReturn(testEventManager);
+
         SimpleServiceManager serviceManager = new SimpleServiceManager(manager);
 
         serviceManager.setProvider(testPlugin, TestInterface.class, new TestImplCow());
@@ -61,58 +73,33 @@ public class SimpleServiceManagerTest {
         assertEquals("moo", serviceManager.provideUnchecked(TestInterface.class).bark());
     }
 
-    @Test(expected = ProviderExistsException.class)
-    public void testDuplicateRegistrationForbidden() throws ProviderExistsException {
+    @Test
+    public void testDuplicateRegistrationAllowed() {
+        PowerMockito.mockStatic(Sponge.class);
+        PowerMockito.when(Sponge.getEventManager()).thenReturn(testEventManager);
+
         SimpleServiceManager serviceManager = new SimpleServiceManager(manager);
         serviceManager.setProvider(testPlugin, TestInterface.class, new TestImplCow());
         serviceManager.setProvider(testPlugin, TestInterface.class, new TestImplDog());
+
+        assertEquals("woof", serviceManager.provideUnchecked(TestInterface.class).bark());
     }
 
     @Test
-    public void testFutureProvide() throws ProviderExistsException {
+    public void testGetProviderRegistration() {
+        PowerMockito.mockStatic(Sponge.class);
+        PowerMockito.when(Sponge.getEventManager()).thenReturn(testEventManager);
+
+        TestImplCow testImplCow = new TestImplCow();
+
         SimpleServiceManager serviceManager = new SimpleServiceManager(manager);
+        serviceManager.setProvider(testPlugin, TestInterface.class, testImplCow);
 
-        ServiceReference<TestInterface> futureRef = serviceManager.potentiallyProvide(TestInterface.class);
-        assertFalse(futureRef.ref().isPresent());
+        ProviderRegistration<TestInterface> registration = serviceManager.getRegistration(TestInterface.class).get();
 
-        serviceManager.setProvider(testPlugin, TestInterface.class, new TestImplCow());
-
-        assertTrue(futureRef.ref().isPresent());
-        assertEquals("moo", futureRef.ref().get().bark());
-
-    }
-
-    @Test
-    public void testPerformActionOnProvide() throws ProviderExistsException {
-        SimpleServiceManager serviceManager = new SimpleServiceManager(manager);
-
-        final AtomicBoolean ran = new AtomicBoolean(false);
-        ServiceReference<TestInterface> futureRef = serviceManager.potentiallyProvide(TestInterface.class);
-        futureRef.executeWhenPresent(input -> ran.set(true));
-        assertFalse(ran.get());
-        assertFalse(futureRef.ref().isPresent());
-
-        serviceManager.setProvider(testPlugin, TestInterface.class, new TestImplCow());
-        assertEquals(true, ran.get());
-
-        assertTrue(futureRef.ref().isPresent());
-        assertEquals("moo", futureRef.ref().get().bark());
-    }
-
-    @Test
-    public void testSharedReferences() throws ProviderExistsException {
-        SimpleServiceManager serviceManager = new SimpleServiceManager(manager);
-
-        final ServiceReference<TestInterface> firstRef = serviceManager.potentiallyProvide(TestInterface.class);
-        final ServiceReference<TestInterface> secondRef = serviceManager.potentiallyProvide(TestInterface.class);
-
-        assertEquals(firstRef, secondRef);
-
-        serviceManager.setProvider(testPlugin, TestInterface.class, new TestImplCow());
-
-        final ServiceReference<TestInterface> thirdRef = serviceManager.potentiallyProvide(TestInterface.class);
-        assertNotEquals(firstRef, thirdRef);
-
+        assertEquals(TestInterface.class, registration.getService());
+        assertEquals(testImplCow, registration.getProvider());
+        assertEquals(testPluginContainer, registration.getPlugin());
     }
 
     public interface TestInterface {

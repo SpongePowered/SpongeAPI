@@ -27,6 +27,9 @@ package org.spongepowered.api.service;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.MapMaker;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.event.SpongeEventFactory;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 
@@ -49,8 +52,6 @@ public class SimpleServiceManager implements ServiceManager {
 
     private final ConcurrentMap<Class<?>, Provider> providers =
             new MapMaker().concurrencyLevel(3).makeMap();
-    private final ConcurrentMap<Class<?>, SimpleServiceReference<?>> potentials =
-            new MapMaker().concurrencyLevel(3).weakKeys().makeMap();
     private final PluginManager pluginManager;
 
     /**
@@ -66,7 +67,7 @@ public class SimpleServiceManager implements ServiceManager {
     }
 
     @Override
-    public <T> void setProvider(Object plugin, Class<T> service, T provider) throws ProviderExistsException {
+    public <T> void setProvider(Object plugin, Class<T> service, T provider) {
         checkNotNull(plugin, "plugin");
         checkNotNull(service, "service");
         checkNotNull(provider, "provider");
@@ -79,32 +80,10 @@ public class SimpleServiceManager implements ServiceManager {
         }
 
         PluginContainer container = containerOptional.get();
-
-        Provider existing = this.providers.putIfAbsent(service, new Provider(container, provider));
-        if (existing != null) {
-            throw new ProviderExistsException("Provider for service " + service.getCanonicalName() + " has already been registered!");
-        }
-        @SuppressWarnings("unchecked")
-        SimpleServiceReference<T> ref = (SimpleServiceReference<T>) this.potentials.remove(service);
-        if (ref != null) {
-            ref.registered(provider);
-        }
+        Provider oldProvider = this.providers.put(service, new Provider<>(container, service, provider));
+        Sponge.getEventManager().post(SpongeEventFactory.createChangeServiceProviderEvent(Cause.of(container), this.providers.get(service), Optional.ofNullable(oldProvider)));
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> ServiceReference<T> potentiallyProvide(Class<T> service) {
-        SimpleServiceReference<T> ref = new SimpleServiceReference<>(provide(service));
-        @SuppressWarnings("rawtypes")
-        SimpleServiceReference newRef = this.potentials.putIfAbsent(service, ref);
-        if (newRef != null) {
-            ref = newRef;
-        }
-        if (ref.ref().isPresent()) {
-            this.potentials.remove(service, ref);
-        }
-        return ref;
-    }
 
     @SuppressWarnings("unchecked")
     @Override
@@ -112,6 +91,12 @@ public class SimpleServiceManager implements ServiceManager {
         checkNotNull(service, "service");
         @Nullable Provider provider = this.providers.get(service);
         return provider != null ? (Optional<T>) Optional.of(provider.provider) : Optional.<T>empty();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> Optional<ProviderRegistration<T>> getRegistration(Class<T> service) {
+        return Optional.ofNullable(this.providers.get(service));
     }
 
     @SuppressWarnings("unchecked")
@@ -126,69 +111,32 @@ public class SimpleServiceManager implements ServiceManager {
         }
     }
 
-    private static class Provider {
+    private static class Provider<T> implements ProviderRegistration<T> {
 
         @SuppressWarnings("unused")
         private final PluginContainer container;
-        private final Object provider;
+        private final Class<T> service;
+        private final T provider;
 
-        private Provider(PluginContainer container, Object provider) {
+        private Provider(PluginContainer container, Class<T> service, T provider) {
             this.container = container;
-            this.provider = provider;
-        }
-    }
-
-    private static class SimpleServiceReference<T> implements ServiceReference<T> {
-
-        private final List<Consumer<? super T>> actionsOnPresent = new CopyOnWriteArrayList<>();
-        private final Lock waitLock = new ReentrantLock();
-        private final Condition waitCondition = this.waitLock.newCondition();
-        private volatile Optional<T> service;
-
-        public SimpleServiceReference(Optional<T> service) {
             this.service = service;
+            this.provider = provider;
         }
 
         @Override
-        public Optional<T> ref() {
+        public Class<T> getService() {
             return this.service;
         }
 
         @Override
-        public T await() throws InterruptedException {
-            while (true) {
-                this.waitLock.lock();
-                try {
-                    Optional<T> service = this.service;
-                    if (service.isPresent()) {
-                        return service.get();
-                    }
-                    this.waitCondition.await();
-                } finally {
-                    this.waitLock.unlock();
-                }
-            }
+        public T getProvider() {
+            return this.provider;
         }
 
         @Override
-        public void executeWhenPresent(Consumer<? super T> run) {
-            if (!this.service.isPresent()) {
-                this.actionsOnPresent.add(run);
-            } else {
-                run.accept(this.service.get());
-            }
-        }
-
-        public void registered(T service) {
-            this.service = Optional.of(service);
-            this.waitLock.lock();
-            try {
-                this.waitCondition.signalAll();
-            } finally {
-                this.waitLock.unlock();
-            }
-            this.actionsOnPresent.forEach(func -> func.accept(service));
-            this.actionsOnPresent.clear();
+        public PluginContainer getPlugin() {
+            return this.container;
         }
     }
 

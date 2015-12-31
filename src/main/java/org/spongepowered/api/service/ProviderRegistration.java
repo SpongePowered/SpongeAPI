@@ -24,39 +24,32 @@
  */
 package org.spongepowered.api.service;
 
-import java.util.Optional;
-import java.util.function.Consumer;
+import org.spongepowered.api.plugin.PluginContainer;
 
 /**
- * A reference to a service that may or may not be currently registered, but will be updated if a registration does happen.
- *
- * @param <T> The type of the reference
+ * Represents the registration information for the provider of a service.
  */
-public interface ServiceReference<T> {
+public interface ProviderRegistration<T> {
 
     /**
-     * Get the reference to the current state of this service.
+     * Gets the service of this provider registration.
      *
-     * @return reference to the latest value of the service -- may not be present
+     * @return The service
      */
-    Optional<T> ref();
+    Class<T> getService();
 
     /**
-     * Block until the service is available. Bad idea to run this on the main thread.
+     * Gets the service provider of this provider regitration.
      *
-     * @return The service if available
-     * @throws InterruptedException if waiting is interrupted
+     * @return The provider
      */
-    T await() throws InterruptedException;
+    T getProvider();
 
     /**
-     * Queue a command to be executed after a service is registered.
-     * If the service is already registered, this function will be run immediately from the current thread.
-     *
-     * <p>If the service has not yet been registered, this function is called from the thread the service is registered on after registration occurs.
-     * The return value of the function is ignored.
-     *
-     * @param run The function to execute
+     * Gets the {@link PluginContainer} that registered the provider of this
+     * provider registration.
+     * @return
      */
-    void executeWhenPresent(Consumer<? super T> run);
+    PluginContainer getPlugin();
+
 }
