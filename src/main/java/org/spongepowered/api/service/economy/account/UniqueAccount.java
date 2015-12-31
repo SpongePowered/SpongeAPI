@@ -30,10 +30,12 @@ import org.spongepowered.api.profile.GameProfile;
 import java.util.UUID;
 
 /**
- * Represents an {@link Account} which is linked to a particular {@link User}'s {@link GameProfile},
- * through a UUID.
+ * Represents an {@link Account} identified by a {@link UUID}.
+ *
+ * <p>This is usually linked to a particular {@link User}'s {@link GameProfile},
+ * through the {@link UUID}</p>.
  */
-public interface UserAccount extends Account {
+public interface UniqueAccount extends Account {
 
     /**
      * Gets the UUID of the associated {@link User}.

@@ -53,7 +53,6 @@ public enum ResultType {
 
     /**
      * The account would be put past it's maximum capacity, so the transaction failed.
-     *
      */
     ACCOUNT_NO_SPACE
 }

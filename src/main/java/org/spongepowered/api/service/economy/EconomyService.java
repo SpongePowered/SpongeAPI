@@ -26,7 +26,7 @@ package org.spongepowered.api.service.economy;
 
 import org.spongepowered.api.service.context.ContextualService;
 import org.spongepowered.api.service.economy.account.Account;
-import org.spongepowered.api.service.economy.account.UserAccount;
+import org.spongepowered.api.service.economy.account.UniqueAccount;
 import org.spongepowered.api.service.economy.account.VirtualAccount;
 
 import java.util.Collection;
@@ -66,26 +66,26 @@ public interface EconomyService extends ContextualService<Account> {
     Collection<Currency> getCurrencies();
 
     /**
-     * Gets the {@link UserAccount} with the specified {@link UUID}, if available.
+     * Gets the {@link UniqueAccount} with the specified {@link UUID}, if available.
      *
      * @param uuid The {@link UUID} of the account to get
-     * @return The {@link UserAccount}, if available.
+     * @return The {@link UniqueAccount}, if available.
      */
-    Optional<UserAccount> getAccount(UUID uuid);
+    Optional<UniqueAccount> getAccount(UUID uuid);
 
     /**
-     * Attempts to create a {@link UserAccount} for the user with the specified {@link UUID}.
+     * Attempts to create a {@link UniqueAccount} for the user with the specified {@link UUID}.
      *
-     * <p>If an account already exists for the user with the specified {@link UUID}, it will be
+     * <p>If an account already exists with the specified {@link UUID}, it will be
      * returned. No further action will be taken.</p>
      *
-     * <p>Creation may fail if the provided {@link UUID} does not correspond to an actual
+     * <p>Creation might fail if the provided {@link UUID} does not correspond to an actual
      * player, or for an implementation-defined reason.</p>
      *
      * @param uuid The {@link UUID} of the account to create.
-     * @return The created {@link UserAccount}, if available.
+     * @return The created {@link UniqueAccount}, if available.
      */
-    Optional<UserAccount> createAccount(UUID uuid);
+    Optional<UniqueAccount> createAccount(UUID uuid);
 
     /**
      * Gets the {@link VirtualAccount} with the specified identifier, if available.

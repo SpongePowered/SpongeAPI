@@ -44,10 +44,9 @@ import org.spongepowered.api.text.Text;
 /**
  * Represents an account, which stores amounts of various {@link Currency currencies}.
  *
- * <p>Accounts come in two varieties: {@link UserAccount user accounts} and {@link VirtualAccount} virtual accounts.
+ * <p>Accounts come in two varieties: {@link UniqueAccount user accounts} and {@link VirtualAccount} virtual accounts.
  *
- * User account's are bound to the {@link UUID} of a particular {@link User}'s {@link GameProfile}.
- * They persist across name changes for the user.
+ * Unique accounts are bound to a {@link UUID}, usually of a particular {@link User}'s {@link GameProfile}.
  *
  * Virtual accounts are identified by a String identifier, which may have any value. They are
  * not tied to any {@link Entity}, player or otherwise. Virtual accounts may be used for purposes
@@ -59,7 +58,7 @@ public interface Account extends Contextual {
      * Gets the display name for this account.
      *
      * <p>This should be used by plugins to get a human-readable name for an
-     * account, regardless of the specific type ({@link UserAccount} or
+     * account, regardless of the specific type ({@link UniqueAccount} or
      * {@link VirtualAccount}).</p>
      *
      * <p>Its contents are dependent on the provider of {@link EconomyService}.
