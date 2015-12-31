@@ -48,4 +48,5 @@ public @interface All {
      * @return Should ignore if empty
      */
     boolean ignoreEmpty() default true;
+
 }
