@@ -89,7 +89,7 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.health.HealthModifier;
 import org.spongepowered.api.event.command.SendCommandEvent;
-import org.spongepowered.api.event.command.TabCompleteCommandEvent;
+import org.spongepowered.api.event.command.TabCompleteEvent;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 import org.spongepowered.api.event.economy.EconomyTransactionEvent;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
@@ -1088,21 +1088,65 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.command.TabCompleteCommandEvent}.
+     * {@link org.spongepowered.api.event.command.TabCompleteEvent}.
      * 
      * @param cause The cause
-     * @param arguments The arguments
-     * @param command The command
+     * @param originalTabCompletions The original tab completions
      * @param tabCompletions The tab completions
-     * @return A new tab complete command event
+     * @param rawMessage The raw message
+     * @return A new tab complete event
      */
-    public static TabCompleteCommandEvent createTabCompleteCommandEvent(Cause cause, String arguments, String command, List<String> tabCompletions) {
+    public static TabCompleteEvent createTabCompleteEvent(Cause cause, List<String> originalTabCompletions, List<String> tabCompletions, String rawMessage) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
+        values.put("originalTabCompletions", originalTabCompletions);
+        values.put("tabCompletions", tabCompletions);
+        values.put("rawMessage", rawMessage);
+        return SpongeEventFactoryUtils.createEventImpl(TabCompleteEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.command.TabCompleteEvent.Chat}.
+     * 
+     * @param cause The cause
+     * @param originalTabCompletions The original tab completions
+     * @param tabCompletions The tab completions
+     * @param rawMessage The raw message
+     * @return A new chat tab complete event
+     */
+    public static TabCompleteEvent.Chat createTabCompleteEventChat(Cause cause, List<String> originalTabCompletions, List<String> tabCompletions, String rawMessage) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("originalTabCompletions", originalTabCompletions);
+        values.put("tabCompletions", tabCompletions);
+        values.put("rawMessage", rawMessage);
+        return SpongeEventFactoryUtils.createEventImpl(TabCompleteEvent.Chat.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.command.TabCompleteEvent.Command}.
+     * 
+     * @param cause The cause
+     * @param originalTabCompletions The original tab completions
+     * @param tabCompletions The tab completions
+     * @param arguments The arguments
+     * @param command The command
+     * @param rawMessage The raw message
+     * @return A new command tab complete event
+     */
+    public static TabCompleteEvent.Command createTabCompleteEventCommand(Cause cause, List<String> originalTabCompletions, List<String> tabCompletions, String arguments, String command, String rawMessage) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("originalTabCompletions", originalTabCompletions);
+        values.put("tabCompletions", tabCompletions);
         values.put("arguments", arguments);
         values.put("command", command);
-        values.put("tabCompletions", tabCompletions);
-        return SpongeEventFactoryUtils.createEventImpl(TabCompleteCommandEvent.class, values);
+        values.put("rawMessage", rawMessage);
+        return SpongeEventFactoryUtils.createEventImpl(TabCompleteEvent.Command.class, values);
     }
 
     /**
@@ -3683,7 +3727,7 @@ public class SpongeEventFactory {
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.message.MessageChannelEvent}.
-     *
+     * 
      * @param cause The cause
      * @param originalChannel The original channel
      * @param channel The channel
@@ -3705,7 +3749,7 @@ public class SpongeEventFactory {
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.message.MessageChannelEvent.Chat}.
-     *
+     * 
      * @param cause The cause
      * @param originalChannel The original channel
      * @param channel The channel
@@ -3729,7 +3773,7 @@ public class SpongeEventFactory {
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.message.MessageEvent}.
-     *
+     * 
      * @param cause The cause
      * @param originalMessage The original message
      * @param message The message
@@ -3747,7 +3791,7 @@ public class SpongeEventFactory {
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.network.BanIpEvent}.
-     *
+     * 
      * @param cause The cause
      * @param ban The ban
      * @return A new ban ip event
