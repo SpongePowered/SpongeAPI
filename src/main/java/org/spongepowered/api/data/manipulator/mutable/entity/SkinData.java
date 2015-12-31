@@ -46,6 +46,6 @@ public interface SkinData extends DataManipulator<SkinData, ImmutableSkinData> {
      *
      * @return The value for the skin uuid
      */
-    Value<UUID> skin();
+    Value<UUID> skinUniqueId();
 
 }
