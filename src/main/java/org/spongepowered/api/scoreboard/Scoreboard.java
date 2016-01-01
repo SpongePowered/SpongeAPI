@@ -55,6 +55,7 @@ public interface Scoreboard {
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
+
     /**
      * Gets an {@link Objective} on this scoreboard by name, if it exists.
      *
@@ -62,6 +63,15 @@ public interface Scoreboard {
      * @return The {@link Objective}, if it exists
      */
     Optional<Objective> getObjective(String name);
+
+    /**
+     * Gets the {@link Objective} currently displayed in a {@link DisplaySlot} on this
+     * scoreboard, if one is present.
+     *
+     * @param slot The {@link DisplaySlot}
+     * @return the {@link Objective} currently displayed, if present
+     */
+    Optional<Objective> getObjective(DisplaySlot slot);
 
     /**
      * Adds the specified {@link Objective} to this scoreboard.
@@ -72,15 +82,6 @@ public interface Scoreboard {
      *             specified {@link Objective} has already been added.
      */
     void addObjective(Objective objective) throws IllegalArgumentException;
-
-    /**
-     * Gets the {@link Objective} currently displayed in a {@link DisplaySlot} on this
-     * scoreboard, if one is present.
-     *
-     * @param slot The {@link DisplaySlot}
-     * @return the {@link Objective} currently displayed, if present
-     */
-    Optional<Objective> getObjective(DisplaySlot slot);
 
     /**
      * Sets the specified {@link Objective} in the specified {@link DisplaySlot}.

@@ -45,10 +45,10 @@ public final class Criteria {
     public static final Criterion TRIGGER = null;
 
     /**
-     * Represents a {@link Criteria} which causes an {@link Objective}
-     * to have a score for a player represent their current health,
-     * on a scale of 0-20 (can be greater than 20 due to effects
-     * such as {@link PotionEffectTypes#HEALTH_BOOST}
+     * Represents a {@link Criteria} which causes an {@link Objective} to have
+     * a score for a player represent their current health, on a scale of 0-20
+     * (can be greater than 20 due to effects such as
+     * {@link PotionEffectTypes#HEALTH_BOOST}).
      */
     public static final Criterion HEALTH = null;
 

@@ -47,8 +47,8 @@ import java.util.UUID;
 public interface TeamMember {
 
     /**
-     * Gets an {@link Text} representing this team member, suitable for
-     * adding to an {@link Team} with {@link Team#addMember(Text).
+     * Gets a {@link Text} representing this team member, suitable for adding
+     * to an {@link Team} with {@link Team#addMember(Text)}.
      *
      * @return an {@link Text} representing this team member
      */

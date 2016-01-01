@@ -43,18 +43,20 @@ import java.util.Set;
  * While any {@link Text} can be added to a team, certain {@link Text}s convey a special
  * meaning.</p>
  *
- * <p>Examples of this include players, whose names gain the prefix and suffix of
- * the team they are on.</p>
+ * <p>Examples of this include players, whose names gain the prefix and suffix
+ * of the team they are on.</p>
  *
  * <p>With the exception of {@link #getNameTagVisibility()} (which is handled client-side),
- * all of the team options require players to have the same team object (and by extension,
- * the same scoreboard).
+ * all of the team options require players to have the same team object (and by
+ * extension, the same scoreboard).
  *
- * For example, consider two players who each have different scoreboards set. Each scoreboard has
- * a team registered with identical names, each containing the same players. Both players would
- * always be able to attack each other, regardless of the value of {@link #allowFriendlyFire()}.
- * For it to work, both players must have the same scoreboard, and be on a team registered
- * to said scoreboard.</p>
+ * For example, consider two players who each have different scoreboards set.
+ * Each scoreboard has a team registered with identical names, each containing
+ * the same players. Both players would always be able to attack each other,
+ * regardless of the value of {@link #allowFriendlyFire()}.
+ *
+ * For it to work, both players must have the same scoreboard, and be on a team
+ * registered to said scoreboard.</p>
  */
 public interface Team {
 
@@ -219,9 +221,10 @@ public interface Team {
     /**
      * Adds the specified {@link Text} to this team.
      *
-     * <p>While any {@link Text} may be added, the {@link Text}
-     * to use should normally be obtained by calling {@link TeamMember#getTeamRepresentation()}
-     * on a {@link TeamMember}, such as a {@link Player}.</p>
+     * <p>While any {@link Text} may be added, the {@link Text} to use should
+     * normally be obtained by calling
+     * {@link TeamMember#getTeamRepresentation()} on a {@link TeamMember}, such
+     * as a {@link Player}.</p>
      *
      * @param member the {@link Text} to add
      */
@@ -232,7 +235,7 @@ public interface Team {
      *
      * <p>While any {@link Text} may be removed, the {@link Text}
      * to use should normally be obtained by calling {@link TeamMember#getTeamRepresentation()}
-     * on a {@link TeamMember}, such as a {@link Player}.</p
+     * on a {@link TeamMember}, such as a {@link Player}.</p>
      *
      * @param member The {@link Text} to remove
      * @return Whether the {@link Text} was on this team
