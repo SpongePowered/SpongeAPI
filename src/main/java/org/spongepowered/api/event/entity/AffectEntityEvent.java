@@ -34,6 +34,7 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -65,15 +66,6 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable {
     List<Entity> getEntities();
 
     /**
-     * Sets the {@link List} of entities who will be affected
-     * after the event resolution. Note that new entities are
-     * not going to be affected.
-     *
-     * @param entities The entities to affect
-     */
-    void setEntities(List<Entity> entities);
-
-    /**
      * Filters out {@link Location<World>}'s from
      * {@link AffectEntityEvent#getEntities()} to be affected by this event.
      *
@@ -85,15 +77,15 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable {
      */
     default List<Entity> filterEntityLocations(Predicate<Location<World>> predicate) {
         List<Entity> removedEntiies = new ArrayList<>();
-        List<Entity> newEntities = new ArrayList<>();
-        for (Entity entity : this.getEntities()) {
+
+        Iterator<Entity> i = this.getEntities().iterator();
+        while (i.hasNext()) {
+            Entity entity = i.next();
             if (!predicate.test(entity.getLocation())) {
+                i.remove();
                 removedEntiies.add(entity);
-            } else {
-                newEntities.add(entity);
             }
         }
-        setEntities(newEntities);
         return removedEntiies;
     }
 
@@ -109,15 +101,15 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable {
      */
     default List<? extends Entity> filterEntities(Predicate<Entity> predicate) {
         List<Entity> removedEntiies = new ArrayList<>();
-        List<Entity> newEntities = new ArrayList<>();
-        for (Entity entity : this.getEntities()) {
+
+        Iterator<Entity> i = this.getEntities().iterator();
+        while (i.hasNext()) {
+            Entity entity = i.next();
             if (!predicate.test(entity)) {
+                i.remove();
                 removedEntiies.add(entity);
-            } else {
-                newEntities.add(entity);
             }
         }
-        setEntities(newEntities);
         return removedEntiies;
     }
 }
