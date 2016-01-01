@@ -40,7 +40,7 @@ public final class InputTokenizers {
      * @return the appropriate tokenizer
      */
     public static InputTokenizer quotedStrings(boolean forceLenient) {
-        return new QuotedStringTokenizer(true, forceLenient);
+        return new QuotedStringTokenizer(true, forceLenient, false);
     }
 
     /**

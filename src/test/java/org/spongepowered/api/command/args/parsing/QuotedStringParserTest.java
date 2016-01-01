@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 
 public class QuotedStringParserTest {
     private static List<String> parseFrom(String args) throws ArgumentParseException {
-        return Lists.transform(new QuotedStringTokenizer(true, false).tokenize(args, false), new Function<SingleArg, String>() {
+        return Lists.transform(new QuotedStringTokenizer(true, false, false).tokenize(args, false), new Function<SingleArg, String>() {
             @Nullable
             @Override
             public String apply(SingleArg input) {
