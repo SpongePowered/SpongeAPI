@@ -105,7 +105,8 @@ public interface Populator {
      * <pre>
      *  {@link Vector3i} chunkStartBlockPos = chunk.getPosition().mul(16);
      *  Vector3i populationAreaStartBlockPos = chunkStartBlockPos.add(8, 0, 8);
-     *  Vector3i objectCenterBlockPos = populationAreaStart.add( random.nextInt(16), justSomeValueForY, random.nextInt(16));
+     *  Vector3i objectCenterBlockPos = populationAreaStart.add(
+     *          random.nextInt(16), justSomeValueForY, random.nextInt(16));
      * </pre>
      *
      * @param chunk The provided chunk.

@@ -53,7 +53,7 @@ public interface WaterLily extends Populator {
 
     /**
      * Sets the number of water lilies to attempt to spawn per chunk, must be
-     * greater than zero. The default value is 4.
+     * greater than zero.
      * 
      * @param count The new amount to spawn
      */
@@ -61,7 +61,7 @@ public interface WaterLily extends Populator {
 
     /**
      * Sets the number of water lilies to attempt to spawn per chunk, must be
-     * greater than zero. The default value is 4.
+     * greater than zero.
      * 
      * @param count The new amount to spawn
      */
@@ -76,7 +76,7 @@ public interface WaterLily extends Populator {
 
         /**
          * Sets the number of water lilies to attempt to spawn per chunk, must
-         * be greater than zero. The default value is 4.
+         * be greater than zero.
          * 
          * @param count The new amount to spawn
          * @return This builder, for chaining
@@ -85,7 +85,7 @@ public interface WaterLily extends Populator {
 
         /**
          * Sets the number of water lilies to attempt to spawn per chunk, must
-         * be greater than zero. The default value is 4.
+         * be greater than zero.
          * 
          * @param count The new amount to spawn
          * @return This builder, for chaining

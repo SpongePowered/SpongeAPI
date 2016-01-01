@@ -119,20 +119,19 @@ public final class Color implements DataSerializable {
         checkArgument(colors.length > 0, "Cannot have an empty color array!");
         if (colors.length == 1) {
             return colors[0];
-        } else {
-            int red = colors[0].getRed();
-            int green = colors[0].getGreen();
-            int blue = colors[0].getBlue();
-            for (int i = 1; i < colors.length; i++) {
-                red += colors[i].getRed();
-                green += colors[i].getGreen();
-                blue += colors[i].getBlue();
-            }
-            int averageRed = Math.round((float) red / colors.length);
-            int averageGreen = Math.round((float) green / colors.length);
-            int averageBlue = Math.round((float) blue / colors.length);
-            return ofRgb(averageRed, averageGreen, averageBlue);
         }
+        int red = colors[0].getRed();
+        int green = colors[0].getGreen();
+        int blue = colors[0].getBlue();
+        for (int i = 1; i < colors.length; i++) {
+            red += colors[i].getRed();
+            green += colors[i].getGreen();
+            blue += colors[i].getBlue();
+        }
+        int averageRed = Math.round((float) red / colors.length);
+        int averageGreen = Math.round((float) green / colors.length);
+        int averageBlue = Math.round((float) blue / colors.length);
+        return ofRgb(averageRed, averageGreen, averageBlue);
     }
 
     private final byte red;
@@ -248,9 +247,8 @@ public final class Color implements DataSerializable {
                     if (!optional.isPresent()) {
                         throw new InvalidDataException("The container for Color either contained an invalid version or there's no DataContentUpdater"
                         + " available for " + version+ " version.");
-                    } else {
-                        container = optional.get().update(container);
                     }
+                    container = optional.get().update(container);
                 }
             }
             if (!container.contains(Queries.COLOR_RED, Queries.COLOR_GREEN, Queries.COLOR_BLUE)) {

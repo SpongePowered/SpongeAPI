@@ -178,8 +178,8 @@ public interface Mushroom extends Populator {
         }
 
         /**
-         * Sets the overriding supplier. If the supplier is present then it is used
-         * in place of the chance table.
+         * Sets the overriding supplier. If the supplier is present then it is
+         * used in place of the chance table.
          * 
          * @param override The new supplier override, or null
          * @return This builder, for chaining

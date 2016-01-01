@@ -52,8 +52,8 @@ public interface ExtentBufferFactory {
     }
 
     /**
-     * Returns a new biome buffer of the desired size.
-     * This buffer is thread safe.
+     * Returns a new biome buffer of the desired size. This buffer is thread
+     * safe.
      *
      * @param size The size of the buffer on x and z (y in the vector)
      * @return A new biome buffer
@@ -61,8 +61,8 @@ public interface ExtentBufferFactory {
     MutableBiomeArea createThreadSafeBiomeBuffer(Vector2i size);
 
     /**
-     * Returns a new biome buffer of the desired size.
-     * This buffer is thread safe.
+     * Returns a new biome buffer of the desired size. This buffer is thread
+     * safe.
      *
      * @param xSize The size of the buffer on x
      * @param zSize The size of the buffer on z
@@ -93,8 +93,8 @@ public interface ExtentBufferFactory {
     }
 
     /**
-     * Returns a new block buffer of the desired size.
-     * This buffer is thread safe.
+     * Returns a new block buffer of the desired size. This buffer is thread
+     * safe.
      *
      * @param size The size of the buffer on x, y and z
      * @return A new block buffer
@@ -102,8 +102,8 @@ public interface ExtentBufferFactory {
     MutableBlockVolume createThreadSafeBlockBuffer(Vector3i size);
 
     /**
-     * Returns a new block buffer of the desired size.
-     * This buffer is thread safe.
+     * Returns a new block buffer of the desired size. This buffer is thread
+     * safe.
      *
      * @param xSize The size of the buffer on x
      * @param ySize The size of the buffer on y

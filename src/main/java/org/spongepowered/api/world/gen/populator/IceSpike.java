@@ -97,8 +97,7 @@ public interface IceSpike extends Populator {
     double getExtremeSpikeProbability();
 
     /**
-     * Gets the probability of the spike much larger than normal. The default
-     * value is 0.01667 (therefore equating to a 1 in 60 chance).
+     * Gets the probability of the spike much larger than normal.
      * 
      * @param p The new spawn probability
      */
@@ -169,8 +168,7 @@ public interface IceSpike extends Populator {
         }
 
         /**
-         * Gets the probability of the spike much larger than normal. The
-         * default value is 0.01667 (therefore equating to a 1 in 60 chance).
+         * Gets the probability of the spike much larger than normal.
          * 
          * @param p The new spawn probability
          * @return This builder, for chaining

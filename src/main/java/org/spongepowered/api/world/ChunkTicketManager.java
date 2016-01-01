@@ -31,7 +31,6 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSetMultimap;
 import com.google.common.collect.ListMultimap;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.world.World;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,11 +43,12 @@ import java.util.UUID;
 public interface ChunkTicketManager {
 
     /**
-     * Sets the callback for handling loading forced chunk tickets on world load.
+     * Sets the callback for handling loading forced chunk tickets on world
+     * load.
      *
-     * <p><b>Required</b> for any plugin that wants to force-load chunks.
-     * Any plugin that does not have a registered callback will have all
-     * saved tickets dropped on world load.</p>
+     * <p><b>Required</b> for any plugin that wants to force-load chunks. Any
+     * plugin that does not have a registered callback will have all saved
+     * tickets dropped on world load.</p>
      *
      * @param plugin Plugin that is registering a callback
      * @param callback The callback function object
@@ -56,58 +56,69 @@ public interface ChunkTicketManager {
     void registerCallback(Object plugin, Callback callback);
 
     /**
-     * Attempts to create a new loading ticket for a plugin to load chunks in a world.
+     * Attempts to create a new loading ticket for a plugin to load chunks in a
+     * world.
      *
-     * <p>Plugins can be limited in the number of tickets they can create per world.</p>
+     * <p>Plugins can be limited in the number of tickets they can create per
+     * world.</p>
      *
      * @param plugin Plugin that wants to load chunks
      * @param world World that chunks will be loaded in
-     * @return The new LoadingTicket, or Optional.empty() if a ticket could not be created
+     * @return The new LoadingTicket, or Optional.empty() if a ticket could not
+     *         be created
      */
     Optional<LoadingTicket> createTicket(Object plugin, World world);
 
     /**
-     * Attempts to create a new loading ticket for a plugin to load chunks in a world.
+     * Attempts to create a new loading ticket for a plugin to load chunks in a
+     * world.
      *
-     * <p>This version is to create tickets that are bound to the existence of an Entity.
-     * For instance, a ticket to load the chunks a minecart is travelling through.</p>
+     * <p>This version is to create tickets that are bound to the existence of
+     * an Entity. For instance, a ticket to load the chunks a minecart is
+     * travelling through.</p>
      *
-     * <p>Plugins can be limited in the number of tickets they can create per world.</p>
+     * <p>Plugins can be limited in the number of tickets they can create per
+     * world.</p>
      *
      * @param plugin Plugin that wants to load chunks
      * @param world World that chunks will be loaded in
-     * @return The new LoadingTicket, or Optional.empty() if a ticket could not be created
+     * @return The new LoadingTicket, or Optional.empty() if a ticket could not
+     *         be created
      */
     Optional<EntityLoadingTicket> createEntityTicket(Object plugin, World world);
 
 
     /**
-     * Attempts to create a new loading ticket for a plugin to load chunks in a world.
-     * The returned ticket will be associated with the given player.
+     * Attempts to create a new loading ticket for a plugin to load chunks in a
+     * world. The returned ticket will be associated with the given player.
      *
      * <p>.</p>
      *
      * @param plugin Plugin that wants to load chunks
      * @param world World that chunks will be loaded in
      * @param player Player that chunks are being loaded for
-     * @return The new LoadingTicket, or Optional.empty() if a ticket could not be created
+     * @return The new LoadingTicket, or Optional.empty() if a ticket could not
+     *         be created
      */
     Optional<PlayerLoadingTicket> createPlayerTicket(Object plugin, World world, UUID player);
 
 
     /**
-     * Attempts to create a new loading ticket for a plugin to load chunks in a world.
-     * The returned ticket will be associated with the given player.
+     * Attempts to create a new loading ticket for a plugin to load chunks in a
+     * world. The returned ticket will be associated with the given player.
      *
-     * <p>This version is to create tickets that are bound to the existence of an Entity.
-     * For instance, a ticket to load the chunks a minecart is travelling through.</p>
+     * <p>This version is to create tickets that are bound to the existence of
+     * an Entity. For instance, a ticket to load the chunks a minecart is
+     * travelling through.</p>
      *
-     * <p>Plugins can be limited in the number of tickets they can create per world.</p>
+     * <p>Plugins can be limited in the number of tickets they can create per
+     * world.</p>
      *
      * @param plugin Plugin that wants to load chunks
      * @param world World that chunks will be loaded in
      * @param player Player that chunks are being loaded for
-     * @return The new LoadingTicket, or Optional.empty() if a ticket could not be created
+     * @return The new LoadingTicket, or Optional.empty() if a ticket could not
+     *         be created
      */
     Optional<PlayerEntityLoadingTicket> createPlayerEntityTicket(Object plugin, World world, UUID player);
 
@@ -115,13 +126,14 @@ public interface ChunkTicketManager {
      * Gets the maximum allowed per-world tickets for a plugin.
      *
      * @param plugin The plugin to get the maximum ticket count for
-     * @return The maximum number of tickets the plugin can have in any given world
+     * @return The maximum number of tickets the plugin can have in any given
+     *         world
      */
     int getMaxTickets(Object plugin);
 
     /**
-     * Gets the amount of remaining tickets a plugin can have in the world before
-     * hitting the maximum.
+     * Gets the amount of remaining tickets a plugin can have in the world
+     * before hitting the maximum.
      *
      * @param plugin The plugin to get the remaining available ticket count for
      * @param world The world to get the remaining count in
@@ -146,14 +158,18 @@ public interface ChunkTicketManager {
      */
     ImmutableSetMultimap<Vector3i, LoadingTicket> getForcedChunks(World world);
 
+    /**
+     * Represents a handle which allows you to force a set of chunks to remain
+     * loaded.
+     */
     interface LoadingTicket {
 
         /**
          * Sets the number of chunks this ticket will load at once.
          *
          * @param numChunks The number of chunks this ticket can load at once
-         * @return True if sucessful, false if the number of chunks is above
-         *          the maximum allowed for this ticket
+         * @return True if sucessful, false if the number of chunks is above the
+         *         maximum allowed for this ticket
          */
         boolean setNumChunks(int numChunks);
 
@@ -190,11 +206,13 @@ public interface ChunkTicketManager {
 
         /**
          * Force-loads a chunk using this ticket. If the configured concurrently
-         * loaded chunk limit is reached, the oldest loaded chunk will be removed.
+         * loaded chunk limit is reached, the oldest loaded chunk will be
+         * removed.
          *
          * <p>This does not cause an immediate load of the chunk. Forced chunks
          * will be loaded eventually, but may not be available for a few ticks.
-         * Forced chunk loading is equivalent to the loading caused by a player.</p>
+         * Forced chunk loading is equivalent to the loading caused by a
+         * player.</p>
          *
          * @param chunk The chunk to force-load
          */
@@ -208,16 +226,16 @@ public interface ChunkTicketManager {
         void unforceChunk(Vector3i chunk);
 
         /**
-         * Reorders a chunk to count as the 'newest' loaded chunk, making it
-         * the last chunk to be removed when adding more chunks for force-loading.
+         * Reorders a chunk to count as the 'newest' loaded chunk, making it the
+         * last chunk to be removed when adding more chunks for force-loading.
          *
          * @param chunk The chunk to reorder
          */
         void prioritizeChunk(Vector3i chunk);
 
         /**
-         * Releases this ticket, removing all associated chunks and freeing up the
-         * ticket slot for later use by a new ticket.
+         * Releases this ticket, removing all associated chunks and freeing up
+         * the ticket slot for later use by a new ticket.
          *
          * <p>After this operation the ticket is invalid and cannot be used to
          * force-load chunks.</p>
@@ -225,6 +243,9 @@ public interface ChunkTicketManager {
         void release();
     }
 
+    /**
+     * Represents a loading ticket which is attached to a specific player.
+     */
     interface PlayerLoadingTicket extends LoadingTicket {
 
         /**
@@ -235,12 +256,15 @@ public interface ChunkTicketManager {
         UUID getPlayerUniqueId();
     }
 
+    /**
+     * Represents a loading ticket which is attached to a specific entity.
+     */
     interface EntityLoadingTicket extends LoadingTicket {
 
         /**
-         * Binds an Entity to this Ticket, causing the chunk the Entity is
-         * in to be initially loaded with the World. This makes the Entity
-         * available during callbacks.
+         * Binds an Entity to this Ticket, causing the chunk the Entity is in to
+         * be initially loaded with the World. This makes the Entity available
+         * during callbacks.
          *
          * @param entity The entity to bind to this ticket
          */
@@ -254,10 +278,16 @@ public interface ChunkTicketManager {
         Entity getBoundEntity();
     }
 
+    /**
+     * Represents a loading ticket which is attached to a player entity.
+     */
     interface PlayerEntityLoadingTicket extends PlayerLoadingTicket, EntityLoadingTicket {
 
     }
 
+    /**
+     * A callback for loading dickets during world load.
+     */
     @FunctionalInterface
     interface Callback {
 
@@ -266,15 +296,15 @@ public interface ChunkTicketManager {
          *
          * <p>The list of forced chunks is not saved with Tickets, this callback
          * is your place to reassociate chunks to Tickets, using the extra
-         * information saved with the ticket or your own external
-         * configuration. Any unneeded tickets must be manually released.</p>
+         * information saved with the ticket or your own external configuration.
+         * Any unneeded tickets must be manually released.</p>
          *
          * <p>The list of tickets contains both standard plugin and
          * player-associated tickets that were registered by this plugin.</p>
          *
          * <p>The list of tickets has been truncated to the maximum allowed for
-         * your plugin, so may not be all saved tickets in the event that
-         * the maximum tickets for your plugin was decreased.</p>
+         * your plugin, so may not be all saved tickets in the event that the
+         * maximum tickets for your plugin was decreased.</p>
          *
          * @param tickets The list of tickets that need chunks registered
          * @param world The world tickets were loaded for
@@ -282,15 +312,18 @@ public interface ChunkTicketManager {
         void onLoaded(ImmutableList<LoadingTicket> tickets, World world);
     }
 
+    /**
+     * A ordered callback for loading dickets during world load.
+     */
     interface OrderedCallback extends Callback {
 
         /**
          * Callback for loading Tickets during world load.
          *
-         * <p>During this callback you cannot associate chunks to tickets.
-         * This callback gets all loaded non-player tickets. The returned list
-         * will be truncated to maxTickets after this callback is called, and
-         * and tickets absent from the list will be released.</p>
+         * <p>During this callback you cannot associate chunks to tickets. This
+         * callback gets all loaded non-player tickets. The returned list will
+         * be truncated to maxTickets after this callback is called, and and
+         * tickets absent from the list will be released.</p>
          *
          * @param tickets The list of loaded tickets
          * @param world The world tickets were loaded for
@@ -300,15 +333,17 @@ public interface ChunkTicketManager {
         List<LoadingTicket> onLoaded(ImmutableList<LoadingTicket> tickets, World world, int maxTickets);
     }
 
+    /**
+     * A player ordered callback for loading dickets during world load.
+     */
     interface PlayerOrderedCallback extends Callback {
 
         /**
          * Callback for loading player Tickets during world load.
          *
-         * <p>During this callback you cannot associate chunks to tickets.
-         * This callback gets all player-associated tickets registered by the
-         * plugin. Tickets absent from the returned Multimap will be
-         * released.</p>
+         * <p>During this callback you cannot associate chunks to tickets. This
+         * callback gets all player-associated tickets registered by the plugin.
+         * Tickets absent from the returned Multimap will be released.</p>
          *
          * @param tickets The list of loaded tickets by player
          * @param world The world tickets were loaded for

@@ -33,8 +33,8 @@ import org.spongepowered.api.world.biome.BiomeType;
  * An area containing biomes that can be at least accessed.
  *
  * <p>Some methods accept a pair of two ints, representing the x and z location
- * of a biome. Some other methods accept or return a {@link Vector2i}. The
- * y position of this vector is equal to the z position of a biome in the
+ * of a biome. Some other methods accept or return a {@link Vector2i}. The y
+ * position of this vector is equal to the z position of a biome in the
  * world.</p>
  */
 public interface BiomeArea {
@@ -65,8 +65,8 @@ public interface BiomeArea {
 
     /**
      * Returns true if the biome area contains a biome at the specified
-     * position. This is defined as <code>{{@link #getBiomeMin()} <=
-     * position <= {@link #getBiomeMax()}</code>
+     * position. This is defined as <code>{{@link #getBiomeMin()} <= position <=
+     * {@link #getBiomeMax()}</code>
      *
      * @param position The position to check
      * @return Whether or not the position has a biome in this area
@@ -75,8 +75,8 @@ public interface BiomeArea {
 
     /**
      * Returns true if the biome area contains a biome at the specified
-     * position. This is defined as <code>{{@link #getBiomeMin()} <=
-     * (x, z) <= {@link #getBiomeMax()}</code>
+     * position. This is defined as <code>{{@link #getBiomeMin()} <= (x, z) <=
+     * {@link #getBiomeMax()}</code>
      *
      * @param x The X coordinate to check
      * @param z The Z coordinate to check
@@ -90,7 +90,7 @@ public interface BiomeArea {
      * @param position The position
      * @return The biome
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the area
+     *         bounds of the area
      */
     BiomeType getBiome(Vector2i position);
 
@@ -101,7 +101,7 @@ public interface BiomeArea {
      * @param z The Z position
      * @return The biome
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the area
+     *         bounds of the area
      */
     BiomeType getBiome(int x, int z);
 
@@ -113,15 +113,14 @@ public interface BiomeArea {
      * @param newMin The new minimum coordinates in this area
      * @param newMax The new maximum coordinates in this area
      * @return The new area with the new bounds
-     * @throws PositionOutOfBoundsException If the new minimum and maximum
-     *     are outside the current area
+     * @throws PositionOutOfBoundsException If the new minimum and maximum are
+     *         outside the current area
      */
     BiomeArea getBiomeView(Vector2i newMin, Vector2i newMax);
 
     /**
-     * Returns a new area that is viewed through some transformation.
-     * This does not copy the biomes, it only provides a new view of the
-     * storage.
+     * Returns a new area that is viewed through some transformation. This does
+     * not copy the biomes, it only provides a new view of the storage.
      *
      * @param transform The transformation to be applied
      * @return The new area with the transform
@@ -130,9 +129,8 @@ public interface BiomeArea {
 
     /**
      * Returns a new area that is translated so that
-     * {@link BiomeArea#getBiomeMin()} returns {@link Vector2i#ZERO}.
-     * This does not copy the biomes, it only provides a new view of the
-     * storage.
+     * {@link BiomeArea#getBiomeMin()} returns {@link Vector2i#ZERO}. This does
+     * not copy the biomes, it only provides a new view of the storage.
      *
      * @return The new area with its minimum at zero
      */
@@ -140,25 +138,24 @@ public interface BiomeArea {
 
     /**
      * Returns a new area that cannot be modified through this view. Unlike
-     * immutable storage, it can be changed by holders of mutable views.
-     * This does not copy the biomes, it only provides a new view of the
-     * storage.
+     * immutable storage, it can be changed by holders of mutable views. This
+     * does not copy the biomes, it only provides a new view of the storage.
      *
      * @return The new area, which cannot be modified
      */
     UnmodifiableBiomeArea getUnmodifiableBiomeView();
 
     /**
-     * Returns a mutable copy of the biomes stored in this area.
-     * This uses the default storage type of {@link StorageType#STANDARD}.
+     * Returns a mutable copy of the biomes stored in this area. This uses the
+     * default storage type of {@link StorageType#STANDARD}.
      *
      * @return A copy of the biomes
      */
     MutableBiomeArea getBiomeCopy();
 
     /**
-     * Returns a mutable copy of the biomes stored in this area.
-     * This uses the provided storage type.
+     * Returns a mutable copy of the biomes stored in this area. This uses the
+     * provided storage type.
      *
      * @param type The type of storage used by the new biomes
      * @return A copy of the biomes
@@ -166,9 +163,8 @@ public interface BiomeArea {
     MutableBiomeArea getBiomeCopy(StorageType type);
 
     /**
-     * Returns an immutable copy of the biomes stored in this area.
-     * This uses some internal storage solution that is thread-safe
-     * by nature.
+     * Returns an immutable copy of the biomes stored in this area. This uses
+     * some internal storage solution that is thread-safe by nature.
      *
      * @return An immutable copy of the biomes
      */

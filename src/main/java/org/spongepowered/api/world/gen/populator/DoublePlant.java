@@ -133,7 +133,8 @@ public interface DoublePlant extends Populator {
         Builder types(WeightedTable<DoublePlantType> types);
 
         /**
-         * Adds a plant type to the list that may be spawned in by this populator.
+         * Adds a plant type to the list that may be spawned in by this
+         * populator.
          * 
          * @param type The new plant type
          * @param weight The weight
@@ -168,8 +169,8 @@ public interface DoublePlant extends Populator {
         }
 
         /**
-         * Sets the overriding supplier. If the supplier is present then it is used
-         * in place of the weighted table.
+         * Sets the overriding supplier. If the supplier is present then it is
+         * used in place of the weighted table.
          * 
          * @param override The new supplier override, or null
          * @return This builder, for chaining

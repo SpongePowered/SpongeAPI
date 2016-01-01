@@ -59,10 +59,10 @@ public interface Chunk extends Extent {
     /**
      * Get the position of the chunk.
      *
-     * <p>The returned position is 3-dimensional with the Y-coordinate set to
-     * be the base (lowest) Y-position of the chunk. As 3-dimensional chunks
-     * do not yet exist in Minecraft, the returned position will always have
-     * a {@code y} set to 0.</p>
+     * <p>The returned position is 3-dimensional with the Y-coordinate set to be
+     * the base (lowest) Y-position of the chunk. As 3-dimensional chunks do not
+     * yet exist in Minecraft, the returned position will always have a
+     * {@code y} set to 0.</p>
      *
      * @return The position
      */
@@ -85,8 +85,8 @@ public interface Chunk extends Extent {
     /**
      * Loads this chunk, and generates if specified and required.
      *
-     * @param generate Whether or not to generate the chunk
-     *                 if it does not yet exist
+     * @param generate Whether or not to generate the chunk if it does not yet
+     *        exist
      *
      * @return If the chunk was successfully loaded
      */
@@ -104,17 +104,18 @@ public interface Chunk extends Extent {
      * for calculation of the regional difficulty factor. In vanilla, it is
      * increased by the number of players in the chunk every tick, and is capped
      * at 3,600,000 ticks (50 hours).
+     * 
+     * @return The number of ticks
      */
     int getInhabittedTime();
 
     /**
-     * 
      * Gets the regional difficulty factor for this chunk. In vanilla, it is
      * dependent on the playtime of the world, inhabited time of the chunk, the
      * phase of the moon, and the current difficulty setting. This number ranges
      * from 0.75-1.5 on easy, 1.5-4.0 on normal, and 2.25-6.75 on hard.
      * 
-     * This value is used for display only in vanilla.
+     * <p>This value is used for display only in vanilla.</p>
      * 
      * @return The regional difficulty factor for this chunk
      */
@@ -127,8 +128,8 @@ public interface Chunk extends Extent {
      * greater than 4.0, the percentage is 100%. Otherwise, the percentage is
      * the factor minus 2.0, divided by 2.0.
      * 
-     * This is the value that is used in vanilla to find which effects are
-     * caused by the regional difficulty.
+     * <p>This is the value that is used in vanilla to find which effects are
+     * caused by the regional difficulty.</p>
      * 
      * @return The regional difficulty percentage for this chunk
      */

@@ -48,7 +48,6 @@ public interface Explosion {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
-
     /**
      * Gets the world the explosion will occur in.
      *

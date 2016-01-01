@@ -38,7 +38,7 @@ import java.util.List;
  * <p>The generation process for chunks is divided into two phases, generation
  * and population. The generation phase is in charge of creating the base
  * terrain shape and generating large terrain features. All operations during
- * the generation phase act upon a BlockBuffer rather than a live chunk
+ * the generation phase act upon a MutableBlockVolume rather than a live chunk
  * object.</p>
  * 
  * <p>Conversely the population phase operates against a live chunk object and

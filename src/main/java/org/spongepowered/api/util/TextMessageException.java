@@ -29,14 +29,15 @@ import org.spongepowered.api.text.Text;
 import javax.annotation.Nullable;
 
 /**
- * A subclass of Exception that contains a rich message that is an instance of {@link Text} rather than a String. This allows formatted and
- * localized exception messages.
+ * A subclass of Exception that contains a rich message that is an instance of
+ * {@link Text} rather than a String. This allows formatted and localized
+ * exception messages.
  */
 public class TextMessageException extends Exception {
+
     private static final long serialVersionUID = -5281221645176698853L;
 
-    @Nullable
-    private final Text message;
+    @Nullable private final Text message;
 
     /**
      * Constructs a new {@link TextMessageException}.
@@ -55,7 +56,8 @@ public class TextMessageException extends Exception {
     }
 
     /**
-     * Constructs a new {@link TextMessageException} with the given message and cause.
+     * Constructs a new {@link TextMessageException} with the given message and
+     * cause.
      *
      * @param message The detail message
      * @param throwable The cause
@@ -83,7 +85,9 @@ public class TextMessageException extends Exception {
     }
 
     /**
-     * Returns the text message for this exception, or null if nothing is present.
+     * Returns the text message for this exception, or null if nothing is
+     * present.
+     * 
      * @return The text for this message
      */
     @Nullable

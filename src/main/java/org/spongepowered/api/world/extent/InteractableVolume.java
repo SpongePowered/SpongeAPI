@@ -139,6 +139,26 @@ public interface InteractableVolume extends BlockVolume {
     }
 
     /**
+     * Simulates the interaction the block using the given item as if the player
+     * had done so.
+     *
+     * <p>Note that the requirement in the {@link Cause} is that it contains
+     * either a {@link Player}, {@link User}, or {@link GameProfile}.
+     * Additionally, the {@link NamedCause} must be
+     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * result in an {@link IllegalArgumentException} being thrown.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param itemStack The item
+     * @param side The side of the block to interact with
+     * @param cause The cause containing either a player, user, or game profile
+     * @return True if the interact succeeded
+     */
+    boolean interactBlockWith(int x, int y, int z, ItemStack itemStack, Direction side, Cause cause);
+
+    /**
      * Simulates the placement of a block at the given location as if a player
      * had done so.
      *
@@ -177,26 +197,6 @@ public interface InteractableVolume extends BlockVolume {
      * @return Whether the block was successfully set
      */
     boolean placeBlock(int x, int y, int z, BlockState block, Direction side, Cause cause);
-
-    /**
-     * Simulates the interaction the block using the given item as if the player
-     * had done so.
-     *
-     * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile}.
-     * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
-     * result in an {@link IllegalArgumentException} being thrown.</p>
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param itemStack The item
-     * @param side The side of the block to interact with
-     * @param cause The cause containing either a player, user, or game profile
-     * @return True if the interact succeeded
-     */
-    boolean interactBlockWith(int x, int y, int z, ItemStack itemStack, Direction side, Cause cause);
 
     /**
      * Simulate the digging of the block as if a player had done so.

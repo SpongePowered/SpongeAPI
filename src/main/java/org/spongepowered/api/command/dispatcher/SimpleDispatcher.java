@@ -392,7 +392,7 @@ public final class SimpleDispatcher implements Dispatcher {
     }
 
     /**
-     * Get the number of registered aliases.
+     * Gets the number of registered aliases.
      *
      * @return The number of aliases
      */

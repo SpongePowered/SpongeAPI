@@ -60,7 +60,6 @@ public interface Dungeon extends Populator {
 
     /**
      * Sets the number of attempts at randomly spawning a generator per chunk.
-     * The default is 8.
      * 
      * @param attempts The new number of attempts
      */
@@ -68,7 +67,6 @@ public interface Dungeon extends Populator {
 
     /**
      * Sets the number of attempts at randomly spawning a generator per chunk.
-     * The default is 8.
      * 
      * @param attempts The new number of attempts
      */
@@ -100,7 +98,7 @@ public interface Dungeon extends Populator {
 
         /**
          * Sets the number of attempts at randomly spawning a generator per
-         * chunk. The default is 8.
+         * chunk.
          * 
          * @param attempts The new number of attempts
          * @return This builder, for chaining
@@ -109,7 +107,7 @@ public interface Dungeon extends Populator {
 
         /**
          * Sets the number of attempts at randomly spawning a generator per
-         * chunk. The default is 8.
+         * chunk.
          * 
          * @param attempts The new number of attempts
          * @return This builder, for chaining

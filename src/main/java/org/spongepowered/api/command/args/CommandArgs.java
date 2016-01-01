@@ -110,7 +110,7 @@ public final class CommandArgs {
     }
 
     /**
-     * Get a list of all arguments as a string. The returned list is immutable.
+     * Gets a list of all arguments as a string. The returned list is immutable.
      *
      * @return all arguments
      */
@@ -196,7 +196,7 @@ public final class CommandArgs {
     }
 
     /**
-     * Get the current position in raw input.
+     * Gets the current position in raw input.
      *
      * @return the raw position
      */

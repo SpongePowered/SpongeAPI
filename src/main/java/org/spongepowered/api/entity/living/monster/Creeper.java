@@ -29,7 +29,7 @@ import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.explosive.IgnitableExplosive;
 
 /**
- * Represents a Creeepr.
+ * Represents a Creeper.
  */
 public interface Creeper extends Monster, IgnitableExplosive {
 

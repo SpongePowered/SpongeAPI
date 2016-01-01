@@ -47,30 +47,37 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
- * A block ray which traces a line and returns all block boundaries intersected in order,
- * starting from the start location. This class implements the {@link Iterator} interface
- * with the exception of {@link Iterator#remove()}.
+ * A block ray which traces a line and returns all block boundaries intersected
+ * in order, starting from the start location. This class implements the
+ * {@link Iterator} interface with the exception of {@link Iterator#remove()}.
  *
- * <p>Filters determine at what location a {@link BlockRay} should stop. A filter
- * is called at the boundary of each new location that a {@link BlockRay} passes through in order
- * to determine whether the ray cast should continue or terminate at that location.</p>
+ * <p>Filters determine at what location a {@link BlockRay} should stop. A
+ * filter is called at the boundary of each new location that a {@link BlockRay}
+ * passes through in order to determine whether the ray cast should continue or
+ * terminate at that location.</p>
  *
- * <p>Any one instance of a {@link Predicate} should only be run on one path.
- * It is not specified that {@link Predicate}s have to be stateless, pure functions.
- * They are allowed to keep state along an individual path, based on the assertion that a
- * single instance is only called on one path.</p>
+ * <p>Any one instance of a {@link Predicate} should only be run on one path. It
+ * is not specified that {@link Predicate}s have to be stateless, pure
+ * functions. They are allowed to keep state along an individual path, based on
+ * the assertion that a single instance is only called on one path.</p>
  *
  * <p>Filters are most useful for limiting the target block a player is looking
- * at based on some metric, like transparency, block model, or even distance. The standard
- * Bukkit-like behavior for finding the target block can be achieved with using
- * {@link BlockRay#ONLY_AIR_FILTER}, optionally combined with
- * {@link BlockRay#maxDistanceFilter(Vector3d, double)} to limit the target block to be within some
- * distance.</p>
+ * at based on some metric, like transparency, block model, or even distance.
+ * The standard Bukkit-like behavior for finding the target block can be
+ * achieved with using {@link BlockRay#ONLY_AIR_FILTER}, optionally combined
+ * with {@link BlockRay#maxDistanceFilter(Vector3d, double)} to limit the target
+ * block to be within some distance.</p>
  *
  * <p>To get the block targeted by an entity, use the following:
+ * 
  * <pre>
- * {@code final Optional<BlockRayHit> block = BlockRay.from(entity).filter(BlockRay.ONLY_AIR_FILTER).end();}
- * </pre></p>
+ * {
+ *     &#64;code
+ *     final Optional<BlockRayHit> block = BlockRay.from(entity).filter(BlockRay.ONLY_AIR_FILTER).end();
+ * }
+ * </pre>
+ * 
+ * </p>
  *
  * @param <E> The extent in which this ray is being cast
  * @see BlockRayHit

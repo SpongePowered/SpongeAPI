@@ -38,12 +38,14 @@ import org.spongepowered.api.world.WorldCreationSettings;
  * will be called.
  *
  * <p>The modifier can change every aspect of terrain generation using the
- * {@link WorldGenerator} provided as a parameter to {@code modifyWorldGenerator}.
- * This is no requirement, you can for example replace only the biome generator.
- * Multiple world generator modifiers can be applied on a single world.</p>
+ * {@link WorldGenerator} provided as a parameter to
+ * {@code modifyWorldGenerator}. This is no requirement, you can for example
+ * replace only the biome generator. Multiple world generator modifiers can be
+ * applied on a single world.</p>
  *
- * <p>Implementations of this interface must be registered using 
- * {@link GameRegistry#registerWorldGeneratorModifier(WorldGeneratorModifier)}.</p>
+ * <p>Implementations of this interface must be registered using
+ * {@link GameRegistry#registerWorldGeneratorModifier(WorldGeneratorModifier)}
+ * .</p>
  */
 @CatalogedBy(WorldGeneratorModifiers.class)
 public interface WorldGeneratorModifier extends CatalogType {
@@ -55,8 +57,8 @@ public interface WorldGeneratorModifier extends CatalogType {
      *
      * <p>To replace the base chunk generator, replace the main generator
      * populator using
-     * {@link WorldGenerator#setBaseGenerationPopulator(GenerationPopulator)}. To
-     * replace the biome generator, use
+     * {@link WorldGenerator#setBaseGenerationPopulator(GenerationPopulator)}.
+     * To replace the biome generator, use
      * {@link WorldGenerator#setBiomeGenerator(BiomeGenerator)}. To change
      * terrain population, modify the populator list returned by
      * {@link WorldGenerator#getPopulators()} or

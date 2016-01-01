@@ -176,7 +176,7 @@ public final class GenericArguments {
     }
 
     /**
-     * Get a builder to create a command element that parses flags.
+     * Gets a builder to create a command element that parses flags.
      *
      * @return the newly created builder
      */

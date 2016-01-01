@@ -36,14 +36,13 @@ import java.util.Arrays;
 import java.util.Optional;
 
 /**
- * Represents a transform. It is 2 dimensional and discrete.
- * It will never cause aliasing.
+ * Represents a transform. It is 2 dimensional and discrete. It will never cause
+ * aliasing.
  *
- * <p>Rotations are performed around tile centers unless
- * the tile corner flags are set to true. To prevent
- * aliasing, quarter turn rotations are only legal on
- * block centers or corners. Half turns can be performed
- * additionally on line centers.</p>
+ * <p>Rotations are performed around tile centers unless the tile corner flags
+ * are set to true. To prevent aliasing, quarter turn rotations are only legal
+ * on block centers or corners. Half turns can be performed additionally on line
+ * centers.</p>
  */
 public class DiscreteTransform2 {
 
@@ -62,8 +61,8 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Returns the matrix representation of the transform.
-     * It is 3D to allow it to include a translation.
+     * Returns the matrix representation of the transform. It is 3D to allow it
+     * to include a translation.
      *
      * @return The matrix for this transform
      */
@@ -82,8 +81,8 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Transform a vector represented as a pair of
-     * coordinates using this transform.
+     * Transform a vector represented as a pair of coordinates using this
+     * transform.
      *
      * @param x The x coordinate of the original vector
      * @param y The y coordinate of the original vector
@@ -94,9 +93,8 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Transforms the x coordinate of a vector
-     * using this transform. Only creates a new
-     * object on the first call.
+     * Transforms the x coordinate of a vector using this transform. Only
+     * creates a new object on the first call.
      *
      * @param vector The original vector
      * @return The transformed x coordinate
@@ -106,9 +104,8 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Transforms the x coordinate of a vector
-     * using this transform. Only creates a new
-     * object on the first call.
+     * Transforms the x coordinate of a vector using this transform. Only
+     * creates a new object on the first call.
      *
      * @param x The x coordinate of the original vector
      * @param y The y coordinate of the original vector
@@ -119,9 +116,8 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Transforms the y coordinate of a vector
-     * using this transform. Only creates a new
-     * object on the first call.
+     * Transforms the y coordinate of a vector using this transform. Only
+     * creates a new object on the first call.
      *
      * @param vector The original vector
      * @return The transformed y coordinate
@@ -131,9 +127,8 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Transforms the y coordinate of a vector
-     * using this transform. Only creates a new
-     * object on the first call.
+     * Transforms the y coordinate of a vector using this transform. Only
+     * creates a new object on the first call.
      *
      * @param x The x coordinate of the original vector
      * @param y The y coordinate of the original vector
@@ -177,8 +172,7 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Adds a translation to this transform and returns
-     * it as a new transform.
+     * Adds a translation to this transform and returns it as a new transform.
      *
      * @param vector The translation vector
      * @return The translated transform as a copy
@@ -188,8 +182,7 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Adds a translation to this transform and returns
-     * it as a new transform.
+     * Adds a translation to this transform and returns it as a new transform.
      *
      * @param x The x coordinate of the translation
      * @param y The y coordinate of the translation
@@ -200,8 +193,8 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Adds a scale factor to this transform and returns
-     * it as a new transform. This factor must be non-zero.
+     * Adds a scale factor to this transform and returns it as a new transform.
+     * This factor must be non-zero.
      *
      * @param a The scale factor
      * @return The scaled transform as a copy
@@ -211,9 +204,8 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Adds a scale factor for each axis to this transform
-     * and returns it as a new transform. The factors must
-     * be non-zero.
+     * Adds a scale factor for each axis to this transform and returns it as a
+     * new transform. The factors must be non-zero.
      *
      * @param vector The scale vector
      * @return The scaled transform as a copy
@@ -223,9 +215,8 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Adds a scale factor for each axis to this transform
-     * and returns it as a new transform. The factors must
-     * be non-zero.
+     * Adds a scale factor for each axis to this transform and returns it as a
+     * new transform. The factors must be non-zero.
      *
      * @param x The scale factor on x
      * @param y The scale factor on y
@@ -238,11 +229,10 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Adds a rotation to this transform, in the xy plane,
-     * around the origin and returns it as a new transform.
-     * The rotation is given is quarter turns.
-     * The actual rotation is {@code quarterTurns * 90}.
-     * The rotation is around the block center, not the corner.
+     * Adds a rotation to this transform, in the xy plane, around the origin and
+     * returns it as a new transform. The rotation is given is quarter turns.
+     * The actual rotation is {@code quarterTurns * 90}. The rotation is around
+     * the block center, not the corner.
      *
      * @param quarterTurns The number of quarter turns in this rotation
      * @return The rotated transform as a copy
@@ -252,16 +242,16 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Adds a a rotation to this transform, in the xy plane,
-     * around a given point, and returns it as a new transform.
-     * The rotation is given is quarter turns. The actual rotation
-     * is {@code quarterTurns * 90}. The tile corner flag changes
-     * the point to be the tile upper corner instead of the center.
+     * Adds a a rotation to this transform, in the xy plane, around a given
+     * point, and returns it as a new transform. The rotation is given is
+     * quarter turns. The actual rotation is {@code quarterTurns * 90}. The tile
+     * corner flag changes the point to be the tile upper corner instead of the
+     * center.
      *
      * @param quarterTurns The number of quarter turns in this rotation
      * @param point The point of rotation, as tile coordinates
-     * @param tileCorner Whether or not to use the corner of the tile
-     *     instead of the center
+     * @param tileCorner Whether or not to use the corner of the tile instead of
+     *        the center
      * @return The rotated transform as a copy
      */
     public DiscreteTransform2 withRotation(int quarterTurns, Vector2i point, boolean tileCorner) {
@@ -274,21 +264,20 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Adds a a rotation to this transform, in the xy plane,
-     * around a given point, and returns it as a new transform.
-     * The rotation is given is half turns. The actual rotation
-     * is {@code halfTurns * 180}. The tile corner flags change
-     * the point to be the tile corner or edge instead of the center.
-     * When both flags are false, the center is used. When only one
-     * is true the edge on the opposite axis to the flag is used.
-     * When both are true the upper corner is used.
+     * Adds a a rotation to this transform, in the xy plane, around a given
+     * point, and returns it as a new transform. The rotation is given is half
+     * turns. The actual rotation is {@code halfTurns * 180}. The tile corner
+     * flags change the point to be the tile corner or edge instead of the
+     * center. When both flags are false, the center is used. When only one is
+     * true the edge on the opposite axis to the flag is used. When both are
+     * true the upper corner is used.
      *
      * @param halfTurns The number of half turns in this rotation
      * @param point The point of rotation, as tile coordinates
-     * @param tileCornerX Whether or not to use the corner of the tile
-     *     instead of the center on the x axis
-     * @param tileCornerY Whether or not to use the corner of the tile
-     *     instead of the center on the y axis
+     * @param tileCornerX Whether or not to use the corner of the tile instead
+     *        of the center on the x axis
+     * @param tileCornerY Whether or not to use the corner of the tile instead
+     *        of the center on the y axis
      * @return The rotated transform as a copy
      */
     public DiscreteTransform2 withRotation(int halfTurns, Vector2i point, boolean tileCornerX, boolean tileCornerY) {
@@ -299,13 +288,13 @@ public class DiscreteTransform2 {
         if (tileCornerY) {
             pointDouble = pointDouble.add(0, 0.5);
         }
-        return new DiscreteTransform2(this.matrix.translate(pointDouble.negate()).rotate(Complexd.fromAngleDeg(halfTurns * 180)).translate
-            (pointDouble));
+        return new DiscreteTransform2(
+                this.matrix.translate(pointDouble.negate()).rotate(Complexd.fromAngleDeg(halfTurns * 180)).translate(pointDouble));
     }
 
     /**
-     * Adds another transformation to this transformation and
-     * returns int as a new transform.
+     * Adds another transformation to this transformation and returns int as a
+     * new transform.
      *
      * @param transform The transformation to add
      * @return The added transforms as a copy
@@ -315,8 +304,8 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Returns a new transform from the given transformation matrix, if the resulting transform
-     * would be discrete.
+     * Returns a new transform from the given transformation matrix, if the
+     * resulting transform would be discrete.
      *
      * @param matrix The matrix to use for the transform
      * @return The new transform, or {@link Optional#empty()}
@@ -362,8 +351,8 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Returns a new transform representing a scaling on each axis.
-     * The scale factors must be non-zero.
+     * Returns a new transform representing a scaling on each axis. The scale
+     * factors must be non-zero.
      *
      * @param vector The scale vector
      * @return The new scale transform
@@ -373,8 +362,8 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Returns a new transform representing a scaling on each axis.
-     * The scale factors must be non-zero.
+     * Returns a new transform representing a scaling on each axis. The scale
+     * factors must be non-zero.
      *
      * @param x The scale factor on x
      * @param y The scale factor on y
@@ -387,10 +376,10 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Returns a new transform representing a rotation in the xy plane
-     * around the origin. The rotation is given is quarter turns.
-     * The actual rotation is {@code quarterTurns * 90}.
-     * The rotation is around the block center, not the corner.
+     * Returns a new transform representing a rotation in the xy plane around
+     * the origin. The rotation is given is quarter turns. The actual rotation
+     * is {@code quarterTurns * 90}. The rotation is around the block center,
+     * not the corner.
      *
      * @param quarterTurns The number of quarter turns in this rotation
      * @return The new rotation transform
@@ -400,15 +389,15 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Returns a new transform representing a rotation in the xy plane,
-     * around a given point. The rotation is given is quarter turns.
-     * The actual rotation is {@code quarterTurns * 90}. The tile corner
-     * flag change the point to be the tile corner instead of the center.
+     * Returns a new transform representing a rotation in the xy plane, around a
+     * given point. The rotation is given is quarter turns. The actual rotation
+     * is {@code quarterTurns * 90}. The tile corner flag change the point to be
+     * the tile corner instead of the center.
      *
      * @param quarterTurns The number of quarter turns in this rotation
      * @param point The point of rotation, as tile coordinates
-     * @param tileCorner Whether or not to use the corner of the tile
-     *     instead of the center
+     * @param tileCorner Whether or not to use the corner of the tile instead of
+     *        the center
      * @return The new rotation transform
      */
     public static DiscreteTransform2 fromRotation(int quarterTurns, Vector2i point, boolean tileCorner) {
@@ -421,20 +410,19 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Returns a new transform representing a rotation in the xy plane,
-     * around a given point. The rotation is given is half turns.
-     * The actual rotation is {@code halfTurns * 180}. The tile corner
-     * flags change the point to be the tile corner or edge instead of
-     * the center. When both flags are false, the center is used.
-     * When only one is true the edge on the opposite axis to the flag
-     * is used. When both are true the upper corner is used.
+     * Returns a new transform representing a rotation in the xy plane, around a
+     * given point. The rotation is given is half turns. The actual rotation is
+     * {@code halfTurns * 180}. The tile corner flags change the point to be the
+     * tile corner or edge instead of the center. When both flags are false, the
+     * center is used. When only one is true the edge on the opposite axis to
+     * the flag is used. When both are true the upper corner is used.
      *
      * @param halfTurns The number of half turns in this rotation
      * @param point The point of rotation, as tile coordinates
-     * @param tileCornerX Whether or not to use the corner of the tile
-     *     instead of the center on the x axis
-     * @param tileCornerY Whether or not to use the corner of the tile
-     *     instead of the center on the y axis
+     * @param tileCornerX Whether or not to use the corner of the tile instead
+     *        of the center on the x axis
+     * @param tileCornerY Whether or not to use the corner of the tile instead
+     *        of the center on the y axis
      * @return The new rotation transform
      */
     public static DiscreteTransform2 fromRotation(int halfTurns, Vector2i point, boolean tileCornerX, boolean tileCornerY) {
@@ -445,15 +433,15 @@ public class DiscreteTransform2 {
         if (tileCornerY) {
             pointDouble = pointDouble.add(0, 0.5);
         }
-        return new DiscreteTransform2(Matrix3d.createTranslation(pointDouble.negate()).rotate(Complexd.fromAngleDeg(halfTurns * 180)).translate
-            (pointDouble));
+        return new DiscreteTransform2(
+                Matrix3d.createTranslation(pointDouble.negate()).rotate(Complexd.fromAngleDeg(halfTurns * 180)).translate(pointDouble));
     }
 
     /**
-     * Returns a new transform representing a centered rotation of an area
-     * of tiles. The rotation is given is quarter turns. The actual rotation
-     * is {@code quarterTurns * 90}. Areas with differing parities on the axes
-     * can only be rotated by multiples of 180 degrees.
+     * Returns a new transform representing a centered rotation of an area of
+     * tiles. The rotation is given is quarter turns. The actual rotation is
+     * {@code quarterTurns * 90}. Areas with differing parities on the axes can
+     * only be rotated by multiples of 180 degrees.
      *
      * @param quarterTurns The amount of quarter turns in this rotation
      * @param size The size of the area to rotate

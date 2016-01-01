@@ -62,7 +62,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
     }
 
     /**
-     * Get the base type of block.
+     * Gets the base type of block.
      *
      * <p>The type does not include block data such as the contents of
      * inventories.</p>

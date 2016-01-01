@@ -44,6 +44,9 @@ public class LootTable<T> {
 
     private List<RandomObjectTable<T>> pool = new ArrayList<>();
 
+    /**
+     * Creates a new {@link LootTable}.
+     */
     public LootTable() {
 
     }

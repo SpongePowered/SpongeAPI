@@ -42,6 +42,11 @@ import java.util.Collection;
  */
 public interface WorldCreationSettings {
 
+    /**
+     * Gets a new Builder instance for {@link WorldCreationSettings}.
+     * 
+     * @return A new builder instance
+     */
     static WorldCreationSettings.Builder builder() {
         return Sponge.getGame().getRegistry().createBuilder(Builder.class);
     }
@@ -100,8 +105,9 @@ public interface WorldCreationSettings {
     GeneratorType getGeneratorType();
 
     /**
-     * Gets an immutable collection of the world generator modifiers applied
-     * to this world.
+     * Gets an immutable collection of the world generator modifiers applied to
+     * this world.
+     * 
      * @return The modifiers
      */
     Collection<WorldGeneratorModifier> getGeneratorModifiers();
@@ -157,6 +163,7 @@ public interface WorldCreationSettings {
     DataContainer getGeneratorSettings();
 
     interface Builder extends ResettableBuilder<WorldCreationSettings, Builder> {
+
         /**
          * Fills this {@link Builder} for creating {@link World}s or
          * {@link WorldCreationSettings}s, the builder is then seeded with the
@@ -186,9 +193,9 @@ public interface WorldCreationSettings {
         Builder name(String name);
 
         /**
-         * Sets the world as enabled. A world which is enabled but unloaded may be
-         * loaded automatically if an attempt is made to transfer an entity to the
-         * world using {@link Entity#transferToWorld} .
+         * Sets the world as enabled. A world which is enabled but unloaded may
+         * be loaded automatically if an attempt is made to transfer an entity
+         * to the world using {@link Entity#transferToWorld} .
          *
          * @param state Should be enabled
          * @return The builder, for chaining
@@ -204,8 +211,8 @@ public interface WorldCreationSettings {
         Builder loadsOnStartup(boolean state);
 
         /**
-         * Sets whether the spawn chunks of the world should remain loaded when no
-         * players are present.
+         * Sets whether the spawn chunks of the world should remain loaded when
+         * no players are present.
          *
          * @param state Should keep spawn loaded
          * @return The builder, for chaining
@@ -213,8 +220,8 @@ public interface WorldCreationSettings {
         Builder keepsSpawnLoaded(boolean state);
 
         /**
-         * Sets the seed of the world. If not specified this will default to using a
-         * random seed.
+         * Sets the seed of the world. If not specified this will default to
+         * using a random seed.
          *
          * @param seed The seed
          * @return The builder, for chaining
@@ -244,7 +251,7 @@ public interface WorldCreationSettings {
          * @param modifier The modifiers
          * @return The builder, for chaining
          * @throws IllegalArgumentException If one of the modifiers is not
-         *             registered in {@link GameRegistry}.
+         *         registered in {@link GameRegistry}.
          */
         Builder generatorModifiers(WorldGeneratorModifier... modifier);
 
@@ -257,8 +264,8 @@ public interface WorldCreationSettings {
         Builder dimension(DimensionType type);
 
         /**
-         * Sets whether this world should generate map features such as villages and
-         * strongholds. If not specified this will default to true.
+         * Sets whether this world should generate map features such as villages
+         * and strongholds. If not specified this will default to true.
          *
          * @param enabled Are map features enabled
          * @return The builder, for chaining
@@ -266,9 +273,9 @@ public interface WorldCreationSettings {
         Builder usesMapFeatures(boolean enabled);
 
         /**
-         * Sets whether hardcore mode is enabled. On servers this will cause players
-         * to be banned upon death, on clients the world will be deleted! If not
-         * specified this will default to false.
+         * Sets whether hardcore mode is enabled. On servers this will cause
+         * players to be banned upon death, on clients the world will be
+         * deleted! If not specified this will default to false.
          *
          * @param enabled Is hardcore mode enabled
          * @return The builder, for chaining
@@ -276,9 +283,10 @@ public interface WorldCreationSettings {
         Builder hardcore(boolean enabled);
 
         /**
-         * Sets any extra settings required by the {@link GeneratorType} or by the
-         * {@link WorldGeneratorModifier}s. If not specified these will default to
-         * the settings within {@link GeneratorType#getGeneratorSettings()}.
+         * Sets any extra settings required by the {@link GeneratorType} or by
+         * the {@link WorldGeneratorModifier}s. If not specified these will
+         * default to the settings within
+         * {@link GeneratorType#getGeneratorSettings()}.
          *
          * @param settings The generator settings
          * @return The builder, for chaining
@@ -302,8 +310,9 @@ public interface WorldCreationSettings {
         Builder pvp(boolean enabled);
 
         /**
-         * Builds the {@link WorldCreationSettings} which can be used to create a {@link World}
-         * in {@link Server#createWorldProperties(WorldCreationSettings)}.
+         * Builds the {@link WorldCreationSettings} which can be used to create
+         * a {@link World} in
+         * {@link Server#createWorldProperties(WorldCreationSettings)}.
          *
          * @return The settings
          */

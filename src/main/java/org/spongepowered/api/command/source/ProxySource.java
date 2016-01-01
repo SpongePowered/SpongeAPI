@@ -33,7 +33,7 @@ import org.spongepowered.api.command.CommandSource;
 public interface ProxySource extends LocatedSource {
 
     /**
-     * Get the {@link CommandSource} this source is proxying. This
+     * Gets the {@link CommandSource} this source is proxying.
      *
      * @return The proxied source
      */

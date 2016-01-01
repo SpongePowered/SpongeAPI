@@ -54,7 +54,7 @@ public interface Pumpkin extends Populator {
 
     /**
      * Sets the number of pumpkins to attempt to spawn per patch, must be
-     * greater than zero. The default value is 64.
+     * greater than zero.
      * 
      * @param count The new number to spawn
      */
@@ -62,7 +62,7 @@ public interface Pumpkin extends Populator {
 
     /**
      * Sets the number of pumpkins to attempt to spawn per patch, must be
-     * greater than zero. The default value is 64.
+     * greater than zero.
      * 
      * @param count The new number to spawn
      */
@@ -78,8 +78,7 @@ public interface Pumpkin extends Populator {
     double getPumpkinChance();
 
     /**
-     * Sets the probability of a pumpkin patch spawning within a chunk. The
-     * default value is 0.03125 (which corresponds to a 1 in 32 chance).
+     * Sets the probability of a pumpkin patch spawning within a chunk.
      * 
      * @param p The new probability of a patch spawning
      */
@@ -92,7 +91,7 @@ public interface Pumpkin extends Populator {
 
         /**
          * Sets the number of pumpkins to attempt to spawn per patch, must be
-         * greater than zero. The default value is 64.
+         * greater than zero.
          * 
          * @param count The new number to spawn
          * @return This builder, for chaining
@@ -101,7 +100,7 @@ public interface Pumpkin extends Populator {
 
         /**
          * Sets the number of pumpkins to attempt to spawn per patch, must be
-         * greater than zero. The default value is 64.
+         * greater than zero.
          * 
          * @param count The new number to spawn
          * @return This builder, for chaining
@@ -111,8 +110,7 @@ public interface Pumpkin extends Populator {
         }
 
         /**
-         * Sets the probability of a pumpkin patch spawning within a chunk. The
-         * default value is 0.03125 (which corresponds to a 1 in 32 chance).
+         * Sets the probability of a pumpkin patch spawning within a chunk.
          * 
          * @param p The new probability of a patch spawning
          * @return This builder, for chaining

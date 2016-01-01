@@ -36,9 +36,9 @@ public interface BiomeGenerator {
      * given array of available biomes. The resultant biomes are placed into the
      * given buffer.
      *
-     * <p>The biome generator can be called multiple times for the same
+     * <p> The biome generator can be called multiple times for the same
      * position. The biome generator should, for any position/world seed
-     * combination, always return the same biome.</p>
+     * combination, always return the same biome. </p>
      *
      * @param buffer The buffer to generate the biomes into.
      */

@@ -97,8 +97,7 @@ public interface Shrub extends Populator {
 
     /**
      * Sets the overriding supplier. If the supplier is present then it is used
-     * in place of the weighted table while determining what ShrubType to
-     * place.
+     * in place of the weighted table while determining what ShrubType to place.
      * 
      * @param override The new supplier override, or null
      */
@@ -155,8 +154,8 @@ public interface Shrub extends Populator {
         Builder type(ShrubType type, int weight);
 
         /**
-         * Sets the overriding supplier. If the supplier is present then it is used
-         * in place of the weighted table.
+         * Sets the overriding supplier. If the supplier is present then it is
+         * used in place of the weighted table.
          * 
          * @param override The new supplier override, or null
          * @return This builder, for chaining

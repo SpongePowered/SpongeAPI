@@ -102,7 +102,7 @@ public class ArgumentParseException extends CommandException {
     }
 
     /**
-     * Get the position of the last fetched argument in the provided source string.
+     * Gets the position of the last fetched argument in the provided source string.
      *
      * @return The source string to get position for
      */

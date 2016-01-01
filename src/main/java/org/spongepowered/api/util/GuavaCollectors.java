@@ -30,7 +30,8 @@ import com.google.common.collect.ImmutableSet;
 import java.util.stream.Collector;
 
 /**
- * A set of collectors to allow interoperability between immutable guava collections and the JDK 8 Streams API.
+ * A set of collectors to allow interoperability between immutable guava
+ * collections and the JDK 8 Streams API.
  */
 public class GuavaCollectors {
     private GuavaCollectors() {

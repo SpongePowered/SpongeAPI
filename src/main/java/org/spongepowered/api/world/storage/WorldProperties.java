@@ -552,6 +552,7 @@ public interface WorldProperties extends DataSerializable {
     /**
      * Gets an immutable collection of the world generator modifiers currently
      * in use.
+     * 
      * @return The world generator modifiers in use.
      */
     Collection<WorldGeneratorModifier> getGeneratorModifiers();
@@ -561,13 +562,13 @@ public interface WorldProperties extends DataSerializable {
      *
      * @param modifiers The modifiers to set.
      * @throws IllegalArgumentException If any of the modifiers has not been
-     *             registered in the {@link GameRegistry}.
+     *         registered in the {@link GameRegistry}.
      */
     void setGeneratorModifiers(Collection<WorldGeneratorModifier> modifiers);
 
     /**
-     * Gets the generator settings. These can be used by the generator type and/or
-     * by the generator modifiers.
+     * Gets the generator settings. These can be used by the generator type
+     * and/or by the generator modifiers.
      *
      * @return The generator settings.
      */

@@ -53,7 +53,7 @@ public interface Melon extends Populator {
 
     /**
      * Sets the number of melons to attempt to spawn per chunk, must be greater
-     * than zero. The default value is 64.
+     * than zero.
      * 
      * @param count The new amount to spawn
      */
@@ -61,7 +61,7 @@ public interface Melon extends Populator {
 
     /**
      * Sets the number of melons to attempt to spawn per chunk, must be greater
-     * than zero. The default value is 64.
+     * than zero.
      * 
      * @param count The new amount to spawn
      */
@@ -75,8 +75,7 @@ public interface Melon extends Populator {
     interface Builder extends ResettableBuilder<Melon, Builder> {
 
         /**
-         * Sets the number of melons to attempt to spawn per chunk. The default
-         * value is 64.
+         * Sets the number of melons to attempt to spawn per chunk.
          * 
          * @param count The new amount to spawn
          * @return This builder, for chaining
@@ -84,8 +83,7 @@ public interface Melon extends Populator {
         Builder perChunk(VariableAmount count);
 
         /**
-         * Sets the number of melons to attempt to spawn per chunk. The default
-         * value is 64.
+         * Sets the number of melons to attempt to spawn per chunk.
          * 
          * @param count The new amount to spawn
          * @return This builder, for chaining

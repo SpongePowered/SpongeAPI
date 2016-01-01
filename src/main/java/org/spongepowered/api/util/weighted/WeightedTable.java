@@ -140,7 +140,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
     @Override
     public List<T> get(Random rand) {
         List<T> results = Lists.newArrayList();
-        if(this.entries.isEmpty()) {
+        if (this.entries.isEmpty()) {
             return results;
         }
         for (int i = 0; i < getRolls(); i++) {

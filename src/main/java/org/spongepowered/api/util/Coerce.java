@@ -227,7 +227,7 @@ public final class Coerce {
      *
      * @param obj Object to coerce
      * @return Object as an integer, <code>0</code> if the object is null or
-     *      cannot be parsed
+     *         cannot be parsed
      */
     public static int toInteger(@Nullable Object obj) {
         if (obj == null) {
@@ -277,9 +277,8 @@ public final class Coerce {
             Double dParsed = Doubles.tryParse(strObj);
             // try parsing as double now
             return dParsed == null ? Optional.<Integer>empty() : Optional.of(dParsed.intValue());
-        } else {
-            return Optional.of(iParsed);
         }
+        return Optional.of(iParsed);
     }
 
     /**
@@ -288,7 +287,7 @@ public final class Coerce {
      *
      * @param obj Object to coerce
      * @return Object as a double, <code>0.0</code> if the object is null or
-     *      cannot be parsed
+     *         cannot be parsed
      */
     public static double toDouble(@Nullable Object obj) {
         if (obj == null) {
@@ -338,7 +337,7 @@ public final class Coerce {
      *
      * @param obj Object to coerce
      * @return Object as a float, <code>0.0</code> if the object is null or
-     *      cannot be parsed
+     *         cannot be parsed
      */
     public static float toFloat(@Nullable Object obj) {
         if (obj == null) {
@@ -381,12 +380,11 @@ public final class Coerce {
     }
 
     /**
-     * Coerce the supplied object to a short number,
-     * parse it if necessary.
+     * Coerce the supplied object to a short number, parse it if necessary.
      *
      * @param obj Object to coerce
-     * @return Object as a short, <code>0</code> if the object is null or
-     *      cannot be parsed
+     * @return Object as a short, <code>0</code> if the object is null or cannot
+     *         be parsed
      */
     public static short toShort(@Nullable Object obj) {
         if (obj == null) {
@@ -429,12 +427,11 @@ public final class Coerce {
     }
 
     /**
-     * Coerce the supplied object to a byte number,
-     * parse it if necessary.
+     * Coerce the supplied object to a byte number, parse it if necessary.
      *
      * @param obj Object to coerce
-     * @return Object as a byte, <code>0</code> if the object is null or
-     *      cannot be parsed
+     * @return Object as a byte, <code>0</code> if the object is null or cannot
+     *         be parsed
      */
     public static byte toByte(@Nullable Object obj) {
         if (obj == null) {
@@ -477,12 +474,11 @@ public final class Coerce {
     }
 
     /**
-     * Coerce the supplied object to a long number,
-     * parse it if necessary.
+     * Coerce the supplied object to a long number, parse it if necessary.
      *
      * @param obj Object to coerce
-     * @return Object as a long, <code>0</code> if the object is null or
-     *      cannot be parsed
+     * @return Object as a long, <code>0</code> if the object is null or cannot
+     *         be parsed
      */
     public static long toLong(@Nullable Object obj) {
         if (obj == null) {
@@ -525,12 +521,11 @@ public final class Coerce {
     }
 
     /**
-     * Coerce the supplied object to a character,
-     * parse it if necessary.
+     * Coerce the supplied object to a character, parse it if necessary.
      *
      * @param obj Object to coerce
-     * @return Object as a character, <code>'\u0000'</code> if the object is null or
-     *      cannot be parsed
+     * @return Object as a character, <code>'\u0000'</code> if the object is
+     *         null or cannot be parsed
      */
     public static char toChar(@Nullable Object obj) {
         if (obj == null) {

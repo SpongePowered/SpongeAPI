@@ -56,8 +56,8 @@ package org.spongepowered.api.world;
 public enum ChunkState {
 
     /**
-     * The chunk is not loaded into memory. Whether the chunk has been
-     * generated is unknown while in this state.
+     * The chunk is not loaded into memory. Whether the chunk has been generated
+     * is unknown while in this state.
      */
     UNLOADED,
     /**
@@ -65,8 +65,8 @@ public enum ChunkState {
      */
     NOT_GENERATED,
     /**
-     * The chunk has been generated (implying that the shape of the terrain
-     * has been formed out of a basic block) but none of the populators or
+     * The chunk has been generated (implying that the shape of the terrain has
+     * been formed out of a basic block) but none of the populators or
      * structures have been applied yet.
      */
     NOT_POPULATED,

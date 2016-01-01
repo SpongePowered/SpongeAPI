@@ -36,16 +36,16 @@ import org.spongepowered.api.util.PositionOutOfBoundsException;
 public interface BlockVolume {
 
     /**
-     * Gets the block location with the lowest x, y and z that is still a
-     * valid position for {@link #getBlock(Vector3i)}.
+     * Gets the block location with the lowest x, y and z that is still a valid
+     * position for {@link #getBlock(Vector3i)}.
      *
      * @return The lowest block location
      */
     Vector3i getBlockMin();
 
     /**
-     * Gets the block location with the highest x, y and z that is still a
-     * valid position for {@link #getBlock(Vector3i)}.
+     * Gets the block location with the highest x, y and z that is still a valid
+     * position for {@link #getBlock(Vector3i)}.
      *
      * @return The highest block location
      */
@@ -53,8 +53,7 @@ public interface BlockVolume {
 
     /**
      * Gets the size of the whole volume. Defined as <code>
-     *     {@link #getBlockMax()} - {@link #getBlockMin()} + (1, 1, 1)
-     * </code>.
+     * {@link #getBlockMax()} - {@link #getBlockMin()} + (1, 1, 1) </code>.
      *
      * @return The size
      */
@@ -62,8 +61,8 @@ public interface BlockVolume {
 
     /**
      * Returns true if the block volume contains a block at the specified
-     * position. This is defined as <code>{{@link #getBlockMin()} <=
-     * position <= {@link #getBlockMax()}</code>
+     * position. This is defined as <code>{{@link #getBlockMin()} <= position <=
+     * {@link #getBlockMax()}</code>
      *
      * @param position The position to check
      * @return Whether or not the position has a block in this volume
@@ -72,8 +71,8 @@ public interface BlockVolume {
 
     /**
      * Returns true if the block volume contains a block at the specified
-     * position. This is defined as <code>{{@link #getBlockMin()} <=
-     * (x, y, z) <= {@link #getBlockMax()}</code>
+     * position. This is defined as <code>{{@link #getBlockMin()} <= (x, y, z)
+     * <= {@link #getBlockMax()}</code>
      *
      * @param x The X coordinate to check
      * @param y The Y coordinate to check
@@ -88,7 +87,7 @@ public interface BlockVolume {
      * @param position The position
      * @return The block
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the volume
+     *         bounds of the volume
      */
     BlockState getBlock(Vector3i position);
 
@@ -100,7 +99,7 @@ public interface BlockVolume {
      * @param z The Z position
      * @return The block
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the volume
+     *         bounds of the volume
      */
     BlockState getBlock(int x, int y, int z);
 
@@ -113,7 +112,7 @@ public interface BlockVolume {
      * @param position The position of the block
      * @return The type of block
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the block volume
+     *         bounds of the block volume
      */
     BlockType getBlockType(Vector3i position);
 
@@ -128,27 +127,26 @@ public interface BlockVolume {
      * @param z The Z position
      * @return The type of block
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the block volume
+     *         bounds of the block volume
      */
     BlockType getBlockType(int x, int y, int z);
 
     /**
-     * Returns a new volume that is the same or smaller than the current
-     * volume. This does not copy the blocks, it only provides a new view
-     * of the storage.
+     * Returns a new volume that is the same or smaller than the current volume.
+     * This does not copy the blocks, it only provides a new view of the
+     * storage.
      *
      * @param newMin The new minimum coordinates in this volume
      * @param newMax The new maximum coordinates in this volume
      * @return The new volume with the new bounds
-     * @throws PositionOutOfBoundsException If the new minimum and maximum
-     *     are outside the current volume
+     * @throws PositionOutOfBoundsException If the new minimum and maximum are
+     *         outside the current volume
      */
     BlockVolume getBlockView(Vector3i newMin, Vector3i newMax);
 
     /**
-     * Returns a new volume that is viewed through some transformation.
-     * This does not copy the blocks, it only provides a new view of the
-     * storage.
+     * Returns a new volume that is viewed through some transformation. This
+     * does not copy the blocks, it only provides a new view of the storage.
      *
      * @param transform The transformation to be applied
      * @return The new volume with the transform
@@ -157,9 +155,8 @@ public interface BlockVolume {
 
     /**
      * Returns a new volume that is translated so that
-     * {@link BlockVolume#getBlockMin()} returns {@link Vector3i#ZERO}.
-     * This does not copy the blocks, it only provides a new view of the
-     * storage.
+     * {@link BlockVolume#getBlockMin()} returns {@link Vector3i#ZERO}. This
+     * does not copy the blocks, it only provides a new view of the storage.
      *
      * @return The new volume with its minimum at zero
      */
@@ -167,25 +164,24 @@ public interface BlockVolume {
 
     /**
      * Returns a new volume that cannot be modified through this view. Unlike
-     * immutable storage, it can be changed by holders of mutable views.
-     * This does not copy the blocks, it only provides a new view of the
-     * storage.
+     * immutable storage, it can be changed by holders of mutable views. This
+     * does not copy the blocks, it only provides a new view of the storage.
      *
      * @return The new volume, which cannot be modified
      */
     UnmodifiableBlockVolume getUnmodifiableBlockView();
 
     /**
-     * Returns a mutable copy of the blocks stored in this volume.
-     * This uses the default storage type of {@link StorageType#STANDARD}.
+     * Returns a mutable copy of the blocks stored in this volume. This uses the
+     * default storage type of {@link StorageType#STANDARD}.
      *
      * @return A copy of the blocks
      */
     MutableBlockVolume getBlockCopy();
 
     /**
-     * Returns a mutable copy of the blocks stored in this volume.
-     * This uses the provided storage type.
+     * Returns a mutable copy of the blocks stored in this volume. This uses the
+     * provided storage type.
      *
      * @param type The type of storage used by the new blocks
      * @return A copy of the blocks
@@ -193,9 +189,8 @@ public interface BlockVolume {
     MutableBlockVolume getBlockCopy(StorageType type);
 
     /**
-     * Returns an immutable copy of the blocks stored in this volume.
-     * This uses some internal storage solution that is thread-safe
-     * by nature.
+     * Returns an immutable copy of the blocks stored in this volume. This uses
+     * some internal storage solution that is thread-safe by nature.
      *
      * @return An immutable copy of the blocks
      */

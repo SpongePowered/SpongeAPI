@@ -25,7 +25,8 @@
 package org.spongepowered.api.world.biome;
 
 /**
- * An enumeration of all possible {@link BiomeType}s available in vanilla minecraft.
+ * An enumeration of all possible {@link BiomeType}s available in vanilla
+ * minecraft.
  */
 public final class BiomeTypes {
 

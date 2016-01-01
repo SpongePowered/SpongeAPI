@@ -42,7 +42,7 @@ public interface SeededVariableAmount<T> {
      * @param <T> The seed object type
      * @return A variable amount representation
      */
-    public static <T> SeededVariableAmount<T> fixed(double value) {
+    static <T> SeededVariableAmount<T> fixed(double value) {
         return new WrappedVariableAmount<T>(VariableAmount.fixed(value));
     }
 
@@ -54,7 +54,7 @@ public interface SeededVariableAmount<T> {
      * @param <T> The seed object type
      * @return A variable amount representation
      */
-    public static <T> SeededVariableAmount<T> wrapped(VariableAmount value) {
+    static <T> SeededVariableAmount<T> wrapped(VariableAmount value) {
         return new WrappedVariableAmount<T>(value);
     }
 
@@ -86,7 +86,7 @@ public interface SeededVariableAmount<T> {
      * 
      * @param <T> The seed type
      */
-    public static final class WrappedVariableAmount<T> implements SeededVariableAmount<T> {
+    static final class WrappedVariableAmount<T> implements SeededVariableAmount<T> {
 
         private final VariableAmount inner;
 

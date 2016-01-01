@@ -43,7 +43,7 @@ public interface GenerationPopulator {
      *
      * @param world The world
      * @param buffer The buffer to apply the changes to. The buffer can be of
-     *            any size.
+     *        any size.
      * @param biomes The biomes for generation
      */
     void populate(World world, MutableBlockVolume buffer, ImmutableBiomeArea biomes);

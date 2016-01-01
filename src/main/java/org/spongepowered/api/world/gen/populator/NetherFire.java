@@ -79,7 +79,7 @@ public interface NetherFire extends Populator {
 
     /**
      * Sets the number of fire to attempt to spawn per patch, must be greater
-     * than zero. The default value is 64.
+     * than zero.
      * 
      * @param count The new number to spawn
      */
@@ -87,7 +87,7 @@ public interface NetherFire extends Populator {
 
     /**
      * Sets the number of Fire to attempt to spawn per patch, must be greater
-     * than zero. The default value is 64.
+     * than zero.
      * 
      * @param count The new number to spawn
      */
@@ -122,7 +122,7 @@ public interface NetherFire extends Populator {
 
         /**
          * Sets the number of fire to attempt to spawn per cluster, must be
-         * greater than zero. The default value is 64.
+         * greater than zero.
          * 
          * @param count The new number to spawn
          * @return This builder, for chaining
@@ -131,7 +131,7 @@ public interface NetherFire extends Populator {
 
         /**
          * Sets the number of fire to attempt to spawn per cluster, must be
-         * greater than zero. The default value is 64.
+         * greater than zero.
          * 
          * @param count The new number to spawn
          * @return This builder, for chaining

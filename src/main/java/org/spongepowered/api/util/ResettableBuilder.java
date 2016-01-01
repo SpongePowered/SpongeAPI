@@ -24,12 +24,19 @@
  */
 package org.spongepowered.api.util;
 
+/**
+ * A common interface for all builder pattern types.
+ *
+ * @param <T> The type built by the builder
+ * @param <B> The child builder type
+ */
 public interface ResettableBuilder<T, B extends ResettableBuilder<T, B>> {
 
     /**
+     * Resets this builder to the values of the given archtype object.
      *
-     * @param value
-     * @return
+     * @param value The archtype object
+     * @return This builder, for chaining
      */
     B from(T value);
 

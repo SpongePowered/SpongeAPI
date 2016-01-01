@@ -48,8 +48,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
- * A type of {@link Location} based value store that can handle proxied
- * data api related queries for specific positions.
+ * A type of {@link Location} based value store that can handle proxied data api
+ * related queries for specific positions.
  */
 public interface LocationCompositeValueStore {
 
@@ -83,8 +83,7 @@ public interface LocationCompositeValueStore {
      * Gets an instance of the given data class for given block at the location.
      *
      * <p>If there is no pre-existing data that can be represented by the given
-     * {@link DataManipulator} class, {@link Optional#empty()} is returned.
-     * </p>
+     * {@link DataManipulator} class, {@link Optional#empty()} is returned. </p>
      *
      * @param coordinates The position of the block
      * @param manipulatorClass The data class
@@ -99,8 +98,7 @@ public interface LocationCompositeValueStore {
      * Gets an instance of the given data class for given block at the location.
      *
      * <p>If there is no pre-existing data that can be represented by the given
-     * {@link DataManipulator} class, {@link Optional#empty()} is returned.
-     * </p>
+     * {@link DataManipulator} class, {@link Optional#empty()} is returned. </p>
      *
      * @param x The X position
      * @param y The Y position
@@ -112,10 +110,10 @@ public interface LocationCompositeValueStore {
     <T extends DataManipulator<?, ?>> Optional<T> get(int x, int y, int z, Class<T> manipulatorClass);
 
     /**
-     * Gets or creates a new {@link DataManipulator} that can be accepted by
-     * the block at the location. In the event that there is no data that can
-     * be represented by the given {@link DataManipulator}, a new
-     * {@link  DataManipulator} object is created with default values.
+     * Gets or creates a new {@link DataManipulator} that can be accepted by the
+     * block at the location. In the event that there is no data that can be
+     * represented by the given {@link DataManipulator}, a new
+     * {@link DataManipulator} object is created with default values.
      *
      * <p>In the event the {@link DataManipulator} can not represent any data
      * pertaining to the block at the location, {@link Optional#empty()} is
@@ -131,10 +129,10 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Gets or creates a new {@link DataManipulator} that can be accepted by
-     * the block at the location. In the event that there is no data that can
-     * be represented by the given {@link DataManipulator}, a new
-     * {@link  DataManipulator} object is created with default values.
+     * Gets or creates a new {@link DataManipulator} that can be accepted by the
+     * block at the location. In the event that there is no data that can be
+     * represented by the given {@link DataManipulator}, a new
+     * {@link DataManipulator} object is created with default values.
      *
      * <p>In the event the {@link DataManipulator} can not represent any data
      * pertaining to the block at the location, {@link Optional#empty()} is
@@ -151,8 +149,8 @@ public interface LocationCompositeValueStore {
 
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location. The data may not exist, or may not be compatible
-     * in which case <code>null</code> may be returned.
+     * give block location. The data may not exist, or may not be compatible in
+     * which case <code>null</code> may be returned.
      *
      * @param coordinates The position of the block
      * @param key The key to the data
@@ -166,8 +164,8 @@ public interface LocationCompositeValueStore {
 
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location. The data may not exist, or may not be compatible
-     * in which case <code>null</code> may be returned.
+     * give block location. The data may not exist, or may not be compatible in
+     * which case <code>null</code> may be returned.
      *
      * @param x The X position
      * @param y The Y position
@@ -183,8 +181,8 @@ public interface LocationCompositeValueStore {
 
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location. The data may not exist, or may not be compatible
-     * in which case the default value may be returned.
+     * give block location. The data may not exist, or may not be compatible in
+     * which case the default value may be returned.
      *
      * @param coordinates The position of the block
      * @param key The key to the data
@@ -198,8 +196,8 @@ public interface LocationCompositeValueStore {
 
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location. The data may not exist, or may not be compatible
-     * in which case the default value may be returned.
+     * give block location. The data may not exist, or may not be compatible in
+     * which case the default value may be returned.
      *
      * @param x The X position
      * @param y The Y position
@@ -215,8 +213,8 @@ public interface LocationCompositeValueStore {
 
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location. The data may not exist, or may not be compatible
-     * in which case <code>null</code> may be returned.
+     * give block location. The data may not exist, or may not be compatible in
+     * which case <code>null</code> may be returned.
      *
      * @param coordinates The position of the block
      * @param key The key to the data
@@ -243,8 +241,8 @@ public interface LocationCompositeValueStore {
     <E, V extends BaseValue<E>> Optional<V> getValue(int x, int y, int z, Key<V> key);
 
     /**
-     * Checks if the provided {@link Key} to the data is supported by the block at
-     * the provided location.
+     * Checks if the provided {@link Key} to the data is supported by the block
+     * at the provided location.
      *
      * @param coordinates The position of the block
      * @param key The Key to the value of data
@@ -255,8 +253,8 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Checks if the provided {@link Key} to the data is supported by the block at
-     * the provided location.
+     * Checks if the provided {@link Key} to the data is supported by the block
+     * at the provided location.
      *
      * @param x The X coordinate
      * @param y The Y coordinate
@@ -267,8 +265,8 @@ public interface LocationCompositeValueStore {
     boolean supports(int x, int y, int z, Key<?> key);
 
     /**
-     * Checks if the provided {@link BaseValue} is supported by the block at
-     * the provided location.
+     * Checks if the provided {@link BaseValue} is supported by the block at the
+     * provided location.
      *
      * @param coordinates The position of the block
      * @param value The value of data
@@ -279,8 +277,8 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Checks if the provided {@link BaseValue} is supported by the block at
-     * the provided location.
+     * Checks if the provided {@link BaseValue} is supported by the block at the
+     * provided location.
      *
      * @param x The X coordinate
      * @param y The Y coordinate
@@ -299,7 +297,7 @@ public interface LocationCompositeValueStore {
      * @param coordinates The position of the block
      * @param manipulatorClass The data class
      * @return True if the block at the given position can accept the
-     *     {@link DataManipulator} object
+     *         {@link DataManipulator} object
      */
     default boolean supports(Vector3i coordinates, Class<? extends DataManipulator<?, ?>> manipulatorClass) {
         return supports(coordinates.getX(), coordinates.getY(), coordinates.getZ(), manipulatorClass);
@@ -314,7 +312,7 @@ public interface LocationCompositeValueStore {
      * @param z The Z position
      * @param manipulatorClass The data class
      * @return True if the block at the given position can accept the
-     *     {@link DataManipulator} object
+     *         {@link DataManipulator} object
      */
     boolean supports(int x, int y, int z, Class<? extends DataManipulator<?, ?>> manipulatorClass);
 
@@ -325,7 +323,7 @@ public interface LocationCompositeValueStore {
      * @param coordinates The position of the block
      * @param manipulator The manipulator
      * @return True if the block at the given position can accept the
-     *     {@link DataManipulator} object
+     *         {@link DataManipulator} object
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     default boolean supports(Vector3i coordinates, DataManipulator<?, ?> manipulator) {
@@ -341,7 +339,7 @@ public interface LocationCompositeValueStore {
      * @param z The Z position
      * @param manipulator The manipulator
      * @return True if the block at the given position can accept the
-     *     {@link DataManipulator} object
+     *         {@link DataManipulator} object
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     default boolean supports(int x, int y, int z, DataManipulator<?, ?> manipulator) {
@@ -349,8 +347,8 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Gets an {@link ImmutableSet} of {@link Key}s for the block at
-     * the given location.
+     * Gets an {@link ImmutableSet} of {@link Key}s for the block at the given
+     * location.
      *
      * @param coordinates The position of the block
      * @return The immutable set of values for the block
@@ -360,8 +358,8 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Gets an {@link ImmutableSet} of {@link Key}s for the block at
-     * the given location.
+     * Gets an {@link ImmutableSet} of {@link Key}s for the block at the given
+     * location.
      *
      * @param x The X position
      * @param y The Y position
@@ -393,9 +391,9 @@ public interface LocationCompositeValueStore {
     Set<ImmutableValue<?>> getValues(int x, int y, int z);
 
     /**
-     * Applies a transformation on the pre-existing value of the data keyed
-     * by the provided {@link Key} and returns a {@link DataTransactionResult}
-     * of said transformation.
+     * Applies a transformation on the pre-existing value of the data keyed by
+     * the provided {@link Key} and returns a {@link DataTransactionResult} of
+     * said transformation.
      *
      * @param coordinates The position of the block
      * @param key The key to the data
@@ -408,9 +406,9 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Applies a transformation on the pre-existing value of the data keyed
-     * by the provided {@link Key} and returns a {@link DataTransactionResult}
-     * of said transformation.
+     * Applies a transformation on the pre-existing value of the data keyed by
+     * the provided {@link Key} and returns a {@link DataTransactionResult} of
+     * said transformation.
      *
      * @param x The X position
      * @param y The Y position
@@ -467,8 +465,7 @@ public interface LocationCompositeValueStore {
     <E> DataTransactionResult offer(int x, int y, int z, Key<? extends BaseValue<E>> key, E value);
 
     /**
-     * Offers the given {@link BaseValue} to the block at the given
-     * position.
+     * Offers the given {@link BaseValue} to the block at the given position.
      *
      * <p>If any data is rejected or existing data is replaced, the
      * {@link DataTransactionResult} will retain the rejected and replaced
@@ -484,8 +481,7 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Offers the given {@link BaseValue} to the block at the given
-     * position.
+     * Offers the given {@link BaseValue} to the block at the given position.
      *
      * <p>If any data is rejected or existing data is replaced, the
      * {@link DataTransactionResult} will retain the rejected and replaced
@@ -616,8 +612,8 @@ public interface LocationCompositeValueStore {
      * Offers the provided {@link DataManipulator}s to the block at the given
      * position. If there's any overlaps of data, the provided
      * {@link MergeFunction} is used to delegate the merges. It is possible to
-     * recycle {@link MergeFunction}s provided that the {@link MergeFunction}
-     * is aware of being usable in multiple environments.
+     * recycle {@link MergeFunction}s provided that the {@link MergeFunction} is
+     * aware of being usable in multiple environments.
      *
      * <p>If any data is rejected or existing data is replaced, the
      * {@link DataTransactionResult} will retain the rejected, replaced, and
@@ -628,7 +624,7 @@ public interface LocationCompositeValueStore {
      * @param function The merge function to resolve conflicts
      * @return The transaction result
      */
-    default DataTransactionResult offer(Vector3i blockPosition, Iterable<DataManipulator<?,?>> values, MergeFunction function) {
+    default DataTransactionResult offer(Vector3i blockPosition, Iterable<DataManipulator<?, ?>> values, MergeFunction function) {
         final DataTransactionResult.Builder builder = DataTransactionResult.builder();
         for (DataManipulator<?, ?> manipulator : values) {
             builder.absorbResult(offer(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ(), manipulator, function));
@@ -637,8 +633,8 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Attempts to remove the given {@link DataManipulator} represented by
-     * the block at the given location if possible.
+     * Attempts to remove the given {@link DataManipulator} represented by the
+     * block at the given location if possible.
      *
      * <p>Certain {@link DataManipulator}s can not be removed due to certain
      * dependencies relying on the particular data to function.</p>
@@ -652,8 +648,8 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Attempts to remove the given {@link DataManipulator} represented by
-     * the block at the given location if possible.
+     * Attempts to remove the given {@link DataManipulator} represented by the
+     * block at the given location if possible.
      *
      * <p>Certain {@link DataManipulator}s can not be removed due to certain
      * dependencies relying on the particular data to function.</p>
@@ -667,8 +663,8 @@ public interface LocationCompositeValueStore {
     DataTransactionResult remove(int x, int y, int z, Class<? extends DataManipulator<?, ?>> manipulatorClass);
 
     /**
-     * Attempts to remove the data associated with the provided {@link Key}
-     * from the block at the provided location.
+     * Attempts to remove the data associated with the provided {@link Key} from
+     * the block at the provided location.
      *
      * @param coordinates The position of the block
      * @param key The key to the data to remove
@@ -679,8 +675,8 @@ public interface LocationCompositeValueStore {
     }
 
     /**
-     * Attempts to remove the data associated with the provided {@link Key}
-     * from the block at the provided location.
+     * Attempts to remove the data associated with the provided {@link Key} from
+     * the block at the provided location.
      *
      * @param x The X position
      * @param y The Y position
@@ -692,8 +688,8 @@ public interface LocationCompositeValueStore {
 
     /**
      * Attempts to undo a {@link DataTransactionResult}. Specifically, all
-     * {@link ImmutableValue}s that were successfully added are removed, and
-     * all replaced {@link ImmutableValue}s are offered.
+     * {@link ImmutableValue}s that were successfully added are removed, and all
+     * replaced {@link ImmutableValue}s are offered.
      *
      * @param coordinates The position of the block
      * @param result The transaction result to undo
@@ -705,8 +701,8 @@ public interface LocationCompositeValueStore {
 
     /**
      * Attempts to undo a {@link DataTransactionResult}. Specifically, all
-     * {@link ImmutableValue}s that were successfully added are removed, and
-     * all replaced {@link ImmutableValue}s are offered.
+     * {@link ImmutableValue}s that were successfully added are removed, and all
+     * replaced {@link ImmutableValue}s are offered.
      *
      * @param x The X position
      * @param y The Y position
@@ -772,8 +768,8 @@ public interface LocationCompositeValueStore {
 
     /**
      * Attempts to copy all {@link ImmutableValue}s from the provided block to
-     * provided block to the provided block coordinates. Any conflicting data
-     * is handled through the provided {@link MergeFunction}.
+     * provided block to the provided block coordinates. Any conflicting data is
+     * handled through the provided {@link MergeFunction}.
      *
      * @param to The block coordinates to copy to
      * @param from the data holder to copy data from
@@ -786,8 +782,8 @@ public interface LocationCompositeValueStore {
 
     /**
      * Attempts to copy all {@link ImmutableValue}s from the provided block to
-     * provided block to the provided block coordinates. Any conflicting data
-     * is handled through the provided {@link MergeFunction}.
+     * provided block to the provided block coordinates. Any conflicting data is
+     * handled through the provided {@link MergeFunction}.
      *
      * @param xTo The X pos of the block to copy data to
      * @param yTo The Y pos of the block to copy data to
@@ -800,8 +796,8 @@ public interface LocationCompositeValueStore {
 
     /**
      * Attempts to copy all {@link ImmutableValue}s from the provided block to
-     * provided block to the provided block coordinates. Any conflicting data
-     * is handled through the provided {@link MergeFunction}.
+     * provided block to the provided block coordinates. Any conflicting data is
+     * handled through the provided {@link MergeFunction}.
      *
      * @param coordinatesTo The coordinates of the block copying data to
      * @param coordinatesFrom The coordinates of the block to copy data from
@@ -810,13 +806,13 @@ public interface LocationCompositeValueStore {
      */
     default DataTransactionResult copyFrom(Vector3i coordinatesTo, Vector3i coordinatesFrom, MergeFunction function) {
         return copyFrom(coordinatesTo.getX(), coordinatesTo.getY(), coordinatesTo.getZ(),
-                        coordinatesFrom.getX(), coordinatesFrom.getY(), coordinatesFrom.getZ(), function);
+                coordinatesFrom.getX(), coordinatesFrom.getY(), coordinatesFrom.getZ(), function);
     }
 
     /**
      * Attempts to copy all {@link ImmutableValue}s from the provided block to
-     * provided block to the provided block coordinates. Any conflicting data
-     * is handled through the provided {@link MergeFunction}.
+     * provided block to the provided block coordinates. Any conflicting data is
+     * handled through the provided {@link MergeFunction}.
      *
      * @param xTo The X position
      * @param yTo The Y position
@@ -830,30 +826,30 @@ public interface LocationCompositeValueStore {
     DataTransactionResult copyFrom(int xTo, int yTo, int zTo, int xFrom, int yFrom, int zFrom, MergeFunction function);
 
     /**
-     * Gets an copied collection of all known {@link DataManipulator}s
-     * belonging to the block at the given position. An individual
-     * {@link DataManipulator} can be used for creating new data to replace
-     * on the block at the given position.
+     * Gets an copied collection of all known {@link DataManipulator}s belonging
+     * to the block at the given position. An individual {@link DataManipulator}
+     * can be used for creating new data to replace on the block at the given
+     * position.
      *
      * @param coordinates The position of the block
      * @return A collection of copied data manipulators belonging to the block
-     *     at the given position
+     *         at the given position
      */
     default Collection<DataManipulator<?, ?>> getManipulators(Vector3i coordinates) {
         return getManipulators(coordinates.getX(), coordinates.getY(), coordinates.getZ());
     }
 
     /**
-     * Gets an copied collection of all known {@link DataManipulator}s
-     * belonging to the block at the given position. An individual
-     * {@link DataManipulator} can be used for creating new data to replace
-     * on the block at the given position.
+     * Gets an copied collection of all known {@link DataManipulator}s belonging
+     * to the block at the given position. An individual {@link DataManipulator}
+     * can be used for creating new data to replace on the block at the given
+     * position.
      *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      * @return A collection of copied data manipulators belonging to the block
-     *     at the given position
+     *         at the given position
      */
     Collection<DataManipulator<?, ?>> getManipulators(int x, int y, int z);
 
@@ -896,16 +892,16 @@ public interface LocationCompositeValueStore {
      * {@link InvalidDataException} is thrown.
      *
      * <p>This setter is used to provide setting custom data that is not
-     * represented by the Data API, including forge mods and other
-     * unknown data. Attempts at validating known {@link DataManipulator}s
-     * contained in the data container are made with the assumption that all
-     * necessary data exists.</p>
+     * represented by the Data API, including forge mods and other unknown data.
+     * Attempts at validating known {@link DataManipulator}s contained in the
+     * data container are made with the assumption that all necessary data
+     * exists.</p>
      *
      * @param position The position of the block
      * @param container A container containing all raw data to set on the block
-     *     at the given position
+     *        at the given position
      * @throws InvalidDataException If the container is missing or has invalid
-     *     data that this holder will refuse
+     *         data that this holder will refuse
      */
     default void setRawData(Vector3i position, DataView container) throws InvalidDataException {
         setRawData(position.getX(), position.getY(), position.getZ(), container);
@@ -918,18 +914,18 @@ public interface LocationCompositeValueStore {
      * {@link InvalidDataException} is thrown.
      *
      * <p>This setter is used to provide setting custom data that is not
-     * represented by the Data API, including forge mods and other
-     * unknown data. Attempts at validating known {@link DataManipulator}s
-     * contained in the data container are made with the assumption that all
-     * necessary data exists.</p>
+     * represented by the Data API, including forge mods and other unknown data.
+     * Attempts at validating known {@link DataManipulator}s contained in the
+     * data container are made with the assumption that all necessary data
+     * exists.</p>
      *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      * @param container A container containing all raw data to set on the block
-     *     at the given position
+     *        at the given position
      * @throws InvalidDataException If the container is missing or has invalid
-     *     data that this holder will refuse
+     *         data that this holder will refuse
      */
     void setRawData(int x, int y, int z, DataView container) throws InvalidDataException;
 

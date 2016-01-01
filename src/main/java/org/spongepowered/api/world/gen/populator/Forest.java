@@ -157,8 +157,8 @@ public interface Forest extends Populator {
         Builder type(PopulatorObject type, double weight);
 
         /**
-         * Sets the overriding supplier. If the supplier is present then it is used
-         * in place of the weighted table.
+         * Sets the overriding supplier. If the supplier is present then it is
+         * used in place of the weighted table.
          * 
          * @param override The new supplier override, or null
          * @return This builder, for chaining

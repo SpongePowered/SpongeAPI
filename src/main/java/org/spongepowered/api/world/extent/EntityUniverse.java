@@ -45,8 +45,8 @@ import java.util.function.Predicate;
 public interface EntityUniverse {
 
     /**
-     * Return a collection of entities contained within this universe,
-     * possibly only returning entities only in loaded areas.
+     * Return a collection of entities contained within this universe, possibly
+     * only returning entities only in loaded areas.
      *
      * <p>For world implementations, only some parts of the world is usually
      * loaded, so this method will only return entities within those loaded
@@ -57,10 +57,9 @@ public interface EntityUniverse {
     Collection<Entity> getEntities();
 
     /**
-     * Return a collection of entities contained within this universe,
-     * possibly only returning entities only in loaded areas. The returned
-     * entities are filtered by the given {@link Predicate} before being
-     * returned.
+     * Return a collection of entities contained within this universe, possibly
+     * only returning entities only in loaded areas. The returned entities are
+     * filtered by the given {@link Predicate} before being returned.
      *
      * <p>For world implementations, only some parts of the world is usually
      * loaded, so this method will only return entities within those loaded
@@ -76,10 +75,10 @@ public interface EntityUniverse {
      *
      * <p>Creating an entity does not spawn the entity into the world. An entity
      * created means the entity can be spawned at the given location. If
-     * {@link Optional#empty()} was returned, the entity is not able to spawn
-     * at the given location. Furthermore, this allows for the {@link Entity} to
-     * be customized further prior to traditional "ticking" and processing by
-     * core systems.</p>
+     * {@link Optional#empty()} was returned, the entity is not able to spawn at
+     * the given location. Furthermore, this allows for the {@link Entity} to be
+     * customized further prior to traditional "ticking" and processing by core
+     * systems.</p>
      *
      * @param type The type
      * @param position The position
@@ -92,10 +91,10 @@ public interface EntityUniverse {
      *
      * <p>Creating an entity does not spawn the entity into the world. An entity
      * created means the entity can be spawned at the given location. If
-     * {@link Optional#empty()} was returned, the entity is not able to spawn
-     * at the given location. Furthermore, this allows for the {@link Entity} to
-     * be customized further prior to traditional "ticking" and processing by
-     * core systems.</p>
+     * {@link Optional#empty()} was returned, the entity is not able to spawn at
+     * the given location. Furthermore, this allows for the {@link Entity} to be
+     * customized further prior to traditional "ticking" and processing by core
+     * systems.</p>
      *
      * @param type The type
      * @param position The position
@@ -108,10 +107,10 @@ public interface EntityUniverse {
      *
      * <p>Creating an entity does not spawn the entity into the world. An entity
      * created means the entity can be spawned at the given location. If
-     * {@link Optional#empty()} was returned, the entity is not able to spawn
-     * at the given location. Furthermore, this allows for the {@link Entity} to
-     * be customized further prior to traditional "ticking" and processing by
-     * core systems.</p>
+     * {@link Optional#empty()} was returned, the entity is not able to spawn at
+     * the given location. Furthermore, this allows for the {@link Entity} to be
+     * customized further prior to traditional "ticking" and processing by core
+     * systems.</p>
      *
      * @param entityContainer The data container of the entity
      * @return An entity, if one was created
@@ -123,10 +122,10 @@ public interface EntityUniverse {
      *
      * <p>Creating an entity does not spawn the entity into the world. An entity
      * created means the entity can be spawned at the given location. If
-     * {@link Optional#empty()} was returned, the entity is not able to spawn
-     * at the given location. Furthermore, this allows for the {@link Entity} to
-     * be customized further prior to traditional "ticking" and processing by
-     * core systems.</p>
+     * {@link Optional#empty()} was returned, the entity is not able to spawn at
+     * the given location. Furthermore, this allows for the {@link Entity} to be
+     * customized further prior to traditional "ticking" and processing by core
+     * systems.</p>
      *
      * @param entityContainer The data container of the entity
      * @param position The position of the entity to spawn at
@@ -140,10 +139,10 @@ public interface EntityUniverse {
      *
      * <p>Creating an entity does not spawn the entity into the world. An entity
      * created means the entity can be spawned at the given location. If
-     * {@link Optional#empty()} was returned, the entity is not able to spawn
-     * at the given location. Furthermore, this allows for the {@link Entity} to
-     * be customized further prior to traditional "ticking" and processing by
-     * core systems.</p>
+     * {@link Optional#empty()} was returned, the entity is not able to spawn at
+     * the given location. Furthermore, this allows for the {@link Entity} to be
+     * customized further prior to traditional "ticking" and processing by core
+     * systems.</p>
      *
      * @param snapshot The entity snapshot of the entity
      * @param position The position of the entity to spawn at
@@ -156,10 +155,10 @@ public interface EntityUniverse {
      * position, rotation) and applicable {@link DataManipulator}s with the
      * specified {@link Cause} for spawning the entity.
      *
-     * <p>Note that for the
-     * {@link Cause} to be useful in the expected {@link SpawnEntityEvent},
-     * a {@link SpawnCause} should be provided in the {@link Cause} for other
-     * plugins to understand and have finer control over the event.</p>
+     * <p>Note that for the {@link Cause} to be useful in the expected
+     * {@link SpawnEntityEvent}, a {@link SpawnCause} should be provided in the
+     * {@link Cause} for other plugins to understand and have finer control over
+     * the event.</p>
      *
      * <p>The requirements involve that all necessary setup of states and data
      * is already preformed on the entity retrieved from the various

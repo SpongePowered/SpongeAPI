@@ -53,14 +53,14 @@ public interface BiomeTreeType extends CatalogType {
      * @param object The new populator object
      */
     void setPopulatorObject(PopulatorObject object);
-    
+
     /**
      * Gets whether this tree type has a larger equivalent.
      * 
      * @return Has large equivalent
      */
     boolean hasLargeEquivalent();
-    
+
     /**
      * Gets the {@link PopulatorObject} which is used to generate the larger
      * equivalent of this tree into the world.
@@ -68,7 +68,7 @@ public interface BiomeTreeType extends CatalogType {
      * @return The populator object
      */
     Optional<PopulatorObject> getLargePopulatorObject();
-    
+
     /**
      * Sets the {@link PopulatorObject} which is used to generate the larger
      * equivalent of this tree into the world.

@@ -37,7 +37,8 @@ import org.spongepowered.api.world.gen.Populator;
 public interface EnderCrystalPlatform extends Populator {
 
     /**
-     * Creates a new {@link Builder} to build a {@link EnderCrystalPlatform} populator.
+     * Creates a new {@link Builder} to build a {@link EnderCrystalPlatform}
+     * populator.
      *
      * @return The new builder
      */
@@ -53,8 +54,7 @@ public interface EnderCrystalPlatform extends Populator {
     double getSpawnProbability();
 
     /**
-     * Sets the probability of a pillar spawning in a chunk. The default value
-     * is 0.2.
+     * Sets the probability of a pillar spawning in a chunk.
      * 
      * @param p The spawn probability
      */
@@ -112,8 +112,7 @@ public interface EnderCrystalPlatform extends Populator {
     interface Builder extends ResettableBuilder<EnderCrystalPlatform, Builder> {
 
         /**
-         * Sets the probability of a pillar spawning in a chunk. The default
-         * value is 0.2.
+         * Sets the probability of a pillar spawning in a chunk.
          * 
          * @param p The spawn probability
          * @return This builder, for chaining

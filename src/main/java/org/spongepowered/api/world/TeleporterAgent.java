@@ -28,8 +28,8 @@ package org.spongepowered.api.world;
 import java.util.Optional;
 
 /**
- * An agent that handles teleportation locations. This can be understood as
- * an agent that handles the creation of "portals" between {@link World}s.
+ * An agent that handles teleportation locations. This can be understood as an
+ * agent that handles the creation of "portals" between {@link World}s.
  *
  * <p>An example is the agent handling nether portals.</p>
  */
@@ -82,8 +82,8 @@ public interface TeleporterAgent {
     TeleporterAgent setCanCreateTeleporter();
 
     /**
-     * Attempts to find a "portal" location, or if none are available,
-     * creates one. Returns {@link Optional#empty()} if none are found.
+     * Attempts to find a "portal" location, or if none are available, creates
+     * one. Returns {@link Optional#empty()} if none are found.
      *
      * @param targetLocation The suggested location
      * @return The found location of the "portal", if available
@@ -91,8 +91,8 @@ public interface TeleporterAgent {
     Optional<Location<World>> findOrCreateTeleporter(Location<World> targetLocation);
 
     /**
-     * Attempts to find a "portal" location. Returns {@link Optional#empty()}
-     * if none are found.
+     * Attempts to find a "portal" location. Returns {@link Optional#empty()} if
+     * none are found.
      *
      * @param targetLocation The suggested location
      * @return The found location of the "portal", if available
@@ -101,8 +101,9 @@ public interface TeleporterAgent {
 
     /**
      * Tells this agent to create a new "portal" location at the suggested
-     * {@link Location}. If none can be created, or {@link #canCreateTeleporter()}
-     * returns {@code false}, {@link Optional#empty()} is returned.
+     * {@link Location}. If none can be created, or
+     * {@link #canCreateTeleporter()} returns {@code false},
+     * {@link Optional#empty()} is returned.
      *
      * @param targetLocation The targeted location
      * @return The newly created "portal" location, if available

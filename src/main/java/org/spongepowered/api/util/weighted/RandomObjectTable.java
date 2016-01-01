@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
@@ -90,8 +90,8 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
     @Override
     public boolean addAll(Collection<? extends TableEntry<T>> c) {
         boolean flag = false;
-        for(TableEntry<T> e: c) {
-            if(e != null) {
+        for (TableEntry<T> e : c) {
+            if (e != null) {
                 add(e);
                 flag = true;
             }
@@ -108,16 +108,16 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * Gets if this table contains the given object, the object may either be a
      * {@link TableEntry} or the object contained within.
      * 
-     * @param o The object to check for
+     * @param obj The object to check for
      * @return If the object is contained within the table
      */
-    public boolean containsObject(Object o) {
-        boolean entry = this.entries.contains(o);
+    public boolean containsObject(Object obj) {
+        boolean entry = this.entries.contains(obj);
         if (entry) {
             return true;
         }
         for (TableEntry<T> e : this.entries) {
-            if (e instanceof WeightedObject && ((WeightedObject<T>) e).get().equals(o)) {
+            if (e instanceof WeightedObject && ((WeightedObject<T>) e).get().equals(obj)) {
                 return true;
             }
         }
@@ -134,7 +134,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * either be {@link TableEntry}s or the objects contained within the
      * entries.
      * 
-     * @param o The objects to check for
+     * @param c The objects to check for
      * @return If all of the objects are contained within the table
      */
     public boolean containsAllObjects(Collection<?> c) {

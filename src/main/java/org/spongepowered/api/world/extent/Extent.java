@@ -39,14 +39,15 @@ import org.spongepowered.api.world.Location;
 import java.util.Collection;
 
 /**
- * A mutable object containing blocks, tile entities, entities, and possibly other game objects.
+ * A mutable object containing blocks, tile entities, entities, and possibly
+ * other game objects.
  */
 public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeArea, LocationCompositeValueStore, Identifiable,
                                 LocationBasePropertyHolder, InteractableVolume {
 
     /**
-     * Gets a location in this extent at the given position.
-     * Essentially, this is a 3D pointer in the extent.
+     * Gets a location in this extent at the given position. Essentially, this
+     * is a 3D pointer in the extent.
      *
      * @param position The position
      * @return The location in this extent
@@ -54,8 +55,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
     Location<? extends Extent> getLocation(Vector3i position);
 
     /**
-     * Gets a location in this extent at the given position.
-     * Essentially, this is a 3D pointer in the extent.
+     * Gets a location in this extent at the given position. Essentially, this
+     * is a 3D pointer in the extent.
      *
      * @param x The X position
      * @param y The Y position
@@ -67,9 +68,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
     }
 
     /**
-     * Gets a location in this extent at the given position.
-     * Essentially, this is a 3D pointer in the extent.
-     * This method supports sub-block positions.
+     * Gets a location in this extent at the given position. Essentially, this
+     * is a 3D pointer in the extent. This method supports sub-block positions.
      * Block-related methods use flooring to get integer coordinates.
      *
      * @param position The position
@@ -78,9 +78,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
     Location<? extends Extent> getLocation(Vector3d position);
 
     /**
-     * Gets a location in this extent at the given position.
-     * Essentially, this is a 3D pointer in the extent.
-     * This method supports sub-block positions.
+     * Gets a location in this extent at the given position. Essentially, this
+     * is a 3D pointer in the extent. This method supports sub-block positions.
      * Block-related methods use flooring to get integer coordinates.
      *
      * @param x The X position
@@ -98,9 +97,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param position The position
      * @param block The block
      * @param notifyNeighbors Whether or not you want to notify neighboring
-     *     blocks of this change. If true, this may cause blocks to change.
+     *        blocks of this change. If true, this may cause blocks to change.
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the volume
+     *         bounds of the volume
      */
     void setBlock(Vector3i position, BlockState block, boolean notifyNeighbors);
 
@@ -112,9 +111,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param z The Z position
      * @param block The block
      * @param notifyNeighbors Whether or not you want to notify neighboring
-     *     blocks of this change. If true, this may cause blocks to change.
+     *        blocks of this change. If true, this may cause blocks to change.
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the volume
+     *         bounds of the volume
      */
     void setBlock(int x, int y, int z, BlockState block, boolean notifyNeighbors);
 
@@ -126,9 +125,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param position The position of the block
      * @param type The new type
      * @param notifyNeighbors Whether or not you want to notify neighboring
-     *     blocks of this change. If true, this may cause blocks to change.
+     *        blocks of this change. If true, this may cause blocks to change.
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the area
+     *         bounds of the area
      */
     void setBlockType(Vector3i position, BlockType type, boolean notifyNeighbors);
 
@@ -142,18 +141,17 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param z The Z position
      * @param type The new type
      * @param notifyNeighbors Whether or not you want to notify neighboring
-     *     blocks. If true, this may cause blocks to change.
+     *        blocks. If true, this may cause blocks to change.
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the area
+     *         bounds of the area
      */
     void setBlockType(int x, int y, int z, BlockType type, boolean notifyNeighbors);
 
     /**
      * Get a snapshot of this block at the current point in time.
      *
-     * <p>A snapshot is disconnected from the {@link Extent} that it was
-     * taken from so changes to the original block do not affect the
-     * snapshot.</p>
+     * <p>A snapshot is disconnected from the {@link Extent} that it was taken
+     * from so changes to the original block do not affect the snapshot.</p>
      *
      * @param position The position of the block
      * @return A snapshot
@@ -163,9 +161,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
     /**
      * Get a snapshot of this block at the current point in time.
      *
-     * <p>A snapshot is disconnected from the {@link Extent} that it was
-     * taken from so changes to the original block do not affect the
-     * snapshot.</p>
+     * <p>A snapshot is disconnected from the {@link Extent} that it was taken
+     * from so changes to the original block do not affect the snapshot.</p>
      *
      * @param x The X position
      * @param y The Y position
@@ -178,18 +175,17 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * Restores the given {@link BlockSnapshot} using the saved block position
      * stored within the snapshot.
      * 
-     * <p>If forced, the state of the block will change its {@link BlockType}
-     * to match that of the snapshot then set the state. However, if force is
-     * set to false and the {@link BlockType}s does not match, false will be
-     * returned.
-     * If notifyNeighbors is true, neighboring blocks will be notified of
-     * changes at the restored block location triggering physic updates.</p>
+     * <p>If forced, the state of the block will change its {@link BlockType} to
+     * match that of the snapshot then set the state. However, if force is set
+     * to false and the {@link BlockType}s does not match, false will be
+     * returned. If notifyNeighbors is true, neighboring blocks will be notified
+     * of changes at the restored block location triggering physic updates.</p>
      *
      * @param snapshot The snapshot
      * @param force If true, forces block state to be set even if the
-     *     {@link BlockType} does not match the snapshot one.
+     *        {@link BlockType} does not match the snapshot one.
      * @param notifyNeighbors Whether or not you want to notify neighboring
-     *     blocks of this change. If true, this may cause blocks to change.
+     *        blocks of this change. If true, this may cause blocks to change.
      * @return true if the restore was successful, false otherwise
      */
     boolean restoreSnapshot(BlockSnapshot snapshot, boolean force, boolean notifyNeighbors);
@@ -197,19 +193,18 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
     /**
      * Restores the {@link BlockSnapshot} at the given position.
      * 
-     * <p>If forced, the state of the block will change its {@link BlockType}
-     * to match that of the snapshot then set the state. However, if force is
-     * set to false and the {@link BlockType}s does not match, false will be
-     * returned.
-     * If notifyNeighbors is true, neighboring blocks will be notified of
-     * changes at the restored block location triggering physic updates.</p>
+     * <p>If forced, the state of the block will change its {@link BlockType} to
+     * match that of the snapshot then set the state. However, if force is set
+     * to false and the {@link BlockType}s does not match, false will be
+     * returned. If notifyNeighbors is true, neighboring blocks will be notified
+     * of changes at the restored block location triggering physic updates.</p>
      *
      * @param position The position of the block
      * @param snapshot The snapshot
      * @param force If true, forces block state to be set even if the
-     *     {@link BlockType} does not match the snapshot one.
+     *        {@link BlockType} does not match the snapshot one.
      * @param notifyNeighbors Whether or not you want to notify neighboring
-     *     blocks of this change. If true, this may cause blocks to change.
+     *        blocks of this change. If true, this may cause blocks to change.
      * @return true if the restore was successful, false otherwise
      */
     boolean restoreSnapshot(Vector3i position, BlockSnapshot snapshot, boolean force, boolean notifyNeighbors);
@@ -217,21 +212,20 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
     /**
      * Restores the {@link BlockSnapshot} at the given position.
      * 
-     * <p>If forced, the state of the block will change its {@link BlockType}
-     * to match that of the snapshot then set the state. However, if force is
-     * set to false and the {@link BlockType}s does not match, false will be
-     * returned.
-     * If notifyNeighbors is true, neighboring blocks will be notified of
-     * changes at the restored block location triggering physic updates.</p>
+     * <p>If forced, the state of the block will change its {@link BlockType} to
+     * match that of the snapshot then set the state. However, if force is set
+     * to false and the {@link BlockType}s does not match, false will be
+     * returned. If notifyNeighbors is true, neighboring blocks will be notified
+     * of changes at the restored block location triggering physic updates.</p>
      *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      * @param snapshot The snapshot
      * @param force If true, forces block state to be set even if the
-     *     {@link BlockType} does not match the snapshot one.
+     *        {@link BlockType} does not match the snapshot one.
      * @param notifyNeighbors Whether or not you want to notify neighboring
-     *     blocks of this change. If true, this may cause blocks to change.
+     *        blocks of this change. If true, this may cause blocks to change.
      * @return true if the restore was successful, false otherwise
      */
     boolean restoreSnapshot(int x, int y, int z, BlockSnapshot snapshot, boolean force, boolean notifyNeighbors);
@@ -284,10 +278,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      */
     void removeScheduledUpdate(Vector3i position, ScheduledBlockUpdate update);
 
-
     /**
      * Removes a {@link ScheduledBlockUpdate} from this block.
-
+     * 
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
@@ -303,22 +296,20 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
     boolean isLoaded();
 
     /**
-     * Returns a new extent that is the same or smaller than the current
-     * extent. This does not copy the data, it only provides a new view
-     * of the extent.
+     * Returns a new extent that is the same or smaller than the current extent.
+     * This does not copy the data, it only provides a new view of the extent.
      *
      * @param newMin The new minimum coordinates in this extent
      * @param newMax The new maximum coordinates in this extent
      * @return The new extent with the new bounds
-     * @throws PositionOutOfBoundsException If the new minimum and maximum
-     *     are outside the current extent
+     * @throws PositionOutOfBoundsException If the new minimum and maximum are
+     *         outside the current extent
      */
     Extent getExtentView(Vector3i newMin, Vector3i newMax);
 
     /**
-     * Returns a new extent that is viewed through some transformation.
-     * This does not copy the data, it only provides a new view of the
-     * extent.
+     * Returns a new extent that is viewed through some transformation. This
+     * does not copy the data, it only provides a new view of the extent.
      *
      * @param transform The transformation to be applied
      * @return The new extent with the transform
@@ -327,9 +318,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
 
     /**
      * Returns a new extent that is translated so that
-     * {@link Extent#getBlockMin()} returns {@link Vector3i#ZERO}.
-     * This does not copy the data, it only provides a new view of the
-     * extent.
+     * {@link Extent#getBlockMin()} returns {@link Vector3i#ZERO}. This does not
+     * copy the data, it only provides a new view of the extent.
      *
      * @return The new extent its minimum at zero
      */

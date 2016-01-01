@@ -25,7 +25,8 @@
 package org.spongepowered.api.world.gen;
 
 /**
- * An enumeration of all possible {@link PopulatorType}s available in vanilla minecraft.
+ * An enumeration of all possible {@link PopulatorType}s available in vanilla
+ * minecraft.
  */
 public final class PopulatorTypes {
 

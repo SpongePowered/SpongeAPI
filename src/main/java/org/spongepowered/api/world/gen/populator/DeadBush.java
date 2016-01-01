@@ -95,8 +95,8 @@ public interface DeadBush extends Populator {
         }
 
         /**
-         * Builds a new instance of a {@link DeadBush} populator with the settings
-         * set within the builder.
+         * Builds a new instance of a {@link DeadBush} populator with the
+         * settings set within the builder.
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset

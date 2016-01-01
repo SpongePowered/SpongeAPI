@@ -54,7 +54,7 @@ public interface Vine extends Populator {
 
     /**
      * Sets the number of vines to attempt to spawn per chunk, must be greater
-     * than zero. The default value is 50.
+     * than zero.
      * 
      * @param count The new amount to spawn
      */
@@ -62,7 +62,7 @@ public interface Vine extends Populator {
 
     /**
      * Sets the number of vines to attempt to spawn per chunk, must be greater
-     * than zero. The default value is 50.
+     * than zero.
      * 
      * @param count The new amount to spawn
      */
@@ -76,8 +76,7 @@ public interface Vine extends Populator {
     interface Builder extends ResettableBuilder<Vine, Builder> {
 
         /**
-         * Sets the number of vines to attempt to spawn per chunk. The default
-         * value is 50.
+         * Sets the number of vines to attempt to spawn per chunk.
          * 
          * @param count The new amount to spawn
          * @return This builder, for chaining
@@ -85,8 +84,7 @@ public interface Vine extends Populator {
         Builder perChunk(VariableAmount count);
 
         /**
-         * Sets the number of vines to attempt to spawn per chunk. The default
-         * value is 50.
+         * Sets the number of vines to attempt to spawn per chunk.
          * 
          * @param count The new amount to spawn
          * @return This builder, for chaining

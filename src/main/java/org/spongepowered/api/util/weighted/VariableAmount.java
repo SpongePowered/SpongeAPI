@@ -50,7 +50,7 @@ public interface VariableAmount extends DataSerializable {
      * @param value The fixed value
      * @return A variable amount representation
      */
-    public static VariableAmount fixed(double value) {
+    static VariableAmount fixed(double value) {
         return new Fixed(value);
     }
 
@@ -63,7 +63,7 @@ public interface VariableAmount extends DataSerializable {
      * @param variance The variance
      * @return A variable amount representation
      */
-    public static VariableAmount baseWithVariance(double base, double variance) {
+    static VariableAmount baseWithVariance(double base, double variance) {
         return new BaseAndVariance(base, VariableAmount.fixed(variance));
     }
 
@@ -76,7 +76,7 @@ public interface VariableAmount extends DataSerializable {
      * @param variance The variance
      * @return A variable amount representation
      */
-    public static VariableAmount baseWithVariance(double base, VariableAmount variance) {
+    static VariableAmount baseWithVariance(double base, VariableAmount variance) {
         return new BaseAndVariance(base, variance);
     }
 
@@ -89,7 +89,7 @@ public interface VariableAmount extends DataSerializable {
      * @param addition The additional amount
      * @return A variable amount representation
      */
-    public static VariableAmount baseWithRandomAddition(double base, double addition) {
+    static VariableAmount baseWithRandomAddition(double base, double addition) {
         return new BaseAndAddition(base, VariableAmount.fixed(addition));
     }
 
@@ -102,7 +102,7 @@ public interface VariableAmount extends DataSerializable {
      * @param addition The additional amount
      * @return A variable amount representation
      */
-    public static VariableAmount baseWithRandomAddition(double base, VariableAmount addition) {
+    static VariableAmount baseWithRandomAddition(double base, VariableAmount addition) {
         return new BaseAndAddition(base, addition);
     }
 
@@ -119,7 +119,7 @@ public interface VariableAmount extends DataSerializable {
      * @param chance The chance to apply the variance
      * @return A variable amount representation
      */
-    public static VariableAmount baseWithOptionalVariance(double base, double variance, double chance) {
+    static VariableAmount baseWithOptionalVariance(double base, double variance, double chance) {
         return new OptionalAmount(base, chance, baseWithVariance(base, variance));
     }
 
@@ -136,7 +136,7 @@ public interface VariableAmount extends DataSerializable {
      * @param chance The chance to apply the variance
      * @return A variable amount representation
      */
-    public static VariableAmount baseWithOptionalVariance(double base, VariableAmount variance, double chance) {
+    static VariableAmount baseWithOptionalVariance(double base, VariableAmount variance, double chance) {
         return new OptionalAmount(base, chance, baseWithVariance(base, variance));
     }
 
@@ -154,7 +154,7 @@ public interface VariableAmount extends DataSerializable {
      * @param chance The chance to apply the additional amount
      * @return A variable amount representation
      */
-    public static VariableAmount baseWithOptionalAddition(double base, double addition, double chance) {
+    static VariableAmount baseWithOptionalAddition(double base, double addition, double chance) {
         return new OptionalAmount(base, chance, baseWithRandomAddition(base, addition));
     }
 
@@ -172,7 +172,7 @@ public interface VariableAmount extends DataSerializable {
      * @param chance The chance to apply the additional amount
      * @return A variable amount representation
      */
-    public static VariableAmount baseWithOptionalAddition(double base, VariableAmount addition, double chance) {
+    static VariableAmount baseWithOptionalAddition(double base, VariableAmount addition, double chance) {
         return new OptionalAmount(base, chance, baseWithRandomAddition(base, addition));
     }
 
@@ -204,7 +204,7 @@ public interface VariableAmount extends DataSerializable {
     }
 
     @Override
-    default public int getContentVersion() {
+    default int getContentVersion() {
         return 0;
     }
 
@@ -212,7 +212,7 @@ public interface VariableAmount extends DataSerializable {
      * Represents a fixed amount, calls to {@link #getAmount} will always return
      * the same fixed value.
      */
-    public static class Fixed implements VariableAmount {
+    static class Fixed implements VariableAmount {
 
         private double amount;
 
@@ -267,7 +267,7 @@ public interface VariableAmount extends DataSerializable {
      * base amount plus or minus a random amount between zero (inclusive) and
      * the variance (exclusive).
      */
-    public static class BaseAndVariance implements VariableAmount {
+    static class BaseAndVariance implements VariableAmount {
 
         private double base;
         private VariableAmount variance;
@@ -328,7 +328,7 @@ public interface VariableAmount extends DataSerializable {
      * the base amount plus a random amount between zero (inclusive) and the
      * addition (exclusive).
      */
-    public static class BaseAndAddition implements VariableAmount {
+    static class BaseAndAddition implements VariableAmount {
 
         private double base;
         private VariableAmount addition;
@@ -387,7 +387,7 @@ public interface VariableAmount extends DataSerializable {
      * This wraps another {@link VariableAmount} which it refers to if the
      * chance succeeds.
      */
-    public static class OptionalAmount implements VariableAmount {
+    static class OptionalAmount implements VariableAmount {
 
         private double chance;
         private double base;

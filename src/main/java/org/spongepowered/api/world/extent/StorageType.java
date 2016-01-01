@@ -25,24 +25,22 @@
 package org.spongepowered.api.world.extent;
 
 /**
- * Storage types that can be used for storing blocks and biomes.
- * These are used when obtaining new copies. Storage obtained
- * from the implementation should be assumed to be {@link #STANDARD}
- * unless specified otherwise.
+ * Storage types that can be used for storing blocks and biomes. These are used
+ * when obtaining new copies. Storage obtained from the implementation should be
+ * assumed to be {@link #STANDARD} unless specified otherwise.
  */
 public enum StorageType {
 
     /**
-     * The standard storage method used by the implementation.
-     * Not guaranteed to provide anything but single threaded
-     * capabilities.
+     * The standard storage method used by the implementation. Not guaranteed to
+     * provide anything but single threaded capabilities.
      */
     STANDARD,
 
     /**
-     * A thread-safe storage solution. Reads and writes are
-     * atomic. Necessary for multi-threaded applications, but
-     * single threaded ones might suffer for extra overhead.
+     * A thread-safe storage solution. Reads and writes are atomic. Necessary
+     * for multi-threaded applications, but single threaded ones might suffer
+     * for extra overhead.
      */
     THREAD_SAFE
 

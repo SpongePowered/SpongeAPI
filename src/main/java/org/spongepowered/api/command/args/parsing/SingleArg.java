@@ -46,7 +46,7 @@ public final class SingleArg {
     }
 
     /**
-     * Get the string used.
+     * Gets the string used.
      *
      * @return The string used
      */
@@ -55,7 +55,7 @@ public final class SingleArg {
     }
 
     /**
-     * Get the starting index.
+     * Gets the starting index.
      *
      * @return The starting index
      */
@@ -64,7 +64,7 @@ public final class SingleArg {
     }
 
     /**
-     * Get the ending index.
+     * Gets the ending index.
      *
      * @return The ending index
      */

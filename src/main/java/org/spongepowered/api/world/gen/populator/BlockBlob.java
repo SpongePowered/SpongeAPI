@@ -126,8 +126,6 @@ public interface BlockBlob extends Populator {
         /**
          * Sets the radius of the area for the blob, cannot be negative.
          * 
-         * <p>This defaults to 1.</p>
-         * 
          * @param radius The new radius
          * @return This builder, for chaining
          */
@@ -135,8 +133,6 @@ public interface BlockBlob extends Populator {
 
         /**
          * Sets the radius of the area for the blob, cannot be negative.
-         * 
-         * <p>This defaults to 1.</p>
          * 
          * @param radius The new radius
          * @return This builder, for chaining
@@ -149,8 +145,6 @@ public interface BlockBlob extends Populator {
          * Sets the number of blobs to spawn per chunk, must be greater than
          * zero.
          * 
-         * <p>This defaults to 3.</p>
-         * 
          * @param count The number of blobs to spawn
          * @return This builder, for chaining
          */
@@ -159,8 +153,6 @@ public interface BlockBlob extends Populator {
         /**
          * Sets the number of blobs to spawn per chunk, must be greater than
          * zero.
-         * 
-         * <p>This defaults to 3.</p>
          * 
          * @param count The number of blobs to spawn
          * @return This builder, for chaining

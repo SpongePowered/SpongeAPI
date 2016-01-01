@@ -84,8 +84,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
- * Generates the bytecode for classes needed by
- * {@link ClassGeneratorProvider}.
+ * Generates the bytecode for classes needed by {@link ClassGeneratorProvider}.
  */
 public class ClassGenerator {
 
@@ -274,7 +273,8 @@ public class ClassGenerator {
         }
     }
 
-    private void generateConstructor(ClassWriter classWriter, String internalName, Class<?> parentType, ImmutableSet<? extends Property<Class<?>, Method>> properties) {
+    private void generateConstructor(ClassWriter classWriter, String internalName, Class<?> parentType,
+            ImmutableSet<? extends Property<Class<?>, Method>> properties) {
         MethodVisitor mv =
                 classWriter.visitMethod(ACC_PUBLIC, "<init>", "(Ljava/util/Map;)V", "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V", null);
         mv.visitCode();
@@ -294,12 +294,11 @@ public class ClassGenerator {
             mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Map", "remove", "(Ljava/lang/Object;)Ljava/lang/Object;", true);
             mv.visitVarInsn(ASTORE, 2);
 
-
             // Only if we have a null policy:
             // if (value == null) throw new NullPointerException(...)
             if (this.nullPolicy != NullPolicy.DISABLE_PRECONDITIONS) {
                 boolean useNullTest = (((this.nullPolicy == NullPolicy.NON_NULL_BY_DEFAULT && !this.hasNullable(property.getAccessor()))
-                                               || (this.nullPolicy == NullPolicy.NULL_BY_DEFAULT && this.hasNonnull(property.getAccessor())))
+                        || (this.nullPolicy == NullPolicy.NULL_BY_DEFAULT && this.hasNonnull(property.getAccessor())))
                         && isRequired(property));
 
                 if (useNullTest) {
@@ -396,16 +395,21 @@ public class ClassGenerator {
     /**
      * Generates a standard mutator method.
      *
-     * <p>This method assumes that a standard field has been generated for the provided {@link Property}</p>
+     * <p>This method assumes that a standard field has been generated for the
+     * provided {@link Property}</p>
      *
      * @param cw The {@link ClassWriter} to generate the mutator in
-     * @param type The {@link Class} of the event that's having an implementation generated
-     * @param internalName The internal name (slashes instead of periods in the package) of the new class being generated
+     * @param type The {@link Class} of the event that's having an
+     *        implementation generated
+     * @param internalName The internal name (slashes instead of periods in the
+     *        package) of the new class being generated
      * @param fieldName The name of the field to mutate
      * @param fieldType The type of the field to mutate
-     * @param property The {@link Property} containing the mutator method to generate for
+     * @param property The {@link Property} containing the mutator method to
+     *        generate for
      */
-    public static void generateMutator(ClassWriter cw, Class<?> type, String internalName, String fieldName, Class<?> fieldType, Property<Class<?>, Method> property) {
+    public static void generateMutator(ClassWriter cw, Class<?> type, String internalName, String fieldName, Class<?> fieldType,
+            Property<Class<?>, Method> property) {
         Method mutator = property.getMutator().get();
 
         MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, mutator.getName(), Type.getMethodDescriptor(mutator), null, null);
@@ -467,7 +471,8 @@ public class ClassGenerator {
         mv.visitEnd();
     }
 
-    private void generateAccessorsandMutator(ClassWriter cw, Class<?> type, Class<?> parentType, String internalName, Property<Class<?>, Method> property) {
+    private void generateAccessorsandMutator(ClassWriter cw, Class<?> type, Class<?> parentType, String internalName,
+            Property<Class<?>, Method> property) {
         if (generateMethods(property)) {
             this.generateAccessor(cw, parentType, internalName, property);
 
@@ -508,7 +513,8 @@ public class ClassGenerator {
                     .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
 
             toStringMv.visitVarInsn(ALOAD, 0);
-            toStringMv.visitMethodInsn(INVOKESPECIAL, internalName, property.getAccessor().getName(), Type.getMethodDescriptor(property.getAccessor()), false);
+            toStringMv.visitMethodInsn(INVOKESPECIAL, internalName, property.getAccessor().getName(),
+                    Type.getMethodDescriptor(property.getAccessor()), false);
 
             String desc = property.getType().isPrimitive() ? Type.getDescriptor(property.getType()) : "Ljava/lang/Object;";
 
@@ -522,11 +528,13 @@ public class ClassGenerator {
     }
 
     private void finalizeToString(MethodVisitor mv) {
-        // The StringBuilder is on the top of the stack from the last append() - duplicate it for call to replace()
+        // The StringBuilder is on the top of the stack from the last append() -
+        // duplicate it for call to replace()
         mv.visitVarInsn(ALOAD, 1);
         mv.visitInsn(DUP);
 
-        // The replace starts at 2 characters before the end, to remove the extra command and space added
+        // The replace starts at 2 characters before the end, to remove the
+        // extra command and space added
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "length", "()I", false);
         mv.visitLdcInsn(2);
         mv.visitInsn(ISUB);
@@ -565,21 +573,20 @@ public class ClassGenerator {
         final String internalName = getInternalName(name);
 
         final ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
-        cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, internalName, null, Type.getInternalName(parentType), new String[]{Type.getInternalName(type)});
-
+        cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, internalName, null, Type.getInternalName(parentType), new String[] {Type.getInternalName(type)});
 
         MethodVisitor toStringMv = this.initializeToString(cw, type);
 
         this.generateWithPlugins(cw, type, parentType, internalName, properties, toStringMv, plugins);
 
         // Create the fields
-        //this.contributeFields(cw, parentType, properties, plugins);
+        // this.contributeFields(cw, parentType, properties, plugins);
 
         // Create the constructor
         this.generateConstructor(cw, internalName, parentType, properties);
 
-        // The return value of toString takes the form of "ClassName{param1=value1, param2=value2, ...}"
-
+        // The return value of toString takes the form of
+        // "ClassName{param1=value1, param2=value2, ...}"
 
         // Create the accessors and mutators, and fill out the toString method
 
@@ -590,11 +597,12 @@ public class ClassGenerator {
         return cw.toByteArray();
     }
 
-    private void generateWithPlugins(ClassWriter cw, Class<?> eventClass, Class<?> parentType, String internalName, ImmutableSet<? extends Property<Class<?>, Method>> properties, MethodVisitor toStringMv, List<? extends EventFactoryPlugin> plugins) {
-        for (Property<Class<?>, Method> property: properties) {
+    private void generateWithPlugins(ClassWriter cw, Class<?> eventClass, Class<?> parentType, String internalName,
+            ImmutableSet<? extends Property<Class<?>, Method>> properties, MethodVisitor toStringMv, List<? extends EventFactoryPlugin> plugins) {
+        for (Property<Class<?>, Method> property : properties) {
             boolean processed = false;
 
-            for (EventFactoryPlugin plugin: plugins) {
+            for (EventFactoryPlugin plugin : plugins) {
                 processed = plugin.contributeProperty(eventClass, internalName, cw, property);
                 if (processed == true) {
                     break;
@@ -623,7 +631,7 @@ public class ClassGenerator {
         String internalName = name.replace('.', '/');
 
         ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
-        cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, internalName, null, "java/lang/Object", new String[]{Type.getInternalName(EventFactory.class)});
+        cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, internalName, null, "java/lang/Object", new String[] {Type.getInternalName(EventFactory.class)});
 
         // Create the constructor
         {

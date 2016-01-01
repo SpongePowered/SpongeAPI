@@ -32,9 +32,9 @@ import java.util.Optional;
 
 /**
  * A class for information about the chunk coordinate space, aka the layout.
- * This can be used to obtain information about the chunk size and the
- * space bounds, validate coordinates, convert from chunk to world and
- * vice-versa and translate coordinates; among other things.
+ * This can be used to obtain information about the chunk size and the space
+ * bounds, validate coordinates, convert from chunk to world and vice-versa and
+ * translate coordinates; among other things.
  */
 public interface ChunkLayout {
 
@@ -101,8 +101,8 @@ public interface ChunkLayout {
     boolean isValidChunk(int x, int y, int z);
 
     /**
-     * Returns true if the local coordinates fit in a chunk. That is
-     * they are positive and smaller than the chunk's size.
+     * Returns true if the local coordinates fit in a chunk. That is they are
+     * positive and smaller than the chunk's size.
      *
      * @param localCoords The coordinates to check
      * @return Whether or not the coordinates fit in a chunk
@@ -110,8 +110,8 @@ public interface ChunkLayout {
     boolean isInChunk(Vector3i localCoords);
 
     /**
-     * Returns true if the local coordinates fit in a chunk. That is
-     * they are positive and smaller than the chunk's size.
+     * Returns true if the local coordinates fit in a chunk. That is they are
+     * positive and smaller than the chunk's size.
      *
      * @param x The x local coordinate to validate
      * @param y The y local coordinate to validate
@@ -121,8 +121,8 @@ public interface ChunkLayout {
     boolean isInChunk(int x, int y, int z);
 
     /**
-     * Returns true if the world coordinates fit in the chunk at the
-     * given coordinates.
+     * Returns true if the world coordinates fit in the chunk at the given
+     * coordinates.
      *
      * @param worldCoords The world coordinates to validate
      * @param chunkCoords The chunk coordinates in which they must fit
@@ -131,8 +131,8 @@ public interface ChunkLayout {
     boolean isInChunk(Vector3i worldCoords, Vector3i chunkCoords);
 
     /**
-     * Returns true if the world coordinates fit in the chunk at the
-     * given coordinates.
+     * Returns true if the world coordinates fit in the chunk at the given
+     * coordinates.
      *
      * @param wx The x world coordinate to validate
      * @param wy The y world coordinate to validate
@@ -217,14 +217,15 @@ public interface ChunkLayout {
      * @param direction The direction in which to move a step
      * @return The new chunk coordinates if they are valid
      * @throws IllegalArgumentException If the direction is a
-     *     {@link Direction.Division#SECONDARY_ORDINAL}
+     *         {@link Direction.Division#SECONDARY_ORDINAL}
      */
     Optional<Vector3i> moveToChunk(Vector3i chunkCoords, Direction direction);
 
     /**
      * Moves chunk coordinates one step in the given direction. Returns nothing
-     * if the new coordinates are not valid. {@link Direction.Division#SECONDARY_ORDINAL}
-     * directions are not a valid argument. These will throw an exception.
+     * if the new coordinates are not valid.
+     * {@link Direction.Division#SECONDARY_ORDINAL} directions are not a valid
+     * argument. These will throw an exception.
      *
      * @param x The x chunk coordinate to move from
      * @param y The y chunk coordinate to move from
@@ -232,30 +233,30 @@ public interface ChunkLayout {
      * @param direction The direction in which to move a step
      * @return The new chunk coordinates if they are valid
      * @throws IllegalArgumentException If the direction is a
-     *     {@link Division#SECONDARY_ORDINAL}
+     *         {@link Division#SECONDARY_ORDINAL}
      */
     Optional<Vector3i> moveToChunk(int x, int y, int z, Direction direction);
 
     /**
-     * Moves chunk coordinates a number of steps in the given direction.
-     * Returns nothing if the new coordinates are not valid.
-     * {@link Direction.Division#SECONDARY_ORDINAL} directions are not a valid argument.
-     * These will throw an exception.
+     * Moves chunk coordinates a number of steps in the given direction. Returns
+     * nothing if the new coordinates are not valid.
+     * {@link Direction.Division#SECONDARY_ORDINAL} directions are not a valid
+     * argument. These will throw an exception.
      *
      * @param chunkCoords The chunk coordinates to move from
      * @param direction The direction in which to move
      * @param steps The number of steps to take
      * @return The new chunk coordinates if they are valid
      * @throws IllegalArgumentException If the direction is a
-     *     {@link Direction.Division#SECONDARY_ORDINAL}
+     *         {@link Direction.Division#SECONDARY_ORDINAL}
      */
     Optional<Vector3i> moveToChunk(Vector3i chunkCoords, Direction direction, int steps);
 
     /**
-     * Moves chunk coordinates a number of steps in the given direction.
-     * Returns nothing if the new coordinates are not valid.
-     * {@link Direction.Division#SECONDARY_ORDINAL} directions are not a valid argument.
-     * These will throw an exception.
+     * Moves chunk coordinates a number of steps in the given direction. Returns
+     * nothing if the new coordinates are not valid.
+     * {@link Direction.Division#SECONDARY_ORDINAL} directions are not a valid
+     * argument. These will throw an exception.
      *
      * @param x The x chunk coordinate to move from
      * @param y The y chunk coordinate to move from
@@ -264,7 +265,7 @@ public interface ChunkLayout {
      * @param steps The number of steps to take
      * @return The new chunk coordinates if they are valid
      * @throws IllegalArgumentException If the direction is a
-     *      {@link Direction.Division#SECONDARY_ORDINAL}
+     *         {@link Direction.Division#SECONDARY_ORDINAL}
      */
     Optional<Vector3i> moveToChunk(int x, int y, int z, Direction direction, int steps);
 

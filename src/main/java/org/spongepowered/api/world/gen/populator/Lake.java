@@ -67,21 +67,19 @@ public interface Lake extends Populator {
     double getLakeProbability();
 
     /**
-     * Sets the probability of a lake spawning in a chunk. The default value is
-     * 0.25 for water lakes and 0.0125 for lava lakes (therefore equating to a 1
-     * in 4 chance and a 1 in 80 chance respectively).
+     * Sets the probability of a lake spawning in a chunk.
      * 
      * @param p The new lake spawn probability
      */
     void setLakeProbability(double p);
-    
+
     /**
      * Gets the height that this lake will be spawned at.
      * 
      * @return The height
      */
     VariableAmount getHeight();
-    
+
     /**
      * Sets the height that this lake will be spawned at.
      * 
@@ -103,15 +101,13 @@ public interface Lake extends Populator {
         Builder liquidType(BlockState liquid);
 
         /**
-         * Sets the probability of a lake spawning in a chunk. The default value
-         * is 0.25 for water lakes and 0.0125 for lava lakes (therefore equating
-         * to a 1 in 4 chance and a 1 in 80 chance respectively).
+         * Sets the probability of a lake spawning in a chunk.
          * 
          * @param p The new lake spawn probability
          * @return This builder, for chaining
          */
         Builder chance(double p);
-        
+
         /**
          * Sets the height that the lake will be spawned at.
          * 

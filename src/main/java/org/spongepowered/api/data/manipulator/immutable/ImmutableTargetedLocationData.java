@@ -34,12 +34,12 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
- * An {@link ImmutableDataManipulator} handling the supposed targetted
- * {@link Location}. Usually for the case of {@link EnderPearl}s, the
- * targeted {@link Location} is where the {@link EnderPearl} will
- * move towards until it's expiration time. In the case of
- * {@link ItemStack}s of type {@link ItemTypes#COMPASS}, the targeted
- * {@link Location} is where the compass will point towards.
+ * An {@link ImmutableDataManipulator} handling the supposed targeted
+ * {@link Location}. Usually for the case of {@link EnderPearl}s, the targeted
+ * {@link Location} is where the {@link EnderPearl} will move towards until it's
+ * expiration time. In the case of {@link ItemStack}s of type
+ * {@link ItemTypes#COMPASS}, the targeted {@link Location} is where the compass
+ * will point towards.
  */
 public interface ImmutableTargetedLocationData extends ImmutableDataManipulator<ImmutableTargetedLocationData, TargetedLocationData> {
 

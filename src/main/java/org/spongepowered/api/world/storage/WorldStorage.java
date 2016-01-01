@@ -55,12 +55,12 @@ public interface WorldStorage {
      * Checks if the given chunk coordinates represented by {@link Vector3i}
      * exist in the world.
      *
-     * <p>Note that this is an asynchronous check as the storage of chunks
-     * can not be guaranteed to remain in synch with the server, let alone
-     * on the server thread.</p>
+     * <p>Note that this is an asynchronous check as the storage of chunks can
+     * not be guaranteed to remain in synch with the server, let alone on the
+     * server thread.</p>
      *
-     * <p>It is imperative to avoid waiting for the {@link ListenableFuture} to complete
-     * its task.</p>
+     * <p>It is imperative to avoid waiting for the {@link ListenableFuture} to
+     * complete its task.</p>
      *
      * @param chunkCoords The chunk coordinates
      * @return Whether the chunk exists or not
@@ -68,19 +68,19 @@ public interface WorldStorage {
     ListenableFuture<Boolean> doesChunkExist(Vector3i chunkCoords);
 
     /**
-     * Gets a {@link DataContainer} including all data related to a {@link Chunk}.
+     * Gets a {@link DataContainer} including all data related to a
+     * {@link Chunk}.
      *
-     * <p>The container is a read only instance of the data, and therefor
-     * should not be considered as mutable data. Changes are NOT saved, and
-     * the data may not be in synch with the server if the chunk is currently
-     * loaded.</p>
+     * <p>The container is a read only instance of the data, and therefor should
+     * not be considered as mutable data. Changes are NOT saved, and the data
+     * may not be in synch with the server if the chunk is currently loaded.</p>
      *
      * <p>This may not return a {@link DataContainer} in the event there is no
      * chunk data generated at the desired coordinates.</p>
      *
-     * <p>It is imperative to understand that the {@link ListenableFuture} task is
-     * blocking, and should avoid using {@link ListenableFuture#get()} while on the main
-     * thread.</p>
+     * <p>It is imperative to understand that the {@link ListenableFuture} task
+     * is blocking, and should avoid using {@link ListenableFuture#get()} while
+     * on the main thread.</p>
      *
      * @param chunkCoords The chunk coordinates
      * @return The data container representing the chunk data, if available

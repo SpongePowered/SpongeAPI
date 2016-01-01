@@ -105,8 +105,7 @@ public interface Flower extends Populator {
 
     /**
      * Sets the overriding supplier. If the supplier is present then it is used
-     * in place of the weighted table while determining what PlantType to
-     * place.
+     * in place of the weighted table while determining what PlantType to place.
      * 
      * @param override The new supplier override, or null
      */
@@ -162,7 +161,8 @@ public interface Flower extends Populator {
         Builder types(WeightedTable<PlantType> types);
 
         /**
-         * Adds the plant type to the list of types to spawn with the given weight.
+         * Adds the plant type to the list of types to spawn with the given
+         * weight.
          * 
          * @param type The plant type to spawn
          * @param weight The weight of the type
@@ -171,8 +171,8 @@ public interface Flower extends Populator {
         Builder type(PlantType type, double weight);
 
         /**
-         * Sets the overriding supplier. If the supplier is present then it is used
-         * in place of the weighted table.
+         * Sets the overriding supplier. If the supplier is present then it is
+         * used in place of the weighted table.
          * 
          * @param override The new supplier override, or null
          * @return This builder, for chaining
@@ -180,8 +180,8 @@ public interface Flower extends Populator {
         Builder supplier(Function<Location<Chunk>, PlantType> override);
 
         /**
-         * Builds a new instance of a {@link Flower} populator with the
-         * settings set within the builder.
+         * Builds a new instance of a {@link Flower} populator with the settings
+         * set within the builder.
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
