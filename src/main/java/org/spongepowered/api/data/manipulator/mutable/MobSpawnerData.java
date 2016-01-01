@@ -120,7 +120,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
     NextEntityToSpawnValue nextEntityToSpawn();
 
     /**
-     * Gets the {@link WeightedEntityCollectionValue} of all possible
+     * Gets the {@link WeightedCollectionValue} of all possible
      * {@link Entity} instances that can be spawned by the spawner. As they
      * are all {@link WeightedSerializableObject}{@code <EntitySnapshot>}
      * instances, their weight is defined as a {@link Random} to determine

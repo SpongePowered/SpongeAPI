@@ -46,7 +46,7 @@ public abstract class AbstractImmutableBooleanData<I extends ImmutableDataManipu
     private final boolean defaultValue;
     private final ImmutableValue<Boolean> immutableValue;
 
-    public AbstractImmutableBooleanData(boolean value, Key<Value<Boolean>> usedKey, boolean defaultValue) {
+    protected AbstractImmutableBooleanData(boolean value, Key<Value<Boolean>> usedKey, boolean defaultValue) {
         super(value, usedKey);
         this.defaultValue = defaultValue;
         this.immutableValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, defaultValue, value).asImmutable();

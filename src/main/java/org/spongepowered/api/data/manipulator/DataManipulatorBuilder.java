@@ -25,8 +25,8 @@
 package org.spongepowered.api.data.manipulator;
 
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.util.persistence.DataBuilder;
 import org.spongepowered.api.data.DataManager;
+import org.spongepowered.api.util.persistence.DataBuilder;
 
 import java.util.Optional;
 

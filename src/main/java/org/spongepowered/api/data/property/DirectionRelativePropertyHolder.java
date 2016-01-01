@@ -31,6 +31,14 @@ import java.util.Optional;
 
 public interface DirectionRelativePropertyHolder {
 
-    <T extends Property<?, ?>> Optional<T> getProperty(Direction direction);
+    /**
+     * Gets the desired property from this property holder when facing towards
+     * the desired {@link Direction}.
+     *
+     * @param direction The direction
+     * @param <T> The type of property
+     * @return The property, if available
+     */
+    <T extends Property<?, ?>> Optional<T> getProperty(Direction direction, Class<T> clazz);
 
 }

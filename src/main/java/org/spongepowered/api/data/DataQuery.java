@@ -54,7 +54,7 @@ public final class DataQuery {
      * @param separator The separator
      * @param path The path
      */
-    public DataQuery(char separator, String path) {
+    private DataQuery(char separator, String path) {
         this(path.split(Pattern.quote(String.valueOf(separator))));
     }
 
@@ -63,7 +63,7 @@ public final class DataQuery {
      *
      * @param parts The parts
      */
-    public DataQuery(String... parts) {
+    private DataQuery(String... parts) {
         this.parts = ImmutableList.copyOf(parts);
     }
 
@@ -72,7 +72,7 @@ public final class DataQuery {
      *
      * @param parts The parts
      */
-    public DataQuery(List<String> parts) {
+    private DataQuery(List<String> parts) {
         this.parts = ImmutableList.copyOf(parts);
     }
 

@@ -60,8 +60,30 @@ public interface DataManager {
      */
     <T extends DataSerializable> void registerBuilder(Class<T> clazz, DataBuilder<T> builder);
 
+    /**
+     * Registers a {@link DataContentUpdater} for the desired
+     * {@link DataSerializable} such that any versioned data may be updated to
+     * newer versions for the most up to date {@link DataBuilder}.
+     *
+     * @param clazz The data serializable class
+     * @param updater The updater
+     * @param <T> The type of DataSerializable
+     */
     <T extends DataSerializable> void registerContentUpdater(Class<T> clazz, DataContentUpdater updater);
 
+    /**
+     * Gets a wrapped fake {@link DataContentUpdater} that may wrap several
+     * {@link DataContentUpdater}s to translate versioned data from the desired
+     * {@code fromVersion} to the {@code toVersion}. If the version jump is too
+     * great or a {@link DataContentUpdater} has not been registered to cover
+     * the complete jump, {@link Optional#empty()} may be returned.
+     *
+     * @param clazz The data serializable class
+     * @param fromVersion The version converting from
+     * @param toVersion The version converting to
+     * @param <T> The type of data serializable
+     * @return The content updater, if available
+     */
     <T extends DataSerializable> Optional<DataContentUpdater> getWrappedContentUpdater(Class<T> clazz, int fromVersion, int toVersion);
 
     /**
@@ -76,7 +98,7 @@ public interface DataManager {
      * @param <T> The type of data serializable
      * @return The builder, if available
      */
-    <T extends DataSerializable>  Optional<DataBuilder<T>> getBuilder(Class<T> clazz);
+    <T extends DataSerializable> Optional<DataBuilder<T>> getBuilder(Class<T> clazz);
 
     /**
      * Attempts to deserialize an instance of the {@link DataSerializable} from
@@ -105,6 +127,23 @@ public interface DataManager {
     <T extends ImmutableDataHolder<T>, B extends ImmutableDataBuilder<T, B>> void register(Class<T> holderClass, B builder);
 
     /**
+     * Registers the given {@link DataManipulator} class with it's associated
+     * {@link DataManipulatorBuilder}. The builder can be used to create new
+     * instances of the given {@link DataManipulator} for data retrieval,
+     * data representation, and mass application of a {@link DataManipulator}
+     * to multiple {@link DataHolder}s.
+     *
+     * @param manipulatorClass The class of the data manipulator
+     * @param immutableManipulatorClass The class of the immutable
+     *     datamanipulator
+     * @param builder The builder instance of the data manipulator
+     * @param <T> The type of data manipulator
+     * @param <I> The type of immutable datamanipulator
+     */
+    <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>> void register(Class<? extends T> manipulatorClass,
+            Class<? extends I> immutableManipulatorClass, DataManipulatorBuilder<T, I> builder);
+
+    /**
      * Attempts to retrieve the builder for the given
      * {@link ImmutableDataHolder}.
      *
@@ -119,22 +158,6 @@ public interface DataManager {
     <T extends ImmutableDataHolder<T>, B extends ImmutableDataBuilder<T, B>> Optional<B> getImmutableBuilder(Class<T> holderClass);
 
     /**
-     * Registers the given {@link DataManipulator} class with it's associated
-     * {@link DataManipulatorBuilder}. The builder can be used to create new
-     * instances of the given {@link DataManipulator} for data retrieval,
-     * data representation, and mass application of a {@link DataManipulator}
-     * to multiple {@link DataHolder}s.
-     *
-     * @param manipulatorClass The class of the data manipulator
-     * @param immutableManipulatorClass The class of the immutable datamanipulator
-     * @param builder The builder instance of the data manipulator
-     * @param <T> The type of data manipulator
-     * @param <I> The type of immutable datamanipulator
-     */
-    <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>> void register(Class<? extends T> manipulatorClass,
-        Class<? extends I> immutableManipulatorClass, DataManipulatorBuilder<T, I> builder);
-
-    /**
      * Attempts to retrieve the builder for the given {@link DataManipulator}.
      *
      * <p>If the {@link DataManipulator} was not registered, multiple systems
@@ -146,7 +169,7 @@ public interface DataManager {
      * @return The builder, if available
      */
     <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>>
-    Optional<DataManipulatorBuilder<T, I>> getManipulatorBuilder(Class<T> manipulatorClass);
+        Optional<DataManipulatorBuilder<T, I>> getManipulatorBuilder(Class<T> manipulatorClass);
 
     /**
      * Attempts to retrieve the builder for the given
@@ -161,6 +184,6 @@ public interface DataManager {
      * @return The DataManipulatorBuilder, if available
      */
     <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>>
-    Optional<DataManipulatorBuilder<T, I>> getImmutableManipulatorBuilder(Class<I> immutableManipulatorClass);
+        Optional<DataManipulatorBuilder<T, I>> getImmutableManipulatorBuilder(Class<I> immutableManipulatorClass);
 
 }

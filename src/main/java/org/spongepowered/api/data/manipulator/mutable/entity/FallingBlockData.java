@@ -82,7 +82,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
     Value<Integer> fallTime();
 
     /**
-     * Gets whether this falling block will damage entities where it lands
+     * Gets whether this falling block will damage entities where it lands.
      *
      * @return Whether this falling block will damage entities where it lands
      */

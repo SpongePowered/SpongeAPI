@@ -40,7 +40,7 @@ public abstract class AbstractImmutableSingleMapData<K, V, M extends DataManipul
 
     private final ImmutableMapValue<K, V> mapValue;
 
-    public AbstractImmutableSingleMapData(Map<K, V> value, Key<MapValue<K, V>> usedKey) {
+    protected AbstractImmutableSingleMapData(Map<K, V> value, Key<MapValue<K, V>> usedKey) {
         super(ImmutableMap.copyOf(value), usedKey);
         this.mapValue = Sponge.getRegistry().getValueFactory()
             .createMapValue(usedKey, this.value)

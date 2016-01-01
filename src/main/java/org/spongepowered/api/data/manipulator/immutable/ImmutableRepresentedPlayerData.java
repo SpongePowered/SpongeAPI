@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.data.manipulator.immutable;
 
-import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.block.tileentity.Skull;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.RepresentedPlayerData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.profile.GameProfile;
 
 /**
  * An {@link ImmutableDataManipulator} handling the {@link GameProfile}

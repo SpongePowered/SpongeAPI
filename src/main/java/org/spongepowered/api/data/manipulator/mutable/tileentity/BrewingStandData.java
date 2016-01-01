@@ -38,7 +38,7 @@ public interface BrewingStandData extends DataManipulator<BrewingStandData, Immu
     /**
      * Gets the {@link MutableBoundedValue} for the remaining brew time.
      *
-     * If nothing is brewing the value is 0.
+     * <p>If nothing is brewing the value is 0.</p>
      *
      * @return The value for the remaining brew time
      */

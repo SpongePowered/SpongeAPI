@@ -39,8 +39,8 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.util.persistence.DataBuilder;
 import org.spongepowered.api.util.Coerce;
+import org.spongepowered.api.util.persistence.DataBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;

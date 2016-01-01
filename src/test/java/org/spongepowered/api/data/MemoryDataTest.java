@@ -384,7 +384,7 @@ public class MemoryDataTest {
 
         DataContainer containertest = new MemoryDataContainer();
         DataContainer containertest2 = new MemoryDataContainer();
-        containertest.set(new DataQuery("test1", "test2", "test3"), containertest2);
+        containertest.set(DataQuery.of("test1", "test2", "test3"), containertest2);
     }
 
     @Test

@@ -118,7 +118,6 @@ import org.spongepowered.api.data.type.TreeType;
 import org.spongepowered.api.data.type.WallType;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -129,7 +128,6 @@ import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.data.value.mutable.WeightedCollectionValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Living;
@@ -153,7 +151,6 @@ import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
-import java.lang.ref.WeakReference;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -488,7 +485,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the "enchantments hidden"
-     * state of a {@link ItemStack}
+     * state of a {@link ItemStack}.
      *
      * @see HideData#hideEnchantments()
      */
@@ -496,7 +493,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the "attributes hidden"
-     * state of a {@link ItemStack}
+     * state of a {@link ItemStack}.
      *
      * @see HideData#hideAttributes()
      */
@@ -504,7 +501,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the "unbreakable hidden"
-     * state of a {@link ItemStack}
+     * state of a {@link ItemStack}.
      *
      * @see HideData#hideUnbreakable()
      */
@@ -512,7 +509,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the "can destroy hidden"
-     * state of a {@link ItemStack}
+     * state of a {@link ItemStack}.
      *
      * @see HideData#hideCanDestroy()
      */
@@ -520,7 +517,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the "can place hidden"
-     * state of a {@link ItemStack}
+     * state of a {@link ItemStack}.
      *
      * @see HideData#hideCanPlace()
      */
@@ -528,7 +525,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the "miscellaneous hidden"
-     * state of a {@link ItemStack}
+     * state of a {@link ItemStack}.
      *
      * @see HideData#hideMiscellaneous()
      */

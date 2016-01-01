@@ -48,7 +48,7 @@ public class MatterProperty extends AbstractProperty<String, MatterProperty.Matt
     public enum Matter {
         SOLID,
         LIQUID,
-        GAS;
+        GAS
 
     }
 

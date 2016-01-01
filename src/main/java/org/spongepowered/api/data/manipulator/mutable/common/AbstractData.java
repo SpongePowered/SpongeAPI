@@ -88,8 +88,8 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
     /**
      * Simple registration method for the keys to value return methods.
      *
-     * <p>Note that this is still usable with Java 8 method references. Referencing
-     * {@code this::getfoo()} is recommended.</p>
+     * <p>Note that this is still usable with Java 8 method references.
+     * Referencing {@code this::getfoo()} is recommended.</p>
      *
      * @param key The key for the value return type
      * @param function The function for getting the value
@@ -101,8 +101,8 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
     /**
      * Simple registration method for the keys to field getter methods.
      *
-     * <p>Note that this is still usable with Java 8 method references. Referencing
-     * {@code this::getfoo()} is recommended.</p>
+     * <p>Note that this is still usable with Java 8 method references.
+     * Referencing {@code this::getfoo()} is recommended.</p>
      *
      * @param key The key for the value return type
      * @param function The function for getting the field
@@ -114,8 +114,8 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
     /**
      * Simple registration method for the keys to field setter methods.
      *
-     * <p>Note that this is still usable with Java 8 method references. Referencing
-     * {@code this::setFoo(something)} is recommended.</p>
+     * <p>Note that this is still usable with Java 8 method references.
+     * Referencing {@code this::setFoo(something)} is recommended.</p>
      *
      * @param key The key for the value return type
      * @param function The function for setting the field
@@ -127,9 +127,9 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
 
     /**
      * A required registration method for registering the various fields and
-     * value getters. It's suggested that if multipl fields are used, each field
-     * can be represented as a {@link Value} such that there is an associated
-     * {@link Key} to "get" that field value.
+     * value getters. It's suggested that if multipl fields are used, each
+     * field can be represented as a {@link Value} such that there is an
+     * associated {@link Key} to "get" that field value.
      */
     protected abstract void registerGettersAndSetters();
 

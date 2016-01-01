@@ -55,13 +55,13 @@ import org.spongepowered.api.data.type.CookedFish;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.Fish;
 import org.spongepowered.api.data.type.GoldenApple;
+import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Color;
 

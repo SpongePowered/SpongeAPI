@@ -41,8 +41,8 @@ import org.spongepowered.api.data.value.mutable.Value;
  * @param <I> The immutable manipulator type
  * @param <M> The mutable manipulator type
  */
-public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>> extends
-        AbstractImmutableSingleData<E, I, M> {
+public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>>
+        extends AbstractImmutableSingleData<E, I, M> {
 
     private final E defaultValue;
     private final ImmutableValue<E> cachedValue;
@@ -53,7 +53,7 @@ public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I exten
         this.cachedValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, this.defaultValue, this.value).asImmutable();
     }
 
-    public final ImmutableValue<E> type() {
+    protected final ImmutableValue<E> enumType() {
         return this.cachedValue;
     }
 

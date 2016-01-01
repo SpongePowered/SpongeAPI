@@ -35,19 +35,19 @@ class SimpleDataBuilder implements DataBuilder<SimpleData> {
     @Override
     public Optional<SimpleData> build(final DataView container) {
 
-        Optional<Integer> testInt = container.getInt(new DataQuery("myInt"));
+        Optional<Integer> testInt = container.getInt(DataQuery.of("myInt"));
         if (!testInt.isPresent()) {
             throw new InvalidDataException("Missing important data: {myInt}");
         }
-        Optional<Double> testDouble = container.getDouble(new DataQuery("myDouble"));
+        Optional<Double> testDouble = container.getDouble(DataQuery.of("myDouble"));
         if (!testDouble.isPresent()) {
             throw new InvalidDataException("Missing important data: {myDouble}");
         }
-        Optional<String> testString = container.getString(new DataQuery("myString"));
+        Optional<String> testString = container.getString(DataQuery.of("myString"));
         if (!testString.isPresent()) {
             throw new InvalidDataException("Missing important data: {myString}");
         }
-        Optional<List<String>> testList = container.getStringList(new DataQuery("myStringList"));
+        Optional<List<String>> testList = container.getStringList(DataQuery.of("myStringList"));
         if (!testList.isPresent()) {
             throw new InvalidDataException("Missing important data: {myStringList}");
         }

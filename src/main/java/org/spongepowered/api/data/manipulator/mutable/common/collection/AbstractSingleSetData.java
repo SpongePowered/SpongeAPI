@@ -48,7 +48,7 @@ public abstract class AbstractSingleSetData<E, M extends DataManipulator<M, I>, 
     extends AbstractSingleData<Set<E>, M, I> {
 
 
-    public AbstractSingleSetData(Set<E> value, Key<? extends BaseValue<Set<E>>> usedKey) {
+    protected AbstractSingleSetData(Set<E> value, Key<? extends BaseValue<Set<E>>> usedKey) {
         super(Sets.newHashSet(value), usedKey);
     }
 

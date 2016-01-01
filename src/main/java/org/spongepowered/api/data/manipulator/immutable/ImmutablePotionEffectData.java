@@ -27,10 +27,10 @@ package org.spongepowered.api.data.manipulator.immutable;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.PotionEffectData;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
+import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.effect.potion.PotionEffect;
 
 /**
  * An {@link ImmutableDataManipulator} that handles the various

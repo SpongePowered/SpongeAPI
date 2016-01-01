@@ -68,10 +68,10 @@ class SimpleData implements DataSerializable {
     @Override
     public DataContainer toContainer() {
         DataContainer container = new MemoryDataContainer();
-        container.set(new DataQuery("myInt"), this.testInt);
-        container.set(new DataQuery("myDouble"), this.testDouble);
-        container.set(new DataQuery("myString"), this.testString);
-        container.set(new DataQuery("myStringList"), Arrays.asList(this.testList));
+        container.set(DataQuery.of("myInt"), this.testInt);
+        container.set(DataQuery.of("myDouble"), this.testDouble);
+        container.set(DataQuery.of("myString"), this.testString);
+        container.set(DataQuery.of("myStringList"), Arrays.asList(this.testList));
         return container;
     }
 

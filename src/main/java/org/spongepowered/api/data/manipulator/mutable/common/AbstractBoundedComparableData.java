@@ -29,7 +29,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
@@ -48,8 +47,8 @@ import java.util.Comparator;
  * @param <M> The API datamanipulator
  * @param <I> The API immutable data manipulator
  */
-public abstract class AbstractBoundedComparableData<T extends Comparable<T>, M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>>
-    extends AbstractSingleData<T, M, I> {
+public abstract class AbstractBoundedComparableData<T extends Comparable<T>, M extends DataManipulator<M, I>, I
+        extends ImmutableDataManipulator<I, M>> extends AbstractSingleData<T, M, I> {
 
     protected final Comparator<T> comparator;
     protected final T lowerBound;

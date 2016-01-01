@@ -30,6 +30,7 @@ import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.property.AbstractProperty;
 import org.spongepowered.api.effect.potion.PotionEffect;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -67,8 +68,9 @@ public class ApplicableEffectProperty extends AbstractProperty<String, Set<Potio
     public int compareTo(Property<?, ?> o) {
         if (o instanceof ApplicableEffectProperty) {
             ApplicableEffectProperty effect = (ApplicableEffectProperty) o;
-            Set<PotionEffect> set = Sets.newHashSet(effect.getValue());
-            for (PotionEffect effect1 : this.getValue()) {
+            Set<PotionEffect> set = Sets.newHashSet(effect.getValue() == null ? new HashSet<>() : effect.getValue());
+            Set<PotionEffect> thisSet = this.getValue() == null ? new HashSet<>() : this.getValue();
+            for (PotionEffect effect1 : thisSet) {
                 if (set.contains(effect1)) {
                     set.remove(effect1);
                 } else {

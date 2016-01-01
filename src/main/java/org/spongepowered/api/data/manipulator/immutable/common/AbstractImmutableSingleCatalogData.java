@@ -51,10 +51,12 @@ public abstract class AbstractImmutableSingleCatalogData<E extends CatalogType, 
     private final ImmutableValue<E> immutableValue;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
-    public AbstractImmutableSingleCatalogData(E value, E defaultValue, Key<? extends BaseValue<E>> usedKey) {
+    protected AbstractImmutableSingleCatalogData(E value, E defaultValue, Key<? extends BaseValue<E>> usedKey) {
         super(value, usedKey);
         this.defaultValue = checkNotNull(defaultValue, "The default value was null! This is unacceptable! Maybe the value was not registered?");
-        this.immutableValue = Sponge.getRegistry().getValueFactory().createValue((Key<Value<E>>) (Key) this.usedKey, this.defaultValue, this.value).asImmutable();
+        this.immutableValue = Sponge.getRegistry().getValueFactory()
+                .createValue((Key<Value<E>>) (Key) this.usedKey, this.defaultValue, this.value)
+                .asImmutable();
 
     }
 

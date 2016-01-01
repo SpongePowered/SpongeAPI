@@ -52,7 +52,8 @@ import java.util.stream.Collectors;
  * @param <M> The mutable manipulator type
  */
 @SuppressWarnings("unchecked")
-public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>> implements ImmutableDataManipulator<I, M> {
+public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>>
+        implements ImmutableDataManipulator<I, M> {
 
 
     private final Map<Key<?>, Supplier<ImmutableValue<?>>> keyValueMap = Maps.newHashMap();
@@ -64,8 +65,8 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
     /**
      * Simple registration method for the keys to value return methods.
      *
-     * <p>Note that this is still usable with Java 8 method references. Referencing
-     * {@code this::getfoo()} is recommended.</p>
+     * <p>Note that this is still usable with Java 8 method references.
+     * Referencing {@code this::getfoo()} is recommended.</p>
      *
      * @param key The key for the value return type
      * @param function The function for getting the value
@@ -77,8 +78,8 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
     /**
      * Simple registration method for the keys to field getter methods.
      *
-     * <p>Note that this is still usable with Java 8 method references. Referencing
-     * {@code this::getfoo()} is recommended.</p>
+     * <p>Note that this is still usable with Java 8 method references.
+     * Referencing {@code this::getfoo()} is recommended.</p>
      *
      * @param key The key for the value return type
      * @param function The function for getting the field

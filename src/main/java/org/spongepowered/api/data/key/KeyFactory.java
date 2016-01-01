@@ -62,7 +62,8 @@ public final class KeyFactory {
      * @param <V> The inferred return type
      * @return The generated key
      */
-    public static <E, T extends BaseValue, V extends BaseValue<E>> Key<V> makeSingleKey(final Class<E> elementClass, final Class<T> valueClass, final DataQuery query) {
+    public static <E, T extends BaseValue, V extends BaseValue<E>> Key<V> makeSingleKey(final Class<E> elementClass, final Class<T> valueClass,
+            final DataQuery query) {
         return new Key<V>() {
             @SuppressWarnings("rawtypes")
             @Override
@@ -82,7 +83,7 @@ public final class KeyFactory {
 
             @Override
             public String toString() {
-                return "Key{Value:" + valueClass.getName() + "<" + elementClass + ">, Query: " + query.toString() + "}";
+                return "Key{Value:" + valueClass.getSimpleName() + "<" + elementClass.getSimpleName() + ">, Query: " + query.toString() + "}";
             }
         };
     }
@@ -116,7 +117,7 @@ public final class KeyFactory {
 
             @Override
             public String toString() {
-                return "Key{Value:" + "ListValue<" + elementClass + ">, Query: " + query.toString() + "}";
+                return "Key{Value:" + "ListValue<" + elementClass.getSimpleName() + ">, Query: " + query.toString() + "}";
             }
         };
     }
@@ -150,7 +151,7 @@ public final class KeyFactory {
 
             @Override
             public String toString() {
-                return "Key{Value:" + "SetValue<" + elementClass + ">, Query: " + query.toString() + "}";
+                return "Key{Value:" + "SetValue<" + elementClass.getSimpleName() + ">, Query: " + query.toString() + "}";
             }
         };
     }
@@ -187,7 +188,8 @@ public final class KeyFactory {
 
             @Override
             public String toString() {
-                return "Key{Value:" + "MapValue<" + keyClass + "," + valueclass + ">, Query: " + query.toString() + "}";
+                return "Key{Value:" + "MapValue<" + keyClass.getSimpleName() + "," + valueclass.getSimpleName() + ">, Query: " + query.toString()
+                       + "}";
             }
         };
     }
