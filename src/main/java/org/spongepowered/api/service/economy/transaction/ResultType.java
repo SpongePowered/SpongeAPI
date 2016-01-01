@@ -32,7 +32,7 @@ import org.spongepowered.api.service.context.Context;
 public enum ResultType {
 
     /**
-     * Transaction finished with no errors
+     * Transaction finished with no errors.
      */
     SUCCESS,
 
@@ -52,7 +52,8 @@ public enum ResultType {
     ACCOUNT_NO_FUNDS,
 
     /**
-     * The account would be put past it's maximum capacity, so the transaction failed.
+     * The account would be put past it's maximum capacity, so the transaction
+     * failed.
      */
     ACCOUNT_NO_SPACE
 }

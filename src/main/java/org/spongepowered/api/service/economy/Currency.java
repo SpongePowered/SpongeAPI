@@ -29,8 +29,10 @@ import org.spongepowered.api.text.Text;
 import java.math.BigDecimal;
 
 /**
- * Represents a form of currency. At least one type of currency is always supported.
- * Depending on the provider of the {@link EconomyService}, more currencies may be available.
+ * Represents a form of currency. At least one type of currency is always
+ * supported.
+ *
+ * <p>Depending on the provider of the {@link EconomyService}, more currencies may be available.</p>
  */
 public interface Currency {
 
@@ -63,7 +65,7 @@ public interface Currency {
      *
      * <p>Should include the symbol if it is present</p>
      *
-     * @param amount to format
+     * @param amount The amount to format
      * @return String formatted amount
      */
     default Text format(BigDecimal amount) {
@@ -73,10 +75,10 @@ public interface Currency {
     /**
      * Formats the given amount using the specified number of fractional digits.
      *
-     *  <p>Should include the symbol if it is present</p>
+     * <p>Should include the symbol if it is present</p>
      *
-     * @param amount
-     * @param numFractionDigits
+     * @param amount The amount to format
+     * @param numFractionDigits The numer of fractional digits to use
      * @return String formatted amount.
      */
     Text format(BigDecimal amount, int numFractionDigits);

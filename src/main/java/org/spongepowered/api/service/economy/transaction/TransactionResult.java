@@ -67,13 +67,14 @@ public interface TransactionResult {
     Set<Context> getContexts();
 
     /**
-     * Get the {@link ResultType} of this transaction
+     * Get the {@link ResultType} of this transaction.
+     *
      * @return resultType
      */
     ResultType getResult();
 
     /**
-     * Returns the {@link TransactionType} of this result
+     * Returns the {@link TransactionType} of this result.
      *
      * @return type of Transaction
      */

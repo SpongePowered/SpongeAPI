@@ -46,10 +46,12 @@ public interface WhitelistService {
     Collection<GameProfile> getWhitelistedProfiles();
 
     /**
-     * Gets whether the specified {@link GameProfile} is present on this whitelist.
+     * Gets whether the specified {@link GameProfile} is present on this
+     * whitelist.
      *
      * @param profile The game profile to check for
-     * @return Whether the specified {@link GameProfile} is present on this whitelist
+     * @return Whether the specified {@link GameProfile} is present on this
+     *         whitelist
      */
     boolean isWhitelisted(GameProfile profile);
 
@@ -57,7 +59,8 @@ public interface WhitelistService {
      * Adds the specified {@link GameProfile} to this whitelist.
      *
      * @param profile The game profile to add
-     * @return Whether the specified {@link GameProfile} was already present on this whitelist
+     * @return Whether the specified {@link GameProfile} was already present on
+     *         this whitelist
      */
     boolean addProfile(GameProfile profile);
 
@@ -65,7 +68,8 @@ public interface WhitelistService {
      * Removes the specified {@link GameProfile} from this whitelist, if present.
      *
      * @param profile The game profile to remove
-     * @return Whether the specified {@link GameProfile} was present before removal
+     * @return Whether the specified {@link GameProfile} was present before
+     *         removal
      */
     boolean removeProfile(GameProfile profile);
 }

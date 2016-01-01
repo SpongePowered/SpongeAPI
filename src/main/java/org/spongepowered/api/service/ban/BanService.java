@@ -39,8 +39,8 @@ import java.util.Optional;
  * service API (e.g. writing them to a database). In essence, expired bans
  * should be treated the same as user-removed bans.
  *
- * For example, {@link #getBans()} would not include any expired bans,
- * and {@link #hasBan(Ban)} would return <code>false</code>.
+ * <p>For example, {@link #getBans()} would not include any expired bans,
+ * and {@link #hasBan(Ban)} would return <code>false</code>.</p>
  */
 public interface BanService {
 

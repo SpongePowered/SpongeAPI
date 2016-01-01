@@ -63,8 +63,10 @@ public @interface Plugin {
     /**
      * A simple dependency string for this mod separated by a ";"
      * example:
-     * <pre>"required-after:Sponge@[1.2.3.2222,);required-after:myLibraryPlugin;after:towny;before:worldguard"</pre>
-     * supported options:
+     * <pre>"required-after:Sponge@[1.2.3.2222,);
+     * required-after:myLibraryPlugin;after:towny;before:worldguard"</pre>
+     *
+     * <p>supported options:
      * <dl>
      *   <dt>after</dt>
      *   <dd>when present this plugin will run after plugin x</dd>
@@ -75,7 +77,7 @@ public @interface Plugin {
      *   <dt>required-before</dt>
      *   <dd>plugin x must be present, load before plugin x</dd>
      * </dl>
-     * supports maven version ranges after @ in any field
+     * supports maven version ranges after @ in any field</p>
      *
      * @return The plugin dependencies
      */

@@ -223,7 +223,8 @@ public interface Ban {
         Builder expirationDate(@Nullable Instant instant);
 
         /**
-         * Sets the source of the ban, or removes it if {@code null} is passed in.
+         * Sets the source of the ban, or removes it if {@code null} is passed
+         * in.
          *
          * @param source The source of the ban, or {@code null}
          * @return This builder

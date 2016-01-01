@@ -28,7 +28,8 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
- * Represents a particle effect that needs a item stack to be rendered on the client.
+ * Represents a particle effect that needs a item stack to be rendered on the
+ * client.
  */
 public interface ItemParticle extends ParticleEffect {
 

@@ -58,11 +58,11 @@ public interface EconomyService extends ContextualService<Account> {
      * Returns the {@link Set} of supported {@link Currency} objects that are
      * implemented by this EconomyService.
      *
-     * <p>The economy service provider may only support one currency, in which case
-     * {@link #getDefaultCurrency()} will be the only member of the set.</p>
+     * <p>The economy service provider may only support one currency, in which
+     * case {@link #getDefaultCurrency()} will be the only member of the set.</p>
      *
-     * <p>The set returned is a read-only a view of all currencies available in the
-     * EconomyService.</p>
+     * <p>The set returned is a read-only a view of all currencies available in
+     * the EconomyService.</p>
      *
      * @return The {@link Set} of all {@link Currency}s
      */
@@ -77,6 +77,18 @@ public interface EconomyService extends ContextualService<Account> {
     Optional<UniqueAccount> getAccount(UUID uuid);
 
     /**
+     * Gets the {@link Account} with the specified identifier, if available.
+     *
+     * <p>The returned {@link Account} may be a {@link UniqueAccount} or
+     * a {@link VirtualAccount}, depending on the implementation.</p>
+     *
+     * @param identifier The identifier of the account to get
+     * @return The {@link VirtualAccount}, if available.
+     */
+    Optional<Account> getAccount(String identifier);
+
+
+    /**
      * Attempts to create a {@link UniqueAccount} for the user with the specified {@link UUID}.
      *
      * <p>If an account already exists with the specified {@link UUID}, it will be
@@ -89,17 +101,6 @@ public interface EconomyService extends ContextualService<Account> {
      * @return The created {@link UniqueAccount}, if available.
      */
     Optional<UniqueAccount> createAccount(UUID uuid);
-
-    /**
-     * Gets the {@link Account} with the specified identifier, if available.
-     *
-     * <p>The returned {@link Account} may be a {@link UniqueAccount} or
-     * a {@link VirtualAccount}, depending on the implementation.</p>
-     *
-     * @param identifier The identifier of the account to get
-     * @return The {@link VirtualAccount}, if available.
-     */
-    Optional<Account> getAccount(String identifier);
 
     /**
      * Attempts to create a {@link VirtualAccount} with the specified identifier

@@ -33,7 +33,8 @@ import org.spongepowered.api.text.title.Title;
 
 /**
  * A Viewer is something that sees effects.
- * The Viewer class contains methods for spawning particles and playing sound effects.
+ * The Viewer class contains methods for spawning particles and playing sound
+ * effects.
  */
 public interface Viewer {
 
@@ -76,7 +77,8 @@ public interface Viewer {
      * @param sound The sound to play
      * @param position The position to play the sound
      * @param volume The volume to play the sound at, usually between 0 and 2
-     * @param pitch The modulation of the sound to play at, usually between 0 and 2
+     * @param pitch The modulation of the sound to play at, usually between 0
+     *        and 2
      */
     void playSound(SoundType sound, Vector3d position, double volume, double pitch);
 
@@ -87,8 +89,10 @@ public interface Viewer {
      * @param sound The sound to play
      * @param position The position to play the sound
      * @param volume The volume to play the sound at, usually between 0 and 2
-     * @param pitch The modulation of the sound to play at, usually between 0 and 2
-     * @param minVolume The minimum volume to play the sound at, usually between 0 and 2
+     * @param pitch The modulation of the sound to play at, usually between 0
+     *        and 2
+     * @param minVolume The minimum volume to play the sound at, usually between
+     *        0 and 2
      */
     void playSound(SoundType sound, Vector3d position, double volume, double pitch, double minVolume);
 

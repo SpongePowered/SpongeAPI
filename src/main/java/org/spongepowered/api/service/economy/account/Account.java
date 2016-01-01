@@ -24,11 +24,6 @@
  */
 package org.spongepowered.api.service.economy.account;
 
-import java.math.BigDecimal;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.cause.Cause;
@@ -41,6 +36,11 @@ import org.spongepowered.api.service.economy.transaction.TransactionResult;
 import org.spongepowered.api.service.economy.transaction.TransferResult;
 import org.spongepowered.api.text.Text;
 
+import java.math.BigDecimal;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+
 /**
  * Represents an account, which stores amounts of various {@link Currency currencies}.
  *
@@ -48,9 +48,9 @@ import org.spongepowered.api.text.Text;
  *
  * Unique accounts are bound to a {@link UUID}, usually of a particular {@link User}'s {@link GameProfile}.
  *
- * Virtual accounts are identified by a String identifier, which may have any value. They are
- * not tied to any {@link Entity}, player or otherwise. Virtual accounts may be used for purposes
- * such as bank accounts, non-player {@link Entity} accounts, or other things.</p>
+ * Virtual accounts are identified by a String identifier, which may have any
+ * value. They are not tied to any {@link Entity}, player or otherwise. Virtual
+ * accounts may be used for purposes such as bank accounts, non-player {@link Entity} accounts, or other things.</p>
  */
 public interface Account extends Contextual {
 
@@ -116,8 +116,8 @@ public interface Account extends Contextual {
      * Returns a {@link BigDecimal} representative of the balance stored within this
      * {@link Account} for the {@link Currency} given and the set of {@link Context}s.
      *
-     * <p>The default result when the account does not have a balance of the given
-     * {@link Currency} should be {@link BigDecimal#ZERO}.</p>
+     * <p>The default result when the account does not have a balance of the
+     * given {@link Currency} should be {@link BigDecimal#ZERO}.</p>
      *
      * <p>The balance may be unavailable depending on the set of {@link Context}s used.</p>
      *
@@ -132,8 +132,8 @@ public interface Account extends Contextual {
      * Returns a {@link BigDecimal} representative of the balance stored within this
      * {@link Account} for the {@link Currency} given, with the current active contexts.
      *
-     * <p>The default result when the account does not have a balance of the given
-     * {@link Currency} will be {@link #getDefaultBalance(Currency)}.</p>
+     * <p>The default result when the account does not have a balance of the
+     * given {@link Currency} will be {@link #getDefaultBalance(Currency)}.</p>
      *
      * @param currency a {@link Currency} to check the balance of
      *
@@ -186,8 +186,8 @@ public interface Account extends Contextual {
     }
 
     /**
-     * Sets the balance for this account to the specified amount for the specified
-     * {@link Currency}, with the specified set of {@link Context}s.
+     * Sets the balance for this account to the specified amount for
+     * the specified {@link Currency}, with the specified set of {@link Context}s.
      *
      * <p>Negative balances may or may not be supported depending on
      * the {@link Currency} specified and the implementation.</p>
@@ -202,8 +202,8 @@ public interface Account extends Contextual {
     TransactionResult setBalance(Currency currency, BigDecimal amount, Cause cause, Set<Context> contexts);
 
     /**
-     * Sets the balance for this account to the specified amount for the specified
-     * {@link Currency}, with the current active {@link Context}s.
+     * Sets the balance for this account to the specified amount for the
+     * specified {@link Currency}, with the current active {@link Context}s.
      *
      * <p>Negative balances may or may not be supported depending on
      * the {@link Currency} specified and the implementation.</p>
@@ -229,8 +229,8 @@ public interface Account extends Contextual {
     TransactionResult resetBalances(Cause cause, Set<Context> contexts);
 
     /**
-     * Resets the balances for all {@link Currency}s used on this account to their
-     * default values ({@link #getDefaultBalance(Currency)}), using the current active {@link Context}
+     * Resets the balances for all {@link Currency}s used on this account to
+     * their default values ({@link #getDefaultBalance(Currency)}), using the current active {@link Context}.
      *
      * @param cause The {@link Cause} for the transaction
      *
