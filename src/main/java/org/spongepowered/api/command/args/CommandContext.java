@@ -31,6 +31,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.text.Text;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -64,6 +65,18 @@ public final class CommandContext {
     }
 
     /**
+     * Get all values for the given argument. May return an empty list if no values are present.
+     *
+     * @param key The key to get values for
+     * @param <T> the type of value to get
+     * @return the collection of all values
+     */
+    @SuppressWarnings("unchecked")
+    public <T> Collection<T> getAll(Text key) {
+        return getAll(ArgUtils.textToArgKey(key));
+    }
+
+    /**
      * Gets the value for the given key if the key has only one value.
      *
      * @param key the key to get
@@ -81,6 +94,18 @@ public final class CommandContext {
     }
 
     /**
+     * Gets the value for the given key if the key has only one value.
+     *
+     * @param key the key to get
+     * @param <T> the expected type of the argument
+     * @return the argument
+     */
+    @SuppressWarnings("unchecked")
+    public <T> Optional<T> getOne(Text key) {
+        return getOne(ArgUtils.textToArgKey(key));
+    }
+
+    /**
      * Insert an argument into this context.
      *
      * @param key the key to store the arg under
@@ -89,6 +114,16 @@ public final class CommandContext {
     public void putArg(String key, Object value) {
         checkNotNull(value, "value");
         this.parsedArgs.put(key, value);
+    }
+
+    /**
+     * Insert an argument into this context.
+     *
+     * @param key the key to store the arg under
+     * @param value the value for this argument
+     */
+    public void putArg(Text key, Object value) {
+        putArg(ArgUtils.textToArgKey(key), value);
     }
 
     /**
@@ -112,5 +147,15 @@ public final class CommandContext {
      */
     public boolean hasAny(String key) {
         return this.parsedArgs.containsKey(key);
+    }
+
+    /**
+     * Returns whether this context has any value for the given argument key.
+     *
+     * @param key The key to look up
+     * @return whether there are any values present
+     */
+    public boolean hasAny(Text key) {
+        return hasAny(ArgUtils.textToArgKey(key));
     }
 }
