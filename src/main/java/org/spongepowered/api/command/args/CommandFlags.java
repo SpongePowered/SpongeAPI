@@ -47,7 +47,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
-class CommandFlags extends CommandElement {
+public final class CommandFlags extends CommandElement {
     @Nullable
     private final CommandElement childElement;
     private final Map<List<String>, CommandElement> usageFlags;
