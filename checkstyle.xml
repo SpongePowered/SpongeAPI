@@ -47,9 +47,14 @@
             <property name="allowNonPrintableEscapes" value="true"/>
         </module>
         <module name="LineLength">
-            <!--<property name="max" value="100"/>-->
             <property name="max" value="150"/>
             <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
+            <message key="maxLineLen" value="Code line is longer than {0,number,integer} characters (found {1,number,integer})."/>
+        </module>
+        <module name="LineLength">
+            <property name="max" value="80"/>
+            <property name="ignorePattern" value="^[ \t]*([a-zA-Z0-9\{\}\+\|\&amp;\&quot;@\(\)<>]|//)|@link|@see"/>
+            <message key="maxLineLen" value="Comment line is longer than {0,number,integer} characters (found {1,number,integer})."/>
         </module>
         <module name="AvoidStarImport"/>
         <module name="OneTopLevelClass"/>
