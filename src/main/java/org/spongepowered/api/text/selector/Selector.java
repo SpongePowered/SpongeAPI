@@ -67,6 +67,7 @@ import java.util.Set;
  * @see <a href="http://minecraft.gamepedia.com/Selector#Target_selectors">
  *      Target selectors on the Minecraft Wiki</a>
  */
+@SuppressWarnings("deprecation")
 public interface Selector {
 
     /**
