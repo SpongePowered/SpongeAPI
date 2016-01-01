@@ -36,16 +36,33 @@ import org.spongepowered.api.world.explosion.Explosion;
 public interface ExplosionEvent extends TargetWorldEvent {
 
     /**
-     * Gets the {@link Explosion} involved in this event.
+     * An event that is fired before an explosion starts to occur.
      *
-     * @return The explosion that this event is involved in
-     */
-    Explosion getExplosion();
-
-    /**
-     * An event that is fired before the explosion occurs.
+     * <p>The {@link Explosion} has not been created at this point.</p>
      */
     interface Pre extends ExplosionEvent, Cancellable {
+    }
+
+    /**
+     * An event that is fired when the explosion starts to occur.
+     *
+     * <p>The {@link Explosion} is available from here onwards.</p>
+     */
+    interface Start extends ExplosionEvent, Cancellable {
+
+        /**
+         * Gets the original {@link Explosion} involved in this event.
+         *
+         * @return The original explosion that this event is involved in
+         */
+        Explosion getOriginalExplosion();
+
+        /**
+         * Gets the {@link Explosion} involved in this event.
+         *
+         * @return The explosion that this event is involved in
+         */
+        Explosion getExplosion();
 
         /**
          * Sets the {@link Explosion} involved for this event. This
@@ -55,14 +72,29 @@ public interface ExplosionEvent extends TargetWorldEvent {
          * @param explosion The new explosion
          */
         void setExplosion(Explosion explosion);
-
     }
 
     /**
      * An event that is fired as the explosion is going to start affecting
      * multiple blocks and entities.
      */
-    interface Detonate extends ExplosionEvent, AffectEntityEvent, ChangeBlockEvent {}
+    interface Detonate extends ExplosionEvent, AffectEntityEvent, ChangeBlockEvent {
 
-    interface Post extends ExplosionEvent {}
+        /**
+         * Gets the {@link Explosion} involved in this event.
+         *
+         * @return The explosion that this event is involved in
+         */
+        Explosion getExplosion();
+    }
+
+    interface Post extends ExplosionEvent {
+
+        /**
+         * Gets the {@link Explosion} involved in this event.
+         *
+         * @return The explosion that this event is involved in
+         */
+        Explosion getExplosion();
+    }
 }
