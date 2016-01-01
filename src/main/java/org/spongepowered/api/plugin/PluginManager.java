@@ -37,10 +37,14 @@ import java.util.Optional;
 public interface PluginManager {
 
     /**
-     * Get the plugin container from an instance.
+     * Get the plugin container from an instance, if available.
+     *
+     * <p>If the provided object is not a plugin instance (usually a class
+     * annotated with {@link Plugin}, then {@link Optional#empty()} will be
+     * returned.</p>
      *
      * @param instance The instance
-     * @return The container
+     * @return The container, if available.
      */
     Optional<PluginContainer> fromInstance(Object instance);
 
