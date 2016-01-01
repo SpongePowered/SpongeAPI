@@ -27,11 +27,11 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.SprintData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * An {@link ImmutableDataManipulator} handling the "sprinting" state of a
- * {@link Player}. Usually the {@link Player} will have faster movement
+ * An {@link ImmutableDataManipulator} handling the "sprinting" state of an
+ * {@link Entity}. Usually the {@link Entity} will have faster movement
  * speed than normal.
  */
 public interface ImmutableSprintData extends ImmutableDataManipulator<ImmutableSprintData, SprintData> {
