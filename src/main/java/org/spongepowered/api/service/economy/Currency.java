@@ -66,7 +66,9 @@ public interface Currency {
      * @param amount to format
      * @return String formatted amount
      */
-    Text format(BigDecimal amount);
+    default Text format(BigDecimal amount) {
+        return this.format(amount, this.getDefaultFractionDigits());
+    }
 
     /**
      * Formats the given amount using the specified number of fractional digits.
