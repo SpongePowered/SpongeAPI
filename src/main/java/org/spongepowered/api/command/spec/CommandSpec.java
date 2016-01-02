@@ -31,10 +31,10 @@ import static org.spongepowered.api.command.args.GenericArguments.optional;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.service.permission.PermissionDescription;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandCallable;
 import org.spongepowered.api.command.CommandException;
-import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandPermissionException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
@@ -113,6 +113,11 @@ public final class CommandSpec implements CommandCallable {
          */
         public Builder permission(String permission) {
             this.permission = permission;
+            return this;
+        }
+
+        public Builder permission(PermissionDescription desc) {
+            this.permission = desc.getId();
             return this;
         }
 

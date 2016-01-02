@@ -163,7 +163,7 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
 
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-        CommandMapping mapping = args.<CommandMapping>getOne(getUntranslatedKey()).orElse(null);
+        CommandMapping mapping = args.<CommandMapping>get(this).orElse(null);
         if (mapping == null) {
             if (this.fallbackExecutor != null) {
                 return this.fallbackExecutor.execute(src, args);

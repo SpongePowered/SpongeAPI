@@ -33,6 +33,7 @@ import static org.spongepowered.api.command.args.GenericArguments.enumValue;
 import static org.spongepowered.api.command.args.GenericArguments.firstParsing;
 import static org.spongepowered.api.command.args.GenericArguments.integer;
 import static org.spongepowered.api.command.args.GenericArguments.none;
+import static org.spongepowered.api.command.args.GenericArguments.onlyOne;
 import static org.spongepowered.api.command.args.GenericArguments.optional;
 import static org.spongepowered.api.command.args.GenericArguments.optionalWeak;
 import static org.spongepowered.api.command.args.GenericArguments.remainingJoinedStrings;
@@ -55,6 +56,8 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
 
+import java.util.Optional;
+
 
 /**
  * Tests for all argument types contained in GenericArguments.
@@ -62,12 +65,7 @@ import org.spongepowered.api.command.spec.CommandSpec;
 public class GenericArgumentsTest {
 
     private static final CommandSource MOCK_SOURCE = Mockito.mock(CommandSource.class);
-    static final CommandExecutor NULL_EXECUTOR = new CommandExecutor() {
-        @Override
-        public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-            return CommandResult.empty();
-        }
-    };
+    static final CommandExecutor NULL_EXECUTOR = (src, args) -> CommandResult.empty();
 
     @Before
     public void initialize() throws Exception {
@@ -99,11 +97,13 @@ public class GenericArgumentsTest {
 
     @Test
     public void testSequence() throws ArgumentParseException {
-        CommandElement el = seq(string(untr("one")), string(untr("two")), string(untr("three")));
+        final CommandElement.Value<String> one = string(untr("one")),
+                two = string(untr("two")), three = string(untr("three"));
+        CommandElement el = seq(one, two, three);
         CommandContext context = parseForInput("a b c", el);
-        assertEquals("a", context.getOne("one").get());
-        assertEquals("b", context.getOne("two").get());
-        assertEquals("c", context.getOne("three").get());
+        assertEquals("a", context.get(one));
+        assertEquals("b", context.get(two));
+        assertEquals("c", context.get(three));
 
         this.expected.expect(ArgumentParseException.class);
         parseForInput("a b", el);
@@ -111,9 +111,9 @@ public class GenericArgumentsTest {
 
     @Test
     public void testChoices() throws ArgumentParseException {
-        CommandElement el = choices(untr("val"), ImmutableMap.of("a", "one", "b", "two"));
+        CommandElement.Value<String> el = choices(untr("val"), ImmutableMap.of("a", "one", "b", "two"));
         CommandContext context = parseForInput("a", el);
-        assertEquals("one", context.getOne("val").get());
+        assertEquals("one", context.get(el));
 
         this.expected.expect(ArgumentParseException.class);
         parseForInput("c", el);
@@ -131,9 +131,9 @@ public class GenericArgumentsTest {
 
     @Test
     public void testOptional() throws ArgumentParseException {
-        CommandElement el = optional(string(untr("val")));
+        CommandElement.Value<Optional<String>> el = optional(string(untr("val")));
         CommandContext context = parseForInput("", el);
-        assertFalse(context.getOne("val").isPresent());
+        assertFalse(context.get(el).isPresent());
 
         el = optional(string(untr("val")), "def");
         context = parseForInput("", el);
@@ -162,14 +162,16 @@ public class GenericArgumentsTest {
 
     @Test
     public void testString() throws ArgumentParseException {
-        CommandContext context = parseForInput("\"here it is\"", string(untr("a value")));
-        assertEquals("here it is", context.getOne("a value").get());
+        CommandElement.Value<String> el = string(untr("a value"));
+        CommandContext context = parseForInput("\"here it is\"", el);
+        assertEquals("here it is", context.get(el));
     }
 
     @Test
     public void testInteger() throws ArgumentParseException {
-        CommandContext context = parseForInput("52", integer(untr("a value")));
-        assertEquals(52, context.getOne("a value").get());
+        CommandElement.Value<Integer> el = integer(untr("a value"));
+        CommandContext context = parseForInput("52", el);
+        assertEquals(52, context.get(el).intValue());
 
         this.expected.expect(ArgumentParseException.class);
         parseForInput("notanumber", integer(untr("a value")));
@@ -177,10 +179,10 @@ public class GenericArgumentsTest {
 
     @Test
     public void testBool() throws ArgumentParseException {
-        CommandElement boolEl = bool(untr("val"));
-        assertEquals(true, parseForInput("true", boolEl).getOne("val").get());
-        assertEquals(true, parseForInput("t", boolEl).getOne("val").get());
-        assertEquals(false, parseForInput("f", boolEl).getOne("val").get());
+        CommandElement.Value<Boolean> boolEl = bool(untr("val"));
+        assertEquals(true, parseForInput("true", boolEl).get(boolEl));
+        assertEquals(true, parseForInput("t", boolEl).get(boolEl));
+        assertEquals(false, parseForInput("f", boolEl).get(boolEl));
 
         this.expected.expect(ArgumentParseException.class);
         parseForInput("notabool", boolEl);
@@ -192,10 +194,10 @@ public class GenericArgumentsTest {
 
     @Test
     public void testEnumValue() throws ArgumentParseException {
-        CommandElement enumEl = enumValue(untr("val"), TestEnum.class);
-        assertEquals(TestEnum.ONE, parseForInput("one", enumEl).getOne("val").get());
-        assertEquals(TestEnum.TWO, parseForInput("TwO", enumEl).getOne("val").get());
-        assertEquals(TestEnum.RED, parseForInput("RED", enumEl).getOne("val").get());
+        CommandElement.Value<TestEnum> enumEl = onlyOne(enumValue(untr("val"), TestEnum.class));
+        assertEquals(TestEnum.ONE, parseForInput("one", enumEl).get(enumEl));
+        assertEquals(TestEnum.TWO, parseForInput("TwO", enumEl).get(enumEl));
+        assertEquals(TestEnum.RED, parseForInput("RED", enumEl).get(enumEl));
 
         this.expected.expect(ArgumentParseException.class);
         parseForInput("notanel", enumEl);
@@ -203,8 +205,8 @@ public class GenericArgumentsTest {
 
     @Test
     public void testRemainingJoinedStrings() throws ArgumentParseException {
-        CommandElement remainingJoined = remainingJoinedStrings(untr("val"));
-        assertEquals("one", parseForInput("one", remainingJoined).getOne("val").get());
-        assertEquals("one big string", parseForInput("one big string", remainingJoined).getOne("val").get());
+        CommandElement.Value<String> remainingJoined = remainingJoinedStrings(untr("val"));
+        assertEquals("one", parseForInput("one", remainingJoined).get(remainingJoined));
+        assertEquals("one big string", parseForInput("one big string", remainingJoined).get(remainingJoined));
     }
 }
