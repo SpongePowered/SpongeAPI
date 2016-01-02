@@ -64,7 +64,7 @@ public interface Goal<O extends Agent> {
      * @param task The task to run
      * @return This goal, for chaining
      */
-    Goal<O> addTask(int priority, AITask task);
+    Goal<O> addTask(int priority, AITask<O> task);
 
     /**
      * Removes a specific {@link AITask} from this goal.
@@ -72,7 +72,7 @@ public interface Goal<O extends Agent> {
      * @param task The task to remove
      * @return This goal, for chaining
      */
-    Goal<O> removeTask(AITask task);
+    Goal<O> removeTask(AITask<O> task);
 
     /**
      * Removes all {@link AITask}s whose {@link AITaskType} matches

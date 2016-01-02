@@ -50,7 +50,7 @@ import javax.inject.Inject;
  */
 public class SimpleServiceManager implements ServiceManager {
 
-    private final ConcurrentMap<Class<?>, Provider> providers =
+    private final ConcurrentMap<Class<?>, ProviderRegistration<?>> providers =
             new MapMaker().concurrencyLevel(3).makeMap();
     private final PluginManager pluginManager;
 
@@ -80,7 +80,7 @@ public class SimpleServiceManager implements ServiceManager {
         }
 
         PluginContainer container = containerOptional.get();
-        Provider oldProvider = this.providers.put(service, new Provider<>(container, service, provider));
+        ProviderRegistration<?> oldProvider = this.providers.put(service, new Provider<>(container, service, provider));
         Sponge.getEventManager().post(SpongeEventFactory.createChangeServiceProviderEvent(Cause.of(container), this.providers.get(service), Optional.ofNullable(oldProvider)));
     }
 
@@ -89,23 +89,23 @@ public class SimpleServiceManager implements ServiceManager {
     @Override
     public <T> Optional<T> provide(Class<T> service) {
         checkNotNull(service, "service");
-        @Nullable Provider provider = this.providers.get(service);
-        return provider != null ? (Optional<T>) Optional.of(provider.provider) : Optional.<T>empty();
+        @Nullable ProviderRegistration<T> provider = (ProviderRegistration<T>) this.providers.get(service);
+        return provider != null ? Optional.of(provider.getProvider()) : Optional.empty();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public <T> Optional<ProviderRegistration<T>> getRegistration(Class<T> service) {
-        return Optional.ofNullable(this.providers.get(service));
+        return Optional.ofNullable((ProviderRegistration) this.providers.get(service));
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public <T> T provideUnchecked(Class<T> service) throws ProvisioningException {
         checkNotNull(service, "service");
-        @Nullable Provider provider = this.providers.get(service);
+        @Nullable ProviderRegistration<T> provider = (ProviderRegistration<T>) this.providers.get(service);
         if (provider != null) {
-            return (T) provider.provider;
+            return provider.getProvider();
         } else {
             throw new ProvisioningException("No provider is registered for the service '" + service.getName() + "'", service);
         }
