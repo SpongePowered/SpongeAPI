@@ -32,8 +32,11 @@ import org.spongepowered.api.world.extent.Extent;
 
 /**
  * An {@link DataManipulator} that marks the "persisting" state for an
- * {@link Entity}. When a {@link Extent} is unloaded, all {@link Entity}
- * instances are stored, if and only if they are marked to persist.
+ * {@link Entity}. A persisting entity will not naturally despawn, even if it
+ * would otherwise be able to.
+ *
+ * <p>In Vanilla, certain entities despawn when no player is close to them, as
+ * long as their "persisting" state is not <code>true</code>.</p>
  */
 public interface PersistingData extends DataManipulator<PersistingData, ImmutablePersistingData> {
 
