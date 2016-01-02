@@ -31,6 +31,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import com.google.common.collect.ImmutableList;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -207,5 +208,15 @@ public class CauseTest {
         List<Object> allCauses = enhanced.all();
         assertThat(allCauses, hasSize(3));
     }
+
+    @Test
+    public void testListedArray() {
+        final List<String> fooList = ImmutableList.of("foo", "bar", "baz", "floof");
+        final Cause cause = Cause.of(fooList);
+        final List<String> stringList = cause.allOf(String.class);
+        assertThat(stringList.isEmpty(), is(false));
+        assertThat(stringList.equals(fooList), is(true));
+    }
+
 
 }

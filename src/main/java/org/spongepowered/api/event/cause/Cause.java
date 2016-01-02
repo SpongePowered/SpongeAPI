@@ -86,35 +86,162 @@ public final class Cause {
         List<Object> list = new ArrayList<>();
         if (object instanceof Object[]) {
             for (Object arrayObj : ((Object[]) object)) {
-                list.add(checkNotNull(arrayObj));
+                list.add(checkNotNull(arrayObj, "Array object"));
+            }
+        } else if (object instanceof Iterable) {
+            for (Object listObj : ((Iterable<Object>) object)) {
+                list.add(checkNotNull(listObj, "List object"));
             }
         } else {
             list.add(object);
         }
         for (Object context : objects) {
-            list.add(checkNotNull(context));
+            list.add(checkNotNull(context, "Context object"));
         }
         return new Cause(list.toArray());
     }
 
+    /**
+     * Creates a new {@link Cause} of the provided {@link Iterable}s. The order
+     * of the objects should represent the "priority" that the object aided in
+     * the "cause" of an {@link Event}. The first {@link Object} should be the
+     * direct "cause" of the {@link Event}.
+     *
+     * <p>Usually, in most cases, some {@link Event}s will have "helper"
+     * objects to interface with their direct causes, such as
+     * {@link DamageSource} for an {@link DamageEntityEvent}, or a
+     * {@link SpawnCause} for an {@link SpawnEntityEvent}.</p>
+     *
+     * @param iterable The objects being the cause
+     * @return The new cause
+     */
+    public static Cause of(Iterable<?> iterable) {
+        checkArgument(iterable != null, "The source object cannot be null!");
+        List<Object> list = new ArrayList<>();
+        for (Object listObj : iterable) {
+            list.add(checkNotNull(listObj, "List object"));
+        }
+        return new Cause(list.toArray());
+    }
+
+    /**
+     * Creates a new {@link Cause} of the provided {@link Object} array. The
+     * order of the objects should represent the "priority" that the object
+     * aided in the "cause" of an {@link Event}. The first {@link Object}
+     * should be the direct "cause" of the {@link Event}.
+     *
+     * <p>Usually, in most cases, some {@link Event}s will have "helper"
+     * objects to interface with their direct causes, such as
+     * {@link DamageSource} for an {@link DamageEntityEvent}, or a
+     * {@link SpawnCause} for an {@link SpawnEntityEvent}.</p>
+     *
+     * @param objects The objects being the cause
+     * @return The new cause
+     */
+    public static Cause of(Object[] objects) {
+        checkArgument(objects != null, "The source object cannot be null!");
+        List<Object> list = new ArrayList<>();
+        for (Object arrayObj : objects) {
+            list.add(checkNotNull(arrayObj, "Array object"));
+        }
+        return new Cause(list.toArray());
+    }
+
+    /**
+     * Creates a new {@link Cause} of the provided {@link Object}s. Note that
+     * none of the provided {@link Object}s can be <code>null</code>. The order
+     * of the objects should represent the "priority" that the object aided in
+     * the "cause" of an {@link Event}. The first {@link Object} should be the
+     * direct "cause" of the {@link Event}.
+     *
+     * <p>Usually, in most cases, some {@link Event}s will have "helper"
+     * objects to interface with their direct causes, such as
+     * {@link DamageSource} for an {@link DamageEntityEvent}, or a
+     * {@link SpawnCause} for an {@link SpawnEntityEvent}.</p>
+     *
+     * @param objects The objects being the cause
+     * @return The new cause
+     */
     public static Cause ofNullable(@Nullable Object object, @Nullable Object... objects) {
         checkArgument(object != null || (objects != null && objects.length != 0), "There must be at least one object in a cause!");
         List<Object> list = new ArrayList<>();
         if (object instanceof Object[]) {
             for (Object arrayObj : ((Object[]) object)) {
-                list.add(checkNotNull(arrayObj));
+                if (arrayObj != null) {
+                    list.add(arrayObj);
+                }
+            }
+        } else if (object instanceof Iterable) {
+            for (Object listObj : ((Iterable<Object>) object)) {
+                if (listObj != null) {
+                    list.add(listObj);
+                }
             }
         } else if (object != null) {
             list.add(object);
         }
-        for (Object cause : objects) {
-            if (object != null) {
-                list.add(object);
+        if (objects != null) {
+            for (Object cause : objects) {
+                if (cause != null) {
+                    list.add(cause);
+                }
             }
         }
-        if (list.isEmpty()) {
-            throw new IllegalArgumentException("There must be at least one object within a cause!");
+        checkArgument(!list.isEmpty(), "There must be at least one object within a cause!");
+        return new Cause(list.toArray());
+    }
+
+    /**
+     * Creates a new {@link Cause} of the provided {@link Object}s. Note that
+     * none of the provided {@link Object}s can be <code>null</code>. The order
+     * of the objects should represent the "priority" that the object aided in
+     * the "cause" of an {@link Event}. The first {@link Object} should be the
+     * direct "cause" of the {@link Event}.
+     *
+     * <p>Usually, in most cases, some {@link Event}s will have "helper"
+     * objects to interface with their direct causes, such as
+     * {@link DamageSource} for an {@link DamageEntityEvent}, or a
+     * {@link SpawnCause} for an {@link SpawnEntityEvent}.</p>
+     *
+     * @param iterable The objects being the cause
+     * @return The new cause
+     */
+    public static Cause ofNullable(Iterable<?> iterable) {
+        checkArgument(iterable != null, "The iterable cannot be null!");
+        List<Object> list = new ArrayList<>();
+        for (Object listObj : iterable) {
+            if (listObj != null) {
+                list.add(listObj);
+            }
         }
+        checkArgument(!list.isEmpty(), "Must at least have one object in the cause!");
+        return new Cause(list.toArray());
+    }
+
+    /**
+     * Creates a new {@link Cause} of the provided {@link Object}s. Note that
+     * any of the provided {@link Object}s can be <code>null</code>. The order
+     * of the objects should represent the "priority" that the object aided in
+     * the "cause" of an {@link Event}. The first {@link Object} should be the
+     * direct "cause" of the {@link Event}.
+     *
+     * <p>Usually, in most cases, some {@link Event}s will have "helper"
+     * objects to interface with their direct causes, such as
+     * {@link DamageSource} for an {@link DamageEntityEvent}, or a
+     * {@link SpawnCause} for an {@link SpawnEntityEvent}.</p>
+     *
+     * @param objects The objects being the cause
+     * @return The new cause
+     */
+    public static Cause ofNullable(Object[] objects) {
+        checkArgument(objects != null, "The source object cannot be null!");
+        List<Object> list = new ArrayList<>();
+        for (Object arrayObj : objects) {
+            if (arrayObj != null) {
+                list.add(arrayObj);
+            }
+        }
+        checkArgument(!list.isEmpty(), "Must at least have one object in the cause!");
         return new Cause(list.toArray());
     }
 
