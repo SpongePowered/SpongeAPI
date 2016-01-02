@@ -60,7 +60,6 @@ public final class CommandFlags extends CommandElement {
     protected CommandFlags(@Nullable CommandElement childElement, Map<List<String>, CommandElement> usageFlags,
             Map<String, CommandElement> shortFlags, Map<String, CommandElement> longFlags, UnknownFlagBehavior unknownShortFlagBehavior,
             UnknownFlagBehavior unknownLongFlagBehavior, boolean anchorFlags) {
-        super(null);
         this.childElement = childElement;
         this.usageFlags = usageFlags;
         this.shortFlags = shortFlags;
@@ -202,11 +201,6 @@ public final class CommandFlags extends CommandElement {
             builder.add(this.childElement.getUsage(src));
         }
         return Text.of(builder.toArray());
-    }
-
-    @Override
-    protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-        return null;
     }
 
     @Override
@@ -355,7 +349,7 @@ public final class CommandFlags extends CommandElement {
         private static final Function<String, CommandElement> MARK_TRUE_FUNC = new Function<String, CommandElement>() {
             @Nullable
             @Override
-            public CommandElement apply(@Nullable String input) {
+            public CommandElement.Value<Boolean> apply(String input) {
                 return markTrue(input);
             }
         };

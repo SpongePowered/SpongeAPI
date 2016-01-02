@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.command.args;
 
+import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.TranslatableText;
@@ -36,40 +37,10 @@ import javax.annotation.Nullable;
  * Represents a command argument element.
  */
 public abstract class CommandElement {
-    @Nullable
-    private final Text key;
-
-    protected CommandElement(@Nullable Text key) {
-        this.key = key;
-    }
-
-    /**
-     * Return the key to be used for this object.
-     *
-     * @return the user-facing representation of the key
-     */
-    @Nullable
-    public Text getKey() {
-        return this.key;
-    }
-
-    /**
-     * Return the plain key, to be used when looking up this command element in
-     * a {@link CommandContext}. If the key is a {@link TranslatableText}, this
-     * is the translation's id. Otherwise, this is the result of
-     * {@link Text#toPlain()}.
-     *
-     * @return the raw key
-     */
-    @Nullable
-    public String getUntranslatedKey() {
-        return ArgUtils.textToArgKey(this.key);
-    }
 
     /**
      * Attempt to extract a value for this element from the given arguments and
-     * put it in the given context. This method normally delegates to
-     * {@link #parseValue(CommandSource, CommandArgs)} for getting the values.
+     * put it in the given context.
      * This method is expected to have no side-effects for the source, meaning
      * that executing it will not change the state of the {@link CommandSource}
      * in any way.
@@ -79,33 +50,8 @@ public abstract class CommandElement {
      * @param context The context to supply to
      * @throws ArgumentParseException if unable to extract a value
      */
-    public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
-        Object val = parseValue(source, args);
-        String key = getUntranslatedKey();
-        if (key != null && val != null) {
-            if (val instanceof Iterable<?>) {
-                for (Object ent : ((Iterable<?>) val)) {
-                    context.putArg(key, ent);
-                }
-            } else {
-                context.putArg(key, val);
-            }
-        }
-    }
+    public abstract void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException;
 
-    /**
-     * Attempt to extract a value for this element from the given arguments.
-     * This method is expected to have no side-effects for the source, meaning
-     * that executing it will not change the state of the {@link CommandSource}
-     * in any way.
-     *
-     * @param source The source to parse for
-     * @param args the arguments
-     * @return The extracted value
-     * @throws ArgumentParseException if unable to extract a value
-     */
-    @Nullable
-    protected abstract Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException;
 
     /**
      * Fetch completions for command arguments.
@@ -123,7 +69,76 @@ public abstract class CommandElement {
      * @param src The source requesting usage
      * @return The formatted usage
      */
-    public Text getUsage(CommandSource src) {
-        return getKey() == null ? Text.of() : Text.of("<", getKey(), ">");
+    public abstract Text getUsage(CommandSource src);
+
+    public static abstract class Value<T> extends CommandElement {
+        private final Text key;
+
+        protected Value(Text key) {
+            this.key = key;
+        }
+
+        /**
+         * Return the key to be used for this object.
+         *
+         * @return the user-facing representation of the key
+         */
+        public Text getKey() {
+            return this.key;
+        }
+
+        /**
+         * Return the plain key, to be used when looking up this command element in
+         * a {@link CommandContext}. If the key is a {@link TranslatableText}, this
+         * is the translation's id. Otherwise, this is the result of
+         * {@link Text#toPlain()}.
+         *
+         * @return the raw key
+         */
+        @Nullable
+        public String getUntranslatedKey() {
+            return ArgUtils.textToArgKey(this.key);
+        }
+
+        /**
+         * Attempt to extract a value for this element from the given arguments.
+         * This method is expected to have no side-effects for the source, meaning
+         * that executing it will not change the state of the {@link CommandSource}
+         * in any way.
+         *
+         * @param source The source to parse for
+         * @param args the arguments
+         * @return The extracted value
+         * @throws ArgumentParseException if unable to extract a value
+         */
+        protected abstract T parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException;
+
+        /**
+         * Attempt to extract a value for this element from the given arguments and
+         * put it in the given context. This method normally delegates to
+         * {@link #parseValue(CommandSource, CommandArgs)} for getting the values.
+         * This method is expected to have no side-effects for the source, meaning
+         * that executing it will not change the state of the {@link CommandSource}
+         * in any way.
+         *
+         * @param source The source to parse for
+         * @param args The args to extract from
+         * @param context The context to supply to
+         * @throws ArgumentParseException if unable to extract a value
+         */
+        @Override
+        public final void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
+            context.putArg(this, parseValue(source, args));
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            return ImmutableList.of();
+        }
+
+        @Override
+        public Text getUsage(CommandSource src) {
+            return Text.of("<", getKey(), ">");
+        }
     }
 }
