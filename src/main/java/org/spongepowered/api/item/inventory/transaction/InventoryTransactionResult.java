@@ -34,6 +34,7 @@ import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -102,13 +103,13 @@ public final class InventoryTransactionResult {
     }
 
     private final Type type;
-    private final ImmutableList<ItemStackSnapshot> rejected;
-    private final ImmutableList<ItemStackSnapshot> replaced;
+    private final List<ItemStackSnapshot> rejected;
+    private final List<ItemStackSnapshot> replaced;
 
     InventoryTransactionResult(Builder builder) {
         this.type = builder.resultType;
-        this.rejected = ImmutableList.copyOf(builder.rejected);
-        this.replaced = ImmutableList.copyOf(builder.replaced);
+        this.rejected = builder.rejected != null ? ImmutableList.copyOf(builder.rejected) : Collections.<ItemStackSnapshot>emptyList();
+        this.replaced = builder.replaced != null ? ImmutableList.copyOf(builder.replaced) : Collections.<ItemStackSnapshot>emptyList();
     }
 
     /**
