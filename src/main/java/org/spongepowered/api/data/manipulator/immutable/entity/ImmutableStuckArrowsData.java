@@ -25,21 +25,21 @@
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.AffectsSpawningData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.data.manipulator.mutable.entity.StuckArrowsData;
+import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.entity.living.Living;
 
 /**
- * An {@link ImmutableDataManipulator} for the "affects spawning" state of
- * a {@link Player}.
+ * An {@link ImmutableDataManipulator} for the number of "stuck arrows" in
+ * {@link Living} entities.
  */
-public interface ImmutableAffectsSpawningData extends ImmutableDataManipulator<ImmutableAffectsSpawningData, AffectsSpawningData> {
+public interface ImmutableStuckArrowsData extends ImmutableDataManipulator<ImmutableStuckArrowsData, StuckArrowsData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the "affects spawning" state.
+     * Gets the {@link ImmutableBoundedValue} for the stuck arrows.
      *
-     * @return The immutable value for the affects spawning state
+     * @return The immutable value of stuck arrows
      */
-    ImmutableValue<Boolean> affectsSpawning();
+    ImmutableBoundedValue<Integer> stuckArrows();
 
 }
