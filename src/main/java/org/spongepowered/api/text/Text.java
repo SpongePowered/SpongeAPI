@@ -83,6 +83,28 @@ public abstract class Text implements TextRepresentable {
      */
     public static final Text EMPTY = LiteralText.EMPTY;
 
+    /**
+     * Format indicator for {@link Text#of(Object...)} to append the following
+     * {@link TextRepresentable}s. This has no effect on none
+     * {@link TextRepresentable} instances.
+     */
+    public static final TextProperty APPEND_TEXTS = new TextProperty() {
+    };
+    /**
+     * Format indicator for {@link Text#of(Object...)} to apply the specified
+     * format to the following {@link Text}s.This has no effect on none
+     * {@link TextRepresentable} instances.
+     */
+    public static final TextProperty FORMAT_TEXTS = new TextProperty() {
+    };
+    /**
+     * Format indicator for {@link Text#of(Object...)} to mark the format as
+     * changed so it will be appended if not followed by a none
+     * {@link TextProperty}.
+     */
+    public static final TextProperty MARK_CHANGED = new TextProperty() {
+    };
+
     static final char NEW_LINE_CHAR = '\n';
     static final String NEW_LINE_STRING = "\n";
 
@@ -825,12 +847,20 @@ public abstract class Text implements TextRepresentable {
         ClickAction<?> clickAction = null;
         ShiftClickAction<?> shiftClickAction = null;
         boolean changedFormat = false;
+        boolean appendTexts = false;
 
         for (Object obj : objects) {
             if (obj instanceof TextProperty) {
                 changedFormat = true;
-                // Text formatting + actions
-                if (obj instanceof TextFormat) {
+                // Format indicators
+                if (obj == APPEND_TEXTS) {
+                    appendTexts = true;
+                } else if (obj == FORMAT_TEXTS) {
+                    appendTexts = false;
+                } else if (obj == MARK_CHANGED) {
+                    // Do nothing, as changedFormat is already true here
+                    // Text formatting + actions
+                } else if (obj instanceof TextFormat) {
                     format = (TextFormat) obj;
                 } else if (obj instanceof TextColor) {
                     format = format.color((TextColor) obj);
@@ -853,6 +883,8 @@ public abstract class Text implements TextRepresentable {
                 } else {
                     // Unsupported TextProperty
                 }
+            } else if (appendTexts && obj instanceof TextRepresentable) {
+                builder.append(((TextRepresentable) obj).toText());
             } else {
                 // Simple content
                 changedFormat = false;
