@@ -102,3 +102,7 @@ shadowJar {
 artifacts {
     archives shadowJar
 }
+
+task sortClassMembers(type: org.spongepowered.gradle.TaskSortClassMembers) {
+    process "org.spongepowered.api.data.key.Keys"
+}

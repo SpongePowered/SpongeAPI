@@ -159,6 +159,8 @@ import java.util.UUID;
  * An enumeration of known {@link Key}s used throughout the API.
  */
 public final class Keys {
+    
+    // SORTFIELDS:ON
 
     public static final Key<SetValue<Achievement>> ACHIEVEMENTS = null;
 
@@ -180,8 +182,6 @@ public final class Keys {
 
     public static final Key<Value<Art>> ART = null;
 
-    public static final Key<MutableBoundedValue<Double>> ATTACK_DAMAGE = null;
-
     /**
      * Represents the {@link Key} for representing whether a {@link BlockState}
      * is "attached" to another block.
@@ -189,6 +189,8 @@ public final class Keys {
      * @see AttachedData#attached()
      */
     public static final Key<Value<Boolean>> ATTACHED = null;
+
+    public static final Key<MutableBoundedValue<Double>> ATTACK_DAMAGE = null;
 
     /**
      * Represents the {@link Key} for representing the {@link Axis} direction
@@ -238,9 +240,9 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> CAN_DROP_AS_ITEM = null;
 
-    public static final Key<Value<Boolean>> CAN_GRIEF = null;
-
     public static final Key<Value<Boolean>> CAN_FLY = null;
+
+    public static final Key<Value<Boolean>> CAN_GRIEF = null;
 
     public static final Key<Value<Boolean>> CAN_PLACE_AS_BLOCK = null;
 
@@ -277,6 +279,14 @@ public final class Keys {
     public static final Key<SetValue<Direction>> CONNECTED_DIRECTIONS = null;
 
     /**
+     * Represents the {@link Key} for representing the "connected to the east"
+     * of a {@link BlockState}.
+     *
+     * @see ConnectedDirectionData#connectedEast()
+     */
+    public static final Key<Value<Boolean>> CONNECTED_EAST = null;
+
+    /**
      * Represents the {@link Key} for representing the "connected to the north"
      * state of a {@link BlockState}.
      *
@@ -291,14 +301,6 @@ public final class Keys {
      * @see ConnectedDirectionData#connectedSouth()
      */
     public static final Key<Value<Boolean>> CONNECTED_SOUTH = null;
-
-    /**
-     * Represents the {@link Key} for representing the "connected to the east"
-     * of a {@link BlockState}.
-     *
-     * @see ConnectedDirectionData#connectedEast()
-     */
-    public static final Key<Value<Boolean>> CONNECTED_EAST = null;
 
     /**
      * Represents the {@link Key} for representing the "connected to the west"
@@ -318,6 +320,8 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> CRITICAL_HIT = null;
 
+    public static final Key<MapValue<EntityType, Double>> DAMAGE_ENTITY_MAP = null;
+
     /**
      * Represents the {@link Key} for representing the "decayable" state
      * of a {@link BlockState}.
@@ -325,6 +329,8 @@ public final class Keys {
      * @see DecayableData#decayable()
      */
     public static final Key<Value<Boolean>> DECAYABLE = null;
+
+    public static final Key<MutableBoundedValue<Integer>> DELAY = null;
 
     /**
      * Represents the {@link Key} for representing the {@link Direction}
@@ -358,6 +364,8 @@ public final class Keys {
      */
     public static final Key<Value<DisguisedBlockType>> DISGUISED_BLOCK_TYPE = null;
 
+    public static final Key<Value<Text>> DISPLAY_NAME = null;
+
     /**
      * Represents the {@link Key} for representing the {@link DoublePlantType}
      * of a {@link BlockState}.
@@ -366,23 +374,17 @@ public final class Keys {
      */
     public static final Key<Value<DoublePlantType>> DOUBLE_PLANT_TYPE = null;
 
-    public static final Key<MapValue<EntityType, Double>> DAMAGE_ENTITY_MAP = null;
-
-    public static final Key<MutableBoundedValue<Integer>> DELAY = null;
-
-    public static final Key<Value<Text>> DISPLAY_NAME = null;
-
     public static final Key<Value<DyeColor>> DYE_COLOR = null;
-
-    public static final Key<MutableBoundedValue<Double>> EXHAUSTION = null;
 
     public static final Key<Value<Boolean>> ELDER_GUARDIAN = null;
 
-    public static final Key<MutableBoundedValue<Integer>> EXPERIENCE_SINCE_LEVEL = null;
+    public static final Key<MutableBoundedValue<Double>> EXHAUSTION = null;
 
     public static final Key<ImmutableBoundedValue<Integer>> EXPERIENCE_FROM_START_OF_LEVEL = null;
 
     public static final Key<MutableBoundedValue<Integer>> EXPERIENCE_LEVEL = null;
+
+    public static final Key<MutableBoundedValue<Integer>> EXPERIENCE_SINCE_LEVEL = null;
 
     public static final Key<MutableBoundedValue<Integer>> EXPIRATION_TICKS = null;
 
@@ -396,31 +398,11 @@ public final class Keys {
      */
     public static final Key<Value<Boolean>> EXTENDED = null;
 
-    public static final Key<MutableBoundedValue<Integer>> FIREWORK_FLIGHT_MODIFIER = null;
-
-    public static final Key<ListValue<FireworkEffect>> FIREWORK_EFFECTS = null;
-
-    public static final Key<MutableBoundedValue<Double>> FALL_DAMAGE_PER_BLOCK = null;
+    public static final Key<Value<Boolean>> FALLING_BLOCK_CAN_HURT_ENTITIES = null;
 
     public static final Key<Value<BlockState>> FALLING_BLOCK_STATE = null;
 
-    public static final Key<MutableBoundedValue<Integer>> FOOD_LEVEL = null;
-
-    public static final Key<MutableBoundedValue<Integer>> FUSE_DURATION = null;
-
-    public static final Key<MutableBoundedValue<Integer>> FIRE_TICKS = null;
-
-    public static final Key<MutableBoundedValue<Integer>> FIRE_DAMAGE_DELAY = null;
-
-    public static final Key<Value<Instant>> FIRST_DATE_PLAYED = null;
-
-    public static final Key<Value<Fish>> FISH_TYPE = null;
-
-    public static final Key<Value<Double>> FLYING_SPEED = null;
-
-    public static final Key<Value<Integer>> FALL_TIME = null;
-
-    public static final Key<Value<Boolean>> FALLING_BLOCK_CAN_HURT_ENTITIES = null;
+    public static final Key<MutableBoundedValue<Double>> FALL_DAMAGE_PER_BLOCK = null;
 
     /**
      * Represents the {@link Key} for representing the distance an entity has
@@ -430,6 +412,8 @@ public final class Keys {
      */
     public static final Key<MutableBoundedValue<Float>> FALL_DISTANCE = null;
 
+    public static final Key<Value<Integer>> FALL_TIME = null;
+
     /**
      * Represents the {@link Key} for representing the "filled" state
      * of a {@link BlockState}.
@@ -438,6 +422,18 @@ public final class Keys {
      */
     public static final Key<Value<Boolean>> FILLED = null;
 
+    public static final Key<ListValue<FireworkEffect>> FIREWORK_EFFECTS = null;
+
+    public static final Key<MutableBoundedValue<Integer>> FIREWORK_FLIGHT_MODIFIER = null;
+
+    public static final Key<MutableBoundedValue<Integer>> FIRE_DAMAGE_DELAY = null;
+
+    public static final Key<MutableBoundedValue<Integer>> FIRE_TICKS = null;
+
+    public static final Key<Value<Instant>> FIRST_DATE_PLAYED = null;
+
+    public static final Key<Value<Fish>> FISH_TYPE = null;
+
     /**
      * Represents the {@link Key} for representing the "fluid level" state
      * of a {@link BlockState}.
@@ -445,6 +441,12 @@ public final class Keys {
      * @see FluidLevelData#level()
      */
     public static final Key<MutableBoundedValue<Integer>> FLUID_LEVEL = null;
+
+    public static final Key<Value<Double>> FLYING_SPEED = null;
+
+    public static final Key<MutableBoundedValue<Integer>> FOOD_LEVEL = null;
+
+    public static final Key<MutableBoundedValue<Integer>> FUSE_DURATION = null;
 
     public static final Key<Value<GameMode>> GAME_MODE = null;
 
@@ -460,37 +462,15 @@ public final class Keys {
      */
     public static final Key<MutableBoundedValue<Integer>> GROWTH_STAGE = null;
 
-    public static final Key<MutableBoundedValue<Double>> HEALTH = null;
-
     public static final Key<Value<Vector3d>> HEAD_ROTATION = null;
 
-    public static final Key<MutableBoundedValue<Integer>> HELD_EXPERIENCE = null;
-
-    public static final Key<Value<HorseColor>> HORSE_COLOR = null;
-
-    public static final Key<Value<HorseStyle>> HORSE_STYLE = null;
-
-    public static final Key<Value<HorseVariant>> HORSE_VARIANT = null;
-
-    public static final Key<MutableBoundedValue<Float>> HEIGHT = null;
+    public static final Key<MutableBoundedValue<Double>> HEALTH = null;
 
     public static final Key<MutableBoundedValue<Double>> HEALTH_SCALE = null;
 
-    /**
-     * Represents the {@link Key} for representing the {@link Hinge}
-     * of a {@link BlockState}.
-     *
-     * @see HingeData#type()
-     */
-    public static final Key<Value<Hinge>> HINGE_POSITION = null;
+    public static final Key<MutableBoundedValue<Float>> HEIGHT = null;
 
-    /**
-     * Represents the {@link Key} for representing the "enchantments hidden"
-     * state of a {@link ItemStack}.
-     *
-     * @see HideData#hideEnchantments()
-     */
-    public static final Key<Value<Boolean>> HIDE_ENCHANTMENTS = null;
+    public static final Key<MutableBoundedValue<Integer>> HELD_EXPERIENCE = null;
 
     /**
      * Represents the {@link Key} for representing the "attributes hidden"
@@ -499,14 +479,6 @@ public final class Keys {
      * @see HideData#hideAttributes()
      */
     public static final Key<Value<Boolean>> HIDE_ATTRIBUTES = null;
-
-    /**
-     * Represents the {@link Key} for representing the "unbreakable hidden"
-     * state of a {@link ItemStack}.
-     *
-     * @see HideData#hideUnbreakable()
-     */
-    public static final Key<Value<Boolean>> HIDE_UNBREAKABLE = null;
 
     /**
      * Represents the {@link Key} for representing the "can destroy hidden"
@@ -525,6 +497,14 @@ public final class Keys {
     public static final Key<Value<Boolean>> HIDE_CAN_PLACE = null;
 
     /**
+     * Represents the {@link Key} for representing the "enchantments hidden"
+     * state of a {@link ItemStack}.
+     *
+     * @see HideData#hideEnchantments()
+     */
+    public static final Key<Value<Boolean>> HIDE_ENCHANTMENTS = null;
+
+    /**
      * Represents the {@link Key} for representing the "miscellaneous hidden"
      * state of a {@link ItemStack}.
      *
@@ -532,11 +512,33 @@ public final class Keys {
      */
     public static final Key<Value<Boolean>> HIDE_MISCELLANEOUS = null;
 
+    /**
+     * Represents the {@link Key} for representing the "unbreakable hidden"
+     * state of a {@link ItemStack}.
+     *
+     * @see HideData#hideUnbreakable()
+     */
+    public static final Key<Value<Boolean>> HIDE_UNBREAKABLE = null;
+
+    /**
+     * Represents the {@link Key} for representing the {@link Hinge}
+     * of a {@link BlockState}.
+     *
+     * @see HingeData#type()
+     */
+    public static final Key<Value<Hinge>> HINGE_POSITION = null;
+
+    public static final Key<Value<HorseColor>> HORSE_COLOR = null;
+
+    public static final Key<Value<HorseStyle>> HORSE_STYLE = null;
+
+    public static final Key<Value<HorseVariant>> HORSE_VARIANT = null;
+
     public static final Key<Value<Boolean>> INVISIBLE = null;
 
-    public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY_TICKS = null;
-
     public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY = null;
+
+    public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY_TICKS = null;
 
     /**
      * Represents the {@link Key} for representing the "in-wall" state of
@@ -545,8 +547,6 @@ public final class Keys {
      * @see InWallData#inWall()
      */
     public static final Key<Value<Boolean>> IN_WALL = null;
-
-    public static final Key<ListValue<Text>> ITEM_LORE = null;
 
     public static final Key<Value<Boolean>> IS_AFLAME = null;
 
@@ -564,6 +564,14 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> IS_SNEAKING = null;
 
+    /**
+     * Represents the {@link Key} for representing the "splash" state of a
+     * {@link ItemTypes#POTION}.
+     *
+     * @see SplashPotionData#splash()
+     */
+    public static final Key<Value<Boolean>> IS_SPLASH_POTION = null;
+
     public static final Key<Value<Boolean>> IS_SPRINTING = null;
 
     public static final Key<Value<Boolean>> IS_VILLAGER_ZOMBIE = null;
@@ -576,33 +584,17 @@ public final class Keys {
 
     public static final Key<ListValue<ItemEnchantment>> ITEM_ENCHANTMENTS = null;
 
-    /**
-     * Represents the {@link Key} for representing the "splash" state of a
-     * {@link ItemTypes#POTION}.
-     *
-     * @see SplashPotionData#splash()
-     */
-    public static final Key<Value<Boolean>> IS_SPLASH_POTION = null;
+    public static final Key<ListValue<Text>> ITEM_LORE = null;
 
     public static final Key<MutableBoundedValue<Integer>> KNOCKBACK_STRENGTH = null;
 
-    public static final Key<OptionalValue<Text>> LAST_COMMAND_OUTPUT = null;
-
-    public static final Key<Value<LogAxis>> LOG_AXIS = null;
-
-    public static final Key<Value<Vector3d>> LEFT_ARM_ROTATION = null;
-
-    public static final Key<Value<Vector3d>> LEFT_LEG_ROTATION = null;
-
     public static final Key<OptionalValue<Living>> LAST_ATTACKER = null;
+
+    public static final Key<OptionalValue<Text>> LAST_COMMAND_OUTPUT = null;
 
     public static final Key<OptionalValue<Double>> LAST_DAMAGE = null;
 
     public static final Key<Value<Instant>> LAST_DATE_PLAYED = null;
-
-    public static final Key<Value<EntitySnapshot>> LEASH_HOLDER = null;
-
-    public static final Key<Value<String>> LOCK_TOKEN = null;
 
     /**
      * Represents the {@link Key} for representing the "layer" value of
@@ -612,15 +604,25 @@ public final class Keys {
      */
     public static final Key<MutableBoundedValue<Integer>> LAYER = null;
 
-    public static final Key<MutableBoundedValue<Double>> MAX_HEALTH = null;
+    public static final Key<Value<EntitySnapshot>> LEASH_HOLDER = null;
+
+    public static final Key<Value<Vector3d>> LEFT_ARM_ROTATION = null;
+
+    public static final Key<Value<Vector3d>> LEFT_LEG_ROTATION = null;
+
+    public static final Key<Value<String>> LOCK_TOKEN = null;
+
+    public static final Key<Value<LogAxis>> LOG_AXIS = null;
 
     public static final Key<MutableBoundedValue<Integer>> MAX_AIR = null;
-
-    public static final Key<MutableBoundedValue<Double>> MAX_FALL_DAMAGE = null;
 
     public static final Key<MutableBoundedValue<Integer>> MAX_BURN_TIME = null;
 
     public static final Key<MutableBoundedValue<Integer>> MAX_COOK_TIME = null;
+
+    public static final Key<MutableBoundedValue<Double>> MAX_FALL_DAMAGE = null;
+
+    public static final Key<MutableBoundedValue<Double>> MAX_HEALTH = null;
 
     /**
      * Represents the {@link Key} for representing the "moisture" state of
@@ -629,8 +631,9 @@ public final class Keys {
      * @see MoistureData#moisture()
      */
     public static final Key<MutableBoundedValue<Integer>> MOISTURE = null;
+
     public static final Key<Value<NotePitch>> NOTE_PITCH = null;
-    public static final Key<Value<OcelotType>> OCELOT_TYPE = null;
+
     /**
      * Represents the {@link Key} for representing the "occupied" state of
      * {@link BlockTypes#BED}.
@@ -638,6 +641,8 @@ public final class Keys {
      * @see OccupiedData#occupied()
      */
     public static final Key<Value<Boolean>> OCCUPIED = null;
+
+    public static final Key<Value<OcelotType>> OCELOT_TYPE = null;
 
     /**
      * Represents the {@link Key} for representing a block's offset when inside
@@ -655,21 +660,15 @@ public final class Keys {
      */
     public static final Key<Value<Boolean>> OPEN = null;
 
-    public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = null;
+    public static final Key<MutableBoundedValue<Integer>> PASSED_BURN_TIME = null;
+
+    public static final Key<MutableBoundedValue<Integer>> PASSED_COOK_TIME = null;
 
     public static final Key<Value<EntitySnapshot>> PASSENGER = null;
 
     public static final Key<Value<Boolean>> PERSISTS = null;
 
-    public static final Key<Value<Boolean>> PLAYER_CREATED = null;
-
     public static final Key<Value<Boolean>> PIG_SADDLE = null;
-
-    public static final Key<SetValue<BlockType>> PLACEABLE_BLOCKS = null;
-
-    public static final Key<MutableBoundedValue<Integer>> PASSED_BURN_TIME = null;
-
-    public static final Key<MutableBoundedValue<Integer>> PASSED_COOK_TIME = null;
 
     /**
      * Represents the {@link Key} for representing the {@link PistonType}
@@ -679,6 +678,8 @@ public final class Keys {
      */
     public static final Key<Value<PistonType>> PISTON_TYPE = null;
 
+    public static final Key<SetValue<BlockType>> PLACEABLE_BLOCKS = null;
+
     /**
      * Represents the {@link Key} for representing the {@link PlantType}
      * of a {@link BlockState}.
@@ -686,6 +687,8 @@ public final class Keys {
      * @see PlantData#type()
      */
     public static final Key<Value<PlantType>> PLANT_TYPE = null;
+
+    public static final Key<Value<Boolean>> PLAYER_CREATED = null;
 
     /**
      * Represents the {@link Key} for representing the {@link PortionType}
@@ -695,13 +698,7 @@ public final class Keys {
      */
     public static final Key<Value<PortionType>> PORTION_TYPE = null;
 
-    /**
-     * Represents the {@link Key} for representing the "powered" state
-     * of a {@link BlockState}.
-     *
-     * @see PoweredData#powered()
-     */
-    public static final Key<Value<Boolean>> POWERED = null;
+    public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = null;
 
     /**
      * Represents the {@link Key} for representing the "power" state
@@ -710,6 +707,14 @@ public final class Keys {
      * @see RedstonePoweredData#power()
      */
     public static final Key<MutableBoundedValue<Integer>> POWER = null;
+
+    /**
+     * Represents the {@link Key} for representing the "powered" state
+     * of a {@link BlockState}.
+     *
+     * @see PoweredData#powered()
+     */
+    public static final Key<Value<Boolean>> POWERED = null;
 
     /**
      * Represents the {@link Key} for representing the {@link PrismarineType}
@@ -727,23 +732,7 @@ public final class Keys {
      */
     public static final Key<Value<QuartzType>> QUARTZ_TYPE = null;
 
-    public static final Key<Value<ItemStackSnapshot>> REPRESENTED_ITEM = null;
-
-    public static final Key<Value<GameProfile>> REPRESENTED_PLAYER = null;
-
-    public static final Key<Value<Rotation>> ROTATION = null;
-
-    public static final Key<Value<Vector3d>> RIGHT_ARM_ROTATION = null;
-
-    public static final Key<Value<Vector3d>> RIGHT_LEG_ROTATION = null;
-
-    public static final Key<MutableBoundedValue<Integer>> REMAINING_AIR = null;
-
     public static final Key<Value<RabbitType>> RABBIT_TYPE = null;
-
-    public static final Key<MapValue<UUID, Vector3d>> RESPAWN_LOCATIONS = null;
-
-    public static final Key<MutableBoundedValue<Integer>> REMAINING_BREW_TIME = null;
 
     /**
      * Represents the {@link Key} for representing the {@link RailDirection}
@@ -753,6 +742,10 @@ public final class Keys {
      */
     public static final Key<Value<RailDirection>> RAIL_DIRECTION = null;
 
+    public static final Key<MutableBoundedValue<Integer>> REMAINING_AIR = null;
+
+    public static final Key<MutableBoundedValue<Integer>> REMAINING_BREW_TIME = null;
+
     /**
      * Represents the {@link Key} for representing the {@link BlockState}
      * inside a {@link Minecart}.
@@ -761,70 +754,17 @@ public final class Keys {
      */
     public static final Key<Value<BlockState>> REPRESENTED_BLOCK = null;
 
-    public static final Key<MutableBoundedValue<Double>> SATURATION = null;
+    public static final Key<Value<ItemStackSnapshot>> REPRESENTED_ITEM = null;
 
-    public static final Key<MutableBoundedValue<Float>> SCALE = null;
+    public static final Key<Value<GameProfile>> REPRESENTED_PLAYER = null;
 
-    public static final Key<Value<Boolean>> SHOWS_DISPLAY_NAME = null;
+    public static final Key<MapValue<UUID, Vector3d>> RESPAWN_LOCATIONS = null;
 
-    public static final Key<ListValue<Text>> SIGN_LINES = null;
+    public static final Key<Value<Vector3d>> RIGHT_ARM_ROTATION = null;
 
-    public static final Key<Value<SkullType>> SKULL_TYPE = null;
+    public static final Key<Value<Vector3d>> RIGHT_LEG_ROTATION = null;
 
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_REMAINING_DELAY = null;
-
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_MINIMUM_DELAY = null;
-
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_MAXIMUM_DELAY = null;
-
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_COUNT = null;
-
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_MAXIMUM_NEARBY_ENTITIES = null;
-
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_REQUIRED_PLAYER_RANGE = null;
-
-    public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_RANGE = null;
-
-    public static final Key<MobSpawnerData.NextEntityToSpawnValue> SPAWNER_NEXT_ENTITY_TO_SPAWN = null;
-
-    public static final Key<WeightedCollectionValue<EntitySnapshot>> SPAWNER_ENTITIES = null;
-
-    /**
-     * Reprsents a key for the amount of successful executions of a command
-     * stored in a {@link CommandBlock} or {@link MinecartCommandBlock}.
-     *
-     * @see CommandData#successCount()
-     */
-    public static final Key<MutableBoundedValue<Integer>> SUCCESS_COUNT = null;
-
-    public static final Key<Value<UUID>> SKIN_UNIQUE_ID = null;
-
-
-    public static final Key<Value<SkeletonType>> SKELETON_TYPE = null;
-
-    public static final Key<MutableBoundedValue<Integer>> SLIME_SIZE = null;
-
-    public static final Key<MapValue<Statistic, Long>> STATISTICS = null;
-
-    public static final Key<Value<EntityType>> SPAWNABLE_ENTITY_TYPE = null;
-
-    public static final Key<ListValue<ItemEnchantment>> STORED_ENCHANTMENTS = null;
-
-    /**
-     * Represents the {@link Key} for representing the "should drop" state
-     * of a {@link BlockState}.
-     *
-     * @see DropData#willDrop()
-     */
-    public static final Key<Value<Boolean>> SHOULD_DROP = null;
-
-    /**
-     * Represents the {@link Key} for representing the {@link SandType}
-     * of a {@link BlockState}.
-     *
-     * @see SandData#type()
-     */
-    public static final Key<Value<SandType>> SAND_TYPE = null;
+    public static final Key<Value<Rotation>> ROTATION = null;
 
     /**
      * Represents the {@link Key} for representing the {@link SandstoneType}
@@ -835,12 +775,34 @@ public final class Keys {
     public static final Key<Value<SandstoneType>> SANDSTONE_TYPE = null;
 
     /**
+     * Represents the {@link Key} for representing the {@link SandType}
+     * of a {@link BlockState}.
+     *
+     * @see SandData#type()
+     */
+    public static final Key<Value<SandType>> SAND_TYPE = null;
+
+    public static final Key<MutableBoundedValue<Double>> SATURATION = null;
+
+    public static final Key<MutableBoundedValue<Float>> SCALE = null;
+
+    /**
      * Represents the {@link Key} for representing the "seamless" state
      * of a {@link BlockState}.
      *
      * @see SeamlessData#seamless()
      */
     public static final Key<Value<Boolean>> SEAMLESS = null;
+
+    /**
+     * Represents the {@link Key} for representing the "should drop" state
+     * of a {@link BlockState}.
+     *
+     * @see DropData#willDrop()
+     */
+    public static final Key<Value<Boolean>> SHOULD_DROP = null;
+
+    public static final Key<Value<Boolean>> SHOWS_DISPLAY_NAME = null;
 
     /**
      * Represents the {@link Key} for representing the {@link ShrubType}
@@ -850,6 +812,14 @@ public final class Keys {
      */
     public static final Key<Value<ShrubType>> SHRUB_TYPE = null;
 
+    public static final Key<ListValue<Text>> SIGN_LINES = null;
+
+    public static final Key<Value<SkeletonType>> SKELETON_TYPE = null;
+
+    public static final Key<Value<UUID>> SKIN_UNIQUE_ID = null;
+
+    public static final Key<Value<SkullType>> SKULL_TYPE = null;
+
     /**
      * Represents the {@link Key} for representing the {@link SlabType}
      * of a {@link BlockState}.
@@ -857,6 +827,8 @@ public final class Keys {
      * @see SlabData#type()
      */
     public static final Key<Value<SlabType>> SLAB_TYPE = null;
+
+    public static final Key<MutableBoundedValue<Integer>> SLIME_SIZE = null;
 
     /**
      * Represents the {@link Key} for representing the "snowed" state
@@ -866,6 +838,26 @@ public final class Keys {
      */
     public static final Key<Value<Boolean>> SNOWED = null;
 
+    public static final Key<Value<EntityType>> SPAWNABLE_ENTITY_TYPE = null;
+
+    public static final Key<WeightedCollectionValue<EntitySnapshot>> SPAWNER_ENTITIES = null;
+
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_MAXIMUM_DELAY = null;
+
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_MAXIMUM_NEARBY_ENTITIES = null;
+
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_MINIMUM_DELAY = null;
+
+    public static final Key<MobSpawnerData.NextEntityToSpawnValue> SPAWNER_NEXT_ENTITY_TO_SPAWN = null;
+
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_REMAINING_DELAY = null;
+
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_REQUIRED_PLAYER_RANGE = null;
+
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_COUNT = null;
+
+    public static final Key<MutableBoundedValue<Short>> SPAWNER_SPAWN_RANGE = null;
+
     /**
      * Represents the {@link Key} for representing the {@link StairShape}
      * of a {@link BlockState}.
@@ -874,6 +866,7 @@ public final class Keys {
      */
     public static final Key<Value<StairShape>> STAIR_SHAPE = null;
 
+    public static final Key<MapValue<Statistic, Long>> STATISTICS = null;
 
     /**
      * Represents the {@link Key} for representing the {@link StoneType}
@@ -883,6 +876,8 @@ public final class Keys {
      */
     public static final Key<Value<StoneType>> STONE_TYPE = null;
 
+    public static final Key<ListValue<ItemEnchantment>> STORED_ENCHANTMENTS = null;
+
     /**
      * Represents the {@link Key} for representing the amount of "stuck arrows"
      * in {@link Living} entities.
@@ -890,6 +885,14 @@ public final class Keys {
      * @see StuckArrowsData#stuckArrows()
      */
     public static final Key<MutableBoundedValue<Integer>> STUCK_ARROWS = null;
+
+    /**
+     * Reprsents a key for the amount of successful executions of a command
+     * stored in a {@link CommandBlock} or {@link MinecartCommandBlock}.
+     *
+     * @see CommandData#successCount()
+     */
+    public static final Key<MutableBoundedValue<Integer>> SUCCESS_COUNT = null;
 
     /**
      * Represents the {@link Key} for representing the "suspended" state
@@ -931,13 +934,15 @@ public final class Keys {
 
     public static final Key<MapValue<Direction, WireAttachmentType>> WIRE_ATTACHMENTS = null;
 
+    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_EAST = null;
+
     public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_NORTH = null;
 
     public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_SOUTH = null;
 
-    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_EAST = null;
-
     public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = null;
+
+    // SORTFIELDS:OFF
 
     private Keys() {}
 }
