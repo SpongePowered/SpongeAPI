@@ -42,4 +42,8 @@ public interface InvisibilityData extends DataManipulator<InvisibilityData, Immu
      */
     Value<Boolean> invisible();
 
+    Value<Boolean> ignoresCollisionDetection();
+
+    Value<Boolean> untargetable();
+
 }

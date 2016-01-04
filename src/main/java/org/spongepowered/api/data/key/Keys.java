@@ -29,106 +29,17 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.tileentity.CommandBlock;
-import org.spongepowered.api.data.manipulator.mutable.CommandData;
-import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
-import org.spongepowered.api.data.manipulator.mutable.block.AttachedData;
-import org.spongepowered.api.data.manipulator.mutable.block.AxisData;
-import org.spongepowered.api.data.manipulator.mutable.block.BigMushroomData;
-import org.spongepowered.api.data.manipulator.mutable.block.BrickData;
-import org.spongepowered.api.data.manipulator.mutable.block.ComparatorData;
-import org.spongepowered.api.data.manipulator.mutable.block.ConnectedDirectionData;
-import org.spongepowered.api.data.manipulator.mutable.block.DecayableData;
-import org.spongepowered.api.data.manipulator.mutable.block.DirectionalData;
-import org.spongepowered.api.data.manipulator.mutable.block.DirtData;
-import org.spongepowered.api.data.manipulator.mutable.block.DisarmedData;
-import org.spongepowered.api.data.manipulator.mutable.block.DisguisedBlockData;
-import org.spongepowered.api.data.manipulator.mutable.block.DoublePlantData;
-import org.spongepowered.api.data.manipulator.mutable.block.DropData;
-import org.spongepowered.api.data.manipulator.mutable.block.ExtendedData;
-import org.spongepowered.api.data.manipulator.mutable.block.FilledData;
-import org.spongepowered.api.data.manipulator.mutable.block.FluidLevelData;
-import org.spongepowered.api.data.manipulator.mutable.block.GrowthData;
-import org.spongepowered.api.data.manipulator.mutable.block.HingeData;
-import org.spongepowered.api.data.manipulator.mutable.block.InWallData;
-import org.spongepowered.api.data.manipulator.mutable.block.LayeredData;
-import org.spongepowered.api.data.manipulator.mutable.block.MoistureData;
-import org.spongepowered.api.data.manipulator.mutable.block.OccupiedData;
-import org.spongepowered.api.data.manipulator.mutable.block.OpenData;
-import org.spongepowered.api.data.manipulator.mutable.block.PistonData;
-import org.spongepowered.api.data.manipulator.mutable.block.PlantData;
-import org.spongepowered.api.data.manipulator.mutable.block.PortionData;
-import org.spongepowered.api.data.manipulator.mutable.block.PoweredData;
-import org.spongepowered.api.data.manipulator.mutable.block.PrismarineData;
-import org.spongepowered.api.data.manipulator.mutable.block.QuartzData;
-import org.spongepowered.api.data.manipulator.mutable.block.RailDirectionData;
-import org.spongepowered.api.data.manipulator.mutable.block.RedstonePoweredData;
-import org.spongepowered.api.data.manipulator.mutable.block.SandData;
-import org.spongepowered.api.data.manipulator.mutable.block.SandstoneData;
-import org.spongepowered.api.data.manipulator.mutable.block.SeamlessData;
-import org.spongepowered.api.data.manipulator.mutable.block.ShrubData;
-import org.spongepowered.api.data.manipulator.mutable.block.SlabData;
-import org.spongepowered.api.data.manipulator.mutable.block.SnowedData;
-import org.spongepowered.api.data.manipulator.mutable.block.StairShapeData;
-import org.spongepowered.api.data.manipulator.mutable.block.StoneData;
-import org.spongepowered.api.data.manipulator.mutable.block.SuspendedData;
-import org.spongepowered.api.data.manipulator.mutable.block.TreeData;
-import org.spongepowered.api.data.manipulator.mutable.entity.AffectsSpawningData;
-import org.spongepowered.api.data.manipulator.mutable.entity.FallDistanceData;
-import org.spongepowered.api.data.manipulator.mutable.entity.MinecartBlockData;
-import org.spongepowered.api.data.manipulator.mutable.entity.StuckArrowsData;
-import org.spongepowered.api.data.manipulator.mutable.item.HideData;
-import org.spongepowered.api.data.manipulator.mutable.item.SplashPotionData;
+import org.spongepowered.api.data.manipulator.mutable.*;
+import org.spongepowered.api.data.manipulator.mutable.block.*;
+import org.spongepowered.api.data.manipulator.mutable.entity.*;
+import org.spongepowered.api.data.manipulator.mutable.item.*;
 import org.spongepowered.api.data.meta.ItemEnchantment;
-import org.spongepowered.api.data.type.Art;
-import org.spongepowered.api.data.type.BigMushroomType;
-import org.spongepowered.api.data.type.BodyPart;
-import org.spongepowered.api.data.type.BrickType;
-import org.spongepowered.api.data.type.Career;
-import org.spongepowered.api.data.type.CoalType;
-import org.spongepowered.api.data.type.ComparatorType;
-import org.spongepowered.api.data.type.CookedFish;
-import org.spongepowered.api.data.type.DirtType;
-import org.spongepowered.api.data.type.DisguisedBlockType;
-import org.spongepowered.api.data.type.DoublePlantType;
-import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.type.Fish;
-import org.spongepowered.api.data.type.GoldenApple;
-import org.spongepowered.api.data.type.Hinge;
-import org.spongepowered.api.data.type.HorseColor;
-import org.spongepowered.api.data.type.HorseStyle;
-import org.spongepowered.api.data.type.HorseVariant;
-import org.spongepowered.api.data.type.LogAxis;
-import org.spongepowered.api.data.type.NotePitch;
-import org.spongepowered.api.data.type.OcelotType;
-import org.spongepowered.api.data.type.PistonType;
-import org.spongepowered.api.data.type.PlantType;
-import org.spongepowered.api.data.type.PortionType;
-import org.spongepowered.api.data.type.PrismarineType;
-import org.spongepowered.api.data.type.QuartzType;
-import org.spongepowered.api.data.type.RabbitType;
-import org.spongepowered.api.data.type.RailDirection;
-import org.spongepowered.api.data.type.SandType;
-import org.spongepowered.api.data.type.SandstoneType;
-import org.spongepowered.api.data.type.ShrubType;
-import org.spongepowered.api.data.type.SkeletonType;
-import org.spongepowered.api.data.type.SkullType;
-import org.spongepowered.api.data.type.SlabType;
-import org.spongepowered.api.data.type.StairShape;
-import org.spongepowered.api.data.type.StoneType;
-import org.spongepowered.api.data.type.TreeType;
-import org.spongepowered.api.data.type.WallType;
-import org.spongepowered.api.data.type.WireAttachmentType;
+import org.spongepowered.api.data.type.*;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.ListValue;
-import org.spongepowered.api.data.value.mutable.MapValue;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.OptionalValue;
-import org.spongepowered.api.data.value.mutable.PatternListValue;
-import org.spongepowered.api.data.value.mutable.SetValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.data.value.mutable.WeightedCollectionValue;
+import org.spongepowered.api.data.value.mutable.*;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Living;
@@ -534,6 +445,17 @@ public final class Keys {
 
     public static final Key<Value<HorseVariant>> HORSE_VARIANT = null;
 
+    public static final Key<Value<Boolean>> INVISIBILITY_IGNORES_COLLISION = null;
+
+    /**
+     *
+     */
+    public static final Key<Value<Boolean>> INVISIBILITY_PREVENTS_TARGETING = null;
+
+    /**
+     * Represents the {@link Key} for representing the "invisible" state
+     * of an {@link Entity}.
+     */
     public static final Key<Value<Boolean>> INVISIBLE = null;
 
     public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY = null;
