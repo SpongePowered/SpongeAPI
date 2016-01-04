@@ -98,6 +98,7 @@ public final class Cause {
         for (Object context : objects) {
             list.add(checkNotNull(context, "Context object"));
         }
+        checkArgument(!list.isEmpty(), "Cause cannot be empty!");
         return new Cause(list.toArray());
     }
 
@@ -121,6 +122,7 @@ public final class Cause {
         for (Object listObj : iterable) {
             list.add(checkNotNull(listObj, "List object"));
         }
+        checkArgument(!list.isEmpty(), "Cause cannot be empty!");
         return new Cause(list.toArray());
     }
 
@@ -144,6 +146,7 @@ public final class Cause {
         for (Object arrayObj : objects) {
             list.add(checkNotNull(arrayObj, "Array object"));
         }
+        checkArgument(!list.isEmpty(), "Cause cannot be empty!");
         return new Cause(list.toArray());
     }
 
