@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task;
 
+import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.entity.ai.Goal;
 import org.spongepowered.api.entity.living.Agent;
 
@@ -72,10 +73,10 @@ public interface AITask<O extends Agent> {
      * 3. Returning "true" will add the provided task to the list of updated tasks, if not there
      *    already.
      *
-     * @param other The other task
+     * @param that The other task
      * @return True if it can be, false if not
      */
-    boolean canRunConcurrentWith(AITask<O> other);
+    boolean canRunConcurrentWith(AITask<?> that);
 
     /**
      * Returns if this task can be interrupted. This determines if this task can be
@@ -95,4 +96,9 @@ public interface AITask<O extends Agent> {
      * @return True if can be interrupted, false if not
      */
     boolean canBeInterrupted();
+
+    /**
+     * Resets this task.
+     */
+    void reset();
 }

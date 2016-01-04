@@ -26,15 +26,15 @@ package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.entity.living.RangedAttackingAgent;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
 import java.util.List;
 
 /**
  * Represents the Wither.
  */
-public interface Wither extends Monster, ProjectileSource, Boss, Aerial {
+public interface Wither extends Monster, RangedAttackingAgent, Boss, Aerial {
 
     /**
      * Gets the list of {@link Living} targets that this wither is targeting.

@@ -66,7 +66,7 @@ import java.util.UUID;
 public class SpongeEventFactoryTest {
 
     private static final Set<Class<?>> excludedEvents = Sets.newHashSet(DamageEntityEvent.class, HealEntityEvent.class,
-        AITaskEvent.class, AITaskEvent.Add.class, AITaskEvent.Remove.class);
+        AITaskEvent.class, AITaskEvent.Add.class, AITaskEvent.Tick.class, AITaskEvent.Remove.class);
 
     // We need to keep a reference to any mocked Extent passed into a Location,
     // to ensure that it is not GC'd for the duration of a test. This list

@@ -29,12 +29,12 @@ import org.spongepowered.api.data.manipulator.mutable.entity.SkeletonData;
 import org.spongepowered.api.data.type.SkeletonType;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.ArmorEquipable;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.entity.living.RangedAttackingAgent;
 
 /**
  * Represents a Skeleton.
  */
-public interface Skeleton extends Monster, ArmorEquipable, ProjectileSource {
+public interface Skeleton extends Monster, ArmorEquipable, RangedAttackingAgent {
 
     /**
      * Gets the current {@link SkeletonData} represented by this

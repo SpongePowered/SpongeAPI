@@ -2330,6 +2330,29 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.ai.AITaskEvent.Tick}.
+     * 
+     * @param cause The cause
+     * @param goal The goal
+     * @param targetEntity The target entity
+     * @param task The task
+     * @param priority The priority
+     * @return A new tick a i task event
+     */
+    public static AITaskEvent.Tick createAITaskEventTick(Cause cause, Goal<? extends Agent> goal, Agent targetEntity, AITask<? extends Agent> task, int priority) {
+        Preconditions.checkArgument(((goal.getOwner()) == targetEntity), String.format("The target entity \'%s\' is not the owner of the goal \'%s\'!", goal, targetEntity));
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("goal", goal);
+        values.put("targetEntity", targetEntity);
+        values.put("task", task);
+        values.put("priority", priority);
+        return SpongeEventFactoryUtils.createEventImpl(AITaskEvent.Tick.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.item.ItemMergeItemEvent}.
      * 
      * @param cause The cause

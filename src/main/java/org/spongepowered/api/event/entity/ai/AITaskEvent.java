@@ -77,6 +77,14 @@ public interface AITaskEvent extends TargetAgentEvent, Cancellable {
     }
 
     /**
+     * Fired when an {@link AITask} is updated every
+     */
+    @FactoryCodeCheck(errorMessage = "The target entity '%s' is not the owner of the goal '%s'!")
+    interface Tick extends AITaskEvent {
+
+    }
+
+    /**
      * Fired when an {@link AITask} is removed from an {@link Agent}'s {@link Goal}.
      */
     @FactoryCodeCheck(errorMessage = "The target entity '%s' is not the owner of the goal '%s'!")

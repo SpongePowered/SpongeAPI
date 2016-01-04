@@ -69,5 +69,6 @@ public abstract class AbstractAITask<O extends Agent> implements AITask<O> {
 
     public abstract boolean continueUpdating();
 
+    @Override
     public abstract void reset();
 }

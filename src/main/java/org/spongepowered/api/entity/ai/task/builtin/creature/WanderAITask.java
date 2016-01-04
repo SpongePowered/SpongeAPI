@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature;
 
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.entity.ai.task.builtin.VanillaAITask;
+import org.spongepowered.api.entity.ai.task.builtin.VanillaAITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 
-public interface WanderAITask extends AITask<Creature> {
+public interface WanderAITask extends VanillaAITask<Creature> {
 
     double getSpeed();
 
@@ -38,7 +38,7 @@ public interface WanderAITask extends AITask<Creature> {
 
     WanderAITask setExecutionChance(int executionChance);
 
-    interface Builder extends AITaskBuilder<Creature, WanderAITask, Builder> {
+    interface Builder extends VanillaAITaskBuilder<Creature, WanderAITask, Builder> {
 
         Builder speed(double speed);
 

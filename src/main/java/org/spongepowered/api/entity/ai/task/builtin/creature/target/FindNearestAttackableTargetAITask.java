@@ -24,31 +24,33 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.target;
 
+import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Living;
 
 import java.util.function.Predicate;
 
-public interface FindNearestAttackableTargetAITask extends TargetAITask<FindNearestAttackableTargetAITask> {
+public interface FindNearestAttackableTargetAITask<A extends FindNearestAttackableTargetAITask<A, B>, B extends Creature> extends TargetAITask<A, B> {
     
     Class<? extends Living> getTargetClass();
 
-    FindNearestAttackableTargetAITask setTargetClass(Class<? extends Living> targetClass);
+    A setTargetClass(Class<? extends Living> targetClass);
 
     int getChance();
 
-    FindNearestAttackableTargetAITask setChance(int chance);
+    A setChance(int chance);
 
-    FindNearestAttackableTargetAITask filter(Predicate<Living> predicate);
+    A filter(Predicate<Living> predicate);
 
     Predicate<Living> getFilter();
 
-    interface Builder extends TargetAITask.Builder<FindNearestAttackableTargetAITask, Builder> {
+    interface Builder<O extends Creature, A extends FindNearestAttackableTargetAITask<A, O>, B extends Builder<O, A, B>>
+            extends TargetAITask.Builder<O, A, B> {
 
-        Builder target(Class<? extends Living> targetClass);
+        B target(Class<? extends Living> targetClass);
 
-        Builder chance(int chance);
+        B chance(int chance);
 
-        Builder filter(Predicate<? extends Living> predicate);
+        B filter(Predicate<? extends Living> predicate);
 
     }
 }
