@@ -22,34 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin.creature;
+package org.spongepowered.api.entity.ai.task.builtin;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
-public interface WatchClosestAITask extends AITask<Agent> {
+/**
+ * Similar to {@link WatchClosestAITask} but it has a different mutex bit in
+ * vanilla. (MCP name: EntityAIWatchClosest2)
+ *
+ * @param <O> The executor type
+ * @param <A> The task type
+ */
+public interface WatchClosestAsInteractingAITask<O extends Agent, A extends WatchClosestAsInteractingAITask<O, A>>
+        extends WatchClosestAITask<O, A> {
 
-    Class<? extends Entity> getWatchedClass();
-
-    WatchClosestAITask setWatchedClass(Class<? extends Entity> watchedClass);
-
-    float getMaxDistance();
-
-    WatchClosestAITask setMaxDistance(float maxDistance);
-
-    float getChance();
-
-    WatchClosestAITask setChance(float chance);
-
-    interface Builder extends AITaskBuilder<Agent, WatchClosestAITask, Builder> {
-
-        Builder watch(Class<? extends Entity> watchClass);
-
-        Builder maxDistance(float maxDistance);
-
-        Builder chance(float chance);
+    /**
+     * Utility builder for {@link WatchClosestAsInteractingAITask}.
+     *
+     * @param <O> The executor type
+     * @param <A> The task type
+     * @param <B> The builder type
+     */
+    interface Builder<O extends Agent, A extends WatchClosestAsInteractingAITask<O, A>, B extends Builder<O, A, B>>
+            extends WatchClosestAITask.Builder<O, A, B> {
 
     }
+
 }

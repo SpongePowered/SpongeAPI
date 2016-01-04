@@ -36,4 +36,5 @@ public interface AITaskType extends CatalogType {
      * @return The ai class
      */
     Class<? extends AITask<?>> getAIClass();
+
 }

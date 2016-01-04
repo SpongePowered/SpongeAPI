@@ -95,4 +95,5 @@ public interface AITask<O extends Agent> {
      * @return True if can be interrupted, false if not
      */
     boolean canBeInterrupted();
+
 }

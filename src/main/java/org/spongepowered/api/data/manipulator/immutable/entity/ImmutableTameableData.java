@@ -28,17 +28,13 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.TameableData;
 import org.spongepowered.api.data.value.immutable.ImmutableOptionalValue;
 import org.spongepowered.api.entity.Tamer;
-import org.spongepowered.api.entity.living.animal.Animal;
-import org.spongepowered.api.entity.living.animal.Ocelot;
-import org.spongepowered.api.entity.living.animal.Wolf;
+import org.spongepowered.api.entity.living.animal.Tameable;
 
 import java.util.UUID;
 
 /**
  * An {@link ImmutableDataManipulator} that handles the link to the
- * {@link UUID} of the {@link Tamer} that has "tamed" an {@link Animal}.
- * Usually {@link Animal}s can not be tamed, however, certain few can.
- * Such as {@link Wolf} and {@link Ocelot}s.
+ * {@link UUID} of the {@link Tamer} that has "tamed" an {@link Tameable}.
  */
 public interface ImmutableTameableData extends ImmutableDataManipulator<ImmutableTameableData, TameableData> {
 

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.entity.living.player;
 
-import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.mutable.entity.AchievementData;
@@ -32,6 +31,7 @@ import org.spongepowered.api.data.manipulator.mutable.entity.StatisticData;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.item.inventory.Carrier;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.Identifiable;
 

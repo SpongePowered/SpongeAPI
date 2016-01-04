@@ -103,4 +103,5 @@ public interface Goal<O extends Agent> {
      * Clears all {@link AITask}s from this goal.
      */
     void clear();
+
 }

@@ -28,21 +28,61 @@ import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 
+/**
+ * An {@link AITask} which the executor goes to its target if the target belongs
+ * to the target entity type and attacks. (MCP name: EntityAIAttackOnCollide)
+ */
 public interface AttackLivingAITask extends AITask<Creature> {
 
     double getSpeed();
 
+    /**
+     * Set the moving speed of the executor when executing the task.
+     *
+     * @param speed The moving speed
+     * @return The task for chaining
+     */
     AttackLivingAITask setSpeed(double speed);
 
+    /**
+     * Get the behavior that whether the executor will keep trying to attack the
+     * target when there is no path or it cannot see the target.
+     *
+     * @return The behavior
+     */
     boolean hasLongMemory();
 
+    /**
+     * Set the behavior that whether the executor will keep trying to attack the
+     * target when there is no path or it cannot see the target.
+     *
+     * @param longMemory The behavior
+     * @return The task for chaining
+     */
     AttackLivingAITask setLongMemory(boolean longMemory);
 
+    /**
+     * Utility builder for {@link AttackLivingAITask}.
+     */
     interface Builder extends AITaskBuilder<Creature, AttackLivingAITask, Builder> {
 
+        /**
+         * Set the moving speed of the executor when executing the task.
+         *
+         * @param speed The moving speed
+         * @return The builder for chaining
+         */
         Builder speed(double speed);
 
-        Builder longMemory();
+        /**
+         * Set the behavior that whether the executor will keep trying to attack the
+         * target when there is no path or it cannot see the target.
+         *
+         * @param longMemory The behavior
+         * @return The builder for chaining
+         */
+        Builder longMemory(boolean longMemory);
 
     }
+
 }

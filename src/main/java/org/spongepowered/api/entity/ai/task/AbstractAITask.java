@@ -36,13 +36,16 @@ import java.util.Optional;
  *
  * It is required for anyone wanting to write their own logic that a Goal can
  * run to utilize this class. If you desire to use the builtin AI included with
- * Minecraft, use {@link GameRegistry#createBuilder(Class)} and pass a builder to
- * it instead.
+ * Minecraft, use {@link GameRegistry#createBuilder(Class)} and pass a builder
+ * to it instead.
  *
  * @param <O> The type of Agent
  */
 public abstract class AbstractAITask<O extends Agent> implements AITask<O> {
 
+    /**
+     * The wrapped {@link AITaskType}.
+     */
     private final AITaskType type;
 
     public AbstractAITask(AITaskType type) {
@@ -61,13 +64,33 @@ public abstract class AbstractAITask<O extends Agent> implements AITask<O> {
         return Optional.empty();
     }
 
+    /**
+     * Start the execution of the task.
+     */
     public abstract void start();
 
+    /**
+     * Tells that whether the task can update after starting.
+     *
+     * @return Whether the task can update
+     */
     public abstract boolean shouldUpdate();
 
+    /**
+     * Update the task.
+     */
     public abstract void update();
 
+    /**
+     * Tells that whether the task can update after updating.
+     *
+     * @return Whether the task can update
+     */
     public abstract boolean continueUpdating();
 
+    /**
+     * Finalizes this task, and reset it to default state.
+     */
     public abstract void reset();
+
 }

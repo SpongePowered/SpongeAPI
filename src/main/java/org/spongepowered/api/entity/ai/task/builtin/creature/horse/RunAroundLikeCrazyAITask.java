@@ -28,15 +28,69 @@ import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.animal.Horse;
 
+/**
+ * An {@link AITask} for {@link Horse} to try to get rid of the rider when
+ * it is untamed. (MCP name: EntityAIRunAroundLikeCrazy)
+ */
 public interface RunAroundLikeCrazyAITask extends AITask<Horse> {
 
+    /**
+     * Get the moving speed of the executor.
+     *
+     * @return The moving speed
+     */
     double getSpeed();
 
+    /**
+     * Set the moving speed of the executor.
+     *
+     * @param speed The moving speed
+     * @return The task for chaining
+     */
     RunAroundLikeCrazyAITask setSpeed(double speed);
 
+    /**
+     * Get the chance of reaction as a fraction of 1 over rate. Once the
+     * executor reacts, the rider will be thrown off the horse or can tame the
+     * horse.
+     *
+     * @return The rate
+     */
+    int getReactRate();
+
+    /**
+     * Set the chance of reaction as a fraction of 1 over rate. Once the
+     * executor reacts, the rider will be thrown off the horse or can tame the
+     * horse.
+     *
+     * @param reactRate The rate
+     * @return The task for chaining
+     */
+    RunAroundLikeCrazyAITask setReactRate(int reactRate);
+
+    /**
+     * Utility builder for {@link RunAroundLikeCrazyAITask}.
+     */
     interface Builder extends AITaskBuilder<Horse, RunAroundLikeCrazyAITask, Builder> {
 
+        /**
+         * Set the moving speed of the executor.
+         *
+         * @param speed The moving speed
+         * @return The builder for chaining
+         */
         Builder speed(double speed);
 
+        /**
+         * Set the chance of reaction as a fraction of 1 over rate. Once the
+         * executor reacts, the rider will be thrown off the horse or can tame the
+         * horse.
+         *
+         * @param reactRate The rate
+         * @return The builder for chaining
+         */
+        Builder reactRate(int reactRate);
+
     }
+
 }

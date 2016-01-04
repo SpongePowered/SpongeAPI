@@ -25,18 +25,43 @@
 package org.spongepowered.api.entity.ai.task.builtin;
 
 import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
-public interface SwimmingAITask extends AITask<Agent> {
+/**
+ * An {@link AITask} which the executor has swimming enabled in the pathfinder
+ * and will try to stay above liquid randomly when in the liquid. (MCP name:
+ * EntityAISwimming)
+ */
+public interface SwimmingAITask extends GroundNavigationOnly<Agent> {
 
+    /**
+     * Get the chance for the executor to stay above the liquid.
+     *
+     * @return The chance for the executor to swim as a fraction
+     */
     float getSwimChance();
 
-    void setSwimChance(float chance);
+    /**
+     * Set the chance for the executor to stay above the liquid.
+     *
+     * @param chance The chance for the executor to swim as a fraction
+     * @return The task for chaining
+     */
+    SwimmingAITask setSwimChance(float chance);
 
-    interface Builder extends AITaskBuilder<Agent, SwimmingAITask, Builder> {
+    /**
+     * A utility builder for {@link SwimmingAITask}.
+     */
+    interface Builder extends GroundNavigationOnly.Builder<Agent, SwimmingAITask, Builder> {
 
+        /**
+         * Set the chance for the executor to stay above the liquid.
+         *
+         * @param chance The chance for the executor to swim as a fraction
+         * @return The builder for chaining
+         */
         Builder swimChance(float chance);
 
     }
+
 }

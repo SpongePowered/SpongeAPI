@@ -43,4 +43,5 @@ public interface AITaskBuilder<O extends Agent, A extends AITask<O>, B extends A
      * @return The task
      */
     A build(O owner);
+
 }

@@ -31,33 +31,164 @@ import org.spongepowered.api.entity.living.Creature;
 
 import java.util.function.Predicate;
 
+/**
+ * An {@link AITask} which the executor finds an {@link Entity} that it avoids
+ * and moves away from that entity. (MCP name: EntityAIAvoidEntity)
+ */
 public interface AvoidEntityAITask extends AITask<Creature> {
 
+    /**
+     * Get the target entity type.
+     *
+     * @return The target entity type
+     */
+    Class<? extends Entity> getTargetType();
+
+    /**
+     * Set the target entity type.
+     *
+     * @param targetType The target entity type
+     * @return The task for chaining
+     */
+    AvoidEntityAITask setTargetType(Class<? extends Entity> targetType);
+
+    /**
+     * Get the target entity selector.
+     *
+     * @return The target entity selector
+     */
     Predicate<Entity> getTargetSelector();
 
-    AvoidEntityAITask setTargetSelector(Predicate<Entity> predicate);
+    /**
+     * Set the target entity selector.
+     *
+     * @param targetSelector The target entity selector
+     * @return The task for chaining
+     */
+    AvoidEntityAITask setTargetSelector(Predicate<Entity> targetSelector);
 
+    /**
+     * Get the distance for the executor to find the avoiding target.
+     *
+     * @return The searching distance
+     */
     float getSearchDistance();
 
-    AvoidEntityAITask setSearchDistance(float distance);
+    /**
+     * Set the distance for the executor to find the avoiding target.
+     *
+     * @param searchDistance The searching distance
+     * @return The task for chaining
+     */
+    AvoidEntityAITask setSearchDistance(float searchDistance);
 
+    /**
+     * Get the speed of the executor when the avoiding entity is close from the
+     * executor.
+     *
+     * @return The speed
+     */
     double getCloseRangeSpeed();
 
-    AvoidEntityAITask setCloseRangeSpeed(double speed);
+    /**
+     * Set the speed of the executor when the avoiding entity is close from the
+     * executor.
+     *
+     * @param closeRangeSpeed The speed
+     * @return The task for chaining
+     */
+    AvoidEntityAITask setCloseRangeSpeed(double closeRangeSpeed);
 
+    /**
+     * Get the speed of the executor when the avoiding entity is far from the
+     * executor.
+     *
+     * @return The speed
+     */
     double getFarRangeSpeed();
 
-    AvoidEntityAITask setFarRangeSpeed(double speed);
+    /**
+     * Set the speed of the executor when the avoiding entity is far from the
+     * executor.
+     *
+     * @param farRangeSpeed The speed
+     * @return The task for chaining
+     */
+    AvoidEntityAITask setFarRangeSpeed(double farRangeSpeed);
 
+    /**
+     * Get the distance which considers that the avoiding entity is far from
+     * or close to the executor. Default to {@code 49.0D}.
+     *
+     * @return The distance
+     */
+    double getRangeDistance();
+
+    /**
+     * Set the distance which considers that the avoiding entity is far from
+     * or close to the executor. Default to {@code 49.0D}.
+     *
+     * @param rangeDistance The distance
+     * @return The task for chaining
+     */
+    AvoidEntityAITask setRangeDistance(double rangeDistance);
+
+    /**
+     * Utility builder for {@link AvoidEntityAITask}.
+     */
     interface Builder extends AITaskBuilder<Creature, AvoidEntityAITask, Builder> {
 
-        Builder targetSelector(Predicate<Entity> predicate);
+        /**
+         * Set the target entity type.
+         *
+         * @param targetType The target entity type
+         * @return The builder for chaining
+         */
+        Builder targetType(Class<? extends Entity> targetType);
 
-        Builder searchDistance(float distance);
+        /**
+         * Set the target entity selector.
+         *
+         * @param targetSelector The target entity selector
+         * @return The builder for chaining
+         */
+        Builder targetSelector(Predicate<Entity> targetSelector);
 
-        Builder closeRangeSpeed(double speed);
+        /**
+         * Set the distance for the executor to find the avoiding target.
+         *
+         * @param searchDistance The searching distance
+         * @return The builder for chaining
+         */
+        Builder searchDistance(float searchDistance);
 
-        Builder farRangeSpeed(double speed);
+        /**
+         * Set the speed of the executor when the avoiding entity is close from
+         * the executor.
+         *
+         * @param closeRangeSpeed The speed
+         * @return The builder for chaining
+         */
+        Builder closeRangeSpeed(double closeRangeSpeed);
+
+        /**
+         * Set the speed of the executor when the avoiding entity is far from
+         * the executor.
+         *
+         * @param farRangeSpeed The speed
+         * @return The builder for chaining
+         */
+        Builder farRangeSpeed(double farRangeSpeed);
+
+        /**
+         * Set the distance which considers that the avoiding entity is far from
+         * or close to the executor. Default to {@code 49.0D}.
+         *
+         * @param rangeDistance The distance
+         * @return The builder for chaining
+         */
+        Builder rangeDistance(double rangeDistance);
 
     }
+
 }
