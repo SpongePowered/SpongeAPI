@@ -12,6 +12,7 @@ buildscript {
         classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.2'
         classpath 'org.spongepowered:event-impl-gen:0.10-SNAPSHOT'
+        classpath 'org.spongepowered:spongegradle:0.2-SNAPSHOT'
     }
 }
 
@@ -103,8 +104,8 @@ artifacts {
     archives shadowJar
 }
 
-/* uncomment when you want to sort the keys class. This will be moved to SpongeGradle
-task sortClassMembers(type: org.spongepowered.gradle.TaskSortClassMembers) {
-    process "org.spongepowered.api.data.key.Keys"
+apply plugin: 'org.spongepowered.gradle'
+
+sortClassFields {
+    add "main", "org.spongepowered.api.data.key.Keys"
 }
-*/
