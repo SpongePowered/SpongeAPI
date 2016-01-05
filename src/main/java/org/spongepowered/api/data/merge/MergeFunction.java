@@ -105,7 +105,7 @@ public interface MergeFunction {
     MergeFunction IGNORE_ALL = new MergeFunction() {
         @Override
         public <C extends ValueContainer<?>> C merge(@Nullable C original, @Nullable C replacement) {
-            return replacement == null ? checkNotNull(original) : replacement;
+            return replacement == null ? checkNotNull(original, "Original and replacement cannot be null!") : replacement;
         }
     };
 
@@ -116,7 +116,7 @@ public interface MergeFunction {
     MergeFunction FORCE_NOTHING = new MergeFunction() {
         @Override
         public <C extends ValueContainer<?>> C merge(@Nullable C original, @Nullable C replacement) {
-            return original == null ? checkNotNull(replacement) : original;
+            return original == null ? checkNotNull(replacement, "Replacement and original cannot be null!") : original;
         }
     };
 
