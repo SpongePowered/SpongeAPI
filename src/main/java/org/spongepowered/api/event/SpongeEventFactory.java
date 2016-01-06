@@ -75,9 +75,7 @@ import org.spongepowered.api.event.action.LightningEvent;
 import org.spongepowered.api.event.action.SleepingEvent;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.block.CollideBlockEvent;
-import org.spongepowered.api.event.block.GrowBlockEvent;
 import org.spongepowered.api.event.block.InteractBlockEvent;
-import org.spongepowered.api.event.block.MoveBlockEvent;
 import org.spongepowered.api.event.block.NotifyNeighborBlockEvent;
 import org.spongepowered.api.event.block.TargetBlockEvent;
 import org.spongepowered.api.event.block.TickBlockEvent;
@@ -670,24 +668,6 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.block.GrowBlockEvent}.
-     * 
-     * @param cause The cause
-     * @param targetWorld The target world
-     * @param transactions The transactions
-     * @return A new grow block event
-     */
-    public static GrowBlockEvent createGrowBlockEvent(Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("targetWorld", targetWorld);
-        values.put("transactions", transactions);
-        return SpongeEventFactoryUtils.createEventImpl(GrowBlockEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent}.
      * 
      * @param cause The cause
@@ -743,24 +723,6 @@ public class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetSide", targetSide);
         return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Secondary.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.block.MoveBlockEvent}.
-     * 
-     * @param cause The cause
-     * @param targetWorld The target world
-     * @param transactions The transactions
-     * @return A new move block event
-     */
-    public static MoveBlockEvent createMoveBlockEvent(Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
-        values.put("cause", cause);
-        values.put("targetWorld", targetWorld);
-        values.put("transactions", transactions);
-        return SpongeEventFactoryUtils.createEventImpl(MoveBlockEvent.class, values);
     }
 
     /**
@@ -4423,14 +4385,12 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.world.ExplosionEvent}.
      * 
      * @param cause The cause
-     * @param explosion The explosion
      * @param targetWorld The target world
      * @return A new explosion event
      */
-    public static ExplosionEvent createExplosionEvent(Cause cause, Explosion explosion, World targetWorld) {
+    public static ExplosionEvent createExplosionEvent(Cause cause, World targetWorld) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
-        values.put("explosion", explosion);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(ExplosionEvent.class, values);
     }
@@ -4481,18 +4441,36 @@ public class SpongeEventFactory {
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.world.ExplosionEvent.Pre}.
-     * 
+     *
      * @param cause The cause
-     * @param explosion The explosion
      * @param targetWorld The target world
      * @return A new pre explosion event
      */
-    public static ExplosionEvent.Pre createExplosionEventPre(Cause cause, Explosion explosion, World targetWorld) {
+    public static ExplosionEvent.Pre createExplosionEventPre(Cause cause, World targetWorld) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("cause", cause);
-        values.put("explosion", explosion);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(ExplosionEvent.Pre.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.ExplosionEvent.Start}.
+     * 
+     * @param cause The cause
+     * @param originalExplosion The original explosion
+     * @param explosion The explosion
+     * @param targetWorld The target world
+     * @return A new start explosion event
+     */
+    public static ExplosionEvent.Start createExplosionEventStart(Cause cause, Explosion originalExplosion, Explosion explosion, World targetWorld) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("originalExplosion", originalExplosion);
+        values.put("explosion", explosion);
+        values.put("targetWorld", targetWorld);
+        return SpongeEventFactoryUtils.createEventImpl(ExplosionEvent.Start.class, values);
     }
 
     /**

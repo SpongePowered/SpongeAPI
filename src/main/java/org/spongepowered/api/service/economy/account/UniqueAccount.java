@@ -26,6 +26,7 @@ package org.spongepowered.api.service.economy.account;
 
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.util.Identifiable;
 
 import java.util.UUID;
 
@@ -33,15 +34,7 @@ import java.util.UUID;
  * Represents an {@link Account} identified by a {@link UUID}.
  *
  * <p>This is usually linked to a particular {@link User}'s {@link GameProfile},
- * through the {@link UUID}</p>.
+ * through {@link #getUniqueId()}.</p>.
  */
-public interface UniqueAccount extends Account {
-
-    /**
-     * Gets the UUID of the associated {@link User}.
-     *
-     * @return The uuid
-     */
-    UUID getUUID();
-
+public interface UniqueAccount extends Account, Identifiable {
 }
