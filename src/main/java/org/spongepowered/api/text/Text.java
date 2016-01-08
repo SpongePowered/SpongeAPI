@@ -29,6 +29,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterators;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
@@ -42,8 +44,12 @@ import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.format.TextStyles;
 import org.spongepowered.api.text.selector.Selector;
 import org.spongepowered.api.text.serializer.TextSerializers;
+import org.spongepowered.api.text.transformer.Transformer;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.Functional;
+import org.spongepowered.api.util.Functions;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,7 +58,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import javax.annotation.Nullable;
 
@@ -82,6 +94,8 @@ public abstract class Text implements TextRepresentable {
      * The empty, unformatted {@link Text} instance.
      */
     public static final Text EMPTY = LiteralText.EMPTY;
+
+    public static final Text DEFAULT_SEPARATOR = new LiteralText(", ");
 
     /**
      * Format indicator for {@link Text#of(Object...)} to append the following
@@ -905,6 +919,10 @@ public abstract class Text implements TextRepresentable {
                     childBuilder = builder((Selector) obj);
                 } else if (obj instanceof Score) {
                     childBuilder = builder((Score) obj);
+                } else if (obj instanceof Iterable<?>) {
+                    childBuilder = joinOf(DEFAULT_SEPARATOR, (Iterable<?>) obj).toBuilder();
+                } else if (obj instanceof Object[]) {
+                    childBuilder = joinOf(DEFAULT_SEPARATOR, (Object[]) obj).toBuilder();
                 } else {
                     childBuilder = builder(String.valueOf(obj));
                 }
@@ -919,12 +937,7 @@ public abstract class Text implements TextRepresentable {
             builder.append(applyAndBuild(builder(), format, hoverAction, clickAction, shiftClickAction));
         }
 
-        if (builder.children.size() == 1) {
-            // Single content, reduce Text depth
-            return builder.children.get(0);
-        }
-
-        return builder.build();
+        return simplifyAndBuild(builder);
     }
 
     private static Text applyAndBuild(Builder builder, TextFormat format, HoverAction<?> hoverAction,
@@ -1103,13 +1116,109 @@ public abstract class Text implements TextRepresentable {
     }
 
     /**
+     * Creates a placeholder {@link Text} with the specified key. The created
+     * message won't have any formatting or events configured.
+     *
+     * @param key The key of the placeholder
+     * @return The created text
+     * @see PlaceholderText
+     */
+    public static PlaceholderText placeholder(String key) {
+        return new PlaceholderText(key);
+    }
+
+    /**
+     * Creates a placeholder {@link Text} with the specified key and fallback.
+     * The created message won't have any formatting or events configured.
+     *
+     * @param key The key of the placeholder
+     * @param fallback The fallback of the text if it is not replaced
+     * @return The created text
+     * @see PlaceholderText
+     */
+    public static PlaceholderText placeholder(String key, @Nullable Text fallback) {
+        return new PlaceholderText(key, fallback);
+    }
+
+    /**
+     * Creates a placeholder {@link Text} with the specified {@link Transformer}
+     * . The created message won't have any formatting or events configured.
+     *
+     * @param transformer The transformer of the placeholder
+     * @return The created text
+     * @see PlaceholderText
+     */
+    public static PlaceholderText placeholder(Transformer<?> transformer) {
+        return new PlaceholderText(transformer);
+    }
+
+    /**
+     * Creates a placeholder {@link Text} with the specified {@link Transformer}
+     * and fallback. The created message won't have any formatting or events
+     * configured.
+     *
+     * @param transformer The transformer of the placeholder
+     * @param fallback The fallback of the text if it is not replaced
+     * @return The created text
+     * @see PlaceholderText
+     */
+    public static PlaceholderText placeholder(Transformer<?> transformer, @Nullable Text fallback) {
+        return new PlaceholderText(transformer, fallback);
+    }
+
+    /**
+     * Creates a new unformatted {@link PlaceholderText.Builder} with the
+     * specified key.
+     *
+     * @param key The key of the placeholder
+     * @return The created placeholder builder
+     * @see PlaceholderText
+     * @see PlaceholderText.Builder
+     */
+    public static PlaceholderText.Builder placeholderBuilder(String key) {
+        return new PlaceholderText.Builder(key);
+    }
+
+    /**
+     * Creates a new unformatted {@link PlaceholderText.Builder} with the
+     * specified transformer.
+     *
+     * @param transformer The transformer of the placeholder
+     * @return The created placeholder builder
+     * @see PlaceholderText
+     * @see PlaceholderText.Builder
+     */
+    public static PlaceholderText.Builder placeholderBuilder(Transformer<?> transformer) {
+        return new PlaceholderText.Builder(transformer);
+    }
+
+    /**
+     * If the given builder contains only a single child the child will be
+     * returned otherwise the default {@link Builder#build()} will be called.
+     * This method assumes, that there is no styling or data applied to the
+     * given builder except for children.
+     *
+     * @param builder The builder to simplify or build
+     * @return The simplified or build Text instance
+     */
+    private static Text simplifyAndBuild(Builder builder) {
+        // Children size zero will automatically falls back to Text.EMPTY
+        if (builder.children.size() == 1) {
+            // Single content reduce Text depth
+            return builder.children.get(0);
+        } else {
+            return builder.build();
+        }
+    }
+
+    /**
      * Joins a sequence of text objects together.
      *
      * @param texts The texts to join
      * @return A text object that joins the given text objects
      */
     public static Text join(Text... texts) {
-        return builder().append(texts).build();
+        return simplifyAndBuild(builder().append(texts));
     }
 
     /**
@@ -1119,7 +1228,7 @@ public abstract class Text implements TextRepresentable {
      * @return A text object that joins the given text objects
      */
     public static Text join(Iterable<? extends Text> texts) {
-        return builder().append(texts).build();
+        return simplifyAndBuild(builder().append(texts));
     }
 
     /**
@@ -1129,7 +1238,20 @@ public abstract class Text implements TextRepresentable {
      * @return A text object that joins the given text objects
      */
     public static Text join(Iterator<? extends Text> texts) {
-        return builder().append(texts).build();
+        return simplifyAndBuild(builder().append(texts));
+    }
+
+    /**
+     * Joins a sequence of text objects together along with a separator.
+     *
+     * @param separator The separator
+     * @param texts The texts to join
+     * @return A text object that joins the given text objects
+     */
+    public static Text joinWith(Text separator, Stream<? extends Text> texts) {
+        final Builder builder = builder();
+        texts.forEachOrdered(Functional.joiner(builder::append, separator));
+        return simplifyAndBuild(builder);
     }
 
     /**
@@ -1140,26 +1262,7 @@ public abstract class Text implements TextRepresentable {
      * @return A text object that joins the given text objects
      */
     public static Text joinWith(Text separator, Text... texts) {
-        switch (texts.length) {
-            case 0:
-                return EMPTY;
-            case 1:
-                return texts[0];
-            default:
-                Text.Builder builder = builder();
-                boolean appendSeparator = false;
-                for (Text text : texts) {
-                    if (appendSeparator) {
-                        builder.append(separator);
-                    } else {
-                        appendSeparator = true;
-                    }
-
-                    builder.append(text);
-                }
-
-                return builder.build();
-        }
+        return joinWith(separator, Arrays.stream(texts));
     }
 
     /**
@@ -1170,7 +1273,7 @@ public abstract class Text implements TextRepresentable {
      * @return A text object that joins the given text objects
      */
     public static Text joinWith(Text separator, Iterable<? extends Text> texts) {
-        return joinWith(separator, texts.iterator());
+        return joinWith(separator, StreamSupport.stream(texts.spliterator(), false));
     }
 
     /**
@@ -1181,22 +1284,359 @@ public abstract class Text implements TextRepresentable {
      * @return A text object that joins the given text objects
      */
     public static Text joinWith(Text separator, Iterator<? extends Text> texts) {
-        if (!texts.hasNext()) {
-            return EMPTY;
+        @SuppressWarnings("unchecked")
+        final Iterable<Text> iterable = () -> (Iterator<Text>) texts;
+        return joinWith(separator, iterable);
+    }
+
+    /**
+     * Builds a {@link Text} from a given array of content objects. This method
+     * assumes, that all elements of the array are content and not formatting.
+     *
+     * <p>This will create the correct {@link Text} instance if the input object
+     * is the input for one of the {@link Text} types or convert the object to a
+     * string otherwise.</p>
+     *
+     * @param separator The separator to be inserted between elements
+     * @param objects The array that contains the content
+     * @return The built text object
+     */
+    public static Text joinOf(Text separator, Object... objects) {
+        return joinWith(separator, Arrays.stream(objects).map(Text::of));
+    }
+
+    /**
+     * Builds a {@link Text} from a given {@link Iterable}. This method assumes,
+     * that all elements of the iterable are content and not formatting.
+     *
+     * <p>This will create the correct {@link Text} instance if the input object
+     * is the input for one of the {@link Text} types or convert the object to a
+     * string otherwise.</p>
+     *
+     * @param separator The separator to be inserted between elements
+     * @param contents The iterable that contains the content
+     * @return The built text object
+     */
+    public static Text joinOf(Text separator, Iterable<?> contents) {
+        return joinWith(separator, StreamSupport.stream(contents.spliterator(), false).map(Text::of));
+    }
+
+    /**
+     * Creates a new Text instance with all {@link PlaceholderText}s replaced.
+     * All placeholders without a non-null replacement are ignored. All
+     * replacements will be wrapped in a {@link Text} using
+     * {@link Text#of(Object...)} the color and the style from the placeholder
+     * are transfered to that method as well. Useful for lazy fetching
+     * replacements.
+     *
+     * @param template The template text in which all {@link PlaceholderText}s
+     *        should be replaced
+     * @param context The context data used to calculate the replacements for
+     *        the {@link PlaceholderText}s. It does not have to contain enough
+     *        data to replace all placeholders
+     * @return The text with all possible placeholders replaced
+     */
+    public static Text format(Text template, Function<String, ?> context) {
+        checkNotNull(template, "template");
+        checkNotNull(context, "context values");
+        return formatNoChecks(template, context);
+    }
+
+    /**
+     * Creates a new Text instance with all {@link PlaceholderText}s replaced.
+     * All placeholders without a non-null replacement are ignored. All
+     * replacements will be wrapped in a {@link Text} using
+     * {@link Text#of(Object...)} the color and the style from the placeholder
+     * are transfered to that method as well.
+     *
+     * @param template The template text in which all {@link PlaceholderText}s
+     *        should be replaced
+     * @param context The context data used to calculate the replacements for
+     *        the {@link PlaceholderText}s. It does not have to contain enough
+     *        data to replace all placeholders
+     * @return The text with all possible placeholders replaced
+     */
+    public static Text format(Text template, Map<String, ?> context) {
+        checkNotNull(template, "template");
+        checkNotNull(context, "context values");
+        if (context.isEmpty()) {
+            return template;
+        }
+        return formatNoChecks(template, context::get);
+    }
+
+    /**
+     * Creates a new Text instance with all {@link PlaceholderText}s replaced.
+     * All placeholders with an {@link Optional#empty()} replacement are
+     * ignored. All replacements will be wrapped in a {@link Text} using
+     * {@link Text#of(Object...)} the {@link TextColor}, {@link TextStyle}s and
+     * {@link TextAction}s from the placeholder are transfered to that method as
+     * well.
+     *
+     * @param template The template text in which all {@link PlaceholderText}s
+     *        should be replaced
+     * @param context The context data used to calculate the replacements for
+     *        the {@link PlaceholderText}s. It does not have to contain enough
+     *        data to replace all placeholders
+     * @return The text with all possible placeholders replaced
+     */
+    public static Text format(Text template, Object... context) {
+        checkNotNull(template, "template");
+        checkNotNull(context, "context values");
+        if (context.length == 0) {
+            return template;
+        }
+        final Map<String, Object> contextMap = Maps.newHashMapWithExpectedSize(context.length);
+        int index = 0;
+        for (Object replacement : context) {
+            contextMap.put(Integer.toString(index++), replacement);
+        }
+        return formatNoChecks(template, contextMap::get);
+    }
+
+    private static Text formatNoChecks(Text template, Function<String, ?> context) {
+        // Is this a placeholder that should be replaced?
+        if (template instanceof PlaceholderText) {
+            final Optional<?> replacement = ((PlaceholderText) template).calculateReplacement(context);
+            // Only replace in case a replacement is present
+            if (replacement.isPresent()) {
+                // Copy color, style and text actions from placeholder
+                final List<Object> formats = Lists.newArrayList();
+                formats.add(FORMAT_TEXTS);
+                formats.add(template.getFormat());
+                final Optional<HoverAction<?>> hoverAction = template.getHoverAction();
+                hoverAction.ifPresent(formats::add);
+                final Optional<ClickAction<?>> clickAction = template.getClickAction();
+                clickAction.ifPresent(formats::add);
+                final Optional<ShiftClickAction<?>> shiftClickAction = template.getShiftClickAction();
+                shiftClickAction.ifPresent(formats::add);
+                formats.add(replacement.get());
+
+                return Text.of(formats.toArray());
+            }
+        }
+        // Also check child texts for placeholders
+        Text.Builder builder = null;
+        final List<Text> children = template.getChildren();
+        for (int i = 0; i < children.size(); ++i) {
+            final Text child = children.get(i);
+            final Text formatted = formatNoChecks(child, context);
+            if (builder == null) {
+                if (formatted == child) {
+                    continue;
+                }
+                builder = template.toBuilder();
+                builder.remove(children.subList(i, children.size()));
+            }
+            builder.append(formatted);
+        }
+        return builder == null ? template : builder.build();
+    }
+
+    /**
+     * Creates a new {@link FormatBuilder} that allows chained calls to
+     * configure the format function.
+     *
+     * @return The newly created format builder that can be used to setup the
+     *         formating
+     * @see FormatBuilder
+     */
+    public static FormatBuilder formatBuilder() {
+        return new FormatBuilder();
+    }
+
+    /**
+     * Helper class that allows easier/chained calls to the format method
+     * without extra steps
+     */
+    public static final class FormatBuilder implements Function<Text, Text>, ResettableBuilder<Function<String, Object>, FormatBuilder> {
+
+        private static final Function<String, ?> NO_FALLBACK_FUNCTION = Functions.constantNull();
+
+        private final Map<String, Object> values = Maps.newHashMap();
+        private Function<String, Object> replacerFunction = input -> this.values.get(input);
+        private Function<String, ?> fallbackFunction = NO_FALLBACK_FUNCTION;
+
+        /**
+         * Creates a new format builder that should format the given template.
+         */
+        FormatBuilder() {
         }
 
-        Text first = texts.next();
-        if (!texts.hasNext()) {
-            return first;
+        /**
+         * Set the given replacement for the given keys. Replacements set with
+         * this method will always take precedence over values set by the other
+         * methods. Values set using this method can be set/replaced after the
+         * format execution. This way you can create lots of similar
+         * {@link Text}s by just replacing a single or a few arguments.
+         *
+         * @param key The key used to set the value
+         * @param replacement The replacement to use. Null will unset it
+         * @return This instance for chaining
+         */
+        public FormatBuilder with(String key, @Nullable Object replacement) {
+            checkNotNull(key, "key");
+            this.values.put(key, replacement);
+            return this;
         }
 
-        Text.Builder builder = builder().append(first);
-        do {
-            builder.append(separator);
-            builder.append(texts.next());
-        } while (texts.hasNext());
+        /**
+         * Appends the given replacement {@link Supplier} for the given key.
+         * This method could be used for counters, indexes and stuff alike. If
+         * the supplier returns null the next provider can try to resolve it.
+         *
+         * <p><b>Note:</b>The given {@link Supplier} is only used if no other
+         * previous call provided a replacement for this key.</p>
+         *
+         * @param key The key used to set the supplier
+         * @param supplier The supplier used to get the replacement
+         * @return This instance for chaining
+         * @see Functions#supplied(Supplier)
+         * @see #with(Predicate, Function)
+         */
+        public FormatBuilder with(String key, Supplier<?> supplier) {
+            checkNotNull(key, "key");
+            checkNotNull(supplier, "supplier");
+            return with(input -> key.equals(input), Functions.supplied(supplier));
+        }
 
-        return builder.build();
+        /**
+         * Appends the given replacement {@link Function} for the given key.
+         * This method should be used if only some keys should be resolved the
+         * given function. If the function returns null the next provider can
+         * try to resolve it.
+         *
+         * <p><b>Note:</b>The given {@link Function} is only used if no other
+         * previous call provided a replacement for this key.</p>
+         *
+         * @param filter The filter used to decide whether the given function
+         *        should be used. It will be used if the
+         *        {@link Predicate#test(Object) test} returns true
+         * @param function The function used to calculate the replacement
+         * @return This instance for chaining
+         * @see Functions#conditional(Predicate, Function, Function)
+         * @see #with(Function)
+         */
+        public FormatBuilder with(Predicate<? super String> filter, Function<? super String, ? extends Object> function) {
+            checkNotNull(filter, "filter");
+            checkNotNull(function, "function");
+            return with(Functions.conditional(filter, function, Functions.constantNull()));
+        }
+
+        /**
+         * Appends the given replacement {@link Function} for all keys. Can be
+         * used for both fetching/calculating/returning specific replacements or
+         * parsing the input key to return a generated replacement based on the
+         * input specifications. If the function returns null the next provider
+         * can try to resolve the key.
+         *
+         * <p><b>Note:</b>This given {@link Function} is only used if no other
+         * previous call provided a replacement for the key.</p>
+         *
+         * @param function The function used to calculate the replacement
+         * @return This instance for chaining
+         * @see Functions#nonNullResultOrElse(Function, Function)
+         */
+        public FormatBuilder with(Function<? super String, ? extends Object> function) {
+            checkNotNull(function, "function");
+            this.replacerFunction = Functions.nonNullResultOrElse(this.replacerFunction, function);
+            return this;
+        }
+
+        /**
+         * Set the fallback strategy to use if the key could not be resolved.
+         * The no fallback strategy will omit the placeholder to allow setting
+         * it in a later run.
+         *
+         * @return This instance for chaining
+         * @see #fallback(Function)
+         */
+        public FormatBuilder noFallback() {
+            return fallback(NO_FALLBACK_FUNCTION);
+        }
+
+        /**
+         * Set the fallback strategy to use if the key could not be resolved.
+         * The constant fallback strategy will always return the given constant.
+         * That way you could replace all unresolved {@link PlaceholderText}s
+         * with the empty text.
+         *
+         * @return This instance for chaining
+         * @see #fallback(Function)
+         */
+        public FormatBuilder fallback(Object fallback) {
+            checkNotNull(fallback, "fallback");
+            return fallback(Functions.constant(fallback));
+        }
+
+        /**
+         * Set the fallback strategy to use if the key could not be resolved.
+         * The supplier fallback strategy will get the replacement from the
+         * given {@link Supplier}.
+         *
+         * @return This instance for chaining
+         * @see #fallback(Function)
+         */
+        public FormatBuilder fallback(Supplier<?> supplier) {
+            return fallback(Functions.supplied(supplier));
+        }
+
+        /**
+         * Set the fallback strategy to use if the key could not be resolved.
+         * The throwing fallback strategy will throw an
+         * {@link IllegalStateException} if no replacement for the given key
+         * could be found.
+         *
+         * @return This instance for chaining
+         * @see #fallback(Function)
+         */
+        public FormatBuilder throwingfallback() {
+            return fallback(Functions.exceptionFunction(IllegalStateException::new,
+                    "Missing replacement for placeholder with key: "::concat));
+        }
+
+        /**
+         * Set the fallback strategy to use if the key could not be resolved.
+         * The supplier fallback strategy will get the replacement from the
+         * given {@link Function}.
+         *
+         * @return This instance for chaining
+         */
+        public FormatBuilder fallback(Function<String, ?> function) {
+            checkNotNull(function, "function");
+            this.fallbackFunction = function;
+            return this;
+        }
+
+        @Override
+        public FormatBuilder from(Function<String, Object> function) {
+            reset();
+            return with(function);
+        }
+
+        @Override
+        public FormatBuilder reset() {
+            this.replacerFunction = input -> this.values.get(input);
+            this.values.clear();
+            noFallback();
+            return this;
+        }
+
+        /**
+         * Applies the specified replacements on the given {@link Text}
+         * template. This step is repeatable.
+         *
+         * @param template The {@link Text} template to apply the specified
+         *        formating on
+         * @return The processed with all possible {@link PlaceholderText}s
+         *         replaced
+         * @see #format(Text, Function)
+         */
+        @Override
+        public Text apply(Text template) {
+            return formatNoChecks(template, Functions.nonNullResultOrElse(this.replacerFunction, this.fallbackFunction));
+        }
+
     }
 
 }
