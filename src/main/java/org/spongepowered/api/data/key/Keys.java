@@ -70,7 +70,7 @@ import java.util.UUID;
  * An enumeration of known {@link Key}s used throughout the API.
  */
 public final class Keys {
-    
+
     // SORTFIELDS:ON
 
     public static final Key<SetValue<Achievement>> ACHIEVEMENTS = null;
@@ -469,6 +469,8 @@ public final class Keys {
      * @see InWallData#inWall()
      */
     public static final Key<Value<Boolean>> IN_WALL = null;
+
+    public static final Key<Value<Boolean>> IRON_GOLEM_HOLDING_FLOWER = null;
 
     public static final Key<Value<Boolean>> IS_AFLAME = null;
 

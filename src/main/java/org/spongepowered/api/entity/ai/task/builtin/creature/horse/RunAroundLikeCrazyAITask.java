@@ -24,17 +24,17 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.horse;
 
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.entity.ai.task.builtin.VanillaAITask;
+import org.spongepowered.api.entity.ai.task.builtin.VanillaAITaskBuilder;
 import org.spongepowered.api.entity.living.animal.Horse;
 
-public interface RunAroundLikeCrazyAITask extends AITask<Horse> {
+public interface RunAroundLikeCrazyAITask extends VanillaAITask<Horse> {
 
     double getSpeed();
 
     RunAroundLikeCrazyAITask setSpeed(double speed);
 
-    interface Builder extends AITaskBuilder<Horse, RunAroundLikeCrazyAITask, Builder> {
+    interface Builder extends VanillaAITaskBuilder<Horse, RunAroundLikeCrazyAITask, Builder> {
 
         Builder speed(double speed);
 

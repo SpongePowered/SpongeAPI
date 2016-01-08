@@ -24,16 +24,20 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature;
 
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.entity.ai.task.builtin.VanillaAITask;
+import org.spongepowered.api.entity.ai.task.builtin.VanillaAITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Living;
 
-public interface AttackLivingAITask extends AITask<Creature> {
+import java.util.Optional;
 
-    Class<? extends Living> getTargetClass();
+import javax.annotation.Nullable;
 
-    AttackLivingAITask setTargetClass(Class<? extends Living> targetClass);
+public interface AttackLivingAITask extends VanillaAITask<Creature> {
+
+    Optional<Class<? extends Living>> getTargetClass();
+
+    AttackLivingAITask setTargetClass(@Nullable Class<? extends Living> targetClass);
 
     double getSpeed();
 
@@ -43,9 +47,9 @@ public interface AttackLivingAITask extends AITask<Creature> {
 
     AttackLivingAITask setLongMemory(boolean longMemory);
 
-    interface Builder extends AITaskBuilder<Creature, AttackLivingAITask, Builder> {
+    interface Builder extends VanillaAITaskBuilder<Creature, AttackLivingAITask, Builder> {
 
-        Builder target(Class<? extends Living> targetClass);
+        Builder target(@Nullable Class<? extends Living> targetClass);
 
         Builder speed(double speed);
 

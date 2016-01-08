@@ -25,13 +25,13 @@
 package org.spongepowered.api.entity.ai.task.builtin.creature;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.entity.ai.task.builtin.VanillaAITask;
+import org.spongepowered.api.entity.ai.task.builtin.VanillaAITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 
 import java.util.function.Predicate;
 
-public interface AvoidEntityAITask extends AITask<Creature> {
+public interface AvoidEntityAITask extends VanillaAITask<Creature> {
 
     Predicate<Entity> getTargetSelector();
 
@@ -49,7 +49,7 @@ public interface AvoidEntityAITask extends AITask<Creature> {
 
     AvoidEntityAITask setFarRangeSpeed(double speed);
 
-    interface Builder extends AITaskBuilder<Creature, AvoidEntityAITask, Builder> {
+    interface Builder extends VanillaAITaskBuilder<Creature, AvoidEntityAITask, Builder> {
 
         Builder targetSelector(Predicate<Entity> predicate);
 

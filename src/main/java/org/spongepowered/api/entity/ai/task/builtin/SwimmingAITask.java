@@ -24,17 +24,15 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin;
 
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
-public interface SwimmingAITask extends AITask<Agent> {
+public interface SwimmingAITask extends GroundNavigationOnly<Agent> {
 
     float getSwimChance();
 
     void setSwimChance(float chance);
 
-    interface Builder extends AITaskBuilder<Agent, SwimmingAITask, Builder> {
+    interface Builder extends GroundNavigationOnly.Builder<Agent, SwimmingAITask, Builder> {
 
         Builder swimChance(float chance);
 

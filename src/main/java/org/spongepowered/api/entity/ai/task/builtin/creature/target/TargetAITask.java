@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.target;
 
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.entity.ai.task.builtin.VanillaAITask;
+import org.spongepowered.api.entity.ai.task.builtin.VanillaAITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 
-public interface TargetAITask<A extends TargetAITask<A>> extends AITask<Creature> {
+public interface TargetAITask<A extends TargetAITask<A, B>, B extends Creature> extends VanillaAITask<B> {
 
     boolean shouldCheckSight();
 
@@ -50,7 +50,8 @@ public interface TargetAITask<A extends TargetAITask<A>> extends AITask<Creature
 
     A setInterruptIfTargetUnseenTicks(int ticks);
 
-    interface Builder<A extends TargetAITask<A>, B extends Builder<A, B>> extends AITaskBuilder<Creature, A, B> {
+    interface Builder<O extends Creature, A extends TargetAITask<A, O>, B extends Builder<O, A, B>>
+            extends VanillaAITaskBuilder<O, A, B> {
 
         B checkSight();
 

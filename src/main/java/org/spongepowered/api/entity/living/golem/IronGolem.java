@@ -36,4 +36,8 @@ public interface IronGolem extends Golem {
         return getValue(Keys.PLAYER_CREATED).get();
     }
 
+    default Value<Boolean> isHoldingFlower() {
+        return getValue(Keys.IRON_GOLEM_HOLDING_FLOWER).get();
+    }
+
 }
