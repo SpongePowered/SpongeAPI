@@ -29,8 +29,9 @@ import org.spongepowered.api.entity.ai.task.builtin.VanillaAITaskBuilder;
 import org.spongepowered.api.entity.living.Villager;
 import org.spongepowered.api.entity.living.golem.IronGolem;
 
-import javax.annotation.Nullable;
 import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 public interface FollowGolemAITask extends VanillaAITask<Villager> {
 

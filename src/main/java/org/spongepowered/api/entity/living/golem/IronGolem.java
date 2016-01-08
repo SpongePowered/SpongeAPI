@@ -32,6 +32,10 @@ import org.spongepowered.api.data.value.mutable.Value;
  */
 public interface IronGolem extends Golem {
 
+    default Value<Boolean> playerCreated() {
+        return getValue(Keys.PLAYER_CREATED).get();
+    }
+
     default Value<Boolean> isHoldingFlower() {
         return getValue(Keys.IRON_GOLEM_HOLDING_FLOWER).get();
     }

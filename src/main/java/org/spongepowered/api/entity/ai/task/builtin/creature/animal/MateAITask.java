@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.animal;
 
+import javax.annotation.Nullable;
 import org.spongepowered.api.entity.ai.task.builtin.VanillaAITask;
 import org.spongepowered.api.entity.ai.task.builtin.VanillaAITaskBuilder;
 import org.spongepowered.api.entity.living.animal.Animal;
@@ -39,7 +40,10 @@ public interface MateAITask extends VanillaAITask<Animal> {
     Optional<Animal> getMate();
 
     /**
-     * Not nullable because it might cause crash
+     * Set the mate of the executor of this task. Not {@link Nullable} because
+     * it might cause crash if is set to {@code null} while executing.
+     * @param mate The mate to be set
+     * @return The task instance for chaining
      */
     MateAITask setMate(Animal mate);
 

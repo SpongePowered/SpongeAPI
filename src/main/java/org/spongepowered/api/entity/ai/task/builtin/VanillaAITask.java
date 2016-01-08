@@ -34,7 +34,16 @@ import org.spongepowered.api.entity.living.Agent;
  */
 public interface VanillaAITask<O extends Agent> extends AITask<O> {
 
+    /**
+     * Get the mutex bits of an AI task in vanilla. The mutex bit is not
+     * supposed to be used, and might not exist in some different
+     * implementations. See {@link AITask#canRunConcurrentWith(AITask)}, which
+     * achieves the function of mutex bits.
+     *
+     * @deprecated Platform specific, might not be available
+     * @return The mutex bits of this vanilla AI task.
+     */
+    @Deprecated
     int getMutexBits();
-
 
 }

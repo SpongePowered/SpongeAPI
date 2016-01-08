@@ -73,10 +73,10 @@ public interface AITask<O extends Agent> {
      * 3. Returning "true" will add the provided task to the list of updated tasks, if not there
      *    already.
      *
-     * @param that The other task
+     * @param other The other task
      * @return True if it can be, false if not
      */
-    boolean canRunConcurrentWith(AITask<?> that);
+    boolean canRunConcurrentWith(AITask<?> other);
 
     /**
      * Returns if this task can be interrupted. This determines if this task can be
@@ -97,8 +97,4 @@ public interface AITask<O extends Agent> {
      */
     boolean canBeInterrupted();
 
-    /**
-     * Resets this task.
-     */
-    void reset();
 }

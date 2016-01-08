@@ -30,6 +30,8 @@ import org.spongepowered.api.entity.living.animal.Animal;
 
 import java.util.Optional;
 
+import javax.annotation.Nullable;
+
 public interface FollowParentAITask extends VanillaAITask<Animal> {
 
     double getSpeed();
@@ -40,7 +42,8 @@ public interface FollowParentAITask extends VanillaAITask<Animal> {
 
     /**
      * Sets the parent animal that the task executor is following.
-     * This is not nullable because it might cause a NPE if this is set at inappropriate time.
+     * This is not {@link Nullable} because it might cause a NPE if this is set at
+     * inappropriate time.
      *
      * @param parent The parent of the executor of the task
      * @return The task itself, for chaining

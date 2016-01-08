@@ -24,17 +24,11 @@
  */
 package org.spongepowered.api.entity.living.golem;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.Creature;
 
 /**
  * Represents a Golem type mob.
  */
 public interface Golem extends Creature {
-
-    default Value<Boolean> playerCreated() {
-        return getValue(Keys.PLAYER_CREATED).get();
-    }
 
 }

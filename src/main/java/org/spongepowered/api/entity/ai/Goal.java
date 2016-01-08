@@ -34,10 +34,10 @@ import java.util.List;
 /**
  * Represents a set of tasks that will be updated together by an {@link Agent}.
  *
- * In Minecraft, most agents have just one goal which is living or simulating, or
- * whichever term you want to call it. Other agents, such as {@link Monster}s, use a
- * "target" goal which serves to seek out potential victims and execute a series of attack
- * tasks.
+ * In Minecraft, most agents have just one goal which is living or simulating,
+ * or whichever term you want to call it. Other agents, such as
+ * {@link Monster}s, use a "target" goal which serves to seek out potential
+ * victims and execute a series of attack tasks.
  *
  * @param <O> The type of agent
  */

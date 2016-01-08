@@ -26,8 +26,8 @@ package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.entity.living.RangedAttackingAgent;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.RangedAttackingAgent;
 
 import java.util.List;
 
