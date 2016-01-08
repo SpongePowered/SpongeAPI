@@ -27,19 +27,38 @@ package org.spongepowered.api.text;
 
 import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.text.action.TextAction;
+import org.spongepowered.api.text.format.TextStyles;
 
 /**
  * Represents an instance that have a {@link Text} representation that should be
- * used when this instance should be used inside a {@link Text}.
+ * used when this instance should be displayed in chat or wrapped in
+ * {@link Text} objects. Developers should use the default text representation
+ * of this instance whenever they want to use this instance in chat. Only in
+ * cases where the default representation does not fit the requirements of the
+ * situation a different text representation may be used. However developers
+ * should stick to the original text representation as closely as possible to
+ * avoid inconsistent user experience.
  */
-interface TextRepresentable {
+public interface TextRepresentable {
 
     /**
-     * Gets the textual representation of this instance for its usage in other
-     * {@link Text} objects. This may but does not need to include
-     * {@link HoverAction hover texts} or other {@link TextAction actions}. This
-     * method is basically the {@link Object#toString() toString()} equivalent
-     * for {@link Text}s.
+     * Gets the representation of this instance as a {@link Text}.
+     *
+     * <p>The resulting {@link Text} should contain of the following:</p>
+     *
+     * <ul>
+     * <li>A formated name of this instance. The usage of
+     * {@link TextStyles#OBFUSCATED} and TextStyles#STRIKETHROUGH} is
+     * discouraged.</li>
+     * <li>A {@link HoverAction} with more details concerning this instance or
+     * its current state. This may but does not need to include the id, uuid,
+     * the plain name, an image, a short description or other appropriate
+     * details.</li>
+     * <li>Optionally one or more other {@link TextAction} or similar things to
+     * interact with this instance. Examples for this could be starting a
+     * conversation with this instance, opening some kind of gui related to this
+     * instance or proposing a command or keyword related to this instance.</li>
+     * </ul>
      *
      * @return The text instance representing this instance
      */
