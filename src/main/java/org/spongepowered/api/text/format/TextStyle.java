@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  * @see TextStyles
  */
 @CatalogedBy(TextStyles.class)
-public class TextStyle {
+public class TextStyle implements TextProperty {
 
     /**
      * Whether text where this style is applied is bolded.

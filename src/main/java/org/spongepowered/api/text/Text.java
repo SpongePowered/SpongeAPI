@@ -34,8 +34,10 @@ import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
 import org.spongepowered.api.text.action.ShiftClickAction;
 import org.spongepowered.api.text.action.TextAction;
+import org.spongepowered.api.text.action.TextActions;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextFormat;
+import org.spongepowered.api.text.format.TextProperty;
 import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.format.TextStyles;
 import org.spongepowered.api.text.selector.Selector;
@@ -813,7 +815,7 @@ public abstract class Text implements TextRepresentable {
      */
     public static Text of(Object... objects) {
         // Shortcut for lonely TextRepresentables
-        if (objects.length == 1 && objects[0] instanceof TextRepresentable) {
+        if (objects.length == 1 && objects[0] instanceof TextRepresentable && !(objects[0] instanceof TextProperty)) {
             return ((TextRepresentable) objects[0]).toText();
         }
 
@@ -825,52 +827,43 @@ public abstract class Text implements TextRepresentable {
         boolean changedFormat = false;
 
         for (Object obj : objects) {
-            // Text formatting + actions
-            if (obj instanceof TextFormat) {
+            if (obj instanceof TextProperty) {
                 changedFormat = true;
-                format = (TextFormat) obj;
-            } else if (obj instanceof TextColor) {
-                changedFormat = true;
-                format = format.color((TextColor) obj);
-            } else if (obj instanceof TextStyle) {
-                changedFormat = true;
-                format = format.style(obj.equals(TextStyles.RESET) ? TextStyles.NONE : format.getStyle().and((TextStyle) obj));
-            } else if (obj instanceof TextAction) {
-                changedFormat = true;
-                if (obj instanceof HoverAction) {
-                    hoverAction = (HoverAction<?>) obj;
-                } else if (obj instanceof ClickAction) {
-                    clickAction = (ClickAction<?>) obj;
-                } else if (obj instanceof ShiftClickAction) {
-                    shiftClickAction = (ShiftClickAction<?>) obj;
+                // Text formatting + actions
+                if (obj instanceof TextFormat) {
+                    format = (TextFormat) obj;
+                } else if (obj instanceof TextColor) {
+                    format = format.color((TextColor) obj);
+                } else if (obj instanceof TextStyle) {
+                    format = format.style(obj.equals(TextStyles.RESET) ? TextStyles.NONE : format.getStyle().and((TextStyle) obj));
+                } else if (obj instanceof TextAction) {
+                    if (obj == TextActions.RESET_ACTIONS) {
+                        hoverAction = null;
+                        clickAction = null;
+                        shiftClickAction = null;
+                    } else if (obj instanceof HoverAction) {
+                        hoverAction = (HoverAction<?>) obj;
+                    } else if (obj instanceof ClickAction) {
+                        clickAction = (ClickAction<?>) obj;
+                    } else if (obj instanceof ShiftClickAction) {
+                        shiftClickAction = (ShiftClickAction<?>) obj;
+                    } else {
+                        // Unsupported TextAction
+                    }
                 } else {
-                    // Unsupported TextAction
+                    // Unsupported TextProperty
                 }
-
-            } else if (obj instanceof TextRepresentable) {
-                // Special content
-                changedFormat = false;
-                Text.Builder childBuilder = ((TextRepresentable) obj).toText().toBuilder();
-                // Overwrite TextActions if present
-                if (hoverAction != null) {
-                    childBuilder.onHover(hoverAction);
-                }
-                if (clickAction != null) {
-                    childBuilder.onClick(clickAction);
-                }
-                if (shiftClickAction != null) {
-                    childBuilder.onShiftClick(shiftClickAction);
-                }
-                // Merge instead of overwrite format
-                childBuilder.format(childBuilder.getFormat().merge(format));
-                builder.append(childBuilder.build());
-
             } else {
                 // Simple content
                 changedFormat = false;
-                Text.Builder childBuilder;
+                final Text.Builder childBuilder;
+                TextFormat childFormat = format;
 
-                if (obj instanceof String) {
+                if (obj instanceof TextRepresentable) {
+                    childBuilder = ((TextRepresentable) obj).toText().toBuilder();
+                    // Merge instead of overwrite format
+                    childFormat = childBuilder.getFormat().merge(format);
+                } else if (obj instanceof String) {
                     childBuilder = builder((String) obj);
                 } else if (obj instanceof Translation) {
                     childBuilder = builder((Translation) obj);
@@ -884,34 +877,14 @@ public abstract class Text implements TextRepresentable {
                     childBuilder = builder(String.valueOf(obj));
                 }
 
-                if (hoverAction != null) {
-                    childBuilder.onHover(hoverAction);
-                }
-                if (clickAction != null) {
-                    childBuilder.onClick(clickAction);
-                }
-                if (shiftClickAction != null) {
-                    childBuilder.onShiftClick(shiftClickAction);
-                }
-
-                builder.append(childBuilder.format(format).build());
+                builder.append(applyAndBuild(childBuilder, childFormat, hoverAction, clickAction, shiftClickAction));
             }
         }
 
         if (changedFormat) {
             // Did the formatting change without being applied to something?
             // Then just append an empty text with that formatting
-            final Text.Builder childBuilder = builder();
-            if (hoverAction != null) {
-                childBuilder.onHover(hoverAction);
-            }
-            if (clickAction != null) {
-                childBuilder.onClick(clickAction);
-            }
-            if (shiftClickAction != null) {
-                childBuilder.onShiftClick(shiftClickAction);
-            }
-            builder.append(childBuilder.format(format).build());
+            builder.append(applyAndBuild(builder(), format, hoverAction, clickAction, shiftClickAction));
         }
 
         if (builder.children.size() == 1) {
@@ -920,6 +893,20 @@ public abstract class Text implements TextRepresentable {
         }
 
         return builder.build();
+    }
+
+    private static Text applyAndBuild(Builder builder, TextFormat format, HoverAction<?> hoverAction,
+            ClickAction<?> clickAction, ShiftClickAction<?> shiftClickAction) {
+        if (hoverAction != null) {
+            builder.onHover(hoverAction);
+        }
+        if (clickAction != null) {
+            builder.onClick(clickAction);
+        }
+        if (shiftClickAction != null) {
+            builder.onShiftClick(shiftClickAction);
+        }
+        return builder.format(format).build();
     }
 
     /**

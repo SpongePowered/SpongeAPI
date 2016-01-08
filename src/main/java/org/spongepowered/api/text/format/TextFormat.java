@@ -31,7 +31,7 @@ import com.google.common.base.Objects;
 /**
  * Represents a pair of {@link TextStyle} and {@link TextColor}.
  */
-public final class TextFormat {
+public final class TextFormat implements TextProperty {
 
     /**
      * An empty {@link TextFormat} with no {@link TextColor} and no {@link TextStyle}.

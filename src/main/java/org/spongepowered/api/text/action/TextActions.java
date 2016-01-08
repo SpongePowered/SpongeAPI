@@ -42,8 +42,11 @@ import javax.annotation.Nullable;
  */
 public final class TextActions {
 
-    private TextActions() {
-    }
+    /**
+     * Resets all {@link TextAction}s when used in {@link Text#of(Object...)}.
+     */
+    public static final TextAction<?> RESET_ACTIONS = new TextAction<String>("RESET") {
+    };
 
     /**
      * Creates a new {@link ClickAction} that will ask the player to open an URL
@@ -191,6 +194,9 @@ public final class TextActions {
      */
     public static ShiftClickAction.InsertText insertText(String text) {
         return new ShiftClickAction.InsertText(text);
+    }
+
+    private TextActions() {
     }
 
 }
