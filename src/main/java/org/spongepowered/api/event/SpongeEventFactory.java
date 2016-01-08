@@ -3966,6 +3966,22 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.network.ClientConnectionEvent.Prepare}.
+     *
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @return A new prepare client connection event
+     */
+    public static ClientConnectionEvent.Prepare createClientConnectionEventPrepare(Cause cause, Player targetEntity) {
+        Map<String, Object> values = Maps.newHashMap();
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Prepare.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.network.PardonIpEvent}.
      * 
      * @param cause The cause
