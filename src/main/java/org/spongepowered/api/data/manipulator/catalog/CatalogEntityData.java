@@ -89,7 +89,6 @@ import org.spongepowered.api.data.manipulator.mutable.entity.SneakingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.StatisticData;
 import org.spongepowered.api.data.manipulator.mutable.entity.TameableData;
 import org.spongepowered.api.data.manipulator.mutable.entity.VehicleData;
-import org.spongepowered.api.data.manipulator.mutable.entity.VelocityData;
 import org.spongepowered.api.data.manipulator.mutable.entity.VillagerZombieData;
 import org.spongepowered.api.data.type.Art;
 import org.spongepowered.api.data.type.DyeColor;
@@ -462,11 +461,6 @@ public final class CatalogEntityData {
      * {@link Entity}.
      */
     public static final Class<VehicleData> VEHICLE_DATA = VehicleData.class;
-    /**
-     * Represents the current velocity of an entity. Applicable to all
-     * {@link Entity}.
-     */
-    public static final Class<VelocityData> VELOCITY_DATA = VelocityData.class;
     /**
      * Signifies that a {@link Zombie} is a "villager" zombie. Usually
      * applicable to all {@link Zombie}s.
