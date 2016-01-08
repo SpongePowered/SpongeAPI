@@ -22,41 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.data.context;
 
 import org.spongepowered.api.context.ContextViewer;
 import org.spongepowered.api.context.NamedContextual;
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.translation.locale.Locales;
-
-import java.util.Locale;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
+ * An object that has per-{@link ContextViewer} views of data.
  */
-public interface CommandSource extends ContextViewer, MessageReceiver, NamedContextual, Subject {
+public interface DataContextual extends NamedContextual {
 
     /**
-     * Gets the name identifying this command source.
+     * Tests if the provided viewer has an active context.
      *
-     * @return The name of this command source
+     * @param viewer The viewer
+     * @return {@code true} if the viewer has a context
      */
-    @Override
-    String getName();
+    boolean hasContext(ContextViewer viewer);
 
     /**
-     * Gets the locale used by this command source. If this
-     * {@link CommandSource} does have a {@link Locale} configured or does not
-     * support configuring a {@link Locale}, {@link Locales#DEFAULT} is used.
+     * Gets the context as seen by the viewer.
      *
-     * @return The locale used by this command source
+     * @param viewer The viewer of the context
+     * @return The context
      */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
-    }
+    DataContext getContext(ContextViewer viewer);
 
 }

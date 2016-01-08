@@ -1,0 +1,189 @@
+/*
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+ *
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
+ * Copyright (c) contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+package org.spongepowered.api.entity.living.player.tab;
+
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.ResettableBuilder;
+
+import java.util.Optional;
+
+import javax.annotation.Nullable;
+
+/**
+ * Represents the information attached to an entry in a {@link TabList}.
+ */
+public interface TabListEntry {
+
+    /**
+     * Creates a new {@link Builder} to create {@link TabListEntry}s.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Gets the {@link GameProfile} associated with this entry.
+     *
+     * @return The profile associated with this entry
+     */
+    GameProfile getProfile();
+
+    /**
+     * Gets this entry's display name.
+     *
+     * @return This entry's display name
+     */
+    Optional<Text> getDisplayName();
+
+    /**
+     * Sets this entry's display name.
+     *
+     * @param displayName The new display name
+     */
+    void setDisplayName(@Nullable Text displayName);
+
+    /**
+     * Gets the latency for this entry.
+     *
+     * @return The latency for this entry
+     */
+    int getLatency();
+
+    /**
+     * Sets the latency for this entry.
+     *
+     * <p>The client displays connection bars based on this number.</p>
+     *
+     * <table summary="">
+     *     <thead>
+     *         <tr>
+     *             <th>Bars</th>
+     *             <th>Time</th>
+     *         </tr>
+     *     </thead>
+     *     <tbody>
+     *         <tr>
+     *             <td>0</td>
+     *             <td>Less than 0</td>
+     *         </tr>
+     *         <tr>
+     *             <td>1</td>
+     *             <td>1000+</td>
+     *         </tr>
+     *         <tr>
+     *             <td>2</td>
+     *             <td>600 - 999</td>
+     *         </tr>
+     *         <tr>
+     *             <td>3</td>
+     *             <td>300 - 599</td>
+     *         </tr>
+     *         <tr>
+     *             <td>4</td>
+     *             <td>150 - 299</td>
+     *         </tr>
+     *         <tr>
+     *             <td>5</td>
+     *             <td>0 - 149</td>
+     *         </tr>
+     *     </tbody>
+     * </table>
+     *
+     * @param latency The new latency, in milliseconds
+     */
+    void setLatency(int latency);
+
+    /**
+     * Gets the {@link GameMode} this entry is in.
+     *
+     * @return The gamemode this entry is in
+     */
+    GameMode getGameMode();
+
+    /**
+     * Sets this entry's gamemode. Note that setting this to spectator is what
+     * enables spectator (noclip, invisibility), this isn't just a visual change.
+     *
+     * @param gameMode The new gamemode
+     */
+    void setGameMode(GameMode gameMode);
+
+    /**
+     * Represents a builder class to create mutable {@link TabListEntry}s.
+     *
+     * @see TabListEntry
+     */
+    interface Builder extends ResettableBuilder<TabListEntry, Builder> {
+
+        /**
+         * Sets the profile for entries created by this builder.
+         *
+         * @param profile The profile
+         * @return The builder
+         */
+        Builder profile(GameProfile profile);
+
+        /**
+         * Sets the display name for entries created by this builder.
+         *
+         * @param displayName The display name
+         * @return The builder
+         * @see TabListEntry#setDisplayName(Text)
+         */
+        Builder displayName(@Nullable Text displayName);
+
+        /**
+         * Sets the latency for entries created by this builder.
+         *
+         * @param latency The latency, in milliseconds
+         * @return The builder
+         * @see TabListEntry#setLatency(int)
+         */
+        Builder latency(int latency);
+
+        /**
+         * Sets the gamemode for entries created by this builder.
+         *
+         * @param gameMode The gamemode
+         * @return The builder
+         * @see TabListEntry#setGameMode(GameMode)
+         */
+        Builder gameMode(GameMode gameMode);
+
+        /**
+         * Builds an entry based off the values of this builder.
+         *
+         * @param list The owning tab list
+         * @return The entry
+         */
+        TabListEntry build(TabList list);
+    }
+
+}
