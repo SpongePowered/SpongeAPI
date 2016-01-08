@@ -801,7 +801,7 @@ public abstract class Text implements TextRepresentable {
      * Builds a {@link Text} from a given array of objects.
      *
      * <p>For instance, you can use this like
-     * <code>Texts.of(TextColors.DARK_AQUA, "Hi", TextColors.AQUA, "Bye")</code>
+     * <code>Text.of(TextColors.DARK_AQUA, "Hi", TextColors.AQUA, "Bye")</code>
      * </p>
      *
      * <p>This will create the correct {@link Text} instance if the input object

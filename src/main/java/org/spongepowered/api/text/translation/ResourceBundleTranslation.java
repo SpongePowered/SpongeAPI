@@ -49,7 +49,7 @@ import java.util.function.Function;
  *         private TranslationHelper() {} // Prevent instance creation
  *
  *         public static Text t(String key, Object... args) {
- *             return Texts.of(new ResourceBundleTranslation(key, LOOKUP_FUNC), args);
+ *             return Text.of(new ResourceBundleTranslation(key, LOOKUP_FUNC), args);
  *         }
  *     }
  *
