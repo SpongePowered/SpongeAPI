@@ -22,31 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable;
+package org.spongepowered.api.data.manipulator.mutable.entity;
 
-import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.ImmutableDisplayNameData;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableCustomNameVisibleData;
+import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.Text;
 
 /**
- * Represents the display name of an {@link ItemStack}, {@link Entity}, or
- * {@link TileEntity}.
+ * A {@link DataManipulator} for the "custom name visible" state
+ * of an {@link Entity}.
  *
- * <p>Exceptions are made with written books as the title and display name
- * are one and the same.</p>
+ * @see DisplayNameData
  */
-public interface DisplayNameData extends DataManipulator<DisplayNameData, ImmutableDisplayNameData> {
+public interface CustomNameVisibleData extends DataManipulator<CustomNameVisibleData, ImmutableCustomNameVisibleData> {
 
     /**
-     * Gets the display name as a {@link Text}. The display name may be
-     * player set, or it may be undefined.
+     * Returns whether the display name is visible to players.
      *
-     * @return The display name, if available
+     * @return Whether the display name is visible or not
      */
-    Value<Text> displayName();
+    Value<Boolean> customNameVisible();
 
 }
