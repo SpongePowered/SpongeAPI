@@ -28,6 +28,7 @@ import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.util.DiscreteTransform2;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.extent.worker.BiomeAreaWorker;
 
 /**
  * An area containing biomes that can be at least accessed.
@@ -177,5 +178,12 @@ public interface BiomeArea {
      * @return An immutable copy of the biomes
      */
     ImmutableBiomeArea getImmutableBiomeCopy();
+
+    /**
+     * Gets a new biome worker for this biome area.
+     *
+     * @return The biome worker
+     */
+    BiomeAreaWorker<? extends BiomeArea> getBiomeWorker();
 
 }

@@ -26,6 +26,7 @@ package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -82,5 +83,8 @@ public interface TileEntityVolume extends MutableBlockVolume {
      * @return The tile entity, or {@link Optional#empty()}
      */
     Optional<TileEntity> getTileEntity(int x, int y, int z);
+
+    @Override
+    MutableBlockVolumeWorker<? extends TileEntityVolume> getBlockWorker();
 
 }

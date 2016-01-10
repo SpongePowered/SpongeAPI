@@ -27,6 +27,7 @@ package org.spongepowered.api.world.extent;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
+import org.spongepowered.api.world.extent.worker.BlockVolumeWorker;
 
 /**
  * A volume containing blocks that can be accessed but not modified. The data
@@ -76,5 +77,8 @@ public interface ImmutableBlockVolume extends UnmodifiableBlockVolume {
     default ImmutableBlockVolume getImmutableBlockCopy() {
         return this;
     }
+
+    @Override
+    BlockVolumeWorker<? extends ImmutableBlockVolume> getBlockWorker();
 
 }

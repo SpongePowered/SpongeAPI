@@ -29,6 +29,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
+import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
 /**
  * A volume containing blocks that can be accessed and modified.
@@ -126,5 +127,8 @@ public interface MutableBlockVolume extends BlockVolume {
     default MutableBlockVolume getRelativeBlockView() {
         return getBlockView(DiscreteTransform3.fromTranslation(getBlockMin().negate()));
     }
+
+    @Override
+    MutableBlockVolumeWorker<? extends MutableBlockVolume> getBlockWorker();
 
 }

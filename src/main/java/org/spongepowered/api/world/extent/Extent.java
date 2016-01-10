@@ -35,6 +35,8 @@ import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.extent.worker.MutableBiomeAreaWorker;
+import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
 import java.util.Collection;
 
@@ -43,7 +45,7 @@ import java.util.Collection;
  * other game objects.
  */
 public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVolume, MutableBiomeArea, LocationCompositeValueStore, Identifiable,
-                                LocationBasePropertyHolder {
+    LocationBasePropertyHolder {
 
     /**
      * Gets a location in this extent at the given position. Essentially, this
@@ -182,7 +184,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     /**
      * Restores the given {@link BlockSnapshot} using the saved block position
      * stored within the snapshot.
-     * 
+     *
      * <p>If forced, the state of the block will change its {@link BlockType} to
      * match that of the snapshot then set the state. However, if force is set
      * to false and the {@link BlockType}s does not match, false will be
@@ -221,7 +223,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
 
     /**
      * Restores the {@link BlockSnapshot} at the given position.
-     * 
+     *
      * <p>If forced, the state of the block will change its {@link BlockType} to
      * match that of the snapshot then set the state. However, if force is set
      * to false and the {@link BlockType}s does not match, false will be
@@ -296,7 +298,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
 
     /**
      * Removes a {@link ScheduledBlockUpdate} from this block.
-     * 
+     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
@@ -342,5 +344,11 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     default Extent getRelativeExtentView() {
         return getExtentView(DiscreteTransform3.fromTranslation(getBlockMin().negate()));
     }
+
+    @Override
+    MutableBiomeAreaWorker<? extends Extent> getBiomeWorker();
+
+    @Override
+    MutableBlockVolumeWorker<? extends Extent> getBlockWorker();
 
 }
