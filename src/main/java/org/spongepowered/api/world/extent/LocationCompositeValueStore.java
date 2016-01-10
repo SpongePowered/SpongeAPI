@@ -341,9 +341,9 @@ public interface LocationCompositeValueStore {
      * @return True if the block at the given position can accept the
      *         {@link DataManipulator} object
      */
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings({"unchecked"})
     default boolean supports(int x, int y, int z, DataManipulator<?, ?> manipulator) {
-        return supports(x, y, z, (Class) manipulator.getClass());
+        return supports(x, y, z, (Class<DataManipulator<?, ?>>) manipulator.getClass());
     }
 
     /**

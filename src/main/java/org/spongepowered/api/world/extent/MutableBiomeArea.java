@@ -44,7 +44,9 @@ public interface MutableBiomeArea extends BiomeArea {
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the area
      */
-    void setBiome(Vector2i position, BiomeType biome);
+    default void setBiome(Vector2i position, BiomeType biome) {
+        setBiome(position.getX(), position.getY(), biome);
+    }
 
     /**
      * Sets the biome at the given position in the world.
@@ -89,6 +91,8 @@ public interface MutableBiomeArea extends BiomeArea {
      * @return The new area with its minimum at zero
      */
     @Override
-    MutableBiomeArea getRelativeBiomeView();
+    default MutableBiomeArea getRelativeBiomeView() {
+        return getBiomeView(DiscreteTransform2.fromTranslation(getBiomeMin().negate()));
+    }
 
 }

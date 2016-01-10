@@ -69,7 +69,9 @@ public interface TileEntityVolume extends MutableBlockVolume {
      * @param position The position
      * @return The tile entity, or {@link Optional#empty()}
      */
-    Optional<TileEntity> getTileEntity(Vector3i position);
+    default Optional<TileEntity> getTileEntity(Vector3i position) {
+        return getTileEntity(position.getX(), position.getY(), position.getZ());
+    }
 
     /**
      * Get the tile entity at the given position, if it exists.

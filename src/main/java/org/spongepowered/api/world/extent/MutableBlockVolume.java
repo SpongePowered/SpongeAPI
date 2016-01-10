@@ -45,7 +45,9 @@ public interface MutableBlockVolume extends BlockVolume {
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
-    void setBlock(Vector3i position, BlockState block);
+    default void setBlock(Vector3i position, BlockState block) {
+        setBlock(position.getX(), position.getY(), position.getZ(), block);
+    }
 
     /**
      * Sets the block at the given position in the world.
@@ -69,7 +71,9 @@ public interface MutableBlockVolume extends BlockVolume {
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the area
      */
-    void setBlockType(Vector3i position, BlockType type);
+    default void setBlockType(Vector3i position, BlockType type) {
+        setBlockType(position.getX(), position.getY(), position.getZ(), type);
+    }
 
     /**
      * Replace the block at this position by a new type.
@@ -83,7 +87,9 @@ public interface MutableBlockVolume extends BlockVolume {
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the area
      */
-    void setBlockType(int x, int y, int z, BlockType type);
+    default void setBlockType(int x, int y, int z, BlockType type) {
+        setBlock(x, y, z, type.getDefaultState());
+    }
 
     /**
      * Returns a new volume that is the same or smaller than the current volume.
@@ -117,6 +123,8 @@ public interface MutableBlockVolume extends BlockVolume {
      * @return The new volume with its minimum at zero
      */
     @Override
-    MutableBlockVolume getRelativeBlockView();
+    default MutableBlockVolume getRelativeBlockView() {
+        return getBlockView(DiscreteTransform3.fromTranslation(getBlockMin().negate()));
+    }
 
 }
