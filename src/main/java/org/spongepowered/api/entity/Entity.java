@@ -31,6 +31,7 @@ import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataTransactionResult;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.NamedCause;
@@ -318,6 +319,26 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      * @return The vehicle entity, if available
      */
     Entity getBaseVehicle();
+
+    /**
+     * Gets the {@link Vector3d} representation of this entity's current
+     * velocity.
+     *
+     * @return The current velocity
+     */
+    default Vector3d getVelocity() {
+        return get(Keys.VELOCITY).get();
+    }
+
+    /**
+     * Sets the velocity for this entity.
+     *
+     * @param vector3d The vector 3d velocity
+     * @return The resulting data transaction result
+     */
+    default DataTransactionResult setVelocity(Vector3d vector3d) {
+        return offer(Keys.VELOCITY, vector3d);
+    }
 
     /**
      * Returns whether this entity is on the ground (not in the air) or not.
