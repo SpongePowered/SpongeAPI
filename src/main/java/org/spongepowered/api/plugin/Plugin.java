@@ -27,6 +27,8 @@ package org.spongepowered.api.plugin;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+import org.spongepowered.api.event.game.plugin.PluginFingerprintViolationEvent;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
@@ -82,6 +84,19 @@ public @interface Plugin {
      * @return The plugin dependencies
      */
     String dependencies() default "";
+
+    /**
+     * Specifying this field allows for a plugin to expect a signed jar with a fingerprint matching this value.
+     *
+     * <p>The fingerprint should be SHA-1 encoded, lowercase, with ':' removed. An empty value indicates that
+     * the plugin is not expecting to be signed.</p>
+     *
+     * <p>Any incorrectness of the fingerprint, be it missing or wrong, will result in the
+     * {@link PluginFingerprintViolationEvent} event firing.</p>
+     *
+     * @return The certificate fingerprint that is expected for this plugin
+     */
+    String certificateFingerprint() default "";
 
 
 }
