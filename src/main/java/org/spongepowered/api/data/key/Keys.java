@@ -846,6 +846,8 @@ public final class Keys {
 
     public static final Key<Value<EntitySnapshot>> VEHICLE = null;
 
+    public static final Key<Value<Vector3d>> VELOCITY = null;
+
     public static final Key<Value<Double>> WALKING_SPEED = null;
 
     public static final Key<Value<WallType>> WALL_TYPE = null;

@@ -222,20 +222,6 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
     void setScale(Vector3d scale);
 
     /**
-     * Gets the current velocity as a {@link Vector3d}.
-     *
-     * @return The current velocity
-     */
-    Vector3d getVelocity();
-
-    /**
-     * Sets the current velocity.
-     *
-     * @param velocity The new velocity
-     */
-    void setVelocity(Vector3d velocity);
-
-    /**
      * Returns the entity transform as a new copy.
      * Combines the position, rotation and scale.
      *
