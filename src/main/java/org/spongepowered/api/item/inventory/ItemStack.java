@@ -38,6 +38,7 @@ import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.ResettableBuilder;
 
@@ -49,7 +50,7 @@ import org.spongepowered.api.util.ResettableBuilder;
  * use {@link DataHolder#get(Class)} to retrieve different information
  * regarding this item stack.</p>
  */
-public interface ItemStack extends DataHolder, DataSerializable, Translatable {
+public interface ItemStack extends DataHolder, DataSerializable, Translatable, TextRepresentable {
 
     /**
      * Creates a new {@link Builder} to build an {@link ItemStack}.
