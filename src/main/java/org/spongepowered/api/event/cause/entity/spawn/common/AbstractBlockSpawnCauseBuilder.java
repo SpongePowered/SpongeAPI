@@ -22,30 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.spawn;
+package org.spongepowered.api.event.cause.entity.spawn.common;
 
-import org.spongepowered.api.Sponge;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
+import org.spongepowered.api.event.cause.entity.spawn.BlockSpawnCause;
+import org.spongepowered.api.event.cause.entity.spawn.BlockSpawnCause.BlockSpawnCauseBuilder;
+import org.spongepowered.api.event.cause.entity.spawn.EntitySpawnCause;
 
-public interface EntitySpawnCause extends SpawnCause {
+@SuppressWarnings("unchecked")
+public abstract class AbstractBlockSpawnCauseBuilder<T extends BlockSpawnCause, B extends BlockSpawnCauseBuilder<T, B>>
+        extends AbstractSpawnCauseBuilder<T, B> implements BlockSpawnCauseBuilder<T, B> {
 
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+    protected BlockSnapshot blockSnapshot;
+
+    protected AbstractBlockSpawnCauseBuilder() {
+
     }
 
-
-    EntitySnapshot getEntity();
-
-    interface Builder extends EntitySpawnCauseBuilder<EntitySpawnCause, Builder> {
-
+    @Override
+    public B block(BlockSnapshot blockSnapshot) {
+        this.blockSnapshot = checkNotNull(blockSnapshot, "BlockSnapshot cannot be null!");
+        return (B) this;
     }
 
-    interface EntitySpawnCauseBuilder<T extends EntitySpawnCause, B extends EntitySpawnCauseBuilder<T, B>> extends SpawnCauseBuilder<T, B> {
+    @Override
+    public B from(T value) {
+        this.spawnType = checkNotNull(value, "SpawnCause cannot be null!").getType();
+        this.blockSnapshot = value.getBlockSnapshot();
+        return (B) this;
+    }
 
-        B entity(Entity entity);
-
-        B entity(EntitySnapshot snapshot);
-
+    @Override
+    public B reset() {
+        super.reset();
+        this.blockSnapshot = null;
+        return (B) this;
     }
 }

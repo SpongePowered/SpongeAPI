@@ -22,37 +22,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.spawn;
-
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.entity.SpawnEntityEvent;
-import org.spongepowered.api.util.ResettableBuilder;
-
-/**
- * Represents a specific cause for an {@link SpawnEntityEvent} such that
- * the cause has more information relevant to the "reason" for an entity spawn,
- * such as {@link MobSpawnerSpawnCause} linking to the {@link MobSpawnerData}
- * related to spawning the {@link Entity}.
- */
-public interface SpawnCause {
-
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
-
-    SpawnType getType();
-
-    interface Builder extends SpawnCauseBuilder<SpawnCause, Builder> {
-
-    }
-
-    interface SpawnCauseBuilder<T extends SpawnCause, B extends SpawnCauseBuilder<T, B>> extends ResettableBuilder<T, B> {
-
-        B type(SpawnType spawnType);
-
-        T build();
-
-    }
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.cause.entity.spawn.common;

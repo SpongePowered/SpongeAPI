@@ -22,37 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.spawn;
+package org.spongepowered.api.event.cause.entity.spawn.common;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.entity.SpawnEntityEvent;
-import org.spongepowered.api.util.ResettableBuilder;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-/**
- * Represents a specific cause for an {@link SpawnEntityEvent} such that
- * the cause has more information relevant to the "reason" for an entity spawn,
- * such as {@link MobSpawnerSpawnCause} linking to the {@link MobSpawnerData}
- * related to spawning the {@link Entity}.
- */
-public interface SpawnCause {
+import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
+import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
 
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
+@SuppressWarnings("unchecked")
+public abstract class AbstractSpawnCauseBuilder<T extends SpawnCause, B extends SpawnCause.SpawnCauseBuilder<T, B>>
+        implements SpawnCause.SpawnCauseBuilder<T, B> {
 
-    SpawnType getType();
-
-    interface Builder extends SpawnCauseBuilder<SpawnCause, Builder> {
+    protected AbstractSpawnCauseBuilder() {
 
     }
 
-    interface SpawnCauseBuilder<T extends SpawnCause, B extends SpawnCauseBuilder<T, B>> extends ResettableBuilder<T, B> {
+    protected SpawnType spawnType;
 
-        B type(SpawnType spawnType);
+    @Override
+    public B type(SpawnType spawnType) {
+        return (B) this;
+    }
 
-        T build();
+    @Override
+    public B from(T value) {
+        this.spawnType = checkNotNull(value, "SpawnCause cannot be null!").getType();
+        return (B) this;
+    }
 
+    @Override
+    public B reset() {
+        this.spawnType = null;
+        return (B) this;
     }
 }

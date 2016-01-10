@@ -22,37 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.spawn;
+package org.spongepowered.api.event.cause.entity.spawn.common;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.entity.SpawnEntityEvent;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.entity.EntitySnapshot;
+import org.spongepowered.api.event.cause.entity.spawn.BlockSpawnCause;
+import org.spongepowered.api.event.cause.entity.spawn.EntitySpawnCause;
 
-/**
- * Represents a specific cause for an {@link SpawnEntityEvent} such that
- * the cause has more information relevant to the "reason" for an entity spawn,
- * such as {@link MobSpawnerSpawnCause} linking to the {@link MobSpawnerData}
- * related to spawning the {@link Entity}.
- */
-public interface SpawnCause {
+public abstract class AbstractBlockSpawnCause extends AbstractSpawnCause implements BlockSpawnCause {
 
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+    protected final BlockSnapshot blockSnapshot;
+
+    protected AbstractBlockSpawnCause(AbstractBlockSpawnCauseBuilder<?, ?> builder) {
+        super(builder);
+        this.blockSnapshot = builder.blockSnapshot;
     }
 
-    SpawnType getType();
-
-    interface Builder extends SpawnCauseBuilder<SpawnCause, Builder> {
-
+    @Override
+    public BlockSnapshot getBlockSnapshot() {
+        return this.blockSnapshot;
     }
 
-    interface SpawnCauseBuilder<T extends SpawnCause, B extends SpawnCauseBuilder<T, B>> extends ResettableBuilder<T, B> {
-
-        B type(SpawnType spawnType);
-
-        T build();
-
-    }
 }

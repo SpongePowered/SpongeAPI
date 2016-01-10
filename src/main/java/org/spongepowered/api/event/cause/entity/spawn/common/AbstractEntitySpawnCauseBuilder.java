@@ -22,37 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.spawn;
+package org.spongepowered.api.event.cause.entity.spawn.common;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.entity.SpawnEntityEvent;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.entity.EntitySnapshot;
+import org.spongepowered.api.event.cause.entity.spawn.EntitySpawnCause;
 
-/**
- * Represents a specific cause for an {@link SpawnEntityEvent} such that
- * the cause has more information relevant to the "reason" for an entity spawn,
- * such as {@link MobSpawnerSpawnCause} linking to the {@link MobSpawnerData}
- * related to spawning the {@link Entity}.
- */
-public interface SpawnCause {
+@SuppressWarnings("unchecked")
+public abstract class AbstractEntitySpawnCauseBuilder<T extends EntitySpawnCause, B extends EntitySpawnCause.EntitySpawnCauseBuilder<T, B>>
+        extends AbstractSpawnCauseBuilder<T, B> implements EntitySpawnCause.EntitySpawnCauseBuilder<T, B> {
 
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
+    protected EntitySnapshot entitySnapshot;
 
-    SpawnType getType();
-
-    interface Builder extends SpawnCauseBuilder<SpawnCause, Builder> {
+    protected AbstractEntitySpawnCauseBuilder() {
 
     }
 
-    interface SpawnCauseBuilder<T extends SpawnCause, B extends SpawnCauseBuilder<T, B>> extends ResettableBuilder<T, B> {
+    @Override
+    public B entity(EntitySnapshot snapshot) {
+        this.entitySnapshot = checkNotNull(snapshot, "EntitySnapshot cannot be null!");
+        return (B) this;
+    }
 
-        B type(SpawnType spawnType);
+    @Override
+    public B entity(Entity entity) {
+        this.entitySnapshot = checkNotNull(entity, "Entity cannot be null!").createSnapshot();
+        return (B) this;
+    }
 
-        T build();
+    @Override
+    public B from(T value) {
+        this.spawnType = checkNotNull(value, "SpawnCause cannot be null!").getType();
+        return (B) this;
+    }
 
+    @Override
+    public B reset() {
+        super.reset();
+        this.entitySnapshot = null;
+        return (B) this;
     }
 }

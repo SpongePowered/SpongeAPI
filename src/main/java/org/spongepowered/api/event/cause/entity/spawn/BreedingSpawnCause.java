@@ -40,23 +40,11 @@ public interface BreedingSpawnCause extends EntitySpawnCause {
 
     EntitySnapshot getMate();
 
-    interface Builder extends EntitySpawnCause.Builder {
+    interface Builder extends EntitySpawnCauseBuilder<BreedingSpawnCause, Builder> {
 
         Builder mate(Entity entity);
 
         Builder mate(EntitySnapshot snapshot);
-
-        @Override
-        Builder entity(Entity entity);
-
-        @Override
-        Builder entity(EntitySnapshot snapshot);
-
-        @Override
-        Builder type(SpawnType spawnType);
-
-        @Override
-        BreedingSpawnCause build();
 
     }
 }
