@@ -68,6 +68,13 @@ public interface UnmodifiableBlockVolume extends BlockVolume {
      * @return The new volume with its minimum at zero
      */
     @Override
-    UnmodifiableBlockVolume getRelativeBlockView();
+    default UnmodifiableBlockVolume getRelativeBlockView() {
+        return getBlockView(DiscreteTransform3.fromTranslation(getBlockMin().negate()));
+    }
+
+    @Override
+    default UnmodifiableBlockVolume getUnmodifiableBlockView() {
+        return this;
+    }
 
 }

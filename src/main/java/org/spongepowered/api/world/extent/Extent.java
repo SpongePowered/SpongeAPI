@@ -42,8 +42,8 @@ import java.util.Collection;
  * A mutable object containing blocks, tile entities, entities, and possibly
  * other game objects.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeArea, LocationCompositeValueStore, Identifiable,
-                                LocationBasePropertyHolder, InteractableVolume {
+public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVolume, MutableBiomeArea, LocationCompositeValueStore, Identifiable,
+                                LocationBasePropertyHolder {
 
     /**
      * Gets a location in this extent at the given position. Essentially, this
@@ -101,7 +101,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
-    void setBlock(Vector3i position, BlockState block, boolean notifyNeighbors);
+    default void setBlock(Vector3i position, BlockState block, boolean notifyNeighbors) {
+        setBlock(position.getX(), position.getY(), position.getZ(), block, notifyNeighbors);
+    }
 
     /**
      * Sets the block at the given position in the world.
@@ -129,7 +131,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the area
      */
-    void setBlockType(Vector3i position, BlockType type, boolean notifyNeighbors);
+    default void setBlockType(Vector3i position, BlockType type, boolean notifyNeighbors) {
+        setBlockType(position.getX(), position.getY(), position.getZ(), type, notifyNeighbors);
+    }
 
     /**
      * Replace the block at this position by a new type.
@@ -145,7 +149,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the area
      */
-    void setBlockType(int x, int y, int z, BlockType type, boolean notifyNeighbors);
+    default void setBlockType(int x, int y, int z, BlockType type, boolean notifyNeighbors) {
+        setBlock(x, y, z, type.getDefaultState(), notifyNeighbors);
+    }
 
     /**
      * Get a snapshot of this block at the current point in time.
@@ -156,7 +162,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param position The position of the block
      * @return A snapshot
      */
-    BlockSnapshot createSnapshot(Vector3i position);
+    default BlockSnapshot createSnapshot(Vector3i position) {
+        return createSnapshot(position.getX(), position.getY(), position.getZ());
+    }
 
     /**
      * Get a snapshot of this block at the current point in time.
@@ -192,7 +200,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
 
     /**
      * Restores the {@link BlockSnapshot} at the given position.
-     * 
+     *
      * <p>If forced, the state of the block will change its {@link BlockType} to
      * match that of the snapshot then set the state. However, if force is set
      * to false and the {@link BlockType}s does not match, false will be
@@ -207,7 +215,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      *        blocks of this change. If true, this may cause blocks to change.
      * @return true if the restore was successful, false otherwise
      */
-    boolean restoreSnapshot(Vector3i position, BlockSnapshot snapshot, boolean force, boolean notifyNeighbors);
+    default boolean restoreSnapshot(Vector3i position, BlockSnapshot snapshot, boolean force, boolean notifyNeighbors) {
+        return restoreSnapshot(position.getX(), position.getY(), position.getZ(), snapshot, force, notifyNeighbors);
+    }
 
     /**
      * Restores the {@link BlockSnapshot} at the given position.
@@ -236,7 +246,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param position The position of the block
      * @return A list of ScheduledBlockUpdates on this block
      */
-    Collection<ScheduledBlockUpdate> getScheduledUpdates(Vector3i position);
+    default Collection<ScheduledBlockUpdate> getScheduledUpdates(Vector3i position) {
+        return getScheduledUpdates(position.getX(), position.getY(), position.getZ());
+    }
 
     /**
      * Gets a list of {@link ScheduledBlockUpdate}s on this block.
@@ -256,7 +268,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param ticks The ticks until the scheduled update should be processed
      * @return The newly created scheduled update
      */
-    ScheduledBlockUpdate addScheduledUpdate(Vector3i position, int priority, int ticks);
+    default ScheduledBlockUpdate addScheduledUpdate(Vector3i position, int priority, int ticks) {
+        return addScheduledUpdate(position.getX(), position.getY(), position.getZ(), priority, ticks);
+    }
 
     /**
      * Adds a new {@link ScheduledBlockUpdate} to this block.
@@ -276,7 +290,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      * @param position The position of the block
      * @param update The ScheduledBlockUpdate to remove
      */
-    void removeScheduledUpdate(Vector3i position, ScheduledBlockUpdate update);
+    default void removeScheduledUpdate(Vector3i position, ScheduledBlockUpdate update) {
+        removeScheduledUpdate(position.getX(), position.getY(), position.getZ(), update);
+    }
 
     /**
      * Removes a {@link ScheduledBlockUpdate} from this block.
@@ -323,6 +339,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, MutableBiomeAr
      *
      * @return The new extent its minimum at zero
      */
-    Extent getRelativeExtentView();
+    default Extent getRelativeExtentView() {
+        return getExtentView(DiscreteTransform3.fromTranslation(getBlockMin().negate()));
+    }
 
 }

@@ -71,7 +71,9 @@ public interface BiomeArea {
      * @param position The position to check
      * @return Whether or not the position has a biome in this area
      */
-    boolean containsBiome(Vector2i position);
+    default boolean containsBiome(Vector2i position) {
+        return containsBiome(position.getX(), position.getY());
+    }
 
     /**
      * Returns true if the biome area contains a biome at the specified
@@ -92,7 +94,9 @@ public interface BiomeArea {
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the area
      */
-    BiomeType getBiome(Vector2i position);
+    default BiomeType getBiome(Vector2i position) {
+        return getBiome(position.getX(), position.getY());
+    }
 
     /**
      * Gets the {@link BiomeType} at the given location.
@@ -134,7 +138,9 @@ public interface BiomeArea {
      *
      * @return The new area with its minimum at zero
      */
-    BiomeArea getRelativeBiomeView();
+    default BiomeArea getRelativeBiomeView() {
+        return getBiomeView(DiscreteTransform2.fromTranslation(getBiomeMin().negate()));
+    }
 
     /**
      * Returns a new area that cannot be modified through this view. Unlike
@@ -151,7 +157,9 @@ public interface BiomeArea {
      *
      * @return A copy of the biomes
      */
-    MutableBiomeArea getBiomeCopy();
+    default MutableBiomeArea getBiomeCopy() {
+        return getBiomeCopy(StorageType.STANDARD);
+    }
 
     /**
      * Returns a mutable copy of the biomes stored in this area. This uses the

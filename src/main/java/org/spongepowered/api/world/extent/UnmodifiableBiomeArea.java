@@ -68,6 +68,13 @@ public interface UnmodifiableBiomeArea extends BiomeArea {
      * @return The new area with its minimum at zero
      */
     @Override
-    UnmodifiableBiomeArea getRelativeBiomeView();
+    default UnmodifiableBiomeArea getRelativeBiomeView() {
+        return getBiomeView(DiscreteTransform2.fromTranslation(getBiomeMin().negate()));
+    }
+
+    @Override
+    default UnmodifiableBiomeArea getUnmodifiableBiomeView() {
+        return this;
+    }
 
 }

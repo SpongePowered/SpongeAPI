@@ -68,6 +68,13 @@ public interface ImmutableBlockVolume extends UnmodifiableBlockVolume {
      * @return The new volume with its minimum at zero
      */
     @Override
-    ImmutableBlockVolume getRelativeBlockView();
+    default ImmutableBlockVolume getRelativeBlockView() {
+        return getBlockView(DiscreteTransform3.fromTranslation(getBlockMin().negate()));
+    }
+
+    @Override
+    default ImmutableBlockVolume getImmutableBlockCopy() {
+        return this;
+    }
 
 }

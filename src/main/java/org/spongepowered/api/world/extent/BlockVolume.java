@@ -67,7 +67,9 @@ public interface BlockVolume {
      * @param position The position to check
      * @return Whether or not the position has a block in this volume
      */
-    boolean containsBlock(Vector3i position);
+    default boolean containsBlock(Vector3i position) {
+        return containsBlock(position.getX(), position.getY(), position.getZ());
+    }
 
     /**
      * Returns true if the block volume contains a block at the specified
@@ -89,7 +91,9 @@ public interface BlockVolume {
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
-    BlockState getBlock(Vector3i position);
+    default BlockState getBlock(Vector3i position) {
+        return getBlock(position.getX(), position.getY(), position.getZ());
+    }
 
     /**
      * Get a representation of the block at the given position.
@@ -114,7 +118,9 @@ public interface BlockVolume {
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the block volume
      */
-    BlockType getBlockType(Vector3i position);
+    default BlockType getBlockType(Vector3i position) {
+        return getBlockType(position.getX(), position.getY(), position.getZ());
+    }
 
     /**
      * Get the base type of block.
@@ -160,7 +166,9 @@ public interface BlockVolume {
      *
      * @return The new volume with its minimum at zero
      */
-    BlockVolume getRelativeBlockView();
+    default BlockVolume getRelativeBlockView() {
+        return getBlockView(DiscreteTransform3.fromTranslation(getBlockMin().negate()));
+    }
 
     /**
      * Returns a new volume that cannot be modified through this view. Unlike
@@ -177,7 +185,9 @@ public interface BlockVolume {
      *
      * @return A copy of the blocks
      */
-    MutableBlockVolume getBlockCopy();
+    default MutableBlockVolume getBlockCopy() {
+        return getBlockCopy(StorageType.STANDARD);
+    }
 
     /**
      * Returns a mutable copy of the blocks stored in this volume. This uses the

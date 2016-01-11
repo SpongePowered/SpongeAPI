@@ -24,10 +24,13 @@
  */
 package org.spongepowered.api.data;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.util.persistence.DataBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -132,6 +135,39 @@ public interface DataView {
      * @return True if all paths exist
      */
     boolean contains(DataQuery path, DataQuery... paths);
+
+    /**
+     * Returns whether this {@link DataView} contains the given {@link Key}'s
+     * defaulted {@link DataQuery}.
+     *
+     * @param key The key to get the data path relative to this data view
+     * @return True if the path exists
+     */
+    default boolean contains(Key<?> key) {
+        return contains(checkNotNull(key, "Key cannot be null!").getQuery());
+    }
+
+    /**
+     * Returns whether this {@link DataView} contains the given {@link Key}es
+     * defaulted {@link DataQuery}.
+     *
+     * @param key The key to get the data path relative to this data view
+     * @param keys The additional keys to check
+     * @return True if the path exists
+     */
+    default boolean contains(Key<?> key, Key<?>... keys) {
+        checkNotNull(key, "Key cannot be null!");
+        checkNotNull(keys, "Keys cannot be null!");
+        if (keys.length == 0) {
+            return contains(key.getQuery());
+        } else {
+            List<DataQuery> queries = new ArrayList<>();
+            for (Key<?> arrayKey : keys) {
+                queries.add(checkNotNull(arrayKey, "Cannot have a null key!").getQuery());
+            }
+            return contains(key.getQuery(), queries.toArray(new DataQuery[queries.size()]));
+        }
+    }
 
     /**
      * Gets an object from the desired path. If the path is not defined,
