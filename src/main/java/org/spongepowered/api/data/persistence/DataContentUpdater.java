@@ -22,29 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.persistence;
+package org.spongepowered.api.data.persistence;
 
-import ninja.leaping.configurate.ConfigurationNode;
-import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.DataView;
+import org.spongepowered.api.util.Updater;
 
-import java.util.Optional;
-
-/**
- * A standard factory to create {@link DataSource}s to serialize and deserialize
- * {@link DataSerializable} objects.
- */
-public interface DataSourceFactory {
-
-    /**
-     * Creates a new {@link DataSource} according to the given configuration.
-     *
-     * <p>The configuration structure is yet to be defined, however, being
-     * that the factory is abstract, a DataSource can be represented by multiple
-     * implementations.</p>
-     *
-     * @param config The configuration to configure the DataSource
-     * @return The newly created data source, if available
-     */
-    Optional<DataSource> createSource(ConfigurationNode config);
+public interface DataContentUpdater extends Updater<DataView> {
 
 }

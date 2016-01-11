@@ -22,36 +22,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data;
-
-import org.spongepowered.api.data.persistence.DataContentUpdater;
+package org.spongepowered.api.data.persistence;
 
 /**
- * Represents an object that can be represented by a {@link DataContainer}.
- * <p>DataContainers received from {@link DataSerializable#toContainer()}
- * should be considered to be copies of the original data, and therefor,
- * thread safe.</p>
+ * An exception that occurs when a {@link DataFormat} is unable to deserialize
+ * from a particular input.
  */
-public interface DataSerializable {
+public class InvalidDataFormatException extends UnsupportedOperationException {
+
+    private static final long serialVersionUID = 1L;
 
     /**
-     * Gets the content version of this {@link DataSerializable}. The version
-     * may differ between instances of plugins and implementations such that
-     * the {@link DataView} from {@link #toContainer()} may include different
-     * information, or remove other information as they are no longer deemend
-     * necessary. The version goes hand in hand with {@link DataContentUpdater}
-     * as it is required when there exists any {@link DataView} of this
-     * {@link DataSerializable} with an "older" version.
-     *
-     * @return The version of the content being serialized
+     * Constructs a new {@link InvalidDataFormatException}.
      */
-    int getContentVersion();
+    public InvalidDataFormatException() {
+        super();
+    }
 
     /**
-     * Serializes this object into a comprehensible {@link DataContainer}.
+     * Constructs a new {@link InvalidDataFormatException} with a message.
      *
-     * @return A newly created DataContainer
+     * @param message The message to display with the exception
      */
-    DataContainer toContainer();
+    public InvalidDataFormatException(String message) {
+        super(message);
+    }
 
+    /**
+     * Constructs a new {@link InvalidDataFormatException} with the specified
+     * message and cause.
+     *
+     * @param message The exception message
+     * @param cause The cause of this exception
+     */
+    public InvalidDataFormatException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    /**
+     * Constructs a new {@link InvalidDataFormatException} with the specified
+     * cause and a null message.
+     *
+     * @param cause The cause of this exception
+     */
+    public InvalidDataFormatException(Throwable cause) {
+        super(cause);
+    }
 }

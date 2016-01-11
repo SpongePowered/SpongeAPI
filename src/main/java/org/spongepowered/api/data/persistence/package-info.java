@@ -22,11 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.persistence;
-
-import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.util.Updater;
-
-public interface DataContentUpdater extends Updater<DataView> {
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.data.persistence;
