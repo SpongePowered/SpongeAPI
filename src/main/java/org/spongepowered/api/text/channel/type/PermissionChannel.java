@@ -27,7 +27,9 @@ package org.spongepowered.api.text.channel.type;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.channel.Channel;
 import org.spongepowered.api.service.permission.PermissionService;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.util.GuavaCollectors;
@@ -36,13 +38,13 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * A message channel that targets all subjects with the given permission.
+ * A channel that targets all subjects with the given permission.
  */
-public class PermissionMessageChannel implements MessageChannel {
+public abstract class PermissionChannel<T, M> implements Channel<T, M> {
 
     protected final String permission;
 
-    public PermissionMessageChannel(String permission) {
+    protected PermissionChannel(String permission) {
         this.permission = checkNotNull(permission, "permission");
     }
 
@@ -50,16 +52,26 @@ public class PermissionMessageChannel implements MessageChannel {
         return this.permission;
     }
 
-    @Override
-    public Collection<MessageReceiver> getMembers() {
-        PermissionService service = Sponge.getGame().getServiceManager().provideUnchecked(PermissionService.class);
+    /**
+     * A message channel that targets all subjects with the given permission.
+     */
+    public static class Message extends PermissionChannel<Text, MessageReceiver> implements MessageChannel {
 
-        return service.getKnownSubjects().values().stream()
-                .flatMap(input -> input.getAllWithPermission(this.permission).entrySet().stream()
-                        .filter(Map.Entry::getValue)
-                        .map(entry -> entry.getKey().getCommandSource().orElse(null))
-                        .filter(source -> source != null))
-                .collect(GuavaCollectors.toImmutableSet());
+        public Message(String permission) {
+            super(permission);
+        }
+
+        @Override
+        public Collection<MessageReceiver> getMembers() {
+            PermissionService service = Sponge.getGame().getServiceManager().provideUnchecked(PermissionService.class);
+
+            return service.getKnownSubjects().values().stream()
+                    .flatMap(input -> input.getAllWithPermission(this.permission).entrySet().stream()
+                            .filter(Map.Entry::getValue)
+                            .map(entry -> entry.getKey().getCommandSource().orElse(null))
+                            .filter(source -> source != null))
+                    .collect(GuavaCollectors.toImmutableSet());
+        }
     }
 
 }

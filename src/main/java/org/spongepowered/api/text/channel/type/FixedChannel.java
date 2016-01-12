@@ -22,21 +22,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.channel;
+package org.spongepowered.api.text.channel.type;
 
-import org.spongepowered.api.channel.MutableChannel;
+import com.google.common.collect.ImmutableSet;
+import org.spongepowered.api.channel.Channel;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.channel.MessageChannel;
+import org.spongepowered.api.text.channel.MessageReceiver;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Set;
+import java.util.WeakHashMap;
 
 /**
- * Represents a channel that takes a message and transforms it for distribution
- * to a mutable list of members.
+ * A message channel that targets the given recipients.
  */
-public interface MutableMessageChannel extends MessageChannel, MutableChannel<Text, MessageReceiver> {
+public abstract class FixedChannel<T, M> implements Channel<T, M> {
+
+    protected final Set<M> recipients;
+
+    @SafeVarargs
+    protected FixedChannel(M... recipients) {
+        this(Arrays.asList(recipients));
+    }
+
+    public FixedChannel(Collection<? extends M> provided) {
+        Set<M> recipients = Collections.newSetFromMap(new WeakHashMap<>());
+        recipients.addAll(provided);
+        this.recipients = recipients;
+    }
 
     @Override
-    default MutableMessageChannel asMutable() {
-        // We're already mutable.
-        return this;
+    public Collection<M> getMembers() {
+        return ImmutableSet.copyOf(this.recipients);
+    }
+
+    public static class Message extends FixedChannel<Text, MessageReceiver> implements MessageChannel {
+
+        public Message(MessageReceiver... recipients) {
+            super(recipients);
+        }
+
+        public Message(Collection<? extends MessageReceiver> provided) {
+            super(provided);
+        }
     }
 
 }

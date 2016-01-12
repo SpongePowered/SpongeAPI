@@ -28,14 +28,16 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.channel.TransformableChannel;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.impl.DelegateMutableMessageChannel;
-import org.spongepowered.api.text.channel.type.CombinedMessageChannel;
-import org.spongepowered.api.text.channel.type.FixedMessageChannel;
-import org.spongepowered.api.text.channel.type.PermissionMessageChannel;
+import org.spongepowered.api.text.channel.type.CombinedChannel;
+import org.spongepowered.api.text.channel.type.FixedChannel;
+import org.spongepowered.api.text.channel.type.PermissionChannel;
+import org.spongepowered.api.text.chat.ChatType;
+import org.spongepowered.api.text.chat.ChatTypes;
 
 import java.util.Collection;
-import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -44,7 +46,7 @@ import javax.annotation.Nullable;
  * to the members.
  */
 @FunctionalInterface
-public interface MessageChannel {
+public interface MessageChannel extends TransformableChannel<Text, MessageReceiver> {
 
     /**
      * A channel with no members.
@@ -71,10 +73,10 @@ public interface MessageChannel {
      *
      * @param permission The permission to target
      * @return The channel
-     * @see PermissionMessageChannel
+     * @see PermissionChannel
      */
     static MessageChannel permission(String permission) {
-        return new PermissionMessageChannel(permission);
+        return new PermissionChannel.Message(permission);
     }
 
     /**
@@ -83,10 +85,10 @@ public interface MessageChannel {
      *
      * @param channels The channels to combine
      * @return The channel
-     * @see CombinedMessageChannel
+     * @see CombinedChannel
      */
     static MessageChannel combined(MessageChannel... channels) {
-        return new CombinedMessageChannel(channels);
+        return new CombinedChannel.Message(channels);
     }
 
     /**
@@ -95,10 +97,10 @@ public interface MessageChannel {
      *
      * @param channels The channels to combine
      * @return The channel
-     * @see CombinedMessageChannel
+     * @see CombinedChannel
      */
     static MessageChannel combined(Collection<MessageChannel> channels) {
-        return new CombinedMessageChannel(channels);
+        return new CombinedChannel.Message(channels);
     }
 
     /**
@@ -106,10 +108,10 @@ public interface MessageChannel {
      *
      * @param recipients The recipients
      * @return The channel
-     * @see FixedMessageChannel
+     * @see FixedChannel
      */
     static MessageChannel fixed(MessageReceiver... recipients) {
-        return new FixedMessageChannel(recipients);
+        return new FixedChannel.Message(recipients);
     }
 
     /**
@@ -117,10 +119,10 @@ public interface MessageChannel {
      *
      * @param recipients The recipients
      * @return The channel
-     * @see FixedMessageChannel
+     * @see FixedChannel
      */
     static MessageChannel fixed(Collection<? extends MessageReceiver> recipients) {
-        return new FixedMessageChannel(recipients);
+        return new FixedChannel.Message(recipients);
     }
 
     /**
@@ -129,8 +131,37 @@ public interface MessageChannel {
      *
      * @param original The original text to send
      */
+    @Override
     default void send(Text original) {
         this.send(null, original);
+    }
+
+    /**
+     * Sends a message to this channel, transforming and sending it to
+     * the members.
+     *
+     * <p>By default, the {@link ChatTypes#SYSTEM} type is used when sending
+     * messages to applicable recipients of this channel.</p>
+     *
+     * @param original The original text to send
+     * @param type The type of message
+     */
+    default void send(Text original, ChatType type) {
+        this.send(null, original, type);
+    }
+
+    /**
+     * Sends a message to this channel, transforming and sending it to the members.
+     *
+     * <p>The {@link ChatTypes#SYSTEM} type is used when sending messages to
+     * applicable recipients of this channel.</p>
+     *
+     * @param sender The sender of the message
+     * @param original The original message to send
+     */
+    @Override
+    default void send(@Nullable Object sender, Text original) {
+        this.send(sender, original, ChatTypes.SYSTEM);
     }
 
     /**
@@ -138,40 +169,22 @@ public interface MessageChannel {
      *
      * @param sender The sender of the message
      * @param original The original message to send
+     * @param type The type of message
      */
-    default void send(@Nullable Object sender, Text original) {
+    default void send(@Nullable Object sender, Text original, ChatType type) {
         checkNotNull(original, "original text");
+        checkNotNull(type, "type");
         for (MessageReceiver member : this.getMembers()) {
-            this.transformMessage(sender, member, original).ifPresent(member::sendMessage);
+            this.transform(sender, member, original).ifPresent(member::sendMessage);
         }
     }
-
-    /**
-     * Handle transforming the input message appropriately.
-     * Transforms
-     *
-     * @param sender The sender of the message
-     * @param recipient The recipient of the message
-     * @param original The original message, to optionally transform
-     * @return The message to send, if present, otherwise {@link Optional#empty()}
-     */
-    default Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original) {
-        return Optional.of(original);
-    }
-
-    /**
-     * Gets a collection of all members in this channel.
-     *
-     * @return A collection of all members of this channel
-     */
-    Collection<MessageReceiver> getMembers();
 
     /**
      * Gets or creates a mutable version of this channel.
      *
      * <p>The default behaviour of this method is to copy the current member list into
      * a {@link DelegateMutableMessageChannel}, which calls the
-     * {@link #transformMessage(Object, MessageReceiver, Text)} method on this channel.</p>
+     * {@link #transform(Object, Object, Object)} method on this channel.</p>
      *
      * @return A mutable channel
      */

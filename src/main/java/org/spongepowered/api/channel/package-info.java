@@ -22,21 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.channel;
-
-import org.spongepowered.api.channel.MutableChannel;
-import org.spongepowered.api.text.Text;
-
-/**
- * Represents a channel that takes a message and transforms it for distribution
- * to a mutable list of members.
- */
-public interface MutableMessageChannel extends MessageChannel, MutableChannel<Text, MessageReceiver> {
-
-    @Override
-    default MutableMessageChannel asMutable() {
-        // We're already mutable.
-        return this;
-    }
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.channel;
