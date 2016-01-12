@@ -84,6 +84,12 @@ public interface WorldCreationSettings {
     boolean doesKeepSpawnLoaded();
 
     /**
+     * Returns whether spawn chunks will generate when this world is loaded.
+     * @return True to generate spawn on load, false otherwise
+     */
+    boolean doesGenerateSpawnOnLoad();
+
+    /**
      * Gets the seed of the world.
      * 
      * @return The seed
@@ -218,6 +224,13 @@ public interface WorldCreationSettings {
          * @return The builder, for chaining
          */
         Builder keepsSpawnLoaded(boolean state);
+
+        /**
+         * Sets whether the spawn chunks of the world generate on load.
+         * @param state Should generate spawn chunks on load
+         * @return The builder, for chaining
+         */
+        Builder generateSpawnOnLoad(boolean state);
 
         /**
          * Sets the seed of the world. If not specified this will default to

@@ -98,6 +98,20 @@ public interface WorldProperties extends DataSerializable {
     void setKeepSpawnLoaded(boolean state);
 
     /**
+     * Gets whether spawn chunks of this world will generate on load.
+     *
+     * @return True if spawn chunks of this world generate on load.
+     */
+    boolean doesGenerateSpawnOnLoad();
+
+    /**
+     * Sets whether the spawn chunks of the world will generate on load.
+     *
+     * @param state Should generate spawn chunks on load.
+     */
+    void setGenerateSpawnOnLoad(boolean state);
+
+    /**
      * Gets the name of this world.
      *
      * @return The name
