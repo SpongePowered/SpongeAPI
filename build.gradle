@@ -7,8 +7,8 @@ buildscript {
             url = 'http://repo.spongepowered.org/maven'
         }
         maven {
-            name = 'Maven Repository for JDT Compiler release'
-            url = 'https://repo.eclipse.org/content/repositories/eclipse-staging/'
+            name = 'eclipse-staging'
+            url = 'https://repo.eclipse.org/content/repositories/eclipse-staging'
         }
     }
 
@@ -61,6 +61,16 @@ jar {
     }
 }
 
+task sourceJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourceJar
+    archives javadocJar
+}
+
 apply plugin: 'event-impl-gen'
 
 // Compile time code generator for the event factory
@@ -92,9 +102,8 @@ genEventImpl {
     validateCode = false
 }
 
-task sourceJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
+sortClassFields {
+    add 'main', 'org.spongepowered.api.data.key.Keys'
 }
 
 // Shaded API build (with all dependencies included)
@@ -106,10 +115,4 @@ shadowJar {
 
 artifacts {
     archives shadowJar
-}
-
-apply plugin: 'org.spongepowered.gradle'
-
-sortClassFields {
-    add "main", "org.spongepowered.api.data.key.Keys"
 }
