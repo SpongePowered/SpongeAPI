@@ -131,6 +131,13 @@ public interface Server {
     Optional<WorldProperties> getDefaultWorld();
 
     /**
+     * Gets the default {@link World} name that the server creates and loads.
+     *
+     * @return The name
+     */
+    String getDefaultWorldName();
+
+    /**
      * Loads a {@link World} from the default storage container. If a world with
      * the given name is already loaded then it is returned instead.
      *

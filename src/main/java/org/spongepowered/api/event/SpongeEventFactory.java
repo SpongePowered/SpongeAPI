@@ -27,8 +27,8 @@ package org.spongepowered.api.event;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Maps;
 import java.net.InetSocketAddress;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -227,7 +227,7 @@ public class SpongeEventFactory {
      * @return A new grant achievement event
      */
     public static GrantAchievementEvent createGrantAchievementEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Achievement achievement) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
@@ -252,7 +252,7 @@ public class SpongeEventFactory {
      * @return A new target player grant achievement event
      */
     public static GrantAchievementEvent.TargetPlayer createGrantAchievementEventTargetPlayer(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Achievement achievement, Player targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
@@ -274,7 +274,7 @@ public class SpongeEventFactory {
      * @return A new fishing event
      */
     public static FishingEvent createFishingEvent(Cause cause, EntitySnapshot originalFishHook, FishHook fishHook) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalFishHook", originalFishHook);
         values.put("fishHook", fishHook);
@@ -293,7 +293,7 @@ public class SpongeEventFactory {
      * @return A new hook entity fishing event
      */
     public static FishingEvent.HookEntity createFishingEventHookEntity(Cause cause, EntitySnapshot originalFishHook, FishHook fishHook, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalFishHook", originalFishHook);
         values.put("fishHook", fishHook);
@@ -312,7 +312,7 @@ public class SpongeEventFactory {
      * @return A new start fishing event
      */
     public static FishingEvent.Start createFishingEventStart(Cause cause, EntitySnapshot originalFishHook, FishHook fishHook) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalFishHook", originalFishHook);
         values.put("fishHook", fishHook);
@@ -334,7 +334,7 @@ public class SpongeEventFactory {
      * @return A new stop fishing event
      */
     public static FishingEvent.Stop createFishingEventStop(Cause cause, int originalExperience, int experience, EntitySnapshot originalFishHook, FishHook fishHook, Transaction<ItemStackSnapshot> itemStackTransaction, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalExperience", originalExperience);
         values.put("experience", experience);
@@ -355,7 +355,7 @@ public class SpongeEventFactory {
      * @return A new interact event
      */
     public static InteractEvent createInteractEvent(Cause cause, Optional<Vector3d> interactionPoint) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
         return SpongeEventFactoryUtils.createEventImpl(InteractEvent.class, values);
@@ -370,7 +370,7 @@ public class SpongeEventFactory {
      * @return A new lightning event
      */
     public static LightningEvent createLightningEvent(Cause cause) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         return SpongeEventFactoryUtils.createEventImpl(LightningEvent.class, values);
     }
@@ -384,7 +384,7 @@ public class SpongeEventFactory {
      * @return A new post lightning event
      */
     public static LightningEvent.Post createLightningEventPost(Cause cause) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         return SpongeEventFactoryUtils.createEventImpl(LightningEvent.Post.class, values);
     }
@@ -398,7 +398,7 @@ public class SpongeEventFactory {
      * @return A new pre lightning event
      */
     public static LightningEvent.Pre createLightningEventPre(Cause cause) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         return SpongeEventFactoryUtils.createEventImpl(LightningEvent.Pre.class, values);
     }
@@ -416,7 +416,7 @@ public class SpongeEventFactory {
      * @return A new strike lightning event
      */
     public static LightningEvent.Strike createLightningEventStrike(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
@@ -436,7 +436,7 @@ public class SpongeEventFactory {
      * @return A new sleeping event
      */
     public static SleepingEvent createSleepingEvent(Cause cause, BlockSnapshot bed, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("bed", bed);
         values.put("targetEntity", targetEntity);
@@ -454,7 +454,7 @@ public class SpongeEventFactory {
      * @return A new finish sleeping event
      */
     public static SleepingEvent.Finish createSleepingEventFinish(Cause cause, BlockSnapshot bed, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("bed", bed);
         values.put("targetEntity", targetEntity);
@@ -474,7 +474,7 @@ public class SpongeEventFactory {
      * @return A new post sleeping event
      */
     public static SleepingEvent.Post createSleepingEventPost(Cause cause, BlockSnapshot bed, Optional<Transform<World>> spawnTransform, Entity targetEntity, boolean spawnSet) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("bed", bed);
         values.put("spawnTransform", spawnTransform);
@@ -494,7 +494,7 @@ public class SpongeEventFactory {
      * @return A new pre sleeping event
      */
     public static SleepingEvent.Pre createSleepingEventPre(Cause cause, BlockSnapshot bed, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("bed", bed);
         values.put("targetEntity", targetEntity);
@@ -512,7 +512,7 @@ public class SpongeEventFactory {
      * @return A new tick sleeping event
      */
     public static SleepingEvent.Tick createSleepingEventTick(Cause cause, BlockSnapshot bed, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("bed", bed);
         values.put("targetEntity", targetEntity);
@@ -530,7 +530,7 @@ public class SpongeEventFactory {
      * @return A new change block event
      */
     public static ChangeBlockEvent createChangeBlockEvent(Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
@@ -548,7 +548,7 @@ public class SpongeEventFactory {
      * @return A new break change block event
      */
     public static ChangeBlockEvent.Break createChangeBlockEventBreak(Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
@@ -566,7 +566,7 @@ public class SpongeEventFactory {
      * @return A new decay change block event
      */
     public static ChangeBlockEvent.Decay createChangeBlockEventDecay(Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
@@ -584,7 +584,7 @@ public class SpongeEventFactory {
      * @return A new grow change block event
      */
     public static ChangeBlockEvent.Grow createChangeBlockEventGrow(Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
@@ -602,7 +602,7 @@ public class SpongeEventFactory {
      * @return A new modify change block event
      */
     public static ChangeBlockEvent.Modify createChangeBlockEventModify(Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
@@ -620,7 +620,7 @@ public class SpongeEventFactory {
      * @return A new place change block event
      */
     public static ChangeBlockEvent.Place createChangeBlockEventPlace(Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
@@ -638,7 +638,7 @@ public class SpongeEventFactory {
      * @return A new post change block event
      */
     public static ChangeBlockEvent.Post createChangeBlockEventPost(Cause cause, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
@@ -657,7 +657,7 @@ public class SpongeEventFactory {
      * @return A new collide block event
      */
     public static CollideBlockEvent createCollideBlockEvent(Cause cause, BlockState targetBlock, Location<World> targetLocation, Direction targetSide) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetBlock", targetBlock);
         values.put("targetLocation", targetLocation);
@@ -677,7 +677,7 @@ public class SpongeEventFactory {
      * @return A new interact block event
      */
     public static InteractBlockEvent createInteractBlockEvent(Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
         values.put("targetBlock", targetBlock);
@@ -697,7 +697,7 @@ public class SpongeEventFactory {
      * @return A new primary interact block event
      */
     public static InteractBlockEvent.Primary createInteractBlockEventPrimary(Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
         values.put("targetBlock", targetBlock);
@@ -717,7 +717,7 @@ public class SpongeEventFactory {
      * @return A new secondary interact block event
      */
     public static InteractBlockEvent.Secondary createInteractBlockEventSecondary(Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
         values.put("targetBlock", targetBlock);
@@ -736,7 +736,7 @@ public class SpongeEventFactory {
      * @return A new notify neighbor block event
      */
     public static NotifyNeighborBlockEvent createNotifyNeighborBlockEvent(Cause cause, Map<Direction, BlockState> originalNeighbors, Map<Direction, BlockState> neighbors) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalNeighbors", originalNeighbors);
         values.put("neighbors", neighbors);
@@ -753,7 +753,7 @@ public class SpongeEventFactory {
      * @return A new target block event
      */
     public static TargetBlockEvent createTargetBlockEvent(Cause cause, BlockSnapshot targetBlock) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetBlock", targetBlock);
         return SpongeEventFactoryUtils.createEventImpl(TargetBlockEvent.class, values);
@@ -769,7 +769,7 @@ public class SpongeEventFactory {
      * @return A new tick block event
      */
     public static TickBlockEvent createTickBlockEvent(Cause cause, BlockSnapshot targetBlock) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetBlock", targetBlock);
         return SpongeEventFactoryUtils.createEventImpl(TickBlockEvent.class, values);
@@ -786,7 +786,7 @@ public class SpongeEventFactory {
      * @return A new brewing event
      */
     public static BrewingEvent createBrewingEvent(Cause cause, ItemStackSnapshot ingredient, BrewingStand targetTile) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("ingredient", ingredient);
         values.put("targetTile", targetTile);
@@ -805,7 +805,7 @@ public class SpongeEventFactory {
      * @return A new finish brewing event
      */
     public static BrewingEvent.Finish createBrewingEventFinish(Cause cause, List<ItemStackSnapshot> brewedItemStacks, ItemStackSnapshot ingredient, BrewingStand targetTile) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("brewedItemStacks", brewedItemStacks);
         values.put("ingredient", ingredient);
@@ -825,7 +825,7 @@ public class SpongeEventFactory {
      * @return A new interrupt brewing event
      */
     public static BrewingEvent.Interrupt createBrewingEventInterrupt(Cause cause, List<ItemStackSnapshot> brewedItemStacks, ItemStackSnapshot ingredient, BrewingStand targetTile) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("brewedItemStacks", brewedItemStacks);
         values.put("ingredient", ingredient);
@@ -845,7 +845,7 @@ public class SpongeEventFactory {
      * @return A new start brewing event
      */
     public static BrewingEvent.Start createBrewingEventStart(Cause cause, ItemStackSnapshot ingredient, BrewingStand targetTile, List<? extends Transaction<ItemStackSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("ingredient", ingredient);
         values.put("targetTile", targetTile);
@@ -865,7 +865,7 @@ public class SpongeEventFactory {
      * @return A new tick brewing event
      */
     public static BrewingEvent.Tick createBrewingEventTick(Cause cause, ItemStackSnapshot ingredient, BrewingStand targetTile, List<? extends Transaction<ItemStackSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("ingredient", ingredient);
         values.put("targetTile", targetTile);
@@ -885,7 +885,7 @@ public class SpongeEventFactory {
      * @return A new change sign event
      */
     public static ChangeSignEvent createChangeSignEvent(Cause cause, ImmutableSignData originalText, SignData text, Sign targetTile) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalText", originalText);
         values.put("text", text);
@@ -904,7 +904,7 @@ public class SpongeEventFactory {
      * @return A new smelt event
      */
     public static SmeltEvent createSmeltEvent(Cause cause, ItemStackSnapshot fuel, Furnace targetTile) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fuel", fuel);
         values.put("targetTile", targetTile);
@@ -923,7 +923,7 @@ public class SpongeEventFactory {
      * @return A new consume fuel smelt event
      */
     public static SmeltEvent.ConsumeFuel createSmeltEventConsumeFuel(Cause cause, ItemStackSnapshot fuel, Furnace targetTile, List<? extends Transaction<ItemStackSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fuel", fuel);
         values.put("targetTile", targetTile);
@@ -943,7 +943,7 @@ public class SpongeEventFactory {
      * @return A new finish smelt event
      */
     public static SmeltEvent.Finish createSmeltEventFinish(Cause cause, ItemStackSnapshot fuel, List<ItemStackSnapshot> smeltedItems, Furnace targetTile) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fuel", fuel);
         values.put("smeltedItems", smeltedItems);
@@ -963,7 +963,7 @@ public class SpongeEventFactory {
      * @return A new interrupt smelt event
      */
     public static SmeltEvent.Interrupt createSmeltEventInterrupt(Cause cause, ItemStackSnapshot fuel, List<ItemStackSnapshot> smeltedItems, Furnace targetTile) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fuel", fuel);
         values.put("smeltedItems", smeltedItems);
@@ -983,7 +983,7 @@ public class SpongeEventFactory {
      * @return A new start smelt event
      */
     public static SmeltEvent.Start createSmeltEventStart(Cause cause, ItemStackSnapshot fuel, Furnace targetTile, List<? extends Transaction<ItemStackSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fuel", fuel);
         values.put("targetTile", targetTile);
@@ -1003,7 +1003,7 @@ public class SpongeEventFactory {
      * @return A new tick smelt event
      */
     public static SmeltEvent.Tick createSmeltEventTick(Cause cause, ItemStackSnapshot fuel, Furnace targetTile, List<? extends Transaction<ItemStackSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fuel", fuel);
         values.put("targetTile", targetTile);
@@ -1021,7 +1021,7 @@ public class SpongeEventFactory {
      * @return A new target tile entity event
      */
     public static TargetTileEntityEvent createTargetTileEntityEvent(Cause cause, TileEntity targetTile) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetTile", targetTile);
         return SpongeEventFactoryUtils.createEventImpl(TargetTileEntityEvent.class, values);
@@ -1039,7 +1039,7 @@ public class SpongeEventFactory {
      * @return A new send command event
      */
     public static SendCommandEvent createSendCommandEvent(Cause cause, String arguments, String command, CommandResult result) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("arguments", arguments);
         values.put("command", command);
@@ -1059,7 +1059,7 @@ public class SpongeEventFactory {
      * @return A new tab complete event
      */
     public static TabCompleteEvent createTabCompleteEvent(Cause cause, List<String> originalTabCompletions, List<String> tabCompletions, String rawMessage) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalTabCompletions", originalTabCompletions);
         values.put("tabCompletions", tabCompletions);
@@ -1079,7 +1079,7 @@ public class SpongeEventFactory {
      * @return A new chat tab complete event
      */
     public static TabCompleteEvent.Chat createTabCompleteEventChat(Cause cause, List<String> originalTabCompletions, List<String> tabCompletions, String rawMessage) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalTabCompletions", originalTabCompletions);
         values.put("tabCompletions", tabCompletions);
@@ -1101,7 +1101,7 @@ public class SpongeEventFactory {
      * @return A new command tab complete event
      */
     public static TabCompleteEvent.Command createTabCompleteEventCommand(Cause cause, List<String> originalTabCompletions, List<String> tabCompletions, String arguments, String command, String rawMessage) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalTabCompletions", originalTabCompletions);
         values.put("tabCompletions", tabCompletions);
@@ -1121,7 +1121,7 @@ public class SpongeEventFactory {
      * @return A new change data holder event
      */
     public static ChangeDataHolderEvent createChangeDataHolderEvent(Cause cause, DataHolder targetHolder) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetHolder", targetHolder);
         return SpongeEventFactoryUtils.createEventImpl(ChangeDataHolderEvent.class, values);
@@ -1138,7 +1138,7 @@ public class SpongeEventFactory {
      * @return A new value change change data holder event
      */
     public static ChangeDataHolderEvent.ValueChange createChangeDataHolderEventValueChange(Cause cause, DataTransactionResult originalChanges, DataHolder targetHolder) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChanges", originalChanges);
         values.put("targetHolder", targetHolder);
@@ -1155,7 +1155,7 @@ public class SpongeEventFactory {
      * @return A new economy transaction event
      */
     public static EconomyTransactionEvent createEconomyTransactionEvent(Cause cause, TransactionResult transactionResult) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("transactionResult", transactionResult);
         return SpongeEventFactoryUtils.createEventImpl(EconomyTransactionEvent.class, values);
@@ -1173,7 +1173,7 @@ public class SpongeEventFactory {
      * @return A new affect entity event
      */
     public static AffectEntityEvent createAffectEntityEvent(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
@@ -1192,7 +1192,7 @@ public class SpongeEventFactory {
      * @return A new breed entity event
      */
     public static BreedEntityEvent createBreedEntityEvent(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
         values.put("targetEntity", targetEntity);
@@ -1211,7 +1211,7 @@ public class SpongeEventFactory {
      * @return A new breed breed entity event
      */
     public static BreedEntityEvent.Breed createBreedEntityEventBreed(Cause cause, Optional<Vector3d> interactionPoint, Ageable offspringEntity, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
         values.put("offspringEntity", offspringEntity);
@@ -1233,7 +1233,7 @@ public class SpongeEventFactory {
      * @return A new find mate breed entity event
      */
     public static BreedEntityEvent.FindMate createBreedEntityEventFindMate(Cause cause, TristateResult.Result originalResult, TristateResult.Result result, Optional<Vector3d> interactionPoint, Entity targetEntity, boolean hasAllowResult) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalResult", originalResult);
         values.put("result", result);
@@ -1256,7 +1256,7 @@ public class SpongeEventFactory {
      * @return A new change entity equipment event
      */
     public static ChangeEntityEquipmentEvent createChangeEntityEquipmentEvent(Cause cause, Optional<ItemStackSnapshot> originalItemStack, Optional<Transaction<ItemStackSnapshot>> itemStack, Entity targetEntity, Slot targetInventory) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalItemStack", originalItemStack);
         values.put("itemStack", itemStack);
@@ -1278,7 +1278,7 @@ public class SpongeEventFactory {
      * @return A new target humanoid change entity equipment event
      */
     public static ChangeEntityEquipmentEvent.TargetHumanoid createChangeEntityEquipmentEventTargetHumanoid(Cause cause, Optional<ItemStackSnapshot> originalItemStack, Optional<Transaction<ItemStackSnapshot>> itemStack, Humanoid targetEntity, Slot targetInventory) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalItemStack", originalItemStack);
         values.put("itemStack", itemStack);
@@ -1300,7 +1300,7 @@ public class SpongeEventFactory {
      * @return A new target living change entity equipment event
      */
     public static ChangeEntityEquipmentEvent.TargetLiving createChangeEntityEquipmentEventTargetLiving(Cause cause, Optional<ItemStackSnapshot> originalItemStack, Optional<Transaction<ItemStackSnapshot>> itemStack, Living targetEntity, Slot targetInventory) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalItemStack", originalItemStack);
         values.put("itemStack", itemStack);
@@ -1322,7 +1322,7 @@ public class SpongeEventFactory {
      * @return A new target player change entity equipment event
      */
     public static ChangeEntityEquipmentEvent.TargetPlayer createChangeEntityEquipmentEventTargetPlayer(Cause cause, Optional<ItemStackSnapshot> originalItemStack, Optional<Transaction<ItemStackSnapshot>> itemStack, Player targetEntity, Slot targetInventory) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalItemStack", originalItemStack);
         values.put("itemStack", itemStack);
@@ -1343,7 +1343,7 @@ public class SpongeEventFactory {
      * @return A new change entity experience event
      */
     public static ChangeEntityExperienceEvent createChangeEntityExperienceEvent(Cause cause, int originalExperience, int experience, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalExperience", originalExperience);
         values.put("experience", experience);
@@ -1363,7 +1363,7 @@ public class SpongeEventFactory {
      * @return A new change entity potion effect event
      */
     public static ChangeEntityPotionEffectEvent createChangeEntityPotionEffectEvent(Cause cause, List<PotionEffect> currentEffects, PotionEffect potionEffect, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("currentEffects", currentEffects);
         values.put("potionEffect", potionEffect);
@@ -1383,7 +1383,7 @@ public class SpongeEventFactory {
      * @return A new expire change entity potion effect event
      */
     public static ChangeEntityPotionEffectEvent.Expire createChangeEntityPotionEffectEventExpire(Cause cause, List<PotionEffect> currentEffects, PotionEffect potionEffect, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("currentEffects", currentEffects);
         values.put("potionEffect", potionEffect);
@@ -1403,7 +1403,7 @@ public class SpongeEventFactory {
      * @return A new gain change entity potion effect event
      */
     public static ChangeEntityPotionEffectEvent.Gain createChangeEntityPotionEffectEventGain(Cause cause, List<PotionEffect> currentEffects, PotionEffect potionEffect, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("currentEffects", currentEffects);
         values.put("potionEffect", potionEffect);
@@ -1423,7 +1423,7 @@ public class SpongeEventFactory {
      * @return A new remove change entity potion effect event
      */
     public static ChangeEntityPotionEffectEvent.Remove createChangeEntityPotionEffectEventRemove(Cause cause, List<PotionEffect> currentEffects, PotionEffect potionEffect, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("currentEffects", currentEffects);
         values.put("potionEffect", potionEffect);
@@ -1443,7 +1443,7 @@ public class SpongeEventFactory {
      * @return A new collide entity event
      */
     public static CollideEntityEvent createCollideEntityEvent(Cause cause, List<Entity> originalEntities, List<Entity> entities, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalEntities", originalEntities);
         values.put("entities", entities);
@@ -1462,7 +1462,7 @@ public class SpongeEventFactory {
      * @return A new construct entity event
      */
     public static ConstructEntityEvent createConstructEntityEvent(Cause cause, EntityType targetType, Transform<World> transform) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetType", targetType);
         values.put("transform", transform);
@@ -1481,7 +1481,7 @@ public class SpongeEventFactory {
      * @return A new post construct entity event
      */
     public static ConstructEntityEvent.Post createConstructEntityEventPost(Cause cause, Entity targetEntity, EntityType targetType, Transform<World> transform) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         values.put("targetType", targetType);
@@ -1500,7 +1500,7 @@ public class SpongeEventFactory {
      * @return A new pre construct entity event
      */
     public static ConstructEntityEvent.Pre createConstructEntityEventPre(Cause cause, EntityType targetType, Transform<World> transform) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetType", targetType);
         values.put("transform", transform);
@@ -1519,7 +1519,7 @@ public class SpongeEventFactory {
      * @return A new damage entity event
      */
     public static DamageEntityEvent createDamageEntityEvent(Cause cause, List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions, Entity targetEntity, double originalDamage) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalFunctions", originalFunctions);
         values.put("targetEntity", targetEntity);
@@ -1541,7 +1541,7 @@ public class SpongeEventFactory {
      * @return A new destruct entity event
      */
     public static DestructEntityEvent createDestructEntityEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
@@ -1565,7 +1565,7 @@ public class SpongeEventFactory {
      * @return A new death destruct entity event
      */
     public static DestructEntityEvent.Death createDestructEntityEventDeath(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Living targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
@@ -1585,7 +1585,7 @@ public class SpongeEventFactory {
      * @return A new dismount entity event
      */
     public static DismountEntityEvent createDismountEntityEvent(Cause cause, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(DismountEntityEvent.class, values);
@@ -1603,7 +1603,7 @@ public class SpongeEventFactory {
      * @return A new displace entity event
      */
     public static DisplaceEntityEvent createDisplaceEntityEvent(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
@@ -1623,7 +1623,7 @@ public class SpongeEventFactory {
      * @return A new move displace entity event
      */
     public static DisplaceEntityEvent.Move createDisplaceEntityEventMove(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
@@ -1643,7 +1643,7 @@ public class SpongeEventFactory {
      * @return A new target humanoid move displace entity event
      */
     public static DisplaceEntityEvent.Move.TargetHumanoid createDisplaceEntityEventMoveTargetHumanoid(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Humanoid targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
@@ -1663,7 +1663,7 @@ public class SpongeEventFactory {
      * @return A new target living move displace entity event
      */
     public static DisplaceEntityEvent.Move.TargetLiving createDisplaceEntityEventMoveTargetLiving(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Living targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
@@ -1683,7 +1683,7 @@ public class SpongeEventFactory {
      * @return A new target player move displace entity event
      */
     public static DisplaceEntityEvent.Move.TargetPlayer createDisplaceEntityEventMoveTargetPlayer(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Player targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
@@ -1703,7 +1703,7 @@ public class SpongeEventFactory {
      * @return A new target humanoid displace entity event
      */
     public static DisplaceEntityEvent.TargetHumanoid createDisplaceEntityEventTargetHumanoid(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Humanoid targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
@@ -1723,7 +1723,7 @@ public class SpongeEventFactory {
      * @return A new target living displace entity event
      */
     public static DisplaceEntityEvent.TargetLiving createDisplaceEntityEventTargetLiving(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Living targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
@@ -1743,7 +1743,7 @@ public class SpongeEventFactory {
      * @return A new target player displace entity event
      */
     public static DisplaceEntityEvent.TargetPlayer createDisplaceEntityEventTargetPlayer(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Player targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
@@ -1765,7 +1765,7 @@ public class SpongeEventFactory {
      * @return A new teleport displace entity event
      */
     public static DisplaceEntityEvent.Teleport createDisplaceEntityEventTeleport(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity, TeleporterAgent teleporterAgent, boolean keepsVelocity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
@@ -1789,7 +1789,7 @@ public class SpongeEventFactory {
      * @return A new target humanoid teleport displace entity event
      */
     public static DisplaceEntityEvent.Teleport.TargetHumanoid createDisplaceEntityEventTeleportTargetHumanoid(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Humanoid targetEntity, TeleporterAgent teleporterAgent, boolean keepsVelocity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
@@ -1813,7 +1813,7 @@ public class SpongeEventFactory {
      * @return A new target living teleport displace entity event
      */
     public static DisplaceEntityEvent.Teleport.TargetLiving createDisplaceEntityEventTeleportTargetLiving(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Living targetEntity, TeleporterAgent teleporterAgent, boolean keepsVelocity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
@@ -1837,7 +1837,7 @@ public class SpongeEventFactory {
      * @return A new target player teleport displace entity event
      */
     public static DisplaceEntityEvent.Teleport.TargetPlayer createDisplaceEntityEventTeleportTargetPlayer(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Player targetEntity, TeleporterAgent teleporterAgent, boolean keepsVelocity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
@@ -1857,7 +1857,7 @@ public class SpongeEventFactory {
      * @return A new expire entity event
      */
     public static ExpireEntityEvent createExpireEntityEvent(Cause cause, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(ExpireEntityEvent.class, values);
@@ -1873,7 +1873,7 @@ public class SpongeEventFactory {
      * @return A new target item expire entity event
      */
     public static ExpireEntityEvent.TargetItem createExpireEntityEventTargetItem(Cause cause, Item targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(ExpireEntityEvent.TargetItem.class, values);
@@ -1891,7 +1891,7 @@ public class SpongeEventFactory {
      * @return A new harvest entity event
      */
     public static HarvestEntityEvent createHarvestEntityEvent(Cause cause, int originalExperience, int experience, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalExperience", originalExperience);
         values.put("experience", experience);
@@ -1911,7 +1911,7 @@ public class SpongeEventFactory {
      * @return A new target humanoid harvest entity event
      */
     public static HarvestEntityEvent.TargetHumanoid createHarvestEntityEventTargetHumanoid(Cause cause, int originalExperience, int experience, Humanoid targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalExperience", originalExperience);
         values.put("experience", experience);
@@ -1931,7 +1931,7 @@ public class SpongeEventFactory {
      * @return A new target living harvest entity event
      */
     public static HarvestEntityEvent.TargetLiving createHarvestEntityEventTargetLiving(Cause cause, int originalExperience, int experience, Living targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalExperience", originalExperience);
         values.put("experience", experience);
@@ -1954,7 +1954,7 @@ public class SpongeEventFactory {
      * @return A new target player harvest entity event
      */
     public static HarvestEntityEvent.TargetPlayer createHarvestEntityEventTargetPlayer(Cause cause, int originalExperience, int experience, Player targetEntity, boolean keepsInventory, boolean keepsLevel, int level) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalExperience", originalExperience);
         values.put("experience", experience);
@@ -1977,7 +1977,7 @@ public class SpongeEventFactory {
      * @return A new heal entity event
      */
     public static HealEntityEvent createHealEntityEvent(Cause cause, List<Tuple<HealthModifier, Function<? super Double, Double>>> originalFunctions, Entity targetEntity, double originalHealAmount) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalFunctions", originalFunctions);
         values.put("targetEntity", targetEntity);
@@ -1997,7 +1997,7 @@ public class SpongeEventFactory {
      * @return A new ignite entity event
      */
     public static IgniteEntityEvent createIgniteEntityEvent(Cause cause, int originalFireTicks, int fireTicks, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalFireTicks", originalFireTicks);
         values.put("fireTicks", fireTicks);
@@ -2016,7 +2016,7 @@ public class SpongeEventFactory {
      * @return A new interact entity event
      */
     public static InteractEntityEvent createInteractEntityEvent(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
         values.put("targetEntity", targetEntity);
@@ -2034,7 +2034,7 @@ public class SpongeEventFactory {
      * @return A new primary interact entity event
      */
     public static InteractEntityEvent.Primary createInteractEntityEventPrimary(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
         values.put("targetEntity", targetEntity);
@@ -2052,7 +2052,7 @@ public class SpongeEventFactory {
      * @return A new secondary interact entity event
      */
     public static InteractEntityEvent.Secondary createInteractEntityEventSecondary(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
         values.put("targetEntity", targetEntity);
@@ -2069,7 +2069,7 @@ public class SpongeEventFactory {
      * @return A new leash entity event
      */
     public static LeashEntityEvent createLeashEntityEvent(Cause cause, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(LeashEntityEvent.class, values);
@@ -2085,7 +2085,7 @@ public class SpongeEventFactory {
      * @return A new mount entity event
      */
     public static MountEntityEvent createMountEntityEvent(Cause cause, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(MountEntityEvent.class, values);
@@ -2103,7 +2103,7 @@ public class SpongeEventFactory {
      * @return A new spawn entity event
      */
     public static SpawnEntityEvent createSpawnEntityEvent(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
@@ -2123,7 +2123,7 @@ public class SpongeEventFactory {
      * @return A new chunk load spawn entity event
      */
     public static SpawnEntityEvent.ChunkLoad createSpawnEntityEventChunkLoad(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
@@ -2143,7 +2143,7 @@ public class SpongeEventFactory {
      * @return A new custom spawn entity event
      */
     public static SpawnEntityEvent.Custom createSpawnEntityEventCustom(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
@@ -2163,7 +2163,7 @@ public class SpongeEventFactory {
      * @return A new spawner spawn entity event
      */
     public static SpawnEntityEvent.Spawner createSpawnEntityEventSpawner(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
@@ -2181,7 +2181,7 @@ public class SpongeEventFactory {
      * @return A new tame entity event
      */
     public static TameEntityEvent createTameEntityEvent(Cause cause, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(TameEntityEvent.class, values);
@@ -2197,7 +2197,7 @@ public class SpongeEventFactory {
      * @return A new target entity event
      */
     public static TargetEntityEvent createTargetEntityEvent(Cause cause, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(TargetEntityEvent.class, values);
@@ -2213,7 +2213,7 @@ public class SpongeEventFactory {
      * @return A new unleash entity event
      */
     public static UnleashEntityEvent createUnleashEntityEvent(Cause cause, Entity targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(UnleashEntityEvent.class, values);
@@ -2232,7 +2232,7 @@ public class SpongeEventFactory {
      * @return A new a i task event
      */
     public static AITaskEvent createAITaskEvent(Cause cause, Goal<? extends Agent> goal, Agent targetEntity, AITask<? extends Agent> task, int priority) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("goal", goal);
         values.put("targetEntity", targetEntity);
@@ -2256,7 +2256,7 @@ public class SpongeEventFactory {
      */
     public static AITaskEvent.Add createAITaskEventAdd(Cause cause, int originalPriority, int priority, Goal<? extends Agent> goal, Agent targetEntity, AITask<? extends Agent> task) {
         Preconditions.checkArgument(((goal.getOwner()) == targetEntity), String.format("The target entity \'%s\' is not the owner of the goal \'%s\'!", goal, targetEntity));
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalPriority", originalPriority);
         values.put("priority", priority);
@@ -2280,7 +2280,7 @@ public class SpongeEventFactory {
      */
     public static AITaskEvent.Remove createAITaskEventRemove(Cause cause, Goal<? extends Agent> goal, Agent targetEntity, AITask<? extends Agent> task, int priority) {
         Preconditions.checkArgument(((goal.getOwner()) == targetEntity), String.format("The target entity \'%s\' is not the owner of the goal \'%s\'!", goal, targetEntity));
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("goal", goal);
         values.put("targetEntity", targetEntity);
@@ -2300,7 +2300,7 @@ public class SpongeEventFactory {
      * @return A new item merge item event
      */
     public static ItemMergeItemEvent createItemMergeItemEvent(Cause cause, Item itemToMerge, Item targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("itemToMerge", itemToMerge);
         values.put("targetEntity", targetEntity);
@@ -2317,7 +2317,7 @@ public class SpongeEventFactory {
      * @return A new target item event
      */
     public static TargetItemEvent createTargetItemEvent(Cause cause, Item targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(TargetItemEvent.class, values);
@@ -2333,7 +2333,7 @@ public class SpongeEventFactory {
      * @return A new target agent event
      */
     public static TargetAgentEvent createTargetAgentEvent(Cause cause, Agent targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(TargetAgentEvent.class, values);
@@ -2349,7 +2349,7 @@ public class SpongeEventFactory {
      * @return A new target living event
      */
     public static TargetLivingEvent createTargetLivingEvent(Cause cause, Living targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(TargetLivingEvent.class, values);
@@ -2367,7 +2367,7 @@ public class SpongeEventFactory {
      * @return A new change game mode event
      */
     public static ChangeGameModeEvent createChangeGameModeEvent(Cause cause, GameMode originalGameMode, GameMode gameMode, Humanoid targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalGameMode", originalGameMode);
         values.put("gameMode", gameMode);
@@ -2387,7 +2387,7 @@ public class SpongeEventFactory {
      * @return A new target player change game mode event
      */
     public static ChangeGameModeEvent.TargetPlayer createChangeGameModeEventTargetPlayer(Cause cause, GameMode originalGameMode, GameMode gameMode, Player targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalGameMode", originalGameMode);
         values.put("gameMode", gameMode);
@@ -2407,7 +2407,7 @@ public class SpongeEventFactory {
      * @return A new change level event
      */
     public static ChangeLevelEvent createChangeLevelEvent(Cause cause, int originalLevel, int level, Humanoid targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalLevel", originalLevel);
         values.put("level", level);
@@ -2427,7 +2427,7 @@ public class SpongeEventFactory {
      * @return A new target player change level event
      */
     public static ChangeLevelEvent.TargetPlayer createChangeLevelEventTargetPlayer(Cause cause, int originalLevel, int level, Player targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalLevel", originalLevel);
         values.put("level", level);
@@ -2445,7 +2445,7 @@ public class SpongeEventFactory {
      * @return A new target humanoid event
      */
     public static TargetHumanoidEvent createTargetHumanoidEvent(Cause cause, Humanoid targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(TargetHumanoidEvent.class, values);
@@ -2465,7 +2465,7 @@ public class SpongeEventFactory {
      * @return A new kick player event
      */
     public static KickPlayerEvent createKickPlayerEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Player targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
@@ -2490,7 +2490,7 @@ public class SpongeEventFactory {
      * @return A new player change client settings event
      */
     public static PlayerChangeClientSettingsEvent createPlayerChangeClientSettingsEvent(Cause cause, ChatVisibility chatVisibility, Set<SkinPart> displayedSkinParts, Locale locale, Player targetEntity, boolean chatColorsEnabled, int viewDistance) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("chatVisibility", chatVisibility);
         values.put("displayedSkinParts", displayedSkinParts);
@@ -2513,7 +2513,7 @@ public class SpongeEventFactory {
      * @return A new resource pack status event
      */
     public static ResourcePackStatusEvent createResourcePackStatusEvent(Cause cause, ResourcePack pack, Player player, ResourcePackStatusEvent.ResourcePackStatus status) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("pack", pack);
         values.put("player", player);
@@ -2534,7 +2534,7 @@ public class SpongeEventFactory {
      * @return A new respawn player event
      */
     public static RespawnPlayerEvent createRespawnPlayerEvent(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Player targetEntity, boolean bedSpawn) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
@@ -2553,7 +2553,7 @@ public class SpongeEventFactory {
      * @return A new target player event
      */
     public static TargetPlayerEvent createTargetPlayerEvent(Cause cause, Player targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(TargetPlayerEvent.class, values);
@@ -2569,7 +2569,7 @@ public class SpongeEventFactory {
      * @return A new launch projectile event
      */
     public static LaunchProjectileEvent createLaunchProjectileEvent(Cause cause, Projectile targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(LaunchProjectileEvent.class, values);
@@ -2585,7 +2585,7 @@ public class SpongeEventFactory {
      * @return A new target projectile event
      */
     public static TargetProjectileEvent createTargetProjectileEvent(Cause cause, Projectile targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(TargetProjectileEvent.class, values);
@@ -2601,7 +2601,7 @@ public class SpongeEventFactory {
      * @return A new game about to start server event
      */
     public static GameAboutToStartServerEvent createGameAboutToStartServerEvent(Cause cause, GameState state) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("state", state);
         return SpongeEventFactoryUtils.createEventImpl(GameAboutToStartServerEvent.class, values);
@@ -2617,7 +2617,7 @@ public class SpongeEventFactory {
      * @return A new game construction event
      */
     public static GameConstructionEvent createGameConstructionEvent(Cause cause, GameState state) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("state", state);
         return SpongeEventFactoryUtils.createEventImpl(GameConstructionEvent.class, values);
@@ -2633,7 +2633,7 @@ public class SpongeEventFactory {
      * @return A new game initialization event
      */
     public static GameInitializationEvent createGameInitializationEvent(Cause cause, GameState state) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("state", state);
         return SpongeEventFactoryUtils.createEventImpl(GameInitializationEvent.class, values);
@@ -2649,7 +2649,7 @@ public class SpongeEventFactory {
      * @return A new game load complete event
      */
     public static GameLoadCompleteEvent createGameLoadCompleteEvent(Cause cause, GameState state) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("state", state);
         return SpongeEventFactoryUtils.createEventImpl(GameLoadCompleteEvent.class, values);
@@ -2665,7 +2665,7 @@ public class SpongeEventFactory {
      * @return A new game post initialization event
      */
     public static GamePostInitializationEvent createGamePostInitializationEvent(Cause cause, GameState state) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("state", state);
         return SpongeEventFactoryUtils.createEventImpl(GamePostInitializationEvent.class, values);
@@ -2681,7 +2681,7 @@ public class SpongeEventFactory {
      * @return A new game pre initialization event
      */
     public static GamePreInitializationEvent createGamePreInitializationEvent(Cause cause, GameState state) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("state", state);
         return SpongeEventFactoryUtils.createEventImpl(GamePreInitializationEvent.class, values);
@@ -2697,7 +2697,7 @@ public class SpongeEventFactory {
      * @return A new game started server event
      */
     public static GameStartedServerEvent createGameStartedServerEvent(Cause cause, GameState state) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("state", state);
         return SpongeEventFactoryUtils.createEventImpl(GameStartedServerEvent.class, values);
@@ -2713,7 +2713,7 @@ public class SpongeEventFactory {
      * @return A new game starting server event
      */
     public static GameStartingServerEvent createGameStartingServerEvent(Cause cause, GameState state) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("state", state);
         return SpongeEventFactoryUtils.createEventImpl(GameStartingServerEvent.class, values);
@@ -2729,7 +2729,7 @@ public class SpongeEventFactory {
      * @return A new game state event
      */
     public static GameStateEvent createGameStateEvent(Cause cause, GameState state) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("state", state);
         return SpongeEventFactoryUtils.createEventImpl(GameStateEvent.class, values);
@@ -2745,7 +2745,7 @@ public class SpongeEventFactory {
      * @return A new game stopped event
      */
     public static GameStoppedEvent createGameStoppedEvent(Cause cause, GameState state) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("state", state);
         return SpongeEventFactoryUtils.createEventImpl(GameStoppedEvent.class, values);
@@ -2761,7 +2761,7 @@ public class SpongeEventFactory {
      * @return A new game stopped server event
      */
     public static GameStoppedServerEvent createGameStoppedServerEvent(Cause cause, GameState state) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("state", state);
         return SpongeEventFactoryUtils.createEventImpl(GameStoppedServerEvent.class, values);
@@ -2777,7 +2777,7 @@ public class SpongeEventFactory {
      * @return A new game stopping event
      */
     public static GameStoppingEvent createGameStoppingEvent(Cause cause, GameState state) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("state", state);
         return SpongeEventFactoryUtils.createEventImpl(GameStoppingEvent.class, values);
@@ -2793,7 +2793,7 @@ public class SpongeEventFactory {
      * @return A new game stopping server event
      */
     public static GameStoppingServerEvent createGameStoppingServerEvent(Cause cause, GameState state) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("state", state);
         return SpongeEventFactoryUtils.createEventImpl(GameStoppingServerEvent.class, values);
@@ -2809,7 +2809,7 @@ public class SpongeEventFactory {
      * @return A new affect item stack event
      */
     public static AffectItemStackEvent createAffectItemStackEvent(Cause cause, List<? extends Transaction<ItemStackSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("transactions", transactions);
         return SpongeEventFactoryUtils.createEventImpl(AffectItemStackEvent.class, values);
@@ -2825,7 +2825,7 @@ public class SpongeEventFactory {
      * @return A new affect slot event
      */
     public static AffectSlotEvent createAffectSlotEvent(Cause cause, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("transactions", transactions);
         return SpongeEventFactoryUtils.createEventImpl(AffectSlotEvent.class, values);
@@ -2842,7 +2842,7 @@ public class SpongeEventFactory {
      * @return A new change inventory event
      */
     public static ChangeInventoryEvent createChangeInventoryEvent(Cause cause, Inventory targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetInventory", targetInventory);
         values.put("transactions", transactions);
@@ -2860,7 +2860,7 @@ public class SpongeEventFactory {
      * @return A new equipment change inventory event
      */
     public static ChangeInventoryEvent.Equipment createChangeInventoryEventEquipment(Cause cause, Inventory targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetInventory", targetInventory);
         values.put("transactions", transactions);
@@ -2878,7 +2878,7 @@ public class SpongeEventFactory {
      * @return A new held change inventory event
      */
     public static ChangeInventoryEvent.Held createChangeInventoryEventHeld(Cause cause, Inventory targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetInventory", targetInventory);
         values.put("transactions", transactions);
@@ -2896,7 +2896,7 @@ public class SpongeEventFactory {
      * @return A new pickup change inventory event
      */
     public static ChangeInventoryEvent.Pickup createChangeInventoryEventPickup(Cause cause, Inventory targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetInventory", targetInventory);
         values.put("transactions", transactions);
@@ -2914,7 +2914,7 @@ public class SpongeEventFactory {
      * @return A new transfer change inventory event
      */
     public static ChangeInventoryEvent.Transfer createChangeInventoryEventTransfer(Cause cause, Inventory targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetInventory", targetInventory);
         values.put("transactions", transactions);
@@ -2933,7 +2933,7 @@ public class SpongeEventFactory {
      * @return A new click inventory event
      */
     public static ClickInventoryEvent createClickInventoryEvent(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -2953,7 +2953,7 @@ public class SpongeEventFactory {
      * @return A new creative click inventory event
      */
     public static ClickInventoryEvent.Creative createClickInventoryEventCreative(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -2973,7 +2973,7 @@ public class SpongeEventFactory {
      * @return A new double click inventory event
      */
     public static ClickInventoryEvent.Double createClickInventoryEventDouble(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -2993,7 +2993,7 @@ public class SpongeEventFactory {
      * @return A new drag click inventory event
      */
     public static ClickInventoryEvent.Drag createClickInventoryEventDrag(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -3013,7 +3013,7 @@ public class SpongeEventFactory {
      * @return A new primary drag click inventory event
      */
     public static ClickInventoryEvent.Drag.Primary createClickInventoryEventDragPrimary(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -3033,7 +3033,7 @@ public class SpongeEventFactory {
      * @return A new secondary drag click inventory event
      */
     public static ClickInventoryEvent.Drag.Secondary createClickInventoryEventDragSecondary(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -3056,7 +3056,7 @@ public class SpongeEventFactory {
      * @return A new drop click inventory event
      */
     public static ClickInventoryEvent.Drop createClickInventoryEventDrop(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("entities", entities);
@@ -3082,7 +3082,7 @@ public class SpongeEventFactory {
      * @return A new full drop click inventory event
      */
     public static ClickInventoryEvent.Drop.Full createClickInventoryEventDropFull(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("entities", entities);
@@ -3108,7 +3108,7 @@ public class SpongeEventFactory {
      * @return A new outside drop click inventory event
      */
     public static ClickInventoryEvent.Drop.Outside createClickInventoryEventDropOutside(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("entities", entities);
@@ -3134,7 +3134,7 @@ public class SpongeEventFactory {
      * @return A new primary outside drop click inventory event
      */
     public static ClickInventoryEvent.Drop.Outside.Primary createClickInventoryEventDropOutsidePrimary(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("entities", entities);
@@ -3160,7 +3160,7 @@ public class SpongeEventFactory {
      * @return A new secondary outside drop click inventory event
      */
     public static ClickInventoryEvent.Drop.Outside.Secondary createClickInventoryEventDropOutsideSecondary(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("entities", entities);
@@ -3186,7 +3186,7 @@ public class SpongeEventFactory {
      * @return A new single drop click inventory event
      */
     public static ClickInventoryEvent.Drop.Single createClickInventoryEventDropSingle(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("entities", entities);
@@ -3209,7 +3209,7 @@ public class SpongeEventFactory {
      * @return A new middle click inventory event
      */
     public static ClickInventoryEvent.Middle createClickInventoryEventMiddle(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -3230,7 +3230,7 @@ public class SpongeEventFactory {
      * @return A new number press click inventory event
      */
     public static ClickInventoryEvent.NumberPress createClickInventoryEventNumberPress(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions, int number) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -3251,7 +3251,7 @@ public class SpongeEventFactory {
      * @return A new primary click inventory event
      */
     public static ClickInventoryEvent.Primary createClickInventoryEventPrimary(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -3271,7 +3271,7 @@ public class SpongeEventFactory {
      * @return A new secondary click inventory event
      */
     public static ClickInventoryEvent.Secondary createClickInventoryEventSecondary(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -3291,7 +3291,7 @@ public class SpongeEventFactory {
      * @return A new shift click inventory event
      */
     public static ClickInventoryEvent.Shift createClickInventoryEventShift(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -3311,7 +3311,7 @@ public class SpongeEventFactory {
      * @return A new primary shift click inventory event
      */
     public static ClickInventoryEvent.Shift.Primary createClickInventoryEventShiftPrimary(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -3331,7 +3331,7 @@ public class SpongeEventFactory {
      * @return A new secondary shift click inventory event
      */
     public static ClickInventoryEvent.Shift.Secondary createClickInventoryEventShiftSecondary(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -3351,7 +3351,7 @@ public class SpongeEventFactory {
      * @return A new creative inventory event
      */
     public static CreativeInventoryEvent createCreativeInventoryEvent(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -3371,7 +3371,7 @@ public class SpongeEventFactory {
      * @return A new click creative inventory event
      */
     public static CreativeInventoryEvent.Click createCreativeInventoryEventClick(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -3394,7 +3394,7 @@ public class SpongeEventFactory {
      * @return A new drop creative inventory event
      */
     public static CreativeInventoryEvent.Drop createCreativeInventoryEventDrop(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("entities", entities);
@@ -3414,7 +3414,7 @@ public class SpongeEventFactory {
      * @return A new drop item event
      */
     public static DropItemEvent createDropItemEvent(Cause cause) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         return SpongeEventFactoryUtils.createEventImpl(DropItemEvent.class, values);
     }
@@ -3431,7 +3431,7 @@ public class SpongeEventFactory {
      * @return A new custom drop item event
      */
     public static DropItemEvent.Custom createDropItemEventCustom(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
@@ -3451,7 +3451,7 @@ public class SpongeEventFactory {
      * @return A new destruct drop item event
      */
     public static DropItemEvent.Destruct createDropItemEventDestruct(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
@@ -3471,7 +3471,7 @@ public class SpongeEventFactory {
      * @return A new dispense drop item event
      */
     public static DropItemEvent.Dispense createDropItemEventDispense(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
@@ -3490,7 +3490,7 @@ public class SpongeEventFactory {
      * @return A new pre drop item event
      */
     public static DropItemEvent.Pre createDropItemEventPre(Cause cause, List<ItemStackSnapshot> originalDroppedItems, List<ItemStackSnapshot> droppedItems) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalDroppedItems", originalDroppedItems);
         values.put("droppedItems", droppedItems);
@@ -3508,7 +3508,7 @@ public class SpongeEventFactory {
      * @return A new interact inventory event
      */
     public static InteractInventoryEvent createInteractInventoryEvent(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -3526,7 +3526,7 @@ public class SpongeEventFactory {
      * @return A new close interact inventory event
      */
     public static InteractInventoryEvent.Close createInteractInventoryEventClose(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -3544,7 +3544,7 @@ public class SpongeEventFactory {
      * @return A new open interact inventory event
      */
     public static InteractInventoryEvent.Open createInteractInventoryEventOpen(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("targetInventory", targetInventory);
@@ -3561,7 +3561,7 @@ public class SpongeEventFactory {
      * @return A new target container event
      */
     public static TargetContainerEvent createTargetContainerEvent(Cause cause, Container targetInventory) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetInventory", targetInventory);
         return SpongeEventFactoryUtils.createEventImpl(TargetContainerEvent.class, values);
@@ -3577,7 +3577,7 @@ public class SpongeEventFactory {
      * @return A new target inventory event
      */
     public static TargetInventoryEvent createTargetInventoryEvent(Cause cause, Inventory targetInventory) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetInventory", targetInventory);
         return SpongeEventFactoryUtils.createEventImpl(TargetInventoryEvent.class, values);
@@ -3595,7 +3595,7 @@ public class SpongeEventFactory {
      * @return A new use item stack event
      */
     public static UseItemStackEvent createUseItemStackEvent(Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalRemainingDuration", originalRemainingDuration);
         values.put("remainingDuration", remainingDuration);
@@ -3616,7 +3616,7 @@ public class SpongeEventFactory {
      * @return A new finish use item stack event
      */
     public static UseItemStackEvent.Finish createUseItemStackEventFinish(Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse, Transaction<ItemStackSnapshot> itemStackResult) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalRemainingDuration", originalRemainingDuration);
         values.put("remainingDuration", remainingDuration);
@@ -3637,7 +3637,7 @@ public class SpongeEventFactory {
      * @return A new start use item stack event
      */
     public static UseItemStackEvent.Start createUseItemStackEventStart(Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalRemainingDuration", originalRemainingDuration);
         values.put("remainingDuration", remainingDuration);
@@ -3657,7 +3657,7 @@ public class SpongeEventFactory {
      * @return A new stop use item stack event
      */
     public static UseItemStackEvent.Stop createUseItemStackEventStop(Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalRemainingDuration", originalRemainingDuration);
         values.put("remainingDuration", remainingDuration);
@@ -3677,7 +3677,7 @@ public class SpongeEventFactory {
      * @return A new tick use item stack event
      */
     public static UseItemStackEvent.Tick createUseItemStackEventTick(Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalRemainingDuration", originalRemainingDuration);
         values.put("remainingDuration", remainingDuration);
@@ -3698,7 +3698,7 @@ public class SpongeEventFactory {
      * @return A new message channel event
      */
     public static MessageChannelEvent createMessageChannelEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
@@ -3721,7 +3721,7 @@ public class SpongeEventFactory {
      * @return A new chat message channel event
      */
     public static MessageChannelEvent.Chat createMessageChannelEventChat(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Text rawMessage) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
@@ -3742,7 +3742,7 @@ public class SpongeEventFactory {
      * @return A new message event
      */
     public static MessageEvent createMessageEvent(Cause cause, Optional<Text> originalMessage, Optional<Text> message) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalMessage", originalMessage);
         values.put("message", message);
@@ -3759,7 +3759,7 @@ public class SpongeEventFactory {
      * @return A new ban ip event
      */
     public static BanIpEvent createBanIpEvent(Cause cause, Ban.Ip ban) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("ban", ban);
         return SpongeEventFactoryUtils.createEventImpl(BanIpEvent.class, values);
@@ -3775,7 +3775,7 @@ public class SpongeEventFactory {
      * @return A new channel registration event
      */
     public static ChannelRegistrationEvent createChannelRegistrationEvent(Cause cause, String channel) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("channel", channel);
         return SpongeEventFactoryUtils.createEventImpl(ChannelRegistrationEvent.class, values);
@@ -3791,7 +3791,7 @@ public class SpongeEventFactory {
      * @return A new register channel registration event
      */
     public static ChannelRegistrationEvent.Register createChannelRegistrationEventRegister(Cause cause, String channel) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("channel", channel);
         return SpongeEventFactoryUtils.createEventImpl(ChannelRegistrationEvent.Register.class, values);
@@ -3807,7 +3807,7 @@ public class SpongeEventFactory {
      * @return A new unregister channel registration event
      */
     public static ChannelRegistrationEvent.Unregister createChannelRegistrationEventUnregister(Cause cause, String channel) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("channel", channel);
         return SpongeEventFactoryUtils.createEventImpl(ChannelRegistrationEvent.Unregister.class, values);
@@ -3822,7 +3822,7 @@ public class SpongeEventFactory {
      * @return A new client connection event
      */
     public static ClientConnectionEvent createClientConnectionEvent(Cause cause) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.class, values);
     }
@@ -3840,7 +3840,7 @@ public class SpongeEventFactory {
      * @return A new auth client connection event
      */
     public static ClientConnectionEvent.Auth createClientConnectionEventAuth(Cause cause, Optional<Text> originalMessage, Optional<Text> message, RemoteConnection connection, GameProfile profile) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalMessage", originalMessage);
         values.put("message", message);
@@ -3863,7 +3863,7 @@ public class SpongeEventFactory {
      * @return A new disconnect client connection event
      */
     public static ClientConnectionEvent.Disconnect createClientConnectionEventDisconnect(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Player targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
@@ -3887,7 +3887,7 @@ public class SpongeEventFactory {
      * @return A new join client connection event
      */
     public static ClientConnectionEvent.Join createClientConnectionEventJoin(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Player targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
@@ -3913,7 +3913,7 @@ public class SpongeEventFactory {
      * @return A new login client connection event
      */
     public static ClientConnectionEvent.Login createClientConnectionEventLogin(Cause cause, Optional<Text> originalMessage, Optional<Text> message, Transform<World> fromTransform, Transform<World> toTransform, RemoteConnection connection, GameProfile profile, User targetUser) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalMessage", originalMessage);
         values.put("message", message);
@@ -3935,7 +3935,7 @@ public class SpongeEventFactory {
      * @return A new pardon ip event
      */
     public static PardonIpEvent createPardonIpEvent(Cause cause, Ban.Ip ban) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("ban", ban);
         return SpongeEventFactoryUtils.createEventImpl(PardonIpEvent.class, values);
@@ -3951,7 +3951,7 @@ public class SpongeEventFactory {
      * @return A new rcon connection event
      */
     public static RconConnectionEvent createRconConnectionEvent(Cause cause, RconSource source) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("source", source);
         return SpongeEventFactoryUtils.createEventImpl(RconConnectionEvent.class, values);
@@ -3967,7 +3967,7 @@ public class SpongeEventFactory {
      * @return A new connect rcon connection event
      */
     public static RconConnectionEvent.Connect createRconConnectionEventConnect(Cause cause, RconSource source) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("source", source);
         return SpongeEventFactoryUtils.createEventImpl(RconConnectionEvent.Connect.class, values);
@@ -3983,7 +3983,7 @@ public class SpongeEventFactory {
      * @return A new disconnect rcon connection event
      */
     public static RconConnectionEvent.Disconnect createRconConnectionEventDisconnect(Cause cause, RconSource source) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("source", source);
         return SpongeEventFactoryUtils.createEventImpl(RconConnectionEvent.Disconnect.class, values);
@@ -3999,7 +3999,7 @@ public class SpongeEventFactory {
      * @return A new login rcon connection event
      */
     public static RconConnectionEvent.Login createRconConnectionEventLogin(Cause cause, RconSource source) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("source", source);
         return SpongeEventFactoryUtils.createEventImpl(RconConnectionEvent.Login.class, values);
@@ -4016,7 +4016,7 @@ public class SpongeEventFactory {
      * @return A new client ping server event
      */
     public static ClientPingServerEvent createClientPingServerEvent(Cause cause, StatusClient client, ClientPingServerEvent.Response response) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("client", client);
         values.put("response", response);
@@ -4035,7 +4035,7 @@ public class SpongeEventFactory {
      * @return A new response client ping server event
      */
     public static ClientPingServerEvent.Response createClientPingServerEventResponse(Text description, Optional<Favicon> favicon, Optional<ClientPingServerEvent.Response.Players> players, MinecraftVersion version) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("description", description);
         values.put("favicon", favicon);
         values.put("players", players);
@@ -4054,7 +4054,7 @@ public class SpongeEventFactory {
      * @return A new players response client ping server event
      */
     public static ClientPingServerEvent.Response.Players createClientPingServerEventResponsePlayers(List<GameProfile> profiles, int max, int online) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("profiles", profiles);
         values.put("max", max);
         values.put("online", online);
@@ -4070,7 +4070,7 @@ public class SpongeEventFactory {
      * @return A new query server event
      */
     public static QueryServerEvent createQueryServerEvent(Cause cause) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         return SpongeEventFactoryUtils.createEventImpl(QueryServerEvent.class, values);
     }
@@ -4092,7 +4092,7 @@ public class SpongeEventFactory {
      * @return A new basic query server event
      */
     public static QueryServerEvent.Basic createQueryServerEventBasic(Cause cause, InetSocketAddress address, String gameType, String map, String motd, int maxPlayerCount, int maxSize, int playerCount, int size) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("address", address);
         values.put("gameType", gameType);
@@ -4127,7 +4127,7 @@ public class SpongeEventFactory {
      * @return A new full query server event
      */
     public static QueryServerEvent.Full createQueryServerEventFull(Cause cause, InetSocketAddress address, Map<String, String> customValuesMap, String gameId, String gameType, String map, String motd, List<String> players, String plugins, String version, int maxPlayerCount, int maxSize, int playerCount, int size) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("address", address);
         values.put("customValuesMap", customValuesMap);
@@ -4156,7 +4156,7 @@ public class SpongeEventFactory {
      * @return A new change service provider event
      */
     public static ChangeServiceProviderEvent createChangeServiceProviderEvent(Cause cause, ProviderRegistration<?> newProviderRegistration, Optional<ProviderRegistration<?>> previousProviderRegistration) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("newProviderRegistration", newProviderRegistration);
         values.put("previousProviderRegistration", previousProviderRegistration);
@@ -4175,7 +4175,7 @@ public class SpongeEventFactory {
      * @return A new change statistic event
      */
     public static ChangeStatisticEvent createChangeStatisticEvent(Cause cause, long originalValue, long value, Statistic statistic) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalValue", originalValue);
         values.put("value", value);
@@ -4196,7 +4196,7 @@ public class SpongeEventFactory {
      * @return A new target player change statistic event
      */
     public static ChangeStatisticEvent.TargetPlayer createChangeStatisticEventTargetPlayer(Cause cause, long originalValue, long value, Statistic statistic, Player targetEntity) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalValue", originalValue);
         values.put("value", value);
@@ -4216,7 +4216,7 @@ public class SpongeEventFactory {
      * @return A new ban user event
      */
     public static BanUserEvent createBanUserEvent(Cause cause, Ban.Profile ban, User targetUser) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("ban", ban);
         values.put("targetUser", targetUser);
@@ -4235,7 +4235,7 @@ public class SpongeEventFactory {
      * @return A new target player ban user event
      */
     public static BanUserEvent.TargetPlayer createBanUserEventTargetPlayer(Cause cause, Ban.Profile ban, Player targetEntity, User targetUser) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("ban", ban);
         values.put("targetEntity", targetEntity);
@@ -4254,7 +4254,7 @@ public class SpongeEventFactory {
      * @return A new pardon user event
      */
     public static PardonUserEvent createPardonUserEvent(Cause cause, Ban.Profile ban, User targetUser) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("ban", ban);
         values.put("targetUser", targetUser);
@@ -4273,7 +4273,7 @@ public class SpongeEventFactory {
      * @return A new target player pardon user event
      */
     public static PardonUserEvent.TargetPlayer createPardonUserEventTargetPlayer(Cause cause, Ban.Profile ban, Player targetEntity, Player targetUser) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("ban", ban);
         values.put("targetEntity", targetEntity);
@@ -4291,7 +4291,7 @@ public class SpongeEventFactory {
      * @return A new target user event
      */
     public static TargetUserEvent createTargetUserEvent(Cause cause, User targetUser) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetUser", targetUser);
         return SpongeEventFactoryUtils.createEventImpl(TargetUserEvent.class, values);
@@ -4310,7 +4310,7 @@ public class SpongeEventFactory {
      * @return A new change world game rule event
      */
     public static ChangeWorldGameRuleEvent createChangeWorldGameRuleEvent(Cause cause, String originalValue, String value, String name, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalValue", originalValue);
         values.put("value", value);
@@ -4334,7 +4334,7 @@ public class SpongeEventFactory {
      * @return A new change world weather event
      */
     public static ChangeWorldWeatherEvent createChangeWorldWeatherEvent(Cause cause, int originalDuration, int duration, Weather originalWeather, Weather weather, Weather initialWeather, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalDuration", originalDuration);
         values.put("duration", duration);
@@ -4355,7 +4355,7 @@ public class SpongeEventFactory {
      * @return A new construct portal event
      */
     public static ConstructPortalEvent createConstructPortalEvent(Cause cause, Location<World> portalLocation) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("portalLocation", portalLocation);
         return SpongeEventFactoryUtils.createEventImpl(ConstructPortalEvent.class, values);
@@ -4372,7 +4372,7 @@ public class SpongeEventFactory {
      * @return A new construct world event
      */
     public static ConstructWorldEvent createConstructWorldEvent(Cause cause, WorldCreationSettings worldCreationSettings, WorldProperties worldProperties) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("worldCreationSettings", worldCreationSettings);
         values.put("worldProperties", worldProperties);
@@ -4390,7 +4390,7 @@ public class SpongeEventFactory {
      * @return A new explosion event
      */
     public static ExplosionEvent createExplosionEvent(Cause cause, Explosion explosion, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("explosion", explosion);
         values.put("targetWorld", targetWorld);
@@ -4411,7 +4411,7 @@ public class SpongeEventFactory {
      * @return A new detonate explosion event
      */
     public static ExplosionEvent.Detonate createExplosionEventDetonate(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Explosion explosion, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
         values.put("entitySnapshots", entitySnapshots);
@@ -4432,7 +4432,7 @@ public class SpongeEventFactory {
      * @return A new post explosion event
      */
     public static ExplosionEvent.Post createExplosionEventPost(Cause cause, Explosion explosion, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("explosion", explosion);
         values.put("targetWorld", targetWorld);
@@ -4450,7 +4450,7 @@ public class SpongeEventFactory {
      * @return A new pre explosion event
      */
     public static ExplosionEvent.Pre createExplosionEventPre(Cause cause, Explosion explosion, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("explosion", explosion);
         values.put("targetWorld", targetWorld);
@@ -4467,7 +4467,7 @@ public class SpongeEventFactory {
      * @return A new generate chunk event
      */
     public static GenerateChunkEvent createGenerateChunkEvent(Cause cause, Chunk targetChunk) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetChunk", targetChunk);
         return SpongeEventFactoryUtils.createEventImpl(GenerateChunkEvent.class, values);
@@ -4483,7 +4483,7 @@ public class SpongeEventFactory {
      * @return A new post generate chunk event
      */
     public static GenerateChunkEvent.Post createGenerateChunkEventPost(Cause cause, Chunk targetChunk) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetChunk", targetChunk);
         return SpongeEventFactoryUtils.createEventImpl(GenerateChunkEvent.Post.class, values);
@@ -4499,7 +4499,7 @@ public class SpongeEventFactory {
      * @return A new pre generate chunk event
      */
     public static GenerateChunkEvent.Pre createGenerateChunkEventPre(Cause cause, Chunk targetChunk) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetChunk", targetChunk);
         return SpongeEventFactoryUtils.createEventImpl(GenerateChunkEvent.Pre.class, values);
@@ -4515,7 +4515,7 @@ public class SpongeEventFactory {
      * @return A new load world event
      */
     public static LoadWorldEvent createLoadWorldEvent(Cause cause, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(LoadWorldEvent.class, values);
@@ -4531,7 +4531,7 @@ public class SpongeEventFactory {
      * @return A new save world event
      */
     public static SaveWorldEvent createSaveWorldEvent(Cause cause, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(SaveWorldEvent.class, values);
@@ -4547,7 +4547,7 @@ public class SpongeEventFactory {
      * @return A new target world event
      */
     public static TargetWorldEvent createTargetWorldEvent(Cause cause, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(TargetWorldEvent.class, values);
@@ -4563,7 +4563,7 @@ public class SpongeEventFactory {
      * @return A new unload world event
      */
     public static UnloadWorldEvent createUnloadWorldEvent(Cause cause, World targetWorld) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(UnloadWorldEvent.class, values);
@@ -4581,7 +4581,7 @@ public class SpongeEventFactory {
      * @return A new forced chunk event
      */
     public static ForcedChunkEvent createForcedChunkEvent(Cause cause, Vector3i chunkCoords, Chunk targetChunk, ChunkTicketManager.LoadingTicket ticket) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("chunkCoords", chunkCoords);
         values.put("targetChunk", targetChunk);
@@ -4599,7 +4599,7 @@ public class SpongeEventFactory {
      * @return A new load chunk event
      */
     public static LoadChunkEvent createLoadChunkEvent(Cause cause, Chunk targetChunk) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetChunk", targetChunk);
         return SpongeEventFactoryUtils.createEventImpl(LoadChunkEvent.class, values);
@@ -4615,7 +4615,7 @@ public class SpongeEventFactory {
      * @return A new populate chunk event
      */
     public static PopulateChunkEvent createPopulateChunkEvent(Cause cause, Chunk targetChunk) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetChunk", targetChunk);
         return SpongeEventFactoryUtils.createEventImpl(PopulateChunkEvent.class, values);
@@ -4632,7 +4632,7 @@ public class SpongeEventFactory {
      * @return A new populate populate chunk event
      */
     public static PopulateChunkEvent.Populate createPopulateChunkEventPopulate(Cause cause, Populator populator, Chunk targetChunk) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("populator", populator);
         values.put("targetChunk", targetChunk);
@@ -4650,7 +4650,7 @@ public class SpongeEventFactory {
      * @return A new post populate chunk event
      */
     public static PopulateChunkEvent.Post createPopulateChunkEventPost(Cause cause, Map<PopulatorType, List<Transaction<BlockSnapshot>>> populatedTransactions, Chunk targetChunk) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("populatedTransactions", populatedTransactions);
         values.put("targetChunk", targetChunk);
@@ -4668,7 +4668,7 @@ public class SpongeEventFactory {
      * @return A new pre populate chunk event
      */
     public static PopulateChunkEvent.Pre createPopulateChunkEventPre(Cause cause, List<Populator> pendingPopulators, Chunk targetChunk) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("pendingPopulators", pendingPopulators);
         values.put("targetChunk", targetChunk);
@@ -4685,7 +4685,7 @@ public class SpongeEventFactory {
      * @return A new target chunk event
      */
     public static TargetChunkEvent createTargetChunkEvent(Cause cause, Chunk targetChunk) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetChunk", targetChunk);
         return SpongeEventFactoryUtils.createEventImpl(TargetChunkEvent.class, values);
@@ -4702,7 +4702,7 @@ public class SpongeEventFactory {
      * @return A new unforced chunk event
      */
     public static UnforcedChunkEvent createUnforcedChunkEvent(Cause cause, Vector3i chunkCoords, ChunkTicketManager.LoadingTicket ticket) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("chunkCoords", chunkCoords);
         values.put("ticket", ticket);
@@ -4719,7 +4719,7 @@ public class SpongeEventFactory {
      * @return A new unload chunk event
      */
     public static UnloadChunkEvent createUnloadChunkEvent(Cause cause, Chunk targetChunk) {
-        Map<String, Object> values = Maps.newHashMap();
+        HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetChunk", targetChunk);
         return SpongeEventFactoryUtils.createEventImpl(UnloadChunkEvent.class, values);

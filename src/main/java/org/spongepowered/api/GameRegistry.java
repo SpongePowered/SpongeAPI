@@ -34,7 +34,6 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.registry.CatalogRegistryModule;
 import org.spongepowered.api.registry.RegistryModule;
 import org.spongepowered.api.resourcepack.ResourcePack;
@@ -53,7 +52,6 @@ import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.extent.ExtentBufferFactory;
-import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
@@ -64,7 +62,6 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Locale;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.function.Supplier;
 
 /**
@@ -242,15 +239,6 @@ public interface GameRegistry {
      * @return The {@link Rotation} with the given degrees or Optional.empty() if not found
      */
     Optional<Rotation> getRotationFromDegree(int degrees);
-
-    /**
-     * Creates a new {@link GameProfile} using the specified unique identifier and name.
-     *
-     * @param uuid The unique identifier for the profile
-     * @param name The name for the profile
-     * @return The created profile
-     */
-    GameProfile createGameProfile(UUID uuid, String name);
 
     /**
      * Loads a {@link Favicon} from the specified encoded string. The format of
