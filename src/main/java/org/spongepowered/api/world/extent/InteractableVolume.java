@@ -35,8 +35,9 @@ import org.spongepowered.api.event.cause.NamedCause;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
-public interface InteractableVolume extends BlockVolume {
+public interface InteractableVolume extends MutableBlockVolume {
 
     /**
      * Simulates hitting a block as if a player had done so.
@@ -307,4 +308,8 @@ public interface InteractableVolume extends BlockVolume {
      * @return The time in ticks
      */
     int getBlockDigTimeWith(int x, int y, int z, ItemStack itemStack, Cause cause);
+
+    @Override
+    MutableBlockVolumeWorker<? extends InteractableVolume> getBlockWorker();
+
 }

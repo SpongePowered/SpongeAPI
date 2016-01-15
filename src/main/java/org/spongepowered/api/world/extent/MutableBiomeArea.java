@@ -28,6 +28,7 @@ import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.util.DiscreteTransform2;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.extent.worker.MutableBiomeAreaWorker;
 
 /**
  * An area containing biomes that can be accessed and modified.
@@ -94,5 +95,8 @@ public interface MutableBiomeArea extends BiomeArea {
     default MutableBiomeArea getRelativeBiomeView() {
         return getBiomeView(DiscreteTransform2.fromTranslation(getBiomeMin().negate()));
     }
+
+    @Override
+    MutableBiomeAreaWorker<? extends MutableBiomeArea> getBiomeWorker();
 
 }

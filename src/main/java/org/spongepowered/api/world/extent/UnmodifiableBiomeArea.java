@@ -27,6 +27,7 @@ package org.spongepowered.api.world.extent;
 import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.util.DiscreteTransform2;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
+import org.spongepowered.api.world.extent.worker.BiomeAreaWorker;
 
 /**
  * An area containing biomes that can be accessed but not modified. The data may
@@ -76,5 +77,8 @@ public interface UnmodifiableBiomeArea extends BiomeArea {
     default UnmodifiableBiomeArea getUnmodifiableBiomeView() {
         return this;
     }
+
+    @Override
+    BiomeAreaWorker<? extends UnmodifiableBiomeArea> getBiomeWorker();
 
 }

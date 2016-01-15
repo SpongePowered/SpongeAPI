@@ -29,6 +29,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
+import org.spongepowered.api.world.extent.worker.BlockVolumeWorker;
 
 /**
  * A volume containing blocks that can be at least accessed.
@@ -205,5 +206,12 @@ public interface BlockVolume {
      * @return An immutable copy of the blocks
      */
     ImmutableBlockVolume getImmutableBlockCopy();
+
+    /**
+     * Gets a new block worker for this block volume.
+     *
+     * @return The block worker
+     */
+    BlockVolumeWorker<? extends BlockVolume> getBlockWorker();
 
 }
