@@ -22,38 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.common.collection;
+package org.spongepowered.api.data.manipulator.immutable;
 
-import com.google.common.collect.ImmutableMap;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.common.AbstractImmutableSingleData;
-import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
-import org.spongepowered.api.data.value.mutable.MapValue;
+import org.spongepowered.api.data.manipulator.mutable.ListData;
+import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 
-import java.util.Map;
+import java.util.List;
+import java.util.Optional;
 
-public abstract class AbstractImmutableSingleMapData<K, V, M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>>
-    extends AbstractImmutableSingleData<Map<K, V>, I, M> {
+public interface ImmutableListData<E, I extends ImmutableListData<E, I, M>, M extends ListData<E, M, I>>
+    extends ImmutableDataManipulator<I, M> {
 
-    private final ImmutableMapValue<K, V> mapValue;
+    ImmutableListValue<E> getListValue();
 
-    protected AbstractImmutableSingleMapData(Map<K, V> value, Key<MapValue<K, V>> usedKey) {
-        super(ImmutableMap.copyOf(value), usedKey);
-        this.mapValue = Sponge.getRegistry().getValueFactory()
-            .createMapValue(usedKey, this.value)
-            .asImmutable();
+    List<E> asList();
+
+    default Optional<E> get(int index) {
+        final List<E> list = asList();
+        if (list.size() < index) {
+            return Optional.empty();
+        }
+        return Optional.of(list.get(index));
     }
 
-    @Override
-    protected final ImmutableMapValue<K, V> getValueGetter() {
-        return this.mapValue;
+    default boolean contains(E element) {
+        return getListValue().contains(element);
     }
 
-    @Override
-    public int compareTo(I o) {
-        return 0;
-    }
 }

@@ -32,6 +32,7 @@ import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
@@ -65,6 +66,9 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource {
     default Location<World> getLocation(double x, double y, double z) {
         return getLocation(new Vector3d(x, y, z));
     }
+
+    @Override
+    MutableBlockVolumeWorker<? extends Extent> getBlockWorker();
 
     /**
      * Gets the {@link Difficulty} setting for this world.

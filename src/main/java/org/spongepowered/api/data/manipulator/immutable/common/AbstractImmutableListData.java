@@ -1,5 +1,5 @@
 /*
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+ * This file is part of Sponge, licensed under the MIT License (MIT).
  *
  * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
@@ -22,27 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.common.collection;
+package org.spongepowered.api.data.manipulator.immutable.common;
 
+import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.common.AbstractImmutableSingleData;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
+import org.spongepowered.api.data.manipulator.mutable.ListData;
+import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractImmutableSingleListData<E, I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>>
-    extends AbstractImmutableSingleData<List<E>, I, M> {
+public abstract class AbstractImmutableListData<E, I extends ImmutableListData<E, I, M>, M extends ListData<E, M, I>>
+        extends AbstractImmutableSingleData<List<E>, I, M> implements ImmutableListData<E, I, M> {
 
     private final ImmutableListValue<E> listValue;
 
-    protected AbstractImmutableSingleListData(List<E> value, Key<ListValue<E>> usedKey) {
-        super(new ArrayList<>(value), usedKey);
-        this.listValue = Sponge.getRegistry().getValueFactory().createListValue(usedKey, value).asImmutable();
+    @SuppressWarnings("unchecked")
+    protected AbstractImmutableListData(List<E> value, Key<? extends BaseValue<List<E>>> usedKey) {
+        super(ImmutableList.copyOf(value), usedKey);
+        this.listValue = Sponge.getRegistry().getValueFactory().createListValue((Key<ListValue<E>>) this.usedKey, this.value).asImmutable();
     }
 
     @Override
@@ -54,5 +55,15 @@ public abstract class AbstractImmutableSingleListData<E, I extends ImmutableData
     public int compareTo(I o) {
         final List<E> list = o.get(this.usedKey).get();
         return Boolean.compare(list.containsAll(this.getValue()), this.getValue().containsAll(list));
+    }
+
+    @Override
+    public ImmutableListValue<E> getListValue() {
+        return getValueGetter();
+    }
+
+    @Override
+    public List<E> asList() {
+        return getValue();
     }
 }

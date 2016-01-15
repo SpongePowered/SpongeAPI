@@ -22,4 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.data.manipulator.mutable.common.collection;
+package org.spongepowered.api.data.manipulator.mutable;
+
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableMappedData;
+import org.spongepowered.api.data.value.mutable.MapValue;
+
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
+public interface MappedData<K, V, M extends MappedData<K, V, M, I>,
+    I extends ImmutableMappedData<K, V, I, M>> extends DataManipulator<M, I> {
+
+    Optional<V> get(K key);
+
+    Set<K> getMapKeys();
+
+    default Set<Map.Entry<K, V>> getMapValues() {
+        return asMap().entrySet();
+    }
+
+    MapValue<K, V> getMapValue();
+
+    default Map<K, V> asMap() {
+        return getMapValue().get();
+    }
+
+    M put(K key, V value);
+
+    M putAll(Map<? extends K, ? extends V> map);
+
+    M remove(K key);
+
+}
