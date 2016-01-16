@@ -27,6 +27,7 @@ package org.spongepowered.api.world;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
 /**
  * A chunk is a specific grid-aligned partition of a {@link Extent}.
@@ -55,6 +56,10 @@ public interface Chunk extends Extent {
     default Location<Chunk> getLocation(double x, double y, double z) {
         return getLocation(new Vector3d(x, y, z));
     }
+
+    // TODO remove when either IntelliJ fixes their editor, or DDoS changes the block worker api.
+    @Override
+    MutableBlockVolumeWorker<? extends Extent> getBlockWorker();
 
     /**
      * Get the position of the chunk.
