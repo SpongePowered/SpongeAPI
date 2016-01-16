@@ -57,6 +57,7 @@ public interface Chunk extends Extent {
         return getLocation(new Vector3d(x, y, z));
     }
 
+    // TODO remove when either IntelliJ fixes their editor, or DDoS changes the block worker api.
     @Override
     MutableBlockVolumeWorker<? extends Extent> getBlockWorker();
 

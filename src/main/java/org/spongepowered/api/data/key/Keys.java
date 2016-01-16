@@ -47,6 +47,7 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartCommandBlock;
+import org.spongepowered.api.extra.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -64,6 +65,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -354,12 +356,26 @@ public final class Keys {
     public static final Key<Value<Fish>> FISH_TYPE = null;
 
     /**
+    /**
+     * Represents the {@link Key} for representing the
+     * {@link FluidStackSnapshot} contained within an item container. Item
+     * containers may include buckets and other mod added items.
+     */
+    public static final Key<Value<FluidStackSnapshot>> FLUID_ITEM_STACK = null;
+
+    /**
      * Represents the {@link Key} for representing the "fluid level" state
      * of a {@link BlockState}.
      *
      * @see FluidLevelData#level()
      */
     public static final Key<MutableBoundedValue<Integer>> FLUID_LEVEL = null;
+
+    /**
+     * Represents the {@link Key} for representing the directional tank
+     * information
+     */
+    public static final Key<MapValue<Direction, List<FluidStackSnapshot>>> FLUID_TANK_CONTENTS = null;
 
     public static final Key<Value<Double>> FLYING_SPEED = null;
 
