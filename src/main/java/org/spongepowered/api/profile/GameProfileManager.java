@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.profile;
 
-import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.service.user.UserStorageService;
@@ -32,6 +31,7 @@ import org.spongepowered.api.service.user.UserStorageService;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 import javax.annotation.Nullable;
@@ -74,21 +74,21 @@ public interface GameProfileManager {
      * profile servers. Use {@link #get(UUID, boolean)} to disable the cache
      * lookup.</p>
      *
-     * <p>The returned {@link ListenableFuture} throws an {@link ExecutionException}
+     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
      * caused by a {@link ProfileNotFoundException} if the profile does not exist or
      * an {@link IOException} if a network error occurred.</p>
      *
      * @param uniqueId The unique ID
      * @return The result of the request
      */
-    default ListenableFuture<GameProfile> get(UUID uniqueId) {
+    default CompletableFuture<GameProfile> get(UUID uniqueId) {
         return this.get(uniqueId, true);
     }
 
     /**
      * Looks up a {@link GameProfile} by its unique ID.
      *
-     * <p>The returned {@link ListenableFuture} throws an {@link ExecutionException}
+     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
      * caused by a {@link ProfileNotFoundException} if the profile does not exist or
      * an {@link IOException} if a network error occurred.</p>
      *
@@ -96,12 +96,12 @@ public interface GameProfileManager {
      * @param useCache true to perform a cache lookup first
      * @return The result of the request
      */
-    ListenableFuture<GameProfile> get(UUID uniqueId, boolean useCache);
+    CompletableFuture<GameProfile> get(UUID uniqueId, boolean useCache);
 
     /**
      * Gets a collection of {@link GameProfile}s by their unique IDs.
      *
-     * <p>The returned {@link ListenableFuture} throws an {@link ExecutionException}
+     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
      * caused by a {@link ProfileNotFoundException} if the profile does not exist or
      * an {@link IOException} if a network error occurred.</p>
      *
@@ -109,7 +109,7 @@ public interface GameProfileManager {
      * @param useCache true to perform a cache lookup first
      * @return The result of the request
      */
-    ListenableFuture<Collection<GameProfile>> getAllById(Iterable<UUID> uniqueIds, boolean useCache);
+    CompletableFuture<Collection<GameProfile>> getAllById(Iterable<UUID> uniqueIds, boolean useCache);
 
     /**
      * Looks up a {@link GameProfile} by its user name (case-insensitive).
@@ -118,21 +118,21 @@ public interface GameProfileManager {
      * profile servers. Use {@link #get(String, boolean)} to disable the cache
      * lookup.</p>
      *
-     * <p>The returned {@link ListenableFuture} throws an {@link ExecutionException}
+     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
      * caused by a {@link ProfileNotFoundException} if the profile does not exist or
      * an {@link IOException} if a network error occurred.</p>
      *
      * @param name The username
      * @return The result of the request
      */
-    default ListenableFuture<GameProfile> get(String name) {
+    default CompletableFuture<GameProfile> get(String name) {
         return this.get(name, true);
     }
 
     /**
      * Looks up a {@link GameProfile} by its user name (case-insensitive).
      *
-     * <p>The returned {@link ListenableFuture} throws an {@link ExecutionException}
+     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
      * caused by a {@link ProfileNotFoundException} if the profile does not exist or
      * an {@link IOException} if a network error occurred.</p>
      *
@@ -140,13 +140,13 @@ public interface GameProfileManager {
      * @param useCache true to perform a cache lookup first
      * @return The result of the request
      */
-    ListenableFuture<GameProfile> get(String name, boolean useCache);
+    CompletableFuture<GameProfile> get(String name, boolean useCache);
 
     /**
      * Gets a collection of {@link GameProfile}s by their user names
      * (case-insensitive).
      *
-     * <p>The returned {@link ListenableFuture} throws an {@link ExecutionException}
+     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
      * caused by a {@link ProfileNotFoundException} if the profile does not exist or
      * an {@link IOException} if a network error occurred.</p>
      *
@@ -154,26 +154,26 @@ public interface GameProfileManager {
      * @param useCache true to perform a cache lookup first
      * @return The result of the request
      */
-    ListenableFuture<Collection<GameProfile>> getAllByName(Iterable<String> names, boolean useCache);
+    CompletableFuture<Collection<GameProfile>> getAllByName(Iterable<String> names, boolean useCache);
 
     /**
      * Fills a {@link GameProfile}.
      *
-     * <p>The returned {@link ListenableFuture} throws an {@link ExecutionException}
+     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
      * caused by a {@link ProfileNotFoundException} if the profile does not exist or
      * an {@link IOException} if a network error occurred.</p>
      *
      * @param profile The profile to fill
      * @return The result of the request
      */
-    default ListenableFuture<GameProfile> fill(GameProfile profile) {
+    default CompletableFuture<GameProfile> fill(GameProfile profile) {
         return this.fill(profile, false);
     }
 
     /**
      * Fills a {@link GameProfile}.
      *
-     * <p>The returned {@link ListenableFuture} throws an {@link ExecutionException}
+     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
      * caused by a {@link ProfileNotFoundException} if the profile does not exist or
      * an {@link IOException} if a network error occurred.</p>
      *
@@ -181,14 +181,14 @@ public interface GameProfileManager {
      * @param signed true if we should request that the profile data be signed
      * @return The result of the request
      */
-    default ListenableFuture<GameProfile> fill(GameProfile profile, boolean signed) {
+    default CompletableFuture<GameProfile> fill(GameProfile profile, boolean signed) {
         return this.fill(profile, signed, true);
     }
 
     /**
      * Fills a {@link GameProfile}.
      *
-     * <p>The returned {@link ListenableFuture} throws an {@link ExecutionException}
+     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
      * caused by a {@link ProfileNotFoundException} if the profile does not exist or
      * an {@link IOException} if a network error occurred.</p>
      *
@@ -197,7 +197,7 @@ public interface GameProfileManager {
      * @param useCache true to perform a cache lookup first
      * @return The result of the request
      */
-    ListenableFuture<GameProfile> fill(GameProfile profile, boolean signed, boolean useCache);
+    CompletableFuture<GameProfile> fill(GameProfile profile, boolean signed, boolean useCache);
 
     /**
      * Gets a collection of all cached {@link GameProfile}s.
