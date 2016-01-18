@@ -32,6 +32,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The Conversation class is responsible for tracking the current state of a
+ * conversation, displaying prompts to the user, and dispatching the user's
+ * response to the appropriate place. Conversation objects are not typically
+ * instantiated directly. Instead a {@link ConversationFactory} is used to
+ * construct identical conversations on demand.
+ * <p>
+ * Conversation flow consists of a directed graph of {@link Prompt} objects.
+ * Each time a prompt gets input from the user, it must return the next prompt
+ * in the graph. Since each Prompt chooses the next Prompt, complex
+ * conversation trees can be implemented where the nature of the player's
+ * response directs the flow of the conversation.
+ * <p>
+ * Each conversation has a {@link ConversationPrefix} that prepends all output
+ * from the conversation to the player. The ConversationPrefix can be used to
+ * display the plugin name or conversation status as the conversation evolves.
+ * <p>
+ * Each conversation has a timeout measured in the number of inactive seconds
+ * to wait before abandoning the conversation. If the inactivity timeout is
+ * reached, the conversation is abandoned and the user's incoming and outgoing
+ * chat is returned to normal.
+ * <p>
+ * You should not construct a conversation manually. Instead, use the {@link
+ * ConversationFactory} for access to all available options.
+ */
 public class Conversation {
 
     private Prompt firstPrompt;

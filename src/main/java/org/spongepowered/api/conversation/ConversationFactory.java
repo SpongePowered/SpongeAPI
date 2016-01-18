@@ -33,6 +33,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A ConversationFactory is responsible for creating a {@link Conversation}
+ * from a predefined template. A ConversationFactory is typically created when
+ * a plugin is instantiated and builds a Conversation each time a user
+ * initiates a conversation with the plugin. Each Conversation maintains its
+ * own state and calls back as needed into the plugin.
+ * <p>
+ * The ConversationFactory implements a fluid API, allowing parameters to be
+ * set as an extension to the constructor.
+ */
 public class ConversationFactory {
 
     protected Game game;

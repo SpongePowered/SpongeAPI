@@ -30,6 +30,12 @@ import org.spongepowered.api.plugin.Plugin;
 
 import java.util.Map;
 
+/**
+ * A ConversationContext provides continuity between nodes in the prompt graph
+ * by giving the developer access to the subject of the conversation and a
+ * generic map for storing values that are shared between all {@link Prompt}
+ * invocations.
+ */
 public class ConversationContext {
 
     private Conversable forWhom;

@@ -27,6 +27,10 @@ package org.spongepowered.api.conversation;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
 
+/**
+ * An InactivityConversationCanceller will cancel a {@link Conversation} after
+ * a period of inactivity by the user.
+ */
 public class InactivityConversationCanceller implements ConversationCanceller {
     protected Game game = Sponge.getGame();
     protected int timeoutSeconds;

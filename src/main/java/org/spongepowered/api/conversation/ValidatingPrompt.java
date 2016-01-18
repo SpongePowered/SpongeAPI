@@ -27,6 +27,11 @@ package org.spongepowered.api.conversation;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 
+/**
+ * ValidatingPrompt is the base class for any prompt that requires validation.
+ * ValidatingPrompt will keep replaying the prompt text until the user enters
+ * a valid response.
+ */
 public abstract class ValidatingPrompt implements Prompt {
     public ValidatingPrompt() {
         super();

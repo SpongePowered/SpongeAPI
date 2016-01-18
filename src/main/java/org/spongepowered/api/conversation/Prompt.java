@@ -26,6 +26,13 @@ package org.spongepowered.api.conversation;
 
 import org.spongepowered.api.text.Text;
 
+/**
+ * A Prompt is the main constituent of a {@link Conversation}. Each prompt
+ * displays text to the user and optionally waits for a user's response.
+ * Prompts are chained together into a directed graph that represents the
+ * conversation flow. To halt a conversation, END_OF_CONVERSATION is returned
+ * in liu of another Prompt object.
+ */
 public interface Prompt extends Cloneable {
 
     /**

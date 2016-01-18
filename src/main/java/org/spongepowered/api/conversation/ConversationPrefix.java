@@ -24,6 +24,11 @@
  */
 package org.spongepowered.api.conversation;
 
+/**
+ * A ConversationPrefix implementation prepends all output from the
+ * conversation to the player. The ConversationPrefix can be used to display
+ * the plugin name or conversation status as the conversation evolves.
+ */
 public interface ConversationPrefix {
 
     /**

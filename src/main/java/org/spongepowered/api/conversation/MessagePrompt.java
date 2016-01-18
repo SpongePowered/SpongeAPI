@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.conversation;
 
+/**
+ * MessagePrompt is the base class for any prompt that only displays a message
+ * to the user and requires no input.
+ */
 public abstract class MessagePrompt implements Prompt{
 
     public MessagePrompt() {

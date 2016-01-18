@@ -27,6 +27,10 @@ package org.spongepowered.api.conversation;
 import static org.apache.commons.lang3.ArrayUtils.*;
 import static org.apache.commons.lang3.BooleanUtils.*;
 
+/**
+ * BooleanPrompt is the base class for any prompt that requires a boolean
+ * response from the user.
+ */
 public abstract class BooleanPrompt extends ValidatingPrompt{
 
     public BooleanPrompt() {

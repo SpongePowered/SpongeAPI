@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.conversation;
 
+/**
+ * StringPrompt is the base class for any prompt that accepts an arbitrary
+ * string from the user.
+ */
 public abstract class StringPrompt implements Prompt{
 
     /**

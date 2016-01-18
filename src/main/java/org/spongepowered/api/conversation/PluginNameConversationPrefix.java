@@ -28,6 +28,10 @@ import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
 
+/**
+ * PluginNameConversationPrefix is a {@link ConversationPrefix} implementation
+ * that displays the plugin name in front of conversation output.
+ */
 public class PluginNameConversationPrefix implements ConversationPrefix {
 
     protected String separator;

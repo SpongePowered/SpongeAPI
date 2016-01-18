@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.conversation;
 
+/**
+ * An ExactMatchConversationCanceller cancels a conversation if the user
+ * enters an exact input string
+ */
 public class ExactMatchConversationCanceller implements ConversationCanceller {
     private String escapeSequence;
 

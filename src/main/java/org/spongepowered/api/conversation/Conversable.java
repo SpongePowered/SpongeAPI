@@ -26,6 +26,10 @@ package org.spongepowered.api.conversation;
 
 import org.spongepowered.api.text.Text;
 
+/**
+ * The Conversable interface is used to indicate objects that can have
+ * conversations.
+ */
 public interface Conversable {
 
     /**

@@ -27,6 +27,10 @@ package org.spongepowered.api.conversation;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.living.player.Player;
 
+/**
+ * PlayerNamePrompt is the base class for any prompt that requires the player
+ * to enter another player's name.
+ */
 public abstract class PlayerNamePrompt extends ValidatingPrompt{
     private Game game;
 

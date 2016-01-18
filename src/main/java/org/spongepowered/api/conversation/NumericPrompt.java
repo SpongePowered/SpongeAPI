@@ -26,6 +26,10 @@ package org.spongepowered.api.conversation;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+/**
+ * NumericPrompt is the base class for any prompt that requires a {@link
+ * Number} response from the user.
+ */
 public abstract class NumericPrompt extends ValidatingPrompt{
     public NumericPrompt() {
         super();

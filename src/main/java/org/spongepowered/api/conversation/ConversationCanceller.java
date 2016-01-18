@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.conversation;
 
+/**
+ * A ConversationCanceller is a class that cancels an active {@link
+ * Conversation}. A Conversation can have more than one ConversationCanceller.
+ */
 public interface ConversationCanceller extends Cloneable{
     /**
      * Sets the conversation this ConversationCanceller can optionally cancel.

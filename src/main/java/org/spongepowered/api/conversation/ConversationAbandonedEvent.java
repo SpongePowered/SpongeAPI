@@ -26,6 +26,10 @@ package org.spongepowered.api.conversation;
 
 import java.util.EventObject;
 
+/**
+ * ConversationAbandonedEvent contains information about an abandoned
+ * conversation.
+ */
 public class ConversationAbandonedEvent extends EventObject {
 
     private ConversationContext context;
