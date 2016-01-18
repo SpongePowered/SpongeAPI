@@ -27,6 +27,8 @@ package org.spongepowered.api.conversation;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 
+import java.util.Optional;
+
 /**
  * ValidatingPrompt is the base class for any prompt that requires validation.
  * ValidatingPrompt will keep replaying the prompt text until the user enters
@@ -50,7 +52,7 @@ public abstract class ValidatingPrompt implements Prompt {
         if (isInputValid(context, input)) {
             return acceptValidatedInput(context, input);
         } else {
-            String failPrompt = getFailedValidationText(context, input);
+            String failPrompt = getFailedValidationText(context, input).get();
             if (failPrompt != null) {
                 context.getForWhom().sendRawMessage(Text.of(TextColors.RED + failPrompt));
             }
@@ -89,7 +91,7 @@ public abstract class ValidatingPrompt implements Prompt {
      */
     protected abstract Prompt acceptValidatedInput(ConversationContext context, String input);
 
-    /**
+    /**s
      * Optionally override this method to display an additional message if the
      * user enters an invalid input.
      *
@@ -97,7 +99,7 @@ public abstract class ValidatingPrompt implements Prompt {
      * @param invalidInput The invalid input provided by the user.
      * @return A message explaining how to correct the input.
      */
-    protected String getFailedValidationText(ConversationContext context, String invalidInput) {
-        return null;
+    protected Optional<String> getFailedValidationText(ConversationContext context, String invalidInput) {
+        return Optional.empty();
     }
 }

@@ -26,6 +26,8 @@ package org.spongepowered.api.conversation;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import java.util.Optional;
+
 /**
  * NumericPrompt is the base class for any prompt that requires a {@link
  * Number} response from the user.
@@ -73,7 +75,7 @@ public abstract class NumericPrompt extends ValidatingPrompt{
     protected abstract Prompt acceptValidatedInput(ConversationContext context, Number input);
 
     @Override
-    protected String getFailedValidationText(ConversationContext context, String invalidInput) {
+    protected Optional<String> getFailedValidationText(ConversationContext context, String invalidInput) {
         if (NumberUtils.isNumber(invalidInput)) {
             return getFailedValidationText(context, NumberUtils.createNumber(invalidInput));
         } else {
@@ -89,8 +91,8 @@ public abstract class NumericPrompt extends ValidatingPrompt{
      * @param invalidInput The invalid input provided by the user.
      * @return A message explaining how to correct the input.
      */
-    protected String getInputNotNumericText(ConversationContext context, String invalidInput) {
-        return null;
+    protected Optional<String> getInputNotNumericText(ConversationContext context, String invalidInput) {
+         return Optional.empty();
     }
 
     /**
@@ -101,7 +103,7 @@ public abstract class NumericPrompt extends ValidatingPrompt{
      * @param invalidInput The invalid input provided by the user.
      * @return A message explaining how to correct the input.
      */
-    protected String getFailedValidationText(ConversationContext context, Number invalidInput) {
-        return null;
+    protected Optional<String> getFailedValidationText(ConversationContext context, Number invalidInput) {
+        return Optional.empty();
     }
 }

@@ -25,8 +25,6 @@
 package org.spongepowered.api.conversation;
 
 import org.spongepowered.api.Game;
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.plugin.Plugin;
 
 import java.util.Map;
 
