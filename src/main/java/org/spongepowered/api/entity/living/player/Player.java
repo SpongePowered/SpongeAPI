@@ -40,6 +40,7 @@ import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
+import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.chat.ChatVisibility;
 
@@ -54,7 +55,7 @@ import java.util.Set;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Humanoid, User, LocatedSource, RemoteSource, Viewer {
+public interface Player extends Humanoid, User, LocatedSource, RemoteSource, Viewer, ChatTypeMessageReceiver {
 
     /**
      * Gets the view distance setting of the player. This value represents the

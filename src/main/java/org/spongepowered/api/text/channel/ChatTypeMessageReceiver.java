@@ -27,58 +27,48 @@ package org.spongepowered.api.text.channel;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.chat.ChatType;
 
 /**
- * Represents something that can receive (and send) messages.
+ * Represents something that can receive messages of certain types.
  */
-public interface MessageReceiver {
+@FunctionalInterface
+public interface ChatTypeMessageReceiver {
 
     /**
-     * Sends the formatted text message to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
+     * Sends the message with the specified {@link ChatType} on the client.
      *
-     * @param message The message
+     * @param type The chat type to send the messages to
+     * @param message The message to send
      */
-    void sendMessage(Text message);
+    void sendMessage(ChatType type, Text message);
 
     /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
+     * Sends the message(s) with the specified {@link ChatType} on the client.
      *
-     * @param messages The message(s)
+     * @param type The chat type to send the messages to
+     * @param messages The message(s) to send
      */
-    default void sendMessages(Text... messages) {
-        checkNotNull(messages, "messages");
+    default void sendMessages(ChatType type, Text... messages) {
+        checkNotNull(type, "type");
 
-        for (Text message : messages) {
-            this.sendMessage(message);
-        }
-    }
-
-    /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
-     *
-     * @param messages The messages
-     */
-    default void sendMessages(Iterable<Text> messages) {
         for (Text message : checkNotNull(messages, "messages")) {
-            this.sendMessage(message);
+            this.sendMessage(type, message);
         }
     }
 
     /**
-     * Return the message channel that messages from this source should be sent to.
+     * Sends the message(s) with the specified {@link ChatType} on the client.
      *
-     * @return This source's active message channel
+     * @param type The chat type to send the messages to
+     * @param messages The message(s) to send
      */
-    MessageChannel getMessageChannel();
+    default void sendMessages(ChatType type, Iterable<Text> messages) {
+        checkNotNull(type, "type");
 
-    /**
-     * Set the message channel that messages sent by this source should be sent to.
-     *
-     * @param channel The message channel to send messages to
-     */
-    void setMessageChannel(MessageChannel channel);
+        for (Text message : checkNotNull(messages, "messages")) {
+            this.sendMessage(type, message);
+        }
+    }
 
 }

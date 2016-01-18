@@ -22,58 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.channel.type;
+package org.spongepowered.api.text.channel.impl;
 
-import static org.apache.commons.lang3.Validate.noNullElements;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.text.chat.ChatType;
-import org.spongepowered.api.util.GuavaCollectors;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
 
 /**
- * A message channel that targets all subjects contained within the given channels
- * and applies the message transformations of each channel in order (so with n
- * channels,
- * {@code channels[n-1].transformMessage(channels[n-2].transformMessage(channels[...]
- * .transformMessage(channels[0].transformMessage(input))))} would occur)
+ * An immutable message channel that leaves transforming and
+ * members to the delegate channel passed.
  */
-public class CombinedMessageChannel implements MessageChannel {
+public class DelegateMessageChannel implements MessageChannel {
 
-    protected final Collection<MessageChannel> channels;
+    protected final MessageChannel delegate;
 
-    public CombinedMessageChannel(MessageChannel... channels) {
-        this(Arrays.asList(channels));
-    }
-
-    public CombinedMessageChannel(Collection<MessageChannel> channels) {
-        noNullElements(channels, "null message channel: %s");
-        this.channels = ImmutableSet.copyOf(channels);
+    public DelegateMessageChannel(final MessageChannel delegate) {
+        this.delegate = checkNotNull(delegate, "delegate");
     }
 
     @Override
     public Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original, ChatType type) {
-        Text text = original;
-        for (MessageChannel channel : this.channels) {
-            text = channel.transformMessage(sender, recipient, text, type).orElse(text);
-        }
-
-        return Optional.ofNullable(text);
+        return this.delegate.transformMessage(sender, recipient, original, type);
     }
 
     @Override
     public Collection<MessageReceiver> getMembers() {
-        return this.channels.stream()
-                .flatMap(channel -> channel.getMembers().stream())
-                .collect(GuavaCollectors.toImmutableSet());
+        return this.delegate.getMembers();
     }
-
 }
