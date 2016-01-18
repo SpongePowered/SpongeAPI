@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.living.player;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.command.source.LocatedSource;
 import org.spongepowered.api.command.source.RemoteSource;
+import org.spongepowered.api.conversation.Conversable;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
@@ -54,7 +55,7 @@ import java.util.Set;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Humanoid, User, LocatedSource, RemoteSource, Viewer {
+public interface Player extends Conversable, Humanoid, User, LocatedSource, RemoteSource, Viewer {
 
     /**
      * Gets the view distance setting of the player. This value represents the
