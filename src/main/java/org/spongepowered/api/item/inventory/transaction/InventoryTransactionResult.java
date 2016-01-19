@@ -150,7 +150,7 @@ public final class InventoryTransactionResult {
         Builder() {}
 
         public Builder type(final Type type) {
-            this.resultType = checkNotNull(type);
+            this.resultType = checkNotNull(type, "Type cannot be null!");
             return this;
         }
 
@@ -179,13 +179,17 @@ public final class InventoryTransactionResult {
         }
 
         public InventoryTransactionResult build() {
-            checkState(this.resultType != null);
+            checkState(this.resultType != null, "ResultType cannot be null!");
             return new InventoryTransactionResult(this);
         }
 
         @Override
         public Builder from(InventoryTransactionResult value) {
-            return null;
+            checkNotNull(value, "InventoryTransactionResult cannot be null!");
+            this.resultType = checkNotNull(value.type, "ResultType cannot be null!");
+            this.replaced = new ArrayList<>(value.getReplacedItems());
+            this.rejected = new ArrayList<>(value.getRejectedItems());
+            return this;
         }
 
         @Override
