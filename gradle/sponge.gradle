@@ -5,6 +5,8 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
+apply plugin: 'org.spongepowered.gradle'
+
 defaultTasks 'licenseFormat', 'build'
 
 group = 'org.spongepowered'
@@ -53,7 +55,7 @@ jar {
                 'Built-By': System.properties['user.name'],
                 'Created-By': "${System.properties['java.vm.version']} (${System.properties['java.vm.vendor']})",
 
-                'Implementation-Name': project.name,
+                'Implementation-Title': project.name,
                 'Implementation-Vendor': project.url
         )
     }
@@ -93,15 +95,6 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
-// Upload source JAR and javadoc JAR when deploying
-// sourceJar is separately configured for SpongeAPI and ForgeGradle projects, so add them after the project is fully configured
-afterEvaluate {
-    artifacts {
-        archives sourceJar
-        archives javadocJar
-    }
-}
-
 // Apply code style plugins
 apply plugin: 'license'
 apply plugin: 'checkstyle'
@@ -130,19 +123,25 @@ processResources {
     from 'LICENSE.txt'
 }
 
-dependencies {
-    // TODO: Verify if custom modifications for checkstyle are still necessary (import order, @return on annotations)
-    checkstyle 'com.puppycrawl.tools:checkstyle:6.13'
-}
-
 // Checkstyle settings
 checkstyle {
+    // TODO: Verify if custom modifications for checkstyle are still necessary (import order, @return on annotations)
+    toolVersion = '6.14.1'
     configFile = api.file('checkstyle.xml')
     configProperties = [
             'basedir': project.projectDir,
             'suppressions': project.file('checkstyle-suppressions.xml'),
             'severity': 'warning'
     ]
+}
+
+// Disable checkstyle by default (won't run unless 'checkstyle' is explicitly invoked)
+task checkstyle
+
+gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
+    if (!graph.allTasks.contains(tasks.checkstyle)) {
+        graph.allTasks.findAll { it.name.startsWith('checkstyle') }.each { it.enabled = false }
+    }
 }
 
 // Apply deployment configuration
