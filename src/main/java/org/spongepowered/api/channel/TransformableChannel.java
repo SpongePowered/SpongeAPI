@@ -22,21 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.channel;
+package org.spongepowered.api.channel;
 
-import org.spongepowered.api.channel.MutableChannel;
-import org.spongepowered.api.text.Text;
+import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
- * Represents a channel that takes a message and transforms it for distribution
- * to a mutable list of members.
+ * @param <T> The type to be sent
+ * @param <M> The member type
  */
-public interface MutableMessageChannel extends MessageChannel, MutableChannel<Text, MessageReceiver> {
+public interface TransformableChannel<T, M> extends Channel<T, M> {
 
-    @Override
-    default MutableMessageChannel asMutable() {
-        // We're already mutable.
-        return this;
+    /**
+     * Handle transforming the input appropriately.
+     *
+     * @param sender The sender of the {@link T}
+     * @param recipient The recipient of the {@link T}
+     * @param original The original {@link T}, to optionally transform
+     * @return The {@link T} to send, if present, otherwise {@link Optional#empty()}
+     */
+    default Optional<T> transform(@Nullable Object sender, M recipient, T original) {
+        return Optional.of(original);
     }
 
 }

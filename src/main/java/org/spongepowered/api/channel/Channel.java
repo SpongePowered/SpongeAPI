@@ -22,21 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.channel;
+package org.spongepowered.api.channel;
 
-import org.spongepowered.api.channel.MutableChannel;
-import org.spongepowered.api.text.Text;
+import java.util.Collection;
+
+import javax.annotation.Nullable;
 
 /**
- * Represents a channel that takes a message and transforms it for distribution
- * to a mutable list of members.
+ * @param <T> The type to be sent
+ * @param <M> The member type
  */
-public interface MutableMessageChannel extends MessageChannel, MutableChannel<Text, MessageReceiver> {
+public interface Channel<T, M> {
 
-    @Override
-    default MutableMessageChannel asMutable() {
-        // We're already mutable.
-        return this;
+    /**
+     * Sends a {@link T} to this channel's members.
+     *
+     * @param original The original text to send
+     */
+    default void send(T original) {
+        this.send(null, original);
     }
+
+    /**
+     * Sends a {@link T} to this channel's members.
+     *
+     * @param sender The sender of the message
+     * @param original The original message to send
+     */
+    void send(@Nullable Object sender, T original);
+
+    /**
+     * Gets a collection of all members in this channel.
+     *
+     * @return A collection of all members of this channel
+     */
+    Collection<M> getMembers();
 
 }

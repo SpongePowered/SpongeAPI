@@ -50,8 +50,8 @@ public class DelegateMutableMessageChannel extends AbstractMutableMessageChannel
     }
 
     @Override
-    public Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original) {
-        return this.delegate.transformMessage(sender, recipient, original);
+    public Optional<Text> transform(@Nullable Object sender, MessageReceiver recipient, Text original) {
+        return this.delegate.transform(sender, recipient, original);
     }
 
 }

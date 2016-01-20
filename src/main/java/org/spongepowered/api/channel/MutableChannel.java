@@ -22,38 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.channel.type;
-
-import com.google.common.collect.ImmutableSet;
-import org.spongepowered.api.text.channel.MessageChannel;
-import org.spongepowered.api.text.channel.MessageReceiver;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
-import java.util.WeakHashMap;
+package org.spongepowered.api.channel;
 
 /**
- * A message channel that targets the given recipients.
+ * @param <T> The type to be sent
+ * @param <M> The member type
  */
-public class FixedMessageChannel implements MessageChannel {
+public interface MutableChannel<T, M> extends Channel<T, M> {
 
-    protected final Set<MessageReceiver> recipients;
+    /**
+     * Adds a member to this channel.
+     *
+     * @param member The member to add
+     * @return {@code true} if this channel did not already contain the member
+     */
+    boolean addMember(M member);
 
-    public FixedMessageChannel(MessageReceiver... recipients) {
-        this(Arrays.asList(recipients));
-    }
+    /**
+     * Removes a member from this channel.
+     *
+     * @param member The member to remove
+     * @return {@code true} if this channel contained the specified member
+     */
+    boolean removeMember(M member);
 
-    public FixedMessageChannel(Collection<? extends MessageReceiver> provided) {
-        Set<MessageReceiver> recipients = Collections.newSetFromMap(new WeakHashMap<>());
-        recipients.addAll(provided);
-        this.recipients = recipients;
-    }
-
-    @Override
-    public Collection<MessageReceiver> getMembers() {
-        return ImmutableSet.copyOf(this.recipients);
-    }
+    /**
+     * Removes all of the members from this channel.
+     */
+    void clearMembers();
 
 }

@@ -27,6 +27,8 @@ package org.spongepowered.api.text.channel.type;
 import static org.apache.commons.lang3.Validate.noNullElements;
 
 import com.google.common.collect.ImmutableSet;
+import org.spongepowered.api.channel.Channel;
+import org.spongepowered.api.channel.TransformableChannel;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
@@ -45,34 +47,58 @@ import javax.annotation.Nullable;
  * {@code channels[n-1].transformMessage(channels[n-2].transformMessage(channels[...]
  * .transformMessage(channels[0].transformMessage(input))))} would occur)
  */
-public class CombinedMessageChannel implements MessageChannel {
+public abstract class CombinedChannel<T, M, C extends Channel<T, M>> implements Channel<T, M> {
 
-    protected final Collection<MessageChannel> channels;
+    protected final Collection<C> channels;
 
-    public CombinedMessageChannel(MessageChannel... channels) {
+    @SafeVarargs
+    public CombinedChannel(C... channels) {
         this(Arrays.asList(channels));
     }
 
-    public CombinedMessageChannel(Collection<MessageChannel> channels) {
+    public CombinedChannel(Collection<? extends C> channels) {
         noNullElements(channels, "null message channel: %s");
         this.channels = ImmutableSet.copyOf(channels);
     }
 
     @Override
-    public Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original) {
-        Text text = original;
-        for (MessageChannel channel : this.channels) {
-            text = channel.transformMessage(sender, recipient, text).orElse(text);
-        }
-
-        return Optional.ofNullable(text);
-    }
-
-    @Override
-    public Collection<MessageReceiver> getMembers() {
+    public Collection<M> getMembers() {
         return this.channels.stream()
                 .flatMap(channel -> channel.getMembers().stream())
                 .collect(GuavaCollectors.toImmutableSet());
+    }
+
+    public static abstract class Transformable<T, M> extends CombinedChannel<T, M, TransformableChannel<T, M>> implements TransformableChannel<T, M> {
+
+        @SafeVarargs
+        public Transformable(TransformableChannel<T, M>... channels) {
+            super(channels);
+        }
+
+        public Transformable(Collection<? extends TransformableChannel<T, M>> channels) {
+            super(channels);
+        }
+
+        @Override
+        public Optional<T> transform(@Nullable Object sender, M recipient, T original) {
+            T text = original;
+            for (TransformableChannel<T, M> channel : this.channels) {
+                text = channel.transform(sender, recipient, text).orElse(text);
+            }
+
+            return Optional.ofNullable(text);
+        }
+    }
+
+    public static class Message extends Transformable<Text, MessageReceiver> implements MessageChannel {
+
+        public Message(MessageChannel... channels) {
+            super(channels);
+        }
+
+        public Message(Collection<MessageChannel> channels) {
+            super(channels);
+        }
     }
 
 }

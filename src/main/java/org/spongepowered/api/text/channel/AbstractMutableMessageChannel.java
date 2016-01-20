@@ -24,59 +24,23 @@
  */
 package org.spongepowered.api.text.channel;
 
-import java.util.Collection;
-import java.util.Collections;
+import org.spongepowered.api.channel.AbstractMutableChannel;
+import org.spongepowered.api.text.Text;
+
 import java.util.Set;
-import java.util.WeakHashMap;
 
 /**
  * An abstract implementation of {@link MutableMessageChannel}, using a
  * {@link Set} as the underlying member list
  */
-public abstract class AbstractMutableMessageChannel implements MutableMessageChannel {
+public abstract class AbstractMutableMessageChannel extends AbstractMutableChannel<Text, MessageReceiver> implements MutableMessageChannel {
 
-    protected final Set<MessageReceiver> members;
-
-    /**
-     * The default implementation uses a {@link WeakHashMap} implementation of {@link Set}.
-     */
     protected AbstractMutableMessageChannel() {
-        this(Collections.newSetFromMap(new WeakHashMap<>()));
+        super();
     }
 
-    /**
-     * Creates a new instance of {@link AbstractMutableMessageChannel} with the
-     * provided {@link Set} as the underlying member list.
-     *
-     * <p>The passed {@link Set} directly affects the members of this channel.</p>
-     *
-     * <p>It is recommended to use a weak set to avoid memory leaks. If you do not use
-     * a weak set, please ensure that members are cleaned up properly.</p>
-     *
-     * @param members The set of members
-     */
     protected AbstractMutableMessageChannel(Set<MessageReceiver> members) {
-        this.members = members;
-    }
-
-    @Override
-    public boolean addMember(MessageReceiver member) {
-        return this.members.add(member);
-    }
-
-    @Override
-    public boolean removeMember(MessageReceiver member) {
-        return this.members.remove(member);
-    }
-
-    @Override
-    public void clearMembers() {
-        this.members.clear();
-    }
-
-    @Override
-    public Collection<MessageReceiver> getMembers() {
-        return this.members;
+        super(members);
     }
 
 }
