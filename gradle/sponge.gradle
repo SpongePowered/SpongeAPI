@@ -69,6 +69,13 @@ afterEvaluate {
                 'Git-Commit': project.commit
         )
     }
+
+    // Fail if one file is included several times
+    tasks.withType(AbstractArchiveTask) {
+        if (duplicatesStrategy == 'include') {
+            duplicatesStrategy = 'fail'
+        }
+    }
 }
 
 javadoc {

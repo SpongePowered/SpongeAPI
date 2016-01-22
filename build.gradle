@@ -42,9 +42,9 @@ dependencies {
     compile 'com.google.inject:guice:4.0'
 
     // Configuration
-    compile 'ninja.leaping.configurate:configurate-hocon:3.1'
-    compile 'ninja.leaping.configurate:configurate-gson:3.1'
-    compile 'ninja.leaping.configurate:configurate-yaml:3.1'
+    compile 'ninja.leaping.configurate:configurate-hocon:3.1.1'
+    compile 'ninja.leaping.configurate:configurate-gson:3.1.1'
+    compile 'ninja.leaping.configurate:configurate-yaml:3.1.1'
 
     compile 'com.flowpowered:flow-math:1.0.1'
     compile 'com.flowpowered:flow-noise:1.0.1-SNAPSHOT'
