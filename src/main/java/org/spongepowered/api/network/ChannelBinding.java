@@ -103,6 +103,23 @@ public interface ChannelBinding {
         <M extends Message> void registerMessage(Class<M> messageClass, int messageId, Platform.Type side, MessageHandler<M> handler);
 
         /**
+         * Register a {@link MessageHandler} for a {@link Message}.
+         * @param messageClass The class to handle
+         * @param side The side being handled
+         * @param handler The handler
+         * @param <M> The type of message
+         */
+        <M extends Message> void addHandler(Class<M> messageClass, Platform.Type side, MessageHandler<M> handler);
+
+        /**
+         * Register a {@link MessageHandler} for a {@link Message}
+         * @param messageClass The class to handle
+         * @param handler The handler
+         * @param <M> The type of message
+         */
+        <M extends Message> void addHandler(Class<M> messageClass, MessageHandler<M> handler);
+
+        /**
          * Sends the message to the player across this channel. The message may
          * not be sent if the player doesn't have a registered handler.
          *
