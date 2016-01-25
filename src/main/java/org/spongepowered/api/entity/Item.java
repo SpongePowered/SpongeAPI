@@ -27,6 +27,7 @@ package org.spongepowered.api.entity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
 import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
@@ -53,6 +54,15 @@ public interface Item extends Entity {
      */
     default Value<ItemStackSnapshot> item() {
         return getValue(Keys.REPRESENTED_ITEM).get();
+    }
+
+    /**
+     * Gets the {@link ItemType} represented by this {@link Item} entity.
+     *
+     * @return The item type
+     */
+    default ItemType getItemType() {
+        return item().get().getType();
     }
 
 }
