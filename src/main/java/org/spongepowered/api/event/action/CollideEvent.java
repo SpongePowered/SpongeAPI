@@ -22,48 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.action.CollideEvent;
-import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
- * Fired when an {@link Entity} collides with a {@link BlockSnapshot}.
+ * Fired when an {@link Entity} and {@link BlockSnapshot} collide with each other.
  */
-public interface CollideBlockEvent extends CollideEvent {
+public interface CollideEvent extends Event, Cancellable {
 
     /**
-     * Gets the target {@link Location} being interacted with.
-     *
-     * @return The location
-     */
-    Location<World> getTargetLocation();
-
-    /**
-     * Gets the target {@link BlockState} being interacted with.
-     *
-     * @return The block state
-     */
-    BlockState getTargetBlock();
-
-    /**
-     * Gets the target "side" of the {@link BlockState} being interacted with
-     * or {@link Direction#NONE} if not known.
-     *
-     * @return An optional containing the side being interacted with or
-     *     {@link Direction#NONE}
-     */
-    Direction getTargetSide();
-
-    /**
-     * Fired when an {@link Entity} impacts another {@link BlockSnapshot}.
+     * Fired after an {@link Entity} and {@link BlockSnapshot} impact with each
+     * other.
      *
      * <p>Note: this should only fire once after the first impact.</p>
      */
-    interface Impact extends CollideBlockEvent, CollideEvent.Impact {}
+    interface Impact extends CollideEvent {
+
+        /**
+         * Gets the {@link Location} where the impact took place.
+         *
+         * @return The impact {@link Location}
+         */
+        Location<World> getImpactPoint();
+    }
 }

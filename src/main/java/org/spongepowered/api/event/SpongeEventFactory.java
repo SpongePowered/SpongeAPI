@@ -69,6 +69,7 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.projectile.FishHook;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.event.achievement.GrantAchievementEvent;
+import org.spongepowered.api.event.action.CollideEvent;
 import org.spongepowered.api.event.action.FishingEvent;
 import org.spongepowered.api.event.action.InteractEvent;
 import org.spongepowered.api.event.action.LightningEvent;
@@ -263,6 +264,36 @@ public class SpongeEventFactory {
         values.put("achievement", achievement);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(GrantAchievementEvent.TargetPlayer.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.action.CollideEvent}.
+     * 
+     * @param cause The cause
+     * @return A new collide event
+     */
+    public static CollideEvent createCollideEvent(Cause cause) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        return SpongeEventFactoryUtils.createEventImpl(CollideEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.action.CollideEvent.Impact}.
+     * 
+     * @param cause The cause
+     * @param impactPoint The impact point
+     * @return A new impact collide event
+     */
+    public static CollideEvent.Impact createCollideEventImpact(Cause cause, Location<World> impactPoint) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("impactPoint", impactPoint);
+        return SpongeEventFactoryUtils.createEventImpl(CollideEvent.Impact.class, values);
     }
 
     /**
@@ -665,6 +696,28 @@ public class SpongeEventFactory {
         values.put("targetLocation", targetLocation);
         values.put("targetSide", targetSide);
         return SpongeEventFactoryUtils.createEventImpl(CollideBlockEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.CollideBlockEvent.Impact}.
+     * 
+     * @param cause The cause
+     * @param impactPoint The impact point
+     * @param targetBlock The target block
+     * @param targetLocation The target location
+     * @param targetSide The target side
+     * @return A new impact collide block event
+     */
+    public static CollideBlockEvent.Impact createCollideBlockEventImpact(Cause cause, Location<World> impactPoint, BlockState targetBlock, Location<World> targetLocation, Direction targetSide) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("impactPoint", impactPoint);
+        values.put("targetBlock", targetBlock);
+        values.put("targetLocation", targetLocation);
+        values.put("targetSide", targetSide);
+        return SpongeEventFactoryUtils.createEventImpl(CollideBlockEvent.Impact.class, values);
     }
 
     /**
@@ -1487,6 +1540,28 @@ public class SpongeEventFactory {
         values.put("entities", entities);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(CollideEntityEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.CollideEntityEvent.Impact}.
+     * 
+     * @param cause The cause
+     * @param originalEntities The original entities
+     * @param entities The entities
+     * @param impactPoint The impact point
+     * @param targetWorld The target world
+     * @return A new impact collide entity event
+     */
+    public static CollideEntityEvent.Impact createCollideEntityEventImpact(Cause cause, List<Entity> originalEntities, List<Entity> entities, Location<World> impactPoint, World targetWorld) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("originalEntities", originalEntities);
+        values.put("entities", entities);
+        values.put("impactPoint", impactPoint);
+        values.put("targetWorld", targetWorld);
+        return SpongeEventFactoryUtils.createEventImpl(CollideEntityEvent.Impact.class, values);
     }
 
     /**
