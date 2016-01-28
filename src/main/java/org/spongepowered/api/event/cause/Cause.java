@@ -26,7 +26,6 @@ package org.spongepowered.api.event.cause;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.apache.commons.lang3.Validate.noNullElements;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
@@ -40,9 +39,12 @@ import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.StringJoiner;
 
 import javax.annotation.Nullable;
@@ -84,22 +86,10 @@ public final class Cause {
         checkArgument(object != null, "The source object cannot be null!");
         checkNotNull(objects, "The objects cannot be null!");
         List<Object> list = new ArrayList<>();
-        if (object instanceof Object[]) {
-            for (Object arrayObj : ((Object[]) object)) {
-                list.add(checkNotNull(arrayObj, "Array object"));
-            }
-        } else if (object instanceof Iterable) {
-            for (Object listObj : ((Iterable<Object>) object)) {
-                list.add(checkNotNull(listObj, "List object"));
-            }
-        } else {
-            list.add(object);
-        }
-        for (Object context : objects) {
-            list.add(checkNotNull(context, "Context object"));
-        }
+        list.add(object);
+        Collections.addAll(list, objects);
         checkArgument(!list.isEmpty(), "Cause cannot be empty!");
-        return new Cause(list.toArray());
+        return of(list);
     }
 
     /**
@@ -118,12 +108,17 @@ public final class Cause {
      */
     public static Cause of(Iterable<?> iterable) {
         checkArgument(iterable != null, "The source object cannot be null!");
-        List<Object> list = new ArrayList<>();
+        List<NamedCause> list = new ArrayList<>();
         for (Object listObj : iterable) {
-            list.add(checkNotNull(listObj, "List object"));
+            if (listObj instanceof NamedCause) {
+                list.add((NamedCause) listObj);
+            } else {
+                checkArgument(listObj != null, "Cause object cannot be null!");
+                list.add(NamedCause.of("unknown" + (list.size() + 1) + listObj.getClass().getSimpleName(), listObj));
+            }
         }
         checkArgument(!list.isEmpty(), "Cause cannot be empty!");
-        return new Cause(list.toArray());
+        return fromList(list);
     }
 
     /**
@@ -143,11 +138,8 @@ public final class Cause {
     public static Cause of(Object[] objects) {
         checkArgument(objects != null, "The source object cannot be null!");
         List<Object> list = new ArrayList<>();
-        for (Object arrayObj : objects) {
-            list.add(checkNotNull(arrayObj, "Array object"));
-        }
-        checkArgument(!list.isEmpty(), "Cause cannot be empty!");
-        return new Cause(list.toArray());
+        Collections.addAll(list, objects);
+        return of(list);
     }
 
     /**
@@ -167,31 +159,43 @@ public final class Cause {
      */
     public static Cause ofNullable(@Nullable Object object, @Nullable Object... objects) {
         checkArgument(object != null || (objects != null && objects.length != 0), "There must be at least one object in a cause!");
-        List<Object> list = new ArrayList<>();
+        List<NamedCause> list = new ArrayList<>();
         if (object instanceof Object[]) {
             for (Object arrayObj : ((Object[]) object)) {
-                if (arrayObj != null) {
-                    list.add(arrayObj);
+                if (arrayObj instanceof NamedCause) {
+                    list.add((NamedCause) arrayObj);
+                } else if (arrayObj != null) {
+                    list.add(NamedCause.of("unknown" + (list.size() + 1) + arrayObj.getClass().getSimpleName(), arrayObj));
                 }
             }
         } else if (object instanceof Iterable) {
             for (Object listObj : ((Iterable<Object>) object)) {
-                if (listObj != null) {
-                    list.add(listObj);
+                if (listObj instanceof NamedCause) {
+                    list.add((NamedCause) listObj);
+                } else if (listObj != null) {
+                    list.add(NamedCause.of("unknown" + (list.size() + 1) + listObj.getClass().getSimpleName(), listObj));
                 }
             }
         } else if (object != null) {
-            list.add(object);
+            if (object instanceof NamedCause) {
+                list.add((NamedCause) object);
+            } else {
+                list.add(NamedCause.of("unknown" + (list.size() + 1) + object.getClass().getSimpleName(), object));
+            }
         }
         if (objects != null) {
             for (Object cause : objects) {
                 if (cause != null) {
-                    list.add(cause);
+                    if (object instanceof NamedCause) {
+                        list.add((NamedCause) object);
+                    } else {
+                        list.add(NamedCause.of("unknown" + (list.size() + 1) + object.getClass().getSimpleName(), object));
+                    }
                 }
             }
         }
         checkArgument(!list.isEmpty(), "There must be at least one object within a cause!");
-        return new Cause(list.toArray());
+        return fromList(list);
     }
 
     /**
@@ -211,14 +215,17 @@ public final class Cause {
      */
     public static Cause ofNullable(Iterable<?> iterable) {
         checkArgument(iterable != null, "The iterable cannot be null!");
-        List<Object> list = new ArrayList<>();
-        for (Object listObj : iterable) {
-            if (listObj != null) {
-                list.add(listObj);
+        List<NamedCause> list = new ArrayList<>();
+        for (Object arrayObj : iterable) {
+            checkNotNull(arrayObj, "Iterable object cannot be null!");
+            if (arrayObj instanceof NamedCause) {
+                list.add((NamedCause) arrayObj);
+            } else {
+                list.add(NamedCause.of("unknown" + (list.size() + 1) + arrayObj.getClass().getSimpleName(), arrayObj));
             }
         }
         checkArgument(!list.isEmpty(), "Must at least have one object in the cause!");
-        return new Cause(list.toArray());
+        return fromList(list);
     }
 
     /**
@@ -238,43 +245,48 @@ public final class Cause {
      */
     public static Cause ofNullable(Object[] objects) {
         checkArgument(objects != null, "The source object cannot be null!");
-        List<Object> list = new ArrayList<>();
+        List<NamedCause> list = new ArrayList<>();
         for (Object arrayObj : objects) {
-            if (arrayObj != null) {
-                list.add(arrayObj);
+            if (arrayObj instanceof NamedCause) {
+                list.add((NamedCause) arrayObj);
+            } else if (arrayObj != null) {
+                list.add(NamedCause.of("unknown" + (list.size() + 1) + arrayObj.getClass().getSimpleName(), arrayObj));
             }
         }
         checkArgument(!list.isEmpty(), "Must at least have one object in the cause!");
-        return new Cause(list.toArray());
+        return fromList(list);
+    }
+
+    private static Cause fromList(List<NamedCause> causes) {
+        final Set<String> nameSet = new HashSet<>();
+        for (NamedCause cause : causes) {
+            checkArgument(!nameSet.contains(cause.getName()), "A named cause already exists with the name: " + cause.getName());
+            nameSet.add(cause.getName());
+        }
+        return new Cause(causes.toArray(new NamedCause[causes.size()]));
     }
 
     private final Object[] cause;
     private final String[] names;
+    private final ImmutableList<Object> immutableCauses;
 
 
     // lazy load
     @Nullable private Map<String, Object> namedObjectMap;
 
-    private Cause(Object[] causes) {
-        final List<Object> list = new ArrayList<>(causes.length);
-        final List<String> names = new ArrayList<>(causes.length);
-        for (Object aCause : causes) {
+    private Cause(NamedCause[] causes) {
+        // basically, no validation, all the validation should take place calling this constructor
+        final Object[] objects = new Object[causes.length];
+        final String[] names = new String[causes.length];
+        for (int index = 0; index < causes.length; index++) {
+            NamedCause aCause = causes[index];
             checkNotNull(aCause, "Null cause element!");
-            if (aCause instanceof NamedCause) {
-                Object object = ((NamedCause) aCause).getCauseObject();
-                checkArgument(!names.contains(((NamedCause) aCause).getName()), "Names need to be unique!"
-                                                                                + " There is already a named cause of: "
-                                                                                + ((NamedCause) aCause).getName());
-                list.add(object);
-                names.add(((NamedCause) aCause).getName());
-            } else {
-                list.add(aCause);
-                names.add("unknown" + list.size() + aCause.getClass().getName());
-            }
+            objects[index] = aCause.getCauseObject();
+            names[index] = aCause.getName();
         }
-
-        this.cause = list.toArray();
-        this.names = names.toArray(new String[names.size()]);
+        this.cause = objects;
+        this.names = names;
+        this.immutableCauses = ImmutableList.copyOf(this.cause);
     }
 
     /**
@@ -525,7 +537,7 @@ public final class Cause {
      * @return An immutable list of all the causes
      */
     public List<Object> all() {
-        return ImmutableList.copyOf(this.cause);
+        return this.immutableCauses;
     }
 
     /**
@@ -538,7 +550,6 @@ public final class Cause {
      */
     public Cause with(Object additional, Object... additionals) {
         checkArgument(additional != null, "No null arguments allowed!");
-        noNullElements(additionals, "No null objects allowed!");
         List<Object> list = new ArrayList<>();
         list.add(additional);
         for (Object object : additionals) {
@@ -556,19 +567,19 @@ public final class Cause {
      * @return The new cause
      */
     public Cause with(Iterable<?> iterable) {
-        List<Object> list = new ArrayList<>();
+        List<NamedCause> list = new ArrayList<>();
         for (int i = 0; i < this.cause.length; i++) {
             list.add(NamedCause.of(this.names[i], this.cause[i]));
         }
         for (Object o : iterable) {
             checkArgument(o != null, "Cannot add null causes");
             if (o instanceof NamedCause) {
-                list.add(o);
+                list.add((NamedCause) o);
             } else {
                 list.add(NamedCause.of("unknown" + (list.size() + 1) + o.getClass().getSimpleName(), o));
             }
         }
-        return of(list.toArray());
+        return fromList(list);
     }
 
     /**
