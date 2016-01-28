@@ -24,18 +24,18 @@
  */
 package org.spongepowered.api.event.block;
 
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.action.CollideEvent;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
- * Fired when something collides a {@link BlockState} due to a {@link Cause}.
+ * Fired when an {@link Entity} collides with a {@link BlockSnapshot}.
  */
-public interface CollideBlockEvent extends Event, Cancellable {
+public interface CollideBlockEvent extends CollideEvent {
 
     /**
      * Gets the target {@link Location} being interacted with.
@@ -59,4 +59,11 @@ public interface CollideBlockEvent extends Event, Cancellable {
      *     {@link Direction#NONE}
      */
     Direction getTargetSide();
+
+    /**
+     * Fired when an {@link Entity} impacts another {@link BlockSnapshot}.
+     *
+     * <p>Note: this should only fire once after the first impact.</p>
+     */
+    interface Impact extends CollideBlockEvent, CollideEvent.Impact {}
 }

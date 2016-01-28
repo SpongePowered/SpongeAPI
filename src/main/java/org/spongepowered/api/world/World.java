@@ -26,6 +26,7 @@ package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.service.context.ContextSource;
@@ -90,44 +91,68 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource {
     String getName();
 
     /**
-     * Get the loaded chunk at the given position.
+     * Get the loaded chunk at the given block coordinate position.
      *
-     * @param position The position
+     * @param blockPosition The position
      * @return The chunk, if available
      */
-    Optional<Chunk> getChunk(Vector3i position);
+    default Optional<Chunk> getChunkAtBlock(Vector3i blockPosition) {
+        return getChunkAtBlock(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ());
+    }
 
     /**
-     * Get the loaded chunk at the given position.
+     * Get the loaded chunk at the given block coordinate position.
      *
-     * @param x The x coordinate
-     * @param y The y coordinate
-     * @param z The z coordinate
+     * @param bx The x coordinate
+     * @param by The y coordinate
+     * @param bz The z coordinate
      * @return The chunk, if available
      */
-    Optional<Chunk> getChunk(int x, int y, int z);
+    default Optional<Chunk> getChunkAtBlock(int bx, int by, int bz) {
+        return getChunk(Sponge.getServer().getChunkLayout().forceToChunk(bx, by, bz));
+    }
 
     /**
-     * Get the chunk at the given position if it exists or if
+     * Get the loaded chunk at the given chunk coordinate position.
+     *
+     * @param chunkPosition The position
+     * @return The chunk, if available
+     */
+    default Optional<Chunk> getChunk(Vector3i chunkPosition) {
+        return getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
+    }
+
+    /**
+     * Get the loaded chunk at the given chunk coordinate position.
+     *
+     * @param cx The x coordinate
+     * @param cy The y coordinate
+     * @param cz The z coordinate
+     * @return The chunk, if available
+     */
+    Optional<Chunk> getChunk(int cx, int cy, int cz);
+
+    /**
+     * Get the chunk at the given chunk coordinate position if it exists or if
      * {@code shouldGenerate} is true and the chunk is generated.
      *
-     * @param position The position
+     * @param chunkPosition The position
      * @param shouldGenerate True to generate a new chunk
      * @return The loaded or generated chunk, if already generated
      */
-    Optional<Chunk> loadChunk(Vector3i position, boolean shouldGenerate);
+    Optional<Chunk> loadChunk(Vector3i chunkPosition, boolean shouldGenerate);
 
     /**
-     * Get the chunk at the given position if it exists or if
+     * Get the chunk at the given chunk coordinate position if it exists or if
      * {@code shouldGenerate} is true and the chunk is generated.
      *
-     * @param x The x coordinate
-     * @param y The y coordinate
-     * @param z The z coordinate
+     * @param cx The x coordinate
+     * @param cy The y coordinate
+     * @param cz The z coordinate
      * @param shouldGenerate True to generate a new chunk
      * @return The loaded or generated chunk, if already generated
      */
-    Optional<Chunk> loadChunk(int x, int y, int z, boolean shouldGenerate);
+    Optional<Chunk> loadChunk(int cx, int cy, int cz, boolean shouldGenerate);
 
     /**
      * Unloads the given chunk from the world. Returns a {@code boolean} flag
@@ -180,7 +205,8 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource {
 
     /**
      * Gets the specified GameRule value.
-     **
+     * *
+     *
      * @param gameRule The name of the GameRule.
      * @return The GameRule value, if it exists.
      */
@@ -216,7 +242,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource {
      * 's {@link DimensionType}'s keepLoaded value unless a plugin overrides it.
      *
      * @return True if {@link World} remains loaded without players, false if
-     *         not
+     * not
      */
     boolean doesKeepSpawnLoaded();
 
@@ -226,7 +252,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource {
      * {@link DimensionType}'s keepLoaded value.
      *
      * @param keepLoaded Whether this {@link World}'s spawn chunks remain loaded
-     *        without players
+     * without players
      */
     void setKeepSpawnLoaded(boolean keepLoaded);
 

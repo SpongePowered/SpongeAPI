@@ -22,47 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 /**
- * Represents an Item entity.
+ * Fired when an {@link Entity} and {@link BlockSnapshot} collide with each other.
  */
-public interface Item extends Entity {
+public interface CollideEvent extends Event, Cancellable {
 
     /**
-     * Gets a copy of the current {@link RepresentedItemData} this item is
-     * representing.
+     * Fired after an {@link Entity} and {@link BlockSnapshot} impact with each
+     * other.
      *
-     * @return A copy of the represented item data
+     * <p>Note: this should only fire once after the first impact.</p>
      */
-    default RepresentedItemData getItemData() {
-        return get(RepresentedItemData.class).get();
-    }
+    interface Impact extends CollideEvent {
 
-    /**
-     * Gets the {@link Value} for the represented {@link ItemStack} as
-     * an {@link ItemStackSnapshot}.
-     *
-     * @return The value for the item stack snapshot
-     */
-    default Value<ItemStackSnapshot> item() {
-        return getValue(Keys.REPRESENTED_ITEM).get();
+        /**
+         * Gets the {@link Location} where the impact took place.
+         *
+         * @return The impact {@link Location}
+         */
+        Location<World> getImpactPoint();
     }
-
-    /**
-     * Gets the {@link ItemType} represented by this {@link Item} entity.
-     *
-     * @return The item type
-     */
-    default ItemType getItemType() {
-        return item().get().getType();
-    }
-
 }

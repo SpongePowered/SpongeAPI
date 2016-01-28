@@ -44,6 +44,8 @@ public final class DataQuery {
      */
     private final ImmutableList<String> parts;
 
+    private ImmutableList<DataQuery> queryParts; //lazy loaded
+
     /**
      * Constructs a query using the given separator character and path.
      *
@@ -161,14 +163,45 @@ public final class DataQuery {
      * @return The constructed queries
      */
     public List<DataQuery> getQueryParts() {
-        ImmutableList.Builder<DataQuery> builder =
-            new ImmutableList.Builder<>();
-
-        for (String part : getParts()) {
-            builder.add(new DataQuery(part));
+        if (this.queryParts == null) {
+            ImmutableList.Builder<DataQuery> builder = ImmutableList.builder();
+            for (String part : getParts()) {
+                builder.add(new DataQuery(part));
+            }
+            this.queryParts = builder.build();
         }
+        return this.queryParts;
+    }
 
-        return builder.build();
+    /**
+     * Returns a {@link DataQuery} where the last node is "popped" off. If this
+     * query is already the top level query, then the {@link DataQuery#of()} is
+     * returned.
+     *
+     * @return The next level query
+     */
+    public DataQuery pop() {
+        if (this.parts.size() <= 1) {
+            return of();
+        }
+        ImmutableList.Builder<String> builder = ImmutableList.builder();
+        for (int i = 0; i < this.parts.size() - 1; i++) {
+            builder.add(this.parts.get(i));
+        }
+        return new DataQuery(builder.build());
+    }
+
+    /**
+     * Gets the last entry of this {@link DataQuery}. If this query is
+     * a single entry query or an empty query, it returns itself.
+     *
+     * @return The last entry as a data query, if not already last
+     */
+    public DataQuery last() {
+        if (this.parts.size() <= 1) {
+            return this;
+        }
+        return new DataQuery(this.parts.get(this.parts.size() - 1));
     }
 
     /**
