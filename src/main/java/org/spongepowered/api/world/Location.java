@@ -31,6 +31,7 @@ import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Objects;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
@@ -57,6 +58,7 @@ import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import javax.annotation.Nullable;
@@ -86,6 +88,8 @@ public final class Location<E extends Extent> implements DataHolder {
     private Vector3d position = null;
     @Nullable
     private Vector3i blockPosition = null;
+    @Nullable
+    private Vector3i chunkPosition = null;
     @Nullable
     private Vector2i biomePosition = null;
 
@@ -176,6 +180,18 @@ public final class Location<E extends Extent> implements DataHolder {
             this.blockPosition = getPosition().toInt();
         }
         return this.blockPosition;
+    }
+
+    /**
+     * Get the underlying chunk position.
+     *
+     * @return The underlying chunk position
+     */
+    public Vector3i getChunkPosition() {
+        if (this.chunkPosition == null) {
+            this.chunkPosition = Sponge.getServer().getChunkLayout().forceToChunk(getBlockPosition());
+        }
+        return this.chunkPosition;
     }
 
     /**
@@ -352,6 +368,50 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
+     * Calls the mapper function on the extent and position.
+     *
+     * @param mapper The mapper
+     * @param <T> The return type of the mapper
+     * @return The results of the mapping
+     */
+    public <T> T map(BiFunction<E, Vector3d, T> mapper) {
+        return mapper.apply(getExtent(), getPosition());
+    }
+
+    /**
+     * Calls the mapper function on the extent and block position.
+     *
+     * @param mapper The mapper
+     * @param <T> The return type of the mapper
+     * @return The results of the mapping
+     */
+    public <T> T mapBlock(BiFunction<E, Vector3i, T> mapper) {
+        return mapper.apply(getExtent(), getBlockPosition());
+    }
+
+    /**
+     * Calls the mapper function on the extent and chunk position.
+     *
+     * @param mapper The mapper
+     * @param <T> The return type of the mapper
+     * @return The results of the mapping
+     */
+    public <T> T mapChunk(BiFunction<E, Vector3i, T> mapper) {
+        return mapper.apply(getExtent(), getChunkPosition());
+    }
+
+    /**
+     * Calls the mapper function on the extent and biome position.
+     *
+     * @param mapper The mapper
+     * @param <T> The return type of the mapper
+     * @return The results of the mapping
+     */
+    public <T> T mapBiome(BiFunction<E, Vector2i, T> mapper) {
+        return mapper.apply(getExtent(), getBiomePosition());
+    }
+
+    /**
      * Gets the location next to this one in the give direction.
      *
      * @param direction The direction to look in
@@ -395,7 +455,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * Checks for whether the block at this position contains tile entity data.
      *
      * @return True if the block at this position has tile entity data, false
-     *         otherwise
+     * otherwise
      */
     public boolean hasTileEntity() {
         return getExtent().getTileEntity(getBlockPosition()).isPresent();
@@ -428,7 +488,7 @@ public final class Location<E extends Extent> implements DataHolder {
      *
      * @param state The new block state
      * @param notifyNeighbors Whether or not you want to notify neighboring
-     *        blocks of this change. If true, this may cause blocks to change.
+     * blocks of this change. If true, this may cause blocks to change.
      */
     public void setBlock(BlockState state, boolean notifyNeighbors) {
         getExtent().setBlock(getBlockPosition(), state, notifyNeighbors);
@@ -452,7 +512,7 @@ public final class Location<E extends Extent> implements DataHolder {
      *
      * @param type The new type
      * @param notifyNeighbors Whether or not you want to notify neighboring
-     *        blocks of this change. If true, this may cause blocks to change.
+     * blocks of this change. If true, this may cause blocks to change.
      */
     public void setBlockType(BlockType type, boolean notifyNeighbors) {
         getExtent().setBlockType(getBlockPosition(), type, notifyNeighbors);
@@ -466,9 +526,9 @@ public final class Location<E extends Extent> implements DataHolder {
      *
      * @param snapshot The snapshot
      * @param force If true, forces block state to be set even if the
-     *        {@link BlockType} does not match the snapshot one.
+     * {@link BlockType} does not match the snapshot one.
      * @param notifyNeighbors Whether or not you want to notify neighboring
-     *        blocks of this change. If true, this may cause blocks to change.
+     * blocks of this change. If true, this may cause blocks to change.
      */
     public void restoreSnapshot(BlockSnapshot snapshot, boolean force, boolean notifyNeighbors) {
         getExtent().restoreSnapshot(getBlockPosition(), snapshot, force, notifyNeighbors);
@@ -575,15 +635,15 @@ public final class Location<E extends Extent> implements DataHolder {
             container.set(Queries.WORLD_ID, getExtent().getUniqueId().toString());
         } else if (getExtent() instanceof Chunk) {
             container.set(Queries.CHUNK_X, ((Chunk) getExtent()).getPosition().getX())
-                    .set(Queries.CHUNK_Y, ((Chunk) getExtent()).getPosition().getY())
-                    .set(Queries.CHUNK_Z, ((Chunk) getExtent()).getPosition().getZ())
-                    .set(Queries.WORLD_NAME, ((Chunk) getExtent()).getWorld().getName())
-                    .set(Queries.WORLD_ID, ((Chunk) getExtent()).getWorld().getUniqueId().toString());
+                .set(Queries.CHUNK_Y, ((Chunk) getExtent()).getPosition().getY())
+                .set(Queries.CHUNK_Z, ((Chunk) getExtent()).getPosition().getZ())
+                .set(Queries.WORLD_NAME, ((Chunk) getExtent()).getWorld().getName())
+                .set(Queries.WORLD_ID, ((Chunk) getExtent()).getWorld().getUniqueId().toString());
         }
         container.set(Queries.BLOCK_TYPE, this.getExtent().getBlockType(getBlockPosition()).getId())
-                .set(Queries.POSITION_X, this.getX())
-                .set(Queries.POSITION_Y, this.getY())
-                .set(Queries.POSITION_Z, this.getZ());
+            .set(Queries.POSITION_X, this.getX())
+            .set(Queries.POSITION_Y, this.getY())
+            .set(Queries.POSITION_Z, this.getZ());
         return container;
     }
 
@@ -674,7 +734,7 @@ public final class Location<E extends Extent> implements DataHolder {
 
     @Override
     public DataHolder copy() {
-        return new Location<>(this.extent.get(), getPosition());
+        return new Location<>(getExtent(), getPosition());
     }
 
     @Override
@@ -694,7 +754,7 @@ public final class Location<E extends Extent> implements DataHolder {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.extent.get(), this.getPosition());
+        return Objects.hashCode(getExtent(), getPosition());
     }
 
     @Override
@@ -703,8 +763,8 @@ public final class Location<E extends Extent> implements DataHolder {
             return false;
         }
         Location<?> otherLoc = (Location<?>) other;
-        return otherLoc.getExtent().equals(this.getExtent())
-                && otherLoc.getPosition().equals(this.getPosition());
+        return otherLoc.getExtent().equals(getExtent())
+            && otherLoc.getPosition().equals(getPosition());
     }
 
 }
