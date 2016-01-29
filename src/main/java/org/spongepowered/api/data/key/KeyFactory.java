@@ -30,6 +30,7 @@ import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
+import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.data.value.mutable.SetValue;
 import org.spongepowered.api.data.value.mutable.Value;
 
@@ -190,6 +191,40 @@ public final class KeyFactory {
             public String toString() {
                 return "Key{Value:" + "MapValue<" + keyClass.getSimpleName() + "," + valueclass.getSimpleName() + ">, Query: " + query.toString()
                        + "}";
+            }
+        };
+    }
+
+    /**
+     * Creates a new {@link Key} based on an {@link OptionalValue} of the type
+     * <code>E</code> element type with the provided {@link DataQuery} for
+     * accessing the optionally null value in {@link DataView}s.
+     *
+     * @param elementClass The element class
+     * @param query The query
+     * @param <E> The element type
+     * @return The generated key
+     */
+    public static <E> Key<OptionalValue<E>> makeOptionalKey(final Class<E> elementClass, final DataQuery query) {
+        return new Key<OptionalValue<E>>() {
+            @Override
+            public Class<OptionalValue<E>> getValueClass() {
+                return (Class<OptionalValue<E>>) (Class<?>) OptionalValue.class;
+            }
+
+            @Override
+            public DataQuery getQuery() {
+                return query;
+            }
+
+            @Override
+            public int hashCode() {
+                return Objects.hashCode(elementClass, query);
+            }
+
+            @Override
+            public String toString() {
+                return "Key{Value:" + "OptionalValue<" + elementClass.getSimpleName() + ">, Query: " + query.toString() + "}";
             }
         };
     }

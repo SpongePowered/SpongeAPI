@@ -30,6 +30,7 @@ import com.google.common.collect.MapMaker;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.SpongeEventFactory;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.NamedCause;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 
@@ -81,7 +82,8 @@ public class SimpleServiceManager implements ServiceManager {
 
         PluginContainer container = containerOptional.get();
         ProviderRegistration<?> oldProvider = this.providers.put(service, new Provider<>(container, service, provider));
-        Sponge.getEventManager().post(SpongeEventFactory.createChangeServiceProviderEvent(Cause.of(container), this.providers.get(service), Optional.ofNullable(oldProvider)));
+        Sponge.getEventManager().post(SpongeEventFactory.createChangeServiceProviderEvent(Cause.of(NamedCause.source(container)),
+                this.providers.get(service), Optional.ofNullable(oldProvider)));
     }
 
 
