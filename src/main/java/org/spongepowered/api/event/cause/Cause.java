@@ -165,7 +165,7 @@ public final class Cause {
                 if (arrayObj instanceof NamedCause) {
                     list.add((NamedCause) arrayObj);
                 } else if (arrayObj != null) {
-                    list.add(NamedCause.of("unknown" + (list.size() + 1) + arrayObj.getClass().getSimpleName(), arrayObj));
+                    list.add(NamedCause.of("unknown" + (list.size() + 1) + arrayObj.getClass().getName(), arrayObj));
                 }
             }
         } else if (object instanceof Iterable) {
@@ -173,14 +173,14 @@ public final class Cause {
                 if (listObj instanceof NamedCause) {
                     list.add((NamedCause) listObj);
                 } else if (listObj != null) {
-                    list.add(NamedCause.of("unknown" + (list.size() + 1) + listObj.getClass().getSimpleName(), listObj));
+                    list.add(NamedCause.of("unknown" + (list.size() + 1) + listObj.getClass().getName(), listObj));
                 }
             }
         } else if (object != null) {
             if (object instanceof NamedCause) {
                 list.add((NamedCause) object);
             } else {
-                list.add(NamedCause.of("unknown" + (list.size() + 1) + object.getClass().getSimpleName(), object));
+                list.add(NamedCause.of("unknown" + (list.size() + 1) + object.getClass().getName(), object));
             }
         }
         if (objects != null) {
@@ -189,7 +189,7 @@ public final class Cause {
                     if (object instanceof NamedCause) {
                         list.add((NamedCause) object);
                     } else {
-                        list.add(NamedCause.of("unknown" + (list.size() + 1) + object.getClass().getSimpleName(), object));
+                        list.add(NamedCause.of("unknown" + (list.size() + 1) + object.getClass().getName(), object));
                     }
                 }
             }
@@ -221,7 +221,7 @@ public final class Cause {
             if (arrayObj instanceof NamedCause) {
                 list.add((NamedCause) arrayObj);
             } else {
-                list.add(NamedCause.of("unknown" + (list.size() + 1) + arrayObj.getClass().getSimpleName(), arrayObj));
+                list.add(NamedCause.of("unknown" + (list.size() + 1) + arrayObj.getClass().getName(), arrayObj));
             }
         }
         checkArgument(!list.isEmpty(), "Must at least have one object in the cause!");
@@ -250,7 +250,7 @@ public final class Cause {
             if (arrayObj instanceof NamedCause) {
                 list.add((NamedCause) arrayObj);
             } else if (arrayObj != null) {
-                list.add(NamedCause.of("unknown" + (list.size() + 1) + arrayObj.getClass().getSimpleName(), arrayObj));
+                list.add(NamedCause.of("unknown" + (list.size() + 1) + arrayObj.getClass().getName(), arrayObj));
             }
         }
         checkArgument(!list.isEmpty(), "Must at least have one object in the cause!");
@@ -258,10 +258,13 @@ public final class Cause {
     }
 
     private static Cause fromList(List<NamedCause> causes) {
-        final Set<String> nameSet = new HashSet<>();
+        final List<String> nameList = new ArrayList<>();
         for (NamedCause cause : causes) {
-            checkArgument(!nameSet.contains(cause.getName()), "A named cause already exists with the name: " + cause.getName());
-            nameSet.add(cause.getName());
+            if (!nameList.contains(cause.getName())) {
+                nameList.add(cause.getName());
+            } else {
+                throw new IllegalArgumentException("A named cause already exists with the name: " + cause.getName());
+            }
         }
         return new Cause(causes.toArray(new NamedCause[causes.size()]));
     }
@@ -580,6 +583,38 @@ public final class Cause {
             }
         }
         return fromList(list);
+    }
+
+    /**
+     * Merges this cause with the other cause. This provides some semblance of
+     * re-naming the previous "Source" of the other {@link Cause} to be
+     * renamed appropriately.
+     *
+     * @param cause The cause to merge with this
+     * @return The new merged cause
+     */
+    public Cause merge(Cause cause) {
+        List<String> names = new ArrayList<>();
+        List<NamedCause> causes = new ArrayList<>();
+        for (int i = 0; i < this.cause.length; i++) {
+            causes.add(NamedCause.of(this.names[i], this.cause[i]));
+            names.add(this.names[i]);
+        }
+        int iteration = 1;
+        for (int i = 0; i < cause.cause.length; i++) {
+            String name = cause.names[i].equalsIgnoreCase("Source")
+                          ? "AdditionalSource" : cause.names[i].equalsIgnoreCase("AdditionalSource")
+                                                 ? "PreviousSource" : cause.names[i];
+            if (names.contains(name)) {
+                name += iteration++;
+            }
+            if (!names.contains(name)) {
+                causes.add(NamedCause.of(name, cause.cause[i]));
+            } else {
+                throw new IllegalArgumentException("Cannot have duplicate names of objects in a cause! Duplicate found: " + cause.names[i]);
+            }
+        }
+        return fromList(causes);
     }
 
     /**
