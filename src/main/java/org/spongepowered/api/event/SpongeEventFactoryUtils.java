@@ -93,7 +93,7 @@ public class SpongeEventFactoryUtils {
     public static <T extends GameStateEvent> T createState(Class<T> type, Game game) {
         Map<String, Object> values = Maps.newHashMapWithExpectedSize(2);
         values.put("state", game.getState());
-        values.put("cause", Cause.of(NamedCause.source(game)));
+        values.put("cause", Cause.source(game).build());
         return SpongeEventFactoryUtils.createEventImpl(type, values);
     }
 

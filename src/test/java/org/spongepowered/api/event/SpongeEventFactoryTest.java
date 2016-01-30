@@ -224,9 +224,9 @@ public class SpongeEventFactoryTest {
             return DataTransactionResult.successNoData();
         } else if (paramType == Cause.class) {
             if (target != null && SpawnEntityEvent.class.isAssignableFrom(target)) {
-                return Cause.of(mock(SpawnCause.class));
+                return Cause.source(mock(SpawnCause.class)).build();
             }
-            return Cause.of(NamedCause.source("none"));
+            return Cause.source("none").build();
         } else if (paramType == Location.class) {
             return new Location<>(mock(Extent.class), Vector3d.ZERO);
         } else if (paramType == Locale.class) {

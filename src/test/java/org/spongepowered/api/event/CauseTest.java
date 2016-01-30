@@ -50,18 +50,18 @@ public class CauseTest {
 
     @Test
     public void testPopulatedCause() {
-        Cause.of("foo");
+        Cause.builder().named("foo", "foo").build();
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNullCause() {
-        Cause.of((Object) null);
+        Cause.builder().named("null", null);
     }
 
     @Test
     public void testWithCause() {
-        final Cause old = Cause.of("foo");
-        final Cause newCause = old.with("bar");
+        final Cause old = Cause.source("foo").build();
+        final Cause newCause = old.with(NamedCause.of("derp", "bar"));
         assertThat(old, not(newCause));
         List<?> list = newCause.all();
         assertThat(list.contains("foo"), is(true));
@@ -70,20 +70,20 @@ public class CauseTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testWithNullCause() {
-        final Cause old = Cause.of("foo");
-        final Cause newCause = old.with((Object) null);
+        final Cause old = Cause.source("foo").build();
+        final Cause newCause = old.with(null);
     }
 
     @Test
     public void testToString() {
-        final Cause cause = Cause.of("foo", "bar", 1, 2, true, false);
+        final Cause cause = Cause.builder().named("foo","foo").named("bar","bar").named("numero1", 1).named("duo", 2).build();
         final String causeString = cause.toString();
         assertThat(causeString.isEmpty(), is(false));
     }
 
     @Test
     public void testBefore() {
-        final Cause cause = Cause.of("foo", 1, 2);
+        final Cause cause = Cause.builder().named("foo","foo").named("numero1", 1).named("duo", 2).build();
         final Optional<?> optional = cause.before(Integer.class);
         assertThat(optional.isPresent(), is(true));
         assertThat(optional.get(), is("foo"));
@@ -91,7 +91,7 @@ public class CauseTest {
 
     @Test
     public void testAfter() {
-        final Cause cause = Cause.of("foo", 1, 2);
+        final Cause cause = Cause.builder().named("foo","foo").named("numero1", 1).named("duo", 2).build();
         final Optional<?> optional = cause.after(Integer.class);
         assertThat(optional.isPresent(), is(true));
         assertThat(optional.get(), is(2));
@@ -99,21 +99,21 @@ public class CauseTest {
 
     @Test
     public void testNoneAfter() {
-        final Cause cause = Cause.of("foo", 1);
+        final Cause cause = Cause.builder().named("foo","foo").named("numero1", 1).build();
         final Optional<?> optional = cause.after(Integer.class);
         assertThat(optional.isPresent(), is(false));
     }
 
     @Test
     public void testNoneBefore() {
-        final Cause cause = Cause.of("foo", 1);
+        final Cause cause = Cause.builder().named("foo","foo").named("numero1", 1).build();
         final Optional<?> optional = cause.before(String.class);
         assertThat(optional.isPresent(), is(false));
     }
 
     @Test
     public void testNoneOf() {
-        final Cause cause = Cause.of("foo", 1, 2, 3);
+        final Cause cause = Cause.builder().named("foo","foo").named("numero1", 1).named("duo", 2).named("trio", 3).build();
         assertThat(cause.noneOf(Integer.class), hasSize(1));
         assertThat(cause.noneOf(Integer.class).get(0), is("foo"));
     }
@@ -122,7 +122,7 @@ public class CauseTest {
     public void testNamedCause() {
         final Player player = Mockito.mock(Player.class);
         final NamedCause ownerCause = NamedCause.of(NamedCause.OWNER, player);
-        final Cause playerCause = Cause.of(ownerCause);
+        final Cause playerCause = Cause.builder().named(ownerCause).build();
         Optional<Player> optional = playerCause.get(NamedCause.OWNER, Player.class);
         assertThat(optional.isPresent(), is(true));
     }
@@ -212,7 +212,7 @@ public class CauseTest {
     @Test
     public void testListedArray() {
         final List<String> fooList = ImmutableList.of("foo", "bar", "baz", "floof");
-        final Cause cause = Cause.of(fooList);
+        final Cause cause = Cause.builder().suggestNamed("foo", "foo").suggestNamed("bar", "bar").suggestNamed("baz", "baz").suggestNamed("floof", "floof").build();
         final List<String> stringList = cause.allOf(String.class);
         assertThat(stringList.isEmpty(), is(false));
         assertThat(stringList.equals(fooList), is(true));
