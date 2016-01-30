@@ -27,6 +27,7 @@ package org.spongepowered.api.world;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.world.extent.worker.MutableBiomeAreaWorker;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
 /**
@@ -56,10 +57,6 @@ public interface Chunk extends Extent {
     default Location<Chunk> getLocation(double x, double y, double z) {
         return getLocation(new Vector3d(x, y, z));
     }
-
-    // TODO remove when either IntelliJ fixes their editor, or DDoS changes the block worker api.
-    @Override
-    MutableBlockVolumeWorker<? extends Extent> getBlockWorker();
 
     /**
      * Get the position of the chunk.
@@ -91,8 +88,7 @@ public interface Chunk extends Extent {
      * Loads this chunk, and generates if specified and required.
      *
      * @param generate Whether or not to generate the chunk if it does not yet
-     *        exist
-     *
+     * exist
      * @return If the chunk was successfully loaded
      */
     boolean loadChunk(boolean generate);
@@ -109,7 +105,7 @@ public interface Chunk extends Extent {
      * for calculation of the regional difficulty factor. In vanilla, it is
      * increased by the number of players in the chunk every tick, and is capped
      * at 3,600,000 ticks (50 hours).
-     * 
+     *
      * @return The number of ticks
      */
     int getInhabittedTime();
@@ -119,9 +115,9 @@ public interface Chunk extends Extent {
      * dependent on the playtime of the world, inhabited time of the chunk, the
      * phase of the moon, and the current difficulty setting. This number ranges
      * from 0.75-1.5 on easy, 1.5-4.0 on normal, and 2.25-6.75 on hard.
-     * 
+     *
      * <p>This value is used for display only in vanilla.</p>
-     * 
+     *
      * @return The regional difficulty factor for this chunk
      */
     double getRegionalDifficultyFactor();
@@ -132,11 +128,18 @@ public interface Chunk extends Extent {
      * If the factor is less than 2.0, the percentage is 0%. If the factor is
      * greater than 4.0, the percentage is 100%. Otherwise, the percentage is
      * the factor minus 2.0, divided by 2.0.
-     * 
+     *
      * <p>This is the value that is used in vanilla to find which effects are
      * caused by the regional difficulty.</p>
-     * 
+     *
      * @return The regional difficulty percentage for this chunk
      */
     double getRegionalDifficultyPercentage();
+
+    @Override
+    MutableBiomeAreaWorker<? extends Chunk> getBiomeWorker();
+
+    @Override
+    MutableBlockVolumeWorker<? extends Chunk> getBlockWorker();
+
 }
