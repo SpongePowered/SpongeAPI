@@ -28,7 +28,7 @@ import org.spongepowered.api.entity.living.Agent;
 
 /**
  * Similar to {@link WatchClosestAITask} but it has a different mutex bit in
- * vanilla. (MCP name: EntityAIWatchClosest2)
+ * vanilla.
  *
  * @param <O> The executor type
  * @param <A> The task type

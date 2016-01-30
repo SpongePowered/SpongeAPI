@@ -29,8 +29,7 @@ import org.spongepowered.api.entity.ai.task.builtin.GroundNavigationOnly;
 import org.spongepowered.api.entity.living.animal.Tameable;
 
 /**
- * An {@link AITask} for {@link Tameable}s to follow their owners. (MCP name:
- * EntityAIFollowOwner)
+ * An {@link AITask} for {@link Tameable}s to follow their owners.
  */
 public interface FollowOwnerAITask extends GroundNavigationOnly<Tameable> {
 

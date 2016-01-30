@@ -29,7 +29,7 @@ import org.spongepowered.api.entity.ai.task.builtin.creature.movetolocation.Move
 import org.spongepowered.api.entity.living.animal.Ocelot;
 
 /**
- * An {@link AITask} for {@link Ocelot}s to sit. (MCP name: EntityAIOcelotSit)
+ * An {@link AITask} for {@link Ocelot}s to sit.
  */
 public interface OcelotSitAITask extends MoveToBlockAITask<Ocelot, OcelotSitAITask> {
 

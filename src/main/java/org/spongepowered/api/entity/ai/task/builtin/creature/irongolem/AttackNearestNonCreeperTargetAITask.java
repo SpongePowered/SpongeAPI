@@ -30,8 +30,7 @@ import org.spongepowered.api.entity.living.monster.Creeper;
 
 /**
  * A special {@link FindNearestAttackableTargetAITask} but it excluded
- * {@link Creeper}s in the filter. (MCP name:
- * EntityIronGolem#AINearestAttackableTargetNonCreeper)
+ * {@link Creeper}s in the filter.
  */
 public interface AttackNearestNonCreeperTargetAITask
         extends FindNearestAttackableTargetAITask<AttackNearestNonCreeperTargetAITask, IronGolem> {

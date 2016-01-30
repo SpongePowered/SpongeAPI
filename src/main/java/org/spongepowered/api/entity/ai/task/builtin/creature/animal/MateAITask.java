@@ -32,7 +32,6 @@ import java.util.Optional;
 
 /**
  * An {@link AITask} for {@link Animal}s to mate and spawn a child animal.
- * (MCP name: EntityAIMate)
  */
 public interface MateAITask extends AITask<Animal> {
 

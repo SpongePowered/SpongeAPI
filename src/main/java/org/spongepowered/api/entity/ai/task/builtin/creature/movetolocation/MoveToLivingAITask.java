@@ -30,8 +30,7 @@ import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 
 /**
- * An {@link AITask} that the executor moves to its target. (MCP name:
- * EntityAIMoveTowardsTarget)
+ * An {@link AITask} that the executor moves to its target.
  */
 public interface MoveToLivingAITask extends AITask<Creature> {
 

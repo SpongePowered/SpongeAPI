@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.Agent;
 
 /**
  * An {@link AITask} which its executor finds a door with its pathfinder, goes
- * to that door, and interact with it. (MCP name: EntityAIDoorInteract)
+ * to that door, and interact with it.
  *
  * @param <A> The task type
  * @param <B> The executor type

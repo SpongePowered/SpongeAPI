@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.RangedAttackingAgent;
 
 /**
  * An {@link AITask} which the executor attacks its target with ranged attacking
- * method. (MCP name: EntityAIArrowAttack)
+ * method.
  */
 public interface RangedAttackAITask extends AITask<RangedAttackingAgent> {
 

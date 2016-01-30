@@ -32,7 +32,7 @@ import java.util.Optional;
 
 /**
  * An {@link AITask} for {@link Villager}s which they mate and spawn a baby
- * villager. (MCP name: EntityAIVillagerMate)
+ * villager.
  */
 public interface VillagerMateAITask extends AITask<Villager> {
 

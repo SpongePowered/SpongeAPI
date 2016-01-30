@@ -32,7 +32,7 @@ import org.spongepowered.api.entity.living.Agent;
 /**
  * An {@link AITask} which the executor looks at the closest entity of the
  * specific type in a fixed range randomly. It has a different mutex bits from
- * {@link WatchClosestAsInteractingAITask}. (MCP name: EntityAIWatchClosest)
+ * {@link WatchClosestAsInteractingAITask}.
  *
  * @param <O> The executor type
  * @param <A> The task type

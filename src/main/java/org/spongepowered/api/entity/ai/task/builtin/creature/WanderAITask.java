@@ -29,7 +29,7 @@ import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 
 /**
- * An {@link AITask} which the executor walks around. (MCP name: EntityAIWander)
+ * An {@link AITask} which the executor walks around.
  */
 public interface WanderAITask extends AITask<Creature> {
 

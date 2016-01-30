@@ -36,8 +36,7 @@ import java.util.function.Predicate;
 
 /**
  * An {@link AITask} which the executor gets attracted by an {@link ItemStack}
- * held in the hand of a {@link Humanoid} and follows that humanoid. (MCP name:
- * EntityAITempt)
+ * held in the hand of a {@link Humanoid} and follows that humanoid.
  */
 public interface TemptAITask extends GroundNavigationOnly<Creature> {
 

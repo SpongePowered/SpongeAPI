@@ -35,7 +35,7 @@ import java.util.Set;
 /**
  * An {@link AITask} which the executor will calls entities of the same type of
  * the executor to attack all entities the type of {@link Living} which attacked
- * the executor. (MCP name: EntityAIHurtByTarget)
+ * the executor.
  */
 public interface RevengeAITask extends TargetAITask<RevengeAITask, Creature> {
 

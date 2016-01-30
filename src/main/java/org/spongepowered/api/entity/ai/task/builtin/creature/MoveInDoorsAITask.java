@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.Creature;
 
 /**
  * An {@link AITask} which the executor move in doors in a village when it rains
- * or it is at night. (MCP name: EntityAIMoveInDoors)
+ * or it is at night.
  */
 public interface MoveInDoorsAITask extends AITask<Creature> {
 

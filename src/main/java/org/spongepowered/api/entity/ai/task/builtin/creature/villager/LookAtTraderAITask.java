@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.Villager;
 /**
  * Close to {@link WatchClosestAITask} but it will automatically change the
  * entity that the executor is watching to the player that the executor trades
- * with. (MCP name: EntityAILookAtTradePlayer)
+ * with.
  */
 public interface LookAtTraderAITask extends WatchClosestAITask<Villager, LookAtTraderAITask> {
 

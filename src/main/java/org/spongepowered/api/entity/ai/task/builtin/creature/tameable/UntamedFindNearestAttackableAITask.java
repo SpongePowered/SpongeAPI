@@ -31,7 +31,7 @@ import org.spongepowered.api.entity.living.animal.Tameable;
 /**
  * An {@link AITask} for {@link Tameable}s that is very similar to
  * {@link FindNearestAttackableTargetAITask} but will stop executing once the
- * executor is tamed. (MCP name: EntityAITargetNonTamed)
+ * executor is tamed.
  */
 public interface UntamedFindNearestAttackableAITask
         extends FindNearestAttackableTargetAITask<UntamedFindNearestAttackableAITask, Tameable> {

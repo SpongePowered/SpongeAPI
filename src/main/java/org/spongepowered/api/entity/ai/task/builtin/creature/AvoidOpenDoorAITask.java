@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.Creature;
 
 /**
  * An {@link AITask} which the executor moves around and prevents the pathfinder
- * from looking for a way though doors.(MCP name: EntityAIRestrictOpenDoor)
+ * from looking for a way though doors.
  */
 public interface AvoidOpenDoorAITask extends GroundNavigationOnly<Creature> {
 

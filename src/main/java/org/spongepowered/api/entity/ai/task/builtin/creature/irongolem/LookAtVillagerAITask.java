@@ -33,7 +33,7 @@ import java.util.Optional;
 
 /**
  * An {@link AITask} for {@link IronGolem}s to look at a {@link Villager} and give the
- * villager a flower. (MCP name: EntityAILookAtVillager)
+ * villager a flower.
  */
 public interface LookAtVillagerAITask extends AITask<IronGolem> {
 

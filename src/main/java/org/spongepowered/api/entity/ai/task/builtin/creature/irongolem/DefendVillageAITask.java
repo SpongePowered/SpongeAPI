@@ -30,7 +30,6 @@ import org.spongepowered.api.entity.living.golem.IronGolem;
 
 /**
  * An {@link AITask} for {@link IronGolem}s to attack aggressors in the village.
- * (MCP name: EntityAIDefendVillage)
  */
 public interface DefendVillageAITask extends TargetAITask<DefendVillageAITask, IronGolem> {
 

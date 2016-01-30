@@ -31,7 +31,7 @@ import org.spongepowered.api.entity.living.Humanoid;
 
 /**
  * An {@link AITask} which the executor is controlled by the {@link Humanoid}
- * which rides the executor. (MCP name: EntityAIControlledByPlayer)
+ * which rides the executor.
  */
 public interface ControlledByPlayerAITask extends AITask<Creature> {
 

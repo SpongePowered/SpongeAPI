@@ -32,7 +32,7 @@ import java.util.function.Predicate;
 
 /**
  * An {@link AITask} which the executor finds entities of a type and tries to
- * attack the closest one. (MCP name: EntityAINearestAttackableTarget)
+ * attack the closest one.
  *
  * @param <A> The task type
  * @param <B> The executor type

@@ -33,7 +33,7 @@ import java.util.Optional;
 
 /**
  * An {@link AITask} for {@link Villager}s to accept poppies from
- * {@link IronGolem}s when they gave poppies. (MCP name: EntityAIFollowGolem)
+ * {@link IronGolem}s when they gave poppies.
  */
 public interface AcceptPoppyAITask extends AITask<Villager> {
 

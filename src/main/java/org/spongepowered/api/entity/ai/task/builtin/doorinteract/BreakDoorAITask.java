@@ -29,7 +29,6 @@ import org.spongepowered.api.entity.living.Agent;
 
 /**
  * An {@link AITask} which the executor breaks a door that is in its path.
- * (MCP name: EntityAIBreakDoor)
  */
 public interface BreakDoorAITask extends DoorInteractAITask<BreakDoorAITask, Agent> {
 

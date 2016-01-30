@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.Agent;
 
 /**
  * An {@link AITask} which the executor jumps at the target in a specific range
- * at a fixed chance while attacking. (MCP name: EntityAILeapAtTarget)
+ * at a fixed chance while attacking.
  */
 public interface LeapAtTargetAITask extends AITask<Agent> {
 

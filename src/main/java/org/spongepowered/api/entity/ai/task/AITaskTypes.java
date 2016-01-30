@@ -49,8 +49,6 @@ import java.util.function.Predicate;
 
 public final class AITaskTypes {
 
-    // SORTFIELDS:ON
-
     /**
      * {@link AITask} where {@link Tameable}s attack a {@link Living} which its
      * {@link Tamer} attacks.
@@ -331,8 +329,6 @@ public final class AITaskTypes {
      * It has different mutex bits from {@link AITaskTypes#WATCH_CLOSEST}.
      */
     public static final AITaskType WATCH_CLOSEST_AS_INTERACTING = null;
-
-    // SORTFIELDS:OFF
 
     private AITaskTypes() {
 

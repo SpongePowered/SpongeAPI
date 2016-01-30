@@ -33,7 +33,7 @@ import java.util.function.Predicate;
 
 /**
  * An {@link AITask} which the executor finds an {@link Entity} that it avoids
- * and moves away from that entity. (MCP name: EntityAIAvoidEntity)
+ * and moves away from that entity.
  */
 public interface AvoidEntityAITask extends AITask<Creature> {
 

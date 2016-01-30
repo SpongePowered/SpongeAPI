@@ -29,8 +29,7 @@ import org.spongepowered.api.entity.living.Agent;
 
 /**
  * An {@link AITask} which the executor opens the door when the task starts to
- * execute and sometimes closes the door when the task is finished. (MCP name:
- * EntityAIOpenDoor)
+ * execute and sometimes closes the door when the task is finished.
  */
 public interface OpenDoorAITask extends DoorInteractAITask<OpenDoorAITask, Agent> {
 

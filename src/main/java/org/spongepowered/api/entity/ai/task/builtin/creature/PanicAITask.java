@@ -29,8 +29,7 @@ import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 
 /**
- * An {@link AITask} which the executor run around when it burns. (MCP name:
- * EntityAIPanic)
+ * An {@link AITask} which the executor run around when it burns.
  */
 public interface PanicAITask extends AITask<Creature> {
 

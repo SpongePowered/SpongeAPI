@@ -33,8 +33,7 @@ import java.util.Optional;
 
 /**
  * An {@link AITask} of {@link Tameable}s where the executor attacks the
- * {@link Living} which attacks the executor's owner. (MCP name:
- * EntityAIOwnerHurtByTarget)
+ * {@link Living} which attacks the executor's owner.
  */
 public interface ProtectOwnerAITask extends TargetAITask<ProtectOwnerAITask, Tameable> {
 

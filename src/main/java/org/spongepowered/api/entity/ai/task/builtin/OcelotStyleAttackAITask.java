@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.Agent;
 
 /**
  * An {@link AITask} which the executor attacks its target in a fixed range and
- * accelerates when getting close. (MCP name: EntityAIOcelotAttack)
+ * accelerates when getting close.
  */
 public interface OcelotStyleAttackAITask extends AITask<Agent> {
 

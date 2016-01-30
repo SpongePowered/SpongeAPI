@@ -30,7 +30,6 @@ import org.spongepowered.api.entity.living.Villager;
 
 /**
  * An {@link AITask} for {@link Villager}s to harvest crops and plant crops.
- * (MCP name: EntityAIHarvestFarmland)
  */
 public interface HarvestFarmlandAITask extends MoveToBlockAITask<Villager, HarvestFarmlandAITask> {
 

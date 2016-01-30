@@ -34,7 +34,6 @@ import javax.annotation.Nullable;
 
 /**
  * An {@link AITask} for child {@link Animal}s to follow an adult animal.
- * (MCP name: EntityAIFollowParent)
  */
 public interface FollowParentAITask extends AITask<Animal> {
 

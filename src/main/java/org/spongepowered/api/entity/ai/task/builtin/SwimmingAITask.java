@@ -29,8 +29,7 @@ import org.spongepowered.api.entity.living.Agent;
 
 /**
  * An {@link AITask} which the executor has swimming enabled in the pathfinder
- * and will try to stay above liquid randomly when in the liquid. (MCP name:
- * EntityAISwimming)
+ * and will try to stay above liquid randomly when in the liquid.
  */
 public interface SwimmingAITask extends GroundNavigationOnly<Agent> {
 

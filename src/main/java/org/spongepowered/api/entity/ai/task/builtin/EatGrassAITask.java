@@ -33,8 +33,7 @@ import java.util.function.Predicate;
 
 /**
  * An {@link AITask} that the executor nods its head and destroys the grass
- * block, which make players think it may be eating grass. (MCP name:
- * EntityAIEatGrass)
+ * block, which make players think it may be eating grass.
  */
 public interface EatGrassAITask extends AITask<Agent> {
 

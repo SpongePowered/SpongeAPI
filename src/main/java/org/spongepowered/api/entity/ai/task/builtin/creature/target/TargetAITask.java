@@ -30,7 +30,6 @@ import org.spongepowered.api.entity.living.Creature;
 
 /**
  * An {@link AITask} which the executor tries to approach and attack its target.
- * (MCP name: EntityAITarget)
  *
  * @param <A> The task type
  * @param <B> The executor type

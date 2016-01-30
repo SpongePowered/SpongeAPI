@@ -31,8 +31,7 @@ import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Creature;
 
 /**
- * <p>An {@link AITask} which the executor finds the closest player to attack.
- * (MCP name: EntityAIFindEntityNearestPlayer)</p>
+ * <p>An {@link AITask} which the executor finds the closest player to attack.</p>
  *
  * <p>It is not supposed to be used on a {@link Creature}. For creatures, please
  * use {@link FindNearestAttackableTargetAITask}. For a custom finding task,

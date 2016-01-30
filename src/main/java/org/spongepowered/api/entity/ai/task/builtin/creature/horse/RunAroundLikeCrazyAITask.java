@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.animal.Horse;
 
 /**
  * An {@link AITask} for {@link Horse} to try to get rid of the rider when
- * it is untamed. (MCP name: EntityAIRunAroundLikeCrazy)
+ * it is untamed.
  */
 public interface RunAroundLikeCrazyAITask extends AITask<Horse> {
 

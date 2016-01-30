@@ -35,7 +35,7 @@ import java.util.function.Predicate;
 
 /**
  * <p>An {@link AITask} which the executor finds the closest {@link Living} to
- * attack. (MCP name: EntityAIFindEntityNearest)</p>
+ * attack.</p>
  *
  * <p>It is not supposed to be used on a {@link Creature}. For creatures, please
  * use {@link FindNearestAttackableTargetAITask}.</p>

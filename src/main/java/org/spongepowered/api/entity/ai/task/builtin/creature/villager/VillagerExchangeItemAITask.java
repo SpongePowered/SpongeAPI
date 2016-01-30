@@ -29,8 +29,7 @@ import org.spongepowered.api.entity.ai.task.builtin.WatchClosestAsInteractingAIT
 import org.spongepowered.api.entity.living.Villager;
 
 /**
- * An {@link AITask} for {@link Villager}s to exchange items. (MCP name:
- * EntityAIVillagerInteract)
+ * An {@link AITask} for {@link Villager}s to exchange items.
  */
 public interface VillagerExchangeItemAITask extends WatchClosestAsInteractingAITask<Villager, VillagerExchangeItemAITask> {
 

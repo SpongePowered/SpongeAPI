@@ -34,7 +34,7 @@ import java.util.function.Predicate;
 
 /**
  * An {@link AITask} which the executor finds a valid position and goes to that
- * position. (MCP name: EntityAIMoveToBlock)
+ * position.
  *
  * @param <O> The executor type
  * @param <A> The task type

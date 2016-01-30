@@ -30,7 +30,6 @@ import org.spongepowered.api.entity.living.Creature;
 
 /**
  * An {@link AITask} which the executor goes through a door in a village.
- * (MCP name: EntityAIMoveThroughVillage)
  */
 public interface MoveThroughVillageAITask extends AITask<Creature> {
 

@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.Creature;
 
 /**
  * An {@link AITask} which the executor goes to its target if the target belongs
- * to the target entity type and attacks. (MCP name: EntityAIAttackOnCollide)
+ * to the target entity type and attacks.
  */
 public interface AttackLivingAITask extends AITask<Creature> {
 

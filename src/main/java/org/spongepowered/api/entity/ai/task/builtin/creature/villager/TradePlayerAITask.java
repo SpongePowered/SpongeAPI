@@ -31,7 +31,6 @@ import org.spongepowered.api.entity.living.Villager;
 
 /**
  * An {@link AITask} for villagers to trade with {@link Humanoid}s.
- * (MCP name: EntityAITradePlayer)
  */
 public interface TradePlayerAITask extends GroundNavigationOnly<Villager> {
 

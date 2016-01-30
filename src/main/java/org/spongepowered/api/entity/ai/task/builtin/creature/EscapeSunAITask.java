@@ -30,7 +30,6 @@ import org.spongepowered.api.entity.living.Creature;
 
 /**
  * An {@link AITask} which the executor escapes from the sun when it burns.
- * (MCP name: EntityAIFleeSun)
  */
 public interface EscapeSunAITask extends GroundNavigationOnly<Creature> {
 

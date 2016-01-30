@@ -33,7 +33,7 @@ import java.util.Optional;
 
 /**
  * An {@link AITask} that a {@link Wolf} begs a {@link Humanoid} for bones or
- * breeding items (meat). (MCP name: EntityAIBeg)
+ * breeding items (meat).
  */
 public interface BegAITask extends AITask<Wolf> {
 

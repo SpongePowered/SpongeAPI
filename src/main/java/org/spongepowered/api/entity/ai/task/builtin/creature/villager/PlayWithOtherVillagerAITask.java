@@ -34,7 +34,6 @@ import javax.annotation.Nullable;
 
 /**
  * An {@link AITask} for {@link Villager}s to play with other villagers.
- * (MCP name: EntityAIPlay)
  */
 public interface PlayWithOtherVillagerAITask extends AITask<Villager> {
 

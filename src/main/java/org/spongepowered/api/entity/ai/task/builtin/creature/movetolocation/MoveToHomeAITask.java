@@ -31,8 +31,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
- * An {@link AITask} that the executor moves to its home positon. (MCP name:
- * EntityAIMoveTowardRestriction)
+ * An {@link AITask} that the executor moves to its home positon.
  */
 public interface MoveToHomeAITask extends AITask<Creature> {
 

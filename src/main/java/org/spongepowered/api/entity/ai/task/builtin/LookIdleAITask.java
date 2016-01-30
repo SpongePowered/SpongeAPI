@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.Agent;
 
 /**
  * An {@link AITask} which the executor looks around at a random offset at for
- * a ranged random time span. (MCP name: EntityAILookIdle)
+ * a ranged random time span.
  */
 public interface LookIdleAITask extends AITask<Agent> {
 

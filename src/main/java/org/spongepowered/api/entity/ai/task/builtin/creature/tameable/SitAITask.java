@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.animal.Tameable;
 
 /**
- * An {@link AITask} for {@link Tameable}s to sit down. (MCP name: EntityAISit)
+ * An {@link AITask} for {@link Tameable}s to sit down.
  */
 public interface SitAITask extends AITask<Tameable> {
 

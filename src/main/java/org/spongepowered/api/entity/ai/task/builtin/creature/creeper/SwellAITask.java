@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.monster.Creeper;
 
 /**
  * An {@link AITask} for {@link Creeper}s to move close to its attack target and
- * explode. (MCP name: EntityAICreeperSwell)
+ * explode.
  */
 public interface SwellAITask extends AITask<Creeper> {
 
