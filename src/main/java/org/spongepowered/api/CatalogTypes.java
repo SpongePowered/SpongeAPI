@@ -77,6 +77,7 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.scoreboard.Visibility;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
+import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticFormat;
@@ -118,6 +119,7 @@ public final class CatalogTypes {
     public static final Class<ComparatorType> COMPARISON_TYPE = ComparatorType.class;
     public static final Class<CookedFish> COOKED_FISH = CookedFish.class;
     public static final Class<Criterion> CRITERION = Criterion.class;
+    public static final Class<DisplaySlot> DISPLAY_SLOT = DisplaySlot.class;
     public static final Class<Difficulty> DIFFICULTY = Difficulty.class;
     public static final Class<DimensionType> DIMENSION_TYPE = DimensionType.class;
     public static final Class<DirtType> DIRT_TYPE = DirtType.class;
