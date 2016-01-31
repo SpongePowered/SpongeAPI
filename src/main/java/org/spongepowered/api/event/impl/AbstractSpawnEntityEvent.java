@@ -22,23 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.spawn;
+package org.spongepowered.api.event.impl;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.manipulator.immutable.ImmutableMobSpawnerData;
+import static com.google.common.base.Preconditions.checkArgument;
 
-public interface MobSpawnerSpawnCause extends SpawnCause {
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
 
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
+public abstract class AbstractSpawnEntityEvent extends AbstractEvent {
 
-
-    ImmutableMobSpawnerData getMobSpawnerData();
-
-    interface Builder extends SpawnCauseBuilder<MobSpawnerSpawnCause, Builder> {
-
-        Builder spawnerData(ImmutableMobSpawnerData spawnerData);
-
+    @Override
+    protected void init() {
+        Cause cause = getCause();
+        Object root = cause.root();
+        final boolean isInstance = root instanceof SpawnCause;
+        checkArgument(isInstance, "SpawnEntityEvent MUST have a SpawnCause as the root!");
     }
 }

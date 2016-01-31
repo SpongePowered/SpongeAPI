@@ -100,7 +100,9 @@ public interface EntityUniverse {
      * @param position The position
      * @return An entity, if one was created
      */
-    Optional<Entity> createEntity(EntityType type, Vector3i position);
+    default Optional<Entity> createEntity(EntityType type, Vector3i position) {
+        return createEntity(type, position.toDouble());
+    }
 
     /**
      * Create an entity instance at the given position.

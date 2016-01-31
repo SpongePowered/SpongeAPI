@@ -41,6 +41,7 @@ public abstract class AbstractSpawnCauseBuilder<T extends SpawnCause, B extends 
 
     @Override
     public B type(SpawnType spawnType) {
+        this.spawnType = checkNotNull(spawnType, "SpawnType cannot be null!");
         return (B) this;
     }
 
