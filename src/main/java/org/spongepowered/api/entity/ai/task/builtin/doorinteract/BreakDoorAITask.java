@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.doorinteract;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.living.Agent;
 
@@ -31,6 +32,15 @@ import org.spongepowered.api.entity.living.Agent;
  * An {@link AITask} which the executor breaks a door that is in its path.
  */
 public interface BreakDoorAITask extends DoorInteractAITask<BreakDoorAITask, Agent> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link BreakDoorAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the time needed for the executor to break the door in ticks. Default

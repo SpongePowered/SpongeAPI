@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
@@ -33,6 +34,15 @@ import org.spongepowered.api.entity.living.Agent;
  * accelerates when getting close.
  */
 public interface OcelotStyleAttackAITask extends AITask<Agent> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link OcelotStyleAttackAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the maximum distance between the executor and the victim that the

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
@@ -36,6 +37,15 @@ import java.util.function.Predicate;
  * block, which make players think it may be eating grass.
  */
 public interface EatGrassAITask extends AITask<Agent> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link EatGrassAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the time that the executor take to eat grass in ticks. Default to 40

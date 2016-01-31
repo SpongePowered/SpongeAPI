@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.villager;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.builtin.WatchClosestAsInteractingAITask;
 import org.spongepowered.api.entity.living.Villager;
@@ -32,6 +33,15 @@ import org.spongepowered.api.entity.living.Villager;
  * An {@link AITask} for {@link Villager}s to exchange items.
  */
 public interface VillagerExchangeItemAITask extends WatchClosestAsInteractingAITask<Villager, VillagerExchangeItemAITask> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link VillagerExchangeItemAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the time delay between the start of execution and the time the

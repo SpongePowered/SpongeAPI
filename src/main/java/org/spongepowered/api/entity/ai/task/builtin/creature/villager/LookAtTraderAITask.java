@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.villager;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.builtin.WatchClosestAITask;
 import org.spongepowered.api.entity.living.Villager;
 
@@ -33,6 +34,15 @@ import org.spongepowered.api.entity.living.Villager;
  * with.
  */
 public interface LookAtTraderAITask extends WatchClosestAITask<Villager, LookAtTraderAITask> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link LookAtTraderAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Utility builder for {@link LookAtTraderAITask}.

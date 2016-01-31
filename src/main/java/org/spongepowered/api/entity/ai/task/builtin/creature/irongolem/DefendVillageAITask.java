@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.irongolem;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.builtin.creature.target.TargetAITask;
 import org.spongepowered.api.entity.living.golem.IronGolem;
@@ -32,6 +33,15 @@ import org.spongepowered.api.entity.living.golem.IronGolem;
  * An {@link AITask} for {@link IronGolem}s to attack aggressors in the village.
  */
 public interface DefendVillageAITask extends TargetAITask<DefendVillageAITask, IronGolem> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link DefendVillageAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Utility builder for {@link DefendVillageAITask}.

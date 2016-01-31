@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.ai.task.builtin.creature.target;
 
 import com.google.common.collect.ImmutableSet;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Living;
@@ -38,6 +39,15 @@ import java.util.Set;
  * the executor.
  */
 public interface RevengeAITask extends TargetAITask<RevengeAITask, Creature> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link RevengeAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get whether the executor will call entities of the same type for help.

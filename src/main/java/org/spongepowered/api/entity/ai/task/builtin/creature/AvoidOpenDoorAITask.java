@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.builtin.GroundNavigationOnly;
 import org.spongepowered.api.entity.living.Creature;
@@ -33,6 +34,15 @@ import org.spongepowered.api.entity.living.Creature;
  * from looking for a way though doors.
  */
 public interface AvoidOpenDoorAITask extends GroundNavigationOnly<Creature> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link AvoidOpenDoorAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Utility builder for {@link AvoidOpenDoorAITask}.

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.builtin.GroundNavigationOnly;
 import org.spongepowered.api.entity.living.Creature;
@@ -39,6 +40,15 @@ import java.util.function.Predicate;
  * held in the hand of a {@link Humanoid} and follows that humanoid.
  */
 public interface TemptAITask extends GroundNavigationOnly<Creature> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link TemptAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get whether the executor will stop execution if the humanoid makes a big

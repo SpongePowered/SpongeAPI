@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.living.Agent;
 
@@ -32,6 +33,15 @@ import org.spongepowered.api.entity.living.Agent;
  * and will try to stay above liquid randomly when in the liquid.
  */
 public interface SwimmingAITask extends GroundNavigationOnly<Agent> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link SwimmingAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the chance for the executor to stay above the liquid.

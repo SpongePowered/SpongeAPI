@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
@@ -34,6 +35,15 @@ import org.spongepowered.api.entity.living.Humanoid;
  * which rides the executor.
  */
 public interface ControlledByPlayerAITask extends AITask<Creature> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link ControlledByPlayerAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the maximum moving speed of the executor in the task.

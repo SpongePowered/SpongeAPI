@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.target;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Living;
@@ -38,6 +39,15 @@ import java.util.function.Predicate;
  * @param <B> The executor type
  */
 public interface FindNearestAttackableTargetAITask<A extends FindNearestAttackableTargetAITask<A, B>, B extends Creature> extends TargetAITask<A, B> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link FindNearestAttackableTargetAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the target type of the task.

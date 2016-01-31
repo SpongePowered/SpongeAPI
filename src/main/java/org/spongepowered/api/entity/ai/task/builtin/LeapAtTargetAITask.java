@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
@@ -33,6 +34,15 @@ import org.spongepowered.api.entity.living.Agent;
  * at a fixed chance while attacking.
  */
 public interface LeapAtTargetAITask extends AITask<Agent> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link LeapAtTargetAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the executor's leaping height at task execution.

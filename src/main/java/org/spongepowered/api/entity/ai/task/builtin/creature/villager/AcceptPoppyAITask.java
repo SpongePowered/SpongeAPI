@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.villager;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Villager;
@@ -36,6 +37,15 @@ import java.util.Optional;
  * {@link IronGolem}s when they gave poppies.
  */
 public interface AcceptPoppyAITask extends AITask<Villager> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link AcceptPoppyAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the minimum time required for {@link IronGolem}s to hold the poppies

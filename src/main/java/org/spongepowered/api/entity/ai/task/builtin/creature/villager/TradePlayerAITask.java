@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.villager;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.builtin.GroundNavigationOnly;
 import org.spongepowered.api.entity.living.Humanoid;
@@ -33,6 +34,15 @@ import org.spongepowered.api.entity.living.Villager;
  * An {@link AITask} for villagers to trade with {@link Humanoid}s.
  */
 public interface TradePlayerAITask extends GroundNavigationOnly<Villager> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link TradePlayerAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the maximum distance between the executor and the {@link Humanoid}

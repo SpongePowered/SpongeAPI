@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.wolf;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Humanoid;
@@ -36,6 +37,15 @@ import java.util.Optional;
  * breeding items (meat).
  */
 public interface BegAITask extends AITask<Wolf> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link BegAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the distance for the executor to find a {@link Humanoid} to beg.

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.ai.task.builtin.creature.target.FindNearestAttackableTargetAITask;
@@ -44,6 +45,15 @@ import java.util.function.Predicate;
  * @see FindNearestAttackableTargetAITask
  */
 public interface FindNearestEntityAITask extends AITask<Agent> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link FindNearestEntityAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Set the target entity type.

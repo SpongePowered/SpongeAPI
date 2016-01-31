@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.ocelot;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.builtin.creature.movetolocation.MoveToBlockAITask;
 import org.spongepowered.api.entity.living.animal.Ocelot;
@@ -32,6 +33,15 @@ import org.spongepowered.api.entity.living.animal.Ocelot;
  * An {@link AITask} for {@link Ocelot}s to sit.
  */
 public interface OcelotSitAITask extends MoveToBlockAITask<Ocelot, OcelotSitAITask> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link OcelotSitAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Utility builder for {@link OcelotSitAITask}.

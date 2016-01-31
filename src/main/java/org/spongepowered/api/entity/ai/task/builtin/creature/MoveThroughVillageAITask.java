@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
@@ -32,6 +33,15 @@ import org.spongepowered.api.entity.living.Creature;
  * An {@link AITask} which the executor goes through a door in a village.
  */
 public interface MoveThroughVillageAITask extends AITask<Creature> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link MoveThroughVillageAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the moving speed of the executor.

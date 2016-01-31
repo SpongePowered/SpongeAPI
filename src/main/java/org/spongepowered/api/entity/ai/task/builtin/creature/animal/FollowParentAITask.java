@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.animal;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.animal.Animal;
@@ -36,6 +37,15 @@ import javax.annotation.Nullable;
  * An {@link AITask} for child {@link Animal}s to follow an adult animal.
  */
 public interface FollowParentAITask extends AITask<Animal> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link FollowParentAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the moving speed of the executor.

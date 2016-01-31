@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.creeper;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.monster.Creeper;
@@ -33,6 +34,15 @@ import org.spongepowered.api.entity.living.monster.Creeper;
  * explode.
  */
 public interface SwellAITask extends AITask<Creeper> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link SwellAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the distance that the executor starts to swell. Default to

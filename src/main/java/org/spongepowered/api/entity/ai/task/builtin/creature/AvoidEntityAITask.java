@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
@@ -36,6 +37,15 @@ import java.util.function.Predicate;
  * and moves away from that entity.
  */
 public interface AvoidEntityAITask extends AITask<Creature> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link AvoidEntityAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the target entity type.

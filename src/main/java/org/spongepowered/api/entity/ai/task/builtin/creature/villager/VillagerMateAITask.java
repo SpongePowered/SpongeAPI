@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.villager;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Villager;
@@ -35,6 +36,15 @@ import java.util.Optional;
  * villager.
  */
 public interface VillagerMateAITask extends AITask<Villager> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link Villager}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the chance of the task execution as a fraction of 1 divided by

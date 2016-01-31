@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.horse;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.animal.Horse;
@@ -33,6 +34,15 @@ import org.spongepowered.api.entity.living.animal.Horse;
  * it is untamed.
  */
 public interface RunAroundLikeCrazyAITask extends AITask<Horse> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link RunAroundLikeCrazyAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the moving speed of the executor.

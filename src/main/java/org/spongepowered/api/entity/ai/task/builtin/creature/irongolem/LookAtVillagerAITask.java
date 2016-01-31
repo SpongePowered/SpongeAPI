@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.irongolem;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Villager;
@@ -36,6 +37,15 @@ import java.util.Optional;
  * villager a flower.
  */
 public interface LookAtVillagerAITask extends AITask<IronGolem> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link LookAtVillagerAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the chance of the task execution as a fraction of 1 over chance.

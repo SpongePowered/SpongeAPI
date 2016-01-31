@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.tameable;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.builtin.creature.target.TargetAITask;
 import org.spongepowered.api.entity.living.Living;
@@ -36,6 +37,15 @@ import java.util.Optional;
  * owner attacks.
  */
 public interface AttackAfterOwnerAITask extends TargetAITask<AttackAfterOwnerAITask, Tameable> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link AttackAfterOwnerAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the {@link Living} which the executor's owner attacks. May or may not

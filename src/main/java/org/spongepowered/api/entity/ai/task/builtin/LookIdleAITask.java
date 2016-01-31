@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
@@ -33,6 +34,15 @@ import org.spongepowered.api.entity.living.Agent;
  * a ranged random time span.
  */
 public interface LookIdleAITask extends AITask<Agent> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link LookIdleAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the minimum time span of the executor looking around. Default to 20

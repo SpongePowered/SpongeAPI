@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.tameable;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.builtin.creature.target.FindNearestAttackableTargetAITask;
 import org.spongepowered.api.entity.living.animal.Tameable;
@@ -35,6 +36,15 @@ import org.spongepowered.api.entity.living.animal.Tameable;
  */
 public interface UntamedFindNearestAttackableAITask
         extends FindNearestAttackableTargetAITask<UntamedFindNearestAttackableAITask, Tameable> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link UntamedFindNearestAttackableAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Utility builder for {@link UntamedFindNearestAttackableAITask}.

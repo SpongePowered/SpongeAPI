@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.villager;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Villager;
@@ -36,6 +37,15 @@ import javax.annotation.Nullable;
  * An {@link AITask} for {@link Villager}s to play with other villagers.
  */
 public interface PlayWithOtherVillagerAITask extends AITask<Villager> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link PlayWithOtherVillagerAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the moving speed of the executor.

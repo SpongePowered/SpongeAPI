@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
@@ -34,6 +35,20 @@ import org.spongepowered.api.entity.living.Creature;
  */
 public interface AttackLivingAITask extends AITask<Creature> {
 
+    /**
+     * Creates a new {@link Builder} to build an {@link AttackLivingAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Get the moving speed of the executor when executing the task.
+     *
+     * @return The moving speed
+     */
     double getSpeed();
 
     /**

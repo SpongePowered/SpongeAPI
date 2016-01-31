@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.irongolem;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.builtin.creature.target.FindNearestAttackableTargetAITask;
 import org.spongepowered.api.entity.living.golem.IronGolem;
 import org.spongepowered.api.entity.living.monster.Creeper;
@@ -34,6 +35,15 @@ import org.spongepowered.api.entity.living.monster.Creeper;
  */
 public interface AttackNearestNonCreeperTargetAITask
         extends FindNearestAttackableTargetAITask<AttackNearestNonCreeperTargetAITask, IronGolem> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link AttackNearestNonCreeperTargetAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Utility builder for {@link AttackNearestNonCreeperTargetAITask}.

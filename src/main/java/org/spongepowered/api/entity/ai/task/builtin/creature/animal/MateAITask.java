@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.animal;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.animal.Animal;
@@ -34,6 +35,15 @@ import java.util.Optional;
  * An {@link AITask} for {@link Animal}s to mate and spawn a child animal.
  */
 public interface MateAITask extends AITask<Animal> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link MateAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the moving speed of the executor.

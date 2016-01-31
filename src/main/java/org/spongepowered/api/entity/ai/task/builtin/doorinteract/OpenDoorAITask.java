@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.doorinteract;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.living.Agent;
 
@@ -32,6 +33,15 @@ import org.spongepowered.api.entity.living.Agent;
  * execute and sometimes closes the door when the task is finished.
  */
 public interface OpenDoorAITask extends DoorInteractAITask<OpenDoorAITask, Agent> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link OpenDoorAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get whether the executor will close the door when the task is finished.

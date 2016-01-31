@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.tameable;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.builtin.GroundNavigationOnly;
 import org.spongepowered.api.entity.living.animal.Tameable;
@@ -32,6 +33,15 @@ import org.spongepowered.api.entity.living.animal.Tameable;
  * An {@link AITask} for {@link Tameable}s to follow their owners.
  */
 public interface FollowOwnerAITask extends GroundNavigationOnly<Tameable> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link FollowOwnerAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the moving speed of the executor.
