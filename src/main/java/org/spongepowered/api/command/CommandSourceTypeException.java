@@ -22,24 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.spec;
+package org.spongepowered.api.command;
 
-import org.spongepowered.api.command.CommandException;
-import org.spongepowered.api.command.CommandResult;
-import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.command.args.CommandContext;
+import org.spongepowered.api.text.Text;
 
 /**
- * Interface containing the method directing how a certain command will be executed.
+ * Exception thrown when a CommandSource tries to execute a command that cannot
+ * be executed by that CommandSource type.
  */
-public interface CommandExecutor<T extends CommandSource> {
+public class CommandSourceTypeException extends CommandException {
+    private static final long serialVersionUID = -4945570277201224948L;
+
     /**
-     * Callback for the execution of a command.
+     * Creates a new exception with the specified expected class.
      *
-     * @param src The commander who is executing this command
-     * @param args The parsed command arguments for this command
-     * @return the result of executing this command
-     * @throws CommandException If a user-facing error occurs while executing this command
+     * @param expected class of source type
      */
-    CommandResult execute(T src, CommandContext args) throws CommandException;
+    public CommandSourceTypeException(Class<? extends CommandSource> expected) {
+        super(Text.of("Only users of type " + expected.getName() + " may execute this command."));
+    }
+
+    /**
+     * Creates a new exception with the specified message.
+     *
+     * @param message to display
+     */
+    public CommandSourceTypeException(Text message) {
+        super(message);
+    }
+
+    /**
+     * Creates a new exception with the specified message and original cause.
+     *
+     * @param message to display
+     * @param cause original cause
+     */
+    public CommandSourceTypeException(Text message, Throwable cause) {
+        super(message, cause);
+    }
 }

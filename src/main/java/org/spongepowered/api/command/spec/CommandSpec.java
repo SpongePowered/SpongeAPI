@@ -25,19 +25,18 @@
 package org.spongepowered.api.command.spec;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.command.args.GenericArguments.firstParsing;
 import static org.spongepowered.api.command.args.GenericArguments.optional;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandCallable;
 import org.spongepowered.api.command.CommandException;
-import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandPermissionException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.command.CommandSourceTypeException;
 import org.spongepowered.api.command.args.ArgumentParseException;
 import org.spongepowered.api.command.args.ChildCommandElementExecutor;
 import org.spongepowered.api.command.args.CommandArgs;
@@ -46,17 +45,18 @@ import org.spongepowered.api.command.args.CommandElement;
 import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.command.args.parsing.InputTokenizer;
 import org.spongepowered.api.command.args.parsing.InputTokenizers;
+import org.spongepowered.api.text.Text;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import javax.annotation.Nullable;
-
 /**
  * Specification for how command arguments should be parsed.
  */
+@SuppressWarnings({"rawtypes", "unchecked"})
 public final class CommandSpec implements CommandCallable {
 
     private final CommandElement args;
@@ -65,15 +65,20 @@ public final class CommandSpec implements CommandCallable {
     @Nullable private final Text extendedDescription;
     @Nullable private final String permission;
     private final InputTokenizer argumentParser;
+    private final Class<? extends CommandSource> sourceType;
+    private final boolean sourceTypeDeep;
 
-    private CommandSpec(CommandElement args, CommandExecutor executor, @Nullable Text description, @Nullable Text extendedDescription,
-            @Nullable String permission, InputTokenizer parser) {
+    private CommandSpec(CommandElement args, CommandExecutor executor, @Nullable Text description,
+                        @Nullable Text extendedDescription, @Nullable String permission, InputTokenizer parser,
+                        Class<? extends CommandSource> sourceType, boolean sourceTypeDeep) {
         this.args = args;
         this.executor = executor;
         this.permission = permission;
         this.description = Optional.ofNullable(description);
         this.extendedDescription = extendedDescription;
         this.argumentParser = parser;
+        this.sourceType = sourceType;
+        this.sourceTypeDeep = sourceTypeDeep;
     }
 
     /**
@@ -103,6 +108,8 @@ public final class CommandSpec implements CommandCallable {
         @Nullable
         private Map<List<String>, CommandCallable> childCommandMap;
         private InputTokenizer argumentParser = InputTokenizers.quotedStrings(false);
+        private Class<? extends CommandSource> sourceType = CommandSource.class;
+        private boolean sourceTypeDeep = true;
 
         private Builder() {}
 
@@ -123,7 +130,7 @@ public final class CommandSpec implements CommandCallable {
          * @param executor The executor that will be called with this command's parsed arguments
          * @return this
          */
-        public Builder executor(CommandExecutor executor) {
+        public <T extends CommandSource> Builder executor(CommandExecutor<T> executor) {
             checkNotNull(executor, "executor");
             this.executor = executor;
             return this;
@@ -228,6 +235,33 @@ public final class CommandSpec implements CommandCallable {
         }
 
         /**
+         * Restricts the command to the specified CommandSource sub-class. If
+         * deep is true than the specified class and all subsequent sub-classes
+         * will be permitted to execute the command.
+         *
+         * @param senderType type of command source
+         * @param deep whether the type's sub-classes should be included
+         * @return this
+         */
+        public Builder sourceType(Class<? extends CommandSource> senderType, boolean deep) {
+            this.sourceType = senderType;
+            sourceTypeDeep = deep;
+            return this;
+        }
+
+        /**
+         * Restricts the command to the specified CommandSource sub-class and
+         * all of it's subsequent sub-classes.
+         *
+         * @param senderType type of command source
+         * @return this
+         */
+        public Builder sourceType(Class<? extends CommandSource> senderType) {
+            sourceType(senderType, true);
+            return this;
+        }
+
+        /**
          * Create a new {@link CommandSpec} based on the data provided in this builder.
          *
          * @return the new spec
@@ -254,7 +288,7 @@ public final class CommandSpec implements CommandCallable {
             }
 
             return new CommandSpec(this.args, this.executor, this.description, this.extendedDescription, this.permission,
-                    this.argumentParser);
+                    this.argumentParser, sourceType, sourceTypeDeep);
         }
     }
 
@@ -269,6 +303,20 @@ public final class CommandSpec implements CommandCallable {
         checkNotNull(source, "source");
         if (!testPermission(source)) {
             throw new CommandPermissionException();
+        }
+    }
+
+    /**
+     * Checks if the specified CommandSource is permitted to execute this
+     * command based upon their type.
+     *
+     * @param source source to check
+     * @throws CommandException if the source is not permitted to execute the command
+     */
+    public void checkSourceType(CommandSource source) throws CommandException {
+        checkNotNull(source, "source");
+        if (!testSourceType(source)) {
+            throw new CommandSourceTypeException(sourceType);
         }
     }
 
@@ -325,6 +373,7 @@ public final class CommandSpec implements CommandCallable {
 
     @Override
     public CommandResult process(CommandSource source, String arguments) throws CommandException {
+        checkSourceType(source);
         checkPermission(source);
         final CommandArgs args = new CommandArgs(arguments, getInputTokenizer().tokenize(arguments, false));
         final CommandContext context = new CommandContext();
@@ -341,6 +390,12 @@ public final class CommandSpec implements CommandCallable {
     @Override
     public boolean testPermission(CommandSource source) {
         return this.permission == null || source.hasPermission(this.permission);
+    }
+
+    @Override
+    public boolean testSourceType(CommandSource source) {
+        Class<? extends CommandSource> clazz = source.getClass();
+        return sourceTypeDeep ? sourceType.isAssignableFrom(clazz) : sourceType.equals(clazz);
     }
 
     /**
