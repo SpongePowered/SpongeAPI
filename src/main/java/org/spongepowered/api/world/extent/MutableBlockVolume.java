@@ -131,6 +131,45 @@ public interface MutableBlockVolume extends BlockVolume {
     }
 
     /**
+     * Sets the block at the given position in the world with the provided
+     * {@link Cause} will be used for any events thrown. Note that the
+     * difference between this an {@link #setBlockType(Vector3i, BlockType)} is
+     * that no block tracking chaining will take place. Note that there is
+     * a requirement that the {@link PluginContainer} of the plugin calling
+     * this method is <strong>REQUIRED</strong>.
+     *
+     * @param position The position
+     * @param type The block type
+     * @param cause The cause to use
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *         bounds of the volume
+     */
+    default void setBlockType(Vector3i position, BlockType type, Cause cause) {
+        setBlock(position.getX(), position.getY(), position.getZ(), type.getDefaultState(), cause);
+    }
+
+    /**
+     * Sets the block at the given position in the world with the provided
+     * {@link Cause} will be used for any events thrown. Note that the
+     * difference between this an {@link #setBlockType(Vector3i, BlockType)} is
+     * that no block tracking chaining will take place. Note that there is
+     * a requirement that the {@link PluginContainer} of the plugin calling
+     * this method is <strong>REQUIRED</strong>.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param type The block
+     * @param cause The cause to use
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *         bounds of the volume
+     */
+    default void setBlockType(int x, int y, int z, BlockType type, Cause cause) {
+        setBlock(x, y, z, type.getDefaultState(), cause);
+    }
+
+
+    /**
      * Returns a new volume that is the same or smaller than the current volume.
      * This does not copy the blocks, it only provides a new view of the
      * storage.
