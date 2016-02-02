@@ -25,8 +25,8 @@
 package org.spongepowered.api.command.dispatcher;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.command.CommandMessageFormatting.SPACE_TEXT;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
@@ -35,12 +35,6 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.action.TextActions;
-import org.spongepowered.api.text.format.TextColors;
-import org.spongepowered.api.text.format.TextStyles;
-import org.spongepowered.api.util.GuavaCollectors;
-import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.command.CommandCallable;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandMapping;
@@ -49,6 +43,12 @@ import org.spongepowered.api.command.CommandNotFoundException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.ImmutableCommandMapping;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.action.TextActions;
+import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.text.format.TextStyles;
+import org.spongepowered.api.util.GuavaCollectors;
+import org.spongepowered.api.util.StartsWithPredicate;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -350,6 +350,16 @@ public final class SimpleDispatcher implements Dispatcher {
     public boolean testPermission(CommandSource source) {
         for (CommandMapping mapping : this.commands.values()) {
             if (mapping.getCallable().testPermission(source)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean testSourceType(CommandSource source) {
+        for (CommandMapping mapping : this.commands.values()) {
+            if (mapping.getCallable().testSourceType(source)) {
                 return true;
             }
         }

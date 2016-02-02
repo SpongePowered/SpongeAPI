@@ -24,14 +24,11 @@
  */
 package org.spongepowered.api.command.args;
 
-import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.command.CommandMessageFormatting.error;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimaps;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.GuavaCollectors;
-import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.command.CommandCallable;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandMapping;
@@ -40,6 +37,9 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.GuavaCollectors;
+import org.spongepowered.api.util.StartsWithPredicate;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +48,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.annotation.Nullable;
 
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class ChildCommandElementExecutor extends CommandElement implements CommandExecutor {
     private static final AtomicInteger COUNTER = new AtomicInteger();
 
