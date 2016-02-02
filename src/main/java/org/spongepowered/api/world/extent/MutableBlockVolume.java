@@ -27,6 +27,8 @@ package org.spongepowered.api.world.extent;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
@@ -61,6 +63,42 @@ public interface MutableBlockVolume extends BlockVolume {
      *         bounds of the volume
      */
     void setBlock(int x, int y, int z, BlockState block);
+
+    /**
+     * Sets the block at the given position in the world with the provided
+     * {@link Cause} will be used for any events thrown. Note that the
+     * difference between this an {@link #setBlock(Vector3i, BlockState)} is
+     * that no block tracking chaining will take place. Note that there is
+     * a requirement that the {@link PluginContainer} of the plugin calling
+     * this method is <strong>REQUIRED</strong>.
+     *
+     * @param position The position
+     * @param blockState The block
+     * @param cause The cause to use
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *         bounds of the volume
+     */
+    default void setBlock(Vector3i position, BlockState blockState, Cause cause) {
+        setBlock(position.getX(), position.getY(), position.getZ(), blockState, cause);
+    }
+
+    /**
+     * Sets the block at the given position in the world with the provided
+     * {@link Cause} will be used for any events thrown. Note that the
+     * difference between this an {@link #setBlock(Vector3i, BlockState)} is
+     * that no block tracking chaining will take place. Note that there is
+     * a requirement that the {@link PluginContainer} of the plugin calling
+     * this method is <strong>REQUIRED</strong>.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param blockState The block
+     * @param cause The cause to use
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *         bounds of the volume
+     */
+    void setBlock(int x, int y, int z, BlockState blockState, Cause cause);
 
     /**
      * Replace the block at this position by a new type.
