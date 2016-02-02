@@ -79,6 +79,20 @@ public interface CommandCallable {
     boolean testPermission(CommandSource source);
 
     /**
+     * Test whether this command is allowed to be executed by the specified
+     * source depending on it's type.
+     *
+     * <p>Implementations should use this to restrict command execution of
+     * certain command source types. This varies from permissions in that
+     * a source may have permission to execute a command but must be, for
+     * example, a Player because the command uses locational data.</p>
+     *
+     * @param source called of the command
+     * @return whether the source type is permitted to execute the command
+     */
+    boolean testSourceType(CommandSource source);
+
+    /**
      * Get a short one-line description of this command.
      *
      * <p>The help system may display the description in the command list.</p>
