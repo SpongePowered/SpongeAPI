@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.block.trait.BlockTrait;
@@ -50,7 +51,7 @@ import java.util.Optional;
  * a single instance of a particular {@link BlockState} as they are immutable,
  * a particular instance may be cached for various uses.
  */
-public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRelativePropertyHolder {
+public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRelativePropertyHolder, CatalogType {
 
     /**
      * Creates a new {@link Builder} for building {@link BlockState}s.
