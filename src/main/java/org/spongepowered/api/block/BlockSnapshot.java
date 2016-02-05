@@ -35,6 +35,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.storage.WorldProperties;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -114,6 +115,22 @@ public interface BlockSnapshot extends LocateableSnapshot<BlockSnapshot> {
      */
     boolean restore(boolean force, boolean notifyNeighbors);
 
+    /**
+     * Gets the {@link UUID}, if available, that created this
+     * {@link BlockSnapshot}.
+     *
+     * @return The {@link UUID} if available
+     */
+    Optional<UUID> getCreator();
+
+    /**
+     * Gets the {@link UUID}, if available, that last notified this
+     * {@link BlockSnapshot}.
+     *
+     * @return The {@link UUID} if available
+     */
+    Optional<UUID> getNotifier();
+
     interface Builder extends ImmutableDataBuilder<BlockSnapshot, Builder> {
 
         /**
@@ -151,5 +168,21 @@ public interface BlockSnapshot extends LocateableSnapshot<BlockSnapshot> {
          * @return This builder, for chaining
          */
         Builder from(Location<World> location);
+
+        /**
+         * Sets the creator's {@link UUID} of this {@link BlockSnapshot}.
+         *
+         * @param uuid The {@link UUID} of creator
+         * @return This builder, for chaining
+         */
+        Builder creator(UUID uuid);
+
+        /**
+         * Sets the notifier's {@link UUID} of this {@link BlockSnapshot}.
+         *
+         * @param uuid The {@link UUID} of notifier
+         * @return This builder, for chaining
+         */
+        Builder notifier(UUID uuid);
     }
 }

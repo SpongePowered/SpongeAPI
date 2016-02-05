@@ -28,6 +28,8 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataTransactionResult;
@@ -415,4 +417,32 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
         return getWorld().getEntities(predicate::test);
     }
 
+    /**
+     * Gets the {@link UUID}, if available, that created this {@link Entity}.
+     *
+     * @return The {@link UUID} if one exists
+     */
+    Optional<UUID> getCreator();
+
+    /**
+     * Gets the {@link UUID}, if available, that last notified this
+     * {@link Entity}.
+     *
+     * @return The {@link UUID} if one exists
+     */
+    Optional<UUID> getNotifier();
+
+    /**
+     * Sets the {@link UUID} that created this {@link Entity}.
+     *
+     * @param uuid The {@link UUID} to set as creator.
+     */
+    void setCreator(@Nullable UUID uuid);
+
+    /**
+     * Sets the {@link UUID} that last notified this {@link Entity}.
+     *
+     * @param uuid The {@link UUID} to set as notifier.
+     */
+    void setNotifier(@Nullable UUID uuid);
 }

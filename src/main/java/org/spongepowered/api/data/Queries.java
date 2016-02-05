@@ -71,6 +71,10 @@ public final class Queries {
     public static final DataQuery COLOR_BLUE = of("Blue");
     public static final DataQuery COLOR_GREEN = of("Green");
 
+    // Tracking
+    public static final DataQuery CREATOR_ID = of("Creator");
+    public static final DataQuery NOTIFIER_ID = of("Notifier");
+
     private Queries() {
     }
 
