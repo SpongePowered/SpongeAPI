@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api;
 
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextRepresentable;
+import org.spongepowered.api.text.action.TextActions;
+
 /**
  * Represents a type of a catalog that can be used to identify types without
  * using an {@link Enum}.
@@ -35,7 +39,7 @@ package org.spongepowered.api;
  * <code>`a.getId().equalsIgnoreCase(b.getId())`</code> are true then all must
  * be true.</p>
  */
-public interface CatalogType {
+public interface CatalogType extends TextRepresentable {
 
     /**
      * Gets the unique identifier of this {@link CatalogType}. The identifier is
@@ -60,5 +64,13 @@ public interface CatalogType {
      * @return The human-readable name of this catalog type
      */
     String getName();
+    
+    @Override
+    default Text toText() {
+        final Text.Builder builder = Text.builder(getName());
+        builder.onHover(TextActions.showText(Text.of("Id: " + getId() + "\nName: " + getName())));
+        builder.onShiftClick(TextActions.insertText(getId()));
+        return builder.toText();
+    }
 
 }
