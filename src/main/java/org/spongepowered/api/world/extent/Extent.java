@@ -31,6 +31,8 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.data.property.LocationBasePropertyHolder;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
@@ -39,6 +41,10 @@ import org.spongepowered.api.world.extent.worker.MutableBiomeAreaWorker;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
 import java.util.Collection;
+import java.util.Optional;
+import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 /**
  * A mutable object containing blocks, tile entities, entities, and possibly
@@ -122,6 +128,46 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     void setBlock(int x, int y, int z, BlockState block, boolean notifyNeighbors);
 
     /**
+     * Sets the block at the given position in the world with the provided
+     * {@link Cause} will be used for any events thrown. Note that the
+     * difference between this an {@link #setBlock(Vector3i, BlockState)} is
+     * that no block tracking chaining will take place. Note that there is
+     * a requirement that the {@link PluginContainer} of the plugin calling
+     * this method is <strong>REQUIRED</strong>.
+     *
+     * @param position The position
+     * @param blockState The block
+     * @param notifyNeighbors Whether or not you want to notify neighboring
+     *        blocks of this change. If true, this may cause blocks to change.
+     * @param cause The cause to use
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *         bounds of the volume
+     */
+    default void setBlock(Vector3i position, BlockState blockState, boolean notifyNeighbors, Cause cause) {
+        setBlock(position.getX(), position.getY(), position.getZ(), blockState, notifyNeighbors, cause);
+    }
+
+    /**
+     * Sets the block at the given position in the world with the provided
+     * {@link Cause} will be used for any events thrown. Note that the
+     * difference between this an {@link #setBlock(Vector3i, BlockState)} is
+     * that no block tracking chaining will take place. Note that there is
+     * a requirement that the {@link PluginContainer} of the plugin calling
+     * this method is <strong>REQUIRED</strong>.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param blockState The block
+     * @param notifyNeighbors Whether or not you want to notify neighboring
+     *        blocks of this change. If true, this may cause blocks to change.
+     * @param cause The cause to use
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *         bounds of the volume
+     */
+    void setBlock(int x, int y, int z, BlockState blockState, boolean notifyNeighbors, Cause cause);
+
+    /**
      * Replace the block at this position by a new type.
      *
      * <p>This will remove any extended block data at the given position.</p>
@@ -153,6 +199,48 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      */
     default void setBlockType(int x, int y, int z, BlockType type, boolean notifyNeighbors) {
         setBlock(x, y, z, type.getDefaultState(), notifyNeighbors);
+    }
+
+    /**
+     * Sets the block at the given position in the world with the provided
+     * {@link Cause} will be used for any events thrown. Note that the
+     * difference between this an {@link #setBlockType(Vector3i, BlockType)} is
+     * that no block tracking chaining will take place. Note that there is
+     * a requirement that the {@link PluginContainer} of the plugin calling
+     * this method is <strong>REQUIRED</strong>.
+     *
+     * @param position The position
+     * @param type The block type
+     * @param notifyNeighbors Whether or not you want to notify neighboring
+     *        blocks of this change. If true, this may cause blocks to change.
+     * @param cause The cause to use
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *         bounds of the volume
+     */
+    default void setBlockType(Vector3i position, BlockType type, boolean notifyNeighbors, Cause cause) {
+        setBlock(position.getX(), position.getY(), position.getZ(), type.getDefaultState(), notifyNeighbors, cause);
+    }
+
+    /**
+     * Sets the block at the given position in the world with the provided
+     * {@link Cause} will be used for any events thrown. Note that the
+     * difference between this an {@link #setBlockType(Vector3i, BlockType)} is
+     * that no block tracking chaining will take place. Note that there is
+     * a requirement that the {@link PluginContainer} of the plugin calling
+     * this method is <strong>REQUIRED</strong>.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param type The block
+     * @param notifyNeighbors Whether or not you want to notify neighboring
+     *        blocks of this change. If true, this may cause blocks to change.
+     * @param cause The cause to use
+     * @throws PositionOutOfBoundsException If the position is outside of the
+     *         bounds of the volume
+     */
+    default void setBlockType(int x, int y, int z, BlockType type, boolean notifyNeighbors, Cause cause) {
+        setBlock(x, y, z, type.getDefaultState(), notifyNeighbors, cause);
     }
 
     /**
@@ -351,4 +439,99 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     @Override
     MutableBlockVolumeWorker<? extends Extent> getBlockWorker();
 
+    /**
+     * Gets the {@link UUID}, if available, that created the {@link BlockSnapshot}
+     * at passed block position.
+     *
+     * @param pos The position to be checked
+     * @return The {@link UUID} if one exists
+     */
+    default Optional<UUID> getCreator(Vector3i pos) {
+        return getCreator(pos.getX(), pos.getY(), pos.getZ());
+    }
+
+    /**
+     * Gets the {@link UUID}, if available, that created the {@link BlockSnapshot}
+     * at passed block position.
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @return The {@link User} if one exists
+     */
+    Optional<UUID> getCreator(int x, int y, int z);
+
+    /**
+     * Gets the {@link UUID}, if available, that last notified the
+     * {@link BlockSnapshot} located at passed block position.
+     *
+     * @param pos The position to be checked
+     * @return The {@link UUID} if one exists
+     */
+    default Optional<UUID> getNotifier(Vector3i pos) {
+        return getNotifier(pos.getX(), pos.getY(), pos.getZ());
+    }
+
+    /**
+     * Gets the {@link UUID}, if available, that last notified the
+     * {@link BlockSnapshot} located at passed block coordinates.
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @return The {@link UUID} if available
+     */
+    Optional<UUID> getNotifier(int x, int y, int z);
+
+    /**
+     * Sets the {@link UUID} that created the {@link BlockSnapshot}
+     * located at passed block position.
+     *
+     * @param pos The block position where the user data should
+     *      be applied.
+     * @param uuid The {@link UUID} to set as creator.
+     */
+    default void setCreator(Vector3i pos, @Nullable UUID uuid) {
+        setCreator(pos.getX(), pos.getY(), pos.getZ(), uuid);
+    }
+
+    /**
+     * Sets the {@link UUID} that created the {@link BlockSnapshot}
+     * located at passed block coordinates.
+     *
+     * @param x The x coordinate where the user data should
+     *      be applied.
+     * @param y The y coordinate where the user data should
+     *      be applied.
+     * @param z The z coordinate where the user data should
+     *      be applied.
+     * @param uuid The {@link UUID} to set as creator.
+     */
+    void setCreator(int x, int y, int z, @Nullable UUID uuid);
+
+    /**
+     * Sets the {@link UUID} that last notified the {@link BlockSnapshot}
+     * located at passed block position.
+     *
+     * @param pos The block position where the user data should
+     *      be applied.
+     * @param uuid The {@link UUID} to set as notifier.
+     */
+    default void setNotifier(Vector3i pos, @Nullable UUID uuid) {
+        setNotifier(pos.getX(), pos.getY(), pos.getZ(), uuid);
+    }
+
+    /**
+     * Sets the {@link UUID} that last notified the
+     * {@link BlockSnapshot} located at passed block coordinates.
+     *
+     * @param x The x coordinate where the user data should
+     *      be applied.
+     * @param y The y coordinate where the user data should
+     *      be applied.
+     * @param z The z coordinate where the user data should
+     *      be applied.
+     * @param uuid The {@link UUID} to set as notifier.
+     */
+    void setNotifier(int x, int y, int z, @Nullable UUID uuid);
 }
