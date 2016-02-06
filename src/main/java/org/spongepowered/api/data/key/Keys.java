@@ -848,7 +848,7 @@ public final class Keys {
 
     public static final Key<OptionalValue<UUID>> TAMED_OWNER = null;
 
-    public static final Key<Value<Location<World>>> TARGETED_LOCATION = null;
+    public static final Key<Value<Vector3d>> TARGETED_LOCATION = null;
 
     public static final Key<MutableBoundedValue<Integer>> TOTAL_EXPERIENCE = null;
 
