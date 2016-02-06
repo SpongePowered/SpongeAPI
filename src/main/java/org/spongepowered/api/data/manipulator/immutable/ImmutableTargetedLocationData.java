@@ -24,30 +24,30 @@
  */
 package org.spongepowered.api.data.manipulator.immutable;
 
+import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.projectile.EnderPearl;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 /**
  * An {@link ImmutableDataManipulator} handling the supposed targeted
- * {@link Location}. Usually for the case of {@link EnderPearl}s, the targeted
- * {@link Location} is where the {@link EnderPearl} will move towards until it's
- * expiration time. In the case of {@link ItemStack}s of type
- * {@link ItemTypes#COMPASS}, the targeted {@link Location} is where the compass
- * will point towards.
+ * {@link Vector3d}.
+ *
+ * <p>Usually for the case of {@link EnderPearl}s, the targeted {@link Vector3d}
+ * is where the {@link EnderPearl} will move towards until it's expiration time.
+ * In the case of {@link ItemStack}s of type {@link ItemTypes#COMPASS}, the
+ * targeted {@link Vector3d} is where the compass will point towards.</p>
  */
 public interface ImmutableTargetedLocationData extends ImmutableDataManipulator<ImmutableTargetedLocationData, TargetedLocationData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the targeted {@link Location}.
+     * Gets the {@link ImmutableValue} for the targeted {@link Vector3d}.
      *
      * @return The immutable value for the targeted location
      */
-    ImmutableValue<Location<World>> target();
+    ImmutableValue<Vector3d> target();
 
 }
