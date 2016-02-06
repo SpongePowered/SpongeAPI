@@ -41,6 +41,7 @@ import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.DataSerializer;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.util.Coerce;
 
@@ -51,6 +52,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
@@ -230,11 +232,19 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public DataView set(DataQuery path, Object value) {
         checkNotNull(path, "path");
         checkNotNull(value, "value");
         checkState(this.container != null);
+
+        @Nullable DataManager manager;
+
+        try {
+            manager = Sponge.getDataManager();
+        } catch (Exception e) {
+            manager = null;
+        }
 
         if (value instanceof DataView) {
             checkArgument(value != this, "Cannot set a DataView to itself.");
@@ -245,7 +255,12 @@ public class MemoryDataView implements DataView {
             copyDataView(path, valueContainer);
         } else if (value instanceof CatalogType) {
             return set(path, ((CatalogType) value).getId());
-        }  else {
+        } else if (manager != null && manager.getSerializer(value.getClass()).isPresent()) {
+            DataSerializer serializer = manager.getSerializer(value.getClass()).get();
+            final DataContainer container = serializer.serialize(value);
+            checkArgument(!container.equals(this), "Cannot insert self-referencing Objects!");
+            copyDataView(path, container);
+        } else {
             List<String> parts = path.getParts();
             if (parts.size() > 1) {
                 String subKey = parts.get(0);
@@ -514,6 +529,24 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
+    public Optional<Byte> getByte(DataQuery path) {
+        Optional<Object> val = get(path);
+        if (val.isPresent()) {
+            return Coerce.asByte(val.get());
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Short> getShort(DataQuery path) {
+        Optional<Object> val = get(path);
+        if (val.isPresent()) {
+            return Coerce.asShort(val.get());
+        }
+        return Optional.empty();
+    }
+
+    @Override
     public Optional<Integer> getInt(DataQuery path) {
         Optional<Object> val = get(path);
         if (val.isPresent()) {
@@ -529,6 +562,16 @@ public class MemoryDataView implements DataView {
             return Coerce.asLong(val.get());
         }
         return Optional.empty();
+    }
+
+    @Override
+    public Optional<Float> getFloat(DataQuery path) {
+        Optional<Object> val = get(path);
+        if (val.isPresent()) {
+            return Coerce.asFloat(val.get());
+        }
+        return Optional.empty();
+
     }
 
     @Override
@@ -870,6 +913,26 @@ public class MemoryDataView implements DataView {
             }
         }
         return Optional.of(newList);
+    }
+
+    @Override
+    public <T> Optional<T> getObject(DataQuery path, Class<T> objectClass) {
+        return getView(path).flatMap(view ->
+                Sponge.getDataManager().getSerializer(objectClass).flatMap(serializer ->
+                        serializer.deserialize(view)));
+    }
+
+    @Override
+    public <T> Optional<List<T>> getObjectList(DataQuery path, Class<T> objectClass) {
+        return getViewList(path).flatMap(viewList ->
+                Sponge.getDataManager().getSerializer(objectClass).map(serializer ->
+                        viewList.stream()
+                                .map(serializer::deserialize)
+                                .filter(Optional::isPresent)
+                                .map(Optional::get)
+                                .collect(Collectors.toList())
+                )
+        );
     }
 
     @Override
