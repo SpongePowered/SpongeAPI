@@ -87,7 +87,6 @@ public interface EconomyService extends ContextualService<Account> {
      */
     Optional<Account> getAccount(String identifier);
 
-
     /**
      * Attempts to create a {@link UniqueAccount} for the user with the specified {@link UUID}.
      *
