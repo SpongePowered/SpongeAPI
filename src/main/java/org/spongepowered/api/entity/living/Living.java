@@ -147,8 +147,9 @@ public interface Living extends Entity, TeamMember {
      */
     default void lookAt(Vector3d targetPos) {
         Vector3d eyePos = getProperty(EyeLocationProperty.class).get().getValue();
-        if (eyePos == null)
+        if (eyePos == null) {
             return;
+        }
 
         Vector2d xz1 = eyePos.toVector2(true);
         Vector2d xz2 = targetPos.toVector2(true);
