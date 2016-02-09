@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.entity.living;
 
+import com.flowpowered.math.vector.Vector2d;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.DamageableData;
 import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
+import org.spongepowered.api.data.property.entity.EyeLocationProperty;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
@@ -137,5 +139,45 @@ public interface Living extends Entity, TeamMember {
      * @param rotation Rotation of the entities head
      */
     void setHeadRotation(Vector3d rotation);
+
+    /**
+     * Makes the entity look at the specified target position.
+     *
+     * @param targetPos Position to target
+     */
+    default void lookAt(Vector3d targetPos) {
+        Vector3d eyePos = getProperty(EyeLocationProperty.class).get().getValue();
+        if (eyePos == null)
+            return;
+
+        Vector2d xz1 = eyePos.toVector2(true);
+        Vector2d xz2 = targetPos.toVector2(true);
+        double distance = xz1.distance(xz2);
+
+        // calculate pitch
+        Vector2d p1 = Vector2d.UNIT_Y.mul(eyePos.getY());
+        Vector2d p2 = new Vector2d(distance, targetPos.getY());
+        Vector2d v1 = p2.sub(p1);
+        Vector2d v2 = Vector2d.UNIT_X.mul(distance);
+        double pitchRad = Math.acos(v1.dot(v2) / (v1.length() * v2.length()));
+        double pitchDeg = pitchRad * 180 / Math.PI * (-v1.getY() / Math.abs(v1.getY()));
+
+        // calculate yaw
+        p1 = xz1;
+        p2 = xz2;
+        v1 = p2.sub(p1);
+        v2 = Vector2d.UNIT_Y.mul(v1.getY());
+        double yawRad = Math.acos(v1.dot(v2) / (v1.length() * v2.length()));
+        double yawDeg = yawRad * 180 / Math.PI;
+        if (v1.getX() < 0 && v1.getY() < 0)
+            yawDeg = 180 - yawDeg;
+        else if (v1.getX() > 0 && v1.getY() < 0)
+            yawDeg = 270 - (90 - yawDeg);
+        else if (v1.getX() > 0 && v1.getY() > 0)
+            yawDeg = 270 + (90 - yawDeg);
+
+        setHeadRotation(new Vector3d(pitchDeg, yawDeg, getHeadRotation().getZ()));
+        setRotation(new Vector3d(pitchDeg, yawDeg, getRotation().getZ()));
+    }
 
 }
