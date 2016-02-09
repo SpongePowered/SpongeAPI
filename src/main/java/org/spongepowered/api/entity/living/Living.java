@@ -24,14 +24,14 @@
  */
 package org.spongepowered.api.entity.living;
 
+import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.DamageableData;
 import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.effect.potion.PotionEffect;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.scoreboard.TeamMember;
 
 /**
@@ -106,5 +106,36 @@ public interface Living extends Entity, TeamMember {
     default OptionalValue<Double> lastDamage() {
         return getValue(Keys.LAST_DAMAGE).get();
     }
+
+    /**
+     * Returns this entity's head rotation.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * Note that the pitch will be the same x value returned by
+     * {@link Entity#getRotation()} and Minecraft does not currently support
+     * head roll so the y value will always be zero.
+     *
+     * @return Head rotation
+     */
+    Vector3d getHeadRotation();
+
+    /**
+     * Sets the entity's head rotation.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * Note that the pitch (x value) supplied will update the entity's pitch
+     * via {@link Entity#setRotation(Vector3d)}.
+     *
+     * @param rotation Rotation of the entities head
+     */
+    void setHeadRotation(Vector3d rotation);
 
 }
