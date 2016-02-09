@@ -69,49 +69,48 @@ public interface EconomyService extends ContextualService<Account> {
     Set<Currency> getCurrencies();
 
     /**
-     * Gets the {@link UniqueAccount} with the specified {@link UUID}, if available.
+     * Returns whether a {@link UniqueAccount} exists with the specified {@link UUID}.
      *
-     * @param uuid The {@link UUID} of the account to get
+     * @param uuid The {@link UUID} of the account to check for
+     * @return Whether a {@link UniqueAccount} exists with the specified {@link UUID}
+     */
+    boolean hasAccount(UUID uuid);
+
+    /**
+     * Returns whether an {@link Account} with the specified identifier exists.
+     *
+     * <p>Depending on the implementation, the {@link Account} may be a {@link UniqueAccount} or
+     * a {@link VirtualAccount}.
+     *
+     * @param identifier The identifier of the account to check for
+     * @return Whether an {@link Account} with the specified identifier exists
+     */
+    boolean hasAccount(String identifier);
+
+    /**
+     * Gets the {@link UniqueAccount} for the user with the specified {@link UUID}.
+     *
+     * <p>If an account does not already exists with the specified {@link UUID}, it will be
+     * created.</p>
+     *
+     * <p>Creation might fail if the provided {@link UUID} does not correspond to an actual
+     * player, or for an implementation-defined reason.</p>
+     *
+     * @param uuid The {@link UUID} of the account to get.
      * @return The {@link UniqueAccount}, if available.
      */
     Optional<UniqueAccount> getAccount(UUID uuid);
 
     /**
-     * Gets the {@link Account} with the specified identifier, if available.
+     * Gets the {@link VirtualAccount} with the specified identifier
      *
-     * <p>The returned {@link Account} may be a {@link UniqueAccount} or
-     * a {@link VirtualAccount}, depending on the implementation.</p>
-     *
-     * @param identifier The identifier of the account to get
-     * @return The {@link VirtualAccount}, if available.
-     */
-    Optional<Account> getAccount(String identifier);
-
-
-    /**
-     * Attempts to create a {@link UniqueAccount} for the user with the specified {@link UUID}.
-     *
-     * <p>If an account already exists with the specified {@link UUID}, it will be
-     * returned. No further action will be taken.</p>
-     *
-     * <p>Creation might fail if the provided {@link UUID} does not correspond to an actual
-     * player, or for an implementation-defined reason.</p>
-     *
-     * @param uuid The {@link UUID} of the account to create.
-     * @return The created {@link UniqueAccount}, if available.
-     */
-    Optional<UniqueAccount> createAccount(UUID uuid);
-
-    /**
-     * Attempts to create a {@link VirtualAccount} with the specified identifier
-     *
-     * <p>If an account already exists with the specified identifier, it will be
-     * returned. No further action will be taken.</p>
+     * <p>If an account does not already exists with the specified identifier, it will be
+     * created.</p>
      *
      * <p>Creation may fail for an implementation-defined reason.</p>
      *
-     * @param identifier The identifier of the account to create.
-     * @return The created {@link VirtualAccount}, if available.
+     * @param identifier The identifier of the account to get.
+     * @return The {@link Account}, if available.
      */
-    Optional<VirtualAccount> createVirtualAccount(String identifier);
+    Optional<Account> getAccount(String identifier);
 }
