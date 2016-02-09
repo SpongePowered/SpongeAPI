@@ -22,44 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.cause.entity.health.source.common;
 
-package org.spongepowered.api.event.cause.entity.health.source;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.entity.health.source.EntityHealingSource;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+public class AbstractEntityHealingSource extends AbstractHealingSource implements EntityHealingSource {
 
-public interface BlockHealingSource extends HealingSource {
+    private final Entity entity;
 
-    /**
-     * Creates a builder for building a {@link BlockHealingSource}.
-     *
-     * @return A new builder instance
-     */
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+    public AbstractEntityHealingSource(AbstractEntityHealingSourceBuilder<?, ?> builder) {
+        super(builder);
+        this.entity = builder.entity;
     }
 
-    /**
-     * Gets the location of the block that acted as the healing source.
-     *
-     * @return The location of the block that acted as a healing source
-     */
-    Location<World> getLocation();
-
-    /**
-     * Gets the block snapshot that is acting as the healing source.
-     *
-     * @return The block snapshot
-     */
-    BlockSnapshot getBlock();
-
-    interface Builder extends HealingSourceBuilder<BlockHealingSource, Builder> {
-
-        Builder block(Location<World> location);
-
-        Builder block(BlockSnapshot blockState);
-
+    @Override
+    public Entity getSource() {
+        return this.entity;
     }
 }

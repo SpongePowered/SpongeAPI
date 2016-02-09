@@ -25,10 +25,12 @@
 
 package org.spongepowered.api.event.cause.entity.health;
 
-public final class HealTypes {
+public final class HealingTypes {
 
-    public static final HealType POTION = null;
-    public static final HealType UNDEAD = null;
-    public static final HealType FOOD = null;
+    public static final HealingType POTION = null;
+    public static final HealingType UNDEAD = null;
+    public static final HealingType FOOD = null;
+    public static final HealingType BOSS = null;
+    public static final HealingType PLUGIN = null;
 
 }

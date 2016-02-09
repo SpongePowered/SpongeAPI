@@ -23,16 +23,28 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.cause.entity.health;
+package org.spongepowered.api.event.cause.entity.health.source;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.event.entity.HealEntityEvent;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
-/**
- * Represents a type of "healing", used for {@link HealEntityEvent}s.
- */
-@CatalogedBy(HealTypes.class)
-public interface HealType extends CatalogType {
+public interface IndirectEntityHealingSource extends EntityHealingSource {
 
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    Entity getIndirectSource();
+
+    interface Builder extends IndirectEntityHealingSourceBuilder<IndirectEntityHealingSource, Builder> {
+        
+    }
+
+    interface IndirectEntityHealingSourceBuilder<T extends IndirectEntityHealingSource, B extends IndirectEntityHealingSourceBuilder<T, B>> extends EntityHealingSourceBuilder<T, B> {
+
+        B indirectEntity(Entity entity);
+
+    }
 }

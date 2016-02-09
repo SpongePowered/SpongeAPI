@@ -23,43 +23,4 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.cause.entity.health.source;
-
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
-
-public interface BlockHealingSource extends HealingSource {
-
-    /**
-     * Creates a builder for building a {@link BlockHealingSource}.
-     *
-     * @return A new builder instance
-     */
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
-
-    /**
-     * Gets the location of the block that acted as the healing source.
-     *
-     * @return The location of the block that acted as a healing source
-     */
-    Location<World> getLocation();
-
-    /**
-     * Gets the block snapshot that is acting as the healing source.
-     *
-     * @return The block snapshot
-     */
-    BlockSnapshot getBlock();
-
-    interface Builder extends HealingSourceBuilder<BlockHealingSource, Builder> {
-
-        Builder block(Location<World> location);
-
-        Builder block(BlockSnapshot blockState);
-
-    }
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.cause.entity.health.source.common;

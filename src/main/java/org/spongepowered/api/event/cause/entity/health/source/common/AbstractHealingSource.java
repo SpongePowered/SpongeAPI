@@ -22,54 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.cause.entity.health.source.common;
 
-package org.spongepowered.api.event.cause.entity.health.source;
+import org.spongepowered.api.event.cause.entity.health.HealingType;
+import org.spongepowered.api.event.cause.entity.health.source.HealingSource;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.entity.health.HealType;
+public abstract class AbstractHealingSource implements HealingSource {
 
-public interface ProjectileHealingSource extends EntityHealingSource {
+    private final HealingType healingType;
+    private final boolean difficulty;
+    private final boolean magical;
 
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+    protected AbstractHealingSource(AbstractHealingSourceBuilder<?, ?> builder) {
+        this.healingType = builder.healingType;
+        this.difficulty = builder.scales;
+        this.magical = builder.magical;
     }
 
+    @Override
+    public HealingType getHealingType() {
+        return this.healingType;
+    }
 
     @Override
-    Projectile getSource();
+    public boolean isDifficultyScaled() {
+        return this.difficulty;
+    }
 
-    ProjectileSource getShooter();
-
-    interface Builder extends EntityHealingSource.Builder {
-
-        @Override
-        Builder scalesWithDifficulty();
-
-        @Override
-        Builder bypassesArmor();
-
-        @Override
-        Builder explosion();
-
-        @Override
-        Builder absolute();
-
-        @Override
-        Builder magical();
-
-        @Override
-        Builder entity(Entity entity);
-
-        @Override
-        Builder type(HealType healType);
-
-        Builder projectile(Projectile projectile);
-
-        @Override
-        ProjectileHealingSource build() throws IllegalStateException;
-
+    @Override
+    public boolean isMagic() {
+        return this.magical;
     }
 }
