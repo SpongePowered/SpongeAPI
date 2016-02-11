@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.collect.ImmutableSet;
 
 import java.util.Arrays;
@@ -33,7 +35,9 @@ import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * Utility methods to help with function work.
@@ -78,12 +82,57 @@ public class Functional {
         return collection::contains;
     }
 
+    /**
+     * Creates a new predicate that will match if its input is not null.
+     *
+     * @return The newly created predicate
+     */
+    public static <E> Predicate<E> notNull() {
+        return input -> input != null;
+    }
+
+    /**
+     * Creates a {@link Consumer} that can be used to join elements of a stream
+     * and insert the given separator between each element.
+     *
+     * @param main The consumer used to process each element
+     * @param separator The separator used with the main consumer
+     * @return The newly created consumer ready to join a stream once
+     */
+    public static <T> Consumer<T> joiner(final Consumer<T> main, final T separator) {
+        final Runnable runnable = () -> main.accept(separator);
+        return joiner(main, runnable);
+    }
+
+    /**
+     * Creates a {@link Consumer} that can be used to join elements of a stream
+     * and insert the given separator between each element.
+     *
+     * @param main The consumer used to process each element
+     * @param separatorAdder The runnable to execute to add the separator
+     * @return The newly created consumer ready to join a stream once
+     */
+    public static <T> Consumer<T> joiner(Consumer<T> main, Runnable separatorAdder) {
+        return consumeOnceAndElse(main, Functional.<T>asConsumer(separatorAdder).andThen(main));
+    }
+
+    /**
+     * Wraps this {@link Runnable} in a {@link Consumer}.
+     *
+     * @param runnable The runnable to wrap
+     * @return The newly created consumer containing the given runnable
+     */
+    public static <T> Consumer<T> asConsumer(Runnable runnable) {
+        return input -> runnable.run();
+    }
+
     public static <E> com.google.common.base.Predicate<E> java8ToGuava(Predicate<E> predicate) {
         return predicate::test;
     }
 
     /**
-     * Get the value of an {@link Optional} as either a zero- or one-element immutable set.
+     * Get the value of an {@link Optional} as either a zero- or one-element
+     * immutable set.
      *
      * @param value The value to get as a set
      * @param <T> The type
@@ -94,8 +143,9 @@ public class Functional {
     }
 
     /**
-     * Execute a callable on <strong>the current thread</strong>, capturing the result or any exceptions that may be thrown into a {@link
-     * CompletableFuture}.
+     * Execute a callable on <strong>the current thread</strong>, capturing the
+     * result or any exceptions that may be thrown into a
+     * {@link CompletableFuture}.
      *
      * @param call The callable to execute
      * @param <T> The type of value returned
@@ -112,8 +162,8 @@ public class Functional {
     }
 
     /**
-     * Execute a callable on the provided executor, capturing the result or any exceptions that may be thrown into a {@link
-     * CompletableFuture}.
+     * Execute a callable on the provided executor, capturing the result or any
+     * exceptions that may be thrown into a {@link CompletableFuture}.
      *
      * @param call The callable to execute
      * @param exec The executor to execute this task on
@@ -131,4 +181,61 @@ public class Functional {
         });
         return ret;
     }
+
+    /**
+     * Creates a new {@link Consumer} that will execute the first
+     * {@link Consumer} once and after that it will use a different
+     * {@link Consumer}.
+     *
+     * @param first The consumer to use once
+     * @param later The consumer to use after the first time
+     * @return The newly created consumer
+     * @see #supplyOnceAndElse(Object, Object)
+     */
+    public static <T> Consumer<T> consumeOnceAndElse(Consumer<T> first, Consumer<T> later) {
+        final Supplier<Consumer<T>> once = supplyOnceAndElse(checkNotNull(first, "first"), checkNotNull(later, "later"));
+        return input -> once.get().accept(input);
+    }
+
+    /**
+     * Creates a new {@link Supplier} that will return a given result only once
+     * and after that it will return a different value all the time.
+     *
+     * @param first The value to return once
+     * @param later The value to return after the first time
+     * @return The newly created supplier
+     */
+    public static <T> Supplier<T> supplyOnceAndElse(T first, T later) {
+        return new Once<>(first, later);
+    }
+
+    /**
+     * {@link Supplier} that will return a given input once and after that
+     * returns a different result.
+     *
+     * @param <T> The type of results supplied by this supplier
+     */
+    public static class Once<T> implements Supplier<T> {
+
+        private final T first;
+        private final T later;
+        private boolean running = false;
+
+        Once(final T first, final T later) {
+            this.first = first;
+            this.later = later;
+        }
+
+        @Override
+        public T get() {
+            if (this.running) {
+                return this.later;
+            } else {
+                this.running = true;
+                return this.first;
+            }
+        }
+
+    }
+
 }

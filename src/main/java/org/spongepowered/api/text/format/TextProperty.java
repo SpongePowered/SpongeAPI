@@ -22,26 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.spongepowered.api.text.format;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.Color;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-
 /**
- * Represents the color of the text of a {@link Text}.
- *
- * @see TextColors
+ * Parent class for all text formats, styling and actions for easier detection.
  */
-@CatalogedBy(TextColors.class)
-public interface TextColor extends CatalogType, TextProperty {
-
-    /**
-     * Returns the corresponding {@link Color} for this {@link TextColor}.
-     *
-     * @return The RGB color of this text color
-     */
-    Color getColor();
+public interface TextProperty {
 
 }

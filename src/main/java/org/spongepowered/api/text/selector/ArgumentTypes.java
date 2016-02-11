@@ -37,6 +37,7 @@ import java.util.Optional;
 /**
  * Represents the default {@link ArgumentType}s available in Vanilla Minecraft.
  */
+@SuppressWarnings("deprecation")
 public final class ArgumentTypes {
 
     private ArgumentTypes() {
@@ -132,7 +133,6 @@ public final class ArgumentTypes {
      */
     public static final ArgumentType.Invertible<EntityType> ENTITY_TYPE = null;
 
-    @SuppressWarnings("deprecation")
     static SelectorFactory getFactory() {
         return Sponge.getRegistry().getSelectorFactory();
     }

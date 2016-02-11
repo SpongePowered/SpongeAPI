@@ -22,69 +22,70 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.action;
 
+package org.spongepowered.api.text.transformer;
+
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.format.TextProperty;
 
-import javax.annotation.Nullable;
+import java.util.Optional;
+import java.util.function.Function;
 
 /**
- * Represents an action happening as a response to an event on a {@link Text}.
- *
- * @param <R> The type of the result
- *
- * @see ClickAction
- * @see HoverAction
- * @see ShiftClickAction
+ * This {@link Transformer} will always return the context value for a fixed
+ * key. This class is required for serialization purposes.
  */
-public abstract class TextAction<R> implements TextProperty {
+public final class ValueForKeyTransformer<T> implements Transformer<T> {
 
-    protected final R result;
+    private final String key;
 
-    /**
-     * Constructs a new {@link TextAction} with the given result.
-     *
-     * @param result The result of the text action
-     */
-    protected TextAction(R result) {
-        this.result = checkNotNull(result, "result");
+    ValueForKeyTransformer(String key) {
+        checkArgument(!checkNotNull(key, "key").isEmpty(), "key cannot be empty");
+        this.key = key;
     }
 
     /**
-     * Returns the result of this {@link TextAction}.
+     * Gets the key that is used to get a result from the input context. This
+     * method is required for serialization purposes.
      *
-     * @return The result
+     * @return The key used to get the data
      */
-    public final R getResult() {
-        return this.result;
+    public String getKey() {
+        return this.key;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public Optional<T> transform(Function<String, ?> context) {
+        return Optional.ofNullable((T) context.apply(this.key));
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
-        if (this == o) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (obj == null) {
             return false;
         }
-
-        TextAction<?> that = (TextAction<?>) o;
-        return this.result.equals(that.result);
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ValueForKeyTransformer<?> that = (ValueForKeyTransformer<?>) obj;
+        return this.key.equals(that.key);
     }
 
     @Override
     public int hashCode() {
-        return this.result.hashCode();
+        return this.key.hashCode();
     }
 
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
-                .addValue(this.result)
+                .add("key", this.key)
                 .toString();
     }
 

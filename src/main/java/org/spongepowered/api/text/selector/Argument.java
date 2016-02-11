@@ -35,6 +35,7 @@ import java.util.Set;
  *
  * @param <T> The type of the value
  */
+@SuppressWarnings("deprecation")
 public interface Argument<T> {
 
     /**
