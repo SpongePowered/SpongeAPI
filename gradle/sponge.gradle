@@ -59,6 +59,12 @@ jar {
                 'Implementation-Vendor': project.url
         )
     }
+
+    def branch = System.getenv("GIT_BRANCH")
+
+    if (branch != null) {
+        manifest.attributes('Git-Branch': branch)
+    }
 }
 
 // The version can change until we're done configuring the project, so delay setting the manifest entries until that is final
@@ -156,5 +162,5 @@ apply from: api.file('gradle/deploy.gradle')
 
 // Gradle version used for generating the Gradle wrapper
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.10'
+    gradleVersion = '2.11'
 }
