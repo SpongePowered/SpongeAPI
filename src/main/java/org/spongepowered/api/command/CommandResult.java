@@ -39,6 +39,7 @@ public class CommandResult {
     private final Optional<Integer> affectedEntities;
     private final Optional<Integer> affectedItems;
     private final Optional<Integer> queryResult;
+    private final Optional<Throwable> throwable;
 
     /**
      * Returns a {@link Builder}.
@@ -70,20 +71,21 @@ public class CommandResult {
 
     /**
      * Constructs a new command result.
-     *
-     * @param successCount The success count
+     *  @param successCount The success count
      * @param affectedBlocks The number of affected blocks
      * @param affectedEntities The number of affected entities
      * @param affectedItems The number of affected items
      * @param queryResult The query result
+     * @param throwable The exception thrown
      */
     CommandResult(@Nullable Integer successCount, @Nullable Integer affectedBlocks, @Nullable Integer affectedEntities,
-            @Nullable Integer affectedItems, @Nullable Integer queryResult) {
+                  @Nullable Integer affectedItems, @Nullable Integer queryResult, @Nullable Throwable throwable) {
         this.successCount = Optional.ofNullable(successCount);
         this.affectedBlocks = Optional.ofNullable(affectedBlocks);
         this.affectedEntities = Optional.ofNullable(affectedEntities);
         this.affectedItems = Optional.ofNullable(affectedItems);
         this.queryResult = Optional.ofNullable(queryResult);
+        this.throwable = Optional.ofNullable(throwable);
     }
 
     /**
@@ -136,6 +138,15 @@ public class CommandResult {
     }
 
     /**
+     * Gets the exception thrown from this command.
+     *
+     * @return The exception thrown from this command
+     */
+    public Optional<Throwable> getThrowable() {
+        return throwable;
+    }
+
+    /**
      * A builder for {@link CommandResult}s.
      */
     public static class Builder {
@@ -149,6 +160,8 @@ public class CommandResult {
         private Integer affectedItems;
         @Nullable
         private Integer queryResult;
+        @Nullable
+        private Throwable throwable;
 
         private Builder() {}
 
@@ -209,12 +222,23 @@ public class CommandResult {
         }
 
         /**
+         * Sets the exception thrown from this command.
+         *
+         * @param throwable the exception thrown from this command
+         * @return This builder, for chaining
+         */
+        public Builder throwable(@Nullable Throwable throwable) {
+            this.throwable = throwable;
+            return this;
+        }
+
+        /**
          * Builds the {@link CommandResult}.
          *
          * @return A CommandResult with the specified settings
          */
         public CommandResult build() {
-            return new CommandResult(this.successCount, this.affectedBlocks, this.affectedEntities, this.affectedItems, this.queryResult);
+            return new CommandResult(this.successCount, this.affectedBlocks, this.affectedEntities, this.affectedItems, this.queryResult, this.throwable);
         }
     }
 }
