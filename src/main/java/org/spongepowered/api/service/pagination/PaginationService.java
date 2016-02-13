@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.service.pagination;
 
-import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.text.channel.MessageReceiver;
 
 /**
  * This service allows pagination of output to users.
@@ -36,7 +36,7 @@ public interface PaginationService {
      *
      * @return The pagination builder
      */
-    PaginationBuilder builder();
+    PaginationList.Builder builder();
 
     /**
      * Register a pagination calculator for a specific type of command source.
@@ -46,13 +46,13 @@ public interface PaginationService {
      * @param <T> The type of paginator
      * @throws IllegalArgumentException When a calculator is registered for a command source type that already has a registered calculator
      */
-    <T extends CommandSource> void setPaginationCalculator(Class<T> type, PaginationCalculator<? super T> calculator) throws IllegalArgumentException;
+    <T extends MessageReceiver> void setPaginationCalculator(Class<T> type, PaginationCalculator<? super T> calculator) throws IllegalArgumentException;
 
     /**
      * Returns a pagination calculator with an unlimited line count, leading to unpaginated output.
      * @return The calculator
      */
-    PaginationCalculator<CommandSource> getUnpaginatedCalculator();
+    PaginationCalculator<MessageReceiver> getUnpaginatedCalculator();
 
     /**
      * Create a pagination calculator providing a display of a fixed number of lines.
@@ -60,5 +60,5 @@ public interface PaginationService {
      * @param lines The lines to display on one page
      * @return The calculator
      */
-    PaginationCalculator<CommandSource> getFixedLinesCalculator(int lines);
+    PaginationCalculator<MessageReceiver> getFixedLinesCalculator(int lines);
 }
