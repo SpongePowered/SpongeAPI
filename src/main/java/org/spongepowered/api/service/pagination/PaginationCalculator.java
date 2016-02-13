@@ -57,6 +57,6 @@ public interface PaginationCalculator<T extends MessageReceiver> {
      * @param padding The padding character
      * @return The centered text
      */
-    Text center(T source, Text text, String padding);
+    Text center(T source, Text text, Text padding);
 
 }

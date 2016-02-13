@@ -82,7 +82,7 @@ public interface PaginationList {
      *
      * @return The padding character
      */
-    String getPaddingString();
+    Text getPaddingString();
 
     /**
      * Send the constructed pagination list to the given source.
@@ -156,7 +156,7 @@ public interface PaginationList {
          * @param padding The padding to use
          * @return this
          */
-        Builder paddingString(String padding);
+        Builder padding(Text padding);
 
         /**
          * Creates a {@link PaginationList} from this pagination builder.
