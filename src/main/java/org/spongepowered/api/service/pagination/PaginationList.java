@@ -45,7 +45,7 @@ public interface PaginationList {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+        return Sponge.getServiceManager().provideUnchecked(PaginationService.class).builder();
     }
 
     /**
@@ -82,7 +82,7 @@ public interface PaginationList {
      *
      * @return The padding character
      */
-    Text getPaddingString();
+    Text getPadding();
 
     /**
      * Send the constructed pagination list to the given source.
