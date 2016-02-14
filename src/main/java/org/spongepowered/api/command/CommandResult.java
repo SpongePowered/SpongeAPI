@@ -71,7 +71,7 @@ public class CommandResult {
 
     /**
      * Constructs a new command result.
-     *  @param successCount The success count
+     * @param successCount The success count
      * @param affectedBlocks The number of affected blocks
      * @param affectedEntities The number of affected entities
      * @param affectedItems The number of affected items
