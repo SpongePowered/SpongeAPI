@@ -71,6 +71,7 @@ public class CommandResult {
 
     /**
      * Constructs a new command result.
+     *
      * @param successCount The success count
      * @param affectedBlocks The number of affected blocks
      * @param affectedEntities The number of affected entities
@@ -224,7 +225,7 @@ public class CommandResult {
         /**
          * Sets the exception thrown from this command.
          *
-         * @param throwable the exception thrown from this command
+         * @param throwable The exception thrown from this command
          * @return This builder, for chaining
          */
         public Builder throwable(@Nullable Throwable throwable) {
