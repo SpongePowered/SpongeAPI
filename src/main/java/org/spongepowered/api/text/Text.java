@@ -686,7 +686,7 @@ public abstract class Text implements TextRepresentable {
                 ListIterator<Text> iter = this.children.listIterator();
                 while (iter.hasNext()) {
                     Text child = iter.next();
-                    if (child.equals(var)) {
+                    if (child == var) {
                         iter.set(new LiteralText(
                                 var.format,
                                 var.children,
@@ -694,6 +694,7 @@ public abstract class Text implements TextRepresentable {
                                 var.hoverAction.orElse(null),
                                 var.shiftClickAction.orElse(null),
                                 String.format(var.getContent(), params[i])));
+                        break;
                     }
                 }
             }
