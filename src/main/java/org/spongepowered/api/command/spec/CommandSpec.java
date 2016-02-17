@@ -50,7 +50,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Predicate;
+import java.util.function.Function;
 
 import javax.annotation.Nullable;
 
@@ -63,14 +63,14 @@ public final class CommandSpec implements CommandCallable {
     private final CommandExecutor executor;
     private final Optional<Text> description;
     @Nullable private final Text extendedDescription;
-    @Nullable private final Predicate<CommandSource> accessChecker;
+    @Nullable private final Function<CommandSource, Optional<Text>> permissionTester;
     private final InputTokenizer argumentParser;
 
     private CommandSpec(CommandElement args, CommandExecutor executor, @Nullable Text description, @Nullable Text extendedDescription,
-            @Nullable Predicate<CommandSource> checker, InputTokenizer parser) {
+            @Nullable Function<CommandSource, Optional<Text>> permissionTester, InputTokenizer parser) {
         this.args = args;
         this.executor = executor;
-        this.accessChecker = checker;
+        this.permissionTester = permissionTester;
         this.description = Optional.ofNullable(description);
         this.extendedDescription = extendedDescription;
         this.argumentParser = parser;
@@ -97,7 +97,7 @@ public final class CommandSpec implements CommandCallable {
         @Nullable
         private Text extendedDescription;
         @Nullable
-        private Predicate<CommandSource> accessChecker;
+        private Function<CommandSource, Optional<Text>> permissionTester;
         @Nullable
         private CommandExecutor executor;
         @Nullable
@@ -114,18 +114,20 @@ public final class CommandSpec implements CommandCallable {
          */
         public Builder permission(String permission) {
             checkNotNull(permission);
-            this.accessChecker = source -> source.hasPermission(permission);
+            this.permissionTester = source -> source.hasPermission(permission) ?
+                    Optional.empty() :
+                        Optional.of(Text.of("You do not have permission to use this command!"));
             return this;
         }
 
         /**
-         * Set the access checker that will be checked before using this command.
+         * Set the permission tester that will be checked before using this command.
          *
-         * @param checker The access checker to check
+         * @param tester The permission tester to consult
          * @return this
          */
-        public Builder accessChecker(Predicate<CommandSource> checker) {
-            this.accessChecker = checker;
+        public Builder permissionTester(Function<CommandSource, Optional<Text>> tester) {
+            this.permissionTester = tester;
             return this;
         }
 
@@ -266,7 +268,7 @@ public final class CommandSpec implements CommandCallable {
             }
 
             return new CommandSpec(this.args, this.executor, this.description,
-            		this.extendedDescription, this.accessChecker,
+            		this.extendedDescription, this.permissionTester,
             		this.argumentParser);
         }
     }
@@ -279,9 +281,12 @@ public final class CommandSpec implements CommandCallable {
      * @throws CommandException if the source does not have permission
      */
     public void checkPermission(CommandSource source) throws CommandException {
-        checkNotNull(source, "source");
-        if (!testPermission(source)) {
-            throw new CommandPermissionException();
+        if (this.permissionTester != null) {
+        	Optional<Text> message = this.permissionTester.apply(source);
+        	
+        	if (message.isPresent()) {
+        		throw new CommandException(message.get());
+        	}
         }
     }
 
@@ -353,7 +358,7 @@ public final class CommandSpec implements CommandCallable {
 
     @Override
     public boolean testPermission(CommandSource source) {
-        return this.accessChecker == null || this.accessChecker.test(source);
+        return this.permissionTester == null || !this.permissionTester.apply(source).isPresent();
     }
 
     /**
@@ -416,13 +421,13 @@ public final class CommandSpec implements CommandCallable {
                 && Objects.equal(this.executor, that.executor)
                 && Objects.equal(this.description, that.description)
                 && Objects.equal(this.extendedDescription, that.extendedDescription)
-                && Objects.equal(this.accessChecker, that.accessChecker)
+                && Objects.equal(this.permissionTester, that.permissionTester)
                 && Objects.equal(this.argumentParser, that.argumentParser);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.args, this.executor, this.description, this.extendedDescription, this.accessChecker, this.argumentParser);
+        return Objects.hashCode(this.args, this.executor, this.description, this.extendedDescription, this.permissionTester, this.argumentParser);
     }
 
     @Override
