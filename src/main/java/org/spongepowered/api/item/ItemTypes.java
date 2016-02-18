@@ -125,6 +125,7 @@ public final class ItemTypes {
     public static final ItemType DROPPER = null;
     public static final ItemType DYE = null;
     public static final ItemType EGG = null;
+    public static final ItemType ELYTRA = null;
     public static final ItemType EMERALD = null;
     public static final ItemType EMERALD_BLOCK = null;
     public static final ItemType EMERALD_ORE = null;
