@@ -209,7 +209,6 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gen.Populator;
-import org.spongepowered.api.world.gen.PopulatorType;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
 
@@ -4720,14 +4719,14 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Post}.
      * 
      * @param cause The cause
-     * @param populatedTransactions The populated transactions
+     * @param appliedPopulators The applied populators
      * @param targetChunk The target chunk
      * @return A new post populate chunk event
      */
-    public static PopulateChunkEvent.Post createPopulateChunkEventPost(Cause cause, Map<PopulatorType, List<Transaction<BlockSnapshot>>> populatedTransactions, Chunk targetChunk) {
+    public static PopulateChunkEvent.Post createPopulateChunkEventPost(Cause cause, List<Populator> appliedPopulators, Chunk targetChunk) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("populatedTransactions", populatedTransactions);
+        values.put("appliedPopulators", appliedPopulators);
         values.put("targetChunk", targetChunk);
         return SpongeEventFactoryUtils.createEventImpl(PopulateChunkEvent.Post.class, values);
     }
