@@ -24,35 +24,22 @@
  */
 package org.spongepowered.api.text.channel.impl;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.AbstractMutableMessageChannel;
-import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.chat.ChatType;
+import org.spongepowered.api.text.channel.MutableMessageChannel;
 
-import java.util.Optional;
-
-import javax.annotation.Nullable;
+import java.util.Collection;
 
 /**
- * A mutable message channel that leaves transforming and
- * members to the delegate channel passed.
+ * A simple implementation of {@link MutableMessageChannel}.
  */
-public class DelegateMutableMessageChannel extends AbstractMutableMessageChannel {
+public class SimpleMutableMessageChannel extends AbstractMutableMessageChannel {
 
-    protected final MessageChannel delegate;
-
-    public DelegateMutableMessageChannel(final MessageChannel delegate) {
-        super();
-        this.delegate = checkNotNull(delegate, "delegate");
-        this.members.addAll(this.delegate.getMembers());
+    public SimpleMutableMessageChannel() {
     }
 
-    @Override
-    public Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original, ChatType type) {
-        return this.delegate.transformMessage(sender, recipient, original, type);
+    public SimpleMutableMessageChannel(Collection<MessageReceiver> members) {
+        super(members);
     }
 
 }
