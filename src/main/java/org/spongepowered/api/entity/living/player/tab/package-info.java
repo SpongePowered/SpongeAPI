@@ -22,27 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
-
-import org.spongepowered.api.entity.living.player.Player;
-
-/**
- * Represents a connection of a client to the server.
- */
-public interface PlayerConnection extends RemoteConnection {
-
-    /**
-     * Gets the associated {@link Player} for this connection.
-     *
-     * @return The associated player
-     */
-    Player getPlayer();
-
-    /**
-     * Gets the connection latency. This is constantly calculated by the server.
-     *
-     * @return The latency
-     */
-    int getLatency();
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.entity.living.player.tab;
