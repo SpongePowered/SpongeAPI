@@ -472,8 +472,9 @@ public final class GenericArguments {
         @Override
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
             if (!args.hasNext()) {
-                if (this.element.getKey() != null && this.value != null) {
-                    context.putArg(this.element.getKey().toPlain(), this.value);
+                Text key = this.element.getKey();
+                if (key != null && this.value != null) {
+                    context.putArg(key.toPlain(), this.value);
                 }
                 return;
             }
@@ -1173,7 +1174,8 @@ public final class GenericArguments {
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
             this.element.parse(source, args, context);
             if (context.getAll(this.element.getUntranslatedKey()).size() > 1) {
-                throw args.createError(t("Argument %s may have only one value!",  this.element.getKey()));
+                Text key = this.element.getKey();
+                throw args.createError(t("Argument %s may have only one value!", key != null ? key : "unknown"));
             }
         }
 
@@ -1224,7 +1226,8 @@ public final class GenericArguments {
 
         private void checkPermission(CommandSource source, CommandArgs args) throws ArgumentParseException {
             if (!source.hasPermission(this.permission)) {
-                throw args.createError(t("You do not have permission to use the %s argument", getKey()));
+                Text key = getKey();
+                throw args.createError(t("You do not have permission to use the %s argument", key != null ? key : "unknown"));
             }
         }
 
