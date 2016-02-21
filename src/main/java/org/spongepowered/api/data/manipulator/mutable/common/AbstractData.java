@@ -200,10 +200,10 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
         }
         final AbstractData other = (AbstractData) obj;
         return Objects.equals(this.keyFieldGetterMap.values().stream()
-                                 .map(Supplier::get)
+                                 .map(s -> (Object) s.get())
                                  .collect(Collectors.toList()),
                              ((Map<Key<?>, Supplier<?>>) other.keyFieldGetterMap).values().stream()
-                                 .map(Supplier::get)
+                                 .map(s -> (Object) s.get())
                                  .collect(Collectors.toList()));
     }
 

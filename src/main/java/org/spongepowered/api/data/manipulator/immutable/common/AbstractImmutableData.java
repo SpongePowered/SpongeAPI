@@ -138,7 +138,7 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
     @Override
     public int hashCode() {
         return Objects.hashCode(this.keyFieldGetterMap.values().stream()
-                                    .map(Supplier::get)
+                                    .map(s -> (Object) s.get())
                                     .collect(Collectors.toList()));
     }
 
@@ -153,10 +153,10 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
         }
         final AbstractImmutableData other = (AbstractImmutableData) obj;
         return Objects.equals(this.keyFieldGetterMap.values().stream()
-                                 .map(Supplier::get)
+                                 .map(s -> (Object) s.get())
                                  .collect(Collectors.toList()),
                               ((Map<Key<?>, Supplier<?>>) other.keyFieldGetterMap).values().stream()
-                                 .map(Supplier::get)
+                                 .map(s -> (Object) s.get())
                                  .collect(Collectors.toList()));
     }
 
