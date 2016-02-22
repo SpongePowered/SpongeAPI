@@ -849,12 +849,20 @@ public abstract class Text implements TextRepresentable {
      * Builds a {@link Text} from a given array of objects.
      *
      * <p>For instance, you can use this like
-     * <code>Texts.of(TextColors.DARK_AQUA, "Hi", TextColors.AQUA, "Bye")</code>
+     * <code>Text.of(TextColors.DARK_AQUA, "Hi", TextColors.AQUA, "Bye")</code>
      * </p>
      *
      * <p>This will create the correct {@link Text} instance if the input object
      * is the input for one of the {@link Text} types or convert the object to a
      * string otherwise.</p>
+     *
+     * <p>For instances of type {@link TextRepresentable} (e.g. {@link Text},
+     * {@link Builder}, ...) the formatting of appended text has priority over
+     * the current formatting in the method, e.g. the following results in a
+     * green, then yellow and at the end green again {@link Text}:</p>
+     *
+     * <code>Text.of(TextColors.GREEN, "Hello ", Text.of(TextColors.YELLOW,
+     * "Spongie"), '!');</code>
      *
      * @param objects The object array
      * @return The built text object
@@ -899,18 +907,21 @@ public abstract class Text implements TextRepresentable {
                 // Special content
                 changedFormat = false;
                 Text.Builder childBuilder = ((TextRepresentable) obj).toText().toBuilder();
-                // Overwrite TextActions if present
-                if (hoverAction != null) {
-                    childBuilder.onHover(hoverAction);
+
+                // Merge format (existing format has priority)
+                childBuilder.format(format.merge(childBuilder.format));
+
+                // Overwrite text actions if *NOT* present
+                if (childBuilder.clickAction == null) {
+                    childBuilder.clickAction = clickAction;
                 }
-                if (clickAction != null) {
-                    childBuilder.onClick(clickAction);
+                if (childBuilder.hoverAction == null) {
+                    childBuilder.hoverAction = hoverAction;
                 }
-                if (shiftClickAction != null) {
-                    childBuilder.onShiftClick(shiftClickAction);
+                if (childBuilder.shiftClickAction == null) {
+                    childBuilder.shiftClickAction = shiftClickAction;
                 }
-                // Merge instead of overwrite format
-                childBuilder.format(childBuilder.getFormat().merge(format));
+
                 builder.append(childBuilder.build());
 
             } else {
