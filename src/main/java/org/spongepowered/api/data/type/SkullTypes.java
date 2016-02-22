@@ -34,6 +34,7 @@ public final class SkullTypes {
     public static final SkullType ZOMBIE = null;
     public static final SkullType PLAYER = null;
     public static final SkullType CREEPER = null;
+    public static final SkullType ENDER_DRAGON = null;
 
     private SkullTypes() {
     }
