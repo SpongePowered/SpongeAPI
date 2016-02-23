@@ -50,7 +50,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -299,7 +298,6 @@ public abstract class Text implements TextRepresentable {
 
         TextFormat format = TextFormat.NONE;
         List<Text> children = new ArrayList<>();
-        List<LiteralText> vars = new ArrayList<>();
         @Nullable ClickAction<?> clickAction;
         @Nullable HoverAction<?> hoverAction;
         @Nullable ShiftClickAction<?> shiftClickAction;
@@ -653,52 +651,6 @@ public abstract class Text implements TextRepresentable {
         public Builder removeAll() {
             this.children.clear();
             return this;
-        }
-
-        /**
-         * Appends a variable {@link LiteralText} to this builder. The appended
-         * variables will be formatted by {@link #build(Object...)} and should
-         * contain a Java format string.
-         *
-         * @param var Variable to append
-         * @return This text builder
-         */
-        public Builder var(LiteralText var) {
-            append(var);
-            this.vars.add(var);
-            return this;
-        }
-
-        /**
-         * Formats existing variables within this builder and builds an
-         * immutable instance of the current state of this text builder.
-         *
-         * @return An immutable {@link Text} with the current properties of this
-         *         builder
-         */
-        public Text build(Object... params) {
-            for (int i = 0; i < this.vars.size(); i++) {
-                if (i >= params.length) {
-                    break;
-                }
-
-                LiteralText var = this.vars.get(i);
-                ListIterator<Text> iter = this.children.listIterator();
-                while (iter.hasNext()) {
-                    Text child = iter.next();
-                    if (child == var) {
-                        iter.set(new LiteralText(
-                                var.format,
-                                var.children,
-                                var.clickAction.orElse(null),
-                                var.hoverAction.orElse(null),
-                                var.shiftClickAction.orElse(null),
-                                String.format(var.getContent(), params[i])));
-                        break;
-                    }
-                }
-            }
-            return build();
         }
 
         /**
