@@ -104,6 +104,9 @@ genEventImpl {
 
 sortClassFields {
     add 'main', 'org.spongepowered.api.data.key.Keys'
+    add 'main', 'org.spongepowered.api.item.ItemTypes'
+    add 'main', 'org.spongepowered.api.block.BlockTypes'
+    add 'main', 'org.spongepowered.api.block.tileentity.TileEntityTypes'
 }
 
 // Shaded API build (with all dependencies included)
