@@ -42,17 +42,18 @@ import static org.spongepowered.api.command.args.GenericArguments.string;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
+import org.spongepowered.api.text.TestPlainTextSerializer;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
-import org.spongepowered.api.util.test.TestHooks;
 
 
 /**
@@ -68,8 +69,9 @@ public class GenericArgumentsTest {
         }
     };
 
-    static {
-        TestHooks.initialize();
+    @Before
+    public void initialize() throws Exception {
+        TestPlainTextSerializer.inject();
     }
 
     private static Text untr(String string) {

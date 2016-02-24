@@ -22,29 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
-
-import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
-
-/**
- * Location sources are {@link CommandSource}s that have a current location.
- */
-public interface LocatedSource extends CommandSource {
-
-    /**
-     * Gets the location of the source.
-     *
-     * @return The location
-     */
-    Location<World> getLocation();
-
-    /**
-     * Gets the world that this source resides in.
-     *
-     * @return The World
-     */
-    World getWorld();
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.profile.property;

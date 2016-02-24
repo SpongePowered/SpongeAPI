@@ -22,4 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.text.sink;
+package org.spongepowered.api.world;
+
+/**
+ * Location sources are anything that have a current location.
+ */
+@FunctionalInterface
+public interface Locatable {
+
+    /**
+     * Gets the location of the source.
+     *
+     * @return The location
+     */
+    Location<World> getLocation();
+
+    /**
+     * Gets the world that this source resides in.
+     *
+     * @return The World
+     */
+    default World getWorld() {
+        return getLocation().getExtent();
+    }
+
+}

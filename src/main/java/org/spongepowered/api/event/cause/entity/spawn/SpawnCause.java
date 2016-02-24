@@ -44,11 +44,15 @@ public interface SpawnCause {
 
     SpawnType getType();
 
-    interface Builder extends ResettableBuilder<SpawnCause, Builder> {
+    interface Builder extends SpawnCauseBuilder<SpawnCause, Builder> {
 
-        Builder type(SpawnType spawnType);
+    }
 
-        SpawnCause build();
+    interface SpawnCauseBuilder<T extends SpawnCause, B extends SpawnCauseBuilder<T, B>> extends ResettableBuilder<T, B> {
+
+        B type(SpawnType spawnType);
+
+        T build();
 
     }
 }

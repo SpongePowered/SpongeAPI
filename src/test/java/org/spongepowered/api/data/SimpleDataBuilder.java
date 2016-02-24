@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.util.persistence.DataBuilder;
-import org.spongepowered.api.util.persistence.InvalidDataException;
+import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.InvalidDataException;
 
 import java.util.List;
 import java.util.Optional;

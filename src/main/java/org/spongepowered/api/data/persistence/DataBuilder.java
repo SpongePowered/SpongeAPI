@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.persistence;
+package org.spongepowered.api.data.persistence;
 
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;

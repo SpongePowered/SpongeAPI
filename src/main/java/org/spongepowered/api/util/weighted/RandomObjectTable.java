@@ -44,11 +44,15 @@ import java.util.Random;
 public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> {
 
     protected final List<TableEntry<T>> entries = Lists.newArrayList();
-    private int rolls;
+    private VariableAmount rolls;
 
     public RandomObjectTable(int rolls) {
         checkArgument(rolls >= 0, "Rolls cannot be negative");
-        this.rolls = rolls;
+        this.rolls = VariableAmount.fixed(rolls);
+    }
+
+    public RandomObjectTable(VariableAmount rolls) {
+        this.rolls = checkNotNull(rolls);
     }
 
     /**
@@ -57,7 +61,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * 
      * @return The number of rolls
      */
-    public int getRolls() {
+    public VariableAmount getRolls() {
         return this.rolls;
     }
 
@@ -66,13 +70,25 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * 
      * @param rolls The new roll count
      */
+    public void setRolls(VariableAmount rolls) {
+        this.rolls = checkNotNull(rolls);
+    }
+
+    /**
+     * Sets the number of times this table will roll while retrieving tiems.
+     * 
+     * @param rolls The new roll count
+     */
     public void setRolls(int rolls) {
-        this.rolls = rolls;
+        checkArgument(rolls >= 0, "Rolls cannot be negative");
+        this.rolls = VariableAmount.fixed(rolls);
     }
 
     @Override
     public boolean add(TableEntry<T> entry) {
-        return this.entries.add(checkNotNull(entry));
+        checkNotNull(entry);
+        checkArgument(entry.getWeight() >= 0, "Weight cannot be negative");
+        return this.entries.add(entry);
     }
 
     /**
@@ -83,8 +99,9 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * @return If the object was successfully added
      */
     public boolean add(T object, double weight) {
+        checkNotNull(object);
         checkArgument(weight >= 0, "Weight cannot be negative");
-        return add(new WeightedObject<T>(checkNotNull(object), weight));
+        return add(new WeightedObject<T>(object, weight));
     }
 
     @Override
