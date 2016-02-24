@@ -45,37 +45,55 @@ public interface ShapelessRecipe extends Recipe {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
-
     /**
-     * Gets the ingredients for this ShapelessRecipe.
+     * Gets the ingredients for this shapeless recipe.
      *
      * @return The ingredients
      */
     Collection<ItemStack> getIngredients();
 
     interface Builder extends ResettableBuilder<ShapelessRecipe, Builder> {
-        /**
-         * Adds an ingredient to the requirements of this ShapelessRecipe.
-         *
-         * @param ingredient The ingredient
-         * @return fluent interface
-         */
-        Builder addIngredient(ItemStack ingredient);
 
         /**
-         * Adds a resultant ItemStack for when this ShapelessRecipe is
+         * Sets the ingredients of this shapeless recipe.
+         *
+         * @param ingredients The ingredients
+         * @return fluent interface
+         */
+        Builder ingredients(ItemStack... ingredients);
+
+        /**
+         * Sets the ingredients of this shapeless recipe.
+         *
+         * @param ingredients The ingredients
+         * @return fluent interface
+         */
+        Builder ingredients(Collection<ItemStack> ingredients);
+
+        /**
+         * Sets the resultant ItemStack for when this shapeless recipe is
          * correctly crafted.
          *
-         * @param result The result
+         * @param results The resultant stacks
          * @return fluent interface
          */
-        Builder addResult(ItemStack result);
+        Builder results(ItemStack... results);
 
         /**
-         * Builds a new ShapelessRecipe from this builder.
+         * Sets the resultant {@link ItemStack}s for when this shapeless recipe
+         * is correctly crafted.
          *
-         * @return A new ShapelessRecipe
+         * @param result The resultant stacks
+         * @return fluent interface
+         */
+        Builder results(Collection<ItemStack> result);
+
+        /**
+         * Builds a new {@link ShapelessRecipe} from this builder.
+         *
+         * @return A new shapeless recipe
          */
         ShapelessRecipe build();        
     }
+
 }

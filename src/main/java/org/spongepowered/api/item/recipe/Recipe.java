@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.item.recipe;
 
-import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * <p>A Recipe represents some craftable recipe in the game.</p>
@@ -44,24 +44,25 @@ import java.util.Optional;
  * <p>The requirements of a Recipe can be general, they just have to
  * eventually return a boolean given an itemgrid.</p>
  */
-public interface Recipe {
+public interface Recipe extends Predicate<GridInventory> {
 
     /**
-     * Returns the list of item types that result when successful crafting of
+     * Returns the list of item stacks that result when successful crafting of
      * this Recipe is completed.
      *
      * @return The resultant list of item types
      */
-    List<ItemType> getResultTypes();
+    List<ItemStack> getResults();
 
     /**
      * Checks if the given {@link GridInventory} fits the required constraints
      * to craft this Recipe.
      *
-     * @param grid The ItemGrid to check for validity
+     * @param grid The grid inventory to match against
      * @return True if the given input matches this recipe's requirements
      */
-    boolean isValid(GridInventory grid);
+    @Override
+    boolean test(GridInventory grid);
 
     /**
      * Returns the results for running this Recipe over an {@link GridInventory}
