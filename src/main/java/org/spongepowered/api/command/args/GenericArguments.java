@@ -36,7 +36,7 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.command.source.LocatedSource;
+import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.GuavaCollectors;
@@ -1021,9 +1021,9 @@ public final class GenericArguments {
                 yStr = args.next();
                 zStr = args.next();
             }
-            final double x = parseRelativeDouble(args, xStr, source instanceof LocatedSource ? ((LocatedSource) source).getLocation().getX() : null);
-            final double y = parseRelativeDouble(args, yStr, source instanceof LocatedSource ? ((LocatedSource) source).getLocation().getY() : null);
-            final double z = parseRelativeDouble(args, zStr, source instanceof LocatedSource ? ((LocatedSource) source).getLocation().getZ() : null);
+            final double x = parseRelativeDouble(args, xStr, source instanceof Locatable ? ((Locatable) source).getLocation().getX() : null);
+            final double y = parseRelativeDouble(args, yStr, source instanceof Locatable ? ((Locatable) source).getLocation().getY() : null);
+            final double z = parseRelativeDouble(args, zStr, source instanceof Locatable ? ((Locatable) source).getLocation().getZ() : null);
 
             return new Vector3d(x, y, z);
         }
@@ -1084,10 +1084,10 @@ public final class GenericArguments {
                 world = checkNotNull(this.worldParser.parseValue(source, args), "worldVal");
             } catch (ArgumentParseException ex) {
                 args.setState(state);
-                if (!(source instanceof LocatedSource)) {
+                if (!(source instanceof Locatable)) {
                     throw args.createError(t("Source must have a location in order to have a fallback world"));
                 }
-                world = ((LocatedSource) source).getWorld().getProperties();
+                world = ((Locatable) source).getWorld().getProperties();
                 try {
                     vec = checkNotNull(this.vectorParser.parseValue(source, args), "vectorVal");
                 } catch (ArgumentParseException ex2) {
