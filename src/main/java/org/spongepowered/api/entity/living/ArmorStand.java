@@ -101,4 +101,24 @@ public interface ArmorStand extends Living, ArmorEquipable {
      */
     void setHasBasePlate(boolean baseplate);
 
+    /**
+     * Gets whether this armor stand is a marker.
+     *
+     * <p>When true, the size will be set to 0, it will have a tiny hitbox,
+     * and interactions with it will be disabled.</p>
+     *
+     * @return Whether this armor stand is a marker
+     */
+    boolean isMarker();
+
+    /**
+     * Sets this armor stand to be a marker.
+     *
+     * <p>If true, the size will be set to 0, it will have a tiny hitbox,
+     * and interactions with it will be disabled.</p>
+     *
+     * @param marker Whether this armor stand is to be a marker
+     */
+    void setMarker(boolean marker);
+
 }
