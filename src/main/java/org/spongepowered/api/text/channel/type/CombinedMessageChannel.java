@@ -60,10 +60,10 @@ public class CombinedMessageChannel implements MessageChannel {
     }
 
     @Override
-    public Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original, ChatType type) {
+    public Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, @Nullable String originalPlain, Text original, ChatType type) {
         Text text = original;
         for (MessageChannel channel : this.channels) {
-            text = channel.transformMessage(sender, recipient, text, type).orElse(text);
+            text = channel.transformMessage(sender, recipient, originalPlain, text, type).orElse(text);
         }
 
         return Optional.ofNullable(text);
