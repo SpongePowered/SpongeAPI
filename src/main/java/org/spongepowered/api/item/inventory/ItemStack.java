@@ -35,8 +35,10 @@ import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
+import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -156,6 +158,18 @@ public interface ItemStack extends DataHolder, DataSerializable, Translatable {
          * @throws IllegalArgumentException If the item data is incompatible
          */
         Builder itemData(ImmutableDataManipulator<?, ?> itemData) throws IllegalArgumentException;
+
+        /**
+         * Adds the given {@link Key} with the given {@link V} value.
+         *
+         * @param key The key to assign the value with
+         * @param value The value to assign with the key
+         * @param <V> The type of the value
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException If the item data is incompatible
+         */
+        <V> Builder add(Key<? extends BaseValue<V>> key, V value) throws IllegalArgumentException;
+
 
         /**
          * Sets all the settings in this builder from the item stack blueprint.
