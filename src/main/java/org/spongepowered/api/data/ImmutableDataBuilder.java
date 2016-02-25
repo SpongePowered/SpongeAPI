@@ -24,8 +24,10 @@
  */
 package org.spongepowered.api.data;
 
+import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.util.persistence.DataBuilder;
 
 /**
@@ -55,6 +57,16 @@ public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extend
      * @return This builder, for chaining
      */
     E add(ImmutableDataManipulator<?, ?> manipulator);
+
+    /**
+     * Adds the given {@link Key} with the given {@link V} value.
+     *
+     * @param key The key to assign the value with
+     * @param value The value to assign with the key
+     * @param <V> The type of the value
+     * @return This builder, for chaining
+     */
+    <V> E add(Key<? extends BaseValue<V>> key, V value);
 
     /**
      * Copies all known {@link DataManipulator}s from the given
