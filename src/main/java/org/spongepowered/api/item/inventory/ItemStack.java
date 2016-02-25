@@ -170,7 +170,6 @@ public interface ItemStack extends DataHolder, DataSerializable, Translatable {
          */
         <V> Builder add(Key<? extends BaseValue<V>> key, V value) throws IllegalArgumentException;
 
-
         /**
          * Sets all the settings in this builder from the item stack blueprint.
          *
