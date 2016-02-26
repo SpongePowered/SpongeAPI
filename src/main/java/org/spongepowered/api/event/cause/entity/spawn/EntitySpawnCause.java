@@ -37,17 +37,15 @@ public interface EntitySpawnCause extends SpawnCause {
 
     EntitySnapshot getEntity();
 
-    interface Builder extends SpawnCause.Builder {
+    interface Builder extends EntitySpawnCauseBuilder<EntitySpawnCause, Builder> {
 
-        Builder entity(Entity entity);
+    }
 
-        Builder entity(EntitySnapshot snapshot);
+    interface EntitySpawnCauseBuilder<T extends EntitySpawnCause, B extends EntitySpawnCauseBuilder<T, B>> extends SpawnCauseBuilder<T, B> {
 
-        @Override
-        Builder type(SpawnType spawnType);
+        B entity(Entity entity);
 
-        @Override
-        EntitySpawnCause build();
+        B entity(EntitySnapshot snapshot);
 
     }
 }

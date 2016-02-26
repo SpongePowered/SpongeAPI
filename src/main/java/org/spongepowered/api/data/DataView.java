@@ -27,8 +27,8 @@ package org.spongepowered.api.data;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.util.persistence.DataBuilder;
 
 import java.util.ArrayList;
 import java.util.List;

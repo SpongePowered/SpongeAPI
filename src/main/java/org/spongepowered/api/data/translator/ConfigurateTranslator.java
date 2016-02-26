@@ -61,7 +61,7 @@ public final class ConfigurateTranslator implements DataTranslator<Configuration
         node.setValue(container.getMap(of()).get());
     }
 
-    private static DataView translateFromNode(ConfigurationNode node) {
+    private static DataContainer translateFromNode(ConfigurationNode node) {
         checkNotNull(node, "node");
         DataContainer dataContainer = new MemoryDataContainer();
         if (node.getValue() != null) {
@@ -99,7 +99,7 @@ public final class ConfigurateTranslator implements DataTranslator<Configuration
     }
 
     @Override
-    public DataView translateFrom(ConfigurationNode node) {
+    public DataContainer translateFrom(ConfigurationNode node) {
         return ConfigurateTranslator.translateFromNode(node);
     }
 

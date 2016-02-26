@@ -22,10 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.data.manipulator.immutable;
 
-/**
- * Called when a block is moved
- */
-public interface MoveBlockEvent extends ChangeBlockEvent {
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.MappedData;
+import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
+
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
+public interface ImmutableMappedData<K, V, I extends ImmutableMappedData<K, V, I, M>,
+    M extends MappedData<K, V, M, I>> extends ImmutableDataManipulator<I, M> {
+
+    Optional<V> get(K key);
+
+    Set<K> getMapKeys();
+
+    default Set<Map.Entry<K, V>> getMapValues() {
+        return asMap().entrySet();
+    }
+
+    ImmutableMapValue<K, V> getMapValue();
+
+    default Map<K, V> asMap() {
+        return getMapValue().get();
+    }
+
 }

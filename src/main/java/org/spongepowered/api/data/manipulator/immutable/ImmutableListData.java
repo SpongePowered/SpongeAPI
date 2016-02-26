@@ -22,37 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.common.collection;
+package org.spongepowered.api.data.manipulator.immutable;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.common.AbstractImmutableSingleData;
+import org.spongepowered.api.data.manipulator.mutable.ListData;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
-import org.spongepowered.api.data.value.mutable.ListValue;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-public abstract class AbstractImmutableSingleListData<E, I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>>
-    extends AbstractImmutableSingleData<List<E>, I, M> {
+public interface ImmutableListData<E, I extends ImmutableListData<E, I, M>, M extends ListData<E, M, I>>
+    extends ImmutableDataManipulator<I, M> {
 
-    private final ImmutableListValue<E> listValue;
+    ImmutableListValue<E> getListValue();
 
-    protected AbstractImmutableSingleListData(List<E> value, Key<ListValue<E>> usedKey) {
-        super(new ArrayList<>(value), usedKey);
-        this.listValue = Sponge.getRegistry().getValueFactory().createListValue(usedKey, value).asImmutable();
+    List<E> asList();
+
+    default Optional<E> get(int index) {
+        final List<E> list = asList();
+        if (list.size() < index) {
+            return Optional.empty();
+        }
+        return Optional.of(list.get(index));
     }
 
-    @Override
-    protected final ImmutableListValue<E> getValueGetter() {
-        return this.listValue;
+    default boolean contains(E element) {
+        return getListValue().contains(element);
     }
 
-    @Override
-    public int compareTo(I o) {
-        final List<E> list = o.get(this.usedKey).get();
-        return Boolean.compare(list.containsAll(this.getValue()), this.getValue().containsAll(list));
-    }
 }

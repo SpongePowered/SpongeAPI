@@ -30,6 +30,7 @@ import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.util.GuavaCollectors;
 
 import java.util.Arrays;
@@ -59,10 +60,10 @@ public class CombinedMessageChannel implements MessageChannel {
     }
 
     @Override
-    public Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original) {
+    public Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original, ChatType type) {
         Text text = original;
         for (MessageChannel channel : this.channels) {
-            text = channel.transformMessage(sender, recipient, text).orElse(text);
+            text = channel.transformMessage(sender, recipient, text, type).orElse(text);
         }
 
         return Optional.ofNullable(text);

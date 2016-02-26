@@ -28,6 +28,7 @@ package org.spongepowered.api.extra.fluid.data.manipulator.immutable;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableMappedData;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
@@ -40,7 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public interface ImmutableFluidTankData extends ImmutableDataManipulator<ImmutableFluidTankData, FluidTankData> {
+public interface ImmutableFluidTankData extends ImmutableMappedData<Direction, List<FluidStackSnapshot>, ImmutableFluidTankData, FluidTankData> {
 
     /**
      * Gets the {@link MapValue} of the various {@link FluidStackSnapshot}s

@@ -37,7 +37,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
  * {@link FireworkEffect}s associated with a {@link Firework} and
  * an {@link ItemStack} that is of the {@link ItemTypes#FIREWORKS} or {@link ItemTypes#FIREWORK_CHARGE}.
  */
-public interface FireworkEffectData extends DataManipulator<FireworkEffectData, ImmutableFireworkEffectData> {
+public interface FireworkEffectData extends ListData<FireworkEffect, FireworkEffectData, ImmutableFireworkEffectData> {
 
     /**
      * Gets the {@link ListValue} of {@link FireworkEffect}s.
@@ -47,5 +47,7 @@ public interface FireworkEffectData extends DataManipulator<FireworkEffectData, 
      *
      * @return The list value of firework effects
      */
-    ListValue<FireworkEffect> effects();
+    default ListValue<FireworkEffect> effects() {
+        return getListValue();
+    }
 }

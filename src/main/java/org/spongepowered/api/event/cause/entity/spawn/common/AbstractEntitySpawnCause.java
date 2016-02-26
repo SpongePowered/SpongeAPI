@@ -22,29 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.test;
+package org.spongepowered.api.event.cause.entity.spawn.common;
 
-import static org.junit.Assert.assertEquals;
+import org.spongepowered.api.entity.EntitySnapshot;
+import org.spongepowered.api.event.cause.entity.spawn.EntitySpawnCause;
 
-import org.junit.Test;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.translation.FixedTranslation;
+public abstract class AbstractEntitySpawnCause extends AbstractSpawnCause implements EntitySpawnCause {
 
-public class TestTextFactoryTest {
-    static {
-        TestHooks.initialize();
+    protected final EntitySnapshot entitySnapshot;
+
+    protected AbstractEntitySpawnCause(AbstractEntitySpawnCauseBuilder<?, ?> builder) {
+        super(builder);
+        this.entitySnapshot = builder.entitySnapshot;
     }
 
-    @Test
-    public void testToPlainLiterals() {
-        Text testText = Text.builder("Hello ").append(Text.of("world"), Text.of(", this is here")).build();
-        assertEquals("Hello world, this is here", testText.toPlain());
-    }
-
-    @Test
-    public void testToPlainTranslatables() {
-        Text testText = Text.of(new FixedTranslation("This is a translated %s"), Text.of("string"));
-        assertEquals("This is a translated string", testText.toPlain());
+    @Override
+    public EntitySnapshot getEntity() {
+        return this.entitySnapshot;
     }
 
 }

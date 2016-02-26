@@ -37,13 +37,17 @@ import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.tab.TabList;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
+import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.chat.ChatVisibility;
 
 import java.time.Instant;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -54,7 +58,40 @@ import java.util.Set;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Humanoid, User, LocatedSource, RemoteSource, Viewer {
+public interface Player extends Humanoid, User, LocatedSource, RemoteSource, Viewer, ChatTypeMessageReceiver {
+
+    /**
+     * Returns whether this player has an open inventory at the moment
+     * or not.
+     *
+     * @return Whether this player is viewing an inventory or not
+     */
+    boolean isViewingInventory();
+
+    /**
+     * Gets the currently viewed inventory of this player, if it is
+     * currently viewing one.
+     *
+     * @return An inventory if this player is viewing one, otherwise
+     * {@link Optional#empty()}
+     */
+    Optional<Inventory> getOpenInventory();
+
+    /**
+     * Opens the given Inventory for the player to view.
+     *
+     * @param inventory The inventory to view
+     * @param cause The {@link Cause} to use when opening the inventory
+     */
+    void openInventory(Inventory inventory, Cause cause);
+
+    /**
+     * Closes the currently viewed entity of this player, if it is
+     * currently viewing one.
+     *
+     * @param cause The {@link Cause} to provide when closing the inventory
+     */
+    void closeInventory(Cause cause);
 
     /**
      * Gets the view distance setting of the player. This value represents the

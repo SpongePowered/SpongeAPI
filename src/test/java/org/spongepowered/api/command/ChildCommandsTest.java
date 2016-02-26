@@ -28,6 +28,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.spongepowered.api.command.CommandException;
@@ -37,7 +38,7 @@ import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
-import org.spongepowered.api.util.test.TestHooks;
+import org.spongepowered.api.text.TestPlainTextSerializer;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -46,8 +47,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * Tests for child commands.
  */
 public class ChildCommandsTest {
-    static {
-        TestHooks.initialize();
+
+    @Before
+    public void initialize() throws Exception {
+        TestPlainTextSerializer.inject();
     }
 
     @Test

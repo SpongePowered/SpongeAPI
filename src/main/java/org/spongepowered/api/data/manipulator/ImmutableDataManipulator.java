@@ -60,7 +60,10 @@ public interface ImmutableDataManipulator<I extends ImmutableDataManipulator<I, 
      * @param <E> The type of value
      * @return The new immutable data manipulator, if compatible
      */
-    <E> Optional<I> with(Key<? extends BaseValue<E>> key, E value);
+    default <E> Optional<I> with(Key<? extends BaseValue<E>> key, E value) {
+        M data = asMutable();
+        return data.supports(key) ? Optional.of(asMutable().set(key, value).asImmutable()) : Optional.empty();
+    }
 
     /**
      * Creates a new {@link ImmutableDataManipulator} with the provided

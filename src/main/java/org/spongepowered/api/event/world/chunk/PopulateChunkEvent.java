@@ -25,14 +25,11 @@
 
 package org.spongepowered.api.event.world.chunk;
 
-import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.gen.Populator;
-import org.spongepowered.api.world.gen.PopulatorType;
 
 import java.util.List;
-import java.util.Map;
 
 public interface PopulateChunkEvent extends TargetChunkEvent {
 
@@ -68,13 +65,15 @@ public interface PopulateChunkEvent extends TargetChunkEvent {
      * Called when a chunk finishes populating.
      */
     interface Post extends PopulateChunkEvent {
+
         /**
-         * Returns an immutable map of all processed {@link PopulatorType}s
-         * along with all {@link Transaction}s made by the populator.
+         * Returns a copy of the {@link Populator}s that ran
+         * on this {@link Chunk}.
          *
-         * @return An immutable map of populator types with transactions
+         * @return The populators
          */
-        Map<PopulatorType, List<Transaction<BlockSnapshot>>> getPopulatedTransactions();
+        List<Populator> getAppliedPopulators();
+        
     }
 
 }
