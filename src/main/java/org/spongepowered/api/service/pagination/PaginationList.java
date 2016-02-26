@@ -191,9 +191,11 @@ public interface PaginationList {
          * @param channel
          */
         default void sendTo(MessageChannel channel) {
-            for (MessageReceiver receiver : channel.getMembers()) {
-                this.sendTo(receiver);
-            }
+            channel.getMembers().forEach(this::sendTo);
+        }
+
+        default void sendTo(Iterable<MessageReceiver> receivers) {
+            receivers.forEach(this::sendTo);
         }
 
     }
