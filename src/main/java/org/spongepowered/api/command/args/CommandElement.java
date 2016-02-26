@@ -29,7 +29,9 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.TranslatableText;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -61,7 +63,7 @@ public abstract class CommandElement {
      * @param context The context to store state in
      * @return Any relevant completions
      */
-    public abstract List<String> complete(CommandSource src, CommandArgs args, CommandContext context);
+    public abstract List<String> complete(CommandSource src, CommandArgs args, CommandContext context) throws ArgumentParseException;
 
     /**
      * Return a usage message for this specific argument.
@@ -132,8 +134,13 @@ public abstract class CommandElement {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) throws ArgumentParseException {
             return ImmutableList.of();
+        }
+
+        @Nullable
+        protected T getFallback() {
+            return null;
         }
 
         @Override

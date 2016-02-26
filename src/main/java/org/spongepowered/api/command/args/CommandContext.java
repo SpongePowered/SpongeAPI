@@ -30,34 +30,69 @@ import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandSource;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.annotation.Nullable;
 
 /**
  * Context that a command is executed in.
  * This object stores parsed arguments from other commands
  */
 public final class CommandContext {
+    @Nullable
+    private CommandContext parent;
     private final Map<String, Object> parsedArgs;
 
     /**
      * Create a new empty CommandContext.
      */
     public CommandContext() {
+        this(null);
+    }
+
+    public CommandContext(@Nullable  CommandContext parent) {
+        this.parent = parent;
         this.parsedArgs = new HashMap<>();
     }
 
     @SuppressWarnings("unchecked")
     public <T> T get(CommandElement.Value<T> element) {
-        Object ret = this.parsedArgs.get(ArgUtils.textToArgKey(checkNotNull(element, "Must provide a non-null CommandElement").getKey()));
+        String key = ArgUtils.textToArgKey(checkNotNull(element, "Must provide a non-null CommandElement").getKey());
+        Object ret;
+        CommandContext check = this;
+
+        do {
+            ret = check.parsedArgs.get(key);
+            check = check.parent;
+        } while (ret == null && check != null);
+
+        if (ret == null) {
+            ret = element.getFallback();
+        }
+
         if (ret == null) {
             throw new IllegalStateException("Unable to find value for argument " + element.getKey().toPlain() + " in CommandContext");
         }
+
         return (T) ret;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> void putArg(CommandElement.Value<T> element, T value) {
-        if (this.parsedArgs.putIfAbsent(ArgUtils.textToArgKey(element.getKey()), value) != null) {
+        if (value instanceof CommandContext) {
+            ((CommandContext) value).parent = this;
+        }
+        Object ret = this.parsedArgs.putIfAbsent(ArgUtils.textToArgKey(element.getKey()), value);
+        if (ret != null) {
+            if (ret instanceof Collection) {
+                if (value instanceof Collection) {
+                    ((Collection) ret).addAll(((Collection) value));
+                } else {
+                    ((Collection) ret).add(value);
+                }
+            }
             throw new IllegalStateException("A value was already present for CommandElement with key " + element.getKey().toPlain());
         }
     }
