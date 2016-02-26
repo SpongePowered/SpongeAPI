@@ -70,6 +70,8 @@ import java.util.UUID;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
@@ -130,18 +132,22 @@ public final class GenericArguments {
         return new UserCommandElement(key, false);
     }
 
-	/**
-	 * Expect an argument to represent a player who has been online at some point,
-	 * as a {@link User}, or if nothing matches and the source is a {@link User},
-	 * give the user. If nothing matches and the source is not a {@link User}, throw
-	 * an exception.
-	 *
-	 * @param key The key to store under
-	 * @return the argument
-	 */
-	public static CommandElement userOrSource(Text key) {
-		return new UserCommandElement(key, true);
-	}
+    /**
+     * Expect an argument to represent a player who has been online at some point,
+     * as a {@link User}, or if nothing matches and the source is a {@link User},
+     * give the user. If nothing matches and the source is not a {@link User}, throw
+     * an exception.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement.Value<Collection<? extends User>> userOrSource(Text key) {
+        return new UserCommandElement(key, true);
+    }
+
+    public static CommandElement.Value<Collection<? extends CompletableFuture<GameProfile>>> gameProfile(Text key) {
+        return new GameProfileCommandElement(key);
+    }
 
     /**
      * Expect an argument to represent a world. This gives a WorldProperties object rather than an actual world in order to include unloaded worlds
@@ -276,7 +282,7 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) throws ArgumentParseException {
             for (Iterator<CommandElement> it = this.elements.iterator(); it.hasNext(); ) {
                 CommandElement element = it.next();
                 Object startState = args.getState();
@@ -538,8 +544,13 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) throws ArgumentParseException {
             return this.element.complete(src, args, context);
+        }
+
+        @Override
+        protected Optional<T> getFallback() {
+            return Optional.empty();
         }
 
         @Override
@@ -624,7 +635,7 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) throws ArgumentParseException {
             while (args.hasNext()) {
                 Object startState = args.getState();
                 try {
@@ -976,6 +987,33 @@ public final class GenericArguments {
         @Override
         protected User getValue(String choice) throws IllegalArgumentException {
             return Sponge.getGame().getServiceManager().provideUnchecked(UserStorageService.class).get(choice).get();
+        }
+    }
+
+    private static class GameProfileCommandElement extends PatternMatchingCommandElement<CompletableFuture<GameProfile>> {
+
+        protected GameProfileCommandElement(Text key) {
+            super(key);
+        }
+
+        @Override
+        protected Iterable<String> getChoices(CommandSource source) {
+            return Sponge.getGame().getServer().getGameProfileManager().getCachedProfiles().stream()
+                    .map(GameProfile::getName)
+                    .filter(Optional::isPresent)
+                    .map(Optional::get)
+                    .collect(GuavaCollectors.toImmutableList());
+
+        }
+
+        @Override
+        protected CompletableFuture<GameProfile> getValue(String choice) throws IllegalArgumentException {
+            try {
+                UUID profileId = UUID.fromString(choice);
+                return Sponge.getGame().getServer().getGameProfileManager().get(profileId);
+            } catch (IllegalArgumentException e) {
+                return Sponge.getGame().getServer().getGameProfileManager().get(choice);
+            }
         }
     }
 
@@ -1399,7 +1437,7 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) throws ArgumentParseException {
             if (!src.hasPermission(this.permission)) {
                 return ImmutableList.of();
             }
