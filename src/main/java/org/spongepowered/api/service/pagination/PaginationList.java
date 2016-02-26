@@ -31,6 +31,9 @@ import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents an immutable iterable of {@link Text}s, which can be sent to a {@link MessageReceiver}.
@@ -63,19 +66,22 @@ public interface PaginationList {
     Text getTitle();
 
     /**
-     * Gets the header to be displayed for this output on all pages after the title bar but before the contents
+     * Gets the header to be displayed for this output on all pages after the title bar but before the contents,
+     * if available.
+     *
      * Header and footer will use this Text's style and color for formatting.
      *
      * @return The header to be displayed
      */
-    Text getHeader();
+    Optional<Text> getHeader();
 
     /**
-     * Gets the footer to be displayed for this output on all pages after the contents and page navigation bar.
+     * Gets the footer to be displayed for this output on all pages after the contents and page navigation bar,
+     * if available.
      *
      * @return The footer
      */
-    Text getFooter();
+    Optional<Text> getFooter();
 
     /**
      * Gets the padding character to be used when centering headers and footers.
@@ -137,18 +143,24 @@ public interface PaginationList {
          * Set the header to be displayed for this output on all pages after the title bar but before the contents
          * Header and footer will use this Text's style and color for formatting.
          *
+         * <p>If the header is not specified, or passed in as <code>null</code>, it will
+         * be omitted when displaying the list.</p>
+         *
          * @param header The header to set
          * @return this
          */
-        Builder header(Text header);
+        Builder header(@Nullable Text header);
 
         /**
          * Set the footer to be displayed for this output on all pages after the contents and page navigation bar.
          *
+         * <p>If the footer is not specified, or passed in as <code>null</code>, it will
+         * be omitted when displaying the list.</p>
+         *
          * @param footer The footer to set
          * @return this
          */
-        Builder footer(Text footer);
+        Builder footer(@Nullable Text footer);
 
         /**
          * Set the padding character to be used when centering headers and footers.
@@ -166,11 +178,13 @@ public interface PaginationList {
         PaginationList build();
 
         /**
-         * Send the constructed pagination list to the given source.
+         * Send the constructed pagination list to the given receiver.
          *
-         * @param source The source to send to
+         * @param receiver The receiver to send to
          */
-        void sendTo(MessageReceiver source);
+        default void sendTo(MessageReceiver receiver) {
+            build().sendTo(receiver);
+        }
 
         /**
          * Send the constructed pagination list to the specified {@link MessageChannel}.
