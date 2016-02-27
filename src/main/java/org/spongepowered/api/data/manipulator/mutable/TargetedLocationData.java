@@ -27,18 +27,19 @@ package org.spongepowered.api.data.manipulator.mutable;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableTargetedLocationData;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.projectile.EnderPearl;
-import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
  * An {@link DataManipulator} handling the supposed targeted {@link Location}.
- * Usually for the case of {@link EnderPearl}s, the targeted {@link Location} is
- * where the {@link EnderPearl} will move towards until it's expiration time. In
- * the case of {@link ItemStack}s of type {@link ItemTypes#COMPASS}, the
- * targeted {@link Location} is where the compass will point towards.
+ * Usually for the case of {@link EyeOfEnder}s, the targeted {@link Location} is
+ * where the {@link EyeOfEnder} will move towards until it's expiration time. In
+ * the case of {@link Player}s, the targeted {@link Location} is where any
+ * compasses seen by the player will point towards (for example, a compass {@link ItemStack}
+ * in the player's inventory).
  */
 public interface TargetedLocationData extends DataManipulator<TargetedLocationData, ImmutableTargetedLocationData> {
 
