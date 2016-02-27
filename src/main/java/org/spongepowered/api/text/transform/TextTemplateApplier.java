@@ -22,70 +22,64 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.action;
+package org.spongepowered.api.text.transform;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.google.common.base.Objects;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextElement;
+import org.spongepowered.api.text.TextRepresentable;
+import org.spongepowered.api.text.TextTemplate;
 
 import javax.annotation.Nullable;
 
 /**
- * Represents an action happening as a response to an event on a {@link Text}.
- *
- * @param <R> The type of the result
- *
- * @see ClickAction
- * @see HoverAction
- * @see ShiftClickAction
+ * Wrapper class to hold {@link TextTemplate} parameters and a TextTemplate.
  */
-public abstract class TextAction<R> implements TextElement {
-
-    protected final R result;
+public interface TextTemplateApplier extends TextRepresentable {
 
     /**
-     * Constructs a new {@link TextAction} with the given result.
+     * Returns an {@link ImmutableList} of this applier's parameters.
      *
-     * @param result The result of the text action
+     * @return Applier parameters
      */
-    protected TextAction(R result) {
-        this.result = checkNotNull(result, "result");
+    ImmutableMap<String, TextElement> getParameters();
+
+    /**
+     * Returns the current value of the parameter with the specified key.
+     *
+     * @param key Parameter key
+     * @return Parameter value
+     */
+    default TextElement getParameter(String key) {
+        return getParameters().get(key);
     }
 
     /**
-     * Returns the result of this {@link TextAction}.
+     * Sets the value of the specified parameter key within this applier.
      *
-     * @return The result
+     * @param key Parameter key
+     * @param value Parameter value
      */
-    public final R getResult() {
-        return this.result;
-    }
+    void setParameter(String key, @Nullable TextElement value);
+
+    /**
+     * Returns the current {@link TextTemplate} for this applier.
+     *
+     * @return TextTemplate
+     */
+    TextTemplate getTemplate();
+
+    /**
+     * Sets the {@link TextTemplate} to use for this applier.
+     *
+     * @param template TextTemplate to use
+     */
+    void setTemplate(TextTemplate template);
 
     @Override
-    public boolean equals(@Nullable Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        TextAction<?> that = (TextAction<?>) o;
-        return this.result.equals(that.result);
-    }
-
-    @Override
-    public int hashCode() {
-        return this.result.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return Objects.toStringHelper(this)
-                .addValue(this.result)
-                .toString();
+    default Text toText() {
+        return getTemplate().apply(getParameters()).build();
     }
 
 }
