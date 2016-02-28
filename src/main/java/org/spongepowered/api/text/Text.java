@@ -29,6 +29,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterators;
+import com.google.common.reflect.TypeToken;
+import ninja.leaping.configurate.objectmapping.serialize.TypeSerializers;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.MemoryDataContainer;
+import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
@@ -39,6 +45,7 @@ import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.format.TextStyles;
 import org.spongepowered.api.text.selector.Selector;
+import org.spongepowered.api.text.serializer.TextConfigSerializer;
 import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
@@ -50,6 +57,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -74,7 +82,11 @@ import javax.annotation.Nullable;
  * @see SelectorText
  * @see ScoreText
  */
-public abstract class Text implements TextRepresentable {
+public abstract class Text implements TextRepresentable, DataSerializable, Comparable<Text> {
+
+    static {
+        TypeSerializers.getDefaultSerializers().registerType(TypeToken.of(Text.class), new TextConfigSerializer());
+    }
 
     /**
      * The empty, unformatted {@link Text} instance.
@@ -245,6 +257,44 @@ public abstract class Text implements TextRepresentable {
      */
     public final String toPlain() {
         return TextSerializers.PLAIN.serialize(this);
+    }
+
+    /**
+     * Concatenates the specified {@link Text} to this Text and returns the
+     * result.
+     *
+     * @param other To concatenate
+     * @return Concatenated text
+     */
+    public final Text concat(Text other) {
+        return toBuilder().append(other).build();
+    }
+
+    /**
+     * Removes all empty texts from the beginning and end of this
+     * text.
+     *
+     * @return Text result
+     */
+    public final Text trim() {
+        return toBuilder().trim().build();
+    }
+
+    @Override
+    public int getContentVersion() {
+        return 1;
+    }
+
+    @Override
+    public DataContainer toContainer() {
+        return new MemoryDataContainer()
+                .set(Queries.CONTENT_VERSION, getContentVersion())
+                .set(Queries.JSON, TextSerializers.JSON.serialize(this));
+    }
+
+    @Override
+    public int compareTo(Text o) {
+        return PLAIN_COMPARATOR.compare(this, o);
     }
 
     @Override
@@ -650,6 +700,32 @@ public abstract class Text implements TextRepresentable {
          */
         public Builder removeAll() {
             this.children.clear();
+            return this;
+        }
+
+        /**
+         * Removes all empty texts from the beginning and end of this
+         * builder.
+         *
+         * @return This builder
+         */
+        public Builder trim() {
+            Iterator<Text> front = this.children.iterator();
+            while (front.hasNext()) {
+                if (front.next().isEmpty()) {
+                    front.remove();
+                } else {
+                    break;
+                }
+            }
+            ListIterator<Text> back = this.children.listIterator(this.children.size());
+            while (back.hasPrevious()) {
+                if (back.previous().isEmpty()) {
+                    back.remove();
+                } else {
+                    break;
+                }
+            }
             return this;
         }
 

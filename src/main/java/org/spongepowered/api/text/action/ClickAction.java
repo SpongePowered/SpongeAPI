@@ -25,6 +25,7 @@
 package org.spongepowered.api.text.action;
 
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.text.Text;
 
 import java.net.URL;
 import java.util.function.Consumer;
@@ -43,6 +44,11 @@ public abstract class ClickAction<R> extends TextAction<R> {
      */
     ClickAction(R result) {
         super(result);
+    }
+
+    @Override
+    public void applyTo(Text.Builder builder) {
+        builder.onClick(this);
     }
 
     /**
