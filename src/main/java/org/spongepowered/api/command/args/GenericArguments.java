@@ -62,6 +62,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
@@ -493,7 +495,7 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) throws ArgumentParseException {
             for (int i = 0; i < this.times; ++i) {
                 Object startState = args.getState();
                 try {
@@ -592,22 +594,37 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement.Value<Integer> integer(Text key) {
-        return new IntegerElement(key);
+        return new NumericElement<>(key, Integer::parseInt, Integer::parseInt, input -> t("Expected an integer, but input '%s' was not", input));
     }
 
-    private static class IntegerElement extends CommandElement.Value<Integer> {
+    private static class NumericElement<T extends Number> extends CommandElement.Value<T> {
+        private final Function<String, T> parseFunc;
+        @Nullable
+        private final BiFunction<String, Integer, T> parseRadixFunction;
+        private final Function<String, Text> errorSupplier;
 
-        private IntegerElement(Text key) {
+        protected NumericElement(Text key, Function<String, T> parseFunc, @Nullable BiFunction<String, Integer, T> parseRadixFunction,
+                Function<String, Text> errorSupplier) {
             super(key);
+            this.parseFunc = parseFunc;
+            this.parseRadixFunction = parseRadixFunction;
+            this.errorSupplier = errorSupplier;
         }
 
         @Override
-        public Integer parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+        protected T parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             final String input = args.next();
             try {
-                return Integer.parseInt(input);
+                if (this.parseRadixFunction != null) {
+                    if (input.startsWith("0x")) {
+                        return this.parseRadixFunction.apply(input.substring(2), 16);
+                    } else if (input.startsWith("0b")) {
+                        return this.parseRadixFunction.apply(input.substring(2), 2);
+                    }
+                }
+                return this.parseFunc.apply(input);
             } catch (NumberFormatException ex) {
-                throw args.createError(t("Expected an integer, but input '%s' was not", input));
+                throw args.createError(this.errorSupplier.apply(input));
             }
         }
     }
@@ -620,24 +637,7 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement.Value<Long> longNum(Text key) {
-        return new LongElement(key);
-    }
-
-    private static class LongElement extends CommandElement.Value<Long> {
-
-        private LongElement(Text key) {
-            super(key);
-        }
-
-        @Override
-        public Long parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            final String input = args.next();
-            try {
-                return Long.parseLong(input);
-            } catch (NumberFormatException ex) {
-                throw args.createError(t("Expected a long, but input '%s' was not", input));
-            }
-        }
+        return new NumericElement<>(key, Long::parseLong, Long::parseLong, input -> t("Expected a long, but input '%s' was not", input));
     }
 
     /**
@@ -648,24 +648,7 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement.Value<Double> doubleNum(Text key) {
-        return new DoubleNumElement(key);
-    }
-
-    private static class DoubleNumElement extends CommandElement.Value<Double> {
-
-        private DoubleNumElement(Text key) {
-            super(key);
-        }
-
-        @Override
-        public Double parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            final String input = args.next();
-            try {
-                return Double.parseDouble(input);
-            } catch (NumberFormatException ex) {
-                throw args.createError(t("Expected a number, but input '%s' was not", input));
-            }
-        }
+        return new NumericElement<>(key, Double::parseDouble, null, input -> t("Expected a number, but input '%s' was not", input));
     }
 
     private static final Map<String, Boolean> BOOLEAN_CHOICES = ImmutableMap.<String, Boolean>builder()
@@ -1273,7 +1256,7 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) throws ArgumentParseException {
             return this.element.complete(src, args, context);
         }
     }

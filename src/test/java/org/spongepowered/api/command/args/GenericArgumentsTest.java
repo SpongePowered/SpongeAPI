@@ -174,6 +174,9 @@ public class GenericArgumentsTest {
         CommandContext context = parseForInput("52", el);
         assertEquals(52, context.get(el).intValue());
 
+        assertEquals(0xdeadbeef, parseForInput("0xdeadbeef", el).get(el).intValue());
+        assertEquals(0b101010, parseForInput("0x101010", el).get(el).intValue());
+
         this.expected.expect(ArgumentParseException.class);
         parseForInput("notanumber", integer(untr("a value")));
     }
