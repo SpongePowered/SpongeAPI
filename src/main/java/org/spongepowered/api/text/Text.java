@@ -721,7 +721,7 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
             }
             ListIterator<Text> back = this.children.listIterator(this.children.size());
             while (back.hasPrevious()) {
-                if (back.next().isEmpty()) {
+                if (back.previous().isEmpty()) {
                     back.remove();
                 } else {
                     break;
