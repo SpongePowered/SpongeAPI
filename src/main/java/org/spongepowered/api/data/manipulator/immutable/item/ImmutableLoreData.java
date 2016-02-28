@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.immutable.item;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
 import org.spongepowered.api.data.manipulator.mutable.item.LoreData;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -35,13 +36,15 @@ import org.spongepowered.api.text.Text;
  * on a tooltip for an {@link ItemStack}. The lore can be any form of
  * {@link Text} and is not restricted to one formatting.
  */
-public interface ImmutableLoreData extends ImmutableDataManipulator<ImmutableLoreData, LoreData> {
+public interface ImmutableLoreData extends ImmutableListData<Text, ImmutableLoreData, LoreData> {
 
     /**
      * Gets the {@link ImmutableListValue} of the "lore" {@link Text}.
      *
      * @return The immutable list value of text lore
      */
-    ImmutableListValue<Text> lore();
+    default ImmutableListValue<Text> lore() {
+        return getListValue();
+    }
 
 }

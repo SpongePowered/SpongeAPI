@@ -30,51 +30,53 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.util.GuavaCollectors;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
-
-import javax.annotation.Nullable;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  * Abstract command element that matches values based on pattern.
  */
-public abstract class PatternMatchingCommandElement extends CommandElement {
-    private static final Text nullKeyArg = t("argument");
+public abstract class PatternMatchingCommandElement<T> extends CommandElement.Value<Collection<? extends T>> {
 
-    protected PatternMatchingCommandElement(@Nullable Text key) {
+    protected PatternMatchingCommandElement(Text key) {
         super(key);
     }
 
-    @Nullable
     @Override
-    protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+    protected Collection<? extends T> parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
         final String unformattedPattern = args.next();
         Pattern pattern = getFormattedPattern(unformattedPattern);
         Iterable<String> filteredChoices = Iterables.filter(getChoices(source), element -> pattern.matcher(element).find());
         for (String el : filteredChoices) { // Match a single value
             if (el.equalsIgnoreCase(unformattedPattern)) {
-                return getValue(el);
+                return Collections.singletonList(getValue(el));
             }
         }
-        Iterable<Object> ret = Iterables.transform(filteredChoices, this::getValue);
+        Iterable<T> ret = Iterables.transform(filteredChoices, this::getValue);
 
         if (!ret.iterator().hasNext()) {
-            throw args.createError(t("No values matching pattern '%s' present for %s!", unformattedPattern, getKey() == null
-                                                                                                            ? nullKeyArg : getKey()));
+            throw args.createError(t("No values matching pattern '%s' present for %s!", unformattedPattern, getKey()));
         }
-        return ret;
+        return ImmutableList.copyOf(ret);
     }
 
     @Override
     public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-        Iterable<String> choices = getChoices(src);
         final Optional<String> nextArg = args.nextIfPresent();
+        Stream<String> ret = StreamSupport.stream(getChoices(src).spliterator(), false);
+
         if (nextArg.isPresent()) {
-            choices = Iterables.filter(choices, input -> getFormattedPattern(nextArg.get()).matcher(input).find());
+            final Pattern pattern = getFormattedPattern(nextArg.get());
+            ret = ret.filter(input -> pattern.matcher(input).find());
         }
-        return ImmutableList.copyOf(choices);
+        return ret.collect(GuavaCollectors.toImmutableList());
     }
 
     private Pattern getFormattedPattern(String input) {
@@ -103,5 +105,5 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
      * @throws IllegalArgumentException if the input string is not any return
      *         value of {@link #getChoices(CommandSource)}
      */
-    protected abstract Object getValue(String choice) throws IllegalArgumentException;
+    protected abstract T getValue(String choice) throws IllegalArgumentException;
 }

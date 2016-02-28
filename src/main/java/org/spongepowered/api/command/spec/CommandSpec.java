@@ -26,26 +26,23 @@ package org.spongepowered.api.command.spec;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
-import static org.spongepowered.api.command.args.GenericArguments.firstParsing;
-import static org.spongepowered.api.command.args.GenericArguments.optional;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.command.args.ChildCommand;
+import org.spongepowered.api.service.permission.PermissionDescription;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandCallable;
 import org.spongepowered.api.command.CommandException;
-import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandPermissionException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.args.ArgumentParseException;
-import org.spongepowered.api.command.args.ChildCommandElementExecutor;
 import org.spongepowered.api.command.args.CommandArgs;
 import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.args.CommandElement;
 import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.command.args.parsing.InputTokenizer;
-import org.spongepowered.api.command.args.parsing.InputTokenizers;
 
 import java.util.HashMap;
 import java.util.List;
@@ -101,8 +98,8 @@ public final class CommandSpec implements CommandCallable {
         @Nullable
         private CommandExecutor executor;
         @Nullable
-        private Map<List<String>, CommandCallable> childCommandMap;
-        private InputTokenizer argumentParser = InputTokenizers.quotedStrings(false);
+        private Map<List<String>, CommandSpec> childCommandMap;
+        private InputTokenizer argumentParser = InputTokenizer.quotedStrings(false);
 
         private Builder() {}
 
@@ -114,6 +111,11 @@ public final class CommandSpec implements CommandCallable {
          */
         public Builder permission(String permission) {
             this.permission = permission;
+            return this;
+        }
+
+        public Builder permission(PermissionDescription desc) {
+            this.permission = desc.getId();
             return this;
         }
 
@@ -136,7 +138,7 @@ public final class CommandSpec implements CommandCallable {
          * @param children The children to use
          * @return this
          */
-        public Builder children(Map<List<String>, ? extends CommandCallable> children) {
+        public Builder children(Map<List<String>, ? extends CommandSpec> children) {
             checkNotNull(children, "children");
             if (this.childCommandMap == null) {
                 this.childCommandMap = new HashMap<>();
@@ -155,7 +157,7 @@ public final class CommandSpec implements CommandCallable {
          *
          * @return this
          */
-        public Builder child(CommandCallable child, String... aliases) {
+        public Builder child(CommandSpec child, String... aliases) {
             if (this.childCommandMap == null) {
                 this.childCommandMap = new HashMap<>();
             }
@@ -217,7 +219,7 @@ public final class CommandSpec implements CommandCallable {
         /**
          * Set the input tokenizer to be used to convert input from a string into a list of argument tokens.
          *
-         * @see InputTokenizers for common input parser implementations
+         * @see InputTokenizer for common input parser implementations
          * @param parser The parser to use
          * @return this
          */
@@ -236,21 +238,15 @@ public final class CommandSpec implements CommandCallable {
             if (this.childCommandMap == null) {
                 checkNotNull(this.executor, "An executor is required");
             } else {
-                ChildCommandElementExecutor childDispatcher = new ChildCommandElementExecutor(this.executor);
-                for (Map.Entry<List<String>, ? extends CommandCallable> spec : this.childCommandMap.entrySet()) {
-                    childDispatcher.register(spec.getValue(), spec.getKey());
-                }
+                Map.Entry<? extends CommandElement, CommandExecutor> children = this.executor == null ? ChildCommand.forChildren(this
+                        .childCommandMap) : ChildCommand.forChildrenWithFallback(this.childCommandMap, this.executor);
 
                 if (this.args == DEFAULT_ARG) {
-                    arguments(this.executor == null ? childDispatcher : optional(childDispatcher));
+                    arguments(children.getKey());
                 } else {
-                    if (this.executor == null) {
-                        arguments(this.args, childDispatcher);
-                    } else {
-                        arguments(firstParsing(childDispatcher, this.args));
-                    }
+                    arguments(this.args, children.getKey());
                 }
-                executor(childDispatcher);
+                executor(children.getValue());
             }
 
             return new CommandSpec(this.args, this.executor, this.description, this.extendedDescription, this.permission,
@@ -298,7 +294,7 @@ public final class CommandSpec implements CommandCallable {
      * @param context The context object
      * @return possible completions, or an empty list if none
      */
-    public List<String> complete(CommandSource source, CommandArgs args, CommandContext context) {
+    public List<String> complete(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
         checkNotNull(source, "source");
         List<String> ret = this.args.complete(source, args, context);
         return ret == null ? ImmutableList.<String>of() : ImmutableList.copyOf(ret);

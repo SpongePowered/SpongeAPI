@@ -36,6 +36,7 @@ import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.command.CommandSource;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -47,7 +48,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
-class CommandFlags extends CommandElement {
+public final class CommandFlags extends CommandElement {
     @Nullable
     private final CommandElement childElement;
     private final Map<List<String>, CommandElement> usageFlags;
@@ -60,7 +61,6 @@ class CommandFlags extends CommandElement {
     protected CommandFlags(@Nullable CommandElement childElement, Map<List<String>, CommandElement> usageFlags,
             Map<String, CommandElement> shortFlags, Map<String, CommandElement> longFlags, UnknownFlagBehavior unknownShortFlagBehavior,
             UnknownFlagBehavior unknownLongFlagBehavior, boolean anchorFlags) {
-        super(null);
         this.childElement = childElement;
         this.usageFlags = usageFlags;
         this.shortFlags = shortFlags;
@@ -68,6 +68,97 @@ class CommandFlags extends CommandElement {
         this.unknownShortFlagBehavior = unknownShortFlagBehavior;
         this.unknownLongFlagBehavior = unknownLongFlagBehavior;
         this.anchorFlags = anchorFlags;
+    }
+
+    public static CommandFlags withFlags(Element<?>... elements) {
+        return GenericArguments.flags().flag(elements).build();
+    }
+
+    /**
+     * Attributes for a flag:
+     * - number of occurrences (and/or to restrict)
+     * - known aliases
+     * - value parser
+     *
+     * Things to support:
+     *
+     * - add to context multiple times to combine Collections
+     * - context default values
+     */
+
+    public static <T> Element<T> valueFlag(CommandElement.Value<T> value, String... keys) {
+        return new Element<T>(value, keys);
+    }
+
+    /**
+     * Create an element for a flag with any of the provided specifications that has no value.
+     * This flag will be exposed in a {@link CommandContext} under the key equivalent to the first flag in the specification array.
+     * The specifications are handled as so for each element in the {@code specs} array:
+     * <ul>
+     *     <li>If the element starts with -, the remainder of the element is interpreted as a long flag</li>
+     *     <li>Otherwise, each code point of the element is interpreted as a short flag</li>
+     * </ul>
+     *
+     * @param keys The flag specifications
+     * @return this
+     */
+    public static Element<Boolean> flag(String... keys) {
+        return valueFlag(markTrue(keys[0]), keys);
+    }
+
+    public static class UnknownFlagHandler<T> extends CommandElement.Value<Map<String, T>> {
+        private final CommandElement.Value<T> el;
+
+        protected UnknownFlagHandler(CommandElement.Value<T> el) {
+            super(el.getKey());
+            this.el = el;
+        }
+
+        @Override
+        protected Map<String, T> parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            throw new UnsupportedOperationException("Not yet implemented");
+        }
+    }
+
+    public static class Element<T> extends CommandElement.Value<Optional<T>> {
+        private final CommandElement.Value<T> element;
+        private final List<String> flags;
+
+        protected Element(CommandElement.Value<T> element, String... keys) {
+            super(element.getKey());
+            this.element = element;
+            final ImmutableList.Builder<String> flags = ImmutableList.builder();
+            for (String spec : keys) {
+                if (spec.startsWith("-")) {
+                    final String flagKey = spec.substring(1);
+                    flags.add(flagKey.toLowerCase());
+                } else {
+                    spec.codePoints()
+                            .mapToObj(cpt -> new String(new int[] { cpt }, 0, 1))
+                            .forEach(flags::add);
+                }
+            }
+            this.flags = flags.build();
+        }
+
+        public List<String> getFlags() {
+            return this.flags;
+        }
+
+        @Override
+        protected Optional<T> parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            return Optional.of(this.element.parseValue(source, args));
+        }
+    }
+
+    /**
+     * A flag that can be specified multiple times
+     * @param <T>
+     */
+    public static class MultiElement<T> extends Element<Collection<? extends T>> {
+        protected MultiElement(Value<Collection<? extends T>> element, String... keys) {
+            super(element, keys);
+        }
     }
 
     @Override
@@ -108,18 +199,7 @@ class CommandFlags extends CommandElement {
             String value = flagSplit[1];
             CommandElement element = this.longFlags.get(longFlag.toLowerCase());
             if (element == null) {
-                switch (this.unknownLongFlagBehavior) {
-                    case ERROR:
-                        throw args.createError(t("Unknown long flag %s specified", args));
-                    case ACCEPT_NONVALUE:
-                    case ACCEPT_VALUE:
-                        context.putArg(longFlag, value);
-                        break;
-                    case IGNORE:
-                        return false;
-                    default:
-                        throw new Error("New UnknownFlagBehavior added without corresponding case clauses");
-                }
+                // TODO
             } else {
                 args.insertArg(value);
                 element.parse(source, args, context);
@@ -127,20 +207,7 @@ class CommandFlags extends CommandElement {
         } else {
             CommandElement element = this.longFlags.get(longFlag.toLowerCase());
             if (element == null) {
-                switch (this.unknownLongFlagBehavior) {
-                    case ERROR:
-                        throw args.createError(t("Unknown long flag %s specified", args));
-                    case ACCEPT_NONVALUE:
-                        context.putArg(longFlag, true);
-                        break;
-                    case ACCEPT_VALUE:
-                        string(Text.of(longFlag)).parse(source, args, context);
-                        break;
-                    case IGNORE:
-                        return false;
-                    default:
-                        throw new Error("New UnknownFlagBehavior added without corresponding case clauses");
-                }
+                // TODO
             } else {
                 element.parse(source, args, context);
             }
@@ -154,22 +221,7 @@ class CommandFlags extends CommandElement {
             final String flagChar = shortFlags.substring(i, i + 1);
             CommandElement element = this.shortFlags.get(flagChar);
             if (element == null) {
-                switch (this.unknownShortFlagBehavior) {
-                    case IGNORE:
-                        if (i == 0) {
-                            return false;
-                        }
-                    case ERROR:
-                        throw args.createError(t("Unknown short flag %s specified", flagChar));
-                    case ACCEPT_NONVALUE:
-                        context.putArg(flagChar, true);
-                        break;
-                    case ACCEPT_VALUE:
-                        string(Text.of(flagChar)).parse(source, args, context);
-                        break;
-                    default:
-                        throw new Error("New UnknownFlagBehavior added without corresponding case clauses");
-                }
+                // TODO: Unknown flag handling
             } else {
                 element.parse(source, args, context);
             }
@@ -205,12 +257,7 @@ class CommandFlags extends CommandElement {
     }
 
     @Override
-    protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-        return null;
-    }
-
-    @Override
-    public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+    public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) throws ArgumentParseException {
         Object startIdx = args.getState();
         Optional<String> arg;
         while (args.hasNext()) {
@@ -245,14 +292,15 @@ class CommandFlags extends CommandElement {
     }
 
     @Nullable
-    private List<String> tabCompleteLongFlag(String longFlag, CommandSource src, CommandArgs args, CommandContext context) {
+    private List<String> tabCompleteLongFlag(String longFlag, CommandSource src, CommandArgs args, CommandContext context)
+            throws ArgumentParseException {
         if (longFlag.contains("=")) {
             final String[] flagSplit = longFlag.split("=", 2);
             longFlag = flagSplit[0];
             String value = flagSplit[1];
             CommandElement element = this.longFlags.get(longFlag.toLowerCase());
             if (element == null) { // Whole flag is specified, we'll go to value
-                context.putArg(longFlag, value);
+                //context.putArg(longFlag, value);
             } else {
                 args.insertArg(value);
                 final String finalLongFlag = longFlag;
@@ -298,7 +346,8 @@ class CommandFlags extends CommandElement {
     }
 
     @Nullable
-    private List<String> tabCompleteShortFlags(String shortFlags, CommandSource src, CommandArgs args, CommandContext context) {
+    private List<String> tabCompleteShortFlags(String shortFlags, CommandSource src, CommandArgs args, CommandContext context)
+            throws ArgumentParseException {
         for (int i = 0; i < shortFlags.length(); ++i) {
             final String flagChar = shortFlags.substring(i, i + 1);
             CommandElement element = this.shortFlags.get(flagChar);
@@ -352,54 +401,10 @@ class CommandFlags extends CommandElement {
 
         Builder() {}
 
-        private static final Function<String, CommandElement> MARK_TRUE_FUNC = new Function<String, CommandElement>() {
-            @Nullable
-            @Override
-            public CommandElement apply(@Nullable String input) {
-                return markTrue(input);
-            }
-        };
+        private static final Function<String, CommandElement> MARK_TRUE_FUNC = GenericArguments::markTrue;
 
-        private Builder flag(Function<String, CommandElement> func, String... specs) {
-            final List<String> availableFlags = new ArrayList<>(specs.length);
-            CommandElement el = null;
-            for (String spec : specs) {
-                if (spec.startsWith("-")) {
-                    final String flagKey = spec.substring(1);
-                    if (el == null) {
-                        el = func.apply(flagKey);
-                    }
-                    availableFlags.add(flagKey);
-                    this.longFlags.put(flagKey.toLowerCase(), el);
-                } else {
-                    for (int i = 0; i < spec.length(); ++i) {
-                        final String flagKey = spec.substring(i, i + 1);
-                        if (el == null) {
-                            el = func.apply(flagKey);
-                        }
-                        availableFlags.add(flagKey);
-                        this.shortFlags.put(flagKey, el);
-                    }
-                }
-            }
-            this.usageFlags.put(availableFlags, el);
-            return this;
-        }
-
-        /**
-         * Allow a flag with any of the provided specifications that has no value.
-         * This flag will be exposed in a {@link CommandContext} under the key equivalent to the first flag in the specification array.
-         * The specifications are handled as so for each element in the {@code specs} array:
-         * <ul>
-         *     <li>If the element starts with -, the remainder of the element is interpreted as a long flag</li>
-         *     <li>Otherwise, each code point of the element is interpreted as a short flag</li>
-         * </ul>
-         *
-         * @param specs The flag specifications
-         * @return this
-         */
-        public Builder flag(String... specs) {
-            return flag(MARK_TRUE_FUNC, specs);
+        public Builder flag(Element<?>... flags) {
+            return this; // TODO
         }
 
         /**
@@ -412,27 +417,8 @@ class CommandFlags extends CommandElement {
          * @return this
          */
         public Builder permissionFlag(final String flagPermission, String... specs) {
-            return flag(new Function<String, CommandElement>() {
-                @Nullable
-                @Override
-                public CommandElement apply(@Nullable String input) {
-                    return requiringPermission(markTrue(input), flagPermission);
-                }
-            }, specs);
-        }
-
-        /**
-         * Allow a flag with any of the provided specifications, with the given command element. The flag may be present multiple times, and may
-         * therefore have multiple values.
-         *
-         * @see #flag(String...) for information on how the flag specifications are parsed
-         * @param value The command element used to parse any occurrences
-         * @param specs The flag specifications
-         * @return this
-         */
-        @SuppressWarnings({"unchecked", "rawtypes"}) // cuz generics suck
-        public Builder valueFlag(CommandElement value, String... specs) {
-            return flag(ignore -> value, specs);
+            //return flag(input -> requiringPermission(markTrue(input), flagPermission), specs);
+            return this; // TODO
         }
 
         /**
@@ -444,6 +430,10 @@ class CommandFlags extends CommandElement {
         public Builder setAcceptsArbitraryLongFlags(boolean acceptsArbitraryLongFlags) {
             setUnknownLongFlagBehavior(UnknownFlagBehavior.ACCEPT_NONVALUE);
             return this;
+        }
+
+        public CommandElement.Value<Map<String, Object>> getUnknownFlagHolder() {
+            return null; // TODO
         }
 
         /**
@@ -483,12 +473,12 @@ class CommandFlags extends CommandElement {
         /**
          * Build a flag command element using the given command element to handle all non-flag arguments.
          *
-         * @param wrapped The wrapped command element
          * @return the new command element
          */
-        public CommandElement buildWith(CommandElement wrapped) {
-            return new CommandFlags(wrapped, this.usageFlags, this.shortFlags, this.longFlags, this.unknownShortFlagBehavior,
-                    this.unknownLongFlagBehavior, this.anchorFlags);
+        public CommandFlags build() {
+            /*return new CommandFlags(this.usageFlags, this.shortFlags, this.longFlags, this.unknownShortFlagBehavior,
+                    this.unknownLongFlagBehavior, this.anchorFlags);*/
+            return null; // TODO
         }
     }
 }

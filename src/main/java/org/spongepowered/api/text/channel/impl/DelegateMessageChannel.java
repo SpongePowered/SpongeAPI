@@ -22,38 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.common.collection;
+package org.spongepowered.api.text.channel.impl;
 
-import com.google.common.collect.ImmutableMap;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.common.AbstractImmutableSingleData;
-import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
-import org.spongepowered.api.data.value.mutable.MapValue;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.Map;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.channel.MessageChannel;
+import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.text.chat.ChatType;
 
-public abstract class AbstractImmutableSingleMapData<K, V, M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>>
-    extends AbstractImmutableSingleData<Map<K, V>, I, M> {
+import java.util.Collection;
+import java.util.Optional;
 
-    private final ImmutableMapValue<K, V> mapValue;
+import javax.annotation.Nullable;
 
-    protected AbstractImmutableSingleMapData(Map<K, V> value, Key<MapValue<K, V>> usedKey) {
-        super(ImmutableMap.copyOf(value), usedKey);
-        this.mapValue = Sponge.getRegistry().getValueFactory()
-            .createMapValue(usedKey, this.value)
-            .asImmutable();
+/**
+ * An immutable message channel that leaves transforming and
+ * members to the delegate channel passed.
+ */
+public class DelegateMessageChannel implements MessageChannel {
+
+    protected final MessageChannel delegate;
+
+    public DelegateMessageChannel(final MessageChannel delegate) {
+        this.delegate = checkNotNull(delegate, "delegate");
     }
 
     @Override
-    protected final ImmutableMapValue<K, V> getValueGetter() {
-        return this.mapValue;
+    public Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original, ChatType type) {
+        return this.delegate.transformMessage(sender, recipient, original, type);
     }
 
     @Override
-    public int compareTo(I o) {
-        return 0;
+    public Collection<MessageReceiver> getMembers() {
+        return this.delegate.getMembers();
     }
 }

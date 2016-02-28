@@ -61,7 +61,8 @@ public class ChanceTable<T> extends RandomObjectTable<T> {
         if (this.entries.isEmpty()) {
             return results;
         }
-        for (int i = 0; i < getRolls(); i++) {
+        int rolls = getRolls().getFlooredAmount(rand);
+        for (int i = 0; i < rolls; i++) {
             for (Iterator<TableEntry<T>> it = this.entries.iterator(); it.hasNext();) {
                 TableEntry<T> next = it.next();
                 if (rand.nextDouble() < next.getWeight()) {
@@ -102,7 +103,7 @@ public class ChanceTable<T> extends RandomObjectTable<T> {
     @Override
     public int hashCode() {
         int r = 1;
-        r = r * 37 + getRolls();
+        r = r * 37 + getRolls().hashCode();
         for (TableEntry<T> entry : this.entries) {
             r = r * 37 + entry.hashCode();
         }

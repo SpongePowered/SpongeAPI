@@ -24,9 +24,12 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableRespawnLocation;
+import org.spongepowered.api.data.manipulator.mutable.MappedData;
 import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.world.World;
@@ -39,8 +42,7 @@ import java.util.UUID;
  * A {@link Player} may have multiple respawn locations, but can only have a
  * single respawn location per {@link World}.
  */
-public interface RespawnLocationData extends DataManipulator<RespawnLocationData, ImmutableRespawnLocation> {
-
+public interface RespawnLocationData extends MappedData<UUID, Vector3d, RespawnLocationData, ImmutableRespawnLocation> {
 
     /**
      * Gets the {@link MapValue} for the "respawn" locations set for
@@ -50,7 +52,9 @@ public interface RespawnLocationData extends DataManipulator<RespawnLocationData
      *
      * @return The map for the respawn locations per world id
      */
-    MapValue<UUID, Vector3d> respawnLocation();
+    default MapValue<UUID, Vector3d> respawnLocation() {
+        return getMapValue();
+    }
 
     /**
      * Gets the {@link Vector3d} location for the spawn world if available.
@@ -60,6 +64,8 @@ public interface RespawnLocationData extends DataManipulator<RespawnLocationData
      * @param world The world to check
      * @return The vector location
      */
-    Optional<Vector3d> getForWorld(World world);
+    default Optional<Vector3d> getForWorld(World world) {
+        return get(checkNotNull(world, "World cannot be null!").getUniqueId());
+    }
 
 }

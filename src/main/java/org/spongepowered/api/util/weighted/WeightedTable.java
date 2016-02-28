@@ -143,7 +143,8 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
         if (this.entries.isEmpty()) {
             return results;
         }
-        for (int i = 0; i < getRolls(); i++) {
+        int rolls = getRolls().getFlooredAmount(rand);
+        for (int i = 0; i < rolls; i++) {
             double roll = rand.nextDouble() * this.totalWeight;
             for (Iterator<TableEntry<T>> it = this.entries.iterator(); it.hasNext();) {
                 TableEntry<T> next = it.next();
@@ -192,7 +193,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
     @Override
     public int hashCode() {
         int r = 1;
-        r = r * 37 + getRolls();
+        r = r * 37 + getRolls().hashCode();
         for (TableEntry<T> entry : this.entries) {
             r = r * 37 + entry.hashCode();
         }

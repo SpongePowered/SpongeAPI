@@ -233,6 +233,14 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> CRITICAL_HIT = null;
 
+    /**
+     * Represents the {@link Key} for the "custom name visible" state
+     * of an {@link Entity}.
+     *
+     * @see CustomNameVisibleData#customNameVisible()
+     */
+    public static final Key<Value<Boolean>> CUSTOM_NAME_VISIBLE = null;
+
     public static final Key<MapValue<EntityType, Double>> DAMAGE_ENTITY_MAP = null;
 
     /**
@@ -739,8 +747,6 @@ public final class Keys {
      * @see DropData#willDrop()
      */
     public static final Key<Value<Boolean>> SHOULD_DROP = null;
-
-    public static final Key<Value<Boolean>> SHOWS_DISPLAY_NAME = null;
 
     /**
      * Represents the {@link Key} for representing the {@link ShrubType}

@@ -22,4 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.text.sink;
+package org.spongepowered.api.command.args;
+
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TranslatableText;
+
+import javax.annotation.Nullable;
+
+/**
+ * Internal utility methods
+ */
+class ArgUtils {
+    private ArgUtils() {
+    }
+
+    @Nullable
+    public static String textToArgKey(@Nullable Text key) {
+        if (key == null) {
+            return null;
+        }
+
+        if (key instanceof TranslatableText) { // Use translation key
+            return ((TranslatableText) key).getTranslation().getId();
+        } else {
+            return key.toPlain();
+        }
+    }
+
+}

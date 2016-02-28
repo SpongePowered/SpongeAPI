@@ -57,4 +57,7 @@ public final class PopulatorTypes {
     public static final PopulatorType VINE = null;
     public static final PopulatorType WATER_LILY = null;
 
+    private PopulatorTypes() {
+    }
+
 }

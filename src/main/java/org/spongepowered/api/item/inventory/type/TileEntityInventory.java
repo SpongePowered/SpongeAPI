@@ -25,7 +25,6 @@
 package org.spongepowered.api.item.inventory.type;
 
 import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
 
@@ -52,7 +51,7 @@ import java.util.Optional;
  * @param <T> Tile entity type, the specified TE must be a {@link Carrier}
  */
 public interface TileEntityInventory<T extends TileEntity & Carrier>
-        extends PersistentInventory, Interactable<Humanoid>, CarriedInventory<T> {
+        extends PersistentInventory, Interactable, CarriedInventory<T> {
 
     /**
      * Returns the owner of this Inventory.

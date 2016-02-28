@@ -22,11 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.persistence;
+package org.spongepowered.api.text;
 
-import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.util.Updater;
+import static org.junit.Assert.assertEquals;
 
-public interface DataContentUpdater extends Updater<DataView> {
+import org.junit.Before;
+import org.junit.Test;
+import org.spongepowered.api.text.translation.FixedTranslation;
+
+public class TestTextFactoryTest {
+
+    @Before
+    public void initialize() throws Exception {
+        TestPlainTextSerializer.inject();
+    }
+
+    @Test
+    public void testToPlainLiterals() {
+        Text testText = Text.builder("Hello ").append(Text.of("world"), Text.of(", this is here")).build();
+        assertEquals("Hello world, this is here", testText.toPlain());
+    }
+
+    @Test
+    public void testToPlainTranslatables() {
+        Text testText = Text.of(new FixedTranslation("This is a translated %s"), Text.of("string"));
+        assertEquals("This is a translated string", testText.toPlain());
+    }
 
 }

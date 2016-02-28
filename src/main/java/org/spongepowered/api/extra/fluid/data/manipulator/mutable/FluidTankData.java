@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.MappedData;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.extra.fluid.FluidStack;
@@ -50,7 +51,7 @@ import java.util.Optional;
  * {@link List} of {@link FluidStackSnapshot}s to a {@link Direction} is the
  * functional equivalent to saying "remove all fluids from that direction".
  */
-public interface FluidTankData extends DataManipulator<FluidTankData, ImmutableFluidTankData> {
+public interface FluidTankData extends MappedData<Direction, List<FluidStackSnapshot>, FluidTankData, ImmutableFluidTankData> {
 
     /**
      * Gets the {@link MapValue} of the various {@link FluidStackSnapshot}s

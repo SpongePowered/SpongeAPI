@@ -27,68 +27,74 @@ package org.spongepowered.api.command.args;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandSource;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Nullable;
 
 /**
  * Context that a command is executed in.
  * This object stores parsed arguments from other commands
  */
 public final class CommandContext {
-    private final Multimap<String, Object> parsedArgs;
+    @Nullable
+    private CommandContext parent;
+    private final Map<String, Object> parsedArgs;
 
     /**
      * Create a new empty CommandContext.
      */
     public CommandContext() {
-        this.parsedArgs = ArrayListMultimap.create();
+        this(null);
     }
 
-    /**
-     * Gets all values for the given argument. May return an empty list if no
-     * values are present.
-     *
-     * @param key The key to get values for
-     * @param <T> the type of value to get
-     * @return the collection of all values
-     */
-    @SuppressWarnings("unchecked")
-    public <T> Collection<T> getAll(String key) {
-        return Collections.unmodifiableCollection((Collection<T>) this.parsedArgs.get(key));
+    public CommandContext(@Nullable  CommandContext parent) {
+        this.parent = parent;
+        this.parsedArgs = new HashMap<>();
     }
 
-    /**
-     * Gets the value for the given key if the key has only one value.
-     *
-     * @param key the key to get
-     * @param <T> the expected type of the argument
-     * @return the argument
-     */
     @SuppressWarnings("unchecked")
-    public <T> Optional<T> getOne(String key) {
-        Collection<Object> values = this.parsedArgs.get(key);
-        if (values.size() != 1) {
-            return Optional.empty();
-        } else {
-            return Optional.ofNullable((T) values.iterator().next());
+    public <T> T get(CommandElement.Value<T> element) {
+        String key = ArgUtils.textToArgKey(checkNotNull(element, "Must provide a non-null CommandElement").getKey());
+        Object ret;
+        CommandContext check = this;
+
+        do {
+            ret = check.parsedArgs.get(key);
+            check = check.parent;
+        } while (ret == null && check != null);
+
+        if (ret == null) {
+            ret = element.getFallback();
         }
+
+        if (ret == null) {
+            throw new IllegalStateException("Unable to find value for argument " + element.getKey().toPlain() + " in CommandContext");
+        }
+
+        return (T) ret;
     }
 
-    /**
-     * Insert an argument into this context.
-     *
-     * @param key the key to store the arg under
-     * @param value the value for this argument
-     */
-    public void putArg(String key, Object value) {
-        checkNotNull(value, "value");
-        this.parsedArgs.put(key, value);
+    @SuppressWarnings("unchecked")
+    public <T> void putArg(CommandElement.Value<T> element, T value) {
+        if (value instanceof CommandContext) {
+            ((CommandContext) value).parent = this;
+        }
+        Object ret = this.parsedArgs.putIfAbsent(ArgUtils.textToArgKey(element.getKey()), value);
+        if (ret != null) {
+            if (ret instanceof Collection) {
+                if (value instanceof Collection) {
+                    ((Collection) ret).addAll(((Collection) value));
+                } else {
+                    ((Collection) ret).add(value);
+                }
+            }
+            throw new IllegalStateException("A value was already present for CommandElement with key " + element.getKey().toPlain());
+        }
     }
 
     /**
@@ -110,7 +116,7 @@ public final class CommandContext {
      * @param key The key to look up
      * @return whether there are any values present
      */
-    public boolean hasAny(String key) {
-        return this.parsedArgs.containsKey(key);
+    public boolean hasAny(CommandElement.Value<?> key) {
+        return this.parsedArgs.containsKey(ArgUtils.textToArgKey(checkNotNull(key, "Must provide a non-null CommandElement").getKey()));
     }
 }

@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.item;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableEnchantmentData;
+import org.spongepowered.api.data.manipulator.mutable.ListData;
 import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.item.Enchantment;
@@ -36,13 +36,15 @@ import org.spongepowered.api.item.Enchantment;
  * <p>Some enchantments are not compatible with some item types, so checking
  * on the enchantment before setting is recommended.</p>
  */
-public interface EnchantmentData extends DataManipulator<EnchantmentData, ImmutableEnchantmentData> {
+public interface EnchantmentData extends ListData<ItemEnchantment, EnchantmentData, ImmutableEnchantmentData> {
 
     /**
      * Gets the {@link ListValue} for the {@link ItemEnchantment}s.
      *
      * @return The list value for item enchantments
      */
-    ListValue<ItemEnchantment> enchantments();
+    default ListValue<ItemEnchantment> enchantments() {
+        return getListValue();
+    }
 
 }

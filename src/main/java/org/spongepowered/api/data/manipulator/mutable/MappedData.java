@@ -22,37 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.common.collection;
+package org.spongepowered.api.data.manipulator.mutable;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.common.AbstractImmutableSingleData;
-import org.spongepowered.api.data.value.immutable.ImmutableListValue;
-import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableMappedData;
+import org.spongepowered.api.data.value.mutable.MapValue;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
-public abstract class AbstractImmutableSingleListData<E, I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>>
-    extends AbstractImmutableSingleData<List<E>, I, M> {
+public interface MappedData<K, V, M extends MappedData<K, V, M, I>,
+    I extends ImmutableMappedData<K, V, I, M>> extends DataManipulator<M, I> {
 
-    private final ImmutableListValue<E> listValue;
+    Optional<V> get(K key);
 
-    protected AbstractImmutableSingleListData(List<E> value, Key<ListValue<E>> usedKey) {
-        super(new ArrayList<>(value), usedKey);
-        this.listValue = Sponge.getRegistry().getValueFactory().createListValue(usedKey, value).asImmutable();
+    Set<K> getMapKeys();
+
+    default Set<Map.Entry<K, V>> getMapValues() {
+        return asMap().entrySet();
     }
 
-    @Override
-    protected final ImmutableListValue<E> getValueGetter() {
-        return this.listValue;
+    MapValue<K, V> getMapValue();
+
+    default Map<K, V> asMap() {
+        return getMapValue().get();
     }
 
-    @Override
-    public int compareTo(I o) {
-        final List<E> list = o.get(this.usedKey).get();
-        return Boolean.compare(list.containsAll(this.getValue()), this.getValue().containsAll(list));
-    }
+    M put(K key, V value);
+
+    M putAll(Map<? extends K, ? extends V> map);
+
+    M remove(K key);
+
 }
