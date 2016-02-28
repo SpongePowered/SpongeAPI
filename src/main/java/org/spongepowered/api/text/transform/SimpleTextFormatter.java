@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.text.transform;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayList;
@@ -47,7 +45,6 @@ public class SimpleTextFormatter implements TextFormatter<SimpleTextTemplateAppl
      * @param initialSize Initial amount of Parts
      */
     public SimpleTextFormatter(int initialSize) {
-        checkArgument(initialSize >= 0, "initial size must be greater than or equal to zero");
         this.parts = new ArrayList<>(initialSize);
         for (int i = 0; i < initialSize; i++) {
             this.parts.add(new SimpleTextTemplateApplier());

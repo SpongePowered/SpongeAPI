@@ -57,7 +57,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -82,7 +81,7 @@ import javax.annotation.Nullable;
  * @see SelectorText
  * @see ScoreText
  */
-public abstract class Text implements TextRepresentable, DataSerializable, Comparable<Text> {
+public abstract class Text implements TextRepresentable, DataSerializable {
 
     static {
         TypeSerializers.getDefaultSerializers().registerType(TypeToken.of(Text.class), new TextConfigSerializer());
@@ -270,16 +269,6 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
         return toBuilder().append(other).build();
     }
 
-    /**
-     * Removes all empty texts from the beginning and end of this
-     * text.
-     *
-     * @return Text result
-     */
-    public final Text trim() {
-        return toBuilder().trim().build();
-    }
-
     @Override
     public int getContentVersion() {
         return 1;
@@ -290,11 +279,6 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
         return new MemoryDataContainer()
                 .set(Queries.CONTENT_VERSION, getContentVersion())
                 .set(Queries.JSON, TextSerializers.JSON.serialize(this));
-    }
-
-    @Override
-    public int compareTo(Text o) {
-        return PLAIN_COMPARATOR.compare(this, o);
     }
 
     @Override
@@ -700,32 +684,6 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
          */
         public Builder removeAll() {
             this.children.clear();
-            return this;
-        }
-
-        /**
-         * Removes all empty texts from the beginning and end of this
-         * builder.
-         *
-         * @return This builder
-         */
-        public Builder trim() {
-            Iterator<Text> front = this.children.iterator();
-            while (front.hasNext()) {
-                if (front.next().isEmpty()) {
-                    front.remove();
-                } else {
-                    break;
-                }
-            }
-            ListIterator<Text> back = this.children.listIterator(this.children.size());
-            while (back.hasPrevious()) {
-                if (back.next().isEmpty()) {
-                    back.remove();
-                } else {
-                    break;
-                }
-            }
             return this;
         }
 

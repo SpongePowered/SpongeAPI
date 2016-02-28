@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.text.transform;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import com.google.common.collect.ImmutableList;
 
 import java.util.Collection;
@@ -39,7 +37,6 @@ public class FixedPartitionedTextFormatter implements PartitionedTextFormatter<S
     final SimpleTextFormatter[] partitions;
 
     public FixedPartitionedTextFormatter(int size) {
-        checkArgument(size >= 0, "size must be greater than or equal to zero");
         this.partitions = new SimpleTextFormatter[size];
         for (int i = 0; i < size; i++) {
             this.partitions[i] = new SimpleTextFormatter();
@@ -87,7 +84,7 @@ public class FixedPartitionedTextFormatter implements PartitionedTextFormatter<S
     @Override
     public boolean contains(SimpleTextFormatter element) {
         for (SimpleTextFormatter partition : this) {
-            if (partition.equals(element)) {
+            if (element.equals(partition)) {
                 return true;
             }
         }

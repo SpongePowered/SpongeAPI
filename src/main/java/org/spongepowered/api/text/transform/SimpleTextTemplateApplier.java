@@ -43,7 +43,8 @@ public class SimpleTextTemplateApplier implements TextTemplateApplier {
     protected TextTemplate template;
 
     public SimpleTextTemplateApplier(TextTemplate template) {
-        this.template = checkNotNull(template, "template");
+        checkNotNull(template, "template");
+        this.template = template;
     }
 
     public SimpleTextTemplateApplier() {
@@ -68,7 +69,8 @@ public class SimpleTextTemplateApplier implements TextTemplateApplier {
 
     @Override
     public void setTemplate(TextTemplate template) {
-        this.template = checkNotNull(template, "template");
+        checkNotNull(template, "template");
+        this.template = template;
     }
 
 }

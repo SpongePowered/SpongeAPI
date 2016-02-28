@@ -79,5 +79,6 @@ public interface MessageChannelEvent extends MessageEvent {
          * @return The raw message
          */
         Text getRawMessage();
+
     }
 }

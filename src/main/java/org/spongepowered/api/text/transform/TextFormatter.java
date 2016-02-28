@@ -313,7 +313,7 @@ public interface TextFormatter<E extends TextRepresentable> extends TextRepresen
         for (E e : this) {
             text = text.concat(e.toText());
         }
-        return text.trim();
+        return text;
     }
 
     @Override

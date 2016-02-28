@@ -25,8 +25,10 @@
 package org.spongepowered.api.event.achievement;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
+import org.spongepowered.api.event.impl.AbstractMessageEvent;
+import org.spongepowered.api.event.message.MessageChannelEvent;
+import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 import org.spongepowered.api.statistic.achievement.Achievement;
 
 /**
@@ -41,6 +43,7 @@ public interface GrantAchievementEvent extends MessageChannelEvent, Cancellable 
      */
     Achievement getAchievement();
 
+    @ImplementedBy(AbstractMessageEvent.class)
     interface TargetPlayer extends GrantAchievementEvent, TargetPlayerEvent {}
 
 }

@@ -73,7 +73,14 @@ public class SpongeEventFactoryTest {
     private static List<Extent> extents = new ArrayList<>();
 
     private static final Answer<Object> EVENT_MOCKING_ANSWER = (invoc -> {
-        return invoc.getMethod().getReturnType().equals(Class.class) ? PEBKACException.class : Mockito.RETURNS_MOCKS.answer(invoc);
+        Class<?> clazz = invoc.getMethod().getReturnType();
+
+        if (clazz.equals(Class.class)) {
+            return PEBKACException.class;
+        } else if (clazz.equals(Text.class)) {
+            return Text.of();
+        }
+        return Mockito.RETURNS_MOCKS.answer(invoc);
     });
 
     @Parameterized.Parameters(name = "{0}")

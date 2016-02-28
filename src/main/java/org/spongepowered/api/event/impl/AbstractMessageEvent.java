@@ -22,17 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.humanoid.player;
+package org.spongepowered.api.event.impl;
 
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.impl.AbstractMessageEvent;
-import org.spongepowered.api.event.message.MessageChannelEvent;
-import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
+import org.spongepowered.api.event.message.MessageEvent;
+import org.spongepowered.api.eventgencore.annotation.UseField;
+import org.spongepowered.api.text.Text;
 
 /**
- * Fired when a {@link Player} is kicked.
+ * Abstract implementation of {@link MessageEvent}. Contains a
+ * {@link MessageFormatter} instance to hold the message data.
  */
-@ImplementedBy(AbstractMessageEvent.class)
-public interface KickPlayerEvent extends TargetPlayerEvent, MessageChannelEvent {
+@SuppressWarnings("NullableProblems")
+public abstract class AbstractMessageEvent extends AbstractEvent implements MessageEvent {
+
+    @UseField protected MessageFormatter formatter;
+    @UseField protected Text originalMessage;
+
+    @Override
+    protected final void init() {
+        this.originalMessage = this.formatter.format();
+    }
 
 }

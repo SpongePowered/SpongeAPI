@@ -60,17 +60,16 @@ import java.util.Map;
 public class TextTemplateConfigSerializer implements TypeSerializer<TextTemplate> {
 
     private static final String NODE_CONTENT = "content";
-
     private static final String NODE_ARGS = "arguments";
     private static final String NODE_OPT = "optional";
     private static final String NODE_DEF_VAL = "defaultValue";
-
     private static final String NODE_OPTIONS = "options";
     private static final String NODE_OPEN_ARG = "openArg";
     private static final String NODE_CLOSE_ARG = "closeArg";
 
     private static final TypeToken<Text> TOKEN_TEXT = TypeToken.of(Text.class);
-    private static final TypeToken<Map<String, TextTemplate.Arg>> TOKEN_ARGS = new TypeToken<Map<String, TextTemplate.Arg>>() {};
+    private static final TypeToken<Map<String, TextTemplate.Arg>> TOKEN_ARGS
+            = new TypeToken<Map<String, TextTemplate.Arg>>() {};
 
     @SuppressWarnings("NullableProblems") private ConfigurationNode root;
     @SuppressWarnings("NullableProblems") private String openArg;

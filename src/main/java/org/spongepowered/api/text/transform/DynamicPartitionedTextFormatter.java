@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.text.transform;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayList;
@@ -41,7 +39,6 @@ public class DynamicPartitionedTextFormatter implements PartitionedTextFormatter
     protected final List<SimpleTextFormatter> partitions;
 
     public DynamicPartitionedTextFormatter(int initialSize) {
-        checkArgument(initialSize >= 0, "initial size must be greater than or equal to zero");
         this.partitions = new ArrayList<>(initialSize);
         for (int i = 0; i < initialSize; i++) {
             this.partitions.add(new SimpleTextFormatter());
