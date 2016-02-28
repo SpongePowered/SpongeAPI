@@ -139,17 +139,6 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent a dimension.
-     * Gives values of tye {@link DimensionType}
-     *
-     * @param key The key to store under
-     * @return the argument
-     */
-    public static CommandElement.Value<Collection<? extends DimensionType>> dimension(Text key) {
-        return catalogedElement(key, DimensionType.class);
-    }
-
-    /**
      * Expect an argument to represent a {@link Vector3d}.
      *
      * @param key The key to store under
@@ -974,7 +963,7 @@ public final class GenericArguments {
 
         protected WorldPropertiesCommandElement(Text key) {
             super(key);
-            this.dimensionTypeElement = onlyOne(dimension(key));
+            this.dimensionTypeElement = onlyOne(catalogedElement(key, DimensionType.class));
         }
 
         @Override
