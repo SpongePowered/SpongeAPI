@@ -704,6 +704,34 @@ public final class GenericArguments {
     }
 
     /**
+     * Require an argument to be a long (base 10).
+     * Gives values of type {@link Integer}
+     *
+     * @param key The key to store the parsed argument under
+     * @return the element to match the input
+     */
+    public static CommandElement longNum(Text key) {
+        return new LongElement(key);
+    }
+
+    private static class LongElement extends KeyElement {
+
+        private LongElement(Text key) {
+            super(key);
+        }
+
+        @Override
+        public Long parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            final String input = args.next();
+            try {
+                return Long.parseLong(input);
+            } catch (NumberFormatException ex) {
+                throw args.createError(t("Expected a long, but input '%s' was not", input));
+            }
+        }
+    }
+
+    /**
      * Require an argument to be an double-precision floating point number.
      * Gives values of type {@link Double}
      *
