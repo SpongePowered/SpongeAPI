@@ -22,50 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.plugin;
-
-import org.slf4j.Logger;
-
-import java.util.Collection;
-import java.util.Optional;
+package org.spongepowered.plugin.processor;
 
 /**
- * The manager that manages plugins. This manager can retrieve
- * {@link PluginContainer}s from {@link Plugin} instances, getting
- * {@link Logger}s, etc.
+ * Thrown if an exception occurs in the plugin annotation processor.
  */
-public interface PluginManager {
+final class PluginProcessExeption extends RuntimeException {
 
-    /**
-     * Get the plugin container from an instance.
-     *
-     * @param instance The instance
-     * @return The container
-     */
-    Optional<PluginContainer> fromInstance(Object instance);
+    private static final long serialVersionUID = -8573308144869929605L;
 
-    /**
-     * Retrieves a {@link PluginContainer} based on its ID.
-     *
-     * @param id The plugin ID
-     * @return The plugin, if available
-     */
-    Optional<PluginContainer> getPlugin(String id);
+    public PluginProcessExeption() {
+    }
 
-    /**
-     * Gets a {@link Collection} of all {@link PluginContainer}s.
-     *
-     * @return The plugins
-     */
-    Collection<PluginContainer> getPlugins();
+    public PluginProcessExeption(String message) {
+        super(message);
+    }
 
-    /**
-     * Checks if a plugin is loaded based on its ID.
-     * This may contain plugins/mods from other systems in some implementations.
-     *
-     * @param id the id of the {@link Plugin}
-     * @return {@code true} if loaded {@code false} if not loaded.
-     */
-    boolean isLoaded(String id);
+    public PluginProcessExeption(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public PluginProcessExeption(Throwable cause) {
+        super(cause);
+    }
 
 }

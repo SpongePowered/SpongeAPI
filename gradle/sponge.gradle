@@ -35,7 +35,7 @@ dependencies {
 }
 
 // Source compiler configuration
-configure([compileJava, compileTestJava]) {
+tasks.withType(JavaCompile) {
     options.compilerArgs += ['-Xlint:all', '-Xlint:-path']
     options.deprecation = true
     options.encoding = 'UTF-8'
