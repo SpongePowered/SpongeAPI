@@ -29,10 +29,10 @@ import org.spongepowered.api.item.inventory.type.CarriedInventory;
 
 /**
  * Represents a minecart with a container inside it. Common extensions
- * of this are: {@link MinecartChest} and {@link MinecartHopper}.
+ * of this are: {@link ChestMinecart} and {@link HopperMinecart}.
  */
-public interface MinecartContainer extends Minecart, Carrier {
+public interface ContainerMinecart extends Minecart, Carrier {
 
     @Override
-    CarriedInventory<MinecartContainer> getInventory();
+    CarriedInventory<ContainerMinecart> getInventory();
 }

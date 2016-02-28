@@ -45,8 +45,8 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
-import org.spongepowered.api.entity.vehicle.minecart.MinecartCommandBlock;
 import org.spongepowered.api.extra.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
@@ -169,7 +169,7 @@ public final class Keys {
 
     /**
      * Represents a key for the stored command, mostly related to
-     * {@link CommandBlock}s and {@link MinecartCommandBlock}s.
+     * {@link CommandBlock}s and {@link CommandBlockMinecart}s.
      *
      * @see CommandData#storedCommand()
      */
@@ -832,7 +832,7 @@ public final class Keys {
 
     /**
      * Reprsents a key for the amount of successful executions of a command
-     * stored in a {@link CommandBlock} or {@link MinecartCommandBlock}.
+     * stored in a {@link CommandBlock} or {@link CommandBlockMinecart}.
      *
      * @see CommandData#successCount()
      */
