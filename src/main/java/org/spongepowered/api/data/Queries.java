@@ -75,6 +75,9 @@ public final class Queries {
     public static final DataQuery CREATOR_ID = of("Creator");
     public static final DataQuery NOTIFIER_ID = of("Notifier");
 
+    // Text
+    public static final DataQuery JSON = of("JSON");
+
     private Queries() {
     }
 

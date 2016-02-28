@@ -29,6 +29,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterators;
+import com.google.common.reflect.TypeToken;
+import ninja.leaping.configurate.objectmapping.serialize.TypeSerializers;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.MemoryDataContainer;
+import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
@@ -39,6 +45,7 @@ import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.format.TextStyles;
 import org.spongepowered.api.text.selector.Selector;
+import org.spongepowered.api.text.serializer.TextConfigSerializer;
 import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
@@ -50,7 +57,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -75,7 +81,11 @@ import javax.annotation.Nullable;
  * @see SelectorText
  * @see ScoreText
  */
-public abstract class Text implements TextRepresentable {
+public abstract class Text implements TextRepresentable, DataSerializable {
+
+    static {
+        TypeSerializers.getDefaultSerializers().registerType(TypeToken.of(Text.class), new TextConfigSerializer());
+    }
 
     /**
      * The empty, unformatted {@link Text} instance.
@@ -248,6 +258,29 @@ public abstract class Text implements TextRepresentable {
         return TextSerializers.PLAIN.serialize(this);
     }
 
+    /**
+     * Concatenates the specified {@link Text} to this Text and returns the
+     * result.
+     *
+     * @param other To concatenate
+     * @return Concatenated text
+     */
+    public final Text concat(Text other) {
+        return toBuilder().append(other).build();
+    }
+
+    @Override
+    public int getContentVersion() {
+        return 1;
+    }
+
+    @Override
+    public DataContainer toContainer() {
+        return new MemoryDataContainer()
+                .set(Queries.CONTENT_VERSION, getContentVersion())
+                .set(Queries.JSON, TextSerializers.JSON.serialize(this));
+    }
+
     @Override
     public boolean equals(@Nullable Object o) {
         if (this == o) {
@@ -299,7 +332,6 @@ public abstract class Text implements TextRepresentable {
 
         TextFormat format = TextFormat.NONE;
         List<Text> children = new ArrayList<>();
-        List<LiteralText> vars = new ArrayList<>();
         @Nullable ClickAction<?> clickAction;
         @Nullable HoverAction<?> hoverAction;
         @Nullable ShiftClickAction<?> shiftClickAction;
@@ -656,52 +688,6 @@ public abstract class Text implements TextRepresentable {
         }
 
         /**
-         * Appends a variable {@link LiteralText} to this builder. The appended
-         * variables will be formatted by {@link #build(Object...)} and should
-         * contain a Java format string.
-         *
-         * @param var Variable to append
-         * @return This text builder
-         */
-        public Builder var(LiteralText var) {
-            append(var);
-            this.vars.add(var);
-            return this;
-        }
-
-        /**
-         * Formats existing variables within this builder and builds an
-         * immutable instance of the current state of this text builder.
-         *
-         * @return An immutable {@link Text} with the current properties of this
-         *         builder
-         */
-        public Text build(Object... params) {
-            for (int i = 0; i < this.vars.size(); i++) {
-                if (i >= params.length) {
-                    break;
-                }
-
-                LiteralText var = this.vars.get(i);
-                ListIterator<Text> iter = this.children.listIterator();
-                while (iter.hasNext()) {
-                    Text child = iter.next();
-                    if (child == var) {
-                        iter.set(new LiteralText(
-                                var.format,
-                                var.children,
-                                var.clickAction.orElse(null),
-                                var.hoverAction.orElse(null),
-                                var.shiftClickAction.orElse(null),
-                                String.format(var.getContent(), params[i])));
-                        break;
-                    }
-                }
-            }
-            return build();
-        }
-
-        /**
          * Builds an immutable instance of the current state of this text
          * builder.
          *
@@ -849,12 +835,20 @@ public abstract class Text implements TextRepresentable {
      * Builds a {@link Text} from a given array of objects.
      *
      * <p>For instance, you can use this like
-     * <code>Texts.of(TextColors.DARK_AQUA, "Hi", TextColors.AQUA, "Bye")</code>
+     * <code>Text.of(TextColors.DARK_AQUA, "Hi", TextColors.AQUA, "Bye")</code>
      * </p>
      *
      * <p>This will create the correct {@link Text} instance if the input object
      * is the input for one of the {@link Text} types or convert the object to a
      * string otherwise.</p>
+     *
+     * <p>For instances of type {@link TextRepresentable} (e.g. {@link Text},
+     * {@link Builder}, ...) the formatting of appended text has priority over
+     * the current formatting in the method, e.g. the following results in a
+     * green, then yellow and at the end green again {@link Text}:</p>
+     *
+     * <code>Text.of(TextColors.GREEN, "Hello ", Text.of(TextColors.YELLOW,
+     * "Spongie"), '!');</code>
      *
      * @param objects The object array
      * @return The built text object
@@ -899,18 +893,21 @@ public abstract class Text implements TextRepresentable {
                 // Special content
                 changedFormat = false;
                 Text.Builder childBuilder = ((TextRepresentable) obj).toText().toBuilder();
-                // Overwrite TextActions if present
-                if (hoverAction != null) {
-                    childBuilder.onHover(hoverAction);
+
+                // Merge format (existing format has priority)
+                childBuilder.format(format.merge(childBuilder.format));
+
+                // Overwrite text actions if *NOT* present
+                if (childBuilder.clickAction == null) {
+                    childBuilder.clickAction = clickAction;
                 }
-                if (clickAction != null) {
-                    childBuilder.onClick(clickAction);
+                if (childBuilder.hoverAction == null) {
+                    childBuilder.hoverAction = hoverAction;
                 }
-                if (shiftClickAction != null) {
-                    childBuilder.onShiftClick(shiftClickAction);
+                if (childBuilder.shiftClickAction == null) {
+                    childBuilder.shiftClickAction = shiftClickAction;
                 }
-                // Merge instead of overwrite format
-                childBuilder.format(childBuilder.getFormat().merge(format));
+
                 builder.append(childBuilder.build());
 
             } else {

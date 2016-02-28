@@ -33,6 +33,7 @@ import static org.spongepowered.api.command.args.GenericArguments.integer;
 import static org.spongepowered.api.command.args.GenericArguments.none;
 import static org.spongepowered.api.command.args.GenericArguments.string;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -48,7 +49,7 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.args.parsing.InputTokenizers;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
-import org.spongepowered.api.util.test.TestHooks;
+import org.spongepowered.api.text.TestPlainTextSerializer;
 
 
 /**
@@ -59,8 +60,9 @@ public class CommandFlagsTest {
     public final ExpectedException expected = ExpectedException.none();
     private static final CommandSource TEST_SOURCE = Mockito.mock(CommandSource.class);
 
-    static {
-        TestHooks.initialize();
+    @Before
+    public void initialize() throws Exception {
+        TestPlainTextSerializer.inject();
     }
 
     @Test

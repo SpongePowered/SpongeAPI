@@ -27,9 +27,9 @@ package org.spongepowered.api.effect.potion;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.mutable.PotionEffectData;
+import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.property.PropertyHolder;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.persistence.DataBuilder;
 
 /**
  * Represents an effect of a {@link PotionEffectType} for a specified
