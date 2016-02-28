@@ -57,7 +57,7 @@ public interface AITask<O extends Agent> {
      * @return The owner or {@link Optional#empty()} if not present
      */
     default Optional<O> getOwner() {
-        return getGoal().isPresent() ? Optional.of(getGoal().get().getOwner()) : Optional.empty();
+    	return getGoal().map(Goal::getOwner);
     }
 
     /**
