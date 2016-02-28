@@ -25,8 +25,8 @@
 package org.spongepowered.api.event.achievement;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
+import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.statistic.achievement.Achievement;
 
 /**

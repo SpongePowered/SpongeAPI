@@ -29,16 +29,16 @@ import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.message.MessageEvent;
-import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
+import org.spongepowered.api.event.message.MessageChannelEvent;
+import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.event.user.TargetUserEvent;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.service.whitelist.WhitelistService;
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.world.World;
 
 import java.net.InetAddress;
@@ -97,7 +97,7 @@ public interface ClientConnectionEvent extends Event {
      * ({@link GameProfile} or {@link InetAddress} has an ban, or is
      * not on the whitelist), then this event will automatically cancelled by
      * the {@link Platform#getImplementation() 'game' plugin}, with the proper
-     * message set through {@link MessageEvent#setMessage(Text)}. No action
+     * message set through {@link MessageEvent#setMessage(TextRepresentable)}. No action
      * on the part of the registered {@link BanService} or
      * {@link WhitelistService} is required for this to occur.
      *
@@ -156,4 +156,5 @@ public interface ClientConnectionEvent extends Event {
      * Called when a {@link Player} disconnects from the game.
      */
     interface Disconnect extends ClientConnectionEvent, TargetPlayerEvent, MessageChannelEvent {}
+
 }

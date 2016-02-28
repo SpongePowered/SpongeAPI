@@ -22,22 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.impl;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.entity.living.TargetLivingEvent;
-import org.spongepowered.api.event.message.MessageChannelEvent;
+import org.spongepowered.api.event.message.MessageEvent;
+import org.spongepowered.api.eventgencore.annotation.UseField;
+import org.spongepowered.api.text.Text;
 
 /**
- * An event where the {@link Entity} is being either removed usually due to
- * the {@link Entity} being marked as "dead". Happens before {@link HarvestEntityEvent}.
+ * Abstract implementation of {@link MessageEvent}. Contains a
+ * {@link MessageFormatter} instance to hold the message data.
  */
-public interface DestructEntityEvent extends TargetEntityEvent, MessageChannelEvent {
+@SuppressWarnings("NullableProblems")
+public abstract class AbstractMessageEvent extends AbstractEvent implements MessageEvent {
 
-    /**
-     * A derivative of {@link DestructEntityEvent} where the removal of the {@link Living}, the {@link TargetLivingEvent#getTargetEntity()},
-     * is due to it losing its health.
-     */
-    interface Death extends DestructEntityEvent, TargetLivingEvent {}
+    @UseField protected MessageFormatter formatter;
+    @UseField protected Text originalMessage;
+
+    @Override
+    protected final void init() {
+        this.originalMessage = this.formatter.format();
+    }
+
 }
