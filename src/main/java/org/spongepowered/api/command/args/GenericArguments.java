@@ -134,6 +134,7 @@ public final class GenericArguments {
     }
 
     /**
+<<<<<<< HEAD
      * Expect an argument to represent a dimension.
      * Gives values of tye {@link DimensionType}
      *
@@ -145,6 +146,8 @@ public final class GenericArguments {
     }
 
     /**
+=======
+>>>>>>> cd84596... Remove specific dimension arg factory method
      * Expect an argument to represent a {@link Vector3d}.
      *
      * @param key The key to store under
@@ -1024,7 +1027,7 @@ public final class GenericArguments {
 
         protected WorldPropertiesCommandElement(@Nullable Text key) {
             super(key);
-            this.dimensionTypeElement = dimension(key);
+            this.dimensionTypeElement = onlyOne(catalogedElement(key, DimensionType.class));
         }
 
         @Nullable
