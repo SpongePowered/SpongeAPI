@@ -188,7 +188,7 @@ public final class GenericArguments {
      * @param key The key to store under
      * @return the argument
      */
-    public static CommandElement.Value<Collection<Location>> location(Text key) {
+    public static CommandElement.Value<Collection<Location<World>>> location(Text key) {
         return new LocationCommandElement(key);
     }
 
@@ -1259,7 +1259,7 @@ public final class GenericArguments {
      *     <li>#me: Location of the current source</li>
      * </ul>
      */
-    private static class LocationCommandElement extends CommandElement.Value<Collection<Location>> {
+    private static class LocationCommandElement extends CommandElement.Value<Collection<Location<World>>> {
         private final WorldPropertiesCommandElement worldParser;
         private final Vector3dCommandElement vectorParser;
 
@@ -1270,7 +1270,7 @@ public final class GenericArguments {
         }
 
         @Override
-        protected Collection<Location> parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+        protected Collection<Location<World>> parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             Object state = args.getState();
             if (args.peek().startsWith("@")) { // We are a selector
                 return Selector.parse(args.next()).resolve(source).stream()
@@ -1400,7 +1400,7 @@ public final class GenericArguments {
         }
 
         @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) throws ArgumentParseException {
             return this.element.complete(src, args, context);
         }
     }
