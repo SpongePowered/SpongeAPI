@@ -154,7 +154,7 @@ public final class GenericArguments {
      * @param key The key to store under
      * @return the argument
      */
-    public static CommandElement.Value<Location> location(Text key) {
+    public static CommandElement.Value<Location<World>> location(Text key) {
         return new LocationCommandElement(key);
     }
 
@@ -1113,7 +1113,7 @@ public final class GenericArguments {
      *     <li>#me: Location of the current source</li>
      * </ul>
      */
-    private static class LocationCommandElement extends CommandElement.Value<Location> {
+    private static class LocationCommandElement extends CommandElement.Value<Location<World>> {
         private final WorldPropertiesCommandElement worldParser;
         private final Vector3dCommandElement vectorParser;
 
@@ -1124,7 +1124,7 @@ public final class GenericArguments {
         }
 
         @Override
-        protected Location parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+        protected Location<World> parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             Object state = args.getState();
             Object world;
             Object vec = null;
