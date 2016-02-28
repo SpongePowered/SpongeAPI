@@ -32,6 +32,7 @@ import static org.spongepowered.api.command.args.GenericArguments.choices;
 import static org.spongepowered.api.command.args.GenericArguments.enumValue;
 import static org.spongepowered.api.command.args.GenericArguments.firstParsing;
 import static org.spongepowered.api.command.args.GenericArguments.integer;
+import static org.spongepowered.api.command.args.GenericArguments.longNum;
 import static org.spongepowered.api.command.args.GenericArguments.none;
 import static org.spongepowered.api.command.args.GenericArguments.onlyOne;
 import static org.spongepowered.api.command.args.GenericArguments.optional;
@@ -172,6 +173,16 @@ public class GenericArgumentsTest {
         CommandElement.Value<Integer> el = integer(untr("a value"));
         CommandContext context = parseForInput("52", el);
         assertEquals(52, context.get(el).intValue());
+
+        this.expected.expect(ArgumentParseException.class);
+        parseForInput("notanumber", integer(untr("a value")));
+    }
+
+    @Test
+    public void testLong() throws ArgumentParseException {
+        CommandElement.Value<Long> el = longNum(untr("a value"));
+        CommandContext context = parseForInput("524903294023901", el);
+        assertEquals(524903294023901L, context.get(el).longValue());
 
         this.expected.expect(ArgumentParseException.class);
         parseForInput("notanumber", integer(untr("a value")));
