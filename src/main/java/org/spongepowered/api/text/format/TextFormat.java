@@ -27,11 +27,13 @@ package org.spongepowered.api.text.format;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextElement;
 
 /**
  * Represents a pair of {@link TextStyle} and {@link TextColor}.
  */
-public final class TextFormat {
+public final class TextFormat implements TextElement {
 
     /**
      * An empty {@link TextFormat} with no {@link TextColor} and no {@link TextStyle}.
@@ -154,6 +156,11 @@ public final class TextFormat {
      */
     public boolean isEmpty() {
         return this.color == TextColors.NONE && this.style.isEmpty();
+    }
+
+    @Override
+    public void applyTo(Text.Builder builder) {
+        builder.format(this);
     }
 
     @Override

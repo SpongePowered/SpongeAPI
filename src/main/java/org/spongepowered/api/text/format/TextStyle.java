@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.Objects;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextElement;
 import org.spongepowered.api.util.OptBool;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -58,7 +59,7 @@ import javax.annotation.Nullable;
  * @see TextStyles
  */
 @CatalogedBy(TextStyles.class)
-public class TextStyle {
+public class TextStyle implements TextElement {
 
     /**
      * Whether text where this style is applied is bolded.
@@ -406,6 +407,11 @@ public class TextStyle {
                 strikethroughAcc,
                 obfuscatedAcc
         );
+    }
+
+    @Override
+    public void applyTo(Text.Builder builder) {
+        builder.style(this);
     }
 
     @Override

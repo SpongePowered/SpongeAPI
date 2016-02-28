@@ -22,45 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.action;
-
-import org.spongepowered.api.text.Text;
+package org.spongepowered.api.text;
 
 /**
- * Represents a {@link TextAction} that responds to shift-clicks.
- *
- * @param <R> the type of the result of the action
+ * Represents anything that can be applied to a {@link Text.Builder}.
  */
-public abstract class ShiftClickAction<R> extends TextAction<R> {
+public interface TextElement {
 
     /**
-     * Constructs a new {@link ShiftClickAction} with the given result.
+     * Applies this element to the end of the specified builder.
      *
-     * @param result The result of the shift click action
+     * @param builder Text builder to apply to
      */
-    ShiftClickAction(R result) {
-        super(result);
-    }
+    void applyTo(Text.Builder builder);
 
-    @Override
-    public void applyTo(Text.Builder builder) {
-        builder.onShiftClick(this);
-    }
-
-    /**
-     * Inserts some text into the chat prompt.
-     */
-    public static final class InsertText extends ShiftClickAction<String> {
-
-        /**
-         * Constructs a new {@link InsertText} instance that will insert text at
-         * the current cursor position in the chat when it is shift-clicked.
-         *
-         * @param text The text to insert
-         */
-        InsertText(String text) {
-            super(text);
-        }
-
-    }
 }

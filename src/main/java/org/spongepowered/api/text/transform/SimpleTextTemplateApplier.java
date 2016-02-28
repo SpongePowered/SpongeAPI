@@ -22,70 +22,53 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.action;
+package org.spongepowered.api.text.transform;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Objects;
-import org.spongepowered.api.text.Text;
+import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.text.TextElement;
+import org.spongepowered.api.text.TextTemplate;
 
-import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Represents an action happening as a response to an event on a {@link Text}.
- *
- * @param <R> The type of the result
- *
- * @see ClickAction
- * @see HoverAction
- * @see ShiftClickAction
+ * A basic implementation of {@link TextTemplateApplier} backed by a {@link HashMap} and
+ * an empty {@link TextTemplate} by default.
  */
-public abstract class TextAction<R> implements TextElement {
+public class SimpleTextTemplateApplier implements TextTemplateApplier {
 
-    protected final R result;
+    protected final Map<String, TextElement> params = new HashMap<>();
+    protected TextTemplate template;
 
-    /**
-     * Constructs a new {@link TextAction} with the given result.
-     *
-     * @param result The result of the text action
-     */
-    protected TextAction(R result) {
-        this.result = checkNotNull(result, "result");
+    public SimpleTextTemplateApplier(TextTemplate template) {
+        this.template = checkNotNull(template, "template");
     }
 
-    /**
-     * Returns the result of this {@link TextAction}.
-     *
-     * @return The result
-     */
-    public final R getResult() {
-        return this.result;
+    public SimpleTextTemplateApplier() {
+        this(TextTemplate.EMPTY);
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        TextAction<?> that = (TextAction<?>) o;
-        return this.result.equals(that.result);
+    public ImmutableMap<String, TextElement> getParameters() {
+        return ImmutableMap.copyOf(this.params);
     }
 
     @Override
-    public int hashCode() {
-        return this.result.hashCode();
+    public void setParameter(String key, TextElement value) {
+        checkNotNull(key, "key");
+        this.params.put(key, value);
     }
 
     @Override
-    public String toString() {
-        return Objects.toStringHelper(this)
-                .addValue(this.result)
-                .toString();
+    public TextTemplate getTemplate() {
+        return this.template;
+    }
+
+    @Override
+    public void setTemplate(TextTemplate template) {
+        this.template = checkNotNull(template, "template");
     }
 
 }
