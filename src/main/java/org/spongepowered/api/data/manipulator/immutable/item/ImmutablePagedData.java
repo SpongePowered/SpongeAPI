@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.immutable.item;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
 import org.spongepowered.api.data.manipulator.mutable.item.PagedData;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 import org.spongepowered.api.item.ItemTypes;
@@ -38,13 +39,15 @@ import java.util.List;
  * {@link Text} for an {@link ItemStack} of type {@link ItemTypes#WRITABLE_BOOK}
  * such that the text elements are single pages.
  */
-public interface ImmutablePagedData extends ImmutableDataManipulator<ImmutablePagedData, PagedData> {
+public interface ImmutablePagedData extends ImmutableListData<Text, ImmutablePagedData, PagedData> {
 
     /**
      * Gets the {@link ImmutableListValue} for the {@link Text} pages.
      *
      * @return The immutable list value of text pages
      */
-    ImmutableListValue<Text> pages();
+    default ImmutableListValue<Text> pages() {
+        return getListValue();
+    }
 
 }

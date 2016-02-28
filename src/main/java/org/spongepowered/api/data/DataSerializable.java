@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.util.persistence.DataContentUpdater;
+import org.spongepowered.api.data.persistence.DataContentUpdater;
 
 /**
  * Represents an object that can be represented by a {@link DataContainer}.

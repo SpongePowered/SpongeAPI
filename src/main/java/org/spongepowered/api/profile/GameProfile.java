@@ -24,12 +24,20 @@
  */
 package org.spongepowered.api.profile;
 
+import com.google.common.collect.Multimap;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.service.user.UserStorageService;
 import org.spongepowered.api.util.Identifiable;
 
+import java.util.Optional;
+import java.util.UUID;
+
+import javax.annotation.Nullable;
+
 /**
- * Represents a name and an associated unique identifier.
+ * Represents a profile of a user.
  *
  * <p>Use the {@link UserStorageService} service to
  * obtain the stored data associated with a profile.</p>
@@ -37,9 +45,42 @@ import org.spongepowered.api.util.Identifiable;
 public interface GameProfile extends Identifiable, DataSerializable {
 
     /**
-     * Gets the player's last known username.
+     * Creates a {@link GameProfile} from the provided ID and name.
      *
-     * @return The player's last known username
+     * @param uniqueId The unique ID
+     * @param name The name
+     * @return The created profile
      */
-    String getName();
+    static GameProfile of(UUID uniqueId, @Nullable String name) {
+        return Sponge.getServer().getGameProfileManager().createProfile(uniqueId, name);
+    }
+
+    /**
+     * Gets the name associated with this profile.
+     *
+     * @return The associated name if present, otherwise {@link Optional#empty()}
+     */
+    Optional<String> getName();
+
+    /**
+     * Gets the property map for this profile.
+     *
+     * <p>This is a mutable map.</p>
+     *
+     * @return The property map
+     */
+    Multimap<String, ProfileProperty> getPropertyMap();
+
+    /**
+     * Checks if this profile is filled.
+     *
+     * <p>A filled profile contains both a unique id and name.</p>
+     *
+     * @return {@code true} if this profile is filled
+     * @see GameProfileManager#fill(GameProfile)
+     * @see GameProfileManager#fill(GameProfile, boolean)
+     * @see GameProfileManager#fill(GameProfile, boolean, boolean)
+     */
+    boolean isFilled();
+
 }

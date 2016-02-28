@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.immutable.item;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
 import org.spongepowered.api.data.manipulator.mutable.item.EnchantmentData;
 import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
@@ -34,13 +35,15 @@ import org.spongepowered.api.item.inventory.ItemStack;
  * An {@link ImmutableDataManipulator} for the various {@link ItemEnchantment}s
  * that can exist on an {@link ItemStack}.
  */
-public interface ImmutableEnchantmentData extends ImmutableDataManipulator<ImmutableEnchantmentData, EnchantmentData> {
+public interface ImmutableEnchantmentData extends ImmutableListData<ItemEnchantment, ImmutableEnchantmentData, EnchantmentData> {
 
     /**
      * Gets the {@link ImmutableListValue} for the {@link ItemEnchantment}s.
      *
      * @return The immutable list value for item enchantments
      */
-    ImmutableListValue<ItemEnchantment> enchantments();
+    default ImmutableListValue<ItemEnchantment> enchantments() {
+        return getListValue();
+    }
 
 }

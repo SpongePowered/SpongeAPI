@@ -35,15 +35,14 @@ public interface BlockSpawnCause extends SpawnCause {
 
     BlockSnapshot getBlockSnapshot();
 
-    interface Builder extends SpawnCause.Builder {
+    interface BlockSpawnCauseBuilder<T extends BlockSpawnCause, B extends BlockSpawnCauseBuilder<T, B>> extends
+            SpawnCauseBuilder<T, B> {
 
-        Builder block(BlockSnapshot blockSnapshot);
+        B block(BlockSnapshot blockSnapshot);
 
-        @Override
-        Builder type(SpawnType spawnType);
+    }
 
-        @Override
-        BlockSpawnCause build();
+    interface Builder extends BlockSpawnCauseBuilder<BlockSpawnCause, Builder> {
 
     }
 }

@@ -20,11 +20,17 @@ buildscript {
     }
 }
 
-version = '3.1.0-SNAPSHOT'
+version = '4.0.0-SNAPSHOT'
 
 // Include shared Gradle configuration
 ext.api = project
 apply from: 'gradle/sponge.gradle'
+
+sourceSets {
+    ap {
+        compileClasspath += main.compileClasspath + main.output
+    }
+}
 
 // Project dependencies
 dependencies {
@@ -41,6 +47,9 @@ dependencies {
     // Dependency injection
     compile 'com.google.inject:guice:4.0'
 
+    // Plugin meta
+    compile 'org.spongepowered:plugin-meta:0.1-SNAPSHOT'
+
     // Configuration
     compile 'ninja.leaping.configurate:configurate-hocon:3.1.1'
     compile 'ninja.leaping.configurate:configurate-gson:3.1.1'
@@ -56,6 +65,8 @@ dependencies {
 
 // JAR manifest configuration
 jar {
+    from sourceSets.ap.output
+
     manifest {
         attributes('Main-Class': 'org.spongepowered.api.util.InformativeMain')
     }
@@ -64,6 +75,7 @@ jar {
 task sourceJar(type: Jar) {
     classifier = 'sources'
     from sourceSets.main.allSource
+    from sourceSets.ap.allSource
 }
 
 artifacts {
@@ -111,6 +123,7 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 shadowJar {
     classifier = 'shaded'
+    from sourceSets.ap.output
 }
 
 artifacts {

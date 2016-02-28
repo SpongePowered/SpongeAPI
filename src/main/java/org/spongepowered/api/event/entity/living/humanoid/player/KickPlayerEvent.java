@@ -25,11 +25,14 @@
 package org.spongepowered.api.event.entity.living.humanoid.player;
 
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.impl.AbstractMessageEvent;
 import org.spongepowered.api.event.message.MessageChannelEvent;
+import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 
 /**
  * Fired when a {@link Player} is kicked.
  */
+@ImplementedBy(AbstractMessageEvent.class)
 public interface KickPlayerEvent extends TargetPlayerEvent, MessageChannelEvent {
 
 }

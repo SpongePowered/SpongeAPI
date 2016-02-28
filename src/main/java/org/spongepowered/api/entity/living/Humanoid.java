@@ -32,44 +32,11 @@ import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.Inventory;
-
-import java.util.Optional;
 
 /**
  * Represents a human-like entity in game, such as {@link Player} or {@link Human}s.
  */
 public interface Humanoid extends Living, ProjectileSource, ArmorEquipable, Tamer, Carrier {
-
-    /**
-     * Returns whether this human entity has an open inventory at the moment
-     * or not.
-     *
-     * @return Whether this human is viewing an inventory or not
-     */
-    boolean isViewingInventory();
-
-    /**
-     * Gets the currently viewed inventory of this human entity, if it is
-     * currently viewing one.
-     *
-     * @return An inventory if this human entity is viewing one, otherwise
-     * {@link Optional#empty()}
-     */
-    Optional<Inventory> getOpenInventory();
-
-    /**
-     * Opens the given Inventory for the player to view.
-     *
-     * @param inventory The inventory to view
-     */
-    void openInventory(Inventory inventory);
-
-    /**
-     * Closes the currently viewed entity of this human entity, if it is
-     * currently viewing one.
-     */
-    void closeInventory();
 
     /**
      * Gets a copy of the current {@link FoodData} for this {@link Humanoid}.

@@ -24,9 +24,12 @@
  */
 package org.spongepowered.api.plugin;
 
+import com.google.common.collect.ImmutableList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -36,25 +39,102 @@ import java.util.Optional;
 public interface PluginContainer {
 
     /**
-     * Gets the id of the {@link Plugin} within this container.
+     * Gets the qualified ID of the {@link Plugin} within this container.
      *
-     * @return The id
+     * @return The plugin ID
+     * @see Plugin#id()
      */
     String getId();
 
     /**
+     * Gets the <b>unqualified</b> ID of the {@link Plugin} within this
+     * container. If the {@link Plugin} is using a qualified ID the result
+     * is equal to the last section of the qualified ID.
+     *
+     * <p><b>Examples:</b>
+     * <table>
+     *     <tr><th>Plugin ID</th><th>Unqualified plugin ID</th></tr>
+     *     <tr>
+     *         <td>{@code me.spongeplugin.dev.testplugin}</td>
+     *         <td>{@code testplugin}</td>
+     *     </tr>
+     *     <tr>
+     *         <td>{@code testplugin}</td>
+     *         <td>{@code testplugin}</td>
+     *     </tr>
+     * </ul></p>
+     *
+     * @return The unqualified plugin ID
+     * @see Plugin#id()
+     */
+    String getUnqualifiedId();
+
+    /**
      * Gets the name of the {@link Plugin} within this container.
      *
-     * @return The name
+     * @return The plugin name, or {@link #getUnqualifiedId()} if unknown
+     * @see Plugin#name()
      */
-    String getName();
+    default String getName() {
+        return getUnqualifiedId();
+    }
 
     /**
      * Gets the version of the {@link Plugin} within this container.
      *
-     * @return The name
+     * @return The plugin version, or {@link Optional#empty()} if unknown
+     * @see Plugin#version()
      */
-    String getVersion();
+    default Optional<String> getVersion() {
+        return Optional.empty();
+    }
+
+    /**
+     * Gets the description of the {@link Plugin} within this container.
+     *
+     * @return The plugin description, or {@link Optional#empty()} if unknown
+     * @see Plugin#description()
+     */
+    default Optional<String> getDescription() {
+        return Optional.empty();
+    }
+
+    /**
+     * Gets the url or website of the {@link Plugin} within this container.
+     *
+     * @return The plugin url, or {@link Optional#empty()} if unknown
+     * @see Plugin#url()
+     */
+    default Optional<String> getUrl() {
+        return Optional.empty();
+    }
+
+    /**
+     * Gets the authors of the {@link Plugin} within this container.
+     *
+     * @return The plugin authors, or empty if unknown
+     * @see Plugin#authors()
+     */
+    default List<String> getAuthors() {
+        return ImmutableList.of();
+    }
+
+    /**
+     * Returns the source the plugin was loaded from.
+     *
+     * @return The source the plugin was loaded from or {@link Optional#empty()}
+     *     if unknown
+     */
+    default Optional<Path> getSource() {
+        return Optional.empty();
+    }
+
+    /**
+     * Returns the created instance of {@link Plugin} if it is available.
+     *
+     * @return The instance if available
+     */
+    Optional<?> getInstance();
 
     /**
      * Returns the assigned logger to this {@link Plugin}.
@@ -64,12 +144,5 @@ public interface PluginContainer {
     default Logger getLogger() {
         return LoggerFactory.getLogger(getId());
     }
-
-    /**
-     * Returns the created instance of {@link Plugin} if it is available.
-     *
-     * @return The instance if available
-     */
-    Optional<Object> getInstance();
 
 }

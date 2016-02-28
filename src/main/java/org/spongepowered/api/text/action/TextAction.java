@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextElement;
 
 import javax.annotation.Nullable;
 
@@ -40,7 +41,7 @@ import javax.annotation.Nullable;
  * @see HoverAction
  * @see ShiftClickAction
  */
-public abstract class TextAction<R> {
+public abstract class TextAction<R> implements TextElement {
 
     protected final R result;
 
