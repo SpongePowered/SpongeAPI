@@ -48,9 +48,13 @@ public interface OptionSubject extends Subject {
 
     /**
      * Get the value of a given option in the subject's current context
+     * This must return the same value as {@link #hasPermission(Set, String)}
+     * using {@link #getActiveContexts()}.
      *
      * @param key The key to get an option by. Case-insensitive.
      * @return The value of the option, if any is present
      */
-    Optional<String> getOption(String key);
+    default Optional<String> getOption(String key) {
+        return getOption(getActiveContexts(), key);
+    }
 }

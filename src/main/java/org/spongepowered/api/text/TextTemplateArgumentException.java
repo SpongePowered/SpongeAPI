@@ -22,45 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.action;
-
-import org.spongepowered.api.text.Text;
+package org.spongepowered.api.text;
 
 /**
- * Represents a {@link TextAction} that responds to shift-clicks.
- *
- * @param <R> the type of the result of the action
+ * Exception thrown when invalid arguments are provided to a
+ * {@link TextTemplate}.
  */
-public abstract class ShiftClickAction<R> extends TextAction<R> {
+public class TextTemplateArgumentException extends IllegalArgumentException {
+
+    private static final long serialVersionUID = 4163260231862633490L;
 
     /**
-     * Constructs a new {@link ShiftClickAction} with the given result.
+     * Creates exception with the specified message.
      *
-     * @param result The result of the shift click action
+     * @param msg Exception message
      */
-    ShiftClickAction(R result) {
-        super(result);
+    public TextTemplateArgumentException(String msg) {
+        super(msg);
     }
 
-    @Override
-    public void applyTo(Text.Builder builder) {
-        builder.onShiftClick(this);
-    }
-
-    /**
-     * Inserts some text into the chat prompt.
-     */
-    public static final class InsertText extends ShiftClickAction<String> {
-
-        /**
-         * Constructs a new {@link InsertText} instance that will insert text at
-         * the current cursor position in the chat when it is shift-clicked.
-         *
-         * @param text The text to insert
-         */
-        InsertText(String text) {
-            super(text);
-        }
-
-    }
 }

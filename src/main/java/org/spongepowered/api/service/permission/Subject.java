@@ -25,7 +25,6 @@
 package org.spongepowered.api.service.permission;
 
 import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.context.ContextCalculator;
 import org.spongepowered.api.service.context.Contextual;
 import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.command.CommandSource;
@@ -113,12 +112,15 @@ public interface Subject extends Contextual {
 
     /**
      * Test whether the subject is permitted to perform an action given as the
-     * given permission string.
+     * given permission string. This must return the same value as
+     * {@link #hasPermission(Set, String)} using {@link #getActiveContexts()}.
      *
      * @param permission The permission string
      * @return True if permission is granted
      */
-    boolean hasPermission(String permission);
+    default boolean hasPermission(String permission) {
+        return hasPermission(getActiveContexts(), permission);
+    }
 
     /**
      * Returns the calculated value set for a given permission.
@@ -131,12 +133,15 @@ public interface Subject extends Contextual {
 
     /**
      * Check if this subject is a child of the given parent in the subject's
-     * current context, traversing inheritance.
+     * current context, traversing inheritance. This must return the same value as
+     * {@link #hasPermission(Set, String)} using {@link #getActiveContexts()}.
      *
      * @param parent The parent to check for inheritance
      * @return Whether this is a child of the given parent
      */
-    boolean isChildOf(Subject parent);
+    default boolean isChildOf(Subject parent) {
+        return isChildOf(getActiveContexts(), parent);
+    }
 
     /**
      * Check if this subject is a child of the given parent in the given context
@@ -151,11 +156,14 @@ public interface Subject extends Contextual {
     /**
      * Return all parents that this group has in its current context
      * combination. This must include inherited values if the permissions
-     * service supports inheritance.
+     * service supports inheritance. This must return the same value as
+     * {@link #hasPermission(Set, String)} using {@link #getActiveContexts()}.
      *
      * @return An immutable list of parents
      */
-    List<Subject> getParents();
+    default List<Subject> getParents() {
+        return getParents(getActiveContexts());
+    }
 
     /**
      * Return all parents that this group has. This must include inherited

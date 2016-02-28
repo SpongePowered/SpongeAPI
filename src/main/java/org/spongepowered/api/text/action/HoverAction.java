@@ -53,6 +53,11 @@ public abstract class HoverAction<R> extends TextAction<R> {
         super(result);
     }
 
+    @Override
+    public void applyTo(Text.Builder builder) {
+        builder.onHover(this);
+    }
+
     /**
      * Shows some text.
      */

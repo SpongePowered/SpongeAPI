@@ -84,7 +84,6 @@ public class QuotedStringParserTest {
     }
 
     @Test
-    @Ignore("Cannot run these tests unless Text factories are available in testing")
     public void testUnterminatedQuote() throws ArgumentParseException {
         this.expectedException.expect(ArgumentParseException.class);
         this.expectedException.expectMessage("Unterminated quoted string");
