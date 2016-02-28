@@ -169,8 +169,12 @@ public class GenericArgumentsTest {
 
     @Test
     public void testInteger() throws ArgumentParseException {
-        CommandContext context = parseForInput("52", integer(untr("a value")));
+        CommandElement el = integer(untr("a value"));
+        CommandContext context = parseForInput("52", el);
         assertEquals(52, context.getOne("a value").get());
+
+        assertEquals(0xdead, parseForInput("0xdead", el).getOne("a value").get());
+        assertEquals(0b101010, parseForInput("0b101010", el).getOne("a value").get());
 
         this.expected.expect(ArgumentParseException.class);
         parseForInput("notanumber", integer(untr("a value")));

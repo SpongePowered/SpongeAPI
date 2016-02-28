@@ -60,6 +60,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
@@ -683,22 +685,37 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement integer(Text key) {
-        return new IntegerElement(key);
+        return new NumericElement<>(key, Integer::parseInt, Integer::parseInt, input -> t("Expected an integer, but input '%s' was not", input));
     }
 
-    private static class IntegerElement extends KeyElement {
+    private static class NumericElement<T extends Number> extends KeyElement {
+        private final Function<String, T> parseFunc;
+        @Nullable
+        private final BiFunction<String, Integer, T> parseRadixFunction;
+        private final Function<String, Text> errorSupplier;
 
-        private IntegerElement(Text key) {
+        protected NumericElement(Text key, Function<String, T> parseFunc, @Nullable BiFunction<String, Integer, T> parseRadixFunction,
+                Function<String, Text> errorSupplier) {
             super(key);
+            this.parseFunc = parseFunc;
+            this.parseRadixFunction = parseRadixFunction;
+            this.errorSupplier = errorSupplier;
         }
 
         @Override
         public Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             final String input = args.next();
             try {
-                return Integer.parseInt(input);
+                if (this.parseRadixFunction != null) {
+                    if (input.startsWith("0x")) {
+                        return this.parseRadixFunction.apply(input.substring(2), 16);
+                    } else if (input.startsWith("0b")) {
+                        return this.parseRadixFunction.apply(input.substring(2), 2);
+                    }
+                }
+                return this.parseFunc.apply(input);
             } catch (NumberFormatException ex) {
-                throw args.createError(t("Expected an integer, but input '%s' was not", input));
+                throw args.createError(this.errorSupplier.apply(input));
             }
         }
     }
@@ -711,24 +728,7 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement longNum(Text key) {
-        return new LongElement(key);
-    }
-
-    private static class LongElement extends KeyElement {
-
-        private LongElement(Text key) {
-            super(key);
-        }
-
-        @Override
-        public Long parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            final String input = args.next();
-            try {
-                return Long.parseLong(input);
-            } catch (NumberFormatException ex) {
-                throw args.createError(t("Expected a long, but input '%s' was not", input));
-            }
-        }
+        return new NumericElement<>(key, Long::parseLong, Long::parseLong, input -> t("Expected a long, but input '%s' was not", input));
     }
 
     /**
@@ -739,24 +739,7 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement doubleNum(Text key) {
-        return new DoubleNumElement(key);
-    }
-
-    private static class DoubleNumElement extends KeyElement {
-
-        private DoubleNumElement(Text key) {
-            super(key);
-        }
-
-        @Override
-        public Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            final String input = args.next();
-            try {
-                return Double.parseDouble(input);
-            } catch (NumberFormatException ex) {
-                throw args.createError(t("Expected a number, but input '%s' was not", input));
-            }
-        }
+        return new NumericElement<>(key, Double::parseDouble, null, input -> t("Expected a number, but input '%s' was not", input));
     }
 
     private static final Map<String, Boolean> BOOLEAN_CHOICES = ImmutableMap.<String, Boolean>builder()
@@ -973,7 +956,11 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Iterables.transform(Sponge.getGame().getServiceManager().provideUnchecked(UserStorageService.class).getAll(), GameProfile::getName);
+            return Sponge.getGame().getServiceManager().provideUnchecked(UserStorageService.class).getAll().stream()
+                    .map(GameProfile::getName)
+                    .filter(Optional::isPresent)
+                    .map(Optional::get)
+                    .collect(GuavaCollectors.toImmutableList());
         }
 
         @Override
