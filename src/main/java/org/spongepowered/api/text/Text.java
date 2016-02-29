@@ -704,8 +704,8 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
         }
 
         /**
-         * Formats existing variables within this builder and builds an
-         * immutable instance of the current state of this text builder.
+         * Removes all empty texts from the beginning and end of this
+         * builder.
          *
          * @return This builder
          */
