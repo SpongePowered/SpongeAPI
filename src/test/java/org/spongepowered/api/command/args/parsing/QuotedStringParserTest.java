@@ -34,6 +34,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.spongepowered.api.command.args.ArgumentParseException;
+import org.spongepowered.api.util.test.TestHooks;
 
 import java.util.Collections;
 import java.util.List;
@@ -41,6 +42,11 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 public class QuotedStringParserTest {
+
+    static {
+        TestHooks.initialize();
+    }
+
     private static List<String> parseFrom(String args) throws ArgumentParseException {
         return Lists.transform(new QuotedStringTokenizer(true, false).tokenize(args, false), new Function<SingleArg, String>() {
             @Nullable
@@ -84,7 +90,6 @@ public class QuotedStringParserTest {
     }
 
     @Test
-    @Ignore("Cannot run these tests unless Text factories are available in testing")
     public void testUnterminatedQuote() throws ArgumentParseException {
         this.expectedException.expect(ArgumentParseException.class);
         this.expectedException.expectMessage("Unterminated quoted string");
