@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.text.channel;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.text.Text;
@@ -54,7 +53,6 @@ public interface MessageReceiver {
      */
     default void sendMessages(Text... messages) {
         checkNotNull(messages, "messages");
-        checkArgument(messages.length > 0, "empty array of messages");
 
         for (Text message : messages) {
             this.sendMessage(message);

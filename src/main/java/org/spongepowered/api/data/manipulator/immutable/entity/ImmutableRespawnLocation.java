@@ -24,11 +24,15 @@
  */
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableMappedData;
 import org.spongepowered.api.data.manipulator.mutable.entity.RespawnLocationData;
 import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.world.World;
 
 import java.util.Optional;
@@ -36,10 +40,11 @@ import java.util.UUID;
 
 /**
  * An {@link ImmutableDataManipulator} for the "respawn" location of a
- * {@link Player}. A {@link Player} may have multiple respawn locations, but
- * can only have a single respawn location per {@link World}.
+ * {@link Player}. A {@link Player} may have multiple respawn locations, but can
+ * only have a single respawn location per {@link World}. A location can be
+ * "forced", which means they will spawn there even if it's not a valid bed.
  */
-public interface ImmutableRespawnLocation extends ImmutableDataManipulator<ImmutableRespawnLocation, RespawnLocationData> {
+public interface ImmutableRespawnLocation extends ImmutableMappedData<UUID, Tuple<Vector3d, Boolean>, ImmutableRespawnLocation, RespawnLocationData> {
 
     /**
      * Gets the {@link ImmutableMapValue} for the "respawn" locations set for
@@ -49,15 +54,20 @@ public interface ImmutableRespawnLocation extends ImmutableDataManipulator<Immut
      *
      * @return The immutable map for the respawn locations per world id
      */
-    ImmutableMapValue<UUID, Vector3d> respawnLocation();
+    default ImmutableMapValue<UUID, Tuple<Vector3d, Boolean>> respawnLocation() {
+        return getMapValue();
+    }
 
     /**
-     * Gets the {@link Vector3d} location for the spawn world if available.
-     * If the respawn point for that world has not been set,
+     * Gets the spawn location and whether it's forced for the world, if
+     * available. If the respawn point for that world has not been set,
      * {@link Optional#empty()} is returned.
      *
      * @param world The world to check
-     * @return The vector location
+     * @return The location and whether it's forced
      */
-    Optional<Vector3d> getForWorld(World world);
+    default Optional<Tuple<Vector3d, Boolean>> getForWorld(World world) {
+        return get(checkNotNull(world, "World cannot be null!").getUniqueId());
+    }
+
 }

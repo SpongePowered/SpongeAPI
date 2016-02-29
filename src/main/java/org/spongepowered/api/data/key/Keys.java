@@ -60,6 +60,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -72,7 +73,7 @@ import java.util.UUID;
  * An enumeration of known {@link Key}s used throughout the API.
  */
 public final class Keys {
-    
+
     // SORTFIELDS:ON
 
     public static final Key<SetValue<Achievement>> ACHIEVEMENTS = null;
@@ -232,6 +233,14 @@ public final class Keys {
     public static final Key<Value<Boolean>> CREEPER_CHARGED = null;
 
     public static final Key<Value<Boolean>> CRITICAL_HIT = null;
+
+    /**
+     * Represents the {@link Key} for the "custom name visible" state
+     * of an {@link Entity}.
+     *
+     * @see CustomNameVisibleData#customNameVisible()
+     */
+    public static final Key<Value<Boolean>> CUSTOM_NAME_VISIBLE = null;
 
     public static final Key<MapValue<EntityType, Double>> DAMAGE_ENTITY_MAP = null;
 
@@ -696,7 +705,7 @@ public final class Keys {
 
     public static final Key<Value<GameProfile>> REPRESENTED_PLAYER = null;
 
-    public static final Key<MapValue<UUID, Vector3d>> RESPAWN_LOCATIONS = null;
+    public static final Key<MapValue<UUID, Tuple<Vector3d, Boolean>>> RESPAWN_LOCATIONS = null;
 
     public static final Key<Value<Vector3d>> RIGHT_ARM_ROTATION = null;
 
@@ -739,8 +748,6 @@ public final class Keys {
      * @see DropData#willDrop()
      */
     public static final Key<Value<Boolean>> SHOULD_DROP = null;
-
-    public static final Key<Value<Boolean>> SHOWS_DISPLAY_NAME = null;
 
     /**
      * Represents the {@link Key} for representing the {@link ShrubType}

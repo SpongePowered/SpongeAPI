@@ -27,8 +27,6 @@ package org.spongepowered.api.effect;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundType;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.title.Title;
 
 /**
@@ -95,30 +93,6 @@ public interface Viewer {
      *        0 and 2
      */
     void playSound(SoundType sound, Vector3d position, double volume, double pitch, double minVolume);
-
-    /**
-     * Sends the message with the specified {@link ChatType} on the client.
-     *
-     * @param type The chat type to send the messages to
-     * @param message The message to send
-     */
-    void sendMessage(ChatType type, Text message);
-
-    /**
-     * Sends the message(s) with the specified {@link ChatType} on the client.
-     *
-     * @param type The chat type to send the messages to
-     * @param messages The message(s) to send
-     */
-    void sendMessages(ChatType type, Text... messages);
-
-    /**
-     * Sends the message(s) with the specified {@link ChatType} on the client.
-     *
-     * @param type The chat type to send the messages to
-     * @param messages The message(s) to send
-     */
-    void sendMessages(ChatType type, Iterable<Text> messages);
 
     /**
      * Sends a {@link Title} to this player.

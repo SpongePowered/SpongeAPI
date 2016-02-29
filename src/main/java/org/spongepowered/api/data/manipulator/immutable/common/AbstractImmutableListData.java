@@ -22,50 +22,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.common.collection;
+package org.spongepowered.api.data.manipulator.immutable.common;
 
-import com.google.common.collect.Sets;
+import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.common.AbstractSingleData;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
+import org.spongepowered.api.data.manipulator.mutable.ListData;
 import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.mutable.SetValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.immutable.ImmutableListValue;
+import org.spongepowered.api.data.value.mutable.ListValue;
 
-import java.util.Set;
+import java.util.List;
 
-/**
- * An abstract {@link DataManipulator} specifically dealing with a {@link Set}
- * type value.
- *
- * @param <E> The type of element within the set
- * @param <M> The manipulator type
- * @param <I> The immutable manipulator type
- */
-public abstract class AbstractSingleSetData<E, M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>>
-    extends AbstractSingleData<Set<E>, M, I> {
+public abstract class AbstractImmutableListData<E, I extends ImmutableListData<E, I, M>, M extends ListData<E, M, I>>
+        extends AbstractImmutableSingleData<List<E>, I, M> implements ImmutableListData<E, I, M> {
 
-
-    protected AbstractSingleSetData(Set<E> value, Key<? extends BaseValue<Set<E>>> usedKey) {
-        super(Sets.newHashSet(value), usedKey);
-    }
-
-    @Override
-    protected Set<E> getValue() {
-        return Sets.newHashSet(super.getValue());
-    }
-
-    @Override
-    protected M setValue(Set<E> value) {
-        return super.setValue(Sets.newHashSet(value));
-    }
+    private final ImmutableListValue<E> listValue;
 
     @SuppressWarnings("unchecked")
-    @Override
-    protected Value<?> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createSetValue((Key<SetValue<E>>) this.usedKey, this.getValue());
+    protected AbstractImmutableListData(List<E> value, Key<? extends BaseValue<List<E>>> usedKey) {
+        super(ImmutableList.copyOf(value), usedKey);
+        this.listValue = Sponge.getRegistry().getValueFactory().createListValue((Key<ListValue<E>>) this.usedKey, this.value).asImmutable();
     }
 
+    @Override
+    protected final ImmutableListValue<E> getValueGetter() {
+        return this.listValue;
+    }
+
+    @Override
+    public int compareTo(I o) {
+        final List<E> list = o.get(this.usedKey).get();
+        return Boolean.compare(list.containsAll(this.getValue()), this.getValue().containsAll(list));
+    }
+
+    @Override
+    public ImmutableListValue<E> getListValue() {
+        return getValueGetter();
+    }
+
+    @Override
+    public List<E> asList() {
+        return getValue();
+    }
 }

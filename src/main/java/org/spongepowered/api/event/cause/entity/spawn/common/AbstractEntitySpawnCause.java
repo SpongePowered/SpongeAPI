@@ -22,4 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.data.manipulator.mutable.common.collection;
+package org.spongepowered.api.event.cause.entity.spawn.common;
+
+import org.spongepowered.api.entity.EntitySnapshot;
+import org.spongepowered.api.event.cause.entity.spawn.EntitySpawnCause;
+
+public abstract class AbstractEntitySpawnCause extends AbstractSpawnCause implements EntitySpawnCause {
+
+    protected final EntitySnapshot entitySnapshot;
+
+    protected AbstractEntitySpawnCause(AbstractEntitySpawnCauseBuilder<?, ?> builder) {
+        super(builder);
+        this.entitySnapshot = builder.entitySnapshot;
+    }
+
+    @Override
+    public EntitySnapshot getEntity() {
+        return this.entitySnapshot;
+    }
+
+}

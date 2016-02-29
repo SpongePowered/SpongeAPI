@@ -30,6 +30,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.AbstractMutableMessageChannel;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.text.chat.ChatType;
 
 import java.util.Optional;
 
@@ -50,8 +51,8 @@ public class DelegateMutableMessageChannel extends AbstractMutableMessageChannel
     }
 
     @Override
-    public Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original) {
-        return this.delegate.transformMessage(sender, recipient, original);
+    public Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original, ChatType type) {
+        return this.delegate.transformMessage(sender, recipient, original, type);
     }
 
 }

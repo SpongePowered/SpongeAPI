@@ -24,42 +24,68 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableRespawnLocation;
+import org.spongepowered.api.data.manipulator.mutable.MappedData;
 import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.world.World;
 
 import java.util.Optional;
 import java.util.UUID;
 
 /**
- * A {@link DataManipulator} for the "respawn" location of a {@link Player}.
- * A {@link Player} may have multiple respawn locations, but can only have a
- * single respawn location per {@link World}.
+ * A {@link DataManipulator} for the "respawn" location of a {@link Player}. A
+ * {@link Player} may have multiple respawn locations, but can only have a
+ * single respawn location per {@link World}. A location can be "forced", which
+ * means they will spawn there even if it's not a valid bed.
  */
-public interface RespawnLocationData extends DataManipulator<RespawnLocationData, ImmutableRespawnLocation> {
-
+public interface RespawnLocationData extends MappedData<UUID, Tuple<Vector3d, Boolean>, RespawnLocationData, ImmutableRespawnLocation> {
 
     /**
-     * Gets the {@link MapValue} for the "respawn" locations set for
-     * various {@link World#getUniqueId()} such that a {@link Player} may not
-     * have a respawn point for a particular {@link World}, but may have
-     * multiple respawn points for other {@link World}s.
+     * Gets the {@link MapValue} for the "respawn" locations set for various
+     * {@link World#getUniqueId()} such that a {@link Player} may not have a
+     * respawn point for a particular {@link World}, but may have multiple
+     * respawn points for other {@link World}s.
      *
      * @return The map for the respawn locations per world id
      */
-    MapValue<UUID, Vector3d> respawnLocation();
+    default MapValue<UUID, Tuple<Vector3d, Boolean>> respawnLocation(){
+        return getMapValue();
+    }
 
     /**
-     * Gets the {@link Vector3d} location for the spawn world if available.
-     * If the respawn point for that world has not been set,
+     * Gets the spawn location and whether it's forced for the world, if
+     * available. If the respawn point for that world has not been set,
      * {@link Optional#empty()} is returned.
      *
      * @param world The world to check
-     * @return The vector location
+     * @return The location and whether it's forced
      */
-    Optional<Vector3d> getForWorld(World world);
+    default Optional<Tuple<Vector3d, Boolean>> getForWorld(World world) {
+        return get(checkNotNull(world, "World cannot be null!").getUniqueId());
+    }
+
+    /**
+     * Gets the spawn location for the given world, available.
+     *
+     * @param world The world to check
+     * @return The location
+     */
+    Optional<Vector3d> getLocation(World world);
+
+    /**
+     * Gets whether the spawn location is forced in the given world, if
+     * available. A forced location will spawn the player there even if a bed is
+     * missing or obstructed.
+     *
+     * @param world The world to check
+     * @return Whether the location is forced
+     */
+    Optional<Boolean> isSpawnForced(World world);
 
 }
