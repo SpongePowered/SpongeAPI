@@ -79,7 +79,7 @@ final class PluginElement {
                     + "See the @Plugin Javadocs for details.", this.element, this.annotation.getMirror(), this.annotation.getValue("id"));
         }
 
-        value = this.annotation.get().description();
+        value = this.annotation.get().name();
         if (value.isEmpty()) {
             if (this.metadata.getName() == null) {
                 messager.printMessage(WARNING, "Missing plugin name", this.element, this.annotation.getMirror());
