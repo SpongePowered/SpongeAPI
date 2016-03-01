@@ -22,35 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.entity;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableDominantHandData;
-import org.spongepowered.api.data.manipulator.mutable.VariantData;
-import org.spongepowered.api.data.property.entity.DominantHandProperty;
-import org.spongepowered.api.data.type.HandSide;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * A {@link DataManipulator} representing the dominant {@link HandSide} of a
- * {@link Living} entity.
- * <p>Handedness usually determines which hand is used for "main" interactions,
- * such as tool use or block placing/breaking.</p>
- *
- * <p><i>NOTE: </i> This does not apply to {@link Player}s, for Player
- * entities see {@link DominantHandProperty}.</p>
+ * Represents a hand of a {@link Living} entity. This usually specifies the hand
+ * used for interactions, such as tool use or block placing/breaking.
  */
-public interface DominantHandData extends VariantData<HandSide, DominantHandData, ImmutableDominantHandData> {
-
-    /**
-     * Gets the {@link Value} representing the dominant {@link HandSide} of an
-     * {@link Entity}.
-     *
-     * @return The value for handedness
-     */
-    Value<HandSide> dominantHand();
+@CatalogedBy(HandSides.class)
+public interface HandSide extends CatalogType, Translatable {
 
 }

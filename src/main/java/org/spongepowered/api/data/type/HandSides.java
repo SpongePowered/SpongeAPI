@@ -24,18 +24,17 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Represents the type of hand used for interaction. This will be resolved into
- * a {@link HandSide} based on an {@link Entity}'s/{@link Player}'s hand
- * preference.
+ * An enumeration of the various {@link HandSide}s.
  */
-@CatalogedBy(HandTypes.class)
-public interface HandType extends CatalogType, Translatable {
+public final class HandSides {
+
+    public static final HandSide LEFT = DummyObjectProvider.createFor(HandSide.class, "LEFT");
+    public static final HandSide RIGHT = DummyObjectProvider.createFor(HandSide.class, "RIGHT");
+
+    private HandSides() {
+    }
 
 }
