@@ -96,6 +96,7 @@ import org.spongepowered.api.data.manipulator.mutable.entity.ZombieData;
 import org.spongepowered.api.data.type.Art;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.HandType;
+import org.spongepowered.api.data.type.HandSide;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.HorseVariant;
@@ -237,7 +238,7 @@ public final class CatalogEntityData {
      */
     public static final Class<DisplayNameData> DISPLAY_NAME_DATA = DisplayNameData.class;
     /**
-     * Represents the dominant {@link HandType} used by an entity for for "main"
+     * Represents the dominant {@link HandSide} used by an entity for for "main"
      * interactions such as such as tool use or block breaking. Usually
      * applicable to {@link Living} entities.
      */
