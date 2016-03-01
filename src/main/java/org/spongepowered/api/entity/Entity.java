@@ -445,4 +445,15 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      * @param uuid The {@link UUID} to set as notifier.
      */
     void setNotifier(@Nullable UUID uuid);
+
+    /**
+     * Returns whether this entity can see the provided {@link Entity}.
+     *
+     * @param entity The entity to check visibility for
+     * @return {@code true} if this entity can see the provided entity
+     */
+    default boolean canSee(Entity entity) {
+        Optional<Boolean> optional = entity.get(Keys.INVISIBLE);
+        return !optional.isPresent() || !optional.get();
+    }
 }
