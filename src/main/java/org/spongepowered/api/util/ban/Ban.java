@@ -80,11 +80,11 @@ public interface Ban {
     BanType getType();
 
     /**
-     * Get the reason for the ban.
+     * Get the reason for the ban, if available.
      *
-     * @return The reason specified for the ban.
+     * @return The reason specified for the ban, if available
      */
-    Text getReason();
+    Optional<Text> getReason();
 
     /**
      * Gets the creation date of the ban.
@@ -201,10 +201,13 @@ public interface Ban {
         /**
          * Sets the reason for the ban.
          *
+         * <p>If the specified reason is <code>null</code>, or not provided,
+         * then the reason will be be available on the created ban.</p>
+         *
          * @param reason The reason
          * @return This builder
          */
-        Builder reason(Text reason);
+        Builder reason(@Nullable Text reason);
 
         /**
          * Sets the date that the ban starts.

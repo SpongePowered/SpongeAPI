@@ -22,17 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.test;
+package org.spongepowered.api.text;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.translation.FixedTranslation;
 
 public class TestTextFactoryTest {
-    static {
-        TestHooks.initialize();
+
+    @Before
+    public void initialize() throws Exception {
+        TestPlainTextSerializer.inject();
     }
 
     @Test

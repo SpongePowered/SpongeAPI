@@ -24,24 +24,32 @@
  */
 package org.spongepowered.api.plugin;
 
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.regex.Pattern;
 
 /**
  * An annotation used to describe and mark a Sponge plugin.
  */
-@Target(TYPE)
-@Retention(RUNTIME)
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
 public @interface Plugin {
+
+    Pattern ID_PATTERN = Pattern.compile("[a-z](?:[a-z0-9-_.]*[a-z0-9])?");
 
     /**
      * An ID for the plugin to be used internally. The ID should be unique as to
      * not conflict with other plugins.
      *
+     * <p>The plugin ID must be lowercase and start with a alphabetic character.
+     * It is recommended to qualify the plugin ID with a unique group identifier
+     * as prefix, e.g. {@code me.spongeplugindev.testplugin}. Usually it is a
+     * good idea to use a group similar to your plugin main class package.</p>
+     *
      * @return The plugin identifier
+     * @see <a href="https://goo.gl/MRRYSJ">Java package naming conventions</a>
      */
     String id();
 
@@ -49,39 +57,43 @@ public @interface Plugin {
      * The human readable name of the plugin as to be used in descriptions and
      * similar things.
      *
-     * @return The plugin name
+     * @return The plugin name, or an empty string if unknown
      */
-    String name();
+    String name() default "";
 
     /**
      * The version of the plugin.
      *
-     * @return The plugin version
+     * @return The plugin version, or an empty string if unknown
      */
-    String version() default "unknown";
+    String version() default "";
 
     /**
-     * A simple dependency string for this mod separated by a ";"
-     * example:
-     * <pre>"required-after:Sponge@[1.2.3.2222,);
-     * required-after:myLibraryPlugin;after:towny;before:worldguard"</pre>
-     *
-     * <p>supported options:
-     * <dl>
-     *   <dt>after</dt>
-     *   <dd>when present this plugin will run after plugin x</dd>
-     *   <dt>required-after</dt>
-     *   <dd>plugin x must be present, load after plugin x</dd>
-     *   <dt>before</dt>
-     *   <dd>when present run before plugin x</dd>
-     *   <dt>required-before</dt>
-     *   <dd>plugin x must be present, load before plugin x</dd>
-     * </dl>
-     * supports maven version ranges after @ in any field</p>
+     * The dependencies required to load <strong>before</strong> this plugin.
      *
      * @return The plugin dependencies
      */
-    String dependencies() default "";
+    Dependency[] dependencies() default {};
 
+    /**
+     * The description of the plugin, explaining what it can be used for.
+     *
+     * @return The plugin description, or an empty string if unknown
+     */
+    String description() default "";
+
+    /**
+     * The URL or website of the plugin.
+     *
+     * @return The plugin url, or an empty string if unknown
+     */
+    String url() default "";
+
+    /**
+     * The authors of the plugin.
+     *
+     * @return The plugin authors, or empty if unknown
+     */
+    String[] authors() default {};
 
 }

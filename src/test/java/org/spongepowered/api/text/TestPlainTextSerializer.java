@@ -22,20 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.test;
+package org.spongepowered.api.text;
 
-import org.spongepowered.api.text.LiteralText;
-import org.spongepowered.api.text.ScoreText;
-import org.spongepowered.api.text.SelectorText;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.TranslatableText;
 import org.spongepowered.api.text.serializer.SafeTextSerializer;
+import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.text.translation.locale.Locales;
+import org.spongepowered.api.util.test.TestHooks;
 
 import java.util.List;
-import java.util.Locale;
 
 public class TestPlainTextSerializer implements SafeTextSerializer {
+
+    public static void inject() throws ReflectiveOperationException {
+        TestHooks.setCatalogElement(TextSerializers.class, "PLAIN", new TestPlainTextSerializer());
+    }
 
     @Override
     public Text deserialize(String input) {

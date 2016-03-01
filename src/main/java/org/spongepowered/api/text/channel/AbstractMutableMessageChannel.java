@@ -24,18 +24,19 @@
  */
 package org.spongepowered.api.text.channel;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 import java.util.WeakHashMap;
 
 /**
- * An abstract implementation of {@link MutableMessageChannel}, using a
- * {@link Set} as the underlying member list
+ * An abstract implementation of {@link MutableMessageChannel}.
  */
 public abstract class AbstractMutableMessageChannel implements MutableMessageChannel {
 
-    protected final Set<MessageReceiver> members;
+    protected final Collection<MessageReceiver> members;
 
     /**
      * The default implementation uses a {@link WeakHashMap} implementation of {@link Set}.
@@ -46,26 +47,28 @@ public abstract class AbstractMutableMessageChannel implements MutableMessageCha
 
     /**
      * Creates a new instance of {@link AbstractMutableMessageChannel} with the
-     * provided {@link Set} as the underlying member list.
+     * provided {@link Collection} as the underlying member list.
      *
-     * <p>The passed {@link Set} directly affects the members of this channel.</p>
+     * <p>The passed {@link Collection} directly affects the members of this channel.</p>
      *
-     * <p>It is recommended to use a weak set to avoid memory leaks. If you do not use
-     * a weak set, please ensure that members are cleaned up properly.</p>
+     * <p>It is recommended to use a weak collection to avoid memory leaks. If you do not
+     * use a weak collection, please ensure that members are  cleaned up properly.</p>
      *
-     * @param members The set of members
+     * @param members The collection of members
      */
-    protected AbstractMutableMessageChannel(Set<MessageReceiver> members) {
-        this.members = members;
+    protected AbstractMutableMessageChannel(Collection<MessageReceiver> members) {
+        this.members = checkNotNull(members, "members");
     }
 
     @Override
     public boolean addMember(MessageReceiver member) {
-        return this.members.add(member);
+        checkNotNull(member, "member");
+        return !this.members.contains(member) && this.members.add(member);
     }
 
     @Override
     public boolean removeMember(MessageReceiver member) {
+        checkNotNull(member, "member");
         return this.members.remove(member);
     }
 

@@ -25,7 +25,6 @@
 package org.spongepowered.api;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.channel.MessageChannel;
@@ -44,6 +43,7 @@ import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Represents a typical Minecraft Server.
@@ -240,7 +240,7 @@ public interface Server {
      * @return An {@link Optional} containing the properties of the new world
      *         instance, if the copy was successful
      */
-    ListenableFuture<Optional<WorldProperties>> copyWorld(WorldProperties worldProperties, String copyName);
+    CompletableFuture<Optional<WorldProperties>> copyWorld(WorldProperties worldProperties, String copyName);
 
     /**
      * Renames an unloaded world.
@@ -259,7 +259,7 @@ public interface Server {
      * @param worldProperties The world properties to delete
      * @return True if the deletion was successful.
      */
-    ListenableFuture<Boolean> deleteWorld(WorldProperties worldProperties);
+    CompletableFuture<Boolean> deleteWorld(WorldProperties worldProperties);
 
     /**
      * Persists the given {@link WorldProperties} to the world storage for it,

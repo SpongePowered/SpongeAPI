@@ -32,7 +32,7 @@ import org.spongepowered.api.text.action.TextAction;
  * Represents an instance that have a {@link Text} representation that should be
  * used when this instance should be used inside a {@link Text}.
  */
-interface TextRepresentable {
+public interface TextRepresentable extends TextElement {
 
     /**
      * Gets the textual representation of this instance for its usage in other
@@ -44,5 +44,10 @@ interface TextRepresentable {
      * @return The text instance representing this instance
      */
     Text toText();
+
+    @Override
+    default void applyTo(Text.Builder builder) {
+        builder.append(toText());
+    }
 
 }

@@ -22,4 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.text.sink;
+package org.spongepowered.api.text.channel.impl;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.channel.MessageChannel;
+import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.text.chat.ChatType;
+
+import java.util.Collection;
+import java.util.Optional;
+
+import javax.annotation.Nullable;
+
+/**
+ * An immutable message channel that leaves transforming and
+ * members to the delegate channel passed.
+ */
+public class DelegateMessageChannel implements MessageChannel {
+
+    protected final MessageChannel delegate;
+
+    public DelegateMessageChannel(final MessageChannel delegate) {
+        this.delegate = checkNotNull(delegate, "delegate");
+    }
+
+    @Override
+    public Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original, ChatType type) {
+        return this.delegate.transformMessage(sender, recipient, original, type);
+    }
+
+    @Override
+    public Collection<MessageReceiver> getMembers() {
+        return this.delegate.getMembers();
+    }
+}

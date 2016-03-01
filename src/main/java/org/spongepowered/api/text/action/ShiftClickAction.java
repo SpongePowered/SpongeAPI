@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.text.action;
 
+import org.spongepowered.api.text.Text;
+
 /**
  * Represents a {@link TextAction} that responds to shift-clicks.
  *
@@ -38,6 +40,11 @@ public abstract class ShiftClickAction<R> extends TextAction<R> {
      */
     ShiftClickAction(R result) {
         super(result);
+    }
+
+    @Override
+    public void applyTo(Text.Builder builder) {
+        builder.onShiftClick(this);
     }
 
     /**

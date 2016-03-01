@@ -209,7 +209,6 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gen.Populator;
-import org.spongepowered.api.world.gen.PopulatorType;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
 
@@ -222,19 +221,19 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param originalChannel The original channel
      * @param channel The channel
-     * @param originalMessage The original message
-     * @param message The message
      * @param achievement The achievement
+     * @param formatter The formatter
+     * @param messageCancelled The message cancelled
      * @return A new grant achievement event
      */
-    public static GrantAchievementEvent createGrantAchievementEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Achievement achievement) {
+    public static GrantAchievementEvent createGrantAchievementEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Achievement achievement, MessageEvent.MessageFormatter formatter, boolean messageCancelled) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
-        values.put("originalMessage", originalMessage);
-        values.put("message", message);
         values.put("achievement", achievement);
+        values.put("formatter", formatter);
+        values.put("messageCancelled", messageCancelled);
         return SpongeEventFactoryUtils.createEventImpl(GrantAchievementEvent.class, values);
     }
 
@@ -246,21 +245,21 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param originalChannel The original channel
      * @param channel The channel
-     * @param originalMessage The original message
-     * @param message The message
      * @param achievement The achievement
+     * @param formatter The formatter
      * @param targetEntity The target entity
+     * @param messageCancelled The message cancelled
      * @return A new target player grant achievement event
      */
-    public static GrantAchievementEvent.TargetPlayer createGrantAchievementEventTargetPlayer(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Achievement achievement, Player targetEntity) {
+    public static GrantAchievementEvent.TargetPlayer createGrantAchievementEventTargetPlayer(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Achievement achievement, MessageEvent.MessageFormatter formatter, Player targetEntity, boolean messageCancelled) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
-        values.put("originalMessage", originalMessage);
-        values.put("message", message);
         values.put("achievement", achievement);
+        values.put("formatter", formatter);
         values.put("targetEntity", targetEntity);
+        values.put("messageCancelled", messageCancelled);
         return SpongeEventFactoryUtils.createEventImpl(GrantAchievementEvent.TargetPlayer.class, values);
     }
 
@@ -1610,19 +1609,19 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param originalChannel The original channel
      * @param channel The channel
-     * @param originalMessage The original message
-     * @param message The message
+     * @param formatter The formatter
      * @param targetEntity The target entity
+     * @param messageCancelled The message cancelled
      * @return A new destruct entity event
      */
-    public static DestructEntityEvent createDestructEntityEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Entity targetEntity) {
+    public static DestructEntityEvent createDestructEntityEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, MessageEvent.MessageFormatter formatter, Entity targetEntity, boolean messageCancelled) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
-        values.put("originalMessage", originalMessage);
-        values.put("message", message);
+        values.put("formatter", formatter);
         values.put("targetEntity", targetEntity);
+        values.put("messageCancelled", messageCancelled);
         return SpongeEventFactoryUtils.createEventImpl(DestructEntityEvent.class, values);
     }
 
@@ -1634,19 +1633,19 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param originalChannel The original channel
      * @param channel The channel
-     * @param originalMessage The original message
-     * @param message The message
+     * @param formatter The formatter
      * @param targetEntity The target entity
+     * @param messageCancelled The message cancelled
      * @return A new death destruct entity event
      */
-    public static DestructEntityEvent.Death createDestructEntityEventDeath(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Living targetEntity) {
+    public static DestructEntityEvent.Death createDestructEntityEventDeath(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, MessageEvent.MessageFormatter formatter, Living targetEntity, boolean messageCancelled) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
-        values.put("originalMessage", originalMessage);
-        values.put("message", message);
+        values.put("formatter", formatter);
         values.put("targetEntity", targetEntity);
+        values.put("messageCancelled", messageCancelled);
         return SpongeEventFactoryUtils.createEventImpl(DestructEntityEvent.Death.class, values);
     }
 
@@ -2534,19 +2533,19 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param originalChannel The original channel
      * @param channel The channel
-     * @param originalMessage The original message
-     * @param message The message
+     * @param formatter The formatter
      * @param targetEntity The target entity
+     * @param messageCancelled The message cancelled
      * @return A new kick player event
      */
-    public static KickPlayerEvent createKickPlayerEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Player targetEntity) {
+    public static KickPlayerEvent createKickPlayerEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, MessageEvent.MessageFormatter formatter, Player targetEntity, boolean messageCancelled) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
-        values.put("originalMessage", originalMessage);
-        values.put("message", message);
+        values.put("formatter", formatter);
         values.put("targetEntity", targetEntity);
+        values.put("messageCancelled", messageCancelled);
         return SpongeEventFactoryUtils.createEventImpl(KickPlayerEvent.class, values);
     }
 
@@ -3768,17 +3767,17 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param originalChannel The original channel
      * @param channel The channel
-     * @param originalMessage The original message
-     * @param message The message
+     * @param formatter The formatter
+     * @param messageCancelled The message cancelled
      * @return A new message channel event
      */
-    public static MessageChannelEvent createMessageChannelEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message) {
+    public static MessageChannelEvent createMessageChannelEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, MessageEvent.MessageFormatter formatter, boolean messageCancelled) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
-        values.put("originalMessage", originalMessage);
-        values.put("message", message);
+        values.put("formatter", formatter);
+        values.put("messageCancelled", messageCancelled);
         return SpongeEventFactoryUtils.createEventImpl(MessageChannelEvent.class, values);
     }
 
@@ -3790,19 +3789,19 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param originalChannel The original channel
      * @param channel The channel
-     * @param originalMessage The original message
-     * @param message The message
+     * @param formatter The formatter
      * @param rawMessage The raw message
+     * @param messageCancelled The message cancelled
      * @return A new chat message channel event
      */
-    public static MessageChannelEvent.Chat createMessageChannelEventChat(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Text rawMessage) {
+    public static MessageChannelEvent.Chat createMessageChannelEventChat(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, MessageEvent.MessageFormatter formatter, Text rawMessage, boolean messageCancelled) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
-        values.put("originalMessage", originalMessage);
-        values.put("message", message);
+        values.put("formatter", formatter);
         values.put("rawMessage", rawMessage);
+        values.put("messageCancelled", messageCancelled);
         return SpongeEventFactoryUtils.createEventImpl(MessageChannelEvent.Chat.class, values);
     }
 
@@ -3812,15 +3811,15 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.message.MessageEvent}.
      * 
      * @param cause The cause
-     * @param originalMessage The original message
-     * @param message The message
+     * @param formatter The formatter
+     * @param messageCancelled The message cancelled
      * @return A new message event
      */
-    public static MessageEvent createMessageEvent(Cause cause, Optional<Text> originalMessage, Optional<Text> message) {
+    public static MessageEvent createMessageEvent(Cause cause, MessageEvent.MessageFormatter formatter, boolean messageCancelled) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("originalMessage", originalMessage);
-        values.put("message", message);
+        values.put("formatter", formatter);
+        values.put("messageCancelled", messageCancelled);
         return SpongeEventFactoryUtils.createEventImpl(MessageEvent.class, values);
     }
 
@@ -3908,19 +3907,19 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.network.ClientConnectionEvent.Auth}.
      * 
      * @param cause The cause
-     * @param originalMessage The original message
-     * @param message The message
      * @param connection The connection
+     * @param formatter The formatter
      * @param profile The profile
+     * @param messageCancelled The message cancelled
      * @return A new auth client connection event
      */
-    public static ClientConnectionEvent.Auth createClientConnectionEventAuth(Cause cause, Optional<Text> originalMessage, Optional<Text> message, RemoteConnection connection, GameProfile profile) {
+    public static ClientConnectionEvent.Auth createClientConnectionEventAuth(Cause cause, RemoteConnection connection, MessageEvent.MessageFormatter formatter, GameProfile profile, boolean messageCancelled) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("originalMessage", originalMessage);
-        values.put("message", message);
         values.put("connection", connection);
+        values.put("formatter", formatter);
         values.put("profile", profile);
+        values.put("messageCancelled", messageCancelled);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Auth.class, values);
     }
 
@@ -3932,19 +3931,19 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param originalChannel The original channel
      * @param channel The channel
-     * @param originalMessage The original message
-     * @param message The message
+     * @param formatter The formatter
      * @param targetEntity The target entity
+     * @param messageCancelled The message cancelled
      * @return A new disconnect client connection event
      */
-    public static ClientConnectionEvent.Disconnect createClientConnectionEventDisconnect(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Player targetEntity) {
+    public static ClientConnectionEvent.Disconnect createClientConnectionEventDisconnect(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, MessageEvent.MessageFormatter formatter, Player targetEntity, boolean messageCancelled) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
-        values.put("originalMessage", originalMessage);
-        values.put("message", message);
+        values.put("formatter", formatter);
         values.put("targetEntity", targetEntity);
+        values.put("messageCancelled", messageCancelled);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Disconnect.class, values);
     }
 
@@ -3956,19 +3955,19 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param originalChannel The original channel
      * @param channel The channel
-     * @param originalMessage The original message
-     * @param message The message
+     * @param formatter The formatter
      * @param targetEntity The target entity
+     * @param messageCancelled The message cancelled
      * @return A new join client connection event
      */
-    public static ClientConnectionEvent.Join createClientConnectionEventJoin(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, Optional<Text> originalMessage, Optional<Text> message, Player targetEntity) {
+    public static ClientConnectionEvent.Join createClientConnectionEventJoin(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, MessageEvent.MessageFormatter formatter, Player targetEntity, boolean messageCancelled) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalChannel", originalChannel);
         values.put("channel", channel);
-        values.put("originalMessage", originalMessage);
-        values.put("message", message);
+        values.put("formatter", formatter);
         values.put("targetEntity", targetEntity);
+        values.put("messageCancelled", messageCancelled);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Join.class, values);
     }
 
@@ -3978,25 +3977,25 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.network.ClientConnectionEvent.Login}.
      * 
      * @param cause The cause
-     * @param originalMessage The original message
-     * @param message The message
      * @param fromTransform The from transform
      * @param toTransform The to transform
      * @param connection The connection
+     * @param formatter The formatter
      * @param profile The profile
      * @param targetUser The target user
+     * @param messageCancelled The message cancelled
      * @return A new login client connection event
      */
-    public static ClientConnectionEvent.Login createClientConnectionEventLogin(Cause cause, Optional<Text> originalMessage, Optional<Text> message, Transform<World> fromTransform, Transform<World> toTransform, RemoteConnection connection, GameProfile profile, User targetUser) {
+    public static ClientConnectionEvent.Login createClientConnectionEventLogin(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, RemoteConnection connection, MessageEvent.MessageFormatter formatter, GameProfile profile, User targetUser, boolean messageCancelled) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("originalMessage", originalMessage);
-        values.put("message", message);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
         values.put("connection", connection);
+        values.put("formatter", formatter);
         values.put("profile", profile);
         values.put("targetUser", targetUser);
+        values.put("messageCancelled", messageCancelled);
         return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Login.class, values);
     }
 
@@ -4720,14 +4719,14 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.world.chunk.PopulateChunkEvent.Post}.
      * 
      * @param cause The cause
-     * @param populatedTransactions The populated transactions
+     * @param appliedPopulators The applied populators
      * @param targetChunk The target chunk
      * @return A new post populate chunk event
      */
-    public static PopulateChunkEvent.Post createPopulateChunkEventPost(Cause cause, Map<PopulatorType, List<Transaction<BlockSnapshot>>> populatedTransactions, Chunk targetChunk) {
+    public static PopulateChunkEvent.Post createPopulateChunkEventPost(Cause cause, List<Populator> appliedPopulators, Chunk targetChunk) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("populatedTransactions", populatedTransactions);
+        values.put("appliedPopulators", appliedPopulators);
         values.put("targetChunk", targetChunk);
         return SpongeEventFactoryUtils.createEventImpl(PopulateChunkEvent.Post.class, values);
     }
