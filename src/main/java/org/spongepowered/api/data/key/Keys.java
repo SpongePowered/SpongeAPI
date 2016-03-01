@@ -543,6 +543,14 @@ public final class Keys {
 
     public static final Key<Value<Vector3d>> LEFT_ARM_ROTATION = KeyFactory.fake("LEFT_ARM_ROTATION");
 
+    /**
+     * Represents the {@link Key} for representing the dominant {@link HandType}
+     * of a {@link Living} entity.
+     *
+     * @see DominantHandData#dominantHand()
+     */
+    public static final Key<Value<HandType>> DOMINANT_HAND = KeyFactory.fake("DOMINANT_HAND");
+
     public static final Key<Value<Vector3d>> LEFT_LEG_ROTATION = KeyFactory.fake("LEFT_LEG_ROTATION");
 
     public static final Key<Value<String>> LOCK_TOKEN = KeyFactory.fake("LOCK_TOKEN");
