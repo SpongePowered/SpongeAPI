@@ -56,8 +56,17 @@ public interface Game {
     Platform getPlatform();
 
     /**
+     * Returns if the {@link Server} is available for use. The result of this method is entirely
+     * dependent on the implementation.
+     *
+     * @return True if the Server is available, false if not
+     */
+    boolean isServerAvailable();
+
+    /**
      * Gets the {@link Server}.
      *
+     * @throws IllegalStateException If the Server isn't currently available
      * @return The server
      */
     Server getServer();
