@@ -26,6 +26,7 @@ package org.spongepowered.api;
 
 import static com.google.common.base.Preconditions.checkState;
 
+import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.event.EventManager;
@@ -53,6 +54,10 @@ public final class Sponge {
 
     public static EventManager getEventManager() {
         return getGame().getEventManager();
+    }
+
+    public static AssetManager getAssetManager() {
+        return getGame().getAssetManager();
     }
 
     public static Scheduler getScheduler() {
