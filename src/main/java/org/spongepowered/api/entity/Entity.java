@@ -28,8 +28,6 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataTransactionResult;
@@ -48,6 +46,7 @@ import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.Collection;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
@@ -285,7 +284,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      *
      * @return The passenger entity, if it exists
      */
-    Optional<Entity> getPassenger();
+    List<Entity> getPassengers();
 
     /**
      * Sets the passenger entity(the entity that rides this one).
@@ -293,7 +292,22 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      * @param entity The entity passenger, or null to eject
      * @return True if the set was successful
      */
-    DataTransactionResult setPassenger(@Nullable Entity entity);
+    DataTransactionResult addPassenger(Entity entity);
+
+    /**
+     * Removes the given entity as a passenger.
+     *
+     * @param entity
+     * @return
+     */
+    DataTransactionResult removePassenger(Entity entity);
+
+    /**
+     * Removes all currently riding passengers from this entity.
+     *
+     * @return
+     */
+    DataTransactionResult clearPassengers();
 
     /**
      * Gets the entity vehicle that this entity is riding, if available.
