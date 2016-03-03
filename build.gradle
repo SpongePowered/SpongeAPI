@@ -15,8 +15,8 @@ buildscript {
     dependencies {
         classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
-        classpath 'org.spongepowered:event-impl-gen:1.0.0'
-        classpath 'org.spongepowered:spongegradle:0.3.1-SNAPSHOT'
+        classpath 'org.spongepowered:event-impl-gen:1.1.0'
+        classpath 'org.spongepowered:spongegradle:0.5-SNAPSHOT'
     }
 }
 
@@ -40,6 +40,9 @@ dependencies {
 
     // Dependency injection
     compile 'com.google.inject:guice:4.0'
+
+    // Plugin meta
+    compile 'org.spongepowered:spongegradle:0.5-SNAPSHOT'
 
     // Configuration
     compile 'ninja.leaping.configurate:configurate-hocon:3.1.1'
