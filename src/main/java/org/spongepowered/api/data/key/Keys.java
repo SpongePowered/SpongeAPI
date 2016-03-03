@@ -510,14 +510,6 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> IS_SNEAKING = null;
 
-    /**
-     * Represents the {@link Key} for representing the "splash" state of a
-     * {@link ItemTypes#POTION}.
-     *
-     * @see SplashPotionData#splash()
-     */
-    public static final Key<Value<Boolean>> IS_SPLASH_POTION = null;
-
     public static final Key<Value<Boolean>> IS_SPRINTING = null;
 
     public static final Key<Value<Boolean>> IS_VILLAGER_ZOMBIE = null;
