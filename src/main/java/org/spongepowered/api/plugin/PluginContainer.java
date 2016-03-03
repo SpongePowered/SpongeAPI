@@ -31,6 +31,7 @@ import org.slf4j.LoggerFactory;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.asset.Asset;
 import org.spongepowered.api.asset.AssetManager;
+import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.plugin.meta.PluginDependency;
 
 import java.nio.file.Path;
@@ -153,6 +154,13 @@ public interface PluginContainer {
     default Optional<?> getInstance() {
         return Optional.empty();
     }
+
+    /**
+     * Returns the plugin's internal service manager.
+     *
+     * @return Internal service manager
+     */
+    ServiceManager getServiceManager();
 
     /**
      * Returns the assigned logger to this {@link Plugin}.
