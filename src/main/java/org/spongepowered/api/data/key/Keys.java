@@ -72,7 +72,7 @@ import java.util.UUID;
  * An enumeration of known {@link Key}s used throughout the API.
  */
 public final class Keys {
-    
+
     // SORTFIELDS:ON
 
     public static final Key<SetValue<Achievement>> ACHIEVEMENTS = null;
@@ -512,7 +512,7 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> IS_SPRINTING = null;
 
-    public static final Key<Value<Boolean>> IS_VILLAGER_ZOMBIE = null;
+    public static final Key<Value<Profession>> VILLAGER_ZOMBIE_PROFESSION = null;
 
     public static final Key<Value<Boolean>> IS_WET = null;
 
