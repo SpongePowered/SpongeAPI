@@ -25,7 +25,7 @@
 
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.GameDictionary;
+import org.spongepowered.api.ItemDictionary;
 import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.item.ItemType;
 
@@ -65,14 +65,13 @@ public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot
     ItemStack createStack();
 
     /**
-     * Creates a {@link org.spongepowered.api.GameDictionary.Entry} that
-     * compares stacks to this {@link ItemStackSnapshot}. Note that not all
-     * data stored in this {@link ItemStackSnapshot} may be stored in the
-     * returned entry.
-     * 
-     * @return A {@link org.spongepowered.api.GameDictionary.Entry} based on this
+     * Creates a {@link ItemDictionary.Entry} that compares stacks to this
+     * {@link ItemStackSnapshot}. Note that not all data stored in this
+     * {@link ItemStackSnapshot} may be stored in the returned entry.
+     *
+     * @return An {@link ItemDictionary.Entry} based on this
      * {@link ItemStackSnapshot}
      */
-    GameDictionary.Entry createGameDictionaryEntry();
+    ItemDictionary.Entry createGameDictionaryEntry();
 
 }

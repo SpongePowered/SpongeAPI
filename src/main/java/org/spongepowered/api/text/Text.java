@@ -35,6 +35,8 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.locale.Dictionary;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
@@ -58,6 +60,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Locale;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -1007,6 +1010,37 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
         }
 
         return builder.build();
+    }
+
+    public static Optional<Text> get(Dictionary dictionary, String key, Locale locale) {
+        return get(dictionary.get(key, locale));
+    }
+
+    public static Optional<Text> get(Dictionary dictionary, String key) {
+        return get(dictionary.get(key));
+    }
+
+    private static Optional<Text> get(Optional<String> result) {
+        if (result.isPresent()) {
+            return Optional.of(Text.of(result.get()));
+        }
+        return Optional.empty();
+    }
+
+    public static Optional<Text> get(Object plugin, String key, Locale locale) {
+        return get(Sponge.getPluginManager().fromInstance(plugin).get().getDictionary(), key, locale);
+    }
+
+    public static Optional<Text> get(Object plugin, String key) {
+        return get(Sponge.getPluginManager().fromInstance(plugin).get().getDictionary(), key);
+    }
+
+    public static Optional<Text> get(String key, Locale locale) {
+        return get(Sponge.getServiceManager().provide(Dictionary.class).get(), key, locale);
+    }
+
+    public static Optional<Text> get(String key) {
+        return get(Sponge.getServiceManager().provide(Dictionary.class).get(), key);
     }
 
     /**

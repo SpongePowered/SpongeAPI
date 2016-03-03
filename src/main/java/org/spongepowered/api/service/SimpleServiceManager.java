@@ -34,14 +34,9 @@ import org.spongepowered.api.event.cause.NamedCause;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 
-import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
@@ -57,13 +52,10 @@ public class SimpleServiceManager implements ServiceManager {
 
     /**
      * Construct a simple {@link ServiceManager}.
-     *
-     * @param pluginManager The plugin manager to get the
-     *            {@link PluginContainer} for a given plugin
+     * @param pluginManager
      */
     @Inject
     public SimpleServiceManager(PluginManager pluginManager) {
-        checkNotNull(pluginManager, "pluginManager");
         this.pluginManager = pluginManager;
     }
 
@@ -72,9 +64,8 @@ public class SimpleServiceManager implements ServiceManager {
         checkNotNull(plugin, "plugin");
         checkNotNull(service, "service");
         checkNotNull(provider, "provider");
-
-        Optional<PluginContainer> containerOptional = this.pluginManager.fromInstance(plugin);
-        if (!containerOptional.isPresent()) {
+        Optional<PluginContainer> container = this.pluginManager.fromInstance(plugin);
+        if (!container.isPresent()) {
             throw new IllegalArgumentException(
                     "The provided plugin object does not have an associated plugin container "
                             + "(in other words, is 'plugin' actually your plugin object?)");
@@ -93,6 +84,20 @@ public class SimpleServiceManager implements ServiceManager {
         checkNotNull(service, "service");
         @Nullable ProviderRegistration<T> provider = (ProviderRegistration<T>) this.providers.get(service);
         return provider != null ? Optional.of(provider.getProvider()) : Optional.empty();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> Optional<T> provideFirst(Class<T> service) {
+        checkNotNull(service, "service");
+        for (Map.Entry<Class<?>, ProviderRegistration<?>> entry : this.providers.entrySet()) {
+            Class<?> s = entry.getKey();
+            ProviderRegistration<?> provider = entry.getValue();
+            if (s.isAssignableFrom(service)) {
+                return Optional.of((T) provider.getProvider());
+            }
+        }
+        return Optional.empty();
     }
 
     @SuppressWarnings("unchecked")

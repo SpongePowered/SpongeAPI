@@ -48,10 +48,10 @@ public interface ServiceManager {
      * <p>Services should only be registered during initialization. If services
      * are registered later, then they may not be utilized.</p>
      *
-     * @param plugin The instance of a plugin
+     * @param <T> The type of service
+     * @param plugin The cause of the provider change.
      * @param service The service
      * @param provider The implementation
-     * @param <T> The type of service
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a
      *     plugin instance
      */
@@ -68,6 +68,15 @@ public interface ServiceManager {
      * @return A provider, if available
      */
     <T> Optional<T> provide(Class<T> service);
+
+    /**
+     * Returns the first provider that is derived from the specified service.
+     *
+     * @param service The service
+     * @param <T> The type of service
+     * @return A provider, if available
+     */
+    <T> Optional<T> provideFirst(Class<T> service);
 
     /**
      * Gets the {@link ProviderRegistration} for the given service, if available.
