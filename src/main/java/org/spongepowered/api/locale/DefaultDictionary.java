@@ -22,34 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service;
+package org.spongepowered.api.locale;
 
-import org.spongepowered.api.event.cause.Cause;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Locale;
 
 /**
- * Represents the registration information for the provider of a service.
+ * Default {@link Dictionary} implementation used by Sponge. This
+ * implementation first tries to resolve the dictionary within a directory
+ * and falls-back to the class loader if that file is not found.
  */
-public interface ProviderRegistration<T> {
+public class DefaultDictionary extends SimpleConfigDictionary {
 
-    /**
-     * Gets the service of this provider registration.
-     *
-     * @return The service
-     */
-    Class<T> getService();
+    protected final Path path;
 
-    /**
-     * Gets the service provider of this provider regitration.
-     *
-     * @return The provider
-     */
-    T getProvider();
+    public DefaultDictionary(Object subject, Locale defaultLocale, Path path) {
+        super(subject, defaultLocale);
+        this.path = path;
+        this.resolver.primary(this::resolveSource);
+    }
 
-    /**
-     * Returns the {@link Cause} of the registration.
-     *
-     * @return Cause of registration
-     */
-    Cause getCause();
+    protected InputStream resolveSource() throws IOException {
+        if (Files.exists(this.path)) {
+            return Files.newInputStream(this.path);
+        }
+        return this.subject.getClass().getClassLoader().getResourceAsStream(this.path.getFileName().toString());
+    }
 
 }

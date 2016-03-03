@@ -22,34 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service;
+package org.spongepowered.api.locale;
 
-import org.spongepowered.api.event.cause.Cause;
+import ninja.leaping.configurate.ConfigurationNode;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 /**
- * Represents the registration information for the provider of a service.
+ * Represents a simple implementation of {@link ConfigDictionary} with a single source.
  */
-public interface ProviderRegistration<T> {
+public class SimpleConfigDictionary extends AbstractConfigDictionary {
 
-    /**
-     * Gets the service of this provider registration.
-     *
-     * @return The service
-     */
-    Class<T> getService();
+    protected ConfigurationNode root;
+    protected final Map<Locale, ConfigResourceBundle> bundles = new HashMap<>();
 
-    /**
-     * Gets the service provider of this provider regitration.
-     *
-     * @return The provider
-     */
-    T getProvider();
+    public SimpleConfigDictionary(Object subject, Locale defaultLocale) {
+        super(subject, defaultLocale);
+    }
 
-    /**
-     * Returns the {@link Cause} of the registration.
-     *
-     * @return Cause of registration
-     */
-    Cause getCause();
+    @Override
+    public ConfigurationNode load(Locale locale) throws IOException {
+        return this.root = super.load(locale);
+    }
+
+    @Override
+    public ConfigurationNode getNode(Locale locale) {
+        if (this.root == null) {
+            throw new IllegalStateException("Tried to read SimpleConfigDictionary before it was loaded.");
+        }
+        return this.root.getNode(locale.toString());
+    }
 
 }

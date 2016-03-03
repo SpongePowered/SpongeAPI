@@ -30,6 +30,9 @@ import org.slf4j.LoggerFactory;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.asset.Asset;
 import org.spongepowered.api.asset.AssetManager;
+import org.spongepowered.api.locale.Dictionary;
+import org.spongepowered.api.locale.NullDictionary;
+import org.spongepowered.api.service.ServiceManager;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -143,6 +146,16 @@ public interface PluginContainer {
     }
 
     /**
+     * Returns the {@link Dictionary} for this plugin.
+     *
+     * @return Dictionary provided by plugin or {@link NullDictionary} if none
+     *         was provided
+     */
+    default Dictionary getDictionary() {
+        return getServiceManager().provideFirst(Dictionary.class).orElse(new NullDictionary(this));
+    }
+
+    /**
      * Returns the source the plugin was loaded from.
      *
      * @return The source the plugin was loaded from or {@link Optional#empty()}
@@ -158,6 +171,13 @@ public interface PluginContainer {
      * @return The instance if available
      */
     Optional<?> getInstance();
+
+    /**
+     * Returns the plugin's internal service manager.
+     *
+     * @return Internal service manager
+     */
+    ServiceManager getServiceManager();
 
     /**
      * Returns the assigned logger to this {@link Plugin}.

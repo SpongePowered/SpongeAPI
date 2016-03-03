@@ -22,34 +22,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service;
+package org.spongepowered.api.locale;
 
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.text.translation.locale.Locales;
+
+import java.util.Locale;
+import java.util.Optional;
 
 /**
- * Represents the registration information for the provider of a service.
+ * Represents a Dictionary for a particular subject. Dictionaries take a
+ * given string key and return a localized result.
  */
-public interface ProviderRegistration<T> {
+public interface Dictionary {
 
     /**
-     * Gets the service of this provider registration.
+     * Returns the "subject" for this dictionary.
      *
-     * @return The service
+     * @return Subject of dictionary
      */
-    Class<T> getService();
+    Object getSubject();
 
     /**
-     * Gets the service provider of this provider regitration.
+     * Returns the default {@link Locale} to be used if no Locale is specified.
      *
-     * @return The provider
+     * @return Default Locale
      */
-    T getProvider();
+    default Locale getDefaultLocale() {
+        return Locales.DEFAULT;
+    }
 
     /**
-     * Returns the {@link Cause} of the registration.
+     * Returns the entry for the specified key for the specified
+     * {@link Locale}.
      *
-     * @return Cause of registration
+     * @param key Key to search for
+     * @param locale Locale to get
+     * @return Localized string for "key"
      */
-    Cause getCause();
+    Optional<String> get(String key, Locale locale);
+
+    /**
+     * Returns the entry for the specified key for the default {@link Locale}
+     * defined by {@link #getDefaultLocale()}.
+     *
+     * @param key Key to search for
+     * @return Localized string for "key"
+     */
+    default Optional<String> get(String key) {
+        return get(key, getDefaultLocale());
+    }
 
 }

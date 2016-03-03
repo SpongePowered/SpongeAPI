@@ -80,8 +80,8 @@ public final class Sponge {
         return getGame().getServer();
     }
 
-    public static GameDictionary getDictionary() {
-        return getGame().getGameDictionary();
+    public static ItemDictionary getItemDictionary() {
+        return getGame().getItemDictionary();
     }
 
     public static CommandManager getCommandManager() {

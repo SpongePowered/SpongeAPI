@@ -92,11 +92,11 @@ public interface Game {
     GameRegistry getRegistry();
 
     /**
-     * Retrieves the GameDictionary (item dictionary) for this GameRegistry.
+     * Retrieves the ItemDictionary (item dictionary) for this GameRegistry.
      *
      * @return The item dictionary
      */
-    GameDictionary getGameDictionary();
+    ItemDictionary getItemDictionary();
 
     /**
      * Gets the game's instance of the service manager, which is the gateway
