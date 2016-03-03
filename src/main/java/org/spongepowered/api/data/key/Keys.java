@@ -602,7 +602,7 @@ public final class Keys {
 
     public static final Key<MutableBoundedValue<Integer>> PASSED_COOK_TIME = null;
 
-    public static final Key<ListValue<EntitySnapshot>> PASSENGER = null;
+    public static final Key<ListValue<EntitySnapshot>> PASSENGERS = null;
 
     public static final Key<Value<Boolean>> PERSISTS = null;
 
