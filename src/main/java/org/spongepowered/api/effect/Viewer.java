@@ -26,6 +26,7 @@ package org.spongepowered.api.effect;
 
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.effect.particle.ParticleEffect;
+import org.spongepowered.api.effect.sound.SoundCategoryType;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.text.title.Title;
 
@@ -66,7 +67,7 @@ public interface Viewer {
      * @param position The position to play the sound
      * @param volume The volume to play the sound at, usually between 0 and 2
      */
-    void playSound(SoundType sound, Vector3d position, double volume);
+    void playSound(SoundType sound, SoundCategoryType category, Vector3d position, double volume);
 
     /**
      * Plays the given {@link SoundType} at the given position. All
@@ -78,7 +79,7 @@ public interface Viewer {
      * @param pitch The modulation of the sound to play at, usually between 0
      *        and 2
      */
-    void playSound(SoundType sound, Vector3d position, double volume, double pitch);
+    void playSound(SoundType sound, SoundCategoryType category, Vector3d position, double volume, double pitch);
 
     /**
      * Plays the given {@link SoundType} at the given position. All
@@ -92,7 +93,7 @@ public interface Viewer {
      * @param minVolume The minimum volume to play the sound at, usually between
      *        0 and 2
      */
-    void playSound(SoundType sound, Vector3d position, double volume, double pitch, double minVolume);
+    void playSound(SoundType sound, SoundCategoryType category, Vector3d position, double volume, double pitch, double minVolume);
 
     /**
      * Sends a {@link Title} to this player.
