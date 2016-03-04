@@ -38,7 +38,6 @@ public final class PopulatorTypes {
     public static final PopulatorType DESERT_WELL = null;
     public static final PopulatorType DOUBLE_PLANT = null;
     public static final PopulatorType DUNGEON = null;
-    public static final PopulatorType ENDER_CRYSTAL_PLATFORM = null;
     public static final PopulatorType END_ISLAND = null;
     public static final PopulatorType FLOWER = null;
     public static final PopulatorType FOREST = null;
