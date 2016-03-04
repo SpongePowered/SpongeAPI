@@ -78,6 +78,9 @@ public final class Queries {
     // Text
     public static final DataQuery JSON = of("JSON");
 
+    // RespawnLocation
+    public static final DataQuery FORCED_SPAWN = of("ForcedSpawn");
+
     private Queries() {
     }
 

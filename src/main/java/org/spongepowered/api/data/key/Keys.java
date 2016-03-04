@@ -44,6 +44,7 @@ import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartCommandBlock;
@@ -72,7 +73,7 @@ import java.util.UUID;
  * An enumeration of known {@link Key}s used throughout the API.
  */
 public final class Keys {
-    
+
     // SORTFIELDS:ON
 
     public static final Key<SetValue<Achievement>> ACHIEVEMENTS = null;
@@ -704,7 +705,11 @@ public final class Keys {
 
     public static final Key<Value<GameProfile>> REPRESENTED_PLAYER = null;
 
-    public static final Key<MapValue<UUID, Vector3d>> RESPAWN_LOCATIONS = null;
+    /**
+     * Represents the {@link Key} for the spawn locations a {@link Player}
+     * may have for various worlds based on {@link UUID} of the world.
+     */
+    public static final Key<MapValue<UUID, RespawnLocation>> RESPAWN_LOCATIONS = null;
 
     public static final Key<Value<Vector3d>> RIGHT_ARM_ROTATION = null;
 
