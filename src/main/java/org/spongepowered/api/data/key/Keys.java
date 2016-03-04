@@ -474,8 +474,6 @@ public final class Keys {
      */
     public static final Key<Value<Boolean>> INVISIBLE = null;
 
-    public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY = null;
-
     public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY_TICKS = null;
 
     /**
