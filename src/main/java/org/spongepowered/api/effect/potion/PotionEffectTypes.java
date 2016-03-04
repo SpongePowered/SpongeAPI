@@ -52,6 +52,10 @@ public final class PotionEffectTypes {
     public static final PotionEffectType HEALTH_BOOST = null;
     public static final PotionEffectType ABSORPTION = null;
     public static final PotionEffectType SATURATION = null;
+    public static final PotionEffectType GLOWING = null;
+    public static final PotionEffectType LEVITATION = null;
+    public static final PotionEffectType LUCK = null;
+    public static final PotionEffectType UNLUCK = null;
 
     private PotionEffectTypes() {
     }

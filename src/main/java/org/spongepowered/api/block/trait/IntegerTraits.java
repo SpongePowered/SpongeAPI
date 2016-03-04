@@ -42,7 +42,6 @@ public final class IntegerTraits {
     public static final IntegerTrait DAYLIGHT_DETECTOR_POWER = null;
     public static final IntegerTrait FARMLAND_MOISTURE = null;
     public static final IntegerTrait FIRE_AGE = null;
-    public static final IntegerTrait FIRE_UPPER = null;
     public static final IntegerTrait FLOWER_POT_LEGACY_DATA = null;
     public static final IntegerTrait FLOWING_LAVA_LEVEL = null;
     public static final IntegerTrait FLOWING_WATER_LEVEL = null;

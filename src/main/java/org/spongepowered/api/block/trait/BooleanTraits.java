@@ -60,7 +60,6 @@ public final class BooleanTraits {
     public static final BooleanTrait COBBLESTONE_WALL_SOUTH = null;
     public static final BooleanTrait COBBLESTONE_WALL_UP = null;
     public static final BooleanTrait COBBLESTONE_WALL_WEST = null;
-    public static final BooleanTrait COMMAND_BLOCK_TRIGGERED = null;
     public static final BooleanTrait DARK_OAK_DOOR_OPEN = null;
     public static final BooleanTrait DARK_OAK_DOOR_POWERED = null;
     public static final BooleanTrait DARK_OAK_FENCE_EAST = null;
@@ -84,11 +83,10 @@ public final class BooleanTraits {
     public static final BooleanTrait FENCE_NORTH = null;
     public static final BooleanTrait FENCE_SOUTH = null;
     public static final BooleanTrait FENCE_WEST = null;
-    public static final BooleanTrait FIRE_ALT = null;
     public static final BooleanTrait FIRE_EAST = null;
-    public static final BooleanTrait FIRE_FLIP = null;
     public static final BooleanTrait FIRE_NORTH = null;
     public static final BooleanTrait FIRE_SOUTH = null;
+    public static final BooleanTrait FIRE_UP = null;
     public static final BooleanTrait FIRE_WEST = null;
     public static final BooleanTrait GLASS_PANE_EAST = null;
     public static final BooleanTrait GLASS_PANE_NORTH = null;
@@ -153,11 +151,9 @@ public final class BooleanTraits {
     public static final BooleanTrait TRIPWIRE_EAST = null;
     public static final BooleanTrait TRIPWIRE_HOOK_ATTACHED = null;
     public static final BooleanTrait TRIPWIRE_HOOK_POWERED = null;
-    public static final BooleanTrait TRIPWIRE_HOOK_SUSPENDED = null;
     public static final BooleanTrait TRIPWIRE_NORTH = null;
     public static final BooleanTrait TRIPWIRE_POWERED = null;
     public static final BooleanTrait TRIPWIRE_SOUTH = null;
-    public static final BooleanTrait TRIPWIRE_SUSPENDED = null;
     public static final BooleanTrait TRIPWIRE_WEST = null;
     public static final BooleanTrait UNPOWERED_COMPARATOR_POWERED = null;
     public static final BooleanTrait UNPOWERED_REPEATER_LOCKED = null;

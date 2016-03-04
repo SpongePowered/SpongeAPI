@@ -67,8 +67,6 @@ public final class ItemTypes {
 
     public static final ItemType BEETROOT = null;
 
-    public static final ItemType BEETROOTS = null;
-
     public static final ItemType BEETROOT_SEEDS = null;
 
     public static final ItemType BEETROOT_SOUP = null;
@@ -453,8 +451,6 @@ public final class ItemTypes {
 
     public static final ItemType LINGERING_POTION = null;
 
-    public static final ItemType LIT_FURNACE = null;
-
     public static final ItemType LIT_PUMPKIN = null;
 
     public static final ItemType LOG = null;
@@ -542,8 +538,6 @@ public final class ItemTypes {
     public static final ItemType PUMPKIN_SEEDS = null;
 
     public static final ItemType PURPUR_BLOCK = null;
-
-    public static final ItemType PURPUR_DOUBLE_SLAB = null;
 
     public static final ItemType PURPUR_PILLAR = null;
 
