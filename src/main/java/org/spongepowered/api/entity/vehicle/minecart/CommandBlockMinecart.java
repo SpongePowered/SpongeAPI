@@ -29,6 +29,6 @@ import org.spongepowered.api.command.source.CommandBlockSource;
 /**
  * Represents a minecart with a command block inside it.
  */
-public interface MinecartCommandBlock extends Minecart, CommandBlockSource {
+public interface CommandBlockMinecart extends Minecart, CommandBlockSource {
 
 }

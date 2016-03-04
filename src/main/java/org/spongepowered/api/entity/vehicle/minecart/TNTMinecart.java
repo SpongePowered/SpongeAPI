@@ -29,6 +29,6 @@ import org.spongepowered.api.entity.explosive.IgnitableExplosive;
 /**
  * Represents a Minecart with a TNT block in it.
  */
-public interface MinecartTNT extends Minecart, IgnitableExplosive {
+public interface TNTMinecart extends Minecart, IgnitableExplosive {
 
 }

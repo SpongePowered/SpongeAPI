@@ -29,7 +29,7 @@ import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 /**
  * Represents a Minecart with a MobSpawner inside it.
  */
-public interface MinecartMobSpawner extends Minecart {
+public interface MobSpawnerMinecart extends Minecart {
 
     /**
      * Gets a copy of the {@link MobSpawnerData}.
