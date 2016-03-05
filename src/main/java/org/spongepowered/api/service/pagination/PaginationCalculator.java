@@ -26,11 +26,12 @@ package org.spongepowered.api.service.pagination;
 
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.text.channel.MessageReceiver;
 
 /**
  * Implementations of PaginationCalculator handle calculating output-specific pagination data.
  */
-public interface PaginationCalculator<T extends CommandSource> {
+public interface PaginationCalculator<T extends MessageReceiver> {
 
     /**
      * Get the maxinum number of lines that can be displayed on a source's screen.
@@ -56,6 +57,6 @@ public interface PaginationCalculator<T extends CommandSource> {
      * @param padding The padding character
      * @return The centered text
      */
-    Text center(T source, Text text, String padding);
+    Text center(T source, Text text, Text padding);
 
 }
