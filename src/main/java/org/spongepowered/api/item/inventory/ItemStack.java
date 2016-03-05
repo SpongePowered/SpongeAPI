@@ -175,6 +175,17 @@ public interface ItemStack extends DataHolder, DataSerializable, Translatable {
         Builder itemData(ImmutableDataManipulator<?, ?> itemData) throws IllegalArgumentException;
 
         /**
+         * Adds the given {@link Key} with the given {@link V} value.
+         *
+         * @param key The key to assign the value with
+         * @param value The value to assign with the key
+         * @param <V> The type of the value
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException If the item data is incompatible
+         */
+        <V> Builder add(Key<? extends BaseValue<V>> key, V value) throws IllegalArgumentException;
+
+        /**
          * Sets all the settings in this builder from the item stack blueprint.
          *
          * @param itemStack The item stack to copy
