@@ -24,17 +24,20 @@
  */
 package org.spongepowered.api.effect.sound;
 
-public class SoundCategories {
+public final class SoundCategories {
 
     public static final SoundCategory MASTER = null;
     public static final SoundCategory MUSIC = null;
-    public static final SoundCategory RECORDS = null;
+    public static final SoundCategory RECORD = null;
     public static final SoundCategory WEATHER = null;
-    public static final SoundCategory BLOCKS = null;
+    public static final SoundCategory BLOCK = null;
     public static final SoundCategory HOSTILE = null;
     public static final SoundCategory NEUTRAL = null;
-    public static final SoundCategory PLAYERS = null;
+    public static final SoundCategory PLAYER = null;
     public static final SoundCategory AMBIENT = null;
     public static final SoundCategory VOICE = null;
+
+    private SoundCategories() {
+    }
 
 }

@@ -29,252 +29,895 @@ package org.spongepowered.api.effect.sound;
  */
 public final class SoundTypes {
 
-    public static final SoundType AMBIENCE_CAVE = null;
-    public static final SoundType AMBIENCE_RAIN = null;
-    public static final SoundType AMBIENCE_THUNDER = null;
-    public static final SoundType ANVIL_BREAK = null;
-    public static final SoundType ANVIL_LAND = null;
-    public static final SoundType ANVIL_USE = null;
-    public static final SoundType ARROW_HIT = null;
-    public static final SoundType BURP = null;
-    public static final SoundType CHEST_CLOSE = null;
-    public static final SoundType CHEST_OPEN = null;
-    public static final SoundType CLICK = null;
-    public static final SoundType DOOR_CLOSE = null;
-    public static final SoundType DOOR_OPEN = null;
-    public static final SoundType DRINK = null;
-    public static final SoundType EAT = null;
-    public static final SoundType EXPLODE = null;
-    public static final SoundType FALL_BIG = null;
-    public static final SoundType FALL_SMALL = null;
-    public static final SoundType FIRE = null;
-    public static final SoundType FIRE_IGNITE = null;
-    public static final SoundType FIRECHARGE_USE = null;
-    public static final SoundType FIZZ = null;
-    public static final SoundType FUSE = null;
-    public static final SoundType GLASS = null;
-    public static final SoundType GUI_BUTTON = null;
-    public static final SoundType HURT_FLESH = null;
-    public static final SoundType ITEM_BREAK = null;
-    public static final SoundType ITEM_PICKUP = null;
-    public static final SoundType LAVA = null;
-    public static final SoundType LAVA_POP = null;
-    public static final SoundType LEVEL_UP = null;
-    public static final SoundType MINECART_BASE = null;
-    public static final SoundType MINECART_INSIDE = null;
-    public static final SoundType MUSIC_GAME = null;
+    // SORTFIELDS:ON
+
+    public static final SoundType AMBIENT_CAVE = null;
+
+    public static final SoundType BLOCK_ANVIL_BREAK = null;
+
+    public static final SoundType BLOCK_ANVIL_DESTROY = null;
+
+    public static final SoundType BLOCK_ANVIL_FALL = null;
+
+    public static final SoundType BLOCK_ANVIL_HIT = null;
+
+    public static final SoundType BLOCK_ANVIL_LAND = null;
+
+    public static final SoundType BLOCK_ANVIL_PLACE = null;
+
+    public static final SoundType BLOCK_ANVIL_STEP = null;
+
+    public static final SoundType BLOCK_ANVIL_USE = null;
+
+    public static final SoundType BLOCK_BREWING_STAND_BREW = null;
+
+    public static final SoundType BLOCK_CHEST_CLOSE = null;
+
+    public static final SoundType BLOCK_CHEST_LOCKED = null;
+
+    public static final SoundType BLOCK_CHEST_OPEN = null;
+
+    public static final SoundType BLOCK_CHORUS_FLOWER_DEATH = null;
+
+    public static final SoundType BLOCK_CHORUS_FLOWER_GROW = null;
+
+    public static final SoundType BLOCK_CLOTH_BREAK = null;
+
+    public static final SoundType BLOCK_CLOTH_FALL = null;
+
+    public static final SoundType BLOCK_CLOTH_HIT = null;
+
+    public static final SoundType BLOCK_CLOTH_PLACE = null;
+
+    public static final SoundType BLOCK_CLOTH_STEP = null;
+
+    public static final SoundType BLOCK_COMPARATOR_CLICK = null;
+
+    public static final SoundType BLOCK_DISPENSER_DISPENSE = null;
+
+    public static final SoundType BLOCK_DISPENSER_FAIL = null;
+
+    public static final SoundType BLOCK_DISPENSER_LAUNCH = null;
+
+    public static final SoundType BLOCK_ENDERCHEST_CLOSE = null;
+
+    public static final SoundType BLOCK_ENDERCHEST_OPEN = null;
+
+    public static final SoundType BLOCK_END_GATEWAY_SPAWN = null;
+
+    public static final SoundType BLOCK_FENCE_GATE_CLOSE = null;
+
+    public static final SoundType BLOCK_FENCE_GATE_OPEN = null;
+
+    public static final SoundType BLOCK_FIRE_AMBIENT = null;
+
+    public static final SoundType BLOCK_FIRE_EXTINGUISH = null;
+
+    public static final SoundType BLOCK_FURNACE_FIRE_CRACKLE = null;
+
+    public static final SoundType BLOCK_GLASS_BREAK = null;
+
+    public static final SoundType BLOCK_GLASS_FALL = null;
+
+    public static final SoundType BLOCK_GLASS_HIT = null;
+
+    public static final SoundType BLOCK_GLASS_PLACE = null;
+
+    public static final SoundType BLOCK_GLASS_STEP = null;
+
+    public static final SoundType BLOCK_GRASS_BREAK = null;
+
+    public static final SoundType BLOCK_GRASS_FALL = null;
+
+    public static final SoundType BLOCK_GRASS_HIT = null;
+
+    public static final SoundType BLOCK_GRASS_PLACE = null;
+
+    public static final SoundType BLOCK_GRASS_STEP = null;
+
+    public static final SoundType BLOCK_GRAVEL_BREAK = null;
+
+    public static final SoundType BLOCK_GRAVEL_FALL = null;
+
+    public static final SoundType BLOCK_GRAVEL_HIT = null;
+
+    public static final SoundType BLOCK_GRAVEL_PLACE = null;
+
+    public static final SoundType BLOCK_GRAVEL_STEP = null;
+
+    public static final SoundType BLOCK_IRON_DOOR_CLOSE = null;
+
+    public static final SoundType BLOCK_IRON_DOOR_OPEN = null;
+
+    public static final SoundType BLOCK_IRON_TRAPDOOR_CLOSE = null;
+
+    public static final SoundType BLOCK_IRON_TRAPDOOR_OPEN = null;
+
+    public static final SoundType BLOCK_LADDER_BREAK = null;
+
+    public static final SoundType BLOCK_LADDER_FALL = null;
+
+    public static final SoundType BLOCK_LADDER_HIT = null;
+
+    public static final SoundType BLOCK_LADDER_PLACE = null;
+
+    public static final SoundType BLOCK_LADDER_STEP = null;
+
+    public static final SoundType BLOCK_LAVA_AMBIENT = null;
+
+    public static final SoundType BLOCK_LAVA_EXTINGUISH = null;
+
+    public static final SoundType BLOCK_LAVA_POP = null;
+
+    public static final SoundType BLOCK_LEVER_CLICK = null;
+
+    public static final SoundType BLOCK_METAL_BREAK = null;
+
+    public static final SoundType BLOCK_METAL_FALL = null;
+
+    public static final SoundType BLOCK_METAL_HIT = null;
+
+    public static final SoundType BLOCK_METAL_PLACE = null;
+
+    public static final SoundType BLOCK_METAL_PRESSPLATE_CLICK_OFF = null;
+
+    public static final SoundType BLOCK_METAL_PRESSPLATE_CLICK_ON = null;
+
+    public static final SoundType BLOCK_METAL_STEP = null;
+
+    public static final SoundType BLOCK_NOTE_BASEDRUM = null;
+
+    public static final SoundType BLOCK_NOTE_BASS = null;
+
+    public static final SoundType BLOCK_NOTE_HARP = null;
+
+    public static final SoundType BLOCK_NOTE_HAT = null;
+
+    public static final SoundType BLOCK_NOTE_PLING = null;
+
+    public static final SoundType BLOCK_NOTE_SNARE = null;
+
+    public static final SoundType BLOCK_PISTON_CONTRACT = null;
+
+    public static final SoundType BLOCK_PISTON_EXTEND = null;
+
+    public static final SoundType BLOCK_PORTAL_AMBIENT = null;
+
+    public static final SoundType BLOCK_PORTAL_TRAVEL = null;
+
+    public static final SoundType BLOCK_PORTAL_TRIGGER = null;
+
+    public static final SoundType BLOCK_REDSTONE_TORCH_BURNOUT = null;
+
+    public static final SoundType BLOCK_SAND_BREAK = null;
+
+    public static final SoundType BLOCK_SAND_FALL = null;
+
+    public static final SoundType BLOCK_SAND_HIT = null;
+
+    public static final SoundType BLOCK_SAND_PLACE = null;
+
+    public static final SoundType BLOCK_SAND_STEP = null;
+
+    public static final SoundType BLOCK_SLIME_BREAK = null;
+
+    public static final SoundType BLOCK_SLIME_FALL = null;
+
+    public static final SoundType BLOCK_SLIME_HIT = null;
+
+    public static final SoundType BLOCK_SLIME_PLACE = null;
+
+    public static final SoundType BLOCK_SLIME_STEP = null;
+
+    public static final SoundType BLOCK_SNOW_BREAK = null;
+
+    public static final SoundType BLOCK_SNOW_FALL = null;
+
+    public static final SoundType BLOCK_SNOW_HIT = null;
+
+    public static final SoundType BLOCK_SNOW_PLACE = null;
+
+    public static final SoundType BLOCK_SNOW_STEP = null;
+
+    public static final SoundType BLOCK_STONE_BREAK = null;
+
+    public static final SoundType BLOCK_STONE_BUTTON_CLICK_OFF = null;
+
+    public static final SoundType BLOCK_STONE_BUTTON_CLICK_ON = null;
+
+    public static final SoundType BLOCK_STONE_FALL = null;
+
+    public static final SoundType BLOCK_STONE_HIT = null;
+
+    public static final SoundType BLOCK_STONE_PLACE = null;
+
+    public static final SoundType BLOCK_STONE_PRESSPLATE_CLICK_OFF = null;
+
+    public static final SoundType BLOCK_STONE_PRESSPLATE_CLICK_ON = null;
+
+    public static final SoundType BLOCK_STONE_STEP = null;
+
+    public static final SoundType BLOCK_TRIPWIRE_ATTACH = null;
+
+    public static final SoundType BLOCK_TRIPWIRE_CLICK_OFF = null;
+
+    public static final SoundType BLOCK_TRIPWIRE_CLICK_ON = null;
+
+    public static final SoundType BLOCK_TRIPWIRE_DETACH = null;
+
+    public static final SoundType BLOCK_WATERLILY_PLACE = null;
+
+    public static final SoundType BLOCK_WATER_AMBIENT = null;
+
+    public static final SoundType BLOCK_WOODEN_DOOR_CLOSE = null;
+
+    public static final SoundType BLOCK_WOODEN_DOOR_OPEN = null;
+
+    public static final SoundType BLOCK_WOODEN_TRAPDOOR_CLOSE = null;
+
+    public static final SoundType BLOCK_WOODEN_TRAPDOOR_OPEN = null;
+
+    public static final SoundType BLOCK_WOOD_BREAK = null;
+
+    public static final SoundType BLOCK_WOOD_BUTTON_CLICK_OFF = null;
+
+    public static final SoundType BLOCK_WOOD_BUTTON_CLICK_ON = null;
+
+    public static final SoundType BLOCK_WOOD_FALL = null;
+
+    public static final SoundType BLOCK_WOOD_HIT = null;
+
+    public static final SoundType BLOCK_WOOD_PLACE = null;
+
+    public static final SoundType BLOCK_WOOD_PRESSPLATE_CLICK_OFF = null;
+
+    public static final SoundType BLOCK_WOOD_PRESSPLATE_CLICK_ON = null;
+
+    public static final SoundType BLOCK_WOOD_STEP = null;
+
+    public static final SoundType ENCHANT_THORNS_HIT = null;
+
+    public static final SoundType ENTITY_ARMORSTAND_BREAK = null;
+
+    public static final SoundType ENTITY_ARMORSTAND_FALL = null;
+
+    public static final SoundType ENTITY_ARMORSTAND_HIT = null;
+
+    public static final SoundType ENTITY_ARMORSTAND_PLACE = null;
+
+    public static final SoundType ENTITY_ARROW_HIT = null;
+
+    public static final SoundType ENTITY_ARROW_HIT_PLAYER = null;
+
+    public static final SoundType ENTITY_ARROW_SHOOT = null;
+
+    public static final SoundType ENTITY_BAT_AMBIENT = null;
+
+    public static final SoundType ENTITY_BAT_DEATH = null;
+
+    public static final SoundType ENTITY_BAT_HURT = null;
+
+    public static final SoundType ENTITY_BAT_LOOP = null;
+
+    public static final SoundType ENTITY_BAT_TAKEOFF = null;
+
+    public static final SoundType ENTITY_BLAZE_AMBIENT = null;
+
+    public static final SoundType ENTITY_BLAZE_BURN = null;
+
+    public static final SoundType ENTITY_BLAZE_DEATH = null;
+
+    public static final SoundType ENTITY_BLAZE_HURT = null;
+
+    public static final SoundType ENTITY_BLAZE_SHOOT = null;
+
+    public static final SoundType ENTITY_BOBBER_SPLASH = null;
+
+    public static final SoundType ENTITY_BOBBER_THROW = null;
+
+    public static final SoundType ENTITY_CAT_AMBIENT = null;
+
+    public static final SoundType ENTITY_CAT_DEATH = null;
+
+    public static final SoundType ENTITY_CAT_HISS = null;
+
+    public static final SoundType ENTITY_CAT_HURT = null;
+
+    public static final SoundType ENTITY_CAT_PURR = null;
+
+    public static final SoundType ENTITY_CAT_PURREOW = null;
+
+    public static final SoundType ENTITY_CHICKEN_AMBIENT = null;
+
+    public static final SoundType ENTITY_CHICKEN_DEATH = null;
+
+    public static final SoundType ENTITY_CHICKEN_EGG = null;
+
+    public static final SoundType ENTITY_CHICKEN_HURT = null;
+
+    public static final SoundType ENTITY_CHICKEN_STEP = null;
+
+    public static final SoundType ENTITY_COW_AMBIENT = null;
+
+    public static final SoundType ENTITY_COW_DEATH = null;
+
+    public static final SoundType ENTITY_COW_HURT = null;
+
+    public static final SoundType ENTITY_COW_MILK = null;
+
+    public static final SoundType ENTITY_COW_STEP = null;
+
+    public static final SoundType ENTITY_CREEPER_DEATH = null;
+
+    public static final SoundType ENTITY_CREEPER_HURT = null;
+
+    public static final SoundType ENTITY_CREEPER_PRIMED = null;
+
+    public static final SoundType ENTITY_DONKEY_AMBIENT = null;
+
+    public static final SoundType ENTITY_DONKEY_ANGRY = null;
+
+    public static final SoundType ENTITY_DONKEY_CHEST = null;
+
+    public static final SoundType ENTITY_DONKEY_DEATH = null;
+
+    public static final SoundType ENTITY_DONKEY_HURT = null;
+
+    public static final SoundType ENTITY_EGG_THROW = null;
+
+    public static final SoundType ENTITY_ELDERGUARDIAN_AMBIENTLAND = null;
+
+    public static final SoundType ENTITY_ELDER_GUARDIAN_AMBIENT = null;
+
+    public static final SoundType ENTITY_ELDER_GUARDIAN_CURSE = null;
+
+    public static final SoundType ENTITY_ELDER_GUARDIAN_DEATH = null;
+
+    public static final SoundType ENTITY_ELDER_GUARDIAN_DEATH_LAND = null;
+
+    public static final SoundType ENTITY_ELDER_GUARDIAN_HURT = null;
+
+    public static final SoundType ENTITY_ELDER_GUARDIAN_HURT_LAND = null;
+
+    public static final SoundType ENTITY_ENDERDRAGON_AMBIENT = null;
+
+    public static final SoundType ENTITY_ENDERDRAGON_DEATH = null;
+
+    public static final SoundType ENTITY_ENDERDRAGON_FIREBALL_EPLD = null;
+
+    public static final SoundType ENTITY_ENDERDRAGON_FLAP = null;
+
+    public static final SoundType ENTITY_ENDERDRAGON_GROWL = null;
+
+    public static final SoundType ENTITY_ENDERDRAGON_HURT = null;
+
+    public static final SoundType ENTITY_ENDERDRAGON_SHOOT = null;
+
+    public static final SoundType ENTITY_ENDEREYE_LAUNCH = null;
+
+    public static final SoundType ENTITY_ENDERMEN_AMBIENT = null;
+
+    public static final SoundType ENTITY_ENDERMEN_DEATH = null;
+
+    public static final SoundType ENTITY_ENDERMEN_HURT = null;
+
+    public static final SoundType ENTITY_ENDERMEN_SCREAM = null;
+
+    public static final SoundType ENTITY_ENDERMEN_STARE = null;
+
+    public static final SoundType ENTITY_ENDERMEN_TELEPORT = null;
+
+    public static final SoundType ENTITY_ENDERMITE_AMBIENT = null;
+
+    public static final SoundType ENTITY_ENDERMITE_DEATH = null;
+
+    public static final SoundType ENTITY_ENDERMITE_HURT = null;
+
+    public static final SoundType ENTITY_ENDERMITE_STEP = null;
+
+    public static final SoundType ENTITY_ENDERPEARL_THROW = null;
+
+    public static final SoundType ENTITY_EXPERIENCE_BOTTLE_THROW = null;
+
+    public static final SoundType ENTITY_EXPERIENCE_ORB_PICKUP = null;
+
+    public static final SoundType ENTITY_EXPERIENCE_ORB_TOUCH = null;
+
+    public static final SoundType ENTITY_FIREWORK_BLAST = null;
+
+    public static final SoundType ENTITY_FIREWORK_BLAST_FAR = null;
+
+    public static final SoundType ENTITY_FIREWORK_LARGE_BLAST = null;
+
+    public static final SoundType ENTITY_FIREWORK_LARGE_BLAST_FAR = null;
+
+    public static final SoundType ENTITY_FIREWORK_LAUNCH = null;
+
+    public static final SoundType ENTITY_FIREWORK_SHOOT = null;
+
+    public static final SoundType ENTITY_FIREWORK_TWINKLE = null;
+
+    public static final SoundType ENTITY_FIREWORK_TWINKLE_FAR = null;
+
+    public static final SoundType ENTITY_GENERIC_BIG_FALL = null;
+
+    public static final SoundType ENTITY_GENERIC_BURN = null;
+
+    public static final SoundType ENTITY_GENERIC_DEATH = null;
+
+    public static final SoundType ENTITY_GENERIC_DRINK = null;
+
+    public static final SoundType ENTITY_GENERIC_EAT = null;
+
+    public static final SoundType ENTITY_GENERIC_EXPLODE = null;
+
+    public static final SoundType ENTITY_GENERIC_EXTINGUISH_FIRE = null;
+
+    public static final SoundType ENTITY_GENERIC_HURT = null;
+
+    public static final SoundType ENTITY_GENERIC_SMALL_FALL = null;
+
+    public static final SoundType ENTITY_GENERIC_SPLASH = null;
+
+    public static final SoundType ENTITY_GENERIC_SWIM = null;
+
+    public static final SoundType ENTITY_GHAST_AMBIENT = null;
+
+    public static final SoundType ENTITY_GHAST_DEATH = null;
+
+    public static final SoundType ENTITY_GHAST_HURT = null;
+
+    public static final SoundType ENTITY_GHAST_SCREAM = null;
+
+    public static final SoundType ENTITY_GHAST_SHOOT = null;
+
+    public static final SoundType ENTITY_GHAST_WARN = null;
+
+    public static final SoundType ENTITY_GUARDIAN_AMBIENT = null;
+
+    public static final SoundType ENTITY_GUARDIAN_AMBIENT_LAND = null;
+
+    public static final SoundType ENTITY_GUARDIAN_ATTACK = null;
+
+    public static final SoundType ENTITY_GUARDIAN_DEATH = null;
+
+    public static final SoundType ENTITY_GUARDIAN_DEATH_LAND = null;
+
+    public static final SoundType ENTITY_GUARDIAN_FLOP = null;
+
+    public static final SoundType ENTITY_GUARDIAN_HURT = null;
+
+    public static final SoundType ENTITY_GUARDIAN_HURT_LAND = null;
+
+    public static final SoundType ENTITY_HORSE_AMBIENT = null;
+
+    public static final SoundType ENTITY_HORSE_ANGRY = null;
+
+    public static final SoundType ENTITY_HORSE_ARMOR = null;
+
+    public static final SoundType ENTITY_HORSE_BREATHE = null;
+
+    public static final SoundType ENTITY_HORSE_DEATH = null;
+
+    public static final SoundType ENTITY_HORSE_EAT = null;
+
+    public static final SoundType ENTITY_HORSE_GALLOP = null;
+
+    public static final SoundType ENTITY_HORSE_HURT = null;
+
+    public static final SoundType ENTITY_HORSE_JUMP = null;
+
+    public static final SoundType ENTITY_HORSE_LAND = null;
+
+    public static final SoundType ENTITY_HORSE_SADDLE = null;
+
+    public static final SoundType ENTITY_HORSE_STEP = null;
+
+    public static final SoundType ENTITY_HORSE_STEP_WOOD = null;
+
+    public static final SoundType ENTITY_HOSTILE_BIG_FALL = null;
+
+    public static final SoundType ENTITY_HOSTILE_DEATH = null;
+
+    public static final SoundType ENTITY_HOSTILE_HURT = null;
+
+    public static final SoundType ENTITY_HOSTILE_SMALL_FALL = null;
+
+    public static final SoundType ENTITY_HOSTILE_SPLASH = null;
+
+    public static final SoundType ENTITY_HOSTILE_SWIM = null;
+
+    public static final SoundType ENTITY_IRONGOLEM_ATTACK = null;
+
+    public static final SoundType ENTITY_IRONGOLEM_DEATH = null;
+
+    public static final SoundType ENTITY_IRONGOLEM_HURT = null;
+
+    public static final SoundType ENTITY_IRONGOLEM_STEP = null;
+
+    public static final SoundType ENTITY_ITEMFRAME_ADD_ITEM = null;
+
+    public static final SoundType ENTITY_ITEMFRAME_BREAK = null;
+
+    public static final SoundType ENTITY_ITEMFRAME_PLACE = null;
+
+    public static final SoundType ENTITY_ITEMFRAME_REMOVE_ITEM = null;
+
+    public static final SoundType ENTITY_ITEMFRAME_ROTATE_ITEM = null;
+
+    public static final SoundType ENTITY_ITEM_BREAK = null;
+
+    public static final SoundType ENTITY_ITEM_PICKUP = null;
+
+    public static final SoundType ENTITY_LEASHKNOT_BREAK = null;
+
+    public static final SoundType ENTITY_LEASHKNOT_PLACE = null;
+
+    public static final SoundType ENTITY_LIGHTNING_IMPACT = null;
+
+    public static final SoundType ENTITY_LIGHTNING_THUNDER = null;
+
+    public static final SoundType ENTITY_LINGERINGPOTION_THROW = null;
+
+    public static final SoundType ENTITY_MAGMACUBE_DEATH = null;
+
+    public static final SoundType ENTITY_MAGMACUBE_HURT = null;
+
+    public static final SoundType ENTITY_MAGMACUBE_JUMP = null;
+
+    public static final SoundType ENTITY_MAGMACUBE_SQUISH = null;
+
+    public static final SoundType ENTITY_MINECART_INSIDE = null;
+
+    public static final SoundType ENTITY_MINECART_RIDING = null;
+
+    public static final SoundType ENTITY_MOOSHROOM_SHEAR = null;
+
+    public static final SoundType ENTITY_MULE_AMBIENT = null;
+
+    public static final SoundType ENTITY_MULE_DEATH = null;
+
+    public static final SoundType ENTITY_MULE_HURT = null;
+
+    public static final SoundType ENTITY_PAINTING_BREAK = null;
+
+    public static final SoundType ENTITY_PAINTING_PLACE = null;
+
+    public static final SoundType ENTITY_PIG_AMBIENT = null;
+
+    public static final SoundType ENTITY_PIG_DEATH = null;
+
+    public static final SoundType ENTITY_PIG_HURT = null;
+
+    public static final SoundType ENTITY_PIG_SADDLE = null;
+
+    public static final SoundType ENTITY_PIG_STEP = null;
+
+    public static final SoundType ENTITY_PLAYER_ATTACK_CRIT = null;
+
+    public static final SoundType ENTITY_PLAYER_ATTACK_KNOCKBACK = null;
+
+    public static final SoundType ENTITY_PLAYER_ATTACK_NODAMAGE = null;
+
+    public static final SoundType ENTITY_PLAYER_ATTACK_STRONG = null;
+
+    public static final SoundType ENTITY_PLAYER_ATTACK_SWEEP = null;
+
+    public static final SoundType ENTITY_PLAYER_ATTACK_WEAK = null;
+
+    public static final SoundType ENTITY_PLAYER_BIG_FALL = null;
+
+    public static final SoundType ENTITY_PLAYER_BREATH = null;
+
+    public static final SoundType ENTITY_PLAYER_BURP = null;
+
+    public static final SoundType ENTITY_PLAYER_DEATH = null;
+
+    public static final SoundType ENTITY_PLAYER_HURT = null;
+
+    public static final SoundType ENTITY_PLAYER_LEVELUP = null;
+
+    public static final SoundType ENTITY_PLAYER_SMALL_FALL = null;
+
+    public static final SoundType ENTITY_PLAYER_SPLASH = null;
+
+    public static final SoundType ENTITY_PLAYER_SWIM = null;
+
+    public static final SoundType ENTITY_RABBIT_AMBIENT = null;
+
+    public static final SoundType ENTITY_RABBIT_ATTACK = null;
+
+    public static final SoundType ENTITY_RABBIT_DEATH = null;
+
+    public static final SoundType ENTITY_RABBIT_HURT = null;
+
+    public static final SoundType ENTITY_RABBIT_JUMP = null;
+
+    public static final SoundType ENTITY_SHEEP_AMBIENT = null;
+
+    public static final SoundType ENTITY_SHEEP_DEATH = null;
+
+    public static final SoundType ENTITY_SHEEP_HURT = null;
+
+    public static final SoundType ENTITY_SHEEP_SHEAR = null;
+
+    public static final SoundType ENTITY_SHEEP_STEP = null;
+
+    public static final SoundType ENTITY_SHULKER_AMBIENT = null;
+
+    public static final SoundType ENTITY_SHULKER_BULLET_HIT = null;
+
+    public static final SoundType ENTITY_SHULKER_BULLET_HURT = null;
+
+    public static final SoundType ENTITY_SHULKER_CLOSE = null;
+
+    public static final SoundType ENTITY_SHULKER_DEATH = null;
+
+    public static final SoundType ENTITY_SHULKER_HURT = null;
+
+    public static final SoundType ENTITY_SHULKER_HURT_CLOSED = null;
+
+    public static final SoundType ENTITY_SHULKER_OPEN = null;
+
+    public static final SoundType ENTITY_SHULKER_SHOOT = null;
+
+    public static final SoundType ENTITY_SHULKER_TELEPORT = null;
+
+    public static final SoundType ENTITY_SILVERFISH_AMBIENT = null;
+
+    public static final SoundType ENTITY_SILVERFISH_DEATH = null;
+
+    public static final SoundType ENTITY_SILVERFISH_HURT = null;
+
+    public static final SoundType ENTITY_SILVERFISH_STEP = null;
+
+    public static final SoundType ENTITY_SKELETON_AMBIENT = null;
+
+    public static final SoundType ENTITY_SKELETON_DEATH = null;
+
+    public static final SoundType ENTITY_SKELETON_HORSE_AMBIENT = null;
+
+    public static final SoundType ENTITY_SKELETON_HORSE_DEATH = null;
+
+    public static final SoundType ENTITY_SKELETON_HORSE_HURT = null;
+
+    public static final SoundType ENTITY_SKELETON_HURT = null;
+
+    public static final SoundType ENTITY_SKELETON_SHOOT = null;
+
+    public static final SoundType ENTITY_SKELETON_STEP = null;
+
+    public static final SoundType ENTITY_SLIME_ATTACK = null;
+
+    public static final SoundType ENTITY_SLIME_DEATH = null;
+
+    public static final SoundType ENTITY_SLIME_HURT = null;
+
+    public static final SoundType ENTITY_SLIME_JUMP = null;
+
+    public static final SoundType ENTITY_SLIME_SQUISH = null;
+
+    public static final SoundType ENTITY_SMALL_MAGMACUBE_DEATH = null;
+
+    public static final SoundType ENTITY_SMALL_MAGMACUBE_HURT = null;
+
+    public static final SoundType ENTITY_SMALL_MAGMACUBE_SQUISH = null;
+
+    public static final SoundType ENTITY_SMALL_SLIME_DEATH = null;
+
+    public static final SoundType ENTITY_SMALL_SLIME_HURT = null;
+
+    public static final SoundType ENTITY_SMALL_SLIME_JUMP = null;
+
+    public static final SoundType ENTITY_SMALL_SLIME_SQUISH = null;
+
+    public static final SoundType ENTITY_SNOWBALL_THROW = null;
+
+    public static final SoundType ENTITY_SNOWMAN_AMBIENT = null;
+
+    public static final SoundType ENTITY_SNOWMAN_DEATH = null;
+
+    public static final SoundType ENTITY_SNOWMAN_HURT = null;
+
+    public static final SoundType ENTITY_SNOWMAN_SHOOT = null;
+
+    public static final SoundType ENTITY_SPIDER_AMBIENT = null;
+
+    public static final SoundType ENTITY_SPIDER_DEATH = null;
+
+    public static final SoundType ENTITY_SPIDER_HURT = null;
+
+    public static final SoundType ENTITY_SPIDER_STEP = null;
+
+    public static final SoundType ENTITY_SPLASH_POTION_BREAK = null;
+
+    public static final SoundType ENTITY_SPLASH_POTION_THROW = null;
+
+    public static final SoundType ENTITY_SQUID_AMBIENT = null;
+
+    public static final SoundType ENTITY_SQUID_DEATH = null;
+
+    public static final SoundType ENTITY_SQUID_HURT = null;
+
+    public static final SoundType ENTITY_TNT_PRIMED = null;
+
+    public static final SoundType ENTITY_VILLAGER_AMBIENT = null;
+
+    public static final SoundType ENTITY_VILLAGER_DEATH = null;
+
+    public static final SoundType ENTITY_VILLAGER_HURT = null;
+
+    public static final SoundType ENTITY_VILLAGER_NO = null;
+
+    public static final SoundType ENTITY_VILLAGER_TRADING = null;
+
+    public static final SoundType ENTITY_VILLAGER_YES = null;
+
+    public static final SoundType ENTITY_WITCH_AMBIENT = null;
+
+    public static final SoundType ENTITY_WITCH_DEATH = null;
+
+    public static final SoundType ENTITY_WITCH_DRINK = null;
+
+    public static final SoundType ENTITY_WITCH_HURT = null;
+
+    public static final SoundType ENTITY_WITCH_THROW = null;
+
+    public static final SoundType ENTITY_WITHER_AMBIENT = null;
+
+    public static final SoundType ENTITY_WITHER_BREAK_BLOCK = null;
+
+    public static final SoundType ENTITY_WITHER_DEATH = null;
+
+    public static final SoundType ENTITY_WITHER_HURT = null;
+
+    public static final SoundType ENTITY_WITHER_SHOOT = null;
+
+    public static final SoundType ENTITY_WITHER_SPAWN = null;
+
+    public static final SoundType ENTITY_WOLF_AMBIENT = null;
+
+    public static final SoundType ENTITY_WOLF_DEATH = null;
+
+    public static final SoundType ENTITY_WOLF_GROWL = null;
+
+    public static final SoundType ENTITY_WOLF_HOWL = null;
+
+    public static final SoundType ENTITY_WOLF_HURT = null;
+
+    public static final SoundType ENTITY_WOLF_PANT = null;
+
+    public static final SoundType ENTITY_WOLF_SHAKE = null;
+
+    public static final SoundType ENTITY_WOLF_STEP = null;
+
+    public static final SoundType ENTITY_WOLF_WHINE = null;
+
+    public static final SoundType ENTITY_ZOMBIE_AMBIENT = null;
+
+    public static final SoundType ENTITY_ZOMBIE_ATTACK_DOOR_WOOD = null;
+
+    public static final SoundType ENTITY_ZOMBIE_ATTACK_IRON_DOOR = null;
+
+    public static final SoundType ENTITY_ZOMBIE_BREAK_DOOR_WOOD = null;
+
+    public static final SoundType ENTITY_ZOMBIE_DEATH = null;
+
+    public static final SoundType ENTITY_ZOMBIE_HORSE_AMBIENT = null;
+
+    public static final SoundType ENTITY_ZOMBIE_HORSE_DEATH = null;
+
+    public static final SoundType ENTITY_ZOMBIE_HORSE_HURT = null;
+
+    public static final SoundType ENTITY_ZOMBIE_HURT = null;
+
+    public static final SoundType ENTITY_ZOMBIE_INFECT = null;
+
+    public static final SoundType ENTITY_ZOMBIE_PIG_AMBIENT = null;
+
+    public static final SoundType ENTITY_ZOMBIE_PIG_ANGRY = null;
+
+    public static final SoundType ENTITY_ZOMBIE_PIG_DEATH = null;
+
+    public static final SoundType ENTITY_ZOMBIE_PIG_HURT = null;
+
+    public static final SoundType ENTITY_ZOMBIE_STEP = null;
+
+    public static final SoundType ENTITY_ZOMBIE_VILLAGER_AMBIENT = null;
+
+    public static final SoundType ENTITY_ZOMBIE_VILLAGER_CONVERTED = null;
+
+    public static final SoundType ENTITY_ZOMBIE_VILLAGER_CURE = null;
+
+    public static final SoundType ENTITY_ZOMBIE_VILLAGER_DEATH = null;
+
+    public static final SoundType ENTITY_ZOMBIE_VILLAGER_HURT = null;
+
+    public static final SoundType ENTITY_ZOMBIE_VILLAGER_STEP = null;
+
+    public static final SoundType ITEM_ARMOR_EQUIP_CHAIN = null;
+
+    public static final SoundType ITEM_ARMOR_EQUIP_DIAMOND = null;
+
+    public static final SoundType ITEM_ARMOR_EQUIP_GENERIC = null;
+
+    public static final SoundType ITEM_ARMOR_EQUIP_GOLD = null;
+
+    public static final SoundType ITEM_ARMOR_EQUIP_IRON = null;
+
+    public static final SoundType ITEM_ARMOR_EQUIP_LEATHER = null;
+
+    public static final SoundType ITEM_BOTTLE_FILL = null;
+
+    public static final SoundType ITEM_BOTTLE_FILL_DRAGONBREATH = null;
+
+    public static final SoundType ITEM_BUCKET_EMPTY = null;
+
+    public static final SoundType ITEM_BUCKET_EMPTY_LAVA = null;
+
+    public static final SoundType ITEM_BUCKET_FILL = null;
+
+    public static final SoundType ITEM_BUCKET_FILL_LAVA = null;
+
+    public static final SoundType ITEM_CHORUS_FRUIT_TELEPORT = null;
+
+    public static final SoundType ITEM_FIRECHARGE_USE = null;
+
+    public static final SoundType ITEM_FLINTANDSTEEL_USE = null;
+
+    public static final SoundType ITEM_HOE_TILL = null;
+
+    public static final SoundType ITEM_SHIELD_BLOCK = null;
+
+    public static final SoundType ITEM_SHIELD_BREAK = null;
+
+    public static final SoundType ITEM_SHOVEL_FLATTEN = null;
+
     public static final SoundType MUSIC_CREATIVE = null;
-    public static final SoundType MUSIC_END = null;
+
     public static final SoundType MUSIC_CREDITS = null;
+
     public static final SoundType MUSIC_DRAGON = null;
-    public static final SoundType MUSIC_NETHER = null;
+
+    public static final SoundType MUSIC_END = null;
+
+    public static final SoundType MUSIC_GAME = null;
+
     public static final SoundType MUSIC_MENU = null;
-    public static final SoundType NOTE_BASS = null;
-    public static final SoundType NOTE_PIANO = null;
-    public static final SoundType NOTE_BASS_DRUM = null;
-    public static final SoundType NOTE_STICKS = null;
-    public static final SoundType NOTE_BASS_GUITAR = null;
-    public static final SoundType NOTE_SNARE_DRUM = null;
-    public static final SoundType NOTE_PLING = null;
-    public static final SoundType ORB_PICKUP = null;
-    public static final SoundType PISTON_EXTEND = null;
-    public static final SoundType PISTON_RETRACT = null;
-    public static final SoundType PORTAL = null;
-    public static final SoundType PORTAL_TRAVEL = null;
-    public static final SoundType PORTAL_TRIGGER = null;
-    public static final SoundType POTION_SMASH = null;
-    public static final SoundType RECORDS_11 = null;
-    public static final SoundType RECORDS_13 = null;
-    public static final SoundType RECORDS_BLOCKS = null;
-    public static final SoundType RECORDS_CAT = null;
-    public static final SoundType RECORDS_CHIRP = null;
-    public static final SoundType RECORDS_FAR = null;
-    public static final SoundType RECORDS_MALL = null;
-    public static final SoundType RECORDS_MELLOHI = null;
-    public static final SoundType RECORDS_STAL = null;
-    public static final SoundType RECORDS_STRAD = null;
-    public static final SoundType RECORDS_WAIT = null;
-    public static final SoundType RECORDS_WARD = null;
-    public static final SoundType SHOOT_ARROW = null;
-    public static final SoundType SPLASH = null;
-    public static final SoundType SPLASH2 = null;
-    public static final SoundType STEP_GRASS = null;
-    public static final SoundType STEP_GRAVEL = null;
-    public static final SoundType STEP_LADDER = null;
-    public static final SoundType STEP_SAND = null;
-    public static final SoundType STEP_SNOW = null;
-    public static final SoundType STEP_STONE = null;
-    public static final SoundType STEP_WOOD = null;
-    public static final SoundType STEP_WOOL = null;
-    public static final SoundType SWIM = null;
-    public static final SoundType WATER = null;
-    public static final SoundType WOOD_CLICK = null;
-    public static final SoundType BAT_DEATH = null;
-    public static final SoundType BAT_HURT = null;
-    public static final SoundType BAT_IDLE = null;
-    public static final SoundType BAT_LOOP = null;
-    public static final SoundType BAT_TAKEOFF = null;
-    public static final SoundType BLAZE_BREATH = null;
-    public static final SoundType BLAZE_DEATH = null;
-    public static final SoundType BLAZE_HIT = null;
-    public static final SoundType CAT_HISS = null;
-    public static final SoundType CAT_HIT = null;
-    public static final SoundType CAT_MEOW = null;
-    public static final SoundType CAT_PURR = null;
-    public static final SoundType CAT_PURREOW = null;
-    public static final SoundType CHICKEN_IDLE = null;
-    public static final SoundType CHICKEN_HURT = null;
-    public static final SoundType CHICKEN_EGG_POP = null;
-    public static final SoundType CHICKEN_WALK = null;
-    public static final SoundType COW_IDLE = null;
-    public static final SoundType COW_HURT = null;
-    public static final SoundType COW_WALK = null;
-    public static final SoundType CREEPER_HISS = null;
-    public static final SoundType CREEPER_HIT = null;
-    public static final SoundType CREEPER_DEATH = null;
-    public static final SoundType ENDERDRAGON_DEATH = null;
-    public static final SoundType ENDERDRAGON_GROWL = null;
-    public static final SoundType ENDERDRAGON_HIT = null;
-    public static final SoundType ENDERDRAGON_WINGS = null;
-    public static final SoundType ENDERMAN_DEATH = null;
-    public static final SoundType ENDERMAN_HIT = null;
-    public static final SoundType ENDERMAN_IDLE = null;
-    public static final SoundType ENDERMAN_TELEPORT = null;
-    public static final SoundType ENDERMAN_SCREAM = null;
-    public static final SoundType ENDERMAN_STARE = null;
-    public static final SoundType GHAST_SCREAM = null;
-    public static final SoundType GHAST_SCREAM2 = null;
-    public static final SoundType GHAST_CHARGE = null;
-    public static final SoundType GHAST_DEATH = null;
-    public static final SoundType GHAST_FIREBALL = null;
-    public static final SoundType GHAST_MOAN = null;
-    public static final SoundType GUARDIAN_IDLE = null;
-    public static final SoundType GUARDIAN_ATTACK = null;
-    public static final SoundType GUARDIAN_CURSE = null;
-    public static final SoundType GUARDIAN_FLOP = null;
-    public static final SoundType GUARDIAN_ELDER_IDLE = null;
-    public static final SoundType GUARDIAN_LAND_IDLE = null;
-    public static final SoundType GUARDIAN_HIT = null;
-    public static final SoundType GUARDIAN_ELDER_HIT = null;
-    public static final SoundType GUARDIAN_LAND_HIT = null;
-    public static final SoundType GUARDIAN_DEATH = null;
-    public static final SoundType GUARDIAN_ELDER_DEATH = null;
-    public static final SoundType GUARDIAN_LAND_DEATH = null;
-    public static final SoundType HOSTILE_DEATH = null;
-    public static final SoundType HOSTILE_HURT = null;
-    public static final SoundType HOSTILE_FALL_BIG = null;
-    public static final SoundType HOSTILE_FALL_SMALL = null;
-    public static final SoundType HOSTILE_SWIM = null;
-    public static final SoundType HOSTILE_SPLASH = null;
-    public static final SoundType IRONGOLEM_DEATH = null;
-    public static final SoundType IRONGOLEM_HIT = null;
-    public static final SoundType IRONGOLEM_THROW = null;
-    public static final SoundType IRONGOLEM_WALK = null;
-    public static final SoundType MAGMACUBE_WALK = null;
-    public static final SoundType MAGMACUBE_WALK2 = null;
-    public static final SoundType MAGMACUBE_JUMP = null;
-    public static final SoundType NEUTRAL_DEATH = null;
-    public static final SoundType NEUTRAL_HURT = null;
-    public static final SoundType NEUTRAL_FALL_BIG = null;
-    public static final SoundType NEUTRAL_FALL_SMALL = null;
-    public static final SoundType NEUTRAL_SWIM = null;
-    public static final SoundType NEUTRAL_SPLASH = null;
-    public static final SoundType PIG_IDLE = null;
-    public static final SoundType PIG_DEATH = null;
-    public static final SoundType PIG_WALK = null;
-    public static final SoundType PLAYER_DEATH = null;
-    public static final SoundType RABBIT_IDLE = null;
-    public static final SoundType RABBIT_HURT = null;
-    public static final SoundType RABBIT_HOP = null;
-    public static final SoundType RABBIT_DEATH = null;
-    public static final SoundType SHEEP_IDLE = null;
-    public static final SoundType SHEEP_SHEAR = null;
-    public static final SoundType SHEEP_WALK = null;
-    public static final SoundType SILVERFISH_HIT = null;
-    public static final SoundType SILVERFISH_DEATH = null;
-    public static final SoundType SILVERFISH_IDLE = null;
-    public static final SoundType SILVERFISH_WALK = null;
-    public static final SoundType SKELETON_IDLE = null;
-    public static final SoundType SKELETON_DEATH = null;
-    public static final SoundType SKELETON_HURT = null;
-    public static final SoundType SKELETON_WALK = null;
-    public static final SoundType SLIME_ATTACK = null;
-    public static final SoundType SLIME_WALK = null;
-    public static final SoundType SLIME_WALK2 = null;
-    public static final SoundType SPIDER_IDLE = null;
-    public static final SoundType SPIDER_DEATH = null;
-    public static final SoundType SPIDER_WALK = null;
-    public static final SoundType WITHER_DEATH = null;
-    public static final SoundType WITHER_HURT = null;
-    public static final SoundType WITHER_IDLE = null;
-    public static final SoundType WITHER_SHOOT = null;
-    public static final SoundType WITHER_SPAWN = null;
-    public static final SoundType WOLF_BARK = null;
-    public static final SoundType WOLF_DEATH = null;
-    public static final SoundType WOLF_GROWL = null;
-    public static final SoundType WOLF_HOWL = null;
-    public static final SoundType WOLF_HURT = null;
-    public static final SoundType WOLF_PANT = null;
-    public static final SoundType WOLF_SHAKE = null;
-    public static final SoundType WOLF_WALK = null;
-    public static final SoundType WOLF_WHINE = null;
-    public static final SoundType ZOMBIE_METAL = null;
-    public static final SoundType ZOMBIE_WOOD = null;
-    public static final SoundType ZOMBIE_WOODBREAK = null;
-    public static final SoundType ZOMBIE_IDLE = null;
-    public static final SoundType ZOMBIE_DEATH = null;
-    public static final SoundType ZOMBIE_HURT = null;
-    public static final SoundType ZOMBIE_INFECT = null;
-    public static final SoundType ZOMBIE_UNFECT = null;
-    public static final SoundType ZOMBIE_REMEDY = null;
-    public static final SoundType ZOMBIE_WALK = null;
-    public static final SoundType ZOMBIE_PIG_IDLE = null;
-    public static final SoundType ZOMBIE_PIG_ANGRY = null;
-    public static final SoundType ZOMBIE_PIG_DEATH = null;
-    public static final SoundType ZOMBIE_PIG_HURT = null;
-    public static final SoundType DIG_WOOL = null;
-    public static final SoundType DIG_GRASS = null;
-    public static final SoundType DIG_GRAVEL = null;
-    public static final SoundType DIG_SAND = null;
-    public static final SoundType DIG_SNOW = null;
-    public static final SoundType DIG_STONE = null;
-    public static final SoundType DIG_WOOD = null;
-    public static final SoundType FIREWORK_BLAST = null;
-    public static final SoundType FIREWORK_BLAST2 = null;
-    public static final SoundType FIREWORK_LARGE_BLAST = null;
-    public static final SoundType FIREWORK_LARGE_BLAST2 = null;
-    public static final SoundType FIREWORK_TWINKLE = null;
-    public static final SoundType FIREWORK_TWINKLE2 = null;
-    public static final SoundType FIREWORK_LAUNCH = null;
-    public static final SoundType SUCCESSFUL_HIT = null;
-    public static final SoundType HORSE_ANGRY = null;
-    public static final SoundType HORSE_ARMOR = null;
-    public static final SoundType HORSE_BREATHE = null;
-    public static final SoundType HORSE_DEATH = null;
-    public static final SoundType HORSE_GALLOP = null;
-    public static final SoundType HORSE_HIT = null;
-    public static final SoundType HORSE_IDLE = null;
-    public static final SoundType HORSE_JUMP = null;
-    public static final SoundType HORSE_LAND = null;
-    public static final SoundType HORSE_SADDLE = null;
-    public static final SoundType HORSE_SOFT = null;
-    public static final SoundType HORSE_WOOD = null;
-    public static final SoundType DONKEY_ANGRY = null;
-    public static final SoundType DONKEY_DEATH = null;
-    public static final SoundType DONKEY_HIT = null;
-    public static final SoundType DONKEY_IDLE = null;
-    public static final SoundType HORSE_SKELETON_DEATH = null;
-    public static final SoundType HORSE_SKELETON_HIT = null;
-    public static final SoundType HORSE_SKELETON_IDLE = null;
-    public static final SoundType HORSE_ZOMBIE_DEATH = null;
-    public static final SoundType HORSE_ZOMBIE_HIT = null;
-    public static final SoundType HORSE_ZOMBIE_IDLE = null;
-    public static final SoundType VILLAGER_DEATH = null;
-    public static final SoundType VILLAGER_HAGGLE = null;
-    public static final SoundType VILLAGER_HIT = null;
-    public static final SoundType VILLAGER_IDLE = null;
-    public static final SoundType VILLAGER_NO = null;
-    public static final SoundType VILLAGER_YES = null;
+
+    public static final SoundType MUSIC_NETHER = null;
+
+    public static final SoundType RECORD_11 = null;
+
+    public static final SoundType RECORD_13 = null;
+
+    public static final SoundType RECORD_BLOCKS = null;
+
+    public static final SoundType RECORD_CAT = null;
+
+    public static final SoundType RECORD_CHIRP = null;
+
+    public static final SoundType RECORD_FAR = null;
+
+    public static final SoundType RECORD_MALL = null;
+
+    public static final SoundType RECORD_MELLOHI = null;
+
+    public static final SoundType RECORD_STAL = null;
+
+    public static final SoundType RECORD_STRAD = null;
+
+    public static final SoundType RECORD_WAIT = null;
+
+    public static final SoundType RECORD_WARD = null;
+
+    public static final SoundType UI_BUTTON_CLICK = null;
+
+    public static final SoundType WEATHER_RAIN = null;
+
+    public static final SoundType WEATHER_RAIN_ABOVE = null;
+
+    // SORTFIELDS:OFF
 
     private SoundTypes() {
     }

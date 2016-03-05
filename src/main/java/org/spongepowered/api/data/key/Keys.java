@@ -512,8 +512,6 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> IS_SPRINTING = null;
 
-    public static final Key<Value<Profession>> VILLAGER_ZOMBIE_PROFESSION = null;
-
     public static final Key<Value<Boolean>> IS_WET = null;
 
     public static final Key<Value<BlockState>> ITEM_BLOCKSTATE = null;
@@ -861,6 +859,8 @@ public final class Keys {
     public static final Key<Value<EntitySnapshot>> VEHICLE = null;
 
     public static final Key<Value<Vector3d>> VELOCITY = null;
+
+    public static final Key<Value<Profession>> VILLAGER_ZOMBIE_PROFESSION = null;
 
     public static final Key<Value<Double>> WALKING_SPEED = null;
 

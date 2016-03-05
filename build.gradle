@@ -119,6 +119,7 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.item.ItemTypes'
     add 'main', 'org.spongepowered.api.block.BlockTypes'
     add 'main', 'org.spongepowered.api.block.tileentity.TileEntityTypes'
+    add 'main', 'org.spongepowered.api.effect.sound.SoundTypes'
 }
 
 // Shaded API build (with all dependencies included)
