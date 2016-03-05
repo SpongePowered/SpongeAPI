@@ -43,10 +43,6 @@ import javax.annotation.Nullable;
 
 public class QuotedStringParserTest {
 
-    static {
-        TestHooks.initialize();
-    }
-
     private static List<String> parseFrom(String args) throws ArgumentParseException {
         return Lists.transform(new QuotedStringTokenizer(true, false).tokenize(args, false), new Function<SingleArg, String>() {
             @Nullable
