@@ -43,9 +43,41 @@ public interface ChorusFlower extends Populator {
     }
 
     /**
+     * Gets the radius around the center (0, 0) of the world that this populator
+     * will not apply to.
+     * 
+     * <p> This is used to prevent the islands from generating around the ender
+     * dragon fight area. </p>
+     * 
+     * @return The radius
+     */
+    int getExclusionRadius();
+
+    /**
+     * Sets the radius around the center (0, 0) of the world that this populator
+     * will not apply to.
+     * 
+     * <p> This must be a positive value or zero. </p>
+     * 
+     * @param radius The exclusion radius
+     */
+    void setExclusionRadius(int radius);
+
+    /**
      * A builder for constructing {@link ChorusFlower} populators.
      */
     interface Builder extends ResettableBuilder<ChorusFlower, Builder> {
+
+        /**
+         * Sets the radius around the center (0, 0) of the world that this
+         * populator will not apply to.
+         * 
+         * <p> This must be a positive value or zero. </p>
+         * 
+         * @param radius The exclusion radius
+         * @return This builder, for chaining
+         */
+        Builder exclusionRadius(int radius);
 
         /**
          * Builds a new instance of a {@link ChorusFlower} populator with the

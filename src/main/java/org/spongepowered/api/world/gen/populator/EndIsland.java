@@ -34,8 +34,8 @@ import org.spongepowered.api.world.gen.Populator;
  * Represents a populator which will generate small 'islands' which float in the
  * end.
  * 
- * <p>The island is formed as a cone with each layer being a circle of blocks
- * with a gradually decreasing radius.</p>
+ * <p> The island is formed as a cone with each layer being a circle of blocks
+ * with a gradually decreasing radius. </p>
  */
 public interface EndIsland extends Populator {
 
@@ -109,6 +109,27 @@ public interface EndIsland extends Populator {
     void setIslandBlock(BlockState state);
 
     /**
+     * Gets the radius around the center (0, 0) of the world that this populator
+     * will not apply to.
+     * 
+     * <p>This is used to prevent the islands from generating around the ender
+     * dragon fight area.</p>
+     * 
+     * @return The radius
+     */
+    int getExclusionRadius();
+
+    /**
+     * Sets the radius around the center (0, 0) of the world that this populator
+     * will not apply to.
+     * 
+     * <p>This must be a positive value or zero.</p>
+     * 
+     * @param radius The exclusion radius
+     */
+    void setExclusionRadius(int radius);
+
+    /**
      * A builder for constructing {@link EndIsland} populators.
      */
     interface Builder extends ResettableBuilder<EndIsland, Builder> {
@@ -158,6 +179,17 @@ public interface EndIsland extends Populator {
          * @return This builder, for chaining
          */
         Builder islandBlock(BlockState state);
+
+        /**
+         * Sets the radius around the center (0, 0) of the world that this
+         * populator will not apply to.
+         * 
+         * <p>This must be a positive value or zero.</p>
+         * 
+         * @param radius The exclusion radius
+         * @return This builder, for chaining
+         */
+        Builder exclusionRadius(int radius);
 
         /**
          * Builds a new instance of a {@link EndIsland} populator with the
