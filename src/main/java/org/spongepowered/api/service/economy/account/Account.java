@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.service.economy.account;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.cause.Cause;
@@ -70,6 +71,19 @@ public interface Account extends Contextual {
     Text getDisplayName();
 
     /**
+     * Gets the default currency for this account.
+     *
+     * <p>Consumers of the Economy API should use an account's default currency for transactions
+     * with it, unless they have a specific reason not to (such as a user manually specifying
+     * a different currency</p>.
+     *
+     * @return The default currency for this account
+     */
+    default Currency getDefaultCurrency() {
+        return Sponge.getServiceManager().provide(EconomyService.class).get().getDefaultCurrency();
+    }
+
+    /**
      * Gets the default balance of this account for the specified
      * {@link Currency}.
      *
@@ -82,6 +96,21 @@ public interface Account extends Contextual {
      * @return The default balance for the specified {@link Currency}.
      */
     BigDecimal getDefaultBalance(Currency currency);
+
+    /**
+     * Gets the default balance of this account for this account's
+     * default currency.
+     *
+     * <p>The default balance is used when the balance is retrieved for the
+     * first time for a given {@link Currency} on this account, or if no
+     * balance is available for the {@link Context}s used when retrieving
+     * a balance.</p>
+     *
+     * @return The default balance for the default currency.
+     */
+    default BigDecimal getDefaultBalance() {
+        return this.getDefaultBalance(this.getDefaultCurrency());
+    }
 
     /**
      * Returns whether this account has a set balance for the specified
@@ -110,6 +139,20 @@ public interface Account extends Contextual {
      */
     default boolean hasBalance(Currency currency) {
         return this.hasBalance(currency, this.getActiveContexts());
+    }
+
+    /**
+     * Returns whether this account has a set balance for this account's
+     * default {@link Currency}, with the current active contexts.
+     *
+     * <p>If this method returns <code>false</code>, then {@link #getDefaultBalance(Currency)}
+     * will be used when retrieving a balance for the specifid {@link Currency} with the
+     * current active contexts</p>.
+     *
+     * @return Whether this account has a set balance for the default {@link Currency} and current active contexts.
+     */
+    default boolean hasBalance() {
+        return this.hasBalance(this.getDefaultCurrency());
     }
 
     /**
@@ -144,6 +187,19 @@ public interface Account extends Contextual {
     }
 
     /**
+     * Returns a {@link BigDecimal} representative of the balance stored within this
+     * {@link Account} for this account's default {@link Currency}, with the current active contexts.
+     *
+     * <p>The default result when the account does not have a balance of the
+     * given {@link Currency} will be {@link #getDefaultBalance(Currency)}.</p>
+     *
+     * @return the value for the default {@link Currency}.
+     */
+    default BigDecimal getBalance() {
+        return this.getBalance(this.getDefaultCurrency());
+    }
+
+    /**
      * Returns a {@link Map} of all currently set balances the account holds within
      * the set of {@link Context}s.
      *
@@ -166,7 +222,7 @@ public interface Account extends Contextual {
 
     /**
      * Returns a {@link Map} of all currently set balances the account holds within
-     * the current active {@link Context}s.2
+     * the current active {@link Context}s.
      *
      * <p>Amounts may differ depending on the {@link Context}s specified and
      * the implementation. The set of {@link Context}s may be empty.</p>
@@ -218,6 +274,21 @@ public interface Account extends Contextual {
     }
 
     /**
+     * Sets the balance for this account to the specified amount for this account's
+     * default {@link Currency}, with the current active {@link Context}s.
+     *
+     * <p>Negative balances may or may not be supported depending on
+     * the {@link Currency} specified and the implementation.</p>
+     *
+     * @param amount The amount to set for the default {@link Currency}
+     * @param cause The {@link Cause} for the transaction
+     * @return The result of the transaction
+     */
+    default TransactionResult setBalance(BigDecimal amount, Cause cause) {
+        return this.setBalance(this.getDefaultCurrency(), amount, cause);
+    }
+
+    /**
      * Resets the balances for all {@link Currency}s used on this account to their
      * default values ({@link #getDefaultBalance(Currency)}), using the specified {@link Context}s.
      *
@@ -266,6 +337,18 @@ public interface Account extends Contextual {
     }
 
     /**
+     * Resets the balance for this account's default {@link Currency} to its default value
+     * ({@link #getDefaultBalance(Currency)}), using the current active {@link Context}s.
+     *
+     * @param cause The {@link Cause} for the transaction
+     *
+     * @return The result of the transaction
+     */
+    default TransactionResult resetBalance(Cause cause) {
+        return this.resetBalance(this.getDefaultCurrency(), cause);
+    }
+
+    /**
      * Deposits the specified amount of the specified {@link Currency} to this account,
      * using the specified {@link Context}s.
      *
@@ -293,6 +376,19 @@ public interface Account extends Contextual {
     }
 
     /**
+     * Deposits the given amount of this account's default {@link Currency} into this account,
+     * using the current active {@link Context}s.
+     *
+     * @param amount The amount to deposit for the specified {@link Currency}.
+     * @param cause The {@link Cause} for the transaction
+     *
+     * @return The result of the transaction
+     */
+    default TransactionResult deposit(BigDecimal amount, Cause cause) {
+        return this.deposit(this.getDefaultCurrency(), amount, cause);
+    }
+
+    /**
      * Withdraws the specified amount of the specified {@link Currency} from this account,
      * using the specified {@link Context}s.
      *
@@ -317,6 +413,19 @@ public interface Account extends Contextual {
      */
     default TransactionResult withdraw(Currency currency, BigDecimal amount, Cause cause) {
         return this.withdraw(currency, amount, cause, this.getActiveContexts());
+    }
+
+    /**
+     * Withdraws the specified amount of this account's default {@link Currency} from this account,
+     * using the current active {@link Context}s.
+     *
+     * @param amount The amount to deposit for the specified {@link Currency}
+     * @param cause The {@link Cause} for the transaction
+     *
+     * @return The result of the transaction
+     */
+    default TransactionResult withdraw(BigDecimal amount, Cause cause) {
+        return this.withdraw(this.getDefaultCurrency(), amount, cause);
     }
 
     /**
@@ -354,5 +463,23 @@ public interface Account extends Contextual {
      */
     default TransferResult transfer(Account to, Currency currency, BigDecimal amount, Cause cause) {
         return this.transfer(to, currency, amount, cause, this.getActiveContexts());
+    }
+
+    /**
+     * Transfers the specified amount of this account's default {@link Currency} from this account
+     * the destination account, using the current active {@link Context}s.
+     *
+     * <p>This operation is a merged {@link #withdraw(Currency, BigDecimal, Cause, Set)} from this account
+     * with a {@link #deposit(Currency, BigDecimal, Cause, Set)} into the specified account.</p>
+     *
+     * @param to the Account to transfer the amounts to.
+     * @param amount The amount to transfer for the specified {@link Currency}
+     * @param cause The {@link Cause} for the transaction
+     *
+     * @return a {@link TransferResult} representative of the effects of the
+     *         operation
+     */
+    default TransferResult transfer(Account to, BigDecimal amount, Cause cause) {
+        return this.transfer(to, this.getDefaultCurrency(), amount, cause);
     }
 }
