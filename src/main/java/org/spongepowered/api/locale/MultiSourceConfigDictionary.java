@@ -22,34 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service;
+package org.spongepowered.api.locale;
 
-import org.spongepowered.api.event.cause.Cause;
+import ninja.leaping.configurate.ConfigurationNode;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 /**
- * Represents the registration information for the provider of a service.
+ * Represents a {@link ConfigDictionary} with a different source per-locale.
  */
-public interface ProviderRegistration<T> {
+public class MultiSourceConfigDictionary extends AbstractConfigDictionary {
 
-    /**
-     * Gets the service of this provider registration.
-     *
-     * @return The service
-     */
-    Class<T> getService();
+    protected final Map<Locale, ConfigurationNode> nodes = new HashMap<>();
 
-    /**
-     * Gets the service provider of this provider regitration.
-     *
-     * @return The provider
-     */
-    T getProvider();
+    public MultiSourceConfigDictionary(Object subject, Locale defaultLocale) {
+        super(subject, defaultLocale);
+    }
 
-    /**
-     * Returns the {@link Cause} of the registration.
-     *
-     * @return Cause of registration
-     */
-    Cause getCause();
+    @Override
+    public ConfigurationNode load(Locale locale) throws IOException {
+        ConfigurationNode localeNode = super.load(locale);
+        this.nodes.put(locale, localeNode);
+        this.bundles.put(locale, new ConfigResourceBundle(localeNode));
+        return localeNode;
+    }
+
+    @Override
+    public ConfigurationNode getNode(Locale locale) {
+        ConfigurationNode node = this.nodes.get(locale);
+        if (node == null) {
+            throw new IllegalStateException("Tried to read MultiSourceConfigDictionary before locale " + locale + " was loaded.");
+        }
+        return node;
+    }
 
 }

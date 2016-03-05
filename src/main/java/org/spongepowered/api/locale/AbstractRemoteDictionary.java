@@ -22,34 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service;
+package org.spongepowered.api.locale;
 
-import org.spongepowered.api.event.cause.Cause;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.io.InputStream;
+import java.util.Locale;
 
 /**
- * Represents the registration information for the provider of a service.
+ * Abstract implementation of {@link RemoteDictionary}.
  */
-public interface ProviderRegistration<T> {
+public abstract class AbstractRemoteDictionary extends AbstractDictionary implements RemoteDictionary {
+
+    protected final SourceResolver resolver = new SourceResolver();
+
+    public AbstractRemoteDictionary(Object subject, Locale defaultLocale) {
+        super(subject, defaultLocale);
+    }
 
     /**
-     * Gets the service of this provider registration.
+     * Returns the {@link SourceResolver} for this Dictionary.
      *
-     * @return The service
+     * @return Source resolver
      */
-    Class<T> getService();
+    public SourceResolver getResolver() {
+        return this.resolver;
+    }
 
-    /**
-     * Gets the service provider of this provider regitration.
-     *
-     * @return The provider
-     */
-    T getProvider();
-
-    /**
-     * Returns the {@link Cause} of the registration.
-     *
-     * @return Cause of registration
-     */
-    Cause getCause();
+    @Override
+    public InputStream getSource(Locale locale) throws Exception {
+        checkNotNull(locale, "locale");
+        return this.resolver.resolve(locale).orElseThrow(() -> new IllegalStateException("Could not resolve source for locale " + locale + "."));
+    }
 
 }

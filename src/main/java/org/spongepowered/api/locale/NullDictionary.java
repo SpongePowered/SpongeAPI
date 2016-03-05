@@ -22,34 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service;
+package org.spongepowered.api.locale;
 
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.text.translation.locale.Locales;
+
+import java.util.Locale;
+import java.util.Optional;
 
 /**
- * Represents the registration information for the provider of a service.
+ * Represents a {@link Dictionary} that returns all null values for each key.
  */
-public interface ProviderRegistration<T> {
+public final class NullDictionary extends AbstractDictionary {
 
-    /**
-     * Gets the service of this provider registration.
-     *
-     * @return The service
-     */
-    Class<T> getService();
+    public NullDictionary(Object subject) {
+        super(subject, Locales.DEFAULT);
+    }
 
-    /**
-     * Gets the service provider of this provider regitration.
-     *
-     * @return The provider
-     */
-    T getProvider();
+    @Override
+    public Optional<String> get(String key, Locale locale) {
+        return Optional.empty();
+    }
 
-    /**
-     * Returns the {@link Cause} of the registration.
-     *
-     * @return Cause of registration
-     */
-    Cause getCause();
+    @Override
+    public Optional<String> get(String key) {
+        return Optional.empty();
+    }
 
 }

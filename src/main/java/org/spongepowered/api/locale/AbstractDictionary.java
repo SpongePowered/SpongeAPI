@@ -22,34 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service;
+package org.spongepowered.api.locale;
 
-import org.spongepowered.api.event.cause.Cause;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.Locale;
 
 /**
- * Represents the registration information for the provider of a service.
+ * Abstract implementation of {@link Dictionary}.
  */
-public interface ProviderRegistration<T> {
+public abstract class AbstractDictionary implements Dictionary {
 
-    /**
-     * Gets the service of this provider registration.
-     *
-     * @return The service
-     */
-    Class<T> getService();
+    protected final Object subject;
+    protected final Locale defaultLocale;
 
-    /**
-     * Gets the service provider of this provider regitration.
-     *
-     * @return The provider
-     */
-    T getProvider();
+    public AbstractDictionary(Object subject, Locale defaultLocale) {
+        this.subject = checkNotNull(subject, "subject");
+        this.defaultLocale = checkNotNull(defaultLocale, "default locale");
+    }
 
-    /**
-     * Returns the {@link Cause} of the registration.
-     *
-     * @return Cause of registration
-     */
-    Cause getCause();
+    @Override
+    public Object getSubject() {
+        return this.subject;
+    }
+
+    @Override
+    public Locale getDefaultLocale() {
+        return this.defaultLocale;
+    }
 
 }

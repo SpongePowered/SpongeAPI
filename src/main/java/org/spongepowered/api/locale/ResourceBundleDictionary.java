@@ -22,34 +22,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service;
+package org.spongepowered.api.locale;
 
-import org.spongepowered.api.event.cause.Cause;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 /**
- * Represents the registration information for the provider of a service.
+ * Represents a {@link Dictionary} that handles retrieval through {@link ResourceBundle}s.
+ *
+ * @param <B> Bundle type
  */
-public interface ProviderRegistration<T> {
+public interface ResourceBundleDictionary<B extends ResourceBundle> extends Dictionary {
 
     /**
-     * Gets the service of this provider registration.
+     * Returns the {@link ResourceBundle} for the specified {@link Locale}.
      *
-     * @return The service
+     * @param locale Locale to get bundle for
+     * @return Optional bundle
      */
-    Class<T> getService();
+    B getBundle(Locale locale);
 
     /**
-     * Gets the service provider of this provider regitration.
+     * Sets the {@link ResourceBundle} for the specified {@link Locale}.
      *
-     * @return The provider
+     * @param locale Locale to set
+     * @param bundle Bundle to use for Locale
      */
-    T getProvider();
+    void setBundle(Locale locale, B bundle);
 
-    /**
-     * Returns the {@link Cause} of the registration.
-     *
-     * @return Cause of registration
-     */
-    Cause getCause();
+    @Override
+    default Optional<String> get(String key, Locale locale) {
+        checkNotNull(key, "key");
+        checkNotNull(locale, "locale");
+        try {
+            return Optional.of(getBundle(locale).getString(key));
+        } catch (MissingResourceException e) {
+            return Optional.empty();
+        }
+    }
 
 }

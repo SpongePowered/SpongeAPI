@@ -22,34 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service;
+package org.spongepowered.api.locale;
 
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.Sponge;
+
+import java.nio.file.Path;
+import java.util.Locale;
 
 /**
- * Represents the registration information for the provider of a service.
+ * Represents the default {@link Dictionary} implementation for plugins. This
+ * dictionary will automatically be named to <code><pluginId>.dict</code>.
  */
-public interface ProviderRegistration<T> {
+public class DefaultPluginDictionary extends DefaultDictionary {
 
     /**
-     * Gets the service of this provider registration.
-     *
-     * @return The service
+     * File extension used in this implementation.
      */
-    Class<T> getService();
+    public static final String FILE_EXTENSION = ".dict";
 
-    /**
-     * Gets the service provider of this provider regitration.
-     *
-     * @return The provider
-     */
-    T getProvider();
+    public DefaultPluginDictionary(Object plugin, Locale defaultLocale, Path dir) {
+        super(plugin, defaultLocale, dir.resolve(Sponge.getPluginManager().fromInstance(plugin).get().getId() + FILE_EXTENSION));
+    }
 
-    /**
-     * Returns the {@link Cause} of the registration.
-     *
-     * @return Cause of registration
-     */
-    Cause getCause();
+    public DefaultPluginDictionary(Object plugin, Path dir) {
+        this(plugin, Sponge.getServer().getLocale(), dir);
+    }
 
 }
