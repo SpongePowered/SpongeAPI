@@ -121,6 +121,7 @@ final class PluginElement {
             }
         }
 
+        /* TODO: Fix once merged in plugin-meta
         value = this.annotation.get().assets();
         if (!value.isEmpty()) {
             if (!isValidPath(value)) {
@@ -133,7 +134,7 @@ final class PluginElement {
                 messager.printMessage(ERROR, "Invalid asset directory path: " + value + " in extra metadata files", this.element,
                         this.annotation.getMirror());
             }
-        }
+        }*/
 
         String[] authors = this.annotation.get().authors();
         if (authors.length > 0) {
@@ -226,9 +227,10 @@ final class PluginElement {
         if (other.getUrl() != null) {
             meta.setUrl(other.getUrl());
         }
+        /* TODO: Fix once merged in plugin-meta
         if (other.getAssetDirectory() != null) {
             meta.setAssetDirectory(other.getAssetDirectory());
-        }
+        }*/
 
         // TODO: Dependencies
         if (!other.getRequiredDependencies().isEmpty() || !other.getLoadAfter().isEmpty() || !other.getLoadBefore().isEmpty()) {
