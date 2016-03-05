@@ -31,6 +31,7 @@ public final class EntityTypes {
 
     public static final EntityType ITEM = null;
     public static final EntityType EXPERIENCE_ORB = null;
+    public static final EntityType AREA_EFFECT_CLOUD = null;
     public static final EntityType LEASH_HITCH = null;
     public static final EntityType PAINTING = null;
     public static final EntityType ARROW = null;
@@ -68,6 +69,7 @@ public final class EntityTypes {
     public static final EntityType BLAZE = null;
     public static final EntityType MAGMA_CUBE = null;
     public static final EntityType ENDER_DRAGON = null;
+    public static final EntityType DRAGON_FIREBALL = null;
     public static final EntityType WITHER = null;
     public static final EntityType BAT = null;
     public static final EntityType WITCH = null;
@@ -94,6 +96,9 @@ public final class EntityTypes {
     public static final EntityType GUARDIAN = null;
     public static final EntityType RABBIT = null;
     public static final EntityType ENDERMITE = null;
+    public static final EntityType SHULKER = null;
+    public static final EntityType SHULKER_BULLET = null;
+    public static final EntityType SPECTRAL_ARROW = null;
     public static final EntityType UNKNOWN = null;
     public static final EntityType HUMAN = null;
 
