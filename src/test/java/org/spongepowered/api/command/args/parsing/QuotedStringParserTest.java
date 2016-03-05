@@ -29,10 +29,12 @@ import static org.junit.Assert.assertEquals;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.spongepowered.api.command.args.ArgumentParseException;
+import org.spongepowered.api.text.TestPlainTextSerializer;
 
 import java.util.Collections;
 import java.util.List;
@@ -53,6 +55,11 @@ public class QuotedStringParserTest {
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
+
+    @Before
+    public void initialize() throws Exception {
+        TestPlainTextSerializer.inject();
+    }
 
     @Test
     public void testEmptyString() throws ArgumentParseException {
