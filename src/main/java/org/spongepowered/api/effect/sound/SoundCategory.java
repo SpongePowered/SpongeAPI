@@ -24,17 +24,10 @@
  */
 package org.spongepowered.api.effect.sound;
 
-public class SoundCategoryTypes {
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-    public static final SoundCategoryType MASTER = null;
-    public static final SoundCategoryType MUSIC = null;
-    public static final SoundCategoryType RECORDS = null;
-    public static final SoundCategoryType WEATHER = null;
-    public static final SoundCategoryType BLOCKS = null;
-    public static final SoundCategoryType HOSTILE = null;
-    public static final SoundCategoryType NEUTRAL = null;
-    public static final SoundCategoryType PLAYERS = null;
-    public static final SoundCategoryType AMBIENT = null;
-    public static final SoundCategoryType VOICE = null;
+@CatalogedBy(SoundCategories.class)
+public interface SoundCategory extends CatalogType {
 
 }
