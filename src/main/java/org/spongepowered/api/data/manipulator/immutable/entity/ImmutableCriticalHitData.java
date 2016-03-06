@@ -27,7 +27,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.CriticalHitData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.projectile.Arrow;
+import org.spongepowered.api.entity.projectile.arrow.Arrow;
 
 /**
  * An {@link ImmutableDataManipulator} representing the next attack is

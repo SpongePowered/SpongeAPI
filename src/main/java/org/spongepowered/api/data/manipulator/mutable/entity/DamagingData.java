@@ -30,7 +30,7 @@ import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.projectile.Arrow;
+import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
