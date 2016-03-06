@@ -45,7 +45,7 @@ public class ArgumentParseException extends CommandException {
      * @param position The current position in the source string
      */
     public ArgumentParseException(Text message, String source, int position) {
-        super(message);
+        super(message, true);
         this.source = source;
         this.position = position;
     }
@@ -59,7 +59,7 @@ public class ArgumentParseException extends CommandException {
      * @param position The current position in the source string
      */
     public ArgumentParseException(Text message, Throwable cause, String source, int position) {
-        super(message, cause);
+        super(message, cause, true);
         this.source = source;
         this.position = position;
     }
