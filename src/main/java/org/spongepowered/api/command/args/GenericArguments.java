@@ -1386,7 +1386,7 @@ public final class GenericArguments {
         @Override
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
             checkPermission(source, args);
-            super.parse(source, args, context);
+            this.element.parse(source, args, context);
         }
 
         @Override
