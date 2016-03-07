@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.service.economy;
 
-import com.sun.org.apache.xml.internal.resolver.Catalog;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.registry.util.PluginProvidedRegistryModule;
 import org.spongepowered.api.text.Text;
