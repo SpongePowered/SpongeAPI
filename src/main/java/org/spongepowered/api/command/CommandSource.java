@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.command;
 
+import org.spongepowered.api.command.source.ProxySourceTarget;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.text.translation.locale.Locales;
@@ -36,7 +37,7 @@ import java.util.Locale;
  * <p>Examples of potential implementations include players, the server console,
  * Rcon clients, web-based clients, command blocks, and so on.</p>
  */
-public interface CommandSource extends MessageReceiver, Subject {
+public interface CommandSource extends MessageReceiver, Subject, ProxySourceTarget {
 
     /**
      * Gets the name identifying this command source.
