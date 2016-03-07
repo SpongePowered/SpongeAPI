@@ -63,7 +63,7 @@ public interface PaginationList {
      *
      * @return The title text
      */
-    Text getTitle();
+    Optional<Text> getTitle();
 
     /**
      * Gets the header to be displayed for this output on all pages after the title bar but before the contents,
