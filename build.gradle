@@ -20,7 +20,7 @@ buildscript {
     }
 }
 
-version = '4.0.2'
+version = '4.0.3'
 
 // Include shared Gradle configuration
 ext.api = project
