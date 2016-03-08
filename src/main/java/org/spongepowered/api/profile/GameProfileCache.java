@@ -164,11 +164,7 @@ public interface GameProfileCache {
         Map<UUID, Optional<GameProfile>> result = Maps.newHashMap();
 
         result.putAll(this.getByIds(pending));
-        result.forEach((uniqueId, profile) -> {
-            if (profile.isPresent()) {
-                pending.remove(uniqueId);
-            }
-        });
+        result.forEach((uniqueId, profile) -> pending.remove(uniqueId));
         result.putAll(this.lookupByIds(pending));
 
         return ImmutableMap.copyOf(result);
@@ -256,15 +252,8 @@ public interface GameProfileCache {
         Map<String, Optional<GameProfile>> result = Maps.newHashMap();
 
         result.putAll(this.getByNames(pending));
-        result.forEach((name, profile) -> {
-            if (profile.isPresent()) {
-                pending.remove(name);
-            }
-        });
-        // lookupByNames can return a map with different keys than the names passes id
-        // (in the case where a name it actually capitalized differently). Therefore,
-        // lookupByName is used instead here.
-        pending.forEach(name -> result.put(name, this.lookupByName(name)));
+        result.forEach((name, profile) -> pending.remove(name));
+        result.putAll(this.lookupByNames(pending));
 
         return ImmutableMap.copyOf(result);
     }
