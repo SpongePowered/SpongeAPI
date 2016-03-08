@@ -39,10 +39,10 @@ public interface PlayerConnection extends RemoteConnection {
     Player getPlayer();
 
     /**
-     * Gets the connection ping. This is constantly calculated by the server.
+     * Gets the connection latency. This is constantly calculated by the server.
      *
-     * @return The ping
+     * @return The latency
      */
-    int getPing();
+    int getLatency();
 
 }

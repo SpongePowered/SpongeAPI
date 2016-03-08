@@ -22,54 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.item.merchant;
 
-package org.spongepowered.api.event.cause.entity.health.source;
+import java.util.List;
+import java.util.Random;
+import java.util.function.BiConsumer;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.entity.health.HealType;
-
-public interface ProjectileHealingSource extends EntityHealingSource {
-
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
-
+public interface TradeOfferListMutator extends BiConsumer<List<TradeOffer>, Random> {
 
     @Override
-    Projectile getSource();
+    void accept(List<TradeOffer> tradeOffers, Random random);
 
-    ProjectileSource getShooter();
-
-    interface Builder extends EntityHealingSource.Builder {
-
-        @Override
-        Builder scalesWithDifficulty();
-
-        @Override
-        Builder bypassesArmor();
-
-        @Override
-        Builder explosion();
-
-        @Override
-        Builder absolute();
-
-        @Override
-        Builder magical();
-
-        @Override
-        Builder entity(Entity entity);
-
-        @Override
-        Builder type(HealType healType);
-
-        Builder projectile(Projectile projectile);
-
-        @Override
-        ProjectileHealingSource build() throws IllegalStateException;
-
-    }
 }

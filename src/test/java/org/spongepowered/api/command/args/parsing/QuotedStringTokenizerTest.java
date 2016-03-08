@@ -29,20 +29,23 @@ import static org.junit.Assert.assertEquals;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import org.junit.Ignore;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.spongepowered.api.command.args.ArgumentParseException;
+import org.spongepowered.api.text.TestPlainTextSerializer;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nullable;
 
-public class QuotedStringParserTest {
+public class QuotedStringTokenizerTest {
+
     private static List<String> parseFrom(String args) throws ArgumentParseException {
-        return Lists.transform(new QuotedStringTokenizer(true, false).tokenize(args, false), new Function<SingleArg, String>() {
+        return Lists.transform(new QuotedStringTokenizer(true, false, false).tokenize(args, false), new Function<SingleArg, String>() {
             @Nullable
             @Override
             public String apply(SingleArg input) {
@@ -53,6 +56,11 @@ public class QuotedStringParserTest {
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
+
+    @Before
+    public void initialize() throws Exception {
+        TestPlainTextSerializer.inject();
+    }
 
     @Test
     public void testEmptyString() throws ArgumentParseException {
@@ -84,11 +92,10 @@ public class QuotedStringParserTest {
     }
 
     @Test
-    @Ignore("Cannot run these tests unless Text factories are available in testing")
     public void testUnterminatedQuote() throws ArgumentParseException {
         this.expectedException.expect(ArgumentParseException.class);
         this.expectedException.expectMessage("Unterminated quoted string");
-        parseFrom("a \"unterminated quoted string is bad");
+        parseFrom("an \"unterminated quoted string is bad");
     }
 
     @Test
@@ -97,4 +104,8 @@ public class QuotedStringParserTest {
                 parseFrom("this demonstrates\\ escapes \\\"of 'various\\' characters\'"));
     }
 
+    @Test
+    public void testTrailingSpace() throws ArgumentParseException {
+        assertEquals(ImmutableList.of("a", "test", "argument", "string", ""), parseFrom("a test argument string "));
+    }
 }

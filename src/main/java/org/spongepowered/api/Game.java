@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api;
 
+import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
@@ -84,6 +85,13 @@ public interface Game {
      * @return The event manager
      */
     EventManager getEventManager();
+
+    /**
+     * Gets the {@link AssetManager}.
+     *
+     * @return The asset manager
+     */
+    AssetManager getAssetManager();
 
     /**
      * Gets the {@link GameRegistry}.

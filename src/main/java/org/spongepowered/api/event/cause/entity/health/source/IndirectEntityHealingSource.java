@@ -22,17 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
 
-import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.type.CarriedInventory;
+package org.spongepowered.api.event.cause.entity.health.source;
 
-/**
- * Represents a minecart with a container inside it. Common extensions
- * of this are: {@link MinecartChest} and {@link MinecartHopper}.
- */
-public interface MinecartContainer extends Minecart, Carrier {
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
-    @Override
-    CarriedInventory<MinecartContainer> getInventory();
+public interface IndirectEntityHealingSource extends EntityHealingSource {
+
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    Entity getIndirectSource();
+
+    interface Builder extends IndirectEntityHealingSourceBuilder<IndirectEntityHealingSource, Builder> {
+        
+    }
+
+    interface IndirectEntityHealingSourceBuilder<T extends IndirectEntityHealingSource, B extends IndirectEntityHealingSourceBuilder<T, B>> extends EntityHealingSourceBuilder<T, B> {
+
+        B indirectEntity(Entity entity);
+
+    }
 }

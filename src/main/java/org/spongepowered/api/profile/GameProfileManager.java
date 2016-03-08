@@ -200,30 +200,59 @@ public interface GameProfileManager {
     CompletableFuture<GameProfile> fill(GameProfile profile, boolean signed, boolean useCache);
 
     /**
+     * Gets the active {@link GameProfile} cache.
+     *
+     * @return The active cache
+     */
+    GameProfileCache getCache();
+
+    /**
+     * Sets the {@link GameProfile} cache.
+     *
+     * <p>To restore the original cache, pass the result of {@link #getDefaultCache()}.</p>
+     *
+     * @param cache The new cache
+     */
+    void setCache(GameProfileCache cache);
+
+    /**
+     * Gets the default cache.
+     *
+     * @return The default cache.
+     */
+    GameProfileCache getDefaultCache();
+
+    /**
      * Gets a collection of all cached {@link GameProfile}s.
      *
      * @return A {@link Collection} of {@link GameProfile}s
+     * @deprecated use {@link GameProfileCache#getProfiles()} instead
      */
-    Collection<GameProfile> getCachedProfiles();
+    @Deprecated
+    default Collection<GameProfile> getCachedProfiles() {
+        return this.getCache().getProfiles();
+    }
 
     /**
      * Returns a collection of matching cached {@link GameProfile}s whose last
-     * known user names start with the given string (case-insensitive).
+     * known names start with the given string (case-insensitive).
      *
      * <p>This collection may also contain profiles of players who never played
      * on the server!</p>
      *
-     * <p>Use
-     * {@link UserStorageService#match(String)} for
-     * a collection that only contains {@link GameProfile}s with attached
-     * {@link User} data.</p>
+     * <p>Use {@link UserStorageService#match(String)} for a collection that
+     * only contains {@link GameProfile}s with attached {@link User} data.</p>
      *
      * <p>This method only searches the local cache, so the data may not be up
      * to date.</p>
      *
-     * @param lastKnownName The user name
-     * @return The result of the request
+     * @param name The name
+     * @return A {@link Collection} of matching {@link GameProfile}s
+     * @deprecated use {@link GameProfileCache#match(String)} instead
      */
-    Collection<GameProfile> match(String lastKnownName);
+    @Deprecated
+    default Collection<GameProfile> match(String name) {
+        return this.getCache().match(name);
+    }
 
 }

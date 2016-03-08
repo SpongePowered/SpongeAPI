@@ -22,28 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.event.cause.entity.health.source.common;
 
-/**
- * Represents a minecart with a furnace inside it.
- */
-public interface MinecartFurnace extends Minecart {
+import org.spongepowered.api.event.cause.entity.health.HealingType;
+import org.spongepowered.api.event.cause.entity.health.source.HealingSource;
 
-    /**
-     * Gets the current fuel time in ticks.
-     * <p>Usually, the fuel time will decay until reaching 0. At
-     * zero, the fuel minecart will decelerate to a stop.</p>
-     *
-     * @return The current fuel time in ticks
-     */
-    int getFuel();
+public abstract class AbstractHealingSource implements HealingSource {
 
-    /**
-     * Sets the fuel time in ticks.
-     * <p>Usually, the fuel time will decay until reaching 0. At
-     * zero, the fuel minecart will decelerate to a stop.</p>
-     *
-     * @param fuel The fuel time in ticks
-     */
-    void setFuel(int fuel);
+    private final HealingType healingType;
+    private final boolean difficulty;
+    private final boolean magical;
+
+    protected AbstractHealingSource(AbstractHealingSourceBuilder<?, ?> builder) {
+        this.healingType = builder.healingType;
+        this.difficulty = builder.scales;
+        this.magical = builder.magical;
+    }
+
+    @Override
+    public HealingType getHealingType() {
+        return this.healingType;
+    }
+
+    @Override
+    public boolean isDifficultyScaled() {
+        return this.difficulty;
+    }
+
+    @Override
+    public boolean isMagic() {
+        return this.magical;
+    }
 }

@@ -35,8 +35,10 @@ import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
+import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -139,6 +141,21 @@ public interface ItemStack extends DataHolder, DataSerializable, Translatable {
         Builder quantity(int quantity) throws IllegalArgumentException;
 
         /**
+         * Adds a {@link Key} and related {@link Object} value to apply to the
+         * resulting {@link ItemStack}. Note that the resulting
+         * {@link ItemStack} may not actually accept the provided {@code Key}
+         * for various reasons due to support or simply that the value itself
+         * is not supported. Offering custom data is not supported through this,
+         * use {@link #itemData(DataManipulator)} instead.
+         *
+         * @param key The key to identiy the value to
+         * @param value The value to apply
+         * @param <E> The type of value
+         * @return This builder, for chaining
+         */
+        <E> Builder keyValue(Key<? extends BaseValue<E>> key, E value);
+
+        /**
          * Sets the {@link DataManipulator} to add to the {@link ItemStack}.
          *
          * @param itemData The item data to set
@@ -156,6 +173,17 @@ public interface ItemStack extends DataHolder, DataSerializable, Translatable {
          * @throws IllegalArgumentException If the item data is incompatible
          */
         Builder itemData(ImmutableDataManipulator<?, ?> itemData) throws IllegalArgumentException;
+
+        /**
+         * Adds the given {@link Key} with the given {@link V} value.
+         *
+         * @param key The key to assign the value with
+         * @param value The value to assign with the key
+         * @param <V> The type of the value
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException If the item data is incompatible
+         */
+        <V> Builder add(Key<? extends BaseValue<V>> key, V value) throws IllegalArgumentException;
 
         /**
          * Sets all the settings in this builder from the item stack blueprint.

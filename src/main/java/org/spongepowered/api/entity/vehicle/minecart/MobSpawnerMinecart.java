@@ -22,43 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.args.parsing;
+package org.spongepowered.api.entity.vehicle.minecart;
 
-public final class InputTokenizers {
-    private InputTokenizers() {}
+import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 
-    /**
-     * Use an input string tokenizer that supports quoted arguments and character escapes.
-     * Forcing lenient to true makes the following apply:
-     *
-     * <ul>
-     *     <li>Unclosed quotations are treated as a single string from the opening quotation to the end of the arguments rather than throwing
-     *     an exception </li>
-     * </ul>
-     *
-     * @param forceLenient Whether the tokenizer is forced into lenient mode
-     * @return the appropriate tokenizer
-     */
-    public static InputTokenizer quotedStrings(boolean forceLenient) {
-        return new QuotedStringTokenizer(true, forceLenient);
-    }
+/**
+ * Represents a Minecart with a MobSpawner inside it.
+ */
+public interface MobSpawnerMinecart extends Minecart {
 
     /**
-     * Returns an input tokenizer that takes input strings and splits them by space.
+     * Gets a copy of the {@link MobSpawnerData}.
      *
-     * @return The appropriate tokenizer
+     * @return A copy of the mob spawner data
      */
-    public static InputTokenizer spaceSplitString() {
-        return SpaceSplitInputTokenizer.INSTANCE;
-    }
-
-    /**
-     * Returns an input tokenizer that returns the input string as a single argument.
-     *
-     * @return The appropriate tokenizer
-     */
-    public static InputTokenizer rawInput() {
-        return RawStringInputTokenizer.INSTANCE;
+    default MobSpawnerData getSpawnerData() {
+        return get(MobSpawnerData.class).get();
     }
 
 }

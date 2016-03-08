@@ -96,4 +96,16 @@ public @interface Plugin {
      */
     String[] authors() default {};
 
+    /**
+     * The directory within the plugin's JAR file that contains this plugin's
+     * assets. This directory defaults to:
+     *
+     * <p><code>assets/&lt;id&gt;</code> where 'ID' is the plugin's fully
+     * qualified ID with all '.'s replaced with '/'s to more fit a directory
+     * structure.</p>
+     *
+     * @return Asset directory
+     */
+    String assets() default "";
+
 }

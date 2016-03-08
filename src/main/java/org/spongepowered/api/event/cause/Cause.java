@@ -26,20 +26,19 @@ package org.spongepowered.api.event.cause;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
-import org.spongepowered.api.event.entity.DamageEntityEvent;
-import org.spongepowered.api.event.entity.SpawnEntityEvent;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -68,216 +67,50 @@ import javax.annotation.Nullable;
 public final class Cause {
 
     /**
-     * Creates a new {@link Cause} of the provided {@link Object}s. Note that
-     * none of the provided {@link Object}s can be <code>null</code>. The order
-     * of the objects should represent the "priority" that the object aided in
-     * the "cause" of an {@link Event}. The first {@link Object} should be the
-     * direct "cause" of the {@link Event}.
+     * Creates a new {@link Builder} to make a new {@link Cause}. Note that the
+     * builder requires all objects to be named appropriately and does not
+     * accept duplicate names.
      *
-     * <p>Usually, in most cases, some {@link Event}s will have "helper"
-     * objects to interface with their direct causes, such as
-     * {@link DamageSource} for an {@link DamageEntityEvent}, or a
-     * {@link SpawnCause} for an {@link SpawnEntityEvent}.</p>
-     *
-     * @param objects The objects being the cause
-     * @return The new cause
+     * @return The new builder
      */
-    public static Cause of(Object object, Object... objects) {
-        checkArgument(object != null, "The source object cannot be null!");
-        checkNotNull(objects, "The objects cannot be null!");
-        List<Object> list = new ArrayList<>();
-        list.add(object);
-        Collections.addAll(list, objects);
-        checkArgument(!list.isEmpty(), "Cause cannot be empty!");
-        return of(list);
+    public static Builder builder() {
+        return new Builder();
     }
 
-    /**
-     * Creates a new {@link Cause} of the provided {@link Iterable}s. The order
-     * of the objects should represent the "priority" that the object aided in
-     * the "cause" of an {@link Event}. The first {@link Object} should be the
-     * direct "cause" of the {@link Event}.
-     *
-     * <p>Usually, in most cases, some {@link Event}s will have "helper"
-     * objects to interface with their direct causes, such as
-     * {@link DamageSource} for an {@link DamageEntityEvent}, or a
-     * {@link SpawnCause} for an {@link SpawnEntityEvent}.</p>
-     *
-     * @param iterable The objects being the cause
-     * @return The new cause
-     */
-    public static Cause of(Iterable<?> iterable) {
-        checkArgument(iterable != null, "The source object cannot be null!");
-        List<NamedCause> list = new ArrayList<>();
-        for (Object listObj : iterable) {
-            if (listObj instanceof NamedCause) {
-                list.add((NamedCause) listObj);
-            } else {
-                checkArgument(listObj != null, "Cause object cannot be null!");
-                list.add(NamedCause.of("unknown" + (list.size() + 1) + listObj.getClass().getSimpleName(), listObj));
-            }
+    public static Builder source(Object root) {
+        return new Builder().source(root);
+    }
+
+    public static Cause of(NamedCause cause) {
+        checkNotNull(cause, "Cause cannot be null!");
+        return new Cause(new NamedCause[]{cause});
+    }
+
+    public static Cause of(NamedCause cause, NamedCause... causes) {
+        Builder builder = builder();
+        builder.named(cause);
+        for (NamedCause namedCause : causes) {
+            builder.named(namedCause);
         }
-        checkArgument(!list.isEmpty(), "Cause cannot be empty!");
-        return fromList(list);
+        return builder.build();
     }
 
-    /**
-     * Creates a new {@link Cause} of the provided {@link Object} array. The
-     * order of the objects should represent the "priority" that the object
-     * aided in the "cause" of an {@link Event}. The first {@link Object}
-     * should be the direct "cause" of the {@link Event}.
-     *
-     * <p>Usually, in most cases, some {@link Event}s will have "helper"
-     * objects to interface with their direct causes, such as
-     * {@link DamageSource} for an {@link DamageEntityEvent}, or a
-     * {@link SpawnCause} for an {@link SpawnEntityEvent}.</p>
-     *
-     * @param objects The objects being the cause
-     * @return The new cause
-     */
-    public static Cause of(Object[] objects) {
-        checkArgument(objects != null, "The source object cannot be null!");
-        List<Object> list = new ArrayList<>();
-        Collections.addAll(list, objects);
-        return of(list);
-    }
-
-    /**
-     * Creates a new {@link Cause} of the provided {@link Object}s. Note that
-     * none of the provided {@link Object}s can be <code>null</code>. The order
-     * of the objects should represent the "priority" that the object aided in
-     * the "cause" of an {@link Event}. The first {@link Object} should be the
-     * direct "cause" of the {@link Event}.
-     *
-     * <p>Usually, in most cases, some {@link Event}s will have "helper"
-     * objects to interface with their direct causes, such as
-     * {@link DamageSource} for an {@link DamageEntityEvent}, or a
-     * {@link SpawnCause} for an {@link SpawnEntityEvent}.</p>
-     *
-     * @param objects The objects being the cause
-     * @return The new cause
-     */
-    public static Cause ofNullable(@Nullable Object object, @Nullable Object... objects) {
-        checkArgument(object != null || (objects != null && objects.length != 0), "There must be at least one object in a cause!");
-        List<NamedCause> list = new ArrayList<>();
-        if (object instanceof Object[]) {
-            for (Object arrayObj : ((Object[]) object)) {
-                if (arrayObj instanceof NamedCause) {
-                    list.add((NamedCause) arrayObj);
-                } else if (arrayObj != null) {
-                    list.add(NamedCause.of("unknown" + (list.size() + 1) + arrayObj.getClass().getName(), arrayObj));
-                }
-            }
-        } else if (object instanceof Iterable) {
-            for (Object listObj : ((Iterable<Object>) object)) {
-                if (listObj instanceof NamedCause) {
-                    list.add((NamedCause) listObj);
-                } else if (listObj != null) {
-                    list.add(NamedCause.of("unknown" + (list.size() + 1) + listObj.getClass().getName(), listObj));
-                }
-            }
-        } else if (object != null) {
-            if (object instanceof NamedCause) {
-                list.add((NamedCause) object);
-            } else {
-                list.add(NamedCause.of("unknown" + (list.size() + 1) + object.getClass().getName(), object));
-            }
+    public static Cause of(Iterable<NamedCause> iterable) {
+        Builder builder = builder();
+        for (NamedCause cause : iterable) {
+            builder.named(cause);
         }
-        if (objects != null) {
-            for (Object cause : objects) {
-                if (cause != null) {
-                    if (object instanceof NamedCause) {
-                        list.add((NamedCause) object);
-                    } else {
-                        list.add(NamedCause.of("unknown" + (list.size() + 1) + object.getClass().getName(), object));
-                    }
-                }
-            }
-        }
-        checkArgument(!list.isEmpty(), "There must be at least one object within a cause!");
-        return fromList(list);
+        return builder.build();
     }
 
-    /**
-     * Creates a new {@link Cause} of the provided {@link Object}s. Note that
-     * none of the provided {@link Object}s can be <code>null</code>. The order
-     * of the objects should represent the "priority" that the object aided in
-     * the "cause" of an {@link Event}. The first {@link Object} should be the
-     * direct "cause" of the {@link Event}.
-     *
-     * <p>Usually, in most cases, some {@link Event}s will have "helper"
-     * objects to interface with their direct causes, such as
-     * {@link DamageSource} for an {@link DamageEntityEvent}, or a
-     * {@link SpawnCause} for an {@link SpawnEntityEvent}.</p>
-     *
-     * @param iterable The objects being the cause
-     * @return The new cause
-     */
-    public static Cause ofNullable(Iterable<?> iterable) {
-        checkArgument(iterable != null, "The iterable cannot be null!");
-        List<NamedCause> list = new ArrayList<>();
-        for (Object arrayObj : iterable) {
-            checkNotNull(arrayObj, "Iterable object cannot be null!");
-            if (arrayObj instanceof NamedCause) {
-                list.add((NamedCause) arrayObj);
-            } else {
-                list.add(NamedCause.of("unknown" + (list.size() + 1) + arrayObj.getClass().getName(), arrayObj));
-            }
-        }
-        checkArgument(!list.isEmpty(), "Must at least have one object in the cause!");
-        return fromList(list);
-    }
-
-    /**
-     * Creates a new {@link Cause} of the provided {@link Object}s. Note that
-     * any of the provided {@link Object}s can be <code>null</code>. The order
-     * of the objects should represent the "priority" that the object aided in
-     * the "cause" of an {@link Event}. The first {@link Object} should be the
-     * direct "cause" of the {@link Event}.
-     *
-     * <p>Usually, in most cases, some {@link Event}s will have "helper"
-     * objects to interface with their direct causes, such as
-     * {@link DamageSource} for an {@link DamageEntityEvent}, or a
-     * {@link SpawnCause} for an {@link SpawnEntityEvent}.</p>
-     *
-     * @param objects The objects being the cause
-     * @return The new cause
-     */
-    public static Cause ofNullable(Object[] objects) {
-        checkArgument(objects != null, "The source object cannot be null!");
-        List<NamedCause> list = new ArrayList<>();
-        for (Object arrayObj : objects) {
-            if (arrayObj instanceof NamedCause) {
-                list.add((NamedCause) arrayObj);
-            } else if (arrayObj != null) {
-                list.add(NamedCause.of("unknown" + (list.size() + 1) + arrayObj.getClass().getName(), arrayObj));
-            }
-        }
-        checkArgument(!list.isEmpty(), "Must at least have one object in the cause!");
-        return fromList(list);
-    }
-
-    private static Cause fromList(List<NamedCause> causes) {
-        final List<String> nameList = new ArrayList<>();
-        for (NamedCause cause : causes) {
-            if (!nameList.contains(cause.getName())) {
-                nameList.add(cause.getName());
-            } else {
-                throw new IllegalArgumentException("A named cause already exists with the name: " + cause.getName());
-            }
-        }
-        return new Cause(causes.toArray(new NamedCause[causes.size()]));
-    }
-
-    private final Object[] cause;
-    private final String[] names;
-    private final ImmutableList<Object> immutableCauses;
-
+    final Object[] cause;
+    final String[] names;
 
     // lazy load
     @Nullable private Map<String, Object> namedObjectMap;
+    @Nullable private ImmutableList<Object> immutableCauses;
 
-    private Cause(NamedCause[] causes) {
+    Cause(NamedCause[] causes) {
         // basically, no validation, all the validation should take place calling this constructor
         final Object[] objects = new Object[causes.length];
         final String[] names = new String[causes.length];
@@ -289,7 +122,6 @@ public final class Cause {
         }
         this.cause = objects;
         this.names = names;
-        this.immutableCauses = ImmutableList.copyOf(this.cause);
     }
 
     /**
@@ -540,6 +372,9 @@ public final class Cause {
      * @return An immutable list of all the causes
      */
     public List<Object> all() {
+        if (this.immutableCauses == null) {
+            this.immutableCauses = ImmutableList.copyOf(this.cause);
+        }
         return this.immutableCauses;
     }
 
@@ -551,11 +386,11 @@ public final class Cause {
      * @param additionals The remaining objects to add
      * @return The new cause
      */
-    public Cause with(Object additional, Object... additionals) {
+    public Cause with(NamedCause additional, NamedCause... additionals) {
         checkArgument(additional != null, "No null arguments allowed!");
-        List<Object> list = new ArrayList<>();
+        List<NamedCause> list = new ArrayList<>();
         list.add(additional);
-        for (Object object : additionals) {
+        for (NamedCause object : additionals) {
             checkArgument(object != null, "Cannot add null objects!");
             list.add(object);
         }
@@ -569,20 +404,13 @@ public final class Cause {
      * @param iterable The additional objects
      * @return The new cause
      */
-    public Cause with(Iterable<?> iterable) {
-        List<NamedCause> list = new ArrayList<>();
-        for (int i = 0; i < this.cause.length; i++) {
-            list.add(NamedCause.of(this.names[i], this.cause[i]));
-        }
-        for (Object o : iterable) {
+    public Cause with(Iterable<NamedCause> iterable) {
+        Cause.Builder builder = new Builder().from(this);
+        for (NamedCause o : iterable) {
             checkArgument(o != null, "Cannot add null causes");
-            if (o instanceof NamedCause) {
-                list.add((NamedCause) o);
-            } else {
-                list.add(NamedCause.of("unknown" + (list.size() + 1) + o.getClass().getSimpleName(), o));
-            }
+            builder.named(o);
         }
-        return fromList(list);
+        return builder.build();
     }
 
     /**
@@ -594,27 +422,11 @@ public final class Cause {
      * @return The new merged cause
      */
     public Cause merge(Cause cause) {
-        List<String> names = new ArrayList<>();
-        List<NamedCause> causes = new ArrayList<>();
-        for (int i = 0; i < this.cause.length; i++) {
-            causes.add(NamedCause.of(this.names[i], this.cause[i]));
-            names.add(this.names[i]);
-        }
-        int iteration = 1;
+        Cause.Builder builder = builder().from(this);
         for (int i = 0; i < cause.cause.length; i++) {
-            String name = cause.names[i].equalsIgnoreCase("Source")
-                          ? "AdditionalSource" : cause.names[i].equalsIgnoreCase("AdditionalSource")
-                                                 ? "PreviousSource" : cause.names[i];
-            if (names.contains(name)) {
-                name += iteration++;
-            }
-            if (!names.contains(name)) {
-                causes.add(NamedCause.of(name, cause.cause[i]));
-            } else {
-                throw new IllegalArgumentException("Cannot have duplicate names of objects in a cause! Duplicate found: " + cause.names[i]);
-            }
+            builder.suggestNamed(cause.names[i], cause.cause[i]);
         }
-        return fromList(causes);
+        return builder.build();
     }
 
     /**
@@ -658,6 +470,110 @@ public final class Cause {
             joiner.add("{Name=" + this.names[i] + ", Object={" + this.cause[i].toString() + "}}");
         }
         return causeString + joiner.toString() + "]";
+    }
+
+    public static final class Builder implements ResettableBuilder<Cause, Builder> {
+
+        List<NamedCause> causes = new ArrayList<>();
+        Set<String> namesUsed = new HashSet<>();
+
+        Builder() {
+
+        }
+
+        Builder source(Object object) {
+            this.causes.add(NamedCause.source(checkNotNull(object, "Source cannot be null!")));
+            this.namesUsed.add(NamedCause.SOURCE);
+            return this;
+        }
+
+        public Builder owner(Object object) {
+            checkArgument(!this.namesUsed.contains(NamedCause.OWNER), "Already contains an owner!");
+            this.causes.add(NamedCause.owner(object));
+            this.namesUsed.add(NamedCause.OWNER);
+            return this;
+        }
+
+        public Builder notifier(Object object) {
+            checkArgument(!this.namesUsed.contains(NamedCause.NOTIFIER), "Already contains a notifier!");
+            this.causes.add(NamedCause.notifier(object));
+            this.namesUsed.add(NamedCause.NOTIFIER);
+            return this;
+        }
+
+        public Builder named(NamedCause cause) {
+            checkNotNull(cause, "NamedCause cannot be null!");
+            checkArgument(!this.namesUsed.contains(cause.getName()), "Already contains an entry for: {}", cause.getName());
+            this.causes.add(cause);
+            this.namesUsed.add(cause.getName());
+            return this;
+        }
+
+        public Builder named(String name, Object object) {
+            checkNotNull(name, "Name cannot be null!");
+            checkArgument(!this.namesUsed.contains(name), "Already contains an entry for {}", name);
+            this.causes.add(NamedCause.of(name, object));
+            this.namesUsed.add(name);
+            return this;
+        }
+
+        /**
+         * Attempts to add the desired {@link Object} with the given name. If
+         * the name is already taken, the name is suffixed with an index for
+         * that name. As an example, if it's suggested that the name is
+         * <code>"AdditionalSource"</code>,
+         * it may end up with <code>"AdditionalSource1"</code>.
+         *
+         * @param name The suggested name
+         * @param object The object
+         * @return This builder, for chaining
+         */
+        public Builder suggestNamed(String name, Object object) {
+            checkNotNull(name, "Name cannot be null!");
+            checkNotNull(object, "Object cannot be null!");
+            int iteration = 1;
+            if (this.namesUsed.contains(name)) {
+                while (true) {
+                    final String newName = name + iteration++;
+                    if (!this.namesUsed.contains(newName)) {
+                        this.causes.add(NamedCause.of(newName, object));
+                        this.namesUsed.add(newName);
+                        break;
+                    }
+                }
+            } else {
+                this.causes.add(NamedCause.of(name, object));
+                this.namesUsed.add(name);
+            }
+            return this;
+        }
+
+        public Builder addAll(Collection<NamedCause> causes) {
+            checkNotNull(causes, "Causes cannot be null!");
+            causes.forEach(this::named);
+            return this;
+        }
+
+        public Cause build() {
+            checkState(!this.causes.isEmpty(), "Cannot create an empty Cause!");
+            return new Cause(this.causes.toArray(new NamedCause[this.causes.size()]));
+        }
+
+        @Override
+        public Builder from(Cause value) {
+            for (int i = 0; i < value.cause.length; i++) {
+                this.causes.add(NamedCause.of(value.names[i], value.cause[i]));
+                this.namesUsed.add(value.names[i]);
+            }
+            return this;
+        }
+
+        @Override
+        public Builder reset() {
+            this.causes.clear();
+            this.namesUsed.clear();
+            return this;
+        }
     }
 
 }

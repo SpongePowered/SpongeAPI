@@ -89,6 +89,16 @@ public interface Selector {
     }
 
     /**
+     * Fetch completions for a selector command argument.
+     * 
+     * @param selector The partial selector
+     * @return Tab completions for the next part of the selector
+     */
+    static List<String> complete(String selector) {
+        return getFactory().complete(selector);
+    }
+
+    /**
      * Returns the type of this {@link Selector}.
      *
      * @return The type of this selector

@@ -27,6 +27,9 @@ package org.spongepowered.api.plugin;
 import com.google.common.collect.ImmutableList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.asset.Asset;
+import org.spongepowered.api.asset.AssetManager;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -117,6 +120,26 @@ public interface PluginContainer {
      */
     default List<String> getAuthors() {
         return ImmutableList.of();
+    }
+
+    /**
+     * Gets the directory that contains this {@link Plugin}'s assets.
+     *
+     * @return Asset directory, or empty if none
+     */
+    default Optional<Path> getAssetDirectory() {
+        return Optional.empty();
+    }
+
+    /**
+     * Retrieves the {@link Asset} of the specified name from the
+     * {@link AssetManager} for this {@link Plugin}.
+     *
+     * @param name Name of asset
+     * @return Asset if present, empty otherwise
+     */
+    default Optional<Asset> getAsset(String name) {
+        return Sponge.getAssetManager().getAsset(this, name);
     }
 
     /**

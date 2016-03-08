@@ -22,13 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
-
-import org.spongepowered.api.command.source.CommandBlockSource;
-
-/**
- * Represents a minecart with a command block inside it.
- */
-public interface MinecartCommandBlock extends Minecart, CommandBlockSource {
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.item.inventory.generation;

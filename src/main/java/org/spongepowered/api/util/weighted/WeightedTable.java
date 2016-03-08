@@ -50,6 +50,10 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
         super(rolls);
     }
 
+    public WeightedTable(VariableAmount rolls) {
+        super(rolls);
+    }
+
     @Override
     public boolean add(TableEntry<T> entry) {
         boolean added = super.add(entry);

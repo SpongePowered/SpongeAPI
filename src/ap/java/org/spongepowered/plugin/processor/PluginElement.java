@@ -39,6 +39,8 @@ import org.spongepowered.plugin.meta.version.VersionRange;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 
 import javax.annotation.processing.Messager;
 import javax.lang.model.element.TypeElement;
@@ -119,6 +121,21 @@ final class PluginElement {
             }
         }
 
+        /* TODO: Fix once merged in plugin-meta
+        value = this.annotation.get().assets();
+        if (!value.isEmpty()) {
+            if (!isValidPath(value)) {
+                messager.printMessage(ERROR, "Invalid asset directory path: " + value, this.element, this.annotation.getMirror(),
+                        this.annotation.getValue("assets"));
+            }
+            this.metadata.setAssetDirectory(value);
+        } else if ((value = this.metadata.getAssetDirectory()) != null) {
+            if (!isValidPath(value)) {
+                messager.printMessage(ERROR, "Invalid asset directory path: " + value + " in extra metadata files", this.element,
+                        this.annotation.getMirror());
+            }
+        }*/
+
         String[] authors = this.annotation.get().authors();
         if (authors.length > 0) {
             this.metadata.getAuthors().clear();
@@ -186,6 +203,15 @@ final class PluginElement {
         }
     }
 
+    private static boolean isValidPath(String path) {
+        try {
+            Paths.get(path);
+            return true;
+        } catch (InvalidPathException e) {
+            return false;
+        }
+    }
+
     static void applyMeta(PluginMetadata meta, PluginMetadata other, Messager messager) {
         checkArgument(meta.getId().equals(other.getId()), "Plugin meta IDs don't match");
 
@@ -201,6 +227,10 @@ final class PluginElement {
         if (other.getUrl() != null) {
             meta.setUrl(other.getUrl());
         }
+        /* TODO: Fix once merged in plugin-meta
+        if (other.getAssetDirectory() != null) {
+            meta.setAssetDirectory(other.getAssetDirectory());
+        }*/
 
         // TODO: Dependencies
         if (!other.getRequiredDependencies().isEmpty() || !other.getLoadAfter().isEmpty() || !other.getLoadBefore().isEmpty()) {

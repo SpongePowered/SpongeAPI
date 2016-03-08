@@ -63,15 +63,7 @@ public abstract class CommandElement {
      */
     @Nullable
     public String getUntranslatedKey() {
-        if (this.key == null) {
-            return null;
-        }
-
-        if (this.key instanceof TranslatableText) { // Use translation key
-            return ((TranslatableText) this.key).getTranslation().getId();
-        } else {
-            return this.key.toPlain();
-        }
+        return ArgUtils.textToArgKey(this.key);
     }
 
     /**

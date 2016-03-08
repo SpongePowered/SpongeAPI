@@ -26,45 +26,45 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableRespawnLocation;
 import org.spongepowered.api.data.manipulator.mutable.MappedData;
 import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.world.World;
 
 import java.util.Optional;
 import java.util.UUID;
 
 /**
- * A {@link DataManipulator} for the "respawn" location of a {@link Player}.
- * A {@link Player} may have multiple respawn locations, but can only have a
+ * A {@link DataManipulator} for the "respawn" location of a {@link Player}. A
+ * {@link Player} may have multiple respawn locations, but can only have a
  * single respawn location per {@link World}.
  */
-public interface RespawnLocationData extends MappedData<UUID, Vector3d, RespawnLocationData, ImmutableRespawnLocation> {
+public interface RespawnLocationData extends MappedData<UUID, RespawnLocation, RespawnLocationData, ImmutableRespawnLocation> {
 
     /**
-     * Gets the {@link MapValue} for the "respawn" locations set for
-     * various {@link World#getUniqueId()} such that a {@link Player} may not
-     * have a respawn point for a particular {@link World}, but may have
-     * multiple respawn points for other {@link World}s.
+     * Gets the {@link MapValue} for the "respawn" locations set for various
+     * {@link World#getUniqueId()} such that a {@link Player} may not have a
+     * respawn point for a particular {@link World}, but may have multiple
+     * respawn points for other {@link World}s.
      *
      * @return The map for the respawn locations per world id
      */
-    default MapValue<UUID, Vector3d> respawnLocation() {
+    default MapValue<UUID, RespawnLocation> respawnLocation() {
         return getMapValue();
     }
 
     /**
-     * Gets the {@link Vector3d} location for the spawn world if available.
-     * If the respawn point for that world has not been set,
-     * {@link Optional#empty()} is returned.
+     * Gets the respawn location for the given world, if available. If the
+     * respawn point for that world has not been set, {@link Optional#empty()}
+     * is returned.
      *
      * @param world The world to check
-     * @return The vector location
+     * @return The {@link RespawnLocation}
      */
-    default Optional<Vector3d> getForWorld(World world) {
+    default Optional<RespawnLocation> getForWorld(World world) {
         return get(checkNotNull(world, "World cannot be null!").getUniqueId());
     }
 

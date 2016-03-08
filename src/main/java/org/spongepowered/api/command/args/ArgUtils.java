@@ -22,22 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.command.args;
 
-import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TranslatableText;
+
+import javax.annotation.Nullable;
 
 /**
- * Represents a Minecart with a MobSpawner inside it.
+ * Internal utility methods
  */
-public interface MinecartMobSpawner extends Minecart {
+class ArgUtils {
+    private ArgUtils() {
+    }
 
-    /**
-     * Gets a copy of the {@link MobSpawnerData}.
-     *
-     * @return A copy of the mob spawner data
-     */
-    default MobSpawnerData getSpawnerData() {
-        return get(MobSpawnerData.class).get();
+    @Nullable
+    public static String textToArgKey(@Nullable Text key) {
+        if (key == null) {
+            return null;
+        }
+
+        if (key instanceof TranslatableText) { // Use translation key
+            return ((TranslatableText) key).getTranslation().getId();
+        } else {
+            return key.toPlain();
+        }
     }
 
 }

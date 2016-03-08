@@ -22,40 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.pagination;
-
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.command.CommandSource;
+package org.spongepowered.api.entity.vehicle.minecart;
 
 /**
- * Implementations of PaginationCalculator handle calculating output-specific pagination data.
+ * Represents a minecart with a chest inside it.
  */
-public interface PaginationCalculator<T extends CommandSource> {
-
-    /**
-     * Get the maxinum number of lines that can be displayed on a source's screen.
-     * @param source The source to check
-     * @return The maximum number of displayable lines, or -1 for unlimited
-     */
-    int getLinesPerPage(T source);
-
-    /**
-     * Get the length in lines of the provided text.
-     *
-     * @param source The source to check for
-     * @param text The text to get the length of
-     * @return The text's length
-     */
-    int getLines(T source, Text text);
-
-    /**
-     * Return a new text object that contains the provided input centered with the given padding character.
-     *
-     * @param source The source to center for
-     * @param text The text to pad
-     * @param padding The padding character
-     * @return The centered text
-     */
-    Text center(T source, Text text, String padding);
+public interface ChestMinecart extends ContainerMinecart {
 
 }

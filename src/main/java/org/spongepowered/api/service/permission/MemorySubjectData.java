@@ -228,7 +228,8 @@ public class MemorySubjectData implements OptionSubjectData {
 
     @Override
     public Map<String, String> getOptions(Set<Context> contexts) {
-        return this.options.get(contexts);
+        Map<String, String> ret = this.options.get(contexts);
+        return ret == null ? ImmutableMap.of() : ImmutableMap.copyOf(ret);
     }
 
     @Override

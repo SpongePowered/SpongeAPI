@@ -25,42 +25,41 @@
 
 package org.spongepowered.api.event.cause.entity.health.source;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.event.cause.entity.health.HealType;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 public interface BlockHealingSource extends HealingSource {
 
+    /**
+     * Creates a builder for building a {@link BlockHealingSource}.
+     *
+     * @return A new builder instance
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Gets the location of the block that acted as the healing source.
+     *
+     * @return The location of the block that acted as a healing source
+     */
     Location<World> getLocation();
 
-    BlockSnapshot getBlockState();
+    /**
+     * Gets the block snapshot that is acting as the healing source.
+     *
+     * @return The block snapshot
+     */
+    BlockSnapshot getBlock();
 
-    interface BlockHealingSourceBuilder extends Builder {
+    interface Builder extends HealingSourceBuilder<BlockHealingSource, Builder> {
 
-        @Override
-        BlockHealingSourceBuilder scalesWithDifficulty();
+        Builder block(Location<World> location);
 
-        @Override
-        BlockHealingSourceBuilder bypassesArmor();
+        Builder block(BlockSnapshot blockState);
 
-        @Override
-        BlockHealingSourceBuilder explosion();
-
-        @Override
-        BlockHealingSourceBuilder absolute();
-
-        @Override
-        BlockHealingSourceBuilder magical();
-
-        @Override
-        BlockHealingSourceBuilder type(HealType damageType);
-
-        BlockHealingSourceBuilder block(Location<World> location);
-
-        BlockHealingSourceBuilder block(BlockSnapshot blockState);
-
-        @Override
-        BlockHealingSource build() throws IllegalStateException;
     }
 }

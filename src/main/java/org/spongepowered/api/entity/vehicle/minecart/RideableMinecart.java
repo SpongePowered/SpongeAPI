@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.player.Player;
  * Represents a minecart that is rideable by other entities, such
  * as {@link Player}.
  */
-public interface MinecartRideable extends Minecart {
+public interface RideableMinecart extends Minecart {
 
 
 }
