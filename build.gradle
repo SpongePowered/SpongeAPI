@@ -20,7 +20,7 @@ buildscript {
     }
 }
 
-version = '4.0.0'
+version = '4.0.1'
 
 // Include shared Gradle configuration
 ext.api = project
@@ -47,8 +47,8 @@ dependencies {
     // Dependency injection
     compile 'com.google.inject:guice:4.0'
 
-    // Plugin meta
-    compile 'org.spongepowered:plugin-meta:0.1-SNAPSHOT'
+    // Plugin meta (from sponge gradle)
+    compile 'org.spongepowered:spongegradle:0.5-SNAPSHOT'
 
     // Configuration
     compile 'ninja.leaping.configurate:configurate-hocon:3.1.1'
