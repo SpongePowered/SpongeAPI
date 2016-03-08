@@ -33,6 +33,7 @@ import static org.spongepowered.api.plugin.Plugin.ID_PATTERN;
 import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.plugin.meta.PluginMetadata;
+import org.spongepowered.plugin.meta.SpongeExtension;
 import org.spongepowered.plugin.meta.version.InvalidVersionSpecificationException;
 import org.spongepowered.plugin.meta.version.VersionRange;
 
@@ -121,20 +122,22 @@ final class PluginElement {
             }
         }
 
-        /* TODO: Fix once merged in plugin-meta
         value = this.annotation.get().assets();
         if (!value.isEmpty()) {
             if (!isValidPath(value)) {
                 messager.printMessage(ERROR, "Invalid asset directory path: " + value, this.element, this.annotation.getMirror(),
                         this.annotation.getValue("assets"));
             }
-            this.metadata.setAssetDirectory(value);
-        } else if ((value = this.metadata.getAssetDirectory()) != null) {
-            if (!isValidPath(value)) {
+            SpongeExtension ext = new SpongeExtension();
+            ext.setAssetDirectory(value);
+            this.metadata.setExtension("sponge", ext);
+        } else {
+            SpongeExtension ext = this.metadata.getExtension("sponge");
+            if (ext != null && ext.getAssetDirectory() != null && !isValidPath(ext.getAssetDirectory())) {
                 messager.printMessage(ERROR, "Invalid asset directory path: " + value + " in extra metadata files", this.element,
                         this.annotation.getMirror());
             }
-        }*/
+        }
 
         String[] authors = this.annotation.get().authors();
         if (authors.length > 0) {
@@ -227,10 +230,13 @@ final class PluginElement {
         if (other.getUrl() != null) {
             meta.setUrl(other.getUrl());
         }
-        /* TODO: Fix once merged in plugin-meta
-        if (other.getAssetDirectory() != null) {
-            meta.setAssetDirectory(other.getAssetDirectory());
-        }*/
+
+        SpongeExtension ext = other.getExtension("sponge");
+        if (ext != null) {
+            SpongeExtension otherExt = new SpongeExtension();
+            otherExt.setAssetDirectory(ext.getAssetDirectory());
+            meta.setExtension("sponge", otherExt);
+        }
 
         // TODO: Dependencies
         if (!other.getRequiredDependencies().isEmpty() || !other.getLoadAfter().isEmpty() || !other.getLoadBefore().isEmpty()) {
