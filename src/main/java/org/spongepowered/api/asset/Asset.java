@@ -78,13 +78,13 @@ public interface Asset {
      * @throws IOException
      */
     default String readString() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(getUrl().openStream()));
         StringBuilder result = new StringBuilder();
         String ln;
-        while ((ln = reader.readLine()) != null) {
-            result.append(ln).append('\n');
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(getUrl().openStream()))) {
+            while ((ln = reader.readLine()) != null) {
+                result.append(ln).append('\n');
+            }
         }
-        reader.close();
         return result.toString();
     }
 
@@ -96,10 +96,9 @@ public interface Asset {
      * @throws IOException
      */
     default byte[] readBytes() throws IOException {
-        InputStream in = getUrl().openStream();
-        byte[] bytes = ByteStreams.toByteArray(in);
-        in.close();
-        return bytes;
+        try (InputStream in = getUrl().openStream()) {
+            return ByteStreams.toByteArray(in);
+        }
     }
 
 }
