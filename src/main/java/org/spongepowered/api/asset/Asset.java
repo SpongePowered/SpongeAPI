@@ -26,22 +26,28 @@ package org.spongepowered.api.asset;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.io.ByteStreams;
+import com.google.common.io.Resources;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.plugin.PluginContainer;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 /**
  * Represents an {@link Asset} within Sponge that belongs to a {@link Plugin}.
  */
 public interface Asset {
+
+    /**
+     * The default {@link Charset} that is used for reading {@link Asset}s.
+     */
+    Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
     /**
      * Returns the original {@link Plugin} owner of this Asset.
@@ -65,9 +71,9 @@ public interface Asset {
      */
     default void copyToFile(Path output) throws IOException {
         checkNotNull(output, "output");
-        InputStream in = getUrl().openStream();
-        Files.copy(in, output);
-        in.close();
+        try (InputStream in = getUrl().openStream()) {
+            Files.copy(in, output);
+        }
     }
 
     /**
@@ -78,14 +84,42 @@ public interface Asset {
      * @throws IOException
      */
     default String readString() throws IOException {
-        StringBuilder result = new StringBuilder();
-        String ln;
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(getUrl().openStream()))) {
-            while ((ln = reader.readLine()) != null) {
-                result.append(ln).append('\n');
-            }
-        }
-        return result.toString();
+        return readString(DEFAULT_CHARSET);
+    }
+
+    /**
+     * Reads this Asset in it's entirety as a {@link String} and returns the
+     * result.
+     *
+     * @param charset The charset to read the asset with
+     * @return String representation of Asset
+     * @throws IOException
+     */
+    default String readString(Charset charset) throws IOException {
+        checkNotNull(charset, "charset");
+        return Resources.toString(getUrl(), charset);
+    }
+
+    /**
+     * Reads all lines from the asset and returns the result.
+     *
+     * @return The lines read from the asset
+     * @throws IOException
+     */
+    default List<String> readLines() throws IOException {
+        return readLines(DEFAULT_CHARSET);
+    }
+
+    /**
+     * Reads all lines from the asset and returns the result.
+     *
+     * @param charset The charset to read the asset with
+     * @return An immutable list of the lines read from the asset
+     * @throws IOException
+     */
+    default List<String> readLines(Charset charset) throws IOException {
+        checkNotNull(charset, "charset");
+        return Resources.asCharSource(getUrl(), charset).readLines();
     }
 
     /**
@@ -96,9 +130,7 @@ public interface Asset {
      * @throws IOException
      */
     default byte[] readBytes() throws IOException {
-        try (InputStream in = getUrl().openStream()) {
-            return ByteStreams.toByteArray(in);
-        }
+        return Resources.toByteArray(getUrl());
     }
 
 }
