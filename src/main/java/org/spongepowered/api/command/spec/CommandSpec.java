@@ -45,7 +45,6 @@ import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.args.CommandElement;
 import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.command.args.parsing.InputTokenizer;
-import org.spongepowered.api.command.args.parsing.InputTokenizers;
 
 import java.util.HashMap;
 import java.util.List;
@@ -102,7 +101,7 @@ public final class CommandSpec implements CommandCallable {
         private CommandExecutor executor;
         @Nullable
         private Map<List<String>, CommandCallable> childCommandMap;
-        private InputTokenizer argumentParser = InputTokenizers.quotedStrings(false);
+        private InputTokenizer argumentParser = InputTokenizer.quotedStrings(false);
 
         private Builder() {}
 
@@ -217,7 +216,7 @@ public final class CommandSpec implements CommandCallable {
         /**
          * Set the input tokenizer to be used to convert input from a string into a list of argument tokens.
          *
-         * @see InputTokenizers for common input parser implementations
+         * @see InputTokenizer for common input parser implementations
          * @param parser The parser to use
          * @return this
          */

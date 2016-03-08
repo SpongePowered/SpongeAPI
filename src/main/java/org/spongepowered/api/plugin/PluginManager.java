@@ -53,14 +53,6 @@ public interface PluginManager {
     Optional<PluginContainer> getPlugin(String id);
 
     /**
-     * Gets the {@link Logger} for the {@link PluginContainer}.
-     *
-     * @param plugin The plugin
-     * @return The logger
-     */
-    Logger getLogger(PluginContainer plugin);
-
-    /**
      * Gets a {@link Collection} of all {@link PluginContainer}s.
      *
      * @return The plugins

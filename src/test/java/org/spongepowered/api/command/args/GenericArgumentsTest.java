@@ -32,6 +32,7 @@ import static org.spongepowered.api.command.args.GenericArguments.choices;
 import static org.spongepowered.api.command.args.GenericArguments.enumValue;
 import static org.spongepowered.api.command.args.GenericArguments.firstParsing;
 import static org.spongepowered.api.command.args.GenericArguments.integer;
+import static org.spongepowered.api.command.args.GenericArguments.longNum;
 import static org.spongepowered.api.command.args.GenericArguments.none;
 import static org.spongepowered.api.command.args.GenericArguments.optional;
 import static org.spongepowered.api.command.args.GenericArguments.optionalWeak;
@@ -42,17 +43,18 @@ import static org.spongepowered.api.command.args.GenericArguments.string;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
+import org.spongepowered.api.text.TestPlainTextSerializer;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
-import org.spongepowered.api.util.test.TestHooks;
 
 
 /**
@@ -68,8 +70,9 @@ public class GenericArgumentsTest {
         }
     };
 
-    static {
-        TestHooks.initialize();
+    @Before
+    public void initialize() throws Exception {
+        TestPlainTextSerializer.inject();
     }
 
     private static Text untr(String string) {
@@ -166,8 +169,21 @@ public class GenericArgumentsTest {
 
     @Test
     public void testInteger() throws ArgumentParseException {
-        CommandContext context = parseForInput("52", integer(untr("a value")));
+        CommandElement el = integer(untr("a value"));
+        CommandContext context = parseForInput("52", el);
         assertEquals(52, context.getOne("a value").get());
+
+        assertEquals(0xdead, parseForInput("0xdead", el).getOne("a value").get());
+        assertEquals(0b101010, parseForInput("0b101010", el).getOne("a value").get());
+
+        this.expected.expect(ArgumentParseException.class);
+        parseForInput("notanumber", integer(untr("a value")));
+    }
+
+    @Test
+    public void testLong() throws ArgumentParseException {
+        CommandContext context = parseForInput("524903294023901", longNum(untr("a value")));
+        assertEquals(524903294023901L, context.getOne("a value").get());
 
         this.expected.expect(ArgumentParseException.class);
         parseForInput("notanumber", integer(untr("a value")));

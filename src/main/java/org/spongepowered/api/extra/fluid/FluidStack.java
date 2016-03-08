@@ -27,8 +27,8 @@ package org.spongepowered.api.extra.fluid;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.util.persistence.DataBuilder;
 
 /**
  * Represents a stack of a particular {@link FluidType} and

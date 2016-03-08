@@ -27,8 +27,8 @@ package org.spongepowered.api.data;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.util.persistence.DataBuilder;
 
 /**
  * A builder, much like a normal {@link DataBuilder} except that it builds

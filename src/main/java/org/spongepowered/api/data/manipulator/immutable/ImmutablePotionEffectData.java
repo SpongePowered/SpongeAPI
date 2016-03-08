@@ -37,14 +37,16 @@ import org.spongepowered.api.item.inventory.ItemStack;
  * {@link PotionEffect}s that may either affect an {@link Entity} or be
  * contained within an {@link ItemStack} of the type {@link ItemTypes#POTION}.
  */
-public interface ImmutablePotionEffectData extends ImmutableDataManipulator<ImmutablePotionEffectData, PotionEffectData> {
+public interface ImmutablePotionEffectData extends ImmutableListData<PotionEffect, ImmutablePotionEffectData, PotionEffectData> {
 
     /**
      * Gets the {@link ImmutableListValue} of the {@link PotionEffect}s.
      *
      * @return The immutable list value of all potion effects contained
      */
-    ImmutableListValue<PotionEffect> effects();
+    default ImmutableListValue<PotionEffect> effects() {
+        return getListValue();
+    }
 
 
 }

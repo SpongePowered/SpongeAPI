@@ -40,7 +40,7 @@ import org.mockito.Mockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.DataBuilder;
 
 import java.util.Arrays;
 import java.util.List;

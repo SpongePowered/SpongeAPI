@@ -37,7 +37,6 @@ public interface WeatherSpawnCause extends SpawnCause {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
-
     /**
      * Gets the current {@link Weather} state that caused the {@link Entity} to
      * spawn.
@@ -46,15 +45,9 @@ public interface WeatherSpawnCause extends SpawnCause {
      */
     Weather getWeather();
 
-    interface Builder extends SpawnCause.Builder {
+    interface Builder extends SpawnCauseBuilder<WeatherSpawnCause, Builder> {
 
         Builder weather(Weather weather);
-
-        @Override
-        Builder type(SpawnType spawnType);
-
-        @Override
-        WeatherSpawnCause build();
 
     }
 }

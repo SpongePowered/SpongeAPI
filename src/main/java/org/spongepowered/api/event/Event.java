@@ -35,7 +35,7 @@ import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
  * <p>This is a marker interface, which must be implemented
  * by any event used with the Sponge event bus.</p>
  */
-@ImplementedBy(AbstractEvent.class)
+@ImplementedBy(value = AbstractEvent.class, priority = Integer.MIN_VALUE)
 public interface Event {
     /**
      * Get the cause for the event.

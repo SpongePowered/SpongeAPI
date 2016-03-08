@@ -40,11 +40,12 @@ import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.NamedCause;
+import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.HealEntityEvent;
+import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.entity.ai.AITaskEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
-import org.spongepowered.api.service.ProviderRegistration;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.PEBKACException;
 import org.spongepowered.api.util.event.factory.EventFactory;
@@ -62,6 +63,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.annotation.Nullable;
+
 @RunWith(Parameterized.class)
 public class SpongeEventFactoryTest {
 
@@ -73,7 +76,14 @@ public class SpongeEventFactoryTest {
     private static List<Extent> extents = new ArrayList<>();
 
     private static final Answer<Object> EVENT_MOCKING_ANSWER = (invoc -> {
-        return invoc.getMethod().getReturnType().equals(Class.class) ? PEBKACException.class : Mockito.RETURNS_MOCKS.answer(invoc);
+        Class<?> clazz = invoc.getMethod().getReturnType();
+
+        if (clazz.equals(Class.class)) {
+            return PEBKACException.class;
+        } else if (clazz.equals(Text.class)) {
+            return Text.of();
+        }
+        return Mockito.RETURNS_MOCKS.answer(invoc);
     });
 
     @Parameterized.Parameters(name = "{0}")
@@ -106,7 +116,7 @@ public class SpongeEventFactoryTest {
             Class<?>[] paramTypes = this.method.getParameterTypes();
             Object[] params = new Object[paramTypes.length];
             for (int i = 0; i < paramTypes.length; i++) {
-                params[i] = mockParam(paramTypes[i]);
+                params[i] = mockParam(paramTypes[i], this.method.getReturnType());
             }
             Object testEvent = this.method.invoke(null, params);
             for (Method eventMethod : testEvent.getClass().getMethods()) {
@@ -168,8 +178,12 @@ public class SpongeEventFactoryTest {
         }
     }
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
     public static Object mockParam(final Class<?> paramType) {
+        return mockParam(paramType, null);
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static Object mockParam(final Class<?> paramType, @Nullable final Class<?> target) {
         if (paramType == byte.class) {
             return (byte) 0;
         } else if (paramType == short.class) {
@@ -209,7 +223,10 @@ public class SpongeEventFactoryTest {
         } else if (paramType == DataTransactionResult.class) {
             return DataTransactionResult.successNoData();
         } else if (paramType == Cause.class) {
-            return Cause.of(NamedCause.source("none"));
+            if (target != null && SpawnEntityEvent.class.isAssignableFrom(target)) {
+                return Cause.source(mock(SpawnCause.class)).build();
+            }
+            return Cause.source("none").build();
         } else if (paramType == Location.class) {
             return new Location<>(mock(Extent.class), Vector3d.ZERO);
         } else if (paramType == Locale.class) {

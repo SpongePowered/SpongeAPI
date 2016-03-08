@@ -30,8 +30,7 @@ import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.util.Color;
 
 /**
- * Represents item data that uses colors. Examples may include leather armor,
- * dyes, and wool blocks.
+ * Represents item data that uses colors. Examples may include leather armor.
  */
 public interface ColoredData extends DataManipulator<ColoredData, ImmutableColoredData> {
 

@@ -25,16 +25,18 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.data.type.Career;
 import org.spongepowered.api.data.value.ValueFactory;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ai.task.AITaskType;
 import org.spongepowered.api.entity.ai.task.AbstractAITask;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.merchant.VillagerRegistry;
+import org.spongepowered.api.item.merchant.TradeOfferGenerator;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.registry.CatalogRegistryModule;
 import org.spongepowered.api.registry.RegistryModule;
 import org.spongepowered.api.resourcepack.ResourcePack;
@@ -63,7 +65,6 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Locale;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.function.Supplier;
 
 /**
@@ -243,15 +244,6 @@ public interface GameRegistry {
     Optional<Rotation> getRotationFromDegree(int degrees);
 
     /**
-     * Creates a new {@link GameProfile} using the specified unique identifier and name.
-     *
-     * @param uuid The unique identifier for the profile
-     * @param name The name for the profile
-     * @return The created profile
-     */
-    GameProfile createGameProfile(UUID uuid, String name);
-
-    /**
      * Loads a {@link Favicon} from the specified encoded string. The format of
      * the input depends on the implementation.
      *
@@ -348,6 +340,15 @@ public interface GameRegistry {
      * @return The value factory
      */
     ValueFactory getValueFactory();
+
+    /**
+     * Gets the {@link VillagerRegistry} for the register mappings
+     * of {@link Career}s to {@link TradeOfferGenerator}s based on
+     * a level.
+     *
+     * @return The villager registry instance
+     */
+    VillagerRegistry getVillagerRegistry();
 
     /**
      * Gets the internal {@link TextSerializerFactory}.

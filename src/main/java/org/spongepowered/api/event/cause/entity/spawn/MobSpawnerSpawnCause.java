@@ -25,10 +25,9 @@
 package org.spongepowered.api.event.cause.entity.spawn;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableMobSpawnerData;
 
-public interface MobSpawnerSpawnCause extends BlockSpawnCause {
+public interface MobSpawnerSpawnCause extends SpawnCause {
 
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
@@ -37,18 +36,9 @@ public interface MobSpawnerSpawnCause extends BlockSpawnCause {
 
     ImmutableMobSpawnerData getMobSpawnerData();
 
-    interface Builder extends BlockSpawnCause.Builder {
+    interface Builder extends SpawnCauseBuilder<MobSpawnerSpawnCause, Builder> {
 
         Builder spawnerData(ImmutableMobSpawnerData spawnerData);
-
-        @Override
-        Builder block(BlockSnapshot blockSnapshot);
-
-        @Override
-        Builder type(SpawnType spawnType);
-
-        @Override
-        MobSpawnerSpawnCause build();
 
     }
 }

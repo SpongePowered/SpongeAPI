@@ -44,8 +44,8 @@ public class SpongeAITaskEventTest {
         Goal goal = mock(Goal.class);
         Mockito.when(goal.getOwner()).thenReturn(targetEntity);
 
-        SpongeEventFactory.createAITaskEventAdd(Cause.of(NamedCause.source(mock(Game.class))), 0, 0, goal, targetEntity, mock(AITask.class));
-        SpongeEventFactory.createAITaskEventRemove(Cause.of(NamedCause.source(mock(Game.class))), goal, targetEntity, mock(AITask.class), 0);
+        SpongeEventFactory.createAITaskEventAdd(Cause.source(mock(Game.class)).build(), 0, 0, goal, targetEntity, mock(AITask.class));
+        SpongeEventFactory.createAITaskEventRemove(Cause.source(mock(Game.class)).build(), goal, targetEntity, mock(AITask.class), 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -55,7 +55,7 @@ public class SpongeAITaskEventTest {
         Goal goal = mock(Goal.class);
         Mockito.when(goal.getOwner()).thenReturn(secondEntity);
 
-        SpongeEventFactory.createAITaskEventAdd(Cause.of(NamedCause.source(mock(Game.class))), 0, 0, goal, targetEntity, mock(AITask.class));
+        SpongeEventFactory.createAITaskEventAdd(Cause.source(mock(Game.class)).build(), 0, 0, goal, targetEntity, mock(AITask.class));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -65,7 +65,7 @@ public class SpongeAITaskEventTest {
         Goal goal = mock(Goal.class);
         Mockito.when(goal.getOwner()).thenReturn(secondEntity);
 
-        SpongeEventFactory.createAITaskEventRemove(Cause.of(NamedCause.source(mock(Game.class))), goal, targetEntity, mock(AITask.class), 0);
+        SpongeEventFactory.createAITaskEventRemove(Cause.source(mock(Game.class)).build(), goal, targetEntity, mock(AITask.class), 0);
     }
 
 }

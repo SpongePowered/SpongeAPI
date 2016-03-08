@@ -31,16 +31,25 @@ import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.LocatedSource;
+import org.spongepowered.api.command.source.ProxySource;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.service.user.UserStorageService;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.selector.Selector;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
+import org.spongepowered.api.util.blockray.BlockRay;
+import org.spongepowered.api.util.blockray.BlockRayHit;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -49,11 +58,16 @@ import org.spongepowered.api.world.storage.WorldProperties;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.Set;
+import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -105,6 +119,16 @@ public final class GenericArguments {
     }
 
     /**
+     * Expect an argument to represent a player who has been online at some point, as a {@link User}
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement user(Text key) {
+        return new UserCommandElement(key);
+    }
+
+    /**
      * Expect an argument to represent a world. This gives a WorldProperties object rather than an actual world in order to include unloaded worlds
      * as well
      * Gives values of type {@link WorldProperties}
@@ -117,6 +141,7 @@ public final class GenericArguments {
     }
 
     /**
+<<<<<<< HEAD
      * Expect an argument to represent a dimension.
      * Gives values of tye {@link DimensionType}
      *
@@ -128,6 +153,8 @@ public final class GenericArguments {
     }
 
     /**
+=======
+>>>>>>> cd84596... Remove specific dimension arg factory method
      * Expect an argument to represent a {@link Vector3d}.
      *
      * @param key The key to store under
@@ -374,19 +401,15 @@ public final class GenericArguments {
         @Override
         public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
             return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements,
-                    new com.google.common.base.Function<CommandElement, List<String>>() {
-
-                        @Override
-                        public List<String> apply(@Nullable CommandElement input) {
-                            if (input == null) {
-                                return ImmutableList.of();
-                            }
-
-                            Object startState = args.getState();
-                            List<String> ret = input.complete(src, args, context);
-                            args.setState(startState);
-                            return ret;
+                    input -> {
+                        if (input == null) {
+                            return ImmutableList.of();
                         }
+
+                        Object startState = args.getState();
+                        List<String> ret = input.complete(src, args, context);
+                        args.setState(startState);
+                        return ret;
                     })));
         }
 
@@ -472,8 +495,9 @@ public final class GenericArguments {
         @Override
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
             if (!args.hasNext()) {
-                if (this.element.getKey() != null && this.value != null) {
-                    context.putArg(this.element.getKey().toPlain(), this.value);
+                Text key = this.element.getKey();
+                if (key != null && this.value != null) {
+                    context.putArg(key.toPlain(), this.value);
                 }
                 return;
             }
@@ -663,24 +687,50 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement integer(Text key) {
-        return new IntegerElement(key);
+        return new NumericElement<>(key, Integer::parseInt, Integer::parseInt, input -> t("Expected an integer, but input '%s' was not", input));
     }
 
-    private static class IntegerElement extends KeyElement {
+    private static class NumericElement<T extends Number> extends KeyElement {
+        private final Function<String, T> parseFunc;
+        @Nullable
+        private final BiFunction<String, Integer, T> parseRadixFunction;
+        private final Function<String, Text> errorSupplier;
 
-        private IntegerElement(Text key) {
+        protected NumericElement(Text key, Function<String, T> parseFunc, @Nullable BiFunction<String, Integer, T> parseRadixFunction,
+                Function<String, Text> errorSupplier) {
             super(key);
+            this.parseFunc = parseFunc;
+            this.parseRadixFunction = parseRadixFunction;
+            this.errorSupplier = errorSupplier;
         }
 
         @Override
         public Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             final String input = args.next();
             try {
-                return Integer.parseInt(input);
+                if (this.parseRadixFunction != null) {
+                    if (input.startsWith("0x")) {
+                        return this.parseRadixFunction.apply(input.substring(2), 16);
+                    } else if (input.startsWith("0b")) {
+                        return this.parseRadixFunction.apply(input.substring(2), 2);
+                    }
+                }
+                return this.parseFunc.apply(input);
             } catch (NumberFormatException ex) {
-                throw args.createError(t("Expected an integer, but input '%s' was not", input));
+                throw args.createError(this.errorSupplier.apply(input));
             }
         }
+    }
+
+    /**
+     * Require an argument to be a long (base 10).
+     * Gives values of type {@link Integer}
+     *
+     * @param key The key to store the parsed argument under
+     * @return the element to match the input
+     */
+    public static CommandElement longNum(Text key) {
+        return new NumericElement<>(key, Long::parseLong, Long::parseLong, input -> t("Expected a long, but input '%s' was not", input));
     }
 
     /**
@@ -691,24 +741,7 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement doubleNum(Text key) {
-        return new DoubleNumElement(key);
-    }
-
-    private static class DoubleNumElement extends KeyElement {
-
-        private DoubleNumElement(Text key) {
-            super(key);
-        }
-
-        @Override
-        public Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            final String input = args.next();
-            try {
-                return Double.parseDouble(input);
-            } catch (NumberFormatException ex) {
-                throw args.createError(t("Expected a number, but input '%s' was not", input));
-            }
-        }
+        return new NumericElement<>(key, Double::parseDouble, null, input -> t("Expected a number, but input '%s' was not", input));
     }
 
     private static final Map<String, Boolean> BOOLEAN_CHOICES = ImmutableMap.<String, Boolean>builder()
@@ -903,7 +936,43 @@ public final class GenericArguments {
         }
     }
 
-    private static class PlayerCommandElement extends PatternMatchingCommandElement {
+    private static class UserCommandElement extends PatternMatchingCommandElement {
+        private final PlayerCommandElement possiblePlayer;
+
+        protected UserCommandElement(@Nullable Text key) {
+            super(key);
+            this.possiblePlayer = new PlayerCommandElement(key, false);
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            Object state = args.getState();
+            try {
+                return possiblePlayer.parseValue(source, args);
+            } catch (ArgumentParseException ex) {
+                args.setState(state);
+                return super.parseValue(source, args);
+            }
+        }
+
+        @Override
+        protected Iterable<String> getChoices(CommandSource source) {
+            return Sponge.getGame().getServiceManager().provideUnchecked(UserStorageService.class).getAll().stream()
+                    .map(GameProfile::getName)
+                    .filter(Optional::isPresent)
+                    .map(Optional::get)
+                    .collect(GuavaCollectors.toImmutableList());
+        }
+
+        @Override
+        protected Object getValue(String choice) throws IllegalArgumentException {
+            return Sponge.getGame().getServiceManager().provideUnchecked(UserStorageService.class).get(choice).get();
+        }
+    }
+
+    private static class PlayerCommandElement extends SelectorCommandElement {
+
         private final boolean returnSource;
 
         protected PlayerCommandElement(Text key, boolean returnSource) {
@@ -911,16 +980,16 @@ public final class GenericArguments {
             this.returnSource = returnSource;
         }
 
+        @SuppressWarnings("unchecked")
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            // TODO: Make player name resolution better -- support selectors, etc
             if (!args.hasNext() && this.returnSource) {
                 return tryReturnSource(source, args);
             }
 
             Object state = args.getState();
             try {
-                return super.parseValue(source, args);
+                return Iterables.filter((Iterable<Entity>)super.parseValue(source, args), e -> e instanceof Player);
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
                     args.setState(state);
@@ -950,6 +1019,8 @@ public final class GenericArguments {
         private Player tryReturnSource(CommandSource source, CommandArgs args) throws ArgumentParseException {
             if (source instanceof Player) {
                 return ((Player) source);
+            } else if (source instanceof ProxySource && ((ProxySource) source).getOriginalSource() instanceof Player) {
+                return (Player) ((ProxySource) source).getOriginalSource();
             } else {
                 throw args.createError(t("No players matched and source was not a player!"));
             }
@@ -961,23 +1032,64 @@ public final class GenericArguments {
         }
     }
 
+    /**
+     * Acceped formats:
+     *
+     * <ul>
+     *     <li>#first</li>
+     *     <li>#&lt;dimension></li>
+     *     <li>&lt;name></li>
+     *     <li>#me</li>
+     * </ul>
+     */
     private static class WorldPropertiesCommandElement extends PatternMatchingCommandElement {
+        private final CommandElement dimensionTypeElement;
 
         protected WorldPropertiesCommandElement(@Nullable Text key) {
             super(key);
+            this.dimensionTypeElement = onlyOne(catalogedElement(key, DimensionType.class));
         }
 
         @Nullable
         @Override
         public Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            final String next = args.peek();
+            if (next.startsWith("#")) {
+                String specifier = next.substring(1);
+                if (specifier.equalsIgnoreCase("first")) {
+                    args.next();
+                    return Iterables.filter(Sponge.getGame().getServer().getAllWorldProperties(), input -> {
+                            return input != null && input.isEnabled();
+                    }).iterator().next();
+                } else if (specifier.equalsIgnoreCase("me") && source instanceof LocatedSource) {
+                    args.next();
+                    return ((LocatedSource) source).getWorld().getProperties();
+                } else {
+                    boolean firstOnly = false;
+                    if (specifier.endsWith(":first")) {
+                        firstOnly = true;
+                        specifier = specifier.substring(0, specifier.length() - 6);
+                    }
+                    args.next();
+                    args.insertArg(specifier);
+                    final DimensionType type = (DimensionType) this.dimensionTypeElement.parseValue(source, args);
+                    Iterable<WorldProperties> ret = Iterables.filter(Sponge.getGame().getServer().getAllWorldProperties(), input -> {
+                            return input != null && input.isEnabled() && input.getDimensionType().equals(type);
+                    });
+                    return firstOnly ? ret.iterator().next() : ret;
+                }
+            }
+
             return super.parseValue(source, args);
         }
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Sponge.getGame().getServer().getAllWorldProperties().stream()
+            return Iterables.concat(Sponge.getGame().getServer().getAllWorldProperties().stream()
                 .map(input -> input == null || !input.isEnabled() ? null : input.getWorldName())
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()), ImmutableSet.of("#first", "#me"), Iterables.transform(Sponge.getGame().getRegistry().getAllOf(DimensionType
+                    .class),
+                    input2 -> "#" + input2.getId()));
         }
 
         @Override
@@ -998,6 +1110,7 @@ public final class GenericArguments {
      *
      */
     private static class Vector3dCommandElement extends CommandElement {
+        private static final ImmutableSet<String> SPECIAL_TOKENS = ImmutableSet.of("#target", "#me");
 
         protected Vector3dCommandElement(@Nullable Text key) {
             super(key);
@@ -1017,6 +1130,14 @@ public final class GenericArguments {
                 xStr = split[0];
                 yStr = split[1];
                 zStr = split[2];
+            } else if (xStr.equals("#target") && source instanceof Entity) {
+                Optional<BlockRayHit<World>> hit = BlockRay.from(((Entity) source)).filter(BlockRay.onlyAirFilter()).build().end();
+                if (!hit.isPresent()) {
+                    throw args.createError(t("No target block is available! Stop stargazing!"));
+                }
+                return hit.get().getPosition();
+            } else if (xStr.equalsIgnoreCase("#me") && source instanceof LocatedSource) {
+                return ((LocatedSource) source).getLocation().getPosition();
             } else {
                 yStr = args.next();
                 zStr = args.next();
@@ -1033,7 +1154,9 @@ public final class GenericArguments {
             Optional<String> arg = args.nextIfPresent();
             // Traverse through the possible arguments. We can't really complete arbitrary integers
             if (arg.isPresent()) {
-                if (arg.get().contains(",") || !args.hasNext()) {
+                if (arg.get().startsWith("#")) {
+                    return SPECIAL_TOKENS.stream().filter(new StartsWithPredicate(arg.get())).collect(GuavaCollectors.toImmutableList());
+                } else if (arg.get().contains(",") || !args.hasNext()) {
                     return ImmutableList.of(arg.get());
                 } else {
                     arg = args.nextIfPresent();
@@ -1055,6 +1178,9 @@ public final class GenericArguments {
                     throw args.createError(t("Relative position specified but source does not have a postion"));
                 }
                 arg = arg.substring(1);
+                if (arg.isEmpty()) {
+                    return relativeTo;
+                }
             }
             try {
                 double ret = Double.parseDouble(arg);
@@ -1065,6 +1191,13 @@ public final class GenericArguments {
         }
     }
 
+    /**
+     * Listens to:
+     * <ul>
+     *     <li>#spawn:&lt;world></li>
+     *     <li>#me: Location of the current source</li>
+     * </ul>
+     */
     private static class LocationCommandElement extends CommandElement {
         private final WorldPropertiesCommandElement worldParser;
         private final Vector3dCommandElement vectorParser;
@@ -1078,6 +1211,12 @@ public final class GenericArguments {
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             Object state = args.getState();
+            if (args.peek().startsWith("@")) { // We are a selector
+                return Selector.parse(args.next()).resolve(source).stream()
+                        .map(Entity::getLocation)
+                        .collect(GuavaCollectors.toImmutableSet());
+            }
+
             Object world;
             Object vec = null;
             try {
@@ -1115,12 +1254,18 @@ public final class GenericArguments {
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             Object state = args.getState();
-            List<String> ret;
-            if ((ret = this.worldParser.complete(src, args, context)).isEmpty()) {
+            Optional<String> nextPossibility = args.nextIfPresent();
+            if (nextPossibility.isPresent() && nextPossibility.get().startsWith("@")) {
+                return Selector.complete(nextPossibility.get());
+            } else {
                 args.setState(state);
-                ret = this.vectorParser.complete(src, args, context);
+                List<String> ret;
+                if ((ret = this.worldParser.complete(src, args, context)).isEmpty()) {
+                    args.setState(state);
+                    ret = this.vectorParser.complete(src, args, context);
+                }
+                return ret;
             }
-            return ret;
         }
     }
 
@@ -1173,7 +1318,8 @@ public final class GenericArguments {
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
             this.element.parse(source, args, context);
             if (context.getAll(this.element.getUntranslatedKey()).size() > 1) {
-                throw args.createError(t("Argument %s may have only one value!",  this.element.getKey()));
+                Text key = this.element.getKey();
+                throw args.createError(t("Argument %s may have only one value!", key != null ? key : t("unknown")));
             }
         }
 
@@ -1224,7 +1370,8 @@ public final class GenericArguments {
 
         private void checkPermission(CommandSource source, CommandArgs args) throws ArgumentParseException {
             if (!source.hasPermission(this.permission)) {
-                throw args.createError(t("You do not have permission to use the %s argument", getKey()));
+                Text key = getKey();
+                throw args.createError(t("You do not have permission to use the %s argument", key != null ? key : t("unknown")));
             }
         }
 
@@ -1239,7 +1386,7 @@ public final class GenericArguments {
         @Override
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
             checkPermission(source, args);
-            super.parse(source, args, context);
+            this.element.parse(source, args, context);
         }
 
         @Override
@@ -1247,4 +1394,86 @@ public final class GenericArguments {
             return this.element.getUsage(src);
         }
     }
+
+    public static CommandElement entity(Text key) {
+        return new EntityCommandElement(key, false);
+    }
+
+    public static CommandElement entityOrSource(Text key) {
+        return new EntityCommandElement(key, true);
+    }
+
+    private static class EntityCommandElement extends SelectorCommandElement {
+
+        private final boolean returnSource;
+
+        protected EntityCommandElement(Text key, boolean returnSource) {
+            super(key);
+            this.returnSource = returnSource;
+        }
+
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (!args.hasNext() && this.returnSource) {
+                return tryReturnSource(source, args);
+            }
+
+            Object state = args.getState();
+            try {
+                return super.parseValue(source, args);
+            } catch (ArgumentParseException ex) {
+                if (this.returnSource) {
+                    args.setState(state);
+                    return tryReturnSource(source, args);
+                } else {
+                    throw ex;
+                }
+            }
+        }
+
+        @Override
+        protected Iterable<String> getChoices(CommandSource source) {
+            Set<Iterable<Entity>> worldEntities = new HashSet<Iterable<Entity>>();
+            for (World world : Sponge.getServer().getWorlds()) {
+                worldEntities.add(world.getEntities());
+            }
+            return Iterables.transform(Iterables.concat(worldEntities), input -> {
+                if (input == null) {
+                    return null;
+                }
+                if (input instanceof Player) {
+                    return ((Player)input).getName();
+                }
+                return input.getUniqueId().toString();
+            });
+        }
+
+        @Override
+        protected Object getValue(String choice) throws IllegalArgumentException {
+            UUID uuid = UUID.fromString(choice);
+            for (World world : Sponge.getServer().getWorlds()) {
+                Optional<Entity> ret = world.getEntity(uuid);
+                if (ret.isPresent()) {
+                    return ret.get();
+                }
+            }
+            throw new IllegalArgumentException("Input value " + choice + " was not an entity");
+        }
+
+        private static Entity tryReturnSource(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (source instanceof Entity) {
+                return (Entity) source;
+            } else if (source instanceof ProxySource && ((ProxySource) source).getOriginalSource() instanceof Entity) {
+                return (Entity) ((ProxySource) source).getOriginalSource();
+            } else {
+                throw args.createError(t("No entities matched and source was not an entity!"));
+            }
+        }
+
+        @Override
+        public Text getUsage(CommandSource src) {
+            return src instanceof Player && this.returnSource ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+        }
+    }
+
 }

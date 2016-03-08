@@ -26,9 +26,10 @@ package org.spongepowered.api.item.merchant;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.util.persistence.DataBuilder;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 import java.util.Optional;
 
@@ -58,7 +59,7 @@ public interface TradeOffer extends DataSerializable {
      *
      * @return The first buying item
      */
-    ItemStack getFirstBuyingItem();
+    ItemStackSnapshot getFirstBuyingItem();
 
     /**
      * Returns whether this trade offer has a second item the merchant is buying
@@ -77,7 +78,7 @@ public interface TradeOffer extends DataSerializable {
      *
      * @return The second buying item, if available
      */
-    Optional<ItemStack> getSecondBuyingItem();
+    Optional<ItemStackSnapshot> getSecondBuyingItem();
 
     /**
      * Gets the selling item the {@link Merchant} will give to the customer
@@ -87,7 +88,7 @@ public interface TradeOffer extends DataSerializable {
      *
      * @return The selling item
      */
-    ItemStack getSellingItem();
+    ItemStackSnapshot getSellingItem();
 
     /**
      * <p>Gets the current uses of this offer.</p>

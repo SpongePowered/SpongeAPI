@@ -159,7 +159,7 @@ public final class CommandArgs {
      */
     public void insertArg(String value) {
         int index = this.index < 0 ? 0 : this.args.get(this.index).getEndIdx();
-        this.args.add(index, new SingleArg(value, index, index));
+        this.args.add(this.index + 1, new SingleArg(value, index, index));
     }
 
     /**

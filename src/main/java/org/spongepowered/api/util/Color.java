@@ -36,10 +36,10 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
+import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.DataContentUpdater;
+import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.util.persistence.DataBuilder;
-import org.spongepowered.api.util.persistence.DataContentUpdater;
-import org.spongepowered.api.util.persistence.InvalidDataException;
 
 import java.util.Objects;
 import java.util.Optional;

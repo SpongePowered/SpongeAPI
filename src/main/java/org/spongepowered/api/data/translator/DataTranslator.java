@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.translator;
 
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataView;
 
 /**
@@ -61,6 +62,6 @@ public interface DataTranslator<T> {
      * @param node The data structure containing raw data
      * @return The newly created and translated {@link DataView}
      */
-    DataView translateFrom(T node);
+    DataContainer translateFrom(T node);
 
 }

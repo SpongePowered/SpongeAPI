@@ -15,16 +15,22 @@ buildscript {
     dependencies {
         classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
-        classpath 'org.spongepowered:event-impl-gen:1.0.0'
+        classpath 'org.spongepowered:event-impl-gen:1.1.0'
         classpath 'org.spongepowered:spongegradle:0.5-SNAPSHOT'
     }
 }
 
-version = '3.1.0'
+version = '4.0.0'
 
 // Include shared Gradle configuration
 ext.api = project
 apply from: 'gradle/sponge.gradle'
+
+sourceSets {
+    ap {
+        compileClasspath += main.compileClasspath + main.output
+    }
+}
 
 // Project dependencies
 dependencies {
@@ -42,7 +48,7 @@ dependencies {
     compile 'com.google.inject:guice:4.0'
 
     // Plugin meta
-    compile 'org.spongepowered:spongegradle:0.5-SNAPSHOT'
+    compile 'org.spongepowered:plugin-meta:0.1-SNAPSHOT'
 
     // Configuration
     compile 'ninja.leaping.configurate:configurate-hocon:3.1.1'
@@ -54,11 +60,13 @@ dependencies {
 
     // Event generation
     compile 'org.ow2.asm:asm:5.0.3'
-    compile 'org.spongepowered:event-gen-core:1.0.0'
+    compile 'org.spongepowered:event-gen-core:1.1.0'
 }
 
 // JAR manifest configuration
 jar {
+    from sourceSets.ap.output
+
     manifest {
         attributes('Main-Class': 'org.spongepowered.api.util.InformativeMain')
     }
@@ -67,6 +75,7 @@ jar {
 task sourceJar(type: Jar) {
     classifier = 'sources'
     from sourceSets.main.allSource
+    from sourceSets.ap.allSource
 }
 
 artifacts {
@@ -114,6 +123,7 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 shadowJar {
     classifier = 'shaded'
+    from sourceSets.ap.output
 }
 
 artifacts {

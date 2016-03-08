@@ -31,7 +31,6 @@ import org.spongepowered.api.text.Text;
 
 public interface ImmutableDisplayNameData extends ImmutableDataManipulator<ImmutableDisplayNameData, DisplayNameData> {
 
-
     /**
      * Gets the display name as a {@link Text}. The display name may be
      * player set, or it may be undefined.
@@ -39,12 +38,5 @@ public interface ImmutableDisplayNameData extends ImmutableDataManipulator<Immut
      * @return The display name, if available
      */
     ImmutableValue<Text> displayName();
-
-    /**
-     * Returns whether the custom name is visible to players.
-     *
-     * @return Whether the custom name is visible or not
-     */
-    ImmutableValue<Boolean> customNameVisible();
 
 }

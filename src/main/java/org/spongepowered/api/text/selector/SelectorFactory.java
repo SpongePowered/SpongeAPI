@@ -28,6 +28,7 @@ import org.spongepowered.api.text.selector.ArgumentHolder.Limit;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -143,5 +144,13 @@ public interface SelectorFactory {
      *         due to invalid format)
      */
     Argument<?> parseArgument(String argument) throws IllegalArgumentException;
+
+    /**
+     * Fetch completions for a selector command argument.
+     * 
+     * @param selector The partial selector
+     * @return Tab completions for the next part of the selector
+     */
+    List<String> complete(String selector);
 
 }

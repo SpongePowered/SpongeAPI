@@ -141,6 +141,21 @@ public interface ItemStack extends DataHolder, DataSerializable, Translatable {
         Builder quantity(int quantity) throws IllegalArgumentException;
 
         /**
+         * Adds a {@link Key} and related {@link Object} value to apply to the
+         * resulting {@link ItemStack}. Note that the resulting
+         * {@link ItemStack} may not actually accept the provided {@code Key}
+         * for various reasons due to support or simply that the value itself
+         * is not supported. Offering custom data is not supported through this,
+         * use {@link #itemData(DataManipulator)} instead.
+         *
+         * @param key The key to identiy the value to
+         * @param value The value to apply
+         * @param <E> The type of value
+         * @return This builder, for chaining
+         */
+        <E> Builder keyValue(Key<? extends BaseValue<E>> key, E value);
+
+        /**
          * Sets the {@link DataManipulator} to add to the {@link ItemStack}.
          *
          * @param itemData The item data to set
