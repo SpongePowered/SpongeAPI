@@ -16,7 +16,7 @@ buildscript {
         classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
         classpath 'org.spongepowered:event-impl-gen:1.1.0'
-        classpath 'org.spongepowered:spongegradle:0.5-SNAPSHOT'
+        classpath 'org.spongepowered:spongegradle:0.5.1'
     }
 }
 
@@ -35,7 +35,7 @@ sourceSets {
 // Project dependencies
 dependencies {
     // Logging
-    compile 'org.slf4j:slf4j-api:1.7.14'
+    compile 'org.slf4j:slf4j-api:1.7.18'
 
     // Dependencies provided by Minecraft
     compile 'com.google.guava:guava:17.0'
