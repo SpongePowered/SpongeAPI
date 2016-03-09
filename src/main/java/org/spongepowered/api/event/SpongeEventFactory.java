@@ -1,40 +1,8 @@
-/*
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
- *
- * Copyright (c) SpongePowered <https://www.spongepowered.org>
- * Copyright (c) contributors
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package org.spongepowered.api.event;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Preconditions;
-import java.net.InetSocketAddress;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Function;
 import org.spongepowered.api.GameState;
 import org.spongepowered.api.MinecraftVersion;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -168,7 +136,7 @@ import org.spongepowered.api.event.user.TargetUserEvent;
 import org.spongepowered.api.event.world.ChangeWorldGameRuleEvent;
 import org.spongepowered.api.event.world.ChangeWorldWeatherEvent;
 import org.spongepowered.api.event.world.ConstructPortalEvent;
-import org.spongepowered.api.event.world.ConstructWorldEvent;
+import org.spongepowered.api.event.world.ConstructWorldPropertiesEvent;
 import org.spongepowered.api.event.world.ExplosionEvent;
 import org.spongepowered.api.event.world.GenerateChunkEvent;
 import org.spongepowered.api.event.world.LoadWorldEvent;
@@ -211,6 +179,15 @@ import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
+
+import java.net.InetSocketAddress;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Function;
 
 public class SpongeEventFactory {
     /**
@@ -4438,19 +4415,19 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.ConstructWorldEvent}.
+     * {@link org.spongepowered.api.event.world.ConstructWorldPropertiesEvent}.
      * 
      * @param cause The cause
      * @param worldCreationSettings The world creation settings
      * @param worldProperties The world properties
-     * @return A new construct world event
+     * @return A new construct world properties event
      */
-    public static ConstructWorldEvent createConstructWorldEvent(Cause cause, WorldCreationSettings worldCreationSettings, WorldProperties worldProperties) {
+    public static ConstructWorldPropertiesEvent createConstructWorldPropertiesEvent(Cause cause, WorldCreationSettings worldCreationSettings, WorldProperties worldProperties) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("worldCreationSettings", worldCreationSettings);
         values.put("worldProperties", worldProperties);
-        return SpongeEventFactoryUtils.createEventImpl(ConstructWorldEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ConstructWorldPropertiesEvent.class, values);
     }
 
     /**

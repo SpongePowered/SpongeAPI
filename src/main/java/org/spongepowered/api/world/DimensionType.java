@@ -34,15 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 public interface DimensionType extends CatalogType {
 
     /**
-     * Returns whether spawn chunks of this {@link DimensionType} remain loaded
-     * when no players are present.
-     *
-     * @return True if spawn chunks of this {@link DimensionType} remain loaded
-     *         without players, false if not
-     */
-    boolean doesKeepSpawnLoaded();
-
-    /**
      * Returns the dimension class for this type.
      *
      * @return The dimension class for this type

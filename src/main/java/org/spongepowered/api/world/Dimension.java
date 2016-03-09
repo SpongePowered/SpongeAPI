@@ -32,13 +32,6 @@ import org.spongepowered.api.service.context.ContextSource;
 public interface Dimension extends ContextSource {
 
     /**
-     * Returns the name of this {@link Dimension}.
-     *
-     * @return The name
-     */
-    String getName();
-
-    /**
      * Get the type of dimension.
      *
      * @return The type of dimension

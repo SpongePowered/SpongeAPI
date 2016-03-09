@@ -29,10 +29,10 @@ import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 /**
- * An event for when a world has been created. Often paired with a
+ * An event for when a {@link WorldProperties} has been created. Often paired with a
  * {@link LoadWorldEvent}, but that is not guaranteed.
  */
-public interface ConstructWorldEvent extends Event {
+public interface ConstructWorldPropertiesEvent extends Event {
 
     /**
      * Gets the properties of the newly created world.
