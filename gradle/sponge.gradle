@@ -78,8 +78,8 @@ afterEvaluate {
 
     // Fail if one file is included several times
     tasks.withType(AbstractArchiveTask) {
-        if (duplicatesStrategy == 'include') {
-            duplicatesStrategy = 'fail'
+        if (duplicatesStrategy == DuplicatesStrategy.INCLUDE) {
+            duplicatesStrategy = DuplicatesStrategy.FAIL
         }
     }
 }
