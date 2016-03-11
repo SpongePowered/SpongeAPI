@@ -24,18 +24,11 @@
  */
 package org.spongepowered.api.profile;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.service.user.UserStorageService;
-import org.spongepowered.api.util.GuavaCollectors;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -97,14 +90,7 @@ public interface GameProfileCache {
      * @param uniqueIds The unique ids
      * @return A collection of successfully found up profiles
      */
-    default Map<UUID, Optional<GameProfile>> getByIds(Iterable<UUID> uniqueIds) {
-        checkNotNull(uniqueIds, "unique ids");
-
-        Map<UUID, Optional<GameProfile>> result = Maps.newHashMap();
-        uniqueIds.forEach(uniqueId -> result.put(uniqueId, this.getById(uniqueId)));
-
-        return ImmutableMap.copyOf(result);
-    }
+    Map<UUID, Optional<GameProfile>> getByIds(Iterable<UUID> uniqueIds);
 
     /**
      * Looks a {@link GameProfile} up by its unique id and
@@ -123,14 +109,7 @@ public interface GameProfileCache {
      * @param uniqueIds The unique ids
      * @return A collection of successfully looked up profiles
      */
-    default Map<UUID, Optional<GameProfile>> lookupByIds(Iterable<UUID> uniqueIds) {
-        checkNotNull(uniqueIds, "unique ids");
-
-        Map<UUID, Optional<GameProfile>> result = Maps.newHashMap();
-        uniqueIds.forEach(uniqueId -> result.put(uniqueId, this.lookupById(uniqueId)));
-
-        return ImmutableMap.copyOf(result);
-    }
+    Map<UUID, Optional<GameProfile>> lookupByIds(Iterable<UUID> uniqueIds);
 
     /**
      * Gets a {@link GameProfile} from this cache by its id if available,
@@ -141,15 +120,7 @@ public interface GameProfileCache {
      * the cache did not contain a profile with the provided id and
      * we couldn't lookup a profile with the provided id
      */
-    default Optional<GameProfile> getOrLookupById(UUID uniqueId) {
-        Optional<GameProfile> profile = this.getById(uniqueId);
-        if (profile.isPresent()) {
-            return profile;
-        } else {
-            return this.lookupById(uniqueId);
-        }
-    }
-
+    Optional<GameProfile> getOrLookupById(UUID uniqueId);
     /**
      * Gets {@link GameProfile}s in bulk from this cache by when available,
      * and lookups the profiles by their unique id when not cached.
@@ -157,18 +128,7 @@ public interface GameProfileCache {
      * @param uniqueIds The unique ids of the profiles
      * @return A collection of successfully found profiles
      */
-    default Map<UUID, Optional<GameProfile>> getOrLookupByIds(Iterable<UUID> uniqueIds) {
-        checkNotNull(uniqueIds, "unique ids");
-
-        Collection<UUID> pending = Sets.newHashSet(uniqueIds);
-        Map<UUID, Optional<GameProfile>> result = Maps.newHashMap();
-
-        result.putAll(this.getByIds(pending));
-        result.forEach((uniqueId, profile) -> pending.remove(uniqueId));
-        result.putAll(this.lookupByIds(pending));
-
-        return ImmutableMap.copyOf(result);
-    }
+    Map<UUID, Optional<GameProfile>> getOrLookupByIds(Iterable<UUID> uniqueIds);
 
     /**
      * Gets a {@link GameProfile} from this cache by its name.
@@ -185,14 +145,7 @@ public interface GameProfileCache {
      * @param names The names
      * @return A collection of successfully found up profiles
      */
-    default Map<String, Optional<GameProfile>> getByNames(Iterable<String> names) {
-        checkNotNull(names, "names");
-
-        Map<String, Optional<GameProfile>> result = Maps.newHashMap();
-        names.forEach(name -> result.put(name, this.getByName(name)));
-
-        return ImmutableMap.copyOf(result);
-    }
+    Map<String, Optional<GameProfile>> getByNames(Iterable<String> names);
 
     /**
      * Looks a {@link GameProfile} up by its name and
@@ -211,14 +164,7 @@ public interface GameProfileCache {
      * @param names The names
      * @return A collection of successfully looked up profiles
      */
-    default Map<String, Optional<GameProfile>> lookupByNames(Iterable<String> names) {
-        checkNotNull(names, "names");
-
-        Map<String, Optional<GameProfile>> result = Maps.newHashMap();
-        names.forEach(name -> result.put(name, this.lookupByName(name)));
-
-        return ImmutableMap.copyOf(result);
-    }
+    Map<String, Optional<GameProfile>> lookupByNames(Iterable<String> names);
 
     /**
      * Gets a {@link GameProfile} from this cache by its if available,
@@ -229,14 +175,7 @@ public interface GameProfileCache {
      * the cache did not contain a profile with the provided name and
      * we couldn't lookup a profile with the provided name
      */
-    default Optional<GameProfile> getOrLookupByName(String name) {
-        Optional<GameProfile> profile = this.getByName(name);
-        if (profile.isPresent()) {
-            return profile;
-        } else {
-            return this.lookupByName(name);
-        }
-    }
+    Optional<GameProfile> getOrLookupByName(String name);
 
     /**
      * Gets {@link GameProfile}s in bulk from this cache by when available,
@@ -245,18 +184,7 @@ public interface GameProfileCache {
      * @param names The names of the profiles
      * @return A collection of successfully found profiles
      */
-    default Map<String, Optional<GameProfile>> getOrLookupByNames(Iterable<String> names) {
-        checkNotNull(names, "names");
-
-        Collection<String> pending = Sets.newHashSet(names);
-        Map<String, Optional<GameProfile>> result = Maps.newHashMap();
-
-        result.putAll(this.getByNames(pending));
-        result.forEach((name, profile) -> pending.remove(name));
-        result.putAll(this.lookupByNames(pending));
-
-        return ImmutableMap.copyOf(result);
-    }
+    Map<String, Optional<GameProfile>> getOrLookupByNames(Iterable<String> names);
 
     /**
      * Fills a {@link GameProfile} from cached values.
@@ -302,13 +230,6 @@ public interface GameProfileCache {
      * @param name The name
      * @return A {@link Collection} of matching {@link GameProfile}s
      */
-    default Collection<GameProfile> match(String name) {
-        final String search = checkNotNull(name, "name").toLowerCase(Locale.ROOT);
-
-        return this.getProfiles().stream()
-                .filter(profile -> profile.getName().isPresent())
-                .filter(profile -> profile.getName().get().toLowerCase(Locale.ROOT).startsWith(search))
-                .collect(GuavaCollectors.toImmutableSet());
-    }
+    Collection<GameProfile> match(String name);
 
 }

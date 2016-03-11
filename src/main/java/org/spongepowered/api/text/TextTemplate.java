@@ -220,14 +220,13 @@ public final class TextTemplate implements TextRepresentable, Iterable<Object> {
     }
 
     private Text.Builder applyArg(TextElement param, Arg arg, @Nullable Text.Builder builder) {
+        if (builder == null) {
+            builder = Text.builder();
+        }
         // wrap the parameter in the argument format
         Text.Builder wrapper = Text.builder().format(arg.format);
         param.applyTo(wrapper);
-        if (builder == null) {
-            builder = wrapper;
-        } else {
-            builder.append(wrapper.build());
-        }
+        builder.append(wrapper.build());
         return builder;
     }
 
