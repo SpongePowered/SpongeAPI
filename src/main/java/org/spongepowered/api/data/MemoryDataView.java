@@ -36,6 +36,8 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.ArrayUtils;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.persistence.DataBuilder;
@@ -237,6 +239,8 @@ public class MemoryDataView implements DataView {
         if (value instanceof DataView) {
             checkArgument(value != this, "Cannot set a DataView to itself.");
             copyDataView(path, (DataView) value);
+        } else if (value instanceof CatalogType) {
+            return set(path, ((CatalogType) value).getId());
         } else if (value instanceof DataSerializable) {
             DataContainer valueContainer = ((DataSerializable) value).toContainer();
             checkArgument(!(valueContainer).equals(this), "Cannot insert self-referencing DataSerializable");
@@ -780,11 +784,15 @@ public class MemoryDataView implements DataView {
         return Optional.of(newList);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz) {
         checkNotNull(path, "path");
         checkNotNull(clazz, "clazz");
         DataManager manager = Sponge.getDataManager();
+        if (clazz.isAssignableFrom(CatalogType.class)) {
+            return (Optional<T>) getCatalogType(path, ((Class<? extends CatalogType>) clazz));
+        }
         Optional<DataView> optional = getUnsafeView(path);
 
         if (!optional.isPresent()) {
@@ -799,11 +807,15 @@ public class MemoryDataView implements DataView {
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz) {
         checkNotNull(path, "path");
         checkNotNull(clazz, "clazz");
         DataManager manager = Sponge.getDataManager();
+        if (clazz.isAssignableFrom(CatalogType.class)) {
+            return (Optional<List<T>>) (Optional<?>) getCatalogTypeList(path, (Class<? extends CatalogType>) clazz);
+        }
         Optional<List<DataView>> optional = getViewList(path);
 
         if (!optional.isPresent()) {
@@ -823,6 +835,38 @@ public class MemoryDataView implements DataView {
             }
             return Optional.of(newList);
         }
+    }
+
+    @Override
+    public <T extends CatalogType> Optional<T> getCatalogType(DataQuery path, Class<T> catalogType) {
+        checkNotNull(path, "path");
+        checkNotNull(catalogType, "catalog type");
+        final Optional<String> catalogId = getString(path);
+        if (!catalogId.isPresent()) {
+            return Optional.empty();
+        }
+        final GameRegistry gameRegistry = Sponge.getRegistry();
+
+        return gameRegistry.getType(catalogType, catalogId.get());
+    }
+
+    @Override
+    public <T extends CatalogType> Optional<List<T>> getCatalogTypeList(DataQuery path, Class<T> catalogType) {
+        checkNotNull(path, "path");
+        checkNotNull(catalogType, "catalogType");
+        final Optional<List<String>> catalogTypes = getStringList(path);
+        if (!catalogTypes.isPresent()) {
+            return Optional.empty();
+        }
+        final GameRegistry registry = Sponge.getRegistry();
+        final List<T> newList = Lists.newArrayList();
+        for (String string : catalogTypes.get()) {
+            final Optional<T> type = registry.getType(catalogType, string);
+            if (type.isPresent()) {
+                newList.add(type.get());
+            }
+        }
+        return Optional.of(newList);
     }
 
     @Override
