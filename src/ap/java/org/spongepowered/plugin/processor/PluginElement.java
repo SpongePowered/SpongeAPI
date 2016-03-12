@@ -33,12 +33,15 @@ import static org.spongepowered.api.plugin.Plugin.ID_PATTERN;
 import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.plugin.meta.PluginMetadata;
+import org.spongepowered.plugin.meta.SpongeExtension;
 import org.spongepowered.plugin.meta.version.InvalidVersionSpecificationException;
 import org.spongepowered.plugin.meta.version.VersionRange;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 
 import javax.annotation.processing.Messager;
 import javax.lang.model.element.TypeElement;
@@ -119,6 +122,23 @@ final class PluginElement {
             }
         }
 
+        value = this.annotation.get().assets();
+        if (!value.isEmpty()) {
+            if (!isValidPath(value)) {
+                messager.printMessage(ERROR, "Invalid asset directory path: " + value, this.element, this.annotation.getMirror(),
+                        this.annotation.getValue("assets"));
+            }
+            SpongeExtension ext = new SpongeExtension();
+            ext.setAssetDirectory(value);
+            this.metadata.setExtension("sponge", ext);
+        } else {
+            SpongeExtension ext = this.metadata.getExtension("sponge");
+            if (ext != null && ext.getAssetDirectory() != null && !isValidPath(ext.getAssetDirectory())) {
+                messager.printMessage(ERROR, "Invalid asset directory path: " + value + " in extra metadata files", this.element,
+                        this.annotation.getMirror());
+            }
+        }
+
         String[] authors = this.annotation.get().authors();
         if (authors.length > 0) {
             this.metadata.getAuthors().clear();
@@ -186,6 +206,15 @@ final class PluginElement {
         }
     }
 
+    private static boolean isValidPath(String path) {
+        try {
+            Paths.get(path);
+            return true;
+        } catch (InvalidPathException e) {
+            return false;
+        }
+    }
+
     static void applyMeta(PluginMetadata meta, PluginMetadata other, Messager messager) {
         checkArgument(meta.getId().equals(other.getId()), "Plugin meta IDs don't match");
 
@@ -200,6 +229,13 @@ final class PluginElement {
         }
         if (other.getUrl() != null) {
             meta.setUrl(other.getUrl());
+        }
+
+        SpongeExtension ext = other.getExtension("sponge");
+        if (ext != null) {
+            SpongeExtension otherExt = new SpongeExtension();
+            otherExt.setAssetDirectory(ext.getAssetDirectory());
+            meta.setExtension("sponge", otherExt);
         }
 
         // TODO: Dependencies

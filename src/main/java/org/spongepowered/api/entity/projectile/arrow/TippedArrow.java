@@ -22,15 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.entity.projectile.arrow;
 
-import org.spongepowered.api.entity.living.player.Player;
-
-/**
- * Represents a minecart that is rideable by other entities, such
- * as {@link Player}.
- */
-public interface MinecartRideable extends Minecart {
-
+public interface TippedArrow extends Arrow {
 
 }

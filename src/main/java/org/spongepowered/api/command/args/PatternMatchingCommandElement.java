@@ -31,6 +31,7 @@ import com.google.common.collect.Iterables;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandSource;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -55,7 +56,7 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
         Iterable<String> filteredChoices = Iterables.filter(getChoices(source), element -> pattern.matcher(element).find());
         for (String el : filteredChoices) { // Match a single value
             if (el.equalsIgnoreCase(unformattedPattern)) {
-                return getValue(el);
+                return Collections.singleton(getValue(el));
             }
         }
         Iterable<Object> ret = Iterables.transform(filteredChoices, this::getValue);

@@ -25,12 +25,15 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.data.type.Career;
 import org.spongepowered.api.data.value.ValueFactory;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ai.task.AITaskType;
 import org.spongepowered.api.entity.ai.task.AbstractAITask;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.merchant.VillagerRegistry;
+import org.spongepowered.api.item.merchant.TradeOfferGenerator;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -337,6 +340,15 @@ public interface GameRegistry {
      * @return The value factory
      */
     ValueFactory getValueFactory();
+
+    /**
+     * Gets the {@link VillagerRegistry} for the register mappings
+     * of {@link Career}s to {@link TradeOfferGenerator}s based on
+     * a level.
+     *
+     * @return The villager registry instance
+     */
+    VillagerRegistry getVillagerRegistry();
 
     /**
      * Gets the internal {@link TextSerializerFactory}.

@@ -22,11 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.entity.projectile.explosive;
 
-/**
- * Represents a minecart with a chest inside it.
- */
-public interface MinecartChest extends MinecartContainer {
+import org.spongepowered.api.entity.projectile.explosive.fireball.Fireball;
+
+public interface DragonFireball extends Fireball {
 
 }

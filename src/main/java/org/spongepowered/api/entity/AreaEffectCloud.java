@@ -22,17 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity;
 
-package org.spongepowered.api.event.cause.entity.health;
-
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.event.entity.HealEntityEvent;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-
-/**
- * Represents a type of "healing", used for {@link HealEntityEvent}s.
- */
-@CatalogedBy(HealTypes.class)
-public interface HealType extends CatalogType {
+public interface AreaEffectCloud extends Entity {
 
 }

@@ -34,7 +34,7 @@ import org.spongepowered.api.text.Text;
 import java.util.Optional;
 
 /**
- * Represents a CommandBlock source, either a placed block or a MinecartCommandBlock.
+ * Represents a CommandBlock source, either a placed block or a CommandBlockMinecart.
  */
 public interface CommandBlockSource extends LocatedSource, DataHolder {
 

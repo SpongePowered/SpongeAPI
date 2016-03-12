@@ -50,10 +50,12 @@ class QuotedStringTokenizer implements InputTokenizer {
     private static final int CHAR_DOUBLE_QUOTE = '"';
     private final boolean handleQuotedStrings;
     private final boolean forceLenient;
+    private final boolean trimTrailingSpace;
 
-    QuotedStringTokenizer(boolean handleQuotedStrings, boolean forceLenient) {
+    QuotedStringTokenizer(boolean handleQuotedStrings, boolean forceLenient, boolean trimTrailingSpace) {
         this.handleQuotedStrings = handleQuotedStrings;
         this.forceLenient = forceLenient;
+        this.trimTrailingSpace = trimTrailingSpace;
     }
 
     @Override
@@ -63,13 +65,20 @@ class QuotedStringTokenizer implements InputTokenizer {
         }
 
         final TokenizerState state = new TokenizerState(arguments, lenient);
-        List<SingleArg> returnedArgs = new ArrayList<>(arguments.length() / 8);
-        skipWhiteSpace(state);
+        List<SingleArg> returnedArgs = new ArrayList<>(arguments.length() / 4);
+        if (trimTrailingSpace) {
+            skipWhiteSpace(state);
+        }
         while (state.hasMore()) {
+            if (!trimTrailingSpace) {
+                skipWhiteSpace(state);
+            }
             int startIdx = state.getIndex() + 1;
             String arg = nextArg(state);
             returnedArgs.add(new SingleArg(arg, startIdx, state.getIndex()));
-            skipWhiteSpace(state);
+            if (trimTrailingSpace) {
+                skipWhiteSpace(state);
+            }
         }
         return returnedArgs;
     }
@@ -80,19 +89,21 @@ class QuotedStringTokenizer implements InputTokenizer {
         if (!state.hasMore()) {
             return;
         }
-        while (Character.isWhitespace(state.peek())) {
+        while (state.hasMore() && Character.isWhitespace(state.peek())) {
             state.next();
         }
     }
 
     private String nextArg(TokenizerState state) throws ArgumentParseException {
         StringBuilder argBuilder = new StringBuilder();
-        int codePoint = state.peek();
-        if (this.handleQuotedStrings && (codePoint == CHAR_DOUBLE_QUOTE || codePoint == CHAR_SINGLE_QUOTE)) {
-            // quoted string
-            parseQuotedString(state, codePoint, argBuilder);
-        } else {
-            parseUnquotedString(state, argBuilder);
+        if (state.hasMore()) {
+            int codePoint = state.peek();
+            if (this.handleQuotedStrings && (codePoint == CHAR_DOUBLE_QUOTE || codePoint == CHAR_SINGLE_QUOTE)) {
+                // quoted string
+                parseQuotedString(state, codePoint, argBuilder);
+            } else {
+                parseUnquotedString(state, argBuilder);
+            }
         }
         return argBuilder.toString();
     }
@@ -113,31 +124,33 @@ class QuotedStringTokenizer implements InputTokenizer {
                     throw state.createException(Text.of("Unterminated quoted string found"));
                 }
             }
-            nextCodePoint = state.next();
+            nextCodePoint = state.peek();
             if (nextCodePoint == startQuotation) {
+                state.next();
                 return;
             } else if (nextCodePoint == CHAR_BACKSLASH) {
                 parseEscape(state, builder);
             } else {
-                builder.appendCodePoint(nextCodePoint);
+                builder.appendCodePoint(state.next());
             }
         }
     }
 
     private void parseUnquotedString(TokenizerState state, StringBuilder builder) throws ArgumentParseException {
         while (state.hasMore()) {
-            int nextCodePoint = state.next();
+            int nextCodePoint = state.peek();
             if (Character.isWhitespace(nextCodePoint)) {
                 return;
             } else if (nextCodePoint == CHAR_BACKSLASH) {
                 parseEscape(state, builder);
             } else {
-                builder.appendCodePoint(nextCodePoint);
+                builder.appendCodePoint(state.next());
             }
         }
     }
 
     private void parseEscape(TokenizerState state, StringBuilder builder) throws ArgumentParseException {
+        state.next(); // Consume \
         builder.appendCodePoint(state.next()); // TODO: Unicode character escapes (\u00A7 type thing)?
     }
 

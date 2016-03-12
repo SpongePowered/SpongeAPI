@@ -27,13 +27,20 @@ package org.spongepowered.api.text.format;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
+import com.google.common.reflect.TypeToken;
+import ninja.leaping.configurate.objectmapping.serialize.TypeSerializers;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextElement;
+import org.spongepowered.api.text.serializer.TextFormatConfigSerializer;
 
 /**
  * Represents a pair of {@link TextStyle} and {@link TextColor}.
  */
 public final class TextFormat implements TextElement {
+
+    static {
+        TypeSerializers.getDefaultSerializers().registerType(TypeToken.of(TextFormat.class), new TextFormatConfigSerializer());
+    }
 
     /**
      * An empty {@link TextFormat} with no {@link TextColor} and no {@link TextStyle}.

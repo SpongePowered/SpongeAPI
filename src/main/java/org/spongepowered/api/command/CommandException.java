@@ -35,13 +35,15 @@ public class CommandException extends TextMessageException {
 
     private static final long serialVersionUID = 4626722485860074825L;
 
+    private final boolean includeUsage;
+
     /**
      * Constructs a new {@link CommandException} with the given message.
      *
      * @param message The detail message
      */
     public CommandException(Text message) {
-        super(message);
+        this(message, false);
     }
 
     /**
@@ -52,6 +54,32 @@ public class CommandException extends TextMessageException {
      * @param cause The cause
      */
     public CommandException(Text message, Throwable cause) {
+        this(message, cause, false);
+    }
+
+    /**
+     * Constructs a new {@link CommandException} with the given message.
+     *
+     * @param message The detail message
+     */
+    public CommandException(Text message, boolean includeUsage) {
+        super(message);
+        this.includeUsage = includeUsage;
+    }
+
+    /**
+     * Constructs a new {@link CommandException} with the given message and
+     * the given cause.
+     *
+     * @param message The detail message
+     * @param cause The cause
+     */
+    public CommandException(Text message, Throwable cause, boolean includeUsage) {
         super(message, cause);
+        this.includeUsage = includeUsage;
+    }
+
+    public boolean shouldIncludeUsage() {
+        return this.includeUsage;
     }
 }

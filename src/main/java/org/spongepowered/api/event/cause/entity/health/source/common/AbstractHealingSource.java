@@ -22,22 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.event.cause.entity.health.source.common;
 
-import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
+import org.spongepowered.api.event.cause.entity.health.HealingType;
+import org.spongepowered.api.event.cause.entity.health.source.HealingSource;
 
-/**
- * Represents a Minecart with a MobSpawner inside it.
- */
-public interface MinecartMobSpawner extends Minecart {
+public abstract class AbstractHealingSource implements HealingSource {
 
-    /**
-     * Gets a copy of the {@link MobSpawnerData}.
-     *
-     * @return A copy of the mob spawner data
-     */
-    default MobSpawnerData getSpawnerData() {
-        return get(MobSpawnerData.class).get();
+    private final HealingType healingType;
+    private final boolean difficulty;
+    private final boolean magical;
+
+    protected AbstractHealingSource(AbstractHealingSourceBuilder<?, ?> builder) {
+        this.healingType = builder.healingType;
+        this.difficulty = builder.scales;
+        this.magical = builder.magical;
     }
 
+    @Override
+    public HealingType getHealingType() {
+        return this.healingType;
+    }
+
+    @Override
+    public boolean isDifficultyScaled() {
+        return this.difficulty;
+    }
+
+    @Override
+    public boolean isMagic() {
+        return this.magical;
+    }
 }

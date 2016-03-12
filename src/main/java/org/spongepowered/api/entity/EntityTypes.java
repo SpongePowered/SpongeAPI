@@ -34,7 +34,7 @@ public final class EntityTypes {
     public static final EntityType AREA_EFFECT_CLOUD = null;
     public static final EntityType LEASH_HITCH = null;
     public static final EntityType PAINTING = null;
-    public static final EntityType ARROW = null;
+    public static final EntityType TIPPED_ARROW = null;
     public static final EntityType SNOWBALL = null;
     public static final EntityType FIREBALL = null;
     public static final EntityType SMALL_FIREBALL = null;

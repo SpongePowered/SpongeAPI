@@ -24,15 +24,11 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
-import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.type.CarriedInventory;
+import org.spongepowered.api.command.source.CommandBlockSource;
 
 /**
- * Represents a minecart with a container inside it. Common extensions
- * of this are: {@link MinecartChest} and {@link MinecartHopper}.
+ * Represents a minecart with a command block inside it.
  */
-public interface MinecartContainer extends Minecart, Carrier {
+public interface CommandBlockMinecart extends Minecart, CommandBlockSource {
 
-    @Override
-    CarriedInventory<MinecartContainer> getInventory();
 }

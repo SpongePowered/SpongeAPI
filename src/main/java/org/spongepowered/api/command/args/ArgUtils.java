@@ -22,54 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.command.args;
 
-package org.spongepowered.api.event.cause.entity.health.source;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TranslatableText;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.event.cause.entity.health.HealType;
+import javax.annotation.Nullable;
 
-public interface ProjectileHealingSource extends EntityHealingSource {
-
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+/**
+ * Internal utility methods
+ */
+class ArgUtils {
+    private ArgUtils() {
     }
 
+    @Nullable
+    public static String textToArgKey(@Nullable Text key) {
+        if (key == null) {
+            return null;
+        }
 
-    @Override
-    Projectile getSource();
-
-    ProjectileSource getShooter();
-
-    interface Builder extends EntityHealingSource.Builder {
-
-        @Override
-        Builder scalesWithDifficulty();
-
-        @Override
-        Builder bypassesArmor();
-
-        @Override
-        Builder explosion();
-
-        @Override
-        Builder absolute();
-
-        @Override
-        Builder magical();
-
-        @Override
-        Builder entity(Entity entity);
-
-        @Override
-        Builder type(HealType healType);
-
-        Builder projectile(Projectile projectile);
-
-        @Override
-        ProjectileHealingSource build() throws IllegalStateException;
-
+        if (key instanceof TranslatableText) { // Use translation key
+            return ((TranslatableText) key).getTranslation().getId();
+        } else {
+            return key.toPlain();
+        }
     }
+
 }

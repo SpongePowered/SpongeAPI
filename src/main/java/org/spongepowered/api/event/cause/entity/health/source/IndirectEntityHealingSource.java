@@ -22,40 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.pagination;
 
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.command.CommandSource;
+package org.spongepowered.api.event.cause.entity.health.source;
 
-/**
- * Implementations of PaginationCalculator handle calculating output-specific pagination data.
- */
-public interface PaginationCalculator<T extends CommandSource> {
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
-    /**
-     * Get the maxinum number of lines that can be displayed on a source's screen.
-     * @param source The source to check
-     * @return The maximum number of displayable lines, or -1 for unlimited
-     */
-    int getLinesPerPage(T source);
+public interface IndirectEntityHealingSource extends EntityHealingSource {
 
-    /**
-     * Get the length in lines of the provided text.
-     *
-     * @param source The source to check for
-     * @param text The text to get the length of
-     * @return The text's length
-     */
-    int getLines(T source, Text text);
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
-    /**
-     * Return a new text object that contains the provided input centered with the given padding character.
-     *
-     * @param source The source to center for
-     * @param text The text to pad
-     * @param padding The padding character
-     * @return The centered text
-     */
-    Text center(T source, Text text, String padding);
+    Entity getIndirectSource();
 
+    interface Builder extends IndirectEntityHealingSourceBuilder<IndirectEntityHealingSource, Builder> {
+        
+    }
+
+    interface IndirectEntityHealingSourceBuilder<T extends IndirectEntityHealingSource, B extends IndirectEntityHealingSourceBuilder<T, B>> extends EntityHealingSourceBuilder<T, B> {
+
+        B indirectEntity(Entity entity);
+
+    }
 }

@@ -30,7 +30,7 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableCommandData;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.vehicle.minecart.MinecartCommandBlock;
+import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
 import org.spongepowered.api.text.Text;
 
 import java.util.Optional;
@@ -38,7 +38,7 @@ import java.util.Optional;
 /**
  * An {@link DataManipulator} handling all related {@link Value}s for command
  * related {@link DataHolder}s, such as {@link CommandBlock}s and
- * {@link MinecartCommandBlock}s.
+ * {@link CommandBlockMinecart}s.
  */
 public interface CommandData extends DataManipulator<CommandData, ImmutableCommandData> {
 

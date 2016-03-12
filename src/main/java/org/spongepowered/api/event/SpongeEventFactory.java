@@ -3645,7 +3645,7 @@ public class SpongeEventFactory {
      * @param itemStackInUse The item stack in use
      * @return A new use item stack event
      */
-    public static UseItemStackEvent createUseItemStackEvent(Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
+    public static UseItemStackEvent createUseItemStackEvent(Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackSnapshot itemStackInUse) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalRemainingDuration", originalRemainingDuration);
@@ -3663,17 +3663,57 @@ public class SpongeEventFactory {
      * @param originalRemainingDuration The original remaining duration
      * @param remainingDuration The remaining duration
      * @param itemStackInUse The item stack in use
-     * @param itemStackResult The item stack result
      * @return A new finish use item stack event
      */
-    public static UseItemStackEvent.Finish createUseItemStackEventFinish(Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse, Transaction<ItemStackSnapshot> itemStackResult) {
+    public static UseItemStackEvent.Finish createUseItemStackEventFinish(Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackSnapshot itemStackInUse) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("originalRemainingDuration", originalRemainingDuration);
+        values.put("remainingDuration", remainingDuration);
+        values.put("itemStackInUse", itemStackInUse);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Finish.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.item.inventory.UseItemStackEvent.Replace}.
+     * 
+     * @param cause The cause
+     * @param originalRemainingDuration The original remaining duration
+     * @param remainingDuration The remaining duration
+     * @param itemStackInUse The item stack in use
+     * @param itemStackResult The item stack result
+     * @return A new replace use item stack event
+     */
+    public static UseItemStackEvent.Replace createUseItemStackEventReplace(Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackSnapshot itemStackInUse, Transaction<ItemStackSnapshot> itemStackResult) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalRemainingDuration", originalRemainingDuration);
         values.put("remainingDuration", remainingDuration);
         values.put("itemStackInUse", itemStackInUse);
         values.put("itemStackResult", itemStackResult);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Finish.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Replace.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.item.inventory.UseItemStackEvent.Reset}.
+     * 
+     * @param cause The cause
+     * @param originalRemainingDuration The original remaining duration
+     * @param remainingDuration The remaining duration
+     * @param itemStackInUse The item stack in use
+     * @return A new reset use item stack event
+     */
+    public static UseItemStackEvent.Reset createUseItemStackEventReset(Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackSnapshot itemStackInUse) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("originalRemainingDuration", originalRemainingDuration);
+        values.put("remainingDuration", remainingDuration);
+        values.put("itemStackInUse", itemStackInUse);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Reset.class, values);
     }
 
     /**
@@ -3687,7 +3727,7 @@ public class SpongeEventFactory {
      * @param itemStackInUse The item stack in use
      * @return A new start use item stack event
      */
-    public static UseItemStackEvent.Start createUseItemStackEventStart(Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
+    public static UseItemStackEvent.Start createUseItemStackEventStart(Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackSnapshot itemStackInUse) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalRemainingDuration", originalRemainingDuration);
@@ -3707,7 +3747,7 @@ public class SpongeEventFactory {
      * @param itemStackInUse The item stack in use
      * @return A new stop use item stack event
      */
-    public static UseItemStackEvent.Stop createUseItemStackEventStop(Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
+    public static UseItemStackEvent.Stop createUseItemStackEventStop(Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackSnapshot itemStackInUse) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalRemainingDuration", originalRemainingDuration);
@@ -3727,7 +3767,7 @@ public class SpongeEventFactory {
      * @param itemStackInUse The item stack in use
      * @return A new tick use item stack event
      */
-    public static UseItemStackEvent.Tick createUseItemStackEventTick(Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
+    public static UseItemStackEvent.Tick createUseItemStackEventTick(Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackSnapshot itemStackInUse) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalRemainingDuration", originalRemainingDuration);

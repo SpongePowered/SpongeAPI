@@ -22,13 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.vehicle.minecart;
+package org.spongepowered.api.entity.living.golem;
 
-import org.spongepowered.api.entity.explosive.IgnitableExplosive;
+import org.spongepowered.api.entity.living.golem.Golem;
 
-/**
- * Represents a Minecart with a TNT block in it.
- */
-public interface MinecartTNT extends Minecart, IgnitableExplosive {
+public interface Shulker extends Golem {
 
 }
