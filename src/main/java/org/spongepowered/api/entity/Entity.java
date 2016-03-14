@@ -34,7 +34,6 @@ import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.NamedCause;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.Identifiable;
@@ -42,7 +41,6 @@ import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.Collection;
 import java.util.EnumSet;
@@ -240,44 +238,25 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
     void setTransform(Transform<World> transform);
 
     /**
-     * Sets the location of this entity to a new position in a world which does
-     * not have to be loaded (but must at least be enabled).
+     * Sets the {@link Location} of this entity to the {@link World}'s spawn point.
      *
-     * <p>If the target world is loaded then this is equivalent to
-     * setting the location via {@link TargetedLocationData}.</p>
+     * <p>This is equivalent to setting the location via {@link TargetedLocationData}.</p>
      *
-     * <p>If the target world is unloaded but is enabled according to its
-     * {@link WorldProperties#isEnabled()} then this will first load the world
-     * before transferring the entity to that world.</p>
-     *
-     * <p>If the target world is unloaded and not enabled then the transfer
-     * will fail.</p>
-     *
-     * @param worldName The name of the world to transfer to
-     * @param position The position in the target world
-     * @return True if the teleport was successful
+     * @param world The world to transfer to
      */
-    boolean transferToWorld(String worldName, Vector3d position);
+    default void transferToWorld(World world) {
+        transferToWorld(world, world.getSpawnLocation().getPosition());
+    }
 
     /**
-     * Sets the location of this entity to a new position in a world which does
-     * not have to be loaded (but must at least be enabled).
+     * Sets the {@link Location} of this entity to a new position in a world.
      *
-     * <p>If the target world is loaded then this is equivalent to
-     * setting the location via {@link TargetedLocationData}.</p>
+     * <p>This is equivalent to setting the location via {@link TargetedLocationData}.</p>
      *
-     * <p>If the target world is unloaded but is enabled according to its
-     * {@link WorldProperties#isEnabled()} then this will first load the world
-     * before transferring the entity to that world.</p>
-     *
-     * <p>If the target world is unloaded and not enabled then the transfer
-     * will fail.</p>
-     *
-     * @param uuid The UUID of the target world to transfer to
+     * @param world The world to transfer to
      * @param position The position in the target world
-     * @return True if the teleport was successful
      */
-    boolean transferToWorld(UUID uuid, Vector3d position);
+    void transferToWorld(World world, Vector3d position);
 
     /**
      * Gets the entity passenger that rides this entity, if available.
