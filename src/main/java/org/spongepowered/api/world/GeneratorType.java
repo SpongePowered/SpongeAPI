@@ -37,15 +37,16 @@ import org.spongepowered.api.world.gen.WorldGenerator;
 public interface GeneratorType extends CatalogType {
 
     /**
-     * Gets a copy of the default settings for the world generator.
+     * Gets a copy of the default settings for this generator type.
      *
      * @return The settings
      */
     DataContainer getGeneratorSettings();
 
     /**
-     * Creates a new {@link WorldGenerator} for this world type.
+     * Creates a new {@link WorldGenerator} for this generator type
      *
+     * <p>This will use the default settings of this generator type</p>
      * @param world The world to create the world generator for.
      * @return The new generator
      */
