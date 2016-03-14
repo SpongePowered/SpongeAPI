@@ -4631,6 +4631,38 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.SaveWorldEvent.Post}.
+     * 
+     * @param cause The cause
+     * @param targetWorld The target world
+     * @return A new post save world event
+     */
+    public static SaveWorldEvent.Post createSaveWorldEventPost(Cause cause, World targetWorld) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetWorld", targetWorld);
+        return SpongeEventFactoryUtils.createEventImpl(SaveWorldEvent.Post.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.SaveWorldEvent.Pre}.
+     * 
+     * @param cause The cause
+     * @param targetWorld The target world
+     * @return A new pre save world event
+     */
+    public static SaveWorldEvent.Pre createSaveWorldEventPre(Cause cause, World targetWorld) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetWorld", targetWorld);
+        return SpongeEventFactoryUtils.createEventImpl(SaveWorldEvent.Pre.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.world.TargetWorldEvent}.
      * 
      * @param cause The cause

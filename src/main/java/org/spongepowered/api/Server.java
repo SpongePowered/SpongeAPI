@@ -203,13 +203,11 @@ public interface Server {
     boolean unloadWorld(World world);
 
     /**
-     * Creates a new world from the given {@link WorldCreationSettings}. For the
-     * creation of the WorldCreationSettings please see
-     * {@link WorldCreationSettings.Builder}.
+     * Creates a new {@link WorldProperties} from the given {@link WorldCreationSettings}. For the
+     * creation of the WorldCreationSettings please see {@link WorldCreationSettings.Builder}.
      *
-     * <p>If the world already exists then the existing {@link WorldProperties}
-     * are returned else a new world is created and the new WorldProperties
-     * returned.</p>
+     * <p>If the {@link World} represented by the properties exists then the existing
+     * {@link WorldProperties} are returned</p>
      *
      * <p>Although the world is created it is not loaded at this time. Please
      * see one of the following methods for loading the world.</p>
@@ -220,7 +218,7 @@ public interface Server {
      * @param settings The settings for creation
      * @return The new or existing world properties, if creation was successful
      */
-    Optional<WorldProperties> createWorldProperties(WorldCreationSettings settings);
+    WorldProperties createWorldProperties(WorldCreationSettings settings);
 
     /**
      * Creates a world copy asynchronously using the new name given and returns
