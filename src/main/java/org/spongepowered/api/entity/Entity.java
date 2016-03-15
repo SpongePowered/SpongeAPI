@@ -39,7 +39,6 @@ import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
 
 import java.util.Collection;
@@ -112,15 +111,6 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
     void setLocation(Location<World> location);
 
     /**
-     * Sets the location of this entity using a safe one from {@link TeleportHelper#getSafeLocation(Location)}. This is equivalent to a
-     * teleport and also moves this entity's passengers.
-     *
-     * @param location The location to set
-     * @return True if location was set successfully, false if location couldn't be set as no safe location was found
-     */
-    boolean setLocationSafely(Location<World> location);
-
-    /**
      * Gets the rotation.
      *
      * <p>The format of the rotation is represented by:</p>
@@ -158,20 +148,6 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
     void setLocationAndRotation(Location<World> location, Vector3d rotation);
 
     /**
-     * Sets the location using a safe one from {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this entity.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
-     *
-     * @param location The location to set
-     * @param rotation The rotation to set
-     * @return True if location was set successfully, false if location couldn't be set as no safe location was found
-     */
-    boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation);
-
-    /**
      * Moves the entity to the specified location, and sets the rotation. {@link RelativePositions}
      * listed inside the EnumSet are considered relative.
      *
@@ -185,25 +161,6 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      * @param relativePositions The coordinates to set relatively
      */
     void setLocationAndRotation(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
-
-    /**
-     * Sets the location using a safe one from
-     * {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this
-     * entity. {@link RelativePositions} listed inside the EnumSet are
-     * considered relative.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
-     *
-     * @param location The location to set
-     * @param rotation The rotation to set
-     * @param relativePositions The coordinates to set relatively
-     * @return True if location was set successfully, false if location
-     *     couldn't be set as no safe location was found
-     */
-    boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
     /**
      * Gets the entity scale. Not currently used.
