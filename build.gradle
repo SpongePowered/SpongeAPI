@@ -115,6 +115,8 @@ genEventImpl {
 }
 
 sortClassFields {
+    add 'main', 'org.spongepowered.api.boss.BossBarColors'
+    add 'main', 'org.spongepowered.api.boss.BossBarOverlays'
     add 'main', 'org.spongepowered.api.data.key.Keys'
     add 'main', 'org.spongepowered.api.data.type.ArmorTypes'
     add 'main', 'org.spongepowered.api.data.type.Arts'
