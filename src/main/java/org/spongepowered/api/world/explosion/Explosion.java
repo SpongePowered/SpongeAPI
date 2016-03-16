@@ -98,6 +98,13 @@ public interface Explosion {
     boolean shouldBreakBlocks();
 
     /**
+     * Gets whether this explosion will damage entities.
+     *
+     * @return Whether the explosion will damage entities
+     */
+    boolean shouldDamageEntities();
+
+    /**
      * A builder for {@link Explosion}.
      */
     interface Builder extends ResettableBuilder<Explosion, Builder> {
@@ -141,6 +148,14 @@ public interface Explosion {
          * @return The builder, for chaining
          */
         Builder canCauseFire(boolean fire);
+
+        /**
+         * Sets whether the explosion will damage entities nearby.
+         *
+         * @param damage Whether the explosion will damage entities
+         * @return This builder, for chaining
+         */
+        Builder shouldDamageEntities(boolean damage);
 
         /**
          * Sets whether the explosion will have smoke particles.
