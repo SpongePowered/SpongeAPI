@@ -239,13 +239,13 @@ public class MemoryDataView implements DataView {
         if (value instanceof DataView) {
             checkArgument(value != this, "Cannot set a DataView to itself.");
             copyDataView(path, (DataView) value);
-        } else if (value instanceof CatalogType) {
-            return set(path, ((CatalogType) value).getId());
-        } else if (value instanceof DataSerializable) {
+        }else if (value instanceof DataSerializable) {
             DataContainer valueContainer = ((DataSerializable) value).toContainer();
             checkArgument(!(valueContainer).equals(this), "Cannot insert self-referencing DataSerializable");
             copyDataView(path, valueContainer);
-        } else {
+        } else if (value instanceof CatalogType) {
+            return set(path, ((CatalogType) value).getId());
+        }  else {
             List<String> parts = path.getParts();
             if (parts.size() > 1) {
                 String subKey = parts.get(0);
@@ -791,7 +791,10 @@ public class MemoryDataView implements DataView {
         checkNotNull(clazz, "clazz");
         DataManager manager = Sponge.getDataManager();
         if (clazz.isAssignableFrom(CatalogType.class)) {
-            return (Optional<T>) getCatalogType(path, ((Class<? extends CatalogType>) clazz));
+            final Optional<T> catalog = (Optional<T>) getCatalogType(path, ((Class<? extends CatalogType>) clazz));
+            if (catalog.isPresent()) {
+                return catalog;
+            }
         }
         Optional<DataView> optional = getUnsafeView(path);
 
