@@ -22,24 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.data.manipulator.mutable.entity;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.BodyPartRotationalData;
-import org.spongepowered.api.entity.ArmorEquipable;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableShowArmsData;
+import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.living.ArmorStand;
 
 /**
- * Represents an armor stand.
+ * A {@link DataManipulator} for the "show arms" state
+ * of an {@link ArmorStand}.
  */
-public interface ArmorStand extends Living, ArmorEquipable {
+public interface ShowArmsData extends DataManipulator<ShowArmsData, ImmutableShowArmsData> {
 
     /**
-     * Gets a copy of the current {@link BodyPartRotationalData} used by this
-     * {@link ArmorStand}.
+     * Gets the {@link Value} of the "show arms" state of an {@link ArmorStand}.
      *
-     * @return A copy of the current body rotational data
+     * @return The value of the "show arms" state
      */
-    default BodyPartRotationalData getBodyPartRotationalData() {
-        return get(BodyPartRotationalData.class).get();
-    }
+    Value<Boolean> showArms();
 
 }

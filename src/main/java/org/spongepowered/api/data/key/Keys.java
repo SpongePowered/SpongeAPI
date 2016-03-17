@@ -42,6 +42,7 @@ import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.RespawnLocation;
@@ -115,6 +116,14 @@ public final class Keys {
     public static final Key<Value<DyeColor>> BANNER_BASE_COLOR = KeyFactory.fake("BANNER_BASE_COLOR");
 
     public static final Key<PatternListValue> BANNER_PATTERNS = KeyFactory.fake("BANNER_PATTERNS");
+
+    /**
+     * Represents the {@link Key} for representing the "has base plate" state
+     * of an {@link ArmorStand}.
+     *
+     * @see BasePlateData#basePlate()
+     */
+    public static final Key<Value<Boolean>> BASE_PLATE = KeyFactory.fake("BASE_PLATE");
 
     public static final Key<MutableBoundedValue<Float>> BASE_SIZE = KeyFactory.fake("BASE_SIZE");
 
@@ -389,6 +398,14 @@ public final class Keys {
     public static final Key<Value<GoldenApple>> GOLDEN_APPLE_TYPE = KeyFactory.fake("GOLDEN_APPLE_TYPE");
 
     /**
+     * Represents the {@link Key} for representing the "has gravity" state
+     * of an {@link ArmorStand}.
+     *
+     * @see GravityData#gravity()
+     */
+    public static final Key<Value<Boolean>> GRAVITY = KeyFactory.fake("GRAVITY");
+
+    /**
      * Represents the {@link Key} for representing the "growth stage" state
      * of a {@link BlockState}.
      *
@@ -556,6 +573,14 @@ public final class Keys {
     public static final Key<Value<String>> LOCK_TOKEN = KeyFactory.fake("LOCK_TOKEN");
 
     public static final Key<Value<LogAxis>> LOG_AXIS = KeyFactory.fake("LOG_AXIS");
+
+    /**
+     * Represents the {@link Key} for representing the "marker" state of
+     * an {@link ArmorStand}.
+     *
+     * @see MarkerData#marker()
+     */
+    public static final Key<Value<Boolean>> MARKER = KeyFactory.fake("MARKER");
 
     public static final Key<MutableBoundedValue<Integer>> MAX_AIR = KeyFactory.fake("MAX_AIR");
 
@@ -750,6 +775,14 @@ public final class Keys {
     public static final Key<Value<Boolean>> SHOULD_DROP = KeyFactory.fake("SHOULD_DROP");
 
     /**
+     * Represents the {@link Key} for representing the "show arms" state
+     * of an {@link ArmorStand}.
+     *
+     * @see ShowArmsData#showArms()
+     */
+    public static final Key<Value<Boolean>> SHOW_ARMS = KeyFactory.fake("SHOW_ARMS");
+
+    /**
      * Represents the {@link Key} for representing the {@link ShrubType}
      * of a {@link BlockState}.
      *
@@ -774,6 +807,14 @@ public final class Keys {
     public static final Key<Value<SlabType>> SLAB_TYPE = KeyFactory.fake("SLAB_TYPE");
 
     public static final Key<MutableBoundedValue<Integer>> SLIME_SIZE = KeyFactory.fake("SLIME_SIZE");
+
+    /**
+     * Represents the {@link Key} for representing the "is small" state
+     * of an {@link ArmorStand}.
+     *
+     * @see SmallData#small()
+     */
+    public static final Key<Value<Boolean>> SMALL = KeyFactory.fake("SMALL");
 
     /**
      * Represents the {@link Key} for representing the "snowed" state
