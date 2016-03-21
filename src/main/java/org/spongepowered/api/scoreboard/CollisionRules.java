@@ -27,42 +27,36 @@ package org.spongepowered.api.scoreboard;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Visibility names which cause nametags or death messages to be displayed
- * differently to players on a team.
+ * An enumeration of vanilla {@link CollisionRule}s.
  */
-public final class Visibilities {
+public final class CollisionRules {
 
     // SORTFIELDS:ON
 
     /**
-     * Death messages or nametags are always visible.
+     * Members will always collide with other entities
      *
      * <p>This is the default value.</p>
      */
-    public static final Visibility ALWAYS = DummyObjectProvider.createFor(Visibility.class, "ALWAYS");
+    public static final CollisionRule ALWAYS = DummyObjectProvider.createFor(CollisionRule.class, "ALWAYS");
 
     /**
-     * Death messages or nametags are never visible.
+     * Members will never collide.
      */
-    public static final Visibility NEVER = DummyObjectProvider.createFor(Visibility.class, "NEVER");
+    public static final CollisionRule NEVER = DummyObjectProvider.createFor(CollisionRule.class, "NEVER");
 
     /**
-     * Death messages or nametags for members of other teams will not be
-     * visible, but death messages or nametags for members of the same team
-     * will be visible.
+     * Members will only push members on opposing teams.
      */
-    public static final Visibility HIDE_FOR_OTHER_TEAMS = DummyObjectProvider.createFor(Visibility.class, "HIDE_FOR_OTHER_TEAMS");
+    public static final CollisionRule PUSH_OTHER_TEAMS = DummyObjectProvider.createFor(CollisionRule.class, "PUSH_OTHER_TEAMS");
 
     /**
-     * Death messages or nametags for members of other teams will be
-     * visible, but death messages or nametags for members of the same team
-     * will not be visible.
+     * Members will only push other members on their team and mobs.
      */
-    public static final Visibility HIDE_FOR_OWN_TEAM = DummyObjectProvider.createFor(Visibility.class, "HIDE_FOR_OWN_TEAM");
+    public static final CollisionRule PUSH_OWN_TEAM = DummyObjectProvider.createFor(CollisionRule.class, "PUSH_OWN_TEAM");
 
     // SORTFIELDS:OFF
 
-    private Visibilities() {
+    private CollisionRules() {
     }
-
 }
