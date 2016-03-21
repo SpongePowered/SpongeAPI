@@ -25,7 +25,7 @@
 package org.spongepowered.api.world;
 
 /**
- * Location sources are anything that have a current location.
+ * Represents anything with a location.
  */
 @FunctionalInterface
 public interface Locatable {

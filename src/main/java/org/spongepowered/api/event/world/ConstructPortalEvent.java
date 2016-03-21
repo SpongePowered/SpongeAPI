@@ -28,15 +28,14 @@ package org.spongepowered.api.event.world;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.Locatable;
 
 /**
  * An event where a portal is created. Usually, this happens after a
  * {@link ChangeBlockEvent} from any source.
+ *
+ * TODO: Special object for Portal instead of just the location
  */
-public interface ConstructPortalEvent extends Event, Cancellable {
-
-    Location<World> getPortalLocation();
+public interface ConstructPortalEvent extends Event, Cancellable, Locatable {
 
 }
