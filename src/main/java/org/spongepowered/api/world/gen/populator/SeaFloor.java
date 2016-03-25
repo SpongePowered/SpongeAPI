@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
-import com.google.common.base.Predicate;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
+
+import java.util.function.Predicate;
 
 /**
  * Represents a populator which places down a disc of material onto the bottom
