@@ -889,6 +889,8 @@ public final class Keys {
 
     public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = null;
 
+    public static final Key<Value<Boolean>> IS_ADULT = null;
+
     // SORTFIELDS:OFF
 
     private Keys() {}
