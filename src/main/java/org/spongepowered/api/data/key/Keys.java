@@ -1103,6 +1103,8 @@ public final class Keys {
 
     public static final Key<Value<ZombieType>> ZOMBIE_TYPE = KeyFactory.fake("ZOMBIE_TYPE");
 
+    public static final Key<Value<Boolean>> IS_ADULT = KeyFactory.fake("IS_ADULT");
+
     // SORTFIELDS:OFF
 
     private Keys() {}
