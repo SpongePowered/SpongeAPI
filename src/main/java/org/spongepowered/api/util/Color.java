@@ -36,6 +36,7 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
+import org.spongepowered.api.data.persistence.AbstractDataBuilder;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataContentUpdater;
 import org.spongepowered.api.data.persistence.InvalidDataException;
@@ -236,21 +237,14 @@ public final class Color implements DataSerializable {
             .toString();
     }
 
-    public static final class Builder implements DataBuilder<Color> {
+    public static final class Builder extends AbstractDataBuilder<Color> implements DataBuilder<Color> {
+
+        public Builder() {
+            super(Color.class, 1);
+        }
 
         @Override
-        public Optional<Color> build(DataView container) throws InvalidDataException {
-            if (container.contains(Queries.CONTENT_VERSION)) {
-                int version  = container.getInt(Queries.CONTENT_VERSION).get();
-                if (version < 1) {
-                    Optional<DataContentUpdater> optional = Sponge.getDataManager().getWrappedContentUpdater(Color.class, version, 1);
-                    if (!optional.isPresent()) {
-                        throw new InvalidDataException("The container for Color either contained an invalid version or there's no DataContentUpdater"
-                        + " available for " + version+ " version.");
-                    }
-                    container = optional.get().update(container);
-                }
-            }
+        protected Optional<Color> buildContent(DataView container) throws InvalidDataException {
             if (!container.contains(Queries.COLOR_RED, Queries.COLOR_GREEN, Queries.COLOR_BLUE)) {
                 return Optional.empty();
             }
