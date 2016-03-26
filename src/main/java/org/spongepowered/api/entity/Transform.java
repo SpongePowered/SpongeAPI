@@ -123,7 +123,7 @@ public final class Transform<E extends Extent> {
      *
      * <p>Note: This can be null if the {@link Extent} is unloaded and garbage
      * collected.</p>
-     * 
+     *
      * @return The extent
      * @throws IllegalStateException If the transform doesn't have an extent
      */

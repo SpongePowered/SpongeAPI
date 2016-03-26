@@ -22,33 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.event.factory.plugin;
+package org.spongepowered.api.util.generator.event.factory;
 
-import org.objectweb.asm.ClassWriter;
-import org.spongepowered.api.eventgencore.Property;
+import org.spongepowered.api.util.generator.event.factory.plugin.EventFactoryPlugin;
 
-import java.lang.reflect.Method;
+import java.util.List;
 
 /**
- * Represents a class which modifies the behavior of an event generator.
+ * Creates event factories that can generate new instances of requested
+ * events.
  */
-public interface EventFactoryPlugin {
+public interface FactoryProvider {
 
     /**
-     * Called to allow a plugin to override the generation of the field and method(s) for a {@link Property}.
+     * Get whether there should be any checks on whether a parameter is
+     * null when it should not be.
      *
-     * <p>If an event factory plugin does not have any special behavior for the provided {@link Property}, it
-     * should return {@code false}, which passes on the property to other plugins for processing.</p>
-     *
-     * <p>Returning {@code true} stops the processing of the provided {@link Property}.</p>
-     *
-     * @param eventClass The {@link Class} of the event an implementation is being generated for
-     * @param internalName The internal name of the event
-     * @param classWriter The {@link ClassWriter} being used to generate the event class implementation
-     * @param property The {@link Property} being processed
-     *
-     * @return whether the provided {@link Property} was processed.
+     * @return The null policy
      */
-    boolean contributeProperty(Class<?> eventClass, String internalName, ClassWriter classWriter, Property<Class<?>, Method> property);
+    NullPolicy getNullPolicy();
+
+    /**
+     * Set whether there should be any checks on whether a parameter is
+     * null when it should not be.
+     *
+     * @param policy The null policy
+     */
+    void setNullPolicy(NullPolicy policy);
+
+    /**
+     * Creates a function that takes a map of property names with their
+     * values to create a new instance of a generated class that implements
+     * the given type.
+     *
+     * @param type The type to generate a class for
+     * @param parentType The parent type
+     * @param plugins The {@link EventFactoryPlugin}s to use when generating the class
+     * @param <T> The type of the event
+     * @return The function
+     */
+    <T> EventFactory<T> create(Class<T> type, Class<?> parentType, List<? extends EventFactoryPlugin> plugins);
 
 }

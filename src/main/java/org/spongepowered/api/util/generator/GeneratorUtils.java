@@ -22,16 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.event.factory;
+package org.spongepowered.api.util.generator;
 
-import java.util.Map;
-import java.util.function.Function;
+public final class GeneratorUtils {
 
-/**
- * Generates a new instance of an event using a given map of parameters.
- *
- * @param <E> The type of event
- */
-public interface EventFactory<E> extends Function<Map<String, Object>, E> {
+    public static String getClassName(String targetPackage, Class<?> clazz, String classifier) {
+        String name = clazz.getSimpleName();
+        while (clazz.getEnclosingClass() != null) {
+            clazz = clazz.getEnclosingClass();
+            name = clazz.getSimpleName() + "$" + name;
+        }
+        return targetPackage + "." + name + "$" + classifier;
+    }
+
+
+    public static class LocalClassLoader extends ClassLoader {
+
+        /**
+         * Creates a new {@link LocalClassLoader}.
+         *
+         * @param parent The parent class loader
+         */
+        public LocalClassLoader(ClassLoader parent) {
+            super(parent);
+        }
+
+        /**
+         * Defines the class by name and bytecode arrray.
+         *
+         * @param name The name of the class
+         * @param b The bytecode array
+         * @return The class
+         */
+        public Class<?> defineClass(String name, byte[] b) {
+            return defineClass(name, b, 0, b.length);
+        }
+    }
+
+    private GeneratorUtils() {
+    }
 
 }

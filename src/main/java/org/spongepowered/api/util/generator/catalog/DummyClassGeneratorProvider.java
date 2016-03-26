@@ -22,45 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.event.factory;
+package org.spongepowered.api.util.generator.catalog;
 
-import org.spongepowered.api.util.event.factory.plugin.EventFactoryPlugin;
+import org.spongepowered.api.util.generator.GeneratorUtils;
 
-import java.util.List;
+public class DummyClassGeneratorProvider {
 
-/**
- * Creates event factories that can generate new instances of requested
- * events.
- */
-public interface FactoryProvider {
+    private final GeneratorUtils.LocalClassLoader classLoader = new GeneratorUtils.LocalClassLoader(DummyClassGenerator.class.getClassLoader());
+    private final DummyClassGenerator generator = new DummyClassGenerator();
+    private final String targetPackage;
 
-    /**
-     * Get whether there should be any checks on whether a parameter is
-     * null when it should not be.
-     *
-     * @return The null policy
-     */
-    NullPolicy getNullPolicy();
+    public DummyClassGeneratorProvider(String targetPackage) {
+        this.targetPackage = targetPackage;
+    }
 
-    /**
-     * Set whether there should be any checks on whether a parameter is
-     * null when it should not be.
-     *
-     * @param policy The null policy
-     */
-    void setNullPolicy(NullPolicy policy);
+    @SuppressWarnings("unchecked")
+    public <T> Class<T> create(final Class<T> type, Class<? extends Throwable> exceptionType) {
+        String name = GeneratorUtils.getClassName(this.targetPackage, type, "DummyClass");
 
-    /**
-     * Creates a function that takes a map of property names with their
-     * values to create a new instance of a generated class that implements
-     * the given type.
-     *
-     * @param type The type to generate a class for
-     * @param parentType The parent type
-     * @param plugins The {@link EventFactoryPlugin}s to use when generating the class
-     * @param <T> The type of the event
-     * @return The function
-     */
-    <T> EventFactory<T> create(Class<T> type, Class<?> parentType, List<? extends EventFactoryPlugin> plugins);
-
+        return (Class<T>) this.classLoader.defineClass(name, this.generator.createClass(type, name, exceptionType));
+    }
 }
