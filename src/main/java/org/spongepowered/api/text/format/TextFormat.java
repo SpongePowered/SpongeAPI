@@ -45,7 +45,7 @@ public final class TextFormat implements TextElement {
     /**
      * An empty {@link TextFormat} with no {@link TextColor} and no {@link TextStyle}.
      */
-    public static final TextFormat NONE = new TextFormat();
+    public static final TextFormat NONE = new TextFormat(TextColors.NONE, TextStyles.NONE);
 
     /**
      * The text color.
@@ -58,28 +58,40 @@ public final class TextFormat implements TextElement {
     private final TextStyle style;
 
     /**
-     * Constructs a new {@link TextFormat} with the default style and color.
+     * Gets the {@link TextFormat} with the default style and color.
+     *
+     * @return The empty text format
      */
-    private TextFormat() {
-        this(TextColors.NONE, TextStyles.NONE);
+    public static TextFormat of() {
+        return NONE;
     }
 
     /**
-     * Constructs a new {@link TextFormat} with the default color.
+     * Constructs a new {@link TextFormat} with the specific style.
      *
      * @param style The style
      */
-    private TextFormat(TextStyle style) {
-        this(TextColors.NONE, style);
+    public static TextFormat of(TextStyle style) {
+        return new TextFormat(TextColors.NONE, style);
     }
 
     /**
-     * Constructs a new {@link TextFormat} with the default style.
+     * Constructs a new {@link TextFormat} with the specific color.
      *
      * @param color The color
      */
-    private TextFormat(TextColor color) {
-        this(color, TextStyles.NONE);
+    public static TextFormat of(TextColor color) {
+        return new TextFormat(color, TextStyles.NONE);
+    }
+
+    /**
+     * Constructs a new {@link TextFormat} with the specific color and style.
+     *
+     * @param color The color
+     * @param style The style
+     */
+    public static TextFormat of(TextColor color, TextStyle style) {
+        return new TextFormat(color, style);
     }
 
     /**

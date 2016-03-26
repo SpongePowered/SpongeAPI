@@ -33,6 +33,7 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.MemoryDataContainer;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -64,11 +65,13 @@ public final class ConfigurateTranslator implements DataTranslator<Configuration
     private static DataContainer translateFromNode(ConfigurationNode node) {
         checkNotNull(node, "node");
         DataContainer dataContainer = new MemoryDataContainer();
-        if (node.getValue() != null) {
-            if (node.getKey() == null) {
+        Object value = node.getValue();
+        Object key = node.getKey();
+        if (value != null) {
+            if (key == null || value instanceof Map || value instanceof List) {
                 translateMapOrList(node, dataContainer);
             } else {
-                dataContainer.set(of('.', node.getKey().toString()), node.getValue());
+                dataContainer.set(of('.', key.toString()), value);
             }
         }
         return dataContainer;

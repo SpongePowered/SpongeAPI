@@ -230,6 +230,10 @@ final class PluginElement {
         if (other.getUrl() != null) {
             meta.setUrl(other.getUrl());
         }
+        if (!other.getAuthors().isEmpty()) {
+            meta.getAuthors().clear();
+            meta.getAuthors().addAll(other.getAuthors());
+        }
 
         SpongeExtension ext = other.getExtension("sponge");
         if (ext != null) {
