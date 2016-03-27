@@ -24,12 +24,25 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class QuartzTypes {
 
-    public static final QuartzType DEFAULT = null;
-    public static final QuartzType CHISELED = null;
-    public static final QuartzType LINES_X = null;
-    public static final QuartzType LINES_Y = null;
-    public static final QuartzType LINES_Z = null;
+    // SORTFIELDS:ON
+
+    public static final QuartzType CHISELED = DummyObjectProvider.createFor(QuartzType.class, "CHISELED");
+
+    public static final QuartzType DEFAULT = DummyObjectProvider.createFor(QuartzType.class, "DEFAULT");
+
+    public static final QuartzType LINES_X = DummyObjectProvider.createFor(QuartzType.class, "LINES_X");
+
+    public static final QuartzType LINES_Y = DummyObjectProvider.createFor(QuartzType.class, "LINES_Y");
+
+    public static final QuartzType LINES_Z = DummyObjectProvider.createFor(QuartzType.class, "LINES_Z");
+
+    // SORTFIELDS:OFF
+
+    private QuartzTypes() {
+    }
 
 }

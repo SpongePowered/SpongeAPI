@@ -24,13 +24,20 @@
  */
 package org.spongepowered.api.world.gen.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known {@link MushroomType}s.
  */
 public final class MushroomTypes {
 
-    public static final MushroomType BROWN = null;
-    public static final MushroomType RED = null;
+    // SORTFIELDS:ON
+
+    public static final MushroomType BROWN = DummyObjectProvider.createFor(MushroomType.class, "BROWN");
+
+    public static final MushroomType RED = DummyObjectProvider.createFor(MushroomType.class, "RED");
+
+    // SORTFIELDS:OFF
 
     private MushroomTypes() {
     }

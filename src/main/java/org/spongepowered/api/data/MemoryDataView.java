@@ -843,7 +843,7 @@ public class MemoryDataView implements DataView {
     @Override
     public <T extends CatalogType> Optional<T> getCatalogType(DataQuery path, Class<T> catalogType) {
         checkNotNull(path, "path");
-        checkNotNull(catalogType, "catalog type");
+        checkNotNull(catalogType, "dummy type");
         final Optional<String> catalogId = getString(path);
         if (!catalogId.isPresent()) {
             return Optional.empty();

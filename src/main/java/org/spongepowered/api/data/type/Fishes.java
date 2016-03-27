@@ -24,15 +24,24 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known {@link Fish} types.
  */
 public final class Fishes {
 
-    public static final Fish COD = null;
-    public static final Fish SALMON = null;
-    public static final Fish CLOWNFISH = null;
-    public static final Fish PUFFERFISH = null;
+    // SORTFIELDS:ON
+
+    public static final Fish CLOWNFISH = DummyObjectProvider.createFor(Fish.class, "CLOWNFISH");
+
+    public static final Fish COD = DummyObjectProvider.createFor(Fish.class, "COD");
+
+    public static final Fish PUFFERFISH = DummyObjectProvider.createFor(Fish.class, "PUFFERFISH");
+
+    public static final Fish SALMON = DummyObjectProvider.createFor(Fish.class, "SALMON");
+
+    // SORTFIELDS:OFF
 
     private Fishes() {
     }

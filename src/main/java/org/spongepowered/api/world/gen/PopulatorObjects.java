@@ -24,33 +24,61 @@
  */
 package org.spongepowered.api.world.gen;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * A pseudo-enum of {@link PopulatorObject}s.
  */
 public final class PopulatorObjects {
 
     // Populators
-    public static final PopulatorObject DESERT_WELL = null;
+    // SORTFIELDS:ON
+
+    public static final PopulatorObject DESERT_WELL = DummyObjectProvider.createFor(PopulatorObject.class, "DESERT_WELL");
+
+    // SORTFIELDS:OFF
 
     // Trees
-    public static final PopulatorObject BIRCH = null;
-    public static final PopulatorObject CANOPY = null;
-    public static final PopulatorObject JUNGLE = null;
-    public static final PopulatorObject JUNGLE_BUSH = null;
-    public static final PopulatorObject MEGA_BIRCH = null;
-    public static final PopulatorObject MEGA_JUNGLE = null;
-    public static final PopulatorObject MEGA_OAK = null;
-    public static final PopulatorObject MEGA_POINTY_TAIGA = null;
-    public static final PopulatorObject MEGA_TALL_TAIGA = null;
-    public static final PopulatorObject OAK = null;
-    public static final PopulatorObject POINTY_TAIGA = null;
-    public static final PopulatorObject SAVANNA = null;
-    public static final PopulatorObject SWAMP = null;
-    public static final PopulatorObject TALL_TAIGA = null;
+    // SORTFIELDS:ON
+
+    public static final PopulatorObject BIRCH = DummyObjectProvider.createFor(PopulatorObject.class, "BIRCH");
+
+    public static final PopulatorObject CANOPY = DummyObjectProvider.createFor(PopulatorObject.class, "CANOPY");
+
+    public static final PopulatorObject JUNGLE = DummyObjectProvider.createFor(PopulatorObject.class, "JUNGLE");
+
+    public static final PopulatorObject JUNGLE_BUSH = DummyObjectProvider.createFor(PopulatorObject.class, "JUNGLE_BUSH");
+
+    public static final PopulatorObject MEGA_BIRCH = DummyObjectProvider.createFor(PopulatorObject.class, "MEGA_BIRCH");
+
+    public static final PopulatorObject MEGA_JUNGLE = DummyObjectProvider.createFor(PopulatorObject.class, "MEGA_JUNGLE");
+
+    public static final PopulatorObject MEGA_OAK = DummyObjectProvider.createFor(PopulatorObject.class, "MEGA_OAK");
+
+    public static final PopulatorObject MEGA_POINTY_TAIGA = DummyObjectProvider.createFor(PopulatorObject.class, "MEGA_POINTY_TAIGA");
+
+    public static final PopulatorObject MEGA_TALL_TAIGA = DummyObjectProvider.createFor(PopulatorObject.class, "MEGA_TALL_TAIGA");
+
+    public static final PopulatorObject OAK = DummyObjectProvider.createFor(PopulatorObject.class, "OAK");
+
+    public static final PopulatorObject POINTY_TAIGA = DummyObjectProvider.createFor(PopulatorObject.class, "POINTY_TAIGA");
+
+    public static final PopulatorObject SAVANNA = DummyObjectProvider.createFor(PopulatorObject.class, "SAVANNA");
+
+    public static final PopulatorObject SWAMP = DummyObjectProvider.createFor(PopulatorObject.class, "SWAMP");
+
+    public static final PopulatorObject TALL_TAIGA = DummyObjectProvider.createFor(PopulatorObject.class, "TALL_TAIGA");
+
+    // SORTFIELDS:OFF
 
     // Mushrooms
-    public static final PopulatorObject BROWN = null;
-    public static final PopulatorObject RED = null;
+    // SORTFIELDS:ON
+
+    public static final PopulatorObject BROWN = DummyObjectProvider.createFor(PopulatorObject.class, "BROWN");
+
+    public static final PopulatorObject RED = DummyObjectProvider.createFor(PopulatorObject.class, "RED");
+
+    // SORTFIELDS:OFF
 
     private PopulatorObjects() {
     }

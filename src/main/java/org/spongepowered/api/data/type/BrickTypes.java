@@ -24,15 +24,24 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known vanilla {@link BrickType}s.
  */
 public final class BrickTypes {
 
-    public static final BrickType DEFAULT = null;
-    public static final BrickType MOSSY = null;
-    public static final BrickType CRACKED = null;
-    public static final BrickType CHISELED = null;
+    // SORTFIELDS:ON
+
+    public static final BrickType CHISELED = DummyObjectProvider.createFor(BrickType.class, "CHISELED");
+
+    public static final BrickType CRACKED = DummyObjectProvider.createFor(BrickType.class, "CRACKED");
+
+    public static final BrickType DEFAULT = DummyObjectProvider.createFor(BrickType.class, "DEFAULT");
+
+    public static final BrickType MOSSY = DummyObjectProvider.createFor(BrickType.class, "MOSSY");
+
+    // SORTFIELDS:OFF
 
     private BrickTypes() {
     }

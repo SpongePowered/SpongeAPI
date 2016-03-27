@@ -24,13 +24,20 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of various {@link CoalType}s.
  */
 public final class CoalTypes {
 
-    public static final CoalType COAL = null;
-    public static final CoalType CHARCOAL = null;
+    // SORTFIELDS:ON
+
+    public static final CoalType CHARCOAL = DummyObjectProvider.createFor(CoalType.class, "CHARCOAL");
+
+    public static final CoalType COAL = DummyObjectProvider.createFor(CoalType.class, "COAL");
+
+    // SORTFIELDS:OFF
 
     private CoalTypes() {
     }

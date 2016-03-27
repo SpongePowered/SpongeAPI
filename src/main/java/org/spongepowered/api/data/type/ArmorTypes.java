@@ -24,13 +24,23 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class ArmorTypes {
 
-    public static final ArmorType LEATHER = null;
-    public static final ArmorType CHAIN = null;
-    public static final ArmorType IRON = null;
-    public static final ArmorType GOLD = null;
-    public static final ArmorType DIAMOND = null;
+    // SORTFIELDS:ON
+
+    public static final ArmorType CHAIN = DummyObjectProvider.createFor(ArmorType.class, "CHAIN");
+
+    public static final ArmorType DIAMOND = DummyObjectProvider.createFor(ArmorType.class, "DIAMOND");
+
+    public static final ArmorType GOLD = DummyObjectProvider.createFor(ArmorType.class, "GOLD");
+
+    public static final ArmorType IRON = DummyObjectProvider.createFor(ArmorType.class, "IRON");
+
+    public static final ArmorType LEATHER = DummyObjectProvider.createFor(ArmorType.class, "LEATHER");
+
+    // SORTFIELDS:OFF
 
     private ArmorTypes() {
     }

@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.generator.catalog;
+package org.spongepowered.api.util.generator.dummy;
 
 import org.spongepowered.api.util.generator.GeneratorUtils;
 

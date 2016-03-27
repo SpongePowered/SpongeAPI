@@ -24,25 +24,31 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * Holds all possible {@link DimensionType}s.
  */
 public final class DimensionTypes {
 
-    /**
-     * Represents the default dimension type of a {@link World}.
-     */
-    public static final DimensionType OVERWORLD = null;
+    // SORTFIELDS:ON
 
     /**
      * Represents a nether based dimension.
      */
-    public static final DimensionType NETHER = null;
+    public static final DimensionType NETHER = DummyObjectProvider.createFor(DimensionType.class, "NETHER");
+
+    /**
+     * Represents the default dimension type of a {@link World}.
+     */
+    public static final DimensionType OVERWORLD = DummyObjectProvider.createFor(DimensionType.class, "OVERWORLD");
 
     /**
      * Represents an "end" based dimension.
      */
-    public static final DimensionType THE_END = null;
+    public static final DimensionType THE_END = DummyObjectProvider.createFor(DimensionType.class, "THE_END");
+
+    // SORTFIELDS:OFF
 
     private DimensionTypes() {
     }

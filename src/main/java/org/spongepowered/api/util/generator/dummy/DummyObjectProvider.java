@@ -22,12 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.generator.catalog;
+package org.spongepowered.api.util.generator.dummy;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import org.spongepowered.api.CatalogType;
+
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * This class dynamically generates a dummy class for a given interface (usually a {@link CatalogType}).
@@ -35,7 +37,7 @@ import org.spongepowered.api.CatalogType;
  * <p>The generated class implements all of the interface's methods, but
  * throws an {@link UnsupportedOperationException} with an informative error message.</p>
  */
-public final class DummyCatalogProvider {
+public final class DummyObjectProvider {
 
     private static final DummyClassGeneratorProvider factoryProvider = new DummyClassGeneratorProvider("org.spongepowered.api.util.dummy");
 
@@ -56,10 +58,10 @@ public final class DummyCatalogProvider {
      * @return The generated dummy class
      */
     @SuppressWarnings("unchecked")
-    public static <T> T createFor(Class<T> type) {
+    public static <T> T createFor(Class<T> type, String fieldName) {
         try {
-            return (T) factories.getUnchecked(type).newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
+            return (T) factories.getUnchecked(type).getConstructor(String.class).newInstance(fieldName);
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             throw new RuntimeException(String.format("Failed to instantiate dummy class for class %s", type), e);
         }
     }

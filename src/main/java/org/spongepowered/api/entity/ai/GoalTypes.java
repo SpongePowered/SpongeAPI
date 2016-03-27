@@ -25,13 +25,16 @@
 package org.spongepowered.api.entity.ai;
 
 import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 public final class GoalTypes {
+
+    // SORTFIELDS:ON
 
     /**
      * {@link Goal} that is the default set of tasks for most {@link Agent}s.
      */
-    public static final GoalType NORMAL = null;
+    public static final GoalType NORMAL = DummyObjectProvider.createFor(GoalType.class, "NORMAL");
 
     /**
      * {@link Goal} that is the "target" set of tasks.
@@ -42,5 +45,10 @@ public final class GoalTypes {
      * a task in their normal goal sees that they have a target, they act
      * accordingly.
      */
-    public static final GoalType TARGET = null;
+    public static final GoalType TARGET = DummyObjectProvider.createFor(GoalType.class, "TARGET");
+
+    // SORTFIELDS:OFF
+
+    private GoalTypes() {
+    }
 }

@@ -24,32 +24,58 @@
  */
 package org.spongepowered.api.block.tileentity;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of all {@link TileEntityType}s in vanilla Minecraft.
  */
 public final class TileEntityTypes {
     private TileEntityTypes() {}
 
-    public static final TileEntityType BANNER = null;
-    public static final TileEntityType BEACON = null;
-    public static final TileEntityType BREWING_STAND = null;
-    public static final TileEntityType CHEST = null;
-    public static final TileEntityType COMMAND_BLOCK = null;
-    public static final TileEntityType COMPARATOR = null;
-    public static final TileEntityType DAYLIGHT_DETECTOR = null;
-    public static final TileEntityType DISPENSER = null;
-    public static final TileEntityType DROPPER = null;
-    public static final TileEntityType ENCHANTMENT_TABLE = null;
-    public static final TileEntityType ENDER_CHEST = null;
-    public static final TileEntityType END_PORTAL = null;
-    public static final TileEntityType FLOWER_POT = null;
-    public static final TileEntityType FURNACE = null;
-    public static final TileEntityType HOPPER = null;
-    public static final TileEntityType JUKEBOX = null;
-    public static final TileEntityType MOB_SPAWNER = null;
-    public static final TileEntityType NOTE = null;
-    public static final TileEntityType PISTON = null;
-    public static final TileEntityType SIGN = null;
-    public static final TileEntityType SKULL = null;
+    // SORTFIELDS:ON
+
+    public static final TileEntityType BANNER = DummyObjectProvider.createFor(TileEntityType.class, "BANNER");
+
+    public static final TileEntityType BEACON = DummyObjectProvider.createFor(TileEntityType.class, "BEACON");
+
+    public static final TileEntityType BREWING_STAND = DummyObjectProvider.createFor(TileEntityType.class, "BREWING_STAND");
+
+    public static final TileEntityType CHEST = DummyObjectProvider.createFor(TileEntityType.class, "CHEST");
+
+    public static final TileEntityType COMMAND_BLOCK = DummyObjectProvider.createFor(TileEntityType.class, "COMMAND_BLOCK");
+
+    public static final TileEntityType COMPARATOR = DummyObjectProvider.createFor(TileEntityType.class, "COMPARATOR");
+
+    public static final TileEntityType DAYLIGHT_DETECTOR = DummyObjectProvider.createFor(TileEntityType.class, "DAYLIGHT_DETECTOR");
+
+    public static final TileEntityType DISPENSER = DummyObjectProvider.createFor(TileEntityType.class, "DISPENSER");
+
+    public static final TileEntityType DROPPER = DummyObjectProvider.createFor(TileEntityType.class, "DROPPER");
+
+    public static final TileEntityType ENCHANTMENT_TABLE = DummyObjectProvider.createFor(TileEntityType.class, "ENCHANTMENT_TABLE");
+
+    public static final TileEntityType ENDER_CHEST = DummyObjectProvider.createFor(TileEntityType.class, "ENDER_CHEST");
+
+    public static final TileEntityType END_PORTAL = DummyObjectProvider.createFor(TileEntityType.class, "END_PORTAL");
+
+    public static final TileEntityType FLOWER_POT = DummyObjectProvider.createFor(TileEntityType.class, "FLOWER_POT");
+
+    public static final TileEntityType FURNACE = DummyObjectProvider.createFor(TileEntityType.class, "FURNACE");
+
+    public static final TileEntityType HOPPER = DummyObjectProvider.createFor(TileEntityType.class, "HOPPER");
+
+    public static final TileEntityType JUKEBOX = DummyObjectProvider.createFor(TileEntityType.class, "JUKEBOX");
+
+    public static final TileEntityType MOB_SPAWNER = DummyObjectProvider.createFor(TileEntityType.class, "MOB_SPAWNER");
+
+    public static final TileEntityType NOTE = DummyObjectProvider.createFor(TileEntityType.class, "NOTE");
+
+    public static final TileEntityType PISTON = DummyObjectProvider.createFor(TileEntityType.class, "PISTON");
+
+    public static final TileEntityType SIGN = DummyObjectProvider.createFor(TileEntityType.class, "SIGN");
+
+    public static final TileEntityType SKULL = DummyObjectProvider.createFor(TileEntityType.class, "SKULL");
+
+    // SORTFIELDS:OFF
 
 }

@@ -25,21 +25,39 @@
 package org.spongepowered.api.event.cause.entity.damage;
 
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class DamageTypes {
 
-    public static final DamageType ATTACK = null;
-    public static final DamageType CONTACT = null;
-    public static final DamageType CUSTOM = null;
-    public static final DamageType DROWN = null;
-    public static final DamageType EXPLOSIVE = null;
-    public static final DamageType FALL = null;
-    public static final DamageType FIRE = null;
-    public static final DamageType GENERIC = null;
-    public static final DamageType HUNGER = null;
-    public static final DamageType MAGIC = null;
-    public static final DamageType PROJECTILE = null;
-    public static final DamageType SUFFOCATE = null;
-    public static final DamageType VOID = null;
+    // SORTFIELDS:ON
+
+    public static final DamageType ATTACK = DummyObjectProvider.createFor(DamageType.class, "ATTACK");
+
+    public static final DamageType CONTACT = DummyObjectProvider.createFor(DamageType.class, "CONTACT");
+
+    public static final DamageType CUSTOM = DummyObjectProvider.createFor(DamageType.class, "CUSTOM");
+
+    public static final DamageType DROWN = DummyObjectProvider.createFor(DamageType.class, "DROWN");
+
+    public static final DamageType EXPLOSIVE = DummyObjectProvider.createFor(DamageType.class, "EXPLOSIVE");
+
+    public static final DamageType FALL = DummyObjectProvider.createFor(DamageType.class, "FALL");
+
+    public static final DamageType FIRE = DummyObjectProvider.createFor(DamageType.class, "FIRE");
+
+    public static final DamageType GENERIC = DummyObjectProvider.createFor(DamageType.class, "GENERIC");
+
+    public static final DamageType HUNGER = DummyObjectProvider.createFor(DamageType.class, "HUNGER");
+
+    public static final DamageType MAGIC = DummyObjectProvider.createFor(DamageType.class, "MAGIC");
+
+    public static final DamageType PROJECTILE = DummyObjectProvider.createFor(DamageType.class, "PROJECTILE");
+
+    public static final DamageType SUFFOCATE = DummyObjectProvider.createFor(DamageType.class, "SUFFOCATE");
+
+    public static final DamageType VOID = DummyObjectProvider.createFor(DamageType.class, "VOID");
+
+    // SORTFIELDS:OFF
 
     private DamageTypes() {}
 

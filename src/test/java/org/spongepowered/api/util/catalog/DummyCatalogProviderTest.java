@@ -26,13 +26,13 @@ package org.spongepowered.api.util.catalog;
 
 import org.junit.Test;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.util.generator.catalog.DummyCatalogProvider;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 public class DummyCatalogProviderTest {
 
     @Test(expected = UnsupportedOperationException.class)
     public void testCreate_BlockType() {
-        DummyCatalogProvider.createFor(BlockType.class).getDefaultState();
+        DummyObjectProvider.createFor(BlockType.class, "FOO").getDefaultState();
     }
 
 }

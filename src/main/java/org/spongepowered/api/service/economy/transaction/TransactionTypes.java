@@ -26,23 +26,27 @@ package org.spongepowered.api.service.economy.transaction;
 
 import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.account.Account;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 public final class TransactionTypes {
+    // SORTFIELDS:ON
 
     /**
      * Represents a transaction where an {@link Account} received some amount of a {@link Currency}.
      */
-    public static final TransactionType DEPOSIT = null;
-
-    /**
-     * Represents a transaction where an {@link Account} lost some amount of a {@link Currency}.
-     */
-    public static final TransactionType WITHDRAW = null;
+    public static final TransactionType DEPOSIT = DummyObjectProvider.createFor(TransactionType.class, "DEPOSIT");
 
     /**
      * Represents a transaction where an {@link Account} transferred some amount of a currency to another {@link Account}.
      */
-    public static final TransactionType TRANSFER = null;
+    public static final TransactionType TRANSFER = DummyObjectProvider.createFor(TransactionType.class, "TRANSFER");
+
+    /**
+     * Represents a transaction where an {@link Account} lost some amount of a {@link Currency}.
+     */
+    public static final TransactionType WITHDRAW = DummyObjectProvider.createFor(TransactionType.class, "WITHDRAW");
+
+    // SORTFIELDS:OFF
 
     private TransactionTypes() {
     }
