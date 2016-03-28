@@ -39,7 +39,6 @@ import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
-import org.spongepowered.api.world.World;
 
 import java.nio.file.Path;
 
@@ -162,11 +161,16 @@ public interface Game {
      */
     ConfigManager getConfigManager();
 
+    @Deprecated
+    default Path getSavesDirectory() {
+        return getGameDirectory();
+    }
+
     /**
-     * Gets the saves directory where {@link World} data currently resides.
+     * Gets the directory where the game's files are located.
      * @return The directory
      */
-    Path getSavesDirectory();
+    Path getGameDirectory();
 
     /**
      * Gets the current {@link GameState} that this game is currently in.
