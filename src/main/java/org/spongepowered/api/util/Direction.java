@@ -24,13 +24,16 @@
  */
 package org.spongepowered.api.util;
 
-import com.flowpowered.math.GenericMath;
-import com.flowpowered.math.TrigMath;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkArgument;
+
 import com.flowpowered.math.vector.Vector3d;
 
 /**
- * Represent the 16 main and secondary cardinal directions plus up and down.
- * With the following assumptions:
+ * Represents all unit vector directions, exactly 22.5 degrees apart from at least one other direction
+ * in only one of either yaw or pitch. This also includes a {@link #NONE} vector.
+ * <p/>
+ * Using the Minecraft direction system:
  * <ul>
  * <li>{@link #NORTH} targeting towards -Z</li>
  * <li>{@link #EAST}  targeting towards +X</li>
@@ -41,93 +44,310 @@ import com.flowpowered.math.vector.Vector3d;
  * </ul>
  */
 public enum Direction {
-    NORTH(new Vector3d(0, 0, -1), Division.CARDINAL),
-    NORTH_NORTHEAST(new Vector3d(C.S8, 0, -C.C8), Division.SECONDARY_ORDINAL),
-    NORTHEAST(new Vector3d(1, 0, -1), Division.ORDINAL),
-    EAST_NORTHEAST(new Vector3d(C.C8, 0, -C.S8), Division.SECONDARY_ORDINAL),
+    // NORTH
+    THREEQUARTERSUPNORTH_NORTHWEST(DirectionVectors.THREEQUARTERSUPNORTH_NORTHWEST, Division.SECONDARY_ORDINAL, true),
+    THREEQUARTERSUP_NORTH(DirectionVectors.THREEQUARTERSUP_NORTH, Division.CARDINAL, true),
+    THREEQUARTERSUPNORTH_NORTHEAST(DirectionVectors.THREEQUARTERSUPNORTH_NORTHEAST, Division.SECONDARY_ORDINAL, true),
+    HALFUPNORTH_NORTHWEST(DirectionVectors.HALFUPNORTH_NORTHWEST, Division.SECONDARY_ORDINAL, true),
+    HALFUP_NORTH(DirectionVectors.HALFUP_NORTH, Division.CARDINAL, true),
+    HALFUPNORTH_NORTHEAST(DirectionVectors.HALFUPNORTH_NORTHEAST, Division.SECONDARY_ORDINAL, true),
+    QUARTERUPNORTH_NORTHWEST(DirectionVectors.QUARTERUPNORTH_NORTHWEST, Division.SECONDARY_ORDINAL, true),
+    QUARTERUP_NORTH(DirectionVectors.QUARTERUP_NORTH, Division.CARDINAL, true),
+    QUARTERUPNORTH_NORTHEAST(DirectionVectors.QUARTERUPNORTH_NORTHEAST, Division.SECONDARY_ORDINAL, true),
 
-    EAST(new Vector3d(1, 0, 0), Division.CARDINAL),
-    EAST_SOUTHEAST(new Vector3d(C.C8, 0, C.S8), Division.SECONDARY_ORDINAL),
-    SOUTHEAST(new Vector3d(1, 0, 1), Division.ORDINAL),
-    SOUTH_SOUTHEAST(new Vector3d(C.S8, 0, C.C8), Division.SECONDARY_ORDINAL),
+    NORTH_NORTHWEST(DirectionVectors.NORTH_NORTHWEST, Division.SECONDARY_ORDINAL, false),
+    NORTH(DirectionVectors.NORTH, Division.CARDINAL, false),
+    NORTH_NORTHEAST(DirectionVectors.NORTH_NORTHEAST, Division.SECONDARY_ORDINAL, false),
 
-    SOUTH(new Vector3d(0, 0, 1), Division.CARDINAL),
-    SOUTH_SOUTHWEST(new Vector3d(-C.S8, 0, C.C8), Division.SECONDARY_ORDINAL),
-    SOUTHWEST(new Vector3d(-1, 0, 1), Division.ORDINAL),
-    WEST_SOUTHWEST(new Vector3d(-C.C8, 0, C.S8), Division.SECONDARY_ORDINAL),
+    QUARTERDOWNNORTH_NORTHWEST(DirectionVectors.QUARTERDOWNNORTH_NORTHWEST, Division.SECONDARY_ORDINAL, true),
+    QUARTERDOWN_NORTH(DirectionVectors.QUARTERDOWN_NORTH, Division.CARDINAL, true),
+    QUARTERDOWNNORTH_NORTHEAST(DirectionVectors.QUARTERDOWNNORTH_NORTHEAST, Division.SECONDARY_ORDINAL, true),
+    HALFDOWNNORTH_NORTHWEST(DirectionVectors.HALFDOWNNORTH_NORTHWEST, Division.SECONDARY_ORDINAL, true),
+    HALFDOWN_NORTH(DirectionVectors.HALFDOWN_NORTH, Division.CARDINAL, true),
+    HALFDOWNNORTH_NORTHEAST(DirectionVectors.HALFDOWNNORTH_NORTHEAST, Division.SECONDARY_ORDINAL, true),
+    THREEQUARTERSDOWNNORTH_NORTHWEST(DirectionVectors.THREEQUARTERSDOWNNORTH_NORTHWEST, Division.SECONDARY_ORDINAL, true),
+    THREEQUARTERSDOWN_NORTH(DirectionVectors.THREEQUARTERSDOWN_NORTH, Division.CARDINAL, true),
+    THREEQUARTERSDOWNNORTH_NORTHEAST(DirectionVectors.THREEQUARTERSDOWNNORTH_NORTHEAST, Division.SECONDARY_ORDINAL, true),
 
-    WEST(new Vector3d(-1, 0, 0), Division.CARDINAL),
-    WEST_NORTHWEST(new Vector3d(-C.C8, 0, -C.S8), Division.SECONDARY_ORDINAL),
-    NORTHWEST(new Vector3d(-1, 0, -1), Division.ORDINAL),
-    NORTH_NORTHWEST(new Vector3d(-C.S8, 0, -C.C8), Division.SECONDARY_ORDINAL),
+    // NORTHEAST
+    THREEQUARTERSUP_NORTHEAST(DirectionVectors.THREEQUARTERSUP_NORTHEAST, Division.ORDINAL, true),
+    HALFUP_NORTHEAST(DirectionVectors.HALFUP_NORTHEAST, Division.ORDINAL, true),
+    QUARTERUP_NORTHEAST(DirectionVectors.QUARTERUP_NORTHEAST, Division.ORDINAL, true),
+    NORTHEAST(DirectionVectors.NORTHEAST, Division.ORDINAL, false),
+    QUARTERDOWN_NORTHEAST(DirectionVectors.QUARTERDOWN_NORTHEAST, Division.ORDINAL, true),
+    HALFDOWN_NORTHEAST(DirectionVectors.HALFDOWN_NORTHEAST, Division.ORDINAL, true),
+    THREEQUARTERSDOWN_NORTHEAST(DirectionVectors.THREEQUARTERSDOWN_NORTHEAST, Division.ORDINAL, true),
 
-    UP(new Vector3d(0, 1, 0), Division.CARDINAL),
-    DOWN(new Vector3d(0, -1, 0), Division.CARDINAL),
+    // EAST
+    THREEQUARTERSUPEAST_NORTHEAST(DirectionVectors.THREEQUARTERSUPEAST_NORTHEAST, Division.SECONDARY_ORDINAL, true),
+    THREEQUARTERSUP_EAST(DirectionVectors.THREEQUARTERSUP_NORTH, Division.CARDINAL, true),
+    THREEQUARTERSUPEAST_SOUTHEAST(DirectionVectors.THREEQUARTERSUPEAST_SOUTHEAST, Division.SECONDARY_ORDINAL, true),
+    HALFUPEAST_NORTHEAST(DirectionVectors.HALFUPEAST_NORTHEAST, Division.SECONDARY_ORDINAL, true),
+    HALFUP_EAST(DirectionVectors.HALFUP_NORTH, Division.CARDINAL, true),
+    HALFUPEAST_SOUTHEAST(DirectionVectors.HALFUPEAST_SOUTHEAST, Division.SECONDARY_ORDINAL, true),
+    QUARTERUPEAST_NORTHEAST(DirectionVectors.QUARTERUPEAST_NORTHEAST, Division.SECONDARY_ORDINAL, true),
+    QUARTERUP_EAST(DirectionVectors.QUARTERUP_NORTH, Division.CARDINAL, true),
+    QUARTERUPEAST_SOUTHEAST(DirectionVectors.QUARTERUPEAST_SOUTHEAST, Division.SECONDARY_ORDINAL, true),
 
-    NONE(new Vector3d(0, 0, 0), Division.NONE);
+    EAST_NORTHEAST(DirectionVectors.EAST_NORTHEAST, Division.SECONDARY_ORDINAL, false),
+    EAST(DirectionVectors.NORTH, Division.CARDINAL, false),
+    EAST_SOUTHEAST(DirectionVectors.EAST_SOUTHEAST, Division.SECONDARY_ORDINAL, false),
 
-    private static final Direction[] SECONDARY_ORDINAL_SET = {
-            NORTH, NORTH_NORTHEAST, NORTHEAST, EAST_NORTHEAST,
-            EAST, EAST_SOUTHEAST, SOUTHEAST, SOUTH_SOUTHEAST,
-            SOUTH, SOUTH_SOUTHWEST, SOUTHWEST, WEST_SOUTHWEST,
-            WEST, WEST_NORTHWEST, NORTHWEST, NORTH_NORTHWEST,
-    };
-    private static final Direction[] ORDINAL_SET = {
-            NORTH, NORTHEAST, EAST, SOUTHEAST,
-            SOUTH, SOUTHWEST, WEST, NORTHWEST,
-    };
-    private static final Direction[] CARDINAL_SET = {
-            NORTH, EAST, SOUTH, WEST
-    };
-    private final Vector3d direction;
+    QUARTERDOWNEAST_NORTHEAST(DirectionVectors.QUARTERDOWNEAST_NORTHEAST, Division.SECONDARY_ORDINAL, true),
+    QUARTERDOWN_EAST(DirectionVectors.QUARTERDOWN_NORTH, Division.CARDINAL, true),
+    QUARTERDOWNEAST_SOUTHEAST(DirectionVectors.QUARTERDOWNEAST_SOUTHEAST, Division.SECONDARY_ORDINAL, true),
+    HALFDOWNEAST_NORTHEAST(DirectionVectors.HALFDOWNEAST_NORTHEAST, Division.SECONDARY_ORDINAL, true),
+    HALFDOWN_EAST(DirectionVectors.HALFDOWN_NORTH, Division.CARDINAL, true),
+    HALFDOWNEAST_SOUTHEAST(DirectionVectors.HALFDOWNEAST_SOUTHEAST, Division.SECONDARY_ORDINAL, true),
+    THREEQUARTERSDOWNEAST_NORTHEAST(DirectionVectors.THREEQUARTERSDOWNEAST_NORTHEAST, Division.SECONDARY_ORDINAL, true),
+    THREEQUARTERSDOWN_EAST(DirectionVectors.THREEQUARTERSDOWN_NORTH, Division.CARDINAL, true),
+    THREEQUARTERSDOWNEAST_SOUTHEAST(DirectionVectors.THREEQUARTERSDOWNEAST_SOUTHEAST, Division.SECONDARY_ORDINAL, true),
+
+    // SOUTHEAST
+    THREEQUARTERSUP_SOUTHEAST(DirectionVectors.THREEQUARTERSUP_SOUTHEAST, Division.ORDINAL, true),
+    HALFUP_SOUTHEAST(DirectionVectors.HALFUP_SOUTHEAST, Division.ORDINAL, true),
+    QUARTERUP_SOUTHEAST(DirectionVectors.QUARTERUP_SOUTHEAST, Division.ORDINAL, true),
+    SOUTHEAST(DirectionVectors.SOUTHEAST, Division.ORDINAL, false),
+    QUARTERDOWN_SOUTHEAST(DirectionVectors.QUARTERDOWN_SOUTHEAST, Division.ORDINAL, true),
+    HALFDOWN_SOUTHEAST(DirectionVectors.HALFDOWN_SOUTHEAST, Division.ORDINAL, true),
+    THREEQUARTERSDOWN_SOUTHEAST(DirectionVectors.THREEQUARTERSDOWN_SOUTHEAST, Division.ORDINAL, true),
+
+    // SOUTH
+    THREEQUARTERSUPSOUTH_SOUTHEAST(DirectionVectors.THREEQUARTERSUPSOUTH_SOUTHEAST, Division.SECONDARY_ORDINAL, true),
+    THREEQUARTERSUP_SOUTH(DirectionVectors.THREEQUARTERSUP_NORTH, Division.CARDINAL, true),
+    THREEQUARTERSUPSOUTH_SOUTHWEST(DirectionVectors.THREEQUARTERSUPSOUTH_SOUTHWEST, Division.SECONDARY_ORDINAL, true),
+    HALFUPSOUTH_SOUTHEAST(DirectionVectors.HALFUPSOUTH_SOUTHEAST, Division.SECONDARY_ORDINAL, true),
+    HALFUP_SOUTH(DirectionVectors.HALFUP_NORTH, Division.CARDINAL, true),
+    HALFUPSOUTH_SOUTHWEST(DirectionVectors.HALFUPSOUTH_SOUTHWEST, Division.SECONDARY_ORDINAL, true),
+    QUARTERUPSOUTH_SOUTHEAST(DirectionVectors.QUARTERUPSOUTH_SOUTHEAST, Division.SECONDARY_ORDINAL, true),
+    QUARTERUP_SOUTH(DirectionVectors.QUARTERUP_NORTH, Division.CARDINAL, true),
+    QUARTERUPSOUTH_SOUTHWEST(DirectionVectors.QUARTERUPSOUTH_SOUTHWEST, Division.SECONDARY_ORDINAL, true),
+
+    SOUTH_SOUTHEAST(DirectionVectors.SOUTH_SOUTHEAST, Division.SECONDARY_ORDINAL, false),
+    SOUTH(DirectionVectors.NORTH, Division.CARDINAL, false),
+    SOUTH_SOUTHWEST(DirectionVectors.SOUTH_SOUTHWEST, Division.SECONDARY_ORDINAL, false),
+
+    QUARTERDOWNSOUTH_SOUTHEAST(DirectionVectors.QUARTERDOWNSOUTH_SOUTHEAST, Division.SECONDARY_ORDINAL, true),
+    QUARTERDOWN_SOUTH(DirectionVectors.QUARTERDOWN_NORTH, Division.CARDINAL, true),
+    QUARTERDOWNSOUTH_SOUTHWEST(DirectionVectors.QUARTERDOWNSOUTH_SOUTHWEST, Division.SECONDARY_ORDINAL, true),
+    HALFDOWNSOUTH_SOUTHEAST(DirectionVectors.HALFDOWNSOUTH_SOUTHEAST, Division.SECONDARY_ORDINAL, true),
+    HALFDOWN_SOUTH(DirectionVectors.HALFDOWN_NORTH, Division.CARDINAL, true),
+    HALFDOWNSOUTH_SOUTHWEST(DirectionVectors.HALFDOWNSOUTH_SOUTHWEST, Division.SECONDARY_ORDINAL, true),
+    THREEQUARTERSDOWNSOUTH_SOUTHEAST(DirectionVectors.THREEQUARTERSDOWNSOUTH_SOUTHEAST, Division.SECONDARY_ORDINAL, true),
+    THREEQUARTERSDOWN_SOUTH(DirectionVectors.THREEQUARTERSDOWN_NORTH, Division.CARDINAL, true),
+    THREEQUARTERSDOWNSOUTH_SOUTHWEST(DirectionVectors.THREEQUARTERSDOWNSOUTH_SOUTHWEST, Division.SECONDARY_ORDINAL, true),
+
+    // SOUTHWEST
+    THREEQUARTERSUP_SOUTHWEST(DirectionVectors.THREEQUARTERSUP_SOUTHWEST, Division.ORDINAL, true),
+    HALFUP_SOUTHWEST(DirectionVectors.HALFUP_SOUTHWEST, Division.ORDINAL, true),
+    QUARTERUP_SOUTHWEST(DirectionVectors.QUARTERUP_SOUTHWEST, Division.ORDINAL, true),
+    SOUTHWEST(DirectionVectors.SOUTHWEST, Division.ORDINAL, false),
+    QUARTERDOWN_SOUTHWEST(DirectionVectors.QUARTERDOWN_SOUTHWEST, Division.ORDINAL, true),
+    HALFDOWN_SOUTHWEST(DirectionVectors.HALFDOWN_SOUTHWEST, Division.ORDINAL, true),
+    THREEQUARTERSDOWN_SOUTHWEST(DirectionVectors.THREEQUARTERSDOWN_SOUTHWEST, Division.ORDINAL, true),
+
+    // WEST
+    THREEQUARTERSUPWEST_SOUTHWEST(DirectionVectors.THREEQUARTERSUPWEST_SOUTHWEST, Division.SECONDARY_ORDINAL, true),
+    THREEQUARTERSUP_WEST(DirectionVectors.THREEQUARTERSUP_NORTH, Division.CARDINAL, true),
+    THREEQUARTERSUPWEST_NORTHWEST(DirectionVectors.THREEQUARTERSUPWEST_NORTHWEST, Division.SECONDARY_ORDINAL, true),
+    HALFUPWEST_SOUTHWEST(DirectionVectors.HALFUPWEST_SOUTHWEST, Division.SECONDARY_ORDINAL, true),
+    HALFUP_WEST(DirectionVectors.HALFUP_NORTH, Division.CARDINAL, true),
+    HALFUPWEST_NORTHWEST(DirectionVectors.HALFUPWEST_NORTHWEST, Division.SECONDARY_ORDINAL, true),
+    QUARTERUPWEST_SOUTHWEST(DirectionVectors.QUARTERUPWEST_SOUTHWEST, Division.SECONDARY_ORDINAL, true),
+    QUARTERUP_WEST(DirectionVectors.QUARTERUP_NORTH, Division.CARDINAL, true),
+    QUARTERUPWEST_NORTHWEST(DirectionVectors.QUARTERUPWEST_NORTHWEST, Division.SECONDARY_ORDINAL, true),
+
+    WEST_SOUTHWEST(DirectionVectors.WEST_SOUTHWEST, Division.SECONDARY_ORDINAL, false),
+    WEST(DirectionVectors.NORTH, Division.CARDINAL, false),
+    WEST_NORTHWEST(DirectionVectors.WEST_NORTHWEST, Division.SECONDARY_ORDINAL, false),
+
+    QUARTERDOWNWEST_SOUTHWEST(DirectionVectors.QUARTERDOWNWEST_SOUTHWEST, Division.SECONDARY_ORDINAL, true),
+    QUARTERDOWN_WEST(DirectionVectors.QUARTERDOWN_NORTH, Division.CARDINAL, true),
+    QUARTERDOWNWEST_NORTHWEST(DirectionVectors.QUARTERDOWNWEST_NORTHWEST, Division.SECONDARY_ORDINAL, true),
+    HALFDOWNWEST_SOUTHWEST(DirectionVectors.HALFDOWNWEST_SOUTHWEST, Division.SECONDARY_ORDINAL, true),
+    HALFDOWN_WEST(DirectionVectors.HALFDOWN_NORTH, Division.CARDINAL, true),
+    HALFDOWNWEST_NORTHWEST(DirectionVectors.HALFDOWNWEST_NORTHWEST, Division.SECONDARY_ORDINAL, true),
+    THREEQUARTERSDOWNWEST_SOUTHWEST(DirectionVectors.THREEQUARTERSDOWNWEST_SOUTHWEST, Division.SECONDARY_ORDINAL, true),
+    THREEQUARTERSDOWN_WEST(DirectionVectors.THREEQUARTERSDOWN_NORTH, Division.CARDINAL, true),
+    THREEQUARTERSDOWNWEST_NORTHWEST(DirectionVectors.THREEQUARTERSDOWNWEST_NORTHWEST, Division.SECONDARY_ORDINAL, true),
+
+    // NORTHWEST
+    THREEQUARTERSUP_NORTHWEST(DirectionVectors.THREEQUARTERSUP_NORTHWEST, Division.ORDINAL, true),
+    HALFUP_NORTHWEST(DirectionVectors.HALFUP_NORTHWEST, Division.ORDINAL, true),
+    QUARTERUP_NORTHWEST(DirectionVectors.QUARTERUP_NORTHWEST, Division.ORDINAL, true),
+    NORTHWEST(DirectionVectors.NORTHWEST, Division.ORDINAL, false),
+    QUARTERDOWN_NORTHWEST(DirectionVectors.QUARTERDOWN_NORTHWEST, Division.ORDINAL, true),
+    HALFDOWN_NORTHWEST(DirectionVectors.HALFDOWN_NORTHWEST, Division.ORDINAL, true),
+    THREEQUARTERSDOWN_NORTHWEST(DirectionVectors.THREEQUARTERSDOWN_NORTHWEST, Division.ORDINAL, true),
+
+    // CENTER
+    UP(DirectionVectors.UP, Division.CARDINAL, true),
+    NONE(DirectionVectors.NONE, Division.NONE, false),
+    DOWN(DirectionVectors.DOWN, Division.CARDINAL, true);
+
+    private final Vector3d vector;
     private final Division division;
+    @SuppressWarnings("NullableProblems")
     private Direction opposite;
+    private final boolean isUpright;
 
     static {
-        NORTH.opposite = SOUTH;
-        EAST.opposite = WEST;
-        SOUTH.opposite = NORTH;
-        WEST.opposite = EAST;
+        // NORTH
+        THREEQUARTERSUPNORTH_NORTHWEST.opposite = THREEQUARTERSDOWNSOUTH_SOUTHEAST;
+        THREEQUARTERSUP_NORTH.opposite = THREEQUARTERSDOWN_SOUTH;
+        THREEQUARTERSUPNORTH_NORTHEAST.opposite = THREEQUARTERSDOWN_SOUTHWEST;
+        HALFUPNORTH_NORTHWEST.opposite = HALFDOWNSOUTH_SOUTHEAST;
+        HALFUP_NORTH.opposite = HALFDOWN_SOUTH;
+        HALFUPNORTH_NORTHEAST.opposite = HALFDOWNSOUTH_SOUTHWEST;
+        QUARTERUPNORTH_NORTHWEST.opposite = QUARTERDOWNSOUTH_SOUTHEAST;
+        QUARTERUP_NORTH.opposite = QUARTERDOWN_SOUTH;
+        QUARTERUPNORTH_NORTHEAST.opposite = QUARTERDOWNSOUTH_SOUTHWEST;
 
-        UP.opposite = DOWN;
-        DOWN.opposite = UP;
-
-        NONE.opposite = NONE;
-
-        NORTHEAST.opposite = SOUTHWEST;
-        NORTHWEST.opposite = SOUTHEAST;
-        SOUTHEAST.opposite = NORTHWEST;
-        SOUTHWEST.opposite = NORTHEAST;
-
-        WEST_NORTHWEST.opposite = EAST_SOUTHEAST;
-        WEST_SOUTHWEST.opposite = EAST_NORTHEAST;
         NORTH_NORTHWEST.opposite = SOUTH_SOUTHEAST;
+        NORTH.opposite = SOUTH;
         NORTH_NORTHEAST.opposite = SOUTH_SOUTHWEST;
-        EAST_SOUTHEAST.opposite = WEST_NORTHWEST;
+
+        QUARTERDOWNNORTH_NORTHWEST.opposite = QUARTERUPSOUTH_SOUTHEAST;
+        QUARTERDOWN_NORTH.opposite = QUARTERUP_SOUTH;
+        QUARTERDOWNNORTH_NORTHEAST.opposite = QUARTERUPSOUTH_SOUTHWEST;
+        HALFDOWNNORTH_NORTHWEST.opposite = HALFUPSOUTH_SOUTHEAST;
+        HALFDOWN_NORTH.opposite = HALFUP_SOUTH;
+        HALFDOWNNORTH_NORTHEAST.opposite = HALFUPSOUTH_SOUTHWEST;
+        THREEQUARTERSDOWNNORTH_NORTHWEST.opposite = THREEQUARTERSUPSOUTH_SOUTHEAST;
+        THREEQUARTERSDOWN_NORTH.opposite = THREEQUARTERSUP_SOUTH;
+        THREEQUARTERSDOWNNORTH_NORTHEAST.opposite = THREEQUARTERSUPSOUTH_SOUTHWEST;
+
+        // NORTHEAST;
+        THREEQUARTERSUP_NORTHEAST.opposite = THREEQUARTERSDOWN_SOUTHWEST;
+        HALFUP_NORTHEAST.opposite = HALFDOWN_SOUTHWEST;
+        QUARTERUP_NORTHEAST.opposite = QUARTERDOWN_SOUTHWEST;
+        NORTHEAST.opposite = SOUTHWEST;
+        QUARTERDOWN_NORTHEAST.opposite = QUARTERUP_SOUTHWEST;
+        HALFDOWN_NORTHEAST.opposite = HALFUP_SOUTHWEST;
+        THREEQUARTERSDOWN_NORTHEAST.opposite = THREEQUARTERSUP_SOUTHWEST;
+
+        // EAST;
+        THREEQUARTERSUPEAST_NORTHEAST.opposite = THREEQUARTERSDOWNWEST_SOUTHWEST;
+        THREEQUARTERSUP_EAST.opposite = THREEQUARTERSDOWN_WEST;
+        THREEQUARTERSUPEAST_SOUTHEAST.opposite = THREEQUARTERSDOWNWEST_NORTHWEST;
+        HALFUPEAST_NORTHEAST.opposite = HALFDOWNWEST_SOUTHWEST;
+        HALFUP_EAST.opposite = HALFDOWN_WEST;
+        HALFUPEAST_SOUTHEAST.opposite = HALFDOWNWEST_NORTHWEST;
+        QUARTERUPEAST_NORTHEAST.opposite = QUARTERDOWNWEST_SOUTHWEST;
+        QUARTERUP_EAST.opposite = QUARTERDOWN_WEST;
+        QUARTERUPEAST_SOUTHEAST.opposite = QUARTERDOWNWEST_NORTHWEST;
+
         EAST_NORTHEAST.opposite = WEST_SOUTHWEST;
+        EAST.opposite = WEST;
+        EAST_SOUTHEAST.opposite = WEST_NORTHWEST;
+
+        QUARTERDOWNEAST_NORTHEAST.opposite = QUARTERUPWEST_SOUTHWEST;
+        QUARTERDOWN_EAST.opposite = QUARTERUP_WEST;
+        QUARTERDOWNEAST_SOUTHEAST.opposite = QUARTERUPWEST_NORTHWEST;
+        HALFDOWNEAST_NORTHEAST.opposite = HALFUPWEST_SOUTHWEST;
+        HALFDOWN_EAST.opposite = HALFUP_WEST;
+        HALFDOWNEAST_SOUTHEAST.opposite = HALFUPWEST_NORTHWEST;
+        THREEQUARTERSDOWNEAST_NORTHEAST.opposite = THREEQUARTERSUPWEST_SOUTHWEST;
+        THREEQUARTERSDOWN_EAST.opposite = THREEQUARTERSUP_WEST;
+        THREEQUARTERSDOWNEAST_SOUTHEAST.opposite = THREEQUARTERSUPWEST_NORTHWEST;
+
+        // SOUTHEAST;
+        THREEQUARTERSUP_SOUTHEAST.opposite = THREEQUARTERSDOWN_NORTHWEST;
+        HALFUP_SOUTHEAST.opposite = HALFDOWN_NORTHWEST;
+        QUARTERUP_SOUTHEAST.opposite = QUARTERDOWN_NORTHWEST;
+        SOUTHEAST.opposite = NORTHWEST;
+        QUARTERDOWN_SOUTHEAST.opposite = QUARTERUP_NORTHWEST;
+        HALFDOWN_SOUTHEAST.opposite = HALFUP_NORTHWEST;
+        THREEQUARTERSDOWN_SOUTHEAST.opposite = THREEQUARTERSUP_NORTHWEST;
+
+        // SOUTH;
+        THREEQUARTERSUPSOUTH_SOUTHEAST.opposite = THREEQUARTERSDOWNNORTH_NORTHWEST;
+        THREEQUARTERSUP_SOUTH.opposite = THREEQUARTERSDOWN_NORTH;
+        THREEQUARTERSUPSOUTH_SOUTHWEST.opposite = THREEQUARTERSDOWNNORTH_NORTHEAST;
+        HALFUPSOUTH_SOUTHEAST.opposite = HALFDOWNNORTH_NORTHWEST;
+        HALFUP_SOUTH.opposite = HALFDOWN_NORTH;
+        HALFUPSOUTH_SOUTHWEST.opposite = HALFDOWNNORTH_NORTHEAST;
+        QUARTERUPSOUTH_SOUTHEAST.opposite = QUARTERDOWNNORTH_NORTHWEST;
+        QUARTERUP_SOUTH.opposite = QUARTERDOWN_NORTH;
+        QUARTERUPSOUTH_SOUTHWEST.opposite = QUARTERDOWNNORTH_NORTHEAST;
+
         SOUTH_SOUTHEAST.opposite = NORTH_NORTHWEST;
+        SOUTH.opposite = NORTH;
         SOUTH_SOUTHWEST.opposite = NORTH_NORTHEAST;
+
+        QUARTERDOWNSOUTH_SOUTHEAST.opposite = QUARTERUPNORTH_NORTHWEST;
+        QUARTERDOWN_SOUTH.opposite = QUARTERUP_NORTH;
+        QUARTERDOWNSOUTH_SOUTHWEST.opposite = QUARTERUPNORTH_NORTHEAST;
+        HALFDOWNSOUTH_SOUTHEAST.opposite = HALFUPNORTH_NORTHWEST;
+        HALFDOWN_SOUTH.opposite = HALFUP_NORTH;
+        HALFDOWNSOUTH_SOUTHWEST.opposite = HALFUPNORTH_NORTHEAST;
+        THREEQUARTERSDOWNSOUTH_SOUTHEAST.opposite = THREEQUARTERSUPNORTH_NORTHWEST;
+        THREEQUARTERSDOWN_SOUTH.opposite = THREEQUARTERSUP_NORTH;
+        THREEQUARTERSDOWNSOUTH_SOUTHWEST.opposite = THREEQUARTERSUPNORTH_NORTHEAST;
+
+        // SOUTHWEST;
+        THREEQUARTERSUP_SOUTHWEST.opposite = THREEQUARTERSDOWN_NORTHEAST;
+        HALFUP_SOUTHWEST.opposite = HALFDOWN_NORTHEAST;
+        QUARTERUP_SOUTHWEST.opposite = QUARTERDOWN_NORTHEAST;
+        SOUTHWEST.opposite = NORTHEAST;
+        QUARTERDOWN_SOUTHWEST.opposite = QUARTERUP_NORTHEAST;
+        HALFDOWN_SOUTHWEST.opposite = HALFUP_NORTHEAST;
+        THREEQUARTERSDOWN_SOUTHWEST.opposite = THREEQUARTERSUP_NORTHEAST;
+
+        // WEST;
+        THREEQUARTERSUPWEST_SOUTHWEST.opposite = THREEQUARTERSDOWNEAST_NORTHEAST;
+        THREEQUARTERSUP_WEST.opposite = THREEQUARTERSDOWN_EAST;
+        THREEQUARTERSUPWEST_NORTHWEST.opposite = THREEQUARTERSDOWNEAST_SOUTHEAST;
+        HALFUPWEST_SOUTHWEST.opposite = HALFDOWNEAST_NORTHEAST;
+        HALFUP_WEST.opposite = HALFDOWN_EAST;
+        HALFUPWEST_NORTHWEST.opposite = HALFDOWNEAST_SOUTHEAST;
+        QUARTERUPWEST_SOUTHWEST.opposite = QUARTERDOWNEAST_NORTHEAST;
+        QUARTERUP_WEST.opposite = QUARTERDOWN_EAST;
+        QUARTERUPWEST_NORTHWEST.opposite = QUARTERDOWNEAST_SOUTHEAST;
+
+        WEST_SOUTHWEST.opposite = EAST_NORTHEAST;
+        WEST.opposite = EAST;
+        WEST_NORTHWEST.opposite = EAST_SOUTHEAST;
+
+        QUARTERDOWNWEST_SOUTHWEST.opposite = QUARTERUPEAST_NORTHEAST;
+        QUARTERDOWN_WEST.opposite = QUARTERUP_EAST;
+        QUARTERDOWNWEST_NORTHWEST.opposite = QUARTERUPEAST_SOUTHEAST;
+        HALFDOWNWEST_SOUTHWEST.opposite = HALFUPEAST_NORTHEAST;
+        HALFDOWN_WEST.opposite = HALFUP_EAST;
+        HALFDOWNWEST_NORTHWEST.opposite = HALFUPEAST_SOUTHEAST;
+        THREEQUARTERSDOWNWEST_SOUTHWEST.opposite = THREEQUARTERSUPEAST_NORTHEAST;
+        THREEQUARTERSDOWN_WEST.opposite = THREEQUARTERSUP_EAST;
+        THREEQUARTERSDOWNWEST_NORTHWEST.opposite = THREEQUARTERSUPEAST_SOUTHEAST;
+
+        // NORTHWEST;
+        THREEQUARTERSUP_NORTHWEST.opposite = THREEQUARTERSDOWN_SOUTHEAST;
+        HALFUP_NORTHWEST.opposite = HALFDOWN_SOUTHEAST;
+        QUARTERUP_NORTHWEST.opposite = QUARTERDOWN_SOUTHEAST;
+        NORTHWEST.opposite = SOUTHEAST;
+        QUARTERDOWN_NORTHWEST.opposite = QUARTERUP_SOUTHEAST;
+        HALFDOWN_NORTHWEST.opposite = HALFUP_SOUTHEAST;
+        THREEQUARTERSDOWN_NORTHWEST.opposite = THREEQUARTERSUP_SOUTHEAST;
+
+        // CENTER
+        UP.opposite = DOWN;
+        NONE.opposite = NONE;
+        DOWN.opposite = UP;
     }
 
-    Direction(Vector3d vector3d, Division division) {
-        if (vector3d.lengthSquared() == 0) {
-            // Prevent normalization of the zero direction
-            this.direction = vector3d;
-        } else {
-            this.direction = vector3d.normalize();
-        }
+    Direction(Vector3d vector3d, Division division, boolean isUpright) {
+        this.vector = vector3d;
         this.division = division;
+        this.isUpright = isUpright;
     }
 
     /**
      * Gets the closest direction from the given vector. If the vector is the
-     * 0-Vector, this method returns {@link #NONE}. If the vector has the same
-     * horizontal and vertical length, a horizontal direction will be returned.
-     * If the vector is halfway between two directions the clockwise next will
-     * be selected.
+     * 0-Vector, this method returns {@link #NONE}.
+     * If the vector is halfway between two directions, it is undefined which one will be selected
      *
      * @param vector The vector to convert to a direction
-     * @return The closest horizontal direction.
+     * @return The closest direction that is not {@link #NONE} if the supplied vector is not the zero vector,
+     *         the {@link #NONE} direction if it is
      */
     public static Direction getClosest(Vector3d vector) {
         return getClosest(vector, Division.SECONDARY_ORDINAL);
@@ -135,79 +355,77 @@ public enum Direction {
 
     /**
      * Gets the closest direction from the given vector. If the vector is the
-     * 0-Vector, this method returns {@link #NONE}. If the vector has the same
-     * horizontal and vertical length, a horizontal direction will be returned.
-     * If the vector is halfway between two directions the clockwise next will
-     * be selected.
+     * 0-Vector, this method returns {@link #NONE}.
+     * If the vector is halfway between two directions, it is undefined which one will be selected
      *
      * @param vector The vector to convert to a direction
      * @param smallestDivision The smallest compass division that can be returned
-     * @return The closest horizontal direction.
+     * @return The closest direction that is not {@link #NONE} if the supplied vector is not the zero vector,
+     *         the {@link #NONE} direction if it is
      */
     public static Direction getClosest(Vector3d vector, Division smallestDivision) {
-        if (vector.getY() * vector.getY() <= vector.getX() * vector.getX() + vector.getZ() * vector.getZ()) {
-            return getClosestHorizontal(vector, smallestDivision);
-        } else if (vector.getY() > 0) {
-            return UP;
-        } else {
-            return DOWN;
-        }
+        return getClosest(vector, smallestDivision, true);
     }
 
     /**
-     * Gets the closest horizontal direction from the given vector. If the
-     * vector is the 0-Vector (ignoring y), this method returns {@link #NONE}.
-     * If the vector is halfway between two directions the clockwise next will
-     * be selected.
+     * Gets the closest horizontal direction from the given vector.
+     * If the vector is halfway between two directions, it is undefined which one will be selected
      *
      * @param vector The vector to convert to a direction
-     * @return The closest horizontal direction.
+     * @return The closest horizontal direction that is not {@link #NONE} if the supplied vector has zero X and Z,
+     *         the {@link #NONE} direction if it is
      */
     public static Direction getClosestHorizontal(Vector3d vector) {
         return getClosestHorizontal(vector, Division.SECONDARY_ORDINAL);
     }
 
     /**
-     * Gets the closest horizontal direction from the given vector. If the
-     * vector is the 0-Vector (ignoring y), this method returns {@link #NONE}.
-     * If the vector is halfway between two directions the clockwise next will
-     * be selected.
+     * Gets the closest horizontal direction from the given vector.
+     * If the vector is halfway between two directions, it is undefined which one will be selected
      *
      * @param vector The vector to convert to a direction
      * @param smallestDivision The smallest compass division that can be returned
-     * @return The closest horizontal direction.
+     * @return The closest horizontal direction that is not {@link #NONE} if the supplied vector is not the zero vector,
+     *         the {@link #NONE} direction if it is
      */
     public static Direction getClosestHorizontal(Vector3d vector, Division smallestDivision) {
-        // Ignore vectors not in the xz plane
-        if (Math.abs(vector.getX()) <= GenericMath.DBL_EPSILON && Math.abs(vector.getZ()) <= GenericMath.DBL_EPSILON) {
+        return getClosest(vector, smallestDivision, false);
+    }
+
+    /**
+     * Gets the closest direction from the given vector.
+     * If the vector is halfway between two directions, it is undefined which one will be selected
+     *
+     * @param vector The vector to convert to a direction
+     * @param smallestDivision The smallest compass division that can be returned
+     * @param allowUpright If false, if the vector would have returned a upright direction,
+     *                     that direction's corresponding horizontal one will be returned.
+     * @return The closest direction that is not {@link #NONE} if the supplied vector is not the zero vector,
+     *         the {@link #NONE} direction if it is
+     */
+    public static Direction getClosest(Vector3d vector, Division smallestDivision, boolean allowUpright) {
+        checkNotNull(vector, "Vector cannot be null!");
+        if ((allowUpright ? vector : vector.mul(1, 0, 1)).equals(DirectionVectors.NONE)) {
             return NONE;
         }
-        // Normalize so it lies on the unit circle in xz
+        checkNotNull(smallestDivision, "Division cannot be null!");
+        checkArgument(smallestDivision != Division.NONE, "Division cannot be NONE!");
+        // Normalize, and have one floating point inaccuracy here, instead of every time the distance is calculated
         vector = vector.normalize();
-        // Get the angle from the x component and correct for complement with z
-        double angle = TrigMath.acos(vector.getX());
-        if (vector.getZ() < 0) {
-            angle = TrigMath.TWO_PI - angle;
+        double distance = Double.MAX_VALUE;
+        Direction result = null;
+        for (Direction direction : Direction.values()) {
+            if ((direction.isUpright && !allowUpright) || (direction.division.ordinal() > smallestDivision.ordinal())){
+                continue;
+            }
+            double newDistance = direction.vector.distance(vector);
+            if (newDistance < distance) {
+                distance = newDistance;
+                result = direction;
+            }
         }
-        // Make the angle positive, offset for MC's system, then wrap in [0, 2pi)
-        angle = (angle + TrigMath.TWO_PI + TrigMath.HALF_PI) % TrigMath.TWO_PI;
-        // Use a direction set; it needs to be sorted and the directions evenly spaced
-        final Direction[] set;
-        switch (smallestDivision) {
-            case CARDINAL:
-                set = CARDINAL_SET;
-                break;
-            case ORDINAL:
-                set = ORDINAL_SET;
-                break;
-            case SECONDARY_ORDINAL:
-                set = SECONDARY_ORDINAL_SET;
-                break;
-            default:
-                throw new IllegalArgumentException(smallestDivision.name());
-        }
-        // Round to the closest index in the direction set
-        return set[(int) Math.round(angle * set.length / TrigMath.TWO_PI) % set.length];
+        assert result != null;
+        return result;
     }
 
     /**
@@ -307,7 +525,7 @@ public enum Direction {
      * @return True if the Y component is non-zero
      */
     public boolean isUpright() {
-        return this == UP || this == DOWN;
+        return this.isUpright;
     }
 
     /**
@@ -316,14 +534,7 @@ public enum Direction {
      * @return The Vector3d
      */
     public Vector3d toVector3d() {
-        return this.direction;
-    }
-
-    private interface C {
-
-        double C8 = Math.cos(Math.PI / 8);
-        double S8 = Math.sin(Math.PI / 8);
-
+        return this.vector;
     }
 
     /**
