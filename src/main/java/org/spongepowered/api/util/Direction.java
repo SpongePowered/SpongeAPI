@@ -27,6 +27,8 @@ package org.spongepowered.api.util;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
 
+import javax.annotation.Nullable;
+
 import com.flowpowered.math.vector.Vector3d;
 
 /**
@@ -146,7 +148,7 @@ public enum Direction {
     HALFDOWN_SOUTHWEST(DirectionVectors.HALFDOWN_SOUTHWEST, Division.ORDINAL, true),
     THREEQUARTERSDOWN_SOUTHWEST(DirectionVectors.THREEQUARTERSDOWN_SOUTHWEST, Division.ORDINAL, true),
 
-    // WEST
+    // WEST`
     THREEQUARTERSUPWEST_SOUTHWEST(DirectionVectors.THREEQUARTERSUPWEST_SOUTHWEST, Division.SECONDARY_ORDINAL, true),
     THREEQUARTERSUP_WEST(DirectionVectors.THREEQUARTERSUP_NORTH, Division.CARDINAL, true),
     THREEQUARTERSUPWEST_NORTHWEST(DirectionVectors.THREEQUARTERSUPWEST_NORTHWEST, Division.SECONDARY_ORDINAL, true),
@@ -415,7 +417,7 @@ public enum Direction {
         double distance = Double.MAX_VALUE;
         Direction result = null;
         for (Direction direction : Direction.values()) {
-            if ((direction.isUpright && !allowUpright) || (direction.division.ordinal() > smallestDivision.ordinal())){
+            if ((direction.isUpright && !allowUpright) || (direction.division.ordinal() < smallestDivision.ordinal())) {
                 continue;
             }
             double newDistance = direction.vector.distance(vector);
@@ -489,34 +491,149 @@ public enum Direction {
     /**
      * Return true if the direction is of a cardinal direction (north, west
      * east, and south).
-     *
      * <p>This evaluates as false for directions that have a non-zero
-     * Y-component.</p>
-     *
+     * Y-component</p>
      * @return True if cardinal
      */
     public boolean isCardinal() {
-        return this.division == Division.CARDINAL;
+        return isCardinal(false);
+    }
+
+    /**
+     * Return true if the direction is of a cardinal direction (north, west
+     * east, and south).
+     *
+     * @param allowUpright If false and the directions has a non-zero Y component,
+     *                     this will return false regardless of the {@link Division division}
+     * @return True if cardinal
+     */
+    public boolean isCardinal(boolean allowUpright) {
+        return (allowUpright || !this.isUpright) && divisionMatches(Division.CARDINAL);
     }
 
     /**
      * Return true if the direction is of an ordinal direction (northwest,
-     * southwest, southeast, northeaast).
+     * southwest, southeast, northeast).
+     * <p>This evaluates as false for directions that have a non-zero
+     * Y-component</p>
      *
      * @return True if ordinal
      */
     public boolean isOrdinal() {
-        return this.division == Division.ORDINAL;
+        return isOrdinal(false);
+    }
+
+    /**
+     * Return true if the direction is of an ordinal direction (northwest,
+     * southwest, southeast, northeast), or less specific.
+     * <p>This evaluates as false for directions that have a non-zero
+     * Y-component</p>
+     *
+     * @return True if ordinal
+     */
+    public boolean encompassedByOrdinal() {
+        return encompassedByOrdinal(false);
+    }
+
+    /**
+     * Return true if the direction is of a ordinal direction (northwest,
+     * southwest, southeast, northeast).
+     *
+     * @param allowUpright If false and the directions has a non-zero Y component,
+     *                     this will return false regardless of the {@link Division division}
+     * @return True if ordinal
+     */
+    public boolean isOrdinal(boolean allowUpright) {
+        return (allowUpright || !this.isUpright) && divisionMatches(Division.ORDINAL);
+    }
+
+    /**
+     * Return true if the direction is of a ordinal direction (northwest,
+     * southwest, southeast, northeast), or less specific.
+     *
+     * @param allowUpright If false and the directions has a non-zero Y component,
+     *                     this will return false regardless of the {@link Division division}
+     * @return True if ordinal
+     */
+    public boolean encompassedByOrdinal(boolean allowUpright) {
+        return (allowUpright || !this.isUpright) && containedBy(Division.ORDINAL);
+    }
+
+    /**
+     * Return true if the direction is of a secondary ordinal direction
+     * (north-northwest, north-northeast, south-southwest, etc.).
+     * <p>This evaluates as false for directions that have a non-zero
+     * Y-component</p>
+     *
+     * @return True if secondary ordinal
+     */
+    public boolean isSecondaryOrdinal() {
+        return isSecondaryOrdinal(false);
+    }
+
+    /**
+     * Return true if the direction is of a secondary ordinal direction
+     * (north-northwest, north-northeast, south-southwest, etc.), or less specific
+     * <p>This evaluates as false for directions that have a non-zero
+     * Y-component</p>
+     *
+     * @return True if secondary ordinal
+     */
+    public boolean encompassedBySecondaryOrdinal() {
+        return encompassedBySecondaryOrdinal(false);
     }
 
     /**
      * Return true if the direction is of a secondary ordinal direction
      * (north-northwest, north-northeast, south-southwest, etc.).
      *
+     * @param allowUpright If false and the directions has a non-zero Y component,
+     *                     this will return false regardless of the {@link Division division}
      * @return True if secondary ordinal
      */
-    public boolean isSecondaryOrdinal() {
-        return this.division == Division.SECONDARY_ORDINAL;
+    public boolean isSecondaryOrdinal(boolean allowUpright) {
+        return (allowUpright || !this.isUpright) && divisionMatches(Division.SECONDARY_ORDINAL);
+    }
+
+    /**
+     * Return true if the direction is of a secondary ordinal direction
+     * (north-northwest, north-northeast, south-southwest, etc.), or less specific.
+     *
+     * @param allowUpright If false and the directions has a non-zero Y component,
+     *                     this will return false regardless of the {@link Division division}
+     * @return True if secondary ordinal
+     */
+    public boolean encompassedBySecondaryOrdinal(boolean allowUpright) {
+        return (allowUpright || !this.isUpright) && containedBy(Division.SECONDARY_ORDINAL);
+    }
+
+    /**
+     * Determines whether the supplied {@link Division division} encompasses this direction.
+     *
+     * @param division The division to compare
+     * @return True, if the supplied division is not null and contains this direction
+     */
+    public boolean containedBy(@Nullable Division division) {
+        return division != null && this.division.ordinal() >= division.ordinal();
+    }
+
+    /**
+     * Determines whether this direction's {@link Division division} is the same as the supplied division.
+     *
+     * @param division The division to compare
+     * @return True, if the divisions are the same
+     */
+    public boolean divisionMatches(@Nullable Division division) {
+        return this.division == division;
+    }
+
+    /**
+     * Gets the {@link Division division} of this direction (cardinal, ordinal, secondary ordinal, or none).
+     *
+     * @return The division
+     */
+    public Division getDivision() {
+        return this.division;
     }
 
     /**
