@@ -25,28 +25,13 @@
 package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.DamagingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.KnockbackData;
-import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.entity.living.Living;
 
 /**
  * Represents an Arrow.
  */
-public interface Arrow extends Projectile {
-
-    /**
-     * Gets a copy of the current {@link DamagingData} that this arrow will
-     * deal on an {@link Entity} when hit.
-     *
-     * @return A copy of the damaging data
-     */
-    default DamagingData getDamagingData() {
-        return get(DamagingData.class).get();
-    }
+public interface Arrow extends DamagingProjectile {
 
     /**
      * Gets a copy of the current {@link KnockbackData} that this arrow
@@ -56,30 +41,6 @@ public interface Arrow extends Projectile {
      */
     default KnockbackData getKnockbackData() {
         return get(KnockbackData.class).get();
-    }
-
-    /**
-     * Gets the damage this projectile will deal to a {@link Living}
-     * if hit.
-     *
-     * @return The damage to deal
-     */
-    default MutableBoundedValue<Double> damage() {
-        return getValue(Keys.ATTACK_DAMAGE).get();
-    }
-
-    /**
-     * Gets the {@link MapValue} for representing the custom damage
-     * values to use if the owner strikes an entity of that type.
-     *
-     * <p>Note that in events, the damage defined for the provided
-     * {@link EntityType} will take priority over the "default" damage as
-     * defined from {@link #damage()}.</p>
-     *
-     * @return The immutable map value for the entity damage values
-     */
-    default MapValue<EntityType, Double> damageForEntity() {
-        return getValue(Keys.DAMAGE_ENTITY_MAP).get();
     }
 
     /**

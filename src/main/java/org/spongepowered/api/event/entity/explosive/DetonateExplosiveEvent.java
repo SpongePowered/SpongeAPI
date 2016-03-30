@@ -22,34 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.event.entity.explosive;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.FuseData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.explosive.FusedExplosive;
+import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.world.explosion.Explosion;
 
 /**
- * Represents information about a {@link FusedExplosive}'s fuse.
+ * Event called immediately before an {@link Explosive} explodes.
  */
-public interface ImmutableFuseData extends ImmutableDataManipulator<ImmutableFuseData, FuseData> {
+public interface DetonateExplosiveEvent extends TargetExplosiveEvent, Cancellable {
 
     /**
-     * The amount of ticks before the {@link FusedExplosive} detonates when
-     * primed.
+     * Returns the explosion of the vanilla behavior that this event was
+     * initialized with.
      *
-     * @return Amount of ticks before detonation when primed
+     * @return Original explosion
      */
-    ImmutableValue<Integer> fuseDuration();
+    Explosion getOriginalExplosion();
 
     /**
-     * The amount of ticks before {@link FusedExplosive} detonates. This value
-     * may be zero if the {@link FusedExplosive} is not currently primed nor
-     * will setting this value have any effect if the {@link FusedExplosive} is
-     * not primed.
+     * Returns the {@link Explosion.Builder} that will be used to build the
+     * explosion for the impending detonation.
      *
-     * @return Amount of ticks before impending detonation
+     * @return Explosion builder for detonation
      */
-    ImmutableValue<Integer> ticksRemaining();
+    Explosion.Builder getExplosionBuilder();
 
 }

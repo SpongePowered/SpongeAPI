@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile.explosive;
+package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.DamagingData;
@@ -30,17 +30,15 @@ import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
- * Represents a {@link Projectile} which is also an {@link Explosive}.
+ * Represents a {@link Projectile} that inflicts damage.
  */
-public interface ExplosiveProjectile extends Projectile, Explosive {
+public interface DamagingProjectile extends Projectile {
 
     /**
-     * Gets the damaging data for this {@link ExplosiveProjectile}.
+     * Gets the damaging data for this {@link DamagingProjectile}.
      *
      * <p>The damaging data defines how much damage the projectile will deal
      * upon hitting an {@link Entity}, before the explosion.</p>
