@@ -451,8 +451,6 @@ public final class ItemTypes {
 
     public static final ItemType LIGHT_WEIGHTED_PRESSURE_PLATE = DummyObjectProvider.createFor(ItemType.class, "LIGHT_WEIGHTED_PRESSURE_PLATE");
 
-    public static final ItemType LIT_FURNACE = DummyObjectProvider.createFor(ItemType.class, "LIT_FURNACE");
-
     public static final ItemType LIT_PUMPKIN = DummyObjectProvider.createFor(ItemType.class, "LIT_PUMPKIN");
 
     public static final ItemType LOG = DummyObjectProvider.createFor(ItemType.class, "LOG");
