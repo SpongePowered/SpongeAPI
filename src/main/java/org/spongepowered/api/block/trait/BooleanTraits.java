@@ -92,8 +92,6 @@ public final class BooleanTraits {
 
     public static final BooleanTrait COBBLESTONE_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "COBBLESTONE_WALL_WEST");
 
-    public static final BooleanTrait COMMAND_BLOCK_TRIGGERED = DummyObjectProvider.createFor(BooleanTrait.class, "COMMAND_BLOCK_TRIGGERED");
-
     public static final BooleanTrait DARK_OAK_DOOR_OPEN = DummyObjectProvider.createFor(BooleanTrait.class, "DARK_OAK_DOOR_OPEN");
 
     public static final BooleanTrait DARK_OAK_DOOR_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "DARK_OAK_DOOR_POWERED");
