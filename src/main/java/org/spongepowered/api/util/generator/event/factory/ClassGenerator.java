@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.event.factory;
+package org.spongepowered.api.util.generator.event.factory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.objectweb.asm.Opcodes.ACC_BRIDGE;
@@ -72,7 +72,7 @@ import org.spongepowered.api.eventgencore.PropertySearchStrategy;
 import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 import org.spongepowered.api.eventgencore.annotation.UseField;
 import org.spongepowered.api.eventgencore.classwrapper.reflection.ReflectionClassWrapper;
-import org.spongepowered.api.util.event.factory.plugin.EventFactoryPlugin;
+import org.spongepowered.api.util.generator.event.factory.plugin.EventFactoryPlugin;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

@@ -39,7 +39,6 @@ import org.mockito.stubbing.Answer;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.NamedCause;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.HealEntityEvent;
@@ -48,7 +47,7 @@ import org.spongepowered.api.event.entity.ai.AITaskEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.PEBKACException;
-import org.spongepowered.api.util.event.factory.EventFactory;
+import org.spongepowered.api.util.generator.event.factory.EventFactory;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 

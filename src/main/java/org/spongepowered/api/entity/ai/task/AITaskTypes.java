@@ -29,33 +29,41 @@ import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.animal.Horse;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.function.Predicate;
 
 public final class AITaskTypes {
 
-    /**
-     * {@link AITask} where {@link Creature}s walk around.
-     */
-    public static final AITaskType WANDER = null;
-
-    /**
-     * {@link AITask} where {@link Horse}s run around while {@link Humanoid}s attempt to tame them.
-     */
-    public static final AITaskType RUN_AROUND_LIKE_CRAZY = null;
+    // SORTFIELDS:ON
 
     /**
      * {@link AITask} where {@link Creature}s avoid other {@link Agent}s based on a {@link Predicate}.
      */
-    public static final AITaskType AVOID_ENTITY = null;
+    public static final AITaskType AVOID_ENTITY = DummyObjectProvider.createFor(AITaskType.class, "AVOID_ENTITY");
+
+    /**
+     * {@link AITask} where {@link Horse}s run around while {@link Humanoid}s attempt to tame them.
+     */
+    public static final AITaskType RUN_AROUND_LIKE_CRAZY = DummyObjectProvider.createFor(AITaskType.class, "RUN_AROUND_LIKE_CRAZY");
 
     /**
      * {@link AITask} where {@link Agent}s swim in liquids.
      */
-    public static final AITaskType SWIMMING = null;
+    public static final AITaskType SWIMMING = DummyObjectProvider.createFor(AITaskType.class, "SWIMMING");
+
+    /**
+     * {@link AITask} where {@link Creature}s walk around.
+     */
+    public static final AITaskType WANDER = DummyObjectProvider.createFor(AITaskType.class, "WANDER");
 
     /**
      * {@link AITask} where {@link Agent}s will "watch" other {@link Entity}s.
      */
-    public static final AITaskType WATCH_CLOSEST = null;
+    public static final AITaskType WATCH_CLOSEST = DummyObjectProvider.createFor(AITaskType.class, "WATCH_CLOSEST");
+
+    // SORTFIELDS:OFF
+
+    private AITaskTypes() {
+    }
 }

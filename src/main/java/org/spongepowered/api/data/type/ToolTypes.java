@@ -24,13 +24,23 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class ToolTypes {
 
-    public static final ToolType WOOD = null;
-    public static final ToolType STONE = null;
-    public static final ToolType IRON = null;
-    public static final ToolType GOLD = null;
-    public static final ToolType DIAMOND = null;
+    // SORTFIELDS:ON
+
+    public static final ToolType DIAMOND = DummyObjectProvider.createFor(ToolType.class, "DIAMOND");
+
+    public static final ToolType GOLD = DummyObjectProvider.createFor(ToolType.class, "GOLD");
+
+    public static final ToolType IRON = DummyObjectProvider.createFor(ToolType.class, "IRON");
+
+    public static final ToolType STONE = DummyObjectProvider.createFor(ToolType.class, "STONE");
+
+    public static final ToolType WOOD = DummyObjectProvider.createFor(ToolType.class, "WOOD");
+
+    // SORTFIELDS:OFF
 
     private ToolTypes() {
     }

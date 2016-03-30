@@ -24,32 +24,38 @@
  */
 package org.spongepowered.api.scoreboard;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * Visibility names which cause nametags or death messages to be displayed
  * differently to players on a team.
  */
 public final class Visibilities {
 
+    // SORTFIELDS:ON
+
     /**
      * Displays nametags or death messages for all players.
      */
-    public static final Visibility ALL = null;
+    public static final Visibility ALL = DummyObjectProvider.createFor(Visibility.class, "ALL");
 
     /**
-     * Displays nametags or death messages for players on their own team.
+     * Displays nametags or death messages for no players.
      */
-    public static final Visibility OWN_TEAM = null;
+    public static final Visibility NONE = DummyObjectProvider.createFor(Visibility.class, "NONE");
 
     /**
      * Displays nametags or death messages for all players on teams other
      * than their team.
      */
-    public static final Visibility OTHER_TEAMS = null;
+    public static final Visibility OTHER_TEAMS = DummyObjectProvider.createFor(Visibility.class, "OTHER_TEAMS");
 
     /**
-     * Displays nametags or death messages for no players.
+     * Displays nametags or death messages for players on their own team.
      */
-    public static final Visibility NONE = null;
+    public static final Visibility OWN_TEAM = DummyObjectProvider.createFor(Visibility.class, "OWN_TEAM");
+
+    // SORTFIELDS:OFF
 
     private Visibilities() {
     }

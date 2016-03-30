@@ -25,6 +25,11 @@
 package org.spongepowered.api.text.format;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.Text;
+
+import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a list of the text styles provided by Vanilla Minecraft.
@@ -39,16 +44,16 @@ public final class TextStyles {
      */
     public static final TextStyle NONE = new NoneTextStyle();
 
-    public static final TextStyle.Base OBFUSCATED = null;
-    public static final TextStyle.Base BOLD = null;
-    public static final TextStyle.Base STRIKETHROUGH = null;
-    public static final TextStyle.Base UNDERLINE = null;
-    public static final TextStyle.Base ITALIC = null;
+    public static final TextStyle.Base OBFUSCATED = new DummyTextStyle("OBFUSCATED");
+    public static final TextStyle.Base BOLD = new DummyTextStyle("BOLD");
+    public static final TextStyle.Base STRIKETHROUGH = new DummyTextStyle("STRIKETHROUGH");
+    public static final TextStyle.Base UNDERLINE = new DummyTextStyle("UNDERLINE");
+    public static final TextStyle.Base ITALIC = new DummyTextStyle("ITALIC");
 
     /**
      * Represents a {@link TextStyle} with all bases set to {@code false}.
      */
-    public static final TextStyle.Base RESET = null;
+    public static final TextStyle.Base RESET = new DummyTextStyle("RESET");
 
     /**
      * Returns an empty {@link TextStyle}.
@@ -79,7 +84,7 @@ public final class TextStyles {
         /**
          * Constructs a new {@link NoneTextStyle}.
          */
-        private NoneTextStyle() {
+        NoneTextStyle() {
             super(
                 null,
                 null,
@@ -97,6 +102,111 @@ public final class TextStyles {
         @Override
         public String getName() {
             return "NONE";
+        }
+    }
+
+    private static final class DummyTextStyle extends TextStyle.Base {
+
+        private final String name;
+
+        DummyTextStyle(String fieldName) {
+            super(false, false, false, false, false);
+            this.name = fieldName;
+        }
+
+        @Override
+        public boolean isComposite() {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public boolean isEmpty() {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public TextStyle bold(@Nullable Boolean bold) {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public TextStyle italic(@Nullable Boolean italic) {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public TextStyle underline(@Nullable Boolean underline) {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public TextStyle strikethrough(@Nullable Boolean strikethrough) {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public TextStyle obfuscated(@Nullable Boolean obfuscated) {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public Optional<Boolean> isBold() {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public Optional<Boolean> isItalic() {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public Optional<Boolean> hasUnderline() {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public Optional<Boolean> hasStrikethrough() {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public Optional<Boolean> isObfuscated() {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public boolean contains(TextStyle... styles) {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public TextStyle negate() {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public TextStyle and(TextStyle... styles) {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public TextStyle andNot(TextStyle... styles) {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public void applyTo(Text.Builder builder) {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public String getId() {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
+        }
+
+        @Override
+        public String getName() {
+            throw new UnsupportedOperationException("TextStyles." + this.name + " is not properly assigned!");
         }
     }
 

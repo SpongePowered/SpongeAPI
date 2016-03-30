@@ -507,9 +507,9 @@ public interface DataView {
      * an empty value.</p>
      *
      * @param path The path of the value to get
-     * @param catalogType The class of the catalog type
-     * @param <T> The type of catalog
-     * @return The catalog type, if available
+     * @param catalogType The class of the dummy type
+     * @param <T> The type of dummy
+     * @return The dummy type, if available
      */
     <T extends CatalogType> Optional<T> getCatalogType(DataQuery path, Class<T> catalogType);
 
@@ -521,9 +521,9 @@ public interface DataView {
      * of {@link CatalogType}, an absent is returned.</p>
      *
      * @param path The path of the list value to get
-     * @param catalogType The class of the catalog type
-     * @param <T> The type of catalog type
-     * @return The list of catalog types, if available
+     * @param catalogType The class of the dummy type
+     * @param <T> The type of dummy type
+     * @return The list of dummy types, if available
      */
     <T extends CatalogType> Optional<List<T>> getCatalogTypeList(DataQuery path, Class<T> catalogType);
 

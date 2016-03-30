@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of vanilla known {@link SkinPart}s.
  */
@@ -32,15 +34,22 @@ public final class SkinParts {
     private SkinParts() {
     }
 
-    public static final SkinPart HAT = null;
+    // SORTFIELDS:ON
 
-    public static final SkinPart CAPE = null;
-    public static final SkinPart JACKET = null;
+    public static final SkinPart CAPE = DummyObjectProvider.createFor(SkinPart.class, "CAPE");
 
-    public static final SkinPart LEFT_SLEEVE = null;
-    public static final SkinPart RIGHT_SLEEVE = null;
+    public static final SkinPart HAT = DummyObjectProvider.createFor(SkinPart.class, "HAT");
 
-    public static final SkinPart LEFT_PANTS_LEG = null;
-    public static final SkinPart RIGHT_PANTS_LEG = null;
+    public static final SkinPart JACKET = DummyObjectProvider.createFor(SkinPart.class, "JACKET");
+
+    public static final SkinPart LEFT_PANTS_LEG = DummyObjectProvider.createFor(SkinPart.class, "LEFT_PANTS_LEG");
+
+    public static final SkinPart LEFT_SLEEVE = DummyObjectProvider.createFor(SkinPart.class, "LEFT_SLEEVE");
+
+    public static final SkinPart RIGHT_PANTS_LEG = DummyObjectProvider.createFor(SkinPart.class, "RIGHT_PANTS_LEG");
+
+    public static final SkinPart RIGHT_SLEEVE = DummyObjectProvider.createFor(SkinPart.class, "RIGHT_SLEEVE");
+
+    // SORTFIELDS:OFF
 
 }

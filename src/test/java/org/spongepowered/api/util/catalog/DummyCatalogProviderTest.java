@@ -22,45 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.event.factory;
+package org.spongepowered.api.util.catalog;
 
-import org.spongepowered.api.util.event.factory.plugin.EventFactoryPlugin;
+import org.junit.Test;
+import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-import java.util.List;
+public class DummyCatalogProviderTest {
 
-/**
- * Creates event factories that can generate new instances of requested
- * events.
- */
-public interface FactoryProvider {
-
-    /**
-     * Get whether there should be any checks on whether a parameter is
-     * null when it should not be.
-     *
-     * @return The null policy
-     */
-    NullPolicy getNullPolicy();
-
-    /**
-     * Set whether there should be any checks on whether a parameter is
-     * null when it should not be.
-     *
-     * @param policy The null policy
-     */
-    void setNullPolicy(NullPolicy policy);
-
-    /**
-     * Creates a function that takes a map of property names with their
-     * values to create a new instance of a generated class that implements
-     * the given type.
-     *
-     * @param type The type to generate a class for
-     * @param parentType The parent type
-     * @param plugins The {@link EventFactoryPlugin}s to use when generating the class
-     * @param <T> The type of the event
-     * @return The function
-     */
-    <T> EventFactory<T> create(Class<T> type, Class<?> parentType, List<? extends EventFactoryPlugin> plugins);
+    @Test(expected = UnsupportedOperationException.class)
+    public void testCreate_BlockType() {
+        DummyObjectProvider.createFor(BlockType.class, "FOO").getDefaultState();
+    }
 
 }

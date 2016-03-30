@@ -24,39 +24,66 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of all possible {@link NotePitch}es in vanilla minecraft.
  */
 public final class NotePitches {
 
-    // These values will not be null at runtime
+    // SORTFIELDS:ON
 
-    public static final NotePitch F_SHARP0 = null;
-    public static final NotePitch G0 = null;
-    public static final NotePitch G_SHARP0 = null;
-    public static final NotePitch A1 = null;
-    public static final NotePitch A_SHARP1 = null;
-    public static final NotePitch B1 = null;
-    public static final NotePitch C1 = null;
-    public static final NotePitch C_SHARP1 = null;
-    public static final NotePitch D1 = null;
-    public static final NotePitch D_SHARP1 = null;
-    public static final NotePitch E1 = null;
-    public static final NotePitch F1 = null;
+    public static final NotePitch A1 = DummyObjectProvider.createFor(NotePitch.class, "A1");
 
-    public static final NotePitch F_SHARP1 = null;
-    public static final NotePitch G1 = null;
-    public static final NotePitch G_SHARP1 = null;
-    public static final NotePitch A2 = null;
-    public static final NotePitch A_SHARP2 = null;
-    public static final NotePitch B2 = null;
-    public static final NotePitch C2 = null;
-    public static final NotePitch C_SHARP2 = null;
-    public static final NotePitch D2 = null;
-    public static final NotePitch D_SHARP2 = null;
-    public static final NotePitch E2 = null;
-    public static final NotePitch F2 = null;
-    public static final NotePitch F_SHARP2 = null;
+    public static final NotePitch A2 = DummyObjectProvider.createFor(NotePitch.class, "A2");
+
+    public static final NotePitch A_SHARP1 = DummyObjectProvider.createFor(NotePitch.class, "A_SHARP1");
+
+    public static final NotePitch A_SHARP2 = DummyObjectProvider.createFor(NotePitch.class, "A_SHARP2");
+
+    public static final NotePitch B1 = DummyObjectProvider.createFor(NotePitch.class, "B1");
+
+    public static final NotePitch B2 = DummyObjectProvider.createFor(NotePitch.class, "B2");
+
+    public static final NotePitch C1 = DummyObjectProvider.createFor(NotePitch.class, "C1");
+
+    public static final NotePitch C2 = DummyObjectProvider.createFor(NotePitch.class, "C2");
+
+    public static final NotePitch C_SHARP1 = DummyObjectProvider.createFor(NotePitch.class, "C_SHARP1");
+
+    public static final NotePitch C_SHARP2 = DummyObjectProvider.createFor(NotePitch.class, "C_SHARP2");
+
+    public static final NotePitch D1 = DummyObjectProvider.createFor(NotePitch.class, "D1");
+
+    public static final NotePitch D2 = DummyObjectProvider.createFor(NotePitch.class, "D2");
+
+    public static final NotePitch D_SHARP1 = DummyObjectProvider.createFor(NotePitch.class, "D_SHARP1");
+
+    public static final NotePitch D_SHARP2 = DummyObjectProvider.createFor(NotePitch.class, "D_SHARP2");
+
+    public static final NotePitch E1 = DummyObjectProvider.createFor(NotePitch.class, "E1");
+
+    public static final NotePitch E2 = DummyObjectProvider.createFor(NotePitch.class, "E2");
+
+    public static final NotePitch F1 = DummyObjectProvider.createFor(NotePitch.class, "F1");
+
+    public static final NotePitch F2 = DummyObjectProvider.createFor(NotePitch.class, "F2");
+
+    public static final NotePitch F_SHARP0 = DummyObjectProvider.createFor(NotePitch.class, "F_SHARP0");
+
+    public static final NotePitch F_SHARP1 = DummyObjectProvider.createFor(NotePitch.class, "F_SHARP1");
+
+    public static final NotePitch F_SHARP2 = DummyObjectProvider.createFor(NotePitch.class, "F_SHARP2");
+
+    public static final NotePitch G0 = DummyObjectProvider.createFor(NotePitch.class, "G0");
+
+    public static final NotePitch G1 = DummyObjectProvider.createFor(NotePitch.class, "G1");
+
+    public static final NotePitch G_SHARP0 = DummyObjectProvider.createFor(NotePitch.class, "G_SHARP0");
+
+    public static final NotePitch G_SHARP1 = DummyObjectProvider.createFor(NotePitch.class, "G_SHARP1");
+
+    // SORTFIELDS:OFF
 
     private NotePitches() {
     }

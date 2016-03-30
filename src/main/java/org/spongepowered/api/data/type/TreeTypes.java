@@ -24,14 +24,25 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class TreeTypes {
 
-    public static final TreeType OAK = null;
-    public static final TreeType SPRUCE = null;
-    public static final TreeType BIRCH = null;
-    public static final TreeType JUNGLE = null;
-    public static final TreeType ACACIA = null;
-    public static final TreeType DARK_OAK = null;
+    // SORTFIELDS:ON
+
+    public static final TreeType ACACIA = DummyObjectProvider.createFor(TreeType.class, "ACACIA");
+
+    public static final TreeType BIRCH = DummyObjectProvider.createFor(TreeType.class, "BIRCH");
+
+    public static final TreeType DARK_OAK = DummyObjectProvider.createFor(TreeType.class, "DARK_OAK");
+
+    public static final TreeType JUNGLE = DummyObjectProvider.createFor(TreeType.class, "JUNGLE");
+
+    public static final TreeType OAK = DummyObjectProvider.createFor(TreeType.class, "OAK");
+
+    public static final TreeType SPRUCE = DummyObjectProvider.createFor(TreeType.class, "SPRUCE");
+
+    // SORTFIELDS:OFF
 
     private TreeTypes() {
     }

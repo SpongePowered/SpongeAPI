@@ -24,18 +24,30 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known vanilla {@link RabbitType}s.
  */
 public final class RabbitTypes {
 
-    public static final RabbitType BROWN = null;
-    public static final RabbitType WHITE = null;
-    public static final RabbitType BLACK = null;
-    public static final RabbitType BLACK_AND_WHITE = null;
-    public static final RabbitType GOLD = null;
-    public static final RabbitType SALT_AND_PEPPER = null;
-    public static final RabbitType KILLER = null;
+    // SORTFIELDS:ON
+
+    public static final RabbitType BLACK = DummyObjectProvider.createFor(RabbitType.class, "BLACK");
+
+    public static final RabbitType BLACK_AND_WHITE = DummyObjectProvider.createFor(RabbitType.class, "BLACK_AND_WHITE");
+
+    public static final RabbitType BROWN = DummyObjectProvider.createFor(RabbitType.class, "BROWN");
+
+    public static final RabbitType GOLD = DummyObjectProvider.createFor(RabbitType.class, "GOLD");
+
+    public static final RabbitType KILLER = DummyObjectProvider.createFor(RabbitType.class, "KILLER");
+
+    public static final RabbitType SALT_AND_PEPPER = DummyObjectProvider.createFor(RabbitType.class, "SALT_AND_PEPPER");
+
+    public static final RabbitType WHITE = DummyObjectProvider.createFor(RabbitType.class, "WHITE");
+
+    // SORTFIELDS:OFF
 
     private RabbitTypes() {
     }

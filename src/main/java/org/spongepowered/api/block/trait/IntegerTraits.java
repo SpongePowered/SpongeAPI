@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.block.trait;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * Represents all possible {@link IntegerTrait}s that are known to exist in
  * vanilla minecraft.
@@ -32,34 +34,70 @@ public final class IntegerTraits {
 
     private IntegerTraits() {}
 
-    public static final IntegerTrait ANVIL_DAMAGE = null;
-    public static final IntegerTrait CACTUS_AGE = null;
-    public static final IntegerTrait CAKE_BITES = null;
-    public static final IntegerTrait CARROTS_AGE = null;
-    public static final IntegerTrait CAULDRON_LEVEL = null;
-    public static final IntegerTrait COCOA_AGE = null;
-    public static final IntegerTrait DAYLIGHT_DETECTOR_INVERTED_POWER = null;
-    public static final IntegerTrait DAYLIGHT_DETECTOR_POWER = null;
-    public static final IntegerTrait FARMLAND_MOISTURE = null;
-    public static final IntegerTrait FIRE_AGE = null;
-    public static final IntegerTrait FLOWER_POT_LEGACY_DATA = null;
-    public static final IntegerTrait FLOWING_LAVA_LEVEL = null;
-    public static final IntegerTrait FLOWING_WATER_LEVEL = null;
-    public static final IntegerTrait HEAVY_WEIGHTED_PRESSURE_PLATE_POWER = null;
-    public static final IntegerTrait LAVA_LEVEL = null;
-    public static final IntegerTrait LIGHT_WEIGHTED_PRESSURE_PLATE_POWER = null;
-    public static final IntegerTrait MELON_STEM_AGE = null;
-    public static final IntegerTrait NETHER_WART_AGE = null;
-    public static final IntegerTrait POTATOES_AGE = null;
-    public static final IntegerTrait POWERED_REPEATER_DELAY = null;
-    public static final IntegerTrait PUMPKIN_STEM_AGE = null;
-    public static final IntegerTrait REDSTONE_WIRE_POWER = null;
-    public static final IntegerTrait REEDS_AGE = null;
-    public static final IntegerTrait SAPLING_STAGE = null;
-    public static final IntegerTrait SNOW_LAYER_LAYERS = null;
-    public static final IntegerTrait STANDING_BANNER_ROTATION = null;
-    public static final IntegerTrait STANDING_SIGN_ROTATION = null;
-    public static final IntegerTrait UNPOWERED_REPEATER_DELAY = null;
-    public static final IntegerTrait WATER_LEVEL = null;
-    public static final IntegerTrait WHEAT_AGE = null;
+    // SORTFIELDS:ON
+
+    public static final IntegerTrait ANVIL_DAMAGE = DummyObjectProvider.createFor(IntegerTrait.class, "ANVIL_DAMAGE");
+
+    public static final IntegerTrait CACTUS_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "CACTUS_AGE");
+
+    public static final IntegerTrait CAKE_BITES = DummyObjectProvider.createFor(IntegerTrait.class, "CAKE_BITES");
+
+    public static final IntegerTrait CARROTS_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "CARROTS_AGE");
+
+    public static final IntegerTrait CAULDRON_LEVEL = DummyObjectProvider.createFor(IntegerTrait.class, "CAULDRON_LEVEL");
+
+    public static final IntegerTrait COCOA_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "COCOA_AGE");
+
+    public static final IntegerTrait DAYLIGHT_DETECTOR_INVERTED_POWER = DummyObjectProvider
+            .createFor(IntegerTrait.class, "DAYLIGHT_DETECTOR_INVERTED_POWER");
+
+    public static final IntegerTrait DAYLIGHT_DETECTOR_POWER = DummyObjectProvider.createFor(IntegerTrait.class, "DAYLIGHT_DETECTOR_POWER");
+
+    public static final IntegerTrait FARMLAND_MOISTURE = DummyObjectProvider.createFor(IntegerTrait.class, "FARMLAND_MOISTURE");
+
+    public static final IntegerTrait FIRE_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "FIRE_AGE");
+
+    public static final IntegerTrait FLOWER_POT_LEGACY_DATA = DummyObjectProvider.createFor(IntegerTrait.class, "FLOWER_POT_LEGACY_DATA");
+
+    public static final IntegerTrait FLOWING_LAVA_LEVEL = DummyObjectProvider.createFor(IntegerTrait.class, "FLOWING_LAVA_LEVEL");
+
+    public static final IntegerTrait FLOWING_WATER_LEVEL = DummyObjectProvider.createFor(IntegerTrait.class, "FLOWING_WATER_LEVEL");
+
+    public static final IntegerTrait HEAVY_WEIGHTED_PRESSURE_PLATE_POWER = DummyObjectProvider
+            .createFor(IntegerTrait.class, "HEAVY_WEIGHTED_PRESSURE_PLATE_POWER");
+
+    public static final IntegerTrait LAVA_LEVEL = DummyObjectProvider.createFor(IntegerTrait.class, "LAVA_LEVEL");
+
+    public static final IntegerTrait LIGHT_WEIGHTED_PRESSURE_PLATE_POWER = DummyObjectProvider
+            .createFor(IntegerTrait.class, "LIGHT_WEIGHTED_PRESSURE_PLATE_POWER");
+
+    public static final IntegerTrait MELON_STEM_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "MELON_STEM_AGE");
+
+    public static final IntegerTrait NETHER_WART_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "NETHER_WART_AGE");
+
+    public static final IntegerTrait POTATOES_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "POTATOES_AGE");
+
+    public static final IntegerTrait POWERED_REPEATER_DELAY = DummyObjectProvider.createFor(IntegerTrait.class, "POWERED_REPEATER_DELAY");
+
+    public static final IntegerTrait PUMPKIN_STEM_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "PUMPKIN_STEM_AGE");
+
+    public static final IntegerTrait REDSTONE_WIRE_POWER = DummyObjectProvider.createFor(IntegerTrait.class, "REDSTONE_WIRE_POWER");
+
+    public static final IntegerTrait REEDS_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "REEDS_AGE");
+
+    public static final IntegerTrait SAPLING_STAGE = DummyObjectProvider.createFor(IntegerTrait.class, "SAPLING_STAGE");
+
+    public static final IntegerTrait SNOW_LAYER_LAYERS = DummyObjectProvider.createFor(IntegerTrait.class, "SNOW_LAYER_LAYERS");
+
+    public static final IntegerTrait STANDING_BANNER_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "STANDING_BANNER_ROTATION");
+
+    public static final IntegerTrait STANDING_SIGN_ROTATION = DummyObjectProvider.createFor(IntegerTrait.class, "STANDING_SIGN_ROTATION");
+
+    public static final IntegerTrait UNPOWERED_REPEATER_DELAY = DummyObjectProvider.createFor(IntegerTrait.class, "UNPOWERED_REPEATER_DELAY");
+
+    public static final IntegerTrait WATER_LEVEL = DummyObjectProvider.createFor(IntegerTrait.class, "WATER_LEVEL");
+
+    public static final IntegerTrait WHEAT_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "WHEAT_AGE");
+
+    // SORTFIELDS:OFF
 }

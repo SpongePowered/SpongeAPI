@@ -229,4 +229,18 @@ public final class KeyFactory {
         };
     }
 
+    static <E, V extends BaseValue<E>> Key<V> fake(final String keyName) {
+        return new Key<V>() {
+            @Override
+            public Class<V> getValueClass() {
+                throw new UnsupportedOperationException("Key " + keyName + " is not implemented");
+            }
+
+            @Override
+            public DataQuery getQuery() {
+                throw new UnsupportedOperationException("Key " + keyName + " is not implemented");
+            }
+        };
+    }
+
 }

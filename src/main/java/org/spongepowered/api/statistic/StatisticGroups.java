@@ -24,68 +24,82 @@
  */
 package org.spongepowered.api.statistic;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * A utility class for getting all available {@link StatisticGroup}s.
  */
 public final class StatisticGroups {
 
-    /**
-     * Statistics belonging to the group of 'general' statistics.
-     */
-    public static final StatisticGroup GENERAL = null;
-    /**
-     * Statistics which are purely used internally and are not intended to be
-     * displayed, such as statistics used to back certain achievements.
-     */
-    public static final StatisticGroup HIDDEN = null;
-    
-    /**
-     * Statistic counting the number of killed entities of a specific type.
-     */
-    public static final StatisticGroup HAS_KILLED_ENTITY = null;
-    /**
-     * Statistic counting the number of deaths caused by entities of a specific
-     * type.
-     */
-    public static final StatisticGroup KILLED_BY_ENTITY = null;
+    // SORTFIELDS:ON
 
-    /**
-     * Statistic counting the number of crafted items of a specific type.
-     */
-    public static final StatisticGroup CRAFT_ITEM = null;
-    /**
-     * Statistic counting the number of used/placed items of a specific type.
-     */
-    public static final StatisticGroup USE_ITEM = null;
     /**
      * Statistic counting the number of broken/worn down items of a specific
      * type.
      */
-    public static final StatisticGroup BREAK_ITEM = null;
+    public static final StatisticGroup BREAK_ITEM = DummyObjectProvider.createFor(StatisticGroup.class, "BREAK_ITEM");
 
     /**
      * Statistic counting the number of crafted items of a specific type.
      */
-    public static final StatisticGroup CRAFT_BLOCK = null;
+    public static final StatisticGroup CRAFT_BLOCK = DummyObjectProvider.createFor(StatisticGroup.class, "CRAFT_BLOCK");
+
     /**
-     * Statistic counting the number of used blocks of a specific type.
+     * Statistic counting the number of crafted items of a specific type.
      */
-    public static final StatisticGroup USE_BLOCK = null;
+    public static final StatisticGroup CRAFT_ITEM = DummyObjectProvider.createFor(StatisticGroup.class, "CRAFT_ITEM");
+
     /**
-     * Statistic counting the number of mined/harvested blocks of a specific
-     * type.
+     * Statistics belonging to the group of 'general' statistics.
      */
-    public static final StatisticGroup MINE_BLOCK = null;
+    public static final StatisticGroup GENERAL = DummyObjectProvider.createFor(StatisticGroup.class, "GENERAL");
+
+
+    /**
+     * Statistic counting the number of killed entities of a specific type.
+     */
+    public static final StatisticGroup HAS_KILLED_ENTITY = DummyObjectProvider.createFor(StatisticGroup.class, "HAS_KILLED_ENTITY");
 
     /**
      * Statistic counting the number of killed members of a specific team.
      */
-    public static final StatisticGroup HAS_KILLED_TEAM = null;
+    public static final StatisticGroup HAS_KILLED_TEAM = DummyObjectProvider.createFor(StatisticGroup.class, "HAS_KILLED_TEAM");
+
+    /**
+     * Statistics which are purely used internally and are not intended to be
+     * displayed, such as statistics used to back certain achievements.
+     */
+    public static final StatisticGroup HIDDEN = DummyObjectProvider.createFor(StatisticGroup.class, "HIDDEN");
+
+    /**
+     * Statistic counting the number of deaths caused by entities of a specific
+     * type.
+     */
+    public static final StatisticGroup KILLED_BY_ENTITY = DummyObjectProvider.createFor(StatisticGroup.class, "KILLED_BY_ENTITY");
+
     /**
      * Statistic counting the number of deaths caused by members of a specific
      * team.
      */
-    public static final StatisticGroup KILLED_BY_TEAM = null;
+    public static final StatisticGroup KILLED_BY_TEAM = DummyObjectProvider.createFor(StatisticGroup.class, "KILLED_BY_TEAM");
+
+    /**
+     * Statistic counting the number of mined/harvested blocks of a specific
+     * type.
+     */
+    public static final StatisticGroup MINE_BLOCK = DummyObjectProvider.createFor(StatisticGroup.class, "MINE_BLOCK");
+
+    /**
+     * Statistic counting the number of used blocks of a specific type.
+     */
+    public static final StatisticGroup USE_BLOCK = DummyObjectProvider.createFor(StatisticGroup.class, "USE_BLOCK");
+
+    /**
+     * Statistic counting the number of used/placed items of a specific type.
+     */
+    public static final StatisticGroup USE_ITEM = DummyObjectProvider.createFor(StatisticGroup.class, "USE_ITEM");
+
+    // SORTFIELDS:OFF
 
     private StatisticGroups() {
     }

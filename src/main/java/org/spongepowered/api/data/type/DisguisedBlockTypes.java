@@ -24,17 +24,28 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known vanilla {@link DisguisedBlockType}s.
  */
 public final class DisguisedBlockTypes {
 
-    public static final DisguisedBlockType STONE = null;
-    public static final DisguisedBlockType COBBLESTONE = null;
-    public static final DisguisedBlockType STONEBRICK = null;
-    public static final DisguisedBlockType MOSSY_STONEBRICK = null;
-    public static final DisguisedBlockType CRACKED_STONEBRICK = null;
-    public static final DisguisedBlockType CHISELED_STONEBRICK = null;
+    // SORTFIELDS:ON
+
+    public static final DisguisedBlockType CHISELED_STONEBRICK = DummyObjectProvider.createFor(DisguisedBlockType.class, "CHISELED_STONEBRICK");
+
+    public static final DisguisedBlockType COBBLESTONE = DummyObjectProvider.createFor(DisguisedBlockType.class, "COBBLESTONE");
+
+    public static final DisguisedBlockType CRACKED_STONEBRICK = DummyObjectProvider.createFor(DisguisedBlockType.class, "CRACKED_STONEBRICK");
+
+    public static final DisguisedBlockType MOSSY_STONEBRICK = DummyObjectProvider.createFor(DisguisedBlockType.class, "MOSSY_STONEBRICK");
+
+    public static final DisguisedBlockType STONE = DummyObjectProvider.createFor(DisguisedBlockType.class, "STONE");
+
+    public static final DisguisedBlockType STONEBRICK = DummyObjectProvider.createFor(DisguisedBlockType.class, "STONEBRICK");
+
+    // SORTFIELDS:OFF
 
     private DisguisedBlockTypes() {
     }

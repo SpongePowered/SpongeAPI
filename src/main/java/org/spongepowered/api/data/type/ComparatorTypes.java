@@ -24,10 +24,17 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class ComparatorTypes {
 
-    public static final ComparatorType COMPARE = null;
-    public static final ComparatorType SUBTRACT = null;
+    // SORTFIELDS:ON
+
+    public static final ComparatorType COMPARE = DummyObjectProvider.createFor(ComparatorType.class, "COMPARE");
+
+    public static final ComparatorType SUBTRACT = DummyObjectProvider.createFor(ComparatorType.class, "SUBTRACT");
+
+    // SORTFIELDS:OFF
 
     private ComparatorTypes() {
     }

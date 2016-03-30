@@ -24,18 +24,33 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class RailDirections {
 
-    public static final RailDirection NORTH_SOUTH = null;
-    public static final RailDirection EAST_WEST = null;
-    public static final RailDirection ASCENDING_EAST = null;
-    public static final RailDirection ASCENDING_WEST = null;
-    public static final RailDirection ASCENDING_NORTH = null;
-    public static final RailDirection ASCENDING_SOUTH = null;
-    public static final RailDirection SOUTH_EAST = null;
-    public static final RailDirection SOUTH_WEST = null;
-    public static final RailDirection NORTH_EAST = null;
-    public static final RailDirection NORTH_WEST = null;
+    // SORTFIELDS:ON
+
+    public static final RailDirection ASCENDING_EAST = DummyObjectProvider.createFor(RailDirection.class, "ASCENDING_EAST");
+
+    public static final RailDirection ASCENDING_NORTH = DummyObjectProvider.createFor(RailDirection.class, "ASCENDING_NORTH");
+
+    public static final RailDirection ASCENDING_SOUTH = DummyObjectProvider.createFor(RailDirection.class, "ASCENDING_SOUTH");
+
+    public static final RailDirection ASCENDING_WEST = DummyObjectProvider.createFor(RailDirection.class, "ASCENDING_WEST");
+
+    public static final RailDirection EAST_WEST = DummyObjectProvider.createFor(RailDirection.class, "EAST_WEST");
+
+    public static final RailDirection NORTH_EAST = DummyObjectProvider.createFor(RailDirection.class, "NORTH_EAST");
+
+    public static final RailDirection NORTH_SOUTH = DummyObjectProvider.createFor(RailDirection.class, "NORTH_SOUTH");
+
+    public static final RailDirection NORTH_WEST = DummyObjectProvider.createFor(RailDirection.class, "NORTH_WEST");
+
+    public static final RailDirection SOUTH_EAST = DummyObjectProvider.createFor(RailDirection.class, "SOUTH_EAST");
+
+    public static final RailDirection SOUTH_WEST = DummyObjectProvider.createFor(RailDirection.class, "SOUTH_WEST");
+
+    // SORTFIELDS:OFF
 
     private RailDirections() {
     }

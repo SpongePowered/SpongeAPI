@@ -25,12 +25,25 @@
 
 package org.spongepowered.api.event.cause.entity.health;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class HealingTypes {
 
-    public static final HealingType POTION = null;
-    public static final HealingType UNDEAD = null;
-    public static final HealingType FOOD = null;
-    public static final HealingType BOSS = null;
-    public static final HealingType PLUGIN = null;
+    // SORTFIELDS:ON
+
+    public static final HealingType BOSS = DummyObjectProvider.createFor(HealingType.class, "BOSS");
+
+    public static final HealingType FOOD = DummyObjectProvider.createFor(HealingType.class, "FOOD");
+
+    public static final HealingType PLUGIN = DummyObjectProvider.createFor(HealingType.class, "PLUGIN");
+
+    public static final HealingType POTION = DummyObjectProvider.createFor(HealingType.class, "POTION");
+
+    public static final HealingType UNDEAD = DummyObjectProvider.createFor(HealingType.class, "UNDEAD");
+
+    // SORTFIELDS:OFF
+
+    private HealingTypes() {
+    }
 
 }

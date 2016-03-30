@@ -25,10 +25,12 @@
 
 package org.spongepowered.api.extra.fluid;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class FluidTypes {
 
-    public static final FluidType WATER = null;
-    public static final FluidType LAVA = null;
+    public static final FluidType WATER = DummyObjectProvider.createFor(FluidType.class, "WATER");
+    public static final FluidType LAVA = DummyObjectProvider.createFor(FluidType.class, "LAVA");
 
     private FluidTypes() { }
 

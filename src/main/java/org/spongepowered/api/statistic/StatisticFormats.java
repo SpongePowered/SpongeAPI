@@ -24,30 +24,39 @@
  */
 package org.spongepowered.api.statistic;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * A utility class for getting all available {@link StatisticFormat}s.
  */
 public final class StatisticFormats {
 
+    // SORTFIELDS:ON
+
     /**
      * A statistic without a format.
      */
-    public static StatisticFormat COUNT = null;
+    public static StatisticFormat COUNT = DummyObjectProvider.createFor(StatisticFormat.class, "COUNT");
+
     /**
      * A statistic measured in centimeters, meters, or kilometers depending on
      * the magnitude. The input is taken as centimeters with a scale of 1 block
      * equaling 1 meter.
      */
-    public static StatisticFormat DISTANCE = null;
+    public static StatisticFormat DISTANCE = DummyObjectProvider.createFor(StatisticFormat.class, "DISTANCE");
+
     /**
      * A statistic measured in 0.1 steps.
      */
-    public static StatisticFormat FRACTIONAL = null;
+    public static StatisticFormat FRACTIONAL = DummyObjectProvider.createFor(StatisticFormat.class, "FRACTIONAL");
+
     /**
      * A statistic measured in seconds, minutes, hours, or days depending on the
      * magnitude. The input is taken as ticks with 20 ticks equaling one second.
      */
-    public static StatisticFormat TIME = null;
+    public static StatisticFormat TIME = DummyObjectProvider.createFor(StatisticFormat.class, "TIME");
+
+    // SORTFIELDS:OFF
 
     private StatisticFormats() {
     }

@@ -24,13 +24,20 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known vanilla {@link SandType}s.
  */
 public final class SandTypes {
 
-    public static final SandType NORMAL = null;
-    public static final SandType RED = null;
+    // SORTFIELDS:ON
+
+    public static final SandType NORMAL = DummyObjectProvider.createFor(SandType.class, "NORMAL");
+
+    public static final SandType RED = DummyObjectProvider.createFor(SandType.class, "RED");
+
+    // SORTFIELDS:OFF
 
     private SandTypes() {
     }

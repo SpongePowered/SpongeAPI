@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.effect.sound;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of vanilla {@link SoundType}s.
  */

@@ -24,27 +24,48 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known {@link DyeColor} types.
  */
 public final class DyeColors {
 
-    public static final DyeColor WHITE = null;
-    public static final DyeColor ORANGE = null;
-    public static final DyeColor MAGENTA = null;
-    public static final DyeColor LIGHT_BLUE = null;
-    public static final DyeColor YELLOW = null;
-    public static final DyeColor LIME = null;
-    public static final DyeColor PINK = null;
-    public static final DyeColor GRAY = null;
-    public static final DyeColor SILVER = null;
-    public static final DyeColor CYAN = null;
-    public static final DyeColor PURPLE = null;
-    public static final DyeColor BLUE = null;
-    public static final DyeColor BROWN = null;
-    public static final DyeColor GREEN = null;
-    public static final DyeColor RED = null;
-    public static final DyeColor BLACK = null;
+    // SORTFIELDS:ON
+
+    public static final DyeColor BLACK = DummyObjectProvider.createFor(DyeColor.class, "BLACK");
+
+    public static final DyeColor BLUE = DummyObjectProvider.createFor(DyeColor.class, "BLUE");
+
+    public static final DyeColor BROWN = DummyObjectProvider.createFor(DyeColor.class, "BROWN");
+
+    public static final DyeColor CYAN = DummyObjectProvider.createFor(DyeColor.class, "CYAN");
+
+    public static final DyeColor GRAY = DummyObjectProvider.createFor(DyeColor.class, "GRAY");
+
+    public static final DyeColor GREEN = DummyObjectProvider.createFor(DyeColor.class, "GREEN");
+
+    public static final DyeColor LIGHT_BLUE = DummyObjectProvider.createFor(DyeColor.class, "LIGHT_BLUE");
+
+    public static final DyeColor LIME = DummyObjectProvider.createFor(DyeColor.class, "LIME");
+
+    public static final DyeColor MAGENTA = DummyObjectProvider.createFor(DyeColor.class, "MAGENTA");
+
+    public static final DyeColor ORANGE = DummyObjectProvider.createFor(DyeColor.class, "ORANGE");
+
+    public static final DyeColor PINK = DummyObjectProvider.createFor(DyeColor.class, "PINK");
+
+    public static final DyeColor PURPLE = DummyObjectProvider.createFor(DyeColor.class, "PURPLE");
+
+    public static final DyeColor RED = DummyObjectProvider.createFor(DyeColor.class, "RED");
+
+    public static final DyeColor SILVER = DummyObjectProvider.createFor(DyeColor.class, "SILVER");
+
+    public static final DyeColor WHITE = DummyObjectProvider.createFor(DyeColor.class, "WHITE");
+
+    public static final DyeColor YELLOW = DummyObjectProvider.createFor(DyeColor.class, "YELLOW");
+
+    // SORTFIELDS:OFF
 
     private DyeColors() {
     }
