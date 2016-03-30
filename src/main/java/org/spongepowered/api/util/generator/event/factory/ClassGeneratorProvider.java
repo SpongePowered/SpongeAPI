@@ -22,11 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.event.factory;
+package org.spongepowered.api.util.generator.event.factory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.util.event.factory.plugin.EventFactoryPlugin;
+import org.spongepowered.api.util.generator.GeneratorUtils;
+import org.spongepowered.api.util.generator.event.factory.plugin.EventFactoryPlugin;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ import java.util.List;
  */
 public class ClassGeneratorProvider implements FactoryProvider {
 
-    private final LocalClassLoader classLoader = new LocalClassLoader(ClassGeneratorProvider.class.getClassLoader());
+    private final GeneratorUtils.LocalClassLoader classLoader = new GeneratorUtils.LocalClassLoader(ClassGeneratorProvider.class.getClassLoader());
     private final ClassGenerator builder = new ClassGenerator();
     private final String targetPackage;
 
@@ -91,40 +92,4 @@ public class ClassGeneratorProvider implements FactoryProvider {
             throw new RuntimeException("Failed to create event factory", e);
         }
     }
-
-    /**
-     * Gets the {@link LocalClassLoader} used to load generated event classes.
-     *
-     * @return The {@link LocalClassLoader}
-     */
-    public LocalClassLoader getClassLoader() {
-        return this.classLoader;
-    }
-
-    /**
-     * Class loader to use to call {@link #defineClass(String, byte[])}.
-     */
-    public static class LocalClassLoader extends ClassLoader {
-
-        /**
-         * Creates a new {@link LocalClassLoader}.
-         *
-         * @param parent The parent class loader
-         */
-        public LocalClassLoader(ClassLoader parent) {
-            super(parent);
-        }
-
-        /**
-         * Defines the class by name and bytecode arrray.
-         *
-         * @param name The name of the class
-         * @param b The bytecode array
-         * @return The class
-         */
-        public Class<?> defineClass(String name, byte[] b) {
-            return defineClass(name, b, 0, b.length);
-        }
-    }
-
 }

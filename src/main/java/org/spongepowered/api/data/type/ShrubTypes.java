@@ -24,14 +24,22 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of vanilla known {@link ShrubType}s.
  */
 public class ShrubTypes {
 
-    public static final ShrubType DEAD_BUSH = null;
-    public static final ShrubType TALL_GRASS = null;
-    public static final ShrubType FERN = null;
+    // SORTFIELDS:ON
+
+    public static final ShrubType DEAD_BUSH = DummyObjectProvider.createFor(ShrubType.class, "DEAD_BUSH");
+
+    public static final ShrubType FERN = DummyObjectProvider.createFor(ShrubType.class, "FERN");
+
+    public static final ShrubType TALL_GRASS = DummyObjectProvider.createFor(ShrubType.class, "TALL_GRASS");
+
+    // SORTFIELDS:OFF
 
     private ShrubTypes() {
     }

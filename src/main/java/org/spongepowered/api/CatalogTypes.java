@@ -104,6 +104,7 @@ import org.spongepowered.api.world.weather.Weather;
  */
 public final class CatalogTypes {
 
+    // SORTFIELDS:ON
     public static final Class<Achievement> ACHIEVEMENT = Achievement.class;
     public static final Class<Art> ART = Art.class;
     public static final Class<BannerPatternShape> BANNER_PATTERN_SHAPE = BannerPatternShape.class;
@@ -176,6 +177,7 @@ public final class CatalogTypes {
     public static final Class<WallType> WALL_TYPE = WallType.class;
     public static final Class<Weather> WEATHER = Weather.class;
     public static final Class<WorldGeneratorModifier> WORLD_GENERATOR_MODIFIER = WorldGeneratorModifier.class;
+    // SORTFIELDS:OFF
 
     private CatalogTypes() {
     }

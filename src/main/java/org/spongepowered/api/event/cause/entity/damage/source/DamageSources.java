@@ -26,6 +26,7 @@ package org.spongepowered.api.event.cause.entity.damage.source;
 
 import org.spongepowered.api.data.manipulator.mutable.entity.IgniteableData;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.Location;
 
 /**
@@ -42,16 +43,29 @@ import org.spongepowered.api.world.Location;
  */
 public final class DamageSources {
 
-    public static final DamageSource POISON = null;
-    public static final DamageSource MELTING = null;
-    public static final DamageSource FIRE_TICK = null;
-    public static final DamageSource DROWNING = null;
-    public static final DamageSource FALLING = null;
-    public static final DamageSource VOID = null;
-    public static final DamageSource GENERIC = null;
-    public static final DamageSource MAGIC = null;
-    public static final DamageSource WITHER = null;
-    public static final DamageSource STARVATION = null;
+    // SORTFIELDS:ON
+
+    public static final DamageSource DROWNING = DummyObjectProvider.createFor(DamageSource.class, "DROWNING");
+
+    public static final DamageSource FALLING = DummyObjectProvider.createFor(DamageSource.class, "FALLING");
+
+    public static final DamageSource FIRE_TICK = DummyObjectProvider.createFor(DamageSource.class, "FIRE_TICK");
+
+    public static final DamageSource GENERIC = DummyObjectProvider.createFor(DamageSource.class, "GENERIC");
+
+    public static final DamageSource MAGIC = DummyObjectProvider.createFor(DamageSource.class, "MAGIC");
+
+    public static final DamageSource MELTING = DummyObjectProvider.createFor(DamageSource.class, "MELTING");
+
+    public static final DamageSource POISON = DummyObjectProvider.createFor(DamageSource.class, "POISON");
+
+    public static final DamageSource STARVATION = DummyObjectProvider.createFor(DamageSource.class, "STARVATION");
+
+    public static final DamageSource VOID = DummyObjectProvider.createFor(DamageSource.class, "VOID");
+
+    public static final DamageSource WITHER = DummyObjectProvider.createFor(DamageSource.class, "WITHER");
+
+    // SORTFIELDS:OFF
 
     private DamageSources() {
     }

@@ -25,10 +25,21 @@
 
 package org.spongepowered.api.event.cause.entity.dismount;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class DismountTypes {
 
-    public static final DismountType DEATH = null;
-    public static final DismountType PLAYER = null;
-    public static final DismountType DERAIL = null;
+    // SORTFIELDS:ON
+
+    public static final DismountType DEATH = DummyObjectProvider.createFor(DismountType.class, "DEATH");
+
+    public static final DismountType DERAIL = DummyObjectProvider.createFor(DismountType.class, "DERAIL");
+
+    public static final DismountType PLAYER = DummyObjectProvider.createFor(DismountType.class, "PLAYER");
+
+    // SORTFIELDS:OFF
+
+    private DismountTypes() {
+    }
 
 }

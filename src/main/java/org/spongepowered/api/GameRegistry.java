@@ -90,9 +90,9 @@ public interface GameRegistry {
      * game version changes.</p>
      *
      * @param typeClass The class of the type of {@link CatalogType}
-     * @param id The case insensitive string id of the catalog type
-     * @param <T> The type of catalog type
-     * @return The found catalog type, if available
+     * @param id The case insensitive string id of the dummy type
+     * @param <T> The type of dummy type
+     * @return The found dummy type, if available
      * @see CatalogType
      */
     <T extends CatalogType> Optional<T> getType(Class<T> typeClass, String id);
@@ -107,18 +107,18 @@ public interface GameRegistry {
      *
      * @param typeClass The class of {@link CatalogType}
      * @param <T> The type of {@link CatalogType}
-     * @return A collection of all known types of the requested catalog type
+     * @return A collection of all known types of the requested dummy type
      */
     <T extends CatalogType> Collection<T> getAllOf(Class<T> typeClass);
 
     /**
-     * Registers the {@link CatalogRegistryModule} for catalog registration and handling.
+     * Registers the {@link CatalogRegistryModule} for dummy registration and handling.
      * By default, the only supported modules that can be registered are dependent that
      * plugins are not attempting to register new modules for API provided {@link CatalogType}s.
      *
-     * @param catalogClass The catalog class itself
+     * @param catalogClass The dummy class itself
      * @param registryModule The registry module
-     * @param <T> The type of catalog
+     * @param <T> The type of dummy
      * @throws IllegalArgumentException If there is a module already registered
      * @throws UnsupportedOperationException If the
      */
@@ -157,13 +157,13 @@ public interface GameRegistry {
     /**
      * Registers a new {@link CatalogType} instance if registration for that
      * type is supported.
-     * 
+     *
      * <p>Note that this is intended only for registering new instances of
      * already existing CatalogTypes, not for registering entirely new
      * CatalogType classes.</p>
-     * 
+     *
      * @param type The CatalogType class
-     * @param obj The catalog type instance
+     * @param obj The dummy type instance
      * @throws IllegalArgumentException If there is an id conflict with the
      *         given type and an existing type
      * @throws UnsupportedOperationException If registration for the given type

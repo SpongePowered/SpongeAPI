@@ -24,19 +24,32 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of default {@link GeneratorType}s.
  */
 public final class GeneratorTypes {
 
-    public static final GeneratorType AMPLIFIED = null;
-    public static final GeneratorType DEBUG = null;
-    public static final GeneratorType DEFAULT = null;
-    public static final GeneratorType THE_END = null;
-    public static final GeneratorType FLAT = null;
-    public static final GeneratorType LARGE_BIOMES = null;
-    public static final GeneratorType NETHER = null;
-    public static final GeneratorType OVERWORLD = null;
+    // SORTFIELDS:ON
+
+    public static final GeneratorType AMPLIFIED = DummyObjectProvider.createFor(GeneratorType.class, "AMPLIFIED");
+
+    public static final GeneratorType DEBUG = DummyObjectProvider.createFor(GeneratorType.class, "DEBUG");
+
+    public static final GeneratorType DEFAULT = DummyObjectProvider.createFor(GeneratorType.class, "DEFAULT");
+
+    public static final GeneratorType FLAT = DummyObjectProvider.createFor(GeneratorType.class, "FLAT");
+
+    public static final GeneratorType LARGE_BIOMES = DummyObjectProvider.createFor(GeneratorType.class, "LARGE_BIOMES");
+
+    public static final GeneratorType NETHER = DummyObjectProvider.createFor(GeneratorType.class, "NETHER");
+
+    public static final GeneratorType OVERWORLD = DummyObjectProvider.createFor(GeneratorType.class, "OVERWORLD");
+
+    public static final GeneratorType THE_END = DummyObjectProvider.createFor(GeneratorType.class, "THE_END");
+
+    // SORTFIELDS:OFF
 
     private GeneratorTypes() {
     }

@@ -24,13 +24,22 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class LogAxes {
 
     private LogAxes() {}
 
-    public static final LogAxis X = null;
-    public static final LogAxis Y = null;
-    public static final LogAxis Z = null;
-    public static final LogAxis NONE = null;
+    // SORTFIELDS:ON
+
+    public static final LogAxis NONE = DummyObjectProvider.createFor(LogAxis.class, "NONE");
+
+    public static final LogAxis X = DummyObjectProvider.createFor(LogAxis.class, "X");
+
+    public static final LogAxis Y = DummyObjectProvider.createFor(LogAxis.class, "Y");
+
+    public static final LogAxis Z = DummyObjectProvider.createFor(LogAxis.class, "Z");
+
+    // SORTFIELDS:OFF
 
 }

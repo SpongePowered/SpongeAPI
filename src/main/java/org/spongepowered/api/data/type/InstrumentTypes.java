@@ -24,13 +24,23 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class InstrumentTypes {
 
-    public static final InstrumentType HARP = null;
-    public static final InstrumentType BASS_DRUM = null;
-    public static final InstrumentType SNARE = null;
-    public static final InstrumentType HIGH_HAT = null;
-    public static final InstrumentType BASS_ATTACK = null;
+    // SORTFIELDS:ON
+
+    public static final InstrumentType BASS_ATTACK = DummyObjectProvider.createFor(InstrumentType.class, "BASS_ATTACK");
+
+    public static final InstrumentType BASS_DRUM = DummyObjectProvider.createFor(InstrumentType.class, "BASS_DRUM");
+
+    public static final InstrumentType HARP = DummyObjectProvider.createFor(InstrumentType.class, "HARP");
+
+    public static final InstrumentType HIGH_HAT = DummyObjectProvider.createFor(InstrumentType.class, "HIGH_HAT");
+
+    public static final InstrumentType SNARE = DummyObjectProvider.createFor(InstrumentType.class, "SNARE");
+
+    // SORTFIELDS:OFF
 
     private InstrumentTypes() {
     }

@@ -24,50 +24,94 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of all possible {@link BannerPatternShape}s in vanilla minecraft.
  */
 public final class BannerPatternShapes {
 
-    public static final BannerPatternShape BASE = null;
-    public static final BannerPatternShape SQUARE_BOTTOM_LEFT = null;
-    public static final BannerPatternShape SQUARE_BOTTOM_RIGHT = null;
-    public static final BannerPatternShape SQUARE_TOP_LEFT = null;
-    public static final BannerPatternShape SQUARE_TOP_RIGHT = null;
-    public static final BannerPatternShape STRIPE_BOTTOM = null;
-    public static final BannerPatternShape STRIPE_TOP = null;
-    public static final BannerPatternShape STRIPE_LEFT = null;
-    public static final BannerPatternShape STRIPE_RIGHT = null;
-    public static final BannerPatternShape STRIPE_CENTER = null;
-    public static final BannerPatternShape STRIPE_MIDDLE = null;
-    public static final BannerPatternShape STRIPE_DOWNRIGHT = null;
-    public static final BannerPatternShape STRIPE_DOWNLEFT = null;
-    public static final BannerPatternShape STRIPE_SMALL = null;
-    public static final BannerPatternShape CROSS = null;
-    public static final BannerPatternShape STRAIGHT_CROSS = null;
-    public static final BannerPatternShape TRIANGLE_BOTTOM = null;
-    public static final BannerPatternShape TRIANGLE_TOP = null;
-    public static final BannerPatternShape TRIANGLES_BOTTOM = null;
-    public static final BannerPatternShape TRIANGLES_TOP = null;
-    public static final BannerPatternShape DIAGONAL_LEFT = null;
-    public static final BannerPatternShape DIAGONAL_RIGHT = null;
-    public static final BannerPatternShape DIAGONAL_LEFT_MIRROR = null;
-    public static final BannerPatternShape DIAGONAL_RIGHT_MIRROR = null;
-    public static final BannerPatternShape CIRCLE_MIDDLE = null;
-    public static final BannerPatternShape RHOMBUS_MIDDLE = null;
-    public static final BannerPatternShape HALF_VERTICAL = null;
-    public static final BannerPatternShape HALF_HORIZONTAL = null;
-    public static final BannerPatternShape HALF_VERTICAL_MIRROR = null;
-    public static final BannerPatternShape HALF_HORIZONTAL_MIRROR = null;
-    public static final BannerPatternShape BORDER = null;
-    public static final BannerPatternShape CURLY_BORDER = null;
-    public static final BannerPatternShape CREEPER = null;
-    public static final BannerPatternShape GRADIENT = null;
-    public static final BannerPatternShape GRADIENT_UP = null;
-    public static final BannerPatternShape BRICKS = null;
-    public static final BannerPatternShape SKULL = null;
-    public static final BannerPatternShape FLOWER = null;
-    public static final BannerPatternShape MOJANG = null;
+    // SORTFIELDS:ON
+
+    public static final BannerPatternShape BASE = DummyObjectProvider.createFor(BannerPatternShape.class, "BASE");
+
+    public static final BannerPatternShape BORDER = DummyObjectProvider.createFor(BannerPatternShape.class, "BORDER");
+
+    public static final BannerPatternShape BRICKS = DummyObjectProvider.createFor(BannerPatternShape.class, "BRICKS");
+
+    public static final BannerPatternShape CIRCLE_MIDDLE = DummyObjectProvider.createFor(BannerPatternShape.class, "CIRCLE_MIDDLE");
+
+    public static final BannerPatternShape CREEPER = DummyObjectProvider.createFor(BannerPatternShape.class, "CREEPER");
+
+    public static final BannerPatternShape CROSS = DummyObjectProvider.createFor(BannerPatternShape.class, "CROSS");
+
+    public static final BannerPatternShape CURLY_BORDER = DummyObjectProvider.createFor(BannerPatternShape.class, "CURLY_BORDER");
+
+    public static final BannerPatternShape DIAGONAL_LEFT = DummyObjectProvider.createFor(BannerPatternShape.class, "DIAGONAL_LEFT");
+
+    public static final BannerPatternShape DIAGONAL_LEFT_MIRROR = DummyObjectProvider.createFor(BannerPatternShape.class, "DIAGONAL_LEFT_MIRROR");
+
+    public static final BannerPatternShape DIAGONAL_RIGHT = DummyObjectProvider.createFor(BannerPatternShape.class, "DIAGONAL_RIGHT");
+
+    public static final BannerPatternShape DIAGONAL_RIGHT_MIRROR = DummyObjectProvider.createFor(BannerPatternShape.class, "DIAGONAL_RIGHT_MIRROR");
+
+    public static final BannerPatternShape FLOWER = DummyObjectProvider.createFor(BannerPatternShape.class, "FLOWER");
+
+    public static final BannerPatternShape GRADIENT = DummyObjectProvider.createFor(BannerPatternShape.class, "GRADIENT");
+
+    public static final BannerPatternShape GRADIENT_UP = DummyObjectProvider.createFor(BannerPatternShape.class, "GRADIENT_UP");
+
+    public static final BannerPatternShape HALF_HORIZONTAL = DummyObjectProvider.createFor(BannerPatternShape.class, "HALF_HORIZONTAL");
+
+    public static final BannerPatternShape HALF_HORIZONTAL_MIRROR = DummyObjectProvider.createFor(BannerPatternShape.class, "HALF_HORIZONTAL_MIRROR");
+
+    public static final BannerPatternShape HALF_VERTICAL = DummyObjectProvider.createFor(BannerPatternShape.class, "HALF_VERTICAL");
+
+    public static final BannerPatternShape HALF_VERTICAL_MIRROR = DummyObjectProvider.createFor(BannerPatternShape.class, "HALF_VERTICAL_MIRROR");
+
+    public static final BannerPatternShape MOJANG = DummyObjectProvider.createFor(BannerPatternShape.class, "MOJANG");
+
+    public static final BannerPatternShape RHOMBUS_MIDDLE = DummyObjectProvider.createFor(BannerPatternShape.class, "RHOMBUS_MIDDLE");
+
+    public static final BannerPatternShape SKULL = DummyObjectProvider.createFor(BannerPatternShape.class, "SKULL");
+
+    public static final BannerPatternShape SQUARE_BOTTOM_LEFT = DummyObjectProvider.createFor(BannerPatternShape.class, "SQUARE_BOTTOM_LEFT");
+
+    public static final BannerPatternShape SQUARE_BOTTOM_RIGHT = DummyObjectProvider.createFor(BannerPatternShape.class, "SQUARE_BOTTOM_RIGHT");
+
+    public static final BannerPatternShape SQUARE_TOP_LEFT = DummyObjectProvider.createFor(BannerPatternShape.class, "SQUARE_TOP_LEFT");
+
+    public static final BannerPatternShape SQUARE_TOP_RIGHT = DummyObjectProvider.createFor(BannerPatternShape.class, "SQUARE_TOP_RIGHT");
+
+    public static final BannerPatternShape STRAIGHT_CROSS = DummyObjectProvider.createFor(BannerPatternShape.class, "STRAIGHT_CROSS");
+
+    public static final BannerPatternShape STRIPE_BOTTOM = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_BOTTOM");
+
+    public static final BannerPatternShape STRIPE_CENTER = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_CENTER");
+
+    public static final BannerPatternShape STRIPE_DOWNLEFT = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_DOWNLEFT");
+
+    public static final BannerPatternShape STRIPE_DOWNRIGHT = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_DOWNRIGHT");
+
+    public static final BannerPatternShape STRIPE_LEFT = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_LEFT");
+
+    public static final BannerPatternShape STRIPE_MIDDLE = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_MIDDLE");
+
+    public static final BannerPatternShape STRIPE_RIGHT = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_RIGHT");
+
+    public static final BannerPatternShape STRIPE_SMALL = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_SMALL");
+
+    public static final BannerPatternShape STRIPE_TOP = DummyObjectProvider.createFor(BannerPatternShape.class, "STRIPE_TOP");
+
+    public static final BannerPatternShape TRIANGLES_BOTTOM = DummyObjectProvider.createFor(BannerPatternShape.class, "TRIANGLES_BOTTOM");
+
+    public static final BannerPatternShape TRIANGLES_TOP = DummyObjectProvider.createFor(BannerPatternShape.class, "TRIANGLES_TOP");
+
+    public static final BannerPatternShape TRIANGLE_BOTTOM = DummyObjectProvider.createFor(BannerPatternShape.class, "TRIANGLE_BOTTOM");
+
+    public static final BannerPatternShape TRIANGLE_TOP = DummyObjectProvider.createFor(BannerPatternShape.class, "TRIANGLE_TOP");
+
+    // SORTFIELDS:OFF
 
     private BannerPatternShapes() {
     }

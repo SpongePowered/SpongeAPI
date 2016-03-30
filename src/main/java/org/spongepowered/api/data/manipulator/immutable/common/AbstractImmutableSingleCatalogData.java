@@ -40,7 +40,7 @@ import org.spongepowered.api.data.value.mutable.Value;
  * An abstract implementation of an {@link ImmutableVariantData} extending
  * {@link AbstractImmutableSingleData} such that the values are immutable.
  *
- * @param <E> The type of catalog type
+ * @param <E> The type of dummy type
  * @param <I> The type of immutable manipulator
  * @param <M> The type of mutable manipulator
  */

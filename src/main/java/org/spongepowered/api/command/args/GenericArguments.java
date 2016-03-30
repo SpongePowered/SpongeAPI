@@ -175,7 +175,7 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument that is a member of the specified catalog type T.
+     * Expect an argument that is a member of the specified dummy type T.
      *
      * @param key The key to store the resolved value under
      * @param catalogType The type expected
@@ -1088,7 +1088,7 @@ public final class GenericArguments {
             return Iterables.concat(Sponge.getGame().getServer().getAllWorldProperties().stream()
                 .map(input -> input == null || !input.isEnabled() ? null : input.getWorldName())
                 .collect(Collectors.toList()), ImmutableSet.of("#first", "#me"), Iterables.transform(Sponge.getGame().getRegistry().getAllOf(DimensionType
-                    .class),
+                   .class),
                     input2 -> "#" + input2.getId()));
         }
 

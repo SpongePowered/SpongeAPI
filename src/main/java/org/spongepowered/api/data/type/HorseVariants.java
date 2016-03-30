@@ -24,16 +24,26 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known vanilla {@link HorseVariant}s.
  */
 public final class HorseVariants {
 
-    public static final HorseVariant HORSE = null;
-    public static final HorseVariant DONKEY = null;
-    public static final HorseVariant MULE = null;
-    public static final HorseVariant UNDEAD_HORSE = null;
-    public static final HorseVariant SKELETON_HORSE = null;
+    // SORTFIELDS:ON
+
+    public static final HorseVariant DONKEY = DummyObjectProvider.createFor(HorseVariant.class, "DONKEY");
+
+    public static final HorseVariant HORSE = DummyObjectProvider.createFor(HorseVariant.class, "HORSE");
+
+    public static final HorseVariant MULE = DummyObjectProvider.createFor(HorseVariant.class, "MULE");
+
+    public static final HorseVariant SKELETON_HORSE = DummyObjectProvider.createFor(HorseVariant.class, "SKELETON_HORSE");
+
+    public static final HorseVariant UNDEAD_HORSE = DummyObjectProvider.createFor(HorseVariant.class, "UNDEAD_HORSE");
+
+    // SORTFIELDS:OFF
 
     private HorseVariants() {
     }
