@@ -24,20 +24,34 @@
  */
 package org.spongepowered.api.world.gen.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known {@link BiomeTreeType}s.
  */
 public final class BiomeTreeTypes {
 
-    public static final BiomeTreeType OAK = null;
-    public static final BiomeTreeType BIRCH = null;
-    public static final BiomeTreeType TALL_TAIGA = null;
-    public static final BiomeTreeType POINTY_TAIGA = null;
-    public static final BiomeTreeType JUNGLE = null;
-    public static final BiomeTreeType JUNGLE_BUSH = null;
-    public static final BiomeTreeType SAVANNA = null;
-    public static final BiomeTreeType CANOPY = null;
-    public static final BiomeTreeType SWAMP = null;
+    // SORTFIELDS:ON
+
+    public static final BiomeTreeType BIRCH = DummyObjectProvider.createFor(BiomeTreeType.class, "BIRCH");
+
+    public static final BiomeTreeType CANOPY = DummyObjectProvider.createFor(BiomeTreeType.class, "CANOPY");
+
+    public static final BiomeTreeType JUNGLE = DummyObjectProvider.createFor(BiomeTreeType.class, "JUNGLE");
+
+    public static final BiomeTreeType JUNGLE_BUSH = DummyObjectProvider.createFor(BiomeTreeType.class, "JUNGLE_BUSH");
+
+    public static final BiomeTreeType OAK = DummyObjectProvider.createFor(BiomeTreeType.class, "OAK");
+
+    public static final BiomeTreeType POINTY_TAIGA = DummyObjectProvider.createFor(BiomeTreeType.class, "POINTY_TAIGA");
+
+    public static final BiomeTreeType SAVANNA = DummyObjectProvider.createFor(BiomeTreeType.class, "SAVANNA");
+
+    public static final BiomeTreeType SWAMP = DummyObjectProvider.createFor(BiomeTreeType.class, "SWAMP");
+
+    public static final BiomeTreeType TALL_TAIGA = DummyObjectProvider.createFor(BiomeTreeType.class, "TALL_TAIGA");
+
+    // SORTFIELDS:OFF
 
     private BiomeTreeTypes() {
     }

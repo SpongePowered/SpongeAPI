@@ -26,6 +26,7 @@ package org.spongepowered.api.data;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.value.BaseValue;
@@ -497,6 +498,34 @@ public interface DataView {
      * @return The deserialized objects in a list, if available
      */
     <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz);
+
+    /**
+     * Gets the {@link CatalogType} object by path, if available.
+     *
+     * <p>If a {@link CatalogType} exists, but is not named properly, not
+     * existing in a registry, or simply an invalid value will return
+     * an empty value.</p>
+     *
+     * @param path The path of the value to get
+     * @param catalogType The class of the dummy type
+     * @param <T> The type of dummy
+     * @return The dummy type, if available
+     */
+    <T extends CatalogType> Optional<T> getCatalogType(DataQuery path, Class<T> catalogType);
+
+    /**
+     * Gets the {@link List} of {@link CatalogType}s by path, if available.
+     *
+     * <p>If a {@link List} exists, but contents of the list are not
+     * considered {@link CatalogType}s or are not of the proper type
+     * of {@link CatalogType}, an absent is returned.</p>
+     *
+     * @param path The path of the list value to get
+     * @param catalogType The class of the dummy type
+     * @param <T> The type of dummy type
+     * @return The list of dummy types, if available
+     */
+    <T extends CatalogType> Optional<List<T>> getCatalogTypeList(DataQuery path, Class<T> catalogType);
 
     /**
      * Copies this {@link DataView} and all of it's contents into a new

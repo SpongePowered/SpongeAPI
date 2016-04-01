@@ -34,6 +34,7 @@ import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.manipulator.mutable.entity.RespawnLocationData;
+import org.spongepowered.api.data.persistence.AbstractDataBuilder;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataContentUpdater;
 import org.spongepowered.api.data.persistence.InvalidDataException;
@@ -160,12 +161,15 @@ public final class RespawnLocation implements DataSerializable {
     /**
      * A helper class to build {@link RespawnLocation}s.
      */
-    public static final class Builder implements DataBuilder<RespawnLocation> {
+    public static final class Builder extends AbstractDataBuilder<RespawnLocation> implements DataBuilder<RespawnLocation> {
 
         UUID world;
         Vector3d position;
         boolean forced = false;
 
+        public Builder() {
+            super(RespawnLocation.class, 1);
+        }
 
         /**
          * Sets the {@link UUID} of the provided {@link World}
@@ -231,35 +235,21 @@ public final class RespawnLocation implements DataSerializable {
         }
 
         @Override
-        public Optional<RespawnLocation> build(DataView container) throws InvalidDataException {
-            if (container.contains(Queries.CONTENT_VERSION)) {
-                final int contentVersion = container.getInt(Queries.CONTENT_VERSION).get();
-                if (contentVersion < 1) {
-                    Optional<DataContentUpdater> updater = Sponge.getDataManager().getWrappedContentUpdater(RespawnLocation.class, contentVersion, 1);
-                    if (!updater.isPresent()) {
-                        throw new InvalidDataException("Could not get an updater for ItemEnchantment data from the version: " + contentVersion
-                                                       + " to " + 1 + ". Please notify the SpongePowered developers of this issue!");
-                    }
-                    container = updater.get().update(container);
-                }
-            }
-            try {
-                final String worldString = container.getString(Queries.WORLD_ID).get();
-                final UUID worldId = UUID.fromString(worldString);
-                final double xPos = container.getDouble(Queries.POSITION_X).get();
-                final double yPos = container.getDouble(Queries.POSITION_Y).get();
-                final double zPos = container.getDouble(Queries.POSITION_Z).get();
-                final Vector3d position = new Vector3d(xPos, yPos, zPos);
-                final boolean forcedSpawn = container.getBoolean(Queries.FORCED_SPAWN).orElse(false);
-                final Builder builder = new Builder();
-                builder.world = worldId;
-                builder.position = position;
-                builder.forced = forcedSpawn;
-                return Optional.of(new RespawnLocation(builder));
-            } catch (Exception e) {
-                throw new InvalidDataException("Could not deserialize something correctly, likely due to bad type data.", e);
-            }
+        protected Optional<RespawnLocation> buildContent(DataView container) throws InvalidDataException {
+            final String worldString = container.getString(Queries.WORLD_ID).get();
+            final UUID worldId = UUID.fromString(worldString);
+            final double xPos = container.getDouble(Queries.POSITION_X).get();
+            final double yPos = container.getDouble(Queries.POSITION_Y).get();
+            final double zPos = container.getDouble(Queries.POSITION_Z).get();
+            final Vector3d position = new Vector3d(xPos, yPos, zPos);
+            final boolean forcedSpawn = container.getBoolean(Queries.FORCED_SPAWN).orElse(false);
+            final Builder builder = new Builder();
+            builder.world = worldId;
+            builder.position = position;
+            builder.forced = forcedSpawn;
+            return Optional.of(new RespawnLocation(builder));
         }
+
 
         @Override
         public Builder reset() {

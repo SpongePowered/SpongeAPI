@@ -36,6 +36,9 @@ import java.util.Optional;
  * new instance of a {@link DataSerializable}. The builder should be a
  * singleton and may not exist for every data serializable.
  *
+ * <p>It is <strong>HIGHLY</strong> recommended to extend
+ * {@link AbstractDataBuilder} as it implements content updating</p>
+ *
  * @param <T> The type of data serializable this builder can build
  */
 public interface DataBuilder<T extends DataSerializable> extends ResettableBuilder<T, DataBuilder<T>> {

@@ -59,27 +59,20 @@ jar {
                 'Implementation-Vendor': project.url
         )
     }
-
-    def branch = System.getenv("GIT_BRANCH")
-
-    if (branch != null) {
-        manifest.attributes('Git-Branch': branch)
-    }
 }
 
 // The version can change until we're done configuring the project, so delay setting the manifest entries until that is final
 afterEvaluate {
     jar.manifest {
-        attributes(
-                'Implementation-Version': project.version,
-                'Git-Commit': project.commit
-        )
+        attributes['Implementation-Version'] = project.version
+        if (commit) attributes['Git-Commit'] = commit
+        if (branch) attributes['Git-Branch'] = branch
     }
 
     // Fail if one file is included several times
     tasks.withType(AbstractArchiveTask) {
-        if (duplicatesStrategy == 'include') {
-            duplicatesStrategy = 'fail'
+        if (duplicatesStrategy == DuplicatesStrategy.INCLUDE) {
+            duplicatesStrategy = DuplicatesStrategy.FAIL
         }
     }
 }
@@ -139,7 +132,7 @@ processResources {
 // Checkstyle settings
 checkstyle {
     // TODO: Verify if custom modifications for checkstyle are still necessary (import order, @return on annotations)
-    toolVersion = '6.14.1'
+    toolVersion = '6.16.1'
     configFile = api.file('checkstyle.xml')
     configProperties = [
             'basedir': project.projectDir,
@@ -149,7 +142,7 @@ checkstyle {
 }
 
 // Disable checkstyle by default (won't run unless 'checkstyle' is explicitly invoked)
-task checkstyle
+task checkstyle(dependsOn: tasks.withType(Checkstyle))
 
 gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
     if (!graph.allTasks.contains(tasks.checkstyle)) {
@@ -162,5 +155,5 @@ apply from: api.file('gradle/deploy.gradle')
 
 // Gradle version used for generating the Gradle wrapper
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.11'
+    gradleVersion = '2.12'
 }

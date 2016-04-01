@@ -25,10 +25,10 @@
 package org.spongepowered.api;
 
 /**
- * Represents a type of a catalog that can be used to identify types without
+ * Represents a type of a dummy that can be used to identify types without
  * using an {@link Enum}.
  *
- * <p>All implementing classes, including those not listed in the catalog
+ * <p>All implementing classes, including those not listed in the dummy
  * specified by the {@link org.spongepowered.api.util.annotation.CatalogedBy
  * CatalogedBy} annotation, must meet the requirement that if any of
  * <code>`a.equals(b)`</code>, <code>`a == b`</code>, or
@@ -48,7 +48,7 @@ public interface CatalogType {
      * or <code>`minecraft:name`</code>. However the prefix may be omitted for
      * default/vanilla minecraft types.</p>
      *
-     * @return The unique identifier of this catalog type
+     * @return The unique identifier of this dummy type
      */
     String getId();
 
@@ -57,7 +57,7 @@ public interface CatalogType {
      * name is not guaranteed to be unique. This value should not be used for
      * serialization.
      *
-     * @return The human-readable name of this catalog type
+     * @return The human-readable name of this dummy type
      */
     String getName();
 

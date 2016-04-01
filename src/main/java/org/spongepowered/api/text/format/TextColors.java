@@ -26,6 +26,7 @@ package org.spongepowered.api.text.format;
 
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Color;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
  * TextColors is a list of text colors provided by Vanilla Minecraft.
@@ -66,27 +67,46 @@ public final class TextColors {
 
     };
 
-    public static final TextColor BLACK = null;
-    public static final TextColor DARK_BLUE = null;
-    public static final TextColor DARK_GREEN = null;
-    public static final TextColor DARK_AQUA = null;
-    public static final TextColor DARK_RED = null;
-    public static final TextColor DARK_PURPLE = null;
-    public static final TextColor GOLD = null;
-    public static final TextColor GRAY = null;
-    public static final TextColor DARK_GRAY = null;
-    public static final TextColor BLUE = null;
-    public static final TextColor GREEN = null;
-    public static final TextColor AQUA = null;
-    public static final TextColor RED = null;
-    public static final TextColor LIGHT_PURPLE = null;
-    public static final TextColor YELLOW = null;
-    public static final TextColor WHITE = null;
+    // SORTFIELDS:ON
+
+    public static final TextColor AQUA = DummyObjectProvider.createFor(TextColor.class, "AQUA");
+
+    public static final TextColor BLACK = DummyObjectProvider.createFor(TextColor.class, "BLACK");
+
+    public static final TextColor BLUE = DummyObjectProvider.createFor(TextColor.class, "BLUE");
+
+    public static final TextColor DARK_AQUA = DummyObjectProvider.createFor(TextColor.class, "DARK_AQUA");
+
+    public static final TextColor DARK_BLUE = DummyObjectProvider.createFor(TextColor.class, "DARK_BLUE");
+
+    public static final TextColor DARK_GRAY = DummyObjectProvider.createFor(TextColor.class, "DARK_GRAY");
+
+    public static final TextColor DARK_GREEN = DummyObjectProvider.createFor(TextColor.class, "DARK_GREEN");
+
+    public static final TextColor DARK_PURPLE = DummyObjectProvider.createFor(TextColor.class, "DARK_PURPLE");
+
+    public static final TextColor DARK_RED = DummyObjectProvider.createFor(TextColor.class, "DARK_RED");
+
+    public static final TextColor GOLD = DummyObjectProvider.createFor(TextColor.class, "GOLD");
+
+    public static final TextColor GRAY = DummyObjectProvider.createFor(TextColor.class, "GRAY");
+
+    public static final TextColor GREEN = DummyObjectProvider.createFor(TextColor.class, "GREEN");
+
+    public static final TextColor LIGHT_PURPLE = DummyObjectProvider.createFor(TextColor.class, "LIGHT_PURPLE");
+
+    public static final TextColor RED = DummyObjectProvider.createFor(TextColor.class, "RED");
 
     /**
      * Resets the current color to the default one on the client. In most cases
      * this should be the same as {@link #WHITE}.
      */
-    public static final TextColor RESET = null;
+    public static final TextColor RESET = DummyObjectProvider.createFor(TextColor.class, "RESET");
+
+    public static final TextColor WHITE = DummyObjectProvider.createFor(TextColor.class, "WHITE");
+
+    public static final TextColor YELLOW = DummyObjectProvider.createFor(TextColor.class, "YELLOW");
+
+    // SORTFIELDS:OFF
 
 }

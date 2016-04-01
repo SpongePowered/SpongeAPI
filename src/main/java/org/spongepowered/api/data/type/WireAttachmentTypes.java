@@ -24,11 +24,19 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class WireAttachmentTypes {
     private WireAttachmentTypes() {}
 
-    public static final WireAttachmentType UP = null;
-    public static final WireAttachmentType SIDE = null;
-    public static final WireAttachmentType NONE = null;
+    // SORTFIELDS:ON
+
+    public static final WireAttachmentType NONE = DummyObjectProvider.createFor(WireAttachmentType.class, "NONE");
+
+    public static final WireAttachmentType SIDE = DummyObjectProvider.createFor(WireAttachmentType.class, "SIDE");
+
+    public static final WireAttachmentType UP = DummyObjectProvider.createFor(WireAttachmentType.class, "UP");
+
+    // SORTFIELDS:OFF
 
 }

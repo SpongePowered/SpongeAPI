@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.event.factory.plugin;
+package org.spongepowered.api.util.generator.event.factory.plugin;
 
 import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 import static org.objectweb.asm.Opcodes.ALOAD;
@@ -36,7 +36,7 @@ import org.objectweb.asm.Type;
 import org.spongepowered.api.eventgencore.Property;
 import org.spongepowered.api.util.annotation.TransformResult;
 import org.spongepowered.api.util.annotation.TransformWith;
-import org.spongepowered.api.util.event.factory.ClassGenerator;
+import org.spongepowered.api.util.generator.event.factory.ClassGenerator;
 
 import java.lang.reflect.Method;
 

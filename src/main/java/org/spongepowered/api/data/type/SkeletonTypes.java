@@ -24,13 +24,20 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known vanilla {@link SkeletonType}s.
  */
 public final class SkeletonTypes {
 
-    public static final SkeletonType NORMAL = null;
-    public static final SkeletonType WITHER = null;
+    // SORTFIELDS:ON
+
+    public static final SkeletonType NORMAL = DummyObjectProvider.createFor(SkeletonType.class, "NORMAL");
+
+    public static final SkeletonType WITHER = DummyObjectProvider.createFor(SkeletonType.class, "WITHER");
+
+    // SORTFIELDS:OFF
 
     private SkeletonTypes() {
     }

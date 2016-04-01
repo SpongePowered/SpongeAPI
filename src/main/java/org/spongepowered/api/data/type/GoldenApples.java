@@ -24,13 +24,20 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known {@link GoldenApple} types.
  */
 public final class GoldenApples {
 
-    public static final GoldenApple GOLDEN_APPLE = null;
-    public static final GoldenApple ENCHANTED_GOLDEN_APPLE = null;
+    // SORTFIELDS:ON
+
+    public static final GoldenApple ENCHANTED_GOLDEN_APPLE = DummyObjectProvider.createFor(GoldenApple.class, "ENCHANTED_GOLDEN_APPLE");
+
+    public static final GoldenApple GOLDEN_APPLE = DummyObjectProvider.createFor(GoldenApple.class, "GOLDEN_APPLE");
+
+    // SORTFIELDS:OFF
 
     private GoldenApples() {
     }

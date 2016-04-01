@@ -24,27 +24,33 @@
  */
 package org.spongepowered.api.scoreboard.displayslot;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * Display slot names which display an objective in a particular place in-game.
  */
 public final class DisplaySlots {
 
-    /**
-     * Displays scores for the objective next to players' names in the
-     * player list (accessed by holding TAB).
-     */
-    public static final DisplaySlot LIST = null;
-
-    /**
-     * Displays scores for the objective on the side of the screen in-game.
-     */
-    public static final DisplaySlot SIDEBAR = null;
+    // SORTFIELDS:ON
 
     /**
      * Displays a player's score for the objective underneath their nametag
      * in-game, when a player is closer than 10 blocks.
      */
-    public static final DisplaySlot BELOW_NAME = null;
+    public static final DisplaySlot BELOW_NAME = DummyObjectProvider.createFor(DisplaySlot.class, "BELOW_NAME");
+
+    /**
+     * Displays scores for the objective next to players' names in the
+     * player list (accessed by holding TAB).
+     */
+    public static final DisplaySlot LIST = DummyObjectProvider.createFor(DisplaySlot.class, "LIST");
+
+    /**
+     * Displays scores for the objective on the side of the screen in-game.
+     */
+    public static final DisplaySlot SIDEBAR = DummyObjectProvider.createFor(DisplaySlot.class, "SIDEBAR");
+
+    // SORTFIELDS:OFF
 
     private DisplaySlots() {
     }

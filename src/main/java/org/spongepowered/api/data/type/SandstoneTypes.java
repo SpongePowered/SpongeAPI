@@ -24,11 +24,19 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class SandstoneTypes {
 
-    public static final SandstoneType DEFAULT = null;
-    public static final SandstoneType CHISELED = null;
-    public static final SandstoneType SMOOTH = null;
+    // SORTFIELDS:ON
+
+    public static final SandstoneType CHISELED = DummyObjectProvider.createFor(SandstoneType.class, "CHISELED");
+
+    public static final SandstoneType DEFAULT = DummyObjectProvider.createFor(SandstoneType.class, "DEFAULT");
+
+    public static final SandstoneType SMOOTH = DummyObjectProvider.createFor(SandstoneType.class, "SMOOTH");
+
+    // SORTFIELDS:OFF
 
     private SandstoneTypes() {
     }

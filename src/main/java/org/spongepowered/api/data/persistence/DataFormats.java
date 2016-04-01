@@ -24,13 +24,20 @@
  */
 package org.spongepowered.api.data.persistence;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * A pseudo-enum of supported {@link DataFormat}s.
  */
 public final class DataFormats {
 
-    public static final DataFormat HOCON = null;
-    public static final DataFormat NBT = null;
+    // SORTFIELDS:ON
+
+    public static final DataFormat HOCON = DummyObjectProvider.createFor(DataFormat.class, "HOCON");
+
+    public static final DataFormat NBT = DummyObjectProvider.createFor(DataFormat.class, "NBT");
+
+    // SORTFIELDS:OFF
 
     private DataFormats() {
     }

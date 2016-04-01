@@ -24,13 +24,20 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of vanilla known {@link PistonType}s.
  */
 public final class PistonTypes {
 
-    public static final PistonType NORMAL = null;
-    public static final PistonType STICKY = null;
+    // SORTFIELDS:ON
+
+    public static final PistonType NORMAL = DummyObjectProvider.createFor(PistonType.class, "NORMAL");
+
+    public static final PistonType STICKY = DummyObjectProvider.createFor(PistonType.class, "STICKY");
+
+    // SORTFIELDS:OFF
 
     private PistonTypes() {
     }

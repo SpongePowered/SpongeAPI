@@ -24,37 +24,68 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * A utility class for getting available {@link Art} pieces.
  */
 public class Arts {
 
-    public static final Art KEBAB = null;
-    public static final Art AZTEC = null;
-    public static final Art ALBAN = null;
-    public static final Art AZTEC_2 = null;
-    public static final Art BOMB = null;
-    public static final Art PLANT = null;
-    public static final Art WASTELAND = null;
-    public static final Art WANDERER = null;
-    public static final Art GRAHAM = null;
-    public static final Art POOL = null;
-    public static final Art COURBET = null;
-    public static final Art SUNSET = null;
-    public static final Art SEA = null;
-    public static final Art CREEBET = null;
-    public static final Art MATCH = null;
-    public static final Art BUST = null;
-    public static final Art STAGE = null;
-    public static final Art VOID = null;
-    public static final Art SKULL_AND_ROSES = null;
-    public static final Art WITHER = null;
-    public static final Art FIGHTERS = null;
-    public static final Art SKELETON = null;
-    public static final Art DONKEY_KONG = null;
-    public static final Art POINTER = null;
-    public static final Art PIGSCENE = null;
-    public static final Art BURNING_SKULL = null;
+    // SORTFIELDS:ON
+
+    public static final Art ALBAN = DummyObjectProvider.createFor(Art.class, "ALBAN");
+
+    public static final Art AZTEC = DummyObjectProvider.createFor(Art.class, "AZTEC");
+
+    public static final Art AZTEC_2 = DummyObjectProvider.createFor(Art.class, "AZTEC_2");
+
+    public static final Art BOMB = DummyObjectProvider.createFor(Art.class, "BOMB");
+
+    public static final Art BURNING_SKULL = DummyObjectProvider.createFor(Art.class, "BURNING_SKULL");
+
+    public static final Art BUST = DummyObjectProvider.createFor(Art.class, "BUST");
+
+    public static final Art COURBET = DummyObjectProvider.createFor(Art.class, "COURBET");
+
+    public static final Art CREEBET = DummyObjectProvider.createFor(Art.class, "CREEBET");
+
+    public static final Art DONKEY_KONG = DummyObjectProvider.createFor(Art.class, "DONKEY_KONG");
+
+    public static final Art FIGHTERS = DummyObjectProvider.createFor(Art.class, "FIGHTERS");
+
+    public static final Art GRAHAM = DummyObjectProvider.createFor(Art.class, "GRAHAM");
+
+    public static final Art KEBAB = DummyObjectProvider.createFor(Art.class, "KEBAB");
+
+    public static final Art MATCH = DummyObjectProvider.createFor(Art.class, "MATCH");
+
+    public static final Art PIGSCENE = DummyObjectProvider.createFor(Art.class, "PIGSCENE");
+
+    public static final Art PLANT = DummyObjectProvider.createFor(Art.class, "PLANT");
+
+    public static final Art POINTER = DummyObjectProvider.createFor(Art.class, "POINTER");
+
+    public static final Art POOL = DummyObjectProvider.createFor(Art.class, "POOL");
+
+    public static final Art SEA = DummyObjectProvider.createFor(Art.class, "SEA");
+
+    public static final Art SKELETON = DummyObjectProvider.createFor(Art.class, "SKELETON");
+
+    public static final Art SKULL_AND_ROSES = DummyObjectProvider.createFor(Art.class, "SKULL_AND_ROSES");
+
+    public static final Art STAGE = DummyObjectProvider.createFor(Art.class, "STAGE");
+
+    public static final Art SUNSET = DummyObjectProvider.createFor(Art.class, "SUNSET");
+
+    public static final Art VOID = DummyObjectProvider.createFor(Art.class, "VOID");
+
+    public static final Art WANDERER = DummyObjectProvider.createFor(Art.class, "WANDERER");
+
+    public static final Art WASTELAND = DummyObjectProvider.createFor(Art.class, "WASTELAND");
+
+    public static final Art WITHER = DummyObjectProvider.createFor(Art.class, "WITHER");
+
+    // SORTFIELDS:OFF
 
     private Arts() {
     }

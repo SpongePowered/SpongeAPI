@@ -22,31 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.event.factory;
+package org.spongepowered.api.util.generator.event.factory;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import java.util.Map;
+import java.util.function.Function;
 
 /**
- * Determines how null parameters are handled.
+ * Generates a new instance of an event using a given map of parameters.
+ *
+ * @param <E> The type of event
  */
-public enum NullPolicy {
-
-    /**
-     * Don't perform any null checking.
-     */
-    DISABLE_PRECONDITIONS,
-
-    /**
-     * Assume that all parameters are null unless they are annotated with
-     * {@link Nullable}.
-     */
-    NON_NULL_BY_DEFAULT,
-
-    /**
-     * Assume that all parameters are nullable unless they are annotated with
-     * {@link Nonnull}.
-     */
-    NULL_BY_DEFAULT
+public interface EventFactory<E> extends Function<Map<String, Object>, E> {
 
 }

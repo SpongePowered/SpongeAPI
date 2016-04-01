@@ -32,10 +32,50 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectTypes;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.difficulty.Difficulty;
 
 public final class HealthModifierTypes {
+
+    // SORTFIELDS:ON
+
+    /**
+     * Represents a {@link HealthModifier} that "absorbs" damage based on
+     * the {@link PotionEffectTypes#ABSORPTION} level on the
+     * {@link Entity}.
+     */
+    public static final HealthModifierType ABSORPTION = DummyObjectProvider.createFor(HealthModifierType.class, "ABSORPTION");
+
+    /**
+     * Represents a {@link HealthModifier} that will reduce damage based on
+     * the armor {@link ItemStack}s.
+     */
+    public static final HealthModifierType ARMOR = DummyObjectProvider.createFor(HealthModifierType.class, "ARMOR");
+
+    /**
+     * Represents a {@link HealthModifier} that will modify the heal amount
+     * from a {@link PotionEffect} affecting the target.
+     */
+    public static final HealthModifierType DEFENSIVE_POTION_EFFECT = DummyObjectProvider.createFor(HealthModifierType.class, "DEFENSIVE_POTION_EFFECT");
+
+    /**
+     * Represents a {@link HealthModifier} that enhances damage based on the
+     * current {@link Difficulty} of the {@link World}.
+     */
+    public static final HealthModifierType DIFFICULTY = DummyObjectProvider.createFor(HealthModifierType.class, "DIFFICULTY");
+
+    /**
+     * Represents a {@link HealthModifier} that will modify damage based on
+     * magic.
+     */
+    public static final HealthModifierType MAGIC = DummyObjectProvider.createFor(HealthModifierType.class, "MAGIC");
+
+    /**
+     * Represents the {@link HealthModifier} that will increase heal amount
+     * from a {@link PotionEffect} affecting the target.
+     */
+    public static final HealthModifierType OFFENSIVE_POTION_EFFECT = DummyObjectProvider.createFor(HealthModifierType.class, "OFFENSIVE_POTION_EFFECT");
 
     /**
      * Represents the {@link HealthModifier} that will modify heal amount from
@@ -46,38 +86,9 @@ public final class HealthModifierTypes {
      * that the {@link Enchantment} of the {@link ItemStack} is modifying the
      * incoming/outgoing heal amount.</p>
      */
-    public static final HealthModifierType WEAPON_ENCHANTMENT = null;
-    /**
-     * Represents the {@link HealthModifier} that will increase heal amount
-     * from a {@link PotionEffect} affecting the target.
-     */
-    public static final HealthModifierType OFFENSIVE_POTION_EFFECT = null;
-    /**
-     * Represents a {@link HealthModifier} that will modify the heal amount
-     * from a {@link PotionEffect} affecting the target.
-     */
-    public static final HealthModifierType DEFENSIVE_POTION_EFFECT = null;
-    /**
-     * Represents a {@link HealthModifier} that will reduce damage based on
-     * the armor {@link ItemStack}s.
-     */
-    public static final HealthModifierType ARMOR = null;
-    /**
-     * Represents a {@link HealthModifier} that will modify damage based on
-     * magic.
-     */
-    public static final HealthModifierType MAGIC = null;
-    /**
-     * Represents a {@link HealthModifier} that "absorbs" damage based on
-     * the {@link PotionEffectTypes#ABSORPTION} level on the
-     * {@link Entity}.
-     */
-    public static final HealthModifierType ABSORPTION = null;
-    /**
-     * Represents a {@link HealthModifier} that enhances damage based on the
-     * current {@link Difficulty} of the {@link World}.
-     */
-    public static final HealthModifierType DIFFICULTY = null;
+    public static final HealthModifierType WEAPON_ENCHANTMENT = DummyObjectProvider.createFor(HealthModifierType.class, "WEAPON_ENCHANTMENT");
+
+    // SORTFIELDS:OFF
 
     private HealthModifierTypes() {
 

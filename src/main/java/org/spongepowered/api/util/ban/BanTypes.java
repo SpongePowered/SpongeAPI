@@ -24,17 +24,23 @@
  */
 package org.spongepowered.api.util.ban;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public class BanTypes {
 
-    /**
-     * Represents a {@link Ban.Profile}
-     */
-    public static final BanType PROFILE = null;
+    // SORTFIELDS:ON
 
     /**
      * Represents a {@link Ban.Ip}
      */
-    public static final BanType IP = null;
+    public static final BanType IP = DummyObjectProvider.createFor(BanType.class, "IP");
+
+    /**
+     * Represents a {@link Ban.Profile}
+     */
+    public static final BanType PROFILE = DummyObjectProvider.createFor(BanType.class, "PROFILE");
+
+    // SORTFIELDS:OFF
 
     private BanTypes() {
     }

@@ -24,15 +24,24 @@
  */
 package org.spongepowered.api.world.difficulty;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * A list of difficulties that Minecraft provides in vanilla.
  */
 public final class Difficulties {
 
-    public static final Difficulty PEACEFUL = null;
-    public static final Difficulty EASY = null;
-    public static final Difficulty NORMAL = null;
-    public static final Difficulty HARD = null;
+    // SORTFIELDS:ON
+
+    public static final Difficulty EASY = DummyObjectProvider.createFor(Difficulty.class, "EASY");
+
+    public static final Difficulty HARD = DummyObjectProvider.createFor(Difficulty.class, "HARD");
+
+    public static final Difficulty NORMAL = DummyObjectProvider.createFor(Difficulty.class, "NORMAL");
+
+    public static final Difficulty PEACEFUL = DummyObjectProvider.createFor(Difficulty.class, "PEACEFUL");
+
+    // SORTFIELDS:OFF
 
     private Difficulties() {
     }

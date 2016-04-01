@@ -33,6 +33,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
+import org.spongepowered.api.data.persistence.AbstractDataBuilder;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.text.Text;
@@ -53,7 +54,11 @@ import java.util.Optional;
  * Although JSON is used for serialization internally, this has no effect on
  * the actual configuration format the developer chooses to use.
  */
-public class TextConfigSerializer implements TypeSerializer<Text>, DataBuilder<Text> {
+public class TextConfigSerializer extends AbstractDataBuilder<Text> implements TypeSerializer<Text>, DataBuilder<Text> {
+
+    public TextConfigSerializer() {
+        super(Text.class, 1);
+    }
 
     @Override
     public Text deserialize(TypeToken<?> type, ConfigurationNode value) throws ObjectMappingException {
@@ -79,7 +84,7 @@ public class TextConfigSerializer implements TypeSerializer<Text>, DataBuilder<T
     }
 
     @Override
-    public Optional<Text> build(DataView container) throws InvalidDataException {
+    protected Optional<Text> buildContent(DataView container) throws InvalidDataException {
         Optional<Object> json = container.get(Queries.JSON);
         if (json.isPresent()) {
             try {
@@ -91,5 +96,4 @@ public class TextConfigSerializer implements TypeSerializer<Text>, DataBuilder<T
         }
         return Optional.empty();
     }
-
 }

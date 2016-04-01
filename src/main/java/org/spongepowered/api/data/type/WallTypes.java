@@ -24,13 +24,20 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known vanilla {@link WallType}s.
  */
 public final class WallTypes {
 
-    public static final WallType NORMAL = null;
-    public static final WallType MOSSY = null;
+    // SORTFIELDS:ON
+
+    public static final WallType MOSSY = DummyObjectProvider.createFor(WallType.class, "MOSSY");
+
+    public static final WallType NORMAL = DummyObjectProvider.createFor(WallType.class, "NORMAL");
+
+    // SORTFIELDS:OFF
 
     private WallTypes() {
     }

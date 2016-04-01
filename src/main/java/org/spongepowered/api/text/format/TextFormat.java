@@ -27,18 +27,25 @@ package org.spongepowered.api.text.format;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
+import com.google.common.reflect.TypeToken;
+import ninja.leaping.configurate.objectmapping.serialize.TypeSerializers;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextElement;
+import org.spongepowered.api.text.serializer.TextFormatConfigSerializer;
 
 /**
  * Represents a pair of {@link TextStyle} and {@link TextColor}.
  */
 public final class TextFormat implements TextElement {
 
+    static {
+        TypeSerializers.getDefaultSerializers().registerType(TypeToken.of(TextFormat.class), new TextFormatConfigSerializer());
+    }
+
     /**
      * An empty {@link TextFormat} with no {@link TextColor} and no {@link TextStyle}.
      */
-    public static final TextFormat NONE = new TextFormat();
+    public static final TextFormat NONE = new TextFormat(TextColors.NONE, TextStyles.NONE);
 
     /**
      * The text color.
@@ -51,28 +58,40 @@ public final class TextFormat implements TextElement {
     private final TextStyle style;
 
     /**
-     * Constructs a new {@link TextFormat} with the default style and color.
+     * Gets the {@link TextFormat} with the default style and color.
+     *
+     * @return The empty text format
      */
-    private TextFormat() {
-        this(TextColors.NONE, TextStyles.NONE);
+    public static TextFormat of() {
+        return NONE;
     }
 
     /**
-     * Constructs a new {@link TextFormat} with the default color.
+     * Constructs a new {@link TextFormat} with the specific style.
      *
      * @param style The style
      */
-    private TextFormat(TextStyle style) {
-        this(TextColors.NONE, style);
+    public static TextFormat of(TextStyle style) {
+        return new TextFormat(TextColors.NONE, style);
     }
 
     /**
-     * Constructs a new {@link TextFormat} with the default style.
+     * Constructs a new {@link TextFormat} with the specific color.
      *
      * @param color The color
      */
-    private TextFormat(TextColor color) {
-        this(color, TextStyles.NONE);
+    public static TextFormat of(TextColor color) {
+        return new TextFormat(color, TextStyles.NONE);
+    }
+
+    /**
+     * Constructs a new {@link TextFormat} with the specific color and style.
+     *
+     * @param color The color
+     * @param style The style
+     */
+    public static TextFormat of(TextColor color, TextStyle style) {
+        return new TextFormat(color, style);
     }
 
     /**

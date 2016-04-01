@@ -24,12 +24,18 @@
  */
 package org.spongepowered.api.world.gen;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * A pseudo-enum of {@link WorldGeneratorModifier}s.
  */
 public class WorldGeneratorModifiers {
 
-    public static final WorldGeneratorModifier SKYLANDS = null;
+    // SORTFIELDS:ON
+
+    public static final WorldGeneratorModifier SKYLANDS = DummyObjectProvider.createFor(WorldGeneratorModifier.class, "SKYLANDS");
+
+    // SORTFIELDS:OFF
 
     private WorldGeneratorModifiers() {
     }

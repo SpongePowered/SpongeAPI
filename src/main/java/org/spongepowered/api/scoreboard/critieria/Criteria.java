@@ -26,23 +26,26 @@ package org.spongepowered.api.scoreboard.critieria;
 
 import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.scoreboard.objective.Objective;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
  * Criteria names which trigger an objective to be modified by actions in-game.
  */
 public final class Criteria {
 
+    // SORTFIELDS:ON
+
+    /**
+     * Represents a {@link Criteria} which causes an {@link Objective}
+     * to have a score for a player incremented when they die.
+     */
+    public static final Criterion DEATHS = DummyObjectProvider.createFor(Criterion.class, "DEATHS");
+
     /**
      * Represents a {@link Criterion} which causes an {@link Objective}
      * is only updated manually, through commands or plugins.
      */
-    public static final Criterion DUMMY = null;
-
-    /**
-     * Represents a {@link Criterion} which causes an {@link Objective}
-     * to have a score for a player updated by the <code>/trigger</code> command.
-     */
-    public static final Criterion TRIGGER = null;
+    public static final Criterion DUMMY = DummyObjectProvider.createFor(Criterion.class, "DUMMY");
 
     /**
      * Represents a {@link Criteria} which causes an {@link Objective} to have
@@ -50,25 +53,27 @@ public final class Criteria {
      * (can be greater than 20 due to effects such as
      * {@link PotionEffectTypes#HEALTH_BOOST}).
      */
-    public static final Criterion HEALTH = null;
+    public static final Criterion HEALTH = DummyObjectProvider.createFor(Criterion.class, "HEALTH");
 
     /**
      * Represents a {@link Criteria} which causes an {@link Objective}
      * to have a score for a player incremented when they kill a player.
      */
-    public static final Criterion PLAYER_KILLS = null;
+    public static final Criterion PLAYER_KILLS = DummyObjectProvider.createFor(Criterion.class, "PLAYER_KILLS");
 
     /**
      * Represents a {@link Criteria} which causes an {@link Objective}
      * to have a score for a player incremented when they kill an entity.
      */
-    public static final Criterion TOTAL_KILLS = null;
+    public static final Criterion TOTAL_KILLS = DummyObjectProvider.createFor(Criterion.class, "TOTAL_KILLS");
 
     /**
-     * Represents a {@link Criteria} which causes an {@link Objective}
-     * to have a score for a player incremented when they die.
+     * Represents a {@link Criterion} which causes an {@link Objective}
+     * to have a score for a player updated by the <code>/trigger</code> command.
      */
-    public static final Criterion DEATHS = null;
+    public static final Criterion TRIGGER = DummyObjectProvider.createFor(Criterion.class, "TRIGGER");
+
+    // SORTFIELDS:OFF
 
     private Criteria() {
     }

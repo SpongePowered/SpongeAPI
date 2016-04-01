@@ -36,7 +36,7 @@ import org.spongepowered.api.data.value.mutable.Value;
  * An abstract {@link VariantData} implementation providing all implementation
  * requirements, except {@link #asImmutable()}.
  *
- * @param <T> The type of catalog type
+ * @param <T> The type of dummy type
  * @param <M> The manipulator type
  * @param <I> The immutable manipulator type
  */

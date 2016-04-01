@@ -24,14 +24,22 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known vanilla {@link DirtType}s.
  */
 public final class DirtTypes {
 
-    public static final DirtType DIRT = null;
-    public static final DirtType COARSE_DIRT = null;
-    public static final DirtType PODZOL = null;
+    // SORTFIELDS:ON
+
+    public static final DirtType COARSE_DIRT = DummyObjectProvider.createFor(DirtType.class, "COARSE_DIRT");
+
+    public static final DirtType DIRT = DummyObjectProvider.createFor(DirtType.class, "DIRT");
+
+    public static final DirtType PODZOL = DummyObjectProvider.createFor(DirtType.class, "PODZOL");
+
+    // SORTFIELDS:OFF
 
     private DirtTypes() {
     }
