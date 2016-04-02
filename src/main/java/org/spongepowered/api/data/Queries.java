@@ -77,9 +77,9 @@ public final class Queries {
 
     // Text
     public static final DataQuery JSON = of("JSON");
-    public static final DataQuery TEXT_TITLE = of("TEXT_TITLE");
-    public static final DataQuery TEXT_AUTHOR = of("TEXT_AUTHOR");
-    public static final DataQuery TEXT_PAGE_LIST = of("TEXT_PAGE_LIST");
+    public static final DataQuery TEXT_TITLE = of("TextTitle");
+    public static final DataQuery TEXT_AUTHOR = of("TextAuthor");
+    public static final DataQuery TEXT_PAGE_LIST = of("TextPageList");
 
     // RespawnLocation
     public static final DataQuery FORCED_SPAWN = of("ForcedSpawn");
