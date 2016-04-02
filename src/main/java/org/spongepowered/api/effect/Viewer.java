@@ -27,6 +27,7 @@ package org.spongepowered.api.effect;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundType;
+import org.spongepowered.api.text.BookView;
 import org.spongepowered.api.text.title.Title;
 
 /**
@@ -115,5 +116,12 @@ public interface Viewer {
     default void clearTitle() {
         sendTitle(Title.CLEAR);
     }
+
+    /**
+     * Sends a {@link BookView} to this viewer.
+     *
+     * @param bookView BookView to send
+     */
+    void sendBookView(BookView bookView);
 
 }
