@@ -53,6 +53,10 @@ public final class NamedCause {
     public static final String THROWER = "Thrower";
     public static final String PLAYER_SIMULATED = "PlayerSimulated";
 
+    public static NamedCause igniter(Object object) {
+        return of(IGNITER, object);
+    }
+
     public static NamedCause source(Object object) {
         return of(SOURCE, object);
     }
