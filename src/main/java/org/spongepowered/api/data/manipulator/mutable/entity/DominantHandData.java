@@ -27,16 +27,21 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableDominantHandData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
+import org.spongepowered.api.data.property.entity.DominantHandProperty;
 import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.player.Player;
 
 /**
  * A {@link DataManipulator} representing the dominant {@link HandType} of a
  * {@link Living} entity.
  * <p>Handedness usually determines which hand is used for "main" interactions,
  * such as tool use or block placing/breaking.</p>
+ *
+ * <p><i>NOTE: </i> This does not apply to {@link Player}s, for Player
+ * entities see {@link DominantHandProperty}.</p>
  */
 public interface DominantHandData extends VariantData<HandType, DominantHandData, ImmutableDominantHandData> {
 
