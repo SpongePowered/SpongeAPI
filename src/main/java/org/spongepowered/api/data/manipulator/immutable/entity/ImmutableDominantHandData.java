@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
 import org.spongepowered.api.data.manipulator.mutable.entity.DominantHandData;
 import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
@@ -39,7 +40,7 @@ import org.spongepowered.api.entity.living.Living;
  *     such as tool use or block breaking.
  * </p>
  */
-public interface ImmutableDominantHandData extends ImmutableDataManipulator<ImmutableDominantHandData, DominantHandData> {
+public interface ImmutableDominantHandData extends ImmutableVariantData<HandType, ImmutableDominantHandData, DominantHandData> {
 
     /**
      * Gets the {@link ImmutableValue} representing the dominant {@link HandType} of an
