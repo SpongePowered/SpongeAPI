@@ -50,11 +50,11 @@ import javax.annotation.Nullable;
  */
 public class DominantHandProperty extends AbstractProperty<String, HandType> {
 
-    protected DominantHandProperty(@Nullable HandType value) {
+    public DominantHandProperty(@Nullable HandType value) {
         super(value);
     }
 
-    protected DominantHandProperty(@Nullable HandType value, @Nullable Operator op) {
+    public DominantHandProperty(@Nullable HandType value, @Nullable Operator op) {
         super(value, op);
     }
 
