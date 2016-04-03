@@ -38,15 +38,11 @@ import javax.annotation.Nullable;
 /**
  * Represents a {@link Property} for the dominant {@link HandType} of a {@link Player}.
  *
- * <p>
- *     Handedness usually determines which hand is used for "main" interactions,
- *     such as tool use or block breaking.
- * </p>
+ * <p>Handedness usually determines which hand is used for "main" interactions,
+ * such as tool use or block breaking.</p>
  *
- * <p>
- *     <i>NOTE: </i> This only applies to {@link Player}s, for {@link Living}
- *     entities see {@link DominantHandData}.
- * </p>
+ * <p><i>NOTE: </i> This only applies to {@link Player}s, for {@link Living}
+ * entities see {@link DominantHandData}.</p>
  */
 public class DominantHandProperty extends AbstractProperty<String, HandType> {
 

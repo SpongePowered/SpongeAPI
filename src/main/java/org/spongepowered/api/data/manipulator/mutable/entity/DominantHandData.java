@@ -35,10 +35,8 @@ import org.spongepowered.api.entity.living.Living;
 /**
  * A {@link DataManipulator} representing the dominant {@link HandType} of a
  * {@link Living} entity.
- * <p>
- *     Handedness usually determines which hand is used for "main" interactions,
- *     such as tool use or block breaking.
- * </p>
+ * <p>Handedness usually determines which hand is used for "main" interactions,
+ * such as tool use or block placing/breaking.</p>
  */
 public interface DominantHandData extends VariantData<HandType, DominantHandData, ImmutableDominantHandData> {
 
