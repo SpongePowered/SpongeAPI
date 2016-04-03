@@ -36,6 +36,7 @@ import org.spongepowered.api.data.manipulator.mutable.ListData;
 import org.spongepowered.api.data.manipulator.mutable.MappedData;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
+import org.spongepowered.api.util.CollectionUtils;
 
 import java.util.Collection;
 import java.util.Map;
@@ -54,9 +55,10 @@ public abstract class AbstractMappedData<K, V, M extends MappedData<K, V, M, I>,
         extends AbstractSingleData<Map<K, V>, M, I> implements MappedData<K, V, M, I> {
 
     protected AbstractMappedData(Map<K, V> value, Key<? extends BaseValue<Map<K, V>>> usedKey) {
-        super(Maps.newHashMap(value), usedKey);
+        super(CollectionUtils.copyMap(value), usedKey);
     }
 
+    @Override
     protected MapValue<K, V> getValueGetter() {
         return Sponge.getRegistry().getValueFactory().createMapValue((Key<MapValue<K, V>>) this.usedKey, this.getValue());
     }

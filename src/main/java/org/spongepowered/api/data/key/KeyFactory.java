@@ -35,6 +35,7 @@ import org.spongepowered.api.data.value.mutable.SetValue;
 import org.spongepowered.api.data.value.mutable.Value;
 
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * A factory of {@link Key}s, useful for both the implementation of SpongeAPI,
@@ -66,6 +67,9 @@ public final class KeyFactory {
     public static <E, T extends BaseValue, V extends BaseValue<E>> Key<V> makeSingleKey(final Class<E> elementClass, final Class<T> valueClass,
             final DataQuery query) {
         return new Key<V>() {
+
+            private final int hash = Objects.hashCode(elementClass, valueClass, query);
+
             @SuppressWarnings("rawtypes")
             @Override
             public Class<V> getValueClass() {
@@ -79,7 +83,7 @@ public final class KeyFactory {
 
             @Override
             public int hashCode() {
-                return Objects.hashCode(elementClass, valueClass, query);
+                return this.hash;
             }
 
             @Override
@@ -100,6 +104,8 @@ public final class KeyFactory {
      */
     public static <E> Key<ListValue<E>> makeListKey(final Class<E> elementClass, final DataQuery query) {
         return new Key<ListValue<E>>() {
+            private final int hash = Objects.hashCode(ListValue.class, elementClass, query);
+
             @SuppressWarnings("rawtypes")
             @Override
             public Class<ListValue<E>> getValueClass() {
@@ -113,7 +119,7 @@ public final class KeyFactory {
 
             @Override
             public int hashCode() {
-                return Objects.hashCode(elementClass, query);
+                return this.hash;
             }
 
             @Override
@@ -134,6 +140,8 @@ public final class KeyFactory {
      */
     public static <E> Key<SetValue<E>> makeSetKey(final Class<E> elementClass, final DataQuery query) {
         return new Key<SetValue<E>>() {
+            private final int hash = Objects.hashCode(ListValue.class, elementClass, query);
+
             @SuppressWarnings("rawtypes")
             @Override
             public Class<SetValue<E>> getValueClass() {
@@ -147,7 +155,7 @@ public final class KeyFactory {
 
             @Override
             public int hashCode() {
-                return Objects.hashCode(elementClass, query);
+                return this.hash;
             }
 
             @Override
@@ -171,6 +179,9 @@ public final class KeyFactory {
      */
     public static <K, V> Key<MapValue<K, V>> makeMapKey(final Class<K> keyClass, final Class<V> valueclass, final DataQuery query) {
         return new Key<MapValue<K, V>>() {
+
+            private final int hash = Objects.hashCode(keyClass, valueclass, query);
+
             @SuppressWarnings("rawtypes")
             @Override
             public Class<MapValue<K, V>> getValueClass() {
@@ -184,7 +195,7 @@ public final class KeyFactory {
 
             @Override
             public int hashCode() {
-                return Objects.hashCode(keyClass, valueclass, query);
+                return this.hash;
             }
 
             @Override
@@ -207,6 +218,9 @@ public final class KeyFactory {
      */
     public static <E> Key<OptionalValue<E>> makeOptionalKey(final Class<E> elementClass, final DataQuery query) {
         return new Key<OptionalValue<E>>() {
+
+            private final int hash = Objects.hashCode(Optional.class, elementClass, query);
+
             @Override
             public Class<OptionalValue<E>> getValueClass() {
                 return (Class<OptionalValue<E>>) (Class<?>) OptionalValue.class;
@@ -219,7 +233,7 @@ public final class KeyFactory {
 
             @Override
             public int hashCode() {
-                return Objects.hashCode(elementClass, query);
+                return this.hash;
             }
 
             @Override
