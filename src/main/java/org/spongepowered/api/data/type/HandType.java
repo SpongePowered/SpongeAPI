@@ -30,7 +30,8 @@ import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents the "handedness" of a {@link Living} entity.
+ * Represents a hand of a {@link Living} entity. This usually specifies the hand
+ * used for interactions, such as tool use or block placing/breaking.
  */
 @CatalogedBy(HandTypes.class)
 public interface HandType extends CatalogType, Translatable {
