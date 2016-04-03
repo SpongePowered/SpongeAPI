@@ -26,12 +26,13 @@ package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the "handedness" of a {@link Living} entity.
  */
 @CatalogedBy(HandTypes.class)
-public interface HandType extends CatalogType {
+public interface HandType extends CatalogType, Translatable {
 
 }
