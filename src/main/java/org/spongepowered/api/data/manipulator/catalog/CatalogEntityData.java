@@ -59,6 +59,7 @@ import org.spongepowered.api.data.manipulator.mutable.entity.FlyingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.FoodData;
 import org.spongepowered.api.data.manipulator.mutable.entity.FuseData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
+import org.spongepowered.api.data.manipulator.mutable.entity.GlowingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GriefingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.HealingSourceData;
 import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
@@ -141,6 +142,7 @@ import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.Firework;
 import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.entity.projectile.Snowball;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -294,6 +296,12 @@ public final class CatalogEntityData {
      * {@link Player}s.
      */
     public static final Class<GameModeData> GAME_MODE_DATA = GameModeData.class;
+    /**
+     * Represents that an entity has a glowing outline. Few entities, such
+     * as {@link Snowball}, do not show this glow.
+     * <!-- TODO: Find all non-effected entities -->
+     */
+    public static final Class<GlowingData> GLOWING_DATA = GlowingData.class;
     /**
      * Signifies that an entity can modify blocks in the world. Usually applies
      * to {@link Enderman} and {@link Humanoid}s.

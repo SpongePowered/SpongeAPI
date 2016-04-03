@@ -388,6 +388,14 @@ public final class Keys {
 
     public static final Key<MutableBoundedValue<Integer>> GENERATION = KeyFactory.fake("GENERATION");
 
+    /**
+     * Represents the {@link Key} for representing whether an entity has a
+     * glowing outline.
+     *
+     * @see GlowingData#glowing()
+     */
+    public static final Key<Value<Boolean>> GLOWING = KeyFactory.fake("GLOWING");
+
     public static final Key<Value<GoldenApple>> GOLDEN_APPLE_TYPE = KeyFactory.fake("GOLDEN_APPLE_TYPE");
 
     /**
