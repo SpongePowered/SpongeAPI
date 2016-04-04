@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.schematic;
 
-
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.collect.BiMap;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -48,35 +47,35 @@ public interface Schematic extends DataSerializable {
      *
      * @return The format version used
      */
-    int version();
+    int getVersion();
 
     /**
      * Gets the attached {@link DataContainer}. Correlates to the optional `Metadata` field of the specification.
      *
      * @return The attached {@link DataContainer} or {@link Optional#empty()} if none
      */
-    Optional<DataContainer> metadata();
+    Optional<DataContainer> getMetadata();
 
     /**
      * Gets the width of the Schematic. Correlates to the `Width` field of the specification.
      *
      * @return The width of the Schematic.
      */
-    int width();
+    int getWidth();
 
     /**
      * Gets the height of the Schematic. Correlates to the `Height` field of the specification.
      *
      * @return The height of the Schematic.
      */
-    int height();
+    int getHeight();
 
     /**
      * Gets the length of the Schematic. Correlates to the `Length` field of the specification.
      *
      * @return The length of the Schematic.
      */
-    int length();
+    int getLength();
 
     /**
      * Gets the origin of the Schematic (relative to the minimum point) or the minimum point if none. Correlates to the `OffsetX`, `OffsetY`, and
@@ -84,22 +83,20 @@ public interface Schematic extends DataSerializable {
      *
      * @return The origin of the Schematic
      */
-    Vector3i origin();
+    Vector3i getOrigin();
 
     /**
      * Gets the largest key in the palette.
      * @return
      */
-    int paletteMax();
-
-    // TODO how to say the position in the set == the palette value
-
+    int getPaletteMax();
+    
     /**
      * Gets the palette of the Schematic. Correlates backwards to the `Palette` field of the specification.
      *
      * @return The palette
      */
-    BiMap<Integer, BlockState> palette();
+    BiMap<Integer, BlockState> getPalette();
 
     /**
      * Gets the {@link BlockState} at the relative location, or {@link Optional#empty()} if none.
@@ -107,28 +104,28 @@ public interface Schematic extends DataSerializable {
      * @param location The location (relative to the origin of the schematic) of the BlockSnapshot desired
      * @return The BlockState found
      */
-    Optional<BlockState> blockAt(Vector3i location);
+    Optional<BlockState> getBlockAt(Vector3i location);
 
     /**
      * Gets all {@link BlockState}s in the Schematic.
      *
      * @return All BlockStates
      */
-    BlockSnapshot[] blocks();
+    BlockSnapshot[] getBlocks();
 
     /**
      * Gets all {@link SchematicEntity} in the Schematic.
      *
      * @return All entities
      */
-    SchematicEntity[] entities();
+    SchematicEntity[] getEntities();
 
     /**
      * Gets all TileEntities in the Schematic.
      *
      * @return All tile entities
      */
-    SchematicTileEntity[] tileEntities();
+    SchematicTileEntity[] getTileEntities();
 
     
 
