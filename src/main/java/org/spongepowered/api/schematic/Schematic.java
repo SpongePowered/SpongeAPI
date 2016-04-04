@@ -26,63 +26,71 @@ package org.spongepowered.api.schematic;
 
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.collect.BiMap;
-import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Optional;
 
 /**
- * Unless otherwise noted, "the specification" refers to the latest version of the Schematic Specification {@url https://github
+ * Unless otherwise noted, "the specification" refers to the latest version of
+ * the Schematic Specification {@url https://github
  * .com/SpongePowered/Schematic-Specification}.
  */
 public interface Schematic extends DataSerializable {
 
+
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
     /**
      * Gets the attached {@link DataContainer}.
      *
-     * <p>Correlates with the optional `Metadata` field of the specification.</p>
+     * <p>Correlates to the optional `Metadata` field of the specification.</p>
      *
-     * @return The attached {@link DataContainer} or {@link Optional#empty()} if none
+     * @return The attached {@link DataContainer} or {@link Optional#empty()} if
+     * none
      */
     Optional<DataContainer> getMetadata();
 
     /**
      * Gets the width of the Schematic.
      *
-     * <p>Correlates with the `Width` field of the specification.</p>
+     * <p>Correlates to the `Width` field of the specification.</p>
      *
-     * @return The width of the Schematic.
+     * @return The width of the Schematic
      */
     int getWidth();
 
     /**
      * Gets the height of the Schematic.
      *
-     * <p>Correlates with the `Height` field of the specification.</p>
+     * <p>Correlates to the `Height` field of the specification.</p>
      *
-     * @return The height of the Schematic.
+     * @return The height of the Schematic
      */
     int getHeight();
 
     /**
      * Gets the length of the Schematic.
      *
-     * <p>Correlates with the `Length` field of the specification.</p>
+     * <p>Correlates to the `Length` field of the specification.</p>
      *
-     * @return The length of the Schematic.
+     * @return The length of the Schematic
      */
     int getLength();
 
     /**
-     * Gets the origin of the Schematic (relative to the minimum point) or the minimum point if none.
+     * Gets the origin of the Schematic (relative to the minimum point) or the
+     * minimum point if none.
      *
-     * <p>Correlates with the `OffsetX`, `OffsetY`, and `OffsetZ` fields of the specification.</p>
+     * <p>Correlates to the `OffsetX`, `OffsetY`, and `OffsetZ` fields of the
+     * specification.</p>
      *
      * @return The origin of the Schematic
      */
@@ -105,13 +113,14 @@ public interface Schematic extends DataSerializable {
     BiMap<Integer, BlockState> getPalette();
 
     /**
-     * Gets the {@link BlockState} at the relative location, or {@link Optional#empty()} if none.
+     * Gets the {@link BlockState} at the relative location, or
+     * {@link Optional#empty()} if none.
      *
-     * @param extent The extent
-     * @param location The location (relative to the origin of the schematic) of the BlockSnapshot desired
+     * @param location The location (relative to the origin of the schematic)
+     * of the BlockSnapshot desired
      * @return The BlockState found
      */
-    Optional<BlockState> getBlockAt(Extent extent, Vector3i location);
+    Optional<BlockState> getBlockAt(Vector3i location);
 
     /**
      * Gets all {@link BlockState}s in the Schematic.
@@ -165,7 +174,8 @@ public interface Schematic extends DataSerializable {
         /**
          * Sets the origin of the schematic.
          *
-         * <p>Correlates to the `OffsetX`, `OffsetY`, and `OffsetZ` fields of the Schematic Specification (v1).</p>
+         * <p>Correlates to the `OffsetX`, `OffsetY`, and `OffsetZ` fields of
+         * the Schematic Specification (v1).</p>
          *
          * @param origin The origin point to set
          * @return This schematic builder
@@ -173,7 +183,8 @@ public interface Schematic extends DataSerializable {
         Builder origin(Vector3i origin);
 
         /**
-         * Adds a {@link BlockState} to the palette. Duplicate BlockStates will be ignored.
+         * Adds a {@link BlockState} to the palette. Duplicate BlockStates will
+         * be ignored.
          *
          * @param blockState
          * @return This schematic builder
@@ -192,9 +203,10 @@ public interface Schematic extends DataSerializable {
          * Builds the schematic object
          *
          * @return The built Schematic object
-         * @throws InvalidDataException if any required fields are not completed
+         * @throws InvalidDataException if any required fields are not
+         * completed
          */
-        Optional<Schematic> build() throws InvalidDataException;
+        Schematic build() throws InvalidDataException;
 
         /**
          * Builds the schematic object using locations from the given world
@@ -203,7 +215,7 @@ public interface Schematic extends DataSerializable {
          * @return
          * @throws InvalidDataException
          */
-        Optional<Schematic> build(World world) throws InvalidDataException;
+        Schematic build(World world) throws InvalidDataException;
 
     }
 

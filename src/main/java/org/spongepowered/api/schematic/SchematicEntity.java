@@ -25,11 +25,12 @@
 package org.spongepowered.api.schematic;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.entity.EntityType;
 
-public interface SchematicEntity extends DataSerializable {
+public interface SchematicEntity extends DataHolder, DataSerializable {
 
     /**
      * Gets the type of entity.

@@ -26,10 +26,11 @@ package org.spongepowered.api.schematic;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.TileEntityType;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
 
-public interface SchematicTileEntity extends DataSerializable {
+public interface SchematicTileEntity extends DataHolder, DataSerializable {
 
     /**
      * Gets the type of tile entity.
@@ -39,24 +40,24 @@ public interface SchematicTileEntity extends DataSerializable {
     TileEntityType getType();
 
     /**
-     * Gets the location of the entity relative to the origin.
+     * Gets the location of the tile entity relative to the origin.
      *
      * @return The location
      */
     Vector3i getLocation();
 
-    interface Builder extends DataBuilder<SchematicEntity> {
+    interface Builder extends DataBuilder<SchematicTileEntity> {
 
         /**
-         * Sets the EntityType for the SchematicEntity
+         * Sets the {@link TileEntityType} for the SchematicTileEntity
          *
          * @param type The type to set
-         * @return This SchematicEntity builder
+         * @return This SchematicTileEntity builder
          */
         Builder type(TileEntityType type);
 
         /**
-         * Gets the location of the entity relative to the origin.
+         * Gets the location of the tile entity relative to the origin.
          *
          * @return The location
          */
