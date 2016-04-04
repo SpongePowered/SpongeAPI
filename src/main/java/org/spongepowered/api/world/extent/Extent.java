@@ -440,8 +440,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     MutableBlockVolumeWorker<? extends Extent> getBlockWorker();
 
     /**
-     * Gets the {@link UUID}, if available, that created the {@link BlockSnapshot}
-     * at passed block position.
+     * Gets the {@link UUID}, if available, of the user who created the
+     * {@link BlockSnapshot} at passed block position.
      *
      * @param pos The position to be checked
      * @return The {@link UUID} if one exists
@@ -451,18 +451,18 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     }
 
     /**
-     * Gets the {@link UUID}, if available, that created the {@link BlockSnapshot}
-     * at passed block position.
+     * Gets the {@link UUID}, if available, of the user who created the
+     * {@link BlockSnapshot} at passed block position.
      *
      * @param x The x coordinate
      * @param y The y coordinate
      * @param z The z coordinate
-     * @return The {@link User} if one exists
+     * @return The {@link UUID} if one exists
      */
     Optional<UUID> getCreator(int x, int y, int z);
 
     /**
-     * Gets the {@link UUID}, if available, that last notified the
+     * Gets the {@link UUID}, if available, of the user who last notified the
      * {@link BlockSnapshot} located at passed block position.
      *
      * @param pos The position to be checked
@@ -473,7 +473,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     }
 
     /**
-     * Gets the {@link UUID}, if available, that last notified the
+     * Gets the {@link UUID}, if available, of the user who last notified the
      * {@link BlockSnapshot} located at passed block coordinates.
      *
      * @param x The x coordinate
@@ -484,54 +484,46 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     Optional<UUID> getNotifier(int x, int y, int z);
 
     /**
-     * Sets the {@link UUID} that created the {@link BlockSnapshot}
+     * Sets the {@link UUID} of the user who created the {@link BlockSnapshot}
      * located at passed block position.
      *
-     * @param pos The block position where the user data should
-     *      be applied.
-     * @param uuid The {@link UUID} to set as creator.
+     * @param pos The block position where the user data should be applied
+     * @param uuid The {@link UUID} to set as creator
      */
     default void setCreator(Vector3i pos, @Nullable UUID uuid) {
         setCreator(pos.getX(), pos.getY(), pos.getZ(), uuid);
     }
 
     /**
-     * Sets the {@link UUID} that created the {@link BlockSnapshot}
+     * Sets the {@link UUID} of the user who created the {@link BlockSnapshot}
      * located at passed block coordinates.
      *
-     * @param x The x coordinate where the user data should
-     *      be applied.
-     * @param y The y coordinate where the user data should
-     *      be applied.
-     * @param z The z coordinate where the user data should
-     *      be applied.
-     * @param uuid The {@link UUID} to set as creator.
+     * @param x The x coordinate where the user data should be applied
+     * @param y The y coordinate where the user data should be applied
+     * @param z The z coordinate where the user data should be applied
+     * @param uuid The {@link UUID} to set as creator
      */
     void setCreator(int x, int y, int z, @Nullable UUID uuid);
 
     /**
-     * Sets the {@link UUID} that last notified the {@link BlockSnapshot}
-     * located at passed block position.
+     * Sets the {@link UUID} of the user who last notified the
+     * {@link BlockSnapshot} located at passed block position.
      *
-     * @param pos The block position where the user data should
-     *      be applied.
-     * @param uuid The {@link UUID} to set as notifier.
+     * @param pos The block position where the user data should be applied
+     * @param uuid The {@link UUID} to set as notifier
      */
     default void setNotifier(Vector3i pos, @Nullable UUID uuid) {
         setNotifier(pos.getX(), pos.getY(), pos.getZ(), uuid);
     }
 
     /**
-     * Sets the {@link UUID} that last notified the
+     * Sets the {@link UUID} of the user who last notified the
      * {@link BlockSnapshot} located at passed block coordinates.
      *
-     * @param x The x coordinate where the user data should
-     *      be applied.
-     * @param y The y coordinate where the user data should
-     *      be applied.
-     * @param z The z coordinate where the user data should
-     *      be applied.
-     * @param uuid The {@link UUID} to set as notifier.
+     * @param x The x coordinate where the user data should be applied
+     * @param y The y coordinate where the user data should be applied
+     * @param z The z coordinate where the user data should be applied
+     * @param uuid The {@link UUID} to set as notifier
      */
     void setNotifier(int x, int y, int z, @Nullable UUID uuid);
 }

@@ -63,11 +63,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.Set;
-import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -141,7 +141,6 @@ public final class GenericArguments {
     }
 
     /**
-<<<<<<< HEAD
      * Expect an argument to represent a dimension.
      * Gives values of tye {@link DimensionType}
      *
@@ -153,8 +152,6 @@ public final class GenericArguments {
     }
 
     /**
-=======
->>>>>>> cd84596... Remove specific dimension arg factory method
      * Expect an argument to represent a {@link Vector3d}.
      *
      * @param key The key to store under
@@ -949,7 +946,7 @@ public final class GenericArguments {
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             Object state = args.getState();
             try {
-                return possiblePlayer.parseValue(source, args);
+                return this.possiblePlayer.parseValue(source, args);
             } catch (ArgumentParseException ex) {
                 args.setState(state);
                 return super.parseValue(source, args);

@@ -28,15 +28,12 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.NamedCause;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.Identifiable;
@@ -418,14 +415,15 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
     }
 
     /**
-     * Gets the {@link UUID}, if available, that created this {@link Entity}.
+     * Gets the {@link UUID}, if available, of the user who created this
+     * {@link Entity}.
      *
      * @return The {@link UUID} if one exists
      */
     Optional<UUID> getCreator();
 
     /**
-     * Gets the {@link UUID}, if available, that last notified this
+     * Gets the {@link UUID}, if available, of the user who last notified this
      * {@link Entity}.
      *
      * @return The {@link UUID} if one exists
@@ -433,16 +431,16 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
     Optional<UUID> getNotifier();
 
     /**
-     * Sets the {@link UUID} that created this {@link Entity}.
+     * Sets the {@link UUID} of the user who created this {@link Entity}.
      *
-     * @param uuid The {@link UUID} to set as creator.
+     * @param uuid The {@link UUID} to set as creator
      */
     void setCreator(@Nullable UUID uuid);
 
     /**
-     * Sets the {@link UUID} that last notified this {@link Entity}.
+     * Sets the {@link UUID} of the user who last notified this {@link Entity}.
      *
-     * @param uuid The {@link UUID} to set as notifier.
+     * @param uuid The {@link UUID} to set as notifier
      */
     void setNotifier(@Nullable UUID uuid);
 
