@@ -28,6 +28,10 @@ import static org.spongepowered.api.data.Queries.TEXT_AUTHOR;
 import static org.spongepowered.api.data.Queries.TEXT_PAGE_LIST;
 import static org.spongepowered.api.data.Queries.TEXT_TITLE;
 
+import com.google.common.reflect.TypeToken;
+import ninja.leaping.configurate.ConfigurationNode;
+import ninja.leaping.configurate.objectmapping.ObjectMappingException;
+import ninja.leaping.configurate.objectmapping.serialize.TypeSerializer;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataView;
@@ -40,9 +44,16 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * An implementation of {@link AbstractDataBuilder} for {@link BookView}.
+ * An implementation of {@link AbstractDataBuilder} and {@link TypeSerializer} for {@link BookView}.
  */
-public class BookViewDataBuilder extends AbstractDataBuilder<BookView> {
+public class BookViewDataBuilder extends AbstractDataBuilder<BookView> implements TypeSerializer<BookView> {
+
+    private static final String NODE_AUTHOR = "author";
+    private static final String NODE_TITLE = "title";
+    private static final String NODE_PAGES = "pages";
+
+    private static final TypeToken<Text> TOKEN_TEXT = TypeToken.of(Text.class);
+    private static final TypeToken<List<Text>> TOKEN_TEXT_LIST = new TypeToken<List<Text>>() {};
 
     public BookViewDataBuilder() {
         super(BookView.class, 1);
@@ -77,4 +88,19 @@ public class BookViewDataBuilder extends AbstractDataBuilder<BookView> {
         return Optional.of(builder.build());
     }
 
+    @Override
+    public BookView deserialize(TypeToken<?> type, ConfigurationNode value) throws ObjectMappingException {
+        BookView.Builder builder = BookView.builder();
+        builder.author(value.getNode(NODE_AUTHOR).getValue(TOKEN_TEXT));
+        builder.title(value.getNode(NODE_TITLE).getValue(TOKEN_TEXT));
+        builder.addPages(value.getNode(NODE_PAGES).getValue(TOKEN_TEXT_LIST));
+        return builder.build();
+    }
+
+    @Override
+    public void serialize(TypeToken<?> type, BookView bookView, ConfigurationNode value) throws ObjectMappingException {
+        value.getNode(NODE_AUTHOR).setValue(TOKEN_TEXT, bookView.getAuthor());
+        value.getNode(NODE_TITLE).setValue(TOKEN_TEXT, bookView.getTitle());
+        value.getNode(NODE_PAGES).setValue(TOKEN_TEXT_LIST, bookView.getPages());
+    }
 }

@@ -28,11 +28,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
+import com.google.common.reflect.TypeToken;
+import ninja.leaping.configurate.objectmapping.serialize.TypeSerializers;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.text.serializer.BookViewDataBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.ArrayList;
@@ -48,6 +51,10 @@ import java.util.stream.Collectors;
  * as it is currently impossible to tell the client to open an unsigned book.
  */
 public final class BookView implements DataSerializable {
+
+    static {
+        TypeSerializers.getDefaultSerializers().registerType(TypeToken.of(BookView.class), new BookViewDataBuilder());
+    }
 
     final Text title;
     final Text author;
@@ -105,9 +112,18 @@ public final class BookView implements DataSerializable {
         List<DataContainer> pages = this.pages.stream().map(Text::toContainer).collect(Collectors.toList());
         return new MemoryDataContainer()
                 .set(Queries.CONTENT_VERSION, getContentVersion())
-                .set(Queries.TEXT_TITLE, title.toContainer())
-                .set(Queries.TEXT_AUTHOR, author.toContainer())
+                .set(Queries.TEXT_TITLE, this.title.toContainer())
+                .set(Queries.TEXT_AUTHOR, this.author.toContainer())
                 .set(Queries.TEXT_PAGE_LIST, pages);
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("title", this.title)
+                .add("author", this.author)
+                .add("pages", this.pages)
+                .toString();
     }
 
     @Override
@@ -287,7 +303,7 @@ public final class BookView implements DataSerializable {
          * @return New BookView
          */
         public BookView build() {
-            return new BookView(title, author, ImmutableList.copyOf(this.pages));
+            return new BookView(this.title, this.author, ImmutableList.copyOf(this.pages));
         }
 
         @Override
