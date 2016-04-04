@@ -26,11 +26,10 @@ package org.spongepowered.api.schematic;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.TileEntityType;
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
 
-public interface SchematicTileEntity extends DataContainer, DataSerializable {
+public interface SchematicTileEntity extends DataSerializable {
 
     /**
      * Gets the type of tile entity.

@@ -33,6 +33,7 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Optional;
 
@@ -43,43 +44,45 @@ import java.util.Optional;
 public interface Schematic extends DataSerializable {
 
     /**
-     * Gets the format version used. Correlates to the `Version` field of the specification.
+     * Gets the attached {@link DataContainer}.
      *
-     * @return The format version used
-     */
-    int getVersion();
-
-    /**
-     * Gets the attached {@link DataContainer}. Correlates to the optional `Metadata` field of the specification.
+     * <p>Correlates with the optional `Metadata` field of the specification.</p>
      *
      * @return The attached {@link DataContainer} or {@link Optional#empty()} if none
      */
     Optional<DataContainer> getMetadata();
 
     /**
-     * Gets the width of the Schematic. Correlates to the `Width` field of the specification.
+     * Gets the width of the Schematic.
+     *
+     * <p>Correlates with the `Width` field of the specification.</p>
      *
      * @return The width of the Schematic.
      */
     int getWidth();
 
     /**
-     * Gets the height of the Schematic. Correlates to the `Height` field of the specification.
+     * Gets the height of the Schematic.
+     *
+     * <p>Correlates with the `Height` field of the specification.</p>
      *
      * @return The height of the Schematic.
      */
     int getHeight();
 
     /**
-     * Gets the length of the Schematic. Correlates to the `Length` field of the specification.
+     * Gets the length of the Schematic.
+     *
+     * <p>Correlates with the `Length` field of the specification.</p>
      *
      * @return The length of the Schematic.
      */
     int getLength();
 
     /**
-     * Gets the origin of the Schematic (relative to the minimum point) or the minimum point if none. Correlates to the `OffsetX`, `OffsetY`, and
-     * `OffsetZ` fields of the specification.
+     * Gets the origin of the Schematic (relative to the minimum point) or the minimum point if none.
+     *
+     * <p>Correlates with the `OffsetX`, `OffsetY`, and `OffsetZ` fields of the specification.</p>
      *
      * @return The origin of the Schematic
      */
@@ -87,12 +90,15 @@ public interface Schematic extends DataSerializable {
 
     /**
      * Gets the largest key in the palette.
-     * @return
+     *
+     * @return The largest key
      */
     int getPaletteMax();
-    
+
     /**
-     * Gets the palette of the Schematic. Correlates backwards to the `Palette` field of the specification.
+     * Gets the palette of the Schematic.
+     *
+     * <p>Correlates backwards to the `Palette` field of the specification.</p>
      *
      * @return The palette
      */
@@ -101,17 +107,18 @@ public interface Schematic extends DataSerializable {
     /**
      * Gets the {@link BlockState} at the relative location, or {@link Optional#empty()} if none.
      *
+     * @param extent The extent
      * @param location The location (relative to the origin of the schematic) of the BlockSnapshot desired
      * @return The BlockState found
      */
-    Optional<BlockState> getBlockAt(Vector3i location);
+    Optional<BlockState> getBlockAt(Extent extent, Vector3i location);
 
     /**
      * Gets all {@link BlockState}s in the Schematic.
      *
      * @return All BlockStates
      */
-    BlockSnapshot[] getBlocks();
+    BlockState[] getBlocks();
 
     /**
      * Gets all {@link SchematicEntity} in the Schematic.
@@ -127,7 +134,6 @@ public interface Schematic extends DataSerializable {
      */
     SchematicTileEntity[] getTileEntities();
 
-    
 
     interface Builder extends DataBuilder<Schematic> {
 
@@ -157,7 +163,9 @@ public interface Schematic extends DataSerializable {
         Builder maximumPoint(Vector3i point);
 
         /**
-         * Sets the origin of the schematic. Correlates to the `OffsetX`, `OffsetY`, and `OffsetZ` fields of the Schematic Specification (v1.
+         * Sets the origin of the schematic.
+         *
+         * <p>Correlates to the `OffsetX`, `OffsetY`, and `OffsetZ` fields of the Schematic Specification (v1).</p>
          *
          * @param origin The origin point to set
          * @return This schematic builder
