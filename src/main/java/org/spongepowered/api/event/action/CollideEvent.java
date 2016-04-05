@@ -32,12 +32,12 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
- * Fired when an {@link Entity} and {@link BlockSnapshot} collide with each other.
+ * Fired when an {@link Entity} or {@link BlockSnapshot} collide with each other.
  */
 public interface CollideEvent extends Event, Cancellable {
 
     /**
-     * Fired after an {@link Entity} and {@link BlockSnapshot} impact with each
+     * Fired after an {@link Entity} or {@link BlockSnapshot} impact with each
      * other.
      *
      * <p>Note: this should only fire once after the first impact.</p>

@@ -24,52 +24,44 @@
  */
 package org.spongepowered.api.data.persistence;
 
+import com.google.common.reflect.TypeToken;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataQuery;
+import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
+import org.spongepowered.api.data.MemoryDataView;
+
+import java.util.Optional;
 
 /**
- * An exception that occurs when a {@link DataBuilder} or
- * {@link DataSource} is unable to handle an operation, which can include:
- * {@link DataBuilder#build(DataView)}, {@link DataSource#()},
- * etc.
+ * A compatibility object to serialize and deserialize any type of
+ * {@link Object} that is not a {@link DataSerializable}. Natively,
+ * {@link MemoryDataView} will attempt to locate a {@code DataSerializer}
+ * during {@link DataView#set(DataQuery, Object)}.
+ *
+ * @param <T> The type of object that this serializer and handle
  */
-public class InvalidDataException extends UnsupportedOperationException {
+public interface DataSerializer<T> {
 
-    private static final long serialVersionUID = -754482190837922531L;
-
-    /**
-     * Constructs a new {@link InvalidDataException}.
-     */
-    public InvalidDataException() {
-        super();
-    }
+    TypeToken<T> getToken();
 
     /**
-     * Constructs a new {@link InvalidDataException} with a message.
+     * Attempts to deserialize the {@code T} object from the provided
+     * {@link DataView}.
      *
-     * @param message The message to display with the exception
+     * @param view The data view to deserialize the object from
+     * @return The object, deserialized, if available
+     * @throws InvalidDataException If the dataview contained invalid data
      */
-    public InvalidDataException(String message) {
-        super(message);
-    }
+    Optional<T> deserialize(DataView view) throws InvalidDataException;
 
     /**
-     * Constructs a new {@link InvalidDataException} with the specified message and
-     * cause.
+     * Serializes the provided object to a {@link DataContainer}.
      *
-     * @param message The exception message
-     * @param cause The cause of this exception
+     * @param obj The object to serialize
+     * @return The object serialized to a container
+     * @throws InvalidDataException If the desired object is not supported
+     *     for any reason
      */
-    public InvalidDataException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    /**
-     * Constructs a new {@link InvalidDataException} with the specified cause and a
-     * null message.
-     *
-     * @param cause The cause of this exception
-     */
-    public InvalidDataException(Throwable cause) {
-        super(cause);
-    }
+    DataContainer serialize(T obj) throws InvalidDataException;
 }

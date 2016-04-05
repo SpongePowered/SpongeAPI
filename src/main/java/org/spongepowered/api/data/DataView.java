@@ -270,6 +270,30 @@ public interface DataView {
     Optional<Boolean> getBoolean(DataQuery path);
 
     /**
+     * Gets the {@link Short} by path, if available.
+     *
+     * <p>If a {@link Short} does not exist, or the data residing at
+     * the path is not an instance of a {@link Short}, an absent is
+     * returned.</p>
+     *
+     * @param path The path of the value to get
+     * @return The boolean, if available
+     */
+    Optional<Short> getShort(DataQuery path);
+
+    /**
+     * Gets the {@link Byte} by path, if available.
+     *
+     * <p>If a {@link Byte} does not exist, or the data residing at
+     * the path is not an instance of a {@link Byte}, an absent is
+     * returned.</p>
+     *
+     * @param path The path of the value to get
+     * @return The boolean, if available
+     */
+    Optional<Byte> getByte(DataQuery path);
+
+    /**
      * Gets the {@link Integer} by path, if available.
      *
      * <p>If a {@link Integer} does not exist, or the data residing at
@@ -292,6 +316,18 @@ public interface DataView {
      * @return The long, if available
      */
     Optional<Long> getLong(DataQuery path);
+
+    /**
+     * Gets the {@link Float} by path, if available.
+     *
+     * <p>If a {@link Float} does not exist, or the data residing at
+     * the path is not an instance of a {@link Float}, an absent is
+     * returned.</p>
+     *
+     * @param path The path of the value to get
+     * @return The boolean, if available
+     */
+    Optional<Float> getFloat(DataQuery path);
 
     /**
      * Gets the {@link Double} by path, if available.
@@ -498,6 +534,10 @@ public interface DataView {
      * @return The deserialized objects in a list, if available
      */
     <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz);
+
+    <T> Optional<T> getObject(DataQuery path, Class<T> objectClass);
+
+    <T> Optional<List<T>> getObjectList(DataQuery path, Class<T> objectclass);
 
     /**
      * Gets the {@link CatalogType} object by path, if available.

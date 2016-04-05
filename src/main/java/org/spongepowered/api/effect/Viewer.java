@@ -29,6 +29,7 @@ import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundCategories;
 import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
+import org.spongepowered.api.text.BookView;
 import org.spongepowered.api.text.title.Title;
 
 /**
@@ -166,5 +167,12 @@ public interface Viewer {
     default void clearTitle() {
         sendTitle(Title.CLEAR);
     }
+
+    /**
+     * Sends a {@link BookView} to this viewer.
+     *
+     * @param bookView BookView to send
+     */
+    void sendBookView(BookView bookView);
 
 }

@@ -180,7 +180,6 @@ public interface MessageChannel {
 
     /**
      * Handle transforming the input message appropriately.
-     * Transforms
      *
      * @param sender The sender of the message
      * @param recipient The recipient of the message

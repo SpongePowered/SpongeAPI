@@ -56,6 +56,7 @@ public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends
         super(Lists.newArrayList(value), usedKey);
     }
 
+    @Override
     protected ListValue<E> getValueGetter() {
         return Sponge.getRegistry().getValueFactory().createListValue((Key<ListValue<E>>) this.usedKey, this.getValue());
     }
