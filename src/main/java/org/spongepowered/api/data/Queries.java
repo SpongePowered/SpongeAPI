@@ -84,6 +84,10 @@ public final class Queries {
     // RespawnLocation
     public static final DataQuery FORCED_SPAWN = of("ForcedSpawn");
 
+    // UUID
+    public static final DataQuery UUID_LEAST = of("UuidLeast");
+    public static final DataQuery UUID_MOST = of("UuidMost");
+
     private Queries() {
     }
 
