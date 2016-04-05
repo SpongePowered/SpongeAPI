@@ -1496,16 +1496,16 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.CollideEntityEvent}.
      * 
      * @param cause The cause
-     * @param originalEntities The original entities
      * @param entities The entities
+     * @param entitySnapshots The entity snapshots
      * @param targetWorld The target world
      * @return A new collide entity event
      */
-    public static CollideEntityEvent createCollideEntityEvent(Cause cause, List<Entity> originalEntities, List<Entity> entities, World targetWorld) {
+    public static CollideEntityEvent createCollideEntityEvent(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("originalEntities", originalEntities);
         values.put("entities", entities);
+        values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(CollideEntityEvent.class, values);
     }
@@ -1516,17 +1516,17 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.CollideEntityEvent.Impact}.
      * 
      * @param cause The cause
-     * @param originalEntities The original entities
      * @param entities The entities
+     * @param entitySnapshots The entity snapshots
      * @param impactPoint The impact point
      * @param targetWorld The target world
      * @return A new impact collide entity event
      */
-    public static CollideEntityEvent.Impact createCollideEntityEventImpact(Cause cause, List<Entity> originalEntities, List<Entity> entities, Location<World> impactPoint, World targetWorld) {
+    public static CollideEntityEvent.Impact createCollideEntityEventImpact(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Location<World> impactPoint, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("originalEntities", originalEntities);
         values.put("entities", entities);
+        values.put("entitySnapshots", entitySnapshots);
         values.put("impactPoint", impactPoint);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(CollideEntityEvent.Impact.class, values);
