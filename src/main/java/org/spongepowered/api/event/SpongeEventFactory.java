@@ -1,27 +1,3 @@
-/*
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
- *
- * Copyright (c) SpongePowered <https://www.spongepowered.org>
- * Copyright (c) contributors
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package org.spongepowered.api.event;
 
 import com.flowpowered.math.vector.Vector3d;
@@ -760,6 +736,46 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Primary.MainHand}.
+     * 
+     * @param cause The cause
+     * @param interactionPoint The interaction point
+     * @param targetBlock The target block
+     * @param targetSide The target side
+     * @return A new main hand primary interact block event
+     */
+    public static InteractBlockEvent.Primary.MainHand createInteractBlockEventPrimaryMainHand(Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetBlock", targetBlock);
+        values.put("targetSide", targetSide);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Primary.MainHand.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Primary.OffHand}.
+     * 
+     * @param cause The cause
+     * @param interactionPoint The interaction point
+     * @param targetBlock The target block
+     * @param targetSide The target side
+     * @return A new off hand primary interact block event
+     */
+    public static InteractBlockEvent.Primary.OffHand createInteractBlockEventPrimaryOffHand(Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetBlock", targetBlock);
+        values.put("targetSide", targetSide);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Primary.OffHand.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Secondary}.
      * 
      * @param cause The cause
@@ -775,6 +791,46 @@ public class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetSide", targetSide);
         return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Secondary.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Secondary.MainHand}.
+     * 
+     * @param cause The cause
+     * @param interactionPoint The interaction point
+     * @param targetBlock The target block
+     * @param targetSide The target side
+     * @return A new main hand secondary interact block event
+     */
+    public static InteractBlockEvent.Secondary.MainHand createInteractBlockEventSecondaryMainHand(Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetBlock", targetBlock);
+        values.put("targetSide", targetSide);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Secondary.MainHand.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Secondary.OffHand}.
+     * 
+     * @param cause The cause
+     * @param interactionPoint The interaction point
+     * @param targetBlock The target block
+     * @param targetSide The target side
+     * @return A new off hand secondary interact block event
+     */
+    public static InteractBlockEvent.Secondary.OffHand createInteractBlockEventSecondaryOffHand(Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetBlock", targetBlock);
+        values.put("targetSide", targetSide);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Secondary.OffHand.class, values);
     }
 
     /**
@@ -2118,6 +2174,42 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Primary.MainHand}.
+     * 
+     * @param cause The cause
+     * @param interactionPoint The interaction point
+     * @param targetEntity The target entity
+     * @return A new main hand primary interact entity event
+     */
+    public static InteractEntityEvent.Primary.MainHand createInteractEntityEventPrimaryMainHand(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Primary.MainHand.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Primary.OffHand}.
+     * 
+     * @param cause The cause
+     * @param interactionPoint The interaction point
+     * @param targetEntity The target entity
+     * @return A new off hand primary interact entity event
+     */
+    public static InteractEntityEvent.Primary.OffHand createInteractEntityEventPrimaryOffHand(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Primary.OffHand.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Secondary}.
      * 
      * @param cause The cause
@@ -2131,6 +2223,42 @@ public class SpongeEventFactory {
         values.put("interactionPoint", interactionPoint);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Secondary.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Secondary.MainHand}.
+     * 
+     * @param cause The cause
+     * @param interactionPoint The interaction point
+     * @param targetEntity The target entity
+     * @return A new main hand secondary interact entity event
+     */
+    public static InteractEntityEvent.Secondary.MainHand createInteractEntityEventSecondaryMainHand(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Secondary.MainHand.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Secondary.OffHand}.
+     * 
+     * @param cause The cause
+     * @param interactionPoint The interaction point
+     * @param targetEntity The target entity
+     * @return A new off hand secondary interact entity event
+     */
+    public static InteractEntityEvent.Secondary.OffHand createInteractEntityEventSecondaryOffHand(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Secondary.OffHand.class, values);
     }
 
     /**

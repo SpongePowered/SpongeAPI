@@ -49,12 +49,34 @@ public interface InteractBlockEvent extends InteractEvent, TargetBlockEvent {
      *
      * This is usually left-click.
      */
-    interface Primary extends InteractBlockEvent {}
+    interface Primary extends InteractBlockEvent {
+
+        /**
+         * A {@link Primary} event where the interaction is from the client's main hand.
+         */
+        interface MainHand extends Primary {}
+
+        /**
+         * A {@link Primary} event where the interaction is from the client's off hand.
+         */
+        interface OffHand extends Primary {}
+    }
 
     /**
      * An event where the targeted block is being interacted with the client's "secondary" button.
      *
      * This is usually right-click.
      */
-    interface Secondary extends InteractBlockEvent {}
+    interface Secondary extends InteractBlockEvent {
+
+        /**
+         * A {@link Secondary} event where the interaction is from the client's main hand.
+         */
+        interface MainHand extends Secondary {}
+
+        /**
+         * A {@link Secondary} event where the interaction is from the client's off hand.
+         */
+        interface OffHand extends Secondary {}
+    }
 }
