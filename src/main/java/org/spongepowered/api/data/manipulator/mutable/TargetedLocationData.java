@@ -28,17 +28,21 @@ import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableTargetedLocationData;
 import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.EnderPearl;
+import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * An {@link DataManipulator} handling the supposed targeted {@link Vector3d}.
+ * An {@link DataManipulator} handling the a targeted {@link Vector3d}.
  *
- * <p>Usually for the case of {@link EnderPearl}s, the targeted {@link Vector3d}
- * is where the {@link EnderPearl} will move towards until it's expiration time.
- * In the case of {@link ItemStack}s of type {@link ItemTypes#COMPASS}, the
- * targeted {@link Vector3d} is where the compass will point towards.</p>
+ * <p>Usually for the case of a {@link EyeOfEnder}, the targeted {@link Vector3d}
+ * is where the {@link EyeOfEnder} will move towards until its expiration time.
+ *
+ * In the case of a {@link Player}, the targeted {@link Vector3d} is where any
+ * compass seen by the player will point towards. Note that it is not possible
+ * to set the target of an individual compass {@link ItemStack}.</p>
  */
 public interface TargetedLocationData extends DataManipulator<TargetedLocationData, ImmutableTargetedLocationData> {
 

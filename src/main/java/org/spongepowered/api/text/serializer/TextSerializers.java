@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
  * The list of {@link TextSerializer} available together with SpongeAPI.
@@ -41,7 +42,7 @@ public final class TextSerializers {
      * The {@link TextSerializer} for plain text input, without support for
      * formatting or special text types.
      */
-    public static final SafeTextSerializer PLAIN = null;
+    public static final SafeTextSerializer PLAIN = DummyObjectProvider.createFor(SafeTextSerializer.class, "PLAIN");
 
     /**
      * The {@link FormattingCodeTextSerializer} using the internal formatting
@@ -58,7 +59,8 @@ public final class TextSerializers {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    public static final FormattingCodeTextSerializer LEGACY_FORMATTING_CODE = null;
+    public static final FormattingCodeTextSerializer LEGACY_FORMATTING_CODE
+            = DummyObjectProvider.createFor(FormattingCodeTextSerializer.class, "LEGACY_FORMATTING_CODE");
 
     /**
      * A {@link FormattingCodeTextSerializer} for a simple {@link Text}
@@ -77,18 +79,19 @@ public final class TextSerializers {
      *
      * @see FormattingCodeTextSerializer
      */
-    public static final FormattingCodeTextSerializer FORMATTING_CODE = null;
+    public static final FormattingCodeTextSerializer FORMATTING_CODE
+            = DummyObjectProvider.createFor(FormattingCodeTextSerializer.class, "FORMATTING_CODE");
 
     /**
      * The {@link TextSerializer} for Mojang's JSON (<i>Mojangson</i>)
      * representation of a {@link Text} object.
      */
-    public static final TextSerializer JSON = null;
+    public static final TextSerializer JSON = DummyObjectProvider.createFor(TextSerializer.class, "JSON");
 
     /**
      * The {@link TextSerializer} for Sponge's TextXML format.
      */
-    public static final TextSerializer TEXT_XML = null;
+    public static final TextSerializer TEXT_XML = DummyObjectProvider.createFor(TextSerializer.class, "TEXT_XML");
 
     /**
      * Returns a representation that accepts and outputs formatting codes, using

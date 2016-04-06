@@ -29,6 +29,7 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -303,4 +304,15 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
     @Override
     MutableBlockVolumeWorker<? extends World> getBlockWorker();
 
+    /**
+     * Similar to {@link #spawnEntity(Entity, Cause)} except where multiple
+     * entities can be attempted to be spawned into this {@link World} with
+     * a customary {@link Cause}. The recommended use is to easily process
+     * the entity spawns without interference with the cause tracking system.
+     *
+     * @param entities The entities to be spawned
+     * @param cause The cause to be associated with the entities spawning
+     * @return True if any of the entities were successfully spawned
+     */
+    boolean spawnEntities(Iterable<? extends Entity> entities, Cause cause);
 }
