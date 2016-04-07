@@ -36,7 +36,6 @@ import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.manipulator.mutable.entity.RespawnLocationData;
 import org.spongepowered.api.data.persistence.AbstractDataBuilder;
 import org.spongepowered.api.data.persistence.DataBuilder;
-import org.spongepowered.api.data.persistence.DataContentUpdater;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -47,7 +46,8 @@ import java.util.UUID;
 
 /**
  * Represents a position for a player to respawn in in a particular world.
- * Instances can be obtained using {@link RespawnLocationData}.
+ * Instances can be obtained using {@link RespawnLocationData} or by using the
+ * {@link #builder()}.
  */
 public final class RespawnLocation implements DataSerializable {
 
@@ -140,8 +140,8 @@ public final class RespawnLocation implements DataSerializable {
         }
         RespawnLocation that = (RespawnLocation) o;
         return this.forced == that.forced &&
-               Objects.equals(this.worldId, that.worldId) &&
-               Objects.equals(this.position, that.position);
+                Objects.equals(this.worldId, that.worldId) &&
+                Objects.equals(this.position, that.position);
     }
 
     @Override
@@ -172,8 +172,8 @@ public final class RespawnLocation implements DataSerializable {
         }
 
         /**
-         * Sets the {@link UUID} of the provided {@link World}
-         * into this builder.
+         * Sets the {@link UUID} of the provided {@link World} into this
+         * builder.
          *
          * @param world The world to get the uuid from
          * @return This builder, for chaining
@@ -249,7 +249,6 @@ public final class RespawnLocation implements DataSerializable {
             builder.forced = forcedSpawn;
             return Optional.of(new RespawnLocation(builder));
         }
-
 
         @Override
         public Builder reset() {
