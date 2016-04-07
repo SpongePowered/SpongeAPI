@@ -161,7 +161,7 @@ public class SkylandsTerrainGenerator implements GenerationPopulator {
         private double lowerScale;
         private double degree;
 
-        private VerticalScaling() {
+        VerticalScaling() {
             super(1);
         }
 
@@ -170,19 +170,19 @@ public class SkylandsTerrainGenerator implements GenerationPopulator {
             return 1;
         }
 
-        private void setMidPoint(double midPoint) {
+        void setMidPoint(double midPoint) {
             this.midPoint = midPoint;
         }
 
-        private void setUpperSize(double upperScale) {
+        void setUpperSize(double upperScale) {
             this.upperScale = upperScale;
         }
 
-        private void setLowerSize(double lowerScale) {
+        void setLowerSize(double lowerScale) {
             this.lowerScale = lowerScale;
         }
 
-        private void setDegree(double degree) {
+        void setDegree(double degree) {
             this.degree = degree;
         }
 
@@ -195,11 +195,11 @@ public class SkylandsTerrainGenerator implements GenerationPopulator {
             } else {
                 scale = 1 - Math.pow(-y / this.lowerScale, this.degree);
             }
-            return scale > 0 ? sourceModule[0].getValue(x, y, z) * scale : 0;
+            return scale > 0 ? this.sourceModule[0].getValue(x, y, z) * scale : 0;
         }
     }
 
-    private static class OreNoise {
+    static class OreNoise {
 
         private final double densityThreshold;
         private final double frequency;
@@ -207,7 +207,7 @@ public class SkylandsTerrainGenerator implements GenerationPopulator {
         private final BlockType block;
         private final int seedModifier;
 
-        private OreNoise(double densityThreshold, double frequency, double noiseThreshold, BlockType block) {
+        OreNoise(double densityThreshold, double frequency, double noiseThreshold, BlockType block) {
             this.densityThreshold = densityThreshold;
             this.frequency = frequency;
             this.noiseThreshold = noiseThreshold;
@@ -215,12 +215,12 @@ public class SkylandsTerrainGenerator implements GenerationPopulator {
             this.seedModifier = block.getName().hashCode();
         }
 
-        private boolean hasBlock(double density, double x, double y, double z, int seed) {
+        boolean hasBlock(double density, double x, double y, double z, int seed) {
             return density >= this.densityThreshold && Noise.gradientCoherentNoise3D(x * this.frequency, y * this.frequency, z * this.frequency,
                 seed ^ this.seedModifier, NoiseQuality.FAST) >= this.noiseThreshold;
         }
 
-        private BlockType getBlock() {
+        BlockType getBlock() {
             return this.block;
         }
     }

@@ -45,13 +45,13 @@ public final class Title {
     public static final Title CLEAR = new Title(null, null, null, null, null, true, false);
     public static final Title RESET = new Title(null, null, null, null, null, false, true);
 
-    private final Optional<Text> title;
-    private final Optional<Text> subtitle;
-    private final Optional<Integer> fadeIn;
-    private final Optional<Integer> stay;
-    private final Optional<Integer> fadeOut;
-    private final boolean clear;
-    private final boolean reset;
+    final Optional<Text> title;
+    final Optional<Text> subtitle;
+    final Optional<Integer> fadeIn;
+    final Optional<Integer> stay;
+    final Optional<Integer> fadeOut;
+    final boolean clear;
+    final boolean reset;
 
     private Title() {
         this(null, null, null, null, null, false, false);
@@ -71,7 +71,7 @@ public final class Title {
      * @param reset {@code true} if this title resets all settings to default
      *        first
      */
-    private Title(@Nullable Text title, @Nullable Text subtitle, @Nullable Integer fadeIn, @Nullable Integer stay, @Nullable Integer fadeOut,
+    Title(@Nullable Text title, @Nullable Text subtitle, @Nullable Integer fadeIn, @Nullable Integer stay, @Nullable Integer fadeOut,
             boolean clear, boolean reset) {
         this.title = Optional.ofNullable(title);
         this.subtitle = Optional.ofNullable(subtitle);
@@ -227,7 +227,7 @@ public final class Title {
         /**
          * Constructs a new empty {@link Builder}.
          */
-        private Builder() {
+        Builder() {
         }
 
         /**
@@ -236,7 +236,7 @@ public final class Title {
          *
          * @param title The title to copy the values from
          */
-        private Builder(Title title) {
+        Builder(Title title) {
             this.title = title.title.orElse(null);
             this.subtitle = title.subtitle.orElse(null);
             this.fadeIn = title.fadeIn.orElse(null);

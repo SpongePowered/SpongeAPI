@@ -212,11 +212,11 @@ public interface VariableAmount extends DataSerializable {
      * Represents a fixed amount, calls to {@link #getAmount} will always return
      * the same fixed value.
      */
-    static class Fixed implements VariableAmount {
+    class Fixed implements VariableAmount {
 
         private double amount;
 
-        private Fixed(double amount) {
+        Fixed(double amount) {
             this.amount = amount;
         }
 
@@ -267,12 +267,12 @@ public interface VariableAmount extends DataSerializable {
      * base amount plus or minus a random amount between zero (inclusive) and
      * the variance (exclusive).
      */
-    static class BaseAndVariance implements VariableAmount {
+    class BaseAndVariance implements VariableAmount {
 
         private double base;
         private VariableAmount variance;
 
-        private BaseAndVariance(double base, VariableAmount variance) {
+        BaseAndVariance(double base, VariableAmount variance) {
             this.base = base;
             this.variance = variance;
         }
@@ -328,12 +328,12 @@ public interface VariableAmount extends DataSerializable {
      * the base amount plus a random amount between zero (inclusive) and the
      * addition (exclusive).
      */
-    static class BaseAndAddition implements VariableAmount {
+    class BaseAndAddition implements VariableAmount {
 
         private double base;
         private VariableAmount addition;
 
-        private BaseAndAddition(double base, VariableAmount addition) {
+        BaseAndAddition(double base, VariableAmount addition) {
             this.base = base;
             this.addition = addition;
         }
@@ -387,13 +387,13 @@ public interface VariableAmount extends DataSerializable {
      * This wraps another {@link VariableAmount} which it refers to if the
      * chance succeeds.
      */
-    static class OptionalAmount implements VariableAmount {
+    class OptionalAmount implements VariableAmount {
 
         private double chance;
         private double base;
         private VariableAmount inner;
 
-        private OptionalAmount(double base, double chance, VariableAmount inner) {
+        OptionalAmount(double base, double chance, VariableAmount inner) {
             this.base = base;
             this.inner = inner;
             this.chance = chance;

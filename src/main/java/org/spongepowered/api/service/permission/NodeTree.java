@@ -173,10 +173,10 @@ public class NodeTree {
 
     private static class Node {
 
-        private final Map<String, Node> children;
-        private Tristate value = Tristate.UNDEFINED;
+        final Map<String, Node> children;
+        Tristate value = Tristate.UNDEFINED;
 
-        private Node(Map<String, Node> children) {
+        Node(Map<String, Node> children) {
             this.children = children;
         }
     }
