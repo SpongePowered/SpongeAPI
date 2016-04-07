@@ -246,12 +246,12 @@ public final class DataTransactionResult {
         ;
     }
 
-    private final Type type;
+    final Type type;
     private final ImmutableList<ImmutableValue<?>> rejected;
     private final ImmutableList<ImmutableValue<?>> replaced;
     private final ImmutableList<ImmutableValue<?>> success;
 
-    private DataTransactionResult(final Builder builder) {
+    DataTransactionResult(final Builder builder) {
         this.type = builder.resultType;
         if (builder.rejected != null) {
             this.rejected = ImmutableList.copyOf(builder.rejected);
@@ -337,12 +337,12 @@ public final class DataTransactionResult {
      */
     public static final class Builder implements ResettableBuilder<DataTransactionResult, Builder> {
 
-        private List<ImmutableValue<?>> rejected;
-        private List<ImmutableValue<?>> replaced;
-        private List<ImmutableValue<?>> successful;
-        private Type resultType;
+        List<ImmutableValue<?>> rejected;
+        List<ImmutableValue<?>> replaced;
+        List<ImmutableValue<?>> successful;
+        Type resultType;
 
-        private Builder() {
+        Builder() {
         }
 
         /**

@@ -63,11 +63,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.Set;
-import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -141,7 +141,6 @@ public final class GenericArguments {
     }
 
     /**
-<<<<<<< HEAD
      * Expect an argument to represent a dimension.
      * Gives values of tye {@link DimensionType}
      *
@@ -153,8 +152,6 @@ public final class GenericArguments {
     }
 
     /**
-=======
->>>>>>> cd84596... Remove specific dimension arg factory method
      * Expect an argument to represent a {@link Vector3d}.
      *
      * @param key The key to store under
@@ -224,7 +221,7 @@ public final class GenericArguments {
     private static class SequenceCommandElement extends CommandElement {
         private final List<CommandElement> elements;
 
-        private SequenceCommandElement(List<CommandElement> elements) {
+        SequenceCommandElement(List<CommandElement> elements) {
             super(null);
             this.elements = elements;
         }
@@ -315,7 +312,7 @@ public final class GenericArguments {
         private final Map<String, Object> choices;
         private final boolean choicesInUsage;
 
-        private ChoicesCommandElement(Text key, Map<String, Object> choices, boolean choicesInUsage) {
+        ChoicesCommandElement(Text key, Map<String, Object> choices, boolean choicesInUsage) {
             super(key);
             this.choices = choices;
             this.choicesInUsage = choicesInUsage;
@@ -370,7 +367,7 @@ public final class GenericArguments {
     private static class FirstParsingCommandElement extends CommandElement {
         private final List<CommandElement> elements;
 
-        private FirstParsingCommandElement(List<CommandElement> elements) {
+        FirstParsingCommandElement(List<CommandElement> elements) {
             super(null);
             this.elements = elements;
         }
@@ -485,7 +482,7 @@ public final class GenericArguments {
         private final Object value;
         private final boolean considerInvalidFormatEmpty;
 
-        private OptionalCommandElement(CommandElement element, @Nullable Object value, boolean considerInvalidFormatEmpty) {
+        OptionalCommandElement(CommandElement element, @Nullable Object value, boolean considerInvalidFormatEmpty) {
             super(null);
             this.element = element;
             this.value = value;
@@ -668,7 +665,7 @@ public final class GenericArguments {
 
     private static class StringElement extends KeyElement {
 
-        private StringElement(Text key) {
+        StringElement(Text key) {
             super(key);
         }
 
@@ -802,7 +799,7 @@ public final class GenericArguments {
     private static class EnumValueElement<T extends Enum<T>> extends PatternMatchingCommandElement {
         private final Class<T> type;
 
-        private EnumValueElement(Text key, Class<T> type) {
+        EnumValueElement(Text key, Class<T> type) {
             super(key);
             this.type = type;
         }
@@ -834,7 +831,7 @@ public final class GenericArguments {
     private static class RemainingJoinedStringsCommandElement extends KeyElement {
         private final boolean raw;
 
-        private RemainingJoinedStringsCommandElement(Text key, boolean raw) {
+        RemainingJoinedStringsCommandElement(Text key, boolean raw) {
             super(key);
             this.raw = raw;
         }
@@ -949,7 +946,7 @@ public final class GenericArguments {
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             Object state = args.getState();
             try {
-                return possiblePlayer.parseValue(source, args);
+                return this.possiblePlayer.parseValue(source, args);
             } catch (ArgumentParseException ex) {
                 args.setState(state);
                 return super.parseValue(source, args);

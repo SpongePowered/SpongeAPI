@@ -182,29 +182,29 @@ public class SkylandsGrassPopulator implements GenerationPopulator {
         private final boolean doubleHeight;
         private final BlockState upperBlock;
 
-        private Flower(PlantType type) {
+        Flower(PlantType type) {
             this(DEFAULT_FLOWER.with(Keys.PLANT_TYPE, type).get(), false);
         }
 
-        private Flower(BlockType block) {
+        Flower(BlockType block) {
             this(block.getDefaultState(), false);
         }
 
-        private Flower(BlockState block, boolean doubleHeight) {
+        Flower(BlockState block, boolean doubleHeight) {
             this.block = block;
             this.doubleHeight = doubleHeight;
             this.upperBlock = this.block;
         }
 
-        private BlockState getBlock() {
+        BlockState getBlock() {
             return this.block;
         }
 
-        private boolean isDoubleHeight() {
+        boolean isDoubleHeight() {
             return this.doubleHeight;
         }
 
-        private BlockState getUpperBlock() {
+        BlockState getUpperBlock() {
             return this.upperBlock;
         }
     }
@@ -213,11 +213,11 @@ public class SkylandsGrassPopulator implements GenerationPopulator {
 
         private double degree;
 
-        private RarityCurve() {
+        RarityCurve() {
             super(1);
         }
 
-        private void setDegree(double degree) {
+        void setDegree(double degree) {
             this.degree = degree;
         }
 

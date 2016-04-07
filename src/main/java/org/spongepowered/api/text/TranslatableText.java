@@ -49,8 +49,8 @@ import javax.annotation.Nullable;
  */
 public final class TranslatableText extends Text {
 
-    private final Translation translation;
-    private final ImmutableList<Object> arguments;
+    final Translation translation;
+    final ImmutableList<Object> arguments;
 
     TranslatableText(Translation translation, ImmutableList<Object> arguments) {
         this.translation = checkNotNull(translation, "translation");

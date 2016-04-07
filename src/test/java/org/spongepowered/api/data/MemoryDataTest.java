@@ -253,6 +253,7 @@ public class MemoryDataTest {
         mockStatic(Sponge.class);
         when(Sponge.getDataManager()).thenReturn(service);
         Mockito.stub(service.getBuilder(SimpleData.class)).toReturn(Optional.of(builder));
+        Mockito.stub(service.getSerializer(Mockito.any())).toReturn(Optional.empty());
 
         List<String> myList = ImmutableList.of("foo", "bar", "baz");
 
@@ -273,6 +274,7 @@ public class MemoryDataTest {
         mockStatic(Sponge.class);
         when(Sponge.getDataManager()).thenReturn(service);
         Mockito.stub(service.getBuilder(SimpleData.class)).toReturn(Optional.of(builder));
+        Mockito.stub(service.getSerializer(Mockito.any())).toReturn(Optional.empty());
 
         List<SimpleData> list = Lists.newArrayList();
         for (int i = 0; i < 1000; i++) {

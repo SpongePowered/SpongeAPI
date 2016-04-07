@@ -66,10 +66,10 @@ public interface DamageModifier {
      */
     final class Builder implements ResettableBuilder<DamageModifier, Builder> {
 
-        private DamageModifierType type;
-        private Cause cause;
+        DamageModifierType type;
+        Cause cause;
 
-        private Builder() {
+        Builder() {
         }
 
 
@@ -127,7 +127,7 @@ public interface DamageModifier {
             private final DamageModifierType type;
             private final Cause cause;
 
-            private ImplementedDamageModifier(Builder builder) {
+            ImplementedDamageModifier(Builder builder) {
                 this.type = builder.type;
                 this.cause = builder.cause;
             }

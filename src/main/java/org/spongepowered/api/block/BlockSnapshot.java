@@ -70,7 +70,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
     BlockState getExtendedState();
 
     /**
-     * Creates a copy of the {@link BlockSnapshot} with the provided 
+     * Creates a copy of the {@link BlockSnapshot} with the provided
      * {@link BlockState}. Any additional data associated with a
      * {@link TileEntity} or custom data may be lost.
      *
@@ -116,7 +116,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
     boolean restore(boolean force, boolean notifyNeighbors);
 
     /**
-     * Gets the {@link UUID}, if available, that created this
+     * Gets the {@link UUID}, if available, of the user who created this
      * {@link BlockSnapshot}.
      *
      * @return The {@link UUID} if available
@@ -124,7 +124,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
     Optional<UUID> getCreator();
 
     /**
-     * Gets the {@link UUID}, if available, that last notified this
+     * Gets the {@link UUID}, if available, of the user who last notified this
      * {@link BlockSnapshot}.
      *
      * @return The {@link UUID} if available
@@ -170,17 +170,19 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
         Builder from(Location<World> location);
 
         /**
-         * Sets the creator's {@link UUID} of this {@link BlockSnapshot}.
+         * Sets the {@link UUID} of the user who created this
+         * {@link BlockSnapshot}.
          *
-         * @param uuid The {@link UUID} of creator
+         * @param uuid The {@link UUID} of the creator
          * @return This builder, for chaining
          */
         Builder creator(UUID uuid);
 
         /**
-         * Sets the notifier's {@link UUID} of this {@link BlockSnapshot}.
+         * Sets the {@link UUID} of the user who last notified this
+         * {@link BlockSnapshot}.
          *
-         * @param uuid The {@link UUID} of notifier
+         * @param uuid The {@link UUID} of the notifier
          * @return This builder, for chaining
          */
         Builder notifier(UUID uuid);

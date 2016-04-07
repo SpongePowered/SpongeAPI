@@ -105,8 +105,8 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
         extends AbstractEntityDamageSource.AbstractEntityDamageSourceBuilder<T,
         B> implements IndirectEntityDamageSource.AbstractBuilder<T, B> {
 
-        private Entity source;
-        private Entity indirect;
+        Entity source;
+        Entity indirect;
 
         @Override
         public B entity(Entity entity) {

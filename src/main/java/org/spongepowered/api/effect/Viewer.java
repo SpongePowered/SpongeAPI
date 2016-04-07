@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.effect;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundType;
+import org.spongepowered.api.text.BookView;
 import org.spongepowered.api.text.title.Title;
+import org.spongepowered.api.world.World;
 
 /**
  * A Viewer is something that sees effects.
@@ -115,5 +121,64 @@ public interface Viewer {
     default void clearTitle() {
         sendTitle(Title.CLEAR);
     }
+
+    /**
+     * Sends a {@link BookView} to this viewer.
+     *
+     * @param bookView BookView to send
+     */
+    void sendBookView(BookView bookView);
+
+    /**
+     * Sends a client-only block change.
+     *
+     * <p>This will not change the {@link World} in any way.</p>
+     *
+     * @param vec The position
+     * @param state The block state
+     */
+    default void sendBlockChange(Vector3i vec, BlockState state) {
+        checkNotNull(vec, "vec");
+        this.sendBlockChange(vec.getX(), vec.getY(), vec.getZ(), state);
+    }
+
+    /**
+     * Sends a client-only block change.
+     *
+     * <p>This will not change the {@link World} in any way.</p>
+     *
+     * @param x The x position
+     * @param y The y position
+     * @param z The z position
+     * @param state The block state
+     */
+    void sendBlockChange(int x, int y, int z, BlockState state);
+
+    /**
+     * Resets the client's view of the provided position to what
+     * actually exists in the {@link World}.
+     *
+     * <p>This is useful for resetting what the client sees
+     * after sending a {@link #sendBlockChange block change}.</p>
+     *
+     * @param vec The position
+     */
+    default void resetBlockChange(Vector3i vec) {
+        checkNotNull(vec, "vec");
+        this.resetBlockChange(vec.getX(), vec.getY(), vec.getZ());
+    }
+
+    /**
+     * Resets the client's view of the provided position to what
+     * actually exists in the {@link World}.
+     *
+     * <p>This is useful for resetting what the client sees
+     * after sending a {@link #sendBlockChange block change}.</p>
+     *
+     * @param x The x position
+     * @param y The y position
+     * @param z The z position
+     */
+    void resetBlockChange(int x, int y, int z);
 
 }
