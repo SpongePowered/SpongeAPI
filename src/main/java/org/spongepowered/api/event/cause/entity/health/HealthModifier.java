@@ -68,8 +68,8 @@ public interface HealthModifier {
      */
     final class Builder implements ResettableBuilder<HealthModifier, Builder> {
 
-        private HealthModifierType type;
-        private Cause cause;
+        HealthModifierType type;
+        Cause cause;
 
         private Builder() {
         }
@@ -138,7 +138,7 @@ public interface HealthModifier {
             private final HealthModifierType type;
             private final Cause cause;
 
-            private ImplementedHealthModifier(Builder builder) {
+            ImplementedHealthModifier(Builder builder) {
                 this.type = builder.type;
                 this.cause = builder.cause;
             }

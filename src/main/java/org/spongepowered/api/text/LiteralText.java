@@ -49,7 +49,7 @@ public final class LiteralText extends Text {
 
     static final LiteralText EMPTY = new LiteralText("");
 
-    private final String content;
+    final String content;
 
     LiteralText(String content) {
         this.content = checkNotNull(content, "content");

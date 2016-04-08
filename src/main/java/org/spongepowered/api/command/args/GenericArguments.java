@@ -221,7 +221,7 @@ public final class GenericArguments {
     private static class SequenceCommandElement extends CommandElement {
         private final List<CommandElement> elements;
 
-        private SequenceCommandElement(List<CommandElement> elements) {
+        SequenceCommandElement(List<CommandElement> elements) {
             super(null);
             this.elements = elements;
         }
@@ -312,7 +312,7 @@ public final class GenericArguments {
         private final Map<String, Object> choices;
         private final boolean choicesInUsage;
 
-        private ChoicesCommandElement(Text key, Map<String, Object> choices, boolean choicesInUsage) {
+        ChoicesCommandElement(Text key, Map<String, Object> choices, boolean choicesInUsage) {
             super(key);
             this.choices = choices;
             this.choicesInUsage = choicesInUsage;
@@ -367,7 +367,7 @@ public final class GenericArguments {
     private static class FirstParsingCommandElement extends CommandElement {
         private final List<CommandElement> elements;
 
-        private FirstParsingCommandElement(List<CommandElement> elements) {
+        FirstParsingCommandElement(List<CommandElement> elements) {
             super(null);
             this.elements = elements;
         }
@@ -482,7 +482,7 @@ public final class GenericArguments {
         private final Object value;
         private final boolean considerInvalidFormatEmpty;
 
-        private OptionalCommandElement(CommandElement element, @Nullable Object value, boolean considerInvalidFormatEmpty) {
+        OptionalCommandElement(CommandElement element, @Nullable Object value, boolean considerInvalidFormatEmpty) {
             super(null);
             this.element = element;
             this.value = value;
@@ -665,7 +665,7 @@ public final class GenericArguments {
 
     private static class StringElement extends KeyElement {
 
-        private StringElement(Text key) {
+        StringElement(Text key) {
             super(key);
         }
 
@@ -799,7 +799,7 @@ public final class GenericArguments {
     private static class EnumValueElement<T extends Enum<T>> extends PatternMatchingCommandElement {
         private final Class<T> type;
 
-        private EnumValueElement(Text key, Class<T> type) {
+        EnumValueElement(Text key, Class<T> type) {
             super(key);
             this.type = type;
         }
@@ -831,7 +831,7 @@ public final class GenericArguments {
     private static class RemainingJoinedStringsCommandElement extends KeyElement {
         private final boolean raw;
 
-        private RemainingJoinedStringsCommandElement(Text key, boolean raw) {
+        RemainingJoinedStringsCommandElement(Text key, boolean raw) {
             super(key);
             this.raw = raw;
         }

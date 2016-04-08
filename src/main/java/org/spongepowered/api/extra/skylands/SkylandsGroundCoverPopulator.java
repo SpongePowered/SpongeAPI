@@ -113,7 +113,7 @@ public class SkylandsGroundCoverPopulator implements GenerationPopulator {
         private final int min;
         private final int max;
 
-        private VariableGroundCoverLayer(BlockType block, int minDepth, int maxDepth) {
+        VariableGroundCoverLayer(BlockType block, int minDepth, int maxDepth) {
             this.block = block;
             this.min = minDepth;
             this.max = maxDepth;
@@ -135,7 +135,7 @@ public class SkylandsGroundCoverPopulator implements GenerationPopulator {
         private final BlockType block;
         private final int depth;
 
-        private UniformGroundCoverLayer(BlockType block, int depth) {
+        UniformGroundCoverLayer(BlockType block, int depth) {
             this.block = block;
             this.depth = depth;
         }

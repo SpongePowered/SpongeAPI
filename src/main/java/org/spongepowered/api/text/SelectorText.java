@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  */
 public final class SelectorText extends Text {
 
-    private final Selector selector;
+    final Selector selector;
 
     SelectorText(Selector selector) {
         this.selector = checkNotNull(selector, "selector");

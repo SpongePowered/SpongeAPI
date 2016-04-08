@@ -65,7 +65,7 @@ public final class CommandSpec implements CommandCallable {
     @Nullable private final String permission;
     private final InputTokenizer argumentParser;
 
-    private CommandSpec(CommandElement args, CommandExecutor executor, @Nullable Text description, @Nullable Text extendedDescription,
+    CommandSpec(CommandElement args, CommandExecutor executor, @Nullable Text description, @Nullable Text extendedDescription,
             @Nullable String permission, InputTokenizer parser) {
         this.args = args;
         this.executor = executor;
@@ -103,7 +103,7 @@ public final class CommandSpec implements CommandCallable {
         private Map<List<String>, CommandCallable> childCommandMap;
         private InputTokenizer argumentParser = InputTokenizer.quotedStrings(false);
 
-        private Builder() {}
+        Builder() {}
 
         /**
          * Set the permission that will be checked before using this command.

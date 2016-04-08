@@ -37,10 +37,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializer;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.util.Coerce;
@@ -52,7 +50,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
@@ -458,13 +458,7 @@ public class MemoryDataView implements DataView {
 
     @Override
     public Optional<DataView> getView(DataQuery path) {
-        Optional<Object> val = get(path);
-        if (val.isPresent()) {
-            if (val.get() instanceof DataView) {
-                return Optional.of((DataView) val.get());
-            }
-        }
-        return Optional.empty();
+        return get(path).filter(obj -> obj instanceof DataView).map(obj -> (DataView) obj);
     }
 
     @Override
@@ -510,86 +504,47 @@ public class MemoryDataView implements DataView {
     }
 
     private Optional<DataView> getUnsafeView(DataQuery path) {
-        Optional<Object> val = get(path);
-        if (val.isPresent()) {
-            if (val.get() instanceof DataView) {
-                return Optional.of((DataView) val.get());
-            }
-        }
-        return Optional.empty();
+        return get(path).filter(obj -> obj instanceof DataView).map(obj -> (DataView) obj);
     }
 
     @Override
     public Optional<Boolean> getBoolean(DataQuery path) {
-        Optional<Object> val = get(path);
-        if (val.isPresent()) {
-            return Coerce.asBoolean(val.get());
-        }
-        return Optional.empty();
+        return get(path).flatMap(Coerce::asBoolean);
     }
 
     @Override
     public Optional<Byte> getByte(DataQuery path) {
-        Optional<Object> val = get(path);
-        if (val.isPresent()) {
-            return Coerce.asByte(val.get());
-        }
-        return Optional.empty();
+        return get(path).flatMap(Coerce::asByte);
     }
 
     @Override
     public Optional<Short> getShort(DataQuery path) {
-        Optional<Object> val = get(path);
-        if (val.isPresent()) {
-            return Coerce.asShort(val.get());
-        }
-        return Optional.empty();
+        return get(path).flatMap(Coerce::asShort);
     }
 
     @Override
     public Optional<Integer> getInt(DataQuery path) {
-        Optional<Object> val = get(path);
-        if (val.isPresent()) {
-            return Coerce.asInteger(val.get());
-        }
-        return Optional.empty();
+        return get(path).flatMap(Coerce::asInteger);
     }
 
     @Override
     public Optional<Long> getLong(DataQuery path) {
-        Optional<Object> val = get(path);
-        if (val.isPresent()) {
-            return Coerce.asLong(val.get());
-        }
-        return Optional.empty();
+        return get(path).flatMap(Coerce::asLong);
     }
 
     @Override
     public Optional<Float> getFloat(DataQuery path) {
-        Optional<Object> val = get(path);
-        if (val.isPresent()) {
-            return Coerce.asFloat(val.get());
-        }
-        return Optional.empty();
-
+        return get(path).flatMap(Coerce::asFloat);
     }
 
     @Override
     public Optional<Double> getDouble(DataQuery path) {
-        Optional<Object> val = get(path);
-        if (val.isPresent()) {
-            return Coerce.asDouble(val.get());
-        }
-        return Optional.empty();
+        return get(path).flatMap(Coerce::asDouble);
     }
 
     @Override
     public Optional<String> getString(DataQuery path) {
-        Optional<Object> val = get(path);
-        if (val.isPresent()) {
-            return Coerce.asString(val.get());
-        }
-        return Optional.empty();
+        return get(path).flatMap(Coerce::asString);
     }
 
     @Override
@@ -608,223 +563,134 @@ public class MemoryDataView implements DataView {
 
     @Override
     public Optional<List<String>> getStringList(DataQuery path) {
-        Optional<List<?>> list = getUnsafeList(path);
-
-        if (!list.isPresent()) {
-            return Optional.empty();
-        }
-
-        List<String> newList = Lists.newArrayList();
-
-        for (Object object : list.get()) {
-            Optional<String> optional = Coerce.asString(object);
-            if (optional.isPresent()) {
-                newList.add(optional.get());
-            }
-        }
-        return Optional.of(newList);
+        return getUnsafeList(path).map(list ->
+                list.stream()
+                        .map(Coerce::asString)
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .collect(Collectors.toList())
+        );
     }
 
     private Optional<List<?>> getUnsafeList(DataQuery path) {
-        Optional<Object> val = get(path);
-        if (val.isPresent()) {
-            if (val.get() instanceof List<?>) {
-                return Optional.<List<?>>of((List<?>) val.get());
-            } else if (val.get() instanceof Object[]) {
-                return Optional.<List<?>>of(Arrays.asList(((Object[]) val.get())));
-            }
-        }
-        return Optional.empty();
+        return get(path)
+                .filter(obj -> obj instanceof List<?> || obj instanceof Object[])
+                .map(obj -> {
+                    if (obj instanceof List<?>) {
+                        return (List<?>) obj;
+                    } else {
+                        return Arrays.asList((Object[]) obj);
+                    }
+                }
+        );
     }
 
     @Override
     public Optional<List<Character>> getCharacterList(DataQuery path) {
-        Optional<List<?>> list = getUnsafeList(path);
-
-        if (!list.isPresent()) {
-            return Optional.empty();
-        }
-
-        List<Character> newList = Lists.newArrayList();
-
-        for (Object object : list.get()) {
-            Optional<Character> optional = Coerce.asChar(object);
-            if (optional.isPresent()) {
-                newList.add(optional.get());
-            }
-        }
-        return Optional.of(newList);
+        return getUnsafeList(path).map(list ->
+                list.stream()
+                        .map(Coerce::asChar)
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override
     public Optional<List<Boolean>> getBooleanList(DataQuery path) {
-        Optional<List<?>> list = getUnsafeList(path);
-
-        if (!list.isPresent()) {
-            return Optional.empty();
-        }
-
-        List<Boolean> newList = Lists.newArrayList();
-
-        for (Object object : list.get()) {
-            Optional<Boolean> optional = Coerce.asBoolean(object);
-            if (optional.isPresent()) {
-                newList.add(optional.get());
-            }
-        }
-        return Optional.of(newList);
+        return getUnsafeList(path).map(list ->
+                list.stream()
+                        .map(Coerce::asBoolean)
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override
     public Optional<List<Byte>> getByteList(DataQuery path) {
-        Optional<List<?>> list = getUnsafeList(path);
-
-        if (!list.isPresent()) {
-            return Optional.empty();
-        }
-
-        List<Byte> newList = Lists.newArrayList();
-
-        for (Object object : list.get()) {
-            Optional<Byte> optional = Coerce.asByte(object);
-            if (optional.isPresent()) {
-                newList.add(optional.get());
-            }
-        }
-        return Optional.of(newList);
+        return getUnsafeList(path).map(list ->
+                list.stream()
+                        .map(Coerce::asByte)
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override
     public Optional<List<Short>> getShortList(DataQuery path) {
-        Optional<List<?>> list = getUnsafeList(path);
-
-        if (!list.isPresent()) {
-            return Optional.empty();
-        }
-
-        List<Short> newList = Lists.newArrayList();
-
-        for (Object object : list.get()) {
-            Optional<Short> optional = Coerce.asShort(object);
-            if (optional.isPresent()) {
-                newList.add(optional.get());
-            }
-        }
-        return Optional.of(newList);
+        return getUnsafeList(path).map(list ->
+                list.stream()
+                        .map(Coerce::asShort)
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override
     public Optional<List<Integer>> getIntegerList(DataQuery path) {
-        Optional<List<?>> list = getUnsafeList(path);
-
-        if (!list.isPresent()) {
-            return Optional.empty();
-        }
-
-        List<Integer> newList = Lists.newArrayList();
-
-        for (Object object : list.get()) {
-            Optional<Integer> optional = Coerce.asInteger(object);
-            if (optional.isPresent()) {
-                newList.add(optional.get());
-            }
-        }
-        return Optional.of(newList);
+        return getUnsafeList(path).map(list ->
+                list.stream()
+                        .map(Coerce::asInteger)
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override
     public Optional<List<Long>> getLongList(DataQuery path) {
-        Optional<List<?>> list = getUnsafeList(path);
-
-        if (!list.isPresent()) {
-            return Optional.empty();
-        }
-
-        List<Long> newList = Lists.newArrayList();
-
-        for (Object object : list.get()) {
-            Optional<Long> optional = Coerce.asLong(object);
-            if (optional.isPresent()) {
-                newList.add(optional.get());
-            }
-        }
-        return Optional.of(newList);
+        return getUnsafeList(path).map(list ->
+                list.stream()
+                        .map(Coerce::asLong)
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override
     public Optional<List<Float>> getFloatList(DataQuery path) {
-        Optional<List<?>> list = getUnsafeList(path);
-
-        if (!list.isPresent()) {
-            return Optional.empty();
-        }
-
-        List<Float> newList = Lists.newArrayList();
-
-        for (Object object : list.get()) {
-            Optional<Float> optional = Coerce.asFloat(object);
-            if (optional.isPresent()) {
-                newList.add(optional.get());
-            }
-        }
-        return Optional.of(newList);
+        return getUnsafeList(path).map(list ->
+                list.stream()
+                        .map(Coerce::asFloat)
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override
     public Optional<List<Double>> getDoubleList(DataQuery path) {
-        Optional<List<?>> list = getUnsafeList(path);
-
-        if (!list.isPresent()) {
-            return Optional.empty();
-        }
-
-        List<Double> newList = Lists.newArrayList();
-
-        for (Object object : list.get()) {
-            Optional<Double> optional = Coerce.asDouble(object);
-            if (optional.isPresent()) {
-                newList.add(optional.get());
-            }
-        }
-        return Optional.of(newList);
+        return getUnsafeList(path).map(list ->
+                list.stream()
+                        .map(Coerce::asDouble)
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override
     public Optional<List<Map<?, ?>>> getMapList(DataQuery path) {
-        Optional<List<?>> list = getUnsafeList(path);
-
-        if (!list.isPresent()) {
-            return Optional.empty();
-        }
-
-        List<Map<?, ?>> newList = Lists.newArrayList();
-
-        for (Object object : list.get()) {
-            if (object instanceof Map) {
-                newList.add((Map<?, ?>) object);
-            }
-        }
-
-        return Optional.of(newList);
+        return getUnsafeList(path).map(list ->
+                list.stream()
+                        .filter(obj -> obj instanceof Map<?, ?>)
+                        .map(obj -> (Map<?, ?>) obj)
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override
     public Optional<List<DataView>> getViewList(DataQuery path) {
-        Optional<List<?>> list = getUnsafeList(path);
-
-        if (!list.isPresent()) {
-            return Optional.empty();
-        }
-
-        List<DataView> newList = Lists.newArrayList();
-
-        for (Object object : list.get()) {
-            if (object instanceof DataView) {
-                newList.add((DataView) object);
-            }
-        }
-
-        return Optional.of(newList);
+        return getUnsafeList(path).map(list ->
+                list.stream()
+                        .filter(obj -> obj instanceof DataView)
+                        .map(obj -> (DataView) obj)
+                        .collect(Collectors.toList())
+        );
     }
 
     @SuppressWarnings("unchecked")
@@ -832,25 +698,16 @@ public class MemoryDataView implements DataView {
     public <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz) {
         checkNotNull(path, "path");
         checkNotNull(clazz, "clazz");
-        DataManager manager = Sponge.getDataManager();
         if (clazz.isAssignableFrom(CatalogType.class)) {
             final Optional<T> catalog = (Optional<T>) getCatalogType(path, ((Class<? extends CatalogType>) clazz));
             if (catalog.isPresent()) {
                 return catalog;
             }
         }
-        Optional<DataView> optional = getUnsafeView(path);
 
-        if (!optional.isPresent()) {
-            return Optional.empty();
-        }
-
-        Optional<DataBuilder<T>> builderOptional = manager.getBuilder(clazz);
-        if (!builderOptional.isPresent()) {
-            return Optional.empty();
-        } else {
-            return builderOptional.get().build(optional.get());
-        }
+        return getUnsafeView(path).flatMap(view -> Sponge.getDataManager().getBuilder(clazz)
+                .flatMap(builder -> builder.build(view))
+        );
     }
 
     @SuppressWarnings("unchecked")
@@ -858,68 +715,56 @@ public class MemoryDataView implements DataView {
     public <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz) {
         checkNotNull(path, "path");
         checkNotNull(clazz, "clazz");
-        DataManager manager = Sponge.getDataManager();
-        if (clazz.isAssignableFrom(CatalogType.class)) {
-            return (Optional<List<T>>) (Optional<?>) getCatalogTypeList(path, (Class<? extends CatalogType>) clazz);
-        }
-        Optional<List<DataView>> optional = getViewList(path);
+        return Stream.<Supplier<Optional<List<T>>>>of(
+                () -> {
+                    if (clazz.isAssignableFrom(CatalogType.class)) {
+                        return (Optional<List<T>>) (Optional<?>) getCatalogTypeList(path, (Class<? extends CatalogType>) clazz);
+                    }
+                    return Optional.empty();
+                },
+                () -> getViewList(path).flatMap(list ->
+                        Sponge.getDataManager().getBuilder(clazz).map(builder ->
+                                list.stream()
+                                        .map(builder::build)
+                                        .filter(Optional::isPresent)
+                                        .map(Optional::get)
+                                        .collect(Collectors.toList())
+                        )
+                    )
+                )
+                .map(Supplier::get)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .findFirst();
 
-        if (!optional.isPresent()) {
-            return Optional.empty();
-        }
-
-        Optional<DataBuilder<T>> builderOptional = manager.getBuilder(clazz);
-        if (!builderOptional.isPresent()) {
-            return Optional.empty();
-        } else {
-            List<T> newList = Lists.newArrayList();
-            for (DataView view : optional.get()) {
-                Optional<T> element = builderOptional.get().build(view);
-                if (element.isPresent()) {
-                    newList.add(element.get());
-                }
-            }
-            return Optional.of(newList);
-        }
     }
 
     @Override
     public <T extends CatalogType> Optional<T> getCatalogType(DataQuery path, Class<T> catalogType) {
         checkNotNull(path, "path");
         checkNotNull(catalogType, "dummy type");
-        final Optional<String> catalogId = getString(path);
-        if (!catalogId.isPresent()) {
-            return Optional.empty();
-        }
-        final GameRegistry gameRegistry = Sponge.getRegistry();
-
-        return gameRegistry.getType(catalogType, catalogId.get());
+        return getString(path).flatMap(string -> Sponge.getRegistry().getType(catalogType, string));
     }
 
     @Override
     public <T extends CatalogType> Optional<List<T>> getCatalogTypeList(DataQuery path, Class<T> catalogType) {
         checkNotNull(path, "path");
         checkNotNull(catalogType, "catalogType");
-        final Optional<List<String>> catalogTypes = getStringList(path);
-        if (!catalogTypes.isPresent()) {
-            return Optional.empty();
-        }
-        final GameRegistry registry = Sponge.getRegistry();
-        final List<T> newList = Lists.newArrayList();
-        for (String string : catalogTypes.get()) {
-            final Optional<T> type = registry.getType(catalogType, string);
-            if (type.isPresent()) {
-                newList.add(type.get());
-            }
-        }
-        return Optional.of(newList);
+        return getStringList(path).map(list ->
+                list.stream()
+                        .map(string -> Sponge.getRegistry().getType(catalogType, string))
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override
     public <T> Optional<T> getObject(DataQuery path, Class<T> objectClass) {
         return getView(path).flatMap(view ->
-                Sponge.getDataManager().getSerializer(objectClass).flatMap(serializer ->
-                        serializer.deserialize(view)));
+                Sponge.getDataManager().getSerializer(objectClass)
+                        .flatMap(serializer -> serializer.deserialize(view))
+        );
     }
 
     @Override
@@ -938,9 +783,12 @@ public class MemoryDataView implements DataView {
     @Override
     public DataContainer copy() {
         final DataContainer container = new MemoryDataContainer();
-        for (DataQuery query : getKeys(false)) {
-            container.set(query, get(query).get());
-        }
+        getKeys(false).stream()
+                .forEach(query ->
+                        get(query).ifPresent(obj ->
+                                container.set(query, obj)
+                        )
+        );
         return container;
     }
 

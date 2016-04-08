@@ -102,7 +102,7 @@ public final class InventoryTransactionResult {
         
     }
 
-    private final Type type;
+    final Type type;
     private final List<ItemStackSnapshot> rejected;
     private final List<ItemStackSnapshot> replaced;
 
