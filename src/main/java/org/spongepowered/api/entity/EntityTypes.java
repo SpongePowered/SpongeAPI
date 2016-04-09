@@ -97,7 +97,6 @@ public final class EntityTypes {
 
     public static final EntityType IRON_GOLEM = DummyObjectProvider.createFor(EntityType.class, "IRON_GOLEM");
 
-
     public static final EntityType ITEM = DummyObjectProvider.createFor(EntityType.class, "ITEM");
 
     public static final EntityType ITEM_FRAME = DummyObjectProvider.createFor(EntityType.class, "ITEM_FRAME");
