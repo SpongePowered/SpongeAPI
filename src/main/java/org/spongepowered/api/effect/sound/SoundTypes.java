@@ -33,891 +33,902 @@ public final class SoundTypes {
 
     // SORTFIELDS:ON
 
-    public static final SoundType AMBIENT_CAVE = null;
+    public static final SoundType AMBIENT_CAVE = DummyObjectProvider.createFor(SoundType.class, "AMBIENCE_CAVE");
 
-    public static final SoundType BLOCK_ANVIL_BREAK = null;
+    public static final SoundType BLOCK_ANVIL_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_ANVIL_BREAK");
 
-    public static final SoundType BLOCK_ANVIL_DESTROY = null;
+    public static final SoundType BLOCK_ANVIL_DESTROY = DummyObjectProvider.createFor(SoundType.class, "BLOCK_ANVIL_DESTROY");
 
-    public static final SoundType BLOCK_ANVIL_FALL = null;
+    public static final SoundType BLOCK_ANVIL_FALL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_ANVIL_FALL");
 
-    public static final SoundType BLOCK_ANVIL_HIT = null;
+    public static final SoundType BLOCK_ANVIL_HIT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_ANVIL_HIT");
 
-    public static final SoundType BLOCK_ANVIL_LAND = null;
+    public static final SoundType BLOCK_ANVIL_LAND = DummyObjectProvider.createFor(SoundType.class, "BLOCK_ANVIL_LAND");
 
-    public static final SoundType BLOCK_ANVIL_PLACE = null;
+    public static final SoundType BLOCK_ANVIL_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_ANVIL_PLACE");
 
-    public static final SoundType BLOCK_ANVIL_STEP = null;
+    public static final SoundType BLOCK_ANVIL_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_ANVIL_STEP");
 
-    public static final SoundType BLOCK_ANVIL_USE = null;
+    public static final SoundType BLOCK_ANVIL_USE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_ANVIL_USE");
 
-    public static final SoundType BLOCK_BREWING_STAND_BREW = null;
+    public static final SoundType BLOCK_BREWING_STAND_BREW = DummyObjectProvider.createFor(SoundType.class, "BLOCK_BREWING_STAND_BREW");
 
-    public static final SoundType BLOCK_CHEST_CLOSE = null;
+    public static final SoundType BLOCK_CHEST_CLOSE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CHEST_CLOSE");
 
-    public static final SoundType BLOCK_CHEST_LOCKED = null;
+    public static final SoundType BLOCK_CHEST_LOCKED = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CHEST_LOCKED");
 
-    public static final SoundType BLOCK_CHEST_OPEN = null;
+    public static final SoundType BLOCK_CHEST_OPEN = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CHEST_OPEN");
 
-    public static final SoundType BLOCK_CHORUS_FLOWER_DEATH = null;
+    public static final SoundType BLOCK_CHORUS_FLOWER_DEATH = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CHORUS_FLOWER_DEATH");
 
-    public static final SoundType BLOCK_CHORUS_FLOWER_GROW = null;
+    public static final SoundType BLOCK_CHORUS_FLOWER_GROW = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CHORUS_FLOWER_GROW");
 
-    public static final SoundType BLOCK_CLOTH_BREAK = null;
+    public static final SoundType BLOCK_CLOTH_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CLOTH_BREAK");
 
-    public static final SoundType BLOCK_CLOTH_FALL = null;
+    public static final SoundType BLOCK_CLOTH_FALL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CLOTH_FALL");
 
-    public static final SoundType BLOCK_CLOTH_HIT = null;
+    public static final SoundType BLOCK_CLOTH_HIT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CLOTH_HIT");
 
-    public static final SoundType BLOCK_CLOTH_PLACE = null;
+    public static final SoundType BLOCK_CLOTH_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CLOTH_PLACE");
 
-    public static final SoundType BLOCK_CLOTH_STEP = null;
+    public static final SoundType BLOCK_CLOTH_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_CLOTH_STEP");
 
-    public static final SoundType BLOCK_COMPARATOR_CLICK = null;
+    public static final SoundType BLOCK_COMPARATOR_CLICK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_COMPARATOR_CLICK");
 
-    public static final SoundType BLOCK_DISPENSER_DISPENSE = null;
+    public static final SoundType BLOCK_DISPENSER_DISPENSE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_DISPENSER_DISPENSE");
 
-    public static final SoundType BLOCK_DISPENSER_FAIL = null;
+    public static final SoundType BLOCK_DISPENSER_FAIL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_DISPENSER_FAIL");
 
-    public static final SoundType BLOCK_DISPENSER_LAUNCH = null;
+    public static final SoundType BLOCK_DISPENSER_LAUNCH = DummyObjectProvider.createFor(SoundType.class, "BLOCK_DISPENSER_LAUNCH");
 
-    public static final SoundType BLOCK_ENDERCHEST_CLOSE = null;
+    public static final SoundType BLOCK_ENDERCHEST_CLOSE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_ENDERCHEST_CLOSE");
 
-    public static final SoundType BLOCK_ENDERCHEST_OPEN = null;
+    public static final SoundType BLOCK_ENDERCHEST_OPEN = DummyObjectProvider.createFor(SoundType.class, "BLOCK_ENDERCHEST_OPEN");
 
-    public static final SoundType BLOCK_END_GATEWAY_SPAWN = null;
+    public static final SoundType BLOCK_END_GATEWAY_SPAWN = DummyObjectProvider.createFor(SoundType.class, "BLOCK_END_GATEWAY_SPAWN");
 
-    public static final SoundType BLOCK_FENCE_GATE_CLOSE = null;
+    public static final SoundType BLOCK_FENCE_GATE_CLOSE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_FENCE_GATE_CLOSE");
 
-    public static final SoundType BLOCK_FENCE_GATE_OPEN = null;
+    public static final SoundType BLOCK_FENCE_GATE_OPEN = DummyObjectProvider.createFor(SoundType.class, "BLOCK_FENCE_GATE_OPEN");
 
-    public static final SoundType BLOCK_FIRE_AMBIENT = null;
+    public static final SoundType BLOCK_FIRE_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_FIRE_AMBIENT");
 
-    public static final SoundType BLOCK_FIRE_EXTINGUISH = null;
+    public static final SoundType BLOCK_FIRE_EXTINGUISH = DummyObjectProvider.createFor(SoundType.class, "BLOCK_FIRE_EXTINGUISH");
 
-    public static final SoundType BLOCK_FURNACE_FIRE_CRACKLE = null;
+    public static final SoundType BLOCK_FURNACE_FIRE_CRACKLE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_FURNACE_FIRE_CRACKLE");
 
-    public static final SoundType BLOCK_GLASS_BREAK = null;
+    public static final SoundType BLOCK_GLASS_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GLASS_BREAK");
 
-    public static final SoundType BLOCK_GLASS_FALL = null;
+    public static final SoundType BLOCK_GLASS_FALL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GLASS_FALL");
 
-    public static final SoundType BLOCK_GLASS_HIT = null;
+    public static final SoundType BLOCK_GLASS_HIT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GLASS_HIT");
 
-    public static final SoundType BLOCK_GLASS_PLACE = null;
+    public static final SoundType BLOCK_GLASS_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GLASS_PLACE");
 
-    public static final SoundType BLOCK_GLASS_STEP = null;
+    public static final SoundType BLOCK_GLASS_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GLASS_STEP");
 
-    public static final SoundType BLOCK_GRASS_BREAK = null;
+    public static final SoundType BLOCK_GRASS_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GRASS_BREAK");
 
-    public static final SoundType BLOCK_GRASS_FALL = null;
+    public static final SoundType BLOCK_GRASS_FALL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GRASS_FALL");
 
-    public static final SoundType BLOCK_GRASS_HIT = null;
+    public static final SoundType BLOCK_GRASS_HIT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GRASS_HIT");
 
-    public static final SoundType BLOCK_GRASS_PLACE = null;
+    public static final SoundType BLOCK_GRASS_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GRASS_PLACE");
 
-    public static final SoundType BLOCK_GRASS_STEP = null;
+    public static final SoundType BLOCK_GRASS_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GRASS_STEP");
 
-    public static final SoundType BLOCK_GRAVEL_BREAK = null;
+    public static final SoundType BLOCK_GRAVEL_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GRAVEL_BREAK");
 
-    public static final SoundType BLOCK_GRAVEL_FALL = null;
+    public static final SoundType BLOCK_GRAVEL_FALL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GRAVEL_FALL");
 
-    public static final SoundType BLOCK_GRAVEL_HIT = null;
+    public static final SoundType BLOCK_GRAVEL_HIT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GRAVEL_HIT");
 
-    public static final SoundType BLOCK_GRAVEL_PLACE = null;
+    public static final SoundType BLOCK_GRAVEL_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GRAVEL_PLACE");
 
-    public static final SoundType BLOCK_GRAVEL_STEP = null;
+    public static final SoundType BLOCK_GRAVEL_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_GRAVEL_STEP");
 
-    public static final SoundType BLOCK_IRON_DOOR_CLOSE = null;
+    public static final SoundType BLOCK_IRON_DOOR_CLOSE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_IRON_DOOR_CLOSE");
 
-    public static final SoundType BLOCK_IRON_DOOR_OPEN = null;
+    public static final SoundType BLOCK_IRON_DOOR_OPEN = DummyObjectProvider.createFor(SoundType.class, "BLOCK_IRON_DOOR_OPEN");
 
-    public static final SoundType BLOCK_IRON_TRAPDOOR_CLOSE = null;
+    public static final SoundType BLOCK_IRON_TRAPDOOR_CLOSE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_IRON_TRAPDOOR_CLOSE");
 
-    public static final SoundType BLOCK_IRON_TRAPDOOR_OPEN = null;
+    public static final SoundType BLOCK_IRON_TRAPDOOR_OPEN = DummyObjectProvider.createFor(SoundType.class, "BLOCK_IRON_TRAPDOOR_OPEN");
 
-    public static final SoundType BLOCK_LADDER_BREAK = null;
+    public static final SoundType BLOCK_LADDER_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_LADDER_BREAK");
 
-    public static final SoundType BLOCK_LADDER_FALL = null;
+    public static final SoundType BLOCK_LADDER_FALL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_LADDER_FALL");
 
-    public static final SoundType BLOCK_LADDER_HIT = null;
+    public static final SoundType BLOCK_LADDER_HIT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_LADDER_HIT");
 
-    public static final SoundType BLOCK_LADDER_PLACE = null;
+    public static final SoundType BLOCK_LADDER_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_LADDER_PLACE");
 
-    public static final SoundType BLOCK_LADDER_STEP = null;
+    public static final SoundType BLOCK_LADDER_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_LADDER_STEP");
 
-    public static final SoundType BLOCK_LAVA_AMBIENT = null;
+    public static final SoundType BLOCK_LAVA_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_LAVA_AMBIENT");
 
-    public static final SoundType BLOCK_LAVA_EXTINGUISH = null;
+    public static final SoundType BLOCK_LAVA_EXTINGUISH = DummyObjectProvider.createFor(SoundType.class, "BLOCK_LAVA_EXTINGUISH");
 
-    public static final SoundType BLOCK_LAVA_POP = null;
+    public static final SoundType BLOCK_LAVA_POP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_LAVA_POP");
 
-    public static final SoundType BLOCK_LEVER_CLICK = null;
+    public static final SoundType BLOCK_LEVER_CLICK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_LEVER_CLICK");
 
-    public static final SoundType BLOCK_METAL_BREAK = null;
+    public static final SoundType BLOCK_METAL_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_METAL_BREAK");
 
-    public static final SoundType BLOCK_METAL_FALL = null;
+    public static final SoundType BLOCK_METAL_FALL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_METAL_FALL");
 
-    public static final SoundType BLOCK_METAL_HIT = null;
+    public static final SoundType BLOCK_METAL_HIT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_METAL_HIT");
 
-    public static final SoundType BLOCK_METAL_PLACE = null;
+    public static final SoundType BLOCK_METAL_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_METAL_PLACE");
 
-    public static final SoundType BLOCK_METAL_PRESSPLATE_CLICK_OFF = null;
+    public static final SoundType BLOCK_METAL_PRESSPLATE_CLICK_OFF =
+            DummyObjectProvider.createFor(SoundType.class, "BLOCK_METAL_PRESSPLATE_CLICK_OFF");
 
-    public static final SoundType BLOCK_METAL_PRESSPLATE_CLICK_ON = null;
+    public static final SoundType BLOCK_METAL_PRESSPLATE_CLICK_ON =
+            DummyObjectProvider.createFor(SoundType.class, "BLOCK_METAL_PRESSPLATE_CLICK_ON");
 
-    public static final SoundType BLOCK_METAL_STEP = null;
+    public static final SoundType BLOCK_METAL_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_METAL_STEP");
 
-    public static final SoundType BLOCK_NOTE_BASEDRUM = null;
+    public static final SoundType BLOCK_NOTE_BASEDRUM = DummyObjectProvider.createFor(SoundType.class, "BLOCK_NOTE_BASEDRUM");
 
-    public static final SoundType BLOCK_NOTE_BASS = null;
+    public static final SoundType BLOCK_NOTE_BASS = DummyObjectProvider.createFor(SoundType.class, "BLOCK_NOTE_BASS");
 
-    public static final SoundType BLOCK_NOTE_HARP = null;
+    public static final SoundType BLOCK_NOTE_HARP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_NOTE_HARP");
 
-    public static final SoundType BLOCK_NOTE_HAT = null;
+    public static final SoundType BLOCK_NOTE_HAT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_NOTE_HAT");
 
-    public static final SoundType BLOCK_NOTE_PLING = null;
+    public static final SoundType BLOCK_NOTE_PLING = DummyObjectProvider.createFor(SoundType.class, "BLOCK_NOTE_PLING");
 
-    public static final SoundType BLOCK_NOTE_SNARE = null;
+    public static final SoundType BLOCK_NOTE_SNARE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_NOTE_SNARE");
 
-    public static final SoundType BLOCK_PISTON_CONTRACT = null;
+    public static final SoundType BLOCK_PISTON_CONTRACT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_PISTON_CONTRACT");
 
-    public static final SoundType BLOCK_PISTON_EXTEND = null;
+    public static final SoundType BLOCK_PISTON_EXTEND = DummyObjectProvider.createFor(SoundType.class, "BLOCK_PISTON_EXTEND");
 
-    public static final SoundType BLOCK_PORTAL_AMBIENT = null;
+    public static final SoundType BLOCK_PORTAL_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_PORTAL_AMBIENT");
 
-    public static final SoundType BLOCK_PORTAL_TRAVEL = null;
+    public static final SoundType BLOCK_PORTAL_TRAVEL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_PORTAL_TRAVEL");
 
-    public static final SoundType BLOCK_PORTAL_TRIGGER = null;
+    public static final SoundType BLOCK_PORTAL_TRIGGER = DummyObjectProvider.createFor(SoundType.class, "BLOCK_PORTAL_TRIGGER");
 
-    public static final SoundType BLOCK_REDSTONE_TORCH_BURNOUT = null;
+    public static final SoundType BLOCK_REDSTONE_TORCH_BURNOUT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_REDSTONE_TORCH_BURNOUT");
 
-    public static final SoundType BLOCK_SAND_BREAK = null;
+    public static final SoundType BLOCK_SAND_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SAND_BREAK");
 
-    public static final SoundType BLOCK_SAND_FALL = null;
+    public static final SoundType BLOCK_SAND_FALL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SAND_FALL");
 
-    public static final SoundType BLOCK_SAND_HIT = null;
+    public static final SoundType BLOCK_SAND_HIT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SAND_HIT");
 
-    public static final SoundType BLOCK_SAND_PLACE = null;
+    public static final SoundType BLOCK_SAND_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SAND_PLACE");
 
-    public static final SoundType BLOCK_SAND_STEP = null;
+    public static final SoundType BLOCK_SAND_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SAND_STEP");
 
-    public static final SoundType BLOCK_SLIME_BREAK = null;
+    public static final SoundType BLOCK_SLIME_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SLIME_BREAK");
 
-    public static final SoundType BLOCK_SLIME_FALL = null;
+    public static final SoundType BLOCK_SLIME_FALL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SLIME_FALL");
 
-    public static final SoundType BLOCK_SLIME_HIT = null;
+    public static final SoundType BLOCK_SLIME_HIT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SLIME_HIT");
 
-    public static final SoundType BLOCK_SLIME_PLACE = null;
+    public static final SoundType BLOCK_SLIME_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SLIME_PLACE");
 
-    public static final SoundType BLOCK_SLIME_STEP = null;
+    public static final SoundType BLOCK_SLIME_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SLIME_STEP");
 
-    public static final SoundType BLOCK_SNOW_BREAK = null;
+    public static final SoundType BLOCK_SNOW_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SNOW_BREAK");
 
-    public static final SoundType BLOCK_SNOW_FALL = null;
+    public static final SoundType BLOCK_SNOW_FALL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SNOW_FALL");
 
-    public static final SoundType BLOCK_SNOW_HIT = null;
+    public static final SoundType BLOCK_SNOW_HIT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SNOW_HIT");
 
-    public static final SoundType BLOCK_SNOW_PLACE = null;
+    public static final SoundType BLOCK_SNOW_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SNOW_PLACE");
 
-    public static final SoundType BLOCK_SNOW_STEP = null;
+    public static final SoundType BLOCK_SNOW_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SNOW_STEP");
 
-    public static final SoundType BLOCK_STONE_BREAK = null;
+    public static final SoundType BLOCK_STONE_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_STONE_BREAK");
 
-    public static final SoundType BLOCK_STONE_BUTTON_CLICK_OFF = null;
+    public static final SoundType BLOCK_STONE_BUTTON_CLICK_OFF = DummyObjectProvider.createFor(SoundType.class, "BLOCK_STONE_BUTTON_CLICK_OFF");
 
-    public static final SoundType BLOCK_STONE_BUTTON_CLICK_ON = null;
+    public static final SoundType BLOCK_STONE_BUTTON_CLICK_ON = DummyObjectProvider.createFor(SoundType.class, "BLOCK_STONE_BUTTON_CLICK_ON");
 
-    public static final SoundType BLOCK_STONE_FALL = null;
+    public static final SoundType BLOCK_STONE_FALL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_STONE_FALL");
 
-    public static final SoundType BLOCK_STONE_HIT = null;
+    public static final SoundType BLOCK_STONE_HIT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_STONE_HIT");
 
-    public static final SoundType BLOCK_STONE_PLACE = null;
+    public static final SoundType BLOCK_STONE_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_STONE_PLACE");
 
-    public static final SoundType BLOCK_STONE_PRESSPLATE_CLICK_OFF = null;
+    public static final SoundType BLOCK_STONE_PRESSPLATE_CLICK_OFF =
+            DummyObjectProvider.createFor(SoundType.class, "BLOCK_STONE_PRESSPLATE_CLICK_OFF");
 
-    public static final SoundType BLOCK_STONE_PRESSPLATE_CLICK_ON = null;
+    public static final SoundType BLOCK_STONE_PRESSPLATE_CLICK_ON =
+            DummyObjectProvider.createFor(SoundType.class, "BLOCK_STONE_PRESSPLATE_CLICK_ON");
 
-    public static final SoundType BLOCK_STONE_STEP = null;
+    public static final SoundType BLOCK_STONE_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_STONE_STEP");
 
-    public static final SoundType BLOCK_TRIPWIRE_ATTACH = null;
+    public static final SoundType BLOCK_TRIPWIRE_ATTACH = DummyObjectProvider.createFor(SoundType.class, "BLOCK_TRIPWIRE_ATTACH");
 
-    public static final SoundType BLOCK_TRIPWIRE_CLICK_OFF = null;
+    public static final SoundType BLOCK_TRIPWIRE_CLICK_OFF = DummyObjectProvider.createFor(SoundType.class, "BLOCK_TRIPWIRE_CLICK_OFF");
 
-    public static final SoundType BLOCK_TRIPWIRE_CLICK_ON = null;
+    public static final SoundType BLOCK_TRIPWIRE_CLICK_ON = DummyObjectProvider.createFor(SoundType.class, "BLOCK_TRIPWIRE_CLICK_ON");
 
-    public static final SoundType BLOCK_TRIPWIRE_DETACH = null;
+    public static final SoundType BLOCK_TRIPWIRE_DETACH = DummyObjectProvider.createFor(SoundType.class, "BLOCK_TRIPWIRE_DETACH");
 
-    public static final SoundType BLOCK_WATERLILY_PLACE = null;
+    public static final SoundType BLOCK_WATERLILY_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_WATERLILY_PLACE");
 
-    public static final SoundType BLOCK_WATER_AMBIENT = null;
+    public static final SoundType BLOCK_WATER_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_WATER_AMBIENT");
 
-    public static final SoundType BLOCK_WOODEN_DOOR_CLOSE = null;
+    public static final SoundType BLOCK_WOODEN_DOOR_CLOSE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_WOODEN_DOOR_CLOSE");
 
-    public static final SoundType BLOCK_WOODEN_DOOR_OPEN = null;
+    public static final SoundType BLOCK_WOODEN_DOOR_OPEN = DummyObjectProvider.createFor(SoundType.class, "BLOCK_WOODEN_DOOR_OPEN");
 
-    public static final SoundType BLOCK_WOODEN_TRAPDOOR_CLOSE = null;
+    public static final SoundType BLOCK_WOODEN_TRAPDOOR_CLOSE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_WOODEN_TRAPDOOR_CLOSE");
 
-    public static final SoundType BLOCK_WOODEN_TRAPDOOR_OPEN = null;
+    public static final SoundType BLOCK_WOODEN_TRAPDOOR_OPEN = DummyObjectProvider.createFor(SoundType.class, "BLOCK_WOODEN_TRAPDOOR_OPEN");
 
-    public static final SoundType BLOCK_WOOD_BREAK = null;
+    public static final SoundType BLOCK_WOOD_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_WOOD_BREAK");
 
-    public static final SoundType BLOCK_WOOD_BUTTON_CLICK_OFF = null;
+    public static final SoundType BLOCK_WOOD_BUTTON_CLICK_OFF = DummyObjectProvider.createFor(SoundType.class, "BLOCK_WOOD_BUTTON_CLICK_OFF");
 
-    public static final SoundType BLOCK_WOOD_BUTTON_CLICK_ON = null;
+    public static final SoundType BLOCK_WOOD_BUTTON_CLICK_ON = DummyObjectProvider.createFor(SoundType.class, "BLOCK_WOOD_BUTTON_CLICK_ON");
 
-    public static final SoundType BLOCK_WOOD_FALL = null;
+    public static final SoundType BLOCK_WOOD_FALL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_WOOD_FALL");
 
-    public static final SoundType BLOCK_WOOD_HIT = null;
+    public static final SoundType BLOCK_WOOD_HIT = DummyObjectProvider.createFor(SoundType.class, "BLOCK_WOOD_HIT");
 
-    public static final SoundType BLOCK_WOOD_PLACE = null;
+    public static final SoundType BLOCK_WOOD_PLACE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_WOOD_PLACE");
 
-    public static final SoundType BLOCK_WOOD_PRESSPLATE_CLICK_OFF = null;
+    public static final SoundType BLOCK_WOOD_PRESSPLATE_CLICK_OFF =
+            DummyObjectProvider.createFor(SoundType.class, "BLOCK_WOOD_PRESSPLATE_CLICK_OFF");
 
-    public static final SoundType BLOCK_WOOD_PRESSPLATE_CLICK_ON = null;
+    public static final SoundType BLOCK_WOOD_PRESSPLATE_CLICK_ON = DummyObjectProvider.createFor(SoundType.class, "BLOCK_WOOD_PRESSPLATE_CLICK_ON");
 
-    public static final SoundType BLOCK_WOOD_STEP = null;
+    public static final SoundType BLOCK_WOOD_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_WOOD_STEP");
 
-    public static final SoundType ENCHANT_THORNS_HIT = null;
+    public static final SoundType ENCHANT_THORNS_HIT = DummyObjectProvider.createFor(SoundType.class, "ENCHANT_THORNS_HIT");
 
-    public static final SoundType ENTITY_ARMORSTAND_BREAK = null;
+    public static final SoundType ENTITY_ARMORSTAND_BREAK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ARMORSTAND_BREAK");
 
-    public static final SoundType ENTITY_ARMORSTAND_FALL = null;
+    public static final SoundType ENTITY_ARMORSTAND_FALL = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ARMORSTAND_FALL");
 
-    public static final SoundType ENTITY_ARMORSTAND_HIT = null;
+    public static final SoundType ENTITY_ARMORSTAND_HIT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ARMORSTAND_HIT");
 
-    public static final SoundType ENTITY_ARMORSTAND_PLACE = null;
+    public static final SoundType ENTITY_ARMORSTAND_PLACE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ARMORSTAND_PLACE");
 
-    public static final SoundType ENTITY_ARROW_HIT = null;
+    public static final SoundType ENTITY_ARROW_HIT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ARROW_HIT");
 
-    public static final SoundType ENTITY_ARROW_HIT_PLAYER = null;
+    public static final SoundType ENTITY_ARROW_HIT_PLAYER = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ARROW_HIT_PLAYER");
 
-    public static final SoundType ENTITY_ARROW_SHOOT = null;
+    public static final SoundType ENTITY_ARROW_SHOOT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ARROW_SHOOT");
 
-    public static final SoundType ENTITY_BAT_AMBIENT = null;
+    public static final SoundType ENTITY_BAT_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_BAT_AMBIENT");
 
-    public static final SoundType ENTITY_BAT_DEATH = null;
+    public static final SoundType ENTITY_BAT_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_BAT_DEATH");
 
-    public static final SoundType ENTITY_BAT_HURT = null;
+    public static final SoundType ENTITY_BAT_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_BAT_HURT");
 
-    public static final SoundType ENTITY_BAT_LOOP = null;
+    public static final SoundType ENTITY_BAT_LOOP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_BAT_LOOP");
 
-    public static final SoundType ENTITY_BAT_TAKEOFF = null;
+    public static final SoundType ENTITY_BAT_TAKEOFF = DummyObjectProvider.createFor(SoundType.class, "ENTITY_BAT_TAKEOFF");
 
-    public static final SoundType ENTITY_BLAZE_AMBIENT = null;
+    public static final SoundType ENTITY_BLAZE_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_BLAZE_AMBIENT");
 
-    public static final SoundType ENTITY_BLAZE_BURN = null;
+    public static final SoundType ENTITY_BLAZE_BURN = DummyObjectProvider.createFor(SoundType.class, "ENTITY_BLAZE_BURN");
 
-    public static final SoundType ENTITY_BLAZE_DEATH = null;
+    public static final SoundType ENTITY_BLAZE_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_BLAZE_DEATH");
 
-    public static final SoundType ENTITY_BLAZE_HURT = null;
+    public static final SoundType ENTITY_BLAZE_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_BLAZE_HURT");
 
-    public static final SoundType ENTITY_BLAZE_SHOOT = null;
+    public static final SoundType ENTITY_BLAZE_SHOOT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_BLAZE_SHOOT");
 
-    public static final SoundType ENTITY_BOBBER_SPLASH = null;
+    public static final SoundType ENTITY_BOBBER_SPLASH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_BOBBER_SPLASH");
 
-    public static final SoundType ENTITY_BOBBER_THROW = null;
+    public static final SoundType ENTITY_BOBBER_THROW = DummyObjectProvider.createFor(SoundType.class, "ENTITY_BOBBER_THROW");
 
-    public static final SoundType ENTITY_CAT_AMBIENT = null;
+    public static final SoundType ENTITY_CAT_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_CAT_AMBIENT");
 
-    public static final SoundType ENTITY_CAT_DEATH = null;
+    public static final SoundType ENTITY_CAT_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_CAT_DEATH");
 
-    public static final SoundType ENTITY_CAT_HISS = null;
+    public static final SoundType ENTITY_CAT_HISS = DummyObjectProvider.createFor(SoundType.class, "ENTITY_CAT_HISS");
 
-    public static final SoundType ENTITY_CAT_HURT = null;
+    public static final SoundType ENTITY_CAT_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_CAT_HURT");
 
-    public static final SoundType ENTITY_CAT_PURR = null;
+    public static final SoundType ENTITY_CAT_PURR = DummyObjectProvider.createFor(SoundType.class, "ENTITY_CAT_PURR");
 
-    public static final SoundType ENTITY_CAT_PURREOW = null;
+    public static final SoundType ENTITY_CAT_PURREOW = DummyObjectProvider.createFor(SoundType.class, "ENTITY_CAT_PURREOW");
 
-    public static final SoundType ENTITY_CHICKEN_AMBIENT = null;
+    public static final SoundType ENTITY_CHICKEN_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_CHICKEN_AMBIENT");
 
-    public static final SoundType ENTITY_CHICKEN_DEATH = null;
+    public static final SoundType ENTITY_CHICKEN_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_CHICKEN_DEATH");
 
-    public static final SoundType ENTITY_CHICKEN_EGG = null;
+    public static final SoundType ENTITY_CHICKEN_EGG = DummyObjectProvider.createFor(SoundType.class, "ENTITY_CHICKEN_EGG");
 
-    public static final SoundType ENTITY_CHICKEN_HURT = null;
+    public static final SoundType ENTITY_CHICKEN_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_CHICKEN_HURT");
 
-    public static final SoundType ENTITY_CHICKEN_STEP = null;
+    public static final SoundType ENTITY_CHICKEN_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_CHICKEN_STEP");
 
-    public static final SoundType ENTITY_COW_AMBIENT = null;
+    public static final SoundType ENTITY_COW_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_COW_AMBIENT");
 
-    public static final SoundType ENTITY_COW_DEATH = null;
+    public static final SoundType ENTITY_COW_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_COW_DEATH");
 
-    public static final SoundType ENTITY_COW_HURT = null;
+    public static final SoundType ENTITY_COW_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_COW_HURT");
 
-    public static final SoundType ENTITY_COW_MILK = null;
+    public static final SoundType ENTITY_COW_MILK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_COW_MILK");
 
-    public static final SoundType ENTITY_COW_STEP = null;
+    public static final SoundType ENTITY_COW_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_COW_STEP");
 
-    public static final SoundType ENTITY_CREEPER_DEATH = null;
+    public static final SoundType ENTITY_CREEPER_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_CREEPER_DEATH");
 
-    public static final SoundType ENTITY_CREEPER_HURT = null;
+    public static final SoundType ENTITY_CREEPER_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_CREEPER_HURT");
 
-    public static final SoundType ENTITY_CREEPER_PRIMED = null;
+    public static final SoundType ENTITY_CREEPER_PRIMED = DummyObjectProvider.createFor(SoundType.class, "ENTITY_CREEPER_PRIMED");
 
-    public static final SoundType ENTITY_DONKEY_AMBIENT = null;
+    public static final SoundType ENTITY_DONKEY_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_DONKEY_AMBIENT");
 
-    public static final SoundType ENTITY_DONKEY_ANGRY = null;
+    public static final SoundType ENTITY_DONKEY_ANGRY = DummyObjectProvider.createFor(SoundType.class, "ENTITY_DONKEY_ANGRY");
 
-    public static final SoundType ENTITY_DONKEY_CHEST = null;
+    public static final SoundType ENTITY_DONKEY_CHEST = DummyObjectProvider.createFor(SoundType.class, "ENTITY_DONKEY_CHEST");
 
-    public static final SoundType ENTITY_DONKEY_DEATH = null;
+    public static final SoundType ENTITY_DONKEY_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_DONKEY_DEATH");
 
-    public static final SoundType ENTITY_DONKEY_HURT = null;
+    public static final SoundType ENTITY_DONKEY_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_DONKEY_HURT");
 
-    public static final SoundType ENTITY_EGG_THROW = null;
+    public static final SoundType ENTITY_EGG_THROW = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EGG_THROW");
 
-    public static final SoundType ENTITY_ELDERGUARDIAN_AMBIENTLAND = null;
+    public static final SoundType ENTITY_ELDERGUARDIAN_AMBIENTLAND =
+            DummyObjectProvider.createFor(SoundType.class, "ENTITY_ELDERGUARDIAN_AMBIENTLAND");
 
-    public static final SoundType ENTITY_ELDER_GUARDIAN_AMBIENT = null;
+    public static final SoundType ENTITY_ELDER_GUARDIAN_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ELDER_GUARDIAN_AMBIENT");
 
-    public static final SoundType ENTITY_ELDER_GUARDIAN_CURSE = null;
+    public static final SoundType ENTITY_ELDER_GUARDIAN_CURSE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ELDER_GUARDIAN_CURSE");
 
-    public static final SoundType ENTITY_ELDER_GUARDIAN_DEATH = null;
+    public static final SoundType ENTITY_ELDER_GUARDIAN_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ELDER_GUARDIAN_DEATH");
 
-    public static final SoundType ENTITY_ELDER_GUARDIAN_DEATH_LAND = null;
+    public static final SoundType ENTITY_ELDER_GUARDIAN_DEATH_LAND =
+            DummyObjectProvider.createFor(SoundType.class, "ENTITY_ELDER_GUARDIAN_DEATH_LAND");
 
-    public static final SoundType ENTITY_ELDER_GUARDIAN_HURT = null;
+    public static final SoundType ENTITY_ELDER_GUARDIAN_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ELDER_GUARDIAN_HURT");
 
-    public static final SoundType ENTITY_ELDER_GUARDIAN_HURT_LAND = null;
+    public static final SoundType ENTITY_ELDER_GUARDIAN_HURT_LAND =
+            DummyObjectProvider.createFor(SoundType.class, "ENTITY_ELDER_GUARDIAN_HURT_LAND");
 
-    public static final SoundType ENTITY_ENDERDRAGON_AMBIENT = null;
+    public static final SoundType ENTITY_ENDERDRAGON_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERDRAGON_AMBIENT");
 
-    public static final SoundType ENTITY_ENDERDRAGON_DEATH = null;
+    public static final SoundType ENTITY_ENDERDRAGON_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERDRAGON_DEATH");
 
-    public static final SoundType ENTITY_ENDERDRAGON_FIREBALL_EPLD = null;
+    public static final SoundType ENTITY_ENDERDRAGON_FIREBALL_EPLD =
+            DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERDRAGON_FIREBALL_EPLD");
 
-    public static final SoundType ENTITY_ENDERDRAGON_FLAP = null;
+    public static final SoundType ENTITY_ENDERDRAGON_FLAP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERDRAGON_FLAP");
 
-    public static final SoundType ENTITY_ENDERDRAGON_GROWL = null;
+    public static final SoundType ENTITY_ENDERDRAGON_GROWL = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERDRAGON_GROWL");
 
-    public static final SoundType ENTITY_ENDERDRAGON_HURT = null;
+    public static final SoundType ENTITY_ENDERDRAGON_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERDRAGON_HURT");
 
-    public static final SoundType ENTITY_ENDERDRAGON_SHOOT = null;
+    public static final SoundType ENTITY_ENDERDRAGON_SHOOT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERDRAGON_SHOOT");
 
-    public static final SoundType ENTITY_ENDEREYE_LAUNCH = null;
+    public static final SoundType ENTITY_ENDEREYE_LAUNCH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDEREYE_LAUNCH");
 
-    public static final SoundType ENTITY_ENDERMEN_AMBIENT = null;
+    public static final SoundType ENTITY_ENDERMEN_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERMEN_AMBIENT");
 
-    public static final SoundType ENTITY_ENDERMEN_DEATH = null;
+    public static final SoundType ENTITY_ENDERMEN_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERMEN_DEATH");
 
-    public static final SoundType ENTITY_ENDERMEN_HURT = null;
+    public static final SoundType ENTITY_ENDERMEN_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERMEN_HURT");
 
-    public static final SoundType ENTITY_ENDERMEN_SCREAM = null;
+    public static final SoundType ENTITY_ENDERMEN_SCREAM = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERMEN_SCREAM");
 
-    public static final SoundType ENTITY_ENDERMEN_STARE = null;
+    public static final SoundType ENTITY_ENDERMEN_STARE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERMEN_STARE");
 
-    public static final SoundType ENTITY_ENDERMEN_TELEPORT = null;
+    public static final SoundType ENTITY_ENDERMEN_TELEPORT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERMEN_TELEPORT");
 
-    public static final SoundType ENTITY_ENDERMITE_AMBIENT = null;
+    public static final SoundType ENTITY_ENDERMITE_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERMITE_AMBIENT");
 
-    public static final SoundType ENTITY_ENDERMITE_DEATH = null;
+    public static final SoundType ENTITY_ENDERMITE_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERMITE_DEATH");
 
-    public static final SoundType ENTITY_ENDERMITE_HURT = null;
+    public static final SoundType ENTITY_ENDERMITE_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERMITE_HURT");
 
-    public static final SoundType ENTITY_ENDERMITE_STEP = null;
+    public static final SoundType ENTITY_ENDERMITE_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERMITE_STEP");
 
-    public static final SoundType ENTITY_ENDERPEARL_THROW = null;
+    public static final SoundType ENTITY_ENDERPEARL_THROW = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERPEARL_THROW");
 
-    public static final SoundType ENTITY_EXPERIENCE_BOTTLE_THROW = null;
+    public static final SoundType ENTITY_EXPERIENCE_BOTTLE_THROW = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EXPERIENCE_BOTTLE_THROW");
 
-    public static final SoundType ENTITY_EXPERIENCE_ORB_PICKUP = null;
+    public static final SoundType ENTITY_EXPERIENCE_ORB_PICKUP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EXPERIENCE_ORB_PICKUP");
 
-    public static final SoundType ENTITY_EXPERIENCE_ORB_TOUCH = null;
+    public static final SoundType ENTITY_EXPERIENCE_ORB_TOUCH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EXPERIENCE_ORB_TOUCH");
 
-    public static final SoundType ENTITY_FIREWORK_BLAST = null;
+    public static final SoundType ENTITY_FIREWORK_BLAST = DummyObjectProvider.createFor(SoundType.class, "ENTITY_FIREWORK_BLAST");
 
-    public static final SoundType ENTITY_FIREWORK_BLAST_FAR = null;
+    public static final SoundType ENTITY_FIREWORK_BLAST_FAR = DummyObjectProvider.createFor(SoundType.class, "ENTITY_FIREWORK_BLAST_FAR");
 
-    public static final SoundType ENTITY_FIREWORK_LARGE_BLAST = null;
+    public static final SoundType ENTITY_FIREWORK_LARGE_BLAST = DummyObjectProvider.createFor(SoundType.class, "ENTITY_FIREWORK_LARGE_BLAST");
 
-    public static final SoundType ENTITY_FIREWORK_LARGE_BLAST_FAR = null;
+    public static final SoundType ENTITY_FIREWORK_LARGE_BLAST_FAR =
+            DummyObjectProvider.createFor(SoundType.class, "ENTITY_FIREWORK_LARGE_BLAST_FAR");
 
-    public static final SoundType ENTITY_FIREWORK_LAUNCH = null;
+    public static final SoundType ENTITY_FIREWORK_LAUNCH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_FIREWORK_LAUNCH");
 
-    public static final SoundType ENTITY_FIREWORK_SHOOT = null;
+    public static final SoundType ENTITY_FIREWORK_SHOOT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_FIREWORK_SHOOT");
 
-    public static final SoundType ENTITY_FIREWORK_TWINKLE = null;
+    public static final SoundType ENTITY_FIREWORK_TWINKLE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_FIREWORK_TWINKLE");
 
-    public static final SoundType ENTITY_FIREWORK_TWINKLE_FAR = null;
+    public static final SoundType ENTITY_FIREWORK_TWINKLE_FAR = DummyObjectProvider.createFor(SoundType.class, "ENTITY_FIREWORK_TWINKLE_FAR");
 
-    public static final SoundType ENTITY_GENERIC_BIG_FALL = null;
+    public static final SoundType ENTITY_GENERIC_BIG_FALL = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GENERIC_BIG_FALL");
 
-    public static final SoundType ENTITY_GENERIC_BURN = null;
+    public static final SoundType ENTITY_GENERIC_BURN = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GENERIC_BURN");
 
-    public static final SoundType ENTITY_GENERIC_DEATH = null;
+    public static final SoundType ENTITY_GENERIC_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GENERIC_DEATH");
 
-    public static final SoundType ENTITY_GENERIC_DRINK = null;
+    public static final SoundType ENTITY_GENERIC_DRINK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GENERIC_DRINK");
 
-    public static final SoundType ENTITY_GENERIC_EAT = null;
+    public static final SoundType ENTITY_GENERIC_EAT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GENERIC_EAT");
 
-    public static final SoundType ENTITY_GENERIC_EXPLODE = null;
+    public static final SoundType ENTITY_GENERIC_EXPLODE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GENERIC_EXPLODE");
 
-    public static final SoundType ENTITY_GENERIC_EXTINGUISH_FIRE = null;
+    public static final SoundType ENTITY_GENERIC_EXTINGUISH_FIRE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GENERIC_EXTINGUISH_FIRE");
 
-    public static final SoundType ENTITY_GENERIC_HURT = null;
+    public static final SoundType ENTITY_GENERIC_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GENERIC_HURT");
 
-    public static final SoundType ENTITY_GENERIC_SMALL_FALL = null;
+    public static final SoundType ENTITY_GENERIC_SMALL_FALL = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GENERIC_SMALL_FALL");
 
-    public static final SoundType ENTITY_GENERIC_SPLASH = null;
+    public static final SoundType ENTITY_GENERIC_SPLASH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GENERIC_SPLASH");
 
-    public static final SoundType ENTITY_GENERIC_SWIM = null;
+    public static final SoundType ENTITY_GENERIC_SWIM = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GENERIC_SWIM");
 
-    public static final SoundType ENTITY_GHAST_AMBIENT = null;
+    public static final SoundType ENTITY_GHAST_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GHAST_AMBIENT");
 
-    public static final SoundType ENTITY_GHAST_DEATH = null;
+    public static final SoundType ENTITY_GHAST_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GHAST_DEATH");
 
-    public static final SoundType ENTITY_GHAST_HURT = null;
+    public static final SoundType ENTITY_GHAST_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GHAST_HURT");
 
-    public static final SoundType ENTITY_GHAST_SCREAM = null;
+    public static final SoundType ENTITY_GHAST_SCREAM = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GHAST_SCREAM");
 
-    public static final SoundType ENTITY_GHAST_SHOOT = null;
+    public static final SoundType ENTITY_GHAST_SHOOT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GHAST_SHOOT");
 
-    public static final SoundType ENTITY_GHAST_WARN = null;
+    public static final SoundType ENTITY_GHAST_WARN = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GHAST_WARN");
 
-    public static final SoundType ENTITY_GUARDIAN_AMBIENT = null;
+    public static final SoundType ENTITY_GUARDIAN_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GUARDIAN_AMBIENT");
 
-    public static final SoundType ENTITY_GUARDIAN_AMBIENT_LAND = null;
+    public static final SoundType ENTITY_GUARDIAN_AMBIENT_LAND = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GUARDIAN_AMBIENT_LAND");
 
-    public static final SoundType ENTITY_GUARDIAN_ATTACK = null;
+    public static final SoundType ENTITY_GUARDIAN_ATTACK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GUARDIAN_ATTACK");
 
-    public static final SoundType ENTITY_GUARDIAN_DEATH = null;
+    public static final SoundType ENTITY_GUARDIAN_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GUARDIAN_DEATH");
 
-    public static final SoundType ENTITY_GUARDIAN_DEATH_LAND = null;
+    public static final SoundType ENTITY_GUARDIAN_DEATH_LAND = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GUARDIAN_DEATH_LAND");
 
-    public static final SoundType ENTITY_GUARDIAN_FLOP = null;
+    public static final SoundType ENTITY_GUARDIAN_FLOP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GUARDIAN_FLOP");
 
-    public static final SoundType ENTITY_GUARDIAN_HURT = null;
+    public static final SoundType ENTITY_GUARDIAN_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GUARDIAN_HURT");
 
-    public static final SoundType ENTITY_GUARDIAN_HURT_LAND = null;
+    public static final SoundType ENTITY_GUARDIAN_HURT_LAND = DummyObjectProvider.createFor(SoundType.class, "ENTITY_GUARDIAN_HURT_LAND");
 
-    public static final SoundType ENTITY_HORSE_AMBIENT = null;
+    public static final SoundType ENTITY_HORSE_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HORSE_AMBIENT");
 
-    public static final SoundType ENTITY_HORSE_ANGRY = null;
+    public static final SoundType ENTITY_HORSE_ANGRY = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HORSE_ANGRY");
 
-    public static final SoundType ENTITY_HORSE_ARMOR = null;
+    public static final SoundType ENTITY_HORSE_ARMOR = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HORSE_ARMOR");
 
-    public static final SoundType ENTITY_HORSE_BREATHE = null;
+    public static final SoundType ENTITY_HORSE_BREATHE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HORSE_BREATHE");
 
-    public static final SoundType ENTITY_HORSE_DEATH = null;
+    public static final SoundType ENTITY_HORSE_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HORSE_DEATH");
 
-    public static final SoundType ENTITY_HORSE_EAT = null;
+    public static final SoundType ENTITY_HORSE_EAT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HORSE_EAT");
 
-    public static final SoundType ENTITY_HORSE_GALLOP = null;
+    public static final SoundType ENTITY_HORSE_GALLOP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HORSE_GALLOP");
 
-    public static final SoundType ENTITY_HORSE_HURT = null;
+    public static final SoundType ENTITY_HORSE_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HORSE_HURT");
 
-    public static final SoundType ENTITY_HORSE_JUMP = null;
+    public static final SoundType ENTITY_HORSE_JUMP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HORSE_JUMP");
 
-    public static final SoundType ENTITY_HORSE_LAND = null;
+    public static final SoundType ENTITY_HORSE_LAND = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HORSE_LAND");
 
-    public static final SoundType ENTITY_HORSE_SADDLE = null;
+    public static final SoundType ENTITY_HORSE_SADDLE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HORSE_SADDLE");
 
-    public static final SoundType ENTITY_HORSE_STEP = null;
+    public static final SoundType ENTITY_HORSE_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HORSE_STEP");
 
-    public static final SoundType ENTITY_HORSE_STEP_WOOD = null;
+    public static final SoundType ENTITY_HORSE_STEP_WOOD = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HORSE_STEP_WOOD");
 
-    public static final SoundType ENTITY_HOSTILE_BIG_FALL = null;
+    public static final SoundType ENTITY_HOSTILE_BIG_FALL = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HOSTILE_BIG_FALL");
 
-    public static final SoundType ENTITY_HOSTILE_DEATH = null;
+    public static final SoundType ENTITY_HOSTILE_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HOSTILE_DEATH");
 
-    public static final SoundType ENTITY_HOSTILE_HURT = null;
+    public static final SoundType ENTITY_HOSTILE_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HOSTILE_HURT");
 
-    public static final SoundType ENTITY_HOSTILE_SMALL_FALL = null;
+    public static final SoundType ENTITY_HOSTILE_SMALL_FALL = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HOSTILE_SMALL_FALL");
 
-    public static final SoundType ENTITY_HOSTILE_SPLASH = null;
+    public static final SoundType ENTITY_HOSTILE_SPLASH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HOSTILE_SPLASH");
 
-    public static final SoundType ENTITY_HOSTILE_SWIM = null;
+    public static final SoundType ENTITY_HOSTILE_SWIM = DummyObjectProvider.createFor(SoundType.class, "ENTITY_HOSTILE_SWIM");
 
-    public static final SoundType ENTITY_IRONGOLEM_ATTACK = null;
+    public static final SoundType ENTITY_IRONGOLEM_ATTACK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_IRONGOLEM_ATTACK");
 
-    public static final SoundType ENTITY_IRONGOLEM_DEATH = null;
+    public static final SoundType ENTITY_IRONGOLEM_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_IRONGOLEM_DEATH");
 
-    public static final SoundType ENTITY_IRONGOLEM_HURT = null;
+    public static final SoundType ENTITY_IRONGOLEM_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_IRONGOLEM_HURT");
 
-    public static final SoundType ENTITY_IRONGOLEM_STEP = null;
+    public static final SoundType ENTITY_IRONGOLEM_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_IRONGOLEM_STEP");
 
-    public static final SoundType ENTITY_ITEMFRAME_ADD_ITEM = null;
+    public static final SoundType ENTITY_ITEMFRAME_ADD_ITEM = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ITEMFRAME_ADD_ITEM");
 
-    public static final SoundType ENTITY_ITEMFRAME_BREAK = null;
+    public static final SoundType ENTITY_ITEMFRAME_BREAK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ITEMFRAME_BREAK");
 
-    public static final SoundType ENTITY_ITEMFRAME_PLACE = null;
+    public static final SoundType ENTITY_ITEMFRAME_PLACE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ITEMFRAME_PLACE");
 
-    public static final SoundType ENTITY_ITEMFRAME_REMOVE_ITEM = null;
+    public static final SoundType ENTITY_ITEMFRAME_REMOVE_ITEM = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ITEMFRAME_REMOVE_ITEM");
 
-    public static final SoundType ENTITY_ITEMFRAME_ROTATE_ITEM = null;
+    public static final SoundType ENTITY_ITEMFRAME_ROTATE_ITEM = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ITEMFRAME_ROTATE_ITEM");
 
-    public static final SoundType ENTITY_ITEM_BREAK = null;
+    public static final SoundType ENTITY_ITEM_BREAK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ITEM_BREAK");
 
-    public static final SoundType ENTITY_ITEM_PICKUP = null;
+    public static final SoundType ENTITY_ITEM_PICKUP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ITEM_PICKUP");
 
-    public static final SoundType ENTITY_LEASHKNOT_BREAK = null;
+    public static final SoundType ENTITY_LEASHKNOT_BREAK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_LEASHKNOT_BREAK");
 
-    public static final SoundType ENTITY_LEASHKNOT_PLACE = null;
+    public static final SoundType ENTITY_LEASHKNOT_PLACE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_LEASHKNOT_PLACE");
 
-    public static final SoundType ENTITY_LIGHTNING_IMPACT = null;
+    public static final SoundType ENTITY_LIGHTNING_IMPACT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_LIGHTNING_IMPACT");
 
-    public static final SoundType ENTITY_LIGHTNING_THUNDER = null;
+    public static final SoundType ENTITY_LIGHTNING_THUNDER = DummyObjectProvider.createFor(SoundType.class, "ENTITY_LIGHTNING_THUNDER");
 
-    public static final SoundType ENTITY_LINGERINGPOTION_THROW = null;
+    public static final SoundType ENTITY_LINGERINGPOTION_THROW = DummyObjectProvider.createFor(SoundType.class, "ENTITY_LINGERINGPOTION_THROW");
 
-    public static final SoundType ENTITY_MAGMACUBE_DEATH = null;
+    public static final SoundType ENTITY_MAGMACUBE_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MAGMACUBE_DEATH");
 
-    public static final SoundType ENTITY_MAGMACUBE_HURT = null;
+    public static final SoundType ENTITY_MAGMACUBE_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MAGMACUBE_HURT");
 
-    public static final SoundType ENTITY_MAGMACUBE_JUMP = null;
+    public static final SoundType ENTITY_MAGMACUBE_JUMP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MAGMACUBE_JUMP");
 
-    public static final SoundType ENTITY_MAGMACUBE_SQUISH = null;
+    public static final SoundType ENTITY_MAGMACUBE_SQUISH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MAGMACUBE_SQUISH");
 
-    public static final SoundType ENTITY_MINECART_INSIDE = null;
+    public static final SoundType ENTITY_MINECART_INSIDE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MINECART_INSIDE");
 
-    public static final SoundType ENTITY_MINECART_RIDING = null;
+    public static final SoundType ENTITY_MINECART_RIDING = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MINECART_RIDING");
 
-    public static final SoundType ENTITY_MOOSHROOM_SHEAR = null;
+    public static final SoundType ENTITY_MOOSHROOM_SHEAR = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MOOSHROOM_SHEAR");
 
-    public static final SoundType ENTITY_MULE_AMBIENT = null;
+    public static final SoundType ENTITY_MULE_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MULE_AMBIENT");
 
-    public static final SoundType ENTITY_MULE_DEATH = null;
+    public static final SoundType ENTITY_MULE_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MULE_DEATH");
 
-    public static final SoundType ENTITY_MULE_HURT = null;
+    public static final SoundType ENTITY_MULE_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MULE_HURT");
 
-    public static final SoundType ENTITY_PAINTING_BREAK = null;
+    public static final SoundType ENTITY_PAINTING_BREAK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PAINTING_BREAK");
 
-    public static final SoundType ENTITY_PAINTING_PLACE = null;
+    public static final SoundType ENTITY_PAINTING_PLACE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PAINTING_PLACE");
 
-    public static final SoundType ENTITY_PIG_AMBIENT = null;
+    public static final SoundType ENTITY_PIG_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PIG_AMBIENT");
 
-    public static final SoundType ENTITY_PIG_DEATH = null;
+    public static final SoundType ENTITY_PIG_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PIG_DEATH");
 
-    public static final SoundType ENTITY_PIG_HURT = null;
+    public static final SoundType ENTITY_PIG_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PIG_HURT");
 
-    public static final SoundType ENTITY_PIG_SADDLE = null;
+    public static final SoundType ENTITY_PIG_SADDLE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PIG_SADDLE");
 
-    public static final SoundType ENTITY_PIG_STEP = null;
+    public static final SoundType ENTITY_PIG_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PIG_STEP");
 
-    public static final SoundType ENTITY_PLAYER_ATTACK_CRIT = null;
+    public static final SoundType ENTITY_PLAYER_ATTACK_CRIT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_ATTACK_CRIT");
 
-    public static final SoundType ENTITY_PLAYER_ATTACK_KNOCKBACK = null;
+    public static final SoundType ENTITY_PLAYER_ATTACK_KNOCKBACK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_ATTACK_KNOCKBACK");
 
-    public static final SoundType ENTITY_PLAYER_ATTACK_NODAMAGE = null;
+    public static final SoundType ENTITY_PLAYER_ATTACK_NODAMAGE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_ATTACK_NODAMAGE");
 
-    public static final SoundType ENTITY_PLAYER_ATTACK_STRONG = null;
+    public static final SoundType ENTITY_PLAYER_ATTACK_STRONG = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_ATTACK_STRONG");
 
-    public static final SoundType ENTITY_PLAYER_ATTACK_SWEEP = null;
+    public static final SoundType ENTITY_PLAYER_ATTACK_SWEEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_ATTACK_SWEEP");
 
-    public static final SoundType ENTITY_PLAYER_ATTACK_WEAK = null;
+    public static final SoundType ENTITY_PLAYER_ATTACK_WEAK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_ATTACK_WEAK");
 
-    public static final SoundType ENTITY_PLAYER_BIG_FALL = null;
+    public static final SoundType ENTITY_PLAYER_BIG_FALL = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_BIG_FALL");
 
-    public static final SoundType ENTITY_PLAYER_BREATH = null;
+    public static final SoundType ENTITY_PLAYER_BREATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_BREATH");
 
-    public static final SoundType ENTITY_PLAYER_BURP = null;
+    public static final SoundType ENTITY_PLAYER_BURP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_BURP");
 
-    public static final SoundType ENTITY_PLAYER_DEATH = null;
+    public static final SoundType ENTITY_PLAYER_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_DEATH");
 
-    public static final SoundType ENTITY_PLAYER_HURT = null;
+    public static final SoundType ENTITY_PLAYER_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_HURT");
 
-    public static final SoundType ENTITY_PLAYER_LEVELUP = null;
+    public static final SoundType ENTITY_PLAYER_LEVELUP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_LEVELUP");
 
-    public static final SoundType ENTITY_PLAYER_SMALL_FALL = null;
+    public static final SoundType ENTITY_PLAYER_SMALL_FALL = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_SMALL_FALL");
 
-    public static final SoundType ENTITY_PLAYER_SPLASH = null;
+    public static final SoundType ENTITY_PLAYER_SPLASH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_SPLASH");
 
-    public static final SoundType ENTITY_PLAYER_SWIM = null;
+    public static final SoundType ENTITY_PLAYER_SWIM = DummyObjectProvider.createFor(SoundType.class, "ENTITY_PLAYER_SWIM");
 
-    public static final SoundType ENTITY_RABBIT_AMBIENT = null;
+    public static final SoundType ENTITY_RABBIT_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_RABBIT_AMBIENT");
 
-    public static final SoundType ENTITY_RABBIT_ATTACK = null;
+    public static final SoundType ENTITY_RABBIT_ATTACK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_RABBIT_ATTACK");
 
-    public static final SoundType ENTITY_RABBIT_DEATH = null;
+    public static final SoundType ENTITY_RABBIT_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_RABBIT_DEATH");
 
-    public static final SoundType ENTITY_RABBIT_HURT = null;
+    public static final SoundType ENTITY_RABBIT_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_RABBIT_HURT");
 
-    public static final SoundType ENTITY_RABBIT_JUMP = null;
+    public static final SoundType ENTITY_RABBIT_JUMP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_RABBIT_JUMP");
 
-    public static final SoundType ENTITY_SHEEP_AMBIENT = null;
+    public static final SoundType ENTITY_SHEEP_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SHEEP_AMBIENT");
 
-    public static final SoundType ENTITY_SHEEP_DEATH = null;
+    public static final SoundType ENTITY_SHEEP_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SHEEP_DEATH");
 
-    public static final SoundType ENTITY_SHEEP_HURT = null;
+    public static final SoundType ENTITY_SHEEP_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SHEEP_HURT");
 
-    public static final SoundType ENTITY_SHEEP_SHEAR = null;
+    public static final SoundType ENTITY_SHEEP_SHEAR = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SHEEP_SHEAR");
 
-    public static final SoundType ENTITY_SHEEP_STEP = null;
+    public static final SoundType ENTITY_SHEEP_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SHEEP_STEP");
 
-    public static final SoundType ENTITY_SHULKER_AMBIENT = null;
+    public static final SoundType ENTITY_SHULKER_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SHULKER_AMBIENT");
 
-    public static final SoundType ENTITY_SHULKER_BULLET_HIT = null;
+    public static final SoundType ENTITY_SHULKER_BULLET_HIT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SHULKER_BULLET_HIT");
 
-    public static final SoundType ENTITY_SHULKER_BULLET_HURT = null;
+    public static final SoundType ENTITY_SHULKER_BULLET_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SHULKER_BULLET_HURT");
 
-    public static final SoundType ENTITY_SHULKER_CLOSE = null;
+    public static final SoundType ENTITY_SHULKER_CLOSE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SHULKER_CLOSE");
 
-    public static final SoundType ENTITY_SHULKER_DEATH = null;
+    public static final SoundType ENTITY_SHULKER_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SHULKER_DEATH");
 
-    public static final SoundType ENTITY_SHULKER_HURT = null;
+    public static final SoundType ENTITY_SHULKER_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SHULKER_HURT");
 
-    public static final SoundType ENTITY_SHULKER_HURT_CLOSED = null;
+    public static final SoundType ENTITY_SHULKER_HURT_CLOSED = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SHULKER_HURT_CLOSED");
 
-    public static final SoundType ENTITY_SHULKER_OPEN = null;
+    public static final SoundType ENTITY_SHULKER_OPEN = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SHULKER_OPEN");
 
-    public static final SoundType ENTITY_SHULKER_SHOOT = null;
+    public static final SoundType ENTITY_SHULKER_SHOOT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SHULKER_SHOOT");
 
-    public static final SoundType ENTITY_SHULKER_TELEPORT = null;
+    public static final SoundType ENTITY_SHULKER_TELEPORT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SHULKER_TELEPORT");
 
-    public static final SoundType ENTITY_SILVERFISH_AMBIENT = null;
+    public static final SoundType ENTITY_SILVERFISH_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SILVERFISH_AMBIENT");
 
-    public static final SoundType ENTITY_SILVERFISH_DEATH = null;
+    public static final SoundType ENTITY_SILVERFISH_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SILVERFISH_DEATH");
 
-    public static final SoundType ENTITY_SILVERFISH_HURT = null;
+    public static final SoundType ENTITY_SILVERFISH_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SILVERFISH_HURT");
 
-    public static final SoundType ENTITY_SILVERFISH_STEP = null;
+    public static final SoundType ENTITY_SILVERFISH_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SILVERFISH_STEP");
 
-    public static final SoundType ENTITY_SKELETON_AMBIENT = null;
+    public static final SoundType ENTITY_SKELETON_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SKELETON_AMBIENT");
 
-    public static final SoundType ENTITY_SKELETON_DEATH = null;
+    public static final SoundType ENTITY_SKELETON_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SKELETON_DEATH");
 
-    public static final SoundType ENTITY_SKELETON_HORSE_AMBIENT = null;
+    public static final SoundType ENTITY_SKELETON_HORSE_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SKELETON_HORSE_AMBIENT");
 
-    public static final SoundType ENTITY_SKELETON_HORSE_DEATH = null;
+    public static final SoundType ENTITY_SKELETON_HORSE_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SKELETON_HORSE_DEATH");
 
-    public static final SoundType ENTITY_SKELETON_HORSE_HURT = null;
+    public static final SoundType ENTITY_SKELETON_HORSE_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SKELETON_HORSE_HURT");
 
-    public static final SoundType ENTITY_SKELETON_HURT = null;
+    public static final SoundType ENTITY_SKELETON_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SKELETON_HURT");
 
-    public static final SoundType ENTITY_SKELETON_SHOOT = null;
+    public static final SoundType ENTITY_SKELETON_SHOOT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SKELETON_SHOOT");
 
-    public static final SoundType ENTITY_SKELETON_STEP = null;
+    public static final SoundType ENTITY_SKELETON_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SKELETON_STEP");
 
-    public static final SoundType ENTITY_SLIME_ATTACK = null;
+    public static final SoundType ENTITY_SLIME_ATTACK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SLIME_ATTACK");
 
-    public static final SoundType ENTITY_SLIME_DEATH = null;
+    public static final SoundType ENTITY_SLIME_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SLIME_DEATH");
 
-    public static final SoundType ENTITY_SLIME_HURT = null;
+    public static final SoundType ENTITY_SLIME_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SLIME_HURT");
 
-    public static final SoundType ENTITY_SLIME_JUMP = null;
+    public static final SoundType ENTITY_SLIME_JUMP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SLIME_JUMP");
 
-    public static final SoundType ENTITY_SLIME_SQUISH = null;
+    public static final SoundType ENTITY_SLIME_SQUISH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SLIME_SQUISH");
 
-    public static final SoundType ENTITY_SMALL_MAGMACUBE_DEATH = null;
+    public static final SoundType ENTITY_SMALL_MAGMACUBE_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SMALL_MAGMACUBE_DEATH");
 
-    public static final SoundType ENTITY_SMALL_MAGMACUBE_HURT = null;
+    public static final SoundType ENTITY_SMALL_MAGMACUBE_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SMALL_MAGMACUBE_HURT");
 
-    public static final SoundType ENTITY_SMALL_MAGMACUBE_SQUISH = null;
+    public static final SoundType ENTITY_SMALL_MAGMACUBE_SQUISH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SMALL_MAGMACUBE_SQUISH");
 
-    public static final SoundType ENTITY_SMALL_SLIME_DEATH = null;
+    public static final SoundType ENTITY_SMALL_SLIME_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SMALL_SLIME_DEATH");
 
-    public static final SoundType ENTITY_SMALL_SLIME_HURT = null;
+    public static final SoundType ENTITY_SMALL_SLIME_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SMALL_SLIME_HURT");
 
-    public static final SoundType ENTITY_SMALL_SLIME_JUMP = null;
+    public static final SoundType ENTITY_SMALL_SLIME_JUMP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SMALL_SLIME_JUMP");
 
-    public static final SoundType ENTITY_SMALL_SLIME_SQUISH = null;
+    public static final SoundType ENTITY_SMALL_SLIME_SQUISH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SMALL_SLIME_SQUISH");
 
-    public static final SoundType ENTITY_SNOWBALL_THROW = null;
+    public static final SoundType ENTITY_SNOWBALL_THROW = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SNOWBALL_THROW");
 
-    public static final SoundType ENTITY_SNOWMAN_AMBIENT = null;
+    public static final SoundType ENTITY_SNOWMAN_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SNOWMAN_AMBIENT");
 
-    public static final SoundType ENTITY_SNOWMAN_DEATH = null;
+    public static final SoundType ENTITY_SNOWMAN_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SNOWMAN_DEATH");
 
-    public static final SoundType ENTITY_SNOWMAN_HURT = null;
+    public static final SoundType ENTITY_SNOWMAN_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SNOWMAN_HURT");
 
-    public static final SoundType ENTITY_SNOWMAN_SHOOT = null;
+    public static final SoundType ENTITY_SNOWMAN_SHOOT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SNOWMAN_SHOOT");
 
-    public static final SoundType ENTITY_SPIDER_AMBIENT = null;
+    public static final SoundType ENTITY_SPIDER_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SPIDER_AMBIENT");
 
-    public static final SoundType ENTITY_SPIDER_DEATH = null;
+    public static final SoundType ENTITY_SPIDER_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SPIDER_DEATH");
 
-    public static final SoundType ENTITY_SPIDER_HURT = null;
+    public static final SoundType ENTITY_SPIDER_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SPIDER_HURT");
 
-    public static final SoundType ENTITY_SPIDER_STEP = null;
+    public static final SoundType ENTITY_SPIDER_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SPIDER_STEP");
 
-    public static final SoundType ENTITY_SPLASH_POTION_BREAK = null;
+    public static final SoundType ENTITY_SPLASH_POTION_BREAK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SPLASH_POTION_BREAK");
 
-    public static final SoundType ENTITY_SPLASH_POTION_THROW = null;
+    public static final SoundType ENTITY_SPLASH_POTION_THROW = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SPLASH_POTION_THROW");
 
-    public static final SoundType ENTITY_SQUID_AMBIENT = null;
+    public static final SoundType ENTITY_SQUID_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SQUID_AMBIENT");
 
-    public static final SoundType ENTITY_SQUID_DEATH = null;
+    public static final SoundType ENTITY_SQUID_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SQUID_DEATH");
 
-    public static final SoundType ENTITY_SQUID_HURT = null;
+    public static final SoundType ENTITY_SQUID_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_SQUID_HURT");
 
-    public static final SoundType ENTITY_TNT_PRIMED = null;
+    public static final SoundType ENTITY_TNT_PRIMED = DummyObjectProvider.createFor(SoundType.class, "ENTITY_TNT_PRIMED");
 
-    public static final SoundType ENTITY_VILLAGER_AMBIENT = null;
+    public static final SoundType ENTITY_VILLAGER_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VILLAGER_AMBIENT");
 
-    public static final SoundType ENTITY_VILLAGER_DEATH = null;
+    public static final SoundType ENTITY_VILLAGER_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VILLAGER_DEATH");
 
-    public static final SoundType ENTITY_VILLAGER_HURT = null;
+    public static final SoundType ENTITY_VILLAGER_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VILLAGER_HURT");
 
-    public static final SoundType ENTITY_VILLAGER_NO = null;
+    public static final SoundType ENTITY_VILLAGER_NO = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VILLAGER_NO");
 
-    public static final SoundType ENTITY_VILLAGER_TRADING = null;
+    public static final SoundType ENTITY_VILLAGER_TRADING = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VILLAGER_TRADING");
 
-    public static final SoundType ENTITY_VILLAGER_YES = null;
+    public static final SoundType ENTITY_VILLAGER_YES = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VILLAGER_YES");
 
-    public static final SoundType ENTITY_WITCH_AMBIENT = null;
+    public static final SoundType ENTITY_WITCH_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WITCH_AMBIENT");
 
-    public static final SoundType ENTITY_WITCH_DEATH = null;
+    public static final SoundType ENTITY_WITCH_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WITCH_DEATH");
 
-    public static final SoundType ENTITY_WITCH_DRINK = null;
+    public static final SoundType ENTITY_WITCH_DRINK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WITCH_DRINK");
 
-    public static final SoundType ENTITY_WITCH_HURT = null;
+    public static final SoundType ENTITY_WITCH_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WITCH_HURT");
 
-    public static final SoundType ENTITY_WITCH_THROW = null;
+    public static final SoundType ENTITY_WITCH_THROW = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WITCH_THROW");
 
-    public static final SoundType ENTITY_WITHER_AMBIENT = null;
+    public static final SoundType ENTITY_WITHER_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WITHER_AMBIENT");
 
-    public static final SoundType ENTITY_WITHER_BREAK_BLOCK = null;
+    public static final SoundType ENTITY_WITHER_BREAK_BLOCK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WITHER_BREAK_BLOCK");
 
-    public static final SoundType ENTITY_WITHER_DEATH = null;
+    public static final SoundType ENTITY_WITHER_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WITHER_DEATH");
 
-    public static final SoundType ENTITY_WITHER_HURT = null;
+    public static final SoundType ENTITY_WITHER_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WITHER_HURT");
 
-    public static final SoundType ENTITY_WITHER_SHOOT = null;
+    public static final SoundType ENTITY_WITHER_SHOOT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WITHER_SHOOT");
 
-    public static final SoundType ENTITY_WITHER_SPAWN = null;
+    public static final SoundType ENTITY_WITHER_SPAWN = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WITHER_SPAWN");
 
-    public static final SoundType ENTITY_WOLF_AMBIENT = null;
+    public static final SoundType ENTITY_WOLF_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WOLF_AMBIENT");
 
-    public static final SoundType ENTITY_WOLF_DEATH = null;
+    public static final SoundType ENTITY_WOLF_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WOLF_DEATH");
 
-    public static final SoundType ENTITY_WOLF_GROWL = null;
+    public static final SoundType ENTITY_WOLF_GROWL = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WOLF_GROWL");
 
-    public static final SoundType ENTITY_WOLF_HOWL = null;
+    public static final SoundType ENTITY_WOLF_HOWL = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WOLF_HOWL");
 
-    public static final SoundType ENTITY_WOLF_HURT = null;
+    public static final SoundType ENTITY_WOLF_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WOLF_HURT");
 
-    public static final SoundType ENTITY_WOLF_PANT = null;
+    public static final SoundType ENTITY_WOLF_PANT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WOLF_PANT");
 
-    public static final SoundType ENTITY_WOLF_SHAKE = null;
+    public static final SoundType ENTITY_WOLF_SHAKE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WOLF_SHAKE");
 
-    public static final SoundType ENTITY_WOLF_STEP = null;
+    public static final SoundType ENTITY_WOLF_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WOLF_STEP");
 
-    public static final SoundType ENTITY_WOLF_WHINE = null;
+    public static final SoundType ENTITY_WOLF_WHINE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WOLF_WHINE");
 
-    public static final SoundType ENTITY_ZOMBIE_AMBIENT = null;
+    public static final SoundType ENTITY_ZOMBIE_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_AMBIENT");
 
-    public static final SoundType ENTITY_ZOMBIE_ATTACK_DOOR_WOOD = null;
+    public static final SoundType ENTITY_ZOMBIE_ATTACK_DOOR_WOOD = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_ATTACK_DOOR_WOOD");
 
-    public static final SoundType ENTITY_ZOMBIE_ATTACK_IRON_DOOR = null;
+    public static final SoundType ENTITY_ZOMBIE_ATTACK_IRON_DOOR = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_ATTACK_IRON_DOOR");
 
-    public static final SoundType ENTITY_ZOMBIE_BREAK_DOOR_WOOD = null;
+    public static final SoundType ENTITY_ZOMBIE_BREAK_DOOR_WOOD = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_BREAK_DOOR_WOOD");
 
-    public static final SoundType ENTITY_ZOMBIE_DEATH = null;
+    public static final SoundType ENTITY_ZOMBIE_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_DEATH");
 
-    public static final SoundType ENTITY_ZOMBIE_HORSE_AMBIENT = null;
+    public static final SoundType ENTITY_ZOMBIE_HORSE_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_HORSE_AMBIENT");
 
-    public static final SoundType ENTITY_ZOMBIE_HORSE_DEATH = null;
+    public static final SoundType ENTITY_ZOMBIE_HORSE_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_HORSE_DEATH");
 
-    public static final SoundType ENTITY_ZOMBIE_HORSE_HURT = null;
+    public static final SoundType ENTITY_ZOMBIE_HORSE_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_HORSE_HURT");
 
-    public static final SoundType ENTITY_ZOMBIE_HURT = null;
+    public static final SoundType ENTITY_ZOMBIE_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_HURT");
 
-    public static final SoundType ENTITY_ZOMBIE_INFECT = null;
+    public static final SoundType ENTITY_ZOMBIE_INFECT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_INFECT");
 
-    public static final SoundType ENTITY_ZOMBIE_PIG_AMBIENT = null;
+    public static final SoundType ENTITY_ZOMBIE_PIG_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_PIG_AMBIENT");
 
-    public static final SoundType ENTITY_ZOMBIE_PIG_ANGRY = null;
+    public static final SoundType ENTITY_ZOMBIE_PIG_ANGRY = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_PIG_ANGRY");
 
-    public static final SoundType ENTITY_ZOMBIE_PIG_DEATH = null;
+    public static final SoundType ENTITY_ZOMBIE_PIG_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_PIG_DEATH");
 
-    public static final SoundType ENTITY_ZOMBIE_PIG_HURT = null;
+    public static final SoundType ENTITY_ZOMBIE_PIG_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_PIG_HURT");
 
-    public static final SoundType ENTITY_ZOMBIE_STEP = null;
+    public static final SoundType ENTITY_ZOMBIE_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_STEP");
 
-    public static final SoundType ENTITY_ZOMBIE_VILLAGER_AMBIENT = null;
+    public static final SoundType ENTITY_ZOMBIE_VILLAGER_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_VILLAGER_AMBIENT");
 
-    public static final SoundType ENTITY_ZOMBIE_VILLAGER_CONVERTED = null;
+    public static final SoundType ENTITY_ZOMBIE_VILLAGER_CONVERTED =
+            DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_VILLAGER_CONVERTED");
 
-    public static final SoundType ENTITY_ZOMBIE_VILLAGER_CURE = null;
+    public static final SoundType ENTITY_ZOMBIE_VILLAGER_CURE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_VILLAGER_CURE");
 
-    public static final SoundType ENTITY_ZOMBIE_VILLAGER_DEATH = null;
+    public static final SoundType ENTITY_ZOMBIE_VILLAGER_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_VILLAGER_DEATH");
 
-    public static final SoundType ENTITY_ZOMBIE_VILLAGER_HURT = null;
+    public static final SoundType ENTITY_ZOMBIE_VILLAGER_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_VILLAGER_HURT");
 
-    public static final SoundType ENTITY_ZOMBIE_VILLAGER_STEP = null;
+    public static final SoundType ENTITY_ZOMBIE_VILLAGER_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ZOMBIE_VILLAGER_STEP");
 
-    public static final SoundType ITEM_ARMOR_EQUIP_CHAIN = null;
+    public static final SoundType ITEM_ARMOR_EQUIP_CHAIN = DummyObjectProvider.createFor(SoundType.class, "ITEM_ARMOR_EQUIP_CHAIN");
 
-    public static final SoundType ITEM_ARMOR_EQUIP_DIAMOND = null;
+    public static final SoundType ITEM_ARMOR_EQUIP_DIAMOND = DummyObjectProvider.createFor(SoundType.class, "ITEM_ARMOR_EQUIP_DIAMOND");
 
-    public static final SoundType ITEM_ARMOR_EQUIP_GENERIC = null;
+    public static final SoundType ITEM_ARMOR_EQUIP_GENERIC = DummyObjectProvider.createFor(SoundType.class, "ITEM_ARMOR_EQUIP_GENERIC");
 
-    public static final SoundType ITEM_ARMOR_EQUIP_GOLD = null;
+    public static final SoundType ITEM_ARMOR_EQUIP_GOLD = DummyObjectProvider.createFor(SoundType.class, "ITEM_ARMOR_EQUIP_GOLD");
 
-    public static final SoundType ITEM_ARMOR_EQUIP_IRON = null;
+    public static final SoundType ITEM_ARMOR_EQUIP_IRON = DummyObjectProvider.createFor(SoundType.class, "ITEM_ARMOR_EQUIP_IRON");
 
-    public static final SoundType ITEM_ARMOR_EQUIP_LEATHER = null;
+    public static final SoundType ITEM_ARMOR_EQUIP_LEATHER = DummyObjectProvider.createFor(SoundType.class, "ITEM_ARMOR_EQUIP_LEATHER");
 
-    public static final SoundType ITEM_BOTTLE_FILL = null;
+    public static final SoundType ITEM_BOTTLE_FILL = DummyObjectProvider.createFor(SoundType.class, "ITEM_BOTTLE_FILL");
 
-    public static final SoundType ITEM_BOTTLE_FILL_DRAGONBREATH = null;
+    public static final SoundType ITEM_BOTTLE_FILL_DRAGONBREATH = DummyObjectProvider.createFor(SoundType.class, "ITEM_BOTTLE_FILL_DRAGONBREATH");
 
-    public static final SoundType ITEM_BUCKET_EMPTY = null;
+    public static final SoundType ITEM_BUCKET_EMPTY = DummyObjectProvider.createFor(SoundType.class, "ITEM_BUCKET_EMPTY");
 
-    public static final SoundType ITEM_BUCKET_EMPTY_LAVA = null;
+    public static final SoundType ITEM_BUCKET_EMPTY_LAVA = DummyObjectProvider.createFor(SoundType.class, "ITEM_BUCKET_EMPTY_LAVA");
 
-    public static final SoundType ITEM_BUCKET_FILL = null;
+    public static final SoundType ITEM_BUCKET_FILL = DummyObjectProvider.createFor(SoundType.class, "ITEM_BUCKET_FILL");
 
-    public static final SoundType ITEM_BUCKET_FILL_LAVA = null;
+    public static final SoundType ITEM_BUCKET_FILL_LAVA = DummyObjectProvider.createFor(SoundType.class, "ITEM_BUCKET_FILL_LAVA");
 
-    public static final SoundType ITEM_CHORUS_FRUIT_TELEPORT = null;
+    public static final SoundType ITEM_CHORUS_FRUIT_TELEPORT = DummyObjectProvider.createFor(SoundType.class, "ITEM_CHORUS_FRUIT_TELEPORT");
 
-    public static final SoundType ITEM_FIRECHARGE_USE = null;
+    public static final SoundType ITEM_FIRECHARGE_USE = DummyObjectProvider.createFor(SoundType.class, "ITEM_FIRECHARGE_USE");
 
-    public static final SoundType ITEM_FLINTANDSTEEL_USE = null;
+    public static final SoundType ITEM_FLINTANDSTEEL_USE = DummyObjectProvider.createFor(SoundType.class, "ITEM_FLINTANDSTEEL_USE");
 
-    public static final SoundType ITEM_HOE_TILL = null;
+    public static final SoundType ITEM_HOE_TILL = DummyObjectProvider.createFor(SoundType.class, "ITEM_HOE_TILL");
 
-    public static final SoundType ITEM_SHIELD_BLOCK = null;
+    public static final SoundType ITEM_SHIELD_BLOCK = DummyObjectProvider.createFor(SoundType.class, "ITEM_SHIELD_BLOCK");
 
-    public static final SoundType ITEM_SHIELD_BREAK = null;
+    public static final SoundType ITEM_SHIELD_BREAK = DummyObjectProvider.createFor(SoundType.class, "ITEM_SHIELD_BREAK");
 
-    public static final SoundType ITEM_SHOVEL_FLATTEN = null;
+    public static final SoundType ITEM_SHOVEL_FLATTEN = DummyObjectProvider.createFor(SoundType.class, "ITEM_SHOVEL_FLATTEN");
 
-    public static final SoundType MUSIC_CREATIVE = null;
+    public static final SoundType MUSIC_CREATIVE = DummyObjectProvider.createFor(SoundType.class, "MUSIC_CREATIVE");
 
-    public static final SoundType MUSIC_CREDITS = null;
+    public static final SoundType MUSIC_CREDITS = DummyObjectProvider.createFor(SoundType.class, "MUSIC_CREDITS");
 
-    public static final SoundType MUSIC_DRAGON = null;
+    public static final SoundType MUSIC_DRAGON = DummyObjectProvider.createFor(SoundType.class, "MUSIC_DRAGON");
 
-    public static final SoundType MUSIC_END = null;
+    public static final SoundType MUSIC_END = DummyObjectProvider.createFor(SoundType.class, "MUSIC_END");
 
-    public static final SoundType MUSIC_GAME = null;
+    public static final SoundType MUSIC_GAME = DummyObjectProvider.createFor(SoundType.class, "MUSIC_GAME");
 
-    public static final SoundType MUSIC_MENU = null;
+    public static final SoundType MUSIC_MENU = DummyObjectProvider.createFor(SoundType.class, "MUSIC_MENU");
 
-    public static final SoundType MUSIC_NETHER = null;
+    public static final SoundType MUSIC_NETHER = DummyObjectProvider.createFor(SoundType.class, "MUSIC_NETHER");
 
-    public static final SoundType RECORD_11 = null;
+    public static final SoundType RECORD_11 = DummyObjectProvider.createFor(SoundType.class, "RECORD_11");
 
-    public static final SoundType RECORD_13 = null;
+    public static final SoundType RECORD_13 = DummyObjectProvider.createFor(SoundType.class, "RECORD_13");
 
-    public static final SoundType RECORD_BLOCKS = null;
+    public static final SoundType RECORD_BLOCKS = DummyObjectProvider.createFor(SoundType.class, "RECORD_BLOCKS");
 
-    public static final SoundType RECORD_CAT = null;
+    public static final SoundType RECORD_CAT = DummyObjectProvider.createFor(SoundType.class, "RECORD_CAT");
 
-    public static final SoundType RECORD_CHIRP = null;
+    public static final SoundType RECORD_CHIRP = DummyObjectProvider.createFor(SoundType.class, "RECORD_CHIRP");
 
-    public static final SoundType RECORD_FAR = null;
+    public static final SoundType RECORD_FAR = DummyObjectProvider.createFor(SoundType.class, "RECORD_FAR");
 
-    public static final SoundType RECORD_MALL = null;
+    public static final SoundType RECORD_MALL = DummyObjectProvider.createFor(SoundType.class, "RECORD_MALL");
 
-    public static final SoundType RECORD_MELLOHI = null;
+    public static final SoundType RECORD_MELLOHI = DummyObjectProvider.createFor(SoundType.class, "RECORD_MELLOHI");
 
-    public static final SoundType RECORD_STAL = null;
+    public static final SoundType RECORD_STAL = DummyObjectProvider.createFor(SoundType.class, "RECORD_STAL");
 
-    public static final SoundType RECORD_STRAD = null;
+    public static final SoundType RECORD_STRAD = DummyObjectProvider.createFor(SoundType.class, "RECORD_STRAD");
 
-    public static final SoundType RECORD_WAIT = null;
+    public static final SoundType RECORD_WAIT = DummyObjectProvider.createFor(SoundType.class, "RECORD_WAIT");
 
-    public static final SoundType RECORD_WARD = null;
+    public static final SoundType RECORD_WARD = DummyObjectProvider.createFor(SoundType.class, "RECORD_WARD");
 
-    public static final SoundType UI_BUTTON_CLICK = null;
+    public static final SoundType UI_BUTTON_CLICK = DummyObjectProvider.createFor(SoundType.class, "UI_BUTTON_CLICK");
 
-    public static final SoundType WEATHER_RAIN = null;
+    public static final SoundType WEATHER_RAIN = DummyObjectProvider.createFor(SoundType.class, "WEATHER_RAIN");
 
-    public static final SoundType WEATHER_RAIN_ABOVE = null;
+    public static final SoundType WEATHER_RAIN_ABOVE = DummyObjectProvider.createFor(SoundType.class, "WEATHER_RAIN_ABOVE");
 
     // SORTFIELDS:OFF
 

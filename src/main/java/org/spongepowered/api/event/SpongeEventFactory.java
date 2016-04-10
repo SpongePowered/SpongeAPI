@@ -191,6 +191,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.chat.ChatVisibility;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.ban.Ban;
 import org.spongepowered.api.world.Chunk;
@@ -385,7 +386,7 @@ public class SpongeEventFactory {
      * @param interactionPoint The interaction point
      * @return A new interact event
      */
-    public static InteractEvent createInteractEvent(Cause cause, Vector3d interactionPoint) {
+    public static InteractEvent createInteractEvent(Cause cause, Optional<Vector3d> interactionPoint) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
@@ -729,7 +730,7 @@ public class SpongeEventFactory {
      * @param targetSide The target side
      * @return A new interact block event
      */
-    public static InteractBlockEvent createInteractBlockEvent(Cause cause, Vector3d interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+    public static InteractBlockEvent createInteractBlockEvent(Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
@@ -749,7 +750,7 @@ public class SpongeEventFactory {
      * @param targetSide The target side
      * @return A new primary interact block event
      */
-    public static InteractBlockEvent.Primary createInteractBlockEventPrimary(Cause cause, Vector3d interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+    public static InteractBlockEvent.Primary createInteractBlockEventPrimary(Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
@@ -769,7 +770,7 @@ public class SpongeEventFactory {
      * @param targetSide The target side
      * @return A new main hand primary interact block event
      */
-    public static InteractBlockEvent.Primary.MainHand createInteractBlockEventPrimaryMainHand(Cause cause, Vector3d interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+    public static InteractBlockEvent.Primary.MainHand createInteractBlockEventPrimaryMainHand(Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
@@ -789,7 +790,7 @@ public class SpongeEventFactory {
      * @param targetSide The target side
      * @return A new off hand primary interact block event
      */
-    public static InteractBlockEvent.Primary.OffHand createInteractBlockEventPrimaryOffHand(Cause cause, Vector3d interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+    public static InteractBlockEvent.Primary.OffHand createInteractBlockEventPrimaryOffHand(Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
@@ -804,14 +805,22 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Secondary}.
      * 
      * @param cause The cause
+     * @param originalUseBlockResult The original use block result
+     * @param useBlockResult The use block result
+     * @param originalUseItemResult The original use item result
+     * @param useItemResult The use item result
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
      * @param targetSide The target side
      * @return A new secondary interact block event
      */
-    public static InteractBlockEvent.Secondary createInteractBlockEventSecondary(Cause cause, Vector3d interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+    public static InteractBlockEvent.Secondary createInteractBlockEventSecondary(Cause cause, Tristate originalUseBlockResult, Tristate useBlockResult, Tristate originalUseItemResult, Tristate useItemResult, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
+        values.put("originalUseBlockResult", originalUseBlockResult);
+        values.put("useBlockResult", useBlockResult);
+        values.put("originalUseItemResult", originalUseItemResult);
+        values.put("useItemResult", useItemResult);
         values.put("interactionPoint", interactionPoint);
         values.put("targetBlock", targetBlock);
         values.put("targetSide", targetSide);
@@ -824,14 +833,22 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Secondary.MainHand}.
      * 
      * @param cause The cause
+     * @param originalUseBlockResult The original use block result
+     * @param useBlockResult The use block result
+     * @param originalUseItemResult The original use item result
+     * @param useItemResult The use item result
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
      * @param targetSide The target side
      * @return A new main hand secondary interact block event
      */
-    public static InteractBlockEvent.Secondary.MainHand createInteractBlockEventSecondaryMainHand(Cause cause, Vector3d interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+    public static InteractBlockEvent.Secondary.MainHand createInteractBlockEventSecondaryMainHand(Cause cause, Tristate originalUseBlockResult, Tristate useBlockResult, Tristate originalUseItemResult, Tristate useItemResult, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
+        values.put("originalUseBlockResult", originalUseBlockResult);
+        values.put("useBlockResult", useBlockResult);
+        values.put("originalUseItemResult", originalUseItemResult);
+        values.put("useItemResult", useItemResult);
         values.put("interactionPoint", interactionPoint);
         values.put("targetBlock", targetBlock);
         values.put("targetSide", targetSide);
@@ -844,14 +861,22 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Secondary.OffHand}.
      * 
      * @param cause The cause
+     * @param originalUseBlockResult The original use block result
+     * @param useBlockResult The use block result
+     * @param originalUseItemResult The original use item result
+     * @param useItemResult The use item result
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
      * @param targetSide The target side
      * @return A new off hand secondary interact block event
      */
-    public static InteractBlockEvent.Secondary.OffHand createInteractBlockEventSecondaryOffHand(Cause cause, Vector3d interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+    public static InteractBlockEvent.Secondary.OffHand createInteractBlockEventSecondaryOffHand(Cause cause, Tristate originalUseBlockResult, Tristate useBlockResult, Tristate originalUseItemResult, Tristate useItemResult, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
+        values.put("originalUseBlockResult", originalUseBlockResult);
+        values.put("useBlockResult", useBlockResult);
+        values.put("originalUseItemResult", originalUseItemResult);
+        values.put("useItemResult", useItemResult);
         values.put("interactionPoint", interactionPoint);
         values.put("targetBlock", targetBlock);
         values.put("targetSide", targetSide);
@@ -1324,7 +1349,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new breed entity event
      */
-    public static BreedEntityEvent createBreedEntityEvent(Cause cause, Vector3d interactionPoint, Entity targetEntity) {
+    public static BreedEntityEvent createBreedEntityEvent(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
@@ -1343,7 +1368,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new breed breed entity event
      */
-    public static BreedEntityEvent.Breed createBreedEntityEventBreed(Cause cause, Vector3d interactionPoint, Ageable offspringEntity, Entity targetEntity) {
+    public static BreedEntityEvent.Breed createBreedEntityEventBreed(Cause cause, Optional<Vector3d> interactionPoint, Ageable offspringEntity, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
@@ -1365,7 +1390,7 @@ public class SpongeEventFactory {
      * @param hasAllowResult The has allow result
      * @return A new find mate breed entity event
      */
-    public static BreedEntityEvent.FindMate createBreedEntityEventFindMate(Cause cause, TristateResult.Result originalResult, TristateResult.Result result, Vector3d interactionPoint, Entity targetEntity, boolean hasAllowResult) {
+    public static BreedEntityEvent.FindMate createBreedEntityEventFindMate(Cause cause, TristateResult.Result originalResult, TristateResult.Result result, Optional<Vector3d> interactionPoint, Entity targetEntity, boolean hasAllowResult) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalResult", originalResult);
@@ -2170,7 +2195,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new interact entity event
      */
-    public static InteractEntityEvent createInteractEntityEvent(Cause cause, Vector3d interactionPoint, Entity targetEntity) {
+    public static InteractEntityEvent createInteractEntityEvent(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
@@ -2188,7 +2213,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new primary interact entity event
      */
-    public static InteractEntityEvent.Primary createInteractEntityEventPrimary(Cause cause, Vector3d interactionPoint, Entity targetEntity) {
+    public static InteractEntityEvent.Primary createInteractEntityEventPrimary(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
@@ -2206,7 +2231,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new main hand primary interact entity event
      */
-    public static InteractEntityEvent.Primary.MainHand createInteractEntityEventPrimaryMainHand(Cause cause, Vector3d interactionPoint, Entity targetEntity) {
+    public static InteractEntityEvent.Primary.MainHand createInteractEntityEventPrimaryMainHand(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
@@ -2224,7 +2249,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new off hand primary interact entity event
      */
-    public static InteractEntityEvent.Primary.OffHand createInteractEntityEventPrimaryOffHand(Cause cause, Vector3d interactionPoint, Entity targetEntity) {
+    public static InteractEntityEvent.Primary.OffHand createInteractEntityEventPrimaryOffHand(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
@@ -2242,7 +2267,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new secondary interact entity event
      */
-    public static InteractEntityEvent.Secondary createInteractEntityEventSecondary(Cause cause, Vector3d interactionPoint, Entity targetEntity) {
+    public static InteractEntityEvent.Secondary createInteractEntityEventSecondary(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
@@ -2260,7 +2285,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new main hand secondary interact entity event
      */
-    public static InteractEntityEvent.Secondary.MainHand createInteractEntityEventSecondaryMainHand(Cause cause, Vector3d interactionPoint, Entity targetEntity) {
+    public static InteractEntityEvent.Secondary.MainHand createInteractEntityEventSecondaryMainHand(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);
@@ -2278,7 +2303,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new off hand secondary interact entity event
      */
-    public static InteractEntityEvent.Secondary.OffHand createInteractEntityEventSecondaryOffHand(Cause cause, Vector3d interactionPoint, Entity targetEntity) {
+    public static InteractEntityEvent.Secondary.OffHand createInteractEntityEventSecondaryOffHand(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("interactionPoint", interactionPoint);

@@ -120,7 +120,7 @@ public class SimpleServiceManager implements ServiceManager {
         private final Class<T> service;
         private final T provider;
 
-        private Provider(PluginContainer container, Class<T> service, T provider) {
+        Provider(PluginContainer container, Class<T> service, T provider) {
             this.container = container;
             this.service = service;
             this.provider = provider;

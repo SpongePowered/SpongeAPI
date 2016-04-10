@@ -58,12 +58,12 @@ public interface ImmutableRespawnLocation extends ImmutableMappedData<UUID, Resp
     }
 
     /**
-     * Gets the spawn location and whether it's forced for the world, if
-     * available. If the respawn point for that world has not been set,
-     * {@link Optional#empty()} is returned.
+     * Gets the respawn location for the given world, if available. If the
+     * respawn point for that world has not been set, {@link Optional#empty()}
+     * is returned.
      *
      * @param world The world to check
-     * @return The location and whether it's forced
+     * @return The {@link RespawnLocation}
      */
     default Optional<RespawnLocation> getForWorld(World world) {
         return get(checkNotNull(world, "World cannot be null!").getUniqueId());

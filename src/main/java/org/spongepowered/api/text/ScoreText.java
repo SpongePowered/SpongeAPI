@@ -50,8 +50,8 @@ import javax.annotation.Nullable;
  */
 public final class ScoreText extends Text {
 
-    private final Score score;
-    private final Optional<String> override;
+    final Score score;
+    final Optional<String> override;
 
     ScoreText(Score score) {
         this.score = checkNotNull(score, "score");

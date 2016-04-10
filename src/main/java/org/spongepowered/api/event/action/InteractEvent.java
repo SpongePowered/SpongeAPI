@@ -28,6 +28,8 @@ import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 
+import java.util.Optional;
+
 /**
  * Base event for all interactions.
  */
@@ -37,5 +39,5 @@ public interface InteractEvent extends Event, Cancellable {
      * Gets the point of interaction where the interaction occurred as
      * a {@link Vector3d}.
      */
-   Vector3d getInteractionPoint();
+   Optional<Vector3d> getInteractionPoint();
 }

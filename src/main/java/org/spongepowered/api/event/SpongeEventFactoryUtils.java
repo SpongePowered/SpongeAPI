@@ -50,7 +50,7 @@ import java.util.Map;
  */
 public class SpongeEventFactoryUtils {
 
-    private static final ClassGeneratorProvider factoryProvider = new ClassGeneratorProvider("org.spongepowered.api.event.impl");
+    static final ClassGeneratorProvider factoryProvider = new ClassGeneratorProvider("org.spongepowered.api.event.impl");
 
     public static List<? extends EventFactoryPlugin> plugins = Lists.newArrayList(new AccessorModifierEventFactoryPlugin());
 

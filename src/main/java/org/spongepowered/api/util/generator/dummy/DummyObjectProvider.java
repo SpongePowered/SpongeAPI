@@ -39,7 +39,7 @@ import java.lang.reflect.InvocationTargetException;
  */
 public final class DummyObjectProvider {
 
-    private static final DummyClassGeneratorProvider factoryProvider = new DummyClassGeneratorProvider("org.spongepowered.api.util.dummy");
+    static final DummyClassGeneratorProvider factoryProvider = new DummyClassGeneratorProvider("org.spongepowered.api.util.dummy");
 
     private static final LoadingCache<Class<?>, Class<?>> factories = CacheBuilder.newBuilder().build(
             new CacheLoader<Class<?>, Class<?>>() {

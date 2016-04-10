@@ -150,7 +150,7 @@ public class CommandResult {
         @Nullable
         private Integer queryResult;
 
-        private Builder() {}
+        Builder() {}
 
         /**
          * Sets if the command has been processed.

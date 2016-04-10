@@ -86,7 +86,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     @SuppressWarnings("rawtypes")
     private static final Predicate ONLY_AIR_FILTER = blockTypeFilter(BlockTypes.AIR);
     @SuppressWarnings("rawtypes")
-    private static final Predicate ALL_FILTER = input -> true;
+    static final Predicate ALL_FILTER = input -> true;
 
     private static final Vector3d X_POSITIVE = Vector3d.UNIT_X;
     private static final Vector3d X_NEGATIVE = X_POSITIVE.negate();
@@ -138,7 +138,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     // If hasNext() is called, we need to move ahead to check the next hit
     private boolean ahead;
 
-    private BlockRay(Predicate<BlockRayHit<E>> filter, E extent, Vector3d position, Vector3d direction) {
+    BlockRay(Predicate<BlockRayHit<E>> filter, E extent, Vector3d position, Vector3d direction) {
         checkArgument(direction.lengthSquared() != 0, "Direction cannot be the zero vector");
 
         this.filter = filter;
@@ -543,7 +543,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         private Vector3d direction = null;
         private int blockLimit = DEFAULT_BLOCK_LIMIT;
 
-        private BlockRayBuilder(E extent, Vector3d position) {
+        BlockRayBuilder(E extent, Vector3d position) {
             this.extent = extent;
             this.position = position;
         }
@@ -732,8 +732,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     private static class ContinueAfterFilter<E extends Extent> implements Predicate<BlockRayHit<E>> {
 
         private final Predicate<BlockRayHit<E>> filter;
-        private final int numberOfBlocks;
-        private int extraBlockCount = 0;
+        final int numberOfBlocks;
+        int extraBlockCount = 0;
 
         public ContinueAfterFilter(Predicate<BlockRayHit<E>> filter, int numberOfBlocks) {
             this.filter = filter;
@@ -742,13 +742,13 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
 
         @Override
         public boolean test(BlockRayHit<E> lastHit) {
-            if (extraBlockCount <= 0) {
-                if (!filter.test(lastHit)) {
-                    extraBlockCount = 1;
+            if (this.extraBlockCount <= 0) {
+                if (!this.filter.test(lastHit)) {
+                    this.extraBlockCount = 1;
                 }
                 return true;
             }
-            return extraBlockCount++ < numberOfBlocks;
+            return this.extraBlockCount++ < this.numberOfBlocks;
         }
 
     }
@@ -757,7 +757,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
 
         private final Vector3i target;
 
-        private TargetBlockFilter(Vector3d target) {
+        TargetBlockFilter(Vector3d target) {
             this.target = target.toInt();
         }
 
