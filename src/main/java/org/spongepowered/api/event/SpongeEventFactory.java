@@ -92,6 +92,7 @@ import org.spongepowered.api.event.command.TabCompleteEvent;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 import org.spongepowered.api.event.economy.EconomyTransactionEvent;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
+import org.spongepowered.api.event.entity.AttackEntityEvent;
 import org.spongepowered.api.event.entity.BreedEntityEvent;
 import org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent;
 import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
@@ -1336,6 +1337,28 @@ public class SpongeEventFactory {
         values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(AffectEntityEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.AttackEntityEvent}.
+     * 
+     * @param cause The cause
+     * @param originalFunctions The original functions
+     * @param targetEntity The target entity
+     * @param knockbackModifier The knockback modifier
+     * @param originalDamage The original damage
+     * @return A new attack entity event
+     */
+    public static AttackEntityEvent createAttackEntityEvent(Cause cause, List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions, Entity targetEntity, int knockbackModifier, double originalDamage) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("originalFunctions", originalFunctions);
+        values.put("targetEntity", targetEntity);
+        values.put("knockbackModifier", knockbackModifier);
+        values.put("originalDamage", originalDamage);
+        return SpongeEventFactoryUtils.createEventImpl(AttackEntityEvent.class, values);
     }
 
     /**
