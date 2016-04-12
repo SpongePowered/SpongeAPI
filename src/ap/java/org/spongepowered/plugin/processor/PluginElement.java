@@ -73,7 +73,9 @@ final class PluginElement {
     void apply(Messager messager) {
         String value = this.annotation.get().id();
         if (!ID_PATTERN.matcher(value).matches()) {
-            messager.printMessage(ERROR, "Plugin ID '" + value + "' should match pattern " + ID_PATTERN.pattern(),
+            messager.printMessage(ERROR, "Plugin ID '" + value + "' must match pattern '" + ID_PATTERN.pattern() + "'. "
+                    + "It should be lower case, start with an alphabetic character and may only contain alphanumeric characters, underscores or "
+                    + "dashes.",
                     this.element, this.annotation.getMirror(), this.annotation.getValue("id"));
         }
 
