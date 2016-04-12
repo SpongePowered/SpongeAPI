@@ -44,9 +44,7 @@ public @interface Plugin {
      * not conflict with other plugins.
      *
      * <p>The plugin ID must be lowercase and start with a alphabetic character.
-     * It is recommended to qualify the plugin ID with a unique group identifier
-     * as prefix, e.g. {@code me.spongeplugindev.testplugin}. Usually it is a
-     * good idea to use a group similar to your plugin main class package.</p>
+     * </p>
      *
      * @return The plugin identifier
      * @see <a href="https://goo.gl/MRRYSJ">Java package naming conventions</a>
