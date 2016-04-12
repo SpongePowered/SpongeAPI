@@ -30,7 +30,7 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulatorBuilder;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataContentUpdater;
-import org.spongepowered.api.data.persistence.DataSerializer;
+import org.spongepowered.api.data.persistence.DataTranslator;
 
 import java.util.Optional;
 
@@ -102,7 +102,7 @@ public interface DataManager {
     <T extends DataSerializable> Optional<DataBuilder<T>> getBuilder(Class<T> clazz);
 
     /**
-     * Attempts to deserialize an instance of the {@link DataSerializable} from
+     * Attempts to translate an instance of the {@link DataSerializable} from
      * the provided {@link DataView}. If there is no {@link DataBuilder}
      * registered for the provided {@link DataSerializable}, then
      * {@link Optional#empty()} may be returned.
@@ -188,21 +188,21 @@ public interface DataManager {
         Optional<DataManipulatorBuilder<T, I>> getImmutableManipulatorBuilder(Class<I> immutableManipulatorClass);
 
     /**
-     * Registers a {@link DataSerializer} for the desired class.
+     * Registers a {@link DataTranslator} for the desired class.
      *
      * @param objectClass The class of the object type being managed
-     * @param serializer The serializer for the desired class object
+     * @param translator The translator for the desired class object
      * @param <T> The type of object
      */
-    <T> void registerSerializer(Class<T> objectClass, DataSerializer<T> serializer);
+    <T> void registerTranslator(Class<T> objectClass, DataTranslator<T> translator);
 
     /**
-     * Gets the desired {@link DataSerializer} for the provided class.
+     * Gets the desired {@link DataTranslator} for the provided class.
      *
      * @param objectclass The class of the object
      * @param <T> The type of object
-     * @return The data serializer, if available
+     * @return The data translator, if available
      */
-    <T> Optional<DataSerializer<T>> getSerializer(Class<T> objectclass);
+    <T> Optional<DataTranslator<T>> getTranslator(Class<T> objectclass);
 
 }

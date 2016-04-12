@@ -25,7 +25,7 @@
 package org.spongepowered.api.data.persistence;
 
 /**
- * An exception that occurs when a {@link DataFormat} is unable to deserialize
+ * An exception that occurs when a {@link DataFormat} is unable to translate
  * from a particular input.
  */
 public class InvalidDataFormatException extends UnsupportedOperationException {

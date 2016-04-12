@@ -66,4 +66,12 @@ public final class DummyObjectProvider {
         }
     }
 
+    public static <T, I extends T> I createExtendedFor(Class<T> type, String fieldName) {
+        try {
+            return (I) factories.getUnchecked(type).getConstructor(String.class).newInstance(fieldName);
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            throw new RuntimeException(String.format("Failed to instantiate dummy class for class %s", type), e);
+        }
+    }
+
 }

@@ -229,7 +229,7 @@ public interface ItemStack extends DataHolder, DataSerializable, Translatable {
          * Attempts to reconstruct the builder with all of the data from
          * {@link ItemStack#toContainer()} including all custom data.
          *
-         * @param container The container to deserialize
+         * @param container The container to translate
          * @return This bulder, for chaining
          */
         Builder fromContainer(DataView container);

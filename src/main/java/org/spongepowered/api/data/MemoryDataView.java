@@ -39,7 +39,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.persistence.DataSerializer;
+import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.util.Coerce;
 
@@ -255,9 +255,9 @@ public class MemoryDataView implements DataView {
             copyDataView(path, valueContainer);
         } else if (value instanceof CatalogType) {
             return set(path, ((CatalogType) value).getId());
-        } else if (manager != null && manager.getSerializer(value.getClass()).isPresent()) {
-            DataSerializer serializer = manager.getSerializer(value.getClass()).get();
-            final DataContainer container = serializer.serialize(value);
+        } else if (manager != null && manager.getTranslator(value.getClass()).isPresent()) {
+            DataTranslator serializer = manager.getTranslator(value.getClass()).get();
+            final DataContainer container = serializer.translate(value);
             checkArgument(!container.equals(this), "Cannot insert self-referencing Objects!");
             copyDataView(path, container);
         } else {
@@ -783,17 +783,17 @@ public class MemoryDataView implements DataView {
     @Override
     public <T> Optional<T> getObject(DataQuery path, Class<T> objectClass) {
         return getView(path).flatMap(view ->
-                Sponge.getDataManager().getSerializer(objectClass)
-                        .flatMap(serializer -> serializer.deserialize(view))
+                Sponge.getDataManager().getTranslator(objectClass)
+                        .flatMap(serializer -> serializer.translate(view))
         );
     }
 
     @Override
     public <T> Optional<List<T>> getObjectList(DataQuery path, Class<T> objectClass) {
         return getViewList(path).flatMap(viewList ->
-                Sponge.getDataManager().getSerializer(objectClass).map(serializer ->
+                Sponge.getDataManager().getTranslator(objectClass).map(serializer ->
                         viewList.stream()
-                                .map(serializer::deserialize)
+                                .map(serializer::translate)
                                 .filter(Optional::isPresent)
                                 .map(Optional::get)
                                 .collect(Collectors.toList())

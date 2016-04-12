@@ -25,43 +25,46 @@
 package org.spongepowered.api.data.persistence;
 
 import com.google.common.reflect.TypeToken;
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.MemoryDataView;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
 
 /**
- * A compatibility object to serialize and deserialize any type of
+ * A compatibility object to translate and translate any type of
  * {@link Object} that is not a {@link DataSerializable}. Natively,
- * {@link MemoryDataView} will attempt to locate a {@code DataSerializer}
+ * {@link MemoryDataView} will attempt to locate a {@code DataTranslator}
  * during {@link DataView#set(DataQuery, Object)}.
  *
  * @param <T> The type of object that this serializer and handle
  */
-public interface DataSerializer<T> {
+@CatalogedBy(DataTranslators.class)
+public interface DataTranslator<T> extends CatalogType {
 
     TypeToken<T> getToken();
 
     /**
-     * Attempts to deserialize the {@code T} object from the provided
+     * Attempts to translate the {@code T} object from the provided
      * {@link DataView}.
      *
-     * @param view The data view to deserialize the object from
+     * @param view The data view to translate the object from
      * @return The object, deserialized, if available
      * @throws InvalidDataException If the dataview contained invalid data
      */
-    Optional<T> deserialize(DataView view) throws InvalidDataException;
+    Optional<T> translate(DataView view) throws InvalidDataException;
 
     /**
      * Serializes the provided object to a {@link DataContainer}.
      *
-     * @param obj The object to serialize
+     * @param obj The object to translate
      * @return The object serialized to a container
      * @throws InvalidDataException If the desired object is not supported
      *     for any reason
      */
-    DataContainer serialize(T obj) throws InvalidDataException;
+    DataContainer translate(T obj) throws InvalidDataException;
 }
