@@ -30,6 +30,7 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.schematic.Schematic;
 
 /**
  * Represents an abstract Tile Entity. It is a functional block that is
@@ -87,5 +88,13 @@ public interface TileEntity extends DataHolder, DataSerializable, Locatable {
      * @return The blockstate
      */
     BlockState getBlock();
+
+    /**
+     * Creates a new {@link TileEntityArchetype} for use with {@link Schematic}s and
+     * placing the archetype in multiple locations.
+     *
+     * @return The created archetype for re-creating this tile entity
+     */
+    TileEntityArchetype createArchetype();
 
 }

@@ -41,12 +41,12 @@ public interface DataHolder extends DataSerializable, PropertyHolder, CompositeV
      * invalid data, <code>false</code> is returned.
      *
      * <p>This validation should be checked prior to calling
-     * {@link #setRawData(DataContainer)} to avoid exceptions.</p>
+     * {@link #setRawData(DataView)} to avoid exceptions.</p>
      *
      * @param container The raw data to validate
      * @return True if the data is valid
      */
-    boolean validateRawData(DataContainer container);
+    boolean validateRawData(DataView container);
 
     /**
      * Attempts to set all data of this {@link DataHolder} according to the
@@ -65,5 +65,5 @@ public interface DataHolder extends DataSerializable, PropertyHolder, CompositeV
      * @throws InvalidDataException If the container is missing or has invalid
      *     data that this holder will refuse
      */
-    void setRawData(DataContainer container) throws InvalidDataException;
+    void setRawData(DataView container) throws InvalidDataException;
 }

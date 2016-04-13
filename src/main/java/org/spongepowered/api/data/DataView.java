@@ -579,4 +579,6 @@ public interface DataView {
      */
     DataContainer copy();
 
+    boolean isEmpty();
+
 }

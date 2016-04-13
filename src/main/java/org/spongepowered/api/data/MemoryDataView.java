@@ -814,6 +814,11 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
+    public boolean isEmpty() {
+        return this.map.isEmpty();
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hashCode(this.map, this.path);
     }

@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.schematic;
 
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.block.BlockArchetype;
+import org.spongepowered.api.block.tileentity.TileEntityArchetype;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
@@ -36,13 +36,13 @@ import java.util.Optional;
 
 public interface SchematicVolume extends MutableBlockVolume {
 
-    Optional<BlockArchetype> getBlockArchetype(int x, int y, int z);
+    Optional<TileEntityArchetype> getBlockArchetype(int x, int y, int z);
 
-    default Optional<BlockArchetype> getBlockArchetype(Vector3i position) {
+    default Optional<TileEntityArchetype> getBlockArchetype(Vector3i position) {
         return getBlockArchetype(position.getX(), position.getY(), position.getZ());
     }
 
-    Map<Vector3i, BlockArchetype> getBlockArchetypes();
+    Map<Vector3i, TileEntityArchetype> getBlockArchetypes();
 
     Collection<EntityArchetype> getEntityArchetypes();
 

@@ -42,6 +42,7 @@ import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
+import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.Queries;
@@ -661,12 +662,12 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public boolean validateRawData(DataContainer container) {
+    public boolean validateRawData(DataView container) {
         return getExtent().validateRawData(getBlockPosition(), container);
     }
 
     @Override
-    public void setRawData(DataContainer container) throws InvalidDataException {
+    public void setRawData(DataView container) throws InvalidDataException {
         getExtent().setRawData(getBlockPosition(), container);
     }
 
