@@ -3982,6 +3982,34 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.network.ClientConnectionEvent.Handshake}.
+     * 
+     * @param cause The cause
+     * @param formatter The formatter
+     * @param gameProfile The game profile
+     * @param handshakeString The handshake string
+     * @param serverHostname The server hostname
+     * @param socketAddressHostname The socket address hostname
+     * @param failed The failed
+     * @param messageCancelled The message cancelled
+     * @return A new handshake client connection event
+     */
+    public static ClientConnectionEvent.Handshake createClientConnectionEventHandshake(Cause cause, MessageEvent.MessageFormatter formatter, Optional<GameProfile> gameProfile, String handshakeString, Optional<String> serverHostname, Optional<String> socketAddressHostname, boolean failed, boolean messageCancelled) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("formatter", formatter);
+        values.put("gameProfile", gameProfile);
+        values.put("handshakeString", handshakeString);
+        values.put("serverHostname", serverHostname);
+        values.put("socketAddressHostname", socketAddressHostname);
+        values.put("failed", failed);
+        values.put("messageCancelled", messageCancelled);
+        return SpongeEventFactoryUtils.createEventImpl(ClientConnectionEvent.Handshake.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.network.ClientConnectionEvent.Join}.
      * 
      * @param cause The cause

@@ -42,6 +42,8 @@ import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.world.World;
 
 import java.net.InetAddress;
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Represents an event fired during the login process.
@@ -60,6 +62,94 @@ import java.net.InetAddress;
  * with the player at well-defined moments during the connection process.
  */
 public interface ClientConnectionEvent extends Event {
+
+    /**
+     * Called when a client attempts to handshake against the server.
+     */
+    interface Handshake extends ClientConnectionEvent, MessageEvent, Cancellable {
+
+        /**
+         * Gets the original handshake string.
+         *
+         * @return The original handshake string
+         */
+        String getHandshakeString();
+
+        /**
+         * Gets the server hostname string.
+         *
+         * <p>This should not include the port.</p>
+         *
+         * @return The server hostname string if present, or {@link Optional#empty()}
+         */
+        Optional<String> getServerHostname();
+
+        /**
+         * Sets the server hostname string.
+         *
+         * <p>This should not include the port.</p>
+         *
+         * @param serverHostname The server hostname string
+         */
+        void setServerHostname(String serverHostname);
+
+        /**
+         * Gets the socket address hostname string.
+         *
+         * <p>This should not include the port.</p>
+         *
+         * @return The socket address hostname string if
+         *     present, or {@link Optional#empty()}
+         */
+        Optional<String> getSocketAddressHostname();
+
+        /**
+         * Sets the socket address hostname string.
+         *
+         * <p>This should not include the port.</p>
+         *
+         * @param socketAddressHostname The socket address hostname string
+         */
+        void setSocketAddressHostname(String socketAddressHostname);
+
+        /**
+         * Gets the resolved {@link GameProfile} of this client.
+         *
+         * @return The resolved profile if present, or {@link Optional#empty()}
+         */
+        Optional<GameProfile> getGameProfile();
+
+        /**
+         * Sets the resolved profile of this client.
+         *
+         * <p>The profile is used to retrieve the {@link UUID}
+         * and profile properties for this client.</p>
+         *
+         * @param profile The resolved profile
+         */
+        void setGameProfile(GameProfile profile);
+
+        /**
+         * Determines if the handshake failed.
+         *
+         * <p>When {@code true}, the client connecting will be disconnected
+         * with the {@link #getMessage()} () fail message}.</p>
+         *
+         * @return {@code true} if authentication failed, {@code false} otherwise
+         */
+        boolean isFailed();
+
+        /**
+         * Sets if the handshake failed and the client should be disconnected.
+         *
+         * <p>When {@code true}, the client connecting will be disconnected
+         * with the {@link #getMessage()} () fail message}.</p>
+         *
+         * @param failed {@code true} if authentication failed, {@code false}
+         *     otherwise
+         */
+        void setFailed(boolean failed);
+    }
 
     /**
      * Called asynchronously when the client attempts to authenticate against
