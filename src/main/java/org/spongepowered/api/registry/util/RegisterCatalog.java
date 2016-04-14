@@ -33,9 +33,10 @@ import java.lang.annotation.Target;
 import java.util.Map;
 
 /**
- * An annotation to mark a {@link Map} where it's of type {@code Map<String, CatalogType>}
- * such that it is used with a helper to register the static fields of
- * various pseudo enum classes containing "default" {@link CatalogType}s.
+ * An annotation to mark a {@link Map} where it's of type
+ * {@code Map<String, CatalogType>} such that it is used with a helper to
+ * register the static fields of various pseudo enum classes containing
+ * "default" {@link CatalogType}s.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
@@ -47,5 +48,13 @@ public @interface RegisterCatalog {
      * @return The class to register the values to
      */
     Class<?> value();
+
+    /**
+     * Gets an array of field names that are to be ignored when mapping fields
+     * on the target class.
+     *
+     * @return Ignored field names
+     */
+    String[] ignoredFields() default {};
 
 }
