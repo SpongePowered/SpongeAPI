@@ -346,7 +346,7 @@ public final class SimpleDispatcher implements Dispatcher {
     public CommandResult process(CommandSource source, String commandLine) throws CommandException {
         final String[] argSplit = commandLine.split(" ", 2);
         final CommandCallable spec;
-        if (this.baseCommand.isPresent() && !StringUtils.isEmpty(argSplit[0])) {
+        if (!this.baseCommand.isPresent() && !StringUtils.isEmpty(argSplit[0])) {
             Optional<CommandMapping> cmdOptional = get(argSplit[0], source);
             if (!cmdOptional.isPresent()) {
                 throw new CommandNotFoundException(t("commands.generic.notFound"), argSplit[0]); // TODO: Fix properly to use a SpongeTranslation??
