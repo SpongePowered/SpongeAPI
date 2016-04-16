@@ -25,8 +25,8 @@
 package org.spongepowered.api.command.dispatcher;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.command.CommandMessageFormatting.SPACE_TEXT;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
@@ -35,12 +35,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.action.TextActions;
-import org.spongepowered.api.text.format.TextColors;
-import org.spongepowered.api.text.format.TextStyles;
-import org.spongepowered.api.util.GuavaCollectors;
-import org.spongepowered.api.util.StartsWithPredicate;
+import org.apache.commons.lang3.StringUtils;
 import org.spongepowered.api.command.CommandCallable;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandMapping;
@@ -49,6 +44,12 @@ import org.spongepowered.api.command.CommandNotFoundException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.ImmutableCommandMapping;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.action.TextActions;
+import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.text.format.TextStyles;
+import org.spongepowered.api.util.GuavaCollectors;
+import org.spongepowered.api.util.StartsWithPredicate;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -83,11 +84,22 @@ public final class SimpleDispatcher implements Dispatcher {
     private final Disambiguator disambiguatorFunc;
     private final ListMultimap<String, CommandMapping> commands = ArrayListMultimap.create();
 
+    private Optional<CommandCallable> baseCommand;
+
     /**
      * Creates a basic new dispatcher.
      */
     public SimpleDispatcher() {
         this(FIRST_DISAMBIGUATOR);
+    }
+
+    /**
+     * Creates a new dispatcher with a specific base command.
+     *
+     * @param baseCommand CommandCallable for the top-level command
+     */
+    public SimpleDispatcher(CommandCallable baseCommand) {
+        this(FIRST_DISAMBIGUATOR, baseCommand);
     }
 
     /**
@@ -97,6 +109,18 @@ public final class SimpleDispatcher implements Dispatcher {
      */
     public SimpleDispatcher(Disambiguator disambiguatorFunc) {
         this.disambiguatorFunc = disambiguatorFunc;
+        this.baseCommand = Optional.empty();
+    }
+
+    /**
+     * Creates a new dispatcher with a specific disambiguator and base command.
+     *
+     * @param disambiguatorFunc Function that returns the preferred command if multiple exist for a given alias
+     * @param baseCommand CommandCallable for the top-level command
+     */
+    public SimpleDispatcher(Disambiguator disambiguatorFunc, CommandCallable baseCommand) {
+        this.disambiguatorFunc = disambiguatorFunc;
+        this.baseCommand = Optional.of(baseCommand);
     }
 
     /**
@@ -321,12 +345,17 @@ public final class SimpleDispatcher implements Dispatcher {
     @Override
     public CommandResult process(CommandSource source, String commandLine) throws CommandException {
         final String[] argSplit = commandLine.split(" ", 2);
-        Optional<CommandMapping> cmdOptional = get(argSplit[0], source);
-        if (!cmdOptional.isPresent()) {
-            throw new CommandNotFoundException(t("commands.generic.notFound"), argSplit[0]); // TODO: Fix properly to use a SpongeTranslation??
+        final CommandCallable spec;
+        if (this.baseCommand.isPresent() && !StringUtils.isEmpty(argSplit[0])) {
+            Optional<CommandMapping> cmdOptional = get(argSplit[0], source);
+            if (!cmdOptional.isPresent()) {
+                throw new CommandNotFoundException(t("commands.generic.notFound"), argSplit[0]); // TODO: Fix properly to use a SpongeTranslation??
+            }
+            spec = cmdOptional.get().getCallable();
+        } else {
+            spec = this.baseCommand.get();
         }
         final String arguments = argSplit.length > 1 ? argSplit[1] : "";
-        final CommandCallable spec = cmdOptional.get().getCallable();
         try {
             return spec.process(source, arguments);
         } catch (CommandNotFoundException e) {
