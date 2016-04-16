@@ -30,7 +30,6 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -41,7 +40,7 @@ import javax.annotation.Nullable;
  * <p>Implementations are not required to implement a sane
  * {@link Object#equals(Object)} but really should.</p>
  */
-public interface CommandCallable {
+public interface CommandCallable extends CommandDescription {
 
     /**
      * Execute the command based on input arguments.
@@ -83,45 +82,4 @@ public interface CommandCallable {
      * @return Whether permission is (probably) granted
      */
     boolean testPermission(CommandSource source);
-
-    /**
-     * Gets a short one-line description of this command.
-     *
-     * <p>The help system may display the description in the command list.</p>
-     *
-     * @param source The source of the help request
-     * @return A description
-     */
-    Optional<Text> getShortDescription(CommandSource source);
-
-    /**
-     * Gets a longer formatted help message about this command.
-     *
-     * <p>It is recommended to use the default text color and style. Sections
-     * with text actions (e.g. hyperlinks) should be underlined.</p>
-     *
-     * <p>Multi-line messages can be created by separating the lines with
-     * {@code \n}.</p>
-     *
-     * <p>The help system may display this message when a source requests
-     * detailed information about a command.</p>
-     *
-     * @param source The source of the help request
-     * @return A help text
-     */
-    Optional<Text> getHelp(CommandSource source);
-
-    /**
-     * Gets the usage string of this command.
-     *
-     * <p>A usage string may look like
-     * {@code [-w &lt;world&gt;] &lt;var1&gt; &lt;var2&gt;}.</p>
-     *
-     * <p>The string must not contain the command alias.</p>
-     *
-     * @param source The source of the help request
-     * @return A usage string
-     */
-    Text getUsage(CommandSource source);
-
 }

@@ -1,0 +1,76 @@
+/*
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+ *
+ * Copyright (c) SpongePowered <https://www.spongepowered.org>
+ * Copyright (c) contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+package org.spongepowered.api.command;
+
+import org.spongepowered.api.text.Text;
+
+import java.util.Optional;
+
+/**
+ * Provides descriptive information about a command.
+ */
+public interface CommandDescription {
+
+    /**
+     * Get a short one-line description of this command.
+     *
+     * <p>The help system may display the description in the command list.</p>
+     *
+     * @param source The source of the help request
+     * @return A description
+     */
+    Optional<Text> getShortDescription(CommandSource source);
+
+    /**
+     * Get a longer formatted help message about this command.
+     *
+     * <p>It is recommended to use the default text color and style. Sections
+     * with text actions (e.g. hyperlinks) should be underlined.</p>
+     *
+     * <p>Multi-line messages can be created by separating the lines with
+     * {@code \n}.</p>
+     *
+     * <p>The help system may display this message when a source requests
+     * detailed information about a command.</p>
+     *
+     * @param source The source of the help request
+     * @return A help text
+     */
+    Optional<Text> getHelp(CommandSource source);
+
+    /**
+     * Get the usage string of this command.
+     *
+     * <p>A usage string may look like
+     * {@code [-w &lt;world&gt;] &lt;var1&gt; &lt;var2&gt;}.</p>
+     *
+     * <p>The string must not contain the command alias.</p>
+     *
+     * @param source The source of the help request
+     * @return A usage string
+     */
+    Text getUsage(CommandSource source);
+
+}

@@ -35,14 +35,17 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
+import org.spongepowered.api.command.CommandAuthorizer;
 import org.spongepowered.api.command.CommandCallable;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandMapping;
 import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandNotFoundException;
+import org.spongepowered.api.command.CommandPermissionException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.ImmutableCommandMapping;
+import org.spongepowered.api.command.ModuleCommandMapping;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.action.TextActions;
 import org.spongepowered.api.text.format.TextColors;
@@ -60,6 +63,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -81,9 +85,15 @@ public final class SimpleDispatcher implements Dispatcher {
         }
         return Optional.of(availableOptions.get(0));
     };
+    /**
+     * A {@link BiFunction} which creates an {@link ImmutableCommandMapping}.
+     */
+    public static final BiFunction<CommandCallable, List<String>, CommandMapping> IMMUTABLE_COMMAND_MAPPING_FACTORY =
+            (callable, aliases) -> new ImmutableCommandMapping(callable, aliases.get(0), aliases.subList(1, aliases.size()));
 
     private final Disambiguator disambiguatorFunc;
     private final ListMultimap<String, CommandMapping> commands = ArrayListMultimap.create();
+    @Nullable private CommandCallable defaultCommand;
 
     /**
      * Creates a basic new dispatcher.
@@ -99,7 +109,27 @@ public final class SimpleDispatcher implements Dispatcher {
      *     multiple exist for a given alias
      */
     public SimpleDispatcher(Disambiguator disambiguatorFunc) {
+        this(disambiguatorFunc, null);
+    }
+
+    /**
+     * Creates a new dispatcher with a default command.
+     *
+     * @param defaultCommand The command to use as a default/fallback
+     */
+    public SimpleDispatcher(@Nullable CommandCallable defaultCommand) {
+        this(FIRST_DISAMBIGUATOR, defaultCommand);
+    }
+
+    /**
+     * Creates a new dispatcher with a specific disambiguator.
+     *
+     * @param disambiguatorFunc Function that returns the preferred command if multiple exist for a given alias
+     * @param defaultCommand The command to use as a default/fallback
+     */
+    public SimpleDispatcher(Disambiguator disambiguatorFunc, @Nullable CommandCallable defaultCommand) {
         this.disambiguatorFunc = disambiguatorFunc;
+        this.defaultCommand = defaultCommand;
     }
 
     /**
@@ -165,6 +195,32 @@ public final class SimpleDispatcher implements Dispatcher {
      */
     public synchronized Optional<CommandMapping> register(CommandCallable callable, List<String> aliases,
             Function<List<String>, List<String>> callback) {
+        return this.register(callable, aliases, callback, IMMUTABLE_COMMAND_MAPPING_FACTORY);
+    }
+
+    /**
+     * Register a given command using a given list of aliases.
+     *
+     * <p>The provided callback function will be called with a list of aliases
+     * that are not taken (from the list of aliases that were requested) and
+     * it should return a list of aliases to actually register. Aliases may be
+     * removed, and if no aliases remain, then the command will not be
+     * registered. It may be possible that no aliases are available, and thus
+     * the callback would receive an empty list. New aliases should not be added
+     * to the list in the callback as this may cause
+     * {@link IllegalArgumentException} to be thrown.</p>
+     *
+     * <p>The first non-conflicted alias becomes the "primary alias."</p>
+     *
+     * @param callable The command
+     * @param aliases A list of aliases
+     * @param callback The callback
+     * @param mappingCreator The bi function which creates a {@link CommandMapping}
+     *     for the command callable
+     * @return The registered command mapping, unless no aliases could be registered
+     */
+    public synchronized Optional<CommandMapping> register(CommandCallable callable, List<String> aliases,
+            Function<List<String>, List<String>> callback, BiFunction<CommandCallable, List<String>, CommandMapping> mappingCreator) {
         checkNotNull(aliases, "aliases");
         checkNotNull(callable, "callable");
         checkNotNull(callback, "callback");
@@ -173,9 +229,7 @@ public final class SimpleDispatcher implements Dispatcher {
         // noinspection ConstantConditions
         aliases = ImmutableList.copyOf(callback.apply(aliases));
         if (!aliases.isEmpty()) {
-            String primary = aliases.get(0);
-            List<String> secondary = aliases.subList(1, aliases.size());
-            CommandMapping mapping = new ImmutableCommandMapping(callable, primary, secondary);
+            CommandMapping mapping = mappingCreator.apply(callable, aliases);
 
             for (String alias : aliases) {
                 this.commands.put(alias.toLowerCase(), mapping);
@@ -261,6 +315,15 @@ public final class SimpleDispatcher implements Dispatcher {
         return found;
     }
 
+    /**
+     * Sets the default/fallback command.
+     *
+     * @param defaultCommand The default/fallback command
+     */
+    public void setDefaultCommand(@Nullable CommandCallable defaultCommand) {
+        this.defaultCommand = defaultCommand;
+    }
+
     @Override
     public synchronized Set<CommandMapping> getCommands() {
         return ImmutableSet.copyOf(this.commands.values());
@@ -326,16 +389,40 @@ public final class SimpleDispatcher implements Dispatcher {
     @Override
     public CommandResult process(CommandSource source, String commandLine) throws CommandException {
         final String[] argSplit = commandLine.split(" ", 2);
-        Optional<CommandMapping> cmdOptional = get(argSplit[0], source);
-        if (!cmdOptional.isPresent()) {
+        final String arguments = argSplit.length > 1 ? argSplit[1] : "";
+        if (argSplit[0].isEmpty() && this.defaultCommand != null) {
+            return this.defaultCommand.process(source, arguments);
+        }
+
+        Optional<CommandMapping> optMapping = get(argSplit[0], source);
+        if (!optMapping.isPresent()) {
             throw new CommandNotFoundException(t("commands.generic.notFound"), argSplit[0]); // TODO: Fix properly to use a SpongeTranslation??
         }
-        final String arguments = argSplit.length > 1 ? argSplit[1] : "";
-        final CommandCallable spec = cmdOptional.get().getCallable();
+
+        final CommandMapping mapping = optMapping.get();
+        final CommandCallable spec = mapping.getCallable();
+
+        // Ensure the source has permission
+        if (!this.getAuthorizer(mapping).test(source, spec)) {
+            throw new CommandPermissionException();
+        }
+
         try {
             return spec.process(source, arguments);
         } catch (CommandNotFoundException e) {
+            if (this.defaultCommand != null && argSplit.length == 1) {
+                return this.defaultCommand.process(source, arguments);
+            }
+
             throw new CommandException(t("No such child command: %s", e.getCommand()));
+        }
+    }
+
+    protected CommandAuthorizer getAuthorizer(CommandMapping mapping) {
+        if (mapping instanceof ModuleCommandMapping) {
+            return ((ModuleCommandMapping) mapping).getModule().getAuthorizer();
+        } else {
+            return CommandAuthorizer.CALLABLE;
         }
     }
 
@@ -357,6 +444,9 @@ public final class SimpleDispatcher implements Dispatcher {
             if (mapping.getCallable().testPermission(source)) {
                 return true;
             }
+        }
+        if (this.commands.isEmpty() && this.defaultCommand != null) {
+            return this.defaultCommand.testPermission(source);
         }
         return false;
     }

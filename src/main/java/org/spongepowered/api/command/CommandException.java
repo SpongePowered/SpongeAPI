@@ -36,9 +36,12 @@ public class CommandException extends TextMessageException {
     private static final long serialVersionUID = 4626722485860074825L;
 
     private final boolean includeUsage;
+    private final boolean friendly;
 
     /**
      * Constructs a new {@link CommandException} with the given message.
+     *
+     * <p>This exception is "friendly", and can be displayed to users.</p>
      *
      * @param message The detail message
      */
@@ -49,6 +52,8 @@ public class CommandException extends TextMessageException {
     /**
      * Constructs a new {@link CommandException} with the given message and
      * the given cause.
+     *
+     * <p>This exception is "friendly", and can be displayed to users.</p>
      *
      * @param message The detail message
      * @param cause The cause
@@ -64,8 +69,21 @@ public class CommandException extends TextMessageException {
      * @param includeUsage Whether to include usage in the exception
      */
     public CommandException(Text message, boolean includeUsage) {
+        this(message, includeUsage, true);
+    }
+
+    /**
+     * Constructs a new {@link CommandException} with the given message.
+     *
+     * @param message The detail message
+     * @param includeUsage If the command usage should be included
+     * @param friendly If this exception is friendly and can
+     *     be displayed to users
+     */
+    public CommandException(Text message, boolean includeUsage, boolean friendly) {
         super(message);
         this.includeUsage = includeUsage;
+        this.friendly = friendly;
     }
 
     /**
@@ -77,8 +95,23 @@ public class CommandException extends TextMessageException {
      * @param includeUsage Whether to include the usage in the exception
      */
     public CommandException(Text message, Throwable cause, boolean includeUsage) {
+        this(message, cause, includeUsage, true);
+    }
+
+    /**
+     * Constructs a new {@link CommandException} with the given message and
+     * the given cause.
+     *
+     * @param message The detail message
+     * @param cause The cause
+     * @param includeUsage If the command usage should be included
+     * @param friendly If this exception is friendly and can
+     *     be displayed to users
+     */
+    public CommandException(Text message, Throwable cause, boolean includeUsage, boolean friendly) {
         super(message, cause);
         this.includeUsage = includeUsage;
+        this.friendly = friendly;
     }
 
     /**
@@ -90,4 +123,14 @@ public class CommandException extends TextMessageException {
     public boolean shouldIncludeUsage() {
         return this.includeUsage;
     }
+
+    /**
+     * Gets if this exception is "friendly".
+     *
+     * @return If this exception is friendly.
+     */
+    public boolean isFriendly() {
+        return this.friendly;
+    }
+
 }

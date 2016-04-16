@@ -36,7 +36,7 @@ import java.util.Set;
  * An immutable command mapping instance that returns the same objects that
  * this instance is constructed with.
  */
-public final class ImmutableCommandMapping implements CommandMapping {
+public class ImmutableCommandMapping implements CommandMapping {
 
     private final String primary;
     private final Set<String> aliases;

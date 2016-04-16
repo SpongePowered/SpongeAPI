@@ -71,6 +71,15 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
     }
 
     /**
+     * Gets the dispatcher used by this child command executor.
+     *
+     * @return The dispatcher
+     */
+    public SimpleDispatcher getDispatcher() {
+        return this.dispatcher;
+    }
+
+    /**
      * Register a child command for a given set of aliases.
      *
      * @param callable The command to register
