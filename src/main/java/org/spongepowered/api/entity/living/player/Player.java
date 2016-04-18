@@ -38,6 +38,7 @@ import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.gui.window.Window;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.network.PlayerConnection;
@@ -101,6 +102,31 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
      * @return whether or not closing the inventory succeeded
      */
     boolean closeInventory(Cause cause) throws IllegalArgumentException;
+
+    /**
+     * Gets the active {@link Window} displayed to the player, or
+     * {@link Optional#empty} if no window is shown or otherwise detected from
+     * the server.
+     *
+     * @return The active window, if available
+     */
+    Optional<Window> getActiveWindow();
+
+    /**
+     * Closes the active window if possible.
+     *
+     * @return True if the window was closed
+     */
+    boolean closeActiveWindow();
+
+    /**
+     * Shows the window to the player. If the window is already being shown to
+     * another player then this returns false.
+     *
+     * @param window The window to show
+     * @return Whether it was shown to the player
+     */
+    boolean showWindow(Window window);
 
     /**
      * Gets the view distance setting of the player. This value represents the
