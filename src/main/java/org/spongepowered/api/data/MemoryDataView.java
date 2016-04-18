@@ -317,6 +317,14 @@ public class MemoryDataView implements DataView {
     @SuppressWarnings({"unchecked", "rawtypes"})
     private void setCollection(String key, Collection<?> value) {
         ImmutableList.Builder<Object> builder = ImmutableList.builder();
+        @Nullable DataManager manager;
+
+        try {
+            manager = Sponge.getDataManager();
+        } catch (Exception e) {
+            manager = null;
+        }
+
         for (Object object : value) {
             if (object instanceof DataSerializable) {
                 builder.add(((DataSerializable) object).toContainer());
@@ -332,7 +340,18 @@ public class MemoryDataView implements DataView {
             } else if (object instanceof Collection) {
                 builder.add(ensureSerialization((Collection) object));
             } else {
-                builder.add(object);
+                if (manager != null) {
+                    final Optional<? extends DataSerializer<?>> serializerOptional = manager.getSerializer(object.getClass());
+                    if (serializerOptional.isPresent()) {
+                        DataSerializer serializer = serializerOptional.get();
+                        final DataContainer container = serializer.serialize(value);
+                        checkArgument(!container.equals(this), "Cannot insert self-referencing Objects!");
+                        copyDataView(this.path, container);
+                    }
+                } else {
+                    builder.add(object);
+                }
+
             }
         }
         this.map.put(key, builder.build());
@@ -788,7 +807,7 @@ public class MemoryDataView implements DataView {
                         get(query).ifPresent(obj ->
                                 container.set(query, obj)
                         )
-        );
+                );
         return container;
     }
 
