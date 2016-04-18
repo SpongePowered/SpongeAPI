@@ -347,6 +347,8 @@ public class MemoryDataView implements DataView {
                         final DataContainer container = serializer.serialize(value);
                         checkArgument(!container.equals(this), "Cannot insert self-referencing Objects!");
                         copyDataView(this.path, container);
+                    } else {
+                        builder.add(object);
                     }
                 } else {
                     builder.add(object);
