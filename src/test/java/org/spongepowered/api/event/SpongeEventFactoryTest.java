@@ -40,6 +40,7 @@ import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
+import org.spongepowered.api.event.entity.AttackEntityEvent;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.HealEntityEvent;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
@@ -68,7 +69,7 @@ import javax.annotation.Nullable;
 public class SpongeEventFactoryTest {
 
     private static final Set<Class<?>> excludedEvents = Sets.newHashSet(DamageEntityEvent.class, HealEntityEvent.class,
-        AITaskEvent.class, AITaskEvent.Add.class, AITaskEvent.Remove.class);
+        AITaskEvent.class, AITaskEvent.Add.class, AITaskEvent.Remove.class, AttackEntityEvent.class);
 
     // We need to keep a reference to any mocked Extent passed into a Location,
     // to ensure that it is not GC'd for the duration of a test. This list

@@ -75,6 +75,13 @@ public final class DamageModifierTypes {
     public static final DamageModifierType BLOCKING = DummyObjectProvider.createFor(DamageModifierType.class, "BLOCKING");
 
     /**
+     * Represents the {@link DamageModifier} that will modify damage output
+     * based on the fact that the attacking source is critically hitting the
+     * target.
+     */
+    public static final DamageModifierType CRITICAL_HIT = DummyObjectProvider.createFor(DamageModifierType.class, "CRITICAL_HIT");
+
+    /**
      * Represents a {@link DamageModifier} that will reduce damage based on
      * the {@link PotionEffectTypes#RESISTANCE} or any other
      * {@link PotionEffectType} that can be deemed as reducing incoming damage.

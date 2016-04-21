@@ -94,6 +94,7 @@ import org.spongepowered.api.event.command.TabCompleteEvent;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 import org.spongepowered.api.event.economy.EconomyTransactionEvent;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
+import org.spongepowered.api.event.entity.AttackEntityEvent;
 import org.spongepowered.api.event.entity.BreedEntityEvent;
 import org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent;
 import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
@@ -206,6 +207,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.chat.ChatVisibility;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.ban.Ban;
 import org.spongepowered.api.world.Chunk;
@@ -770,14 +772,22 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Secondary}.
      * 
      * @param cause The cause
+     * @param originalUseBlockResult The original use block result
+     * @param useBlockResult The use block result
+     * @param originalUseItemResult The original use item result
+     * @param useItemResult The use item result
      * @param interactionPoint The interaction point
      * @param targetBlock The target block
      * @param targetSide The target side
      * @return A new secondary interact block event
      */
-    public static InteractBlockEvent.Secondary createInteractBlockEventSecondary(Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+    public static InteractBlockEvent.Secondary createInteractBlockEventSecondary(Cause cause, Tristate originalUseBlockResult, Tristate useBlockResult, Tristate originalUseItemResult, Tristate useItemResult, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
+        values.put("originalUseBlockResult", originalUseBlockResult);
+        values.put("useBlockResult", useBlockResult);
+        values.put("originalUseItemResult", originalUseItemResult);
+        values.put("useItemResult", useItemResult);
         values.put("interactionPoint", interactionPoint);
         values.put("targetBlock", targetBlock);
         values.put("targetSide", targetSide);
@@ -1238,6 +1248,28 @@ public class SpongeEventFactory {
         values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(AffectEntityEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.AttackEntityEvent}.
+     * 
+     * @param cause The cause
+     * @param originalFunctions The original functions
+     * @param targetEntity The target entity
+     * @param knockbackModifier The knockback modifier
+     * @param originalDamage The original damage
+     * @return A new attack entity event
+     */
+    public static AttackEntityEvent createAttackEntityEvent(Cause cause, List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions, Entity targetEntity, int knockbackModifier, double originalDamage) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("originalFunctions", originalFunctions);
+        values.put("targetEntity", targetEntity);
+        values.put("knockbackModifier", knockbackModifier);
+        values.put("originalDamage", originalDamage);
+        return SpongeEventFactoryUtils.createEventImpl(AttackEntityEvent.class, values);
     }
 
     /**

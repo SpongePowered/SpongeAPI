@@ -31,6 +31,7 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.ImmutableDataBuilder;
 import org.spongepowered.api.data.LocatableSnapshot;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -43,6 +44,11 @@ import java.util.UUID;
  * may be associated with it, including {@link TileEntity} related data..
  */
 public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
+
+    /**
+     * Represents a BlockSnapshot with a {@link BlockState#AIR} and a {@link Location} that cannot be determined.
+     */
+    BlockSnapshot NONE = DummyObjectProvider.createFor(BlockSnapshot.class, "NONE");
 
     /**
      * Creates a {@link Builder} to get {@link BlockSnapshot}s.

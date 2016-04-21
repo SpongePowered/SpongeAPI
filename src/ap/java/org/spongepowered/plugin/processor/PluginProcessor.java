@@ -174,6 +174,7 @@ public class PluginProcessor extends AbstractProcessor {
         List<PluginMetadata> meta = this.plugins.values().stream()
                 .map(PluginElement::getMetadata)
                 .collect(Collectors.toList());
+        meta.addAll(this.meta.values());
 
         try (BufferedWriter writer = createWriter()) {
             McModInfo.DEFAULT.write(writer, meta);
