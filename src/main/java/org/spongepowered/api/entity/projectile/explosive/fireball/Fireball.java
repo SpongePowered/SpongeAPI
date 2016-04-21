@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.entity.projectile.explosive.fireball;
 
-import org.spongepowered.api.entity.projectile.explosive.ExplosiveProjectile;
+import org.spongepowered.api.entity.projectile.DamagingProjectile;
 
 /**
  * Represents an abstract fireball, such as {@link SmallFireball}.
  */
-public interface Fireball extends ExplosiveProjectile {
+public interface Fireball extends DamagingProjectile {
 
 }

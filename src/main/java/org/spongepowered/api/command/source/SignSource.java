@@ -27,12 +27,13 @@ package org.spongepowered.api.command.source;
 import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.world.Locatable;
 
 /**
  * Sign sources are {@link CommandSource}s that execute commands when a player
  * clicks a sign. Their location is set to the sign's location.
  */
-public interface SignSource extends LocatedSource, ProxySource {
+public interface SignSource extends ProxySource, Locatable {
 
     /**
      * Gets the sign {@link TileEntity} that this source has been created for.

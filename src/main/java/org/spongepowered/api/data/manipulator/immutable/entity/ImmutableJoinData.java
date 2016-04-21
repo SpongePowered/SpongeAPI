@@ -52,6 +52,6 @@ public interface ImmutableJoinData extends ImmutableDataManipulator<ImmutableJoi
      *
      * @return The immutable value for the last time a player joined
      */
-    ImmutableValue<Instant> lastJoined();
+    ImmutableValue<Instant> lastPlayed();
 
 }

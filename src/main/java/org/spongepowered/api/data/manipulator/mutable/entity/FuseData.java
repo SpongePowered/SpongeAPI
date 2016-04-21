@@ -26,21 +26,33 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFuseData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
 
 /**
- * An {@link DataManipulator} handling the "fuse" duration remaining
- * for an {@link FusedExplosive}. Normal mechanics dictate that once the fuse
- * reduces to 0, the explosive will explode.
+ * Represents information about a {@link FusedExplosive}'s fuse.
  */
 public interface FuseData extends DataManipulator<FuseData, ImmutableFuseData> {
 
     /**
-     * Gets the {@link MutableBoundedValue} for the remaining fuse duration.
+     * The amount of ticks before the {@link FusedExplosive} detonates when
+     * primed.
      *
-     * @return The fuse duration
+     * @return Amount of ticks before detonation when primed
      */
-    MutableBoundedValue<Integer> getFuseDuration();
+    Value<Integer> fuseDuration();
+
+    /**
+     * The amount of ticks before {@link FusedExplosive} detonates. Setting
+     * this value has no effect if the explosive is not currently
+     * primed and is set to an arbitrary value that differs from explosive to
+     * explosive when not-primed. Therefore, this value should be ignored when
+     * the explosive is not primed. Instead, set the fuse duration of the
+     * explosive which is the value used to initialize this value when the
+     * explosive is primed.
+     *
+     * @return Amount of ticks before impending detonation
+     */
+    Value<Integer> ticksRemaining();
 
 }

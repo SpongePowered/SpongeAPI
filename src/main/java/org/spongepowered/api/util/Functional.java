@@ -82,6 +82,10 @@ public class Functional {
         return predicate::test;
     }
 
+    public static <E> Predicate<E> guavaToJava8(com.google.common.base.Predicate<E> p) {
+        return p::apply;
+    }
+
     /**
      * Get the value of an {@link Optional} as either a zero- or one-element immutable set.
      *
@@ -131,4 +135,5 @@ public class Functional {
         });
         return ret;
     }
+
 }
