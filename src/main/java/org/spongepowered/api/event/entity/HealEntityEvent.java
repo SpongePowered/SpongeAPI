@@ -152,7 +152,9 @@ public interface HealEntityEvent extends TargetEntityEvent, Cancellable {
      * {@link #getBaseHealAmount()}.
      *
      * <p>If needing to create a custom {@link HealthModifier} is required,
-     * usage of the {@link HealthModifier.Builder} is recommended.</p>
+     * usage of the
+     * {@link org.spongepowered.api.event.cause.entity.health.HealthModifier.Builder}
+     * is recommended.</p>
      *
      * @param healthModifier The heal amount modifier
      * @param function The function to map to the modifier

@@ -93,10 +93,10 @@ public interface HealingSource {
 
         /**
          * Sets the {@link HealingType}
-         * @param damageType
-         * @return
+         * @param healingType The healing type
+         * @return This builder, for chaining
          */
-        B type(HealingType damageType);
+        B type(HealingType healingType);
 
         T build() throws IllegalStateException;
 

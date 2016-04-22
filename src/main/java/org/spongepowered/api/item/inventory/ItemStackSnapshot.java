@@ -65,11 +65,12 @@ public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot
     ItemStack createStack();
 
     /**
-     * Creates a {@link GameDictionary.Entry} that compares stacks to this
-     * {@link ItemStackSnapshot}. Note that not all data stored in this
-     * {@link ItemStackSnapshot} may be stored in the returned entry.
+     * Creates a {@link org.spongepowered.api.GameDictionary.Entry} that
+     * compares stacks to this {@link ItemStackSnapshot}. Note that not all
+     * data stored in this {@link ItemStackSnapshot} may be stored in the
+     * returned entry.
      * 
-     * @return A {@link GameDictionary.Entry} based on this
+     * @return A {@link org.spongepowered.api.GameDictionary.Entry} based on this
      * {@link ItemStackSnapshot}
      */
     GameDictionary.Entry createGameDictionaryEntry();

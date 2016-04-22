@@ -129,7 +129,8 @@ import java.util.function.Function;
  * that aims to alter the "final" damage based on some custom circumstances,
  * calling {@link #setOutputDamage(DamageModifier, Function)} on a <em>new</em>
  * {@link DamageModifier} instance, easily created from the
- * {@link DamageModifier.Builder}, the provided pairing will be added at the
+ * {@link org.spongepowered.api.event.cause.entity.damage.DamageModifier.Builder},
+ * the provided pairing will be added at the
  * "end" of the list for "modifying" the "base" damage.</p>
  *
  * <p>Note that this event is intended for processing incomming damage to
@@ -325,7 +326,9 @@ public interface AttackEntityEvent extends TargetEntityEvent, Cancellable {
      * {@link #getBaseOutputDamage()}.
      *
      * <p>If needing to create a custom {@link DamageModifier} is required,
-     * usage of the {@link DamageModifier.Builder} is recommended.</p>
+     * usage of the
+     * {@link org.spongepowered.api.event.cause.entity.damage.DamageModifier.Builder}
+     * is recommended.</p>
      *
      * @param damageModifier The damage modifier
      * @param function The function to map to the modifier

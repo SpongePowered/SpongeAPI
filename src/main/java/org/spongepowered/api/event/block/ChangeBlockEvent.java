@@ -33,6 +33,7 @@ import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.world.TargetWorldEvent;
 import org.spongepowered.api.world.Location;
@@ -42,7 +43,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Base event for when {@link BlockState}s at {@link Location<World>}s are being
+ * Base event for when {@link BlockState}s at {@link Location}s are being
  * changed.
  */
 public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable {
@@ -50,7 +51,7 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable {
     /**
      * Gets a list of the {@link Transaction}s for this event. If a
      * transaction is requested to be marked as "invalid",
-     * {@link Transaction<BlockSnapshot>#setIsValid(boolean)} can be used.
+     * {@link Transaction#setValid(boolean)} can be used.
      *
      * @return The unmodifiable list of transactions
      */
@@ -92,19 +93,18 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable {
     /**
      * Called when specific {@link BlockType}s have a notion of "decaying"
      * for various reasons such that the changes are always caused by
-     * themselves. This is also called after a {@link Tick} event.
+     * themselves.
      */
     interface Decay extends ChangeBlockEvent {}
 
     /**
      * Called when a {@link BlockType} decides to "grow" either other
-     * blocks or itself or both. Usually considered to be plants or crops,
-     * this is called after a {@link Tick} event.
+     * blocks or itself or both. Usually considered to be plants or crops.
      */
     interface Grow extends ChangeBlockEvent {}
 
     /**
-     * Called when {@link BlockState}s at {@link Location <World>}s are
+     * Called when {@link BlockState}s at {@link Location}s are
      * being broke. This usually occurs, whenever a {@link BlockState} changes
      * to {@link BlockTypes#AIR}
      *

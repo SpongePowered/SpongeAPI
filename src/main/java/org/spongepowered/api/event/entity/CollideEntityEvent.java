@@ -40,7 +40,7 @@ import java.util.function.Predicate;
 public interface CollideEntityEvent extends CollideEvent, TargetWorldEvent {
 
     /**
-     * Gets the immutable list of {@link List<Entity>} who will be affected
+     * Gets the immutable list of {@link List} who will be affected
      * after event resolution.
      *
      * @return The immutable List
@@ -48,7 +48,7 @@ public interface CollideEntityEvent extends CollideEvent, TargetWorldEvent {
     List<Entity> getOriginalEntities();
 
     /**
-     * Gets the {@link List<Entity>} who will be affected after event
+     * Gets the {@link List} who will be affected after event
      * resolution.
      *
      * @return The List
@@ -56,7 +56,7 @@ public interface CollideEntityEvent extends CollideEvent, TargetWorldEvent {
     List<Entity> getEntities();
 
     /**
-     * Filters out {@link Location<World>}'s from {@link #getEntities()} to be
+     * Filters out {@link Location}'s from {@link #getEntities()} to be
      * affected by this event.
      *
      * @param predicate The predicate to use for filtering

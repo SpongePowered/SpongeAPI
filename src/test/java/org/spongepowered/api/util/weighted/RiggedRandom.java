@@ -30,6 +30,7 @@ import java.util.Random;
 
 public class RiggedRandom extends Random {
 
+    private static final long serialVersionUID = 6993710069489748494L;
     private Deque<Double> queue = new ArrayDeque<>();
     
     public RiggedRandom() {

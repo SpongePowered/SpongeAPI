@@ -37,7 +37,8 @@ public interface MessageHandler<M extends Message> {
      * @param message The message received
      * @param connection The connection that sent the message
      * @param side The side the message was received on (
-     *        {@link Platform.Type#CLIENT} or {@link Platform.Type#SERVER})
+     *        {@link org.spongepowered.api.Platform.Type#CLIENT}
+     *        or {@link org.spongepowered.api.Platform.Type#SERVER})
      */
     void handleMessage(M message, RemoteConnection connection, Platform.Type side);
 

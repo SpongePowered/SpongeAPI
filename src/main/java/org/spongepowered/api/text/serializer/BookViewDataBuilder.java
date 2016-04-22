@@ -53,7 +53,9 @@ public class BookViewDataBuilder extends AbstractDataBuilder<BookView> implement
     private static final String NODE_PAGES = "pages";
 
     private static final TypeToken<Text> TOKEN_TEXT = TypeToken.of(Text.class);
-    private static final TypeToken<List<Text>> TOKEN_TEXT_LIST = new TypeToken<List<Text>>() {};
+    private static final TypeToken<List<Text>> TOKEN_TEXT_LIST = new TypeToken<List<Text>>() {
+        private static final long serialVersionUID = 1;
+    };
 
     public BookViewDataBuilder() {
         super(BookView.class, 1);

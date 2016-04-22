@@ -50,7 +50,7 @@ import java.util.function.Predicate;
 public interface AffectEntityEvent extends TargetWorldEvent, Cancellable {
 
     /**
-     * Gets an {@link List<EntitySnapshot>} of the entity data
+     * Gets an {@link List} of the entity data
      * un-affected by event changes.
      *
      * @return The ImmutableList
@@ -66,7 +66,7 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable {
     List<Entity> getEntities();
 
     /**
-     * Filters out {@link Location<World>}'s from
+     * Filters out {@link Location}'s from
      * {@link AffectEntityEvent#getEntities()} to be affected by this event.
      *
      * <p>Locations for which the predicate returns <code>false</code> will
