@@ -48,7 +48,8 @@ public interface ProviderRegistration<T> {
     /**
      * Gets the {@link PluginContainer} that registered the provider of this
      * provider registration.
-     * @return
+     *
+     * @return The plugin container for this registration
      */
     PluginContainer getPlugin();
 

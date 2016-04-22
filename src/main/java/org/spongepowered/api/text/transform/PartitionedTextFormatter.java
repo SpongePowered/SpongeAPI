@@ -30,6 +30,6 @@ package org.spongepowered.api.text.transform;
  *
  * @param <E> Type of formatter
  */
-public interface PartitionedTextFormatter<E extends TextFormatter> extends TextFormatter<E> {
+public interface PartitionedTextFormatter<E extends TextFormatter<?>> extends TextFormatter<E> {
 
 }

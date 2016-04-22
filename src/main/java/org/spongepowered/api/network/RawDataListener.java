@@ -37,7 +37,8 @@ public interface RawDataListener {
      * @param data The raw data
      * @param connection The remote connection
      * @param side The side the data was received on (
-     *        {@link Platform.Type#CLIENT} or {@link Platform.Type#SERVER})
+     *        {@link org.spongepowered.api.Platform.Type#CLIENT}
+     *        or {@link org.spongepowered.api.Platform.Type#SERVER})
      */
     void handlePayload(ChannelBuf data, RemoteConnection connection, Platform.Type side);
 }

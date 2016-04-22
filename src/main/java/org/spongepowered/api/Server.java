@@ -205,7 +205,7 @@ public interface Server {
     /**
      * Creates a new world from the given {@link WorldCreationSettings}. For the
      * creation of the WorldCreationSettings please see
-     * {@link WorldCreationSettings.Builder}.
+     * {@link org.spongepowered.api.world.WorldCreationSettings.Builder}.
      *
      * <p>If the world already exists then the existing {@link WorldProperties}
      * are returned else a new world is created and the new WorldProperties

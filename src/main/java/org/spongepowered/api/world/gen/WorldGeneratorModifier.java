@@ -44,7 +44,7 @@ import org.spongepowered.api.world.WorldCreationSettings;
  * applied on a single world.</p>
  *
  * <p>Implementations of this interface must be registered using
- * {@link GameRegistry#registerWorldGeneratorModifier(WorldGeneratorModifier)}
+ * {@link GameRegistry#register(Class, CatalogType)}
  * .</p>
  */
 @CatalogedBy(WorldGeneratorModifiers.class)

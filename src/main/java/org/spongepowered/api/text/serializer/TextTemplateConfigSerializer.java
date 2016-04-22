@@ -70,7 +70,9 @@ public class TextTemplateConfigSerializer implements TypeSerializer<TextTemplate
     private static final String NODE_CLOSE_ARG = "closeArg";
 
     private static final TypeToken<Text> TOKEN_TEXT = TypeToken.of(Text.class);
-    private static final TypeToken<Map<String, TextTemplate.Arg>> TOKEN_ARGS = new TypeToken<Map<String, TextTemplate.Arg>>() {};
+    private static final TypeToken<Map<String, TextTemplate.Arg>> TOKEN_ARGS = new TypeToken<Map<String, TextTemplate.Arg>>() {
+        private static final long serialVersionUID = 1;
+    };
 
     @SuppressWarnings("NullableProblems") private ConfigurationNode root;
     @SuppressWarnings("NullableProblems") private String openArg;

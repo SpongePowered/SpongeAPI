@@ -49,6 +49,7 @@ public class SpongeAbstractEventTest {
 
     private static final double ERROR = 0.03;
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testChangeBlockEvent_filter() {
         Transaction<BlockSnapshot> transaction = new Transaction<>(mockParam(BlockSnapshot.class), mockParam(BlockSnapshot.class));

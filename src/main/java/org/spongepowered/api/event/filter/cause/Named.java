@@ -37,7 +37,7 @@ import java.lang.annotation.Target;
  * is done to ensure that the named cause object is of the correct type. The filter
  * fails if this is not the case.
  *
- * @see Cause#get(String)
+ * @see Cause#get(String, Class)
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)

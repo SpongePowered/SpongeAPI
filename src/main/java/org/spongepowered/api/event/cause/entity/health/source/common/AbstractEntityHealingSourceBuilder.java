@@ -35,6 +35,7 @@ public abstract class AbstractEntityHealingSourceBuilder<T extends EntityHealing
 
     protected Entity entity;
 
+    @SuppressWarnings("unchecked")
     @Override
     public B from(T value) {
         super.from(value);
@@ -42,6 +43,7 @@ public abstract class AbstractEntityHealingSourceBuilder<T extends EntityHealing
         return (B) this;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public B reset() {
         super.reset();
@@ -49,6 +51,7 @@ public abstract class AbstractEntityHealingSourceBuilder<T extends EntityHealing
         return (B) this;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public B entity(Entity entity) {
         this.entity = checkNotNull(entity, "Entity cannot be null!");

@@ -333,7 +333,7 @@ public final class DataTransactionResult {
     /**
      * A type of builder for building {@link DataTransactionResult}s. The common
      * use is for both implementations of {@link DataHolder}s, and various
-     * {@link ChangeDataHolderEvent.ValueChange}s.
+     * {@link org.spongepowered.api.event.data.ChangeDataHolderEvent.ValueChange}s.
      */
     public static final class Builder implements ResettableBuilder<DataTransactionResult, Builder> {
 
