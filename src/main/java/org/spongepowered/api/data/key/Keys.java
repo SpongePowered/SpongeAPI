@@ -44,6 +44,7 @@ import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
@@ -610,6 +611,13 @@ public final class Keys {
     public static final Key<ListValue<EntitySnapshot>> PASSENGERS = KeyFactory.fake("PASSENGERS");
 
     public static final Key<Value<Boolean>> PERSISTS = KeyFactory.fake("PERSISTS");
+
+    /**
+     * Represents the {@link Key} for the "pickup rule" of an {@link Arrow}.
+     *
+     * @see PickupRuleData#rule()
+     */
+    public static final Key<Value<PickupRule>> PICKUP_RULE = KeyFactory.fake("PICKUP_RULE");
 
     public static final Key<Value<Boolean>> PIG_SADDLE = KeyFactory.fake("PIG_SADDLE");
 

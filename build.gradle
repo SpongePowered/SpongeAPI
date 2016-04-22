@@ -140,6 +140,7 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.data.type.LogAxes'
     add 'main', 'org.spongepowered.api.data.type.NotePitches'
     add 'main', 'org.spongepowered.api.data.type.OcelotTypes'
+    add 'main', 'org.spongepowered.api.data.type.PickupRules'
     add 'main', 'org.spongepowered.api.data.type.PistonTypes'
     add 'main', 'org.spongepowered.api.data.type.PlantTypes'
     add 'main', 'org.spongepowered.api.data.type.PortionTypes'
