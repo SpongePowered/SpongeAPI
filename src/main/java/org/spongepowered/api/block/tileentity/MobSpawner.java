@@ -132,7 +132,8 @@ public interface MobSpawner extends TileEntity {
     }
 
     /**
-     * Gets the {@link MobSpawnerData.NextEntityToSpawnValue} for the overridden
+     * Gets the {@link org.spongepowered.api.data.manipulator.mutable.MobSpawnerData.NextEntityToSpawnValue}
+     * for the overridden
      * {@link WeightedSerializableObject}{@code <EntitySnapshot>} to spawn
      * next. If possible, the next entity to spawn may be chosen from the
      * already provided {@link #possibleEntitiesToSpawn()}.

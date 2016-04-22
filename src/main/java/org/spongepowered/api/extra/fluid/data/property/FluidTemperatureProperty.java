@@ -51,7 +51,7 @@ public class FluidTemperatureProperty extends IntProperty {
 
     /**
      * Creates a new {@link FluidTemperatureProperty} with the desired temperature
-     * and {@link Operator} for comparisons.
+     * and {@link org.spongepowered.api.data.Property.Operator} for comparisons.
      *
      * @param value The temperature
      * @param operator The operator

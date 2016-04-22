@@ -36,6 +36,7 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.NamedCause;
 import org.spongepowered.api.event.entity.ai.AITaskEvent;
 
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class SpongeAITaskEventTest {
 
     @Test

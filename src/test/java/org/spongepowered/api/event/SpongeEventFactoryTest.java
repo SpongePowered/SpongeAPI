@@ -111,7 +111,7 @@ public class SpongeEventFactoryTest {
         try {
             // We only care about keeping extends around for the duration
             // of this particular event.
-            this.extents.clear();
+            extents.clear();
 
             Class<?>[] paramTypes = this.method.getParameterTypes();
             Object[] params = new Object[paramTypes.length];

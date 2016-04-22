@@ -55,7 +55,7 @@ public interface SpongeExecutorService extends ScheduledExecutorService {
     interface SpongeFuture<V> extends RunnableScheduledFuture<V> {
 
         /**
-         * Retrieves the {@link SchedulerService} {@link Task} instance that
+         * Retrieves the {@link Scheduler} {@link Task} instance that
          * is responsible for the execution of this future.
          *
          * @return The backing task

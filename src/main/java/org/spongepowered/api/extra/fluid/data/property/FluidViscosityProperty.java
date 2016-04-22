@@ -51,7 +51,7 @@ public class FluidViscosityProperty extends IntProperty {
 
     /**
      * Creates a new {@link FluidViscosityProperty} with the desired viscosity
-     * and {@link Operator} for comparisons.
+     * and {@link org.spongepowered.api.data.Property.Operator} for comparisons.
      *
      * @param value The viscosity
      * @param operator The operator

@@ -133,7 +133,7 @@ public interface Cactus extends Populator {
         /**
          * Sets the height of the cacti.
          * 
-         * @param count The new height
+         * @param height The new height
          * @return This builder, for chaining
          */
         Builder height(VariableAmount height);
@@ -141,7 +141,7 @@ public interface Cactus extends Populator {
         /**
          * Sets the height of the cacti.
          * 
-         * @param count The new height
+         * @param height The new height
          * @return This builder, for chaining
          */
         default Builder height(int height) {

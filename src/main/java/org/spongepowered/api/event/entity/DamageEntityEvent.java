@@ -62,7 +62,7 @@ import java.util.function.Function;
  * The uniqueness of this event is that all {@link DamageSource}s can deal
  * varying amounts of damage with varying modifiers based on various reasons.
  * Due to this ambiguous variety of information that is possible to provide,
- * the {@link InteractEntityEvent.Attack} can be summarized as so:
+ * the {@link AttackEntityEvent} can be summarized as so:
  *
  * <p>An {@link Arrow},
  *  that was shot by a {@link Skeleton},
@@ -129,7 +129,8 @@ import java.util.function.Function;
  * that aims to alter the "final" damage based on some custom circumstances,
  * calling {@link #setDamage(DamageModifier, Function)} on a <em>new</em>
  * {@link DamageModifier} instance, easily created from the
- * {@link DamageModifier.Builder}, the provided pairing will be added at the
+ * {@link org.spongepowered.api.event.cause.entity.damage.DamageModifier.Builder},
+ * the provided pairing will be added at the
  * "end" of the list for "modifying" the "base" damage.</p>
  *
  * <p>Note that this event is intended for processing incomming damage to

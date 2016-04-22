@@ -244,8 +244,9 @@ public interface Selector {
     String toPlain();
 
     /**
-     * Returns a new {@link SelectorBuilder} with the content of this selector.
-     * This can be used to edit an immutable {@link Selector} instance.
+     * Returns a new {@link org.spongepowered.api.text.selector.Selector.Builder}
+     * with the content of this selector. This can be used to edit an immutable
+     * {@link Selector} instance.
      *
      * @return A new selector builder with the content of this selector
      */
