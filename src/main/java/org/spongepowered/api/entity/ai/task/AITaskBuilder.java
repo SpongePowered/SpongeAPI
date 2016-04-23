@@ -40,8 +40,9 @@ public interface AITaskBuilder<O extends Agent, A extends AITask<O>, B extends A
      * Builds the {@link AITask}.
      *
      * @param owner The owner of the task
+     * @throws IllegalArgumentException If the owner is not allowed for this task
      * @return The task
      */
-    A build(O owner);
+    A build(O owner) throws IllegalArgumentException;
 
 }
