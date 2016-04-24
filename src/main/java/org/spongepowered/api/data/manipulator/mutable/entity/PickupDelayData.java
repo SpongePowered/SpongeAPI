@@ -27,6 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutablePickupDelayData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Item;
 
 /**
@@ -41,5 +42,13 @@ public interface PickupDelayData extends DataManipulator<PickupDelayData, Immuta
      * @return The mutable bounded value for the "pickup delay"
      */
     MutableBoundedValue<Integer> delay();
+
+    /**
+     * Gets the {@link Value} for the "is infinite" state of
+     * the pickup delay.
+     *
+     * @return The value for the "is infinite" state
+     */
+    Value<Boolean> infinite();
 
 }

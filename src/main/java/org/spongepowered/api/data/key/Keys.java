@@ -42,6 +42,7 @@ import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.RespawnLocation;
@@ -254,6 +255,12 @@ public final class Keys {
 
     public static final Key<MutableBoundedValue<Integer>> DELAY = KeyFactory.fake("DELAY");
 
+    /**
+     * Represents the {@link Key} for representing the despawn delay
+     * of an {@link Item}.
+     *
+     * @see DespawnDelayData#delay()
+     */
     public static final Key<MutableBoundedValue<Integer>> DESPAWN_DELAY = KeyFactory.fake("DESPAWN_DELAY");
 
     /**
@@ -472,6 +479,22 @@ public final class Keys {
 
     public static final Key<Value<HorseVariant>> HORSE_VARIANT = KeyFactory.fake("HORSE_VARIANT");
 
+    /**
+     * Represents the {@link Key} for representing the "is infinite" state
+     * of the despawn delay of an {@link Item}.
+     *
+     * @see DespawnDelayData#infinite()
+     */
+    public static final Key<Value<Boolean>> INFINITE_DESPAWN_DELAY = KeyFactory.fake("INFINITE_DESPAWN_DELAY");
+
+    /**
+     * Represents the {@link Key} for representing the "is infinite" state
+     * of the pickup delay of an {@link Item}.
+     *
+     * @see PickupDelayData#infinite()
+     */
+    public static final Key<Value<Boolean>> INFINITE_PICKUP_DELAY = KeyFactory.fake("INFINITE_PICKUP_DELAY");
+
     public static final Key<Value<Boolean>> INVISIBILITY_IGNORES_COLLISION = KeyFactory.fake("INVISIBILITY_IGNORES_COLLISION");
 
     /**
@@ -615,6 +638,13 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> PERSISTS = KeyFactory.fake("PERSISTS");
 
+
+    /**
+     * Represents the {@link Key} for representing the pickup delay
+     * of an {@link Item}.
+     *
+     * @see PickupDelayData#delay()
+     */
     public static final Key<MutableBoundedValue<Integer>> PICKUP_DELAY = KeyFactory.fake("PICKUP_DELAY");
 
     public static final Key<Value<Boolean>> PIG_SADDLE = KeyFactory.fake("PIG_SADDLE");
