@@ -254,6 +254,8 @@ public final class Keys {
 
     public static final Key<MutableBoundedValue<Integer>> DELAY = KeyFactory.fake("DELAY");
 
+    public static final Key<MutableBoundedValue<Integer>> DESPAWN_DELAY = KeyFactory.fake("DESPAWN_DELAY");
+
     /**
      * Represents the {@link Key} for representing the {@link Direction}
      * of a {@link BlockState}.
@@ -612,6 +614,8 @@ public final class Keys {
     public static final Key<Value<EntitySnapshot>> PASSENGER = KeyFactory.fake("PASSENGER");
 
     public static final Key<Value<Boolean>> PERSISTS = KeyFactory.fake("PERSISTS");
+
+    public static final Key<MutableBoundedValue<Integer>> PICKUP_DELAY = KeyFactory.fake("PICKUP_DELAY");
 
     public static final Key<Value<Boolean>> PIG_SADDLE = KeyFactory.fake("PIG_SADDLE");
 
