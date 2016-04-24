@@ -30,7 +30,8 @@ import org.spongepowered.api.text.Text;
 
 /**
  * Abstract implementation of {@link MessageEvent}. Contains a
- * {@link MessageFormatter} instance to hold the message data.
+ * {@link org.spongepowered.api.event.message.MessageEvent.MessageFormatter}
+ * instance to hold the message data.
  */
 @SuppressWarnings("NullableProblems")
 public abstract class AbstractMessageEvent extends AbstractEvent implements MessageEvent {

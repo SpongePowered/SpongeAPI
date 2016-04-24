@@ -187,11 +187,11 @@ public final class TextTemplate implements TextRepresentable, Iterable<Object> {
      * @return Text builder containing result
      * @throws TextTemplateArgumentException if required parameters are missing
      */
-    public Text.Builder apply(Map<String, TextElement> params) {
+    public Text.Builder apply(Map<String, ?> params) {
         return apply(null, params);
     }
 
-    private Text.Builder apply(@Nullable Text.Builder result, Map<String, TextElement> params) {
+    private Text.Builder apply(@Nullable Text.Builder result, Map<String, ?> params) {
         checkNotNull(params, "params");
         for (Object element : this.elements) {
             result = apply(element, result, params);
@@ -200,11 +200,11 @@ public final class TextTemplate implements TextRepresentable, Iterable<Object> {
     }
 
     @Nullable
-    private Text.Builder apply(Object element, @Nullable Text.Builder builder, Map<String, TextElement> params) {
+    private Text.Builder apply(Object element, @Nullable Text.Builder builder, Map<String, ?> params) {
         // Note: The builder is initialized as null to avoid unnecessary Text nesting
         if (element instanceof Arg) {
             Arg arg = (Arg) element;
-            TextElement param = params.get(arg.name);
+            Object param = params.get(arg.name);
             if (param == null) {
                 arg.checkOptional();
                 if (arg.defaultValue != null) {
@@ -219,13 +219,13 @@ public final class TextTemplate implements TextRepresentable, Iterable<Object> {
         return builder;
     }
 
-    private Text.Builder applyArg(TextElement param, Arg arg, @Nullable Text.Builder builder) {
+    private Text.Builder applyArg(Object param, Arg arg, @Nullable Text.Builder builder) {
         if (builder == null) {
             builder = Text.builder();
         }
         // wrap the parameter in the argument format
         Text.Builder wrapper = Text.builder().format(arg.format);
-        param.applyTo(wrapper);
+        apply(param, wrapper);
         builder.append(wrapper.build());
         return builder;
     }

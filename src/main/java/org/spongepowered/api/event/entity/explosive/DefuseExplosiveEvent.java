@@ -22,34 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.event.entity.explosive;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.FuseData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
+import org.spongepowered.api.event.Cancellable;
 
 /**
- * Represents information about a {@link FusedExplosive}'s fuse.
+ * Event called when a primed {@link FusedExplosive} is defused.
  */
-public interface ImmutableFuseData extends ImmutableDataManipulator<ImmutableFuseData, FuseData> {
+public interface DefuseExplosiveEvent extends TargetFusedExplosiveEvent {
 
     /**
-     * The amount of ticks before the {@link FusedExplosive} detonates when
-     * primed.
-     *
-     * @return Amount of ticks before detonation when primed
+     * Event called immediately before a primed {@link FusedExplosive} is
+     * defused.
      */
-    ImmutableValue<Integer> fuseDuration();
+    interface Pre extends DefuseExplosiveEvent, Cancellable {}
 
     /**
-     * The amount of ticks before {@link FusedExplosive} detonates. This value
-     * may be zero if the {@link FusedExplosive} is not currently primed nor
-     * will setting this value have any effect if the {@link FusedExplosive} is
-     * not primed.
-     *
-     * @return Amount of ticks before impending detonation
+     * Event called after a primed {@link FusedExplosive} has been defused.
      */
-    ImmutableValue<Integer> ticksRemaining();
+    interface Post extends DefuseExplosiveEvent {}
 
 }

@@ -391,8 +391,8 @@ public class MemoryDataTest {
 
     @Test
     public void testDeepSerialization() {
-        List<List> values = Lists.newArrayList();
-        List<List> sub = Lists.newArrayList();
+        List<List<?>> values = Lists.newArrayList();
+        List<List<?>> sub = Lists.newArrayList();
         values.add(sub);
 
         SimpleData data1 = new SimpleData(1, 2.0, "3", Arrays.asList("foo", "bar", "baz"));

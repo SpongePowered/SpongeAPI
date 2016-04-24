@@ -62,8 +62,6 @@ import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.rotation.Rotation;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 import java.time.Instant;
 import java.util.List;
@@ -310,7 +308,7 @@ public final class Keys {
 
     public static final Key<MutableBoundedValue<Integer>> EXPIRATION_TICKS = KeyFactory.fake("EXPIRATION_TICKS");
 
-    public static final Key<MutableBoundedValue<Integer>> EXPLOSIVE_RADIUS = KeyFactory.fake("EXPLOSIVE_RADIUS");
+    public static final Key<OptionalValue<Integer>> EXPLOSION_RADIUS = KeyFactory.fake("EXPLOSION_RADIUS");
 
     /**
      * Represents the {@link Key} for representing the {@link BigMushroomType}
@@ -382,7 +380,7 @@ public final class Keys {
 
     public static final Key<MutableBoundedValue<Integer>> FOOD_LEVEL = KeyFactory.fake("FOOD_LEVEL");
 
-    public static final Key<MutableBoundedValue<Integer>> FUSE_DURATION = KeyFactory.fake("FUSE_DURATION");
+    public static final Key<Value<Integer>> FUSE_DURATION = KeyFactory.fake("FUSE_DURATION");
 
     public static final Key<Value<GameMode>> GAME_MODE = KeyFactory.fake("GAME_MODE");
 
@@ -844,6 +842,8 @@ public final class Keys {
     public static final Key<Value<Vector3d>> TARGETED_LOCATION = KeyFactory.fake("TARGETED_LOCATION");
 
     public static final Key<MutableBoundedValue<Integer>> TOTAL_EXPERIENCE = KeyFactory.fake("TOTAL_EXPERIENCE");
+
+    public static final Key<Value<Integer>> TICKS_REMAINING = KeyFactory.fake("TICKS_REMAINING");
 
     public static final Key<Value<Boolean>> TRACKS_OUTPUT = KeyFactory.fake("TRACKS_OUTPUT");
 

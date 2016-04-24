@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.block.tileentity.carrier.Dispenser;
+import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.monster.Skeleton;
@@ -40,13 +41,12 @@ import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.BlockDamageSource;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSource;
-import org.spongepowered.api.event.impl.AbstractDamageEntityEvent;
+import org.spongepowered.api.event.impl.AbstractAttackEntityEvent;
 import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.difficulty.Difficulties;
@@ -107,11 +107,11 @@ import java.util.function.Function;
  * passed the current "damage" into {@link Function#apply(Object)}, being added
  * to the current "damage". After all {@link DamageModifier} {@link Function}s
  * are "applied", the overall "damage" is now the final damage to actually
- * throw a {@link DamageEntityEvent}.</p>
+ * throw a {@link AttackEntityEvent}.</p>
  *
  * <p>Note that due to the mechanics of the game, {@link DamageModifier}s
  * are always ordered in the order of which they apply their modifier onto
- * the "base" damage. The implementation for {@link #getFinalDamage()} can be
+ * the "base" damage. The implementation for {@link #getFinalOutputDamage()} can be
  * exemplified like so: <pre>{@code
  *  double damage = this.baseDamage;
  *  for (Map.Entry<DamageModifier, Function<? super Double, Double>> entry : this.modifierFunctions.entrySet()) {
@@ -124,10 +124,10 @@ import java.util.function.Function;
  *
  * <p>Coming forward, it is possible to further customize not only the "base"
  * damage, but override pre-existing {@link DamageModifier} {@link Function}s
- * by calling {@link #setDamage(DamageModifier, Function)} at which point the
+ * by calling {@link #setOutputDamage(DamageModifier, Function)} at which point the
  * end result may be undefined. However, if a custom {@link DamageModifier}
  * that aims to alter the "final" damage based on some custom circumstances,
- * calling {@link #setDamage(DamageModifier, Function)} on a <em>new</em>
+ * calling {@link #setOutputDamage(DamageModifier, Function)} on a <em>new</em>
  * {@link DamageModifier} instance, easily created from the
  * {@link org.spongepowered.api.event.cause.entity.damage.DamageModifier.Builder},
  * the provided pairing will be added at the
@@ -135,12 +135,12 @@ import java.util.function.Function;
  *
  * <p>Note that this event is intended for processing incomming damage to
  * an {@link Entity} prior to any {@link DamageModifier}s associated with
- * the {@link #getTargetEntity()}. The {@link DamageEntityEvent} is used
+ * the {@link #getTargetEntity()}. The {@link AttackEntityEvent} is used
  * to process the various {@link DamageModifier}s of which originate or are
  * associated with the targeted {@link Entity}.</p>
  */
-@ImplementedBy(AbstractDamageEntityEvent.class)
-public interface DamageEntityEvent extends TargetEntityEvent, Cancellable {
+@ImplementedBy(AbstractAttackEntityEvent.class)
+public interface AttackEntityEvent extends TargetEntityEvent, Cancellable {
 
     /**
      * For use with the {@link DamageSource} that is known as the "source"
@@ -274,7 +274,7 @@ public interface DamageEntityEvent extends TargetEntityEvent, Cancellable {
      * @return The base damage
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    double getBaseDamage();
+    double getBaseOutputDamage();
 
     /**
      * Sets the "base" damage to deal to the targeted {@link Entity}. The
@@ -283,19 +283,19 @@ public interface DamageEntityEvent extends TargetEntityEvent, Cancellable {
      *
      * @param baseDamage The base damage
      */
-    void setBaseDamage(double baseDamage);
+    void setBaseOutputDamage(double baseDamage);
 
     /**
      * Gets the final damage that will be passed into the proceeding
-     * {@link DamageEntityEvent}. The final damage is the end result of the
-     * {@link #getBaseDamage()} being applied in {@link Function#apply(Object)}
+     * {@link AttackEntityEvent}. The final damage is the end result of the
+     * {@link #getBaseOutputDamage()} being applied in {@link Function#apply(Object)}
      * available from all the {@link Tuple}s of {@link DamageModifier} to
      * {@link Function} in {@link #getOriginalFunctions()}.
      *
      * @return The final damage to deal
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    double getFinalDamage();
+    double getFinalOutputDamage();
 
     /**
      * Checks whether the provided {@link DamageModifier} is applicable to the
@@ -314,7 +314,7 @@ public interface DamageEntityEvent extends TargetEntityEvent, Cancellable {
      * @param damageModifier The damage modifier to get the damage for
      * @return The modifier
      */
-    double getDamage(DamageModifier damageModifier);
+    double getOutputDamage(DamageModifier damageModifier);
 
     /**
      * Sets the provided {@link Function} to be used for the given
@@ -323,15 +323,17 @@ public interface DamageEntityEvent extends TargetEntityEvent, Cancellable {
      * the existing function. If there is no {@link Tuple} for the
      * {@link DamageModifier}, a new one is created and added to the end
      * of the list of {@link Function}s to be applied to the
-     * {@link #getBaseDamage()}.
+     * {@link #getBaseOutputDamage()}.
      *
      * <p>If needing to create a custom {@link DamageModifier} is required,
-     * usage of the {@link DamageModifier.Builder} is recommended.</p>
+     * usage of the
+     * {@link org.spongepowered.api.event.cause.entity.damage.DamageModifier.Builder}
+     * is recommended.</p>
      *
      * @param damageModifier The damage modifier
      * @param function The function to map to the modifier
      */
-    void setDamage(DamageModifier damageModifier, Function<? super Double, Double> function);
+    void setOutputDamage(DamageModifier damageModifier, Function<? super Double, Double> function);
 
     /**
      * Adds the provided {@link DamageModifier} and {@link Function} to the
@@ -355,7 +357,7 @@ public interface DamageEntityEvent extends TargetEntityEvent, Cancellable {
      * @param function The associated function
      * @param after The set of modifier types to come before the new modifier
      */
-    void addModifierAfter(DamageModifier damageModifier, Function<? super Double, Double> function, Set<DamageModifierType> after);
+    void addDamageModifierAfter(DamageModifier damageModifier, Function<? super Double, Double> function, Set<DamageModifierType> after);
 
     /**
      * Gets a list of simple {@link Tuple}s of {@link DamageModifier} keyed to
@@ -368,14 +370,8 @@ public interface DamageEntityEvent extends TargetEntityEvent, Cancellable {
     @PropertySettings(requiredParameter = false, generateMethods = false)
     List<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers();
 
-    /**
-     * Returns whether or not this event will cause the entity to die if the
-     * event is not cancelled. Only supported for living entities, returns false
-     * if {@link #getTargetEntity()} is not a living entity.
-     *
-     * @return Whether the entity will die
-     */
-    @PropertySettings(requiredParameter = false, generateMethods = false)
-    boolean willCauseDeath();
+    int getKnockbackModifier();
+
+    void setKnockbackModifier(int modifier);
 
 }

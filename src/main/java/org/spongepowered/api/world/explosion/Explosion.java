@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.world.explosion;
 
-import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.world.Locatable;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 import java.util.Optional;
@@ -37,7 +38,7 @@ import javax.annotation.Nullable;
 /**
  * Represents an explosion in a {@link World}.
  */
-public interface Explosion {
+public interface Explosion extends Locatable {
 
     /**
      * Creates a new {@link Builder} to build a {@link Explosion}.
@@ -47,13 +48,6 @@ public interface Explosion {
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
-
-    /**
-     * Gets the world the explosion will occur in.
-     *
-     * @return The world
-     */
-    World getWorld();
 
     /**
      * Gets the source {@link Explosive} of the explosion.
@@ -68,13 +62,6 @@ public interface Explosion {
      * @return The radius
      */
     float getRadius();
-
-    /**
-     * Gets a copy of the explosion's origin.
-     *
-     * @return A copy of the origin
-     */
-    Vector3d getOrigin();
 
     /**
      * Gets whether the affected blocks have a chance to catch on fire.
@@ -110,12 +97,12 @@ public interface Explosion {
     interface Builder extends ResettableBuilder<Explosion, Builder> {
 
         /**
-         * Sets the {@link World} the explosion will occur in.
+         * Sets the location origin of the explosion.
          *
-         * @param world The world
+         * @param location Origin of explosion
          * @return The builder, for chaining
          */
-        Builder world(World world);
+        Builder location(Location<World> location);
 
         /**
          * Sets the source explosive of the explosion.
@@ -132,14 +119,6 @@ public interface Explosion {
          * @return The builder, for chaining
          */
         Builder radius(float radius);
-
-        /**
-         * Sets the origin of the explosion.
-         *
-         * @param origin The origin
-         * @return The builder, for chaining
-         */
-        Builder origin(Vector3d origin);
 
         /**
          * Sets whether the affected blocks have a chance to catch on fire.

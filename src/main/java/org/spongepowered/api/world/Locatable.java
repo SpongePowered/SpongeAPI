@@ -22,16 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
-
-import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+package org.spongepowered.api.world;
 
 /**
- * Location sources are {@link CommandSource}s that have a current location.
+ * Represents anything with a location.
  */
-public interface LocatedSource extends CommandSource {
+@FunctionalInterface
+public interface Locatable {
 
     /**
      * Gets the location of the source.
@@ -45,6 +42,8 @@ public interface LocatedSource extends CommandSource {
      *
      * @return The World
      */
-    World getWorld();
+    default World getWorld() {
+        return getLocation().getExtent();
+    }
 
 }

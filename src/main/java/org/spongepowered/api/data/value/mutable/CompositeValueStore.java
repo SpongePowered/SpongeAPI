@@ -31,6 +31,7 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.util.RespawnLocation;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -182,6 +183,28 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     <E> DataTransactionResult offer(Key<? extends BaseValue<E>> key, E value);
 
     /**
+     * Offers the given {@code value} as defined by the provided {@link Key}
+     * such that a {@link DataTransactionResult} is returned for any
+     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
+     * Intentionally, however, this differs from {@link #offer(Key, Object)}
+     * as it will intentionally throw an exception if the result was a failure.
+     *
+     * @param key The key to the value to set
+     * @param value The value to set
+     * @param <E> The type of value
+     * @return The transaction result
+     * @throws IllegalArgumentException If the result is a failure likely due to
+     *     incompatibility
+     */
+    default <E> DataTransactionResult tryOffer(Key<? extends BaseValue<E>> key, E value) throws IllegalArgumentException {
+        final DataTransactionResult result = offer(key, value);
+        if (!result.isSuccessful()) {
+            throw new IllegalArgumentException("Failed offer transaction!");
+        }
+        return result;
+    }
+
+    /**
      * Offers the given {@link BaseValue} as defined by the provided
      * {@link Key} such that a {@link DataTransactionResult} is returned for
      * any successful, rejected, and replaced {@link BaseValue}s from this
@@ -193,6 +216,27 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      */
     default <E> DataTransactionResult offer(BaseValue<E> value) {
         return offer(value.getKey(), value.get());
+    }
+
+    /**
+     * Offers the given {@code value} as defined by the provided {@link Key}
+     * such that a {@link DataTransactionResult} is returned for any
+     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
+     * Intentionally, however, this differs from {@link #offer(Key, Object)}
+     * as it will intentionally throw an exception if the result was a failure.
+     *
+     * @param value The value to set
+     * @param <E> The type of value
+     * @return The transaction result
+     * @throws IllegalArgumentException If the result is a failure likely due to
+     *     incompatibility
+     */
+    default <E> DataTransactionResult tryOffer(BaseValue<E> value) throws IllegalArgumentException {
+        final DataTransactionResult result = offer(value.getKey(), value.get());
+        if (!result.isSuccessful()) {
+            throw new IllegalArgumentException("Failed offer transaction!");
+        }
+        return result;
     }
 
     /**
@@ -212,6 +256,26 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     /**
      * Offers the given {@link ValueContainer} such that all of the available
      * {@link BaseValue}s from the given {@link ValueContainer} are offered
+     * to this {@link CompositeValueStore}. Intentionally, however, this differs
+     * from {@link #offer(ValueContainer)} as it will intentionally throw an
+     * exception if the result was a failure.
+     *
+     * @param valueContainer The value to set
+     * @return The transaction result
+     * @throws IllegalArgumentException If the result is a failure likely due to
+     *     incompatibility
+     */
+    default DataTransactionResult tryOffer(H valueContainer) {
+        final DataTransactionResult result = offer(valueContainer, MergeFunction.IGNORE_ALL);
+        if (!result.isSuccessful()) {
+            throw new IllegalArgumentException("Failed offer transaction!");
+        }
+        return result;
+    }
+
+    /**
+     * Offers the given {@link ValueContainer} such that all of the available
+     * {@link BaseValue}s from the given {@link ValueContainer} are offered
      * to this {@link CompositeValueStore}. The end result of the values
      * successfully offered, rejected, and replaced are stored in the returned
      * {@link DataTransactionResult}. Any overlaps of data are merged via
@@ -222,6 +286,28 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * @return The transaction result
      */
     DataTransactionResult offer(H valueContainer, MergeFunction function);
+
+    /**
+     * Offers the given {@link ValueContainer} such that all of the available
+     * {@link BaseValue}s from the given {@link ValueContainer} are offered
+     * to this {@link CompositeValueStore}. Any overlaps of data are merged via
+     * the {@link MergeFunction}. Intentionally, however, this differs
+     * from {@link #offer(ValueContainer)} as it will intentionally throw an
+     * exception if the result was a failure.
+     *
+     * @param valueContainer The value to set
+     * @param function The merge function
+     * @return The transaction result
+     * @throws IllegalArgumentException If the result is a failure likely due to
+     *     incompatibility
+     */
+    default DataTransactionResult tryOffer(H valueContainer, MergeFunction function) throws IllegalArgumentException {
+        final DataTransactionResult result = offer(valueContainer, function);
+        if (!result.isSuccessful()) {
+            throw new IllegalArgumentException("Failed offer transaction!");
+        }
+        return result;
+    }
 
     /**
      * Offers all provided {@link ValueContainer}s to this
@@ -263,7 +349,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * removed will be provided in
      * {@link DataTransactionResult#getReplacedData()}. If the data can not be
      * removed, the result will be an expected
-     * {@link DataTransactionResult.Type#FAILURE}.
+     * {@link org.spongepowered.api.data.DataTransactionResult.Type#FAILURE}.
      *
      * @param containerClass The container class
      * @return The transaction result
@@ -275,7 +361,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * successfully removed will be provided in
      * {@link DataTransactionResult#getReplacedData()}. If the data can not be
      * removed, the result will be an expected
-     * {@link DataTransactionResult.Type#FAILURE}.
+     * {@link org.spongepowered.api.data.DataTransactionResult.Type#FAILURE}.
      *
      * @param value The value to remove
      * @return The transaction result
@@ -289,7 +375,7 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * All values that were successfully removed will be provided in
      * {@link DataTransactionResult#getReplacedData()}. If the data can not be
      * removed, the result will be an expected
-     * {@link DataTransactionResult.Type#FAILURE}.
+     * {@link org.spongepowered.api.data.DataTransactionResult.Type#FAILURE}.
      *
      * @param key The key of the data
      * @return The transaction result

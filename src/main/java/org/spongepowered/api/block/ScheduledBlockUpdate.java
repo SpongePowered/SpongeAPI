@@ -24,21 +24,13 @@
  */
 package org.spongepowered.api.block;
 
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.Locatable;
 
 /**
  * Represents a scheduled block update. SBUs with higher priorities are
  * processed first.
  */
-public interface ScheduledBlockUpdate {
-
-    /**
-     * Gets the location of this scheduled block update.
-     *
-     * @return The location of this scheduled block update
-     */
-    Location<World> getLocation();
+public interface ScheduledBlockUpdate extends Locatable {
 
     /**
      * Gets the amount of ticks until this SBU should cause the block to update.

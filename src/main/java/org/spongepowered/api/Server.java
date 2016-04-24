@@ -199,8 +199,10 @@ public interface Server {
     boolean unloadWorld(World world);
 
     /**
-     * Creates a new {@link WorldProperties} from the given {@link WorldCreationSettings}. For the
-     * creation of the WorldCreationSettings please see {@link WorldCreationSettings.Builder}.
+     * Creates a new {@link WorldProperties} from the given
+     * {@link WorldCreationSettings}. For the creation of the
+     * WorldCreationSettings please see
+     * {@link org.spongepowered.api.world.WorldCreationSettings.Builder}.
      *
      * <p>If the {@link World} represented by the properties exists then the existing
      * {@link WorldProperties} are returned</p>

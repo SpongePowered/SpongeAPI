@@ -333,7 +333,7 @@ public final class DataTransactionResult {
     /**
      * A type of builder for building {@link DataTransactionResult}s. The common
      * use is for both implementations of {@link DataHolder}s, and various
-     * {@link ChangeDataHolderEvent.ValueChange}s.
+     * {@link org.spongepowered.api.event.data.ChangeDataHolderEvent.ValueChange}s.
      */
     public static final class Builder implements ResettableBuilder<DataTransactionResult, Builder> {
 
@@ -362,7 +362,7 @@ public final class DataTransactionResult {
          * Adds the provided {@link ImmutableValue} to the {@link List} of
          * "replaced" {@link ImmutableValue}s. The replaced values are always
          * copied for every {@link DataTransactionResult} for referencing. It is
-         * also possible ot retrieve these replaced {@link ImmutableValue}s to
+         * also possible to retrieve these replaced {@link ImmutableValue}s to
          * {@link DataHolder#undo(DataTransactionResult)} at a later point in
          * the lifespan of the {@link DataHolder}.
          *

@@ -24,19 +24,21 @@
  */
 package org.spongepowered.api.command.source;
 
+import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.CommandData;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.world.Locatable;
 
 import java.util.Optional;
 
 /**
  * Represents a CommandBlock source, either a placed block or a CommandBlockMinecart.
  */
-public interface CommandBlockSource extends LocatedSource, DataHolder {
+public interface CommandBlockSource extends Locatable, CommandSource, DataHolder {
 
     /**
      * Gets the {@link CommandData} for this source.

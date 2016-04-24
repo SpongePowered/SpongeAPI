@@ -38,8 +38,8 @@ public interface ContextCalculator<T extends Contextual> {
      * provided context accumulator.
      * 
      *
-     * @param {@link Contextual} for this operation
-     * @param {@link Set} of {@link Context}s this operation will append to.
+     * @param calculable {@link Contextual} for this operation
+     * @param accumulator {@link Set} of {@link Context}s this operation will append to.
      */
     void accumulateContexts(T calculable, Set<Context> accumulator);
 
@@ -49,8 +49,8 @@ public interface ContextCalculator<T extends Contextual> {
      * <p>If this calculator does not handle the given type of context, this method
      * should return false.</p>
      *
-     * @param {@link Context} being checked
-     * @param {@link Contextual} the contextual that is being checked against
+     * @param context {@link Context} being checked
+     * @param subject {@link Contextual} the contextual that is being checked against
      * @return True if the given {@link Context} is handled by this calculator and is
      *         applicable to the given {@link Contextual}. Otherwise false.
      */

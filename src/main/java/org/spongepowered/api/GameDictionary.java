@@ -32,7 +32,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import java.util.Set;
 
 /**
- * A GameDictionary is a store of {@link GameDictionary.Entry}s.
+ * A GameDictionary is a store of {@link org.spongepowered.api.GameDictionary.Entry}s.
  *
  * <p>Note that the GameDictionary's keys are different from Minecraft item ids.
  * Minecraft item IDs are namespaces, e.g. minecraft:carrot while ItemDictionary
@@ -42,8 +42,8 @@ import java.util.Set;
 public interface GameDictionary {
 
     /**
-     * Registers an {@link GameDictionary.Entry} in the dictionary with a String
-     * key. The stack size is ignored.
+     * Registers an {@link org.spongepowered.api.GameDictionary.Entry}
+     * in the dictionary with a String key. The stack size is ignored.
      *
      * @param key The key of the item as a String
      * @param entry The item to register
@@ -87,7 +87,7 @@ public interface GameDictionary {
 
         /**
          * Returns whether this entry checks against the item type and extra
-         * data associated with the stack. If this returns {@link true}, any
+         * data associated with the stack. If this returns {@code true}, any
          * {@link ItemStack} whose {@link ItemType} and manipulators match
          * those of the {@linkplain #getTemplate() template} will {@linkplain
          * #matches(ItemStack) match} this entry; however, not all manipulators

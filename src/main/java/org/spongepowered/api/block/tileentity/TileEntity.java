@@ -25,12 +25,11 @@
 package org.spongepowered.api.block.tileentity;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 /**
  * Represents an abstract Tile Entity. It is a functional block that is
@@ -46,7 +45,7 @@ import org.spongepowered.api.world.World;
  * customizable data associated with a {@link TileEntity} is represented by
  * {@link DataManipulator}.</p>
  */
-public interface TileEntity extends DataHolder, DataSerializable {
+public interface TileEntity extends DataHolder, DataSerializable, Locatable {
 
     /**
      * Checks for whether the tile entity is currently valid or not.
@@ -81,17 +80,6 @@ public interface TileEntity extends DataHolder, DataSerializable {
      * @return The type of tile entity
      */
     TileEntityType getType();
-
-    /**
-     * Gets the {@link Location} that this {@link TileEntity} resides
-     * at.
-     *
-     * <p>If the {@link Location}'s {@link BlockType} is changed, this
-     * {@link TileEntity} may be removed as a consequence.
-     *
-     * @return The location
-     */
-    Location<World> getLocation();
 
     /**
      * Gets the {@link BlockState} that this {@link TileEntity} represents.

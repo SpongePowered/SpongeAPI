@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.entity.projectile.explosive.fireball;
 
+import org.spongepowered.api.entity.explosive.Explosive;
+
 /**
  * Represents a Ghast fireball.
  */
-public interface LargeFireball extends Fireball {
+public interface LargeFireball extends Fireball, Explosive {
 
 }

@@ -38,6 +38,7 @@ import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RelativePositions;
+import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -67,7 +68,7 @@ import javax.annotation.Nullable;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends Identifiable, DataHolder, DataSerializable, Translatable {
+public interface Entity extends Identifiable, Locatable, DataHolder, DataSerializable, Translatable {
 
     /**
      * Get the type of entity.
@@ -75,13 +76,6 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      * @return The type of entity
      */
     EntityType getType();
-
-    /**
-     * Gets the current world this entity resides in.
-     *
-     * @return The current world this entity resides in
-     */
-    World getWorld();
 
     /**
      * Creates a {@link EntitySnapshot} containing the {@link EntityType} and data of this entity.
@@ -94,13 +88,6 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      * @return The RNG
      */
     Random getRandom();
-
-    /**
-     * Get the location of this entity.
-     *
-     * @return The location
-     */
-    Location<World> getLocation();
 
     /**
      * Sets the location of this entity. This is equivalent to a teleport,

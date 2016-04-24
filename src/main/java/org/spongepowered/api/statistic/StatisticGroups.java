@@ -54,7 +54,6 @@ public final class StatisticGroups {
      */
     public static final StatisticGroup GENERAL = DummyObjectProvider.createFor(StatisticGroup.class, "GENERAL");
 
-
     /**
      * Statistic counting the number of killed entities of a specific type.
      */

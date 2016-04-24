@@ -59,8 +59,9 @@ public interface WorldStorage {
      * not be guaranteed to remain in synch with the server, let alone on the
      * server thread.</p>
      *
-     * <p>It is imperative to avoid waiting for the {@link CompletableFuture} to
-     * complete its task.</p>
+     * <p>It is imperative to understand that the {@link CompletableFuture} task
+     * is blocking, and should avoid using {@link CompletableFuture#get()} while
+     * on the main thread.</p>
      *
      * @param chunkCoords The chunk coordinates
      * @return Whether the chunk exists or not

@@ -25,31 +25,22 @@
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.FuseData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.explosive.FusedExplosive;
+import org.spongepowered.api.data.manipulator.mutable.entity.ExplosionRadiusData;
+import org.spongepowered.api.data.value.immutable.ImmutableOptionalValue;
 
 /**
- * Represents information about a {@link FusedExplosive}'s fuse.
+ * Represents the radius of an explosion.
  */
-public interface ImmutableFuseData extends ImmutableDataManipulator<ImmutableFuseData, FuseData> {
+public interface ImmutableExplosionRadiusData extends ImmutableDataManipulator<ImmutableExplosionRadiusData, ExplosionRadiusData> {
 
     /**
-     * The amount of ticks before the {@link FusedExplosive} detonates when
-     * primed.
+     * The radius in blocks that the explosion will affect. This value may be
+     * missing if the explosion radius is unknown such as when it is generated
+     * randomly on detonation. Setting this value on such explosives will
+     * override that behavior.
      *
-     * @return Amount of ticks before detonation when primed
+     * @return Explosion radius
      */
-    ImmutableValue<Integer> fuseDuration();
-
-    /**
-     * The amount of ticks before {@link FusedExplosive} detonates. This value
-     * may be zero if the {@link FusedExplosive} is not currently primed nor
-     * will setting this value have any effect if the {@link FusedExplosive} is
-     * not primed.
-     *
-     * @return Amount of ticks before impending detonation
-     */
-    ImmutableValue<Integer> ticksRemaining();
+    ImmutableOptionalValue<Integer> explosionRadius();
 
 }

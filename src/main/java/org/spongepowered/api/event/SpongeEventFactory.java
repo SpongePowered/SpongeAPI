@@ -51,6 +51,8 @@ import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.ai.Goal;
 import org.spongepowered.api.entity.ai.task.AITask;
+import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.entity.explosive.FusedExplosive;
 import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Humanoid;
@@ -84,6 +86,7 @@ import org.spongepowered.api.event.command.TabCompleteEvent;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 import org.spongepowered.api.event.economy.EconomyTransactionEvent;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
+import org.spongepowered.api.event.entity.AttackEntityEvent;
 import org.spongepowered.api.event.entity.BreedEntityEvent;
 import org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent;
 import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
@@ -106,6 +109,11 @@ import org.spongepowered.api.event.entity.TameEntityEvent;
 import org.spongepowered.api.event.entity.TargetEntityEvent;
 import org.spongepowered.api.event.entity.UnleashEntityEvent;
 import org.spongepowered.api.event.entity.ai.AITaskEvent;
+import org.spongepowered.api.event.entity.explosive.DefuseExplosiveEvent;
+import org.spongepowered.api.event.entity.explosive.DetonateExplosiveEvent;
+import org.spongepowered.api.event.entity.explosive.PrimeExplosiveEvent;
+import org.spongepowered.api.event.entity.explosive.TargetExplosiveEvent;
+import org.spongepowered.api.event.entity.explosive.TargetFusedExplosiveEvent;
 import org.spongepowered.api.event.entity.item.ItemMergeItemEvent;
 import org.spongepowered.api.event.entity.item.TargetItemEvent;
 import org.spongepowered.api.event.entity.living.TargetAgentEvent;
@@ -1342,6 +1350,28 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.AttackEntityEvent}.
+     * 
+     * @param cause The cause
+     * @param originalFunctions The original functions
+     * @param targetEntity The target entity
+     * @param knockbackModifier The knockback modifier
+     * @param originalDamage The original damage
+     * @return A new attack entity event
+     */
+    public static AttackEntityEvent createAttackEntityEvent(Cause cause, List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions, Entity targetEntity, int knockbackModifier, double originalDamage) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("originalFunctions", originalFunctions);
+        values.put("targetEntity", targetEntity);
+        values.put("knockbackModifier", knockbackModifier);
+        values.put("originalDamage", originalDamage);
+        return SpongeEventFactoryUtils.createEventImpl(AttackEntityEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.BreedEntityEvent}.
      * 
      * @param cause The cause
@@ -1595,16 +1625,16 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.CollideEntityEvent}.
      * 
      * @param cause The cause
-     * @param originalEntities The original entities
      * @param entities The entities
+     * @param entitySnapshots The entity snapshots
      * @param targetWorld The target world
      * @return A new collide entity event
      */
-    public static CollideEntityEvent createCollideEntityEvent(Cause cause, List<Entity> originalEntities, List<Entity> entities, World targetWorld) {
+    public static CollideEntityEvent createCollideEntityEvent(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("originalEntities", originalEntities);
         values.put("entities", entities);
+        values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(CollideEntityEvent.class, values);
     }
@@ -1615,17 +1645,17 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.CollideEntityEvent.Impact}.
      * 
      * @param cause The cause
-     * @param originalEntities The original entities
      * @param entities The entities
+     * @param entitySnapshots The entity snapshots
      * @param impactPoint The impact point
      * @param targetWorld The target world
      * @return A new impact collide entity event
      */
-    public static CollideEntityEvent.Impact createCollideEntityEventImpact(Cause cause, List<Entity> originalEntities, List<Entity> entities, Location<World> impactPoint, World targetWorld) {
+    public static CollideEntityEvent.Impact createCollideEntityEventImpact(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Location<World> impactPoint, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("originalEntities", originalEntities);
         values.put("entities", entities);
+        values.put("entitySnapshots", entitySnapshots);
         values.put("impactPoint", impactPoint);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(CollideEntityEvent.Impact.class, values);
@@ -2539,6 +2569,154 @@ public class SpongeEventFactory {
         values.put("task", task);
         values.put("priority", priority);
         return SpongeEventFactoryUtils.createEventImpl(AITaskEvent.Remove.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.explosive.DefuseExplosiveEvent}.
+     * 
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @return A new defuse explosive event
+     */
+    public static DefuseExplosiveEvent createDefuseExplosiveEvent(Cause cause, FusedExplosive targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(DefuseExplosiveEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.explosive.DefuseExplosiveEvent.Post}.
+     * 
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @return A new post defuse explosive event
+     */
+    public static DefuseExplosiveEvent.Post createDefuseExplosiveEventPost(Cause cause, FusedExplosive targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(DefuseExplosiveEvent.Post.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.explosive.DefuseExplosiveEvent.Pre}.
+     * 
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @return A new pre defuse explosive event
+     */
+    public static DefuseExplosiveEvent.Pre createDefuseExplosiveEventPre(Cause cause, FusedExplosive targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(DefuseExplosiveEvent.Pre.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.explosive.DetonateExplosiveEvent}.
+     * 
+     * @param cause The cause
+     * @param explosionBuilder The explosion builder
+     * @param originalExplosion The original explosion
+     * @param targetEntity The target entity
+     * @return A new detonate explosive event
+     */
+    public static DetonateExplosiveEvent createDetonateExplosiveEvent(Cause cause, Explosion.Builder explosionBuilder, Explosion originalExplosion, Explosive targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("explosionBuilder", explosionBuilder);
+        values.put("originalExplosion", originalExplosion);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(DetonateExplosiveEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.explosive.PrimeExplosiveEvent}.
+     * 
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @return A new prime explosive event
+     */
+    public static PrimeExplosiveEvent createPrimeExplosiveEvent(Cause cause, FusedExplosive targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(PrimeExplosiveEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.explosive.PrimeExplosiveEvent.Post}.
+     * 
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @return A new post prime explosive event
+     */
+    public static PrimeExplosiveEvent.Post createPrimeExplosiveEventPost(Cause cause, FusedExplosive targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(PrimeExplosiveEvent.Post.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.explosive.PrimeExplosiveEvent.Pre}.
+     * 
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @return A new pre prime explosive event
+     */
+    public static PrimeExplosiveEvent.Pre createPrimeExplosiveEventPre(Cause cause, FusedExplosive targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(PrimeExplosiveEvent.Pre.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.explosive.TargetExplosiveEvent}.
+     * 
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @return A new target explosive event
+     */
+    public static TargetExplosiveEvent createTargetExplosiveEvent(Cause cause, Explosive targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(TargetExplosiveEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.explosive.TargetFusedExplosiveEvent}.
+     * 
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @return A new target fused explosive event
+     */
+    public static TargetFusedExplosiveEvent createTargetFusedExplosiveEvent(Cause cause, FusedExplosive targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(TargetFusedExplosiveEvent.class, values);
     }
 
     /**

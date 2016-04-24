@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
@@ -34,6 +33,8 @@ import org.spongepowered.api.world.World;
 /**
  * An event where a portal is created. Usually, this happens after a
  * {@link ChangeBlockEvent} from any source.
+ *
+ * TODO: Special object for Portal instead of just the location
  */
 public interface ConstructPortalEvent extends Event, Cancellable {
 

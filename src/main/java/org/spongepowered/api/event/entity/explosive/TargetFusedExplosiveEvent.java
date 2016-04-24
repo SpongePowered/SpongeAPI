@@ -22,25 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.event.entity.explosive;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.ExplosiveRadiusData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.entity.explosive.FusedExplosive;
 
 /**
- * An {@link ImmutableDataManipulator} for the "explosive radius" of an
- * {@link Explosive}.
+ * Represents an event regarding a {@link FusedExplosive}.
  */
-public interface ImmutableExplosiveRadiusData extends ImmutableDataManipulator<ImmutableExplosiveRadiusData, ExplosiveRadiusData> {
+public interface TargetFusedExplosiveEvent extends TargetExplosiveEvent {
 
-    /**
-     * Gets the {@link ImmutableValue} for the explosive radius of the
-     * {@link Explosive}.
-     *
-     * @return The explosion radius of the entity
-     */
-    ImmutableValue<Integer> explosiveRadius();
+    @Override
+    FusedExplosive getTargetEntity();
 
 }

@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.entity.explosive.Explosive;
+
 /**
  * Represents an ender crystal.
  */
-public interface EnderCrystal extends Entity {
+public interface EnderCrystal extends Explosive {
 
 }
