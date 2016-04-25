@@ -43,8 +43,9 @@ public interface RecipeRegistry {
      * Removes the given Recipe from registration in this registry.
      *
      * @param recipe The recipe to remove from the registry
+     * @return {@code true} if the recipe was successfully removed
      */
-    void remove(Recipe recipe);
+    boolean remove(Recipe recipe);
 
     /**
      * Gets a {@link List} of all recipes this registry is aware of.

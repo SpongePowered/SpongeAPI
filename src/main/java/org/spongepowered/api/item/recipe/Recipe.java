@@ -32,7 +32,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
- * <p>A Recipe represents some craftable recipe in the game.</p>
+ * A Recipe represents some craftable recipe in the game.
  *
  * <p>It is essentially a Predicate that checks for if a recipe is valid as well
  * as a function from a crafting matrix to a list of {@link ItemStack}
@@ -59,7 +59,7 @@ public interface Recipe extends Predicate<GridInventory> {
      * to craft this Recipe.
      *
      * @param grid The grid inventory to match against
-     * @return True if the given input matches this recipe's requirements
+     * @return {@code true} if the given input matches this recipe's requirements
      */
     @Override
     boolean test(GridInventory grid);
@@ -67,9 +67,9 @@ public interface Recipe extends Predicate<GridInventory> {
     /**
      * Returns the results for running this Recipe over an {@link GridInventory}
      *
-     * @param grid An ItemGrid as input
+     * @param grid A grid inventory as input
      * @return A list of ItemStacks or {@link Optional#empty()} if the given
-     *          ItemGrid does not match this recipe's requirements.
+     *          grid inventory does not match this recipe's requirements
      */
     Optional<List<ItemStack>> getResults(GridInventory grid);
 
