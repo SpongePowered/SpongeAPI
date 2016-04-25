@@ -30,7 +30,7 @@ import com.google.common.collect.Lists;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.SimpleConfigurationNode;
 import org.junit.Test;
-import org.spongepowered.api.data.translator.ConfigurateTranslator;
+import org.spongepowered.api.data.persistence.DataTranslators;
 
 import java.util.Collections;
 import java.util.List;
@@ -61,9 +61,9 @@ public class ConfigurateDataViewTest {
                 .set(DataQuery.of("foo", "stringList"), stringList)
                 .set(DataQuery.of("foo", "nested", "Data"), dataList);
 
-        DataView container = ConfigurateTranslator.instance().translateFrom(node);
+        DataView container = DataTranslators.CONFIGURATION_NODE.translate(node);
         assertTrue(manual.equals(container));
-        ConfigurationNode translated = ConfigurateTranslator.instance().translateData(container);
+        ConfigurationNode translated = DataTranslators.CONFIGURATION_NODE.translate(container).get();
         // assertTrue(node.equals(translated)); // TODO Pending Configurate equals implementation
     }
 

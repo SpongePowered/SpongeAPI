@@ -33,7 +33,7 @@ import org.spongepowered.api.world.World;
  * it to be used as a blueprint to create multiple copies of its containing
  * data.
  */
-public interface Archetype<S extends LocateableSnapshot<S>> extends DataHolder {
+public interface Archetype<S extends LocatableSnapshot<S>> extends DataHolder {
 
     void apply(Location<World> location, Cause cause);
 

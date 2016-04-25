@@ -25,8 +25,9 @@
 package org.spongepowered.api.world.schematic;
 
 import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.world.extent.ArchetypeVolume;
 
-public interface Schematic extends SchematicVolume {
+public interface Schematic extends ArchetypeVolume {
 
     DataContainer getMetadata();
 }

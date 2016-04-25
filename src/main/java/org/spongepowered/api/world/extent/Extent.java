@@ -526,4 +526,6 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      */
     Set<AABB> getIntersectingCollisionBoxes(Entity owner, AABB box);
 
+    ArchetypeVolume createArchetypeVolume(Vector3i min, Vector3i max);
+
 }

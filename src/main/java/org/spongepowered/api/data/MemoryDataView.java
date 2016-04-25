@@ -341,10 +341,10 @@ public class MemoryDataView implements DataView {
                 builder.add(ensureSerialization((Collection) object));
             } else {
                 if (manager != null) {
-                    final Optional<? extends DataSerializer<?>> serializerOptional = manager.getSerializer(object.getClass());
-                    if (serializerOptional.isPresent()) {
-                        DataSerializer serializer = serializerOptional.get();
-                        final DataContainer container = serializer.serialize(value);
+                    final Optional<? extends DataTranslator<?>> translatorOptional = manager.getTranslator(object.getClass());
+                    if (translatorOptional.isPresent()) {
+                        DataTranslator translator = translatorOptional.get();
+                        final DataContainer container = translator.translate(value);
                         checkArgument(!container.equals(this), "Cannot insert self-referencing Objects!");
                         copyDataView(this.path, container);
                     } else {

@@ -22,19 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.schematic;
+package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.TileEntityArchetype;
 import org.spongepowered.api.entity.EntityArchetype;
-import org.spongepowered.api.world.extent.MutableBlockVolume;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 
-public interface SchematicVolume extends MutableBlockVolume {
+public interface ArchetypeVolume extends MutableBlockVolume {
 
     Optional<TileEntityArchetype> getBlockArchetype(int x, int y, int z);
 
@@ -47,5 +46,5 @@ public interface SchematicVolume extends MutableBlockVolume {
     Collection<EntityArchetype> getEntityArchetypes();
 
     @Override
-    MutableBlockVolumeWorker<? extends SchematicVolume> getBlockWorker();
+    MutableBlockVolumeWorker<? extends ArchetypeVolume> getBlockWorker();
 }
