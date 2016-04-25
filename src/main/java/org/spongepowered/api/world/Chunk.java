@@ -26,9 +26,13 @@ package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.extent.worker.MutableBiomeAreaWorker;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
+
+import java.util.Optional;
 
 /**
  * A chunk is a specific grid-aligned partition of a {@link Extent}.
@@ -135,6 +139,28 @@ public interface Chunk extends Extent {
      * @return The regional difficulty percentage for this chunk
      */
     double getRegionalDifficultyPercentage();
+
+    /**
+     * Gets the chunk in the given direction from this chunk, if it exists.
+     *
+     * @param direction The cardinal or ordinal direction to get the chunk from
+     * @return The neighbor chunk, if available
+     */
+    default Optional<Chunk> getNeighbor(Direction direction) {
+        return getNeighbor(direction, false);
+    }
+
+    /**
+     * Gets the chunk in the given direction from this chunk.
+     *
+     * @param direction The cardinal or ordinal direction to get the chunk from
+     * @param shouldLoad Whether the server should load or generate the chunk if unavailable
+     * @return The neighbor chunk, if available or if {@code shouldLoad} is true
+     */
+    default Optional<Chunk> getNeighbor(Direction direction, boolean shouldLoad) {
+        Optional<Vector3i> neighborPosition = Sponge.getServer().getChunkLayout().moveToChunk(getPosition(), direction);
+        return neighborPosition.isPresent() ? getWorld().loadChunk(neighborPosition.get(), shouldLoad) : Optional.empty();
+    }
 
     @Override
     MutableBiomeAreaWorker<? extends Chunk> getBiomeWorker();
