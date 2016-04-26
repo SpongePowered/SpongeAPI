@@ -39,7 +39,6 @@ import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
-import org.spongepowered.api.world.World;
 
 import java.nio.file.Path;
 
@@ -163,8 +162,29 @@ public interface Game {
     ConfigManager getConfigManager();
 
     /**
-     * Gets the saves directory where {@link World} data currently resides.
-     * @return The directory
+     * Gets the directory where the game's files are located.
+     *
+     * @return The game directory
+     */
+    Path getGameDirectory();
+
+    /**
+     * Gets the directory where the game will store save files.
+     *
+     * This location differs based on the implementation and is therefore implementation-specific.
+     *
+     * <p>
+     *     To elaborate, this is how it is handled in Minecraft based on side:
+     *     <ul>
+     *         <li>Client
+     *          <ul>This directory will point to {@link Game#getGameDirectory()}.resolve("saves")</ul>
+     *         <li>Server
+     *          <ul>This directory will be equivalent to {@link Game#getGameDirectory()}. Consult your
+     *              specific implementation if they support placing this elsewhere.</ul>
+     *     </ul>
+     * </p>
+     *
+     * @return The saves directory
      */
     Path getSavesDirectory();
 

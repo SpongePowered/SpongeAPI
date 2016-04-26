@@ -24,16 +24,14 @@
  */
 package org.spongepowered.api;
 
-import com.flowpowered.math.vector.Vector3d;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.command.source.ConsoleSource;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
-import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.command.source.ConsoleSource;
+import org.spongepowered.api.text.channel.MessageChannel;
+import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.storage.ChunkLayout;
@@ -193,9 +191,7 @@ public interface Server {
      *
      * <p>A world which is unloaded will be removed from memory. However if it
      * is still enabled according to {@link WorldProperties#isEnabled()} then it
-     * will be loaded again if the server is restarted or an attempt is made by
-     * a plugin to transfer an entity to the world using
-     * {@link Entity#transferToWorld(String, Vector3d)}.</p>
+     * will be loaded again if the server is restarted.</p>
      *
      * @param world The world to unload
      * @return Whether the operation was successful
@@ -203,13 +199,13 @@ public interface Server {
     boolean unloadWorld(World world);
 
     /**
-     * Creates a new world from the given {@link WorldCreationSettings}. For the
-     * creation of the WorldCreationSettings please see
+     * Creates a new {@link WorldProperties} from the given
+     * {@link WorldCreationSettings}. For the creation of the
+     * WorldCreationSettings please see
      * {@link org.spongepowered.api.world.WorldCreationSettings.Builder}.
      *
-     * <p>If the world already exists then the existing {@link WorldProperties}
-     * are returned else a new world is created and the new WorldProperties
-     * returned.</p>
+     * <p>If the {@link World} represented by the properties exists then the existing
+     * {@link WorldProperties} are returned</p>
      *
      * <p>Although the world is created it is not loaded at this time. Please
      * see one of the following methods for loading the world.</p>
@@ -220,7 +216,7 @@ public interface Server {
      * @param settings The settings for creation
      * @return The new or existing world properties, if creation was successful
      */
-    Optional<WorldProperties> createWorldProperties(WorldCreationSettings settings);
+    WorldProperties createWorldProperties(WorldCreationSettings settings);
 
     /**
      * Creates a world copy asynchronously using the new name given and returns
