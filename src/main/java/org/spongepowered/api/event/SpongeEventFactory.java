@@ -27,14 +27,6 @@ package org.spongepowered.api.event;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Preconditions;
-import java.net.InetSocketAddress;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Function;
 import org.spongepowered.api.GameState;
 import org.spongepowered.api.MinecraftVersion;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -176,7 +168,7 @@ import org.spongepowered.api.event.user.TargetUserEvent;
 import org.spongepowered.api.event.world.ChangeWorldGameRuleEvent;
 import org.spongepowered.api.event.world.ChangeWorldWeatherEvent;
 import org.spongepowered.api.event.world.ConstructPortalEvent;
-import org.spongepowered.api.event.world.ConstructWorldEvent;
+import org.spongepowered.api.event.world.ConstructWorldPropertiesEvent;
 import org.spongepowered.api.event.world.ExplosionEvent;
 import org.spongepowered.api.event.world.GenerateChunkEvent;
 import org.spongepowered.api.event.world.LoadWorldEvent;
@@ -220,6 +212,15 @@ import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
+
+import java.net.InetSocketAddress;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Function;
 
 public class SpongeEventFactory {
     /**
@@ -372,7 +373,7 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new stop fishing event
      */
-    public static FishingEvent.Stop createFishingEventStop(Cause cause, int originalExperience, int experience, EntitySnapshot originalFishHook, FishHook fishHook, Transaction<ItemStackSnapshot> itemStackTransaction, Entity targetEntity) {
+    public static FishingEvent.Stop createFishingEventStop(Cause cause, int originalExperience, int experience, EntitySnapshot originalFishHook, FishHook fishHook, List<Transaction<ItemStackSnapshot>> itemStackTransaction, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalExperience", originalExperience);
@@ -769,6 +770,46 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Primary.MainHand}.
+     * 
+     * @param cause The cause
+     * @param interactionPoint The interaction point
+     * @param targetBlock The target block
+     * @param targetSide The target side
+     * @return A new main hand primary interact block event
+     */
+    public static InteractBlockEvent.Primary.MainHand createInteractBlockEventPrimaryMainHand(Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetBlock", targetBlock);
+        values.put("targetSide", targetSide);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Primary.MainHand.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Primary.OffHand}.
+     * 
+     * @param cause The cause
+     * @param interactionPoint The interaction point
+     * @param targetBlock The target block
+     * @param targetSide The target side
+     * @return A new off hand primary interact block event
+     */
+    public static InteractBlockEvent.Primary.OffHand createInteractBlockEventPrimaryOffHand(Cause cause, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetBlock", targetBlock);
+        values.put("targetSide", targetSide);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Primary.OffHand.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.block.InteractBlockEvent.Secondary}.
      * 
      * @param cause The cause
@@ -792,6 +833,62 @@ public class SpongeEventFactory {
         values.put("targetBlock", targetBlock);
         values.put("targetSide", targetSide);
         return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Secondary.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Secondary.MainHand}.
+     * 
+     * @param cause The cause
+     * @param originalUseBlockResult The original use block result
+     * @param useBlockResult The use block result
+     * @param originalUseItemResult The original use item result
+     * @param useItemResult The use item result
+     * @param interactionPoint The interaction point
+     * @param targetBlock The target block
+     * @param targetSide The target side
+     * @return A new main hand secondary interact block event
+     */
+    public static InteractBlockEvent.Secondary.MainHand createInteractBlockEventSecondaryMainHand(Cause cause, Tristate originalUseBlockResult, Tristate useBlockResult, Tristate originalUseItemResult, Tristate useItemResult, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("originalUseBlockResult", originalUseBlockResult);
+        values.put("useBlockResult", useBlockResult);
+        values.put("originalUseItemResult", originalUseItemResult);
+        values.put("useItemResult", useItemResult);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetBlock", targetBlock);
+        values.put("targetSide", targetSide);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Secondary.MainHand.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.InteractBlockEvent.Secondary.OffHand}.
+     * 
+     * @param cause The cause
+     * @param originalUseBlockResult The original use block result
+     * @param useBlockResult The use block result
+     * @param originalUseItemResult The original use item result
+     * @param useItemResult The use item result
+     * @param interactionPoint The interaction point
+     * @param targetBlock The target block
+     * @param targetSide The target side
+     * @return A new off hand secondary interact block event
+     */
+    public static InteractBlockEvent.Secondary.OffHand createInteractBlockEventSecondaryOffHand(Cause cause, Tristate originalUseBlockResult, Tristate useBlockResult, Tristate originalUseItemResult, Tristate useItemResult, Optional<Vector3d> interactionPoint, BlockSnapshot targetBlock, Direction targetSide) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("originalUseBlockResult", originalUseBlockResult);
+        values.put("useBlockResult", useBlockResult);
+        values.put("originalUseItemResult", originalUseItemResult);
+        values.put("useItemResult", useItemResult);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetBlock", targetBlock);
+        values.put("targetSide", targetSide);
+        return SpongeEventFactoryUtils.createEventImpl(InteractBlockEvent.Secondary.OffHand.class, values);
     }
 
     /**
@@ -2157,6 +2254,42 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Primary.MainHand}.
+     * 
+     * @param cause The cause
+     * @param interactionPoint The interaction point
+     * @param targetEntity The target entity
+     * @return A new main hand primary interact entity event
+     */
+    public static InteractEntityEvent.Primary.MainHand createInteractEntityEventPrimaryMainHand(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Primary.MainHand.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Primary.OffHand}.
+     * 
+     * @param cause The cause
+     * @param interactionPoint The interaction point
+     * @param targetEntity The target entity
+     * @return A new off hand primary interact entity event
+     */
+    public static InteractEntityEvent.Primary.OffHand createInteractEntityEventPrimaryOffHand(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Primary.OffHand.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Secondary}.
      * 
      * @param cause The cause
@@ -2170,6 +2303,42 @@ public class SpongeEventFactory {
         values.put("interactionPoint", interactionPoint);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Secondary.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Secondary.MainHand}.
+     * 
+     * @param cause The cause
+     * @param interactionPoint The interaction point
+     * @param targetEntity The target entity
+     * @return A new main hand secondary interact entity event
+     */
+    public static InteractEntityEvent.Secondary.MainHand createInteractEntityEventSecondaryMainHand(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Secondary.MainHand.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.InteractEntityEvent.Secondary.OffHand}.
+     * 
+     * @param cause The cause
+     * @param interactionPoint The interaction point
+     * @param targetEntity The target entity
+     * @return A new off hand secondary interact entity event
+     */
+    public static InteractEntityEvent.Secondary.OffHand createInteractEntityEventSecondaryOffHand(Cause cause, Optional<Vector3d> interactionPoint, Entity targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("interactionPoint", interactionPoint);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(InteractEntityEvent.Secondary.OffHand.class, values);
     }
 
     /**
@@ -3855,7 +4024,7 @@ public class SpongeEventFactory {
      * @param itemStackInUse The item stack in use
      * @return A new use item stack event
      */
-    public static UseItemStackEvent createUseItemStackEvent(Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
+    public static UseItemStackEvent createUseItemStackEvent(Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackSnapshot itemStackInUse) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalRemainingDuration", originalRemainingDuration);
@@ -3873,17 +4042,57 @@ public class SpongeEventFactory {
      * @param originalRemainingDuration The original remaining duration
      * @param remainingDuration The remaining duration
      * @param itemStackInUse The item stack in use
-     * @param itemStackResult The item stack result
      * @return A new finish use item stack event
      */
-    public static UseItemStackEvent.Finish createUseItemStackEventFinish(Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse, Transaction<ItemStackSnapshot> itemStackResult) {
+    public static UseItemStackEvent.Finish createUseItemStackEventFinish(Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackSnapshot itemStackInUse) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("originalRemainingDuration", originalRemainingDuration);
+        values.put("remainingDuration", remainingDuration);
+        values.put("itemStackInUse", itemStackInUse);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Finish.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.item.inventory.UseItemStackEvent.Replace}.
+     * 
+     * @param cause The cause
+     * @param originalRemainingDuration The original remaining duration
+     * @param remainingDuration The remaining duration
+     * @param itemStackInUse The item stack in use
+     * @param itemStackResult The item stack result
+     * @return A new replace use item stack event
+     */
+    public static UseItemStackEvent.Replace createUseItemStackEventReplace(Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackSnapshot itemStackInUse, Transaction<ItemStackSnapshot> itemStackResult) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalRemainingDuration", originalRemainingDuration);
         values.put("remainingDuration", remainingDuration);
         values.put("itemStackInUse", itemStackInUse);
         values.put("itemStackResult", itemStackResult);
-        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Finish.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Replace.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.item.inventory.UseItemStackEvent.Reset}.
+     * 
+     * @param cause The cause
+     * @param originalRemainingDuration The original remaining duration
+     * @param remainingDuration The remaining duration
+     * @param itemStackInUse The item stack in use
+     * @return A new reset use item stack event
+     */
+    public static UseItemStackEvent.Reset createUseItemStackEventReset(Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackSnapshot itemStackInUse) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("originalRemainingDuration", originalRemainingDuration);
+        values.put("remainingDuration", remainingDuration);
+        values.put("itemStackInUse", itemStackInUse);
+        return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Reset.class, values);
     }
 
     /**
@@ -3897,7 +4106,7 @@ public class SpongeEventFactory {
      * @param itemStackInUse The item stack in use
      * @return A new start use item stack event
      */
-    public static UseItemStackEvent.Start createUseItemStackEventStart(Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
+    public static UseItemStackEvent.Start createUseItemStackEventStart(Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackSnapshot itemStackInUse) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalRemainingDuration", originalRemainingDuration);
@@ -3917,7 +4126,7 @@ public class SpongeEventFactory {
      * @param itemStackInUse The item stack in use
      * @return A new stop use item stack event
      */
-    public static UseItemStackEvent.Stop createUseItemStackEventStop(Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
+    public static UseItemStackEvent.Stop createUseItemStackEventStop(Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackSnapshot itemStackInUse) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalRemainingDuration", originalRemainingDuration);
@@ -3937,7 +4146,7 @@ public class SpongeEventFactory {
      * @param itemStackInUse The item stack in use
      * @return A new tick use item stack event
      */
-    public static UseItemStackEvent.Tick createUseItemStackEventTick(Cause cause, int originalRemainingDuration, int remainingDuration, Transaction<ItemStackSnapshot> itemStackInUse) {
+    public static UseItemStackEvent.Tick createUseItemStackEventTick(Cause cause, int originalRemainingDuration, int remainingDuration, ItemStackSnapshot itemStackInUse) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalRemainingDuration", originalRemainingDuration);
@@ -4625,19 +4834,19 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.world.ConstructWorldEvent}.
+     * {@link org.spongepowered.api.event.world.ConstructWorldPropertiesEvent}.
      * 
      * @param cause The cause
      * @param worldCreationSettings The world creation settings
      * @param worldProperties The world properties
-     * @return A new construct world event
+     * @return A new construct world properties event
      */
-    public static ConstructWorldEvent createConstructWorldEvent(Cause cause, WorldCreationSettings worldCreationSettings, WorldProperties worldProperties) {
+    public static ConstructWorldPropertiesEvent createConstructWorldPropertiesEvent(Cause cause, WorldCreationSettings worldCreationSettings, WorldProperties worldProperties) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("worldCreationSettings", worldCreationSettings);
         values.put("worldProperties", worldProperties);
-        return SpongeEventFactoryUtils.createEventImpl(ConstructWorldEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(ConstructWorldPropertiesEvent.class, values);
     }
 
     /**
@@ -4796,6 +5005,38 @@ public class SpongeEventFactory {
         values.put("cause", cause);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(SaveWorldEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.SaveWorldEvent.Post}.
+     * 
+     * @param cause The cause
+     * @param targetWorld The target world
+     * @return A new post save world event
+     */
+    public static SaveWorldEvent.Post createSaveWorldEventPost(Cause cause, World targetWorld) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetWorld", targetWorld);
+        return SpongeEventFactoryUtils.createEventImpl(SaveWorldEvent.Post.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.SaveWorldEvent.Pre}.
+     * 
+     * @param cause The cause
+     * @param targetWorld The target world
+     * @return A new pre save world event
+     */
+    public static SaveWorldEvent.Pre createSaveWorldEventPre(Cause cause, World targetWorld) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetWorld", targetWorld);
+        return SpongeEventFactoryUtils.createEventImpl(SaveWorldEvent.Pre.class, values);
     }
 
     /**

@@ -22,27 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.PassengerData;
-import org.spongepowered.api.data.value.immutable.ImmutableListValue;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntitySnapshot;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.storage.WorldProperties;
 
 /**
- * An {@link ImmutableDataManipulator} handling the link to the current
- * vehicle being ridden by an {@link Entity}. With any "vehicle", there is
- * always a "base" vehicle.
+ * An event for when a {@link WorldProperties} has been created. Often paired with a
+ * {@link LoadWorldEvent}, but that is not guaranteed.
  */
-public interface ImmutablePassengerData extends ImmutableDataManipulator<ImmutablePassengerData, PassengerData> {
+public interface ConstructWorldPropertiesEvent extends Event {
 
     /**
-     * Gets the {@link ImmutableListValue} for the current {@link Entity}
-     * acting as a passenger.
-     *
-     * @return The immutable value for the passenger entity
+     * Gets the properties of the newly created world.
+     * 
+     * @return The properties
      */
-    ImmutableListValue<EntitySnapshot> passengers();
+    WorldProperties getWorldProperties();
+    
+    /**
+     * Gets the {@link WorldCreationSettings} used to create the world.
+     * 
+     * @return The creation settings
+     */
+    WorldCreationSettings getWorldCreationSettings();
 
 }

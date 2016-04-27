@@ -22,26 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.block;
+package org.spongepowered.api.effect.sound;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.block.ImmutableSuspendedData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * An {@link DataManipulator} for the "suspended" state. Usually, the mechanics
- * for this mean that a {@link BlockState} may "trigger" if modified while
- * being "suspended". Usually applicable to {@link BlockTypes#TRIPWIRE}.
- */
-public interface SuspendedData extends DataManipulator<SuspendedData, ImmutableSuspendedData> {
-
-    /**
-     * Gets the {@link Value} for the "suspended" state.
-     *
-     * @return The value for the "suspended" state.
-     */
-    Value<Boolean> suspended();
+@CatalogedBy(SoundCategories.class)
+public interface SoundCategory extends CatalogType {
 
 }

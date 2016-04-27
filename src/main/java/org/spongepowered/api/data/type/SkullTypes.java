@@ -35,6 +35,8 @@ public final class SkullTypes {
 
     public static final SkullType CREEPER = DummyObjectProvider.createFor(SkullType.class, "CREEPER");
 
+    public static final SkullType ENDER_DRAGON = DummyObjectProvider.createFor(SkullType.class, "ENDER_DRAGON");
+
     public static final SkullType PLAYER = DummyObjectProvider.createFor(SkullType.class, "PLAYER");
 
     public static final SkullType SKELETON = DummyObjectProvider.createFor(SkullType.class, "SKELETON");

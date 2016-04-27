@@ -76,6 +76,10 @@ public final class Sponge {
         return getGame().getPlatform();
     }
 
+    public static boolean isServerAvailable() {
+        return getGame().isServerAvailable();
+    }
+
     public static Server getServer() {
         return getGame().getServer();
     }

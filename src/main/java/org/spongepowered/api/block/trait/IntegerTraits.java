@@ -57,8 +57,6 @@ public final class IntegerTraits {
 
     public static final IntegerTrait FIRE_AGE = DummyObjectProvider.createFor(IntegerTrait.class, "FIRE_AGE");
 
-    public static final IntegerTrait FIRE_UPPER = DummyObjectProvider.createFor(IntegerTrait.class, "FIRE_UPPER");
-
     public static final IntegerTrait FLOWER_POT_LEGACY_DATA = DummyObjectProvider.createFor(IntegerTrait.class, "FLOWER_POT_LEGACY_DATA");
 
     public static final IntegerTrait FLOWING_LAVA_LEVEL = DummyObjectProvider.createFor(IntegerTrait.class, "FLOWING_LAVA_LEVEL");

@@ -67,7 +67,6 @@ import org.spongepowered.api.data.manipulator.mutable.block.SlabData;
 import org.spongepowered.api.data.manipulator.mutable.block.SnowedData;
 import org.spongepowered.api.data.manipulator.mutable.block.StairShapeData;
 import org.spongepowered.api.data.manipulator.mutable.block.StoneData;
-import org.spongepowered.api.data.manipulator.mutable.block.SuspendedData;
 import org.spongepowered.api.data.manipulator.mutable.block.TreeData;
 import org.spongepowered.api.data.manipulator.mutable.block.WallData;
 import org.spongepowered.api.data.manipulator.mutable.block.WireAttachmentData;
@@ -102,9 +101,9 @@ public final class CatalogBlockData {
      */
     public static final Class<AttachedData> ATTACHED_DATA = AttachedData.class;
     /**
-     * Signifies that a block relies on {@link Axis}.      
-     */        
-    public static final Class<AxisData> AXIS_DATA = AxisData.class;               
+     * Signifies that a block relies on {@link Axis}.
+     */
+    public static final Class<AxisData> AXIS_DATA = AxisData.class;
     /**
      * Represents data related to {@link BlockTypes#BROWN_MUSHROOM_BLOCK} and
      * {@link BlockTypes#RED_MUSHROOM_BLOCK}.
@@ -128,9 +127,9 @@ public final class CatalogBlockData {
      */
     public static final Class<DecayableData> DECAYABLE_DATA = DecayableData.class;
     /**
-     * Represents the delay of a redstone repeater.    
-     */        
-    public static final Class<DelayableData> DELAYABLE_DATA = DelayableData.class;       
+     * Represents the delay of a redstone repeater.
+     */
+    public static final Class<DelayableData> DELAYABLE_DATA = DelayableData.class;
     /**
      * Signifies that a block has a {@link Direction}. Usually applies
      * to "rotational" blocks, such as {@link BlockTypes#LOG} and
@@ -292,11 +291,6 @@ public final class CatalogBlockData {
      * Represents the {@link StoneType} of a {@link BlockTypes#STONE}.
      */
     public static final Class<StoneData> STONE_DATA = StoneData.class;
-    /**
-     * Signifies that a block is "suspended". Usually applicable to
-     * {@link BlockTypes#TRIPWIRE} and {@link BlockTypes#TRIPWIRE_HOOK}.
-     */
-    public static final Class<SuspendedData> SUSPENDED_DATA = SuspendedData.class;
     /**
      * Represents the {@link TreeType} for various tree based blocks. Usually
      * applicable to {@link BlockTypes#SAPLING}, {@link BlockTypes#LEAVES},

@@ -40,12 +40,11 @@ import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RelativePositions;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.Collection;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
@@ -99,15 +98,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
     void setLocation(Location<World> location);
 
     /**
-     * Sets the location of this entity using a safe one from {@link TeleportHelper#getSafeLocation(Location)}. This is equivalent to a
-     * teleport and also moves this entity's passengers.
-     *
-     * @param location The location to set
-     * @return True if location was set successfully, false if location couldn't be set as no safe location was found
-     */
-    boolean setLocationSafely(Location<World> location);
-
-    /**
      * Gets the rotation.
      *
      * <p>The format of the rotation is represented by:</p>
@@ -145,20 +135,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
     void setLocationAndRotation(Location<World> location, Vector3d rotation);
 
     /**
-     * Sets the location using a safe one from {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this entity.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
-     *
-     * @param location The location to set
-     * @param rotation The rotation to set
-     * @return True if location was set successfully, false if location couldn't be set as no safe location was found
-     */
-    boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation);
-
-    /**
      * Moves the entity to the specified location, and sets the rotation. {@link RelativePositions}
      * listed inside the EnumSet are considered relative.
      *
@@ -172,25 +148,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
      * @param relativePositions The coordinates to set relatively
      */
     void setLocationAndRotation(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
-
-    /**
-     * Sets the location using a safe one from
-     * {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this
-     * entity. {@link RelativePositions} listed inside the EnumSet are
-     * considered relative.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
-     *
-     * @param location The location to set
-     * @param rotation The rotation to set
-     * @param relativePositions The coordinates to set relatively
-     * @return True if location was set successfully, false if location
-     *     couldn't be set as no safe location was found
-     */
-    boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
     /**
      * Gets the entity scale. Not currently used.
@@ -225,51 +182,32 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
     void setTransform(Transform<World> transform);
 
     /**
-     * Sets the location of this entity to a new position in a world which does
-     * not have to be loaded (but must at least be enabled).
+     * Sets the {@link Location} of this entity to the {@link World}'s spawn point.
      *
-     * <p>If the target world is loaded then this is equivalent to
-     * setting the location via {@link TargetedLocationData}.</p>
+     * <p>This is equivalent to setting the location via {@link TargetedLocationData}.</p>
      *
-     * <p>If the target world is unloaded but is enabled according to its
-     * {@link WorldProperties#isEnabled()} then this will first load the world
-     * before transferring the entity to that world.</p>
-     *
-     * <p>If the target world is unloaded and not enabled then the transfer
-     * will fail.</p>
-     *
-     * @param worldName The name of the world to transfer to
-     * @param position The position in the target world
-     * @return True if the teleport was successful
+     * @param world The world to transfer to
      */
-    boolean transferToWorld(String worldName, Vector3d position);
+    default void transferToWorld(World world) {
+        transferToWorld(world, world.getSpawnLocation().getPosition());
+    }
 
     /**
-     * Sets the location of this entity to a new position in a world which does
-     * not have to be loaded (but must at least be enabled).
+     * Sets the {@link Location} of this entity to a new position in a world.
      *
-     * <p>If the target world is loaded then this is equivalent to
-     * setting the location via {@link TargetedLocationData}.</p>
+     * <p>This is equivalent to setting the location via {@link TargetedLocationData}.</p>
      *
-     * <p>If the target world is unloaded but is enabled according to its
-     * {@link WorldProperties#isEnabled()} then this will first load the world
-     * before transferring the entity to that world.</p>
-     *
-     * <p>If the target world is unloaded and not enabled then the transfer
-     * will fail.</p>
-     *
-     * @param uuid The UUID of the target world to transfer to
+     * @param world The world to transfer to
      * @param position The position in the target world
-     * @return True if the teleport was successful
      */
-    boolean transferToWorld(UUID uuid, Vector3d position);
+    void transferToWorld(World world, Vector3d position);
 
     /**
      * Gets the entity passenger that rides this entity, if available.
      *
      * @return The passenger entity, if it exists
      */
-    Optional<Entity> getPassenger();
+    List<Entity> getPassengers();
 
     /**
      * Sets the passenger entity(the entity that rides this one).
@@ -277,7 +215,22 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
      * @param entity The entity passenger, or null to eject
      * @return True if the set was successful
      */
-    DataTransactionResult setPassenger(@Nullable Entity entity);
+    DataTransactionResult addPassenger(Entity entity);
+
+    /**
+     * Removes the given entity as a passenger.
+     *
+     * @param entity
+     * @return
+     */
+    DataTransactionResult removePassenger(Entity entity);
+
+    /**
+     * Removes all currently riding passengers from this entity.
+     *
+     * @return
+     */
+    DataTransactionResult clearPassengers();
 
     /**
      * Gets the entity vehicle that this entity is riding, if available.

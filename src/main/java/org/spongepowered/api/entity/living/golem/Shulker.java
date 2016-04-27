@@ -22,26 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.block;
+package org.spongepowered.api.entity.living.golem;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.block.SuspendedData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.entity.living.golem.Golem;
 
-/**
- * An {@link ImmutableDataManipulator} for the "suspended" state. Usually, the
- * mechanics for this mean that a {@link BlockState} may "trigger" if modified
- * while being "suspended". Usually applicable to {@link BlockTypes#TRIPWIRE}.
- */
-public interface ImmutableSuspendedData extends ImmutableDataManipulator<ImmutableSuspendedData, SuspendedData> {
-
-    /**
-     * Gets the {@link ImmutableValue} for the "suspended" state.
-     *
-     * @return The immutable value for the "suspended" state.
-     */
-    ImmutableValue<Boolean> suspended();
+public interface Shulker extends Golem {
 
 }

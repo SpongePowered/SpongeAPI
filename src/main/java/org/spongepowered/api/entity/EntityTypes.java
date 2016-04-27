@@ -33,9 +33,9 @@ public final class EntityTypes {
 
     // SORTFIELDS:ON
 
-    public static final EntityType ARMOR_STAND = DummyObjectProvider.createFor(EntityType.class, "ARMOR_STAND");
+    public static final EntityType AREA_EFFECT_CLOUD = DummyObjectProvider.createFor(EntityType.class, "AREA_EFFECT_CLOUD");
 
-    public static final EntityType ARROW = DummyObjectProvider.createFor(EntityType.class, "ARROW");
+    public static final EntityType ARMOR_STAND = DummyObjectProvider.createFor(EntityType.class, "ARMOR_STAND");
 
     public static final EntityType BAT = DummyObjectProvider.createFor(EntityType.class, "BAT");
 
@@ -129,6 +129,10 @@ public final class EntityTypes {
 
     public static final EntityType SHEEP = DummyObjectProvider.createFor(EntityType.class, "SHEEP");
 
+    public static final EntityType SHULKER = DummyObjectProvider.createFor(EntityType.class, "SHULKER");
+
+    public static final EntityType SHULKER_BULLET = DummyObjectProvider.createFor(EntityType.class, "SHULKER_BULLET");
+
     public static final EntityType SILVERFISH = DummyObjectProvider.createFor(EntityType.class, "SILVERFISH");
 
     public static final EntityType SKELETON = DummyObjectProvider.createFor(EntityType.class, "SKELETON");
@@ -141,6 +145,8 @@ public final class EntityTypes {
 
     public static final EntityType SNOWMAN = DummyObjectProvider.createFor(EntityType.class, "SNOWMAN");
 
+    public static final EntityType SPECTRAL_ARROW = DummyObjectProvider.createFor(EntityType.class, "SPECTRAL_ARROW");
+
     public static final EntityType SPIDER = DummyObjectProvider.createFor(EntityType.class, "SPIDER");
 
     public static final EntityType SPLASH_POTION = DummyObjectProvider.createFor(EntityType.class, "SPLASH_POTION");
@@ -148,6 +154,8 @@ public final class EntityTypes {
     public static final EntityType SQUID = DummyObjectProvider.createFor(EntityType.class, "SQUID");
 
     public static final EntityType THROWN_EXP_BOTTLE = DummyObjectProvider.createFor(EntityType.class, "THROWN_EXP_BOTTLE");
+
+    public static final EntityType TIPPED_ARROW = DummyObjectProvider.createFor(EntityType.class, "TIPPED_ARROW");
 
     public static final EntityType TNT_MINECART = DummyObjectProvider.createFor(EntityType.class, "TNT_MINECART");
 
@@ -172,4 +180,3 @@ public final class EntityTypes {
     private EntityTypes() {
     }
 }
-

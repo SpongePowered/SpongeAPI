@@ -37,13 +37,35 @@ public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
      *
      * This is usually left-click.
      */
-    interface Primary extends InteractEntityEvent {}
+    interface Primary extends InteractEntityEvent {
+
+        /**
+         * A {@link Primary} event where the interaction is from the client's main hand.
+         */
+        interface MainHand extends Primary {}
+
+        /**
+         * A {@link Primary} event where the interaction is from the client's off hand.
+         */
+        interface OffHand extends Primary {}
+    }
 
     /**
      * An event where the targeted entity is being interacted with the client's "secondary" button.
      *
      * This is usually right-click.
      */
-    interface Secondary extends InteractEntityEvent {}
+    interface Secondary extends InteractEntityEvent {
+
+        /**
+         * A {@link Secondary} event where the interaction is from the client's main hand.
+         */
+        interface MainHand extends Secondary {}
+
+        /**
+         * A {@link Secondary} event where the interaction is from the client's off hand.
+         */
+        interface OffHand extends Secondary {}
+    }
 
 }

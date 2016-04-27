@@ -22,27 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.PassengerData;
-import org.spongepowered.api.data.value.immutable.ImmutableListValue;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntitySnapshot;
-
-/**
- * An {@link ImmutableDataManipulator} handling the link to the current
- * vehicle being ridden by an {@link Entity}. With any "vehicle", there is
- * always a "base" vehicle.
- */
-public interface ImmutablePassengerData extends ImmutableDataManipulator<ImmutablePassengerData, PassengerData> {
-
-    /**
-     * Gets the {@link ImmutableListValue} for the current {@link Entity}
-     * acting as a passenger.
-     *
-     * @return The immutable value for the passenger entity
-     */
-    ImmutableListValue<EntitySnapshot> passengers();
+public interface ShulkerBullet extends Entity {
 
 }

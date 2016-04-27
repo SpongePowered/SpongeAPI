@@ -507,17 +507,7 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> IS_SNEAKING = KeyFactory.fake("IS_SNEAKING");
 
-    /**
-     * Represents the {@link Key} for representing the "splash" state of a
-     * {@link ItemTypes#POTION}.
-     *
-     * @see SplashPotionData#splash()
-     */
-    public static final Key<Value<Boolean>> IS_SPLASH_POTION = KeyFactory.fake("IS_SPLASH_POTION");
-
     public static final Key<Value<Boolean>> IS_SPRINTING = KeyFactory.fake("IS_SPRINTING");
-
-    public static final Key<Value<Boolean>> IS_VILLAGER_ZOMBIE = KeyFactory.fake("IS_VILLAGER_ZOMBIE");
 
     public static final Key<Value<Boolean>> IS_WET = KeyFactory.fake("IS_WET");
 
@@ -607,7 +597,7 @@ public final class Keys {
 
     public static final Key<MutableBoundedValue<Integer>> PASSED_COOK_TIME = KeyFactory.fake("PASSED_COOK_TIME");
 
-    public static final Key<Value<EntitySnapshot>> PASSENGER = KeyFactory.fake("PASSENGER");
+    public static final Key<ListValue<EntitySnapshot>> PASSENGERS = KeyFactory.fake("PASSENGERS");
 
     public static final Key<Value<Boolean>> PERSISTS = KeyFactory.fake("PERSISTS");
 
@@ -872,6 +862,8 @@ public final class Keys {
     public static final Key<Value<EntitySnapshot>> VEHICLE = KeyFactory.fake("VEHICLE");
 
     public static final Key<Value<Vector3d>> VELOCITY = KeyFactory.fake("VELOCITY");
+
+    public static final Key<Value<Profession>> VILLAGER_ZOMBIE_PROFESSION = KeyFactory.fake("VILLAGER_ZOMBIE_PROFESSION");
 
     public static final Key<Value<Double>> WALKING_SPEED = KeyFactory.fake("WALKING_SPEED");
 

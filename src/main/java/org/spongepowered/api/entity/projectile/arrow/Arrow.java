@@ -22,19 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.item;
+package org.spongepowered.api.entity.projectile.arrow;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.item.SplashPotionData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.mutable.entity.KnockbackData;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.entity.projectile.DamagingProjectile;
 
-public interface ImmutableSplashPotionData extends ImmutableDataManipulator<ImmutableSplashPotionData, SplashPotionData> {
+/**
+ * Represents an Arrow.
+ */
+public interface Arrow extends DamagingProjectile {
 
     /**
-     * Gets the {@link ImmutableValue} for the "splash" state of a potion.
+     * Gets a copy of the current {@link KnockbackData} that this arrow
+     * has.
      *
-     * @return The immutable value for the splash state
+     * @return A copy of the knockback data
      */
-    ImmutableValue<Boolean> splash();
+    default KnockbackData getKnockbackData() {
+        return get(KnockbackData.class).get();
+    }
+
+    /**
+     * Gets the {@link MutableBoundedValue} for the "knockback strength.
+     *
+     * @return The immutable value for the knockback strength
+     */
+    default MutableBoundedValue<Integer> knockbackStrength() {
+        return getValue(Keys.KNOCKBACK_STRENGTH).get();
+    }
 
 }

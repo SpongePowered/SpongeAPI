@@ -32,4 +32,7 @@ import org.spongepowered.api.world.World;
  */
 public interface SaveWorldEvent extends TargetWorldEvent, Cancellable {
 
+    interface Pre extends SaveWorldEvent {}
+
+    interface Post extends SaveWorldEvent {}
 }

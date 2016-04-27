@@ -22,34 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.entity.projectile.explosive;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.KnockbackData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.entity.projectile.explosive.fireball.Fireball;
 
-/**
- * Represents an Arrow.
- */
-public interface Arrow extends DamagingProjectile {
-
-    /**
-     * Gets a copy of the current {@link KnockbackData} that this arrow
-     * has.
-     *
-     * @return A copy of the knockback data
-     */
-    default KnockbackData getKnockbackData() {
-        return get(KnockbackData.class).get();
-    }
-
-    /**
-     * Gets the {@link MutableBoundedValue} for the "knockback strength.
-     *
-     * @return The immutable value for the knockback strength
-     */
-    default MutableBoundedValue<Integer> knockbackStrength() {
-        return getValue(Keys.KNOCKBACK_STRENGTH).get();
-    }
+public interface DragonFireball extends Fireball {
 
 }
