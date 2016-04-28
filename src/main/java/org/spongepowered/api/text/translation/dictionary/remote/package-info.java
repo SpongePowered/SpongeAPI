@@ -22,39 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
-
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-
-/**
- * Abstract implementation of {@link ConfigDictionary}.
- */
-public abstract class AbstractConfigDictionary extends AbstractRemoteDictionary implements ConfigDictionary {
-
-    protected final Map<Locale, ConfigResourceBundle> bundles = new HashMap<>();
-
-    public AbstractConfigDictionary(Object subject, Locale defaultLocale) {
-        super(subject, defaultLocale);
-    }
-
-    @Override
-    public ConfigResourceBundle getBundle(Locale locale) {
-        checkNotNull(locale, "locale");
-        ConfigResourceBundle bundle = this.bundles.get(locale);
-        if (bundle == null) {
-            setBundle(locale, bundle = new ConfigResourceBundle(getNode(locale)));
-        }
-        return bundle;
-    }
-
-    @Override
-    public void setBundle(Locale locale, ConfigResourceBundle bundle) {
-        checkNotNull(locale, "locale");
-        this.bundles.put(locale, bundle);
-    }
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.text.translation.dictionary.remote;

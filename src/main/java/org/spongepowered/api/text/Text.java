@@ -35,8 +35,8 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.locale.Dictionary;
+import org.spongepowered.api.text.translation.dictionary.TranslationDictionaries;
+import org.spongepowered.api.text.translation.dictionary.TranslationDictionary;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
@@ -104,7 +104,7 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
      * A {@link Comparator} for texts that compares the plain text of two text
      * instances.
      */
-    public static Comparator<Text> PLAIN_COMPARATOR = (text1, text2) -> text1.toPlain().compareTo(text2.toPlain());
+    public static final Comparator<Text> PLAIN_COMPARATOR = (text1, text2) -> text1.toPlain().compareTo(text2.toPlain());
 
     final TextFormat format;
     final ImmutableList<Text> children;
@@ -1017,35 +1017,56 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
         return builder.build();
     }
 
-    public static Optional<Text> get(Dictionary dictionary, String key, Locale locale) {
-        return get(dictionary.get(key, locale));
+    /**
+     * Gets an optional {@link Text} from the provided
+     * {@link TranslationDictionary} by key.
+     *
+     * @param dictionary The translation dictionary to retrieve from
+     * @param key The translation key
+     * @return The text, if present, {@link Optional#empty()} otherwise
+     */
+    public static Optional<Text> get(TranslationDictionary dictionary, String key) {
+        return dictionary.get(key).map(Text::of);
     }
 
-    public static Optional<Text> get(Dictionary dictionary, String key) {
-        return get(dictionary.get(key));
+    /**
+     * Gets an optional {@link Text} from the provided
+     * {@link TranslationDictionary} by key and locale.
+     *
+     * @param dictionary The translation dictionary to retrieve from
+     * @param key The translation key
+     * @param locale The locale under which the value should be obtained in
+     * @return The text, if present, {@link Optional#empty()} otherwise
+     */
+    public static Optional<Text> get(TranslationDictionary dictionary, String key, Locale locale) {
+        return dictionary.get(key, locale).map(Text::of);
     }
 
-    private static Optional<Text> get(Optional<String> result) {
-        if (result.isPresent()) {
-            return Optional.of(Text.of(result.get()));
-        }
-        return Optional.empty();
-    }
-
-    public static Optional<Text> get(Object plugin, String key, Locale locale) {
-        return get(Sponge.getPluginManager().fromInstance(plugin).get().getDictionary(), key, locale);
-    }
-
+    /**
+     * Gets an optional {@link Text} from the provided
+     * plugin's {@link TranslationDictionary} by key.
+     *
+     * @param plugin The plugin to retrieve the translation dictionary from
+     * @param key The translation key
+     * @return The text, if present, {@link Optional#empty()} otherwise
+     */
     public static Optional<Text> get(Object plugin, String key) {
-        return get(Sponge.getPluginManager().fromInstance(plugin).get().getDictionary(), key);
+        return TranslationDictionaries.plugin(plugin)
+                .map(dictionary -> dictionary.get(key).map(Text::of).orElse(null));
     }
 
-    public static Optional<Text> get(String key, Locale locale) {
-        return get(Sponge.getServiceManager().provide(Dictionary.class).get(), key, locale);
-    }
-
-    public static Optional<Text> get(String key) {
-        return get(Sponge.getServiceManager().provide(Dictionary.class).get(), key);
+    /**
+     * Gets an optional {@link Text} from the provided
+     * plugin's {@link TranslationDictionary} by key and locale.
+     *
+     * @param plugin The plugin to retrieve the translation dictionary from
+     * @param key The translation key
+     * @param locale The locale under which the value should be obtained in
+     * @return The text, if present, {@link Optional#empty()} otherwise
+     */
+    public static Optional<Text> get(Object plugin, String key, Locale locale) {
+        return TranslationDictionaries.plugin(plugin)
+                .map(dictionary -> dictionary.get(key, locale).map(Text::of).orElse(null));
     }
 
     /**

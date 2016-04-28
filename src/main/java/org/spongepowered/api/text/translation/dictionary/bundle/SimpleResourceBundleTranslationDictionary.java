@@ -22,47 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
+package org.spongepowered.api.text.translation.dictionary.bundle;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.text.translation.dictionary.AbstractTranslationDictionary;
+import org.spongepowered.api.text.translation.locale.Locales;
+
 import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
- * Represents a {@link Dictionary} that handles retrieval through {@link ResourceBundle}s.
- *
- * @param <B> Bundle type
+ * A simple implementation of a {@link ResourceBundleTranslationDictionary}.
  */
-public interface ResourceBundleDictionary<B extends ResourceBundle> extends Dictionary {
+public class SimpleResourceBundleTranslationDictionary extends AbstractTranslationDictionary
+        implements ResourceBundleTranslationDictionary<ResourceBundle> {
 
-    /**
-     * Returns the {@link ResourceBundle} for the specified {@link Locale}.
-     *
-     * @param locale Locale to get bundle for
-     * @return Optional bundle
-     */
-    B getBundle(Locale locale);
+    protected final String bundleName;
 
-    /**
-     * Sets the {@link ResourceBundle} for the specified {@link Locale}.
-     *
-     * @param locale Locale to set
-     * @param bundle Bundle to use for Locale
-     */
-    void setBundle(Locale locale, B bundle);
+    public SimpleResourceBundleTranslationDictionary(Object subject, String bundleName) {
+        this(subject, Locales.DEFAULT, bundleName);
+    }
+
+    public SimpleResourceBundleTranslationDictionary(Object subject, Locale defaultLocale, String bundleName) {
+        super(subject, defaultLocale);
+        this.bundleName = checkNotNull(bundleName, "bundle name");
+    }
 
     @Override
-    default Optional<String> get(String key, Locale locale) {
-        checkNotNull(key, "key");
+    public ResourceBundle getBundle(Locale locale) {
         checkNotNull(locale, "locale");
-        try {
-            return Optional.of(getBundle(locale).getString(key));
-        } catch (MissingResourceException e) {
-            return Optional.empty();
-        }
+        return ResourceBundle.getBundle(this.bundleName, locale, this.subject.getClass().getClassLoader());
     }
 
 }

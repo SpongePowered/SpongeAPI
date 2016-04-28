@@ -22,37 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
+package org.spongepowered.api.text.translation.dictionary.remote;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import org.spongepowered.api.text.translation.dictionary.TranslationDictionary;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Locale;
 
 /**
- * Abstract implementation of {@link RemoteDictionary}.
+ * A {@link TranslationDictionary} with a {@link InputStream} source.
  */
-public abstract class AbstractRemoteDictionary extends AbstractDictionary implements RemoteDictionary {
+public interface RemoteTranslationDictionary extends TranslationDictionary {
 
-    protected final SourceResolver resolver = new SourceResolver();
-
-    public AbstractRemoteDictionary(Object subject, Locale defaultLocale) {
-        super(subject, defaultLocale);
+    /**
+     * Returns an {@link InputStream} for the remote source of this TranslationDictionary.
+     *
+     * @return Source of dictionary
+     * @throws IOException
+     */
+    default InputStream getSource() throws Exception {
+        return this.getSource(this.getDefaultLocale());
     }
 
     /**
-     * Returns the {@link SourceResolver} for this Dictionary.
+     * Returns an {@link InputStream} for the remote source of this TranslationDictionary.
      *
-     * @return Source resolver
+     * @return Source of dictionary
+     * @throws IOException
      */
-    public SourceResolver getResolver() {
-        return this.resolver;
-    }
-
-    @Override
-    public InputStream getSource(Locale locale) throws Exception {
-        checkNotNull(locale, "locale");
-        return this.resolver.resolve(locale).orElseThrow(() -> new IllegalStateException("Could not resolve source for locale " + locale + "."));
-    }
+    InputStream getSource(Locale locale) throws Exception;
 
 }

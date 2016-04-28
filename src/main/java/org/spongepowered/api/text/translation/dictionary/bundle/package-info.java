@@ -22,38 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
-
-import ninja.leaping.configurate.ConfigurationNode;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-
-/**
- * Represents a simple implementation of {@link ConfigDictionary} with a single source.
- */
-public class SimpleConfigDictionary extends AbstractConfigDictionary {
-
-    protected ConfigurationNode root;
-    protected final Map<Locale, ConfigResourceBundle> bundles = new HashMap<>();
-
-    public SimpleConfigDictionary(Object subject, Locale defaultLocale) {
-        super(subject, defaultLocale);
-    }
-
-    @Override
-    public ConfigurationNode load(Locale locale) throws IOException {
-        return this.root = super.load(locale);
-    }
-
-    @Override
-    public ConfigurationNode getNode(Locale locale) {
-        if (this.root == null) {
-            throw new IllegalStateException("Tried to read SimpleConfigDictionary before it was loaded.");
-        }
-        return this.root.getNode(locale.toString());
-    }
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.text.translation.dictionary.bundle;

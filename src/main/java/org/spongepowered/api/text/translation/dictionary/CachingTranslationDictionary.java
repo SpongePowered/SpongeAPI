@@ -22,30 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
-
-import org.spongepowered.api.text.translation.locale.Locales;
-
-import java.util.Locale;
-import java.util.Optional;
+package org.spongepowered.api.text.translation.dictionary;
 
 /**
- * Represents a {@link Dictionary} that returns all null values for each key.
+ * A {@link TranslationDictionary} that can cache values.
  */
-public final class NullDictionary extends AbstractDictionary {
+public interface CachingTranslationDictionary extends TranslationDictionary {
 
-    public NullDictionary(Object subject) {
-        super(subject, Locales.DEFAULT);
-    }
-
-    @Override
-    public Optional<String> get(String key, Locale locale) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<String> get(String key) {
-        return Optional.empty();
-    }
-
+    /**
+     * Clear this dictionary's cache.
+     */
+    void clearCache();
 }

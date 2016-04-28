@@ -22,34 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
+package org.spongepowered.api.text.translation.dictionary;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Locale;
+import org.spongepowered.api.Sponge;
+
+import java.util.Optional;
 
 /**
- * Default {@link Dictionary} implementation used by Sponge. This
- * implementation first tries to resolve the dictionary within a directory
- * and falls-back to the class loader if that file is not found.
+ * A helper class to retrieve translation dictionaries.
  */
-public class DefaultDictionary extends SimpleConfigDictionary {
+public final class TranslationDictionaries {
 
-    protected final Path path;
-
-    public DefaultDictionary(Object subject, Locale defaultLocale, Path path) {
-        super(subject, defaultLocale);
-        this.path = path;
-        this.resolver.primary(this::resolveSource);
+    private TranslationDictionaries() {
     }
 
-    protected InputStream resolveSource() throws IOException {
-        if (Files.exists(this.path)) {
-            return Files.newInputStream(this.path);
-        }
-        return this.subject.getClass().getClassLoader().getResourceAsStream(this.path.getFileName().toString());
+    /**
+     * Gets the translation dictionary for the provided plugin.
+     *
+     * @param plugin The plugin instance
+     * @return The translation dictionary, if present,
+     *     {@link Optional#empty()} otherwise
+     */
+    public static Optional<TranslationDictionary> plugin(Object plugin) {
+        return Sponge.getPluginManager().fromInstance(plugin)
+                .map(container -> container.getServiceManager().provide(TranslationDictionary.class).orElse(null));
     }
 
 }

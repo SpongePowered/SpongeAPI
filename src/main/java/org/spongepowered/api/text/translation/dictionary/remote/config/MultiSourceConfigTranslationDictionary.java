@@ -22,41 +22,53 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
+package org.spongepowered.api.text.translation.dictionary.remote.config;
 
+import static com.google.common.base.Preconditions.checkState;
+
+import com.google.common.collect.Maps;
 import ninja.leaping.configurate.ConfigurationNode;
+import org.spongepowered.api.text.translation.locale.Locales;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
 /**
- * Represents a {@link ConfigDictionary} with a different source per-locale.
+ * Represents a {@link ConfigTranslationDictionary} with a different source per-locale.
  */
-public class MultiSourceConfigDictionary extends AbstractConfigDictionary {
+public class MultiSourceConfigTranslationDictionary extends AbstractConfigTranslationDictionary {
 
-    protected final Map<Locale, ConfigurationNode> nodes = new HashMap<>();
+    protected final Map<Locale, ConfigurationNode> nodes = Maps.newHashMap();
 
-    public MultiSourceConfigDictionary(Object subject, Locale defaultLocale) {
+    public MultiSourceConfigTranslationDictionary(Object subject) {
+        this(subject, Locales.DEFAULT);
+    }
+
+    public MultiSourceConfigTranslationDictionary(Object subject, Locale defaultLocale) {
         super(subject, defaultLocale);
     }
 
     @Override
     public ConfigurationNode load(Locale locale) throws IOException {
-        ConfigurationNode localeNode = super.load(locale);
-        this.nodes.put(locale, localeNode);
-        this.bundles.put(locale, new ConfigResourceBundle(localeNode));
-        return localeNode;
+        ConfigurationNode node = super.load(locale);
+        this.nodes.put(locale, node);
+        this.bundles.put(locale, new ConfigResourceBundle(node));
+        return node;
     }
 
     @Override
     public ConfigurationNode getNode(Locale locale) {
         ConfigurationNode node = this.nodes.get(locale);
-        if (node == null) {
-            throw new IllegalStateException("Tried to read MultiSourceConfigDictionary before locale " + locale + " was loaded.");
-        }
+        checkState(node != null, "Tried to read MultiSourceConfigTranslationDictionary before locale %s was loaded.", locale);
+
         return node;
+    }
+
+    @Override
+    public void clearCache() {
+        super.clearCache();
+        this.nodes.clear();
     }
 
 }

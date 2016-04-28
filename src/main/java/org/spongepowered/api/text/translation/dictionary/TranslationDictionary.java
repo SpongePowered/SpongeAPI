@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
+package org.spongepowered.api.text.translation.dictionary;
 
 import org.spongepowered.api.text.translation.locale.Locales;
 
@@ -30,46 +30,50 @@ import java.util.Locale;
 import java.util.Optional;
 
 /**
- * Represents a Dictionary for a particular subject. Dictionaries take a
- * given string key and return a localized result.
+ * Represents a TranslationDictionary for a particular subject.
+ *
+ * <p>Dictionaries take a given string key and return a translated result.</p>
  */
-public interface Dictionary {
+public interface TranslationDictionary {
 
     /**
-     * Returns the "subject" for this dictionary.
+     * Gets the entry for the specified key in this dictionary
+     * for the {@link #getDefaultLocale() default locale}.
      *
-     * @return Subject of dictionary
+     * @param key The key whose associated value is to be returned
+     * @return The string value for {@code key}, if present,
+     *     {@link Optional#empty()} otherwise
      */
-    Object getSubject();
+    default Optional<String> get(String key) {
+        return this.get(key, this.getDefaultLocale());
+    }
 
     /**
-     * Returns the default {@link Locale} to be used if no Locale is specified.
+     * Gets the entry for the specified key for the specified
+     * {@link Locale}.
      *
-     * @return Default Locale
+     * @param key The key whose associated value is to be returned
+     * @param locale The locale under which the value should be
+     *     obtained in
+     * @return The string value for {@code key}, if present,
+     *     {@link Optional#empty()} otherwise
+     */
+    Optional<String> get(String key, Locale locale);
+
+    /**
+     * Gets the default {@link Locale} to be used with this dictionary.
+     *
+     * @return The default locale
      */
     default Locale getDefaultLocale() {
         return Locales.DEFAULT;
     }
 
     /**
-     * Returns the entry for the specified key for the specified
-     * {@link Locale}.
+     * Gets the "subject" of this dictionary.
      *
-     * @param key Key to search for
-     * @param locale Locale to get
-     * @return Localized string for "key"
+     * @return The subject of this dictionary
      */
-    Optional<String> get(String key, Locale locale);
-
-    /**
-     * Returns the entry for the specified key for the default {@link Locale}
-     * defined by {@link #getDefaultLocale()}.
-     *
-     * @param key Key to search for
-     * @return Localized string for "key"
-     */
-    default Optional<String> get(String key) {
-        return get(key, getDefaultLocale());
-    }
+    Object getSubject();
 
 }

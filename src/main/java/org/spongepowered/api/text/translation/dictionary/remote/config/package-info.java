@@ -22,30 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
-
-import org.spongepowered.api.Sponge;
-
-import java.nio.file.Path;
-import java.util.Locale;
-
-/**
- * Represents the default {@link Dictionary} implementation for plugins. This
- * dictionary will automatically be named to <code><pluginId>.dict</code>.
- */
-public class DefaultPluginDictionary extends DefaultDictionary {
-
-    /**
-     * File extension used in this implementation.
-     */
-    public static final String FILE_EXTENSION = ".dict";
-
-    public DefaultPluginDictionary(Object plugin, Locale defaultLocale, Path dir) {
-        super(plugin, defaultLocale, dir.resolve(Sponge.getPluginManager().fromInstance(plugin).get().getId() + FILE_EXTENSION));
-    }
-
-    public DefaultPluginDictionary(Object plugin, Path dir) {
-        this(plugin, Sponge.getServer().getLocale(), dir);
-    }
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.text.translation.dictionary.remote.config;

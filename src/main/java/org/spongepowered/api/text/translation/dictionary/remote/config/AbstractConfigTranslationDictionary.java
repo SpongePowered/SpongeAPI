@@ -22,44 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
+package org.spongepowered.api.text.translation.dictionary.remote.config;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.HashMap;
+import com.google.common.collect.Maps;
+import org.spongepowered.api.text.translation.dictionary.remote.AbstractRemoteTranslationDictionary;
+
 import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.function.Function;
 
 /**
- * Represents a simple implementation of {@link ResourceBundleDictionary} using
- * a "base name" and {@link ResourceBundle#getBundle(String)} to retrieve
- * bundles.
+ * Abstract implementation of {@link ConfigTranslationDictionary}.
  */
-public class SimpleResourceBundleDictionary extends AbstractDictionary implements ResourceBundleDictionary<ResourceBundle> {
+public abstract class AbstractConfigTranslationDictionary extends AbstractRemoteTranslationDictionary implements ConfigTranslationDictionary {
 
-    protected final String baseName;
-    protected final Map<Locale, ResourceBundle> bundles = new HashMap<>();
+    protected final Map<Locale, ConfigResourceBundle> bundles = Maps.newHashMap();
+    protected final Function<Locale, ConfigResourceBundle> loader;
 
-    public SimpleResourceBundleDictionary(Object subject, Locale defaultLocale, String baseName) {
+    public AbstractConfigTranslationDictionary(Object subject, Locale defaultLocale) {
         super(subject, defaultLocale);
-        this.baseName = baseName;
+        this.loader = locale -> new ConfigResourceBundle(this.getNode(locale));
     }
 
     @Override
-    public ResourceBundle getBundle(Locale locale) {
+    public ConfigResourceBundle getBundle(Locale locale) {
         checkNotNull(locale, "locale");
-        ResourceBundle bundle = this.bundles.get(locale);
-        if (bundle == null) {
-            setBundle(locale, bundle = ResourceBundle.getBundle(this.baseName, locale));
-        }
-        return bundle;
+        return this.bundles.computeIfAbsent(locale, this.loader);
     }
 
     @Override
-    public void setBundle(Locale locale, ResourceBundle bundle) {
-        checkNotNull(locale, "locale");
-        this.bundles.put(locale, bundle);
+    public void clearCache() {
+        this.bundles.clear();
     }
 
 }

@@ -22,33 +22,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
+package org.spongepowered.api.text.translation.dictionary.bundle;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.text.translation.dictionary.TranslationDictionary;
+
 import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 /**
- * Abstract implementation of {@link Dictionary}.
+ * A {@link TranslationDictionary} that retrieves values from a {@link ResourceBundle}.
+ *
+ * @param <B> The resource bundle type
  */
-public abstract class AbstractDictionary implements Dictionary {
+public interface ResourceBundleTranslationDictionary<B extends ResourceBundle> extends TranslationDictionary {
 
-    protected final Object subject;
-    protected final Locale defaultLocale;
-
-    public AbstractDictionary(Object subject, Locale defaultLocale) {
-        this.subject = checkNotNull(subject, "subject");
-        this.defaultLocale = checkNotNull(defaultLocale, "default locale");
-    }
-
-    @Override
-    public Object getSubject() {
-        return this.subject;
-    }
+    /**
+     * Gets the {@link ResourceBundle} for the specified {@link Locale}.
+     *
+     * @param locale Locale to get bundle for
+     * @return Optional bundle
+     * @throws MissingResourceException
+     */
+    B getBundle(Locale locale) throws MissingResourceException;
 
     @Override
-    public Locale getDefaultLocale() {
-        return this.defaultLocale;
+    default Optional<String> get(String key, Locale locale) {
+        checkNotNull(key, "key");
+        checkNotNull(locale, "locale");
+
+        try {
+            return Optional.of(this.getBundle(locale).getString(key));
+        } catch (MissingResourceException e) {
+            try {
+                // We failed with the provided locale, fallback to the default locale
+                return Optional.of(this.getBundle(this.getDefaultLocale()).getString(key));
+            } catch (MissingResourceException e2) {
+                return Optional.empty();
+            }
+        }
     }
 
 }
