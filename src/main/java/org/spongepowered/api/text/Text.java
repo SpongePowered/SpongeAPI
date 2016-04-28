@@ -1012,10 +1012,27 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
         return builder.build();
     }
 
+    /**
+     * Gets an optional {@link Text} from the provided {@link Dictionary}
+     * by key.
+     *
+     * @param dictionary The dictionary to retrieve from
+     * @param key The dictionary key
+     * @return The text, if present, {@link Optional#empty()} otherwise
+     */
     public static Optional<Text> get(Dictionary dictionary, String key) {
         return get(dictionary.get(key));
     }
 
+    /**
+     * Gets an optional {@link Text} from the provided {@link Dictionary}
+     * by key and locale.
+     *
+     * @param dictionary The dictionary to retrieve from
+     * @param key The dictionary key
+     * @param locale The locale
+     * @return The text, if present, {@link Optional#empty()} otherwise
+     */
     public static Optional<Text> get(Dictionary dictionary, String key, Locale locale) {
         return get(dictionary.get(key, locale));
     }
@@ -1025,18 +1042,48 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
         return result.map(Text::of);
     }
 
+    /**
+     * Gets an optional {@link Text} from the provided {@code plugin}'s
+     * primary {@link Dictionary} by key.
+     *
+     * @param plugin The plugin to retrieve the primary dictionary from
+     * @param key The dictionary key
+     * @return The text, if present, {@link Optional#empty()} otherwise
+     */
     public static Optional<Text> get(Object plugin, String key) {
-        return get(Sponge.getPluginManager().fromInstance(plugin).get().getDictionary(), key);
+        return get(Sponge.getPluginManager().fromInstance(plugin).get().getPrimaryDictionary(), key);
     }
 
+    /**
+     * Gets an optional {@link Text} from the provided {@code plugin}'s
+     * primary {@link Dictionary} by key and locale.
+     *
+     * @param plugin The plugin to retrieve the primary dictionary from
+     * @param key The dictionary key
+     * @param locale The locale
+     * @return The text, if present, {@link Optional#empty()} otherwise
+     */
     public static Optional<Text> get(Object plugin, String key, Locale locale) {
-        return get(Sponge.getPluginManager().fromInstance(plugin).get().getDictionary(), key, locale);
+        return get(Sponge.getPluginManager().fromInstance(plugin).get().getPrimaryDictionary(), key, locale);
     }
 
+    /**
+     * Gets an optional {@link Text} from the Sponge dictionary by key.
+     *
+     * @param key The dictionary key
+     * @return The text, if present, {@link Optional#empty()} otherwise
+     */
     public static Optional<Text> get(String key) {
         return get(Sponge.getServiceManager().provide(Dictionary.class).get(), key);
     }
 
+    /**
+     * Gets an optional {@link Text} from the Sponge dictionary by key and locale.
+     *
+     * @param key The dictionary key
+     * @param locale The locale
+     * @return The text, if present, {@link Optional#empty()} otherwise
+     */
     public static Optional<Text> get(String key, Locale locale) {
         return get(Sponge.getServiceManager().provide(Dictionary.class).get(), key, locale);
     }

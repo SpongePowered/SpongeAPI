@@ -151,7 +151,7 @@ public interface PluginContainer {
      * @return Dictionary provided by plugin or {@link NullDictionary} if none
      *         was provided
      */
-    default Dictionary getDictionary() {
+    default Dictionary getPrimaryDictionary() {
         return getServiceManager().provideFirst(Dictionary.class).orElse(new NullDictionary(this));
     }
 
