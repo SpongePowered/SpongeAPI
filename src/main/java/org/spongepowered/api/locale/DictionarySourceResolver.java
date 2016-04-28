@@ -26,12 +26,11 @@ package org.spongepowered.api.locale;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
+import com.google.common.collect.Lists;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
-import java.util.concurrent.Callable;
 import java.util.function.Function;
 
 import javax.annotation.Nullable;
@@ -42,7 +41,7 @@ import javax.annotation.Nullable;
 public class DictionarySourceResolver<R> {
 
     @Nullable protected Function<Locale, R> primary;
-    protected final Multimap<Locale, Function<Locale, R>> sources = HashMultimap.create();
+    protected final List<Function<Locale, R>> sources = Lists.newArrayList();
 
     public DictionarySourceResolver() {
         this(null);
@@ -57,15 +56,14 @@ public class DictionarySourceResolver<R> {
     }
 
     /**
-     * Adds a {@link Callable} to supply an {@link R} for the
+     * Adds a {@link Function} to supply an {@link R} for a
      * given {@link Locale}.
      *
-     * @param locale Locale to supply for
      * @param function The function to supply {@link R}
      * @return This resolver
      */
-    public DictionarySourceResolver<R> add(Locale locale, Function<Locale, R> function) {
-        this.sources.put(checkNotNull(locale, "locale"), checkNotNull(function, "function"));
+    public DictionarySourceResolver<R> add(Function<Locale, R> function) {
+        this.sources.add(checkNotNull(checkNotNull(function, "function")));
         return this;
     }
 
@@ -79,7 +77,7 @@ public class DictionarySourceResolver<R> {
     public Optional<R> resolve(Locale locale) {
         checkNotNull(locale, "locale");
 
-        for (Function<Locale, R> function : this.sources.get(locale)) {
+        for (Function<Locale, R> function : this.sources) {
             R in = function.apply(locale);
             if (in != null) {
                 return Optional.of(in);
