@@ -35,7 +35,7 @@ import org.spongepowered.api.world.World;
  */
 public interface Archetype<S extends LocatableSnapshot<S>> extends DataHolder {
 
-    void apply(Location<World> location, Cause cause);
+    boolean apply(Location<World> location, Cause cause);
 
     S toSnapshot(Location<World> location);
 

@@ -26,7 +26,14 @@ package org.spongepowered.api.entity;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Archetype;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataView;
+import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.InvalidDataException;
+import org.spongepowered.api.data.value.BaseValue;
 
 public interface EntityArchetype extends Archetype<EntitySnapshot> {
 
@@ -41,11 +48,35 @@ public interface EntityArchetype extends Archetype<EntitySnapshot> {
 
     EntityType getType();
 
+    DataContainer getEntityData();
+
+    @Override
+    void setRawData(DataView container) throws InvalidDataException;
+
+    @Override
+    EntityArchetype copy();
+
     interface Builder extends DataBuilder<EntityArchetype> {
+
+        @Override
+        Builder reset();
+
+        @Override
+        Builder from(EntityArchetype value);
 
         Builder type(EntityType type);
 
         Builder from(Entity entity);
+
+        Builder entityData(DataView view);
+
+        Builder setData(DataManipulator<?, ?> manipulator);
+
+        <E, V extends BaseValue<E>> Builder set(V value);
+
+        <E, V extends BaseValue<E>> Builder set(Key<V> key, E value);
+
+        EntityArchetype build();
     }
 
 }

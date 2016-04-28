@@ -38,6 +38,8 @@ import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
+import java.util.Optional;
+
 /**
  * Represents a raw {@link TileEntity} that is virtualized
  */
@@ -93,6 +95,12 @@ public interface TileEntityArchetype extends Archetype<BlockSnapshot> {
     TileEntityArchetype copy();
 
     interface Builder extends DataBuilder<TileEntityArchetype> {
+
+        @Override
+        Builder reset();
+
+        @Override
+        Builder from(TileEntityArchetype value);
 
         Builder state(BlockState state);
 
