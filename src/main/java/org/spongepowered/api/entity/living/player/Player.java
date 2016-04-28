@@ -40,6 +40,8 @@ import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.keyboard.KeyBinding;
+import org.spongepowered.api.keyboard.PlayerKeyBinding;
 import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.resourcepack.ResourcePack;
@@ -290,4 +292,15 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
      * @return Whether the respawn was successful
      */
     boolean respawnPlayer();
+
+    /**
+     * Gets the {@link PlayerKeyBinding} of this {@link Player}. This may be
+     * {@link Optional#empty()} if the player doesn't have the Sponge on the
+     * client side.
+     *
+     * @param keyBinding The key binding
+     * @return The player key binding
+     */
+    Optional<PlayerKeyBinding> getKeyBinding(KeyBinding keyBinding);
+
 }

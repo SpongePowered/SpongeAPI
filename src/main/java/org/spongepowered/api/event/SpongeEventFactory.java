@@ -1,27 +1,3 @@
-/*
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
- *
- * Copyright (c) SpongePowered <https://www.spongepowered.org>
- * Copyright (c) contributors
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package org.spongepowered.api.event;
 
 import com.flowpowered.math.vector.Vector3d;
@@ -161,6 +137,10 @@ import org.spongepowered.api.event.item.inventory.InteractItemEvent;
 import org.spongepowered.api.event.item.inventory.TargetContainerEvent;
 import org.spongepowered.api.event.item.inventory.TargetInventoryEvent;
 import org.spongepowered.api.event.item.inventory.UseItemStackEvent;
+import org.spongepowered.api.event.keyboard.KeyboardEvent;
+import org.spongepowered.api.event.keyboard.PlayerChangeKeyCodeEvent;
+import org.spongepowered.api.event.keyboard.PlayerKeyInteractEvent;
+import org.spongepowered.api.event.keyboard.PlayerKeyboardEvent;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.event.network.BanIpEvent;
@@ -196,6 +176,10 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
+import org.spongepowered.api.keyboard.KeyBinding;
+import org.spongepowered.api.keyboard.KeyCode;
+import org.spongepowered.api.keyboard.KeyInteractHandler;
+import org.spongepowered.api.keyboard.PlayerKeyBinding;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.network.status.StatusClient;
 import org.spongepowered.api.profile.GameProfile;
@@ -3419,6 +3403,146 @@ public class SpongeEventFactory {
         values.put("remainingDuration", remainingDuration);
         values.put("itemStackInUse", itemStackInUse);
         return SpongeEventFactoryUtils.createEventImpl(UseItemStackEvent.Tick.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.keyboard.KeyboardEvent}.
+     * 
+     * @param cause The cause
+     * @param keyBinding The key binding
+     * @return A new keyboard event
+     */
+    public static KeyboardEvent createKeyboardEvent(Cause cause, KeyBinding keyBinding) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("keyBinding", keyBinding);
+        return SpongeEventFactoryUtils.createEventImpl(KeyboardEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.keyboard.PlayerChangeKeyCodeEvent}.
+     * 
+     * @param cause The cause
+     * @param keyBinding The key binding
+     * @param newKeyCode The new key code
+     * @param oldKeyCode The old key code
+     * @param playerBinding The player binding
+     * @return A new player change key code event
+     */
+    public static PlayerChangeKeyCodeEvent createPlayerChangeKeyCodeEvent(Cause cause, KeyBinding keyBinding, Optional<KeyCode> newKeyCode, Optional<KeyCode> oldKeyCode, PlayerKeyBinding playerBinding) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("keyBinding", keyBinding);
+        values.put("newKeyCode", newKeyCode);
+        values.put("oldKeyCode", oldKeyCode);
+        values.put("playerBinding", playerBinding);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerChangeKeyCodeEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.keyboard.PlayerKeyInteractEvent.Press.Post}.
+     * 
+     * @param cause The cause
+     * @param handlers The handlers
+     * @param keyBinding The key binding
+     * @param playerBinding The player binding
+     * @return A new post press player key interact event
+     */
+    public static PlayerKeyInteractEvent.Press.Post createPlayerKeyInteractEventPressPost(Cause cause, List<KeyInteractHandler> handlers, KeyBinding keyBinding, PlayerKeyBinding playerBinding) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("handlers", handlers);
+        values.put("keyBinding", keyBinding);
+        values.put("playerBinding", playerBinding);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerKeyInteractEvent.Press.Post.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.keyboard.PlayerKeyInteractEvent.Press.Pre}.
+     * 
+     * @param cause The cause
+     * @param handlers The handlers
+     * @param keyBinding The key binding
+     * @param playerBinding The player binding
+     * @return A new pre press player key interact event
+     */
+    public static PlayerKeyInteractEvent.Press.Pre createPlayerKeyInteractEventPressPre(Cause cause, List<KeyInteractHandler> handlers, KeyBinding keyBinding, PlayerKeyBinding playerBinding) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("handlers", handlers);
+        values.put("keyBinding", keyBinding);
+        values.put("playerBinding", playerBinding);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerKeyInteractEvent.Press.Pre.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.keyboard.PlayerKeyInteractEvent.Release.Post}.
+     * 
+     * @param cause The cause
+     * @param handlers The handlers
+     * @param keyBinding The key binding
+     * @param playerBinding The player binding
+     * @param pressTime The press time
+     * @return A new post release player key interact event
+     */
+    public static PlayerKeyInteractEvent.Release.Post createPlayerKeyInteractEventReleasePost(Cause cause, List<KeyInteractHandler> handlers, KeyBinding keyBinding, PlayerKeyBinding playerBinding, int pressTime) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("handlers", handlers);
+        values.put("keyBinding", keyBinding);
+        values.put("playerBinding", playerBinding);
+        values.put("pressTime", pressTime);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerKeyInteractEvent.Release.Post.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.keyboard.PlayerKeyInteractEvent.Release.Pre}.
+     * 
+     * @param cause The cause
+     * @param handlers The handlers
+     * @param keyBinding The key binding
+     * @param playerBinding The player binding
+     * @param pressTime The press time
+     * @return A new pre release player key interact event
+     */
+    public static PlayerKeyInteractEvent.Release.Pre createPlayerKeyInteractEventReleasePre(Cause cause, List<KeyInteractHandler> handlers, KeyBinding keyBinding, PlayerKeyBinding playerBinding, int pressTime) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("handlers", handlers);
+        values.put("keyBinding", keyBinding);
+        values.put("playerBinding", playerBinding);
+        values.put("pressTime", pressTime);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerKeyInteractEvent.Release.Pre.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.keyboard.PlayerKeyboardEvent}.
+     * 
+     * @param cause The cause
+     * @param keyBinding The key binding
+     * @param playerBinding The player binding
+     * @return A new player keyboard event
+     */
+    public static PlayerKeyboardEvent createPlayerKeyboardEvent(Cause cause, KeyBinding keyBinding, PlayerKeyBinding playerBinding) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("keyBinding", keyBinding);
+        values.put("playerBinding", playerBinding);
+        return SpongeEventFactoryUtils.createEventImpl(PlayerKeyboardEvent.class, values);
     }
 
     /**
