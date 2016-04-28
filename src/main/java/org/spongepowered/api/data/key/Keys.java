@@ -62,8 +62,6 @@ import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.rotation.Rotation;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
 
 import java.time.Instant;
 import java.util.List;
@@ -93,6 +91,16 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Integer>> ANGER = KeyFactory.fake("ANGER");
 
     public static final Key<Value<Boolean>> ANGRY = KeyFactory.fake("ANGRY");
+
+    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_ARMS = KeyFactory.fake("ARMOR_STAND_HAS_ARMS");
+
+    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_BASE_PLATE = KeyFactory.fake("ARMOR_STAND_HAS_BASE_PLATE");
+
+    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_GRAVITY = KeyFactory.fake("ARMOR_STAND_HAS_GRAVITY");
+
+    public static final Key<Value<Boolean>> ARMOR_STAND_IS_SMALL = KeyFactory.fake("ARMOR_STAND_IS_SMALL");
+
+    public static final Key<Value<Boolean>> ARMOR_STAND_MARKER = KeyFactory.fake("ARMOR_STAND_MARKER");
 
     public static final Key<Value<Art>> ART = KeyFactory.fake("ART");
 
