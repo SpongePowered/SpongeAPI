@@ -22,45 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.channel.impl;
+package org.spongepowered.api.text.channel.type;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.channel.AbstractMutableMessageChannel;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.chat.ChatType;
+import org.spongepowered.api.world.World;
 
-import java.util.Optional;
-
-import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
- * A mutable message channel that leaves transforming and
- * members to the delegate channel passed.
+ * A message channel that targets all subjects within the given {@link World}.
  */
-public class DelegateMutableMessageChannel extends AbstractMutableMessageChannel {
+public class WorldMessageChannel implements MessageChannel {
 
-    protected final MessageChannel delegate;
+    private final Collection<MessageReceiver> members;
 
-    /**
-     * Constructs a delegate mutable message channel.
-     *
-     * <p>The members from the provided channel are copied into our
-     * own local collection.</p>
-     *
-     * @param delegate The delegate channel
-     */
-    public DelegateMutableMessageChannel(final MessageChannel delegate) {
-        super();
-        this.delegate = checkNotNull(delegate, "delegate");
-        this.members.addAll(this.delegate.getMembers());
+    public WorldMessageChannel(World world) {
+        checkNotNull(world, "world");
+        this.members = Collections.singleton(world);
     }
 
     @Override
-    public Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original, ChatType type) {
-        return this.delegate.transformMessage(sender, recipient, original, type);
+    public Collection<MessageReceiver> getMembers() {
+        return this.members;
     }
 
 }

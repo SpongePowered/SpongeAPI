@@ -33,8 +33,10 @@ import org.spongepowered.api.text.channel.impl.DelegateMutableMessageChannel;
 import org.spongepowered.api.text.channel.type.CombinedMessageChannel;
 import org.spongepowered.api.text.channel.type.FixedMessageChannel;
 import org.spongepowered.api.text.channel.type.PermissionMessageChannel;
+import org.spongepowered.api.text.channel.type.WorldMessageChannel;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.chat.ChatTypes;
+import org.spongepowered.api.world.World;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -69,7 +71,7 @@ public interface MessageChannel {
             .build();
 
     /**
-     * Gets a message channel that targets all subjects with the given permission.
+     * Creates a message channel that targets all subjects with the given permission.
      *
      * @param permission The permission to target
      * @return The channel
@@ -80,8 +82,8 @@ public interface MessageChannel {
     }
 
     /**
-     * Gets a message channel that targets all subjects contained within the given channels
-     * and applies the message transformations of each channel in order.
+     * Creates a message channel that targets all subjects contained within the given
+     * channels and applies the message transformations of each channel in order.
      *
      * @param channels The channels to combine
      * @return The channel
@@ -104,7 +106,7 @@ public interface MessageChannel {
     }
 
     /**
-     * Gets a message channel that targets the given sources.
+     * Creates a message channel that targets the given sources.
      *
      * @param recipients The recipients
      * @return The channel
@@ -115,7 +117,7 @@ public interface MessageChannel {
     }
 
     /**
-     * Gets a message channel that targets the given recipients.
+     * Creates a message channel that targets the given recipients.
      *
      * @param recipients The recipients
      * @return The channel
@@ -123,6 +125,17 @@ public interface MessageChannel {
      */
     static MessageChannel fixed(Collection<? extends MessageReceiver> recipients) {
         return new FixedMessageChannel(recipients);
+    }
+
+    /**
+     * Creates a message channel that targets the given world.
+     *
+     * @param world The world
+     * @return The channel
+     * @see WorldMessageChannel
+     */
+    static MessageChannel world(World world) {
+        return new WorldMessageChannel(world);
     }
 
     /**

@@ -32,6 +32,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
+import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.extent.Extent;
@@ -49,7 +50,7 @@ import java.util.UUID;
 /**
  * A loaded Minecraft world.
  */
-public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, ChatTypeMessageReceiver {
+public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, MessageReceiver, ChatTypeMessageReceiver {
 
     @Override
     default Location<World> getLocation(Vector3i position) {

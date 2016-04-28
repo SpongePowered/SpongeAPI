@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.text.channel.type;
 
-import static org.apache.commons.lang3.Validate.noNullElements;
-
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
@@ -55,7 +53,6 @@ public class CombinedMessageChannel implements MessageChannel {
     }
 
     public CombinedMessageChannel(Collection<MessageChannel> channels) {
-        noNullElements(channels, "null message channel: %s");
         this.channels = ImmutableSet.copyOf(channels);
     }
 
