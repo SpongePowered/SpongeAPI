@@ -22,24 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.data.manipulator.immutable.entity;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.BodyPartRotationalData;
-import org.spongepowered.api.entity.ArmorEquipable;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.entity.MarkerData;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.entity.living.ArmorStand;
 
 /**
- * Represents an armor stand.
+ * An {@link ImmutableDataManipulator} for the "is marker" state
+ * of an {@link ArmorStand}.
  */
-public interface ArmorStand extends Living, ArmorEquipable {
+public interface ImmutableMarkerData extends ImmutableDataManipulator<ImmutableMarkerData, MarkerData> {
 
     /**
-     * Gets a copy of the current {@link BodyPartRotationalData} used by this
-     * {@link ArmorStand}.
+     * Gets the {@link ImmutableValue} of the "is marker" state of
+     * an {@link ArmorStand}.
      *
-     * @return A copy of the current body rotational data
+     * @return The immutable value of the "is marker" state
      */
-    default BodyPartRotationalData getBodyPartRotationalData() {
-        return get(BodyPartRotationalData.class).get();
-    }
+    ImmutableValue<Boolean> marker();
 
 }
