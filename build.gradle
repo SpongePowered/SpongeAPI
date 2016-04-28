@@ -55,7 +55,7 @@ dependencies {
     compile 'ninja.leaping.configurate:configurate-gson:3.1.1'
     compile 'ninja.leaping.configurate:configurate-yaml:3.1.1'
 
-    compile 'com.flowpowered:flow-math:1.0.1'
+    compile 'com.flowpowered:flow-math:1.0.2'
     compile 'com.flowpowered:flow-noise:1.0.1-SNAPSHOT'
 
     // Event generation
