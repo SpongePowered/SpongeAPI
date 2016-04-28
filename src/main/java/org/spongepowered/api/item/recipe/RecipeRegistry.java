@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.recipe;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * A RecipeRegistry holds all registered recipes for a given game.
@@ -48,10 +48,10 @@ public interface RecipeRegistry {
     boolean remove(Recipe recipe);
 
     /**
-     * Gets a {@link List} of all recipes this registry is aware of.
+     * Gets a {@link Collection} of all recipes this registry is aware of.
      *
      * @return A list of all registered recipes
      */
-    List<Recipe> getRecipes();
+    Collection<Recipe> getRecipes();
 
 }

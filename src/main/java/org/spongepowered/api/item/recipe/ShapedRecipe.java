@@ -65,6 +65,14 @@ public interface ShapedRecipe extends Recipe {
     Map<Character, ItemStack> getIngredients();
 
     /**
+     * Gets the ingredient required by the given symbol.
+     *
+     * @param symbol The ingredient symbol
+     * @return The ingredient if present, otherwise {@link Optional#empty()}
+     */
+    Optional<ItemStack> getIngredient(char symbol);
+
+    /**
      * Gets the width of the grid this ShapedRecipe fits into.
      *
      * @return The width of the grid
@@ -77,14 +85,6 @@ public interface ShapedRecipe extends Recipe {
      * @return The height of the grid
      */
     int getHeight();
-
-    /**
-     * Gets the ingredient required by the given symbol.
-     *
-     * @param symbol The ingredient symbol
-     * @return The ingredient if present, otherwise {@link Optional#empty()}
-     */
-    Optional<ItemStack> getIngredient(char symbol);
 
     interface Builder extends ResettableBuilder<ShapedRecipe, Builder> {
 
