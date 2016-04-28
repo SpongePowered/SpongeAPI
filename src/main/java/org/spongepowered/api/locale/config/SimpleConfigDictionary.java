@@ -22,55 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
+package org.spongepowered.api.locale.config;
 
-import org.spongepowered.api.text.translation.locale.Locales;
+import ninja.leaping.configurate.ConfigurationNode;
 
+import java.io.IOException;
 import java.util.Locale;
-import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
- * Represents a Dictionary for a particular subject.
- *
- * <p>Dictionaries take a given string key and return a localized result.</p>
+ * Represents a simple implementation of {@link ConfigDictionary} with a single source.
  */
-public interface Dictionary {
+public class SimpleConfigDictionary extends AbstractConfigDictionary {
 
-    /**
-     * Returns the entry for the specified key for the default {@link Locale}
-     * defined by {@link #getDefaultLocale()}.
-     *
-     * @param key Key to search for
-     * @return Localized string for "key"
-     */
-    default Optional<String> get(String key) {
-        return this.get(key, this.getDefaultLocale());
+    @Nullable protected ConfigurationNode root;
+
+    public SimpleConfigDictionary(Object subject, Locale defaultLocale) {
+        super(subject, defaultLocale);
     }
 
-    /**
-     * Returns the entry for the specified key for the specified
-     * {@link Locale}.
-     *
-     * @param key Key to search for
-     * @param locale Locale to get
-     * @return Localized string for "key"
-     */
-    Optional<String> get(String key, Locale locale);
-
-    /**
-     * Returns the default {@link Locale} to be used if no Locale is specified.
-     *
-     * @return Default Locale
-     */
-    default Locale getDefaultLocale() {
-        return Locales.DEFAULT;
+    @Override
+    public ConfigurationNode load(Locale locale) throws IOException {
+        this.root = super.load(locale);
+        return this.root;
     }
 
-    /**
-     * Returns the "subject" for this dictionary.
-     *
-     * @return Subject of dictionary
-     */
-    Object getSubject();
+    @Override
+    public ConfigurationNode getNode(Locale locale) {
+        if (this.root == null) {
+            throw new IllegalStateException("Tried to read SimpleConfigDictionary before it was loaded.");
+        }
+
+        return this.root.getNode(locale.toString());
+    }
 
 }

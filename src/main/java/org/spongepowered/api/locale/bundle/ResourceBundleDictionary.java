@@ -22,41 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
+package org.spongepowered.api.locale.bundle;
 
-import ninja.leaping.configurate.ConfigurationNode;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.io.IOException;
-import java.util.HashMap;
+import org.spongepowered.api.locale.Dictionary;
+
 import java.util.Locale;
-import java.util.Map;
+import java.util.MissingResourceException;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 /**
- * Represents a {@link ConfigDictionary} with a different source per-locale.
+ * Represents a {@link Dictionary} that handles retrieval through {@link ResourceBundle}s.
+ *
+ * @param <B> Bundle type
  */
-public class MultiSourceConfigDictionary extends AbstractConfigDictionary {
+public interface ResourceBundleDictionary<B extends ResourceBundle> extends Dictionary {
 
-    protected final Map<Locale, ConfigurationNode> nodes = new HashMap<>();
-
-    public MultiSourceConfigDictionary(Object subject, Locale defaultLocale) {
-        super(subject, defaultLocale);
-    }
-
-    @Override
-    public ConfigurationNode load(Locale locale) throws IOException {
-        ConfigurationNode localeNode = super.load(locale);
-        this.nodes.put(locale, localeNode);
-        this.bundles.put(locale, new ConfigResourceBundle(localeNode));
-        return localeNode;
-    }
+    /**
+     * Returns the {@link ResourceBundle} for the specified {@link Locale}.
+     *
+     * @param locale Locale to get bundle for
+     * @return Optional bundle
+     * @throws MissingResourceException
+     */
+    B getBundle(Locale locale) throws MissingResourceException;
 
     @Override
-    public ConfigurationNode getNode(Locale locale) {
-        ConfigurationNode node = this.nodes.get(locale);
-        if (node == null) {
-            throw new IllegalStateException("Tried to read MultiSourceConfigDictionary before locale " + locale + " was loaded.");
+    default Optional<String> get(String key, Locale locale) {
+        checkNotNull(key, "key");
+        checkNotNull(locale, "locale");
+        try {
+            return Optional.of(this.getBundle(locale).getString(key));
+        } catch (MissingResourceException e) {
+            try {
+                return Optional.of(this.getBundle(this.getDefaultLocale()).getString(key));
+            } catch (MissingResourceException e2) {
+                return Optional.empty();
+            }
         }
-        return node;
     }
 
 }

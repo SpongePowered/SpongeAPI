@@ -22,55 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+@org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.locale;
-
-import org.spongepowered.api.text.translation.locale.Locales;
-
-import java.util.Locale;
-import java.util.Optional;
-
-/**
- * Represents a Dictionary for a particular subject.
- *
- * <p>Dictionaries take a given string key and return a localized result.</p>
- */
-public interface Dictionary {
-
-    /**
-     * Returns the entry for the specified key for the default {@link Locale}
-     * defined by {@link #getDefaultLocale()}.
-     *
-     * @param key Key to search for
-     * @return Localized string for "key"
-     */
-    default Optional<String> get(String key) {
-        return this.get(key, this.getDefaultLocale());
-    }
-
-    /**
-     * Returns the entry for the specified key for the specified
-     * {@link Locale}.
-     *
-     * @param key Key to search for
-     * @param locale Locale to get
-     * @return Localized string for "key"
-     */
-    Optional<String> get(String key, Locale locale);
-
-    /**
-     * Returns the default {@link Locale} to be used if no Locale is specified.
-     *
-     * @return Default Locale
-     */
-    default Locale getDefaultLocale() {
-        return Locales.DEFAULT;
-    }
-
-    /**
-     * Returns the "subject" for this dictionary.
-     *
-     * @return Subject of dictionary
-     */
-    Object getSubject();
-
-}

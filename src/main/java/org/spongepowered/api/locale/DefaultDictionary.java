@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.locale;
 
+import org.spongepowered.api.locale.config.SimpleConfigDictionary;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -42,7 +44,13 @@ public class DefaultDictionary extends SimpleConfigDictionary {
     public DefaultDictionary(Object subject, Locale defaultLocale, Path path) {
         super(subject, defaultLocale);
         this.path = path;
-        this.resolver.primary(this::resolveSource);
+        this.resolver.setPrimary(locale -> {
+            try {
+                return this.resolveSource();
+            } catch (IOException e) {
+                return null;
+            }
+        });
     }
 
     protected InputStream resolveSource() throws IOException {

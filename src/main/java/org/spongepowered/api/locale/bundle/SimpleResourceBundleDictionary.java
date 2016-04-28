@@ -22,55 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
+package org.spongepowered.api.locale.bundle;
 
-import org.spongepowered.api.text.translation.locale.Locales;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.spongepowered.api.locale.AbstractDictionary;
 
 import java.util.Locale;
-import java.util.Optional;
+import java.util.ResourceBundle;
 
 /**
- * Represents a Dictionary for a particular subject.
- *
- * <p>Dictionaries take a given string key and return a localized result.</p>
+ * Represents a simple implementation of {@link ResourceBundleDictionary} using
+ * a "base name" and {@link ResourceBundle#getBundle(String)} to retrieve
+ * bundles.
  */
-public interface Dictionary {
+public class SimpleResourceBundleDictionary extends AbstractDictionary implements ResourceBundleDictionary<ResourceBundle> {
 
-    /**
-     * Returns the entry for the specified key for the default {@link Locale}
-     * defined by {@link #getDefaultLocale()}.
-     *
-     * @param key Key to search for
-     * @return Localized string for "key"
-     */
-    default Optional<String> get(String key) {
-        return this.get(key, this.getDefaultLocale());
+    protected final String baseName;
+
+    public SimpleResourceBundleDictionary(Object subject, Locale defaultLocale, String baseName) {
+        super(subject, defaultLocale);
+        this.baseName = checkNotNull(baseName, "base name");
     }
 
-    /**
-     * Returns the entry for the specified key for the specified
-     * {@link Locale}.
-     *
-     * @param key Key to search for
-     * @param locale Locale to get
-     * @return Localized string for "key"
-     */
-    Optional<String> get(String key, Locale locale);
-
-    /**
-     * Returns the default {@link Locale} to be used if no Locale is specified.
-     *
-     * @return Default Locale
-     */
-    default Locale getDefaultLocale() {
-        return Locales.DEFAULT;
+    @Override
+    public ResourceBundle getBundle(Locale locale) {
+        checkNotNull(locale, "locale");
+        return ResourceBundle.getBundle(this.baseName, locale);
     }
-
-    /**
-     * Returns the "subject" for this dictionary.
-     *
-     * @return Subject of dictionary
-     */
-    Object getSubject();
 
 }

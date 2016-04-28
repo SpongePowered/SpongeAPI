@@ -22,38 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
+package org.spongepowered.api.locale.config;
 
-import ninja.leaping.configurate.ConfigurationNode;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.io.IOException;
-import java.util.HashMap;
+import com.google.common.collect.Maps;
+import org.spongepowered.api.locale.AbstractRemoteDictionary;
+
 import java.util.Locale;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
- * Represents a simple implementation of {@link ConfigDictionary} with a single source.
+ * Abstract implementation of {@link ConfigDictionary}.
  */
-public class SimpleConfigDictionary extends AbstractConfigDictionary {
+public abstract class AbstractConfigDictionary extends AbstractRemoteDictionary implements ConfigDictionary {
 
-    protected ConfigurationNode root;
-    protected final Map<Locale, ConfigResourceBundle> bundles = new HashMap<>();
+    protected final Map<Locale, ConfigResourceBundle> bundles = Maps.newHashMap();
+    protected final Function<Locale, ConfigResourceBundle> loader;
 
-    public SimpleConfigDictionary(Object subject, Locale defaultLocale) {
+    public AbstractConfigDictionary(Object subject, Locale defaultLocale) {
         super(subject, defaultLocale);
+        this.loader = locale -> new ConfigResourceBundle(this.getNode(locale));
     }
 
     @Override
-    public ConfigurationNode load(Locale locale) throws IOException {
-        return this.root = super.load(locale);
-    }
-
-    @Override
-    public ConfigurationNode getNode(Locale locale) {
-        if (this.root == null) {
-            throw new IllegalStateException("Tried to read SimpleConfigDictionary before it was loaded.");
-        }
-        return this.root.getNode(locale.toString());
+    public ConfigResourceBundle getBundle(Locale locale) {
+        checkNotNull(locale, "locale");
+        return this.bundles.computeIfAbsent(locale, this.loader);
     }
 
 }

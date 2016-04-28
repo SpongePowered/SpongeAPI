@@ -30,22 +30,22 @@ import java.io.InputStream;
 import java.util.Locale;
 
 /**
- * Abstract implementation of {@link RemoteDictionary}.
+ * An abstract implementation of a {@link RemoteDictionary}.
  */
 public abstract class AbstractRemoteDictionary extends AbstractDictionary implements RemoteDictionary {
 
-    protected final SourceResolver resolver = new SourceResolver();
+    protected final DictionarySourceResolver<InputStream> resolver = new DictionarySourceResolver<>();
 
     public AbstractRemoteDictionary(Object subject, Locale defaultLocale) {
         super(subject, defaultLocale);
     }
 
     /**
-     * Returns the {@link SourceResolver} for this Dictionary.
+     * Returns the {@link DictionarySourceResolver} for this dictionary.
      *
-     * @return Source resolver
+     * @return The dictionary source resolver
      */
-    public SourceResolver getResolver() {
+    public DictionarySourceResolver<InputStream> getResolver() {
         return this.resolver;
     }
 

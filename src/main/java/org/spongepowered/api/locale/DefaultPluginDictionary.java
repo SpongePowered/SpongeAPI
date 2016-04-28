@@ -40,12 +40,12 @@ public class DefaultPluginDictionary extends DefaultDictionary {
      */
     public static final String FILE_EXTENSION = ".dict";
 
-    public DefaultPluginDictionary(Object plugin, Locale defaultLocale, Path dir) {
-        super(plugin, defaultLocale, dir.resolve(Sponge.getPluginManager().fromInstance(plugin).get().getId() + FILE_EXTENSION));
-    }
-
     public DefaultPluginDictionary(Object plugin, Path dir) {
         this(plugin, Sponge.getServer().getLocale(), dir);
+    }
+
+    public DefaultPluginDictionary(Object plugin, Locale defaultLocale, Path dir) {
+        super(plugin, defaultLocale, dir.resolve(Sponge.getPluginManager().fromInstance(plugin).get().getId() + FILE_EXTENSION));
     }
 
 }

@@ -29,14 +29,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Locale;
 
 /**
- * Abstract implementation of {@link Dictionary}.
+ * An abstract implementation of a {@link Dictionary}.
  */
 public abstract class AbstractDictionary implements Dictionary {
 
     protected final Object subject;
     protected final Locale defaultLocale;
 
-    public AbstractDictionary(Object subject, Locale defaultLocale) {
+    protected AbstractDictionary(Object subject, Locale defaultLocale) {
         this.subject = checkNotNull(subject, "subject");
         this.defaultLocale = checkNotNull(defaultLocale, "default locale");
     }

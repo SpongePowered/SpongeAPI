@@ -24,42 +24,13 @@
  */
 package org.spongepowered.api.locale;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
-
 /**
- * Represents a simple implementation of {@link ResourceBundleDictionary} using
- * a "base name" and {@link ResourceBundle#getBundle(String)} to retrieve
- * bundles.
+ * Represents a dictionary that can cache values.
  */
-public class SimpleResourceBundleDictionary extends AbstractDictionary implements ResourceBundleDictionary<ResourceBundle> {
+public interface CachingDictionary extends Dictionary {
 
-    protected final String baseName;
-    protected final Map<Locale, ResourceBundle> bundles = new HashMap<>();
-
-    public SimpleResourceBundleDictionary(Object subject, Locale defaultLocale, String baseName) {
-        super(subject, defaultLocale);
-        this.baseName = baseName;
-    }
-
-    @Override
-    public ResourceBundle getBundle(Locale locale) {
-        checkNotNull(locale, "locale");
-        ResourceBundle bundle = this.bundles.get(locale);
-        if (bundle == null) {
-            setBundle(locale, bundle = ResourceBundle.getBundle(this.baseName, locale));
-        }
-        return bundle;
-    }
-
-    @Override
-    public void setBundle(Locale locale, ResourceBundle bundle) {
-        checkNotNull(locale, "locale");
-        this.bundles.put(locale, bundle);
-    }
-
+    /**
+     * Clear this dictionary's cache.
+     */
+    void clearCache();
 }

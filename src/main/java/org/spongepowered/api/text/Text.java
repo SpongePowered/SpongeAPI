@@ -1012,35 +1012,33 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
         return builder.build();
     }
 
-    public static Optional<Text> get(Dictionary dictionary, String key, Locale locale) {
-        return get(dictionary.get(key, locale));
-    }
-
     public static Optional<Text> get(Dictionary dictionary, String key) {
         return get(dictionary.get(key));
     }
 
-    private static Optional<Text> get(Optional<String> result) {
-        if (result.isPresent()) {
-            return Optional.of(Text.of(result.get()));
-        }
-        return Optional.empty();
+    public static Optional<Text> get(Dictionary dictionary, String key, Locale locale) {
+        return get(dictionary.get(key, locale));
     }
 
-    public static Optional<Text> get(Object plugin, String key, Locale locale) {
-        return get(Sponge.getPluginManager().fromInstance(plugin).get().getDictionary(), key, locale);
+    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+    private static Optional<Text> get(Optional<String> result) {
+        return result.map(Text::of);
     }
 
     public static Optional<Text> get(Object plugin, String key) {
         return get(Sponge.getPluginManager().fromInstance(plugin).get().getDictionary(), key);
     }
 
-    public static Optional<Text> get(String key, Locale locale) {
-        return get(Sponge.getServiceManager().provide(Dictionary.class).get(), key, locale);
+    public static Optional<Text> get(Object plugin, String key, Locale locale) {
+        return get(Sponge.getPluginManager().fromInstance(plugin).get().getDictionary(), key, locale);
     }
 
     public static Optional<Text> get(String key) {
         return get(Sponge.getServiceManager().provide(Dictionary.class).get(), key);
+    }
+
+    public static Optional<Text> get(String key, Locale locale) {
+        return get(Sponge.getServiceManager().provide(Dictionary.class).get(), key, locale);
     }
 
     /**

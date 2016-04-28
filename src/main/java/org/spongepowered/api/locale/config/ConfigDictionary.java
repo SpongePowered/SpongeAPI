@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
+package org.spongepowered.api.locale.config;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -30,6 +30,8 @@ import com.google.common.base.Objects;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
+import org.spongepowered.api.locale.RemoteDictionary;
+import org.spongepowered.api.locale.bundle.ResourceBundleDictionary;
 
 import java.io.BufferedReader;
 import java.io.IOException;

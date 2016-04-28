@@ -22,33 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Locale;
-
-/**
- * Represents a {@link Dictionary} with a remote source.
- */
-public interface RemoteDictionary extends Dictionary {
-
-    /**
-     * Returns an {@link InputStream} for the remote source of this Dictionary.
-     *
-     * @return Source of dictionary
-     * @throws IOException
-     */
-    InputStream getSource(Locale locale) throws Exception;
-
-    /**
-     * Returns an {@link InputStream} for the remote source of this Dictionary.
-     *
-     * @return Source of dictionary
-     * @throws IOException
-     */
-    default InputStream getSource() throws Exception {
-        return this.getSource(this.getDefaultLocale());
-    }
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.locale.config;
