@@ -25,14 +25,19 @@
 package org.spongepowered.api.setting;
 
 import org.spongepowered.api.setting.type.SettingType;
+import org.spongepowered.api.setting.value.SettingValue;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageReceiver;
 
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import javax.annotation.Nullable;
+
 /**
  * A setting.
+ *
+ * <p>Settings are immutable.</p>
  *
  * @param <T> The value type of this setting
  */
@@ -69,7 +74,18 @@ public interface Setting<T> {
      *
      * @return The setting type
      */
-    SettingType<T> getType();
+    SettingType<T, SettingValue<T>> getType();
+
+    /**
+     * Create a {@link SettingValue} for the provided value.
+     *
+     * @param value The value
+     * @return The setting value
+     * @see SettingType#createValue(Object)
+     */
+    default SettingValue<T> createValue(@Nullable T value) {
+        return this.getType().createValue(value);
+    }
 
     /**
      * Gets the default value associated with this setting.
