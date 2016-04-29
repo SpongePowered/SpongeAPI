@@ -31,6 +31,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -72,6 +73,13 @@ public interface Setting<T> {
      * @see #ID_PATTERN
      */
     String getId();
+
+    /**
+     * Gets a collection of aliases for this setting.
+     *
+     * @return A collection of aliases
+     */
+    Collection<String> getAliases();
 
     /**
      * Gets the friendly name for this setting.
@@ -117,15 +125,31 @@ public interface Setting<T> {
          * Sets the id for settings created by this builder.
          *
          * @param id The setting id
-         * @return The builder
+         * @return This builder
          */
         Builder<T> id(String id);
+
+        /**
+         * Sets the aliases for settings created by this builder.
+         *
+         * @param aliases The aliases
+         * @return This builder
+         */
+        Builder<T> aliases(String... aliases);
+
+        /**
+         * Sets the aliases for settings created by this builder.
+         *
+         * @param aliases The aliases
+         * @return This builder
+         */
+        Builder<T> aliases(Collection<String> aliases);
 
         /**
          * Sets the type for settings created by this builder.
          *
          * @param type The setting type
-         * @return The builder
+         * @return This builder
          */
         Builder<T> type(SettingType<T, SettingValue<T>> type);
 
@@ -133,7 +157,7 @@ public interface Setting<T> {
          * Sets the name for settings created by this builder.
          *
          * @param name The setting name
-         * @return The builder
+         * @return This builder
          */
         Builder<T> name(Text name);
 
@@ -141,7 +165,7 @@ public interface Setting<T> {
          * Sets the default value for settings created by this builder.
          *
          * @param defaultValue The default value
-         * @return The builder
+         * @return This builder
          */
         Builder<T> defaultValue(@Nullable T defaultValue);
 

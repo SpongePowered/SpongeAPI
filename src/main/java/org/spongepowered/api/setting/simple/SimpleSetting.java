@@ -32,6 +32,7 @@ import org.spongepowered.api.setting.value.SettingValue;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageReceiver;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -44,14 +45,16 @@ import javax.annotation.Nullable;
 public class SimpleSetting<T> implements Setting<T> {
 
     protected final String id;
+    protected final Collection<String> aliases;
     protected final SettingType<T, SettingValue<T>> type;
     protected final Text name;
     @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     protected final Optional<T> defaultValue;
 
     @SuppressWarnings("ConstantConditions")
-    public SimpleSetting(String id, SettingType<T, SettingValue<T>> type, Text name, @Nullable T defaultValue) {
+    public SimpleSetting(String id, Collection<String> aliases, SettingType<T, SettingValue<T>> type, Text name, @Nullable T defaultValue) {
         this.id = checkNotNull(id, "id");
+        this.aliases = checkNotNull(aliases, "aliases");
         this.type = checkNotNull(type, "type");
         this.name = checkNotNull(name, "name");
         this.defaultValue = Optional.ofNullable(defaultValue);
@@ -60,6 +63,11 @@ public class SimpleSetting<T> implements Setting<T> {
     @Override
     public String getId() {
         return this.id;
+    }
+
+    @Override
+    public Collection<String> getAliases() {
+        return this.aliases;
     }
 
     @Override
