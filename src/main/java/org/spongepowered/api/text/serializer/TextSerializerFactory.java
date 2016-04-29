@@ -25,11 +25,8 @@
 package org.spongepowered.api.text.serializer;
 
 /**
- * Internal factory for {@link TextSerializer}s.
- *
- * @deprecated Internal use only, use {@link TextSerializers} instead.
+ * Internal implementation factory: Use {@link TextSerializers} instead.
  */
-@Deprecated
 public interface TextSerializerFactory {
 
     /**

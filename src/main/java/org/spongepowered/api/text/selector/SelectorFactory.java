@@ -32,12 +32,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Represents the required implementation for the static methods in
- * {@link Selector}, {@link Argument} and {@link ArgumentTypes}.
- *
- * @deprecated Internal use only.
+ * Internal implementation factory: Use the methods in
+ * {@link Selector}, {@link Argument} and {@link ArgumentTypes} instead.
  */
-@Deprecated
 public interface SelectorFactory {
 
     /**
