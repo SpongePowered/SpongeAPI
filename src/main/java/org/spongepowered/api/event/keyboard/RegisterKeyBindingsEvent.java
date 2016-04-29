@@ -24,16 +24,31 @@
  */
 package org.spongepowered.api.event.keyboard;
 
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.keyboard.KeyBinding;
 
-public interface KeyboardEvent extends TargetPlayerEvent {
+import java.util.Set;
+
+/**
+ * Is fired when a {@link Player} joins and allows you to define per player
+ * to enable a {@link KeyBinding}. This is the only time you will be able to
+ * modify which {@link KeyBinding} are visible/usable for a specific player.
+ *
+ * <p>This event will only be called for {@link Player}s that have a client
+ * that supports custom key bindings.</p>
+ */
+public interface RegisterKeyBindingsEvent extends TargetPlayerEvent {
 
     /**
-     * Gets the {@link KeyBinding} that triggered this event.
+     * Gets a mutable set with all the {@link KeyBinding}s that will be
+     * available for the {@link Player}.
      *
-     * @return The key binding
+     * <p>This set does not contain any of the default {@link KeyBinding}s
+     * because you cannot enable/disable them, adding them to the set will
+     * have no effect.</p>
+     *
+     * @return The key bindings
      */
-    KeyBinding getKeyBinding();
-
+    Set<KeyBinding> getKeyBindings();
 }

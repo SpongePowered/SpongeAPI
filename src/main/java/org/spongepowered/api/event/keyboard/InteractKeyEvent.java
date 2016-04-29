@@ -41,6 +41,21 @@ public interface InteractKeyEvent extends KeyboardEvent {
     }
 
     /**
+     * Is fired when a every tick when a {@link Player} holds the
+     * key assigned to a {@link KeyBinding}.
+     */
+    interface Tick extends InteractKeyEvent {
+
+        /**
+         * Gets the amount of time in ticks that the key
+         * is currently being pressed.
+         *
+         * @return The press time in ticks
+         */
+        int getPressTime();
+    }
+
+    /**
      * Is fired when a {@link Player} a released the
      * key assigned to a {@link KeyBinding}.
      */
