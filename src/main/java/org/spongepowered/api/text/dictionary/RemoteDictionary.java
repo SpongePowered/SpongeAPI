@@ -22,39 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale.config;
+package org.spongepowered.api.text.dictionary;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.google.common.collect.Maps;
-import org.spongepowered.api.locale.AbstractRemoteDictionary;
-
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Locale;
-import java.util.Map;
-import java.util.function.Function;
 
 /**
- * Abstract implementation of {@link ConfigDictionary}.
+ * A {@link Dictionary} with a {@link InputStream} source.
  */
-public abstract class AbstractConfigDictionary extends AbstractRemoteDictionary implements ConfigDictionary {
+public interface RemoteDictionary extends Dictionary {
 
-    protected final Map<Locale, ConfigResourceBundle> bundles = Maps.newHashMap();
-    protected final Function<Locale, ConfigResourceBundle> loader;
-
-    public AbstractConfigDictionary(Object subject, Locale defaultLocale) {
-        super(subject, defaultLocale);
-        this.loader = locale -> new ConfigResourceBundle(this.getNode(locale));
+    /**
+     * Returns an {@link InputStream} for the remote source of this Dictionary.
+     *
+     * @return Source of dictionary
+     * @throws IOException
+     */
+    default InputStream getSource() throws Exception {
+        return this.getSource(this.getDefaultLocale());
     }
 
-    @Override
-    public ConfigResourceBundle getBundle(Locale locale) {
-        checkNotNull(locale, "locale");
-        return this.bundles.computeIfAbsent(locale, this.loader);
-    }
-
-    @Override
-    public void clearCache() {
-        this.bundles.clear();
-    }
+    /**
+     * Returns an {@link InputStream} for the remote source of this Dictionary.
+     *
+     * @return Source of dictionary
+     * @throws IOException
+     */
+    InputStream getSource(Locale locale) throws Exception;
 
 }

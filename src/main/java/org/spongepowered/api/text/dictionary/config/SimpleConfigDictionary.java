@@ -22,48 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale.bundle;
+package org.spongepowered.api.text.dictionary.config;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import ninja.leaping.configurate.ConfigurationNode;
 
-import org.spongepowered.api.locale.Dictionary;
-
+import java.io.IOException;
 import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.Optional;
-import java.util.ResourceBundle;
+
+import javax.annotation.Nullable;
 
 /**
- * A {@link Dictionary} that retrieves values from a {@link ResourceBundle}.
- *
- * @param <B> The resource bundle type
+ * Represents a simple implementation of {@link ConfigDictionary} with a single source.
  */
-public interface ResourceBundleDictionary<B extends ResourceBundle> extends Dictionary {
+public class SimpleConfigDictionary extends AbstractConfigDictionary {
 
-    /**
-     * Gets the {@link ResourceBundle} for the specified {@link Locale}.
-     *
-     * @param locale Locale to get bundle for
-     * @return Optional bundle
-     * @throws MissingResourceException
-     */
-    B getBundle(Locale locale) throws MissingResourceException;
+    @Nullable protected ConfigurationNode root;
+
+    public SimpleConfigDictionary(Object subject, Locale defaultLocale) {
+        super(subject, defaultLocale);
+    }
 
     @Override
-    default Optional<String> get(String key, Locale locale) {
-        checkNotNull(key, "key");
-        checkNotNull(locale, "locale");
+    public ConfigurationNode load(Locale locale) throws IOException {
+        this.root = super.load(locale);
+        return this.root;
+    }
 
-        try {
-            return Optional.of(this.getBundle(locale).getString(key));
-        } catch (MissingResourceException e) {
-            try {
-                // We failed with the provided locale, fallback to the default locale
-                return Optional.of(this.getBundle(this.getDefaultLocale()).getString(key));
-            } catch (MissingResourceException e2) {
-                return Optional.empty();
-            }
+    @Override
+    public ConfigurationNode getNode(Locale locale) {
+        if (this.root == null) {
+            throw new IllegalStateException("Tried to read SimpleConfigDictionary before it was loaded.");
         }
+
+        return this.root.getNode(locale.toString());
     }
 
 }

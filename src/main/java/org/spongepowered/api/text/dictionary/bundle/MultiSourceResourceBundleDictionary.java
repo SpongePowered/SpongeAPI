@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale.bundle;
+package org.spongepowered.api.text.dictionary.bundle;
 
 import com.google.common.collect.Maps;
-import org.spongepowered.api.locale.CachingDictionary;
-import org.spongepowered.api.locale.DictionarySourceResolver;
+import org.spongepowered.api.text.dictionary.CachingDictionary;
+import org.spongepowered.api.text.dictionary.DictionarySourceResolver;
 
 import java.util.Locale;
 import java.util.Map;

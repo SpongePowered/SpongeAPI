@@ -22,30 +22,51 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
+package org.spongepowered.api.text.dictionary;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.text.translation.locale.Locales;
 
 import java.util.Locale;
-import java.util.Optional;
 
 /**
- * Represents a {@link Dictionary} that returns all null values for each key.
+ * An abstract implementation of a {@link Dictionary}.
  */
-public final class NullDictionary extends AbstractDictionary {
+public abstract class AbstractDictionary implements Dictionary {
 
-    public NullDictionary(Object subject) {
-        super(subject, Locales.DEFAULT);
+    protected final Object subject;
+    protected final Locale defaultLocale;
+
+    /**
+     * Constructs an abstract dictionary with
+     * the {@link Locales#DEFAULT default} locale.
+     *
+     * @param subject The subject of this dictionary
+     */
+    protected AbstractDictionary(Object subject) {
+        this(subject, Locales.DEFAULT);
+    }
+
+    /**
+     * Constructs an abstract dictionary with a default locale.
+     *
+     * @param subject The subject of this dictionary
+     * @param defaultLocale The default locale for this dictionary
+     */
+    protected AbstractDictionary(Object subject, Locale defaultLocale) {
+        this.subject = checkNotNull(subject, "subject");
+        this.defaultLocale = checkNotNull(defaultLocale, "default locale");
     }
 
     @Override
-    public Optional<String> get(String key, Locale locale) {
-        return Optional.empty();
+    public Object getSubject() {
+        return this.subject;
     }
 
     @Override
-    public Optional<String> get(String key) {
-        return Optional.empty();
+    public Locale getDefaultLocale() {
+        return this.defaultLocale;
     }
 
 }

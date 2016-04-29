@@ -30,8 +30,8 @@ import org.slf4j.LoggerFactory;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.asset.Asset;
 import org.spongepowered.api.asset.AssetManager;
-import org.spongepowered.api.locale.Dictionary;
-import org.spongepowered.api.locale.NullDictionary;
+import org.spongepowered.api.text.dictionary.Dictionary;
+import org.spongepowered.api.text.dictionary.NullDictionary;
 import org.spongepowered.api.service.ServiceManager;
 
 import java.nio.file.Path;

@@ -22,39 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale.config;
+package org.spongepowered.api.text.dictionary.bundle;
 
-import ninja.leaping.configurate.ConfigurationNode;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.io.IOException;
+import org.spongepowered.api.text.dictionary.AbstractDictionary;
+
 import java.util.Locale;
-
-import javax.annotation.Nullable;
+import java.util.ResourceBundle;
 
 /**
- * Represents a simple implementation of {@link ConfigDictionary} with a single source.
+ * A simple implementation of a {@link ResourceBundleDictionary}.
  */
-public class SimpleConfigDictionary extends AbstractConfigDictionary {
+public class SimpleResourceBundleDictionary extends AbstractDictionary implements ResourceBundleDictionary<ResourceBundle> {
 
-    @Nullable protected ConfigurationNode root;
+    protected final String bundleName;
 
-    public SimpleConfigDictionary(Object subject, Locale defaultLocale) {
+    public SimpleResourceBundleDictionary(Object subject, Locale defaultLocale, String bundleName) {
         super(subject, defaultLocale);
+        this.bundleName = checkNotNull(bundleName, "bundle name");
     }
 
     @Override
-    public ConfigurationNode load(Locale locale) throws IOException {
-        this.root = super.load(locale);
-        return this.root;
-    }
-
-    @Override
-    public ConfigurationNode getNode(Locale locale) {
-        if (this.root == null) {
-            throw new IllegalStateException("Tried to read SimpleConfigDictionary before it was loaded.");
-        }
-
-        return this.root.getNode(locale.toString());
+    public ResourceBundle getBundle(Locale locale) {
+        checkNotNull(locale, "locale");
+        return ResourceBundle.getBundle(this.bundleName, locale, this.subject.getClass().getClassLoader());
     }
 
 }

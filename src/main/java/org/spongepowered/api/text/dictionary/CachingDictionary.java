@@ -22,5 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.locale;
+package org.spongepowered.api.text.dictionary;
+
+/**
+ * A {@link Dictionary} that can cache values.
+ */
+public interface CachingDictionary extends Dictionary {
+
+    /**
+     * Clear this dictionary's cache.
+     */
+    void clearCache();
+}

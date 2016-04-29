@@ -22,15 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
+package org.spongepowered.api.text.dictionary.config;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.google.common.collect.Maps;
+import org.spongepowered.api.text.dictionary.AbstractRemoteDictionary;
+
+import java.util.Locale;
+import java.util.Map;
+import java.util.function.Function;
 
 /**
- * A {@link Dictionary} that can cache values.
+ * Abstract implementation of {@link ConfigDictionary}.
  */
-public interface CachingDictionary extends Dictionary {
+public abstract class AbstractConfigDictionary extends AbstractRemoteDictionary implements ConfigDictionary {
 
-    /**
-     * Clear this dictionary's cache.
-     */
-    void clearCache();
+    protected final Map<Locale, ConfigResourceBundle> bundles = Maps.newHashMap();
+    protected final Function<Locale, ConfigResourceBundle> loader;
+
+    public AbstractConfigDictionary(Object subject, Locale defaultLocale) {
+        super(subject, defaultLocale);
+        this.loader = locale -> new ConfigResourceBundle(this.getNode(locale));
+    }
+
+    @Override
+    public ConfigResourceBundle getBundle(Locale locale) {
+        checkNotNull(locale, "locale");
+        return this.bundles.computeIfAbsent(locale, this.loader);
+    }
+
+    @Override
+    public void clearCache() {
+        this.bundles.clear();
+    }
+
 }

@@ -22,51 +22,58 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+package org.spongepowered.api.text.dictionary;
 
 import org.spongepowered.api.text.translation.locale.Locales;
 
 import java.util.Locale;
+import java.util.Optional;
 
 /**
- * An abstract implementation of a {@link Dictionary}.
+ * Represents a Dictionary for a particular subject.
+ *
+ * <p>Dictionaries take a given string key and return a translated result.</p>
  */
-public abstract class AbstractDictionary implements Dictionary {
-
-    protected final Object subject;
-    protected final Locale defaultLocale;
+public interface Dictionary {
 
     /**
-     * Constructs an abstract dictionary with
-     * the {@link Locales#DEFAULT default} locale.
+     * Gets the entry for the specified key in this dictionary
+     * for the {@link #getDefaultLocale() default locale}.
      *
-     * @param subject The subject of this dictionary
+     * @param key The key whose associated value is to be returned
+     * @return The string value for {@code key}, if present,
+     *     {@link Optional#empty()} otherwise
      */
-    protected AbstractDictionary(Object subject) {
-        this(subject, Locales.DEFAULT);
+    default Optional<String> get(String key) {
+        return this.get(key, this.getDefaultLocale());
     }
 
     /**
-     * Constructs an abstract dictionary with a default locale.
+     * Gets the entry for the specified key for the specified
+     * {@link Locale}.
      *
-     * @param subject The subject of this dictionary
-     * @param defaultLocale The default locale for this dictionary
+     * @param key The key whose associated value is to be returned
+     * @param locale The locale under which the value should be
+     *     obtained in
+     * @return The string value for {@code key}, if present,
+     *     {@link Optional#empty()} otherwise
      */
-    protected AbstractDictionary(Object subject, Locale defaultLocale) {
-        this.subject = checkNotNull(subject, "subject");
-        this.defaultLocale = checkNotNull(defaultLocale, "default locale");
+    Optional<String> get(String key, Locale locale);
+
+    /**
+     * Gets the default {@link Locale} to be used with this dictionary.
+     *
+     * @return The default locale
+     */
+    default Locale getDefaultLocale() {
+        return Locales.DEFAULT;
     }
 
-    @Override
-    public Object getSubject() {
-        return this.subject;
-    }
-
-    @Override
-    public Locale getDefaultLocale() {
-        return this.defaultLocale;
-    }
+    /**
+     * Gets the "subject" of this dictionary.
+     *
+     * @return The subject of this dictionary
+     */
+    Object getSubject();
 
 }

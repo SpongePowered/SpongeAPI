@@ -22,48 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale.config;
+package org.spongepowered.api.text.dictionary;
 
-import com.google.common.collect.Maps;
-import ninja.leaping.configurate.ConfigurationNode;
+import org.spongepowered.api.text.translation.locale.Locales;
 
-import java.io.IOException;
 import java.util.Locale;
-import java.util.Map;
+import java.util.Optional;
 
 /**
- * Represents a {@link ConfigDictionary} with a different source per-locale.
+ * Represents a {@link Dictionary} that returns all null values for each key.
  */
-public class MultiSourceConfigDictionary extends AbstractConfigDictionary {
+public final class NullDictionary extends AbstractDictionary {
 
-    protected final Map<Locale, ConfigurationNode> nodes = Maps.newHashMap();
-
-    public MultiSourceConfigDictionary(Object subject, Locale defaultLocale) {
-        super(subject, defaultLocale);
+    public NullDictionary(Object subject) {
+        super(subject, Locales.DEFAULT);
     }
 
     @Override
-    public ConfigurationNode load(Locale locale) throws IOException {
-        ConfigurationNode node = super.load(locale);
-        this.nodes.put(locale, node);
-        this.bundles.put(locale, new ConfigResourceBundle(node));
-        return node;
+    public Optional<String> get(String key, Locale locale) {
+        return Optional.empty();
     }
 
     @Override
-    public ConfigurationNode getNode(Locale locale) {
-        ConfigurationNode node = this.nodes.get(locale);
-        if (node == null) {
-            throw new IllegalStateException("Tried to read MultiSourceConfigDictionary before locale " + locale + " was loaded.");
-        }
-
-        return node;
-    }
-
-    @Override
-    public void clearCache() {
-        super.clearCache();
-        this.nodes.clear();
+    public Optional<String> get(String key) {
+        return Optional.empty();
     }
 
 }

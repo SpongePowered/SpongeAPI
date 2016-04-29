@@ -22,31 +22,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale.bundle;
+package org.spongepowered.api.text.dictionary;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.locale.AbstractDictionary;
+import org.spongepowered.api.text.translation.locale.Locales;
 
+import java.io.InputStream;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 /**
- * A simple implementation of a {@link ResourceBundleDictionary}.
+ * An abstract implementation of a {@link RemoteDictionary}.
  */
-public class SimpleResourceBundleDictionary extends AbstractDictionary implements ResourceBundleDictionary<ResourceBundle> {
+public abstract class AbstractRemoteDictionary extends AbstractDictionary implements RemoteDictionary {
 
-    protected final String bundleName;
+    protected final DictionarySourceResolver<InputStream> resolver = new DictionarySourceResolver<>();
 
-    public SimpleResourceBundleDictionary(Object subject, Locale defaultLocale, String bundleName) {
+    /**
+     * Constructs an abstract remote dictionary with
+     * the {@link Locales#DEFAULT default} locale.
+     *
+     * @param subject The subject of this dictionary
+     */
+    protected AbstractRemoteDictionary(Object subject) {
+        super(subject);
+    }
+
+    /**
+     * Constructs an abstract remote dictionary with a default locale.
+     *
+     * @param subject The subject of this dictionary
+     * @param defaultLocale The default locale for this dictionary
+     */
+    protected AbstractRemoteDictionary(Object subject, Locale defaultLocale) {
         super(subject, defaultLocale);
-        this.bundleName = checkNotNull(bundleName, "bundle name");
+    }
+
+    /**
+     * Returns the {@link DictionarySourceResolver} for this dictionary.
+     *
+     * @return The dictionary source resolver
+     */
+    public DictionarySourceResolver<InputStream> getResolver() {
+        return this.resolver;
     }
 
     @Override
-    public ResourceBundle getBundle(Locale locale) {
+    public InputStream getSource(Locale locale) throws Exception {
         checkNotNull(locale, "locale");
-        return ResourceBundle.getBundle(this.bundleName, locale, this.subject.getClass().getClassLoader());
+        return this.resolver.resolve(locale).orElseThrow(() -> new IllegalStateException("Could not resolve source for locale " + locale + "."));
     }
 
 }

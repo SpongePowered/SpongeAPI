@@ -22,55 +22,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.locale;
+package org.spongepowered.api.text.dictionary.bundle;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.text.translation.locale.Locales;
+import org.spongepowered.api.text.dictionary.Dictionary;
 
-import java.io.InputStream;
 import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 /**
- * An abstract implementation of a {@link RemoteDictionary}.
+ * A {@link Dictionary} that retrieves values from a {@link ResourceBundle}.
+ *
+ * @param <B> The resource bundle type
  */
-public abstract class AbstractRemoteDictionary extends AbstractDictionary implements RemoteDictionary {
-
-    protected final DictionarySourceResolver<InputStream> resolver = new DictionarySourceResolver<>();
+public interface ResourceBundleDictionary<B extends ResourceBundle> extends Dictionary {
 
     /**
-     * Constructs an abstract remote dictionary with
-     * the {@link Locales#DEFAULT default} locale.
+     * Gets the {@link ResourceBundle} for the specified {@link Locale}.
      *
-     * @param subject The subject of this dictionary
+     * @param locale Locale to get bundle for
+     * @return Optional bundle
+     * @throws MissingResourceException
      */
-    protected AbstractRemoteDictionary(Object subject) {
-        super(subject);
-    }
-
-    /**
-     * Constructs an abstract remote dictionary with a default locale.
-     *
-     * @param subject The subject of this dictionary
-     * @param defaultLocale The default locale for this dictionary
-     */
-    protected AbstractRemoteDictionary(Object subject, Locale defaultLocale) {
-        super(subject, defaultLocale);
-    }
-
-    /**
-     * Returns the {@link DictionarySourceResolver} for this dictionary.
-     *
-     * @return The dictionary source resolver
-     */
-    public DictionarySourceResolver<InputStream> getResolver() {
-        return this.resolver;
-    }
+    B getBundle(Locale locale) throws MissingResourceException;
 
     @Override
-    public InputStream getSource(Locale locale) throws Exception {
+    default Optional<String> get(String key, Locale locale) {
+        checkNotNull(key, "key");
         checkNotNull(locale, "locale");
-        return this.resolver.resolve(locale).orElseThrow(() -> new IllegalStateException("Could not resolve source for locale " + locale + "."));
+
+        try {
+            return Optional.of(this.getBundle(locale).getString(key));
+        } catch (MissingResourceException e) {
+            try {
+                // We failed with the provided locale, fallback to the default locale
+                return Optional.of(this.getBundle(this.getDefaultLocale()).getString(key));
+            } catch (MissingResourceException e2) {
+                return Optional.empty();
+            }
+        }
     }
 
 }
