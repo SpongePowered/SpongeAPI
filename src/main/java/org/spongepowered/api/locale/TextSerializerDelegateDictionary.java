@@ -24,28 +24,43 @@
  */
 package org.spongepowered.api.locale;
 
-import org.spongepowered.api.text.translation.locale.Locales;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.serializer.TextSerializer;
 
 import java.util.Locale;
 import java.util.Optional;
 
 /**
- * Represents a Dictionary for a particular subject.
- *
- * <p>Dictionaries take a given string key and return a translated result.</p>
+ * A delegating {@link Dictionary} which has methods that return {@link Text}.
  */
-public interface Dictionary {
+public class TextSerializerDelegateDictionary implements Dictionary {
+
+    protected final Dictionary delegate;
+    protected final TextSerializer serializer;
+
+    public TextSerializerDelegateDictionary(Dictionary delegate, TextSerializer serializer) {
+        this.delegate = checkNotNull(delegate, "delegate");
+        this.serializer = checkNotNull(serializer, "serializer");
+    }
+
+    @Override
+    public Optional<String> get(String key, Locale locale) {
+        return this.delegate.get(key, locale);
+    }
 
     /**
      * Gets the entry for the specified key in this dictionary
      * for the {@link #getDefaultLocale() default locale}.
      *
      * @param key The key whose associated value is to be returned
-     * @return The string value for {@code key}, if present,
+     * @return The {@link Text} value for {@code key}, if present,
      *     {@link Optional#empty()} otherwise
+     * @see Dictionary#get(String)
      */
-    default Optional<String> get(String key) {
-        return this.get(key, this.getDefaultLocale());
+    public Optional<Text> getText(String key) {
+        return this.getText(key, this.getDefaultLocale());
     }
 
     /**
@@ -55,25 +70,16 @@ public interface Dictionary {
      * @param key The key whose associated value is to be returned
      * @param locale The locale under which the value should be
      *     obtained in
-     * @return The string value for {@code key}, if present,
+     * @return The {@link Text} value for {@code key}, if present,
      *     {@link Optional#empty()} otherwise
+     * @see Dictionary#get(String, Locale)
      */
-    Optional<String> get(String key, Locale locale);
-
-    /**
-     * Gets the default {@link Locale} to be used with this dictionary.
-     *
-     * @return The default locale
-     */
-    default Locale getDefaultLocale() {
-        return Locales.DEFAULT;
+    public Optional<Text> getText(String key, Locale locale) {
+        return this.get(key, locale).map(this.serializer::deserializeUnchecked);
     }
 
-    /**
-     * Gets the "subject" of this dictionary.
-     *
-     * @return The subject of this dictionary
-     */
-    Object getSubject();
-
+    @Override
+    public Object getSubject() {
+        return this.delegate.getSubject();
+    }
 }
