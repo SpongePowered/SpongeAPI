@@ -25,6 +25,8 @@
 package org.spongepowered.api.setting;
 
 import org.spongepowered.api.setting.type.SettingType;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.channel.MessageReceiver;
 
 import java.util.regex.Pattern;
 
@@ -52,6 +54,14 @@ public interface Setting<T> {
      * @see #ID_PATTERN
      */
     String getId();
+
+    /**
+     * Gets the friendly name for this setting.
+     *
+     * @param receiver The receiver of the name
+     * @return The friendly name
+     */
+    Text getName(MessageReceiver receiver);
 
     /**
      * Gets the setting type.
