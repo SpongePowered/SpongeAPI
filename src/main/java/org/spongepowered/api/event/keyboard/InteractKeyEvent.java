@@ -22,12 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.keyboard;
+package org.spongepowered.api.event.keyboard;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.keyboard.KeyBinding;
 
-@CatalogedBy(KeyCodes.class)
-public interface KeyCode extends CatalogType {
+/**
+ * Is fired when a {@link Player} interacts with a {@link KeyBinding}.
+ */
+public interface InteractKeyEvent extends KeyboardEvent {
 
+    /**
+     * Is fired when a {@link Player} a pressed the
+     * key assigned to a {@link KeyBinding}.
+     */
+    interface Press extends InteractKeyEvent {
+
+    }
+
+    /**
+     * Is fired when a {@link Player} a released the
+     * key assigned to a {@link KeyBinding}.
+     */
+    interface Release extends InteractKeyEvent {
+
+        /**
+         * Gets the amount of time in ticks that the key
+         * was pressed before it was released.
+         *
+         * @return The press time in ticks
+         */
+        int getPressTime();
+    }
 }

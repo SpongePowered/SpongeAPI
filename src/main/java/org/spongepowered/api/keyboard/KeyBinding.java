@@ -27,14 +27,11 @@ package org.spongepowered.api.keyboard;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.ResettableBuilder;
-
-import java.util.Optional;
 
 import javax.annotation.Nullable;
 
-public interface KeyBinding extends CatalogType, Translatable {
+public interface KeyBinding extends CatalogType {
 
     /**
      * Creates a new {@link Builder}.
@@ -53,12 +50,11 @@ public interface KeyBinding extends CatalogType, Translatable {
     KeyCategory getCategory();
 
     /**
-     * Gets the default {@link KeyCode} of this key binding,
-     * this may be absent if the binding isn't bound by default.
+     * Gets the display name of this key binding.
      *
-     * @return The key code
+     * @return The display name
      */
-    Optional<KeyCode> getDefaultKeyCode();
+    Text getDisplayName();
 
     interface Builder extends ResettableBuilder<KeyBinding, Builder> {
 
@@ -73,20 +69,12 @@ public interface KeyBinding extends CatalogType, Translatable {
         Builder category(@Nullable KeyCategory category);
 
         /**
-         * Sets the default {@link KeyCode} of the key binding.
-         *
-         * @param keyCode The key code
-         * @return This builder for chaining
-         */
-        Builder keyCode(@Nullable KeyCode keyCode);
-
-        /**
          * Sets the identifier of the category.
          *
          * @param identifier The identifier
          * @return This builder for chaining
          */
-        Builder identifier(String identifier);
+        Builder id(String identifier);
 
         /**
          * Sets the display name (the one that will be shown on the
@@ -98,25 +86,11 @@ public interface KeyBinding extends CatalogType, Translatable {
         Builder displayName(Text displayName);
 
         /**
-         * Adds the handlers to the key binding. This will clear
-         * the handlers that were applied previously.
-         *
-         * <p>The order the handlers are inserted matters, it will be the
-         * order that they will be executed.</p>
-         *
-         * @param handler The handler
-         * @param handlers The extra handler
-         * @return This builder for chaining
-         */
-        Builder handlers(KeyInteractHandler handler, KeyInteractHandler... handlers);
-
-        /**
-         * Builds a new instanceof of a {@link KeyBinding} and registers it.
+         * Builds a new instanceof of a {@link KeyBinding}.
          *
          * @return The key binding
-         * @throws IllegalStateException If the key binding is not completed or if
-         * there already a key binding is registered with the identifier
+         * @throws IllegalStateException If the key binding is not completed
          */
-        KeyBinding buildAndRegister();
+        KeyBinding build();
     }
 }
