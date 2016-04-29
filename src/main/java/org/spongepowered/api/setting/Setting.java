@@ -26,12 +26,32 @@ package org.spongepowered.api.setting;
 
 import org.spongepowered.api.setting.type.SettingType;
 
+import java.util.regex.Pattern;
+
 /**
  * A setting.
  *
  * @param <T> The value type of this setting
  */
 public interface Setting<T> {
+
+    /**
+     * A pattern to validate setting ids.
+     */
+    Pattern ID_PATTERN = Pattern.compile("[a-z][a-z0-9_]*");
+
+    /**
+     * Gets the identifier for this setting.
+     *
+     * <p>Ids should be unique as to not conflict with other settings.</p>
+     *
+     * <p>The id must be lowercase, start with an alphabetic character, and
+     * contain only alphanumeric characters.</p>
+     *
+     * @return The identifier
+     * @see #ID_PATTERN
+     */
+    String getId();
 
     /**
      * Gets the setting type.
