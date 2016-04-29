@@ -26,11 +26,21 @@ package org.spongepowered.api.keyboard;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.keyboard.RegisterKeyBindingsEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import javax.annotation.Nullable;
 
+/**
+ * Represents a key binding, which a client may use to interact
+ * with the server.
+ *
+ * <p>All the key bindings will by default be available for all
+ * {@link Player}s, if you want to modify this you listen for the
+ * {@link RegisterKeyBindingsEvent}.</p>
+ */
 public interface KeyBinding extends CatalogType {
 
     /**

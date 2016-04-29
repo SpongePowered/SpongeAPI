@@ -154,6 +154,7 @@ import org.spongepowered.api.event.item.inventory.TargetInventoryEvent;
 import org.spongepowered.api.event.item.inventory.UseItemStackEvent;
 import org.spongepowered.api.event.keyboard.InteractKeyEvent;
 import org.spongepowered.api.event.keyboard.KeyboardEvent;
+import org.spongepowered.api.event.keyboard.RegisterKeyBindingsEvent;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.event.network.BanIpEvent;
@@ -190,7 +191,6 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
 import org.spongepowered.api.keyboard.KeyBinding;
-import org.spongepowered.api.keyboard.PlayerKeyBinding;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.network.status.StatusClient;
@@ -3802,16 +3802,14 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param keyBinding The key binding
-     * @param player The player
-     * @param playerBinding The player binding
+     * @param targetEntity The target entity
      * @return A new interact key event
      */
-    public static InteractKeyEvent createInteractKeyEvent(Cause cause, KeyBinding keyBinding, Player player, PlayerKeyBinding playerBinding) {
+    public static InteractKeyEvent createInteractKeyEvent(Cause cause, KeyBinding keyBinding, Player targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("keyBinding", keyBinding);
-        values.put("player", player);
-        values.put("playerBinding", playerBinding);
+        values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(InteractKeyEvent.class, values);
     }
 
@@ -3822,16 +3820,14 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param keyBinding The key binding
-     * @param player The player
-     * @param playerBinding The player binding
+     * @param targetEntity The target entity
      * @return A new press interact key event
      */
-    public static InteractKeyEvent.Press createInteractKeyEventPress(Cause cause, KeyBinding keyBinding, Player player, PlayerKeyBinding playerBinding) {
+    public static InteractKeyEvent.Press createInteractKeyEventPress(Cause cause, KeyBinding keyBinding, Player targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("keyBinding", keyBinding);
-        values.put("player", player);
-        values.put("playerBinding", playerBinding);
+        values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(InteractKeyEvent.Press.class, values);
     }
 
@@ -3842,19 +3838,37 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param keyBinding The key binding
-     * @param player The player
-     * @param playerBinding The player binding
+     * @param targetEntity The target entity
      * @param pressTime The press time
      * @return A new release interact key event
      */
-    public static InteractKeyEvent.Release createInteractKeyEventRelease(Cause cause, KeyBinding keyBinding, Player player, PlayerKeyBinding playerBinding, int pressTime) {
+    public static InteractKeyEvent.Release createInteractKeyEventRelease(Cause cause, KeyBinding keyBinding, Player targetEntity, int pressTime) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("keyBinding", keyBinding);
-        values.put("player", player);
-        values.put("playerBinding", playerBinding);
+        values.put("targetEntity", targetEntity);
         values.put("pressTime", pressTime);
         return SpongeEventFactoryUtils.createEventImpl(InteractKeyEvent.Release.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.keyboard.InteractKeyEvent.Tick}.
+     * 
+     * @param cause The cause
+     * @param keyBinding The key binding
+     * @param targetEntity The target entity
+     * @param pressTime The press time
+     * @return A new tick interact key event
+     */
+    public static InteractKeyEvent.Tick createInteractKeyEventTick(Cause cause, KeyBinding keyBinding, Player targetEntity, int pressTime) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("keyBinding", keyBinding);
+        values.put("targetEntity", targetEntity);
+        values.put("pressTime", pressTime);
+        return SpongeEventFactoryUtils.createEventImpl(InteractKeyEvent.Tick.class, values);
     }
 
     /**
@@ -3864,17 +3878,33 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param keyBinding The key binding
-     * @param player The player
-     * @param playerBinding The player binding
+     * @param targetEntity The target entity
      * @return A new keyboard event
      */
-    public static KeyboardEvent createKeyboardEvent(Cause cause, KeyBinding keyBinding, Player player, PlayerKeyBinding playerBinding) {
+    public static KeyboardEvent createKeyboardEvent(Cause cause, KeyBinding keyBinding, Player targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("keyBinding", keyBinding);
-        values.put("player", player);
-        values.put("playerBinding", playerBinding);
+        values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(KeyboardEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.keyboard.RegisterKeyBindingsEvent}.
+     * 
+     * @param cause The cause
+     * @param keyBindings The key bindings
+     * @param targetEntity The target entity
+     * @return A new register key bindings event
+     */
+    public static RegisterKeyBindingsEvent createRegisterKeyBindingsEvent(Cause cause, Set<KeyBinding> keyBindings, Player targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("keyBindings", keyBindings);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(RegisterKeyBindingsEvent.class, values);
     }
 
     /**
