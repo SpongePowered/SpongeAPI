@@ -28,6 +28,7 @@ import org.spongepowered.api.setting.type.SettingType;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageReceiver;
 
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 /**
@@ -69,5 +70,12 @@ public interface Setting<T> {
      * @return The setting type
      */
     SettingType<T> getType();
+
+    /**
+     * Gets the default value associated with this setting.
+     *
+     * @return The default value, if present, {@link Optional#empty()} otherwise
+     */
+    Optional<T> getDefaultValue();
 
 }
