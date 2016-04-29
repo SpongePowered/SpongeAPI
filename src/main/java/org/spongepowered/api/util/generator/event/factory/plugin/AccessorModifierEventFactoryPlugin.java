@@ -29,6 +29,7 @@ import static org.objectweb.asm.Opcodes.ALOAD;
 import static org.objectweb.asm.Opcodes.GETFIELD;
 import static org.objectweb.asm.Opcodes.INVOKEINTERFACE;
 import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
+import static org.objectweb.asm.Opcodes.IRETURN;
 
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
@@ -100,7 +101,7 @@ public class AccessorModifierEventFactoryPlugin implements EventFactoryPlugin {
         mv.visitMethodInsn(opcode, Type.getInternalName(transformerMethod.getDeclaringClass()), transformerMethod.getName(),
                 Type.getMethodDescriptor(transformerMethod), opcode == INVOKEVIRTUAL ? false : true);
 
-        mv.visitInsn(ClassGenerator.getReturnOpcode(property.getType()));
+        mv.visitInsn(Type.getType(property.getType()).getOpcode(IRETURN));
         mv.visitMaxs(0, 0);
         mv.visitEnd();
     }
