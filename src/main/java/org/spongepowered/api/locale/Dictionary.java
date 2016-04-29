@@ -32,7 +32,7 @@ import java.util.Optional;
 /**
  * Represents a Dictionary for a particular subject.
  *
- * <p>Dictionaries take a given string key and return a localized result.</p>
+ * <p>Dictionaries take a given string key and return a translated result.</p>
  */
 public interface Dictionary {
 
@@ -70,9 +70,9 @@ public interface Dictionary {
     }
 
     /**
-     * Returns the "subject" for this dictionary.
+     * Gets the "subject" of this dictionary.
      *
-     * @return Subject of dictionary
+     * @return The subject of this dictionary
      */
     Object getSubject();
 

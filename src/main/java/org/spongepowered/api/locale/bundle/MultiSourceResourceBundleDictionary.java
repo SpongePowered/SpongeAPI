@@ -42,8 +42,8 @@ import java.util.function.Function;
  */
 public class MultiSourceResourceBundleDictionary extends SimpleResourceBundleDictionary implements CachingDictionary {
 
-    private final Map<Locale, ResourceBundle> cache = Maps.newHashMap();
-    private final Resolver resolver;
+    protected final Map<Locale, ResourceBundle> cache = Maps.newHashMap();
+    protected final Resolver resolver;
 
     public MultiSourceResourceBundleDictionary(Object subject, Locale defaultLocale, String bundleName) {
         super(subject, defaultLocale, bundleName);

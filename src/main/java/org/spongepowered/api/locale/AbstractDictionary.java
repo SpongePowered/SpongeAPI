@@ -26,6 +26,8 @@ package org.spongepowered.api.locale;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.text.translation.locale.Locales;
+
 import java.util.Locale;
 
 /**
@@ -36,6 +38,22 @@ public abstract class AbstractDictionary implements Dictionary {
     protected final Object subject;
     protected final Locale defaultLocale;
 
+    /**
+     * Constructs an abstract dictionary with
+     * the {@link Locales#DEFAULT default} locale.
+     *
+     * @param subject The subject of this dictionary
+     */
+    protected AbstractDictionary(Object subject) {
+        this(subject, Locales.DEFAULT);
+    }
+
+    /**
+     * Constructs an abstract dictionary with a default locale.
+     *
+     * @param subject The subject of this dictionary
+     * @param defaultLocale The default locale for this dictionary
+     */
     protected AbstractDictionary(Object subject, Locale defaultLocale) {
         this.subject = checkNotNull(subject, "subject");
         this.defaultLocale = checkNotNull(defaultLocale, "default locale");

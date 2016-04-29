@@ -26,6 +26,8 @@ package org.spongepowered.api.locale;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.text.translation.locale.Locales;
+
 import java.io.InputStream;
 import java.util.Locale;
 
@@ -36,7 +38,23 @@ public abstract class AbstractRemoteDictionary extends AbstractDictionary implem
 
     protected final DictionarySourceResolver<InputStream> resolver = new DictionarySourceResolver<>();
 
-    public AbstractRemoteDictionary(Object subject, Locale defaultLocale) {
+    /**
+     * Constructs an abstract remote dictionary with
+     * the {@link Locales#DEFAULT default} locale.
+     *
+     * @param subject The subject of this dictionary
+     */
+    protected AbstractRemoteDictionary(Object subject) {
+        super(subject);
+    }
+
+    /**
+     * Constructs an abstract remote dictionary with a default locale.
+     *
+     * @param subject The subject of this dictionary
+     * @param defaultLocale The default locale for this dictionary
+     */
+    protected AbstractRemoteDictionary(Object subject, Locale defaultLocale) {
         super(subject, defaultLocale);
     }
 

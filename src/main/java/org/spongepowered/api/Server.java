@@ -33,7 +33,6 @@ import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
-import org.spongepowered.api.text.translation.locale.Locales;
 import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldCreationSettings;
@@ -42,7 +41,6 @@ import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.net.InetSocketAddress;
 import java.util.Collection;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -410,14 +408,5 @@ public interface Server {
      * @return The default resource pack
      */
     Optional<ResourcePack> getDefaultResourcePack();
-
-    /**
-     * Returns the {@link Locale} this server is using.
-     *
-     * @return Server locale
-     */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
-    }
 
 }
