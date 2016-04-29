@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.setting;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.setting.type.SettingType;
 import org.spongepowered.api.setting.value.SettingValue;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -49,6 +51,16 @@ public interface Setting<T> {
     Pattern ID_PATTERN = Pattern.compile("[a-z][a-z0-9_]*");
 
     /**
+     * Creates a new {@link Builder} to create {@link Setting}s.
+     *
+     * @return The new builder
+     */
+    @SuppressWarnings("unchecked")
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
      * Gets the identifier for this setting.
      *
      * <p>Ids should be unique as to not conflict with other settings.</p>
@@ -67,7 +79,7 @@ public interface Setting<T> {
      * @param receiver The receiver of the name
      * @return The friendly name
      */
-    Text getName(MessageReceiver receiver);
+    Text getName(@Nullable MessageReceiver receiver);
 
     /**
      * Gets the setting type.
@@ -93,5 +105,53 @@ public interface Setting<T> {
      * @return The default value, if present, {@link Optional#empty()} otherwise
      */
     Optional<T> getDefaultValue();
+
+    /**
+     * Represents a builder class to create immutable {@link Setting}s.
+     *
+     * @see Setting
+     */
+    interface Builder<T> extends ResettableBuilder<Setting<T>, Builder<T>> {
+
+        /**
+         * Sets the id for settings created by this builder.
+         *
+         * @param id The setting id
+         * @return The builder
+         */
+        Builder<T> id(String id);
+
+        /**
+         * Sets the type for settings created by this builder.
+         *
+         * @param type The setting type
+         * @return The builder
+         */
+        Builder<T> type(SettingType<T, SettingValue<T>> type);
+
+        /**
+         * Sets the name for settings created by this builder.
+         *
+         * @param name The setting name
+         * @return The builder
+         */
+        Builder<T> name(Text name);
+
+        /**
+         * Sets the default value for settings created by this builder.
+         *
+         * @param defaultValue The default value
+         * @return The builder
+         */
+        Builder<T> defaultValue(@Nullable T defaultValue);
+
+        /**
+         * Builds a setting based off the values of this builder.
+         *
+         * @return The setting
+         */
+        Setting<T> build();
+
+    }
 
 }
