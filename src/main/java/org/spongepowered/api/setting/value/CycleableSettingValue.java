@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.setting.value;
 
+import java.util.Optional;
+
 /**
  * A cycleable setting value.
  *
@@ -37,8 +39,8 @@ public interface CycleableSettingValue<T> extends SettingValue<T> {
      * Gets the "next" {@link CycleableSettingValue} instance to be considered
      * for cycling.
      *
-     * @return The next value
+     * @return The next value, if present, {@link Optional#empty()} otherwise
      */
-    T cycleNext();
+    Optional<T> cycleNext();
 
 }
