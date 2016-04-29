@@ -41,8 +41,6 @@ public class KeyBindings {
 
         public static final KeyBinding ATTACK = DummyObjectProvider.createFor(KeyBinding.class, "ATTACK");
 
-        public static final KeyBinding DROP = DummyObjectProvider.createFor(KeyBinding.class, "DROP");
-
         public static final KeyBinding PICK_BLOCK = DummyObjectProvider.createFor(KeyBinding.class, "PICK_BLOCK");
 
         public static final KeyBinding USE_ITEM = DummyObjectProvider.createFor(KeyBinding.class, "USE_ITEM");
@@ -59,6 +57,8 @@ public class KeyBindings {
     public static class Inventory {
 
         // SORTFIELDS:ON
+
+        public static final KeyBinding DROP_ITEM = DummyObjectProvider.createFor(KeyBinding.class, "DROP_ITEM");
 
         public static final KeyBinding HOTBAR_1 = DummyObjectProvider.createFor(KeyBinding.class, "HOTBAR_1");
 
@@ -79,6 +79,8 @@ public class KeyBindings {
         public static final KeyBinding HOTBAR_9 = DummyObjectProvider.createFor(KeyBinding.class, "HOTBAR_9");
 
         public static final KeyBinding INVENTORY = DummyObjectProvider.createFor(KeyBinding.class, "INVENTORY");
+
+        public static final KeyBinding SWAP_HAND_ITEMS = DummyObjectProvider.createFor(KeyBinding.class, "SWAP_HAND_ITEMS");
 
         // SORTFIELDS:OFF
 
@@ -152,27 +154,6 @@ public class KeyBindings {
         // SORTFIELDS:OFF
 
         private Multiplayer() {}
-    }
-
-    /**
-     * All the {@link KeyBinding}s listed under the
-     * category {@link KeyCategories#STREAM}.
-     */
-    public static class Stream {
-
-        // SORTFIELDS:ON
-
-        public static final KeyBinding COMMERCIALS = DummyObjectProvider.createFor(KeyBinding.class, "COMMERCIALS");
-
-        public static final KeyBinding PAUSE_UNPAUSE = DummyObjectProvider.createFor(KeyBinding.class, "PAUSE_UNPAUSE");
-
-        public static final KeyBinding START_STOP = DummyObjectProvider.createFor(KeyBinding.class, "START_STOP");
-
-        public static final KeyBinding TOGGLE_MIC = DummyObjectProvider.createFor(KeyBinding.class, "TOGGLE_MIC");
-
-        // SORTFIELDS:OFF
-
-        private Stream() {}
     }
 
     private KeyBindings() {}

@@ -24,10 +24,19 @@
  */
 package org.spongepowered.api.event.keyboard;
 
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.keyboard.KeyBinding;
+import org.spongepowered.api.keyboard.PlayerKeyBinding;
 
 public interface KeyboardEvent extends Event {
+
+    /**
+     * Gets the {@link Player} that caused this event.
+     *
+     * @return The player
+     */
+    Player getPlayer();
 
     /**
      * Gets the {@link KeyBinding} that triggered this event.
@@ -35,4 +44,11 @@ public interface KeyboardEvent extends Event {
      * @return The key binding
      */
     KeyBinding getKeyBinding();
+
+    /**
+     * Gets the {@link PlayerKeyBinding} that triggered this event.
+     *
+     * @return The player binding
+     */
+    PlayerKeyBinding getPlayerBinding();
 }

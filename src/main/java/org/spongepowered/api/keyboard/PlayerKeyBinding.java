@@ -26,8 +26,6 @@ package org.spongepowered.api.keyboard;
 
 import org.spongepowered.api.entity.living.player.Player;
 
-import java.util.Optional;
-
 /**
  * Represents a {@link KeyBinding} held by a specific {@link Player}.
  */
@@ -48,15 +46,7 @@ public interface PlayerKeyBinding {
     KeyBinding getBinding();
 
     /**
-     * Gets the {@link KeyCode} that is set by the {@link Player}. This
-     * can be {@link Optional#empty()} if the player removed the mapping.
-     *
-     * @return The key code
-     */
-    Optional<KeyCode> getKeyCode();
-
-    /**
-     * Gets whether the {@link KeyCode} attached to this binding is currently
+     * Gets whether the key of the {@link KeyBinding} is currently
      * pressed by the {@link Player}.
      *
      * @return Is pressed
@@ -64,8 +54,8 @@ public interface PlayerKeyBinding {
     boolean isPressed();
 
     /**
-     * Gets the amount of time the {@link KeyCode} is being pressed without
-     * releasing the key.
+     * Gets the amount of time the key of the {@link KeyBinding} is
+     * currently being pressed without releasing the key.
      *
      * @return The pressed time in ticks
      */

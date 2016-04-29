@@ -192,7 +192,6 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.item.inventory.equipment.EquipmentTypes'
     add 'main', 'org.spongepowered.api.keyboard.KeyBindings'
     add 'main', 'org.spongepowered.api.keyboard.KeyCategories'
-    add 'main', 'org.spongepowered.api.keyboard.KeyCodes'
     add 'main', 'org.spongepowered.api.scoreboard.Visibilities'
     add 'main', 'org.spongepowered.api.scoreboard.critieria.Criteria'
     add 'main', 'org.spongepowered.api.scoreboard.displayslot.DisplaySlots'

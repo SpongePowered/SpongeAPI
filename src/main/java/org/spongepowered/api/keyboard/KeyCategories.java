@@ -43,8 +43,6 @@ public final class KeyCategories {
 
     public static final KeyCategory MULTIPLAYER = DummyObjectProvider.createFor(KeyCategory.class, "MULTIPLAYER");
 
-    public static final KeyCategory STREAM = DummyObjectProvider.createFor(KeyCategory.class, "STREAM");
-
     // SORTFIELDS:OFF
 
     private KeyCategories() {

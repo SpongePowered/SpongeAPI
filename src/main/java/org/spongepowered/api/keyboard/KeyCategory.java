@@ -38,7 +38,7 @@ import java.util.List;
  * window of the Minecraft client.
  */
 @CatalogedBy(KeyCategories.class)
-public interface KeyCategory extends CatalogType, Translatable {
+public interface KeyCategory extends CatalogType {
 
     /**
      * Creates a new {@link Builder}.
@@ -57,6 +57,13 @@ public interface KeyCategory extends CatalogType, Translatable {
      */
     List<KeyBinding> getBindings();
 
+    /**
+     * Gets the title of this key category.
+     *
+     * @return The title
+     */
+    Text getTitle();
+
     interface Builder extends ResettableBuilder<KeyCategory, Builder> {
 
         /**
@@ -73,15 +80,14 @@ public interface KeyCategory extends CatalogType, Translatable {
          * @param identifier The identifier
          * @return This builder for chaining
          */
-        Builder identifier(String identifier);
+        Builder id(String identifier);
 
         /**
-         * Builds a new instanceof of a {@link KeyCategory} and registers it.
+         * Builds a new instanceof of a {@link KeyCategory}.
          *
          * @return The key category
-         * @throws IllegalStateException If the key category is not completed or if
-         * there already a key binding is registered with the identifier
+         * @throws IllegalStateException If the key category is not completed
          */
-        KeyCategory buildAndRegister();
+        KeyCategory build();
     }
 }
