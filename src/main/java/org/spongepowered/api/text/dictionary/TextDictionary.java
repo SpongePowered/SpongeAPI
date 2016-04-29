@@ -24,31 +24,15 @@
  */
 package org.spongepowered.api.text.dictionary;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.serializer.TextSerializer;
 
 import java.util.Locale;
 import java.util.Optional;
 
 /**
- * A delegating {@link Dictionary} which has methods that return {@link Text}.
+ * A dictionary which can output {@link Text}.
  */
-public class TextSerializerDelegateDictionary implements TextDictionary {
-
-    protected final Dictionary delegate;
-    protected final TextSerializer serializer;
-
-    public TextSerializerDelegateDictionary(Dictionary delegate, TextSerializer serializer) {
-        this.delegate = checkNotNull(delegate, "delegate");
-        this.serializer = checkNotNull(serializer, "serializer");
-    }
-
-    @Override
-    public Optional<String> get(String key, Locale locale) {
-        return this.delegate.get(key, locale);
-    }
+public interface TextDictionary extends Dictionary {
 
     /**
      * Gets the entry for the specified key in this dictionary
@@ -59,8 +43,7 @@ public class TextSerializerDelegateDictionary implements TextDictionary {
      *     {@link Optional#empty()} otherwise
      * @see Dictionary#get(String)
      */
-    @Override
-    public Optional<Text> getText(String key) {
+    default Optional<Text> getText(String key) {
         return this.getText(key, this.getDefaultLocale());
     }
 
@@ -75,13 +58,6 @@ public class TextSerializerDelegateDictionary implements TextDictionary {
      *     {@link Optional#empty()} otherwise
      * @see Dictionary#get(String, Locale)
      */
-    @Override
-    public Optional<Text> getText(String key, Locale locale) {
-        return this.get(key, locale).map(this.serializer::deserializeUnchecked);
-    }
+    Optional<Text> getText(String key, Locale locale);
 
-    @Override
-    public Object getSubject() {
-        return this.delegate.getSubject();
-    }
 }
