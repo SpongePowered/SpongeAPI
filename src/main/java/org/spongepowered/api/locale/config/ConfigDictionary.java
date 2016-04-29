@@ -30,6 +30,7 @@ import com.google.common.base.Objects;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
+import org.spongepowered.api.locale.CachingDictionary;
 import org.spongepowered.api.locale.RemoteDictionary;
 import org.spongepowered.api.locale.bundle.ResourceBundleDictionary;
 
@@ -43,67 +44,86 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 /**
- * Represents a {@link RemoteDictionary} that is loaded by Configurate.
+ * A {@link RemoteDictionary} that is loaded by using
+ * {@link ninja.leaping.configurate Configurate}.
+ *
+ * <p>By default, {@link HoconConfigurationLoader HOCON} is the
+ * configuration loader.</p>
  */
-public interface ConfigDictionary extends RemoteDictionary, ResourceBundleDictionary<ConfigDictionary.ConfigResourceBundle> {
+public interface ConfigDictionary extends RemoteDictionary, ResourceBundleDictionary<ConfigDictionary.ConfigResourceBundle>, CachingDictionary {
 
     /**
-     * Returns the {@link ConfigurationLoader} for this Dictionary for the
-     * specified {@link Locale}.
+     * Gets the {@link ConfigurationLoader} for
+     * the {@link #getDefaultLocale() default locale}.
      *
-     * @return Config loader
+     * @return The configuration loader
+     */
+    default ConfigurationLoader getLoader() {
+        return this.getLoader(this.getDefaultLocale());
+    }
+
+    /**
+     * Gets the {@link ConfigurationLoader} for the specified {@link Locale}.
+     *
+     * @param locale The locale to get a loader for
+     * @return The configuration loader
      */
     default ConfigurationLoader getLoader(Locale locale) {
         checkNotNull(locale, "locale");
-        return HoconConfigurationLoader.builder().setSource(() -> new BufferedReader(new InputStreamReader(getSource(locale)))).build();
-    }
-
-    /**
-     * Returns the {@link ConfigurationLoader} for the default {@link Locale}.
-     *
-     * @return Config loader
-     */
-    default ConfigurationLoader getLoader() {
-        return getLoader(getDefaultLocale());
-    }
-
-    /**
-     * Loads the specified {@link Locale}.
-     *
-     * @param locale Locale to load
-     * @return Loaded ConfigurationNode
-     * @throws IOException
-     */
-    default ConfigurationNode load(Locale locale) throws IOException {
-        return getLoader(locale).load();
+        return HoconConfigurationLoader.builder()
+                .setSource(() -> new BufferedReader(new InputStreamReader(this.getSource(locale))))
+                .build();
     }
 
     /**
      * Loads the default {@link Locale}.
      *
-     * @return Loaded ConfigurationNode
-     * @throws IOException
+     * @return The loaded configuration node
+     * @throws IOException If an exception occured while loading the configuration
      */
     default ConfigurationNode load() throws IOException {
-        return load(getDefaultLocale());
+        return this.load(this.getDefaultLocale());
     }
 
     /**
-     * Returns the ConfigurationNode for the specified {@link Locale}.
+     * Loads the specified {@link Locale}.
      *
-     * @param locale Locale to get node for
-     * @return Result node
+     * @param locale The locale to load
+     * @return The loaded configuration node
+     * @throws IOException If an exception occured while loading the configuration
+     */
+    default ConfigurationNode load(Locale locale) throws IOException {
+        return this.getLoader(locale).load();
+    }
+
+    /**
+     * Gets the configuration node for the
+     * {@link #getDefaultLocale() default locale}.
+     *
+     * @return The configuration node
+     */
+    default ConfigurationNode getNode() {
+        return this.getNode(this.getDefaultLocale());
+    }
+
+    /**
+     * Gets the configuration node for the specified {@link Locale}.
+     *
+     * @param locale The locale to get the node for
+     * @return The configuration node
      */
     ConfigurationNode getNode(Locale locale);
 
     /**
-     * Returns the ConfigurationNode for the default {@link Locale}.
+     * {@inheritDoc}
      *
-     * @return Result node
+     * <p>Clearing the cache may require you to reload this dictionary.</p>
+     *
+     * @see #load()
+     * @see #load(Locale)
      */
-    default ConfigurationNode getNode() {
-        return getNode(getDefaultLocale());
-    }
+    @Override
+    void clearCache();
 
     /**
      * Represents a {@link ResourceBundle} wrapper for a {@link ConfigurationNode}.
@@ -117,9 +137,9 @@ public interface ConfigDictionary extends RemoteDictionary, ResourceBundleDictio
         }
 
         /**
-         * Returns the wrapped node.
+         * Gets the wrapped configuration node.
          *
-         * @return Wrapped node
+         * @return The wrapped configuration node
          */
         public ConfigurationNode getNode() {
             return this.node;

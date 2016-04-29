@@ -35,15 +35,20 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Function;
 
+/**
+ * A {@link ResourceBundleDictionary} with multiple resource bundle sources.
+ *
+ * @see SimpleResourceBundleDictionary
+ */
 public class MultiSourceResourceBundleDictionary extends SimpleResourceBundleDictionary implements CachingDictionary {
 
     private final Map<Locale, ResourceBundle> cache = Maps.newHashMap();
     private final Resolver resolver;
 
-    public MultiSourceResourceBundleDictionary(Object subject, Locale defaultLocale, String baseName) {
-        super(subject, defaultLocale, baseName);
-        this.resolver = new Resolver(this.baseName);
-        this.resolver.setPrimary(locale -> ResourceBundle.getBundle(this.baseName, locale, subject.getClass().getClassLoader()));
+    public MultiSourceResourceBundleDictionary(Object subject, Locale defaultLocale, String bundleName) {
+        super(subject, defaultLocale, bundleName);
+        this.resolver = new Resolver(this.bundleName);
+        this.resolver.setPrimary(locale -> ResourceBundle.getBundle(this.bundleName, locale, subject.getClass().getClassLoader()));
     }
 
     /**
@@ -67,10 +72,10 @@ public class MultiSourceResourceBundleDictionary extends SimpleResourceBundleDic
 
     public static class Resolver extends DictionarySourceResolver<ResourceBundle> implements Function<Locale, ResourceBundle> {
 
-        private final String baseName;
+        private final String bundleName;
 
-        public Resolver(String baseName) {
-            this.baseName = baseName;
+        public Resolver(String bundleName) {
+            this.bundleName = bundleName;
         }
 
         @Override
@@ -79,8 +84,11 @@ public class MultiSourceResourceBundleDictionary extends SimpleResourceBundleDic
             if (bundle.isPresent()) {
                 return bundle.get();
             } else {
-                throw new MissingResourceException("Can't find bundle for base name " + this.baseName + ", locale " + locale, this.baseName + "_" + locale,"");
+                throw new MissingResourceException("Can't find bundle for base name " + this.bundleName + ", locale " + locale,
+                        this.bundleName + '_' + locale, "");
             }
         }
+
     }
+
 }

@@ -25,7 +25,7 @@
 package org.spongepowered.api.locale;
 
 /**
- * Represents a dictionary that can cache values.
+ * A {@link Dictionary} that can cache values.
  */
 public interface CachingDictionary extends Dictionary {
 

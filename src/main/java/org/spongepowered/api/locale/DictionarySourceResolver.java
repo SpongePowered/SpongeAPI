@@ -36,54 +36,68 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
- * Class that resolves an {@link R} source for a given {@link Locale}.
+ * A {@link R dictionary source} resolver which transforms a
+ * {@link Locale} into {@link R}.
  */
 public class DictionarySourceResolver<R> {
 
     @Nullable protected Function<Locale, R> primary;
     protected final List<Function<Locale, R>> sources = Lists.newArrayList();
 
+    /**
+     * Constructs a dictionary source resolver with no primary resolver.
+     */
     public DictionarySourceResolver() {
         this(null);
     }
 
+    /**
+     * Constructs a dictionary source resolver with a primary resolver.
+     *
+     * @param primary The primary resolver
+     */
     public DictionarySourceResolver(@Nullable Function<Locale, R> primary) {
         this.primary = primary;
     }
 
-    public final void setPrimary(Function<Locale, R> primary) {
-        this.primary = checkNotNull(primary, "primary");
+    /**
+     * Sets the primary resolver.
+     *
+     * @param primary The primary resolver
+     */
+    public final void setPrimary(@Nullable Function<Locale, R> primary) {
+        this.primary = primary;
     }
 
     /**
      * Adds a {@link Function} to supply an {@link R} for a
-     * given {@link Locale}.
+     * {@link Locale}.
      *
      * @param function The function to supply {@link R}
-     * @return This resolver
      */
-    public DictionarySourceResolver<R> add(Function<Locale, R> function) {
+    public final void add(Function<Locale, R> function) {
         this.sources.add(checkNotNull(checkNotNull(function, "function")));
-        return this;
     }
 
     /**
-     * Resolves the {@link R} source for the given
+     * Resolves the {@link R source} for the given
      * {@link Locale}.
      *
-     * @param locale Locale to resolve source for
-     * @return Optional InputStream. Empty if unresolved.
+     * @param locale The locale to resolve the source for
+     * @return {@link R}, if present, {@link Optional#empty()} otherwise
      */
-    public Optional<R> resolve(Locale locale) {
+    public final Optional<R> resolve(Locale locale) {
         checkNotNull(locale, "locale");
 
+        // Attempt to resolve source from provided sources first
         for (Function<Locale, R> function : this.sources) {
-            R in = function.apply(locale);
-            if (in != null) {
-                return Optional.of(in);
+            R source = function.apply(locale);
+            if (source != null) {
+                return Optional.of(source);
             }
         }
 
+        // Resolve from primary source if available
         if (this.primary != null) {
             return Optional.ofNullable(this.primary.apply(locale));
         }

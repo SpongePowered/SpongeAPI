@@ -52,4 +52,9 @@ public abstract class AbstractConfigDictionary extends AbstractRemoteDictionary 
         return this.bundles.computeIfAbsent(locale, this.loader);
     }
 
+    @Override
+    public void clearCache() {
+        this.bundles.clear();
+    }
+
 }

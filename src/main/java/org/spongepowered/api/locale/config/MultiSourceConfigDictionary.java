@@ -44,10 +44,10 @@ public class MultiSourceConfigDictionary extends AbstractConfigDictionary {
 
     @Override
     public ConfigurationNode load(Locale locale) throws IOException {
-        ConfigurationNode localeNode = super.load(locale);
-        this.nodes.put(locale, localeNode);
-        this.bundles.put(locale, new ConfigResourceBundle(localeNode));
-        return localeNode;
+        ConfigurationNode node = super.load(locale);
+        this.nodes.put(locale, node);
+        this.bundles.put(locale, new ConfigResourceBundle(node));
+        return node;
     }
 
     @Override
@@ -58,6 +58,12 @@ public class MultiSourceConfigDictionary extends AbstractConfigDictionary {
         }
 
         return node;
+    }
+
+    @Override
+    public void clearCache() {
+        super.clearCache();
+        this.nodes.clear();
     }
 
 }

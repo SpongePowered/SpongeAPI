@@ -1029,8 +1029,9 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
      * by key and locale.
      *
      * @param dictionary The dictionary to retrieve from
-     * @param key The dictionary key
-     * @param locale The locale
+     * @param key The key whose associated value is to be returned
+     * @param locale The locale under which the value should be
+     *     obtained in
      * @return The text, if present, {@link Optional#empty()} otherwise
      */
     public static Optional<Text> get(Dictionary dictionary, String key, Locale locale) {
@@ -1047,7 +1048,7 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
      * primary {@link Dictionary} by key.
      *
      * @param plugin The plugin to retrieve the primary dictionary from
-     * @param key The dictionary key
+     * @param key The key whose associated value is to be returned
      * @return The text, if present, {@link Optional#empty()} otherwise
      */
     public static Optional<Text> get(Object plugin, String key) {
@@ -1059,8 +1060,9 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
      * primary {@link Dictionary} by key and locale.
      *
      * @param plugin The plugin to retrieve the primary dictionary from
-     * @param key The dictionary key
-     * @param locale The locale
+     * @param key The key whose associated value is to be returned
+     * @param locale The locale under which the value should be
+     *     obtained in
      * @return The text, if present, {@link Optional#empty()} otherwise
      */
     public static Optional<Text> get(Object plugin, String key, Locale locale) {
@@ -1070,7 +1072,7 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
     /**
      * Gets an optional {@link Text} from the Sponge dictionary by key.
      *
-     * @param key The dictionary key
+     * @param key The key whose associated value is to be returned
      * @return The text, if present, {@link Optional#empty()} otherwise
      */
     public static Optional<Text> get(String key) {
@@ -1080,8 +1082,9 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
     /**
      * Gets an optional {@link Text} from the Sponge dictionary by key and locale.
      *
-     * @param key The dictionary key
-     * @param locale The locale
+     * @param key The key whose associated value is to be returned
+     * @param locale The locale under which the value should be
+     *     obtained in
      * @return The text, if present, {@link Optional#empty()} otherwise
      */
     public static Optional<Text> get(String key, Locale locale) {

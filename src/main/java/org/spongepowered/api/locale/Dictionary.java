@@ -37,11 +37,12 @@ import java.util.Optional;
 public interface Dictionary {
 
     /**
-     * Returns the entry for the specified key for the default {@link Locale}
-     * defined by {@link #getDefaultLocale()}.
+     * Returns the entry for the specified key in this dictionary
+     * for the {@link #getDefaultLocale() default locale}.
      *
-     * @param key Key to search for
-     * @return Localized string for "key"
+     * @param key The key whose associated value is to be returned
+     * @return The string value for {@code key}, if present,
+     *     {@link Optional#empty()} otherwise
      */
     default Optional<String> get(String key) {
         return this.get(key, this.getDefaultLocale());
@@ -51,16 +52,18 @@ public interface Dictionary {
      * Returns the entry for the specified key for the specified
      * {@link Locale}.
      *
-     * @param key Key to search for
-     * @param locale Locale to get
-     * @return Localized string for "key"
+     * @param key The key whose associated value is to be returned
+     * @param locale The locale under which the value should be
+     *     obtained in
+     * @return The string value for {@code key}, if present,
+     *     {@link Optional#empty()} otherwise
      */
     Optional<String> get(String key, Locale locale);
 
     /**
-     * Returns the default {@link Locale} to be used if no Locale is specified.
+     * Gets the default {@link Locale} to be used with this dictionary.
      *
-     * @return Default Locale
+     * @return The default locale
      */
     default Locale getDefaultLocale() {
         return Locales.DEFAULT;

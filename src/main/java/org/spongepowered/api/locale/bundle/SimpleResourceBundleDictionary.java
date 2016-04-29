@@ -32,23 +32,21 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- * Represents a simple implementation of {@link ResourceBundleDictionary} using
- * a "base name" and {@link ResourceBundle#getBundle(String)} to retrieve
- * bundles.
+ * A simple implementation of a {@link ResourceBundleDictionary}.
  */
 public class SimpleResourceBundleDictionary extends AbstractDictionary implements ResourceBundleDictionary<ResourceBundle> {
 
-    protected final String baseName;
+    protected final String bundleName;
 
-    public SimpleResourceBundleDictionary(Object subject, Locale defaultLocale, String baseName) {
+    public SimpleResourceBundleDictionary(Object subject, Locale defaultLocale, String bundleName) {
         super(subject, defaultLocale);
-        this.baseName = checkNotNull(baseName, "base name");
+        this.bundleName = checkNotNull(bundleName, "bundle name");
     }
 
     @Override
     public ResourceBundle getBundle(Locale locale) {
         checkNotNull(locale, "locale");
-        return ResourceBundle.getBundle(this.baseName, locale);
+        return ResourceBundle.getBundle(this.bundleName, locale, this.subject.getClass().getClassLoader());
     }
 
 }

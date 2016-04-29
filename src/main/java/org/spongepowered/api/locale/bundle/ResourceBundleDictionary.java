@@ -34,14 +34,14 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
- * Represents a {@link Dictionary} that handles retrieval through {@link ResourceBundle}s.
+ * A {@link Dictionary} that retrieves values from a {@link ResourceBundle}.
  *
- * @param <B> Bundle type
+ * @param <B> The resource bundle type
  */
 public interface ResourceBundleDictionary<B extends ResourceBundle> extends Dictionary {
 
     /**
-     * Returns the {@link ResourceBundle} for the specified {@link Locale}.
+     * Gets the {@link ResourceBundle} for the specified {@link Locale}.
      *
      * @param locale Locale to get bundle for
      * @return Optional bundle
@@ -53,10 +53,12 @@ public interface ResourceBundleDictionary<B extends ResourceBundle> extends Dict
     default Optional<String> get(String key, Locale locale) {
         checkNotNull(key, "key");
         checkNotNull(locale, "locale");
+
         try {
             return Optional.of(this.getBundle(locale).getString(key));
         } catch (MissingResourceException e) {
             try {
+                // We failed with the provided locale, fallback to the default locale
                 return Optional.of(this.getBundle(this.getDefaultLocale()).getString(key));
             } catch (MissingResourceException e2) {
                 return Optional.empty();
