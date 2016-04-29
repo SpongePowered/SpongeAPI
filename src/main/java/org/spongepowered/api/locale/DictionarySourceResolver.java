@@ -76,7 +76,7 @@ public class DictionarySourceResolver<R> {
      * @param function The function to supply {@link R}
      */
     public final void add(Function<Locale, R> function) {
-        this.sources.add(checkNotNull(checkNotNull(function, "function")));
+        this.sources.add(checkNotNull(function, "function"));
     }
 
     /**
