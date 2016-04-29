@@ -842,8 +842,6 @@ public final class Keys {
     /**
      * Represents the {@link Key} for representing the "suspended" state
      * of a {@link BlockState}.
-     *
-     * @see SuspendedData#suspended()
      */
     public static final Key<Value<Boolean>> SUSPENDED = KeyFactory.fake("SUSPENDED");
 
