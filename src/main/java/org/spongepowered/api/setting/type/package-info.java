@@ -22,22 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.setting;
-
-import org.spongepowered.api.setting.type.SettingType;
-
-/**
- * A setting.
- *
- * @param <T> The value type of this setting
- */
-public interface Setting<T> {
-
-    /**
-     * Gets the setting type.
-     *
-     * @return The setting type
-     */
-    SettingType<T> getType();
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.setting.type;

@@ -22,22 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.setting;
+package org.spongepowered.api.setting.type;
 
-import org.spongepowered.api.setting.type.SettingType;
+import org.spongepowered.api.setting.Setting;
+
+import java.util.Optional;
 
 /**
- * A setting.
+ * A type of {@link Setting}.
  *
- * @param <T> The value type of this setting
+ * @param <T> The type of value this setting type represents
  */
-public interface Setting<T> {
+public interface SettingType<T> {
 
     /**
-     * Gets the setting type.
+     * Gets a string representation of the provided object
      *
-     * @return The setting type
+     * @param object The object to serialize
+     * @return The string representation of the object
      */
-    SettingType<T> getType();
+    String serialize(T object);
+
+    /**
+     * Gets a {@link T} from a raw string.
+     *
+     * @param string The raw string to parse into {@link T}
+     * @return The parsed value, if present, or {@link Optional#empty()}
+     */
+    Optional<T> deserialize(String string);
 
 }
