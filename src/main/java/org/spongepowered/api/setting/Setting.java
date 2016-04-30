@@ -126,6 +126,8 @@ public interface Setting<T> {
          *
          * @param id The setting id
          * @return This builder
+         * @throws IllegalArgumentException If the id does not match
+         *     the {@link #ID_PATTERN pattern}
          */
         Builder<T> id(String id);
 
@@ -134,6 +136,8 @@ public interface Setting<T> {
          *
          * @param aliases The aliases
          * @return This builder
+         * @throws IllegalArgumentException If any of the ids do not
+         *     match the {@link #ID_PATTERN pattern}
          */
         Builder<T> aliases(String... aliases);
 
@@ -173,6 +177,11 @@ public interface Setting<T> {
          * Builds a setting based off the values of this builder.
          *
          * @return The setting
+         * @throws IllegalStateException If the id has not been set
+         * @throws IllegalStateException If the id does not match
+         *     the {@link #ID_PATTERN pattern}
+         * @throws IllegalStateException If the type has not been set
+         * @throws IllegalStateException If the name has not been set
          */
         Setting<T> build();
 
