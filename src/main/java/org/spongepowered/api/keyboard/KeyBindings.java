@@ -118,7 +118,7 @@ public class KeyBindings {
 
         // SORTFIELDS:ON
 
-        public static final KeyBinding BACK = DummyObjectProvider.createFor(KeyBinding.class, "BACK");
+        public static final KeyBinding BACKWARD = DummyObjectProvider.createFor(KeyBinding.class, "BACKWARD");
 
         public static final KeyBinding FORWARD = DummyObjectProvider.createFor(KeyBinding.class, "FORWARD");
 
