@@ -37,6 +37,9 @@ import javax.annotation.Nullable;
  */
 public class FloatSettingType implements SettingType<Float, NumberSettingValue<Float>> {
 
+    protected FloatSettingType() {
+    }
+
     @Override
     public String serialize(NumberSettingValue<Float> object) {
         return object.serialize();

@@ -37,6 +37,9 @@ import javax.annotation.Nullable;
  */
 public class LongSettingType implements SettingType<Long, NumberSettingValue<Long>> {
 
+    protected LongSettingType() {
+    }
+
     @Override
     public String serialize(NumberSettingValue<Long> object) {
         return object.serialize();

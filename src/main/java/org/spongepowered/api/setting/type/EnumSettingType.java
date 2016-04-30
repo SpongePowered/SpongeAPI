@@ -43,7 +43,18 @@ public class EnumSettingType<T extends Enum<T>> implements SettingType<T, EnumSe
     private final Class<T> enumClass;
     private final Map<String, T> values;
 
-    public EnumSettingType(Class<T> enumClass) {
+    /**
+     * Creates a new {@link Enum} setting type.
+     *
+     * @param enumClass The enum class
+     * @param <T> The enum type
+     * @return The setting type
+     */
+    public static <T extends Enum<T>> EnumSettingType<T> of(Class<T> enumClass) {
+        return new EnumSettingType<>(enumClass);
+    }
+
+    protected EnumSettingType(Class<T> enumClass) {
         this.enumClass = checkNotNull(enumClass, "enum class");
 
         ImmutableBiMap.Builder<String, T> values = ImmutableBiMap.builder();

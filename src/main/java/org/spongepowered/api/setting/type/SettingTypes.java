@@ -24,42 +24,37 @@
  */
 package org.spongepowered.api.setting.type;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import org.spongepowered.api.setting.value.NumberSettingValue;
-
-import java.util.Optional;
-
-import javax.annotation.Nullable;
-
 /**
- * A {@link Integer} setting type.
+ * An enumeration of sharable setting types.
  */
-public class IntegerSettingType implements SettingType<Integer, NumberSettingValue<Integer>> {
+public final class SettingTypes {
 
-    protected IntegerSettingType() {
-    }
+    /**
+     * A {@link Boolean} setting type.
+     */
+    public static final BooleanSettingType BOOLEAN = new BooleanSettingType();
 
-    @Override
-    public String serialize(NumberSettingValue<Integer> object) {
-        return object.serialize();
-    }
+    /**
+     * A {@link Double} setting type.
+     */
+    public static final DoubleSettingType DOUBLE = new DoubleSettingType();
 
-    @Override
-    public Optional<NumberSettingValue<Integer>> deserialize(String string) {
-        checkNotNull(string, "string");
+    /**
+     * A {@link Float} setting type.
+     */
+    public static final FloatSettingType FLOAT = new FloatSettingType();
 
-        try {
-            int value = Integer.parseInt(string);
-            return Optional.of(this.createValue(value));
-        } catch (NumberFormatException e) {
-            return Optional.empty();
-        }
-    }
+    /**
+     * A {@link Integer} setting type.
+     */
+    public static final IntegerSettingType INTEGER = new IntegerSettingType();
 
-    @Override
-    public NumberSettingValue<Integer> createValue(@Nullable Integer value) {
-        return new NumberSettingValue<>(value);
+    /**
+     * A {@link Long} setting type.
+     */
+    public static final LongSettingType LONG = new LongSettingType();
+
+    private SettingTypes() {
     }
 
 }

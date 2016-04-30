@@ -37,6 +37,9 @@ import javax.annotation.Nullable;
  */
 public class DoubleSettingType implements SettingType<Double, NumberSettingValue<Double>> {
 
+    protected DoubleSettingType() {
+    }
+
     @Override
     public String serialize(NumberSettingValue<Double> object) {
         return object.serialize();

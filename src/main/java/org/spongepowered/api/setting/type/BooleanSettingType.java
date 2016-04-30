@@ -37,6 +37,9 @@ import javax.annotation.Nullable;
  */
 public class BooleanSettingType implements SettingType<Boolean, BooleanSettingValue> {
 
+    protected BooleanSettingType() {
+    }
+
     @Override
     public String serialize(BooleanSettingValue object) {
         return object.serialize();
