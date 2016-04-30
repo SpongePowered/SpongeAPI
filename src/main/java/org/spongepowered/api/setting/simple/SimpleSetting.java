@@ -26,6 +26,7 @@ package org.spongepowered.api.setting.simple;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Objects;
 import org.spongepowered.api.setting.Setting;
 import org.spongepowered.api.setting.type.SettingType;
 import org.spongepowered.api.setting.value.SettingValue;
@@ -83,6 +84,40 @@ public class SimpleSetting<T> implements Setting<T> {
     @Override
     public Optional<T> getDefaultValue() {
         return this.defaultValue;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("id", this.id)
+                .add("aliases", this.aliases)
+                .add("type", this.type)
+                .add("name", this.name)
+                .add("defaultValue", this.defaultValue)
+                .toString();
+    }
+
+    @Override
+    public boolean equals(@Nullable Object other) {
+        if (this == other) {
+            return true;
+        }
+
+        if (other == null || this.getClass() != other.getClass()) {
+            return false;
+        }
+
+        SimpleSetting<?> that = (SimpleSetting<?>) other;
+        return Objects.equal(this.id, that.id)
+                && Objects.equal(this.aliases, that.aliases)
+                && Objects.equal(this.type, that.type)
+                && Objects.equal(this.name, that.name)
+                && Objects.equal(this.defaultValue, that.defaultValue);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.id, this.aliases, this.type, this.name, this.defaultValue);
     }
 
 }

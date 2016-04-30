@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.setting.value;
 
+import com.google.common.base.Objects;
+
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -52,6 +54,13 @@ public class StringSettingValue implements SettingValue<String> {
     @Override
     public String serialize() {
         return String.valueOf(this.value);
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("value", this.value)
+                .toString();
     }
 
 }

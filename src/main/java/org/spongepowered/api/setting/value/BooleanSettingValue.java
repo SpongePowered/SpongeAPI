@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.setting.value;
 
+import com.google.common.base.Objects;
 import org.spongepowered.api.util.OptBool;
 
 import java.util.Optional;
@@ -54,6 +55,13 @@ public class BooleanSettingValue implements SettingValue<Boolean> {
     @Override
     public String serialize() {
         return String.valueOf(this.value);
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("value", this.value)
+                .toString();
     }
 
 }

@@ -26,6 +26,8 @@ package org.spongepowered.api.setting.value;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Objects;
+
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -76,6 +78,14 @@ public class EnumSettingValue<T extends Enum<T>> implements CycleableSettingValu
         }
 
         return Optional.of(constants[index]);
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("enumClass", this.enumClass)
+                .add("value", this.value)
+                .toString();
     }
 
 }
