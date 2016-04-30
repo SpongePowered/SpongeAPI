@@ -57,8 +57,8 @@ public interface Setting<T> {
      * @return The new builder
      */
     @SuppressWarnings("unchecked")
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+    static <T, V extends SettingValue<T>> Builder<T, V> builder(SettingType<T, V> type) {
+        return Sponge.getRegistry().createBuilder(Builder.class).type(type);
     }
 
     /**
@@ -119,7 +119,7 @@ public interface Setting<T> {
      *
      * @see Setting
      */
-    interface Builder<T> extends ResettableBuilder<Setting<T>, Builder<T>> {
+    interface Builder<T, V extends SettingValue<T>> extends ResettableBuilder<Setting<T>, Builder<T, V>> {
 
         /**
          * Sets the id for settings created by this builder.
@@ -129,7 +129,7 @@ public interface Setting<T> {
          * @throws IllegalArgumentException If the id does not match
          *     the {@link #ID_PATTERN pattern}
          */
-        Builder<T> id(String id);
+        Builder<T, V> id(String id);
 
         /**
          * Sets the aliases for settings created by this builder.
@@ -139,7 +139,7 @@ public interface Setting<T> {
          * @throws IllegalArgumentException If any of the ids do not
          *     match the {@link #ID_PATTERN pattern}
          */
-        Builder<T> aliases(String... aliases);
+        Builder<T, V> aliases(String... aliases);
 
         /**
          * Sets the aliases for settings created by this builder.
@@ -147,7 +147,7 @@ public interface Setting<T> {
          * @param aliases The aliases
          * @return This builder
          */
-        Builder<T> aliases(Collection<String> aliases);
+        Builder<T, V> aliases(Collection<String> aliases);
 
         /**
          * Sets the type for settings created by this builder.
@@ -155,7 +155,7 @@ public interface Setting<T> {
          * @param type The setting type
          * @return This builder
          */
-        Builder<T> type(SettingType<T, SettingValue<T>> type);
+        Builder<T, V> type(SettingType<T, V> type);
 
         /**
          * Sets the name for settings created by this builder.
@@ -163,7 +163,7 @@ public interface Setting<T> {
          * @param name The setting name
          * @return This builder
          */
-        Builder<T> name(Text name);
+        Builder<T, V> name(Text name);
 
         /**
          * Sets the default value for settings created by this builder.
@@ -171,7 +171,7 @@ public interface Setting<T> {
          * @param defaultValue The default value
          * @return This builder
          */
-        Builder<T> defaultValue(@Nullable T defaultValue);
+        Builder<T, V> defaultValue(@Nullable T defaultValue);
 
         /**
          * Builds a setting based off the values of this builder.
