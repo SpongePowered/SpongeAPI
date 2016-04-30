@@ -52,6 +52,7 @@ public class SimpleSettingRegistry implements SettingRegistry {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T> Optional<Setting<T>> get(String string, boolean aliases) {
         checkNotNull(string, "string");
         checkArgument(Setting.ID_PATTERN.matcher(string).matches(), "search string does not match setting id pattern");
