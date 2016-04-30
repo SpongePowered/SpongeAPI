@@ -24,61 +24,50 @@
  */
 package org.spongepowered.api.setting.type;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.setting.value.CatalogSettingValue;
 
-/**
- * An enumeration of sharable setting types.
- */
-public final class SettingTypes {
+import java.util.Optional;
 
-    /**
-     * A {@link Boolean} setting type.
-     */
-    public static final BooleanSettingType BOOLEAN = new BooleanSettingType();
+import javax.annotation.Nullable;
 
-    /**
-     * A {@link Double} setting type.
-     */
-    public static final DoubleSettingType DOUBLE = new DoubleSettingType();
+public class CatalogSettingType<T extends CatalogType> implements SettingType<T, CatalogSettingValue<T>> {
 
-    /**
-     * A {@link Float} setting type.
-     */
-    public static final FloatSettingType FLOAT = new FloatSettingType();
-
-    /**
-     * A {@link Integer} setting type.
-     */
-    public static final IntegerSettingType INTEGER = new IntegerSettingType();
-
-    /**
-     * A {@link Long} setting type.
-     */
-    public static final LongSettingType LONG = new LongSettingType();
+    private final Class<T> catalogClass;
 
     /**
      * Creates a new {@link Enum} setting type.
      *
-     * @param enumClass The enum class
+     * @param catalogClass The enum class
      * @param <T> The enum type
      * @return The setting type
      */
-    public static <T extends Enum<T>> EnumSettingType<T> enumOf(Class<T> enumClass) {
-        return EnumSettingType.of(enumClass);
+    public static <T extends CatalogType> CatalogSettingType<T> of(Class<T> catalogClass) {
+        return new CatalogSettingType<>(catalogClass);
     }
 
-    /**
-     * Creates a new {@link CatalogType} setting type.
-     *
-     * @param catalogClass The catalog class
-     * @param <T> The catalog type
-     * @return The setting type
-     */
-    public static <T extends CatalogType> CatalogSettingType<T> catalogOf(Class<T> catalogClass) {
-        return CatalogSettingType.of(catalogClass);
+    protected CatalogSettingType(Class<T> catalogClass) {
+        this.catalogClass = checkNotNull(catalogClass, "catalog class");
     }
 
-    private SettingTypes() {
+    @Override
+    public String serialize(CatalogSettingValue<T> object) {
+        return object.serialize();
+    }
+
+    @Override
+    public Optional<CatalogSettingValue<T>> deserialize(String string) {
+        checkNotNull(string, "string");
+
+        return Sponge.getRegistry().getType(this.catalogClass, string).map(this::createValue);
+    }
+
+    @Override
+    public CatalogSettingValue<T> createValue(@Nullable T value) {
+        return new CatalogSettingValue<>(this.catalogClass, value);
     }
 
 }
