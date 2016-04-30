@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.setting.type;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableBiMap;
@@ -46,7 +47,9 @@ public class EnumSettingType<T extends Enum<T>> implements SettingType<T, EnumSe
         this.enumClass = checkNotNull(enumClass, "enum class");
 
         ImmutableBiMap.Builder<String, T> values = ImmutableBiMap.builder();
-        for (T constant : this.enumClass.getEnumConstants()) {
+        T[] constants = this.enumClass.getEnumConstants();
+        checkArgument(constants.length > 0, "cannot create enum setting with zero enum constants");
+        for (T constant : constants) {
             values.put(constant.name(), constant);
         }
 

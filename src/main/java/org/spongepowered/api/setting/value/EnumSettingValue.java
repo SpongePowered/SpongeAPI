@@ -61,11 +61,8 @@ public class EnumSettingValue<T extends Enum<T>> implements CycleableSettingValu
     }
 
     @Override
-    public Optional<T> cycleNext() {
+    public T cycleNext() {
         T[] constants = this.enumClass.getEnumConstants();
-        if (constants.length == 0) {
-            return Optional.empty();
-        }
 
         int index;
         if (this.value == null) {
@@ -77,7 +74,7 @@ public class EnumSettingValue<T extends Enum<T>> implements CycleableSettingValu
             }
         }
 
-        return Optional.of(constants[index]);
+        return constants[index];
     }
 
     @Override
