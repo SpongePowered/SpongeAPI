@@ -27,6 +27,10 @@ package org.spongepowered.api.event.keyboard;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.keyboard.KeyBinding;
 
+/**
+ * Base event for all the keyboard events when a specific
+ * {@link KeyBinding} is used.
+ */
 public interface KeyboardEvent extends TargetPlayerEvent {
 
     /**

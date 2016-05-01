@@ -51,4 +51,5 @@ public interface RegisterKeyBindingsEvent extends TargetPlayerEvent {
      * @return The key bindings
      */
     Set<KeyBinding> getKeyBindings();
+
 }

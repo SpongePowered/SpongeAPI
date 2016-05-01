@@ -29,13 +29,13 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 /**
  * An enumeration of all possible {@link KeyBinding}s in vanilla minecraft.
  */
-public class KeyBindings {
+public final class KeyBindings {
 
     /**
      * All the {@link KeyBinding}s listed under the
      * category {@link KeyCategories#GAMEPLAY}.
      */
-    public static class Gameplay {
+    public static final class Gameplay {
 
         // SORTFIELDS:ON
 
@@ -47,14 +47,15 @@ public class KeyBindings {
 
         // SORTFIELDS:OFF
 
-        private Gameplay() {}
+        private Gameplay() {
+        }
     }
 
     /**
      * All the {@link KeyBinding}s listed under the
      * category {@link KeyCategories#INVENTORY}.
      */
-    public static class Inventory {
+    public static final class Inventory {
 
         // SORTFIELDS:ON
 
@@ -84,14 +85,15 @@ public class KeyBindings {
 
         // SORTFIELDS:OFF
 
-        private Inventory() {}
+        private Inventory() {
+        }
     }
 
     /**
      * All the {@link KeyBinding}s listed under the
      * category {@link KeyCategories#MISC}.
      */
-    public static class Misc {
+    public static final class Misc {
 
         // SORTFIELDS:ON
 
@@ -107,14 +109,15 @@ public class KeyBindings {
 
         // SORTFIELDS:OFF
 
-        private Misc() {}
+        private Misc() {
+        }
     }
 
     /**
      * All the {@link KeyBinding}s listed under the
      * category {@link KeyCategories#MOVEMENT}.
      */
-    public static class Movement {
+    public static final class Movement {
 
         // SORTFIELDS:ON
 
@@ -134,14 +137,15 @@ public class KeyBindings {
 
         // SORTFIELDS:OFF
 
-        private Movement() {}
+        private Movement() {
+        }
     }
 
     /**
      * All the {@link KeyBinding}s listed under the
      * category {@link KeyCategories#MULTIPLAYER}.
      */
-    public static class Multiplayer {
+    public static final class Multiplayer {
 
         // SORTFIELDS:ON
 
@@ -153,8 +157,10 @@ public class KeyBindings {
 
         // SORTFIELDS:OFF
 
-        private Multiplayer() {}
+        private Multiplayer() {
+        }
     }
 
-    private KeyBindings() {}
+    private KeyBindings() {
+    }
 }
