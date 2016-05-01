@@ -50,10 +50,15 @@ test {
 
 // Set manifest entries
 jar {
+    dependsOn api.resolveApiRevision
     manifest {
         attributes(
                 'Built-By': System.properties['user.name'],
                 'Created-By': "${System.properties['java.vm.version']} (${System.properties['java.vm.vendor']})",
+
+                'Specification-Title': api.name,
+                'Specification-Version': api.version,
+                'Specification-Vendor': api.url,
 
                 'Implementation-Title': project.name,
                 'Implementation-Vendor': project.url
@@ -156,4 +161,9 @@ apply from: api.file('gradle/deploy.gradle')
 // Gradle version used for generating the Gradle wrapper
 task wrapper(type: Wrapper) {
     gradleVersion = '2.12'
+}
+
+// Append API revision to the SpongeAPI version
+api.resolveApiRevision << {
+    jar.manifest.attributes('Specification-Version': api.version)
 }

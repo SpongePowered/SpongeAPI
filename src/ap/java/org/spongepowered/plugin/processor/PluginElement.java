@@ -30,6 +30,7 @@ import static javax.tools.Diagnostic.Kind.ERROR;
 import static javax.tools.Diagnostic.Kind.WARNING;
 import static org.spongepowered.api.plugin.Plugin.ID_PATTERN;
 
+import org.spongepowered.api.Platform;
 import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.plugin.meta.PluginMetadata;
@@ -42,6 +43,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.annotation.processing.Messager;
 import javax.lang.model.element.TypeElement;
@@ -51,6 +54,8 @@ final class PluginElement {
     private final TypeElement element;
     private final AnnotationWrapper<Plugin> annotation;
     private final PluginMetadata metadata;
+
+    private static final Pattern API_VERSION_PATTERN = Pattern.compile("\\A((\\d+)\\.\\d+)(?:\\.\\d+)?(?:-.*)?\\Z");
 
     PluginElement(TypeElement element, AnnotationWrapper<Plugin> annotation, PluginMetadata metadata) {
         this.element = checkNotNull(element, "element");
@@ -157,6 +162,7 @@ final class PluginElement {
         checkDependencies(this.metadata.getLoadAfter(), messager);
         checkDependencies(this.metadata.getLoadBefore(), messager);
 
+        boolean hasSpongeDependency = false;
         Dependency[] dependencies = this.annotation.get().dependencies();
         if (dependencies.length > 0) {
             for (Dependency dependency : dependencies) {
@@ -164,6 +170,8 @@ final class PluginElement {
                 if (id.isEmpty()) {
                     messager.printMessage(ERROR, "Dependency ID should not be empty", this.element, this.annotation.getMirror(),
                             this.annotation.getValue("dependencies"));
+                } else if (Platform.API_ID.equalsIgnoreCase(id)) {
+                    hasSpongeDependency = true;
                 }
 
                 final String version = dependency.version();
@@ -180,6 +188,16 @@ final class PluginElement {
                 // TODO: Load order
                 this.metadata.loadAfter(new PluginMetadata.Dependency(id, dependency.version()), !dependency.optional());
             }
+        }
+
+        if (!hasSpongeDependency) {
+            Matcher matcher = API_VERSION_PATTERN.matcher(Platform.API_VERSION.orElseThrow(
+                    () -> new IllegalStateException("Can't find SpongeAPI version")));
+            if (!matcher.find()) {
+                throw new AssertionError("Invalid SpongeAPI version");
+            }
+            this.metadata.loadAfter(new PluginMetadata.Dependency(Platform.API_ID,
+                    String.format("[%s,%d.0)", matcher.group(1), Integer.parseInt(matcher.group(2)) + 1)));
         }
     }
 

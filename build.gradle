@@ -22,6 +22,8 @@ buildscript {
 
 version = '4.1.0-SNAPSHOT'
 
+apply from: file('api-revision.gradle')
+
 // Include shared Gradle configuration
 ext.api = project
 apply from: 'gradle/sponge.gradle'
