@@ -162,7 +162,6 @@ import org.spongepowered.api.event.network.rcon.RconConnectionEvent;
 import org.spongepowered.api.event.server.ClientPingServerEvent;
 import org.spongepowered.api.event.server.query.QueryServerEvent;
 import org.spongepowered.api.event.service.ChangeServiceProviderEvent;
-import org.spongepowered.api.event.service.error.ErrorReportEvent;
 import org.spongepowered.api.event.statistic.ChangeStatisticEvent;
 import org.spongepowered.api.event.user.BanUserEvent;
 import org.spongepowered.api.event.user.PardonUserEvent;
@@ -195,7 +194,6 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.service.ProviderRegistration;
 import org.spongepowered.api.service.economy.transaction.TransactionResult;
-import org.spongepowered.api.service.crash.CrashReport;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
@@ -4269,22 +4267,6 @@ public class SpongeEventFactory {
         values.put("newProviderRegistration", newProviderRegistration);
         values.put("previousProviderRegistration", previousProviderRegistration);
         return SpongeEventFactoryUtils.createEventImpl(ChangeServiceProviderEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.service.error.ErrorReportEvent}.
-     * 
-     * @param cause The cause
-     * @param errorReport The error report
-     * @return A new error report event
-     */
-    public static ErrorReportEvent createErrorReportEvent(Cause cause, CrashReport errorReport) {
-        HashMap<String, Object> values = new HashMap<>();
-        values.put("cause", cause);
-        values.put("errorReport", errorReport);
-        return SpongeEventFactoryUtils.createEventImpl(ErrorReportEvent.class, values);
     }
 
     /**

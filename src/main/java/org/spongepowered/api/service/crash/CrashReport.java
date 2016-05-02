@@ -56,7 +56,7 @@ public interface CrashReport {
      *
      * @return The throwable, if present, {@link Optional#empty()} otherwise
      */
-    Optional<Throwable> getCause();
+    Throwable getCause();
 
     /**
      * Gets the description of this crash report.
@@ -82,11 +82,7 @@ public interface CrashReport {
      * @param reportable The object to append information from
      * @return This crash report
      */
-    default CrashReport addReportable(CrashReportable reportable) {
-        checkNotNull(reportable, "reportable");
-        reportable.fillCrashReport(this);
-        return this;
-    }
+    CrashReport addReportable(CrashReportable reportable);
 
     /**
      * Dispatch this error as a fatal error.
