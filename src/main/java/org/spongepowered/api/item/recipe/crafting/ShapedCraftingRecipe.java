@@ -29,6 +29,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -51,11 +52,11 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
     /**
      * Gets the aisle.
      *
-     * <p>This returns a copy of the original aisle.</p>
+     * <p>This returns an unmodifiable copy of the original aisle.</p>
      *
      * @return The aisle
      */
-    String[] getAisle();
+    List<String> getAisle();
 
     /**
      * Gets the ingredients.
