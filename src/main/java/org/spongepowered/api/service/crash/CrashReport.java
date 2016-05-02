@@ -24,12 +24,17 @@
  */
 package org.spongepowered.api.service.crash;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.Sponge;
 
 import java.util.Optional;
 
 /**
  * A mutable crash report.
+ *
+ * <p>Crash reports, and crash report categories, are not reusable due to
+ * stacktraces being retained.</p>
  */
 public interface CrashReport {
 
@@ -41,7 +46,8 @@ public interface CrashReport {
      * @return The report, if present, {@link Optional#empty()} otherwise
      */
     static Optional<CrashReport> forThrowable(Throwable throwable, String description) {
-        return Sponge.getServiceManager().getRegistration(CrashReportService.class).map(registration -> registration.getProvider().createReport(throwable, description));
+        return Sponge.getServiceManager().getRegistration(CrashReportService.class)
+                .map(registration -> registration.getProvider().createReport(throwable, description));
     }
 
     /**
@@ -74,14 +80,18 @@ public interface CrashReport {
      * <p>If this {@link CrashReportable} has already been added, it will not be added again.</p>
      *
      * @param reportable The object to append information from
-     * @return this
+     * @return This crash report
      */
-    CrashReport addReportable(CrashReportable reportable);
+    default CrashReport addReportable(CrashReportable reportable) {
+        checkNotNull(reportable, "reportable");
+        reportable.fillCrashReport(this);
+        return this;
+    }
 
     /**
      * Dispatch this error as a fatal error.
      *
-     * <p>The platform will be stopped and a full crash report will be generated.</p>
+     * <p>The platform will be stopped and this crash report will be printed.</p>
      */
     void fire() throws RuntimeException;
 
@@ -92,10 +102,13 @@ public interface CrashReport {
      */
     String toText();
 
+    /**
+     * A category in a crash report.
+     */
     interface Category {
 
         /**
-         * Adds an entry to this category.
+         * Adds an entry to this crash report category.
          *
          * @param key The entry name
          * @param value The entry value
@@ -104,9 +117,9 @@ public interface CrashReport {
         Category addEntry(String key, Object value);
 
         /**
-         * Gets the error report that contains this section.
+         * Gets the crash report that contains this section.
          *
-         * @return The report
+         * @return The crash report
          */
         CrashReport parent();
 

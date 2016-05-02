@@ -24,8 +24,19 @@
  */
 package org.spongepowered.api.service.crash;
 
+/**
+ * A crash report publisher is responsible for publishing a {@link CrashReport}.
+ *
+ * <p>An example use is a publisher which publishes crash reports to a
+ * pastebin-like service, such as Gist or Pastie.</p>
+ */
 public interface CrashReportPublisher {
 
+    /**
+     * Publishes a crash report.
+     *
+     * @param report The crash report to publish
+     */
     void publishCrashReport(CrashReport report);
 
 }

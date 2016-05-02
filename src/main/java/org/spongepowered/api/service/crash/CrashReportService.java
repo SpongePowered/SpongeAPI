@@ -30,7 +30,8 @@ package org.spongepowered.api.service.crash;
 public interface CrashReportService {
 
     /**
-     * Create a report with the provided {@link Throwable} and a message describing the location the error was seen from.
+     * Create a report with the provided {@link Throwable} and a
+     * message describing the location the error was seen from.
      *
      * @param throwable The error causing this report to be generated
      * @param description The message accompanying this report
