@@ -24,8 +24,7 @@
  */
 package org.spongepowered.api.service.error;
 
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.command.CommandSource;
 
 import java.net.URL;
 import java.util.Optional;
@@ -64,7 +63,7 @@ public interface ErrorReport {
      *
      * @return The description of this error's base cause
      */
-    String getCauseDescription();
+    String getDescription();
 
     /**
      * Get a section with the given title, creating and appending to the end of the error report as necessary.
@@ -72,7 +71,7 @@ public interface ErrorReport {
      * @param title The title to give the section
      * @return The correct section
      */
-    Section appendSection(String title);
+    Category addCategory(String title);
 
     /**
      * Append a {@link Reportable} to this report. If this {@link Reportable} has already been added, it will not be added again.
@@ -117,48 +116,32 @@ public interface ErrorReport {
      */
     CompletableFuture<URL> toPastebin();
 
-    interface Section {
+    interface Category {
 
         /**
-         * Add an entry to this error report with the given information.
+         * Adds an entry to this category.
          *
-         * @param content The content to add to this error report
-         * @return this
+         * @param key The entry name
+         * @param value The entry value
+         * @return This category
          */
-        Section addEntry(Text content);
+        Category addEntry(String key, Object value);
 
         /**
-         * The entry to add.
+         * Sets the exception to be contained within this section.
          *
-         * @param key The line name
-         * @param value The line value
-         * @return this
-         */
-        Section addEntry(Text key, Text value);
-
-        /**
-         * Add an entry to this section that contains a large block of plaintext information.
-         *
-         * @param key The name of the segment
-         * @param value The block of text to include, with lines separated by \n
-         * @param language The language name to use for syntax highlighting in services where supported
-         * @return this
-         */
-        Section addCodeEntry(Text key, String value, String language);
-
-        /**
-         * Set the exception to be contained within this section.
          * @param t The exception to be used
-         * @return this
+         * @return This category
          */
-        Section setException(Throwable t);
+        Category setException(Throwable t);
 
         /**
-         * Get the error report that contains this section.
+         * Gets the error report that contains this section.
          *
          * @return The report
          */
         ErrorReport parent();
+
     }
 
 }

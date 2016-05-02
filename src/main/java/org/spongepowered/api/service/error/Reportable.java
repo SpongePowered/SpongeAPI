@@ -30,10 +30,14 @@ package org.spongepowered.api.service.error;
 public interface Reportable {
 
     /**
-     * Decorate an error report with possibly useful information. Keep in mind that this method may be called while the specified object is in an
-     * inconsistent initialization state, so care should be taken when accessing certain resources.
+     * Decorate an error report with possibly useful information.
+     *
+     * <p>Keep in mind that this method may be called while the specified
+     * object is in an inconsistent initialization state, so care should be
+     * taken when accessing certain resources.</p>
      *
      * @param report The report to decorate
      */
     void decorateErrorReport(ErrorReport report);
+
 }

@@ -28,17 +28,22 @@ import org.spongepowered.api.event.Event;
 import org.spongepowered.api.service.error.ErrorReport;
 
 /**
- * This event is thrown when an error report is generated, after the source of the error report has dispatched it but before it is sent to any
+ * This event is thrown when an error report is generated, after the source
+ * of the error report has dispatched it but before it is sent to any
  * dispatch targets.
- * When this event is dispatched, the game may be in an inconsistent state. This means that some things that can generally be assumed to be
- * available *MAY NOT BE*. Keep this in mind, and practice defensive programming to the extreme.
+ *
+ * <p>When this event is dispatched, the game may be in an inconsistent
+ * state. This means that some things that can generally be assumed to be
+ * available may <b>not</b> be. Keep this in mind, and practice defensive
+ * programming to the extreme.</p>
  */
 public interface ErrorReportEvent extends Event {
 
     /**
-     * Get the error report being dispatched.
+     * Gets the error report being dispatched.
      *
-     * @return the error report
+     * @return The error report
      */
     ErrorReport getErrorReport();
+
 }

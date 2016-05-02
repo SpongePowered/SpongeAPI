@@ -25,8 +25,11 @@
 package org.spongepowered.api.service.error;
 
 /**
- * This is a marker interface for problems that are a result of user error. These are for example errors that are the result of an invalid
- * configuration or a misconfigured internet connection, that a user is expected to be able to use the information from to be able to resolve issues
+ * This is a marker interface for problems that are a result of user error.
+ *
+ * <p>These are for example errors that are the result of an invalid configuration
+ * or a misconfigured internet connection, that a user is expected to be able to use
+ * the information from to be able to resolve issues.</p>
  */
 public interface UserErrorException {
 

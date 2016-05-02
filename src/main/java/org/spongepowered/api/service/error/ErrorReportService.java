@@ -55,4 +55,5 @@ public interface ErrorReportService {
      * @return The created report
      */
     ErrorReport createReport(Throwable throwable);
+
 }
