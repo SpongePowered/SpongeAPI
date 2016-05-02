@@ -57,6 +57,8 @@ public final class EntityTypes {
 
     public static final EntityType CREEPER = DummyObjectProvider.createFor(EntityType.class, "CREEPER");
 
+    public static final EntityType DRAGON_FIREBALL = DummyObjectProvider.createFor(EntityType.class, "DRAGON_FIREBALL");
+
     public static final EntityType EGG = DummyObjectProvider.createFor(EntityType.class, "EGG");
 
     public static final EntityType ENDERMAN = DummyObjectProvider.createFor(EntityType.class, "ENDERMAN");
