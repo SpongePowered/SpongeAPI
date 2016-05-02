@@ -22,20 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.serializer;
+package org.spongepowered.api.data.type;
+
+import org.spongepowered.api.entity.projectile.arrow.Arrow;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Internal implementation factory: Use {@link TextSerializers} instead.
+ * An enumeration of the vanilla pickup rules for an {@link Arrow}.
  */
-public interface TextSerializerFactory {
+public final class PickupRules {
 
-    /**
-     * Returns a representation that accepts and outputs legacy color codes,
-     * using the provided legacy character.
-     *
-     * @param legacyChar The legacy character to parse and output using
-     * @return The appropriate legacy representation handler
-     */
-    FormattingCodeTextSerializer getFormattingCodeTextSerializer(char legacyChar);
+    // SORTFIELDS:ON
+
+    public static final PickupRule ALLOWED = DummyObjectProvider.createFor(PickupRule.class, "ALLOWED");
+
+    public static final PickupRule CREATIVE_ONLY = DummyObjectProvider.createFor(PickupRule.class, "CREATIVE_ONLY");
+
+    public static final PickupRule DISALLOWED = DummyObjectProvider.createFor(PickupRule.class, "DISALLOWED");
+
+    // SORTFIELDS:OFF
+
+    private PickupRules() {
+    }
 
 }

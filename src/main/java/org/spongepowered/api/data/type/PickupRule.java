@@ -22,20 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.serializer;
+package org.spongepowered.api.data.type;
+
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.projectile.arrow.Arrow;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Internal implementation factory: Use {@link TextSerializers} instead.
+ * Represents a pickup rule used by {@link Arrow}s.
  */
-public interface TextSerializerFactory {
-
-    /**
-     * Returns a representation that accepts and outputs legacy color codes,
-     * using the provided legacy character.
-     *
-     * @param legacyChar The legacy character to parse and output using
-     * @return The appropriate legacy representation handler
-     */
-    FormattingCodeTextSerializer getFormattingCodeTextSerializer(char legacyChar);
+@CatalogedBy(PickupRules.class)
+public interface PickupRule extends CatalogType {
 
 }

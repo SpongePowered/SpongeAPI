@@ -156,7 +156,7 @@ public interface EndIsland extends Populator {
         /**
          * Sets the amount that the radius decreases for every downward step.
          * 
-         * @param decrement The new radius decrement range
+         * @param radius The new radius decrement range
          * @return This builder, for chaining
          */
         Builder radiusDecrement(VariableAmount radius);
@@ -164,7 +164,7 @@ public interface EndIsland extends Populator {
         /**
          * Sets the amount that the radius decreases for every downward step.
          * 
-         * @param decrement The new radius decrement
+         * @param radius The new radius decrement
          * @return This builder, for chaining
          */
         default Builder radiusDecrement(double radius) {

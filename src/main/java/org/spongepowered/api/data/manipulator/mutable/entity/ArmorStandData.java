@@ -22,20 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.serializer;
+package org.spongepowered.api.data.manipulator.mutable.entity;
 
-/**
- * Internal implementation factory: Use {@link TextSerializers} instead.
- */
-public interface TextSerializerFactory {
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableArmorStandData;
+import org.spongepowered.api.data.value.mutable.Value;
+
+public interface ArmorStandData extends DataManipulator<ArmorStandData, ImmutableArmorStandData> {
+
+    Value<Boolean> marker();
 
     /**
-     * Returns a representation that accepts and outputs legacy color codes,
-     * using the provided legacy character.
+     * Returns whether this armor stand is a small armor stand or not.
      *
-     * @param legacyChar The legacy character to parse and output using
-     * @return The appropriate legacy representation handler
+     * @return Whether this is a small armor stand
      */
-    FormattingCodeTextSerializer getFormattingCodeTextSerializer(char legacyChar);
+    Value<Boolean> small();
+
+    /**
+     * Returns whether this armor stand is affected by gravity or not.
+     *
+     * @return Whether this armor stand is affected by gravity or not
+     */
+    Value<Boolean> gravity();
+
+    /**
+     * Returns whether this armor stand shows arms or not.
+     * <p>Arms that do not show may also not show an item in hand.</p>
+     *
+     * @return Whether this armor stand shows its arms
+     */
+    Value<Boolean> arms();
+
+    /**
+     * Gets whether this armor stand has a visible base plate or not.
+     *
+     * @return Whether this armor stand has a visible base plate
+     */
+    Value<Boolean> basePlate();
 
 }

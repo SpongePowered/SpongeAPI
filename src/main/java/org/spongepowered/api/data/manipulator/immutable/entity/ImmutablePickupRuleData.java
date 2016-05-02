@@ -22,20 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.serializer;
+package org.spongepowered.api.data.manipulator.immutable.entity;
+
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
+import org.spongepowered.api.data.manipulator.mutable.entity.PickupRuleData;
+import org.spongepowered.api.data.type.PickupRule;
+import org.spongepowered.api.entity.projectile.arrow.Arrow;
 
 /**
- * Internal implementation factory: Use {@link TextSerializers} instead.
+ * An {@link ImmutableDataManipulator} for the "pickup" rule of an
+ * {@link Arrow}.
  */
-public interface TextSerializerFactory {
-
-    /**
-     * Returns a representation that accepts and outputs legacy color codes,
-     * using the provided legacy character.
-     *
-     * @param legacyChar The legacy character to parse and output using
-     * @return The appropriate legacy representation handler
-     */
-    FormattingCodeTextSerializer getFormattingCodeTextSerializer(char legacyChar);
+public interface ImmutablePickupRuleData extends ImmutableVariantData<PickupRule, ImmutablePickupRuleData, PickupRuleData> {
 
 }
