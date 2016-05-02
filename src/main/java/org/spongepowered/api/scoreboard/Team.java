@@ -212,6 +212,20 @@ public interface Team {
     void setDeathMessageVisibility(Visibility visibility);
 
     /**
+     * Gets the {@link CollisionRule} for entities on this team.
+     *
+     * @return The {@link CollisionRule} for entities on this team
+     */
+    CollisionRule getCollisionRule();
+
+    /**
+     * Sets the {@link CollisionRule} for entities on this team.
+     *
+     * @param rule The {@link CollisionRule} for entities on this team
+     */
+    void setCollisionRule(CollisionRule rule);
+
+    /**
      * Gets the {@link Text}s representing the members of this team.
      *
      * @return the {@link Text}s for this team's members
@@ -359,6 +373,14 @@ public interface Team {
          * @return This builder
          */
         Builder deathTextVisibility(Visibility visibility);
+
+        /**
+         * Sets the {@link CollisionRule} for this team's members.
+         *
+         * @param rule The {@link CollisionRule} for the {@link Team}'s members
+         * @return This builder
+         */
+        Builder collisionRule(CollisionRule rule);
 
         /**
          * Sets the set of {@link Text} members on the {@link Team}.

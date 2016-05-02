@@ -27,6 +27,7 @@ package org.spongepowered.api.event.entity.explosive;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.explosion.Explosion.Builder;
 
 /**
  * Event called immediately before an {@link Explosive} explodes.
@@ -42,7 +43,7 @@ public interface DetonateExplosiveEvent extends TargetExplosiveEvent, Cancellabl
     Explosion getOriginalExplosion();
 
     /**
-     * Returns the {@link Explosion.Builder} that will be used to build the
+     * Returns the {@link Builder} that will be used to build the
      * explosion for the impending detonation.
      *
      * @return Explosion builder for detonation

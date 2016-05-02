@@ -35,11 +35,7 @@ import static org.objectweb.asm.Opcodes.ARETURN;
 import static org.objectweb.asm.Opcodes.ASTORE;
 import static org.objectweb.asm.Opcodes.ATHROW;
 import static org.objectweb.asm.Opcodes.CHECKCAST;
-import static org.objectweb.asm.Opcodes.DLOAD;
-import static org.objectweb.asm.Opcodes.DRETURN;
 import static org.objectweb.asm.Opcodes.DUP;
-import static org.objectweb.asm.Opcodes.FLOAD;
-import static org.objectweb.asm.Opcodes.FRETURN;
 import static org.objectweb.asm.Opcodes.GETFIELD;
 import static org.objectweb.asm.Opcodes.IFNE;
 import static org.objectweb.asm.Opcodes.IFNONNULL;
@@ -52,8 +48,6 @@ import static org.objectweb.asm.Opcodes.INVOKESTATIC;
 import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
 import static org.objectweb.asm.Opcodes.IRETURN;
 import static org.objectweb.asm.Opcodes.ISUB;
-import static org.objectweb.asm.Opcodes.LLOAD;
-import static org.objectweb.asm.Opcodes.LRETURN;
 import static org.objectweb.asm.Opcodes.NEW;
 import static org.objectweb.asm.Opcodes.PUTFIELD;
 import static org.objectweb.asm.Opcodes.RETURN;
@@ -93,80 +87,66 @@ public class ClassGenerator {
     private final List<String> primitivePropertyExceptions = ImmutableList.of("cancelled");
 
     /**
+     * Insert the necessary methods to box a primitive type (if the given type
+     * is a primitive object).
+     *
+     * @param mv The method visitor
+     * @param type The type to unbox
+     */
+    public static void visitBoxingMethod(MethodVisitor mv, Type type) {
+        if (type.getSort() == Type.BOOLEAN) {
+            mv.visitMethodInsn(INVOKESTATIC, "java/lang/Boolean", "valueOf", "(Z)Ljava/lang/Boolean;", false);
+        } else if (type.getSort() == Type.INT) {
+            mv.visitMethodInsn(INVOKESTATIC, "java/lang/Integer", "valueOf", "(I)Ljava/lang/Integer;", false);
+        } else if (type.getSort() == Type.BYTE) {
+            mv.visitMethodInsn(INVOKESTATIC, "java/lang/Byte", "valueOf", "(B)Ljava/lang/Byte;", false);
+        } else if (type.getSort() == Type.SHORT) {
+            mv.visitMethodInsn(INVOKESTATIC, "java/lang/Short", "valueOf", "(S)Ljava/lang/Short;", false);
+        } else if (type.getSort() == Type.LONG) {
+            mv.visitMethodInsn(INVOKESTATIC, "java/lang/Long", "valueOf", "(J)Ljava/lang/Long;", false);
+        } else if (type.getSort() == Type.FLOAT) {
+            mv.visitMethodInsn(INVOKESTATIC, "java/lang/Float", "valueOf", "(F)Ljava/lang/Float;", false);
+        } else if (type.getSort() == Type.DOUBLE) {
+            mv.visitMethodInsn(INVOKESTATIC, "java/lang/Double", "valueOf", "(D)Ljava/lang/Double;", false);
+        } else if (type.getSort() == Type.CHAR) {
+            mv.visitMethodInsn(INVOKESTATIC, "java/lang/Character", "valueOf", "(C)Ljava/lang/Character;", false);
+        }
+    }
+
+    /**
      * Insert the necessary methods to unbox a primitive type (if the given type
      * is a primitive).
      *
      * @param mv The method visitor
      * @param type The type to unbox
      */
-    private static void visitUnboxingMethod(MethodVisitor mv, Class<?> type) {
-        if (type == boolean.class) {
+    public static void visitUnboxingMethod(MethodVisitor mv, Type type) {
+        if (type.getSort() == Type.BOOLEAN) {
             mv.visitTypeInsn(CHECKCAST, "java/lang/Boolean");
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Boolean", "booleanValue", "()Z", false);
-        } else if (type == int.class) {
+        } else if (type.getSort() == Type.INT) {
             mv.visitTypeInsn(CHECKCAST, "java/lang/Integer");
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Integer", "intValue", "()I", false);
-        } else if (type == byte.class) {
+        } else if (type.getSort() == Type.BYTE) {
             mv.visitTypeInsn(CHECKCAST, "java/lang/Byte");
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Byte", "byteValue", "()B", false);
-        } else if (type == short.class) {
+        } else if (type.getSort() == Type.SHORT) {
             mv.visitTypeInsn(CHECKCAST, "java/lang/Short");
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Short", "shortValue", "()S", false);
-        } else if (type == long.class) {
+        } else if (type.getSort() == Type.LONG) {
             mv.visitTypeInsn(CHECKCAST, "java/lang/Long");
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Long", "longValue", "()J", false);
-        } else if (type == float.class) {
+        } else if (type.getSort() == Type.FLOAT) {
             mv.visitTypeInsn(CHECKCAST, "java/lang/Float");
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Float", "floatValue", "()F", false);
-        } else if (type == double.class) {
+        } else if (type.getSort() == Type.DOUBLE) {
             mv.visitTypeInsn(CHECKCAST, "java/lang/Double");
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Double", "doubleValue", "()D", false);
-        } else if (type == char.class) {
+        } else if (type.getSort() == Type.CHAR) {
             mv.visitTypeInsn(CHECKCAST, "java/lang/Character");
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Character", "charValue", "()C", false);
         } else {
-            mv.visitTypeInsn(CHECKCAST, Type.getInternalName(type));
-        }
-
-    }
-
-    /**
-     * Get the opcode used for loading a local variable.
-     *
-     * @param type The type being loaded
-     * @return The opcode
-     */
-    private static int getLoadOpcode(Class<?> type) {
-        if (long.class.isAssignableFrom(type)) {
-            return LLOAD;
-        } else if (float.class.isAssignableFrom(type)) {
-            return FLOAD;
-        } else if (double.class.isAssignableFrom(type)) {
-            return DLOAD;
-        } else if (Object.class.isAssignableFrom(type)) {
-            return ALOAD;
-        } else {
-            return ILOAD;
-        }
-    }
-
-    /**
-     * Get the opcode used for returning from a method.
-     *
-     * @param type The type being returned
-     * @return The opcode
-     */
-    public static int getReturnOpcode(Class<?> type) {
-        if (long.class.isAssignableFrom(type)) {
-            return LRETURN;
-        } else if (float.class.isAssignableFrom(type)) {
-            return FRETURN;
-        } else if (double.class.isAssignableFrom(type)) {
-            return DRETURN;
-        } else if (Object.class.isAssignableFrom(type)) {
-            return ARETURN;
-        } else {
-            return IRETURN;
+            mv.visitTypeInsn(CHECKCAST, type.getInternalName());
         }
     }
 
@@ -327,7 +307,7 @@ public class ClassGenerator {
 
             // ProperObject newValue = (ProperObject) value
             mv.visitVarInsn(ALOAD, 2);
-            visitUnboxingMethod(mv, property.getType());
+            visitUnboxingMethod(mv, Type.getType(property.getType()));
 
             // this.field = newValue
             if (hasUseField) {
@@ -387,7 +367,7 @@ public class ClassGenerator {
         if (!property.isLeastSpecificType()) {
             mv.visitTypeInsn(CHECKCAST, Type.getInternalName(property.getType()));
         }
-        mv.visitInsn(getReturnOpcode(property.getType()));
+        mv.visitInsn(Type.getType(property.getType()).getOpcode(IRETURN));
         mv.visitMaxs(0, 0);
         mv.visitEnd();
     }
@@ -415,7 +395,7 @@ public class ClassGenerator {
         MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, mutator.getName(), Type.getMethodDescriptor(mutator), null, null);
         mv.visitCode();
         mv.visitVarInsn(ALOAD, 0);
-        mv.visitVarInsn(getLoadOpcode(property.getType()), 1);
+        mv.visitVarInsn(Type.getType(property.getType()).getOpcode(ILOAD), 1);
 
         if (property.getAccessor().getReturnType().equals(Optional.class)) {
             mv.visitMethodInsn(INVOKESTATIC, "java/util/Optional", "ofNullable",
@@ -448,7 +428,7 @@ public class ClassGenerator {
             mv.visitLdcInsn("You've attempted to call the method '" + mutator.getName() + "' with an object of type ");
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
 
-            mv.visitVarInsn(getLoadOpcode(property.getType()), 1);
+            mv.visitVarInsn(Type.getType(property.getType()).getOpcode(ILOAD), 1);
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Object", "getClass", "()Ljava/lang/Class;", false);
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Class", "getName", "()Ljava/lang/String;", false);
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);

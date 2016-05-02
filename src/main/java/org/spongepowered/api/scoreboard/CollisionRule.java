@@ -22,20 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.serializer;
+package org.spongepowered.api.scoreboard;
+
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Internal implementation factory: Use {@link TextSerializers} instead.
+ * Represents a collision rule.
  */
-public interface TextSerializerFactory {
-
-    /**
-     * Returns a representation that accepts and outputs legacy color codes,
-     * using the provided legacy character.
-     *
-     * @param legacyChar The legacy character to parse and output using
-     * @return The appropriate legacy representation handler
-     */
-    FormattingCodeTextSerializer getFormattingCodeTextSerializer(char legacyChar);
+@CatalogedBy(CollisionRules.class)
+public interface CollisionRule extends CatalogType {
 
 }

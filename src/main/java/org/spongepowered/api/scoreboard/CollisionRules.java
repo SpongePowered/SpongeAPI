@@ -22,20 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.serializer;
+package org.spongepowered.api.scoreboard;
+
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Internal implementation factory: Use {@link TextSerializers} instead.
+ * An enumeration of vanilla {@link CollisionRule}s.
  */
-public interface TextSerializerFactory {
+public final class CollisionRules {
 
-    /**
-     * Returns a representation that accepts and outputs legacy color codes,
-     * using the provided legacy character.
-     *
-     * @param legacyChar The legacy character to parse and output using
-     * @return The appropriate legacy representation handler
-     */
-    FormattingCodeTextSerializer getFormattingCodeTextSerializer(char legacyChar);
+    // SORTFIELDS:ON
 
+    public static final CollisionRule ALWAYS = DummyObjectProvider.createFor(CollisionRule.class, "ALWAYS");
+
+    public static final CollisionRule NEVER = DummyObjectProvider.createFor(CollisionRule.class, "NEVER");
+
+    public static final CollisionRule PUSH_OTHER_TEAMS = DummyObjectProvider.createFor(CollisionRule.class, "PUSH_OTHER_TEAMS");
+
+    public static final CollisionRule PUSH_OWN_TEAM = DummyObjectProvider.createFor(CollisionRule.class, "PUSH_OWN_TEAM");
+
+    // SORTFIELDS:OFF
+
+    private CollisionRules() {
+    }
 }

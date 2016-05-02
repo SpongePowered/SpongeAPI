@@ -92,6 +92,16 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> ANGRY = KeyFactory.fake("ANGRY");
 
+    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_ARMS = KeyFactory.fake("ARMOR_STAND_HAS_ARMS");
+
+    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_BASE_PLATE = KeyFactory.fake("ARMOR_STAND_HAS_BASE_PLATE");
+
+    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_GRAVITY = KeyFactory.fake("ARMOR_STAND_HAS_GRAVITY");
+
+    public static final Key<Value<Boolean>> ARMOR_STAND_IS_SMALL = KeyFactory.fake("ARMOR_STAND_IS_SMALL");
+
+    public static final Key<Value<Boolean>> ARMOR_STAND_MARKER = KeyFactory.fake("ARMOR_STAND_MARKER");
+
     public static final Key<Value<Art>> ART = KeyFactory.fake("ART");
 
     /**
@@ -832,8 +842,6 @@ public final class Keys {
     /**
      * Represents the {@link Key} for representing the "suspended" state
      * of a {@link BlockState}.
-     *
-     * @see SuspendedData#suspended()
      */
     public static final Key<Value<Boolean>> SUSPENDED = KeyFactory.fake("SUSPENDED");
 

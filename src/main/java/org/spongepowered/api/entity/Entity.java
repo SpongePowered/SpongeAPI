@@ -220,15 +220,15 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
     /**
      * Removes the given entity as a passenger.
      *
-     * @param entity
-     * @return
+     * @param entity The entity to remove as passenger
+     * @return The transaction result
      */
     DataTransactionResult removePassenger(Entity entity);
 
     /**
      * Removes all currently riding passengers from this entity.
      *
-     * @return
+     * @return The transaction result
      */
     DataTransactionResult clearPassengers();
 
