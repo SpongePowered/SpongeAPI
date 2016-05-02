@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.service.error;
 
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.service.error.ErrorReport;
+import org.spongepowered.api.service.crash.CrashReport;
 
 /**
  * This event is thrown when an error report is generated, after the source
@@ -44,6 +44,6 @@ public interface ErrorReportEvent extends Event {
      *
      * @return The error report
      */
-    ErrorReport getErrorReport();
+    CrashReport getErrorReport();
 
 }

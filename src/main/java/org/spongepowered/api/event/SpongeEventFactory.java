@@ -195,7 +195,7 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.service.ProviderRegistration;
 import org.spongepowered.api.service.economy.transaction.TransactionResult;
-import org.spongepowered.api.service.error.ErrorReport;
+import org.spongepowered.api.service.crash.CrashReport;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
@@ -4280,7 +4280,7 @@ public class SpongeEventFactory {
      * @param errorReport The error report
      * @return A new error report event
      */
-    public static ErrorReportEvent createErrorReportEvent(Cause cause, ErrorReport errorReport) {
+    public static ErrorReportEvent createErrorReportEvent(Cause cause, CrashReport errorReport) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("errorReport", errorReport);

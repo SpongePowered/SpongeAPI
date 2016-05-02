@@ -22,22 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.error;
+package org.spongepowered.api.service.crash;
 
-/**
- * This interface may be implemented by objects that wish to annotate error reports with useful information.
- */
-public interface ErrorReportable {
+public interface CrashReportPublisher {
 
-    /**
-     * Decorate an error report with possibly useful information.
-     *
-     * <p>Keep in mind that this method may be called while the specified
-     * object is in an inconsistent initialization state, so care should be
-     * taken when accessing certain resources.</p>
-     *
-     * @param report The report to decorate
-     */
-    void fillErrorReport(ErrorReport report);
+    void publishCrashReport(CrashReport report);
 
 }

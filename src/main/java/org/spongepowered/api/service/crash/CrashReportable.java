@@ -22,15 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.error;
+package org.spongepowered.api.service.crash;
 
 /**
- * This is a marker interface for problems that are a result of user error.
- *
- * <p>These are for example errors that are the result of an invalid configuration
- * or a misconfigured internet connection, that a user is expected to be able to use
- * the information from to be able to resolve issues.</p>
+ * This interface may be implemented by objects that wish to annotate error reports with useful information.
  */
-public interface UserErrorException {
+public interface CrashReportable {
+
+    /**
+     * Decorate an error report with possibly useful information.
+     *
+     * <p>Keep in mind that this method may be called while the specified
+     * object is in an inconsistent initialization state, so care should be
+     * taken when accessing certain resources.</p>
+     *
+     * @param report The report to decorate
+     */
+    void fillCrashReport(CrashReport report);
 
 }
