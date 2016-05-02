@@ -27,6 +27,14 @@ package org.spongepowered.api.event;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Preconditions;
+import java.net.InetSocketAddress;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Function;
 import org.spongepowered.api.GameState;
 import org.spongepowered.api.MinecraftVersion;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -212,15 +220,6 @@ import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
-
-import java.net.InetSocketAddress;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Function;
 
 public class SpongeEventFactory {
     /**
@@ -450,16 +449,14 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetWorld The target world
      * @param transactions The transactions
      * @return A new strike lightning event
      */
-    public static LightningEvent.Strike createLightningEventStrike(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
+    public static LightningEvent.Strike createLightningEventStrike(Cause cause, List<Entity> entities, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
         return SpongeEventFactoryUtils.createEventImpl(LightningEvent.Strike.class, values);
@@ -1334,15 +1331,13 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetWorld The target world
      * @return A new affect entity event
      */
-    public static AffectEntityEvent createAffectEntityEvent(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
+    public static AffectEntityEvent createAffectEntityEvent(Cause cause, List<Entity> entities, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(AffectEntityEvent.class, values);
     }
@@ -1626,15 +1621,13 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetWorld The target world
      * @return A new collide entity event
      */
-    public static CollideEntityEvent createCollideEntityEvent(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
+    public static CollideEntityEvent createCollideEntityEvent(Cause cause, List<Entity> entities, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(CollideEntityEvent.class, values);
     }
@@ -1646,16 +1639,14 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param impactPoint The impact point
      * @param targetWorld The target world
      * @return A new impact collide entity event
      */
-    public static CollideEntityEvent.Impact createCollideEntityEventImpact(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Location<World> impactPoint, World targetWorld) {
+    public static CollideEntityEvent.Impact createCollideEntityEventImpact(Cause cause, List<Entity> entities, Location<World> impactPoint, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("impactPoint", impactPoint);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(CollideEntityEvent.Impact.class, values);
@@ -2380,15 +2371,13 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetWorld The target world
      * @return A new spawn entity event
      */
-    public static SpawnEntityEvent createSpawnEntityEvent(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
+    public static SpawnEntityEvent createSpawnEntityEvent(Cause cause, List<Entity> entities, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(SpawnEntityEvent.class, values);
     }
@@ -2400,15 +2389,13 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetWorld The target world
      * @return A new chunk load spawn entity event
      */
-    public static SpawnEntityEvent.ChunkLoad createSpawnEntityEventChunkLoad(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
+    public static SpawnEntityEvent.ChunkLoad createSpawnEntityEventChunkLoad(Cause cause, List<Entity> entities, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(SpawnEntityEvent.ChunkLoad.class, values);
     }
@@ -2420,15 +2407,13 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetWorld The target world
      * @return A new custom spawn entity event
      */
-    public static SpawnEntityEvent.Custom createSpawnEntityEventCustom(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
+    public static SpawnEntityEvent.Custom createSpawnEntityEventCustom(Cause cause, List<Entity> entities, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(SpawnEntityEvent.Custom.class, values);
     }
@@ -2440,15 +2425,13 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetWorld The target world
      * @return A new spawner spawn entity event
      */
-    public static SpawnEntityEvent.Spawner createSpawnEntityEventSpawner(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
+    public static SpawnEntityEvent.Spawner createSpawnEntityEventSpawner(Cause cause, List<Entity> entities, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(SpawnEntityEvent.Spawner.class, values);
     }
@@ -3479,18 +3462,16 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param cursorTransaction The cursor transaction
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetInventory The target inventory
      * @param targetWorld The target world
      * @param transactions The transactions
      * @return A new drop click inventory event
      */
-    public static ClickInventoryEvent.Drop createClickInventoryEventDrop(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
+    public static ClickInventoryEvent.Drop createClickInventoryEventDrop(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetInventory", targetInventory);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
@@ -3505,18 +3486,16 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param cursorTransaction The cursor transaction
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetInventory The target inventory
      * @param targetWorld The target world
      * @param transactions The transactions
      * @return A new full drop click inventory event
      */
-    public static ClickInventoryEvent.Drop.Full createClickInventoryEventDropFull(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
+    public static ClickInventoryEvent.Drop.Full createClickInventoryEventDropFull(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetInventory", targetInventory);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
@@ -3531,18 +3510,16 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param cursorTransaction The cursor transaction
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetInventory The target inventory
      * @param targetWorld The target world
      * @param transactions The transactions
      * @return A new outside drop click inventory event
      */
-    public static ClickInventoryEvent.Drop.Outside createClickInventoryEventDropOutside(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
+    public static ClickInventoryEvent.Drop.Outside createClickInventoryEventDropOutside(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetInventory", targetInventory);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
@@ -3557,18 +3534,16 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param cursorTransaction The cursor transaction
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetInventory The target inventory
      * @param targetWorld The target world
      * @param transactions The transactions
      * @return A new primary outside drop click inventory event
      */
-    public static ClickInventoryEvent.Drop.Outside.Primary createClickInventoryEventDropOutsidePrimary(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
+    public static ClickInventoryEvent.Drop.Outside.Primary createClickInventoryEventDropOutsidePrimary(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetInventory", targetInventory);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
@@ -3583,18 +3558,16 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param cursorTransaction The cursor transaction
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetInventory The target inventory
      * @param targetWorld The target world
      * @param transactions The transactions
      * @return A new secondary outside drop click inventory event
      */
-    public static ClickInventoryEvent.Drop.Outside.Secondary createClickInventoryEventDropOutsideSecondary(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
+    public static ClickInventoryEvent.Drop.Outside.Secondary createClickInventoryEventDropOutsideSecondary(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetInventory", targetInventory);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
@@ -3609,18 +3582,16 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param cursorTransaction The cursor transaction
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetInventory The target inventory
      * @param targetWorld The target world
      * @param transactions The transactions
      * @return A new single drop click inventory event
      */
-    public static ClickInventoryEvent.Drop.Single createClickInventoryEventDropSingle(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
+    public static ClickInventoryEvent.Drop.Single createClickInventoryEventDropSingle(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetInventory", targetInventory);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
@@ -3817,18 +3788,16 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param cursorTransaction The cursor transaction
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetInventory The target inventory
      * @param targetWorld The target world
      * @param transactions The transactions
      * @return A new drop creative inventory event
      */
-    public static CreativeInventoryEvent.Drop createCreativeInventoryEventDrop(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
+    public static CreativeInventoryEvent.Drop createCreativeInventoryEventDrop(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("cursorTransaction", cursorTransaction);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetInventory", targetInventory);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
@@ -3856,15 +3825,13 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetWorld The target world
      * @return A new custom drop item event
      */
-    public static DropItemEvent.Custom createDropItemEventCustom(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
+    public static DropItemEvent.Custom createDropItemEventCustom(Cause cause, List<Entity> entities, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(DropItemEvent.Custom.class, values);
     }
@@ -3876,15 +3843,13 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetWorld The target world
      * @return A new destruct drop item event
      */
-    public static DropItemEvent.Destruct createDropItemEventDestruct(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
+    public static DropItemEvent.Destruct createDropItemEventDestruct(Cause cause, List<Entity> entities, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(DropItemEvent.Destruct.class, values);
     }
@@ -3896,15 +3861,13 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param targetWorld The target world
      * @return A new dispense drop item event
      */
-    public static DropItemEvent.Dispense createDropItemEventDispense(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, World targetWorld) {
+    public static DropItemEvent.Dispense createDropItemEventDispense(Cause cause, List<Entity> entities, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(DropItemEvent.Dispense.class, values);
     }
@@ -4874,17 +4837,15 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param entities The entities
-     * @param entitySnapshots The entity snapshots
      * @param explosion The explosion
      * @param targetWorld The target world
      * @param transactions The transactions
      * @return A new detonate explosion event
      */
-    public static ExplosionEvent.Detonate createExplosionEventDetonate(Cause cause, List<Entity> entities, List<EntitySnapshot> entitySnapshots, Explosion explosion, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
+    public static ExplosionEvent.Detonate createExplosionEventDetonate(Cause cause, List<Entity> entities, Explosion explosion, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("entities", entities);
-        values.put("entitySnapshots", entitySnapshots);
         values.put("explosion", explosion);
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);

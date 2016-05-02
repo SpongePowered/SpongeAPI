@@ -59,7 +59,7 @@ public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extend
     E add(ImmutableDataManipulator<?, ?> manipulator);
 
     /**
-     * Adds the given {@link Key} with the given {@link V} value.
+     * Adds the given {@link Key} with the given value.
      *
      * @param key The key to assign the value with
      * @param value The value to assign with the key

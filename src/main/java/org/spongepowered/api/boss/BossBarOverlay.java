@@ -22,20 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.serializer;
+package org.spongepowered.api.boss;
+
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Internal implementation factory: Use {@link TextSerializers} instead.
+ * Represents an overlay that may be on a {@link BossBar}.
  */
-public interface TextSerializerFactory {
-
-    /**
-     * Returns a representation that accepts and outputs legacy color codes,
-     * using the provided legacy character.
-     *
-     * @param legacyChar The legacy character to parse and output using
-     * @return The appropriate legacy representation handler
-     */
-    FormattingCodeTextSerializer getFormattingCodeTextSerializer(char legacyChar);
+@CatalogedBy(BossBarOverlays.class)
+public interface BossBarOverlay extends CatalogType {
 
 }

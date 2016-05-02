@@ -50,14 +50,6 @@ import java.util.function.Predicate;
 public interface AffectEntityEvent extends TargetWorldEvent, Cancellable {
 
     /**
-     * Gets an {@link List} of the entity data
-     * un-affected by event changes.
-     *
-     * @return The ImmutableList
-     */
-    List<EntitySnapshot> getEntitySnapshots();
-
-    /**
      * Gets the {@link List} who will be affected after event
      * resolution.
      *

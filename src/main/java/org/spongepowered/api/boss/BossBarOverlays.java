@@ -22,20 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.serializer;
+package org.spongepowered.api.boss;
+
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Internal implementation factory: Use {@link TextSerializers} instead.
+ * An enumeration of {@link BossBarOverlay}s.
  */
-public interface TextSerializerFactory {
+public final class BossBarOverlays {
 
     /**
-     * Returns a representation that accepts and outputs legacy color codes,
-     * using the provided legacy character.
-     *
-     * @param legacyChar The legacy character to parse and output using
-     * @return The appropriate legacy representation handler
+     * A progress bar overlay.
      */
-    FormattingCodeTextSerializer getFormattingCodeTextSerializer(char legacyChar);
+    public static final BossBarOverlay PROGRESS = dummy("PROGRESS");
+
+    /**
+     * A 6 notch overlay.
+     */
+    public static final BossBarOverlay NOTCHED_6 = dummy("NOTCHED_6");
+
+    /**
+     * A 10 notch overlay.
+     */
+    public static final BossBarOverlay NOTCHED_10 = dummy("NOTCHED_10");
+
+    /**
+     * A 12 notch overlay.
+     */
+    public static final BossBarOverlay NOTCHED_12 = dummy("NOTCHED_12");
+
+    /**
+     * A 20 notch overlay.
+     */
+    public static final BossBarOverlay NOTCHED_20 = dummy("NOTCHED_20");
+
+    private BossBarOverlays() {
+    }
+
+    private static BossBarOverlay dummy(String name) {
+        return DummyObjectProvider.createFor(BossBarOverlay.class, name);
+    }
 
 }

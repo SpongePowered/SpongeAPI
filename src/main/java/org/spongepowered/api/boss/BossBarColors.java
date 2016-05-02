@@ -22,20 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.serializer;
+package org.spongepowered.api.boss;
+
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Internal implementation factory: Use {@link TextSerializers} instead.
+ * An enumeration of {@link BossBarColor}s.
  */
-public interface TextSerializerFactory {
+public final class BossBarColors {
 
-    /**
-     * Returns a representation that accepts and outputs legacy color codes,
-     * using the provided legacy character.
-     *
-     * @param legacyChar The legacy character to parse and output using
-     * @return The appropriate legacy representation handler
-     */
-    FormattingCodeTextSerializer getFormattingCodeTextSerializer(char legacyChar);
+    public static final BossBarColor PINK = dummy("PINK");
+    public static final BossBarColor BLUE = dummy("BLUE");
+    public static final BossBarColor RED = dummy("RED");
+    public static final BossBarColor GREEN = dummy("GREEN");
+    public static final BossBarColor YELLOW = dummy("YELLOW");
+    public static final BossBarColor PURPLE = dummy("PURPLE");
+    public static final BossBarColor WHITE = dummy("WHITE");
 
+    private BossBarColors() {
+    }
+
+    private static BossBarColor dummy(String name) {
+        return DummyObjectProvider.createFor(BossBarColor.class, name);
+    }
 }
