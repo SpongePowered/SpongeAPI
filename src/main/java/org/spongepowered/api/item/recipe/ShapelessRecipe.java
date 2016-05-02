@@ -34,7 +34,7 @@ import java.util.Collection;
  * A ShapelessRecipe is a Recipe that does not have shape and just has a
  * list of ingredients.
  */
-public interface ShapelessRecipe extends Recipe {
+public interface ShapelessRecipe extends CraftingRecipe {
 
     /**
      * Creates a new {@link Builder} to build a {@link ShapelessRecipe}.

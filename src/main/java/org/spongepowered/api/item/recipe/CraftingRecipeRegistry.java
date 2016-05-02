@@ -27,9 +27,9 @@ package org.spongepowered.api.item.recipe;
 import java.util.Collection;
 
 /**
- * A RecipeRegistry holds all registered recipes for a given game.
+ * A CraftingRecipeRegistry holds all registered recipes for a given game.
  */
-public interface RecipeRegistry {
+public interface CraftingRecipeRegistry {
 
     /**
      * Adds the given {@link Recipe} to the recipe registrar, making
@@ -37,7 +37,7 @@ public interface RecipeRegistry {
      *
      * @param recipe The recipe to add to the registry
      */
-    void add(Recipe recipe);
+    void add(CraftingRecipe recipe);
 
     /**
      * Removes the given Recipe from registration in this registry.
@@ -45,13 +45,13 @@ public interface RecipeRegistry {
      * @param recipe The recipe to remove from the registry
      * @return {@code true} if the recipe was successfully removed
      */
-    boolean remove(Recipe recipe);
+    boolean remove(CraftingRecipe recipe);
 
     /**
      * Gets a {@link Collection} of all recipes this registry is aware of.
      *
      * @return A list of all registered recipes
      */
-    Collection<Recipe> getRecipes();
+    Collection<CraftingRecipe> getRecipes();
 
 }

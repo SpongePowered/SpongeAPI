@@ -37,7 +37,7 @@ import javax.annotation.Nullable;
 /**
  * A ShapedRecipe is a Recipe that has shape and fits into a grid.
  */
-public interface ShapedRecipe extends Recipe {
+public interface ShapedRecipe extends CraftingRecipe {
 
     /**
      * Creates a new {@link Builder} to build a {@link ShapedRecipe}.
