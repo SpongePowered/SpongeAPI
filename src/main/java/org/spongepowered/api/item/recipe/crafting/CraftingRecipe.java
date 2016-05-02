@@ -22,36 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.item.recipe.crafting;
 
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.type.GridInventory;
+import org.spongepowered.api.item.recipe.Recipe;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
 
 /**
- * A Recipe represents some craftable recipe in the game.
- *
- * <p>It is essentially a Predicate that checks for if a recipe is valid as well
- * as a function from a crafting matrix to a list of {@link ItemStack}
- * (the crafting result), therefore making it an immutable interface.</p>
- *
- * <p>The passed in ItemGrid is usually a crafting inventory, e.g.
- * a 2x2 or 3x3 crafting matrix.</p>
- *
- * <p>The requirements of a Recipe can be general, they just have to
- * eventually return a boolean given an itemgrid.</p>
+ * A crafting recipe.
  */
-public interface Recipe extends Predicate<GridInventory> {
+public interface CraftingRecipe extends Recipe {
 
     /**
-     * Gets a list of {@link ItemStack}s that will be returned when
-     * this recipe's requirements are fulfilled.
+     * Returns the list of item stacks that result when successful crafting of
+     * this Recipe is completed.
      *
-     * @return The resultant list of item stacks
+     * @return The resultant list of item types
      */
+    @Override
     List<ItemStack> getResults();
 
     /**
@@ -63,14 +53,5 @@ public interface Recipe extends Predicate<GridInventory> {
      */
     @Override
     boolean test(GridInventory grid);
-
-    /**
-     * Returns the results for running this Recipe over an {@link GridInventory}
-     *
-     * @param grid A grid inventory as input
-     * @return A list of ItemStacks or {@link Optional#empty()} if the given
-     *          grid inventory does not match this recipe's requirements
-     */
-    List<ItemStack> getResults(GridInventory grid);
 
 }

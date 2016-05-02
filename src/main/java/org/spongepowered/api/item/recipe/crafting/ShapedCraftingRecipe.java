@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.item.recipe.crafting;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -35,12 +35,12 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * A ShapedRecipe is a Recipe that has shape and fits into a grid.
+ * A ShapedCraftingRecipe is a Recipe that has shape and fits into a grid.
  */
-public interface ShapedRecipe extends CraftingRecipe {
+public interface ShapedCraftingRecipe extends CraftingRecipe {
 
     /**
-     * Creates a new {@link Builder} to build a {@link ShapedRecipe}.
+     * Creates a new {@link Builder} to build a {@link ShapedCraftingRecipe}.
      *
      * @return The new builder
      */
@@ -73,20 +73,20 @@ public interface ShapedRecipe extends CraftingRecipe {
     Optional<ItemStack> getIngredient(char symbol);
 
     /**
-     * Gets the width of the grid this ShapedRecipe fits into.
+     * Gets the width of the grid this ShapedCraftingRecipe fits into.
      *
      * @return The width of the grid
      */
     int getWidth();
 
     /**
-     * Gets the height of the grid this ShapedRecipe fits into.
+     * Gets the height of the grid this ShapedCraftingRecipe fits into.
      *
      * @return The height of the grid
      */
     int getHeight();
 
-    interface Builder extends ResettableBuilder<ShapedRecipe, Builder> {
+    interface Builder extends ResettableBuilder<ShapedCraftingRecipe, Builder> {
 
         /**
          * Sets the aisle pattern for the shaped recipe.
@@ -126,11 +126,11 @@ public interface ShapedRecipe extends CraftingRecipe {
         Builder results(Collection<ItemStack> result);
 
         /**
-         * Builds a ShapedRecipe from this builder.
+         * Builds a ShapedCraftingRecipe from this builder.
          *
-         * @return A new {@link ShapedRecipe}
+         * @return A new {@link ShapedCraftingRecipe}
          */
-        ShapedRecipe build();        
+        ShapedCraftingRecipe build();
     }
 
 }
