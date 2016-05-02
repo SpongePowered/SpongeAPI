@@ -25,6 +25,7 @@
 package org.spongepowered.api.service.error;
 
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.text.channel.MessageReceiver;
 
 import java.net.URL;
 import java.util.Optional;
@@ -94,7 +95,7 @@ public interface ErrorReport {
      *
      * @param source The source to send information about the error report to
      */
-    void dispatchToCommandSource(CommandSource source);
+    void dispatchToCommandSource(MessageReceiver source);
 
     /**
      * Dispatch this as a non-fatal error that is sent to the console.
