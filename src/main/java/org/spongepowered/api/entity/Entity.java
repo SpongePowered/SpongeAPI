@@ -35,6 +35,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
+import org.spongepowered.api.service.error.ErrorReportable;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RelativePositions;
@@ -68,7 +69,7 @@ import javax.annotation.Nullable;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends Identifiable, DataHolder, DataSerializable, Translatable {
+public interface Entity extends Identifiable, DataHolder, DataSerializable, Translatable, ErrorReportable {
 
     /**
      * Get the type of entity.

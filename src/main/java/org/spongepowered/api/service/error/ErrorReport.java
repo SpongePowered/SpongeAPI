@@ -74,12 +74,12 @@ public interface ErrorReport {
     Category addCategory(String title);
 
     /**
-     * Append a {@link Reportable} to this report. If this {@link Reportable} has already been added, it will not be added again.
+     * Append a {@link ErrorReportable} to this report. If this {@link ErrorReportable} has already been added, it will not be added again.
      *
      * @param reportable The object to append information from
      * @return this
      */
-    ErrorReport addReportable(Reportable reportable);
+    ErrorReport addReportable(ErrorReportable reportable);
 
     /**
      * Dispatch this error as a fatal error. Fatal means that the server will be stopped and a full crash report will be generated.

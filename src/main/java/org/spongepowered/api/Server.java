@@ -31,7 +31,7 @@ import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
-import org.spongepowered.api.service.error.Reportable;
+import org.spongepowered.api.service.error.ErrorReportable;
 import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.source.ConsoleSource;
@@ -49,7 +49,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Represents a typical Minecraft Server.
  */
-public interface Server extends Reportable {
+public interface Server extends ErrorReportable {
 
     /**
      * Gets the {@link Player}s currently online.

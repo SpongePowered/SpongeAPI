@@ -27,7 +27,7 @@ package org.spongepowered.api.service.error;
 /**
  * This interface may be implemented by objects that wish to annotate error reports with useful information.
  */
-public interface Reportable {
+public interface ErrorReportable {
 
     /**
      * Decorate an error report with possibly useful information.
@@ -38,6 +38,6 @@ public interface Reportable {
      *
      * @param report The report to decorate
      */
-    void decorateErrorReport(ErrorReport report);
+    void fillErrorReport(ErrorReport report);
 
 }
