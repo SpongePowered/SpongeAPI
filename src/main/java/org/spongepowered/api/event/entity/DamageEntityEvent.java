@@ -34,6 +34,7 @@ import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
+import org.spongepowered.api.event.cause.entity.damage.DamageModifier.Builder;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierTypes;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
@@ -326,7 +327,7 @@ public interface DamageEntityEvent extends TargetEntityEvent, Cancellable {
      * {@link #getBaseDamage()}.
      *
      * <p>If needing to create a custom {@link DamageModifier} is required,
-     * usage of the {@link DamageModifier.Builder} is recommended.</p>
+     * usage of the {@link Builder} is recommended.</p>
      *
      * @param damageModifier The damage modifier
      * @param function The function to map to the modifier

@@ -46,7 +46,8 @@ import java.util.UUID;
 public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
 
     /**
-     * Represents a BlockSnapshot with a {@link BlockState#AIR} and a {@link Location} that cannot be determined.
+     * Represents a {@link BlockSnapshot} with the default state of
+     * {@link BlockTypes#AIR} and a {@link Location} that cannot be determined.
      */
     BlockSnapshot NONE = DummyObjectProvider.createFor(BlockSnapshot.class, "NONE");
 

@@ -22,20 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.serializer;
+package org.spongepowered.api.data.manipulator.mutable.tileentity;
+
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.block.tileentity.EndGateway;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableEndGatewayData;
+import org.spongepowered.api.data.value.mutable.Value;
 
 /**
- * Internal implementation factory: Use {@link TextSerializers} instead.
+ * Represents the data for an {@link EndGateway}.
  */
-public interface TextSerializerFactory {
+public interface EndGatewayData extends DataManipulator<EndGatewayData, ImmutableEndGatewayData> {
 
     /**
-     * Returns a representation that accepts and outputs legacy color codes,
-     * using the provided legacy character.
+     * Gets the {@link Value} for the exit portal location of
+     * the {@link EndGateway}.
      *
-     * @param legacyChar The legacy character to parse and output using
-     * @return The appropriate legacy representation handler
+     * @return The value for the exit portal location
      */
-    FormattingCodeTextSerializer getFormattingCodeTextSerializer(char legacyChar);
+    Value<Vector3i> exitPortal();
+
+    /**
+     * Gets the {@link Value} for the "should use exact teleport location"
+     * state of the {@link EndGateway}.
+     *
+     * @return The value for the "should use exact teleport location" state
+     */
+    Value<Boolean> exactTeleport();
 
 }

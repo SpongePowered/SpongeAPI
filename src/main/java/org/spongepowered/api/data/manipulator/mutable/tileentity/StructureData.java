@@ -22,20 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.serializer;
+package org.spongepowered.api.data.manipulator.mutable.tileentity;
+
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.block.tileentity.Structure;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableStructureData;
+import org.spongepowered.api.data.value.mutable.Value;
 
 /**
- * Internal implementation factory: Use {@link TextSerializers} instead.
+ * Represents the data for an {@link Structure}.
  */
-public interface TextSerializerFactory {
+public interface StructureData extends DataManipulator<StructureData, ImmutableStructureData> {
 
     /**
-     * Returns a representation that accepts and outputs legacy color codes,
-     * using the provided legacy character.
+     * Gets the {@link Value} for the position of the {@link Structure}.
      *
-     * @param legacyChar The legacy character to parse and output using
-     * @return The appropriate legacy representation handler
+     * @return The value for the position
      */
-    FormattingCodeTextSerializer getFormattingCodeTextSerializer(char legacyChar);
+    Value<Vector3i> position();
+
+    /**
+     * Gets the {@link Value} for the size of the {@link Structure}.
+     *
+     * @return The value for the size
+     */
+    Value<Vector3i> size();
 
 }

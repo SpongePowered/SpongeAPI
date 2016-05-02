@@ -25,14 +25,19 @@
 package org.spongepowered.api.data.key;
 
 import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.tileentity.CommandBlock;
+import org.spongepowered.api.block.tileentity.EndGateway;
+import org.spongepowered.api.block.tileentity.Structure;
 import org.spongepowered.api.data.manipulator.mutable.*;
 import org.spongepowered.api.data.manipulator.mutable.block.*;
 import org.spongepowered.api.data.manipulator.mutable.entity.*;
 import org.spongepowered.api.data.manipulator.mutable.item.*;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.EndGatewayData;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.StructureData;
 import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.data.type.*;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
@@ -91,6 +96,16 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Integer>> ANGER = KeyFactory.fake("ANGER");
 
     public static final Key<Value<Boolean>> ANGRY = KeyFactory.fake("ANGRY");
+
+    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_ARMS = KeyFactory.fake("ARMOR_STAND_HAS_ARMS");
+
+    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_BASE_PLATE = KeyFactory.fake("ARMOR_STAND_HAS_BASE_PLATE");
+
+    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_GRAVITY = KeyFactory.fake("ARMOR_STAND_HAS_GRAVITY");
+
+    public static final Key<Value<Boolean>> ARMOR_STAND_IS_SMALL = KeyFactory.fake("ARMOR_STAND_IS_SMALL");
+
+    public static final Key<Value<Boolean>> ARMOR_STAND_MARKER = KeyFactory.fake("ARMOR_STAND_MARKER");
 
     public static final Key<Value<Art>> ART = KeyFactory.fake("ART");
 
@@ -298,7 +313,23 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> ELDER_GUARDIAN = KeyFactory.fake("ELDER_GUARDIAN");
 
+    /**
+     * Represents the {@link Key} for representing if the exact teleport location
+     * should be used with a {@link EndGateway}.
+     *
+     * @see EndGatewayData#exactTeleport()
+     */
+    public static final Key<Value<Boolean>> EXACT_TELEPORT = KeyFactory.fake("EXACT_TELEPORT");
+
     public static final Key<MutableBoundedValue<Double>> EXHAUSTION = KeyFactory.fake("EXHAUSTION");
+
+    /**
+     * Represents the {@link Key} for representing the exit
+     * portal {@link Vector3i location} of an {@link EndGateway}.
+     *
+     * @see EndGatewayData#exitPortal()
+     */
+    public static final Key<Value<Vector3i>> EXIT_PORTAL = KeyFactory.fake("EXIT_PORTAL");
 
     public static final Key<ImmutableBoundedValue<Integer>> EXPERIENCE_FROM_START_OF_LEVEL = KeyFactory.fake("EXPERIENCE_FROM_START_OF_LEVEL");
 
@@ -814,6 +845,20 @@ public final class Keys {
     public static final Key<ListValue<ItemEnchantment>> STORED_ENCHANTMENTS = KeyFactory.fake("STORED_ENCHANTMENTS");
 
     /**
+     * Represents the {@link Key} for representing the position of a {@link Structure}.
+     *
+     * @see StructureData#size()
+     */
+    public static final Key<Value<Vector3i>> STRUCTURE_POSITION = KeyFactory.fake("STRUCTURE_POSITION");
+
+    /**
+     * Represents the {@link Key} for representing the size of a {@link Structure}.
+     *
+     * @see StructureData#size()
+     */
+    public static final Key<Value<Vector3i>> STRUCTURE_SIZE = KeyFactory.fake("STRUCTURE_SIZE");
+
+    /**
      * Represents the {@link Key} for representing the amount of "stuck arrows"
      * in {@link Living} entities.
      *
@@ -832,8 +877,6 @@ public final class Keys {
     /**
      * Represents the {@link Key} for representing the "suspended" state
      * of a {@link BlockState}.
-     *
-     * @see SuspendedData#suspended()
      */
     public static final Key<Value<Boolean>> SUSPENDED = KeyFactory.fake("SUSPENDED");
 
