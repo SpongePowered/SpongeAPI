@@ -31,7 +31,6 @@ import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.living.RangedAttackingAgent;
 import org.spongepowered.api.entity.living.Villager;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.animal.Horse;
@@ -246,8 +245,8 @@ public final class AITaskTypes {
     public static final AITaskType PROTECT_OWNER = createDummyFor("PROTECT_OWNER");
 
     /**
-     * {@link AITask} where {@link RangedAttackingAgent}s attack their targets
-     * with projectiles.
+     * {@link AITask} where some types of agents supporting ranged attacking
+     * attack their targets with projectiles.
      */
     public static final AITaskType RANGED_ATTACK = createDummyFor("RANGED_ATTACK");
 

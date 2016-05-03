@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.entity.living.RangedAttackingAgent;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
 /**
  * Represents a Witch.
  */
-public interface Witch extends Monster, RangedAttackingAgent {
+public interface Witch extends Monster, ProjectileSource {
 
 }

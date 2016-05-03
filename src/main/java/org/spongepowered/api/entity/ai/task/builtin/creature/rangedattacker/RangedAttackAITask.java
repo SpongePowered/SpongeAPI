@@ -27,13 +27,13 @@ package org.spongepowered.api.entity.ai.task.builtin.creature.rangedattacker;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
-import org.spongepowered.api.entity.living.RangedAttackingAgent;
+import org.spongepowered.api.entity.living.Agent;
 
 /**
  * An {@link AITask} which the executor attacks its target with ranged attacking
  * method.
  */
-public interface RangedAttackAITask extends AITask<RangedAttackingAgent> {
+public interface RangedAttackAITask extends AITask<Agent> {
 
     /**
      * Creates a new {@link Builder} to build an {@link RangedAttackAITask}.
@@ -107,7 +107,7 @@ public interface RangedAttackAITask extends AITask<RangedAttackingAgent> {
     /**
      * Utility builder for {@link RangedAttackAITask}.
      */
-    interface Builder extends AITaskBuilder<RangedAttackingAgent, RangedAttackAITask, Builder> {
+    interface Builder extends AITaskBuilder<Agent, RangedAttackAITask, Builder> {
 
         /**
          * Set the maximum time between two attacks.
