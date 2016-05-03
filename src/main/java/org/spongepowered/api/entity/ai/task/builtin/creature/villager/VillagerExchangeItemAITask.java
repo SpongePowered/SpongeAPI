@@ -26,20 +26,23 @@ package org.spongepowered.api.entity.ai.task.builtin.creature.villager;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
+import org.spongepowered.api.entity.ai.task.builtin.WatchClosestAITask;
 import org.spongepowered.api.entity.ai.task.builtin.WatchClosestAsInteractingAITask;
 import org.spongepowered.api.entity.living.Villager;
 
 /**
  * An {@link AITask} for {@link Villager}s to exchange items.
  */
-public interface VillagerExchangeItemAITask extends WatchClosestAsInteractingAITask<Villager, VillagerExchangeItemAITask> {
+public interface VillagerExchangeItemAITask<O extends Villager, A extends VillagerExchangeItemAITask<O, A>> extends
+        WatchClosestAsInteractingAITask<O, A> {
 
     /**
      * Creates a new {@link Builder} to build an {@link VillagerExchangeItemAITask}.
      *
      * @return The new builder
      */
-    static Builder builder() {
+    @SuppressWarnings("unchecked")
+    static <O extends Villager, A extends VillagerExchangeItemAITask<O, A>, B extends Builder<O, A, B>> Builder<O, A, B> builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
@@ -58,12 +61,13 @@ public interface VillagerExchangeItemAITask extends WatchClosestAsInteractingAIT
      * @param interactionDelay The time delay
      * @return The task for chaining
      */
-    VillagerExchangeItemAITask setInteractionDelay(int interactionDelay);
+    A setInteractionDelay(int interactionDelay);
 
     /**
      * Utility builder for {@link VillagerExchangeItemAITask}.
      */
-    interface Builder extends WatchClosestAsInteractingAITask.Builder<Villager, VillagerExchangeItemAITask, Builder> {
+    interface Builder<O extends Villager, A extends VillagerExchangeItemAITask<O, A>, B extends Builder<O, A, B>> extends
+            WatchClosestAsInteractingAITask.Builder<O, A, B> {
 
         /**
          * Set the time delay between the start of execution and the time the
@@ -72,7 +76,7 @@ public interface VillagerExchangeItemAITask extends WatchClosestAsInteractingAIT
          * @param interactionDelay The time delay
          * @return The builder for chaining
          */
-        Builder interactionDelay(int interactionDelay);
+        B interactionDelay(int interactionDelay);
 
     }
 

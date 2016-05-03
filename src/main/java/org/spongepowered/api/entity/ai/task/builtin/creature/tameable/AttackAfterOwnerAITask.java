@@ -36,14 +36,15 @@ import java.util.Optional;
  * An {@link AITask} for {@link Tameable}s to attack the {@link Living} that its
  * owner attacks.
  */
-public interface AttackAfterOwnerAITask extends TargetAITask<AttackAfterOwnerAITask, Tameable> {
+public interface AttackAfterOwnerAITask<O extends Tameable, A extends AttackAfterOwnerAITask<O, A>> extends TargetAITask<O, A> {
 
     /**
      * Creates a new {@link Builder} to build an {@link AttackAfterOwnerAITask}.
      *
      * @return The new builder
      */
-    static Builder builder() {
+    @SuppressWarnings("unchecked")
+    static <O extends Tameable, A extends AttackAfterOwnerAITask<O, A>, B extends Builder<O, A, B>> Builder<O, A, B> builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
@@ -58,7 +59,7 @@ public interface AttackAfterOwnerAITask extends TargetAITask<AttackAfterOwnerAIT
     /**
      * Utility builder for {@link AttackAfterOwnerAITask}.
      */
-    interface Builder extends TargetAITask.Builder<Tameable, AttackAfterOwnerAITask, Builder> {
+    interface Builder<O extends Tameable, A extends AttackAfterOwnerAITask<O, A>, B extends Builder<O, A, B>> extends TargetAITask.Builder<O, A, B> {
 
     }
 

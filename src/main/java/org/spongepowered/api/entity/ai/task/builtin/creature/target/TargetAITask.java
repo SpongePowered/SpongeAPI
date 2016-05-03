@@ -31,10 +31,10 @@ import org.spongepowered.api.entity.living.Creature;
 /**
  * An {@link AITask} which the executor tries to approach and attack its target.
  *
- * @param <A> The task type
- * @param <B> The executor type
+ * @param <O> The type of owner
+ * @param <A> The type of task
  */
-public interface TargetAITask<A extends TargetAITask<A, B>, B extends Creature> extends AITask<B> {
+public interface TargetAITask<O extends Creature, A extends TargetAITask<O, A>> extends AITask<O> {
 
     /**
      * Get whether the target should be seen by the executor to execute the
@@ -161,7 +161,7 @@ public interface TargetAITask<A extends TargetAITask<A, B>, B extends Creature> 
      * @param <A> The task type
      * @param <B> The builder type
      */
-    interface Builder<O extends Creature, A extends TargetAITask<A, O>, B extends Builder<O, A, B>>
+    interface Builder<O extends Creature, A extends TargetAITask<O, A>, B extends Builder<O, A, B>>
             extends AITaskBuilder<O, A, B> {
 
         /**

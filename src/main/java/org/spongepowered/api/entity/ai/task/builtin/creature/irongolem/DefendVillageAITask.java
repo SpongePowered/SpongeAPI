@@ -32,21 +32,22 @@ import org.spongepowered.api.entity.living.golem.IronGolem;
 /**
  * An {@link AITask} for {@link IronGolem}s to attack aggressors in the village.
  */
-public interface DefendVillageAITask extends TargetAITask<DefendVillageAITask, IronGolem> {
+public interface DefendVillageAITask<O extends IronGolem, A extends DefendVillageAITask<O, A>> extends TargetAITask<O, A> {
 
     /**
      * Creates a new {@link Builder} to build an {@link DefendVillageAITask}.
      *
      * @return The new builder
      */
-    static Builder builder() {
+    @SuppressWarnings("unchecked")
+    static <O extends IronGolem, A extends DefendVillageAITask<O, A>, B extends Builder<O, A, B>> Builder<O, A, B> builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
      * Utility builder for {@link DefendVillageAITask}.
      */
-    interface Builder extends TargetAITask.Builder<IronGolem, DefendVillageAITask, Builder> {
+    interface Builder<O extends IronGolem, A extends DefendVillageAITask<O, A>, B extends Builder<O, A, B>> extends TargetAITask.Builder<O, A, B> {
 
     }
 

@@ -33,22 +33,24 @@ import org.spongepowered.api.entity.living.monster.Creeper;
  * A special {@link FindNearestAttackableTargetAITask} but it excluded
  * {@link Creeper}s in the filter.
  */
-public interface AttackNearestNonCreeperTargetAITask
-        extends FindNearestAttackableTargetAITask<AttackNearestNonCreeperTargetAITask, IronGolem> {
+public interface AttackNearestNonCreeperTargetAITask<O extends IronGolem, A extends AttackNearestNonCreeperTargetAITask<O, A>>
+        extends FindNearestAttackableTargetAITask<O, A> {
 
     /**
      * Creates a new {@link Builder} to build an {@link AttackNearestNonCreeperTargetAITask}.
      *
      * @return The new builder
      */
-    static Builder builder() {
+    @SuppressWarnings("unchecked")
+    static <O extends IronGolem, A extends AttackNearestNonCreeperTargetAITask<O, A>, B extends Builder<O, A, B>> Builder<O, A, B> builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
      * Utility builder for {@link AttackNearestNonCreeperTargetAITask}.
      */
-    interface Builder extends FindNearestAttackableTargetAITask.Builder<IronGolem, AttackNearestNonCreeperTargetAITask, Builder> {
+    interface Builder<O extends IronGolem, A extends AttackNearestNonCreeperTargetAITask<O, A>, B extends Builder<O, A, B>> extends
+            FindNearestAttackableTargetAITask.Builder<O, A, B> {
 
     }
 

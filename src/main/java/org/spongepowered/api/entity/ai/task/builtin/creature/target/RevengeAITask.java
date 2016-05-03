@@ -38,14 +38,15 @@ import java.util.Set;
  * the executor to attack all entities the type of {@link Living} which attacked
  * the executor.
  */
-public interface RevengeAITask extends TargetAITask<RevengeAITask, Creature> {
+public interface RevengeAITask<O extends Creature, A extends RevengeAITask<O, A>> extends TargetAITask<O, A> {
 
     /**
      * Creates a new {@link Builder} to build an {@link RevengeAITask}.
      *
      * @return The new builder
      */
-    static Builder builder() {
+    @SuppressWarnings("unchecked")
+    static <O extends Creature, A extends RevengeAITask<O, A>, B extends Builder<O, A, B>> Builder<O, A, B> builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
@@ -64,7 +65,7 @@ public interface RevengeAITask extends TargetAITask<RevengeAITask, Creature> {
      * @param groupAnger Whether the executor will call for help
      * @return The task for chaining
      */
-    RevengeAITask setGroupAnger(boolean groupAnger);
+    A setGroupAnger(boolean groupAnger);
 
     /**
      * Get the types of {@link Living} which may be a subclass of the executor
@@ -81,7 +82,7 @@ public interface RevengeAITask extends TargetAITask<RevengeAITask, Creature> {
      * @param nonHelpingTypes The excluded types
      * @return The task for chaining
      */
-    RevengeAITask setNonHelpingTypes(Set<Class<? extends Living>> nonHelpingTypes);
+    A setNonHelpingTypes(Set<Class<? extends Living>> nonHelpingTypes);
 
     /**
      * Get the range that the executor calls for help. Default to {@code 10.0D}.
@@ -96,12 +97,12 @@ public interface RevengeAITask extends TargetAITask<RevengeAITask, Creature> {
      * @param groupAngerRange The range of the call
      * @return The task for chaining
      */
-    RevengeAITask setGroupAngerRange(double groupAngerRange);
+    A setGroupAngerRange(double groupAngerRange);
 
     /**
      * Utility builder for {@link RevengeAITask}.
      */
-    interface Builder extends TargetAITask.Builder<Creature, RevengeAITask, Builder> {
+    interface Builder<O extends Creature, A extends RevengeAITask<O, A>, B extends Builder<O, A, B>> extends TargetAITask.Builder<O, A, B> {
 
         /**
          * Set whether the executor will call entities of the same type for
@@ -110,7 +111,7 @@ public interface RevengeAITask extends TargetAITask<RevengeAITask, Creature> {
          * @param groupAnger Whether the executor will call for help
          * @return The builder for chaining
          */
-        Builder groupAnger(boolean groupAnger);
+        B groupAnger(boolean groupAnger);
 
         /**
          * Set the types of {@link Living} which may be a subclass of the
@@ -119,7 +120,7 @@ public interface RevengeAITask extends TargetAITask<RevengeAITask, Creature> {
          * @param nonHelpingTypes The excluded types
          * @return The builder for chaining
          */
-        Builder nonHelpingTypes(Set<Class<? extends Living>> nonHelpingTypes);
+        B nonHelpingTypes(Set<Class<? extends Living>> nonHelpingTypes);
 
         /**
          * Set the range that the executor calls for help. Default to
@@ -128,7 +129,7 @@ public interface RevengeAITask extends TargetAITask<RevengeAITask, Creature> {
          * @param groupAngerRange The range of the call
          * @return The builder for chaining
          */
-        Builder groupAngerRange(double groupAngerRange);
+        B groupAngerRange(double groupAngerRange);
 
     }
 

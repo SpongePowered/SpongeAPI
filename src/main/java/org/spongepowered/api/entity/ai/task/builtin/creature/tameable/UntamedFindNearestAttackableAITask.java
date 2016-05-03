@@ -34,22 +34,24 @@ import org.spongepowered.api.entity.living.animal.Tameable;
  * {@link FindNearestAttackableTargetAITask} but will stop executing once the
  * executor is tamed.
  */
-public interface UntamedFindNearestAttackableAITask
-        extends FindNearestAttackableTargetAITask<UntamedFindNearestAttackableAITask, Tameable> {
+public interface UntamedFindNearestAttackableAITask<O extends Tameable, A extends UntamedFindNearestAttackableAITask<O, A>>
+        extends FindNearestAttackableTargetAITask<O, A> {
 
     /**
      * Creates a new {@link Builder} to build an {@link UntamedFindNearestAttackableAITask}.
      *
      * @return The new builder
      */
-    static Builder builder() {
+    @SuppressWarnings("unchecked")
+    static <O extends Tameable, A extends UntamedFindNearestAttackableAITask<O, A>, B extends Builder<O, A, B>> Builder<O, A, B> builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
      * Utility builder for {@link UntamedFindNearestAttackableAITask}.
      */
-    interface Builder extends FindNearestAttackableTargetAITask.Builder<Tameable, UntamedFindNearestAttackableAITask, Builder> {
+    interface Builder<O extends Tameable, A extends UntamedFindNearestAttackableAITask<O, A>, B extends Builder<O, A, B>> extends
+            FindNearestAttackableTargetAITask.Builder<O, A, B> {
 
     }
 

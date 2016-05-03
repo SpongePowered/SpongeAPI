@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
@@ -38,6 +39,16 @@ import org.spongepowered.api.entity.living.Agent;
  * @param <A> The task type
  */
 public interface WatchClosestAITask<O extends Agent, A extends WatchClosestAITask<O, A>> extends AITask<O> {
+
+    /**
+     * Creates a new {@link SwimmingAITask.Builder} to build an {@link SwimmingAITask}.
+     *
+     * @return The new builder
+     */
+    @SuppressWarnings("unchecked")
+    static <O extends Agent, A extends WatchClosestAITask<O, A>, B extends Builder<O, A, B>> Builder<O, A, B> builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Get the type of {@link Entity} that the task executor finds and watch.

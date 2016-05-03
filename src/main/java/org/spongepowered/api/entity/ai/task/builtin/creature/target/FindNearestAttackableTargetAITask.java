@@ -35,17 +35,19 @@ import java.util.function.Predicate;
  * An {@link AITask} which the executor finds entities of a type and tries to
  * attack the closest one.
  *
- * @param <A> The task type
- * @param <B> The executor type
+ * @param <O> The type of owner
+ * @param <A> The type of task
  */
-public interface FindNearestAttackableTargetAITask<A extends FindNearestAttackableTargetAITask<A, B>, B extends Creature> extends TargetAITask<A, B> {
+public interface FindNearestAttackableTargetAITask<O extends Creature, A extends FindNearestAttackableTargetAITask<O, A>> extends
+        TargetAITask<O, A> {
 
     /**
      * Creates a new {@link Builder} to build an {@link FindNearestAttackableTargetAITask}.
      *
      * @return The new builder
      */
-    static Builder builder() {
+    @SuppressWarnings("unchecked")
+    static <O extends Creature, A extends FindNearestAttackableTargetAITask<O, A>, B extends Builder<O, A, B>> Builder<O, A, B> builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
@@ -103,7 +105,7 @@ public interface FindNearestAttackableTargetAITask<A extends FindNearestAttackab
      * @param <A> The task type
      * @param <B> The builder type
      */
-    interface Builder<O extends Creature, A extends FindNearestAttackableTargetAITask<A, O>, B extends Builder<O, A, B>>
+    interface Builder<O extends Creature, A extends FindNearestAttackableTargetAITask<O, A>, B extends Builder<O, A, B>>
             extends TargetAITask.Builder<O, A, B> {
 
         /**
