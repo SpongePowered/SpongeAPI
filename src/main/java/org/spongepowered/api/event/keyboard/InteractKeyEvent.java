@@ -25,7 +25,10 @@
 package org.spongepowered.api.event.keyboard;
 
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.keyboard.KeyBinding;
+
+import java.util.function.BiConsumer;
 
 /**
  * Is fired when a {@link Player} interacts with a {@link KeyBinding}.
@@ -38,6 +41,25 @@ public interface InteractKeyEvent extends KeyboardEvent {
      */
     interface Press extends InteractKeyEvent {
 
+        /**
+         * Is fired before the {@link KeyBinding}s press executor, may be cancelled
+         * to cancel the executor.
+         *
+         * @see KeyBinding.Builder#pressExecutor(BiConsumer)
+         */
+        interface Pre extends Press, Cancellable {
+
+        }
+
+        /**
+         * Is fired after the {@link KeyBinding}s press executor and
+         * if the {@link Pre} event wasn't cancelled.
+         *
+         * @see KeyBinding.Builder#pressExecutor(BiConsumer)
+         */
+        interface Post extends Press {
+
+        }
     }
 
     /**
@@ -53,6 +75,26 @@ public interface InteractKeyEvent extends KeyboardEvent {
          * @return The press time in ticks
          */
         int getPressTime();
+
+        /**
+         * Is fired before the {@link KeyBinding}s tick executor, may be cancelled
+         * to cancel the executor.
+         *
+         * @see KeyBinding.Builder#tickExecutor(BiConsumer)
+         */
+        interface Pre extends Tick, Cancellable {
+
+        }
+
+        /**
+         * Is fired after the {@link KeyBinding}s tick executor and
+         * if the {@link Pre} event wasn't cancelled.
+         *
+         * @see KeyBinding.Builder#tickExecutor(BiConsumer)
+         */
+        interface Post extends Tick {
+
+        }
     }
 
     /**
@@ -68,5 +110,25 @@ public interface InteractKeyEvent extends KeyboardEvent {
          * @return The press time in ticks
          */
         int getPressTime();
+
+        /**
+         * Is fired before the {@link KeyBinding}s release executor, may be cancelled
+         * to cancel the executor.
+         *
+         * @see KeyBinding.Builder#releaseExecutor(BiConsumer)
+         */
+        interface Pre extends Release, Cancellable {
+
+        }
+
+        /**
+         * Is fired after the {@link KeyBinding}s release executor and
+         * if the {@link Pre} event wasn't cancelled.
+         *
+         * @see KeyBinding.Builder#releaseExecutor(BiConsumer)
+         */
+        interface Post extends Release {
+
+        }
     }
 }

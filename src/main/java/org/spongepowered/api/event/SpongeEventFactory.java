@@ -3422,6 +3422,42 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.keyboard.InteractKeyEvent.Press.Post}.
+     * 
+     * @param cause The cause
+     * @param keyBinding The key binding
+     * @param targetEntity The target entity
+     * @return A new post press interact key event
+     */
+    public static InteractKeyEvent.Press.Post createInteractKeyEventPressPost(Cause cause, KeyBinding keyBinding, Player targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("keyBinding", keyBinding);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(InteractKeyEvent.Press.Post.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.keyboard.InteractKeyEvent.Press.Pre}.
+     * 
+     * @param cause The cause
+     * @param keyBinding The key binding
+     * @param targetEntity The target entity
+     * @return A new pre press interact key event
+     */
+    public static InteractKeyEvent.Press.Pre createInteractKeyEventPressPre(Cause cause, KeyBinding keyBinding, Player targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("keyBinding", keyBinding);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(InteractKeyEvent.Press.Pre.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.keyboard.InteractKeyEvent.Release}.
      * 
      * @param cause The cause
@@ -3442,6 +3478,46 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.keyboard.InteractKeyEvent.Release.Post}.
+     * 
+     * @param cause The cause
+     * @param keyBinding The key binding
+     * @param targetEntity The target entity
+     * @param pressTime The press time
+     * @return A new post release interact key event
+     */
+    public static InteractKeyEvent.Release.Post createInteractKeyEventReleasePost(Cause cause, KeyBinding keyBinding, Player targetEntity, int pressTime) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("keyBinding", keyBinding);
+        values.put("targetEntity", targetEntity);
+        values.put("pressTime", pressTime);
+        return SpongeEventFactoryUtils.createEventImpl(InteractKeyEvent.Release.Post.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.keyboard.InteractKeyEvent.Release.Pre}.
+     * 
+     * @param cause The cause
+     * @param keyBinding The key binding
+     * @param targetEntity The target entity
+     * @param pressTime The press time
+     * @return A new pre release interact key event
+     */
+    public static InteractKeyEvent.Release.Pre createInteractKeyEventReleasePre(Cause cause, KeyBinding keyBinding, Player targetEntity, int pressTime) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("keyBinding", keyBinding);
+        values.put("targetEntity", targetEntity);
+        values.put("pressTime", pressTime);
+        return SpongeEventFactoryUtils.createEventImpl(InteractKeyEvent.Release.Pre.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.keyboard.InteractKeyEvent.Tick}.
      * 
      * @param cause The cause
@@ -3457,6 +3533,46 @@ public class SpongeEventFactory {
         values.put("targetEntity", targetEntity);
         values.put("pressTime", pressTime);
         return SpongeEventFactoryUtils.createEventImpl(InteractKeyEvent.Tick.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.keyboard.InteractKeyEvent.Tick.Post}.
+     * 
+     * @param cause The cause
+     * @param keyBinding The key binding
+     * @param targetEntity The target entity
+     * @param pressTime The press time
+     * @return A new post tick interact key event
+     */
+    public static InteractKeyEvent.Tick.Post createInteractKeyEventTickPost(Cause cause, KeyBinding keyBinding, Player targetEntity, int pressTime) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("keyBinding", keyBinding);
+        values.put("targetEntity", targetEntity);
+        values.put("pressTime", pressTime);
+        return SpongeEventFactoryUtils.createEventImpl(InteractKeyEvent.Tick.Post.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.keyboard.InteractKeyEvent.Tick.Pre}.
+     * 
+     * @param cause The cause
+     * @param keyBinding The key binding
+     * @param targetEntity The target entity
+     * @param pressTime The press time
+     * @return A new pre tick interact key event
+     */
+    public static InteractKeyEvent.Tick.Pre createInteractKeyEventTickPre(Cause cause, KeyBinding keyBinding, Player targetEntity, int pressTime) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("keyBinding", keyBinding);
+        values.put("targetEntity", targetEntity);
+        values.put("pressTime", pressTime);
+        return SpongeEventFactoryUtils.createEventImpl(InteractKeyEvent.Tick.Pre.class, values);
     }
 
     /**

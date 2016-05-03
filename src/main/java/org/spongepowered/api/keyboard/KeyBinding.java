@@ -31,6 +31,8 @@ import org.spongepowered.api.event.keyboard.RegisterKeyBindingsEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.function.BiConsumer;
+
 import javax.annotation.Nullable;
 
 /**
@@ -94,6 +96,34 @@ public interface KeyBinding extends CatalogType {
          * @return This builder for chaining
          */
         Builder displayName(Text displayName);
+
+        /**
+         * Sets the press executor of this key binding, it will be called
+         * when a specific {@link Player} the key binding pressed.
+         *
+         * @param executor The press executor
+         * @return This builder for chaining
+         */
+        Builder pressExecutor(@Nullable BiConsumer<Player, KeyBinding> executor);
+
+        /**
+         * Sets the release executor of this key binding, it will be called
+         * when a specific {@link Player} the key binding release.
+         *
+         * @param executor The release executor
+         * @return This builder for chaining
+         */
+        Builder releaseExecutor(@Nullable BiConsumer<Player, KeyBinding> executor);
+
+        /**
+         * Sets the tick executor of this key binding, it will be called
+         * when a specific {@link Player} the key binding holds the key
+         * and a tick occurred.
+         *
+         * @param executor The tick executor
+         * @return This builder for chaining
+         */
+        Builder tickExecutor(@Nullable BiConsumer<Player, KeyBinding> executor);
 
         /**
          * Builds a new instanceof of a {@link KeyBinding}.
