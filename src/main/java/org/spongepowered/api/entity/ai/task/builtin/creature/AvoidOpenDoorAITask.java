@@ -26,14 +26,14 @@ package org.spongepowered.api.entity.ai.task.builtin.creature;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.builtin.GroundNavigationOnly;
+import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 
 /**
  * An {@link AITask} which the executor moves around and prevents the pathfinder
  * from looking for a way though doors.
  */
-public interface AvoidOpenDoorAITask extends GroundNavigationOnly<Creature> {
+public interface AvoidOpenDoorAITask extends AITask<Creature> {
 
     /**
      * Creates a new {@link Builder} to build an {@link AvoidOpenDoorAITask}.
@@ -47,7 +47,7 @@ public interface AvoidOpenDoorAITask extends GroundNavigationOnly<Creature> {
     /**
      * Utility builder for {@link AvoidOpenDoorAITask}.
      */
-    interface Builder extends GroundNavigationOnly.Builder<Creature, AvoidOpenDoorAITask, Builder> {
+    interface Builder extends AITaskBuilder<Creature, AvoidOpenDoorAITask, Builder> {
 
     }
 

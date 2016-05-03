@@ -26,13 +26,14 @@ package org.spongepowered.api.entity.ai.task.builtin;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
+import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
 /**
  * An {@link AITask} which the executor has swimming enabled in the pathfinder
  * and will try to stay above liquid randomly when in the liquid.
  */
-public interface SwimmingAITask extends GroundNavigationOnly<Agent> {
+public interface SwimmingAITask extends AITask<Agent> {
 
     /**
      * Creates a new {@link Builder} to build an {@link SwimmingAITask}.
@@ -61,7 +62,7 @@ public interface SwimmingAITask extends GroundNavigationOnly<Agent> {
     /**
      * A utility builder for {@link SwimmingAITask}.
      */
-    interface Builder extends GroundNavigationOnly.Builder<Agent, SwimmingAITask, Builder> {
+    interface Builder extends AITaskBuilder<Agent, SwimmingAITask, Builder> {
 
         /**
          * Set the chance for the executor to stay above the liquid.

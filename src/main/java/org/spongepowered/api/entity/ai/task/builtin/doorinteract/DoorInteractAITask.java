@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.ai.task.builtin.doorinteract;
 
 import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.builtin.GroundNavigationOnly;
+import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
 /**
@@ -35,7 +35,7 @@ import org.spongepowered.api.entity.living.Agent;
  * @param <A> The task type
  * @param <B> The executor type
  */
-public interface DoorInteractAITask<A extends DoorInteractAITask<A, B>, B extends Agent> extends GroundNavigationOnly<B> {
+public interface DoorInteractAITask<A extends DoorInteractAITask<A, B>, B extends Agent> extends AITask<B> {
 
     /**
      * Utility builder for {@link DoorInteractAITask}.
@@ -44,7 +44,7 @@ public interface DoorInteractAITask<A extends DoorInteractAITask<A, B>, B extend
      * @param <A> The task type
      * @param <B> The builder type
      */
-    interface Builder<O extends Agent, A extends DoorInteractAITask<A, O>, B extends Builder<O, A, B>> extends GroundNavigationOnly.Builder<O, A, B> {
+    interface Builder<O extends Agent, A extends DoorInteractAITask<A, O>, B extends Builder<O, A, B>> extends AITaskBuilder<O, A, B> {
 
     }
 

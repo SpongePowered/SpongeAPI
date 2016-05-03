@@ -26,13 +26,13 @@ package org.spongepowered.api.entity.ai.task.builtin.creature.tameable;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.builtin.GroundNavigationOnly;
+import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.animal.Tameable;
 
 /**
  * An {@link AITask} for {@link Tameable}s to follow their owners.
  */
-public interface FollowOwnerAITask extends GroundNavigationOnly<Tameable> {
+public interface FollowOwnerAITask extends AITask<Tameable> {
 
     /**
      * Creates a new {@link Builder} to build an {@link FollowOwnerAITask}.
@@ -112,7 +112,7 @@ public interface FollowOwnerAITask extends GroundNavigationOnly<Tameable> {
     /**
      * Utility builder for {@link FollowOwnerAITask}.
      */
-    interface Builder extends GroundNavigationOnly.Builder<Tameable, FollowOwnerAITask, Builder> {
+    interface Builder extends AITaskBuilder<Tameable, FollowOwnerAITask, Builder> {
 
         /**
          * Set the moving speed of the executor.

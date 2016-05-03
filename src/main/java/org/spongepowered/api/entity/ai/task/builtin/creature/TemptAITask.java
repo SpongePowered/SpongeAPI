@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.ai.task.builtin.creature;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.builtin.GroundNavigationOnly;
+import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -39,7 +39,7 @@ import java.util.function.Predicate;
  * An {@link AITask} which the executor gets attracted by an {@link ItemStack}
  * held in the hand of a {@link Humanoid} and follows that humanoid.
  */
-public interface TemptAITask extends GroundNavigationOnly<Creature> {
+public interface TemptAITask extends AITask<Creature> {
 
     /**
      * Creates a new {@link Builder} to build an {@link TemptAITask}.
@@ -161,7 +161,7 @@ public interface TemptAITask extends GroundNavigationOnly<Creature> {
     /**
      * Utility builder for {@link TemptAITask}.
      */
-    interface Builder extends GroundNavigationOnly.Builder<Creature, TemptAITask, Builder> {
+    interface Builder extends AITaskBuilder<Creature, TemptAITask, Builder> {
 
         /**
          * Set whether the executor will stop execution if the humanoid makes a

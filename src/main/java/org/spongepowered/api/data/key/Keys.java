@@ -501,8 +501,6 @@ public final class Keys {
      */
     public static final Key<Value<Boolean>> IN_WALL = KeyFactory.fake("IN_WALL");
 
-    public static final Key<Value<Boolean>> IRON_GOLEM_HOLDING_FLOWER = KeyFactory.fake("IRON_GOLEM_HOLDING_FLOWER");
-
     public static final Key<Value<Boolean>> IS_AFLAME = KeyFactory.fake("IS_AFLAME");
 
     public static final Key<Value<Boolean>> IS_FLYING = KeyFactory.fake("IS_FLYING");
