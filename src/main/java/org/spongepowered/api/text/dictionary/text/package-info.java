@@ -23,4 +23,4 @@
  * THE SOFTWARE.
  */
 @org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.text.dictionary.config;
+package org.spongepowered.api.text.dictionary.text;

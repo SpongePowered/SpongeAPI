@@ -22,39 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.dictionary.config;
-
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.google.common.collect.Maps;
-import org.spongepowered.api.text.dictionary.AbstractRemoteDictionary;
-
-import java.util.Locale;
-import java.util.Map;
-import java.util.function.Function;
+package org.spongepowered.api.text.dictionary;
 
 /**
- * Abstract implementation of {@link ConfigDictionary}.
+ * Represents the Sponge dictionary.
+ *
+ * <p>Plugins should not implement this interface.</p>
  */
-public abstract class AbstractConfigDictionary extends AbstractRemoteDictionary implements ConfigDictionary {
-
-    protected final Map<Locale, ConfigResourceBundle> bundles = Maps.newHashMap();
-    protected final Function<Locale, ConfigResourceBundle> loader;
-
-    public AbstractConfigDictionary(Object subject, Locale defaultLocale) {
-        super(subject, defaultLocale);
-        this.loader = locale -> new ConfigResourceBundle(this.getNode(locale));
-    }
-
-    @Override
-    public ConfigResourceBundle getBundle(Locale locale) {
-        checkNotNull(locale, "locale");
-        return this.bundles.computeIfAbsent(locale, this.loader);
-    }
-
-    @Override
-    public void clearCache() {
-        this.bundles.clear();
-    }
+public interface SpongeDictionary extends Dictionary {
 
 }

@@ -22,11 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.dictionary;
+package org.spongepowered.api.text.dictionary.text;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.dictionary.Dictionary;
 import org.spongepowered.api.text.serializer.TextSerializer;
 
 import java.util.Locale;
@@ -50,31 +51,6 @@ public class TextSerializerDelegateDictionary implements TextDictionary {
         return this.delegate.get(key, locale);
     }
 
-    /**
-     * Gets the entry for the specified key in this dictionary
-     * for the {@link #getDefaultLocale() default locale}.
-     *
-     * @param key The key whose associated value is to be returned
-     * @return The {@link Text} value for {@code key}, if present,
-     *     {@link Optional#empty()} otherwise
-     * @see Dictionary#get(String)
-     */
-    @Override
-    public Optional<Text> getText(String key) {
-        return this.getText(key, this.getDefaultLocale());
-    }
-
-    /**
-     * Gets the entry for the specified key for the specified
-     * {@link Locale}.
-     *
-     * @param key The key whose associated value is to be returned
-     * @param locale The locale under which the value should be
-     *     obtained in
-     * @return The {@link Text} value for {@code key}, if present,
-     *     {@link Optional#empty()} otherwise
-     * @see Dictionary#get(String, Locale)
-     */
     @Override
     public Optional<Text> getText(String key, Locale locale) {
         return this.get(key, locale).map(this.serializer::deserializeUnchecked);
@@ -84,4 +60,5 @@ public class TextSerializerDelegateDictionary implements TextDictionary {
     public Object getSubject() {
         return this.delegate.getSubject();
     }
+
 }

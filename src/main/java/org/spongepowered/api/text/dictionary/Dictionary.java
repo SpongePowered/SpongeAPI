@@ -49,6 +49,19 @@ public interface Dictionary {
     }
 
     /**
+     * Gets the entry for the specified key in this dictionary
+     * for the {@link #getDefaultLocale() default locale}.
+     *
+     * @param key The key whose associated value is to be returned
+     * @param args An array of formatting arguments
+     * @return The string value for {@code key}, if present,
+     *     {@link Optional#empty()} otherwise
+     */
+    default Optional<String> get(String key, Object... args) {
+        return this.get(key, this.getDefaultLocale(), args);
+    }
+
+    /**
      * Gets the entry for the specified key for the specified
      * {@link Locale}.
      *
@@ -59,6 +72,26 @@ public interface Dictionary {
      *     {@link Optional#empty()} otherwise
      */
     Optional<String> get(String key, Locale locale);
+
+    /**
+     * Gets the entry for the specified key for the specified
+     * {@link Locale}.
+     *
+     * @param key The key whose associated value is to be returned
+     * @param locale The locale under which the value should be
+     *     obtained in
+     * @param args An array of formatting arguments
+     * @return The string value for {@code key}, if present,
+     *     {@link Optional#empty()} otherwise
+     */
+    default Optional<String> get(String key, Locale locale, Object... args) {
+        Optional<String> string = this.get(key, locale);
+        if (!string.isPresent()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(String.format(string.get(), args));
+        }
+    }
 
     /**
      * Gets the default {@link Locale} to be used with this dictionary.

@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.dictionary.config;
+package org.spongepowered.api.text.dictionary.remote.config;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -31,7 +31,7 @@ import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
 import org.spongepowered.api.text.dictionary.CachingDictionary;
-import org.spongepowered.api.text.dictionary.RemoteDictionary;
+import org.spongepowered.api.text.dictionary.remote.RemoteDictionary;
 import org.spongepowered.api.text.dictionary.bundle.ResourceBundleDictionary;
 
 import java.io.BufferedReader;

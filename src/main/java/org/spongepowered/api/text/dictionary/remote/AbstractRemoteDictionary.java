@@ -22,10 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.dictionary;
+package org.spongepowered.api.text.dictionary.remote;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.text.dictionary.AbstractDictionary;
+import org.spongepowered.api.text.dictionary.DictionarySourceResolver;
 import org.spongepowered.api.text.translation.locale.Locales;
 
 import java.io.InputStream;

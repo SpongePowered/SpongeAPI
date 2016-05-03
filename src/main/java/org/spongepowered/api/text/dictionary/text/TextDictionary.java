@@ -22,9 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.dictionary;
+package org.spongepowered.api.text.dictionary.text;
 
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.dictionary.Dictionary;
+import org.spongepowered.api.text.dictionary.MinecraftDictionary;
 
 import java.util.Locale;
 import java.util.Optional;
@@ -48,6 +50,19 @@ public interface TextDictionary extends Dictionary {
     }
 
     /**
+     * Gets the entry for the specified key in this dictionary
+     * for the {@link #getDefaultLocale() default locale}.
+     *
+     * @param key The key whose associated value is to be returned
+     * @param args An array of formatting arguments
+     * @return The string value for {@code key}, if present,
+     *     {@link Optional#empty()} otherwise
+     */
+    default Optional<Text> getText(String key, Object... args) {
+        return this.getText(key, this.getDefaultLocale(), args);
+    }
+
+    /**
      * Gets the entry for the specified key for the specified
      * {@link Locale}.
      *
@@ -59,5 +74,25 @@ public interface TextDictionary extends Dictionary {
      * @see Dictionary#get(String, Locale)
      */
     Optional<Text> getText(String key, Locale locale);
+
+    /**
+     * Gets the entry for the specified key for the specified
+     * {@link Locale}.
+     *
+     * @param key The key whose associated value is to be returned
+     * @param locale The locale under which the value should be
+     *     obtained in
+     * @param args An array of formatting arguments
+     * @return The string value for {@code key}, if present,
+     *     {@link Optional#empty()} otherwise
+     */
+    default Optional<Text> getText(String key, Locale locale, Object... args) {
+        Optional<String> string = this.get(key, locale);
+        if (!string.isPresent()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(MinecraftDictionary.format(string.get(), args));
+        }
+    }
 
 }

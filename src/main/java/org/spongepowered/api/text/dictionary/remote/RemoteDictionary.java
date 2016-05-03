@@ -22,48 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.dictionary.config;
+package org.spongepowered.api.text.dictionary.remote;
 
-import com.google.common.collect.Maps;
-import ninja.leaping.configurate.ConfigurationNode;
+import org.spongepowered.api.text.dictionary.Dictionary;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Locale;
-import java.util.Map;
 
 /**
- * Represents a {@link ConfigDictionary} with a different source per-locale.
+ * A {@link Dictionary} with a {@link InputStream} source.
  */
-public class MultiSourceConfigDictionary extends AbstractConfigDictionary {
+public interface RemoteDictionary extends Dictionary {
 
-    protected final Map<Locale, ConfigurationNode> nodes = Maps.newHashMap();
-
-    public MultiSourceConfigDictionary(Object subject, Locale defaultLocale) {
-        super(subject, defaultLocale);
+    /**
+     * Returns an {@link InputStream} for the remote source of this Dictionary.
+     *
+     * @return Source of dictionary
+     * @throws IOException
+     */
+    default InputStream getSource() throws Exception {
+        return this.getSource(this.getDefaultLocale());
     }
 
-    @Override
-    public ConfigurationNode load(Locale locale) throws IOException {
-        ConfigurationNode node = super.load(locale);
-        this.nodes.put(locale, node);
-        this.bundles.put(locale, new ConfigResourceBundle(node));
-        return node;
-    }
-
-    @Override
-    public ConfigurationNode getNode(Locale locale) {
-        ConfigurationNode node = this.nodes.get(locale);
-        if (node == null) {
-            throw new IllegalStateException("Tried to read MultiSourceConfigDictionary before locale " + locale + " was loaded.");
-        }
-
-        return node;
-    }
-
-    @Override
-    public void clearCache() {
-        super.clearCache();
-        this.nodes.clear();
-    }
+    /**
+     * Returns an {@link InputStream} for the remote source of this Dictionary.
+     *
+     * @return Source of dictionary
+     * @throws IOException
+     */
+    InputStream getSource(Locale locale) throws Exception;
 
 }

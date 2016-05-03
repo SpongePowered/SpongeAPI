@@ -22,39 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.dictionary.config;
-
-import ninja.leaping.configurate.ConfigurationNode;
-
-import java.io.IOException;
-import java.util.Locale;
-
-import javax.annotation.Nullable;
-
-/**
- * Represents a simple implementation of {@link ConfigDictionary} with a single source.
- */
-public class SimpleConfigDictionary extends AbstractConfigDictionary {
-
-    @Nullable protected ConfigurationNode root;
-
-    public SimpleConfigDictionary(Object subject, Locale defaultLocale) {
-        super(subject, defaultLocale);
-    }
-
-    @Override
-    public ConfigurationNode load(Locale locale) throws IOException {
-        this.root = super.load(locale);
-        return this.root;
-    }
-
-    @Override
-    public ConfigurationNode getNode(Locale locale) {
-        if (this.root == null) {
-            throw new IllegalStateException("Tried to read SimpleConfigDictionary before it was loaded.");
-        }
-
-        return this.root.getNode(locale.toString());
-    }
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.text.dictionary.remote.config;
