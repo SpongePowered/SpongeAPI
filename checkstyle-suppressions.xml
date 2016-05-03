@@ -4,6 +4,7 @@
 <suppressions>
     <suppress checks="JavadocMethod" files="^src[\\/]test[\\/]java"/>
     <suppress checks="Indentation" files="package-info\.java"/>
+    <suppress checks="AbbreviationAsWordInName" files="AI"/>
     <suppress checks="AbbreviationAsWordInName" files="TNT"/>
     <suppress checks="AbbreviationAsWordInName" files="PVP"/>
     <suppress checks="AbbreviationAsWordInName" files="PEBKAC"/>
