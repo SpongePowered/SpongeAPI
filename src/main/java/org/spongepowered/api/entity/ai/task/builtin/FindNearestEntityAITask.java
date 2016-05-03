@@ -88,7 +88,6 @@ public interface FindNearestEntityAITask extends AITask<Agent> {
      */
     FindNearestEntityAITask setFilter(Predicate<Living> filter);
 
-
     /**
      * Utility builder for {@link FindNearestEntityAITask}.
      */

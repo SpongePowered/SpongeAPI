@@ -66,15 +66,15 @@ public interface OcelotStyleAttackAITask extends AITask<Agent> {
      *
      * @return The ticks between two attacks
      */
-    int getDefaultAttackCountDown();
+    int getAttackCoolDown();
 
     /**
      * Sets the ticks between two attacks. Default to 20 ticks.
      *
-     * @param attackCountDown The ticks between two attacks
+     * @param attackCoolDown The ticks between two attacks
      * @return The task for chaining
      */
-    OcelotStyleAttackAITask setDefaultAttackCountDown(int attackCountDown);
+    OcelotStyleAttackAITask setAttackCoolDown(int attackCoolDown);
 
     /**
      * Utility builder for {@link OcelotStyleAttackAITask}.
@@ -96,7 +96,7 @@ public interface OcelotStyleAttackAITask extends AITask<Agent> {
          * @param attackCountDown The ticks between two attacks
          * @return The builder for chaining
          */
-        Builder attackCountDown(int attackCountDown);
+        Builder attackCoolDown(int attackCoolDown);
 
     }
 
