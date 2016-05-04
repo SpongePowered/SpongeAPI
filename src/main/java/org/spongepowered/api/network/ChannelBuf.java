@@ -219,12 +219,11 @@ public interface ChannelBuf {
      */
     boolean getBoolean(int index);
 
-
     /**
      * Sets the specified byte at the current writerIndex and increases
      * the writerIndex by 1 in this buffer.
      *
-     * @param data The boolean data
+     * @param data The byte data
      * @return This stream for chaining
      */
     ChannelBuf writeByte(byte data);
@@ -235,7 +234,7 @@ public interface ChannelBuf {
      * of this buffer.
      *
      * @param index The index
-     * @param data The boolean data
+     * @param data The byte data
      * @return This stream for chaining
      */
     ChannelBuf setByte(int index, byte data);
@@ -257,10 +256,144 @@ public interface ChannelBuf {
     byte getByte(int index);
 
     /**
+     * Sets the specified byte array at the current writerIndex and increases
+     * the writerIndex by the number of bytes and the size of the length as a
+     * varint.
+     *
+     * <p>The length of the array is written preceding the data as a varint.</p>
+     *
+     * @param data The byte array data
+     * @return This stream for chaining
+     */
+    ChannelBuf writeByteArray(byte[] data);
+
+    /**
+     * Sets the specified byte array at the current writerIndex and increases
+     * the writerIndex by the length specified and the size of the length as a
+     * varint.
+     *
+     * <p>The length of the array is written preceding the data as a varint.</p>
+     *
+     * @param data The byte array data
+     * @param start The starting index of the source array to start reading from
+     * @param length The length of bytes to read from the source array
+     * @return This stream for chaining
+     */
+    ChannelBuf writeByteArray(byte[] data, int start, int length);
+
+    /**
+     * Sets the specified byte array at the specified absolute index in this
+     * buffer. This method does not modify readerIndex or writerIndex
+     * of this buffer.
+     *
+     * <p>The length of the array is written preceding the data as a varint.</p>
+     *
+     * @param index The index
+     * @param data The byte array data
+     * @return This stream for chaining
+     */
+    ChannelBuf setByteArray(int index, byte[] data);
+
+    /**
+     * Sets the specified byte array at the specified absolute index in this
+     * buffer. This method does not modify readerIndex or writerIndex
+     * of this buffer.
+     *
+     * <p>The length of the array is written preceding the data as a varint.</p>
+     *
+     * @param index The index
+     * @param data The byte array data
+     * @param start The starting index of the source array to start reading from
+     * @param length The length of bytes to read from the source array
+     * @return This stream for chaining
+     */
+    ChannelBuf setByteArray(int index, byte[] data, int start, int length);
+
+    /**
+     * Gets a byte array at the current readerIndex and increases the
+     * readerIndex by the length of the array and the length of the array size.
+     *
+     * <p>The length of the array is expected to be preceding the array as a
+     * varint.</p>
+     *
+     * @return The byte array
+     */
+    byte[] readByteArray();
+
+    /**
+     * Gets a byte array at the specified absolute index in this buffer.
+     *
+     * <p>The length of the array is expected to be preceding the array as a
+     * varint.</p>
+     *
+     * @return The byte array
+     */
+    byte[] readByteArray(int index);
+
+    /**
+     * Sets the specified byte array at the current writerIndex and increases
+     * the writerIndex by the number of bytes.
+     *
+     * @param data The byte array data
+     * @return This stream for chaining
+     */
+    ChannelBuf writeBytes(byte[] data);
+
+    /**
+     * Sets the specified byte array at the current writerIndex and increases
+     * the writerIndex by the length specified.
+     *
+     * @param data The byte array data
+     * @param start The starting index of the source array to start reading from
+     * @param length The length of bytes to read from the source array
+     * @return This stream for chaining
+     */
+    ChannelBuf writeBytes(byte[] data, int start, int length);
+
+    /**
+     * Sets the specified byte array at the specified absolute index in this
+     * buffer. This method does not modify readerIndex or writerIndex
+     * of this buffer.
+     *
+     * @param index The index
+     * @param data The byte array data
+     * @return This stream for chaining
+     */
+    ChannelBuf setBytes(int index, byte[] data);
+
+    /**
+     * Sets the specified byte array at the specified absolute index in this
+     * buffer. This method does not modify readerIndex or writerIndex
+     * of this buffer.
+     *
+     * @param index The index
+     * @param data The byte array data
+     * @param start The starting index of the source array to start reading from
+     * @param length The length of bytes to read from the source array
+     * @return This stream for chaining
+     */
+    ChannelBuf setBytes(int index, byte[] data, int start, int length);
+
+    /**
+     * Gets a byte array at the current readerIndex and increases the
+     * readerIndex by the length of the array.
+     *
+     * @return The byte array
+     */
+    byte[] readBytes(int length);
+
+    /**
+     * Gets a byte array at the specified absolute index in this buffer.
+     *
+     * @return The byte array
+     */
+    byte[] readBytes(int index, int length);
+
+    /**
      * Sets the specified short integer at the current writerIndex and
      * increases the writerIndex by 2 in this buffer.
      *
-     * @param data The boolean data
+     * @param data The short data
      * @return This stream for chaining
      */
     ChannelBuf writeShort(short data);
@@ -271,7 +404,7 @@ public interface ChannelBuf {
      * of this buffer.
      *
      * @param index The index
-     * @param data The boolean data
+     * @param data The short data
      * @return This stream for chaining
      */
     ChannelBuf setShort(int index, short data);
@@ -296,7 +429,7 @@ public interface ChannelBuf {
      * Sets the specified character at the current writerIndex and
      * increases the writerIndex by 2 in this buffer.
      *
-     * @param data The boolean data
+     * @param data The char data
      * @return This stream for chaining
      */
     ChannelBuf writeChar(char data);
@@ -307,7 +440,7 @@ public interface ChannelBuf {
      * of this buffer.
      *
      * @param index The index
-     * @param data The boolean data
+     * @param data The char data
      * @return This stream for chaining
      */
     ChannelBuf setChar(int index, char data);
@@ -332,7 +465,7 @@ public interface ChannelBuf {
      * Sets the specified integer at the current writerIndex and increases
      * the writerIndex by 4 in this buffer.
      *
-     * @param data The boolean data
+     * @param data The integer data
      * @return This stream for chaining
      */
     ChannelBuf writeInteger(int data);
@@ -343,7 +476,7 @@ public interface ChannelBuf {
      * of this buffer.
      *
      * @param index The index
-     * @param data The boolean data
+     * @param data The integer data
      * @return This stream for chaining
      */
     ChannelBuf setInteger(int index, int data);
@@ -368,7 +501,7 @@ public interface ChannelBuf {
      * Sets the specified long integer at the current writerIndex and
      * increases the writerIndex by 8 in this buffer.
      *
-     * @param data The boolean data
+     * @param data The long data
      * @return This stream for chaining
      */
     ChannelBuf writeLong(long data);
@@ -379,7 +512,7 @@ public interface ChannelBuf {
      * of this buffer.
      *
      * @param index The index
-     * @param data The boolean data
+     * @param data The long data
      * @return This stream for chaining
      */
     ChannelBuf setLong(int index, long data);
@@ -404,7 +537,7 @@ public interface ChannelBuf {
      * Sets the specified float at the current writerIndex and increases
      * the writerIndex by 4 in this buffer.
      *
-     * @param data The boolean data
+     * @param data The float data
      * @return This stream for chaining
      */
     ChannelBuf writeFloat(float data);
@@ -415,7 +548,7 @@ public interface ChannelBuf {
      * of this buffer.
      *
      * @param index The index
-     * @param data The boolean data
+     * @param data The float data
      * @return This stream for chaining
      */
     ChannelBuf setFloat(int index, float data);
@@ -440,7 +573,7 @@ public interface ChannelBuf {
      * Sets the specified double at the current writerIndex and increases
      * the writerIndex by 8 in this buffer.
      *
-     * @param data The boolean data
+     * @param data The double data
      * @return This stream for chaining
      */
     ChannelBuf writeDouble(double data);
@@ -451,7 +584,7 @@ public interface ChannelBuf {
      * of this buffer.
      *
      * @param index The index
-     * @param data The boolean data
+     * @param data The double data
      * @return This stream for chaining
      */
     ChannelBuf setDouble(int index, double data);
@@ -473,10 +606,72 @@ public interface ChannelBuf {
     double getDouble(int index);
 
     /**
-     * Sets the specified string at the current writerIndex and increases
-     * the writerIndex by the length of the string.
+     * Sets the specified varint at the current writerIndex and increases the
+     * writerIndex by the number of bytes written.
+     * 
+     * <p>The number of bytes written depends on the size of the value, see <a
+     * href=
+     * "https://developers.google.com/protocol-buffers/docs/encoding#varints">
+     * https://developers.google.com/protocol-buffers/docs/encoding#varints</a>
+     * for a full description.</p>
      *
-     * @param data The boolean data
+     * @param data The varint data
+     * @return This stream for chaining
+     */
+    ChannelBuf writeVarInt(int value);
+
+    /**
+     * Sets the specified varint at the specified absolute index in this buffer.
+     * This method does not modify readerIndex or writerIndex of this buffer.
+     * 
+     * <p>The number of bytes written depends on the size of the value, see <a
+     * href=
+     * "https://developers.google.com/protocol-buffers/docs/encoding#varints">
+     * https://developers.google.com/protocol-buffers/docs/encoding#varints</a>
+     * for a full description.</p>
+     *
+     * @param index The index
+     * @param data The varint data
+     * @return This stream for chaining
+     */
+    ChannelBuf setVarInt(int index, int value);
+
+    /**
+     * Gets a varint at the current readerIndex and increases the readerIndex by
+     * the number of bytes read.
+     * 
+     * <p>The number of bytes read depends on the size of the value, see <a
+     * href=
+     * "https://developers.google.com/protocol-buffers/docs/encoding#varints">
+     * https://developers.google.com/protocol-buffers/docs/encoding#varints</a>
+     * for a full description.</p>
+     *
+     * @return The varint
+     */
+    int readVarInt();
+
+    /**
+     * Gets a varint at the specified absolute index in this buffer.
+     * 
+     * <p>The number of bytes read depends on the size of the value, see <a
+     * href=
+     * "https://developers.google.com/protocol-buffers/docs/encoding#varints">
+     * https://developers.google.com/protocol-buffers/docs/encoding#varints</a>
+     * for a full description.</p>
+     *
+     * @param index The index
+     * @return The double
+     */
+    int getVarInt(int index);
+
+    /**
+     * Sets the specified string at the current writerIndex and increases the
+     * writerIndex by the length of the string.
+     * 
+     * <p>The string will be encoded as the utf length as a varint followed by
+     * the UTF-8 bytes of the string.</p>
+     *
+     * @param data The string data
      * @return This stream for chaining
      */
     ChannelBuf writeString(String data);
@@ -485,16 +680,22 @@ public interface ChannelBuf {
      * Sets the string at the specified absolute index in this
      * buffer. This method does not modify readerIndex or writerIndex
      * of this buffer.
+     * 
+     * <p>The string will be encoded as the utf length as a varint followed by
+     * the UTF-8 bytes of the string.</p>
      *
      * @param index The index
-     * @param data The boolean data
+     * @param data The string data
      * @return This stream for chaining
      */
     ChannelBuf setString(int index, String data);
 
     /**
-     * Gets a string at the current readerIndex and increases the
-     * readerIndex by 1 in this buffer.
+     * Gets a string at the current readerIndex and increases the readerIndex by
+     * the length of a varint followed by the utf-8 bytes of the string.
+     * 
+     * <p>The string will be encoded as the utf length as a varint followed by
+     * the UTF-8 bytes of the string.</p>
      *
      * @return The string
      */
@@ -502,6 +703,9 @@ public interface ChannelBuf {
 
     /**
      * Gets a string at the specified absolute index in this buffer.
+     * 
+     * <p>The string will be encoded as the utf length as a varint followed by
+     * the UTF-8 bytes of the string.</p>
      *
      * @param index The index
      * @return The string
@@ -509,10 +713,58 @@ public interface ChannelBuf {
     String getString(int index);
 
     /**
+     * Sets the specified string at the current writerIndex and increases the
+     * writerIndex by the length of the string.
+     * 
+     * <p>The string will be encoded as the utf length as a short followed by
+     * the UTF-8 bytes of the string.</p>
+     *
+     * @param data The string data
+     * @return This stream for chaining
+     */
+    ChannelBuf writeUTF(String data);
+
+    /**
+     * Sets the string at the specified absolute index in this
+     * buffer. This method does not modify readerIndex or writerIndex
+     * of this buffer.
+     * 
+     * <p>The string will be encoded as the utf length as a short followed by
+     * the UTF-8 bytes of the string.</p>
+     *
+     * @param index The index
+     * @param data The string data
+     * @return This stream for chaining
+     */
+    ChannelBuf setUTF(int index, String data);
+
+    /**
+     * Gets a string at the current readerIndex and increases the readerIndex by
+     * the length of a varint followed by the utf-8 bytes of the string.
+     * 
+     * <p>The string will be encoded as the utf length as a short followed by
+     * the UTF-8 bytes of the string.</p>
+     *
+     * @return The string
+     */
+    String readUTF();
+
+    /**
+     * Gets a string at the specified absolute index in this buffer.
+     * 
+     * <p>The string will be encoded as the utf length as a short followed by
+     * the UTF-8 bytes of the string.</p>
+     *
+     * @param index The index
+     * @return The string
+     */
+    String getUTF(int index);
+
+    /**
      * Sets the specified {@link UUID} at the current writerIndex and
      * increases the writerIndex by 16 in this buffer.
      *
-     * @param data The boolean data
+     * @param data The unique id data
      * @return This stream for chaining
      */
     ChannelBuf writeUniqueId(UUID data);
@@ -523,7 +775,7 @@ public interface ChannelBuf {
      * of this buffer.
      *
      * @param index The index
-     * @param data The boolean data
+     * @param data The unique id data
      * @return This stream for chaining
      */
     ChannelBuf setUniqueId(int index, UUID data);
@@ -549,7 +801,7 @@ public interface ChannelBuf {
      * increases the writerIndex according to the lenght of the data view
      * in this buffer.
      *
-     * @param data The boolean data
+     * @param data The data view data
      * @return This stream for chaining
      */
     ChannelBuf writeDataView(DataView data);
@@ -560,7 +812,7 @@ public interface ChannelBuf {
      * of this buffer.
      *
      * @param index The index
-     * @param data The boolean data
+     * @param data The data view data
      * @return This stream for chaining
      */
     ChannelBuf setDataView(int index, DataView data);
