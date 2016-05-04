@@ -78,6 +78,9 @@ public interface ParticleEffect extends DataSerializable {
         @Override
         Builder from(ParticleEffect particleEffect);
 
+        @Override
+        Builder reset();
+
         /**
          * Sets the particle type for the particle effect.
          *

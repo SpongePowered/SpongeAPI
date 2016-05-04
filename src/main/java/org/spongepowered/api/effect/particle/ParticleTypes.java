@@ -51,11 +51,11 @@ public final class ParticleTypes {
 
     public static final ParticleType DRAGON_BREATH = DummyObjectProvider.createFor(ParticleType.class, "DRAGON_BREATH");
 
-    public static final ParticleType DRIP_ = DummyObjectProvider.createFor(ParticleType.class, "DRIP_LAVA");
+    public static final ParticleType DRIP_LAVA = DummyObjectProvider.createFor(ParticleType.class, "DRIP_LAVA");
 
     public static final ParticleType DRIP_WATER = DummyObjectProvider.createFor(ParticleType.class, "DRIP_WATER");
 
-    public static final ParticleType ENCHANTMENT_TABLE = DummyObjectProvider.createFor(ParticleType.class, "ENCHANTMENT_TABLE");
+    public static final ParticleType ENCHANTING_GLYPHS = DummyObjectProvider.createFor(ParticleType.class, "ENCHANTING_GLYPHS");
 
     public static final ParticleType END_ROD = DummyObjectProvider.createFor(ParticleType.class, "END_ROD");
 
@@ -66,6 +66,8 @@ public final class ParticleTypes {
     public static final ParticleType FLAME = DummyObjectProvider.createFor(ParticleType.class, "FLAME");
 
     public static final ParticleType FOOTSTEP = DummyObjectProvider.createFor(ParticleType.class, "FOOTSTEP");
+
+    public static final ParticleType GUARDIAN_APPEARANCE = DummyObjectProvider.createFor(ParticleType.class, "GUARDIAN_APPEARANCE");
 
     public static final ParticleType HAPPY_VILLAGER = DummyObjectProvider.createFor(ParticleType.class, "HAPPY_VILLAGER");
 
@@ -84,8 +86,6 @@ public final class ParticleTypes {
     public static final ParticleType LAVA = DummyObjectProvider.createFor(ParticleType.class, "LAVA");
 
     public static final ParticleType MAGIC_CRITICAL_HIT = DummyObjectProvider.createFor(ParticleType.class, "MAGIC_CRITICAL_HIT");
-
-    public static final ParticleType MOB_APPEARANCE = DummyObjectProvider.createFor(ParticleType.class, "MOB_APPEARANCE");
 
     public static final ParticleType MOB_SPELL = DummyObjectProvider.createFor(ParticleType.class, "MOB_SPELL");
 

@@ -55,7 +55,8 @@ public final class ParticleOptions {
     public static final ParticleOption<Color> COLOR = dummy("COLOR");
 
     /**
-     * This option will affect the amount of particles that are spawned.
+     * This option will affect the amount of particles that are spawned. The
+     * minimum amount of particles is 1.
      */
     public static final ParticleOption<Integer> COUNT = dummy("COUNT");
 
@@ -75,10 +76,11 @@ public final class ParticleOptions {
 
     /**
      * This option will change the scale of a particle, the only
-     * vanilla {@link ParticleType} that this option will affect is
-     * {@link ParticleTypes#LARGE_EXPLOSION}.
+     * vanilla {@link ParticleType} that this option will affect are
+     * {@link ParticleTypes#LARGE_EXPLOSION} and
+     * {@link ParticleTypes#SWEEP_ATTACK}.
      */
-    public static final ParticleOption<NotePitch> SCALE = dummy("SCALE");
+    public static final ParticleOption<Double> SCALE = dummy("SCALE");
 
     /**
      * This option will affect how all the particles are moving.
