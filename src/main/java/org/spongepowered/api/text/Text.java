@@ -35,6 +35,8 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
+import org.spongepowered.api.text.dictionary.Dictionaries;
+import org.spongepowered.api.text.dictionary.Dictionary;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.text.action.ClickAction;
 import org.spongepowered.api.text.action.HoverAction;
@@ -58,6 +60,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Locale;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -1007,6 +1010,58 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
         }
 
         return builder.build();
+    }
+
+    /**
+     * Gets an optional {@link Text} from the provided {@link Dictionary}
+     * by key.
+     *
+     * @param dictionary The dictionary to retrieve from
+     * @param key The dictionary key
+     * @return The text, if present, {@link Optional#empty()} otherwise
+     */
+    public static Optional<Text> get(Dictionary dictionary, String key) {
+        return dictionary.get(key).map(Text::of);
+    }
+
+    /**
+     * Gets an optional {@link Text} from the provided {@link Dictionary}
+     * by key and locale.
+     *
+     * @param dictionary The dictionary to retrieve from
+     * @param key The key whose associated value is to be returned
+     * @param locale The locale under which the value should be
+     *     obtained in
+     * @return The text, if present, {@link Optional#empty()} otherwise
+     */
+    public static Optional<Text> get(Dictionary dictionary, String key, Locale locale) {
+        return dictionary.get(key, locale).map(Text::of);
+    }
+
+    /**
+     * Gets an optional {@link Text} from the provided {@code plugin}'s
+     * primary {@link Dictionary} by key.
+     *
+     * @param plugin The plugin to retrieve the primary dictionary from
+     * @param key The key whose associated value is to be returned
+     * @return The text, if present, {@link Optional#empty()} otherwise
+     */
+    public static Optional<Text> get(Object plugin, String key) {
+        return Dictionaries.plugin(plugin).map(dictionary -> Text.of(dictionary.get(key)));
+    }
+
+    /**
+     * Gets an optional {@link Text} from the provided {@code plugin}'s
+     * primary {@link Dictionary} by key and locale.
+     *
+     * @param plugin The plugin to retrieve the primary dictionary from
+     * @param key The key whose associated value is to be returned
+     * @param locale The locale under which the value should be
+     *     obtained in
+     * @return The text, if present, {@link Optional#empty()} otherwise
+     */
+    public static Optional<Text> get(Object plugin, String key, Locale locale) {
+        return Dictionaries.plugin(plugin).map(dictionary -> Text.of(dictionary.get(key, locale)));
     }
 
     /**

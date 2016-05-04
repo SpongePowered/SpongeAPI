@@ -32,18 +32,18 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import java.util.Set;
 
 /**
- * A GameDictionary is a store of {@link org.spongepowered.api.GameDictionary.Entry}s.
+ * A ItemDictionary is a store of {@link ItemDictionary.Entry}s.
  *
- * <p>Note that the GameDictionary's keys are different from Minecraft item ids.
+ * <p>Note that the ItemDictionary's keys are different from Minecraft item ids.
  * Minecraft item IDs are namespaces, e.g. minecraft:carrot while ItemDictionary
  * keys are not, by design(e.g. carrot). This is mainly to keep supporting the
  * existing Forge 'ore dictionary'.</p>
  */
-public interface GameDictionary {
+public interface ItemDictionary {
 
     /**
-     * Registers an {@link org.spongepowered.api.GameDictionary.Entry}
-     * in the dictionary with a String key. The stack size is ignored.
+     * Registers an {@link ItemDictionary.Entry} in the dictionary with a String
+     * key. The stack size is ignored.
      *
      * @param key The key of the item as a String
      * @param entry The item to register

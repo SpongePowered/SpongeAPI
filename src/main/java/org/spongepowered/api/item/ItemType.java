@@ -27,7 +27,7 @@ package org.spongepowered.api.item;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.GameDictionary;
+import org.spongepowered.api.ItemDictionary;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -41,7 +41,7 @@ import java.util.Optional;
  * A type of item.
  */
 @CatalogedBy(ItemTypes.class)
-public interface ItemType extends CatalogType, Translatable, GameDictionary.Entry {
+public interface ItemType extends CatalogType, Translatable, ItemDictionary.Entry {
 
     /**
      * Gets the corresponding {@link BlockType} of this item if one exists.

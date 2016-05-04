@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api;
 
+import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.command.source.ConsoleSource;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
@@ -406,4 +408,5 @@ public interface Server {
      * @return The default resource pack
      */
     Optional<ResourcePack> getDefaultResourcePack();
+
 }
