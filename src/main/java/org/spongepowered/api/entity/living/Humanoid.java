@@ -30,12 +30,12 @@ import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.entity.projectile.ProjectileLauncher;
 
 /**
  * Represents a human-like entity in game, such as {@link Player} or {@link Human}s.
  */
-public interface Humanoid extends Living, ProjectileSource, ArmorEquipable, Tamer {
+public interface Humanoid extends Living, ProjectileLauncher, ArmorEquipable, Tamer {
 
     /**
      * Gets a copy of the current {@link FoodData} for this {@link Humanoid}.
