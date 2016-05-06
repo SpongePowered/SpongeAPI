@@ -102,7 +102,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 // Apply code style plugins
-apply plugin: 'license'
+apply plugin: 'net.minecrell.licenser'
 apply plugin: 'checkstyle'
 
 // License header formatting
@@ -115,13 +115,7 @@ license {
 
     header = api.file('HEADER.txt')
     include '**/*.java'
-
-    ignoreFailures = false
-    strictCheck = true
-
-    mapping {
-        java = 'SLASHSTAR_STYLE'
-    }
+    newLine = false
 }
 
 processResources {
