@@ -225,70 +225,50 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
      */
     Path getDirectory();
 
+    /**
+     * @see WorldProperties#getUniqueId()
+     */
     default UUID getUniqueId() {
         return getProperties().getUniqueId();
     }
-    
+
     /**
-     * Gets the name of the world.
-     *
-     * <p>The world name may randomly generated or user-defined. It may or may
-     * not be safe to be used in a filename.</p>
-     *
-     * @return The world name
-     * @see #getUniqueId() A method to get a unique identifier
+     * @see WorldProperties#getWorldName()
      */
     default String getName() {
         return getProperties().getWorldName();
     }
 
     /**
-     * Gets the {@link Difficulty} setting for this world.
-     *
-     * @return Difficulty of the world
+     * @see WorldProperties#getDifficulty()
      */
     default Difficulty getDifficulty() {
         return getProperties().getDifficulty();
     }
 
     /**
-     * Gets the specified GameRule value.
-     *
-     * @param gameRule The name of the GameRule.
-     * @return The GameRule value, if it exists.
+     * @see WorldProperties#getGameRule(String)
      */
     default Optional<String> getGameRule(String gameRule) {
         return getProperties().getGameRule(gameRule);
     }
 
     /**
-     * Gets a map of the currently set game rules and their values.
-     *
-     * @return An immutable map of the game rules
+     * @see WorldProperties#getGameRules()
      */
     default Map<String, String> getGameRules() {
         return getProperties().getGameRules();
     }
 
     /**
-     * Returns whether this {@link World}'s spawn chunks remain loaded when no
-     * players are present. Note: This method will default to this {@link World}
-     * 's {@link DimensionType}'s keepLoaded value unless a plugin overrides it.
-     *
-     * @return True if {@link World} remains loaded without players, false if
-     * not
+     * @see WorldProperties#doesKeepSpawnLoaded()
      */
     default boolean doesKeepSpawnLoaded() {
         return getProperties().doesKeepSpawnLoaded();
     }
 
     /**
-     * Sets whether this {@link World}'s spawn chunks remain loaded when no
-     * players are present. Note: This method will override the default
-     * {@link DimensionType}'s keepLoaded value.
-     *
-     * @param keepLoaded Whether this {@link World}'s spawn chunks remain loaded
-     * without players
+     * @see WorldProperties#setKeepSpawnLoaded(boolean)
      */
     default void setKeepSpawnLoaded(boolean keepLoaded) {
         getProperties().setKeepSpawnLoaded(keepLoaded);
@@ -301,6 +281,20 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
      */
     default Location<World> getSpawnLocation() {
         return new Location<>(this, getProperties().getSpawnPosition());
+    }
+
+    /**
+     * @see WorldProperties#getSerializationMode()
+     */
+    default SerializationMode getSerializationMode() {
+        return getProperties().getSerializationMode();
+    }
+
+    /**
+     * @see WorldProperties#setSerializationMode(SerializationMode)
+     */
+    default void setSerializationMode(SerializationMode mode) {
+        getProperties().setSerializationMode(mode);
     }
 
     /**
