@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
@@ -32,6 +33,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.storage.WorldProperties;
 
@@ -40,7 +42,8 @@ import java.util.Collection;
 /**
  * A representation of the settings which define a {@link World} for creation.
  */
-public interface WorldCreationSettings {
+@CatalogedBy(WorldCreationSettingsTypes.class)
+public interface WorldCreationSettings extends CatalogType {
 
     /**
      * Gets a new Builder instance for {@link WorldCreationSettings}.
@@ -50,13 +53,6 @@ public interface WorldCreationSettings {
     static WorldCreationSettings.Builder builder() {
         return Sponge.getGame().getRegistry().createBuilder(Builder.class);
     }
-
-    /**
-     * Gets the name of the world.
-     * 
-     * @return The name
-     */
-    String getWorldName();
 
     /**
      * Gets whether this world is enabled. A world which is enabled but unloaded
@@ -307,14 +303,6 @@ public interface WorldCreationSettings {
         Builder generatorSettings(DataContainer settings);
 
         /**
-         * Sets the desired {@link TeleporterAgent} for the world to be created.
-         *
-         * @param agent The agent
-         * @return This builder, for chaining
-         */
-        Builder teleporterAgent(TeleporterAgent agent);
-
-        /**
          * Sets whether PVP combat is enabled in this world.
          *
          * @param enabled Whether PVP is enabled
@@ -325,7 +313,7 @@ public interface WorldCreationSettings {
         /**
          * Builds the {@link WorldCreationSettings} which can be used to create
          * a {@link World} in
-         * {@link Server#createWorldProperties(WorldCreationSettings)}.
+         * {@link Server#createWorldProperties(String, WorldCreationSettings)}.
          *
          * @return The settings
          */

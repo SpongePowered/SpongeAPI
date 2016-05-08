@@ -204,8 +204,8 @@ public interface Server {
      * WorldCreationSettings please see
      * {@link org.spongepowered.api.world.WorldCreationSettings.Builder}.
      *
-     * <p>If the {@link World} represented by the properties exists then the existing
-     * {@link WorldProperties} are returned</p>
+     * <p>If the {@link World} exists at the folder name given, the properties representing
+     * that folder name are returned instead.</p>
      *
      * <p>Although the world is created it is not loaded at this time. Please
      * see one of the following methods for loading the world.</p>
@@ -216,7 +216,7 @@ public interface Server {
      * @param settings The settings for creation
      * @return The new or existing world properties, if creation was successful
      */
-    WorldProperties createWorldProperties(WorldCreationSettings settings);
+    WorldProperties createWorldProperties(String folderName, WorldCreationSettings settings);
 
     /**
      * Creates a world copy asynchronously using the new name given and returns
