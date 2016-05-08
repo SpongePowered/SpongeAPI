@@ -204,14 +204,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
     WorldGenerator getWorldGenerator();
 
     /**
-     * Generates a {@link WorldCreationSettings} that can be used to create other {@link World}s
-     * similar to this one.
-     *
-     * @return The settings
-     */
-    WorldCreationSettings getCreationSettings();
-
-    /**
      * Gets the properties for this world.
      *
      * @return The properties
@@ -225,6 +217,14 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
      * @return The path
      */
     Path getDirectory();
+
+    /**
+     * @see WorldProperties#getCreationSettings()
+     * @return
+     */
+    default WorldCreationSettings getCreationSettings() {
+        return getProperties().getCreationSettings();
+    }
 
     /**
      * @see WorldProperties#getUniqueId()

@@ -37,6 +37,7 @@ import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.GeneratorType;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
@@ -193,15 +194,6 @@ public interface WorldProperties extends DataSerializable {
      * @param time The time of day
      */
     void setWorldTime(long time);
-
-    /*
-     * TODO pending decision on handling client only API
-     *
-     * Gets the Unix time stamp of when this world was last played on.
-     *
-     * @return The time this world was last loaded
-     */
-    // long getLastTimePlayed();
 
     /**
      * Gets the {@link DimensionType} of this world.
@@ -613,4 +605,12 @@ public interface WorldProperties extends DataSerializable {
      * @param behavior The serialization behavior
      */
     void setSerializationBehavior(SerializationBehavior behavior);
+
+    /**
+     * Generates a {@link WorldCreationSettings} that can be used to create other {@link World}s
+     * similar to this one.
+     *
+     * @return The settings
+     */
+    WorldCreationSettings getCreationSettings();
 }
