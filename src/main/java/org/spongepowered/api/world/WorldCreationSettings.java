@@ -165,11 +165,11 @@ public interface WorldCreationSettings extends CatalogType {
     DataContainer getGeneratorSettings();
 
     /**
-     * Gets the {@link SerializationMode} that worlds built from this will use.
+     * Gets the {@link SerializationBehavior} that worlds built from this will use.
      *
      * @return The serialization mode
      */
-    SerializationMode getSerializationMode();
+    SerializationBehavior getSerializationBehavior();
 
     interface Builder extends ResettableBuilder<WorldCreationSettings, Builder> {
 
@@ -307,12 +307,12 @@ public interface WorldCreationSettings extends CatalogType {
         Builder generateBonusChest(boolean state);
 
         /**
-         * Sets the serialization mode that will be used when saving.
+         * Sets the serialization behavior that will be used when saving.
          *
-         * @param mode The mode
+         * @param behavior The serialization behavior
          * @return This builder, for chaining
          */
-        Builder serializationMode(SerializationMode mode);
+        Builder serializationBehavior(SerializationBehavior behavior);
 
         /**
          * Fills this {@link Builder} for creating {@link WorldCreationSettings}s,

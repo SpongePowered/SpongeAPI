@@ -26,24 +26,24 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-public final class SerializationModes {
+public final class SerializationBehaviors {
 
     // SORTFIELDS:ON
 
     /**
-     * A {@link SerializationMode} where data is saved automatically. This is considered the default across the game.
+     * A {@link SerializationBehavior} where data is saved automatically. This is considered the default across the game.
      */
-    public static final SerializationMode AUTO = DummyObjectProvider.createFor(SerializationMode.class, "auto");
+    public static final SerializationBehavior AUTOMATIC = DummyObjectProvider.createFor(SerializationBehavior.class, "automatic");
 
     /**
-     * A {@link SerializationMode} where data is only saved on unload.
+     * A {@link SerializationBehavior} where data is only saved when requested
      */
-    public static final SerializationMode UNLOAD_ONLY = DummyObjectProvider.createFor(SerializationMode.class, "unload_only");
+    public static final SerializationBehavior MANUAL = DummyObjectProvider.createFor(SerializationBehavior.class, "manual");
 
     /**
-     * A {@link SerializationMode} where data is not saved to disk.
+     * A {@link SerializationBehavior} where data is not saved to disk.
      */
-    public static final SerializationMode NONE = DummyObjectProvider.createFor(SerializationMode.class, "none");
+    public static final SerializationBehavior NONE = DummyObjectProvider.createFor(SerializationBehavior.class, "none");
 
     // SORTFIELDS:OFF
 }

@@ -35,7 +35,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.GeneratorType;
-import org.spongepowered.api.world.SerializationMode;
+import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
@@ -590,16 +590,16 @@ public interface WorldProperties extends DataSerializable {
     DataContainer getGeneratorSettings();
 
     /**
-     * Gets the {@link SerializationMode} in use.
+     * Gets the {@link SerializationBehavior} in use.
      *
-     * @return The serialization mode
+     * @return The serialization behavior
      */
-    SerializationMode getSerializationMode();
+    SerializationBehavior getSerializationBehavior();
 
     /**
-     * Sets the {@link SerializationMode} for use.
+     * Sets the {@link SerializationBehavior} for use.
      *
-     * @param mode The serialization mode
+     * @param behavior The serialization behavior
      */
-    void setSerializationMode(SerializationMode mode);
+    void setSerializationBehavior(SerializationBehavior behavior);
 }

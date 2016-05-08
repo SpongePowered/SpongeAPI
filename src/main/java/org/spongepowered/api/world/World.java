@@ -284,17 +284,17 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
     }
 
     /**
-     * @see WorldProperties#getSerializationMode()
+     * @see WorldProperties#getSerializationBehavior()
      */
-    default SerializationMode getSerializationMode() {
-        return getProperties().getSerializationMode();
+    default SerializationBehavior getSerializationBehavior() {
+        return getProperties().getSerializationBehavior();
     }
 
     /**
-     * @see WorldProperties#setSerializationMode(SerializationMode)
+     * @see WorldProperties#setSerializationBehavior(SerializationBehavior)
      */
-    default void setSerializationMode(SerializationMode mode) {
-        getProperties().setSerializationMode(mode);
+    default void setSerializationBehavior(SerializationBehavior behavior) {
+        getProperties().setSerializationBehavior(behavior);
     }
 
     /**
