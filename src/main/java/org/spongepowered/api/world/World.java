@@ -42,6 +42,7 @@ import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -70,24 +71,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
     default Location<World> getLocation(double x, double y, double z) {
         return getLocation(new Vector3d(x, y, z));
     }
-
-    /**
-     * Gets the {@link Difficulty} setting for this world.
-     *
-     * @return Difficulty of the world
-     */
-    Difficulty getDifficulty();
-
-    /**
-     * Gets the name of the world.
-     *
-     * <p>The world name may randomly generated or user-defined. It may or may
-     * not be safe to be used in a filename.</p>
-     *
-     * @return The world name
-     * @see #getUniqueId() A method to get a unique identifier
-     */
-    String getName();
 
     /**
      * Get the loaded chunk at the given block coordinate position.
@@ -203,22 +186,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
     WorldBorder.ChunkPreGenerate newChunkPreGenerate(Vector3d center, double diameter);
 
     /**
-     * Gets the specified GameRule value.
-     * *
-     *
-     * @param gameRule The name of the GameRule.
-     * @return The GameRule value, if it exists.
-     */
-    Optional<String> getGameRule(String gameRule);
-
-    /**
-     * Gets a map of the currently set game rules and their values.
-     *
-     * @return An immutable map of the game rules
-     */
-    Map<String, String> getGameRules();
-
-    /**
      * Returns the {@link Dimension} of this world.
      *
      * @return The {@link Dimension}
@@ -236,33 +203,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
     WorldGenerator getWorldGenerator();
 
     /**
-     * Returns whether this {@link World}'s spawn chunks remain loaded when no
-     * players are present. Note: This method will default to this {@link World}
-     * 's {@link DimensionType}'s keepLoaded value unless a plugin overrides it.
-     *
-     * @return True if {@link World} remains loaded without players, false if
-     * not
-     */
-    boolean doesKeepSpawnLoaded();
-
-    /**
-     * Sets whether this {@link World}'s spawn chunks remain loaded when no
-     * players are present. Note: This method will override the default
-     * {@link DimensionType}'s keepLoaded value.
-     *
-     * @param keepLoaded Whether this {@link World}'s spawn chunks remain loaded
-     * without players
-     */
-    void setKeepSpawnLoaded(boolean keepLoaded);
-
-    /**
-     * Gets the associated {@link WorldStorage} persisting this world.
-     *
-     * @return The associated world storage
-     */
-    WorldStorage getWorldStorage();
-
-    /**
      * Gets the {@link WorldCreationSettings} which were used to create this
      * world.
      *
@@ -278,11 +218,97 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
     WorldProperties getProperties();
 
     /**
+     * Gets the {@link Path} pointing to the root of where the world's data
+     * is being stored.
+     *
+     * @return The path
+     */
+    Path getDirectory();
+
+    default UUID getUniqueId() {
+        return getProperties().getUniqueId();
+    }
+    
+    /**
+     * Gets the name of the world.
+     *
+     * <p>The world name may randomly generated or user-defined. It may or may
+     * not be safe to be used in a filename.</p>
+     *
+     * @return The world name
+     * @see #getUniqueId() A method to get a unique identifier
+     */
+    default String getName() {
+        return getProperties().getWorldName();
+    }
+
+    /**
+     * Gets the {@link Difficulty} setting for this world.
+     *
+     * @return Difficulty of the world
+     */
+    default Difficulty getDifficulty() {
+        return getProperties().getDifficulty();
+    }
+
+    /**
+     * Gets the specified GameRule value.
+     *
+     * @param gameRule The name of the GameRule.
+     * @return The GameRule value, if it exists.
+     */
+    default Optional<String> getGameRule(String gameRule) {
+        return getProperties().getGameRule(gameRule);
+    }
+
+    /**
+     * Gets a map of the currently set game rules and their values.
+     *
+     * @return An immutable map of the game rules
+     */
+    default Map<String, String> getGameRules() {
+        return getProperties().getGameRules();
+    }
+
+    /**
+     * Returns whether this {@link World}'s spawn chunks remain loaded when no
+     * players are present. Note: This method will default to this {@link World}
+     * 's {@link DimensionType}'s keepLoaded value unless a plugin overrides it.
+     *
+     * @return True if {@link World} remains loaded without players, false if
+     * not
+     */
+    default boolean doesKeepSpawnLoaded() {
+        return getProperties().doesKeepSpawnLoaded();
+    }
+
+    /**
+     * Sets whether this {@link World}'s spawn chunks remain loaded when no
+     * players are present. Note: This method will override the default
+     * {@link DimensionType}'s keepLoaded value.
+     *
+     * @param keepLoaded Whether this {@link World}'s spawn chunks remain loaded
+     * without players
+     */
+    default void setKeepSpawnLoaded(boolean keepLoaded) {
+        getProperties().setKeepSpawnLoaded(keepLoaded);
+    }
+
+    /**
      * Gets the {@link Location} of the spawn point.
      *
      * @return The location
      */
-    Location<World> getSpawnLocation();
+    default Location<World> getSpawnLocation() {
+        return new Location<>(this, getProperties().getSpawnPosition());
+    }
+
+    /**
+     * Gets the associated {@link WorldStorage} persisting this world.
+     *
+     * @return The associated world storage
+     */
+    WorldStorage getWorldStorage();
 
     /**
      * Causes an {@link Explosion} in a world.
