@@ -28,8 +28,8 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
-import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.gen.PopulatorObject;
 import org.spongepowered.api.world.gen.type.BiomeTreeType;
@@ -95,7 +95,7 @@ public interface Forest extends Populator {
      * 
      * @return The supplier override
      */
-    Optional<Function<Location<Chunk>, PopulatorObject>> getSupplierOverride();
+    Optional<Function<Location<Extent>, PopulatorObject>> getSupplierOverride();
 
     /**
      * Sets the overriding supplier. If the supplier is present then it is used
@@ -104,7 +104,7 @@ public interface Forest extends Populator {
      * 
      * @param override The new supplier override, or null
      */
-    void setSupplierOverride(@Nullable Function<Location<Chunk>, PopulatorObject> override);
+    void setSupplierOverride(@Nullable Function<Location<Extent>, PopulatorObject> override);
 
     /**
      * Clears the supplier override to force the weighted table to be used
@@ -163,7 +163,7 @@ public interface Forest extends Populator {
          * @param override The new supplier override, or null
          * @return This builder, for chaining
          */
-        Builder supplier(@Nullable Function<Location<Chunk>, PopulatorObject> override);
+        Builder supplier(@Nullable Function<Location<Extent>, PopulatorObject> override);
 
         /**
          * Builds a new instance of a {@link Forest} populator with the settings
