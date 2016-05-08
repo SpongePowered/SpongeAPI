@@ -177,11 +177,11 @@ public interface Game {
      *     To elaborate, this is how it is handled in Minecraft based on side:
      *     <ul>
      *         <li>Client
-     *          <ul>This directory will point to {@link Game#getGameDirectory()}.resolve("saves")</ul>
+     *          <ul>This directory will point to {@link Game#getGameDirectory()}.resolve("saves").resolve(currentSaveName)</ul>
      *         <li>Server
-     *          <ul>This directory will be equivalent to {@link Game#getGameDirectory()}. Consult your
-     *              specific implementation if they support placing this elsewhere.</ul>
+     *          <ul>This directory will be equivalent to {@link Game#getGameDirectory()}.resolve(level-name).</ul>
      *     </ul>
+     *     Consult your specific implementation if they support placing this elsewhere.
      * </p>
      *
      * @return The saves directory
