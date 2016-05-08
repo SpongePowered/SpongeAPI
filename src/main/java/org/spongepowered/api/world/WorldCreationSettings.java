@@ -137,6 +137,9 @@ public interface WorldCreationSettings extends CatalogType {
 
     /**
      * Gets whether the bonus chest should be generated.
+     *
+     * <p>This only applies on the initial load of the {@link World}
+     * created via the {@link WorldProperties} created from this settings.</p>
      * 
      * @return True if bonus chest is generated, false if not
      */

@@ -36,6 +36,7 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.GeneratorType;
 import org.spongepowered.api.world.SerializationBehavior;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
@@ -49,6 +50,27 @@ import java.util.UUID;
  */
 public interface WorldProperties extends DataSerializable {
 
+    /**
+     * Gets whether this world has been initialized.
+     *
+     * @return Is initialized
+     */
+    boolean isInitialized();
+
+    /**
+     * Gets the name of this world.
+     *
+     * @return The name
+     */
+    String getWorldName();
+
+    /**
+     * Gets the {@link UUID} of the world.
+     *
+     * @return The unique Id
+     */
+    UUID getUniqueId();
+    
     /**
      * Gets whether this world is enabled. A world which is enabled but unloaded
      * may be loaded automatically if an attempt is made to transfer an entity
@@ -111,20 +133,6 @@ public interface WorldProperties extends DataSerializable {
      * @param state Should generate spawn chunks on load.
      */
     void setGenerateSpawnOnLoad(boolean state);
-
-    /**
-     * Gets the name of this world.
-     *
-     * @return The name
-     */
-    String getWorldName();
-
-    /**
-     * Gets the {@link UUID} of the world.
-     *
-     * @return The unique Id
-     */
-    UUID getUniqueId();
 
     /**
      * Gets the default spawn position of this world.
@@ -339,13 +347,6 @@ public interface WorldProperties extends DataSerializable {
     void setCommandsAllowed(boolean state);
 
     /**
-     * Gets whether this world has been initialized.
-     *
-     * @return Is initialized
-     */
-    boolean isInitialized();
-
-    /**
      * Gets the difficulty of this world.
      *
      * @return The difficulty
@@ -358,6 +359,16 @@ public interface WorldProperties extends DataSerializable {
      * @param difficulty The difficulty
      */
     void setDifficulty(Difficulty difficulty);
+
+    /**
+     * Gets whether the bonus chest should be generated.
+     *
+     * <p>This only applies on the initial load of the {@link World}
+     * created via this properties.</p>
+     *
+     * @return True if bonus chest is generated, false if not
+     */
+    boolean doesGenerateBonusChest();
 
     /**
      * Gets the center of the world border.
