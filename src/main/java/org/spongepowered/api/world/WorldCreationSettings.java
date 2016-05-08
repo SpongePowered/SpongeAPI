@@ -350,6 +350,8 @@ public interface WorldCreationSettings extends CatalogType {
          *
          * <p>This will also register the settings as a new type in {@link GameRegistry#register(Class, CatalogType)}.</p>
          *
+         * @param id The id that this settings will be registered under
+         * @param name The human readable name of this settings
          * @return The settings
          */
         WorldCreationSettings build(String id, String name) throws IllegalArgumentException, CatalogTypeAlreadyRegisteredException;
