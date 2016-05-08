@@ -37,6 +37,7 @@ import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.storage.ChunkLayout;
 import org.spongepowered.api.world.storage.WorldProperties;
 
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.Optional;
@@ -216,7 +217,7 @@ public interface Server {
      * @param settings The settings for creation
      * @return The new or existing world properties, if creation was successful
      */
-    WorldProperties createWorldProperties(String folderName, WorldCreationSettings settings);
+    WorldProperties createWorldProperties(String folderName, WorldCreationSettings settings) throws IOException;
 
     /**
      * Creates a world copy asynchronously using the new name given and returns
