@@ -38,7 +38,9 @@ import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.registry.CatalogRegistryModule;
+import org.spongepowered.api.registry.CatalogTypeAlreadyRegisteredException;
 import org.spongepowered.api.registry.RegistryModule;
+import org.spongepowered.api.registry.RegistryModuleAlreadyRegisteredException;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.statistic.BlockStatistic;
@@ -123,7 +125,7 @@ public interface GameRegistry {
      * @throws UnsupportedOperationException If the
      */
     <T extends CatalogType> GameRegistry registerModule(Class<T> catalogClass, CatalogRegistryModule<T> registryModule)
-            throws IllegalArgumentException, UnsupportedOperationException;
+            throws IllegalArgumentException, RegistryModuleAlreadyRegisteredException;
 
     /**
      * Registers the desired {@link RegistryModule}.
@@ -131,7 +133,7 @@ public interface GameRegistry {
      * @param module The module to register
      * @return This registry, for chaining
      */
-    GameRegistry registerModule(RegistryModule module) throws IllegalArgumentException, UnsupportedOperationException;
+    GameRegistry registerModule(RegistryModule module) throws RegistryModuleAlreadyRegisteredException;
 
     /**
      * Registers a {@link Supplier} for creating the desired {@link ResettableBuilder}.
@@ -169,7 +171,7 @@ public interface GameRegistry {
      * @throws UnsupportedOperationException If registration for the given type
      *         is not supported
      */
-    <T extends CatalogType> void register(Class<T> type, T obj) throws IllegalArgumentException, UnsupportedOperationException;
+    <T extends CatalogType> void register(Class<T> type, T obj) throws IllegalArgumentException, CatalogTypeAlreadyRegisteredException;
 
     /**
      * Gets a {@link Collection} of the default GameRules.
