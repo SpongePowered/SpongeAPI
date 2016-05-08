@@ -203,8 +203,8 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
     WorldGenerator getWorldGenerator();
 
     /**
-     * Gets the {@link WorldCreationSettings} which were used to create this
-     * world.
+     * Generates a {@link WorldCreationSettings} that can be used to create other {@link World}s
+     * similar to this one.
      *
      * @return The settings
      */
