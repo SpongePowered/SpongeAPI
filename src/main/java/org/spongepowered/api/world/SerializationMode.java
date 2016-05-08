@@ -25,7 +25,9 @@
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
+@CatalogedBy(SerializationModes.class)
 public interface SerializationMode extends CatalogType {
 
 }
