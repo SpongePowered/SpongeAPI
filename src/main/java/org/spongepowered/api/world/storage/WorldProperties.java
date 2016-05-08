@@ -46,7 +46,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * Represents the WorldProperties which are persisted across runtime instances.
+ * Represents the properties of a {@link World} which are persisted across runtime instances.
  */
 public interface WorldProperties extends DataSerializable {
 
@@ -70,7 +70,7 @@ public interface WorldProperties extends DataSerializable {
      * @return The unique Id
      */
     UUID getUniqueId();
-    
+
     /**
      * Gets whether this world is enabled. A world which is enabled but unloaded
      * may be loaded automatically if an attempt is made to transfer an entity

@@ -34,6 +34,7 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.storage.WorldProperties;
 
@@ -153,6 +154,13 @@ public interface WorldCreationSettings extends CatalogType {
     DimensionType getDimensionType();
 
     /**
+     * Gets the difficulty.
+     *
+     * @return The difficulty
+     */
+    Difficulty getDifficulty();
+
+    /**
      * Gets whether PVP combat is enabled.
      *
      * @return True if PVP combat is enabled, false if not
@@ -255,6 +263,13 @@ public interface WorldCreationSettings extends CatalogType {
          * @return The builder, for chaining
          */
         Builder dimension(DimensionType type);
+
+        /**
+         * Sets the difficulty
+         * @param difficulty The difficulty
+         * @return The builder, for chaining
+         */
+        Builder difficulty(Difficulty difficulty);
 
         /**
          * Sets whether this should generate map features such as villages
