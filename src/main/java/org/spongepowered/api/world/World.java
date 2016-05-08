@@ -42,6 +42,7 @@ import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Map;
 import java.util.Optional;
@@ -335,4 +336,12 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
      * @return True if any of the entities were successfully spawned
      */
     boolean spawnEntities(Iterable<? extends Entity> entities, Cause cause);
+
+    /**
+     * Instructs the world to save all data.
+     *
+     * @return True if save was successfull, false if {@link SerializationBehavior} is {@link SerializationBehaviors#NONE}.
+     * @throws IOException If the save failed
+     */
+    boolean save() throws IOException;
 }
