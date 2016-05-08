@@ -33,7 +33,7 @@ public final class SerializationModes {
     /**
      * A {@link SerializationMode} where data is saved automatically. This is considered the default across the game.
      */
-    public static final SerializationMode AUTO = DummyObjectProvider.createFor(SerializationMode.class, "always");
+    public static final SerializationMode AUTO = DummyObjectProvider.createFor(SerializationMode.class, "auto");
 
     /**
      * A {@link SerializationMode} where data is only saved on unload.
