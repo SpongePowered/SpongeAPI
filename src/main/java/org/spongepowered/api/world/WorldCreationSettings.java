@@ -187,14 +187,6 @@ public interface WorldCreationSettings extends CatalogType {
         Builder fill(WorldProperties properties);
 
         /**
-         * Sets the name of the world.
-         *
-         * @param name The name
-         * @return The builder, for chaining
-         */
-        Builder name(String name);
-
-        /**
          * Sets the world as enabled. A world which is enabled but unloaded may
          * be loaded automatically if an attempt is made to transfer an entity
          * to the world using {@link Entity#transferToWorld} .
@@ -312,11 +304,12 @@ public interface WorldCreationSettings extends CatalogType {
 
         /**
          * Builds the {@link WorldCreationSettings} which can be used to create
-         * a {@link World} in
-         * {@link Server#createWorldProperties(String, WorldCreationSettings)}.
+         * a {@link World} in {@link Server#createWorldProperties(String, WorldCreationSettings)}.
+         *
+         * <p>This will also register the settings as a new type in {@link GameRegistry#register(Class, CatalogType)}.</p>
          *
          * @return The settings
          */
-        WorldCreationSettings build();
+        WorldCreationSettings build(String id, String name);
     }
 }
