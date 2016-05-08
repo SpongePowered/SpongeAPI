@@ -167,26 +167,6 @@ public interface WorldCreationSettings extends CatalogType {
     interface Builder extends ResettableBuilder<WorldCreationSettings, Builder> {
 
         /**
-         * Fills this {@link Builder} for creating {@link WorldCreationSettings}s, the
-         * builder is then seeded with the values from the given WorldCreationSettings
-         * object.
-         *
-         * @param settings The seed settings
-         * @return A new seeded builder
-         */
-        Builder fill(WorldCreationSettings settings);
-
-        /**
-         * Fills this {@link Builder} for creating {@link WorldCreationSettings}s,
-         * the builder is then seeded with the values from the given WorldProperties
-         * object.
-         *
-         * @param properties The seed properties
-         * @return A new seeded builder
-         */
-        Builder fill(WorldProperties properties);
-
-        /**
          * Sets enabled status. Built worlds who are enabled but unloaded may
          * be loaded automatically if an attempt is made to transfer an entity
          * to the world using {@link Entity#transferToWorld} .
@@ -312,6 +292,16 @@ public interface WorldCreationSettings extends CatalogType {
          */
         Builder generateBonusChest(boolean state);
 
+        /**
+         * Fills this {@link Builder} for creating {@link WorldCreationSettings}s,
+         * the builder is then seeded with the values from the given WorldProperties
+         * object.
+         *
+         * @param properties The seed properties
+         * @return A new seeded builder
+         */
+        Builder from(WorldProperties properties);
+        
         /**
          * Builds the {@link WorldCreationSettings} which can be used to create
          * a {@link World} in {@link Server#createWorldProperties(String, WorldCreationSettings)}.
