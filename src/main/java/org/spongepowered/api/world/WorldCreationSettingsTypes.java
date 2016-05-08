@@ -45,6 +45,11 @@ public class WorldCreationSettingsTypes {
      */
     public static final WorldCreationSettings THE_END = DummyObjectProvider.createFor(WorldCreationSettings.class, "the_end");
 
+    /**
+     * Represents a typical Sponge easter egg skylands-style {@link World}.
+     */
+    public static final WorldCreationSettings THE_SKYLANDS = DummyObjectProvider.createFor(WorldCreationSettings.class, "the_skylands");
+    
     // SORTFIELDS:OFF
 
     private WorldCreationSettingsTypes() {
