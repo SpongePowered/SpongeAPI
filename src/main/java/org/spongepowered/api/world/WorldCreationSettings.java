@@ -266,7 +266,8 @@ public interface WorldCreationSettings extends CatalogType {
         Builder dimension(DimensionType type);
 
         /**
-         * Sets the difficulty
+         * Sets the difficulty.
+         * 
          * @param difficulty The difficulty
          * @return The builder, for chaining
          */

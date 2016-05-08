@@ -37,12 +37,26 @@ import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 /**
  * A container of {@link Entity} instances.
  */
 public interface EntityUniverse {
+
+    /**
+     * Gets the entity whose {@link UUID} matches the provided id, possibly
+     * returning no entity if the entity is not loaded or non-existant.
+     *
+     * <p>For world implementations, only some parts of the world is usually
+     * loaded, so this method may return no entity if the entity is not
+     * loaded.</p>
+     *
+     * @param uuid The unique id
+     * @return An entity, if available
+     */
+    Optional<Entity> getEntity(UUID uuid);
 
     /**
      * Return a collection of entities contained within this universe, possibly
@@ -175,4 +189,16 @@ public interface EntityUniverse {
      * @return True if successful, false if not
      */
     boolean spawnEntity(Entity entity, Cause cause);
+
+    /**
+     * Similar to {@link #spawnEntity(Entity, Cause)} except where multiple
+     * entities can be attempted to be spawned with a customary {@link Cause}.
+     * The recommended use is to easily process the entity spawns without
+     * interference with the cause tracking system.
+     *
+     * @param entities The entities to be spawned
+     * @param cause The cause to be associated with the entities spawning
+     * @return True if any of the entities were successfully spawned
+     */
+    boolean spawnEntities(Iterable<? extends Entity> entities, Cause cause);
 }
