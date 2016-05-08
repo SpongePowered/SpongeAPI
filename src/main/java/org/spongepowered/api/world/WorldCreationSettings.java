@@ -268,8 +268,7 @@ public interface WorldCreationSettings extends CatalogType {
         /**
          * Sets any extra settings required by the {@link GeneratorType} or by
          * the {@link WorldGeneratorModifier}s. If not specified these will
-         * default to the settings within
-         * {@link GeneratorType#getGeneratorSettings()}.
+         * default to the settings within {@link GeneratorType#getGeneratorSettings()}.
          *
          * @param settings The generator settings
          * @return The builder, for chaining
@@ -283,6 +282,14 @@ public interface WorldCreationSettings extends CatalogType {
          * @return The builder, for chaining
          */
         Builder pvp(boolean state);
+
+        /**
+         * Sets whether commands are allowed to be executed.
+         *
+         * @param state Whether commands are allowed
+         * @return The builder, for chaining
+         */
+        Builder commandsAllowed(boolean state);
 
         /**
          * Sets whether the bonus chest should be created.
@@ -301,7 +308,7 @@ public interface WorldCreationSettings extends CatalogType {
          * @return A new seeded builder
          */
         Builder from(WorldProperties properties);
-        
+
         /**
          * Builds the {@link WorldCreationSettings} which can be used to create
          * a {@link World} in {@link Server#createWorldProperties(String, WorldCreationSettings)}.
