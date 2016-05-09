@@ -28,13 +28,13 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.storage.WorldProperties;
 
 /**
  * Custom world generation is done using this interface. Any plugin that wishes
  * to modify the world generator should implement this interface. When the
  * server admin/player has chosen to use this modifier for a world, the method
- * {@link #modifyWorldGenerator(WorldCreationSettings, DataContainer, WorldGenerator)}
+ * {@link #modifyWorldGenerator(WorldProperties, DataContainer, WorldGenerator)}
  * will be called.
  *
  * <p>The modifier can change every aspect of terrain generation using the
@@ -64,12 +64,12 @@ public interface WorldGeneratorModifier extends CatalogType {
      * {@link WorldGenerator#getPopulators()} or
      * {@link WorldGenerator#getGenerationPopulators()}.</p>
      *
-     * @param world The creation settings of the world.
+     * @param world The properties of the world.
      * @param settings A data container with (usually) user-provided settings,
      *        can be used by the plugin to modify the world generator.
      * @param worldGenerator The world generator, should be modified.
      * @see WorldGenerator Additional information on the generation process
      */
-    void modifyWorldGenerator(WorldCreationSettings world, DataContainer settings, WorldGenerator worldGenerator);
+    void modifyWorldGenerator(WorldProperties world, DataContainer settings, WorldGenerator worldGenerator);
 
 }
