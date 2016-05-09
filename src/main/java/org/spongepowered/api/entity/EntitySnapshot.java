@@ -29,7 +29,7 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.ImmutableDataBuilder;
-import org.spongepowered.api.data.LocateableSnapshot;
+import org.spongepowered.api.data.LocatableSnapshot;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.world.Location;
@@ -50,7 +50,7 @@ import java.util.UUID;
  * from the {@link Game} instance such that external processing, building,
  * and manipulation can take place.</p>
  */
-public interface EntitySnapshot extends LocateableSnapshot<EntitySnapshot> {
+public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
 
     /**
      * Creates a new {@link Builder} to build an {@link EntitySnapshot}.

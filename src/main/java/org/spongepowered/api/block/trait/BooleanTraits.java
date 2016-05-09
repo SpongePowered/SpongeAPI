@@ -92,8 +92,6 @@ public final class BooleanTraits {
 
     public static final BooleanTrait COBBLESTONE_WALL_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "COBBLESTONE_WALL_WEST");
 
-    public static final BooleanTrait COMMAND_BLOCK_TRIGGERED = DummyObjectProvider.createFor(BooleanTrait.class, "COMMAND_BLOCK_TRIGGERED");
-
     public static final BooleanTrait DARK_OAK_DOOR_OPEN = DummyObjectProvider.createFor(BooleanTrait.class, "DARK_OAK_DOOR_OPEN");
 
     public static final BooleanTrait DARK_OAK_DOOR_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "DARK_OAK_DOOR_POWERED");
@@ -140,13 +138,11 @@ public final class BooleanTraits {
 
     public static final BooleanTrait FENCE_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "FENCE_WEST");
 
-    public static final BooleanTrait FIRE_ALT = DummyObjectProvider.createFor(BooleanTrait.class, "FIRE_ALT");
-
     public static final BooleanTrait FIRE_EAST = DummyObjectProvider.createFor(BooleanTrait.class, "FIRE_EAST");
 
-    public static final BooleanTrait FIRE_FLIP = DummyObjectProvider.createFor(BooleanTrait.class, "FIRE_FLIP");
-
     public static final BooleanTrait FIRE_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "FIRE_NORTH");
+
+    public static final BooleanTrait FIRE_UP = DummyObjectProvider.createFor(BooleanTrait.class, "FIRE_UP");
 
     public static final BooleanTrait FIRE_SOUTH = DummyObjectProvider.createFor(BooleanTrait.class, "FIRE_SOUTH");
 
@@ -278,15 +274,11 @@ public final class BooleanTraits {
 
     public static final BooleanTrait TRIPWIRE_HOOK_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "TRIPWIRE_HOOK_POWERED");
 
-    public static final BooleanTrait TRIPWIRE_HOOK_SUSPENDED = DummyObjectProvider.createFor(BooleanTrait.class, "TRIPWIRE_HOOK_SUSPENDED");
-
     public static final BooleanTrait TRIPWIRE_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "TRIPWIRE_NORTH");
 
     public static final BooleanTrait TRIPWIRE_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "TRIPWIRE_POWERED");
 
     public static final BooleanTrait TRIPWIRE_SOUTH = DummyObjectProvider.createFor(BooleanTrait.class, "TRIPWIRE_SOUTH");
-
-    public static final BooleanTrait TRIPWIRE_SUSPENDED = DummyObjectProvider.createFor(BooleanTrait.class, "TRIPWIRE_SUSPENDED");
 
     public static final BooleanTrait TRIPWIRE_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "TRIPWIRE_WEST");
 

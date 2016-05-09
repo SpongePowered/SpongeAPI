@@ -22,19 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.item;
+package org.spongepowered.api.event.entity.explosive;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.item.SplashPotionData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.entity.explosive.FusedExplosive;
 
-public interface ImmutableSplashPotionData extends ImmutableDataManipulator<ImmutableSplashPotionData, SplashPotionData> {
+/**
+ * Represents an event regarding a {@link FusedExplosive}.
+ */
+public interface TargetFusedExplosiveEvent extends TargetExplosiveEvent {
 
-    /**
-     * Gets the {@link ImmutableValue} for the "splash" state of a potion.
-     *
-     * @return The immutable value for the splash state
-     */
-    ImmutableValue<Boolean> splash();
+    @Override
+    FusedExplosive getTargetEntity();
 
 }

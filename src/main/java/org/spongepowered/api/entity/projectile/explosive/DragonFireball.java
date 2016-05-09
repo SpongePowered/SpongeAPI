@@ -22,26 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.entity;
+package org.spongepowered.api.entity.projectile.explosive;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableExplosiveRadiusData;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.entity.projectile.explosive.fireball.Fireball;
 
-/**
- * A {@link DataManipulator} for handling the "explosive radius" of an
- * {@link Explosive}.
- */
-public interface ExplosiveRadiusData extends DataManipulator<ExplosiveRadiusData, ImmutableExplosiveRadiusData> {
-
-    /**
-     * Gets the {@link Value} for the explosive radius of the {@link Explosive}.
-     *
-     * <p>The explosion radius may be affected by other data manipulators.</p>
-     *
-     * @return The explosion radius of the entity
-     */
-    Value<Integer> explosiveRadius();
+public interface DragonFireball extends Fireball {
 
 }

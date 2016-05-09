@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.PassengerData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 
@@ -38,11 +38,11 @@ import org.spongepowered.api.entity.EntitySnapshot;
 public interface ImmutablePassengerData extends ImmutableDataManipulator<ImmutablePassengerData, PassengerData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the current {@link Entity} acting
-     * as a passenger.
+     * Gets the {@link ImmutableListValue} for the current {@link Entity}
+     * acting as a passenger.
      *
      * @return The immutable value for the passenger entity
      */
-    ImmutableValue<EntitySnapshot> passenger();
+    ImmutableListValue<EntitySnapshot> passengers();
 
 }

@@ -22,30 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
-
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.WorldCreationSettings;
-import org.spongepowered.api.world.storage.WorldProperties;
+package org.spongepowered.api.world;
 
 /**
- * An event for when a world has been created. Often paired with a
- * {@link LoadWorldEvent}, but that is not guaranteed.
+ * Represents anything with a location.
  */
-public interface ConstructWorldEvent extends Event {
+@FunctionalInterface
+public interface Locatable {
 
     /**
-     * Gets the properties of the newly created world.
-     * 
-     * @return The properties
+     * Gets the location of the source.
+     *
+     * @return The location
      */
-    WorldProperties getWorldProperties();
-    
+    Location<World> getLocation();
+
     /**
-     * Gets the {@link WorldCreationSettings} used to create the world.
-     * 
-     * @return The creation settings
+     * Gets the world that this source resides in.
+     *
+     * @return The World
      */
-    WorldCreationSettings getWorldCreationSettings();
+    default World getWorld() {
+        return getLocation().getExtent();
+    }
 
 }

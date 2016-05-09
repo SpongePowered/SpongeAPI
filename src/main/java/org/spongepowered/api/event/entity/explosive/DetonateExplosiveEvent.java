@@ -22,25 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.event.entity.explosive;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.ExplosiveRadiusData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.explosion.Explosion.Builder;
 
 /**
- * An {@link ImmutableDataManipulator} for the "explosive radius" of an
- * {@link Explosive}.
+ * Event called immediately before an {@link Explosive} explodes.
  */
-public interface ImmutableExplosiveRadiusData extends ImmutableDataManipulator<ImmutableExplosiveRadiusData, ExplosiveRadiusData> {
+public interface DetonateExplosiveEvent extends TargetExplosiveEvent, Cancellable {
 
     /**
-     * Gets the {@link ImmutableValue} for the explosive radius of the
-     * {@link Explosive}.
+     * Returns the explosion of the vanilla behavior that this event was
+     * initialized with.
      *
-     * @return The explosion radius of the entity
+     * @return Original explosion
      */
-    ImmutableValue<Integer> explosiveRadius();
+    Explosion getOriginalExplosion();
+
+    /**
+     * Returns the {@link Builder} that will be used to build the
+     * explosion for the impending detonation.
+     *
+     * @return Explosion builder for detonation
+     */
+    Explosion.Builder getExplosionBuilder();
 
 }

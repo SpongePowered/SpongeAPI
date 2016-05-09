@@ -40,6 +40,8 @@ import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
+import java.util.List;
+
 /**
  * An event when a "fishing" action is performed. Always involves a
  * {@link FishHook}.
@@ -103,6 +105,6 @@ public interface FishingEvent extends Event {
          *
          * @return The itemstack transaction
          */
-        Transaction<ItemStackSnapshot> getItemStackTransaction();
+        List<Transaction<ItemStackSnapshot>> getItemStackTransaction();
     }
 }

@@ -32,11 +32,18 @@ import org.spongepowered.api.service.context.ContextSource;
 public interface Dimension extends ContextSource {
 
     /**
-     * Returns the name of this {@link Dimension}.
+     * Get the type of dimension.
      *
-     * @return The name
+     * @return The type of dimension
      */
-    String getName();
+    DimensionType getType();
+
+    /**
+     * Gets the generator type of dimension.
+     *
+     * @return The generator type of dimension.
+     */
+    GeneratorType getGeneratorType();
 
     /**
      * Returns whether players can respawn within {@link Dimension} after death.
@@ -44,13 +51,6 @@ public interface Dimension extends ContextSource {
      * @return True if players can respawn, false if not
      */
     boolean allowsPlayerRespawns();
-
-    /**
-     * Sets whether players in this {@link Dimension} can respawn.
-     *
-     * @param allow Whether players can respawn
-     */
-    void setAllowsPlayerRespawns(boolean allow);
 
     /**
      * Returns the minimum spawn height for {@link Dimension}.
@@ -67,25 +67,11 @@ public interface Dimension extends ContextSource {
     boolean doesWaterEvaporate();
 
     /**
-     * Sets whether water in this {@link Dimension} evaporates.
-     *
-     * @param evaporates Whether water evaporates
-     */
-    void setWaterEvaporates(boolean evaporates);
-
-    /**
      * Returns whether this {@link Dimension} has a sky (lack of bedrock).
      *
      * @return True if sky is present, false if not
      */
     boolean hasSky();
-
-    /**
-     * Get the type of dimension.
-     *
-     * @return The type of dimension
-     */
-    DimensionType getType();
 
     /**
      * Gets the highest naturally generated y-coordinate of {@link World}s in
@@ -102,11 +88,4 @@ public interface Dimension extends ContextSource {
      * @return The build height
      */
     int getBuildHeight();
-
-    /**
-     * Gets the generator type of dimension.
-     * 
-     * @return The generator type of dimension.
-     */
-    GeneratorType getGeneratorType();
 }

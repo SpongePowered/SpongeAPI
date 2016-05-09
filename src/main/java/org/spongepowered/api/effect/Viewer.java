@@ -30,6 +30,8 @@ import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.effect.particle.ParticleEffect;
+import org.spongepowered.api.effect.sound.SoundCategories;
+import org.spongepowered.api.effect.sound.SoundCategory;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.text.BookView;
 import org.spongepowered.api.text.title.Title;
@@ -65,18 +67,33 @@ public interface Viewer {
     void spawnParticles(ParticleEffect particleEffect, Vector3d position, int radius);
 
     /**
-     * Plays the given {@link SoundType} at the given position. All
-     * players within range will hear the sound with the given volume.
+     * Plays the given {@link SoundType} at the given position, with the
+     * category {@link SoundCategories#MASTER}. All players within range
+     * will hear the sound with the given volume.
      *
      * @param sound The sound to play
      * @param position The position to play the sound
      * @param volume The volume to play the sound at, usually between 0 and 2
      */
-    void playSound(SoundType sound, Vector3d position, double volume);
+    default void playSound(SoundType sound, Vector3d position, double volume) {
+        this.playSound(sound, SoundCategories.MASTER, position, volume);
+    }
 
     /**
      * Plays the given {@link SoundType} at the given position. All
      * players within range will hear the sound with the given volume.
+     *
+     * @param sound The sound to play
+     * @param category The category to play the sound with
+     * @param position The position to play the sound
+     * @param volume The volume to play the sound at, usually between 0 and 2
+     */
+    void playSound(SoundType sound, SoundCategory category, Vector3d position, double volume);
+
+    /**
+     * Plays the given {@link SoundType} at the given position, with the
+     * category {@link SoundCategories#MASTER}. All players within range
+     * will hear the sound with the given volume.
      *
      * @param sound The sound to play
      * @param position The position to play the sound
@@ -84,11 +101,28 @@ public interface Viewer {
      * @param pitch The modulation of the sound to play at, usually between 0
      *        and 2
      */
-    void playSound(SoundType sound, Vector3d position, double volume, double pitch);
+    default void playSound(SoundType sound, Vector3d position, double volume, double pitch) {
+        this.playSound(sound, SoundCategories.MASTER, position, volume, pitch);
+    }
 
     /**
-     * Plays the given {@link SoundType} at the given position. All
-     * players within range will hear the sound with the given volume.
+     * Plays the given {@link SoundType} at the given position, with the
+     * category {@link SoundCategories#MASTER}. All players within range
+     * will hear the sound with the given volume.
+     *
+     * @param sound The sound to play
+     * @param category The category to play the sound with
+     * @param position The position to play the sound
+     * @param volume The volume to play the sound at, usually between 0 and 2
+     * @param pitch The modulation of the sound to play at, usually between 0
+     *        and 2
+     */
+    void playSound(SoundType sound, SoundCategory category, Vector3d position, double volume, double pitch);
+
+    /**
+     * Plays the given {@link SoundType} at the given position, with the
+     * category {@link SoundCategories#MASTER}. All players within range
+     * will hear the sound with the given volume.
      *
      * @param sound The sound to play
      * @param position The position to play the sound
@@ -98,7 +132,24 @@ public interface Viewer {
      * @param minVolume The minimum volume to play the sound at, usually between
      *        0 and 2
      */
-    void playSound(SoundType sound, Vector3d position, double volume, double pitch, double minVolume);
+    default void playSound(SoundType sound, Vector3d position, double volume, double pitch, double minVolume) {
+        this.playSound(sound, SoundCategories.MASTER, position, volume, pitch, minVolume);
+    }
+
+    /**
+     * Plays the given {@link SoundType} at the given position. All
+     * players within range will hear the sound with the given volume.
+     *
+     * @param sound The sound to play
+     * @param category The category to play the sound with
+     * @param position The position to play the sound
+     * @param volume The volume to play the sound at, usually between 0 and 2
+     * @param pitch The modulation of the sound to play at, usually between 0
+     *        and 2
+     * @param minVolume The minimum volume to play the sound at, usually between
+     *        0 and 2
+     */
+    void playSound(SoundType sound, SoundCategory category, Vector3d position, double volume, double pitch, double minVolume);
 
     /**
      * Sends a {@link Title} to this player.

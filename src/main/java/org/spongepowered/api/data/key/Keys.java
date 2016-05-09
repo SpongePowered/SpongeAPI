@@ -318,7 +318,7 @@ public final class Keys {
 
     public static final Key<MutableBoundedValue<Integer>> EXPIRATION_TICKS = KeyFactory.fake("EXPIRATION_TICKS");
 
-    public static final Key<MutableBoundedValue<Integer>> EXPLOSIVE_RADIUS = KeyFactory.fake("EXPLOSIVE_RADIUS");
+    public static final Key<OptionalValue<Integer>> EXPLOSION_RADIUS = KeyFactory.fake("EXPLOSION_RADIUS");
 
     /**
      * Represents the {@link Key} for representing the {@link BigMushroomType}
@@ -390,7 +390,7 @@ public final class Keys {
 
     public static final Key<MutableBoundedValue<Integer>> FOOD_LEVEL = KeyFactory.fake("FOOD_LEVEL");
 
-    public static final Key<MutableBoundedValue<Integer>> FUSE_DURATION = KeyFactory.fake("FUSE_DURATION");
+    public static final Key<Value<Integer>> FUSE_DURATION = KeyFactory.fake("FUSE_DURATION");
 
     public static final Key<Value<GameMode>> GAME_MODE = KeyFactory.fake("GAME_MODE");
 
@@ -517,17 +517,7 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> IS_SNEAKING = KeyFactory.fake("IS_SNEAKING");
 
-    /**
-     * Represents the {@link Key} for representing the "splash" state of a
-     * {@link ItemTypes#POTION}.
-     *
-     * @see SplashPotionData#splash()
-     */
-    public static final Key<Value<Boolean>> IS_SPLASH_POTION = KeyFactory.fake("IS_SPLASH_POTION");
-
     public static final Key<Value<Boolean>> IS_SPRINTING = KeyFactory.fake("IS_SPRINTING");
-
-    public static final Key<Value<Boolean>> IS_VILLAGER_ZOMBIE = KeyFactory.fake("IS_VILLAGER_ZOMBIE");
 
     public static final Key<Value<Boolean>> IS_WET = KeyFactory.fake("IS_WET");
 
@@ -617,7 +607,7 @@ public final class Keys {
 
     public static final Key<MutableBoundedValue<Integer>> PASSED_COOK_TIME = KeyFactory.fake("PASSED_COOK_TIME");
 
-    public static final Key<Value<EntitySnapshot>> PASSENGER = KeyFactory.fake("PASSENGER");
+    public static final Key<ListValue<EntitySnapshot>> PASSENGERS = KeyFactory.fake("PASSENGERS");
 
     public static final Key<Value<Boolean>> PERSISTS = KeyFactory.fake("PERSISTS");
 
@@ -852,8 +842,6 @@ public final class Keys {
     /**
      * Represents the {@link Key} for representing the "suspended" state
      * of a {@link BlockState}.
-     *
-     * @see SuspendedData#suspended()
      */
     public static final Key<Value<Boolean>> SUSPENDED = KeyFactory.fake("SUSPENDED");
 
@@ -862,6 +850,8 @@ public final class Keys {
     public static final Key<Value<Vector3d>> TARGETED_LOCATION = KeyFactory.fake("TARGETED_LOCATION");
 
     public static final Key<MutableBoundedValue<Integer>> TOTAL_EXPERIENCE = KeyFactory.fake("TOTAL_EXPERIENCE");
+
+    public static final Key<Value<Integer>> TICKS_REMAINING = KeyFactory.fake("TICKS_REMAINING");
 
     public static final Key<Value<Boolean>> TRACKS_OUTPUT = KeyFactory.fake("TRACKS_OUTPUT");
 
@@ -880,6 +870,8 @@ public final class Keys {
     public static final Key<Value<EntitySnapshot>> VEHICLE = KeyFactory.fake("VEHICLE");
 
     public static final Key<Value<Vector3d>> VELOCITY = KeyFactory.fake("VELOCITY");
+
+    public static final Key<Value<Profession>> VILLAGER_ZOMBIE_PROFESSION = KeyFactory.fake("VILLAGER_ZOMBIE_PROFESSION");
 
     public static final Key<Value<Double>> WALKING_SPEED = KeyFactory.fake("WALKING_SPEED");
 

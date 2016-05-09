@@ -22,19 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.item;
+package org.spongepowered.api.effect.sound;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.item.ImmutableSplashPotionData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public interface SplashPotionData extends DataManipulator<SplashPotionData, ImmutableSplashPotionData> {
-
-    /**
-     * Gets the {@link Value} for the "splash" state of a potion.
-     *
-     * @return The value for the splash state
-     */
-    Value<Boolean> splash();
+@CatalogedBy(SoundCategories.class)
+public interface SoundCategory extends CatalogType {
 
 }

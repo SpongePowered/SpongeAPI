@@ -55,6 +55,8 @@ public final class DamageTypes {
 
     public static final DamageType SUFFOCATE = DummyObjectProvider.createFor(DamageType.class, "SUFFOCATE");
 
+    public static final DamageType SWEEPING_ATTACK = DummyObjectProvider.createFor(DamageType.class, "SWEEPING_ATTACK");
+
     public static final DamageType VOID = DummyObjectProvider.createFor(DamageType.class, "VOID");
 
     // SORTFIELDS:OFF
