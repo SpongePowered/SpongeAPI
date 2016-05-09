@@ -24,10 +24,15 @@
  */
 package org.spongepowered.api.extra.skylands;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.GenerationPopulator;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
+import org.spongepowered.api.world.gen.populator.Forest;
+import org.spongepowered.api.world.gen.populator.Lake;
+import org.spongepowered.api.world.gen.type.BiomeTreeTypes;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.List;
@@ -45,8 +50,24 @@ public class SkylandsWorldGeneratorModifier implements WorldGeneratorModifier {
         generationPopulators.clear();
         generationPopulators.add(new SkylandsGroundCoverPopulator());
         generationPopulators.add(new SkylandsGrassPopulator());
-        // TODO: temporary, need to decide what to use
         worldGenerator.getPopulators().clear();
+
+        // TODO: temporary, need to decide what to use
+        final Forest forest = Forest.builder()
+                .perChunk(VariableAmount.baseWithOptionalAddition(6, 1, 0.1))
+                .type(BiomeTreeTypes.OAK.getPopulatorObject(), 4)
+                .type(BiomeTreeTypes.BIRCH.getPopulatorObject(), 1)
+                .build();
+
+        worldGenerator.getPopulators().add(0, forest);
+
+        final Lake lake = Lake.builder()
+                .chance(0.25)
+                .liquidType(BlockTypes.WATER.getDefaultState())
+                .height(VariableAmount.baseWithRandomAddition(0, 256))
+                .build();
+
+        worldGenerator.getPopulators().add(1, lake);
     }
 
     @Override
