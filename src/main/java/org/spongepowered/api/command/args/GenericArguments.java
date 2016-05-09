@@ -125,7 +125,19 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement user(Text key) {
-        return new UserCommandElement(key);
+        return new UserCommandElement(key, false);
+    }
+    /**
+     * Expect an argument to represent a player who has been online at some point, as a {@link User},
+     * or if nothing matches and the source is a {@link User}, give the source. If nothing matches and the source is not a user, throw an
+     * exception
+     * Gives value of type {@link User}
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement userOrSource(Text key) {
+        return new UserCommandElement(key, true);
     }
 
     /**
@@ -935,10 +947,11 @@ public final class GenericArguments {
 
     private static class UserCommandElement extends PatternMatchingCommandElement {
         private final PlayerCommandElement possiblePlayer;
-
-        protected UserCommandElement(@Nullable Text key) {
+        private final boolean returnSource;
+        protected UserCommandElement(@Nullable Text key, boolean returnSource) {
             super(key);
-            this.possiblePlayer = new PlayerCommandElement(key, false);
+            this.returnSource = returnSource;
+            this.possiblePlayer = new PlayerCommandElement(key, returnSource);
         }
 
         @Nullable
@@ -949,7 +962,15 @@ public final class GenericArguments {
                 return this.possiblePlayer.parseValue(source, args);
             } catch (ArgumentParseException ex) {
                 args.setState(state);
-                return super.parseValue(source, args);
+                try {
+                    return super.parseValue(source, args);
+                } catch (ArgumentParseException ex2) {
+                    if (returnSource && source instanceof User) {
+                        return (User) source;
+                    } else {
+                        throw ex2;
+                    }
+                }
             }
         }
 
