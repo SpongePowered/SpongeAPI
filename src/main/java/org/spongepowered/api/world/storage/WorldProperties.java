@@ -35,6 +35,9 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.GeneratorType;
+import org.spongepowered.api.world.SerializationBehavior;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
@@ -44,9 +47,30 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * Represents the WorldProperties which are persisted across runtime instances.
+ * Represents the properties of a {@link World} which are persisted across runtime instances.
  */
 public interface WorldProperties extends DataSerializable {
+
+    /**
+     * Gets whether this world has been initialized.
+     *
+     * @return Is initialized
+     */
+    boolean isInitialized();
+
+    /**
+     * Gets the name of this world.
+     *
+     * @return The name
+     */
+    String getWorldName();
+
+    /**
+     * Gets the {@link UUID} of the world.
+     *
+     * @return The unique Id
+     */
+    UUID getUniqueId();
 
     /**
      * Gets whether this world is enabled. A world which is enabled but unloaded
@@ -112,20 +136,6 @@ public interface WorldProperties extends DataSerializable {
     void setGenerateSpawnOnLoad(boolean state);
 
     /**
-     * Gets the name of this world.
-     *
-     * @return The name
-     */
-    String getWorldName();
-
-    /**
-     * Gets the {@link UUID} of the world.
-     *
-     * @return The unique Id
-     */
-    UUID getUniqueId();
-
-    /**
      * Gets the default spawn position of this world.
      *
      * @return The spawn position
@@ -184,15 +194,6 @@ public interface WorldProperties extends DataSerializable {
      * @param time The time of day
      */
     void setWorldTime(long time);
-
-    /*
-     * TODO pending decision on handling client only API
-     *
-     * Gets the Unix time stamp of when this world was last played on.
-     *
-     * @return The time this world was last loaded
-     */
-    // long getLastTimePlayed();
 
     /**
      * Gets the {@link DimensionType} of this world.
@@ -338,13 +339,6 @@ public interface WorldProperties extends DataSerializable {
     void setCommandsAllowed(boolean state);
 
     /**
-     * Gets whether this world has been initialized.
-     *
-     * @return Is initialized
-     */
-    boolean isInitialized();
-
-    /**
      * Gets the difficulty of this world.
      *
      * @return The difficulty
@@ -357,6 +351,16 @@ public interface WorldProperties extends DataSerializable {
      * @param difficulty The difficulty
      */
     void setDifficulty(Difficulty difficulty);
+
+    /**
+     * Gets whether the bonus chest should be generated.
+     *
+     * <p>This only applies on the initial load of the {@link World}
+     * created via this properties.</p>
+     *
+     * @return True if bonus chest is generated, false if not
+     */
+    boolean doesGenerateBonusChest();
 
     /**
      * Gets the center of the world border.
@@ -588,4 +592,25 @@ public interface WorldProperties extends DataSerializable {
      */
     DataContainer getGeneratorSettings();
 
+    /**
+     * Gets the {@link SerializationBehavior} in use.
+     *
+     * @return The serialization behavior
+     */
+    SerializationBehavior getSerializationBehavior();
+
+    /**
+     * Sets the {@link SerializationBehavior} for use.
+     *
+     * @param behavior The serialization behavior
+     */
+    void setSerializationBehavior(SerializationBehavior behavior);
+
+    /**
+     * Generates a {@link WorldCreationSettings} that can be used to create other {@link World}s
+     * similar to this one.
+     *
+     * @return The settings
+     */
+    WorldCreationSettings getCreationSettings();
 }

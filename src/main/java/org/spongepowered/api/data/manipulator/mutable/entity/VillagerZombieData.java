@@ -26,20 +26,15 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableVillagerZombieData;
+import org.spongepowered.api.data.manipulator.mutable.VariantData;
+import org.spongepowered.api.data.type.Profession;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.monster.Zombie;
 
 /**
- * Signifies that a {@link Zombie} is a "villager" zombie. Usually applicable
+ * Signifies that a {@link Zombie} is a "villager" zombie, with a specific profession. Usually applicable
  * to all {@link Zombie}s.
  */
-public interface VillagerZombieData extends DataManipulator<VillagerZombieData, ImmutableVillagerZombieData> {
-
-    /**
-     * Gets the {@link Value} for the "villager zombie" state.
-     *
-     * @return The value for the villager zombie state
-     */
-    Value<Boolean> villagerZombie();
+public interface VillagerZombieData extends VariantData<Profession, VillagerZombieData, ImmutableVillagerZombieData> {
 
 }

@@ -33,17 +33,17 @@ package org.spongepowered.api.util;
 public interface ResettableBuilder<T, B extends ResettableBuilder<T, B>> {
 
     /**
-     * Resets this builder to the values of the given archtype object.
+     * Resets this builder to the values of the given built object.
      *
-     * @param value The archtype object
+     * @param value The built object
      * @return This builder, for chaining
      */
     B from(T value);
 
     /**
      * Resets this builder to a "default" state such that there is no
-     * remaining data to set. This is to be the presumed
-     * "default" state.
+     * remaining data to set. This is to be the presumed "default"
+     * state.
      *
      * @return This builder, for chaining
      */

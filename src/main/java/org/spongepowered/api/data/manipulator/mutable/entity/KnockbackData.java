@@ -28,7 +28,7 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableKnockbackData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.projectile.Arrow;
+import org.spongepowered.api.entity.projectile.arrow.Arrow;
 
 /**
  * An {@link DataManipulator} for the "knockback" strength for an

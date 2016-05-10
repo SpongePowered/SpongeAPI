@@ -22,23 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.explosive;
+package org.spongepowered.api.data.manipulator.mutable.entity;
+
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableExplosionRadiusData;
+import org.spongepowered.api.data.value.mutable.OptionalValue;
 
 /**
- * Represents an ignitable entity that has a fuse.
+ * Represents the radius of an explosion.
  */
-public interface IgnitableExplosive extends FusedExplosive {
+public interface ExplosionRadiusData extends DataManipulator<ExplosionRadiusData, ImmutableExplosionRadiusData> {
 
     /**
-     * Ignites this explosive to detonate after some fuse duration in ticks.
-     */
-    void ignite();
-
-    /**
-     * Ignites this explosive to detonate after the given fuse ticks.
+     * The radius in blocks that the explosion will affect. This value may be
+     * missing if the explosion radius is unknown such as when it is generated
+     * randomly on detonation. Setting this value on such explosives will
+     * override that behavior.
      *
-     * @param fuseTicks The ticks to set the fuse
+     * @return Explosion radius
      */
-    void ignite(int fuseTicks);
+    OptionalValue<Integer> explosionRadius();
 
 }

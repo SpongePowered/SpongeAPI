@@ -33,14 +33,14 @@ import java.util.UUID;
 
 /**
  * A type of {@link ImmutableDataHolder} that may be linked to a particular
- * {@link Location}. Being that a {@link LocateableSnapshot} may be built
+ * {@link Location}. Being that a {@link LocatableSnapshot} may be built
  * by an {@link ImmutableDataBuilder}, the {@link Location} may be
  * <code>null</code> such that {@link #getLocation()} returns
  * {@link Optional#empty()}.
  *
  * @param <T> The type of location snapshot for self referencing
  */
-public interface LocateableSnapshot<T extends LocateableSnapshot<T>> extends ImmutableDataHolder<T> {
+public interface LocatableSnapshot<T extends LocatableSnapshot<T>> extends ImmutableDataHolder<T> {
 
     /**
      * Gets the {@link UUID} of the world.
@@ -59,7 +59,7 @@ public interface LocateableSnapshot<T extends LocateableSnapshot<T>> extends Imm
     /**
      * Gets the {@link Location} of the snapshot at which it may have been
      * taken from. The {@link Location} being immutable signifies that the
-     * {@link LocateableSnapshot} can be re-created at the desired
+     * {@link LocatableSnapshot} can be re-created at the desired
      * {@link Location}.
      *
      * @return The location of where the snapshot was taken, if available

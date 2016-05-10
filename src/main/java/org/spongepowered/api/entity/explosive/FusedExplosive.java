@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.explosive;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.FuseData;
-import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.event.cause.Cause;
 
 /**
  * Represents an explosive that detonates after its fuse has expired.
@@ -35,22 +35,36 @@ import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 public interface FusedExplosive extends Explosive {
 
     /**
-     * Gets a copy of the {@link FuseData} representing the fuse
-     * for this {@link FusedExplosive} entity.
+     * Returns the {@link FuseData} for this explosive.
      *
-     * @return A copy of the fuse data
+     * @return FuseData
      */
     default FuseData getFuseData() {
         return get(FuseData.class).get();
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the remaining fuse duration.
+     * Returns true if this explosive is currently primed.
      *
-     * @return The fuse duration
+     * @return True if primed
      */
-    default MutableBoundedValue<Integer> fuseDuration() {
-        return getValue(Keys.FUSE_DURATION).get();
-    }
+    boolean isPrimed();
+
+    /**
+     * Primes this explosive to detonate after the amount of ticks that
+     * this entity explodes in defined by {@link Keys#FUSE_DURATION}.
+     *
+     * @param cause The cause of this primed entity
+     * @throws IllegalStateException if explosive already primed
+     */
+    void prime(Cause cause);
+
+    /**
+     * Cancels an actively primed explosive.
+     *
+     * @param cause The cause for diffusion
+     * @throws IllegalStateException if explosive is not primed
+     */
+    void defuse(Cause cause);
 
 }

@@ -36,14 +36,8 @@ import java.util.Optional;
 public interface InteractEvent extends Event, Cancellable {
 
     /**
-     * Gets the point of interaction where the interaction occurred as a
-     * {@link Vector3d}.
-     *
-     * <p>Depending on the interaction, this may or may not be known(hence
-     * the optional).</p>
-     *
-     * @return An optional containing the point of interaction or
-     *     {@link Optional#empty()} if not known
+     * Gets the point of interaction where the interaction occurred as
+     * a {@link Vector3d}.
      */
-    Optional<Vector3d> getInteractionPoint();
+   Optional<Vector3d> getInteractionPoint();
 }

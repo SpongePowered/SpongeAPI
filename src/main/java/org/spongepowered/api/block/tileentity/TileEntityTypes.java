@@ -56,6 +56,8 @@ public final class TileEntityTypes {
 
     public static final TileEntityType ENDER_CHEST = DummyObjectProvider.createFor(TileEntityType.class, "ENDER_CHEST");
 
+    public static final TileEntityType END_GATEWAY = DummyObjectProvider.createFor(TileEntityType.class, "END_GATEWAY");
+
     public static final TileEntityType END_PORTAL = DummyObjectProvider.createFor(TileEntityType.class, "END_PORTAL");
 
     public static final TileEntityType FLOWER_POT = DummyObjectProvider.createFor(TileEntityType.class, "FLOWER_POT");
@@ -75,6 +77,8 @@ public final class TileEntityTypes {
     public static final TileEntityType SIGN = DummyObjectProvider.createFor(TileEntityType.class, "SIGN");
 
     public static final TileEntityType SKULL = DummyObjectProvider.createFor(TileEntityType.class, "SKULL");
+
+    public static final TileEntityType STRUCTURE = DummyObjectProvider.createFor(TileEntityType.class, "STRUCTURE");
 
     // SORTFIELDS:OFF
 

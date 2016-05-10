@@ -22,26 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.block;
+package org.spongepowered.api.event.entity.explosive;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.block.ImmutableSuspendedData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.event.entity.TargetEntityEvent;
 
 /**
- * An {@link DataManipulator} for the "suspended" state. Usually, the mechanics
- * for this mean that a {@link BlockState} may "trigger" if modified while
- * being "suspended". Usually applicable to {@link BlockTypes#TRIPWIRE}.
+ * Represents an event regarding an {@link Explosive}.
  */
-public interface SuspendedData extends DataManipulator<SuspendedData, ImmutableSuspendedData> {
+public interface TargetExplosiveEvent extends TargetEntityEvent {
 
-    /**
-     * Gets the {@link Value} for the "suspended" state.
-     *
-     * @return The value for the "suspended" state.
-     */
-    Value<Boolean> suspended();
+    @Override
+    Explosive getTargetEntity();
 
 }

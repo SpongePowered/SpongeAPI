@@ -22,29 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.source;
+package org.spongepowered.api.entity.living.golem;
 
-import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.entity.living.golem.Golem;
 
-/**
- * Location sources are {@link CommandSource}s that have a current location.
- */
-public interface LocatedSource extends CommandSource {
-
-    /**
-     * Gets the location of the source.
-     *
-     * @return The location
-     */
-    Location<World> getLocation();
-
-    /**
-     * Gets the world that this source resides in.
-     *
-     * @return The World
-     */
-    World getWorld();
+public interface Shulker extends Golem {
 
 }

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
@@ -31,7 +32,10 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
+import org.spongepowered.api.registry.CatalogTypeAlreadyRegisteredException;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.storage.WorldProperties;
 
@@ -40,7 +44,8 @@ import java.util.Collection;
 /**
  * A representation of the settings which define a {@link World} for creation.
  */
-public interface WorldCreationSettings {
+@CatalogedBy(WorldCreationSettingsTypes.class)
+public interface WorldCreationSettings extends CatalogType {
 
     /**
      * Gets a new Builder instance for {@link WorldCreationSettings}.
@@ -52,111 +57,114 @@ public interface WorldCreationSettings {
     }
 
     /**
-     * Gets the name of the world.
-     * 
-     * @return The name
-     */
-    String getWorldName();
-
-    /**
-     * Gets whether this world is enabled. A world which is enabled but unloaded
-     * may be loaded automatically if an attempt is made to transfer an entity
+     * Gets enabled status. Built worlds who are enabled but unloaded may
+     * be loaded automatically if an attempt is made to transfer an entity
      * to the world using {@link Entity#transferToWorld} .
-     * 
-     * @return Is enabled
+     *
+     * @return True if enabled, false if not
      */
     boolean isEnabled();
 
     /**
-     * Gets whether this world will load when the server starts up.
-     * 
-     * @return Loads on startup
+     * Gets whether to load when the server starts.
+     *
+     * @return True to load when server starts, false if not
      */
     boolean loadOnStartup();
 
     /**
-     * Returns whether spawn chunks of this world remain loaded when no players
-     * are present.
+     * Gets whether spawn chunks remain loaded when no players are present.
      *
-     * @return True if spawn chunks of this world remain loaded without players,
-     *         false if not
+     * @return True to keep spawn chunks loaded, false if not
      */
     boolean doesKeepSpawnLoaded();
 
     /**
-     * Returns whether spawn chunks will generate when this world is loaded.
-     * @return True to generate spawn on load, false otherwise
+     * Gets whether spawn chunks will generate on load.
+     *
+     * @return True to generate spawn on load, false if not
      */
     boolean doesGenerateSpawnOnLoad();
 
     /**
-     * Gets the seed of the world.
+     * Gets the seed.
      * 
      * @return The seed
      */
     long getSeed();
 
     /**
-     * Gets the default gamemode of the world.
+     * Gets the gamemode.
      *
      * @return The gamemode
      */
     GameMode getGameMode();
 
     /**
-     * Gets the type of the generator for the world.
+     * Gets the generator type.
      * 
      * @return The generator type
      */
     GeneratorType getGeneratorType();
 
     /**
-     * Gets an immutable collection of the world generator modifiers applied to
-     * this world.
+     * Gets an immutable collection of the world generator modifiers.
      * 
      * @return The modifiers
      */
     Collection<WorldGeneratorModifier> getGeneratorModifiers();
 
     /**
-     * Gets whether map features are enabled to be generated into the world.
+     * Gets whether map features are enabled.
+     *
+     * <p>Examples include Villages, Temples, etc.</p>
      * 
-     * @return Are map features enabled
+     * @return True if map features are enabled, false if not
      */
     boolean usesMapFeatures();
 
     /**
-     * Gets whether hardcore mode is enabled in this world.
+     * Gets whether hardcore mode is enabled.
      * 
-     * @return Is hardcore
+     * @return True if hardcore mode is enabled, false if not
      */
     boolean isHardcore();
 
     /**
-     * Gets whether commands are allowed in this world.
+     * Gets whether commands are allowed.
      * 
-     * @return Are commands allowed
+     * @return True if commands are allowed, false if not
      */
-    boolean commandsAllowed();
+    boolean areCommandsAllowed();
 
     /**
-     * Gets whether the bonus chest should be created in this world.
+     * Gets whether the bonus chest should be generated.
+     *
+     * <p>This only applies on the initial load of the {@link World}
+     * created via the {@link WorldProperties} created from this settings.</p>
      * 
-     * @return Should create bonus chest
+     * @return True if bonus chest is generated, false if not
      */
-    boolean bonusChestEnabled();
+    boolean doesGenerateBonusChest();
 
     /**
-     * Gets the dimension type for the world.
+     * Gets the dimension type.
      * 
      * @return The dimension type
      */
     DimensionType getDimensionType();
 
     /**
-     * Gets whether PVP combat is enabled in this world.
+     * Gets the difficulty.
      *
-     * @return Whether PVP is enabled
+     * @return The difficulty
+     */
+    Difficulty getDifficulty();
+
+    /**
+     * Gets whether PVP combat is enabled.
+     *
+     * @return True if PVP combat is enabled, false if not
      */
     boolean isPVPEnabled();
 
@@ -168,38 +176,17 @@ public interface WorldCreationSettings {
      */
     DataContainer getGeneratorSettings();
 
+    /**
+     * Gets the {@link SerializationBehavior} that worlds built from this will use.
+     *
+     * @return The serialization mode
+     */
+    SerializationBehavior getSerializationBehavior();
+
     interface Builder extends ResettableBuilder<WorldCreationSettings, Builder> {
 
         /**
-         * Fills this {@link Builder} for creating {@link World}s or
-         * {@link WorldCreationSettings}s, the builder is then seeded with the
-         * values from the given WorldCreationSettings object.
-         *
-         * @param settings The seed settings
-         * @return A new seeded builder
-         */
-        Builder fill(WorldCreationSettings settings);
-
-        /**
-         * Fills this {@link Builder} for creating {@link World}s or
-         * {@link WorldCreationSettings}s, the builder is then seeded with the
-         * values from the given WorldProperties object.
-         *
-         * @param properties The seed properties
-         * @return A new seeded builder
-         */
-        Builder fill(WorldProperties properties);
-
-        /**
-         * Sets the name of the world.
-         *
-         * @param name The name
-         * @return The builder, for chaining
-         */
-        Builder name(String name);
-
-        /**
-         * Sets the world as enabled. A world which is enabled but unloaded may
+         * Sets enabled status. Built worlds who are enabled but unloaded may
          * be loaded automatically if an attempt is made to transfer an entity
          * to the world using {@link Entity#transferToWorld} .
          *
@@ -209,7 +196,7 @@ public interface WorldCreationSettings {
         Builder enabled(boolean state);
 
         /**
-         * Sets whether the world should load when the server starts up.
+         * Sets whether to load when the server starts.
          *
          * @param state Should load on startup
          * @return The builder, for chaining
@@ -217,7 +204,7 @@ public interface WorldCreationSettings {
         Builder loadsOnStartup(boolean state);
 
         /**
-         * Sets whether the spawn chunks of the world should remain loaded when
+         * Sets whether the spawn chunks should remain loaded when
          * no players are present.
          *
          * @param state Should keep spawn loaded
@@ -226,15 +213,16 @@ public interface WorldCreationSettings {
         Builder keepsSpawnLoaded(boolean state);
 
         /**
-         * Sets whether the spawn chunks of the world generate on load.
+         * Sets whether the spawn chunks generate on load.
+         *
          * @param state Should generate spawn chunks on load
          * @return The builder, for chaining
          */
         Builder generateSpawnOnLoad(boolean state);
 
         /**
-         * Sets the seed of the world. If not specified this will default to
-         * using a random seed.
+         * Sets the seed. If not specified this will default to using a
+         * random seed.
          *
          * @param seed The seed
          * @return The builder, for chaining
@@ -242,7 +230,7 @@ public interface WorldCreationSettings {
         Builder seed(long seed);
 
         /**
-         * Sets the default {@link GameMode} of the world. If not specified this
+         * Sets the default {@link GameMode}. If not specified this
          * will default to {@link GameModes#SURVIVAL}.
          *
          * @param gameMode The gamemode
@@ -251,7 +239,8 @@ public interface WorldCreationSettings {
         Builder gameMode(GameMode gameMode);
 
         /**
-         * Sets the generator type of the world.
+         * Sets the generator type. If not specified this will default
+         * to {@link GeneratorTypes#DEFAULT}
          *
          * @param type The type
          * @return The builder, for chaining
@@ -259,7 +248,7 @@ public interface WorldCreationSettings {
         Builder generator(GeneratorType type);
 
         /**
-         * Sets the generator modifiers to use for the world.
+         * Sets the generator modifiers.
          *
          * @param modifier The modifiers
          * @return The builder, for chaining
@@ -269,7 +258,7 @@ public interface WorldCreationSettings {
         Builder generatorModifiers(WorldGeneratorModifier... modifier);
 
         /**
-         * Sets the dimension type of the world.
+         * Sets the dimension type.
          *
          * @param type The type
          * @return The builder, for chaining
@@ -277,29 +266,36 @@ public interface WorldCreationSettings {
         Builder dimension(DimensionType type);
 
         /**
-         * Sets whether this world should generate map features such as villages
-         * and strongholds. If not specified this will default to true.
+         * Sets the difficulty.
          *
-         * @param enabled Are map features enabled
+         * @param difficulty The difficulty
          * @return The builder, for chaining
          */
-        Builder usesMapFeatures(boolean enabled);
+        Builder difficulty(Difficulty difficulty);
+
+        /**
+         * Sets whether this should generate map features such as villages
+         * and strongholds. If not specified this will default to true.
+         *
+         * @param state Are map features enabled
+         * @return The builder, for chaining
+         */
+        Builder usesMapFeatures(boolean state);
 
         /**
          * Sets whether hardcore mode is enabled. On servers this will cause
          * players to be banned upon death, on clients the world will be
          * deleted! If not specified this will default to false.
          *
-         * @param enabled Is hardcore mode enabled
+         * @param state Is hardcore mode enabled
          * @return The builder, for chaining
          */
-        Builder hardcore(boolean enabled);
+        Builder hardcore(boolean state);
 
         /**
          * Sets any extra settings required by the {@link GeneratorType} or by
          * the {@link WorldGeneratorModifier}s. If not specified these will
-         * default to the settings within
-         * {@link GeneratorType#getGeneratorSettings()}.
+         * default to the settings within {@link GeneratorType#getGeneratorSettings()}.
          *
          * @param settings The generator settings
          * @return The builder, for chaining
@@ -307,28 +303,57 @@ public interface WorldCreationSettings {
         Builder generatorSettings(DataContainer settings);
 
         /**
-         * Sets the desired {@link TeleporterAgent} for the world to be created.
+         * Sets whether PVP combat is enabled.
          *
-         * @param agent The agent
-         * @return This builder, for chaining
-         */
-        Builder teleporterAgent(TeleporterAgent agent);
-
-        /**
-         * Sets whether PVP combat is enabled in this world.
-         *
-         * @param enabled Whether PVP is enabled
+         * @param state Whether PVP is enabled
          * @return The builder, for chaining
          */
-        Builder pvp(boolean enabled);
+        Builder pvp(boolean state);
+
+        /**
+         * Sets whether commands are allowed to be executed.
+         *
+         * @param state Whether commands are allowed
+         * @return The builder, for chaining
+         */
+        Builder commandsAllowed(boolean state);
+
+        /**
+         * Sets whether the bonus chest should be created.
+         *
+         * @param state Whether bonus chest is enabled
+         * @return The builder, for chaining
+         */
+        Builder generateBonusChest(boolean state);
+
+        /**
+         * Sets the serialization behavior that will be used when saving.
+         *
+         * @param behavior The serialization behavior
+         * @return This builder, for chaining
+         */
+        Builder serializationBehavior(SerializationBehavior behavior);
+
+        /**
+         * Fills this {@link Builder} for creating {@link WorldCreationSettings}s,
+         * the builder is then seeded with the values from the given WorldProperties
+         * object.
+         *
+         * @param properties The seed properties
+         * @return A new seeded builder
+         */
+        Builder from(WorldProperties properties);
 
         /**
          * Builds the {@link WorldCreationSettings} which can be used to create
-         * a {@link World} in
-         * {@link Server#createWorldProperties(WorldCreationSettings)}.
+         * a {@link World} in {@link Server#createWorldProperties(String, WorldCreationSettings)}.
          *
+         * <p>This will also register the settings as a new type in {@link GameRegistry#register(Class, CatalogType)}.</p>
+         *
+         * @param id The id that this settings will be registered under
+         * @param name The human readable name of this settings
          * @return The settings
          */
-        WorldCreationSettings build();
+        WorldCreationSettings build(String id, String name) throws IllegalArgumentException, CatalogTypeAlreadyRegisteredException;
     }
 }
