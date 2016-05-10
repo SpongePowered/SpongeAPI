@@ -37,16 +37,18 @@ import java.util.regex.Pattern;
 @Target(ElementType.TYPE)
 public @interface Plugin {
 
-    Pattern ID_PATTERN = Pattern.compile("[a-z](?:[a-z0-9-_.]*[a-z0-9])?");
+    /**
+     * @deprecated Moved to plugin-meta project
+     */
+    @Deprecated
+    Pattern ID_PATTERN = Pattern.compile("[a-z][a-z0-9-_.]*");
 
     /**
      * An ID for the plugin to be used internally. The ID should be unique as to
      * not conflict with other plugins.
      *
      * <p>The plugin ID must be lowercase and start with a alphabetic character.
-     * It is recommended to qualify the plugin ID with a unique group identifier
-     * as prefix, e.g. {@code me.spongeplugindev.testplugin}. Usually it is a
-     * good idea to use a group similar to your plugin main class package.</p>
+     * It may only contain alphanumeric characters, dashes or underscores.</p>
      *
      * @return The plugin identifier
      * @see <a href="https://goo.gl/MRRYSJ">Java package naming conventions</a>

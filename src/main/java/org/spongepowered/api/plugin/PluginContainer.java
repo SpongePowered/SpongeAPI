@@ -69,7 +69,9 @@ public interface PluginContainer {
      *
      * @return The unqualified plugin ID
      * @see Plugin#id()
+     * @deprecated Qualified plugin IDs are no longer recommended
      */
+    @Deprecated
     String getUnqualifiedId();
 
     /**
