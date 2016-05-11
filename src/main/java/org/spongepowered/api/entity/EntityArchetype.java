@@ -27,7 +27,6 @@ package org.spongepowered.api.entity;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Archetype;
 import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
@@ -46,8 +45,19 @@ public interface EntityArchetype extends Archetype<EntitySnapshot> {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the {@link EntityType} of the entity contained in this archetype.
+     * 
+     * @return The entity type
+     */
     EntityType getType();
 
+    /**
+     * Gets the raw {@link Entity} data that would be applied to the generated
+     * tile entity. Note that this is a copied container.
+     *
+     * @return The copied container of the entity
+     */
     DataContainer getEntityData();
 
     @Override
@@ -56,6 +66,9 @@ public interface EntityArchetype extends Archetype<EntitySnapshot> {
     @Override
     EntityArchetype copy();
 
+    /**
+     * A builder for {@link EntityArchetype}s.
+     */
     interface Builder extends DataBuilder<EntityArchetype> {
 
         @Override

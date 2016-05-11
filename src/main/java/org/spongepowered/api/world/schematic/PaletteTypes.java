@@ -22,34 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data;
+package org.spongepowered.api.world.schematic;
 
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-/**
- * A {@link DataHolder} which has no attachment to any particular world allowing
- * it to be used as a blueprint to create multiple copies of its containing
- * data.
- */
-public interface Archetype<S extends LocatableSnapshot<S>> extends DataHolder {
+public class PaletteTypes {
 
     /**
-     * Creates a new instance based on this archetype at the given location.
-     * 
-     * @param location The location to create the new instance at
-     * @param cause The cause of the creation
-     * @return Whether the creation was successful
+     * The global palette containing a mapping of all blockstates to ids.
      */
-    boolean apply(Location<World> location, Cause cause);
-
+    public static final PaletteType GLOBAL = DummyObjectProvider.createFor(PaletteType.class, "GLOBAL");
     /**
-     * Creates a new immutable snapshot based on this archetype.
-     * 
-     * @param location The location for the snapshot to be specified as at
-     * @return The snapshot
+     * A local palette containing only a subset of the global palette.
      */
-    S toSnapshot(Location<World> location);
+    public static final PaletteType LOCAL = DummyObjectProvider.createFor(PaletteType.class, "LOCAL");
+    
+    private PaletteTypes() {
+    }
 
 }

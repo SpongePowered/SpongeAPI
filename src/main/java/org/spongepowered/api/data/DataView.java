@@ -161,13 +161,12 @@ public interface DataView {
         checkNotNull(keys, "Keys cannot be null!");
         if (keys.length == 0) {
             return contains(key.getQuery());
-        } else {
-            List<DataQuery> queries = new ArrayList<>();
-            for (Key<?> arrayKey : keys) {
-                queries.add(checkNotNull(arrayKey, "Cannot have a null key!").getQuery());
-            }
-            return contains(key.getQuery(), queries.toArray(new DataQuery[queries.size()]));
         }
+        List<DataQuery> queries = new ArrayList<>();
+        for (Key<?> arrayKey : keys) {
+            queries.add(checkNotNull(arrayKey, "Cannot have a null key!").getQuery());
+        }
+        return contains(key.getQuery(), queries.toArray(new DataQuery[queries.size()]));
     }
 
     /**
@@ -579,6 +578,11 @@ public interface DataView {
      */
     DataContainer copy();
 
+    /**
+     * Gets if this view contains no data.
+     * 
+     * @return True if no data
+     */
     boolean isEmpty();
 
 }

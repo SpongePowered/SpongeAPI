@@ -38,10 +38,9 @@ import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
-import java.util.Optional;
-
 /**
- * Represents a raw {@link TileEntity} that is virtualized
+ * Represents the data of a {@link TileEntity} which does not exist in the world
+ * and may be used to create new {@link TileEntity}s with the same data.
  */
 public interface TileEntityArchetype extends Archetype<BlockSnapshot> {
 
@@ -55,10 +54,10 @@ public interface TileEntityArchetype extends Archetype<BlockSnapshot> {
     }
 
     /**
-     * Gets the block state for this archetype. Note that this state
-     * is unchangeable, as much as {@link #getTileEntityType()} is.
-     * The underlying data is mutable, but all the data is heavily tied
-     * to the tile entity type.
+     * Gets the block state for this archetype. Note that this state is
+     * unchangeable, as much as {@link #getTileEntityType()} is. The underlying
+     * data is mutable, but all the data is heavily tied to the tile entity
+     * type.
      *
      * @return The block state
      */
@@ -72,21 +71,21 @@ public interface TileEntityArchetype extends Archetype<BlockSnapshot> {
     TileEntityType getTileEntityType();
 
     /**
-     * Gets the raw {@link TileEntity} data that would be applied to
-     * the generated tile entity. Note that this is a copied container.
+     * Gets the raw {@link TileEntity} data that would be applied to the
+     * generated tile entity. Note that this is a copied container.
      *
      * @return The copied container of the tile entity
      */
     DataContainer getTileData();
 
     /**
-     * Sets the raw data for the desired {@link TileEntity}. Note that
-     * position values are not used as those are dependent on usage.
+     * Sets the raw data for the desired {@link TileEntity}. Note that position
+     * values are not used as those are dependent on usage.
      *
-     * @param container A container containing all raw data to set on this
-     *     data holder
+     * @param container A container containing all raw data to set on this data
+     *        holder
      * @throws InvalidDataException If the data is not valid for the archetyped
-     *     tile entity
+     *         tile entity
      */
     @Override
     void setRawData(DataView container) throws InvalidDataException;
@@ -94,6 +93,9 @@ public interface TileEntityArchetype extends Archetype<BlockSnapshot> {
     @Override
     TileEntityArchetype copy();
 
+    /**
+     * A builder for {@link TileEntityArchetype}s.
+     */
     interface Builder extends DataBuilder<TileEntityArchetype> {
 
         @Override
@@ -102,6 +104,12 @@ public interface TileEntityArchetype extends Archetype<BlockSnapshot> {
         @Override
         Builder from(TileEntityArchetype value);
 
+        /**
+         * Sets the {@link BlockState} of the archetype.
+         * 
+         * @param state The new block state
+         * @return This builder, for chaining
+         */
         Builder state(BlockState state);
 
         Builder tile(TileEntityType tileEntityType);
@@ -118,6 +126,11 @@ public interface TileEntityArchetype extends Archetype<BlockSnapshot> {
 
         <E, V extends BaseValue<E>> Builder set(Key<V> key, E value);
 
+        /**
+         * Creates a new {@link TileEntityArchetype} from this builder.
+         * 
+         * @return The new instance
+         */
         TileEntityArchetype build();
 
     }

@@ -90,8 +90,8 @@ public interface TileEntity extends DataHolder, DataSerializable, Locatable {
     BlockState getBlock();
 
     /**
-     * Creates a new {@link TileEntityArchetype} for use with {@link Schematic}s and
-     * placing the archetype in multiple locations.
+     * Creates a new {@link TileEntityArchetype} for use with {@link Schematic}s
+     * and placing the archetype in multiple locations.
      *
      * @return The created archetype for re-creating this tile entity
      */

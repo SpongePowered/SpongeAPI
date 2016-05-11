@@ -33,15 +33,13 @@ import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.MemoryDataView;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.Optional;
-
 /**
  * A compatibility object to translate and translate any type of
  * {@link Object} that is not a {@link DataSerializable}. Natively,
  * {@link MemoryDataView} will attempt to locate a {@code DataTranslator}
  * during {@link DataView#set(DataQuery, Object)}.
  *
- * @param <T> The type of object that this serializer and handle
+ * @param <T> The type of object that this translator can handle
  */
 @CatalogedBy(DataTranslators.class)
 public interface DataTranslator<T> extends CatalogType {
@@ -53,10 +51,10 @@ public interface DataTranslator<T> extends CatalogType {
      * {@link DataView}.
      *
      * @param view The data view to translate the object from
-     * @return The object, deserialized, if available
+     * @return The deserialized object
      * @throws InvalidDataException If the dataview contained invalid data
      */
-    Optional<T> translate(DataView view) throws InvalidDataException;
+    T translate(DataView view) throws InvalidDataException;
 
     /**
      * Serializes the provided object to a {@link DataContainer}.

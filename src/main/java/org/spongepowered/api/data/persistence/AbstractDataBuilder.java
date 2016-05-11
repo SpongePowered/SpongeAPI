@@ -85,7 +85,7 @@ public abstract class AbstractDataBuilder<T extends DataSerializable> implements
         try {
             return buildContent(container);
         } catch (Exception e) {
-            throw new InvalidDataException("Could not translate something correctly, likely due to bad type data.", e);
+            throw new InvalidDataException("Could not deserialize something correctly, likely due to bad type data.", e);
         }
     }
 }

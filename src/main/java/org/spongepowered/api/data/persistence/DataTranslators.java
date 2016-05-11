@@ -42,6 +42,7 @@ import com.flowpowered.math.vector.Vector4i;
 import com.flowpowered.math.vector.Vector4l;
 import ninja.leaping.configurate.ConfigurationNode;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.world.schematic.Schematic;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -53,6 +54,8 @@ import java.util.UUID;
 public final class DataTranslators {
 
     // sortfields:ON
+    public static final DataTranslator<Schematic> SCHEMATIC = DummyObjectProvider.createExtendedFor(DataTranslator.class, "SCHEMATIC");
+    public static final DataTranslator<Schematic> LEGACY_SCHEMATIC = DummyObjectProvider.createExtendedFor(DataTranslator.class, "LEGACY_SCHEMATIC");
     public static final DataTranslator<ConfigurationNode> CONFIGURATION_NODE = DummyObjectProvider.createExtendedFor(DataTranslator.class, "CONFIGURATION_NODE");
 
     public static final DataTranslator<UUID> UUID = DummyObjectProvider.createExtendedFor(DataTranslator.class, "UUID");

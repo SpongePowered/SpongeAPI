@@ -63,7 +63,7 @@ public class ConfigurateDataViewTest {
 
         DataView container = DataTranslators.CONFIGURATION_NODE.translate(node);
         assertTrue(manual.equals(container));
-        ConfigurationNode translated = DataTranslators.CONFIGURATION_NODE.translate(container).get();
+        ConfigurationNode translated = DataTranslators.CONFIGURATION_NODE.translate(container);
         // assertTrue(node.equals(translated)); // TODO Pending Configurate equals implementation
     }
 

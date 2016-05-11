@@ -22,34 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data;
+package org.spongepowered.api.world.schematic;
 
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * A {@link DataHolder} which has no attachment to any particular world allowing
- * it to be used as a blueprint to create multiple copies of its containing
- * data.
+ * Represents a type of palette.
  */
-public interface Archetype<S extends LocatableSnapshot<S>> extends DataHolder {
+@CatalogedBy(PaletteTypes.class)
+public interface PaletteType extends CatalogType {
 
     /**
-     * Creates a new instance based on this archetype at the given location.
+     * Gets an instance of this palette type.
      * 
-     * @param location The location to create the new instance at
-     * @param cause The cause of the creation
-     * @return Whether the creation was successful
+     * @return The palette instance
      */
-    boolean apply(Location<World> location, Cause cause);
-
-    /**
-     * Creates a new immutable snapshot based on this archetype.
-     * 
-     * @param location The location for the snapshot to be specified as at
-     * @return The snapshot
-     */
-    S toSnapshot(Location<World> location);
+    Palette create();
 
 }

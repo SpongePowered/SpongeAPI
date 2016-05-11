@@ -526,6 +526,16 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      */
     Set<AABB> getIntersectingCollisionBoxes(Entity owner, AABB box);
 
-    ArchetypeVolume createArchetypeVolume(Vector3i min, Vector3i max);
+    /**
+     * Creates a new archetype volume from the specified section of this extent.
+     * The archetype's volume will be shifted such that the position given in
+     * the origin will be the origin of the volume.
+     *
+     * @param min The minimum point of the area to copy
+     * @param max The maximum point of the area to copy
+     * @param origin The eventual origin on the new archetype volume
+     * @return The archetype volume
+     */
+    ArchetypeVolume createArchetypeVolume(Vector3i min, Vector3i max, Vector3i origin);
 
 }

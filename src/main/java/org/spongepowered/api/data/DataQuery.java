@@ -157,6 +157,23 @@ public final class DataQuery {
     }
 
     /**
+     * Returns a new query that is made up of this query's parts followed by the
+     * given query.
+     *
+     * @param that The given query to follow this one
+     * @return The constructed query
+     */
+    public DataQuery then(String that) {
+        ImmutableList.Builder<String> builder =
+            new ImmutableList.Builder<>();
+
+        builder.addAll(this.parts);
+        builder.add(that);
+
+        return new DataQuery(builder.build());
+    }
+
+    /**
      * Returns the parts of this query as individual queries. The returned list
      * is immutable.
      *
@@ -186,6 +203,24 @@ public final class DataQuery {
         }
         ImmutableList.Builder<String> builder = ImmutableList.builder();
         for (int i = 0; i < this.parts.size() - 1; i++) {
+            builder.add(this.parts.get(i));
+        }
+        return new DataQuery(builder.build());
+    }
+
+    /**
+     * Returns a {@link DataQuery} where the first node is "popped" off. If this
+     * query is already the top level query, then the {@link DataQuery#of()} is
+     * returned.
+     *
+     * @return The next level query
+     */
+    public DataQuery popFirst() {
+        if (this.parts.size() <= 1) {
+            return of();
+        }
+        ImmutableList.Builder<String> builder = ImmutableList.builder();
+        for (int i = 1; i < this.parts.size(); i++) {
             builder.add(this.parts.get(i));
         }
         return new DataQuery(builder.build());

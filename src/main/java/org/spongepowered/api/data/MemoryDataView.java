@@ -137,23 +137,17 @@ public class MemoryDataView implements DataView {
     @Override
     public final boolean contains(DataQuery path) {
         checkNotNull(path, "path");
-        List<DataQuery> queryParts = path.getQueryParts();
+        List<String> queryParts = path.getParts();
 
+        String key = queryParts.get(0);
         if (queryParts.size() == 1) {
-            String key = queryParts.get(0).getParts().get(0);
             return this.map.containsKey(key);
-        } else {
-            DataQuery subQuery = queryParts.get(0);
-            Optional<DataView> subViewOptional = this.getUnsafeView(subQuery);
-            if (!subViewOptional.isPresent()) {
-                return false;
-            }
-            List<String> subParts = Lists.newArrayListWithCapacity(queryParts.size() - 1);
-            for (int i = 1; i < queryParts.size(); i++) {
-                subParts.add(queryParts.get(i).asString("."));
-            }
-            return subViewOptional.get().contains(of(subParts));
         }
+        Optional<DataView> subViewOptional = this.getUnsafeView(key);
+        if (!subViewOptional.isPresent()) {
+            return false;
+        }
+        return subViewOptional.get().contains(path.popFirst());
     }
 
     @Override
@@ -179,7 +173,7 @@ public class MemoryDataView implements DataView {
     @Override
     public Optional<Object> get(DataQuery path) {
         checkNotNull(path, "path");
-        List<DataQuery> queryParts = path.getQueryParts();
+        List<String> queryParts = path.getParts();
 
         int sz = queryParts.size();
 
@@ -187,47 +181,39 @@ public class MemoryDataView implements DataView {
             return Optional.<Object>of(this);
         }
 
+        String key = queryParts.get(0);
         if (sz == 1) {
-            String key = queryParts.get(0).getParts().get(0);
-            if (this.map.containsKey(key)) {
-                final Object object = this.map.get(key);
-                if (object.getClass().isArray()) {
-                    if (object instanceof byte[]) {
-                        return Optional.<Object>of(ArrayUtils.clone((byte[]) object));
-                    } else if (object instanceof short[]) {
-                        return Optional.<Object>of(ArrayUtils.clone((short[]) object));
-                    } else if (object instanceof int[]) {
-                        return Optional.<Object>of(ArrayUtils.clone((int[]) object));
-                    } else if (object instanceof long[]) {
-                        return Optional.<Object>of(ArrayUtils.clone((long[]) object));
-                    } else if (object instanceof float[]) {
-                        return Optional.<Object>of(ArrayUtils.clone((float[]) object));
-                    } else if (object instanceof double[]) {
-                        return Optional.<Object>of(ArrayUtils.clone((double[]) object));
-                    } else if (object instanceof boolean[]) {
-                        return Optional.<Object>of(ArrayUtils.clone((boolean[]) object));
-                    } else {
-                        return Optional.<Object>of(ArrayUtils.clone((Object[]) object));
-                    }
-                }
-                return Optional.of(this.map.get(key));
-            } else {
+            final Object object = this.map.get(key);
+            if (object == null) {
                 return Optional.empty();
             }
+            if (object.getClass().isArray()) {
+                if (object instanceof byte[]) {
+                    return Optional.<Object>of(ArrayUtils.clone((byte[]) object));
+                } else if (object instanceof short[]) {
+                    return Optional.<Object>of(ArrayUtils.clone((short[]) object));
+                } else if (object instanceof int[]) {
+                    return Optional.<Object>of(ArrayUtils.clone((int[]) object));
+                } else if (object instanceof long[]) {
+                    return Optional.<Object>of(ArrayUtils.clone((long[]) object));
+                } else if (object instanceof float[]) {
+                    return Optional.<Object>of(ArrayUtils.clone((float[]) object));
+                } else if (object instanceof double[]) {
+                    return Optional.<Object>of(ArrayUtils.clone((double[]) object));
+                } else if (object instanceof boolean[]) {
+                    return Optional.<Object>of(ArrayUtils.clone((boolean[]) object));
+                } else {
+                    return Optional.<Object>of(ArrayUtils.clone((Object[]) object));
+                }
+            }
+            return Optional.of(object);
         }
-        DataQuery subQuery = queryParts.get(0);
-        Optional<DataView> subViewOptional = this.getUnsafeView(subQuery);
-        DataView subView;
+        Optional<DataView> subViewOptional = this.getUnsafeView(key);
         if (!subViewOptional.isPresent()) {
             return Optional.empty();
-        } else {
-            subView = subViewOptional.get();
         }
-        List<String> subParts = Lists.newArrayListWithCapacity(queryParts.size() - 1);
-        for (int i = 1; i < queryParts.size(); i++) {
-            subParts.add(queryParts.get(i).asString("."));
-        }
-        return subView.get(of(subParts));
+        DataView subView = subViewOptional.get();
+        return subView.get(path.popFirst());
 
     }
 
@@ -273,11 +259,7 @@ public class MemoryDataView implements DataView {
                 } else {
                     subView = subViewOptional.get();
                 }
-                List<String> subParts = Lists.newArrayListWithCapacity(parts.size() - 1);
-                for (int i = 1; i < parts.size(); i++) {
-                    subParts.add(parts.get(i));
-                }
-                subView.set(of(subParts), value);
+                subView.set(path.popFirst(), value);
             } else {
                 if (value instanceof Collection) {
                     setCollection(parts.get(0), (Collection) value);
@@ -414,17 +396,11 @@ public class MemoryDataView implements DataView {
             String subKey = parts.get(0);
             DataQuery subQuery = of(subKey);
             Optional<DataView> subViewOptional = this.getUnsafeView(subQuery);
-            DataView subView;
             if (!subViewOptional.isPresent()) {
                 return this;
-            } else {
-                subView = subViewOptional.get();
             }
-            List<String> subParts = Lists.newArrayListWithCapacity(parts.size() - 1);
-            for (int i = 1; i < parts.size(); i++) {
-                subParts.add(parts.get(i));
-            }
-            subView.remove(of(subParts));
+            DataView subView = subViewOptional.get();
+            subView.remove(path.popFirst());
         } else {
             this.map.remove(parts.get(0));
         }
@@ -434,35 +410,30 @@ public class MemoryDataView implements DataView {
     @Override
     public DataView createView(DataQuery path) {
         checkNotNull(path, "path");
-        List<DataQuery> queryParts = path.getQueryParts();
+        List<String> queryParts = path.getParts();
 
         int sz = queryParts.size();
 
         checkArgument(sz != 0, "The size of the query must be at least 1");
 
+        String key = queryParts.get(0);
+        DataQuery keyQuery = of(key);
+        
         if (sz == 1) {
-            DataQuery key = queryParts.get(0);
-            DataView result = new MemoryDataView(this, key);
-            this.map.put(key.getParts().get(0), result);
+            DataView result = new MemoryDataView(this, keyQuery);
+            this.map.put(key, result);
             return result;
-        } else {
-            List<String> subParts = Lists
-                    .newArrayListWithCapacity(queryParts.size() - 1);
-            for (int i = 1; i < sz; i++) {
-                subParts.add(queryParts.get(i).asString('.'));
-            }
-            DataQuery subQuery = of(subParts);
-            DataView subView = (DataView) this.map.get(queryParts.get(0).asString('.'));
-            if (subView == null) {
-                subView = new MemoryDataView(this.parent, queryParts.get(0));
-                this.map.put(queryParts.get(0).asString('.'), subView);
-            }
-            return subView.createView(subQuery);
         }
+        DataQuery subQuery = path.popFirst();
+        DataView subView = (DataView) this.map.get(key);
+        if (subView == null) {
+            subView = new MemoryDataView(this.parent, keyQuery);
+            this.map.put(key, subView);
+        }
+        return subView.createView(subQuery);
     }
 
     @Override
-    @SuppressWarnings("rawtypes")
     public DataView createView(DataQuery path, Map<?, ?> map) {
         checkNotNull(path, "path");
         DataView section = createView(path);
@@ -483,7 +454,6 @@ public class MemoryDataView implements DataView {
     }
 
     @Override
-    @SuppressWarnings({"unchecked", "rawtypes"})
     public Optional<? extends Map<?, ?>> getMap(DataQuery path) {
         Optional<Object> val = get(path);
         if (val.isPresent()) {
@@ -500,6 +470,7 @@ public class MemoryDataView implements DataView {
         return Optional.empty();
     }
 
+    @SuppressWarnings("rawtypes")
     private Object ensureMappingOf(Object object) {
         if (object instanceof DataView) {
             final ImmutableMap.Builder<String, Object> builder = ImmutableMap.builder();
@@ -527,6 +498,15 @@ public class MemoryDataView implements DataView {
     private Optional<DataView> getUnsafeView(DataQuery path) {
         return get(path).filter(obj -> obj instanceof DataView).map(obj -> (DataView) obj);
     }
+
+    private Optional<DataView> getUnsafeView(String path) {
+        final Object object = this.map.get(path);
+        if(!(object instanceof DataView)) {
+            return Optional.empty();
+        }
+        return Optional.of((DataView) object);
+    }
+
 
     @Override
     public Optional<Boolean> getBoolean(DataQuery path) {
@@ -599,9 +579,8 @@ public class MemoryDataView implements DataView {
                 .map(obj -> {
                     if (obj instanceof List<?>) {
                         return (List<?>) obj;
-                    } else {
-                        return Arrays.asList((Object[]) obj);
                     }
+                    return Arrays.asList((Object[]) obj);
                 }
         );
     }
@@ -784,7 +763,7 @@ public class MemoryDataView implements DataView {
     public <T> Optional<T> getObject(DataQuery path, Class<T> objectClass) {
         return getView(path).flatMap(view ->
                 Sponge.getDataManager().getTranslator(objectClass)
-                        .flatMap(serializer -> serializer.translate(view))
+                        .flatMap(serializer -> Optional.of(serializer.translate(view)))
         );
     }
 
@@ -794,8 +773,6 @@ public class MemoryDataView implements DataView {
                 Sponge.getDataManager().getTranslator(objectClass).map(serializer ->
                         viewList.stream()
                                 .map(serializer::translate)
-                                .filter(Optional::isPresent)
-                                .map(Optional::get)
                                 .collect(Collectors.toList())
                 )
         );

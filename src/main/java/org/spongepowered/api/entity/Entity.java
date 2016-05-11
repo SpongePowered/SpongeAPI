@@ -35,8 +35,7 @@ import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
-import org.spongepowered.api.event.entity.MoveEntityEvent;
+import org.spongepowered.api.event.cause.entity.damage.source.DamageSource; 
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
@@ -46,6 +45,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldArchetype;
+import org.spongepowered.api.world.schematic.Schematic;
 
 import java.util.Collection;
 import java.util.EnumSet;
@@ -541,4 +541,13 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
         Optional<Boolean> optional = entity.get(Keys.VANISH);
         return !optional.isPresent() || !optional.get();
     }
+
+    /**
+     * Creates a new {@link EntityArchetype} for use with {@link Schematic}s and
+     * placing the archetype in multiple locations.
+     *
+     * @return The created archetype for re-creating this entity
+     */
+    EntityArchetype createArchetype();
+
 }

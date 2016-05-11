@@ -34,6 +34,7 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.Optional;
@@ -98,6 +99,14 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
      * @return the restored entity if successful
      */
     Optional<Entity> restore();
+
+    /**
+     * Creates a new {@link EntityArchetype} for use with {@link Schematic}s and
+     * placing the archetype in multiple locations.
+     *
+     * @return The created archetype for re-creating this entity
+     */
+    EntityArchetype createArchetype();
 
     /**
      * An {@link ImmutableDataBuilder} for building {@link EntitySnapshot}s. The
