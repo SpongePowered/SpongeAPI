@@ -171,7 +171,7 @@ public interface GameRegistry {
      * @throws UnsupportedOperationException If registration for the given type
      *         is not supported
      */
-    <T extends CatalogType> void register(Class<T> type, T obj) throws IllegalArgumentException, CatalogTypeAlreadyRegisteredException;
+    <T extends CatalogType> T register(Class<T> type, T obj) throws IllegalArgumentException, CatalogTypeAlreadyRegisteredException;
 
     /**
      * Gets a {@link Collection} of the default GameRules.

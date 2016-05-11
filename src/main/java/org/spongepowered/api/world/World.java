@@ -213,13 +213,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
     Path getDirectory();
 
     /**
-     * @see WorldProperties#getCreationSettings()
-     */
-    default WorldCreationSettings getCreationSettings() {
-        return getProperties().getCreationSettings();
-    }
-
-    /**
      * @see WorldProperties#getUniqueId()
      */
     default UUID getUniqueId() {
