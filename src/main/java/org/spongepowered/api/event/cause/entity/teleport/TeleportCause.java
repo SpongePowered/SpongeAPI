@@ -26,11 +26,11 @@ package org.spongepowered.api.event.cause.entity.teleport;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.monster.Enderman;
-import org.spongepowered.api.event.entity.DisplaceEntityEvent;
+import org.spongepowered.api.event.entity.MoveEntityEvent;
 
 /**
  * Represents a cause for a
- * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport} such
+ * {@link MoveEntityEvent.Teleport} such
  * that there is an associated {@link TeleportType} and possibly, an object
  * associated with the type.
  *
