@@ -4641,14 +4641,14 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.world.ConstructWorldPropertiesEvent}.
      * 
      * @param cause The cause
-     * @param worldCreationSettings The world creation settings
+     * @param worldArchetype The world archetype
      * @param worldProperties The world properties
      * @return A new construct world properties event
      */
-    public static ConstructWorldPropertiesEvent createConstructWorldPropertiesEvent(Cause cause, WorldArchetype worldCreationSettings, WorldProperties worldProperties) {
+    public static ConstructWorldPropertiesEvent createConstructWorldPropertiesEvent(Cause cause, WorldArchetype worldArchetype, WorldProperties worldProperties) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("worldCreationSettings", worldCreationSettings);
+        values.put("worldArchetype", worldArchetype);
         values.put("worldProperties", worldProperties);
         return SpongeEventFactoryUtils.createEventImpl(ConstructWorldPropertiesEvent.class, values);
     }

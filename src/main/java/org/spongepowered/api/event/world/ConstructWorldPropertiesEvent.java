@@ -44,8 +44,8 @@ public interface ConstructWorldPropertiesEvent extends Event {
     /**
      * Gets the {@link WorldArchetype} used to create the world.
      * 
-     * @return The creation settings
+     * @return The archetype
      */
-    WorldArchetype getWorldCreationSettings();
+    WorldArchetype getWorldArchetype();
 
 }

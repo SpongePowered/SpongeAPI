@@ -201,8 +201,7 @@ public interface Server {
 
     /**
      * Creates a new {@link WorldProperties} from the given
-     * {@link WorldArchetype}. For the creation of the
-     * WorldArchetype please see
+     * {@link WorldArchetype}. For the creation of the WorldArchetype please see
      * {@link WorldArchetype.Builder}.
      *
      * <p>If the {@link World} exists at the folder name given, the properties representing
@@ -214,10 +213,10 @@ public interface Server {
      * <ul> <li>{@link #loadWorld(String)}</li> <li>{@link #loadWorld(UUID)}
      * </li> <li>{@link #loadWorld(WorldProperties)}</li> </ul>
      *
-     * @param settings The settings for creation
+     * @param archetype The archetype for creation
      * @return The new or existing world properties, if creation was successful
      */
-    WorldProperties createWorldProperties(String folderName, WorldArchetype settings) throws IOException;
+    WorldProperties createWorldProperties(String folderName, WorldArchetype archetype) throws IOException;
 
     /**
      * Creates a world copy asynchronously using the new name given and returns
