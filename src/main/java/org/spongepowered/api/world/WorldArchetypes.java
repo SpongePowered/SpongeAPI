@@ -26,32 +26,32 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-public class WorldCreationSettingsTypes {
+public class WorldArchetypes {
 
     // SORTFIELDS:ON
 
     /**
      * Represents a typical default {@link World}.
      */
-    public static final WorldCreationSettings OVERWORLD = DummyObjectProvider.createFor(WorldCreationSettings.class, "overworld");
+    public static final WorldArchetype OVERWORLD = DummyObjectProvider.createFor(WorldArchetype.class, "overworld");
 
     /**
      * Represents a typical nether-style {@link World}.
      */
-    public static final WorldCreationSettings THE_NETHER = DummyObjectProvider.createFor(WorldCreationSettings.class, "the_nether");
+    public static final WorldArchetype THE_NETHER = DummyObjectProvider.createFor(WorldArchetype.class, "the_nether");
 
     /**
      * Represents a typical the end-style {@link World}.
      */
-    public static final WorldCreationSettings THE_END = DummyObjectProvider.createFor(WorldCreationSettings.class, "the_end");
+    public static final WorldArchetype THE_END = DummyObjectProvider.createFor(WorldArchetype.class, "the_end");
 
     /**
      * Represents a typical Sponge easter egg skylands-style {@link World}.
      */
-    public static final WorldCreationSettings THE_SKYLANDS = DummyObjectProvider.createFor(WorldCreationSettings.class, "the_skylands");
+    public static final WorldArchetype THE_SKYLANDS = DummyObjectProvider.createFor(WorldArchetype.class, "the_skylands");
 
     // SORTFIELDS:OFF
 
-    private WorldCreationSettingsTypes() {
+    private WorldArchetypes() {
     }
 }

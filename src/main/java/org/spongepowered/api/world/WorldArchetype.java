@@ -44,15 +44,15 @@ import java.util.Collection;
 /**
  * A representation of the settings which define a {@link World} for creation.
  */
-@CatalogedBy(WorldCreationSettingsTypes.class)
-public interface WorldCreationSettings extends CatalogType {
+@CatalogedBy(WorldArchetypes.class)
+public interface WorldArchetype extends CatalogType {
 
     /**
-     * Gets a new Builder instance for {@link WorldCreationSettings}.
+     * Gets a new Builder instance for {@link WorldArchetype}.
      * 
      * @return A new builder instance
      */
-    static WorldCreationSettings.Builder builder() {
+    static WorldArchetype.Builder builder() {
         return Sponge.getGame().getRegistry().createBuilder(Builder.class);
     }
 
@@ -183,7 +183,7 @@ public interface WorldCreationSettings extends CatalogType {
      */
     SerializationBehavior getSerializationBehavior();
 
-    interface Builder extends ResettableBuilder<WorldCreationSettings, Builder> {
+    interface Builder extends ResettableBuilder<WorldArchetype, Builder> {
 
         /**
          * Sets enabled status. Built worlds who are enabled but unloaded may
@@ -335,7 +335,7 @@ public interface WorldCreationSettings extends CatalogType {
         Builder serializationBehavior(SerializationBehavior behavior);
 
         /**
-         * Fills this {@link Builder} for creating {@link WorldCreationSettings}s,
+         * Fills this {@link Builder} for creating {@link WorldArchetype}s,
          * the builder is then seeded with the values from the given WorldProperties
          * object.
          *
@@ -345,8 +345,8 @@ public interface WorldCreationSettings extends CatalogType {
         Builder from(WorldProperties properties);
 
         /**
-         * Builds the {@link WorldCreationSettings} which can be used to create
-         * a {@link World} in {@link Server#createWorldProperties(String, WorldCreationSettings)}.
+         * Builds the {@link WorldArchetype} which can be used to create
+         * a {@link World} in {@link Server#createWorldProperties(String, WorldArchetype)}.
          *
          * <p>This will also register the settings as a new type in {@link GameRegistry#register(Class, CatalogType)}.</p>
          *
@@ -354,6 +354,6 @@ public interface WorldCreationSettings extends CatalogType {
          * @param name The human readable name of this settings
          * @return The settings
          */
-        WorldCreationSettings build(String id, String name) throws IllegalArgumentException, CatalogTypeAlreadyRegisteredException;
+        WorldArchetype build(String id, String name) throws IllegalArgumentException, CatalogTypeAlreadyRegisteredException;
     }
 }

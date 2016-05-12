@@ -214,7 +214,7 @@ import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -4645,7 +4645,7 @@ public class SpongeEventFactory {
      * @param worldProperties The world properties
      * @return A new construct world properties event
      */
-    public static ConstructWorldPropertiesEvent createConstructWorldPropertiesEvent(Cause cause, WorldCreationSettings worldCreationSettings, WorldProperties worldProperties) {
+    public static ConstructWorldPropertiesEvent createConstructWorldPropertiesEvent(Cause cause, WorldArchetype worldCreationSettings, WorldProperties worldProperties) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("worldCreationSettings", worldCreationSettings);

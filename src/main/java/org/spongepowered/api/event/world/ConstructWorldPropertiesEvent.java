@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 /**
@@ -42,10 +42,10 @@ public interface ConstructWorldPropertiesEvent extends Event {
     WorldProperties getWorldProperties();
     
     /**
-     * Gets the {@link WorldCreationSettings} used to create the world.
+     * Gets the {@link WorldArchetype} used to create the world.
      * 
      * @return The creation settings
      */
-    WorldCreationSettings getWorldCreationSettings();
+    WorldArchetype getWorldCreationSettings();
 
 }

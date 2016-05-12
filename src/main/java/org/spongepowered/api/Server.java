@@ -33,7 +33,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.WorldCreationSettings;
+import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.storage.ChunkLayout;
 import org.spongepowered.api.world.storage.WorldProperties;
 
@@ -201,9 +201,9 @@ public interface Server {
 
     /**
      * Creates a new {@link WorldProperties} from the given
-     * {@link WorldCreationSettings}. For the creation of the
-     * WorldCreationSettings please see
-     * {@link org.spongepowered.api.world.WorldCreationSettings.Builder}.
+     * {@link WorldArchetype}. For the creation of the
+     * WorldArchetype please see
+     * {@link WorldArchetype.Builder}.
      *
      * <p>If the {@link World} exists at the folder name given, the properties representing
      * that folder name are returned instead.</p>
@@ -217,7 +217,7 @@ public interface Server {
      * @param settings The settings for creation
      * @return The new or existing world properties, if creation was successful
      */
-    WorldProperties createWorldProperties(String folderName, WorldCreationSettings settings) throws IOException;
+    WorldProperties createWorldProperties(String folderName, WorldArchetype settings) throws IOException;
 
     /**
      * Creates a world copy asynchronously using the new name given and returns
