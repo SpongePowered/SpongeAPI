@@ -37,9 +37,9 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.command.source.LocatedSource;
 import org.spongepowered.api.command.source.ProxySource;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.profile.GameProfile;
@@ -125,7 +125,20 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement user(Text key) {
-        return new UserCommandElement(key);
+        return new UserCommandElement(key, false);
+    }
+    
+    /**
+     * Expect an argument to represent a player who has been online at some point, 
+     * as a {@link User}, or if nothing matches and the source is a {@link User}, 
+     * give the user. If nothing matches and the source is not a {@link User}, throw
+     * an exception.
+     * 
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement userOrSource(Text key) {
+        return new UserCommandElement(key, true);
     }
 
     /**
@@ -935,10 +948,12 @@ public final class GenericArguments {
 
     private static class UserCommandElement extends PatternMatchingCommandElement {
         private final PlayerCommandElement possiblePlayer;
-
-        protected UserCommandElement(@Nullable Text key) {
+        private final boolean returnSource;
+        
+        protected UserCommandElement(@Nullable Text key, boolean returnSource) {
             super(key);
-            this.possiblePlayer = new PlayerCommandElement(key, false);
+            this.possiblePlayer = new PlayerCommandElement(key, returnSource);
+            this.returnSource = returnSource;
         }
 
         @Nullable
@@ -949,7 +964,15 @@ public final class GenericArguments {
                 return this.possiblePlayer.parseValue(source, args);
             } catch (ArgumentParseException ex) {
                 args.setState(state);
-                return super.parseValue(source, args);
+                try {
+                    return super.parseValue(source, args);
+                } catch (ArgumentParseException ex2) {
+                    if (this.returnSource && source instanceof User) {
+                        return source;
+                    } else {
+                        throw ex2;
+                    }
+                }
             }
         }
 
@@ -1058,9 +1081,9 @@ public final class GenericArguments {
                     return Iterables.filter(Sponge.getGame().getServer().getAllWorldProperties(), input -> {
                             return input != null && input.isEnabled();
                     }).iterator().next();
-                } else if (specifier.equalsIgnoreCase("me") && source instanceof LocatedSource) {
+                } else if (specifier.equalsIgnoreCase("me") && source instanceof Locatable) {
                     args.next();
-                    return ((LocatedSource) source).getWorld().getProperties();
+                    return ((Locatable) source).getWorld().getProperties();
                 } else {
                     boolean firstOnly = false;
                     if (specifier.endsWith(":first")) {
@@ -1133,15 +1156,15 @@ public final class GenericArguments {
                     throw args.createError(t("No target block is available! Stop stargazing!"));
                 }
                 return hit.get().getPosition();
-            } else if (xStr.equalsIgnoreCase("#me") && source instanceof LocatedSource) {
-                return ((LocatedSource) source).getLocation().getPosition();
+            } else if (xStr.equalsIgnoreCase("#me") && source instanceof Locatable) {
+                return ((Locatable) source).getLocation().getPosition();
             } else {
                 yStr = args.next();
                 zStr = args.next();
             }
-            final double x = parseRelativeDouble(args, xStr, source instanceof LocatedSource ? ((LocatedSource) source).getLocation().getX() : null);
-            final double y = parseRelativeDouble(args, yStr, source instanceof LocatedSource ? ((LocatedSource) source).getLocation().getY() : null);
-            final double z = parseRelativeDouble(args, zStr, source instanceof LocatedSource ? ((LocatedSource) source).getLocation().getZ() : null);
+            final double x = parseRelativeDouble(args, xStr, source instanceof Locatable ? ((Locatable) source).getLocation().getX() : null);
+            final double y = parseRelativeDouble(args, yStr, source instanceof Locatable ? ((Locatable) source).getLocation().getY() : null);
+            final double z = parseRelativeDouble(args, zStr, source instanceof Locatable ? ((Locatable) source).getLocation().getZ() : null);
 
             return new Vector3d(x, y, z);
         }
@@ -1220,10 +1243,10 @@ public final class GenericArguments {
                 world = checkNotNull(this.worldParser.parseValue(source, args), "worldVal");
             } catch (ArgumentParseException ex) {
                 args.setState(state);
-                if (!(source instanceof LocatedSource)) {
+                if (!(source instanceof Locatable)) {
                     throw args.createError(t("Source must have a location in order to have a fallback world"));
                 }
-                world = ((LocatedSource) source).getWorld().getProperties();
+                world = ((Locatable) source).getWorld().getProperties();
                 try {
                     vec = checkNotNull(this.vectorParser.parseValue(source, args), "vectorVal");
                 } catch (ArgumentParseException ex2) {

@@ -25,9 +25,10 @@
 package org.spongepowered.api.entity.explosive;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.ExplosiveRadiusData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.manipulator.mutable.entity.ExplosionRadiusData;
+import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.Cause;
 
 /**
  * Represents an explosive entity that explodes.
@@ -35,29 +36,31 @@ import org.spongepowered.api.entity.Entity;
 public interface Explosive extends Entity {
 
     /**
-     * Detonates this explosive immediately.
-     */
-    void detonate();
-
-    /**
-     * Gets a copy of the {@link ExplosiveRadiusData} used by this
-     * {@link Explosive} entity.
+     * Returns the {@link ExplosionRadiusData} for this explosive.
      *
-     * @return A copy of the explosive radius data
+     * @return Explosion radius data
      */
-    default ExplosiveRadiusData getExplosiveRadiusData() {
-        return get(ExplosiveRadiusData.class).get();
+    default ExplosionRadiusData getExplosionRadiusData() {
+        return get(ExplosionRadiusData.class).get();
     }
 
     /**
-     * Gets the {@link Value} for the explosive radius of the {@link Explosive}.
+     * The radius in blocks that the explosion will affect. This value may be
+     * missing if the explosion radius is unknown such as when it is generated
+     * randomly on detonation. Setting this value on such explosives will
+     * override that behavior.
      *
-     * <p>The explosion radius may be affected by other data manipulators.</p>
-     *
-     * @return The explosion radius of the entity
+     * @return Explosion radius
      */
-    default Value<Integer> explosiveRadius() {
-        return getValue(Keys.EXPLOSIVE_RADIUS).get();
+    default OptionalValue<Integer> explosionRadius() {
+        return getValue(Keys.EXPLOSION_RADIUS).get();
     }
+
+    /**
+     * Detonates this explosive as soon as possible.
+     *
+     * @param cause The cause of detonation
+     */
+    void detonate(Cause cause);
 
 }

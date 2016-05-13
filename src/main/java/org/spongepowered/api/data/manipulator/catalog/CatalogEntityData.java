@@ -53,7 +53,7 @@ import org.spongepowered.api.data.manipulator.mutable.entity.ElderData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExpOrbData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExperienceHolderData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExpirableData;
-import org.spongepowered.api.data.manipulator.mutable.entity.ExplosiveRadiusData;
+import org.spongepowered.api.data.manipulator.mutable.entity.ExplosionRadiusData;
 import org.spongepowered.api.data.manipulator.mutable.entity.FallingBlockData;
 import org.spongepowered.api.data.manipulator.mutable.entity.FlyingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.FoodData;
@@ -137,7 +137,7 @@ import org.spongepowered.api.entity.living.monster.Zombie;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
-import org.spongepowered.api.entity.projectile.Arrow;
+import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.Firework;
 import org.spongepowered.api.entity.projectile.Projectile;
@@ -259,7 +259,7 @@ public final class CatalogEntityData {
      * Represents the "explosion radius" that an entity will have upon
      * detonation. Usually applies to all {@link Explosive}s.
      */
-    public static final Class<ExplosiveRadiusData> EXPLOSIVE_RADIUS_DATA = ExplosiveRadiusData.class;
+    public static final Class<ExplosionRadiusData> EXPLOSIVE_RADIUS_DATA = ExplosionRadiusData.class;
     /**
      * Represents a falling block that can deal damage upon landing.
      * Applies to {@link FallingBlock}s.

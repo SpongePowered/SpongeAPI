@@ -58,7 +58,18 @@ public interface InteractBlockEvent extends InteractEvent, TargetBlockEvent {
      *
      * This is usually left-click.
      */
-    interface Primary extends InteractBlockEvent {}
+    interface Primary extends InteractBlockEvent {
+
+        /**
+         * A {@link Primary} event where the interaction is from the client's main hand.
+         */
+        interface MainHand extends Primary {}
+
+        /**
+         * A {@link Primary} event where the interaction is from the client's off hand.
+         */
+        interface OffHand extends Primary {}
+    }
 
     /**
      * An event where the targeted block is being interacted with the client's 
@@ -68,81 +79,86 @@ public interface InteractBlockEvent extends InteractEvent, TargetBlockEvent {
      */
     interface Secondary extends InteractBlockEvent {
 
-        /**
-         * Gets the original {@link #getUseItemResult}.
-         * 
-         * @return The original {@link #getUseItemResult}
-         */
         Tristate getOriginalUseItemResult();
 
         /**
          * Gets the original {@link #getUseBlockResult}.
-         * 
+         *
          * @return The original {@link #getUseBlockResult}
          */
         Tristate getOriginalUseBlockResult();
 
         /**
          * Gets whether the {@link Player#getItemInHand} should be used.
-         * 
+         *
          * <ul>
          * <li>FALSE: The {@link ItemStack} will never be used.</li>
          * <li>UNDEFINED: The {@link ItemStack} will be used if the block fails.
          * </li>
          * <li>TRUE: The {@link ItemStack} will always be used.</li>
          * </ul>
-         * 
+         *
          * <p>Note: These results may differ depending on implementation.</p>
-         * 
+         *
          * @return Whether the {@link Player#getItemInHand} should be used
          */
         Tristate getUseItemResult();
 
         /**
          * Gets whether the interacted {@link BlockSnapshot} should be used.
-         * 
+         *
          * <ul>
          * <li>FALSE: {@link BlockSnapshot} will never be used.</li>
          * <li>UNDEFINED: {@link BlockSnapshot} will be used as normal.</li>
          * <li>TRUE: {@link BlockSnapshot} will always be used.</li>
          * </ul>
-         * 
+         *
          * <p>Note: These results may differ depending on implementation.</p>
-         * 
+         *
          * @return Whether the interacted {@link BlockSnapshot} should be used
          */
         Tristate getUseBlockResult();
 
         /**
          * Sets whether the {@link Player#getItemInHand} should be used.
-         * 
+         *
          * <ul>
          * <li>FALSE: The {@link ItemStack} will never be used.</li>
          * <li>UNDEFINED: The {@link ItemStack} will be used if the block fails.
          * </li>
          * <li>TRUE: The {@link ItemStack} will always be used.</li>
          * </ul>
-         * 
+         *
          * <p>Note: These results may differ depending on implementation.</p>
-         * 
+         *
          * @param result Whether the {@link Player#getItemInHand} should be used
          */
         void setUseItemResult(Tristate result);
 
         /**
          * Sets whether the interacted {@link BlockSnapshot} should be used.
-         * 
+         *
          * <ul>
          * <li>FALSE: {@link BlockSnapshot} will never be used.</li>
          * <li>UNDEFINED: {@link BlockSnapshot} will be used as normal.</li>
          * <li>TRUE: {@link BlockSnapshot} will always be used.</li>
          * </ul>
-         * 
+         *
          * <p>Note: These results may differ depending on implementation.</p>
-         * 
+         *
          * @param result Whether the interacted {@link BlockSnapshot} should be
          *     used
          */
         void setUseBlockResult(Tristate result);
+
+        /**
+         * A {@link Secondary} event where the interaction is from the client's main hand.
+         */
+        interface MainHand extends Secondary {}
+
+        /**
+         * A {@link Secondary} event where the interaction is from the client's off hand.
+         */
+        interface OffHand extends Secondary {}
     }
 }

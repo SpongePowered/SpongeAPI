@@ -28,8 +28,7 @@ import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.effect.Viewer;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -42,6 +41,9 @@ import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -50,6 +52,13 @@ import java.util.UUID;
  * A loaded Minecraft world.
  */
 public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, ChatTypeMessageReceiver {
+
+    /**
+     * Gets an unmodifiable collection of {@link Player}s currently in this world.
+     *
+     * @return The players
+     */
+    Collection<Player> getPlayers();
 
     @Override
     default Location<World> getLocation(Vector3i position) {
@@ -70,24 +79,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
     default Location<World> getLocation(double x, double y, double z) {
         return getLocation(new Vector3d(x, y, z));
     }
-
-    /**
-     * Gets the {@link Difficulty} setting for this world.
-     *
-     * @return Difficulty of the world
-     */
-    Difficulty getDifficulty();
-
-    /**
-     * Gets the name of the world.
-     *
-     * <p>The world name may randomly generated or user-defined. It may or may
-     * not be safe to be used in a filename.</p>
-     *
-     * @return The world name
-     * @see #getUniqueId() A method to get a unique identifier
-     */
-    String getName();
 
     /**
      * Get the loaded chunk at the given block coordinate position.
@@ -172,19 +163,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
     Iterable<Chunk> getLoadedChunks();
 
     /**
-     * Gets the entity whose {@link UUID} matches the provided id, possibly
-     * returning no entity if the entity is not loaded or non-existant.
-     *
-     * <p>For world implementations, only some parts of the world is usually
-     * loaded, so this method may return no entity if the entity is not
-     * loaded.</p>
-     *
-     * @param uuid The unique id
-     * @return An entity, if available
-     */
-    Optional<Entity> getEntity(UUID uuid);
-
-    /**
      * Gets the world border for the world.
      *
      * @return The world border
@@ -201,22 +179,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
      * @see WorldBorder.ChunkPreGenerate
      */
     WorldBorder.ChunkPreGenerate newChunkPreGenerate(Vector3d center, double diameter);
-
-    /**
-     * Gets the specified GameRule value.
-     * *
-     *
-     * @param gameRule The name of the GameRule.
-     * @return The GameRule value, if it exists.
-     */
-    Optional<String> getGameRule(String gameRule);
-
-    /**
-     * Gets a map of the currently set game rules and their values.
-     *
-     * @return An immutable map of the game rules
-     */
-    Map<String, String> getGameRules();
 
     /**
      * Returns the {@link Dimension} of this world.
@@ -236,41 +198,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
     WorldGenerator getWorldGenerator();
 
     /**
-     * Returns whether this {@link World}'s spawn chunks remain loaded when no
-     * players are present. Note: This method will default to this {@link World}
-     * 's {@link DimensionType}'s keepLoaded value unless a plugin overrides it.
-     *
-     * @return True if {@link World} remains loaded without players, false if
-     * not
-     */
-    boolean doesKeepSpawnLoaded();
-
-    /**
-     * Sets whether this {@link World}'s spawn chunks remain loaded when no
-     * players are present. Note: This method will override the default
-     * {@link DimensionType}'s keepLoaded value.
-     *
-     * @param keepLoaded Whether this {@link World}'s spawn chunks remain loaded
-     * without players
-     */
-    void setKeepSpawnLoaded(boolean keepLoaded);
-
-    /**
-     * Gets the associated {@link WorldStorage} persisting this world.
-     *
-     * @return The associated world storage
-     */
-    WorldStorage getWorldStorage();
-
-    /**
-     * Gets the {@link WorldCreationSettings} which were used to create this
-     * world.
-     *
-     * @return The settings
-     */
-    WorldCreationSettings getCreationSettings();
-
-    /**
      * Gets the properties for this world.
      *
      * @return The properties
@@ -278,11 +205,98 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
     WorldProperties getProperties();
 
     /**
+     * Gets the {@link Path} pointing to the root of where the world's data
+     * is being stored.
+     *
+     * @return The path
+     */
+    Path getDirectory();
+
+    /**
+     * @see WorldProperties#getCreationSettings()
+     */
+    default WorldCreationSettings getCreationSettings() {
+        return getProperties().getCreationSettings();
+    }
+
+    /**
+     * @see WorldProperties#getUniqueId()
+     */
+    default UUID getUniqueId() {
+        return getProperties().getUniqueId();
+    }
+
+    /**
+     * @see WorldProperties#getWorldName()
+     */
+    default String getName() {
+        return getProperties().getWorldName();
+    }
+
+    /**
+     * @see WorldProperties#getDifficulty()
+     */
+    default Difficulty getDifficulty() {
+        return getProperties().getDifficulty();
+    }
+
+    /**
+     * @see WorldProperties#getGameRule(String)
+     */
+    default Optional<String> getGameRule(String gameRule) {
+        return getProperties().getGameRule(gameRule);
+    }
+
+    /**
+     * @see WorldProperties#getGameRules()
+     */
+    default Map<String, String> getGameRules() {
+        return getProperties().getGameRules();
+    }
+
+    /**
+     * @see WorldProperties#doesKeepSpawnLoaded()
+     */
+    default boolean doesKeepSpawnLoaded() {
+        return getProperties().doesKeepSpawnLoaded();
+    }
+
+    /**
+     * @see WorldProperties#setKeepSpawnLoaded(boolean)
+     */
+    default void setKeepSpawnLoaded(boolean keepLoaded) {
+        getProperties().setKeepSpawnLoaded(keepLoaded);
+    }
+
+    /**
      * Gets the {@link Location} of the spawn point.
      *
      * @return The location
      */
-    Location<World> getSpawnLocation();
+    default Location<World> getSpawnLocation() {
+        return new Location<>(this, getProperties().getSpawnPosition());
+    }
+
+    /**
+     * @see WorldProperties#getSerializationBehavior()
+     */
+    default SerializationBehavior getSerializationBehavior() {
+        return getProperties().getSerializationBehavior();
+    }
+
+    /**
+     * @see WorldProperties#setSerializationBehavior(SerializationBehavior)
+     */
+    default void setSerializationBehavior(SerializationBehavior behavior) {
+        getProperties().setSerializationBehavior(behavior);
+    }
+
+    /**
+     * Gets the associated {@link WorldStorage} persisting this world.
+     *
+     * @return The associated world storage
+     */
+    WorldStorage getWorldStorage();
 
     /**
      * Causes an {@link Explosion} in a world.
@@ -305,14 +319,10 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, C
     MutableBlockVolumeWorker<? extends World> getBlockWorker();
 
     /**
-     * Similar to {@link #spawnEntity(Entity, Cause)} except where multiple
-     * entities can be attempted to be spawned into this {@link World} with
-     * a customary {@link Cause}. The recommended use is to easily process
-     * the entity spawns without interference with the cause tracking system.
+     * Instructs the world to save all data.
      *
-     * @param entities The entities to be spawned
-     * @param cause The cause to be associated with the entities spawning
-     * @return True if any of the entities were successfully spawned
+     * @return True if save was successfull, false if {@link SerializationBehavior} is {@link SerializationBehaviors#NONE}.
+     * @throws IOException If the save failed
      */
-    boolean spawnEntities(Iterable<? extends Entity> entities, Cause cause);
+    boolean save() throws IOException;
 }

@@ -40,6 +40,8 @@ public final class PopulatorTypes {
 
     public static final PopulatorType CACTUS = DummyObjectProvider.createFor(PopulatorType.class, "CACTUS");
 
+    public static final PopulatorType CHORUS_FLOWER = DummyObjectProvider.createFor(PopulatorType.class, "CHORUS_FLOWER");
+
     public static final PopulatorType DEAD_BUSH = DummyObjectProvider.createFor(PopulatorType.class, "DEAD_BUSH");
 
     public static final PopulatorType DESERT_WELL = DummyObjectProvider.createFor(PopulatorType.class, "DESERT_WELL");
@@ -48,7 +50,7 @@ public final class PopulatorTypes {
 
     public static final PopulatorType DUNGEON = DummyObjectProvider.createFor(PopulatorType.class, "DUNGEON");
 
-    public static final PopulatorType ENDER_CRYSTAL_PLATFORM = DummyObjectProvider.createFor(PopulatorType.class, "ENDER_CRYSTAL_PLATFORM");
+    public static final PopulatorType END_ISLAND = DummyObjectProvider.createFor(PopulatorType.class, "END_ISLAND");
 
     public static final PopulatorType FLOWER = DummyObjectProvider.createFor(PopulatorType.class, "FLOWER");
 

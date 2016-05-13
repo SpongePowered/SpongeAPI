@@ -39,6 +39,8 @@ public final class PotionEffectTypes {
 
     public static final PotionEffectType FIRE_RESISTANCE = DummyObjectProvider.createFor(PotionEffectType.class, "FIRE_RESISTANCE");
 
+    public static final PotionEffectType GLOWING = DummyObjectProvider.createFor(PotionEffectType.class, "GLOWING");
+
     public static final PotionEffectType HASTE = DummyObjectProvider.createFor(PotionEffectType.class, "HASTE");
 
     public static final PotionEffectType HEALTH_BOOST = DummyObjectProvider.createFor(PotionEffectType.class, "HEALTH_BOOST");
@@ -52,6 +54,10 @@ public final class PotionEffectTypes {
     public static final PotionEffectType INVISIBILITY = DummyObjectProvider.createFor(PotionEffectType.class, "INVISIBILITY");
 
     public static final PotionEffectType JUMP_BOOST = DummyObjectProvider.createFor(PotionEffectType.class, "JUMP_BOOST");
+
+    public static final PotionEffectType LEVITATION = DummyObjectProvider.createFor(PotionEffectType.class, "LEVITATION");
+
+    public static final PotionEffectType LUCK = DummyObjectProvider.createFor(PotionEffectType.class, "LUCK");
 
     public static final PotionEffectType MINING_FATIGUE = DummyObjectProvider.createFor(PotionEffectType.class, "MINING_FATIGUE");
 
@@ -72,6 +78,8 @@ public final class PotionEffectTypes {
     public static final PotionEffectType SPEED = DummyObjectProvider.createFor(PotionEffectType.class, "SPEED");
 
     public static final PotionEffectType STRENGTH = DummyObjectProvider.createFor(PotionEffectType.class, "STRENGTH");
+
+    public static final PotionEffectType UNLUCK = DummyObjectProvider.createFor(PotionEffectType.class, "UNLUCK");
 
     public static final PotionEffectType WATER_BREATHING = DummyObjectProvider.createFor(PotionEffectType.class, "WATER_BREATHING");
 
