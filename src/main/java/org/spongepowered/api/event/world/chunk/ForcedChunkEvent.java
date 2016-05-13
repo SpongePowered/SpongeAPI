@@ -31,9 +31,9 @@ import org.spongepowered.api.world.ChunkTicketManager;
 public interface ForcedChunkEvent extends Event {
 
     /**
-     * Gets the ticket that the chunk was added from.
+     * Gets the ticket that the chunk was added to.
      *
-     * @return The ticket the chunk was added from
+     * @return The ticket the chunk was added to
      */
     ChunkTicketManager.LoadingTicket getTicket();
 
