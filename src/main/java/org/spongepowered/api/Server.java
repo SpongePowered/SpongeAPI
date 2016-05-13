@@ -410,4 +410,23 @@ public interface Server {
      * @return The default resource pack
      */
     Optional<ResourcePack> getDefaultResourcePack();
+
+    /**
+     * Gets the player idle timeout, in minutes.
+     *
+     * <p>A return value of {@code 0} disables the player idle timeout.</p>
+     *
+     * @return The player idle timeout
+     */
+    int getPlayerIdleTimeout();
+
+    /**
+     * Sets the player idle timeout, in minutes.
+     *
+     * <p>A value of {@code 0} disables the player idle timeout.</p>
+     *
+     * @param timeout The player idle timeout
+     */
+    void setPlayerIdleTimeout(int timeout);
+
 }
