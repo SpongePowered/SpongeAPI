@@ -39,6 +39,8 @@ import javax.annotation.Nullable;
 /**
  * An immutable message channel that leaves transforming and
  * members to the delegate channel passed.
+ *
+ * <p>The delegate channel may be immutable or mutable.</p>
  */
 public class DelegateMessageChannel implements MessageChannel {
 

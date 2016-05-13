@@ -38,16 +38,20 @@ import java.util.Map;
 public interface MessageReceiver {
 
     /**
-     * Sends the formatted text message to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
+     * Sends a message to this receiver.
+     *
+     * <p>If text formatting is not supported in the implementation
+     * it will be displayed as plain text.</p>
      *
      * @param message The message
      */
     void sendMessage(Text message);
 
     /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
+     * Sends the message(s) to this receiver.
+     *
+     * <p>If text formatting is not supported in the implementation
+     * it will be displayed as plain text.</p>
      *
      * @param messages The message(s)
      */
@@ -60,8 +64,10 @@ public interface MessageReceiver {
     }
 
     /**
-     * Sends the formatted text message(s) to source when possible. If text formatting
-     * is not supported in the implementation it will be displayed as plain text.
+     * Sends the message(s) to this receiver.
+     *
+     * <p>If text formatting is not supported in the implementation
+     * it will be displayed as plain text.</p>
      *
      * @param messages The messages
      */
@@ -72,24 +78,30 @@ public interface MessageReceiver {
     }
 
     /**
-     * Sends the result of the specified {@link TextTemplate} with the
-     * specified parameters to the receiver.
+     * Sends a message constructed from the {@link TextTemplate} to
+     * this receiver.
      *
-     * @param template TextTemplate to apply
-     * @param params Parameters to apply to template
+     * <p>If text formatting is not supported in the implementation
+     * it will be displayed as plain text.</p>
+     *
+     * @param template The text template
      */
-    default void sendMessage(TextTemplate template, Map<String, TextElement> params) {
-        this.sendMessage(template.apply(params).build());
+    default void sendMessage(TextTemplate template) {
+        this.sendMessage(checkNotNull(template, "template").apply().build());
     }
 
     /**
-     * Sends the result of the specified {@link TextTemplate} with an empty
-     * parameter map.
+     * Sends a message constructed from the {@link TextTemplate} and
+     * {@code parameters} to this receiver.
      *
-     * @param template TextTemplate to apply
+     * <p>If text formatting is not supported in the implementation
+     * it will be displayed as plain text.</p>
+     *
+     * @param template The text template
+     * @param parameters The parameters to apply to the template
      */
-    default void sendMessage(TextTemplate template) {
-        this.sendMessage(template.apply().build());
+    default void sendMessage(TextTemplate template, Map<String, TextElement> parameters) {
+        this.sendMessage(checkNotNull(template, "template").apply(parameters).build());
     }
 
     /**

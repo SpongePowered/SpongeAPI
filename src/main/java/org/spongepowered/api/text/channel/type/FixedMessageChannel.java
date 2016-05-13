@@ -24,7 +24,8 @@
  */
 package org.spongepowered.api.text.channel.type;
 
-import com.google.common.collect.ImmutableSet;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
 
@@ -42,18 +43,18 @@ public class FixedMessageChannel implements MessageChannel {
     protected final Set<MessageReceiver> recipients;
 
     public FixedMessageChannel(MessageReceiver... recipients) {
-        this(Arrays.asList(recipients));
+        this(Arrays.asList(checkNotNull(recipients, "recipients")));
     }
 
     public FixedMessageChannel(Collection<? extends MessageReceiver> provided) {
         Set<MessageReceiver> recipients = Collections.newSetFromMap(new WeakHashMap<>());
         recipients.addAll(provided);
-        this.recipients = recipients;
+        this.recipients = Collections.unmodifiableSet(recipients);
     }
 
     @Override
     public Collection<MessageReceiver> getMembers() {
-        return ImmutableSet.copyOf(this.recipients);
+        return this.recipients;
     }
 
 }
