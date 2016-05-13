@@ -15,7 +15,7 @@ buildscript {
     dependencies {
         classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
-        classpath 'org.spongepowered:event-impl-gen:1.1.0'
+        classpath 'org.spongepowered:event-impl-gen:2.0.0-SNAPSHOT'
         classpath 'org.spongepowered:spongegradle:0.5.1'
     }
 }
@@ -60,7 +60,7 @@ dependencies {
 
     // Event generation
     compile 'org.ow2.asm:asm:5.0.3'
-    compile 'org.spongepowered:event-gen-core:1.1.0'
+    compile 'org.spongepowered:event-gen-core:2.0.0-SNAPSHOT'
 }
 
 // JAR manifest configuration

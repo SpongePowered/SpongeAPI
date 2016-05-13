@@ -28,6 +28,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.impl.AbstractSpawnEntityEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
+import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
 import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 
 /**
@@ -43,6 +44,7 @@ import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
  * reccomended event to interact with connecting players.</p>
  */
 @ImplementedBy(AbstractSpawnEntityEvent.class)
+@GenerateFactoryMethod
 public interface SpawnEntityEvent extends AffectEntityEvent {
 
     interface ChunkLoad extends SpawnEntityEvent {}

@@ -28,6 +28,7 @@ import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
 import org.spongepowered.api.world.World;
 
 /**
@@ -38,6 +39,7 @@ public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
     /**
      * Fired when an {@link Entity} is changing position.
      */
+    @GenerateFactoryMethod
     interface Position extends MoveEntityEvent {
 
         /**
@@ -132,6 +134,7 @@ public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
     /**
      * Fired when an {@link Entity} is rotating.
      */
+    @GenerateFactoryMethod
     interface Rotation extends MoveEntityEvent {
 
         /**
