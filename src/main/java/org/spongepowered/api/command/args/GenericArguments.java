@@ -125,9 +125,22 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement user(Text key) {
-        return new UserCommandElement(key);
+        return new UserCommandElement(key, false);
     }
-
+	
+	/**
+	 * Expect an argument to represent a player who has been online at some point,
+	 * as a {@link User}, or if nothing matches and the source is a {@link User},
+	 * give the user. If nothing matches and the source is not a {@link User}, throw
+	 * an exception.
+	 *
+	 * @param key The key to store under
+	 * @return the argument
+	 */
+	public static CommandElement userOrSource(Text key) {
+		return new UserCommandElement(key, true);
+	}
+	
     /**
      * Expect an argument to represent a world. This gives a WorldProperties object rather than an actual world in order to include unloaded worlds
      * as well
@@ -935,10 +948,12 @@ public final class GenericArguments {
 
     private static class UserCommandElement extends PatternMatchingCommandElement {
         private final PlayerCommandElement possiblePlayer;
+		private final boolean returnSource;
 
-        protected UserCommandElement(@Nullable Text key) {
+        protected UserCommandElement(@Nullable Text key, boolean returnSource) {
             super(key);
-            this.possiblePlayer = new PlayerCommandElement(key, false);
+            this.possiblePlayer = new PlayerCommandElement(key, returnSource);
+			this.returnSource = returnSource;
         }
 
         @Nullable
@@ -949,7 +964,15 @@ public final class GenericArguments {
                 return this.possiblePlayer.parseValue(source, args);
             } catch (ArgumentParseException ex) {
                 args.setState(state);
-                return super.parseValue(source, args);
+				try {
+					return super.parseValue(source, args);
+				} catch (ArgumentParseException ex2) {
+					if (this.returnSource && source instanceof User) {
+						return source;
+					} else {
+						throw ex2;
+					}
+				}
             }
         }
 
