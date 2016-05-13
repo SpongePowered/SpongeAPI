@@ -25,21 +25,22 @@
 package org.spongepowered.api.event.world.chunk;
 
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.ChunkTicketManager;
 
-public interface ForcedChunkEvent extends TargetChunkEvent {
+public interface ForcedChunkEvent extends Event {
 
     /**
-     * Gets the ticket that the chunk was removed from.
+     * Gets the ticket that the chunk was added from.
      *
-     * @return The ticket the chunk was removed from
+     * @return The ticket the chunk was added from
      */
     ChunkTicketManager.LoadingTicket getTicket();
 
     /**
-     * Gets the removed chunk coordinates.
+     * Gets the chunk coordinates.
      *
-     * @return The coordinated of the removed chunk
+     * @return The chunk coordinates
      */
     Vector3i getChunkCoords();
 }

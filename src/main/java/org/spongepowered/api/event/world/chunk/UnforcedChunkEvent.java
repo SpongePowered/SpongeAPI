@@ -39,9 +39,9 @@ public interface UnforcedChunkEvent extends Event, Cancellable {
     ChunkTicketManager.LoadingTicket getTicket();
 
     /**
-     * Gets the removed chunk coordinates.
+     * Gets the chunk coordinates.
      *
-     * @return The coordinated of the removed chunk
+     * @return The chunk coordinates
      */
     Vector3i getChunkCoords();
 }

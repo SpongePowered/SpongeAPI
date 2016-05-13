@@ -4880,15 +4880,13 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param chunkCoords The chunk coords
-     * @param targetChunk The target chunk
      * @param ticket The ticket
      * @return A new forced chunk event
      */
-    public static ForcedChunkEvent createForcedChunkEvent(Cause cause, Vector3i chunkCoords, Chunk targetChunk, ChunkTicketManager.LoadingTicket ticket) {
+    public static ForcedChunkEvent createForcedChunkEvent(Cause cause, Vector3i chunkCoords, ChunkTicketManager.LoadingTicket ticket) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("chunkCoords", chunkCoords);
-        values.put("targetChunk", targetChunk);
         values.put("ticket", ticket);
         return SpongeEventFactoryUtils.createEventImpl(ForcedChunkEvent.class, values);
     }
