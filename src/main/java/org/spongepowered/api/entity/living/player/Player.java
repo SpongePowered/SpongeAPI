@@ -43,8 +43,8 @@ import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
-import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.chat.ChatVisibility;
 
 import java.time.Instant;
@@ -209,6 +209,15 @@ public interface Player extends Humanoid, User, LocatedSource, RemoteSource, Vie
         return getValue(Keys.LAST_DATE_PLAYED).get();
     }
 
+    /**
+     * Gets if the {@link Player} has played on the {@link Server} before. Added
+     * as a utility.
+     * 
+     * @return True if played before, false otherwise
+     */
+    default boolean hasPlayedBefore() {
+        return !firstPlayed().equals(lastPlayed());
+    }
     /**
      * Gets a copy of the current {@link DisplayNameData} for this
      * {@link Player}.
