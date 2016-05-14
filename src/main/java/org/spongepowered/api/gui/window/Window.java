@@ -27,16 +27,26 @@ package org.spongepowered.api.gui.window;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.Optional;
+import java.util.Set;
 
 public interface Window {
 
     /**
-     * Gets the player being shown this window, if currently shown.
+     * Gets the players being shown this window.
      *
-     * @return The player, if available
+     * @return The players viewing this window
      */
-    Optional<Player> getPlayerShown();
+    Set<Player> getPlayersShowing();
+
+    /**
+     * Shows this window to the player.
+     *
+     * @param player The player
+     * @return Whether the window was shown to the player
+     */
+    boolean show(Player player);
+
+    void close(Player player);
 
     interface Builder<W extends Window, B extends Builder<W, B>> extends ResettableBuilder<W, B> {
 

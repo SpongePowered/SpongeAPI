@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.living.player;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.Server;
 import org.spongepowered.api.block.tileentity.EnderChest;
 import org.spongepowered.api.command.source.RemoteSource;
@@ -113,20 +115,26 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
     Optional<Window> getActiveWindow();
 
     /**
-     * Closes the active window if possible.
+     * Closes the active window.
      *
      * @return True if the window was closed
      */
-    boolean closeActiveWindow();
+    default void closeActiveWindow() {
+        Optional<Window> active = getActiveWindow();
+        if (active.isPresent()) {
+            active.get().close(this);
+        }
+    }
 
     /**
-     * Shows the window to the player. If the window is already being shown to
-     * another player then this returns false.
+     * Shows the window to the player if possible.
      *
      * @param window The window to show
      * @return Whether it was shown to the player
      */
-    boolean showWindow(Window window);
+    default boolean showWindow(Window window) {
+        return !getActiveWindow().isPresent() && checkNotNull(window, "window").show(this);
+    }
 
     /**
      * Gets the view distance setting of the player. This value represents the
