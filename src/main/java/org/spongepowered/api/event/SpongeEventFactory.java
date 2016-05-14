@@ -2129,16 +2129,16 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Position}.
      * 
      * @param cause The cause
-     * @param fromLocation The from location
-     * @param toLocation The to location
+     * @param fromPosition The from position
+     * @param toPosition The to position
      * @param targetEntity The target entity
      * @return A new position move entity event
      */
-    public static MoveEntityEvent.Position createMoveEntityEventPosition(Cause cause, Location<World> fromLocation, Location<World> toLocation, Entity targetEntity) {
+    public static MoveEntityEvent.Position createMoveEntityEventPosition(Cause cause, Vector3d fromPosition, Vector3d toPosition, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("fromLocation", fromLocation);
-        values.put("toLocation", toLocation);
+        values.put("fromPosition", fromPosition);
+        values.put("toPosition", toPosition);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.Position.class, values);
     }
@@ -2149,17 +2149,21 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Position.Teleport}.
      * 
      * @param cause The cause
-     * @param fromLocation The from location
-     * @param toLocation The to location
+     * @param fromPosition The from position
+     * @param toPosition The to position
+     * @param fromWorld The from world
+     * @param toWorld The to world
      * @param targetEntity The target entity
      * @param keepsVelocity The keeps velocity
      * @return A new teleport position move entity event
      */
-    public static MoveEntityEvent.Position.Teleport createMoveEntityEventPositionTeleport(Cause cause, Location<World> fromLocation, Location<World> toLocation, Entity targetEntity, boolean keepsVelocity) {
+    public static MoveEntityEvent.Position.Teleport createMoveEntityEventPositionTeleport(Cause cause, Vector3d fromPosition, Vector3d toPosition, World fromWorld, World toWorld, Entity targetEntity, boolean keepsVelocity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("fromLocation", fromLocation);
-        values.put("toLocation", toLocation);
+        values.put("fromPosition", fromPosition);
+        values.put("toPosition", toPosition);
+        values.put("fromWorld", fromWorld);
+        values.put("toWorld", toWorld);
         values.put("targetEntity", targetEntity);
         values.put("keepsVelocity", keepsVelocity);
         return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.Position.Teleport.class, values);

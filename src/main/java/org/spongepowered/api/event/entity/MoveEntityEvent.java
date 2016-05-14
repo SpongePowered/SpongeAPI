@@ -28,7 +28,6 @@ import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
@@ -42,30 +41,51 @@ public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
     interface Position extends MoveEntityEvent {
 
         /**
-         * Gets the location that the {@link Entity} came from.
+         * Gets the position that the {@link Entity} came from.
          *
-         * @return The previous location
+         * @return The previous position
          */
-        Location<World> getFromLocation();
+        Vector3d getFromPosition();
 
         /**
-         * Gets the location that the {@link Entity} is going to.
+         * Gets the position that the {@link Entity} is going to.
          *
-         * @return The new location
+         * @return The new position
          */
-        Location<World> getToLocation();
+        Vector3d getToPosition();
 
         /**
-         * Sets the new location that the {@link Entity} will go to.
+         * Sets the new position that the {@link Entity} will go to.
          *
-         * @param location The new location
+         * @param position The new position
          */
-        void setToLocation(Location<World> location);
+        void setToPosition(Vector3d position);
 
         /**
          * Fired when an {@link Entity}'s position ends up changing {@link World}s.
          */
         interface Teleport extends Position {
+
+            /**
+             * Gets the {@link World} the entity is coming from.
+             *
+             * @return The previous world
+             */
+            World getFromWorld();
+
+            /**
+             * Gets the {@link World} the entity is going to.
+             *
+             * @return The new world
+             */
+            World getToWorld();
+
+            /**
+             * Sets the {@link World} the entity will go to.
+             *
+             * @param world The new world
+             */
+            void setToWorld(World world);
 
             /**
              * Gets whether the entity teleporting will maintain its velocity
