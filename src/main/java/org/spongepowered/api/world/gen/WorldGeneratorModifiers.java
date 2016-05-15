@@ -35,6 +35,8 @@ public class WorldGeneratorModifiers {
 
     public static final WorldGeneratorModifier SKYLANDS = DummyObjectProvider.createFor(WorldGeneratorModifier.class, "SKYLANDS");
 
+    public static final WorldGeneratorModifier VOID = DummyObjectProvider.createFor(WorldGeneratorModifier.class, "VOID");
+    
     // SORTFIELDS:OFF
 
     private WorldGeneratorModifiers() {
