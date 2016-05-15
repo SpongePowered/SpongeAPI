@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.extra.skylands;
+package org.spongepowered.api.extra.modifier.skylands;
 
 import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.world.biome.BiomeTypes;

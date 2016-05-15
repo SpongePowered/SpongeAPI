@@ -22,11 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.extra.skylands;
+package org.spongepowered.api.extra.modifier.skylands;
 
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.util.weighted.VariableAmount;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.GenerationPopulator;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
@@ -38,7 +39,8 @@ import org.spongepowered.api.world.storage.WorldProperties;
 import java.util.List;
 
 /**
- * A world generator modifier for a Skylands look-alike.
+ * Modifies a {@link World}'s generation to look like the world type "Skylands"
+ * that used to exist in vanilla Minecraft.
  */
 public class SkylandsWorldGeneratorModifier implements WorldGeneratorModifier {
 
@@ -72,11 +74,11 @@ public class SkylandsWorldGeneratorModifier implements WorldGeneratorModifier {
 
     @Override
     public String getId() {
-        return "sponge:skylands";
+        return "sponge:modifier_skylands";
     }
 
     @Override
     public String getName() {
-        return "Skylands";
+        return "Skylands Modifier";
     }
 }

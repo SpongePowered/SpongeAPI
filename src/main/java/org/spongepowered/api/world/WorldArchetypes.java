@@ -50,6 +50,11 @@ public class WorldArchetypes {
      */
     public static final WorldArchetype THE_SKYLANDS = DummyObjectProvider.createFor(WorldArchetype.class, "the_skylands");
 
+    /**
+     * Represents a typical Sponge void-style {@link World}.
+     */
+    public static final WorldArchetype THE_VOID = DummyObjectProvider.createFor(WorldArchetype.class, "the_void");
+
     // SORTFIELDS:OFF
 
     private WorldArchetypes() {

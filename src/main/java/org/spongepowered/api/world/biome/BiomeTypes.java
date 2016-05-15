@@ -163,6 +163,8 @@ public final class BiomeTypes {
 
     public static final BiomeType TAIGA_MOUNTAINS = DummyObjectProvider.createFor(BiomeType.class, "TAIGA_MOUNTAINS");
 
+    public static final BiomeType VOID = DummyObjectProvider.createFor(BiomeType.class, "VOID");
+
     // SORTFIELDS:OFF
 
     private BiomeTypes() {
