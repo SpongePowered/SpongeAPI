@@ -119,7 +119,7 @@ public interface Living extends Entity, TeamMember {
      *
      * Note that the pitch will be the same x value returned by
      * {@link Entity#getRotation()} and Minecraft does not currently support
-     * head roll so the y value will always be zero.
+     * head roll so the z value will always be zero.
      *
      * @return Head rotation
      */
