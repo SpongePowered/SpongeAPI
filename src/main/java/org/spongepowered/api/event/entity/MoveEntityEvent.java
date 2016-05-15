@@ -146,7 +146,9 @@ public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
          *
          * @return The new rotation
          */
-        Vector3d getOriginalToRotation();
+        default Vector3d getOriginalToRotation() {
+            return this.getTargetEntity().getRotation();
+        }
 
         /**
          * Gets the vector representing the rotation the Entity will have.
