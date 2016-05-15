@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.server;
 
+import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
@@ -44,6 +45,7 @@ import javax.annotation.Nullable;
  * sending any response.
  * </p>
  */
+@GenerateFactoryMethod
 public interface ClientPingServerEvent extends Event, Cancellable {
 
     /**

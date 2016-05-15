@@ -130,6 +130,7 @@ import org.spongepowered.api.event.entity.living.humanoid.ChangeLevelEvent;
 import org.spongepowered.api.event.entity.living.humanoid.TargetHumanoidEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.KickPlayerEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.PlayerChangeClientSettingsEvent;
+import org.spongepowered.api.event.entity.living.humanoid.player.ResourcePackStatusEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.RespawnPlayerEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent;
@@ -193,7 +194,9 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
 import org.spongepowered.api.network.RemoteConnection;
+import org.spongepowered.api.network.status.StatusClient;
 import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.service.ProviderRegistration;
 import org.spongepowered.api.service.economy.transaction.TransactionResult;
 import org.spongepowered.api.statistic.Statistic;
@@ -568,6 +571,26 @@ public class SpongeEventFactory {
         values.put("targetWorld", targetWorld);
         values.put("transactions", transactions);
         return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.Post.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.CollideBlockEvent}.
+     * 
+     * @param cause The cause
+     * @param targetBlock The target block
+     * @param targetLocation The target location
+     * @param targetSide The target side
+     * @return A new collide block event
+     */
+    public static CollideBlockEvent createCollideBlockEvent(Cause cause, BlockState targetBlock, Location<World> targetLocation, Direction targetSide) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetBlock", targetBlock);
+        values.put("targetLocation", targetLocation);
+        values.put("targetSide", targetSide);
+        return SpongeEventFactoryUtils.createEventImpl(CollideBlockEvent.class, values);
     }
 
     /**
@@ -1285,6 +1308,24 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.CollideEntityEvent}.
+     * 
+     * @param cause The cause
+     * @param entities The entities
+     * @param targetWorld The target world
+     * @return A new collide entity event
+     */
+    public static CollideEntityEvent createCollideEntityEvent(Cause cause, List<Entity> entities, World targetWorld) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("entities", entities);
+        values.put("targetWorld", targetWorld);
+        return SpongeEventFactoryUtils.createEventImpl(CollideEntityEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.CollideEntityEvent.Impact}.
      * 
      * @param cause The cause
@@ -1358,6 +1399,30 @@ public class SpongeEventFactory {
         values.put("targetEntity", targetEntity);
         values.put("originalDamage", originalDamage);
         return SpongeEventFactoryUtils.createEventImpl(DamageEntityEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.DestructEntityEvent}.
+     * 
+     * @param cause The cause
+     * @param originalChannel The original channel
+     * @param channel The channel
+     * @param formatter The formatter
+     * @param targetEntity The target entity
+     * @param messageCancelled The message cancelled
+     * @return A new destruct entity event
+     */
+    public static DestructEntityEvent createDestructEntityEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, MessageEvent.MessageFormatter formatter, Entity targetEntity, boolean messageCancelled) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("originalChannel", originalChannel);
+        values.put("channel", channel);
+        values.put("formatter", formatter);
+        values.put("targetEntity", targetEntity);
+        values.put("messageCancelled", messageCancelled);
+        return SpongeEventFactoryUtils.createEventImpl(DestructEntityEvent.class, values);
     }
 
     /**
@@ -2178,6 +2243,26 @@ public class SpongeEventFactory {
         values.put("chatColorsEnabled", chatColorsEnabled);
         values.put("viewDistance", viewDistance);
         return SpongeEventFactoryUtils.createEventImpl(PlayerChangeClientSettingsEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.living.humanoid.player.ResourcePackStatusEvent}.
+     * 
+     * @param cause The cause
+     * @param pack The pack
+     * @param player The player
+     * @param status The status
+     * @return A new resource pack status event
+     */
+    public static ResourcePackStatusEvent createResourcePackStatusEvent(Cause cause, ResourcePack pack, Player player, ResourcePackStatusEvent.ResourcePackStatus status) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("pack", pack);
+        values.put("player", player);
+        values.put("status", status);
+        return SpongeEventFactoryUtils.createEventImpl(ResourcePackStatusEvent.class, values);
     }
 
     /**
@@ -3403,6 +3488,24 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.server.ClientPingServerEvent}.
+     * 
+     * @param cause The cause
+     * @param client The client
+     * @param response The response
+     * @return A new client ping server event
+     */
+    public static ClientPingServerEvent createClientPingServerEvent(Cause cause, StatusClient client, ClientPingServerEvent.Response response) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("client", client);
+        values.put("response", response);
+        return SpongeEventFactoryUtils.createEventImpl(ClientPingServerEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.server.ClientPingServerEvent.Response.Players}.
      * 
      * @param profiles The profiles
@@ -3526,6 +3629,24 @@ public class SpongeEventFactory {
         values.put("statistic", statistic);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(ChangeStatisticEvent.TargetPlayer.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.user.BanUserEvent}.
+     * 
+     * @param cause The cause
+     * @param ban The ban
+     * @param targetUser The target user
+     * @return A new ban user event
+     */
+    public static BanUserEvent createBanUserEvent(Cause cause, Ban.Profile ban, User targetUser) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("ban", ban);
+        values.put("targetUser", targetUser);
+        return SpongeEventFactoryUtils.createEventImpl(BanUserEvent.class, values);
     }
 
     /**
