@@ -32,7 +32,6 @@ import static org.mockito.Mockito.stub;
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.collect.Lists;
 import org.junit.Test;
-import org.spongepowered.api.Game;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
@@ -56,7 +55,7 @@ public class SpongeAbstractEventTest {
 
         stub(transaction.getOriginal().getLocation()).toReturn(Optional.of(new Location<>(mockParam(World.class), Vector3d.ZERO)));
 
-        ChangeBlockEvent event = SpongeEventFactory.createChangeBlockEvent(Cause.source("none").build(), mockParam(World.class),
+        ChangeBlockEvent.Break event = SpongeEventFactory.createChangeBlockEventBreak(Cause.source("none").build(), mockParam(World.class),
                 Lists.newArrayList(transaction));
         event.filter(location -> false);
 

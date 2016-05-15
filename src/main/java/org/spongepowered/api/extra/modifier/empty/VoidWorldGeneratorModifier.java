@@ -46,7 +46,7 @@ public class VoidWorldGeneratorModifier implements WorldGeneratorModifier {
 
     @Override
     public String getId() {
-        return "sponge:modifier_void";
+        return "sponge:void";
     }
 
     @Override
