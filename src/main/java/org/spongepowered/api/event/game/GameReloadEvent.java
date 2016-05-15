@@ -22,39 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.channel.type;
+package org.spongepowered.api.event.game;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import org.spongepowered.api.text.channel.MessageChannel;
-import org.spongepowered.api.text.channel.MessageReceiver;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
-import java.util.WeakHashMap;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.event.Event;
 
 /**
- * A message channel that targets the given recipients.
+ * Fired when the {@link Game} triggers a reload.
+ *
+ * <p>
+ *     The definition of a reload is purely left up to the implementation.
+ *     For the default implementation from Sponge, this is fired when
+ *     executing the plugins' reload command and acts as a simple callback for
+ *     plugin use.
+ * </p>
  */
-public class FixedMessageChannel implements MessageChannel {
-
-    protected final Set<MessageReceiver> recipients;
-
-    public FixedMessageChannel(MessageReceiver... recipients) {
-        this(Arrays.asList(checkNotNull(recipients, "recipients")));
-    }
-
-    public FixedMessageChannel(Collection<? extends MessageReceiver> provided) {
-        Set<MessageReceiver> recipients = Collections.newSetFromMap(new WeakHashMap<>());
-        recipients.addAll(provided);
-        this.recipients = Collections.unmodifiableSet(recipients);
-    }
-
-    @Override
-    public Collection<MessageReceiver> getMembers() {
-        return this.recipients;
-    }
+public interface GameReloadEvent extends Event {
 
 }

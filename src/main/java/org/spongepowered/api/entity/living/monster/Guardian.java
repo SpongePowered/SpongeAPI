@@ -28,6 +28,9 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.ElderData;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.Aquatic;
+import org.spongepowered.api.entity.living.Living;
+
+import java.util.Optional;
 
 /**
  * Represents a Guardian.
@@ -51,4 +54,18 @@ public interface Guardian extends Aquatic, Monster {
     default Value<Boolean> elder() {
         return getValue(Keys.ELDER_GUARDIAN).get();
     }
+
+    /**
+     * Gets the target of the guardian's beam or {@link Optional#empty()} otherwise.
+     *
+     * @return An optional containing the target, if any
+     */
+    Optional<Living> getBeamTarget();
+
+    /**
+     * Sets the target of the guardian's beam. Setting a null value removes the target.
+     *
+     * @param entity The entity or null to clear it
+     */
+    void setBeamTarget(Living entity);
 }

@@ -42,6 +42,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.user.UserStorageService;
 import org.spongepowered.api.text.Text;
@@ -58,7 +59,6 @@ import org.spongepowered.api.world.storage.WorldProperties;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -125,8 +125,21 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement user(Text key) {
-        return new UserCommandElement(key);
+        return new UserCommandElement(key, false);
     }
+
+	/**
+	 * Expect an argument to represent a player who has been online at some point,
+	 * as a {@link User}, or if nothing matches and the source is a {@link User},
+	 * give the user. If nothing matches and the source is not a {@link User}, throw
+	 * an exception.
+	 *
+	 * @param key The key to store under
+	 * @return the argument
+	 */
+	public static CommandElement userOrSource(Text key) {
+		return new UserCommandElement(key, true);
+	}
 
     /**
      * Expect an argument to represent a world. This gives a WorldProperties object rather than an actual world in order to include unloaded worlds
@@ -181,6 +194,34 @@ public final class GenericArguments {
      */
     public static <T extends CatalogType> CommandElement catalogedElement(Text key, Class<T> catalogType) {
         return new CatalogedTypeCommandElement<>(key, catalogType);
+    }
+
+    /**
+     * Expect an argument to represent a {@link PluginContainer}'s id.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement plugin(Text key) {
+        return new PluginCommandElement(key);
+    }
+
+    private static class PluginCommandElement extends PatternMatchingCommandElement {
+
+        protected PluginCommandElement(@Nullable Text key) {
+            super(key);
+        }
+
+        @Override
+        protected Iterable<String> getChoices(CommandSource source) {
+            return Sponge.getPluginManager().getPlugins().stream().map(PluginContainer::getId).collect(Collectors.toList());
+        }
+
+        @Override
+        protected Object getValue(String choice) throws IllegalArgumentException {
+            Optional<PluginContainer> plugin = Sponge.getPluginManager().getPlugin(choice);
+            return plugin.orElseThrow(() -> new IllegalArgumentException("Plugin " + choice + " was not found"));
+        }
     }
 
     static class MarkTrueCommandElement extends CommandElement {
@@ -934,11 +975,14 @@ public final class GenericArguments {
     }
 
     private static class UserCommandElement extends PatternMatchingCommandElement {
-        private final PlayerCommandElement possiblePlayer;
 
-        protected UserCommandElement(@Nullable Text key) {
+        private final PlayerCommandElement possiblePlayer;
+        private final boolean returnSource;
+
+        protected UserCommandElement(@Nullable Text key, boolean returnSource) {
             super(key);
-            this.possiblePlayer = new PlayerCommandElement(key, false);
+            this.possiblePlayer = new PlayerCommandElement(key, returnSource);
+            this.returnSource = returnSource;
         }
 
         @Nullable
@@ -949,7 +993,15 @@ public final class GenericArguments {
                 return this.possiblePlayer.parseValue(source, args);
             } catch (ArgumentParseException ex) {
                 args.setState(state);
-                return super.parseValue(source, args);
+                try {
+                    return super.parseValue(source, args);
+                } catch (ArgumentParseException ex2) {
+                    if (this.returnSource && source instanceof User) {
+                        return source;
+                    } else {
+                        throw ex2;
+                    }
+                }
             }
         }
 
@@ -1055,9 +1107,8 @@ public final class GenericArguments {
                 String specifier = next.substring(1);
                 if (specifier.equalsIgnoreCase("first")) {
                     args.next();
-                    return Iterables.filter(Sponge.getGame().getServer().getAllWorldProperties(), input -> {
-                            return input != null && input.isEnabled();
-                    }).iterator().next();
+                    return Sponge.getGame().getServer().getAllWorldProperties().stream().filter(input -> input != null && input.isEnabled())
+                            .collect(Collectors.toList()).iterator().next();
                 } else if (specifier.equalsIgnoreCase("me") && source instanceof Locatable) {
                     args.next();
                     return ((Locatable) source).getWorld().getProperties();
@@ -1070,9 +1121,8 @@ public final class GenericArguments {
                     args.next();
                     args.insertArg(specifier);
                     final DimensionType type = (DimensionType) this.dimensionTypeElement.parseValue(source, args);
-                    Iterable<WorldProperties> ret = Iterables.filter(Sponge.getGame().getServer().getAllWorldProperties(), input -> {
-                            return input != null && input.isEnabled() && input.getDimensionType().equals(type);
-                    });
+                    Iterable<WorldProperties> ret = Sponge.getGame().getServer().getAllWorldProperties().stream().filter(input -> input != null &&
+                            input.isEnabled() && input.getDimensionType().equals(type)).collect(Collectors.toList());
                     return firstOnly ? ret.iterator().next() : ret;
                 }
             }
@@ -1430,10 +1480,7 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            Set<Iterable<Entity>> worldEntities = new HashSet<Iterable<Entity>>();
-            for (World world : Sponge.getServer().getWorlds()) {
-                worldEntities.add(world.getEntities());
-            }
+            Set<Iterable<Entity>> worldEntities = Sponge.getServer().getWorlds().stream().map(World::getEntities).collect(Collectors.toSet());
             return Iterables.transform(Iterables.concat(worldEntities), input -> {
                 if (input == null) {
                     return null;

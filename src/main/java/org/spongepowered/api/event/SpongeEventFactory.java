@@ -135,6 +135,7 @@ import org.spongepowered.api.event.entity.living.humanoid.player.RespawnPlayerEv
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent;
 import org.spongepowered.api.event.entity.projectile.TargetProjectileEvent;
+import org.spongepowered.api.event.game.GameReloadEvent;
 import org.spongepowered.api.event.game.state.GameAboutToStartServerEvent;
 import org.spongepowered.api.event.game.state.GameConstructionEvent;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
@@ -2333,6 +2334,20 @@ public class SpongeEventFactory {
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(TargetProjectileEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.game.GameReloadEvent}.
+     * 
+     * @param cause The cause
+     * @return A new game reload event
+     */
+    public static GameReloadEvent createGameReloadEvent(Cause cause) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        return SpongeEventFactoryUtils.createEventImpl(GameReloadEvent.class, values);
     }
 
     /**
