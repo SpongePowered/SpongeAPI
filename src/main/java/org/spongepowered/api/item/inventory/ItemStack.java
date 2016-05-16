@@ -43,6 +43,9 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Represents a stack of a specific {@link ItemType}. Supports serialization and
  * can be compared using the comparators listed in {@link ItemStackComparators}.
@@ -117,6 +120,19 @@ public interface ItemStack extends DataHolder, DataSerializable, Translatable {
      * @return The newly created item stack snapshot
      */
     ItemStackSnapshot createSnapshot();
+
+    /**
+     * Returns true if the specified {@link ItemStack} has the same stack
+     * size, {@link ItemType}, and data. Note that this method is not an
+     * overrider of {@link Object#equals(Object)} in order to maintain
+     * compatibility with the base game. Therefore, ItemStacks may not behave
+     * as expected when using them in equality based constructs such as
+     * {@link Map}s or {@link Set}s.
+     *
+     * @param that ItemStack to compare
+     * @return True if this equals the ItemStack
+     */
+    boolean equalTo(ItemStack that);
 
     @Override
     ItemStack copy();
