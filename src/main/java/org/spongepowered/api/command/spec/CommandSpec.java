@@ -25,16 +25,14 @@
 package org.spongepowered.api.command.spec;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.command.args.GenericArguments.firstParsing;
 import static org.spongepowered.api.command.args.GenericArguments.optional;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandCallable;
 import org.spongepowered.api.command.CommandException;
-import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandPermissionException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
@@ -45,7 +43,9 @@ import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.args.CommandElement;
 import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.command.args.parsing.InputTokenizer;
+import org.spongepowered.api.text.Text;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -155,6 +155,24 @@ public final class CommandSpec implements CommandCallable {
          * @return this
          */
         public Builder child(CommandCallable child, String... aliases) {
+            if (this.childCommandMap == null) {
+                this.childCommandMap = new HashMap<>();
+            }
+            this.childCommandMap.put(ImmutableList.copyOf(aliases), child);
+            return this;
+        }
+
+        /**
+         * Add a single child command to this command.
+         *
+         * @param child The child to add.
+         * @param aliases Aliases to make the child available under. First
+         *     one is primary and is the only one guaranteed to be listed in usage
+         *     outputs.
+         *
+         * @return this
+         */
+        public Builder child(CommandCallable child, Collection<String> aliases) {
             if (this.childCommandMap == null) {
                 this.childCommandMap = new HashMap<>();
             }
