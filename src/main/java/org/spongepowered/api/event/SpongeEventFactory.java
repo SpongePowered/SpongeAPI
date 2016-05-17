@@ -1347,16 +1347,18 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent.Gain}.
      * 
      * @param cause The cause
-     * @param currentEffects The current effects
+     * @param originalPotionEffect The original potion effect
      * @param potionEffect The potion effect
+     * @param currentEffects The current effects
      * @param targetEntity The target entity
      * @return A new gain change entity potion effect event
      */
-    public static ChangeEntityPotionEffectEvent.Gain createChangeEntityPotionEffectEventGain(Cause cause, List<PotionEffect> currentEffects, PotionEffect potionEffect, Entity targetEntity) {
+    public static ChangeEntityPotionEffectEvent.Gain createChangeEntityPotionEffectEventGain(Cause cause, PotionEffect originalPotionEffect, PotionEffect potionEffect, List<PotionEffect> currentEffects, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("currentEffects", currentEffects);
+        values.put("originalPotionEffect", originalPotionEffect);
         values.put("potionEffect", potionEffect);
+        values.put("currentEffects", currentEffects);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(ChangeEntityPotionEffectEvent.Gain.class, values);
     }
