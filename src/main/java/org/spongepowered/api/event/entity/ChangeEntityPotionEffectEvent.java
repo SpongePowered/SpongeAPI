@@ -51,7 +51,22 @@ public interface ChangeEntityPotionEffectEvent extends TargetEntityEvent, Cancel
     /**
      * An event where the {@link PotionEffect} is being added.
      */
-    interface Gain extends ChangeEntityPotionEffectEvent { }
+    interface Gain extends ChangeEntityPotionEffectEvent {
+        
+        /**
+         * Gets the original potion effect involved in this event.
+         *
+         * @return The original potion effect involved in this event
+         */
+        PotionEffect getOriginalPotionEffect();
+        
+        /**
+         * Sets the potion effect to be used in this event.
+         *
+         * @param effect The potion effect to be used in this event
+         */
+        void setPotionEffect(PotionEffect effect);
+    }
 
     /**
      * An event where the {@link PotionEffect} is being removed.
