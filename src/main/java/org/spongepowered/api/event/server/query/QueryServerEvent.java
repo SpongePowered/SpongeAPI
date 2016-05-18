@@ -229,7 +229,7 @@ public interface QueryServerEvent extends Event {
          * Gets the map of custom keys and values to respond with.
          *
          * <p>If settings any of the keys or values causes the message
-         * to go oer the maximum size, the message will be automatically
+         * to go over the maximum size, the message will be automatically
          * truncated.</p>
          *
          * @return The map of custom keys and values to respond with

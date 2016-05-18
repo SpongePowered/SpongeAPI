@@ -286,7 +286,7 @@ public enum Direction {
 
     /**
      * Return true if the direction is of an ordinal direction (northwest,
-     * southwest, southeast, northeaast).
+     * southwest, southeast, northeast).
      *
      * @return True if ordinal
      */

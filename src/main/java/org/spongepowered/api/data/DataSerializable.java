@@ -29,7 +29,7 @@ import org.spongepowered.api.data.persistence.DataContentUpdater;
 /**
  * Represents an object that can be represented by a {@link DataContainer}.
  * <p>DataContainers received from {@link DataSerializable#toContainer()}
- * should be considered to be copies of the original data, and therefor,
+ * should be considered to be copies of the original data, and therefore,
  * thread safe.</p>
  */
 public interface DataSerializable {
@@ -38,7 +38,7 @@ public interface DataSerializable {
      * Gets the content version of this {@link DataSerializable}. The version
      * may differ between instances of plugins and implementations such that
      * the {@link DataView} from {@link #toContainer()} may include different
-     * information, or remove other information as they are no longer deemend
+     * information, or remove other information as they are no longer deemed
      * necessary. The version goes hand in hand with {@link DataContentUpdater}
      * as it is required when there exists any {@link DataView} of this
      * {@link DataSerializable} with an "older" version.

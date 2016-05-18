@@ -252,7 +252,7 @@ public final class GenericArguments {
     }
 
     /**
-     * Consumes a series of arguments. Usage is the elements concated
+     * Consumes a series of arguments. Usage is the elements concencated
      *
      * @param elements The series of arguments to expect
      * @return the element to match the input
@@ -1287,7 +1287,7 @@ public final class GenericArguments {
             boolean relative = arg.startsWith("~");
             if (relative) {
                 if (relativeTo == null) {
-                    throw args.createError(t("Relative position specified but source does not have a postion"));
+                    throw args.createError(t("Relative position specified but source does not have a position"));
                 }
                 arg = arg.substring(1);
                 if (arg.isEmpty()) {

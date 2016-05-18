@@ -28,6 +28,7 @@ import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.effect.Viewer;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.service.context.ContextSource;
@@ -169,6 +170,19 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      * @return The loaded chunks
      */
     Iterable<Chunk> getLoadedChunks();
+
+    /**
+     * Gets the entity whose {@link UUID} matches the provided id, possibly
+     * returning no entity if the entity is not loaded or non-existent.
+     *
+     * <p>For world implementations, only some parts of the world is usually
+     * loaded, so this method may return no entity if the entity is not
+     * loaded.</p>
+     *
+     * @param uuid The unique id
+     * @return An entity, if available
+     */
+    Optional<Entity> getEntity(UUID uuid);
 
     /**
      * Gets the world border for the world.

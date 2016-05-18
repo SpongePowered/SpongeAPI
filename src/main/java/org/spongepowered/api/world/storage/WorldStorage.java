@@ -56,7 +56,7 @@ public interface WorldStorage {
      * exist in the world.
      *
      * <p>Note that this is an asynchronous check as the storage of chunks can
-     * not be guaranteed to remain in synch with the server, let alone on the
+     * not be guaranteed to remain in sync with the server, let alone on the
      * server thread.</p>
      *
      * <p>It is imperative to understand that the {@link CompletableFuture} task
@@ -74,7 +74,7 @@ public interface WorldStorage {
      *
      * <p>The container is a read only instance of the data, and therefor should
      * not be considered as mutable data. Changes are NOT saved, and the data
-     * may not be in synch with the server if the chunk is currently loaded.</p>
+     * may not be in sync with the server if the chunk is currently loaded.</p>
      *
      * <p>This may not return a {@link DataContainer} in the event there is no
      * chunk data generated at the desired coordinates.</p>
