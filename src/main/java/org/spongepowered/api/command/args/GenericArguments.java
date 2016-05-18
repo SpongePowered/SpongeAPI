@@ -252,7 +252,7 @@ public final class GenericArguments {
     }
 
     /**
-     * Consumes a series of arguments. Usage is the elements concencated
+     * Consumes a series of arguments. Usage is the elements concatenated
      *
      * @param elements The series of arguments to expect
      * @return the element to match the input
