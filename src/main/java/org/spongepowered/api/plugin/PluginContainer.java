@@ -50,38 +50,13 @@ public interface PluginContainer {
     String getId();
 
     /**
-     * Gets the <b>unqualified</b> ID of the {@link Plugin} within this
-     * container. If the {@link Plugin} is using a qualified ID the result
-     * is equal to the last section of the qualified ID.
-     *
-     * <p><b>Examples:</b>
-     * <table>
-     *     <tr><th>Plugin ID</th><th>Unqualified plugin ID</th></tr>
-     *     <tr>
-     *         <td>{@code me.spongeplugin.dev.testplugin}</td>
-     *         <td>{@code testplugin}</td>
-     *     </tr>
-     *     <tr>
-     *         <td>{@code testplugin}</td>
-     *         <td>{@code testplugin}</td>
-     *     </tr>
-     * </ul></p>
-     *
-     * @return The unqualified plugin ID
-     * @see Plugin#id()
-     * @deprecated Qualified plugin IDs are no longer recommended
-     */
-    @Deprecated
-    String getUnqualifiedId();
-
-    /**
      * Gets the name of the {@link Plugin} within this container.
      *
-     * @return The plugin name, or {@link #getUnqualifiedId()} if unknown
+     * @return The plugin name, or {@link #getId()} if unknown
      * @see Plugin#name()
      */
     default String getName() {
-        return getUnqualifiedId();
+        return getId();
     }
 
     /**
