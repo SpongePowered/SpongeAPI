@@ -27,7 +27,7 @@ package org.spongepowered.api.effect.potion;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumaration of all possible {@link PotionEffectType}s in vanilla minecraft.
+ * An enumeration of all possible {@link PotionEffectType}s in vanilla Minecraft.
  */
 public final class PotionEffectTypes {
 

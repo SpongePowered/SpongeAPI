@@ -365,7 +365,6 @@ public final class Keys {
     public static final Key<Value<Fish>> FISH_TYPE = KeyFactory.fake("FISH_TYPE");
 
     /**
-    /**
      * Represents the {@link Key} for representing the
      * {@link FluidStackSnapshot} contained within an item container. Item
      * containers may include buckets and other mod added items.

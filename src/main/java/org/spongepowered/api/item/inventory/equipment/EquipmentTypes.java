@@ -34,7 +34,7 @@ public final class EquipmentTypes {
     // SORTFIELDS:ON
 
     /**
-     * Any type, all other types should sublass this to allow instanceof checks
+     * Any type, all other types should subclass this to allow instanceof checks
      * to succeed.
      */
     public static final EquipmentType ANY = DummyObjectProvider.createFor(EquipmentType.class, "ANY");

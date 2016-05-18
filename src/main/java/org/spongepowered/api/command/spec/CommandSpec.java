@@ -314,7 +314,7 @@ public final class CommandSpec implements CommandCallable {
     }
 
     /**
-     * Gets the active input tokenizer used for this commmand.
+     * Gets the active input tokenizer used for this command.
      *
      * @return This command's input tokenizer
      */

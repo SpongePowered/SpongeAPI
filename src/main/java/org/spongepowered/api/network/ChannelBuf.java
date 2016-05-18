@@ -798,7 +798,7 @@ public interface ChannelBuf {
 
     /**
      * Sets the specified {@link DataView} at the current writerIndex and
-     * increases the writerIndex according to the lenght of the data view
+     * increases the writerIndex according to the length of the data view
      * in this buffer.
      *
      * @param data The data view data

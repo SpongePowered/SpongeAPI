@@ -38,7 +38,7 @@ import java.util.Optional;
  * at liberty to return the TE object directly but as far as consumers are
  * concerned the TE instance and the inventory are separate things.
  *
- * <p>This is intented to provide a consistent way of dealing with inventories
+ * <p>This is intended to provide a consistent way of dealing with inventories
  * regardless of the "owner" of the inventory. Thus, any code capable of dealing
  * with a {@link Carrier} is intrinsically able to deal with a TE inventory just
  * as they would with any Entity inventory or any other type of Carrier for that

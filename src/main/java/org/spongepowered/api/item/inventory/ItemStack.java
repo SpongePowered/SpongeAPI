@@ -33,7 +33,6 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
@@ -50,11 +49,11 @@ import java.util.Set;
  * Represents a stack of a specific {@link ItemType}. Supports serialization and
  * can be compared using the comparators listed in {@link ItemStackComparators}.
  *
- * <p>{@link ItemStack}s have varying properties and data, it is adviseable to
- * use {@link DataHolder#get(Class)} to retrieve different information
- * regarding this item stack.</p>
+ * <p>{@link ItemStack}s have a variety of properties and data. It is advised to
+ * use {@link DataHolder#get(Class)} in order to retrieve information regarding
+ * this item stack.</p>
  */
-public interface ItemStack extends DataHolder, DataSerializable, Translatable {
+public interface ItemStack extends DataHolder, Translatable {
 
     /**
      * Creates a new {@link Builder} to build an {@link ItemStack}.

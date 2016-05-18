@@ -174,7 +174,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
 
     /**
      * Gets the entity whose {@link UUID} matches the provided id, possibly
-     * returning no entity if the entity is not loaded or non-existant.
+     * returning no entity if the entity is not loaded or non-existent.
      *
      * <p>For world implementations, only some parts of the world is usually
      * loaded, so this method may return no entity if the entity is not

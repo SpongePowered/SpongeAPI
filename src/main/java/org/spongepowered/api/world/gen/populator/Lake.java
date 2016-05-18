@@ -32,7 +32,7 @@ import org.spongepowered.api.world.gen.Populator;
 
 /**
  * Represents a populator which will attempt to spawn lakes within the chunk
- * dependending on a random chance.
+ * depending on a random chance.
  */
 public interface Lake extends Populator {
 
