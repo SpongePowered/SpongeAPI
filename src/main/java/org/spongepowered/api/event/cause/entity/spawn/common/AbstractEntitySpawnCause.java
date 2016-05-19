@@ -24,21 +24,21 @@
  */
 package org.spongepowered.api.event.cause.entity.spawn.common;
 
-import org.spongepowered.api.entity.EntitySnapshot;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.spawn.EntitySpawnCause;
 
 public abstract class AbstractEntitySpawnCause extends AbstractSpawnCause implements EntitySpawnCause {
 
-    protected final EntitySnapshot entitySnapshot;
+    protected final Entity entity;
 
     protected AbstractEntitySpawnCause(AbstractEntitySpawnCauseBuilder<?, ?> builder) {
         super(builder);
-        this.entitySnapshot = builder.entitySnapshot;
+        this.entity = builder.entity;
     }
 
     @Override
-    public EntitySnapshot getEntity() {
-        return this.entitySnapshot;
+    public Entity getEntity() {
+        return this.entity;
     }
 
 }

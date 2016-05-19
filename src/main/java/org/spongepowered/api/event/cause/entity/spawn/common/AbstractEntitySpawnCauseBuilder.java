@@ -27,28 +27,21 @@ package org.spongepowered.api.event.cause.entity.spawn.common;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.cause.entity.spawn.EntitySpawnCause;
 
 @SuppressWarnings("unchecked")
 public abstract class AbstractEntitySpawnCauseBuilder<T extends EntitySpawnCause, B extends EntitySpawnCause.EntitySpawnCauseBuilder<T, B>>
         extends AbstractSpawnCauseBuilder<T, B> implements EntitySpawnCause.EntitySpawnCauseBuilder<T, B> {
 
-    protected EntitySnapshot entitySnapshot;
+    protected Entity entity;
 
     protected AbstractEntitySpawnCauseBuilder() {
 
     }
 
     @Override
-    public B entity(EntitySnapshot snapshot) {
-        this.entitySnapshot = checkNotNull(snapshot, "EntitySnapshot cannot be null!");
-        return (B) this;
-    }
-
-    @Override
     public B entity(Entity entity) {
-        this.entitySnapshot = checkNotNull(entity, "Entity cannot be null!").createSnapshot();
+        this.entity = checkNotNull(entity, "Entity cannot be null!");
         return (B) this;
     }
 
@@ -61,7 +54,7 @@ public abstract class AbstractEntitySpawnCauseBuilder<T extends EntitySpawnCause
     @Override
     public B reset() {
         super.reset();
-        this.entitySnapshot = null;
+        this.entity = null;
         return (B) this;
     }
 }

@@ -38,13 +38,11 @@ public interface BreedingSpawnCause extends EntitySpawnCause {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
-    EntitySnapshot getMate();
+    Entity getMate();
 
     interface Builder extends EntitySpawnCauseBuilder<BreedingSpawnCause, Builder> {
 
         Builder mate(Entity entity);
-
-        Builder mate(EntitySnapshot snapshot);
 
     }
 }

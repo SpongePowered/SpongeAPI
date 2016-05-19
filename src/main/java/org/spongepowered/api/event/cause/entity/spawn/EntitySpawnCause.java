@@ -35,7 +35,7 @@ public interface EntitySpawnCause extends SpawnCause {
     }
 
 
-    EntitySnapshot getEntity();
+    Entity getEntity();
 
     interface Builder extends EntitySpawnCauseBuilder<EntitySpawnCause, Builder> {
 
@@ -44,8 +44,6 @@ public interface EntitySpawnCause extends SpawnCause {
     interface EntitySpawnCauseBuilder<T extends EntitySpawnCause, B extends EntitySpawnCauseBuilder<T, B>> extends SpawnCauseBuilder<T, B> {
 
         B entity(Entity entity);
-
-        B entity(EntitySnapshot snapshot);
 
     }
 }
