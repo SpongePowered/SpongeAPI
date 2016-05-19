@@ -25,11 +25,13 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
 import org.spongepowered.api.world.World;
 
 /**
  * Base event for when a {@link World} is saved.
  */
+@GenerateFactoryMethod
 public interface SaveWorldEvent extends TargetWorldEvent, Cancellable {
 
     interface Pre extends SaveWorldEvent {}

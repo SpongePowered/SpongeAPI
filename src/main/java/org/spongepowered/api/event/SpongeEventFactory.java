@@ -1163,6 +1163,28 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent}.
+     * 
+     * @param cause The cause
+     * @param originalItemStack The original item stack
+     * @param itemStack The item stack
+     * @param targetEntity The target entity
+     * @param targetInventory The target inventory
+     * @return A new change entity equipment event
+     */
+    public static ChangeEntityEquipmentEvent createChangeEntityEquipmentEvent(Cause cause, Optional<ItemStackSnapshot> originalItemStack, Optional<Transaction<ItemStackSnapshot>> itemStack, Entity targetEntity, Slot targetInventory) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("originalItemStack", originalItemStack);
+        values.put("itemStack", itemStack);
+        values.put("targetEntity", targetEntity);
+        values.put("targetInventory", targetInventory);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeEntityEquipmentEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent.TargetHumanoid}.
      * 
      * @param cause The cause
@@ -2143,6 +2165,26 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.living.humanoid.ChangeGameModeEvent}.
+     * 
+     * @param cause The cause
+     * @param originalGameMode The original game mode
+     * @param gameMode The game mode
+     * @param targetEntity The target entity
+     * @return A new change game mode event
+     */
+    public static ChangeGameModeEvent createChangeGameModeEvent(Cause cause, GameMode originalGameMode, GameMode gameMode, Humanoid targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("originalGameMode", originalGameMode);
+        values.put("gameMode", gameMode);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeGameModeEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.humanoid.ChangeGameModeEvent.TargetPlayer}.
      * 
      * @param cause The cause
@@ -2158,6 +2200,26 @@ public class SpongeEventFactory {
         values.put("gameMode", gameMode);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(ChangeGameModeEvent.TargetPlayer.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.living.humanoid.ChangeLevelEvent}.
+     * 
+     * @param cause The cause
+     * @param originalLevel The original level
+     * @param level The level
+     * @param targetEntity The target entity
+     * @return A new change level event
+     */
+    public static ChangeLevelEvent createChangeLevelEvent(Cause cause, int originalLevel, int level, Humanoid targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("originalLevel", originalLevel);
+        values.put("level", level);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeLevelEvent.class, values);
     }
 
     /**
@@ -3687,6 +3749,24 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.user.PardonUserEvent}.
+     * 
+     * @param cause The cause
+     * @param ban The ban
+     * @param targetUser The target user
+     * @return A new pardon user event
+     */
+    public static PardonUserEvent createPardonUserEvent(Cause cause, Ban.Profile ban, User targetUser) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("ban", ban);
+        values.put("targetUser", targetUser);
+        return SpongeEventFactoryUtils.createEventImpl(PardonUserEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.user.PardonUserEvent.TargetPlayer}.
      * 
      * @param cause The cause
@@ -3906,6 +3986,22 @@ public class SpongeEventFactory {
         values.put("cause", cause);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(LoadWorldEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.SaveWorldEvent}.
+     * 
+     * @param cause The cause
+     * @param targetWorld The target world
+     * @return A new save world event
+     */
+    public static SaveWorldEvent createSaveWorldEvent(Cause cause, World targetWorld) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetWorld", targetWorld);
+        return SpongeEventFactoryUtils.createEventImpl(SaveWorldEvent.class, values);
     }
 
     /**

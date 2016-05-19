@@ -34,6 +34,7 @@ import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.entity.living.humanoid.TargetHumanoidEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.event.item.inventory.TargetInventoryEvent;
+import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -51,6 +52,7 @@ import java.util.Optional;
  * that a change to the suggested {@link ItemStack}, the use of the
  * {@link Transaction} is recommended.
  */
+@GenerateFactoryMethod
 public interface ChangeEntityEquipmentEvent extends TargetEntityEvent, TargetInventoryEvent, Cancellable {
 
     /**
