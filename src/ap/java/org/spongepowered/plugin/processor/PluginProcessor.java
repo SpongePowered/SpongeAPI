@@ -39,7 +39,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -186,7 +185,7 @@ public class PluginProcessor extends AbstractProcessor {
     private BufferedWriter createWriter() throws IOException {
         if (this.outputPath != null) {
             getMessager().printMessage(NOTE, "Writing plugin metadata to " + this.outputPath);
-            return Files.newBufferedWriter(this.outputPath, StandardOpenOption.CREATE);
+            return Files.newBufferedWriter(this.outputPath);
         } else {
             FileObject obj = this.processingEnv.getFiler().createResource(CLASS_OUTPUT, "", McModInfo.STANDARD_FILENAME);
             getMessager().printMessage(NOTE, "Writing plugin metadata to " + obj.toUri());
