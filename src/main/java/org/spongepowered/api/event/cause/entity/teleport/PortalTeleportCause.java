@@ -24,8 +24,15 @@
  */
 package org.spongepowered.api.event.cause.entity.teleport;
 
-public interface TeleporterTeleportCause extends TeleportCause {
+import org.spongepowered.api.world.PortalAgent;
 
-    //Teleporter getTeleporter(); // todo when we make Teleporters!0
+public interface PortalTeleportCause extends TeleportCause {
+
+    /**
+     * Gets the {@link PortalAgent}
+     *
+     * @return The portal agent
+     */
+    PortalAgent getTeleporter();
 
 }

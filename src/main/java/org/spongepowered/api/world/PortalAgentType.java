@@ -22,27 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.teleport;
+package org.spongepowered.api.world;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.monster.Enderman;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * Represents a cause for a
- * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport} such
- * that there is an associated {@link TeleportType} and possibly, an object
- * associated with the type.
- *
- * Examples may include an {@link EntityTeleportCause} with an {@link Enderman}
- * teleporting away from rain, or a {@link Entity} entering a nether portal.
- */
-public interface TeleportCause {
+@CatalogedBy(PortalAgentTypes.class)
+public interface PortalAgentType extends CatalogType {
 
     /**
-     * Gets the type of the teleport.
+     * Returns the {@link PortalAgent} class for this type.
      *
-     * @return The type of teleport
+     * @return The portal agent class for this type
      */
-    TeleportType getTeleportType();
-
+    Class<? extends PortalAgent> getPortalAgentClass();
 }

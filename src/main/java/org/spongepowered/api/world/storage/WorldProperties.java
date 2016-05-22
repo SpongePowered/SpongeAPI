@@ -35,6 +35,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.GeneratorType;
+import org.spongepowered.api.world.PortalAgentType;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
@@ -200,6 +201,13 @@ public interface WorldProperties extends DataSerializable {
      * @return The dimension type
      */
     DimensionType getDimensionType();
+
+    /**
+     * Gets the {@link PortalAgentType} for the world.
+     *
+     * @return The portal agent type
+     */
+    PortalAgentType getPortalAgentType();
 
     /**
      * Gets whether PVP combat is enabled in this world.

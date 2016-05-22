@@ -207,7 +207,7 @@ import org.spongepowered.api.util.ban.Ban;
 import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.TeleporterAgent;
+import org.spongepowered.api.world.PortalAgent;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -1801,6 +1801,32 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Portal}.
+     * 
+     * @param cause The cause
+     * @param fromTransform The from transform
+     * @param toTransform The to transform
+     * @param portalAgent The portal agent
+     * @param targetEntity The target entity
+     * @param keepsVelocity The keeps velocity
+     * @param usePortalAgent The use portal agent
+     * @return A new portal displace entity event
+     */
+    public static DisplaceEntityEvent.Portal createDisplaceEntityEventPortal(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, PortalAgent portalAgent, Entity targetEntity, boolean keepsVelocity, boolean usePortalAgent) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("fromTransform", fromTransform);
+        values.put("toTransform", toTransform);
+        values.put("portalAgent", portalAgent);
+        values.put("targetEntity", targetEntity);
+        values.put("keepsVelocity", keepsVelocity);
+        values.put("usePortalAgent", usePortalAgent);
+        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Portal.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.TargetHumanoid}.
      * 
      * @param cause The cause
@@ -1867,91 +1893,17 @@ public class SpongeEventFactory {
      * @param fromTransform The from transform
      * @param toTransform The to transform
      * @param targetEntity The target entity
-     * @param teleporterAgent The teleporter agent
      * @param keepsVelocity The keeps velocity
      * @return A new teleport displace entity event
      */
-    public static DisplaceEntityEvent.Teleport createDisplaceEntityEventTeleport(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity, TeleporterAgent teleporterAgent, boolean keepsVelocity) {
+    public static DisplaceEntityEvent.Teleport createDisplaceEntityEventTeleport(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity, boolean keepsVelocity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
         values.put("targetEntity", targetEntity);
-        values.put("teleporterAgent", teleporterAgent);
         values.put("keepsVelocity", keepsVelocity);
         return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetHumanoid}.
-     * 
-     * @param cause The cause
-     * @param fromTransform The from transform
-     * @param toTransform The to transform
-     * @param targetEntity The target entity
-     * @param teleporterAgent The teleporter agent
-     * @param keepsVelocity The keeps velocity
-     * @return A new target humanoid teleport displace entity event
-     */
-    public static DisplaceEntityEvent.Teleport.TargetHumanoid createDisplaceEntityEventTeleportTargetHumanoid(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Humanoid targetEntity, TeleporterAgent teleporterAgent, boolean keepsVelocity) {
-        HashMap<String, Object> values = new HashMap<>();
-        values.put("cause", cause);
-        values.put("fromTransform", fromTransform);
-        values.put("toTransform", toTransform);
-        values.put("targetEntity", targetEntity);
-        values.put("teleporterAgent", teleporterAgent);
-        values.put("keepsVelocity", keepsVelocity);
-        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.TargetHumanoid.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetLiving}.
-     * 
-     * @param cause The cause
-     * @param fromTransform The from transform
-     * @param toTransform The to transform
-     * @param targetEntity The target entity
-     * @param teleporterAgent The teleporter agent
-     * @param keepsVelocity The keeps velocity
-     * @return A new target living teleport displace entity event
-     */
-    public static DisplaceEntityEvent.Teleport.TargetLiving createDisplaceEntityEventTeleportTargetLiving(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Living targetEntity, TeleporterAgent teleporterAgent, boolean keepsVelocity) {
-        HashMap<String, Object> values = new HashMap<>();
-        values.put("cause", cause);
-        values.put("fromTransform", fromTransform);
-        values.put("toTransform", toTransform);
-        values.put("targetEntity", targetEntity);
-        values.put("teleporterAgent", teleporterAgent);
-        values.put("keepsVelocity", keepsVelocity);
-        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.TargetLiving.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.TargetPlayer}.
-     * 
-     * @param cause The cause
-     * @param fromTransform The from transform
-     * @param toTransform The to transform
-     * @param targetEntity The target entity
-     * @param teleporterAgent The teleporter agent
-     * @param keepsVelocity The keeps velocity
-     * @return A new target player teleport displace entity event
-     */
-    public static DisplaceEntityEvent.Teleport.TargetPlayer createDisplaceEntityEventTeleportTargetPlayer(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Player targetEntity, TeleporterAgent teleporterAgent, boolean keepsVelocity) {
-        HashMap<String, Object> values = new HashMap<>();
-        values.put("cause", cause);
-        values.put("fromTransform", fromTransform);
-        values.put("toTransform", toTransform);
-        values.put("targetEntity", targetEntity);
-        values.put("teleporterAgent", teleporterAgent);
-        values.put("keepsVelocity", keepsVelocity);
-        return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.TargetPlayer.class, values);
     }
 
     /**

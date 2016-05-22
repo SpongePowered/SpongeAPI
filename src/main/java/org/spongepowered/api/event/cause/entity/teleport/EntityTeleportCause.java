@@ -28,6 +28,11 @@ import org.spongepowered.api.entity.Entity;
 
 public interface EntityTeleportCause extends TeleportCause {
 
+    /**
+     * Gets the {@link Entity} teleporter
+     *
+     * @return The entity teleporter
+     */
     Entity getTeleporter();
 
 }

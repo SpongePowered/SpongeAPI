@@ -32,15 +32,11 @@ public final class TeleportTypes {
 
     public static final TeleportType COMMAND = DummyObjectProvider.createFor(TeleportType.class, "COMMAND");
 
-    public static final TeleportType ENDER_PEARL = DummyObjectProvider.createFor(TeleportType.class, "ENDER_PEARL");
-
-    public static final TeleportType END_PORTAL = DummyObjectProvider.createFor(TeleportType.class, "END_PORTAL");
-
     public static final TeleportType ENTITY_TELEPORT = DummyObjectProvider.createFor(TeleportType.class, "ENTITY_TELEPORT");
 
-    public static final TeleportType NETHER_PORTAL = DummyObjectProvider.createFor(TeleportType.class, "NETHER_PORTAL");
-
     public static final TeleportType PLUGIN = DummyObjectProvider.createFor(TeleportType.class, "PLUGIN");
+
+    public static final TeleportType PORTAL = DummyObjectProvider.createFor(TeleportType.class, "PORTAL");
 
     public static final TeleportType UNKNOWN = DummyObjectProvider.createFor(TeleportType.class, "UNKNOWN");
 

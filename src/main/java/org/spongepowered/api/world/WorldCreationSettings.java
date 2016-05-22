@@ -154,6 +154,13 @@ public interface WorldCreationSettings {
     DimensionType getDimensionType();
 
     /**
+     * Gets the {@link PortalAgentType} for the world.
+     *
+     * @return The portal agent type
+     */
+    PortalAgentType getPortalAgentType();
+
+    /**
      * Gets whether PVP combat is enabled in this world.
      *
      * @return Whether PVP is enabled
@@ -307,12 +314,12 @@ public interface WorldCreationSettings {
         Builder generatorSettings(DataContainer settings);
 
         /**
-         * Sets the desired {@link TeleporterAgent} for the world to be created.
+         * Sets the desired {@link PortalAgentType} for the world.
          *
-         * @param agent The agent
+         * @param type The type
          * @return This builder, for chaining
          */
-        Builder teleporterAgent(TeleporterAgent agent);
+        Builder portalAgent(PortalAgentType type);
 
         /**
          * Sets whether PVP combat is enabled in this world.

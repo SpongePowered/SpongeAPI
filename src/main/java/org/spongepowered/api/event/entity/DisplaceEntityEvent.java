@@ -33,7 +33,7 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.entity.living.humanoid.TargetHumanoidEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
-import org.spongepowered.api.world.TeleporterAgent;
+import org.spongepowered.api.world.PortalAgent;
 import org.spongepowered.api.world.World;
 
 /**
@@ -93,17 +93,58 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
         interface TargetPlayer extends TargetHumanoid, DisplaceEntityEvent.TargetPlayer { }
     }
 
-    interface Teleport extends DisplaceEntityEvent {
-
-        /// TODO review teleporter stuff.
+    interface Portal extends Teleport {
 
         /**
-         * Gets the {@link TeleporterAgent} that was used to calculate the
-         * teleport locations.
+         * Sets whether the {@link PortalAgent} will be used.
+         * <p>
+         * If this is set to true, the {@link PortalAgent} will search for a
+         * portal at the {@link #getToTransform()} location and will attempt to
+         * create one if not found.
+         * </p>
+         * <p>
+         * If this is set to false, the {@link #getTargetEntity()} will only be
+         * teleported to the {@link #getToTransform()} location.
+         * </p>
          *
-         * @return The teleporter agent
+         * @param usePortalAgent whether to use the portal agent
          */
-        TeleporterAgent getTeleporterAgent();
+        void setUsePortalAgent(boolean usePortalAgent);
+
+        /**
+         * Gets whether the {@link PortalAgent} will be used.
+         * <p>
+         * If this is set to true, the {@link PortalAgent} will search for a
+         * Portal at the {@link #getToTransform()} location, and will attempt to
+         * create one if not found.
+         * </p>
+         * <p>
+         * If this is set to false, the {@link #getTargetEntity()} will only be
+         * teleported to the {@link #getToTransform()} location.
+         * </p>
+         *
+         * @return whether to use the portal agent
+         */
+        boolean getUsePortalAgent();
+
+        /**
+         * Gets the {@link PortalAgent} that will be responsible for teleporting
+         * the {@link #getTargetEntity()} through a Portal.
+         *
+         * @return The portal agent
+         */
+        PortalAgent getPortalAgent();
+
+        /**
+         * Sets the {@link PortalAgent} that will be responsible for teleporting
+         * the {@link #getTargetEntity()} through a Portal.
+         *
+         * @param The portal agent
+         */
+        void setPortalAgent(PortalAgent portalAgent);
+    }
+
+    interface Teleport extends DisplaceEntityEvent {
 
         /**
          * Gets whether the entity teleporting will maintain its velocity
@@ -120,21 +161,6 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
          * @param keepsVelocity Whether the entity will maintain velocity
          */
         void setKeepsVelocity(boolean keepsVelocity);
-
-        /**
-         * An event where the target entity is a {@link Living} entity.
-         */
-        interface TargetLiving extends Teleport, DisplaceEntityEvent.TargetLiving { }
-
-        /**
-         * An event where the target entity is a {@link Humanoid} entity.
-         */
-        interface TargetHumanoid extends TargetLiving, DisplaceEntityEvent.TargetHumanoid { }
-
-        /**
-         * An event where the target entity is a {@link Player} entity.
-         */
-        interface TargetPlayer extends TargetHumanoid, DisplaceEntityEvent.TargetPlayer { }
     }
 
     /**
