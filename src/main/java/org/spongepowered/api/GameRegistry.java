@@ -37,6 +37,7 @@ import org.spongepowered.api.item.merchant.TradeOfferGenerator;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.CatalogRegistryModule;
 import org.spongepowered.api.registry.RegistryModule;
 import org.spongepowered.api.resourcepack.ResourcePack;
@@ -107,9 +108,28 @@ public interface GameRegistry {
      *
      * @param typeClass The class of {@link CatalogType}
      * @param <T> The type of {@link CatalogType}
-     * @return A collection of all known types of the requested dummy type
+     * @return A collection of all known types of the requested catalog type
      */
     <T extends CatalogType> Collection<T> getAllOf(Class<T> typeClass);
+
+    /**
+     * Gets a collection of all available found specific types of {@link CatalogType}
+     * requested.
+     *
+     * @param pluginId The plugin id to check for types
+     * @param typeClass The class of {@link CatalogType}
+     * @param <T> The type of {@link CatalogType}
+     * @return A collection of all known types of the requested catalog type
+     */
+    <T extends CatalogType> Collection<T> getAllFor(String pluginId, Class<T> typeClass);
+
+    default <T extends CatalogType> Collection<T> getAllForMinecraft(Class<T> typeClass) {
+        return getAllFor(PluginManager.MINECRAFT_PLUGIN_ID, typeClass);
+    }
+
+    default <T extends CatalogType> Collection<T> getAllForSponge(Class<T> typeClass) {
+        return getAllFor(PluginManager.SPONGE_PLUGIN_ID, typeClass);
+    }
 
     /**
      * Registers the {@link CatalogRegistryModule} for dummy registration and handling.

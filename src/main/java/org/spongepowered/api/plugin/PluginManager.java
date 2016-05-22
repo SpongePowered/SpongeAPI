@@ -36,6 +36,9 @@ import java.util.Optional;
  */
 public interface PluginManager {
 
+    String MINECRAFT_PLUGIN_ID = "minecraft";
+    String SPONGE_PLUGIN_ID = "sponge";
+
     /**
      * Get the plugin container from an instance.
      *
