@@ -24,8 +24,10 @@
  */
 package org.spongepowered.api.event.cause.entity.teleport;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.monster.Enderman;
+import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * Represents a cause for a
@@ -38,6 +40,10 @@ import org.spongepowered.api.entity.living.monster.Enderman;
  */
 public interface TeleportCause {
 
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
     /**
      * Gets the type of the teleport.
      *
@@ -45,4 +51,15 @@ public interface TeleportCause {
      */
     TeleportType getTeleportType();
 
+    interface TeleporterCauseBuilder<T extends TeleportCause, B extends TeleporterCauseBuilder<T, B>> extends ResettableBuilder<T, B> {
+
+        B type(TeleportType type);
+
+        T build();
+
+    }
+
+    interface Builder extends TeleporterCauseBuilder<TeleportCause, Builder> {
+
+    }
 }

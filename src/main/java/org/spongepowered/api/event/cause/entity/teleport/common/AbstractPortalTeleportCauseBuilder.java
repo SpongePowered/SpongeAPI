@@ -22,33 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.teleport;
+package org.spongepowered.api.event.cause.entity.teleport.common;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-public interface EntityTeleportCause extends TeleportCause {
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.event.cause.entity.teleport.PortalTeleportCause;
+import org.spongepowered.api.world.PortalAgent;
 
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
+@SuppressWarnings("unchecked")
+public abstract class AbstractPortalTeleportCauseBuilder<T extends PortalTeleportCause, B extends PortalTeleportCause.PortalTeleportCauseBuilder<T, B>>
+        extends AbstractTeleportCauseBuilder<T, B> implements PortalTeleportCause.PortalTeleportCauseBuilder<T, B> {
 
-    /**
-     * Gets the {@link Entity} teleporter
-     *
-     * @return The entity teleporter
-     */
-    Entity getTeleporter();
+    protected PortalAgent agent;
 
-    interface EntityTeleportCauseBuilder<T extends EntityTeleportCause, B extends EntityTeleportCauseBuilder<T, B>> extends
-            TeleporterCauseBuilder<T, B> {
-
-        B entity(Entity teleporter);
+    protected AbstractPortalTeleportCauseBuilder() {
 
     }
 
-    interface Builder extends EntityTeleportCauseBuilder<EntityTeleportCause, Builder> {
-
+    @Override
+    public B agent(PortalAgent agent) {
+        this.agent = checkNotNull(agent, "PortalAgent cannot be null!");
+        return (B) this;
     }
 
+    @Override
+    public B from(T value) {
+        this.teleportType = checkNotNull(value, "PortalTeleportCause cannot be null!").getTeleportType();
+        this.agent = checkNotNull(value.getTeleporter(), "PortalAgent cannot be null!");
+        return (B) this;
+    }
+
+    @Override
+    public B reset() {
+        super.reset();
+        this.agent = null;
+        return (B) this;
+    }
 }

@@ -22,33 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.teleport;
+package org.spongepowered.api.event.cause.entity.teleport.common;
 
-import org.spongepowered.api.Sponge;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.entity.teleport.EntityTeleportCause;
 
-public interface EntityTeleportCause extends TeleportCause {
+@SuppressWarnings("unchecked")
+public abstract class AbstractEntityTeleportCauseBuilder<T extends EntityTeleportCause, B extends EntityTeleportCause.EntityTeleportCauseBuilder<T, B>>
+        extends AbstractTeleportCauseBuilder<T, B> implements EntityTeleportCause.EntityTeleportCauseBuilder<T, B> {
 
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
+    protected Entity entity;
 
-    /**
-     * Gets the {@link Entity} teleporter
-     *
-     * @return The entity teleporter
-     */
-    Entity getTeleporter();
-
-    interface EntityTeleportCauseBuilder<T extends EntityTeleportCause, B extends EntityTeleportCauseBuilder<T, B>> extends
-            TeleporterCauseBuilder<T, B> {
-
-        B entity(Entity teleporter);
+    protected AbstractEntityTeleportCauseBuilder() {
 
     }
 
-    interface Builder extends EntityTeleportCauseBuilder<EntityTeleportCause, Builder> {
-
+    @Override
+    public B entity(Entity snapshot) {
+        this.entity = checkNotNull(snapshot, "Entity cannot be null!");
+        return (B) this;
     }
 
+
+    @Override
+    public B from(T value) {
+        this.teleportType = checkNotNull(value, "TeleportType cannot be null!").getTeleportType();
+        this.entity = checkNotNull(value.getTeleporter(), "Entity cannot be null!");
+        return (B) this;
+    }
+
+    @Override
+    public B reset() {
+        super.reset();
+        this.entity = null;
+        return (B) this;
+    }
 }

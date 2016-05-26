@@ -22,33 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.teleport;
+package org.spongepowered.api.event.cause.entity.teleport.common;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-public interface EntityTeleportCause extends TeleportCause {
+import org.spongepowered.api.event.cause.entity.teleport.TeleportCause;
+import org.spongepowered.api.event.cause.entity.teleport.TeleportType;
 
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
+@SuppressWarnings("unchecked")
+public abstract class AbstractTeleportCauseBuilder<T extends TeleportCause, B extends TeleportCause.TeleporterCauseBuilder<T, B>>
+        implements TeleportCause.TeleporterCauseBuilder<T, B> {
 
-    /**
-     * Gets the {@link Entity} teleporter
-     *
-     * @return The entity teleporter
-     */
-    Entity getTeleporter();
-
-    interface EntityTeleportCauseBuilder<T extends EntityTeleportCause, B extends EntityTeleportCauseBuilder<T, B>> extends
-            TeleporterCauseBuilder<T, B> {
-
-        B entity(Entity teleporter);
+    protected AbstractTeleportCauseBuilder() {
 
     }
 
-    interface Builder extends EntityTeleportCauseBuilder<EntityTeleportCause, Builder> {
+    protected TeleportType teleportType;
 
+    @Override
+    public B type(TeleportType spawnType) {
+        this.teleportType = checkNotNull(spawnType, "TeleportType cannot be null!");
+        return (B) this;
     }
 
+    @Override
+    public B from(T value) {
+        this.teleportType = checkNotNull(value, "TeleportType cannot be null!").getTeleportType();
+        return (B) this;
+    }
+
+    @Override
+    public B reset() {
+        this.teleportType = null;
+        return (B) this;
+    }
 }

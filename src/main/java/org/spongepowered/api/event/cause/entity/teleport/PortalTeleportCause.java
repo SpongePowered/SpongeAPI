@@ -24,9 +24,14 @@
  */
 package org.spongepowered.api.event.cause.entity.teleport;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.world.PortalAgent;
 
 public interface PortalTeleportCause extends TeleportCause {
+
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the {@link PortalAgent}
@@ -34,5 +39,15 @@ public interface PortalTeleportCause extends TeleportCause {
      * @return The portal agent
      */
     PortalAgent getTeleporter();
+
+    interface PortalTeleportCauseBuilder<T extends PortalTeleportCause, B extends TeleporterCauseBuilder<T, B>> extends TeleporterCauseBuilder<T, B> {
+
+        B agent(PortalAgent agent);
+
+    }
+
+    interface Builder extends PortalTeleportCauseBuilder<PortalTeleportCause, Builder> {
+
+    }
 
 }

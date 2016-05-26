@@ -22,33 +22,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.teleport;
-
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
-
-public interface EntityTeleportCause extends TeleportCause {
-
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
-
-    /**
-     * Gets the {@link Entity} teleporter
-     *
-     * @return The entity teleporter
-     */
-    Entity getTeleporter();
-
-    interface EntityTeleportCauseBuilder<T extends EntityTeleportCause, B extends EntityTeleportCauseBuilder<T, B>> extends
-            TeleporterCauseBuilder<T, B> {
-
-        B entity(Entity teleporter);
-
-    }
-
-    interface Builder extends EntityTeleportCauseBuilder<EntityTeleportCause, Builder> {
-
-    }
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.cause.entity.teleport.common;

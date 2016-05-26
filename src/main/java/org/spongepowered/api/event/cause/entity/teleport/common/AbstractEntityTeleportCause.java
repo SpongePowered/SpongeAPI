@@ -22,33 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.teleport;
+package org.spongepowered.api.event.cause.entity.teleport.common;
 
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.event.cause.entity.teleport.EntityTeleportCause;
 
-public interface EntityTeleportCause extends TeleportCause {
+public abstract class AbstractEntityTeleportCause extends AbstractTeleportCause implements EntityTeleportCause {
 
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+    protected final Entity entity;
+
+    protected AbstractEntityTeleportCause(AbstractEntityTeleportCauseBuilder<?, ?> builder) {
+        super(builder);
+        this.entity = builder.entity;
     }
 
-    /**
-     * Gets the {@link Entity} teleporter
-     *
-     * @return The entity teleporter
-     */
-    Entity getTeleporter();
-
-    interface EntityTeleportCauseBuilder<T extends EntityTeleportCause, B extends EntityTeleportCauseBuilder<T, B>> extends
-            TeleporterCauseBuilder<T, B> {
-
-        B entity(Entity teleporter);
-
-    }
-
-    interface Builder extends EntityTeleportCauseBuilder<EntityTeleportCause, Builder> {
-
+    @Override
+    public Entity getTeleporter() {
+        return this.entity;
     }
 
 }
