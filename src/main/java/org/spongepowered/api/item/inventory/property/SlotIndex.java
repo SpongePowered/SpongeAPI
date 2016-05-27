@@ -26,6 +26,8 @@ package org.spongepowered.api.item.inventory.property;
 
 /**
  * An inventory property which represents an index within an ordered inventory.
+ *
+ * TODO OrderedInventory of non-slots?
  */
 public class SlotIndex extends IntProperty {
 
