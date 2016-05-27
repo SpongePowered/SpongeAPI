@@ -26,11 +26,16 @@ package org.spongepowered.api.item.inventory.property;
 
 import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.data.Property;
+import org.spongepowered.api.item.inventory.type.GridInventory;
+import org.spongepowered.api.item.inventory.type.OrderedInventory;
 import org.spongepowered.api.util.Coerce;
 
 /**
- * property for inventories of a particular size. For example to allow querying
+ * Property for inventories of a particular size. For example to allow querying
  * for InventoryRows of length 9 or GridInventories of size 3x3
+ *
+ * TODO InventorySize -> Dimensions ; re-add InventorySize as IntProperty for OrderedInventories Thoughts?
+ * naming based of {@link GridInventory#getDimensions()}
  */
 public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {
 
