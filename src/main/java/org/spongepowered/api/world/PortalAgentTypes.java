@@ -26,8 +26,11 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-public interface PortalAgentTypes {
+public final class PortalAgentTypes {
 
     // The default agent used to handle traveling to nether and the end
     public static final PortalAgentType DEFAULT = DummyObjectProvider.createFor(PortalAgentType.class, "DEFAULT");
+
+    private PortalAgentTypes() {
+    }
 }
