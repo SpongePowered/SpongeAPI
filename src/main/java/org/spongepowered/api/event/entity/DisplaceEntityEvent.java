@@ -93,57 +93,6 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
         interface TargetPlayer extends TargetHumanoid, DisplaceEntityEvent.TargetPlayer { }
     }
 
-    interface Portal extends Teleport {
-
-        /**
-         * Sets whether the {@link PortalAgent} will be used.
-         * <p>
-         * If this is set to true, the {@link PortalAgent} will search for a
-         * portal at the {@link #getToTransform()} location and will attempt to
-         * create one if not found.
-         * </p>
-         * <p>
-         * If this is set to false, the {@link #getTargetEntity()} will only be
-         * teleported to the {@link #getToTransform()} location.
-         * </p>
-         *
-         * @param usePortalAgent whether to use the portal agent
-         */
-        void setUsePortalAgent(boolean usePortalAgent);
-
-        /**
-         * Gets whether the {@link PortalAgent} will be used.
-         * <p>
-         * If this is set to true, the {@link PortalAgent} will search for a
-         * Portal at the {@link #getToTransform()} location, and will attempt to
-         * create one if not found.
-         * </p>
-         * <p>
-         * If this is set to false, the {@link #getTargetEntity()} will only be
-         * teleported to the {@link #getToTransform()} location.
-         * </p>
-         *
-         * @return whether to use the portal agent
-         */
-        boolean getUsePortalAgent();
-
-        /**
-         * Gets the {@link PortalAgent} that will be responsible for teleporting
-         * the {@link #getTargetEntity()} through a Portal.
-         *
-         * @return The portal agent
-         */
-        PortalAgent getPortalAgent();
-
-        /**
-         * Sets the {@link PortalAgent} that will be responsible for teleporting
-         * the {@link #getTargetEntity()} through a Portal.
-         *
-         * @param The portal agent
-         */
-        void setPortalAgent(PortalAgent portalAgent);
-    }
-
     interface Teleport extends DisplaceEntityEvent {
 
         /**
@@ -161,6 +110,57 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
          * @param keepsVelocity Whether the entity will maintain velocity
          */
         void setKeepsVelocity(boolean keepsVelocity);
+
+        interface Portal extends Teleport {
+
+            /**
+             * Sets whether the {@link PortalAgent} will be used.
+             * <p>
+             * If this is set to true, the {@link PortalAgent} will search for a
+             * portal at the {@link #getToTransform()} location and will attempt to
+             * create one if not found.
+             * </p>
+             * <p>
+             * If this is set to false, the {@link #getTargetEntity()} will only be
+             * teleported to the {@link #getToTransform()} location.
+             * </p>
+             *
+             * @param usePortalAgent whether to use the portal agent
+             */
+            void setUsePortalAgent(boolean usePortalAgent);
+
+            /**
+             * Gets whether the {@link PortalAgent} will be used.
+             * <p>
+             * If this is set to true, the {@link PortalAgent} will search for a
+             * Portal at the {@link #getToTransform()} location, and will attempt to
+             * create one if not found.
+             * </p>
+             * <p>
+             * If this is set to false, the {@link #getTargetEntity()} will only be
+             * teleported to the {@link #getToTransform()} location.
+             * </p>
+             *
+             * @return whether to use the portal agent
+             */
+            boolean getUsePortalAgent();
+
+            /**
+             * Gets the {@link PortalAgent} that will be responsible for teleporting
+             * the {@link #getTargetEntity()} through a Portal.
+             *
+             * @return The portal agent
+             */
+            PortalAgent getPortalAgent();
+
+            /**
+             * Sets the {@link PortalAgent} that will be responsible for teleporting
+             * the {@link #getTargetEntity()} through a Portal.
+             *
+             * @param portalAgent The portal agent
+             */
+            void setPortalAgent(PortalAgent portalAgent);
+        }
     }
 
     /**
