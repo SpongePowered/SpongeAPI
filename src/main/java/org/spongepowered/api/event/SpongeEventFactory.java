@@ -1867,16 +1867,14 @@ public class SpongeEventFactory {
      * @param fromTransform The from transform
      * @param toTransform The to transform
      * @param targetEntity The target entity
-     * @param keepsVelocity The keeps velocity
      * @return A new teleport displace entity event
      */
-    public static DisplaceEntityEvent.Teleport createDisplaceEntityEventTeleport(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity, boolean keepsVelocity) {
+    public static DisplaceEntityEvent.Teleport createDisplaceEntityEventTeleport(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
         values.put("targetEntity", targetEntity);
-        values.put("keepsVelocity", keepsVelocity);
         return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.class, values);
     }
 
@@ -1884,24 +1882,22 @@ public class SpongeEventFactory {
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport.Portal}.
-     *
+     * 
      * @param cause The cause
      * @param fromTransform The from transform
      * @param toTransform The to transform
      * @param portalAgent The portal agent
      * @param targetEntity The target entity
-     * @param keepsVelocity The keeps velocity
      * @param usePortalAgent The use portal agent
      * @return A new portal teleport displace entity event
      */
-    public static DisplaceEntityEvent.Teleport.Portal createDisplaceEntityEventTeleportPortal(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, PortalAgent portalAgent, Entity targetEntity, boolean keepsVelocity, boolean usePortalAgent) {
+    public static DisplaceEntityEvent.Teleport.Portal createDisplaceEntityEventTeleportPortal(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, PortalAgent portalAgent, Entity targetEntity, boolean usePortalAgent) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
         values.put("portalAgent", portalAgent);
         values.put("targetEntity", targetEntity);
-        values.put("keepsVelocity", keepsVelocity);
         values.put("usePortalAgent", usePortalAgent);
         return SpongeEventFactoryUtils.createEventImpl(DisplaceEntityEvent.Teleport.Portal.class, values);
     }

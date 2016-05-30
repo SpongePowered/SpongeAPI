@@ -33,6 +33,7 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.entity.living.humanoid.TargetHumanoidEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
+import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 import org.spongepowered.api.world.PortalAgent;
 import org.spongepowered.api.world.World;
 
@@ -101,6 +102,7 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
          *
          * @return Whether the entity will maintain momentum after teleport
          */
+        @PropertySettings(requiredParameter = false)
         boolean getKeepsVelocity();
 
         /**
