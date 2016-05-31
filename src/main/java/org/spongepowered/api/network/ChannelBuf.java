@@ -618,7 +618,7 @@ public interface ChannelBuf {
      * @param data The varint data
      * @return This stream for chaining
      */
-    ChannelBuf writeVarInt(int value);
+    ChannelBuf writeVarInt(int data);
 
     /**
      * Sets the specified varint at the specified absolute index in this buffer.
@@ -634,7 +634,7 @@ public interface ChannelBuf {
      * @param data The varint data
      * @return This stream for chaining
      */
-    ChannelBuf setVarInt(int index, int value);
+    ChannelBuf setVarInt(int index, int data);
 
     /**
      * Gets a varint at the current readerIndex and increases the readerIndex by
