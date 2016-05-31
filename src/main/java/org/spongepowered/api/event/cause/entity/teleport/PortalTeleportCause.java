@@ -25,29 +25,28 @@
 package org.spongepowered.api.event.cause.entity.teleport;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.world.PortalAgent;
 
-public interface EntityTeleportCause extends TeleportCause {
+public interface PortalTeleportCause extends TeleportCause {
 
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
-     * Gets the {@link Entity} teleporter
+     * Gets the {@link PortalAgent}
      *
-     * @return The entity teleporter
+     * @return The portal agent
      */
-    Entity getTeleporter();
+    PortalAgent getTeleporter();
 
-    interface EntityTeleportCauseBuilder<T extends EntityTeleportCause, B extends EntityTeleportCauseBuilder<T, B>> extends
-            TeleporterCauseBuilder<T, B> {
+    interface PortalTeleportCauseBuilder<T extends PortalTeleportCause, B extends TeleporterCauseBuilder<T, B>> extends TeleporterCauseBuilder<T, B> {
 
-        B entity(Entity teleporter);
+        B agent(PortalAgent agent);
 
     }
 
-    interface Builder extends EntityTeleportCauseBuilder<EntityTeleportCause, Builder> {
+    interface Builder extends PortalTeleportCauseBuilder<PortalTeleportCause, Builder> {
 
     }
 

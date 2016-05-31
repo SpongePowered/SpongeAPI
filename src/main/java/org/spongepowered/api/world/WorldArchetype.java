@@ -155,6 +155,13 @@ public interface WorldArchetype extends CatalogType {
     DimensionType getDimensionType();
 
     /**
+     * Gets the {@link PortalAgentType} for the world.
+     *
+     * @return The portal agent type
+     */
+    PortalAgentType getPortalAgentType();
+
+    /**
      * Gets the difficulty.
      *
      * @return The difficulty
@@ -303,7 +310,15 @@ public interface WorldArchetype extends CatalogType {
         Builder generatorSettings(DataContainer settings);
 
         /**
-         * Sets whether PVP combat is enabled.
+         * Sets the desired {@link PortalAgentType} for the world.
+         *
+         * @param type The type
+         * @return This builder, for chaining
+         */
+        Builder portalAgent(PortalAgentType type);
+
+        /**
+         * Sets whether PVP combat is enabled in this world.
          *
          * @param state Whether PVP is enabled
          * @return The builder, for chaining

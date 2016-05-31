@@ -300,11 +300,11 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     void triggerExplosion(Explosion explosion);
 
     /**
-     * Gets the teleporter agent, used for manipulating teleporters.
+     * Gets the portal agent, used for manipulating teleporters.
      *
-     * @return The teleporter agent
+     * @return The portal agent
      */
-    TeleporterAgent getTeleporterAgent();
+    PortalAgent getPortalAgent();
 
     @Override
     MutableBiomeAreaWorker<? extends World> getBiomeWorker();

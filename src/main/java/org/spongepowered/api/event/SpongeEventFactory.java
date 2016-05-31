@@ -212,6 +212,7 @@ import org.spongepowered.api.util.ban.Ban;
 import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.PortalAgent;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -1720,18 +1721,16 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Position}.
      * 
      * @param cause The cause
-     * @param originalToPosition The original to position
-     * @param toPosition The to position
-     * @param fromPosition The from position
+     * @param fromTransform The from transform
+     * @param toTransform The to transform
      * @param targetEntity The target entity
      * @return A new position move entity event
      */
-    public static MoveEntityEvent.Position createMoveEntityEventPosition(Cause cause, Vector3d originalToPosition, Vector3d toPosition, Vector3d fromPosition, Entity targetEntity) {
+    public static MoveEntityEvent.Position createMoveEntityEventPosition(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("originalToPosition", originalToPosition);
-        values.put("toPosition", toPosition);
-        values.put("fromPosition", fromPosition);
+        values.put("fromTransform", fromTransform);
+        values.put("toTransform", toTransform);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.Position.class, values);
     }
@@ -1742,30 +1741,42 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Position.Teleport}.
      * 
      * @param cause The cause
-     * @param originalToPosition The original to position
-     * @param toPosition The to position
-     * @param originalToWorld The original to world
-     * @param toWorld The to world
-     * @param fromPosition The from position
-     * @param fromWorld The from world
+     * @param fromTransform The from transform
+     * @param toTransform The to transform
      * @param targetEntity The target entity
-     * @param keepsVelocity The keeps velocity
-     * @param originalKeppsVelocity The original kepps velocity
      * @return A new teleport position move entity event
      */
-    public static MoveEntityEvent.Position.Teleport createMoveEntityEventPositionTeleport(Cause cause, Vector3d originalToPosition, Vector3d toPosition, World originalToWorld, World toWorld, Vector3d fromPosition, World fromWorld, Entity targetEntity, boolean keepsVelocity, boolean originalKeppsVelocity) {
+    public static MoveEntityEvent.Position.Teleport createMoveEntityEventPositionTeleport(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("originalToPosition", originalToPosition);
-        values.put("toPosition", toPosition);
-        values.put("originalToWorld", originalToWorld);
-        values.put("toWorld", toWorld);
-        values.put("fromPosition", fromPosition);
-        values.put("fromWorld", fromWorld);
+        values.put("fromTransform", fromTransform);
+        values.put("toTransform", toTransform);
         values.put("targetEntity", targetEntity);
-        values.put("keepsVelocity", keepsVelocity);
-        values.put("originalKeppsVelocity", originalKeppsVelocity);
         return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.Position.Teleport.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Position.Teleport.Portal}.
+     * 
+     * @param cause The cause
+     * @param fromTransform The from transform
+     * @param toTransform The to transform
+     * @param portalAgent The portal agent
+     * @param targetEntity The target entity
+     * @param usePortalAgent The use portal agent
+     * @return A new portal teleport position move entity event
+     */
+    public static MoveEntityEvent.Position.Teleport.Portal createMoveEntityEventPositionTeleportPortal(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, PortalAgent portalAgent, Entity targetEntity, boolean usePortalAgent) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("fromTransform", fromTransform);
+        values.put("toTransform", toTransform);
+        values.put("portalAgent", portalAgent);
+        values.put("targetEntity", targetEntity);
+        values.put("usePortalAgent", usePortalAgent);
+        return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.Position.Teleport.Portal.class, values);
     }
 
     /**
@@ -1774,18 +1785,16 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Rotation}.
      * 
      * @param cause The cause
-     * @param originalToRotation The original to rotation
-     * @param toRotation The to rotation
-     * @param fromRotation The from rotation
+     * @param fromTransform The from transform
+     * @param toTransform The to transform
      * @param targetEntity The target entity
      * @return A new rotation move entity event
      */
-    public static MoveEntityEvent.Rotation createMoveEntityEventRotation(Cause cause, Vector3d originalToRotation, Vector3d toRotation, Vector3d fromRotation, Entity targetEntity) {
+    public static MoveEntityEvent.Rotation createMoveEntityEventRotation(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("originalToRotation", originalToRotation);
-        values.put("toRotation", toRotation);
-        values.put("fromRotation", fromRotation);
+        values.put("fromTransform", fromTransform);
+        values.put("toTransform", toTransform);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.Rotation.class, values);
     }
@@ -1796,18 +1805,16 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Rotation.Head}.
      * 
      * @param cause The cause
-     * @param originalToRotation The original to rotation
-     * @param toRotation The to rotation
-     * @param fromRotation The from rotation
+     * @param fromTransform The from transform
+     * @param toTransform The to transform
      * @param targetEntity The target entity
      * @return A new head rotation move entity event
      */
-    public static MoveEntityEvent.Rotation.Head createMoveEntityEventRotationHead(Cause cause, Vector3d originalToRotation, Vector3d toRotation, Vector3d fromRotation, Entity targetEntity) {
+    public static MoveEntityEvent.Rotation.Head createMoveEntityEventRotationHead(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("originalToRotation", originalToRotation);
-        values.put("toRotation", toRotation);
-        values.put("fromRotation", fromRotation);
+        values.put("fromTransform", fromTransform);
+        values.put("toTransform", toTransform);
         values.put("targetEntity", targetEntity);
         return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.Rotation.Head.class, values);
     }

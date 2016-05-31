@@ -22,18 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.world;
 
 import java.util.Optional;
 
 /**
- * An agent that handles teleportation locations. This can be understood as an
- * agent that handles the creation of "portals" between {@link World}s.
+ * An agent that handles teleportation between {@link Location}'s. This can be
+ * understood as an agent that handles the creation of "portals" between
+ * {@link World}'s.
  *
  * <p>An example is the agent handling nether portals.</p>
  */
-public interface TeleporterAgent {
+public interface PortalAgent {
 
     /**
      * Gets the search radius before a new acceptable "portal" location is
@@ -41,7 +41,7 @@ public interface TeleporterAgent {
      *
      * @return The search radius
      */
-    int getTeleporterSearchRadius();
+    int getSearchRadius();
 
     /**
      * Sets the search radius before a new acceptable "portal" location is
@@ -50,14 +50,14 @@ public interface TeleporterAgent {
      * @param radius The new radius
      * @return This agent, for chaining
      */
-    TeleporterAgent setTeleporterSearchRadius(int radius);
+    PortalAgent setSearchRadius(int radius);
 
     /**
      * Gets the radius of where a "portal" can be created.
      *
      * @return The radius of where a portal can be created
      */
-    int getTeleporterCreationRadius();
+    int getCreationRadius();
 
     /**
      * Sets the creation radius of where a portal may be created.
@@ -65,21 +65,7 @@ public interface TeleporterAgent {
      * @param radius The new radius
      * @return This agent, for chaining
      */
-    TeleporterAgent setTeleporterCreationRadius(int radius);
-
-    /**
-     * Gets whether this agent is able to create "portals".
-     *
-     * @return True if this agent can create portals
-     */
-    boolean canCreateTeleporter();
-
-    /**
-     * Sets whether this agent is able to create "portals".
-     *
-     * @return This agent, for chaining
-     */
-    TeleporterAgent setCanCreateTeleporter();
+    PortalAgent setCreationRadius(int radius);
 
     /**
      * Attempts to find a "portal" location, or if none are available, creates
@@ -88,7 +74,7 @@ public interface TeleporterAgent {
      * @param targetLocation The suggested location
      * @return The found location of the "portal", if available
      */
-    Optional<Location<World>> findOrCreateTeleporter(Location<World> targetLocation);
+    Optional<Location<World>> findOrCreatePortal(Location<World> targetLocation);
 
     /**
      * Attempts to find a "portal" location. Returns {@link Optional#empty()} if
@@ -97,17 +83,26 @@ public interface TeleporterAgent {
      * @param targetLocation The suggested location
      * @return The found location of the "portal", if available
      */
-    Optional<Location<World>> findTeleporter(Location<World> targetLocation);
+    Optional<Location<World>> findPortal(Location<World> targetLocation);
 
     /**
      * Tells this agent to create a new "portal" location at the suggested
-     * {@link Location}. If none can be created, or
-     * {@link #canCreateTeleporter()} returns {@code false},
+     * {@link Location}. If {@link ChangeBlockEvent.Place} is cancelled,
      * {@link Optional#empty()} is returned.
+     *
+     * Note: In order to adjust or prevent the {@link Location}'s of each
+     * {@link BlockState} set, listen to {@link ChangeBlockEvent.Place} and
+     * check for the root cause {@link PortalTeleportCause}.
      *
      * @param targetLocation The targeted location
      * @return The newly created "portal" location, if available
      */
-    Optional<Location<World>> createTeleporter(Location<World> targetLocation);
+    Optional<Location<World>> createPortal(Location<World> targetLocation);
 
+    /**
+     * Get the type of {@link PortalAgent}.
+     *
+     * @return The type
+     */
+    PortalAgentType getType();
 }

@@ -22,33 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.teleport;
+package org.spongepowered.api.world;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public interface EntityTeleportCause extends TeleportCause {
-
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
+@CatalogedBy(PortalAgentTypes.class)
+public interface PortalAgentType extends CatalogType {
 
     /**
-     * Gets the {@link Entity} teleporter
+     * Returns the {@link PortalAgent} class for this type.
      *
-     * @return The entity teleporter
+     * @return The portal agent class for this type
      */
-    Entity getTeleporter();
-
-    interface EntityTeleportCauseBuilder<T extends EntityTeleportCause, B extends EntityTeleportCauseBuilder<T, B>> extends
-            TeleporterCauseBuilder<T, B> {
-
-        B entity(Entity teleporter);
-
-    }
-
-    interface Builder extends EntityTeleportCauseBuilder<EntityTeleportCause, Builder> {
-
-    }
-
+    Class<? extends PortalAgent> getPortalAgentClass();
 }
