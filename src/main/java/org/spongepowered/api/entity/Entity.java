@@ -109,7 +109,9 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      *
      * @param location The location to set
      * @return True if location was set successfully, false if location couldn't
-     *     be set due to {@link DisplaceEntityEvent.Teleport} being cancelled.
+     *     be set due to 
+     *     {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport}
+     *     being cancelled.
      */
     boolean setLocation(Location<World> location);
 
@@ -121,7 +123,8 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      * @param location The location to set
      * @return True if location was set successfully, false if location couldn't
      *    be set as no safe location was found or
-     *    {@link DisplaceEntityEvent.Teleport} was cancelled.
+     *    {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport}
+     *    was cancelled.
      */
     boolean setLocationSafely(Location<World> location);
 
@@ -160,7 +163,9 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      * @param location The location to set
      * @param rotation The rotation to set
      * @return True if location was set successfully, false if location couldn't
-     *     be set due to {@link DisplaceEntityEvent.Teleport} being cancelled
+     *     be set due to 
+     *     {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport}
+     *     being cancelled
      */
     boolean setLocationAndRotation(Location<World> location, Vector3d rotation);
 
@@ -178,7 +183,8 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      * @param rotation The rotation to set
      * @return True if location was set successfully, false if either location
      *    couldn't be set as no safe location was found or
-     *    {@link DisplaceEntityEvent.Teleport was cancelled
+     *    {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport}
+     *    was cancelled
      */
     boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation);
 
@@ -196,7 +202,9 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      * @param rotation The rotation to set
      * @param relativePositions The coordinates to set relatively
      * @return True if location was set successfully, false if location couldn't
-     *     be set due to {@link DisplaceEntityEvent.Teleport} being cancelled
+     *     be set due to 
+     *     {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport}
+     *     being cancelled
      */
     boolean setLocationAndRotation(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
@@ -216,7 +224,8 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      * @param relativePositions The coordinates to set relatively
      * @return True if location was set successfully, false if either location
      *     couldn't be set as no safe location was found or
-     *    {@link DisplaceEntityEvent.Teleport was cancelled
+     *    {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport}
+     *    was cancelled
      */
     boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
@@ -250,8 +259,9 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      *
      * @param transform The transform to set
      * @return True if the transform was set successfully, false if the
-     *     transform couldn't be set due to {@link DisplaceEntityEvent.Teleport}
-     *     being cancelled.
+     *  transform couldn't be set due to 
+     *  {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport}
+     *  being cancelled.
      */
     boolean setTransform(Transform<World> transform);
 

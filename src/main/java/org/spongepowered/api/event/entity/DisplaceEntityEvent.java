@@ -94,6 +94,10 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
         interface TargetPlayer extends TargetHumanoid, DisplaceEntityEvent.TargetPlayer { }
     }
 
+    /**
+     * An event where the {@link #getTargetEntity()} is teleported to a new
+     * location.
+     */
     interface Teleport extends DisplaceEntityEvent {
 
         /**
@@ -113,6 +117,10 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
          */
         void setKeepsVelocity(boolean keepsVelocity);
 
+        /**
+         * An event where the {@link #getTargetEntity()} is transported
+         * via a {@link PortalAgent} to a new location.
+         */
         interface Portal extends Teleport {
 
             /**

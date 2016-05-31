@@ -70,6 +70,7 @@ final class PluginElement {
         return this.metadata;
     }
 
+    @SuppressWarnings("deprecation")
     void apply(Messager messager) {
         String value = this.annotation.get().id();
         if (!ID_PATTERN.matcher(value).matches()) {
