@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 import java.util.Optional;
@@ -127,9 +128,10 @@ public interface ArmorEquipable extends Equipable {
      * <p>Having the item in hand as null will result in having nothing
      * equipped in the item in hand slot.</p>
      *
+     * @param handType The hand type to retrieve from
      * @return The current item in hand, if available
      */
-    Optional<ItemStack> getItemInHand();
+    Optional<ItemStack> getItemInHand(HandType handType);
 
     /**
      * Sets the item in hand for this entity.
@@ -137,8 +139,9 @@ public interface ArmorEquipable extends Equipable {
      * <p>Having the item in hand as null will result in having nothing
      * equipped in the item in hand slot.</p>
      *
+     * @param hand The hand type to set to
      * @param itemInHand The item in hand
      */
-    void setItemInHand(@Nullable ItemStack itemInHand);
+    void setItemInHand(HandType hand, @Nullable ItemStack itemInHand);
 
 }
