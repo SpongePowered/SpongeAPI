@@ -30,8 +30,8 @@ dependencies {
     testCompile 'org.hamcrest:hamcrest-library:1.3'
 
     testCompile 'org.mockito:mockito-core:1.10.19'
-    testCompile 'org.powermock:powermock-module-junit4:1.6.4'
-    testCompile 'org.powermock:powermock-api-mockito:1.6.4'
+    testCompile 'org.powermock:powermock-module-junit4:1.6.5'
+    testCompile 'org.powermock:powermock-api-mockito:1.6.5'
 }
 
 // Source compiler configuration
@@ -82,12 +82,12 @@ javadoc {
     options.charSet = 'UTF-8'
     options.links(
             'http://www.slf4j.org/apidocs/',
-            'http://docs.guava-libraries.googlecode.com/git-history/v17.0/javadoc/',
-            'http://google.github.io/guice/api-docs/latest/javadoc/',
-            'http://zml2008.github.io/configurate/configurate-core/apidocs/',
-            'http://zml2008.github.io/configurate/configurate-hocon/apidocs/',
-            'http://flowpowered.com/math/',
-            'http://flowpowered.com/noise/',
+            'https://google.github.io/guava/releases/17.0/api/docs/',
+            'https://google.github.io/guice/api-docs/4.0/javadoc/',
+            'https://zml2008.github.io/configurate/configurate-core/apidocs/',
+            'https://zml2008.github.io/configurate/configurate-hocon/apidocs/',
+            'https://flowpowered.com/math/',
+            'https://flowpowered.com/noise/',
             'http://asm.ow2.org/asm50/javadoc/user/',
             'https://docs.oracle.com/javase/8/docs/api/'
     )
@@ -132,7 +132,7 @@ processResources {
 // Checkstyle settings
 checkstyle {
     // TODO: Verify if custom modifications for checkstyle are still necessary (import order, @return on annotations)
-    toolVersion = '6.17'
+    toolVersion = '6.19'
     configFile = api.file('checkstyle.xml')
     configProperties = [
             'basedir': project.projectDir,
