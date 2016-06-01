@@ -49,6 +49,7 @@ import org.spongepowered.api.data.manipulator.mutable.entity.ChargedData;
 import org.spongepowered.api.data.manipulator.mutable.entity.CriticalHitData;
 import org.spongepowered.api.data.manipulator.mutable.entity.DamageableData;
 import org.spongepowered.api.data.manipulator.mutable.entity.DamagingData;
+import org.spongepowered.api.data.manipulator.mutable.entity.DominantHandData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ElderData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExpOrbData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExperienceHolderData;
@@ -93,6 +94,7 @@ import org.spongepowered.api.data.manipulator.mutable.entity.VelocityData;
 import org.spongepowered.api.data.manipulator.mutable.entity.VillagerZombieData;
 import org.spongepowered.api.data.type.Art;
 import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.HorseVariant;
@@ -234,6 +236,12 @@ public final class CatalogEntityData {
      * {@link Player}s and {@link Living} entities.
      */
     public static final Class<DisplayNameData> DISPLAY_NAME_DATA = DisplayNameData.class;
+    /**
+     * Represents the dominant {@link HandType} used by an entity for for "main"
+     * interactions such as such as tool use or block breaking. Usually
+     * applicable to {@link Living} entities.
+     */
+    public static final Class<DominantHandData> DOMINANT_HAND_DATA = DominantHandData.class;
     /**
      * Signifies that the entity can be dyed a specific {@link DyeColor}.
      * Usually applies to {@link Sheep}.
