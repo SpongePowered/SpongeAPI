@@ -36,6 +36,7 @@ import org.spongepowered.api.world.World;
 /**
  * Called when an {@link Entity} performs movement.
  */
+@GenerateFactoryMethod
 public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
 
     /**
@@ -60,104 +61,78 @@ public interface MoveEntityEvent extends TargetEntityEvent, Cancellable {
     void setToTransform(Transform<World> transform);
 
     /**
-     * Fired when an {@link Entity} is changing position.
+     * Fired when an {@link Entity}'s position ends up changing {@link World}s.
      */
     @GenerateFactoryMethod
-    interface Position extends MoveEntityEvent {
+    interface Teleport extends MoveEntityEvent {
 
         /**
-         * Fired when an {@link Entity}'s position ends up changing {@link World}s.
-         */
-        @GenerateFactoryMethod
-        interface Teleport extends Position {
-
-            /**
-             * Gets whether the entity teleporting will maintain its velocity
-             * after teleport.
-             *
-             * @return Whether the entity will maintain momentum after teleport
-             */
-            @PropertySettings(requiredParameter = false)
-            boolean getKeepsVelocity();
-
-            /**
-             * Sets whether the entity teleporting will maintain its velocity
-             * after teleport.
-             *
-             * @param keepsVelocity Whether the entity will maintain velocity
-             */
-            void setKeepsVelocity(boolean keepsVelocity);
-
-            @GenerateFactoryMethod
-            interface Portal extends Teleport {
-
-                /**
-                 * Sets whether the {@link PortalAgent} will be used.
-                 * <p>
-                 * If this is set to true, the {@link PortalAgent} will search for a
-                 * portal at the {@link #getToTransform()} location and will attempt to
-                 * create one if not found.
-                 * </p>
-                 * <p>
-                 * If this is set to false, the {@link #getTargetEntity()} will only be
-                 * teleported to the {@link #getToTransform()} location.
-                 * </p>
-                 *
-                 * @param usePortalAgent whether to use the portal agent
-                 */
-                void setUsePortalAgent(boolean usePortalAgent);
-
-                /**
-                 * Gets whether the {@link PortalAgent} will be used.
-                 * <p>
-                 * If this is set to true, the {@link PortalAgent} will search for a
-                 * Portal at the {@link #getToTransform()} location, and will attempt to
-                 * create one if not found.
-                 * </p>
-                 * <p>
-                 * If this is set to false, the {@link #getTargetEntity()} will only be
-                 * teleported to the {@link #getToTransform()} location.
-                 * </p>
-                 *
-                 * @return whether to use the portal agent
-                 */
-                boolean getUsePortalAgent();
-
-                /**
-                 * Gets the {@link PortalAgent} that will be responsible for teleporting
-                 * the {@link #getTargetEntity()} through a Portal.
-                 *
-                 * @return The portal agent
-                 */
-                PortalAgent getPortalAgent();
-
-                /**
-                 * Sets the {@link PortalAgent} that will be responsible for teleporting
-                 * the {@link #getTargetEntity()} through a Portal.
-                 *
-                 * @param portalAgent The portal agent
-                 */
-                void setPortalAgent(PortalAgent portalAgent);
-            }
-        }
-    }
-
-    /**
-     * Fired when an {@link Entity} is rotating.
-     */
-    @GenerateFactoryMethod
-    interface Rotation extends MoveEntityEvent {
-
-        /**
-         * Fired when a {@link Living}'s head is rotating.
+         * Gets whether the entity teleporting will maintain its velocity
+         * after teleport.
          *
-         * <p>The vectors in this event are in the form of {@link Living#getHeadRotation()}.
-         * While this event will only be fired for changes in the <code>y</code> component,
-         * a change made to the <code>x</code> component of {@link #getToTransform()}
-         * will still be used. However, since living entities only have a unique head yaw value,
-         * the set pitch value will update the normal {@link Entity#getRotation()} value.</p>
+         * @return Whether the entity will maintain momentum after teleport
          */
+        @PropertySettings(requiredParameter = false)
+        boolean getKeepsVelocity();
+
+        /**
+         * Sets whether the entity teleporting will maintain its velocity
+         * after teleport.
+         *
+         * @param keepsVelocity Whether the entity will maintain velocity
+         */
+        void setKeepsVelocity(boolean keepsVelocity);
+
         @GenerateFactoryMethod
-        interface Head extends Rotation {}
+        interface Portal extends Teleport {
+
+            /**
+             * Sets whether the {@link PortalAgent} will be used.
+             * <p>
+             * If this is set to true, the {@link PortalAgent} will search for a
+             * portal at the {@link #getToTransform()} location and will attempt to
+             * create one if not found.
+             * </p>
+             * <p>
+             * If this is set to false, the {@link #getTargetEntity()} will only be
+             * teleported to the {@link #getToTransform()} location.
+             * </p>
+             *
+             * @param usePortalAgent whether to use the portal agent
+             */
+            void setUsePortalAgent(boolean usePortalAgent);
+
+            /**
+             * Gets whether the {@link PortalAgent} will be used.
+             * <p>
+             * If this is set to true, the {@link PortalAgent} will search for a
+             * Portal at the {@link #getToTransform()} location, and will attempt to
+             * create one if not found.
+             * </p>
+             * <p>
+             * If this is set to false, the {@link #getTargetEntity()} will only be
+             * teleported to the {@link #getToTransform()} location.
+             * </p>
+             *
+             * @return whether to use the portal agent
+             */
+            boolean getUsePortalAgent();
+
+            /**
+             * Gets the {@link PortalAgent} that will be responsible for teleporting
+             * the {@link #getTargetEntity()} through a Portal.
+             *
+             * @return The portal agent
+             */
+            PortalAgent getPortalAgent();
+
+            /**
+             * Sets the {@link PortalAgent} that will be responsible for teleporting
+             * the {@link #getTargetEntity()} through a Portal.
+             *
+             * @param portalAgent The portal agent
+             */
+            void setPortalAgent(PortalAgent portalAgent);
+        }
     }
 }

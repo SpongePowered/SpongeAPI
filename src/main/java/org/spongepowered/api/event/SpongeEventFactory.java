@@ -1718,47 +1718,47 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Position}.
+     * {@link org.spongepowered.api.event.entity.MoveEntityEvent}.
      * 
      * @param cause The cause
      * @param fromTransform The from transform
      * @param toTransform The to transform
      * @param targetEntity The target entity
-     * @return A new position move entity event
+     * @return A new move entity event
      */
-    public static MoveEntityEvent.Position createMoveEntityEventPosition(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity) {
+    public static MoveEntityEvent createMoveEntityEvent(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
         values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.Position.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Position.Teleport}.
+     * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}.
      * 
      * @param cause The cause
      * @param fromTransform The from transform
      * @param toTransform The to transform
      * @param targetEntity The target entity
-     * @return A new teleport position move entity event
+     * @return A new teleport move entity event
      */
-    public static MoveEntityEvent.Position.Teleport createMoveEntityEventPositionTeleport(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity) {
+    public static MoveEntityEvent.Teleport createMoveEntityEventTeleport(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
         values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.Position.Teleport.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.Teleport.class, values);
     }
 
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Position.Teleport.Portal}.
+     * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport.Portal}.
      * 
      * @param cause The cause
      * @param fromTransform The from transform
@@ -1766,9 +1766,9 @@ public class SpongeEventFactory {
      * @param portalAgent The portal agent
      * @param targetEntity The target entity
      * @param usePortalAgent The use portal agent
-     * @return A new portal teleport position move entity event
+     * @return A new portal teleport move entity event
      */
-    public static MoveEntityEvent.Position.Teleport.Portal createMoveEntityEventPositionTeleportPortal(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, PortalAgent portalAgent, Entity targetEntity, boolean usePortalAgent) {
+    public static MoveEntityEvent.Teleport.Portal createMoveEntityEventTeleportPortal(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, PortalAgent portalAgent, Entity targetEntity, boolean usePortalAgent) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
@@ -1776,47 +1776,7 @@ public class SpongeEventFactory {
         values.put("portalAgent", portalAgent);
         values.put("targetEntity", targetEntity);
         values.put("usePortalAgent", usePortalAgent);
-        return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.Position.Teleport.Portal.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Rotation}.
-     * 
-     * @param cause The cause
-     * @param fromTransform The from transform
-     * @param toTransform The to transform
-     * @param targetEntity The target entity
-     * @return A new rotation move entity event
-     */
-    public static MoveEntityEvent.Rotation createMoveEntityEventRotation(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity) {
-        HashMap<String, Object> values = new HashMap<>();
-        values.put("cause", cause);
-        values.put("fromTransform", fromTransform);
-        values.put("toTransform", toTransform);
-        values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.Rotation.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Rotation.Head}.
-     * 
-     * @param cause The cause
-     * @param fromTransform The from transform
-     * @param toTransform The to transform
-     * @param targetEntity The target entity
-     * @return A new head rotation move entity event
-     */
-    public static MoveEntityEvent.Rotation.Head createMoveEntityEventRotationHead(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Entity targetEntity) {
-        HashMap<String, Object> values = new HashMap<>();
-        values.put("cause", cause);
-        values.put("fromTransform", fromTransform);
-        values.put("toTransform", toTransform);
-        values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.Rotation.Head.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.Teleport.Portal.class, values);
     }
 
     /**
