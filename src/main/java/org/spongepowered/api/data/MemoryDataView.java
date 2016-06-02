@@ -696,7 +696,7 @@ public class MemoryDataView implements DataView {
 
     @Override
     public Optional<List<Map<?, ?>>> getMapList(DataQuery path) {
-        return getUnsafeList(path).map(list ->
+        return getUnsafeList(path).<List<Map<?, ?>>>map(list ->
                 list.stream()
                         .filter(obj -> obj instanceof Map<?, ?>)
                         .map(obj -> (Map<?, ?>) obj)
