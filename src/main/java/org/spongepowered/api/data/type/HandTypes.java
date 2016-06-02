@@ -31,8 +31,8 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  */
 public final class HandTypes {
 
-    public static final HandType LEFT = DummyObjectProvider.createFor(HandType.class, "LEFT");
-    public static final HandType RIGHT = DummyObjectProvider.createFor(HandType.class, "RIGHT");
+    public static final HandType MAIN_HAND = DummyObjectProvider.createFor(HandType.class, "MAIN_HAND");
+    public static final HandType OFF_HAND = DummyObjectProvider.createFor(HandType.class, "OFF_HAND");
 
     private HandTypes() {
     }

@@ -56,7 +56,7 @@ public class DominantHandProperty extends AbstractProperty<String, HandType> {
 
     @Override
     public int compareTo(@Nullable Property<?, ?> o) {
-        HandType other = Coerce.toPseudoEnum(o == null ? null : o.getValue(), HandType.class, HandTypes.class, HandTypes.RIGHT);
+        HandType other = Coerce.toPseudoEnum(o == null ? null : o.getValue(), HandType.class, HandTypes.class, HandTypes.OFF_HAND);
         return this.getValue().getId().compareTo(o == null ? "" : other.getId());
     }
 }
