@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import org.spongepowered.api.data.manipulator.DataManipulator;
