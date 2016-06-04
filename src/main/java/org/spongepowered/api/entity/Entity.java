@@ -109,7 +109,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      *
      * @param location The location to set
      * @return True if location was set successfully, false if location couldn't
-     *     be set due to 
+     *     be set due to
      *     {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport}
      *     being cancelled.
      */
@@ -163,7 +163,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      * @param location The location to set
      * @param rotation The rotation to set
      * @return True if location was set successfully, false if location couldn't
-     *     be set due to 
+     *     be set due to
      *     {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport}
      *     being cancelled
      */
@@ -202,7 +202,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      * @param rotation The rotation to set
      * @param relativePositions The coordinates to set relatively
      * @return True if location was set successfully, false if location couldn't
-     *     be set due to 
+     *     be set due to
      *     {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport}
      *     being cancelled
      */
@@ -259,7 +259,7 @@ public interface Entity extends Identifiable, DataHolder, DataSerializable, Tran
      *
      * @param transform The transform to set
      * @return True if the transform was set successfully, false if the
-     *  transform couldn't be set due to 
+     *  transform couldn't be set due to
      *  {@link org.spongepowered.api.event.entity.DisplaceEntityEvent.Teleport}
      *  being cancelled.
      */
