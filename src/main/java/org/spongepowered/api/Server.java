@@ -356,8 +356,15 @@ public interface Server {
     Text getMotd();
 
     /**
-     * Shuts down the server, and kicks all players with the default kick
-     * message.
+     * Shuts down the server, and kicks all players with the default kick message.
+     *
+     * <p>
+     *     For the Sponge implementation on the client, there are some characteristics
+     *     of this method to keep in mind. The first being that invocation of this method
+     *     early in the Single-Player login process will send the user's client back to the
+     *     Multi-Player menu (by Vanilla design). The second quirk is this will be invoked the
+     *     tick after invocation.
+     * </p>
      *
      */
     void shutdown();
