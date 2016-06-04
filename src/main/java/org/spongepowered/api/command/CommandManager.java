@@ -26,7 +26,10 @@ package org.spongepowered.api.command;
 
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.command.dispatcher.Dispatcher;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -154,6 +157,6 @@ public interface CommandManager extends Dispatcher {
      * @return A list of suggestions
      */
     @Override
-    List<String> getSuggestions(CommandSource source, String arguments);
+    List<String> getSuggestions(CommandSource source, String arguments, @Nullable Location<World> targetPosition);
 
 }

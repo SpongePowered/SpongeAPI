@@ -32,6 +32,7 @@ import com.google.common.collect.Multimap;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -42,6 +43,11 @@ import java.util.Optional;
  * This object stores parsed arguments from other commands
  */
 public final class CommandContext {
+    /**
+     * The argument key for a target block position that may be present during tab completion, of type {@link Location Location&lt;World>}
+     */
+    public static final String TARGET_BLOCK_ARG = "targetblock-pos048658"; // Random junk afterwards so we don't accidentally conflict with other args
+
     private final Multimap<String, Object> parsedArgs;
 
     /**
