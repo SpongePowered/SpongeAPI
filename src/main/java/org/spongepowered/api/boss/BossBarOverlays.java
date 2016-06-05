@@ -34,11 +34,6 @@ public final class BossBarOverlays {
     // SORTFIELDS:ON
 
     /**
-     * An overlay with 6 segments.
-     */
-    public static final BossBarOverlay NOTCHED_6 = DummyObjectProvider.createFor(BossBarOverlay.class, "NOTCHED_6");
-
-    /**
      * An overlay with 10 segments.
      */
     public static final BossBarOverlay NOTCHED_10 = DummyObjectProvider.createFor(BossBarOverlay.class, "NOTCHED_10");
@@ -52,6 +47,11 @@ public final class BossBarOverlays {
      * An overlay with 20 segments.
      */
     public static final BossBarOverlay NOTCHED_20 = DummyObjectProvider.createFor(BossBarOverlay.class, "NOTCHED_20");
+
+    /**
+     * An overlay with 6 segments.
+     */
+    public static final BossBarOverlay NOTCHED_6 = DummyObjectProvider.createFor(BossBarOverlay.class, "NOTCHED_6");
 
     /**
      * A progress bar overlay.

@@ -297,6 +297,14 @@ public final class Keys {
     public static final Key<Value<Text>> DISPLAY_NAME = KeyFactory.fake("DISPLAY_NAME");
 
     /**
+     * Represents the {@link Key} for representing the dominant {@link HandType}
+     * of a {@link Living} entity.
+     *
+     * @see DominantHandData#dominantHand()
+     */
+    public static final Key<Value<HandType>> DOMINANT_HAND = KeyFactory.fake("DOMINANT_HAND");
+
+    /**
      * Represents the {@link Key} for representing the {@link DoublePlantType}
      * of a {@link BlockState}.
      *
@@ -550,14 +558,6 @@ public final class Keys {
     public static final Key<Value<EntitySnapshot>> LEASH_HOLDER = KeyFactory.fake("LEASH_HOLDER");
 
     public static final Key<Value<Vector3d>> LEFT_ARM_ROTATION = KeyFactory.fake("LEFT_ARM_ROTATION");
-
-    /**
-     * Represents the {@link Key} for representing the dominant {@link HandType}
-     * of a {@link Living} entity.
-     *
-     * @see DominantHandData#dominantHand()
-     */
-    public static final Key<Value<HandType>> DOMINANT_HAND = KeyFactory.fake("DOMINANT_HAND");
 
     public static final Key<Value<Vector3d>> LEFT_LEG_ROTATION = KeyFactory.fake("LEFT_LEG_ROTATION");
 
@@ -857,9 +857,9 @@ public final class Keys {
 
     public static final Key<Value<Vector3d>> TARGETED_LOCATION = KeyFactory.fake("TARGETED_LOCATION");
 
-    public static final Key<MutableBoundedValue<Integer>> TOTAL_EXPERIENCE = KeyFactory.fake("TOTAL_EXPERIENCE");
-
     public static final Key<Value<Integer>> TICKS_REMAINING = KeyFactory.fake("TICKS_REMAINING");
+
+    public static final Key<MutableBoundedValue<Integer>> TOTAL_EXPERIENCE = KeyFactory.fake("TOTAL_EXPERIENCE");
 
     public static final Key<Value<Boolean>> TRACKS_OUTPUT = KeyFactory.fake("TRACKS_OUTPUT");
 

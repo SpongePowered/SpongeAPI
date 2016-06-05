@@ -26,6 +26,7 @@ package org.spongepowered.api.event.cause.entity.damage;
 
 import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.cause.entity.damage.source.FallingBlockDamageSource;
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -67,6 +68,12 @@ public final class DamageModifierTypes {
      * customization of armor handling.</p>
      */
     public static final DamageModifierType ARMOR_ENCHANTMENT = DummyObjectProvider.createFor(DamageModifierType.class, "ARMOR_ENCHANTMENT");
+
+    /**
+     * Represents the {@link DamageModifier} that will reduce damage from a
+     * {@link Player} if their attack cooldown has not been completed yet.
+     */
+    public static final DamageModifierType ATTACK_COOLDOWN = DummyObjectProvider.createFor(DamageModifierType.class, "ATTACK_COOLDOWN");
 
     /**
      * Represents a {@link DamageModifier} that will reduce damage due to

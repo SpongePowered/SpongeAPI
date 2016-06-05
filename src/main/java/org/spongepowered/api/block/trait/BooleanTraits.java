@@ -142,9 +142,9 @@ public final class BooleanTraits {
 
     public static final BooleanTrait FIRE_NORTH = DummyObjectProvider.createFor(BooleanTrait.class, "FIRE_NORTH");
 
-    public static final BooleanTrait FIRE_UP = DummyObjectProvider.createFor(BooleanTrait.class, "FIRE_UP");
-
     public static final BooleanTrait FIRE_SOUTH = DummyObjectProvider.createFor(BooleanTrait.class, "FIRE_SOUTH");
+
+    public static final BooleanTrait FIRE_UP = DummyObjectProvider.createFor(BooleanTrait.class, "FIRE_UP");
 
     public static final BooleanTrait FIRE_WEST = DummyObjectProvider.createFor(BooleanTrait.class, "FIRE_WEST");
 
