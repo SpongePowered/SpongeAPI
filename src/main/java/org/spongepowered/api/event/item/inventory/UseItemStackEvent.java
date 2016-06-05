@@ -159,7 +159,7 @@ public interface UseItemStackEvent extends Event {
      * <p>Cancelling the event, or marking the transaction as invalid,
      * will leave the entity's hand untouched.</p>
      */
-    interface Replace extends UseItemStackEvent {
+    interface Replace extends UseItemStackEvent, Cancellable {
 
         /**
          * Gets the {@link ItemStack} that is placed in the player's
