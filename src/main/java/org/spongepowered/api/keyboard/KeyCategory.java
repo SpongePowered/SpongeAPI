@@ -27,7 +27,6 @@ package org.spongepowered.api.keyboard;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -50,10 +49,10 @@ public interface KeyCategory extends CatalogType {
     }
 
     /**
-     * Gets all the {@link KeyBinding}s that are added to this
-     * category.
+     * Gets all the {@link KeyBinding}s that are listed
+     * under this category.
      *
-     * @return The bindings
+     * @return The key bindings
      */
     List<KeyBinding> getBindings();
 
@@ -86,7 +85,7 @@ public interface KeyCategory extends CatalogType {
          * Builds a new instanceof of a {@link KeyCategory}.
          *
          * @return The key category
-         * @throws IllegalStateException If the key category is not completed
+         * @throws IllegalStateException If the key category is not complete
          */
         KeyCategory build();
     }

@@ -39,8 +39,8 @@ import javax.annotation.Nullable;
  * Represents a key binding, which a client may use to interact
  * with the server.
  *
- * <p>All the key bindings will by default be available for all
- * {@link Player}s, if you want to modify this you listen for the
+ * <p>All the key bindings will by default be available for all the
+ * {@link Player}s, you can modify this in the
  * {@link RegisterKeyBindingsEvent}.</p>
  */
 public interface KeyBinding extends CatalogType {
@@ -81,7 +81,7 @@ public interface KeyBinding extends CatalogType {
         Builder category(@Nullable KeyCategory category);
 
         /**
-         * Sets the identifier of the category.
+         * Sets the identifier of the key category.
          *
          * @param identifier The identifier
          * @return This builder for chaining
@@ -89,8 +89,8 @@ public interface KeyBinding extends CatalogType {
         Builder id(String identifier);
 
         /**
-         * Sets the display name (the one that will be shown on the
-         * client) of the key binding.
+         * Sets the display name of the key binding (the one
+         * that will be shown on the client).
          *
          * @param displayName The display name
          * @return This builder for chaining
@@ -99,7 +99,7 @@ public interface KeyBinding extends CatalogType {
 
         /**
          * Sets the press executor of this key binding, it will be called
-         * when a specific {@link Player} the key binding pressed.
+         * when a specific {@link Player} the key binding presses.
          *
          * @param executor The press executor
          * @return This builder for chaining
@@ -108,7 +108,7 @@ public interface KeyBinding extends CatalogType {
 
         /**
          * Sets the release executor of this key binding, it will be called
-         * when a specific {@link Player} the key binding release.
+         * when a specific {@link Player} the key binding releases.
          *
          * @param executor The release executor
          * @return This builder for chaining
@@ -129,7 +129,7 @@ public interface KeyBinding extends CatalogType {
          * Builds a new instanceof of a {@link KeyBinding}.
          *
          * @return The key binding
-         * @throws IllegalStateException If the key binding is not completed
+         * @throws IllegalStateException If the key binding is not complete
          */
         KeyBinding build();
     }

@@ -31,9 +31,9 @@ import org.spongepowered.api.keyboard.KeyBinding;
 import java.util.Set;
 
 /**
- * Is fired when a {@link Player} joins and allows you to define per player
- * to enable a {@link KeyBinding}. This is the only time you will be able to
- * modify which {@link KeyBinding} are visible/usable for a specific player.
+ * Is fired when a {@link Player} joins and allows the modification of per
+ * player {@link KeyBinding}s. This is the only time you will be able to
+ * modify this.
  *
  * <p>This event will only be called for {@link Player}s that have a client
  * that supports custom key bindings.</p>
