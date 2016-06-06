@@ -25,9 +25,16 @@
 package org.spongepowered.api.registry;
 
 public class CatalogTypeAlreadyRegisteredException extends RegistryException {
+
+    private static final long serialVersionUID = -3529519796547578613L;
     private final String id;
 
     public CatalogTypeAlreadyRegisteredException(String id) {
         this.id = id;
     }
+
+    public String getAlreadyRegisteredId() {
+        return this.id;
+    }
+
 }

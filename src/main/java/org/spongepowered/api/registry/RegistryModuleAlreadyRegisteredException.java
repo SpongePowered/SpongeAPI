@@ -24,6 +24,21 @@
  */
 package org.spongepowered.api.registry;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class RegistryModuleAlreadyRegisteredException extends RegistryException {
+
+    private static final long serialVersionUID = -7657466268883590622L;
+
+    private RegistryModule module;
+
+    public RegistryModuleAlreadyRegisteredException(String message, RegistryModule module) {
+        super(message);
+        this.module = checkNotNull(module);
+    }
+
+    public RegistryModule getModule() {
+        return this.module;
+    }
 
 }

@@ -31,7 +31,7 @@ import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * Represents a cause for a
- * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Position.Teleport} such
+ * {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport} such
  * that there is an associated {@link TeleportType} and possibly, an object
  * associated with the type.
  *

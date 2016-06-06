@@ -202,7 +202,7 @@ public interface Server {
     /**
      * Creates a new {@link WorldProperties} from the given
      * {@link WorldArchetype}. For the creation of the WorldArchetype please see
-     * {@link WorldArchetype.Builder}.
+     * {@link org.spongepowered.api.world.WorldArchetype.Builder}.
      *
      * <p>If the {@link World} exists at the folder name given, the properties representing
      * that folder name are returned instead.</p>
