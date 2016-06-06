@@ -519,6 +519,8 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> IS_SHEARED = KeyFactory.fake("IS_SHEARED");
 
+    public static final Key<Value<Boolean>> IS_SILENT = KeyFactory.fake("IS_SILENT");
+
     public static final Key<Value<Boolean>> IS_SITTING = KeyFactory.fake("IS_SITTING");
 
     public static final Key<Value<Boolean>> IS_SLEEPING = KeyFactory.fake("IS_SLEEPING");

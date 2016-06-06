@@ -1120,7 +1120,8 @@ public final class GenericArguments {
                     }
                     args.next();
                     args.insertArg(specifier);
-                    final DimensionType type = (DimensionType) this.dimensionTypeElement.parseValue(source, args);
+                    @SuppressWarnings("unchecked")
+                    final DimensionType type = ((Iterable<DimensionType>) this.dimensionTypeElement.parseValue(source, args)).iterator().next();
                     Iterable<WorldProperties> ret = Sponge.getGame().getServer().getAllWorldProperties().stream().filter(input -> input != null &&
                             input.isEnabled() && input.getDimensionType().equals(type)).collect(Collectors.toList());
                     return firstOnly ? ret.iterator().next() : ret;
@@ -1131,12 +1132,27 @@ public final class GenericArguments {
         }
 
         @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            Iterable<String> choices = getCompletionChoices(src);
+            final Optional<String> nextArg = args.nextIfPresent();
+            if (nextArg.isPresent()) {
+                choices = Iterables.filter(choices, input -> getFormattedPattern(nextArg.get()).matcher(input).find());
+            }
+            return ImmutableList.copyOf(choices);
+        }
+
+        protected Iterable<String> getCompletionChoices(CommandSource source) {
+            return Iterables.concat(getChoices(source), ImmutableSet.of("#first", "#me"),
+                    Iterables.transform(Sponge.getGame().getRegistry()
+                            .getAllOf(DimensionType.class), input2 -> "#" + input2.getId()));
+        }
+
+        @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Iterables.concat(Sponge.getGame().getServer().getAllWorldProperties().stream()
-                .map(input -> input == null || !input.isEnabled() ? null : input.getWorldName())
-                .collect(Collectors.toList()), ImmutableSet.of("#first", "#me"), Iterables.transform(Sponge.getGame().getRegistry().getAllOf(DimensionType
-                   .class),
-                    input2 -> "#" + input2.getId()));
+            return Sponge.getGame().getServer().getAllWorldProperties().stream()
+                    .map(input -> input == null || !input.isEnabled() ? null : input.getWorldName())
+                    .collect(Collectors.toList());
+
         }
 
         @Override

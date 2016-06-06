@@ -352,8 +352,12 @@ public interface Server {
     Text getMotd();
 
     /**
-     * Shuts down the server, and kicks all players with the default kick
-     * message.
+     * Shuts down the server, and kicks all players with the default kick message.
+     *
+     * <p>
+     *     For the Sponge implementation on the client, this will trigger the Integrated
+     *     Server to shutdown a tick later.
+     * </p>
      *
      */
     void shutdown();

@@ -81,6 +81,7 @@ import org.spongepowered.api.data.manipulator.mutable.entity.RespawnLocationData
 import org.spongepowered.api.data.manipulator.mutable.entity.ScreamingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ShatteringData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ShearedData;
+import org.spongepowered.api.data.manipulator.mutable.entity.SilentData;
 import org.spongepowered.api.data.manipulator.mutable.entity.SittingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.SizeData;
 import org.spongepowered.api.data.manipulator.mutable.entity.SkeletonData;
@@ -415,6 +416,11 @@ public final class CatalogEntityData {
      * to {@link Enderman}.
      */
     public static final Class<ScreamingData> SCREAMING_DATA = ScreamingData.class;
+    /**
+     * Signifies that an entity is currently "silent", and will play no sounds.
+     * Usually applicable to all {@link Entity Entities}.
+     */
+    public static final Class<SilentData> SILENT_DATA = SilentData.class;
     /**
      * Signifies that an entity will "shatter" upon expiration. Usually
      * applicable to {@link EyeOfEnder}.

@@ -78,7 +78,7 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
         return ImmutableList.copyOf(choices);
     }
 
-    private Pattern getFormattedPattern(String input) {
+    Pattern getFormattedPattern(String input) {
         if (!input.startsWith("^")) { // Anchor matches to the beginning -- this lets us use find()
             input = "^" + input;
         }
