@@ -26,7 +26,6 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * Raised when an {@link Entity} is being steered by a mounted {@link Player}.
@@ -35,7 +34,7 @@ import org.spongepowered.api.event.cause.CauseTracked;
  * moves; it is only thrown when a player attempts to steer a mounted
  * entity.</p>
  */
-public interface ControlEntityEvent extends TargetEntityEvent, CauseTracked {
+public interface ControlEntityEvent extends TargetEntityEvent {
 
     /**
      * Returns the forward speed, a float value between -1 and 1, at which the
