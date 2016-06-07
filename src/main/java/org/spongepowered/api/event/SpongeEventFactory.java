@@ -1,27 +1,3 @@
-/*
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
- *
- * Copyright (c) SpongePowered <https://www.spongepowered.org>
- * Copyright (c) contributors
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package org.spongepowered.api.event;
 
 import com.flowpowered.math.vector.Vector3d;
@@ -99,6 +75,7 @@ import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
 import org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent;
 import org.spongepowered.api.event.entity.CollideEntityEvent;
 import org.spongepowered.api.event.entity.ConstructEntityEvent;
+import org.spongepowered.api.event.entity.ControlEntityEvent;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.DestructEntityEvent;
 import org.spongepowered.api.event.entity.DismountEntityEvent;
@@ -1612,6 +1589,30 @@ public class SpongeEventFactory {
         values.put("targetType", targetType);
         values.put("transform", transform);
         return SpongeEventFactoryUtils.createEventImpl(ConstructEntityEvent.Pre.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.ControlEntityEvent}.
+     * 
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @param forwardSpeed The forward speed
+     * @param jumping The jumping
+     * @param sneaking The sneaking
+     * @param strafeSpeed The strafe speed
+     * @return A new control entity event
+     */
+    public static ControlEntityEvent createControlEntityEvent(Cause cause, Entity targetEntity, float forwardSpeed, boolean jumping, boolean sneaking, float strafeSpeed) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        values.put("forwardSpeed", forwardSpeed);
+        values.put("jumping", jumping);
+        values.put("sneaking", sneaking);
+        values.put("strafeSpeed", strafeSpeed);
+        return SpongeEventFactoryUtils.createEventImpl(ControlEntityEvent.class, values);
     }
 
     /**
