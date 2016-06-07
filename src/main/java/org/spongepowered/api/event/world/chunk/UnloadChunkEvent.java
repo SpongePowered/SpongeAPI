@@ -24,12 +24,11 @@
  */
 package org.spongepowered.api.event.world.chunk;
 
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.Chunk;
 
 /**
  * An event where a {@link Chunk} is being unloaded.
  */
-public interface UnloadChunkEvent extends TargetChunkEvent, CauseTracked {
+public interface UnloadChunkEvent extends TargetChunkEvent {
 
 }

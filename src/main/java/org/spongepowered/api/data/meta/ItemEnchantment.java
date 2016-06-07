@@ -77,8 +77,14 @@ public final class ItemEnchantment implements DataSerializable {
     }
 
     @Override
+    public int getContentVersion() {
+        return 1;
+    }
+
+    @Override
     public DataContainer toContainer() {
         return new MemoryDataContainer()
+                .set(Queries.CONTENT_VERSION, getContentVersion())
                 .set(Queries.ENCHANTMENT_ID, this.enchantment.getId())
                 .set(Queries.LEVEL, this.level);
     }

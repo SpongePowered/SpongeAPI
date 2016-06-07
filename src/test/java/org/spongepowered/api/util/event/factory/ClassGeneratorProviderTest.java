@@ -38,6 +38,9 @@ import org.spongepowered.api.event.SpongeEventFactoryUtils;
 import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 import org.spongepowered.api.util.annotation.TransformResult;
 import org.spongepowered.api.util.annotation.TransformWith;
+import org.spongepowered.api.util.generator.event.factory.ClassGeneratorProvider;
+import org.spongepowered.api.util.generator.event.factory.EventFactory;
+import org.spongepowered.api.util.generator.event.factory.NullPolicy;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -300,7 +303,7 @@ public class ClassGeneratorProviderTest {
 
         IncorrectMutatorContainer result = factory.apply(Collections.<String, Object>emptyMap());
         assertThat(result.getAddress(), is(Matchers.nullValue()));
-        result.setAddress(new ArrayList<Object>()); // Nonconforming method
+        result.setAddress(new ArrayList<>()); // Nonconforming method
     }
 
     @Test

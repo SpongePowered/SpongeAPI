@@ -5,8 +5,9 @@ apply plugin: 'maven'
 // Environment variables for the build set by the build server
 ext {
     buildNumber = System.env.BUILD_NUMBER ?: '0'
-    ciSystem = System.env.CI_SYSTEM ?: 'unknown'
-    commit = System.env.GIT_COMMIT ?: 'unknown'
+    ciSystem = System.env.CI_SYSTEM
+    commit = System.env.GIT_COMMIT
+    branch = System.env.GIT_BRANCH
 }
 
 // Support uploading with FTP

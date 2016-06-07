@@ -24,9 +24,16 @@
  */
 package org.spongepowered.api.entity.living.golem;
 
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.value.mutable.Value;
+
 /**
  * Represents an Iron Golem.
  */
 public interface IronGolem extends Golem {
+
+    default Value<Boolean> playerCreated() {
+        return getValue(Keys.PLAYER_CREATED).get();
+    }
 
 }

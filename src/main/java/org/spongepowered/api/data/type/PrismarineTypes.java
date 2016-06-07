@@ -24,11 +24,19 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public class PrismarineTypes {
 
-    public static final PrismarineType ROUGH = null;
-    public static final PrismarineType BRICKS = null;
-    public static final PrismarineType DARK = null;
+    // SORTFIELDS:ON
+
+    public static final PrismarineType BRICKS = DummyObjectProvider.createFor(PrismarineType.class, "BRICKS");
+
+    public static final PrismarineType DARK = DummyObjectProvider.createFor(PrismarineType.class, "DARK");
+
+    public static final PrismarineType ROUGH = DummyObjectProvider.createFor(PrismarineType.class, "ROUGH");
+
+    // SORTFIELDS:OFF
 
     private PrismarineTypes() {
     }

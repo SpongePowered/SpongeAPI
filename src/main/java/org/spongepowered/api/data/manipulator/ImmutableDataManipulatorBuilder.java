@@ -26,12 +26,11 @@ package org.spongepowered.api.data.manipulator;
 
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.ImmutableDataHolder;
-import org.spongepowered.api.service.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.DataBuilder;
 
 import java.util.Optional;
 
 public interface ImmutableDataManipulatorBuilder<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>> extends DataBuilder<I> {
-
 
     /**
      * Creates a new specific {@link ImmutableDataManipulator} for consumption.
@@ -57,5 +56,15 @@ public interface ImmutableDataManipulatorBuilder<I extends ImmutableDataManipula
      */
     Optional<I> createFrom(DataHolder dataHolder);
 
+    /**
+     * Creates the desired {@link ImmutableDataManipulator} from the provided
+     * {@link ImmutableDataHolder}, if it is supported.
+     *
+     * @param dataHolder The data holder
+     * @return The immutable manipulator, if available
+     */
     Optional<I> createFrom(ImmutableDataHolder<?> dataHolder);
+
+    @Override
+    ImmutableDataManipulatorBuilder<I, M> reset();
 }

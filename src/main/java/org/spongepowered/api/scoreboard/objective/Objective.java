@@ -24,13 +24,16 @@
  */
 package org.spongepowered.api.scoreboard.objective;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -40,6 +43,15 @@ import java.util.Set;
  * on their {@link Criterion}.</p>
  */
 public interface Objective {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link Objective}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the name of this Objective.
@@ -60,7 +72,7 @@ public interface Objective {
      *
      * @param displayName Display name to set
      * @throws IllegalArgumentException if displayName is longer than 32
-     *     characters
+     *     characters (in its legacy representation)
      */
     void setDisplayName(Text displayName) throws IllegalArgumentException;
 
@@ -93,6 +105,14 @@ public interface Objective {
     Map<Text, Score> getScores();
 
     /**
+     * Returns whether this objective has a {@link Score} with the given name.
+     *
+     * @param name The name of the {@link Score} to check for.
+     * @return Whether this objective has a {@link Score} with the given name.
+     */
+    boolean hasScore(Text name);
+
+    /**
      * Adds the specified {@link Score} to this objective.
      *
      * @param score The {@link Score} to add
@@ -101,21 +121,43 @@ public interface Objective {
     void addScore(Score score) throws IllegalArgumentException;
 
     /**
-     * Gets an entry's {@link Score} for this Objective.
+     * Gets an entry's {@link Score} for this objective, if it exists.
+     *
+     * @param name The name of the {@link Score} to get.
+     * @return The {@link Score} for te specified {@link Text}, if it exists.
+     */
+    default Optional<Score> getScore(Text name) {
+        if (!this.hasScore(name)) {
+            return Optional.empty();
+        }
+        return Optional.of(this.getOrCreateScore(name));
+    }
+
+    /**
+     * Gets an entry's {@link Score} for this objective.
      *
      * <p>If the {@link Score} does not exist, it will be created.</p>
      *
      * @param name The name of the {@link Score} to get
      * @return The {@link Score} for the specified {@link Text}
      */
-    Score getScore(Text name);
+    Score getOrCreateScore(Text name);
 
     /**
-     * Removes the specified {@link Score} to this objective.
+     * Removes the specified {@link Score} from this objective, if present.
      *
      * @param score The {@link Score} to remove
+     * @return Whether the score existed on this objective
      */
-    void removeScore(Score score);
+    boolean removeScore(Score score);
+
+    /**
+     * Removes the {@link Score} with the specified name from this objectie, if present.
+     *
+     * @param name The name of the {@link Score} to remove.
+     * @return Whether the score existed on this objective
+     */
+    boolean removeScore(Text name);
 
     /**
      * Returns a {@link Set} of parent {@link Scoreboard}s this
@@ -126,4 +168,50 @@ public interface Objective {
      */
     Set<Scoreboard> getScoreboards();
 
+    /**
+     * Represents a builder to create {@link Objective} instances.
+     */
+    interface Builder extends ResettableBuilder<Objective, Builder> {
+
+        /**
+         * Sets the name of the {@link Objective}.
+         *
+         * @param name The name to set
+         * @return This builder
+         */
+        Builder name(String name);
+
+        /**
+         * Sets the display name of the {@link Objective}.
+         *
+         * @param displayName The display name to set
+         * @return This builder
+         */
+        Builder displayName(Text displayName);
+
+        /**
+         * Sets the {@link Criterion} of the {@link Objective}.
+         *
+         * @param criterion The {@link Criterion} to set
+         * @return This builder
+         */
+        Builder criterion(Criterion criterion);
+
+        /**
+         * Sets the {@link ObjectiveDisplayMode} of the {@link Objective}.
+         *
+         * @param objectiveDisplayMode The {@link ObjectiveDisplayMode} to set
+         * @return This builder
+         */
+        Builder objectiveDisplayMode(ObjectiveDisplayMode objectiveDisplayMode);
+
+        /**
+         * Builds an instance of an {@link Objective}.
+         *
+         * @return A new instance of an {@link Objective}
+         * @throws IllegalStateException if the {@link Objective} is not complete
+         */
+        Objective build() throws IllegalStateException;
+
+    }
 }

@@ -24,7 +24,10 @@
  */
 package org.spongepowered.api.block.tileentity.carrier;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BeaconData;
+import org.spongepowered.api.data.value.mutable.OptionalValue;
+import org.spongepowered.api.effect.potion.PotionEffectType;
 
 /**
  * Represents a Beacon.
@@ -42,5 +45,29 @@ public interface Beacon extends TileEntityCarrier {
      * @return The number of levels
      */
     int getCompletedLevels();
+
+    default BeaconData getBeaconData() {
+        return get(BeaconData.class).get();
+    }
+
+    /**
+     * Gets the {@link OptionalValue} for the primary
+     * {@link PotionEffectType}.
+     *
+     * @return The optional value for the primary potion effect
+     */
+    default OptionalValue<PotionEffectType> primaryEffect() {
+        return getValue(Keys.BEACON_PRIMARY_EFFECT).get();
+    }
+
+    /**
+     * Gets the {@link OptionalValue} for the secondary
+     * {@link PotionEffectType}.
+     *
+     * @return The optional value for the secondary potion effect
+     */
+    default OptionalValue<PotionEffectType> secondaryEffect() {
+        return getValue(Keys.BEACON_SECONDARY_EFFECT).get();
+    }
 
 }

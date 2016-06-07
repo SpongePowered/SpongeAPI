@@ -24,18 +24,30 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known vanilla {@link HorseColor}s.
  */
 public final class HorseColors {
 
-    public static final HorseColor WHITE = null;
-    public static final HorseColor CREAMY = null;
-    public static final HorseColor CHESTNUT = null;
-    public static final HorseColor BROWN = null;
-    public static final HorseColor BLACK = null;
-    public static final HorseColor GRAY = null;
-    public static final HorseColor DARK_BROWN = null;
+    // SORTFIELDS:ON
+
+    public static final HorseColor BLACK = DummyObjectProvider.createFor(HorseColor.class, "BLACK");
+
+    public static final HorseColor BROWN = DummyObjectProvider.createFor(HorseColor.class, "BROWN");
+
+    public static final HorseColor CHESTNUT = DummyObjectProvider.createFor(HorseColor.class, "CHESTNUT");
+
+    public static final HorseColor CREAMY = DummyObjectProvider.createFor(HorseColor.class, "CREAMY");
+
+    public static final HorseColor DARK_BROWN = DummyObjectProvider.createFor(HorseColor.class, "DARK_BROWN");
+
+    public static final HorseColor GRAY = DummyObjectProvider.createFor(HorseColor.class, "GRAY");
+
+    public static final HorseColor WHITE = DummyObjectProvider.createFor(HorseColor.class, "WHITE");
+
+    // SORTFIELDS:OFF
 
     private HorseColors() {
     }

@@ -24,23 +24,20 @@
  */
 package org.spongepowered.api.item.inventory.type;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.inventory.Inventory;
 
 /**
- * Interface for inventories which may be interacted with by specific types of
- * Entity.
- *
- * @param <T> Base type of entity which may interact with this object  
+ * Interface for inventories which may be interacted with by Players.
  */
-public interface Interactable<T extends Entity> extends Inventory {
+public interface Interactable extends Inventory {
 
     /**
-     * Get whether the specified entity can interact with this object.
+     * Get whether the specified player can interact with this object.
      * 
-     * @param entity the Entity wishing to interact with this Inventory
+     * @param player the Player wishing to interact with this Inventory
      * @return true if the Entity is able to interact with this Inventory
      */
-    boolean canInteractWith(T entity);
+    boolean canInteractWith(Player player);
     
 }

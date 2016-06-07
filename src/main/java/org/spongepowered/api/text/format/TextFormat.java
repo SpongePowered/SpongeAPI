@@ -27,16 +27,25 @@ package org.spongepowered.api.text.format;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
+import com.google.common.reflect.TypeToken;
+import ninja.leaping.configurate.objectmapping.serialize.TypeSerializers;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextElement;
+import org.spongepowered.api.text.serializer.TextFormatConfigSerializer;
 
 /**
- * Represents a pair of {@link TextStyle and {@link TextColor}}.
+ * Represents a pair of {@link TextStyle} and {@link TextColor}.
  */
-public final class TextFormat {
+public final class TextFormat implements TextElement {
+
+    static {
+        TypeSerializers.getDefaultSerializers().registerType(TypeToken.of(TextFormat.class), new TextFormatConfigSerializer());
+    }
 
     /**
-     * The text style.
+     * An empty {@link TextFormat} with no {@link TextColor} and no {@link TextStyle}.
      */
-    private final TextStyle style;
+    public static final TextFormat NONE = new TextFormat(TextColors.NONE, TextStyles.NONE);
 
     /**
      * The text color.
@@ -44,48 +53,56 @@ public final class TextFormat {
     private final TextColor color;
 
     /**
+     * The text style.
+     */
+    private final TextStyle style;
+
+    /**
+     * Gets the {@link TextFormat} with the default style and color.
+     *
+     * @return The empty text format
+     */
+    public static TextFormat of() {
+        return NONE;
+    }
+
+    /**
+     * Constructs a new {@link TextFormat} with the specific style.
+     *
+     * @param style The style
+     */
+    public static TextFormat of(TextStyle style) {
+        return new TextFormat(TextColors.NONE, style);
+    }
+
+    /**
+     * Constructs a new {@link TextFormat} with the specific color.
+     *
+     * @param color The color
+     */
+    public static TextFormat of(TextColor color) {
+        return new TextFormat(color, TextStyles.NONE);
+    }
+
+    /**
+     * Constructs a new {@link TextFormat} with the specific color and style.
+     *
+     * @param color The color
+     * @param style The style
+     */
+    public static TextFormat of(TextColor color, TextStyle style) {
+        return new TextFormat(color, style);
+    }
+
+    /**
      * Constructs a new {@link TextFormat}.
      *
-     * @param style The style
      * @param color The color
+     * @param style The style
      */
-    public TextFormat(TextStyle style, TextColor color) {
-        this.style = checkNotNull(style, "style");
+    private TextFormat(TextColor color, TextStyle style) {
         this.color = checkNotNull(color, "color");
-    }
-
-    /**
-     * Constructs a new {@link TextFormat} with the default color.
-     *
-     * @param style The style
-     */
-    public TextFormat(TextStyle style) {
-        this(style, TextColors.NONE);
-    }
-
-    /**
-     * Constructs a new {@link TextFormat} with the default style.
-     *
-     * @param color The color
-     */
-    public TextFormat(TextColor color) {
-        this(TextStyles.NONE, color);
-    }
-
-    /**
-     * Constructs a new {@link TextFormat} with the default style and color.
-     */
-    public TextFormat() {
-        this(TextStyles.NONE, TextColors.NONE);
-    }
-
-    /**
-     * Returns the {@link TextStyle} in this format.
-     *
-     * @return The style
-     */
-    public final TextStyle getStyle() {
-        return this.style;
+        this.style = checkNotNull(style, "style");
     }
 
     /**
@@ -97,29 +114,72 @@ public final class TextFormat {
         return this.color;
     }
 
+
     /**
-     * Returns a new {@link TextFormat} with the given style.
+     * Returns the {@link TextStyle} in this format.
      *
-     * @param style The style
-     * @return A new {@link TextFormat}
+     * @return The style
      */
-    public final TextFormat style(TextStyle style) {
-        return new TextFormat(style, this.color);
+    public final TextStyle getStyle() {
+        return this.style;
     }
 
     /**
      * Returns a new {@link TextFormat} with the given color.
      *
      * @param color The color
-     * @return A new {@link TextFormat}
+     * @return The new text format
      */
     public final TextFormat color(TextColor color) {
-        return new TextFormat(this.style, color);
+        return new TextFormat(color, this.style);
+    }
+
+    /**
+     * Returns a new {@link TextFormat} with the given style.
+     *
+     * @param style The style
+     * @return The new text format
+     */
+    public final TextFormat style(TextStyle style) {
+        return new TextFormat(this.color, style);
+    }
+
+    /**
+     * Returns a new {@link TextFormat} that combines this and the given format.
+     * The given format takes higher priority than this one. Due to this the
+     * color will only fallback to this one if the given format's color is
+     * {@link TextColors#NONE}. If the given format's color is
+     * {@link TextColors#RESET} then {@link TextColors#NONE} will be used.
+     * Styles are combined using {@link TextStyle#and(TextStyle...)}.
+     *
+     * @param format The format to merge
+     * @return The new text format
+     */
+    public final TextFormat merge(TextFormat format) {
+        TextColor color = format.color;
+        // If the given format's color is NONE use this ones
+        if (color == TextColors.NONE) {
+            color = this.color;
+            // If the given format's color is RESET use NONE
+        } else if (color == TextColors.RESET) {
+            color = TextColors.NONE;
+        }
+        return new TextFormat(color, this.style.and(format.style));
+    }
+
+    /**
+     * Returns whether this {@link TextFormat} has no color and format
+     * specified.
+     *
+     * @return If the format does not contain a color or any styles
+     */
+    public boolean isEmpty() {
+        return this.color == TextColors.NONE && this.style.isEmpty();
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hashCode(style, color);
+    public void applyTo(Text.Builder builder) {
+        builder.format(this);
     }
 
     @Override
@@ -127,18 +187,26 @@ public final class TextFormat {
         if (this == o) {
             return true;
         }
-        if (o instanceof TextFormat) {
-            TextFormat that = (TextFormat) o;
-            return this.style.equals(that.style) && this.color.equals(that.color);
+        if (!(o instanceof TextFormat)) {
+            return false;
         }
-        return false;
+
+        TextFormat that = (TextFormat) o;
+        return this.color.equals(that.color) && this.style.equals(that.style);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.color, this.style);
     }
 
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
+                .add("color", color)
                 .add("style", style)
-                .add("color", color).toString();
+                .toString();
     }
 
 }

@@ -25,7 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFlamableData;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFlammableData;
 import org.spongepowered.api.data.value.mutable.Value;
 
 /**
@@ -33,7 +33,7 @@ import org.spongepowered.api.data.value.mutable.Value;
  * is different from being set on fire as the entity is igniting itself without
  * taking damage.
  */
-public interface FlammableData extends DataManipulator<FlammableData, ImmutableFlamableData> {
+public interface FlammableData extends DataManipulator<FlammableData, ImmutableFlammableData> {
 
     /**
      * Gets the {@link Value} for the "aflame" state.

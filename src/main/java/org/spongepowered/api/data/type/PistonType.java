@@ -25,12 +25,13 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a "type" of piston.
  */
 @CatalogedBy(PistonTypes.class)
-public interface PistonType extends CatalogType {
+public interface PistonType extends CatalogType, Translatable {
 
 }

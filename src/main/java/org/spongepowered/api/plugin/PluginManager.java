@@ -36,6 +36,9 @@ import java.util.Optional;
  */
 public interface PluginManager {
 
+    String MINECRAFT_PLUGIN_ID = "minecraft";
+    String SPONGE_PLUGIN_ID = "sponge";
+
     /**
      * Get the plugin container from an instance.
      *
@@ -51,14 +54,6 @@ public interface PluginManager {
      * @return The plugin, if available
      */
     Optional<PluginContainer> getPlugin(String id);
-
-    /**
-     * Gets the {@link Logger} for the {@link PluginContainer}.
-     *
-     * @param plugin The plugin
-     * @return The logger
-     */
-    Logger getLogger(PluginContainer plugin);
 
     /**
      * Gets a {@link Collection} of all {@link PluginContainer}s.

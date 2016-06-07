@@ -24,10 +24,14 @@
  */
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.block.trait.BlockTrait;
+import org.spongepowered.api.data.ImmutableDataBuilder;
 import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.property.DirectionRelativePropertyHolder;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
@@ -47,10 +51,19 @@ import java.util.Optional;
  * a single instance of a particular {@link BlockState} as they are immutable,
  * a particular instance may be cached for various uses.
  */
-public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRelativePropertyHolder {
+public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRelativePropertyHolder, CatalogType {
 
     /**
-     * Get the base type of block.
+     * Creates a new {@link Builder} for building {@link BlockState}s.
+     *
+     * @return The builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Gets the base type of block.
      *
      * <p>The type does not include block data such as the contents of
      * inventories.</p>
@@ -58,6 +71,29 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
      * @return The type of block
      */
     BlockType getType();
+
+    /**
+     * Applies extended properties for the current @{link BlockType} if any to 
+     * the current {@link BlockState}. This usually is gathered from surrounding
+     * {@link BlockState}'s.
+     * 
+     * <p>Note: This should only be called for live {@link BlockState}'s at
+     * a specific {@link Location} for accurate results.</p>
+     * 
+     * <p>
+     * Examples of some extended properties are:
+     * </p>
+     *
+     * <ul>
+     *     <li>snow on podzul dirt block</li>
+     *     <li>occupied status for beds</li>
+     *     <li>fence connections</li>
+     * </ul>
+     * 
+     * @param location The location used to search for extended properties
+     * @return The blockstate with extended properties included if any
+     */
+    BlockState withExtendedProperties(Location<World> location);
 
     /**
      * Gets the associated {@link BlockState} with the cycled
@@ -143,4 +179,28 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
      */
     Map<BlockTrait<?>, ?> getTraitMap();
 
+    /**
+     * An {@link ImmutableDataBuilder} for a {@link BlockState}. Just like the
+     * {@link ImmutableDataBuilder}, the {@link DataManipulator}s passed in to
+     * create a {@link BlockState} are copied on creation.
+     *
+     * <p>Note that upon creation, the {@link BlockType} must be set for validation
+     * of {@link DataManipulator}s, otherwise exceptions may be thrown.</p>
+     */
+    interface Builder extends ImmutableDataBuilder<BlockState, Builder> {
+
+        /**
+         * Sets the {@link BlockType} for the {@link BlockState} to build.
+         *
+         * <p>The {@link BlockType} is used for some pre-validation on addition of
+         * {@link DataManipulator}s through {@link #add(DataManipulator)}. It is
+         * important to understand that not all manipulators are compatible with
+         * all {@link BlockType}s.</p>
+         *
+         * @param blockType The block type
+         * @return This builder, for chaining
+         */
+        Builder blockType(BlockType blockType);
+
+    }
 }

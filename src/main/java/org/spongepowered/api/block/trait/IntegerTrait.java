@@ -25,6 +25,8 @@
 
 package org.spongepowered.api.block.trait;
 
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
 import java.util.function.Predicate;
 
 /**
@@ -32,6 +34,7 @@ import java.util.function.Predicate;
  * values, usually with a predefined range. It is recommended to use the
  * {@link Predicate}
  */
+@CatalogedBy(IntegerTraits.class)
 public interface IntegerTrait extends BlockTrait<Integer> {
 
 }

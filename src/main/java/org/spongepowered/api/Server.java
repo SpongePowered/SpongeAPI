@@ -25,16 +25,16 @@
 package org.spongepowered.api;
 
 import com.flowpowered.math.vector.Vector3d;
-import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.text.channel.MessageChannel;
+import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
-import org.spongepowered.api.service.world.ChunkLoadService;
+import org.spongepowered.api.scoreboard.Scoreboard;
+import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.sink.MessageSink;
-import org.spongepowered.api.util.command.source.ConsoleSource;
+import org.spongepowered.api.command.source.ConsoleSource;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.WorldBuilder;
 import org.spongepowered.api.world.WorldCreationSettings;
 import org.spongepowered.api.world.storage.ChunkLayout;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -43,6 +43,7 @@ import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Represents a typical Minecraft Server.
@@ -130,6 +131,13 @@ public interface Server {
     Optional<WorldProperties> getDefaultWorld();
 
     /**
+     * Gets the default {@link World} name that the server creates and loads.
+     *
+     * @return The name
+     */
+    String getDefaultWorldName();
+
+    /**
      * Loads a {@link World} from the default storage container. If a world with
      * the given name is already loaded then it is returned instead.
      *
@@ -197,7 +205,7 @@ public interface Server {
     /**
      * Creates a new world from the given {@link WorldCreationSettings}. For the
      * creation of the WorldCreationSettings please see
-     * {@link WorldBuilder}.
+     * {@link org.spongepowered.api.world.WorldCreationSettings.Builder}.
      *
      * <p>If the world already exists then the existing {@link WorldProperties}
      * are returned else a new world is created and the new WorldProperties
@@ -212,7 +220,7 @@ public interface Server {
      * @param settings The settings for creation
      * @return The new or existing world properties, if creation was successful
      */
-    Optional<WorldProperties> createWorld(WorldCreationSettings settings);
+    Optional<WorldProperties> createWorldProperties(WorldCreationSettings settings);
 
     /**
      * Creates a world copy asynchronously using the new name given and returns
@@ -232,7 +240,7 @@ public interface Server {
      * @return An {@link Optional} containing the properties of the new world
      *         instance, if the copy was successful
      */
-    ListenableFuture<Optional<WorldProperties>> copyWorld(WorldProperties worldProperties, String copyName);
+    CompletableFuture<Optional<WorldProperties>> copyWorld(WorldProperties worldProperties, String copyName);
 
     /**
      * Renames an unloaded world.
@@ -251,7 +259,7 @@ public interface Server {
      * @param worldProperties The world properties to delete
      * @return True if the deletion was successful.
      */
-    ListenableFuture<Boolean> deleteWorld(WorldProperties worldProperties);
+    CompletableFuture<Boolean> deleteWorld(WorldProperties worldProperties);
 
     /**
      * Persists the given {@link WorldProperties} to the world storage for it,
@@ -261,6 +269,21 @@ public interface Server {
      * @return True if the save was successful
      */
     boolean saveWorldProperties(WorldProperties properties);
+
+    /**
+     * Gets the 'server' scoreboard. In Vanilla, this is the scoreboard of
+     * dimension 0 (the overworld).
+     *
+     * <p>The sever scoreboard is used with the Vanilla /scoreboard command,
+     * automatic score updating through criteria, and other things.</p>
+     *
+     * <p>The server scoreboard may not be available if dimension 0
+     * is not yet loaded. In Vanilla, this will only occur when the
+     * server is first starting, as dimension 0 is normally always loaded.</p>
+     *
+     * @return the server scoreboard, if available.
+     */
+    Optional<Scoreboard> getServerScoreboard();
 
     /**
      * Returns information about the chunk layout used by this server
@@ -282,12 +305,18 @@ public interface Server {
     int getRunningTimeTicks();
 
     /**
-     * Get the sink that messages to be broadcast across the whole server
-     * should be sent to.
+     * Gets the message channel that server-wide messages are sent through.
      *
-     * @return The server-wide broadcast sink
+     * @return The server-wide broadcast channel
      */
-    MessageSink getBroadcastSink();
+    MessageChannel getBroadcastChannel();
+
+    /**
+     * Sets the channel that server-wide messages should be sent through.
+     *
+     * @param channel The broadcast channel
+     */
+    void setBroadcastChannel(MessageChannel channel);
 
     /**
      * Gets the bound {@link InetSocketAddress} from where this server is accepting
@@ -327,8 +356,12 @@ public interface Server {
     Text getMotd();
 
     /**
-     * Shuts down the server, and kicks all players with the default kick
-     * message.
+     * Shuts down the server, and kicks all players with the default kick message.
+     *
+     * <p>
+     *     For the Sponge implementation on the client, this will trigger the Integrated
+     *     Server to shutdown a tick later.
+     * </p>
      *
      */
     void shutdown();
@@ -348,11 +381,18 @@ public interface Server {
     ConsoleSource getConsole();
 
     /**
-     * Gets the ChunkLoadService used for requesting tickets to force load chunks.
+     * Gets the ChunkTicketManager used for requesting tickets to force load chunks.
      *
      * @return This server's chunk load service
      */
-    ChunkLoadService getChunkLoadService();
+    ChunkTicketManager getChunkTicketManager();
+
+    /**
+     * Gets the {@link GameProfileManager} for resolving game profiles.
+     *
+     * @return This server's game profile manager
+     */
+    GameProfileManager getGameProfileManager();
 
     /**
      * Gets the current ticks per second. A tick represents one cycle of the
@@ -374,4 +414,23 @@ public interface Server {
      * @return The default resource pack
      */
     Optional<ResourcePack> getDefaultResourcePack();
+
+    /**
+     * Gets the player idle timeout, in minutes.
+     *
+     * <p>A return value of {@code 0} disables the player idle timeout.</p>
+     *
+     * @return The player idle timeout
+     */
+    int getPlayerIdleTimeout();
+
+    /**
+     * Sets the player idle timeout, in minutes.
+     *
+     * <p>A value of {@code 0} disables the player idle timeout.</p>
+     *
+     * @param timeout The player idle timeout
+     */
+    void setPlayerIdleTimeout(int timeout);
+
 }

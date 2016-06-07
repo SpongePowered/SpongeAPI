@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.event.item.inventory;
 
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.inventory.Inventory;
 
 /**
  * Base event for all events with an {@link Inventory} as the target.
  */
-public interface TargetInventoryEvent extends GameEvent {
+public interface TargetInventoryEvent extends Event {
 
     /**
      * @return The target {@link Inventory}

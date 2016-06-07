@@ -28,10 +28,9 @@ import org.spongepowered.api.Nameable;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
-import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.text.translation.Translation;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 import java.util.Queue;
 
@@ -43,27 +42,23 @@ import java.util.Queue;
  */
 public interface Inventory extends Iterable<Inventory>, Nameable {
 
-    EmptyInventory EMPTY = new EmptyInventory();
-
     /**
      * Get the parent {@link Inventory} of this {@link Inventory}.
-     *
-     * @return the parent inventory, returns {@link Optional#empty()} if there is no parent (this is
-     *      a top-level inventory
+     * 
+     * @return the parent inventory, returns this inventory if there is no
+     *      parent (this is a top-level inventory)
      */
-    default Optional<Inventory> parent() {
-        return Optional.empty();
-    }
+    Inventory parent();
 
     /**
-     * Returns an iterable view of all {@link Inventory}s (leaf nodes) in this
+     * Returns an iterable view of all {@link Slot}s (leaf nodes) in this
      * Inventory.
      *
-     * @return an iterable view of all children inventories (leaf nodes) in this inventory
+     * @param <T> expected inventory type, specified as generic to allow easy
+     *      pseudo-duck-typing
+     * @return an iterable view of all Slots (leaf nodes) in this inventory
      */
-    default <T extends Inventory> Iterable<T> children() {
-        return Collections.emptyList();
-    }
+    <T extends Inventory> Iterable<T> slots();
 
     /**
      * Return the first child inventory, effectively the same as
@@ -72,24 +67,24 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * to allow easy pseudo-duck-typing. If no children, then returns
      * <code>this</code>.
      *
+     * @param <T> expected inventory type, specified as generic to allow easy
+     *      pseudo-duck-typing
      * @return the first child inventory, if there are no children then simply
      *      returns <code>this</code>
      */
-    default <T extends Inventory> T first() {
-        return (T) this;
-    }
+    <T extends Inventory> T first();
 
     /**
      * Return the next sibling inventory, allows traversing the inventory
      * hierarchy without using an iterator. If no more children, returns an
      * {@link EmptyInventory}.
      *
-     * @return the next sibling inventory, or an {@link EmptyInventory} if
+     * @param <T> expected inventory type, specified as generic to allow easy
+     *      pseudo-duck-typing
+     * @return the next sibiling inventory, or an {@link EmptyInventory} if
      *      there are no further siblings
      */
-    default <T extends Inventory> T next() {
-        return (T) EMPTY;
-    }
+    <T extends Inventory> T next();
 
     /**
      * Get and remove the first available stack from this Inventory.
@@ -108,7 +103,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @return First available itemstack, or {@link Optional#empty()} if
      *      unavailable or unsupported
      */
-    ItemStack poll();
+    Optional<ItemStack> poll();
 
     /**
      * <p>Get and remove up to <code>limit</code> items of the type in the first
@@ -144,7 +139,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @return Matching {@link ItemStack} guaranteed to have items less than or
      *      equal to the specified <em>limit</em>.
      */
-    ItemStack poll(int limit);
+    Optional<ItemStack> poll(int limit);
 
     /**
      * Get without removing the first available stack from this Inventory. For
@@ -153,7 +148,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @return First available itemstack, or {@link Optional#empty()} if
      *      unavailable or unsupported
      */
-    ItemStack peek();
+    Optional<ItemStack> peek();
 
     /**
      * Uses the same semantics as {@link #poll(int)} but <b>does not remove the
@@ -167,7 +162,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @return Matching {@link ItemStack} guaranteed to have items less than or
      *      equal to the specified <em>limit</em>.
      */
-    ItemStack peek(int limit);
+    Optional<ItemStack> peek(int limit);
 
     /**
      * Try to put an ItemStack into this Inventory. Just like
@@ -207,16 +202,17 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * existing contents ejected (at the discretion of the target Inventory).
      * For multi-slot inventories the insertion order is up to the target
      * inventory to decide, and does not have to match the traversal order of
-     * the leaf nodes as supplied by {@link #children()}, although this is
+     * the leaf nodes as supplied by {@link #slots()}, although this is
      * generally recommended. Inventories should document their specific
      * insertion logic where the insertion order differs from the traversal
      * order.</p>
      *
-     * <p>Consumers should inspect the returned {@link InventoryTransactionResult}
-     * and act accordingly. Ejected items should generally be "thrown" into the
-     * world or deposited into another Inventory (depending on the operation in
-     * question. The supplied stack is not adjusted, any rejected items are
-     * returned in the operation result struct.</p>
+     * <p>Consumers should inspect the returned
+     * {@link InventoryTransactionResult} and act accordingly. Ejected items
+     * should generally be "thrown" into the world or deposited into another
+     * Inventory (depending on the operation in question. The supplied stack is
+     * not adjusted, any rejected items are returned in the operation result
+     * struct.</p>
      *
      * @param stack the stack to insert into the Inventory, will be mutated by
      *      the number of items successfully consumed
@@ -237,6 +233,14 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @return the number of stacks in the inventory
      */
     int size();
+
+    /**
+     * Returns the number total number of individual <em>items</em> in this
+     * inventory.
+     *
+     * @return the total number of items in the inventory
+     */
+    int totalItems();
 
     /**
      * The maximum number of stacks the Inventory can hold. Always 1 for
@@ -354,6 +358,8 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * inventory. Logical <code>OR</code> is applied between operands.
      *
      * @param types inventory types (interfaces or classes) to query for
+     * @param <T> expected inventory type, specified as generic to allow easy
+     *      pseudo-duck-typing
      * @return the query result
      */
     <T extends Inventory> T query(Class<?>... types);
@@ -366,6 +372,8 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * operands.
      *
      * @param types item types to query for
+     * @param <T> expected inventory type, specified as generic to allow easy
+     *      pseudo-duck-typing
      * @return the query result
      */
     <T extends Inventory> T query(ItemType... types);
@@ -380,6 +388,8 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @param types items to query for, the size of the stacks is ignored if the
      *      stack size is set to -1, otherwise the stack sizes must match the
      *      supplied stacks exactly
+     * @param <T> expected inventory type, specified as generic to allow easy
+     *      pseudo-duck-typing
      * @return the query result
      */
     <T extends Inventory> T query(ItemStack... types);
@@ -390,10 +400,12 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * each child inventory which has the supplied property. Logical
      * <code>OR</code> is applied between operands. This method is effectively
      * the same as calling {@link #query} with an
-     * {@link Property.Operator} of
-     * {@link Property.Operator#EQUAL}.
+     * {@link org.spongepowered.api.data.Property.Operator} of
+     * {@link org.spongepowered.api.data.Property.Operator#EQUAL}.
      *
      * @param props inventory properties to query for
+     * @param <T> expected inventory type, specified as generic to allow easy
+     *      pseudo-duck-typing
      * @return the query result
      */
     <T extends Inventory> T query(InventoryProperty<?, ?>... props);
@@ -403,15 +415,19 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * Logical <code>OR</code> is applied between operands.
      *
      * @param names the names of the inventories to search for
+     * @param <T> expected inventory type, specified as generic to allow easy
+     *      pseudo-duck-typing
      * @return the query result
      */
-    <T extends Inventory> T query(Translatable... names);
+    <T extends Inventory> T query(Translation... names);
 
     /**
      * Query this inventory for inventories matching any of the supplied titles.
      * Logical <code>OR</code> is applied between operands.
      *
      * @param names the names of the inventories to search for
+     * @param <T> expected inventory type, specified as generic to allow easy
+     *      pseudo-duck-typing
      * @return the query result
      */
     <T extends Inventory> T query(String... names);
@@ -429,7 +445,10 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * </p>
      *
      * @param args search parameters
+     * @param <T> expected inventory type, specified as generic to allow easy
+     *      pseudo-duck-typing
      * @return the query result
      */
     <T extends Inventory> T query(Object... args);
+
 }

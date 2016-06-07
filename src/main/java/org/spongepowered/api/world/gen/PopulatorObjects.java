@@ -24,79 +24,62 @@
  */
 package org.spongepowered.api.world.gen;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.world.Chunk;
-import org.spongepowered.api.world.World;
-
-import java.util.Random;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Methods for using a {@link PopulatorObject} as a {@link Populator}. These
- * methods follow the rules for populators as outlined by
- * {@link Populator#populate(Chunk, Random)}.
- *
+ * A pseudo-enum of {@link PopulatorObject}s.
  */
-public class PopulatorObjects {
+public final class PopulatorObjects {
 
-    private static class RandomHeightPopulator implements Populator {
+    // Populators
+    // SORTFIELDS:ON
 
-        private final int attemptsPerChunk;
-        private final double chancePerAttempt;
-        private final int maxY;
-        private final int minY;
-        private final PopulatorObject object;
+    public static final PopulatorObject DESERT_WELL = DummyObjectProvider.createFor(PopulatorObject.class, "DESERT_WELL");
 
-        private RandomHeightPopulator(int attemptsPerChunk, double chancePerAttempt, int maxY, int minY, PopulatorObject object) {
-            checkArgument(attemptsPerChunk > 0, "attemptPerChunk must be larger than 0");
-            checkArgument(chancePerAttempt >= 0 && chancePerAttempt <= 1, "changePerAttempt must be between 0 and 1, inclusive");
-            checkArgument(maxY >= minY, "maxY must be larger than or equal to minY");
-            checkNotNull(object, "object");
+    // SORTFIELDS:OFF
 
-            this.attemptsPerChunk = attemptsPerChunk;
-            this.chancePerAttempt = chancePerAttempt;
-            this.maxY = maxY;
-            this.minY = minY;
-            this.object = object;
-        }
+    // Trees
+    // SORTFIELDS:ON
 
-        @Override
-        public void populate(Chunk chunk, Random random) {
-            Vector3i chunkPos = chunk.getPosition();
-            int populationStartX = chunkPos.getX() * 16 + 8;
-            int populationStartZ = chunkPos.getZ() * 16 + 8;
-            World world = chunk.getWorld();
+    public static final PopulatorObject BIRCH = DummyObjectProvider.createFor(PopulatorObject.class, "BIRCH");
 
-            for (int i = 0; i < this.attemptsPerChunk; i++) {
-                if (this.chancePerAttempt >= random.nextDouble()) {
-                    int spawnX = populationStartX + random.nextInt(16);
-                    int spawnY = random.nextInt(this.maxY - this.minY + 1) + this.minY;
-                    int spawnZ = populationStartZ + random.nextInt(16);
+    public static final PopulatorObject CANOPY = DummyObjectProvider.createFor(PopulatorObject.class, "CANOPY");
 
-                    if (this.object.canPlaceAt(world, spawnX, spawnY, spawnZ)) {
-                        this.object.placeObject(world, random, spawnX, spawnY, spawnZ);
-                    }
-                }
-            }
-        }
-    }
+    public static final PopulatorObject JUNGLE = DummyObjectProvider.createFor(PopulatorObject.class, "JUNGLE");
 
-    /**
-     * Creates a populator that spawns the given object at a random y location.
-     *
-     * @param object The object to spawn.
-     * @param attemptsPerChunk How many times an attempt should be made to place
-     *        this object in a chunk.
-     * @param chancePerAttempt The chance that each attempt succeeds, between 0
-     *        and 1, inclusive.
-     * @param minY The minimum y location, inclusive.
-     * @param maxY The maximum y location, inclusive.
-     * @return the populator
-     */
-    public static Populator spawnAtRandomHeight(PopulatorObject object, int attemptsPerChunk,
-            double chancePerAttempt, int minY, int maxY) {
-        return new RandomHeightPopulator(attemptsPerChunk, chancePerAttempt, maxY, maxY, object);
+    public static final PopulatorObject JUNGLE_BUSH = DummyObjectProvider.createFor(PopulatorObject.class, "JUNGLE_BUSH");
+
+    public static final PopulatorObject MEGA_BIRCH = DummyObjectProvider.createFor(PopulatorObject.class, "MEGA_BIRCH");
+
+    public static final PopulatorObject MEGA_JUNGLE = DummyObjectProvider.createFor(PopulatorObject.class, "MEGA_JUNGLE");
+
+    public static final PopulatorObject MEGA_OAK = DummyObjectProvider.createFor(PopulatorObject.class, "MEGA_OAK");
+
+    public static final PopulatorObject MEGA_POINTY_TAIGA = DummyObjectProvider.createFor(PopulatorObject.class, "MEGA_POINTY_TAIGA");
+
+    public static final PopulatorObject MEGA_TALL_TAIGA = DummyObjectProvider.createFor(PopulatorObject.class, "MEGA_TALL_TAIGA");
+
+    public static final PopulatorObject OAK = DummyObjectProvider.createFor(PopulatorObject.class, "OAK");
+
+    public static final PopulatorObject POINTY_TAIGA = DummyObjectProvider.createFor(PopulatorObject.class, "POINTY_TAIGA");
+
+    public static final PopulatorObject SAVANNA = DummyObjectProvider.createFor(PopulatorObject.class, "SAVANNA");
+
+    public static final PopulatorObject SWAMP = DummyObjectProvider.createFor(PopulatorObject.class, "SWAMP");
+
+    public static final PopulatorObject TALL_TAIGA = DummyObjectProvider.createFor(PopulatorObject.class, "TALL_TAIGA");
+
+    // SORTFIELDS:OFF
+
+    // Mushrooms
+    // SORTFIELDS:ON
+
+    public static final PopulatorObject BROWN = DummyObjectProvider.createFor(PopulatorObject.class, "BROWN");
+
+    public static final PopulatorObject RED = DummyObjectProvider.createFor(PopulatorObject.class, "RED");
+
+    // SORTFIELDS:OFF
+
+    private PopulatorObjects() {
     }
 }

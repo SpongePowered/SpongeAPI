@@ -24,21 +24,32 @@
  */
 package org.spongepowered.api.entity.living.player;
 
+import org.spongepowered.api.Server;
+import org.spongepowered.api.command.source.LocatedSource;
+import org.spongepowered.api.command.source.RemoteSource;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
 import org.spongepowered.api.data.manipulator.mutable.entity.JoinData;
+import org.spongepowered.api.data.type.SkinPart;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.effect.Viewer;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.tab.TabList;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.network.PlayerConnection;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.command.source.LocatedSource;
-import org.spongepowered.api.util.command.source.RemoteSource;
+import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
+import org.spongepowered.api.text.chat.ChatVisibility;
 
-import java.util.Date;
-import java.util.Locale;
+import java.time.Instant;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * A Player represents the in-game entity of a human playing on a server.
@@ -48,14 +59,71 @@ import java.util.Locale;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer {
+public interface Player extends Humanoid, User, LocatedSource, RemoteSource, Viewer, ChatTypeMessageReceiver {
 
     /**
-     * Gets the locale used by the player.
+     * Returns whether this player has an open inventory at the moment
+     * or not.
      *
-     * @return The player's locale
+     * @return Whether this player is viewing an inventory or not
      */
-    Locale getLocale();
+    boolean isViewingInventory();
+
+    /**
+     * Gets the currently viewed inventory of this player, if it is
+     * currently viewing one.
+     *
+     * @return An inventory if this player is viewing one, otherwise
+     * {@link Optional#empty()}
+     */
+    Optional<Inventory> getOpenInventory();
+
+    /**
+     * Opens the given Inventory for the player to view.
+     *
+     * @param inventory The inventory to view
+     * @param cause The {@link Cause} to use when opening the inventory
+     * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
+     */
+    void openInventory(Inventory inventory, Cause cause) throws IllegalArgumentException;
+
+    /**
+     * Closes the currently viewed entity of this player, if it is
+     * currently viewing one.
+     *
+     * @param cause The {@link Cause} to provide when closing the inventory
+     * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
+     */
+    void closeInventory(Cause cause) throws IllegalArgumentException;
+
+    /**
+     * Gets the view distance setting of the player. This value represents the
+     * radius (around the player) in unit chunks.
+     *
+     * @return The player's view distance
+     */
+    int getViewDistance();
+
+    /**
+     * Gets the current player chat visibility setting.
+     *
+     * @return Chat visibility setting
+     */
+    ChatVisibility getChatVisibility();
+
+    /**
+     * Gets whether the player has colors enabled in chat.
+     *
+     * @return True if colors are enabled in chat
+     */
+    boolean isChatColorsEnabled();
+
+    /**
+     * Gets the skin parts that this player has allowed to render.
+     *
+     * @return A set of skin parts displayed
+     */
+    Set<SkinPart> getDisplayedSkinParts();
 
     /**
      * Gets the appropriate {@link PlayerConnection} linking this Player
@@ -112,7 +180,7 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
      *
      * <p>Since a {@link Player} is already online, it means that the player
      * has joined the server at least once, meaning there is a guaranteed
-     * initial join {@link Date}. Users may not have ever joined a server
+     * initial join {@link Instant}. Users may not have ever joined a server
      * before.</p>
      *
      * @return A copy of the join data
@@ -121,6 +189,35 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
         return get(JoinData.class).get();
     }
 
+    /**
+     * Gets the {@link Value} of the {@link Instant} that a {@link Player} joined
+     * the {@link Server} the first time.
+     *
+     * @return The value for the first time a player joined
+     */
+    default Value<Instant> firstPlayed() {
+        return getValue(Keys.FIRST_DATE_PLAYED).get();
+    }
+
+    /**
+     * Gets the {@link Value} of the {@link Instant} that a {@link Player} joined
+     * the {@link Server} the last time.
+     *
+     * @return The value for the last time a player joined
+     */
+    default Value<Instant> lastPlayed() {
+        return getValue(Keys.LAST_DATE_PLAYED).get();
+    }
+
+    /**
+     * Gets if the {@link Player} has played on the {@link Server} before. Added
+     * as a utility.
+     * 
+     * @return True if played before, false otherwise
+     */
+    default boolean hasPlayedBefore() {
+        return !firstPlayed().equals(lastPlayed());
+    }
     /**
      * Gets a copy of the current {@link DisplayNameData} for this
      * {@link Player}.
@@ -138,6 +235,15 @@ public interface Player extends Human, User, LocatedSource, RemoteSource, Viewer
      */
     default GameModeData getGameModeData() {
         return get(GameModeData.class).get();
+    }
+
+    /**
+     * Gets the current {@link GameMode} for this {@link Player}.
+     *
+     * @return The current game mode value
+     */
+    default Value<GameMode> gameMode() {
+        return getValue(Keys.GAME_MODE).get();
     }
 
     /**

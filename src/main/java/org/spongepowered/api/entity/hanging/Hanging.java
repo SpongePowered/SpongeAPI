@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.entity.hanging;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.block.DirectionalData;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.Direction;
 
 /**
  * Represents a hanging entity, such as a {@link Painting}.
@@ -40,5 +43,14 @@ public interface Hanging extends Entity {
      */
     default DirectionalData getDirectionalData() {
         return get(DirectionalData.class).get();
+    }
+
+    /**
+     * Gets the {@link Value} for the current "facing" {@link Direction}.
+     *
+     * @return The current "facing" direction value
+     */
+    default Value<Direction> direction() {
+        return getValue(Keys.DIRECTION).get();
     }
 }

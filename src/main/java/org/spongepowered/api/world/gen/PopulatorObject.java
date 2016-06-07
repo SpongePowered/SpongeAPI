@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.world.gen;
 
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.World;
 
 import java.util.Random;
@@ -31,10 +33,9 @@ import java.util.Random;
 /**
  * Represents an object placed in the world during terrain population. Populator
  * objects typically fit in a single chunk.
- *
- * @see PopulatorObjects
  */
-public interface PopulatorObject {
+@CatalogedBy(PopulatorObjects.class)
+public interface PopulatorObject extends CatalogType {
 
     /**
      * Returns whether this object can be placed into the world at the given

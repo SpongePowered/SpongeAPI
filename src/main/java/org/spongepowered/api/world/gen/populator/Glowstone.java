@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.Populator;
 
 /**
@@ -32,12 +35,21 @@ import org.spongepowered.api.world.gen.Populator;
 public interface Glowstone extends Populator {
 
     /**
+     * Creates a new {@link Builder} to build a {@link Glowstone} populator.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
      * Gets the number of clusters to attempt to spawn per chunk, must be
      * greater than zero.
      * 
      * @return The number to spawn
      */
-    int getClustersPerChunk();
+    VariableAmount getClustersPerChunk();
 
     /**
      * Sets the number of clusters to attempt to spawn per chunk, must be
@@ -45,7 +57,17 @@ public interface Glowstone extends Populator {
      * 
      * @param count The new amount to spawn
      */
-    void setClustersPerChunk(int count);
+    void setClustersPerChunk(VariableAmount count);
+
+    /**
+     * Sets the number of clusters to attempt to spawn per chunk, must be
+     * greater than zero.
+     * 
+     * @param count The new amount to spawn
+     */
+    default void setClustersPerChunk(int count) {
+        setClustersPerChunk(VariableAmount.fixed(count));
+    }
 
     /**
      * Gets the amount of glowstone to attempt to spawn per cluster, must be
@@ -53,7 +75,7 @@ public interface Glowstone extends Populator {
      * 
      * @return The number to spawn
      */
-    int getAttemptsPerCluster();
+    VariableAmount getAttemptsPerCluster();
 
     /**
      * Sets the amount of glowstone to attempt to spawn per cluster, must be
@@ -61,12 +83,59 @@ public interface Glowstone extends Populator {
      * 
      * @param attempts The new amount to spawn
      */
-    void setAttemptsPerCluster(int attempts);
+    void setAttemptsPerCluster(VariableAmount attempts);
+
+    /**
+     * Sets the amount of glowstone to attempt to spawn per cluster, must be
+     * greater than zero.
+     * 
+     * @param attempts The new amount to spawn
+     */
+    default void setAttemptsPerCluster(int attempts) {
+        setAttemptsPerCluster(VariableAmount.fixed(attempts));
+    }
+
+    /**
+     * Gets the height of the glowstone cluster.
+     * 
+     * @return The cluster height
+     */
+    VariableAmount getClusterHeight();
+
+    /**
+     * Sets the height of the glowstone cluster.
+     * 
+     * @param height The new cluster height
+     */
+    void setClusterHeight(VariableAmount height);
+
+    /**
+     * Sets the height of the glowstone cluster.
+     * 
+     * @param height The new cluster height
+     */
+    default void setClusterHeight(int height) {
+        setClusterHeight(VariableAmount.fixed(height));
+    }
+
+    /**
+     * Gets the height that the cluster may generate at.
+     * 
+     * @return The height
+     */
+    VariableAmount getHeight();
+
+    /**
+     * Sets the height that the cluster may generate at.
+     * 
+     * @param height The new height
+     */
+    void setHeight(VariableAmount height);
 
     /**
      * A builder for constructing {@link Glowstone} populators.
      */
-    interface Builder {
+    interface Builder extends ResettableBuilder<Glowstone, Builder> {
 
         /**
          * Sets the number of clusters to attempt to spawn per chunk, must be
@@ -75,7 +144,18 @@ public interface Glowstone extends Populator {
          * @param count The new amount to spawn
          * @return This builder, for chaining
          */
-        Builder perChunk(int count);
+        Builder perChunk(VariableAmount count);
+
+        /**
+         * Sets the number of clusters to attempt to spawn per chunk, must be
+         * greater than zero.
+         * 
+         * @param count The new amount to spawn
+         * @return This builder, for chaining
+         */
+        default Builder perChunk(int count) {
+            return perChunk(VariableAmount.fixed(count));
+        }
 
         /**
          * Sets the amount of glowstone to attempt to spawn per cluster, must be
@@ -84,14 +164,44 @@ public interface Glowstone extends Populator {
          * @param attempts The new amount to spawn
          * @return This builder, for chaining
          */
-        Builder blocksPerCluster(int attempts);
+        Builder blocksPerCluster(VariableAmount attempts);
 
         /**
-         * Resets this builder to the default values.
+         * Sets the amount of glowstone to attempt to spawn per cluster, must be
+         * greater than zero.
          * 
+         * @param attempts The new amount to spawn
          * @return This builder, for chaining
          */
-        Builder reset();
+        default Builder blocksPerCluster(int attempts) {
+            return blocksPerCluster(VariableAmount.fixed(attempts));
+        }
+
+        /**
+         * Sets the height of the glowstone cluster.
+         * 
+         * @param height The new cluster height
+         * @return This builder, for chaining
+         */
+        Builder clusterHeight(VariableAmount height);
+
+        /**
+         * Sets the height of the glowstone cluster.
+         * 
+         * @param height The new cluster height
+         * @return This builder, for chaining
+         */
+        default Builder clusterHeight(int height) {
+            return clusterHeight(VariableAmount.fixed(height));
+        }
+
+        /**
+         * Sets the height that the cluster may generate at.
+         * 
+         * @param height The new height
+         * @return This builder, for chaining
+         */
+        Builder height(VariableAmount height);
 
         /**
          * Builds a new instance of a {@link Glowstone} populator with the
@@ -99,7 +209,7 @@ public interface Glowstone extends Populator {
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
-         *             which do not have default values
+         *         which do not have default values
          */
         Glowstone build() throws IllegalStateException;
 

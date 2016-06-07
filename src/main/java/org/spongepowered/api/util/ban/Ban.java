@@ -24,17 +24,53 @@
  */
 package org.spongepowered.api.util.ban;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.net.InetAddress;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a ban made on an object.
  */
 public interface Ban {
+
+    /**
+     * Creates a new Builder.
+     *
+     * @return A new ban builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Creates an indefinite ban on a profile.
+     *
+     * @param profile The profile
+     * @return The created ban
+     */
+    static Ban of(GameProfile profile) {
+        return builder().type(BanTypes.PROFILE).profile(profile).build();
+    }
+
+    /**
+     * Creates an indefinite ban with a reason on a profile.
+     *
+     * @param profile The profile
+     * @param reason The reason
+     * @return The created ban
+     */
+    static Ban of(GameProfile profile, Text reason) {
+        return builder().type(BanTypes.PROFILE).profile(profile).reason(reason).build();
+    }
 
     /**
      * Gets the type of this ban.
@@ -44,51 +80,74 @@ public interface Ban {
     BanType getType();
 
     /**
-     * Get the reason for the ban.
+     * Get the reason for the ban, if available.
      *
-     * @return The reason specified for the ban.
+     * @return The reason specified for the ban, if available
      */
-    Text.Literal getReason();
+    Optional<Text> getReason();
 
     /**
-     * Gets the start date of the ban.
+     * Gets the creation date of the ban.
+     *
+     * <p>Note that this {@link Instant} has no effect on whether or not a ban is
+     * active. Any ban for which {@link BanService#hasBan(Ban)} returns
+     * <code>true</code> will be used (when checking if a player can join,
+     * for example), regardless of its creation date.</p>
      *
      * @return Creation date of the ban
      */
-    Date getStartDate();
+    Instant getCreationDate();
 
     /**
-     * Gets the source that banned the user, if available.
+     * Gets the source that created this ban, if available
+     *
+     * <p>Depending on the implementation, the returned {@link Text}
+     * may represent a {@link CommandSource}. {@link #getBanCommandSource()} can be
+     * used to attempt to convert the source to a {@link CommandSource}.</p>
+     *
+     * @return the source of this ban, if available
+     */
+    Optional<Text> getBanSource();
+
+    /**
+     * Gets the source that created this ban in {@link CommandSource} form, if available
+     *
+     * <p>Depending on the implementation, it may not be possible to determine
+     * the {@link CommandSource} responsible for this ban. Because of this,
+     * it is reccomended to check {@link #getBanSource()} if this method
+     * returns {@link Optional#empty()}.</p>
      *
      * @return The banning source or {@link Optional#empty()}
      */
-    Optional<CommandSource> getSource();
+    Optional<CommandSource> getBanCommandSource();
 
     /**
      * Gets the expiration date of this ban, if available.
      *
      * @return Expiration time of the ban or {@link Optional#empty()}
      */
-    Optional<Date> getExpirationDate();
+    Optional<Instant> getExpirationDate();
 
     /**
      * Gets whether this ban is indefinitely long, e.g. has no expiration date.
      *
      * @return True if this ban has no expiration date, otherwise false
      */
-    boolean isIndefinite();
+    default boolean isIndefinite() {
+        return !this.getExpirationDate().isPresent();
+    }
 
     /**
-     * Represents a ban made on a user.
+     * Represents a ban made on a {@link GameProfile}.
      */
-    interface User extends Ban {
+    interface Profile extends Ban {
 
         /**
-         * Gets the user this ban applies to.
+         * Gets the {@link GameProfile} this ban applies to.
          *
-         * @return The user
+         * @return The {@link GameProfile}
          */
-        org.spongepowered.api.entity.living.player.User getUser();
+        GameProfile getProfile();
 
     }
 
@@ -106,4 +165,90 @@ public interface Ban {
 
     }
 
+    /**
+     * Represents a builder that creates bans.
+     */
+    interface Builder extends ResettableBuilder<Ban, Builder> {
+
+        /**
+         * Sets the profile to be banned.
+         *
+         * <p>This can only be done if the {@link BanType} has been set to {@link BanTypes#PROFILE}.</p>
+         *
+         * @param profile The profile
+         * @return This builder
+         */
+        Builder profile(GameProfile profile);
+
+        /**
+         * Sets the IP address to be banned.
+         *
+         * <p>This can only be done if the {@link BanType} has been set to {@link BanTypes#IP}.</p>
+         *
+         * @param address The IP address
+         * @return This builder
+         */
+        Builder address(InetAddress address);
+
+        /**
+         * Sets the type of the ban.
+         *
+         * @param type The type to be set
+         * @return This builder
+         */
+        Builder type(BanType type);
+
+        /**
+         * Sets the reason for the ban.
+         *
+         * <p>If the specified reason is <code>null</code>, or not provided,
+         * then the reason will be be available on the created ban.</p>
+         *
+         * @param reason The reason
+         * @return This builder
+         */
+        Builder reason(@Nullable Text reason);
+
+        /**
+         * Sets the date that the ban starts.
+         *
+         * @param instant The start date
+         * @return This builder
+         */
+        Builder startDate(Instant instant);
+
+        /**
+         * Sets the expiration date of the ban, or removes it.
+         *
+         * @param instant The expiration date, or null in order to remove it
+         * @return This builder
+         */
+        Builder expirationDate(@Nullable Instant instant);
+
+        /**
+         * Sets the source of the ban, or removes it if {@code null} is passed
+         * in.
+         *
+         * @param source The source of the ban, or {@code null}
+         * @return This builder
+         */
+        Builder source(@Nullable CommandSource source);
+
+        /**
+         * Sets the source of the ban as a {@link Text}, or removes it if
+         * {@code null} is passed in.
+         *
+         * @param source The source of the ban, or {@code null}
+         * @return This builder
+         */
+        Builder source(@Nullable Text source);
+
+        /**
+         * Creates a new Ban from this builder.
+         *
+         * @return A new Ban
+         */
+        Ban build();
+
+    }
 }

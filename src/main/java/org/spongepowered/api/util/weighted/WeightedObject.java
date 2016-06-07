@@ -24,36 +24,26 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
 
 /**
- * Represents an object with a numerical weight used for random selection from a
- * collection of weighted types.
- * 
- * @param <T> The object type
+ * An entry which contains an object.
+ *
+ * @param <T> The entry type
  */
-public class WeightedObject<T> {
+public class WeightedObject<T> extends TableEntry<T> {
 
-    protected final T object;
-    protected final int weight;
+    private final T object;
 
-    /**
-     * Creates a new {@link WeightedObject}.
-     * 
-     * @param object The object
-     * @param weight The weight
-     */
-    public WeightedObject(T object, int weight) {
-        checkArgument(weight >= 0, "Object's weight cannot be negative");
-        this.object = checkNotNull(object, "object");
-        this.weight = weight;
+    public WeightedObject(T obj, double weight) {
+        super(weight);
+        this.object = checkNotNull(obj);
     }
 
     /**
-     * Gets the object.
+     * Gets the entry contained in this entry.
      * 
      * @return The object
      */
@@ -61,40 +51,29 @@ public class WeightedObject<T> {
         return this.object;
     }
 
-    /**
-     * Gets the weight of this object.
-     *
-     * @return The weight
-     */
-    public int getWeight() {
-        return this.weight;
-    }
-
     @Override
-    public String toString() {
-        return Objects.toStringHelper(this)
-                .add("object", this.object)
-                .add("weight", this.weight)
-                .toString();
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof WeightedObject)) {
+            return false;
+        }
+        WeightedObject<?> c = (WeightedObject<?>) o;
+        return this.object.equals(c.object) && getWeight() == c.getWeight();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.object, this.weight);
+        int r = 1;
+        long w = Double.doubleToLongBits(getWeight());
+        r = r * 37 + (int) (w ^ (w >>> 32));
+        r = r * 37 + this.object.hashCode();
+        return r;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        WeightedObject<?> object = (WeightedObject<?>) obj;
-        if (!this.object.equals(object.object)) {
-            return false;
-        }
-        return this.weight == object.weight;
+    public String toString() {
+        return Objects.toStringHelper(this).add("object", this.object).toString();
     }
 }

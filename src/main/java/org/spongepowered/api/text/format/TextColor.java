@@ -26,9 +26,9 @@ package org.spongepowered.api.text.format;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextElement;
+import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-
-import java.awt.Color;
 
 /**
  * Represents the color of the text of a {@link Text}.
@@ -36,7 +36,7 @@ import java.awt.Color;
  * @see TextColors
  */
 @CatalogedBy(TextColors.class)
-public interface TextColor extends CatalogType {
+public interface TextColor extends CatalogType, TextElement {
 
     /**
      * Returns the corresponding {@link Color} for this {@link TextColor}.
@@ -44,5 +44,10 @@ public interface TextColor extends CatalogType {
      * @return The RGB color of this text color
      */
     Color getColor();
+
+    @Override
+    default void applyTo(Text.Builder builder) {
+        builder.color(this);
+    }
 
 }

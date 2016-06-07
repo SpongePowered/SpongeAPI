@@ -51,9 +51,6 @@ public interface Value<E> extends BaseValue<E> {
      * {@link Function} such that the result of {@link Function#apply(Object)}
      * will replace the underlying value.
      *
-     * <p>It should be noted that the underlying value could potentially be
-     * {@code null}. </p>
-     *
      * @param function The function to apply on the existing value
      * @return The owning {@link ValueContainer}
      */

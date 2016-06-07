@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.Objects;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextElement;
 import org.spongepowered.api.util.OptBool;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -58,7 +59,7 @@ import javax.annotation.Nullable;
  * @see TextStyles
  */
 @CatalogedBy(TextStyles.class)
-public class TextStyle {
+public class TextStyle implements TextElement {
 
     /**
      * Whether text where this style is applied is bolded.
@@ -129,20 +130,6 @@ public class TextStyle {
         this.underline = underline;
         this.obfuscated = obfuscated;
         this.strikethrough = strikethrough;
-    }
-
-    /**
-     * Constructs an empty {@link TextStyle}.
-     */
-    TextStyle() {
-        this(
-                OptBool.ABSENT,
-                OptBool.ABSENT,
-                OptBool.ABSENT,
-                OptBool.ABSENT,
-                OptBool.ABSENT
-        );
-
     }
 
     /**
@@ -272,8 +259,7 @@ public class TextStyle {
     /**
      * Checks for whether text where this style is applied has an underline.
      *
-     * @return The value for the underline property, or
-     *         {@link Optional#empty()}
+     * @return The value for the underline property, or {@link Optional#empty()}
      */
     public Optional<Boolean> hasUnderline() {
         return this.underline;
@@ -424,6 +410,11 @@ public class TextStyle {
     }
 
     @Override
+    public void applyTo(Text.Builder builder) {
+        builder.style(this);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -447,20 +438,14 @@ public class TextStyle {
 
     @Override
     public String toString() {
-        if (this.bold.isPresent() || this.italic.isPresent() || this.underline.isPresent() || this.strikethrough.isPresent() || this.obfuscated
-                .isPresent()) {
-            return Objects.toStringHelper(this)
-                    .add("bold", this.bold)
-                    .add("italic", this.italic)
-                    .add("underline", this.underline)
-                    .add("strikethrough", this.strikethrough)
-                    .add("obfuscated", this.obfuscated)
-                    .toString();
-        } else {
-            return Objects.toStringHelper(this)
-                    .addValue("NONE")
-                    .toString();
-        }
+        return Objects.toStringHelper(TextStyle.class)
+                .omitNullValues()
+                .add("bold", this.bold.orElse(null))
+                .add("italic", this.italic.orElse(null))
+                .add("underline", this.underline.orElse(null))
+                .add("strikethrough", this.strikethrough.orElse(null))
+                .add("obfuscated", this.obfuscated.orElse(null))
+                .toString();
     }
 
     /**
@@ -510,7 +495,8 @@ public class TextStyle {
 
     /**
      * Represents a {@link TextStyle} that is not a composite, for example
-     * {@link TextStyles#BOLD}. It is a base text style in Minecraft with a name.
+     * {@link TextStyles#BOLD}. It is a base text style in Minecraft with a
+     * name.
      *
      * @see TextStyle
      * @see Base

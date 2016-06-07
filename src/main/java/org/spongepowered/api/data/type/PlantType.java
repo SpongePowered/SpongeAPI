@@ -25,9 +25,10 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(PlantTypes.class)
-public interface PlantType extends CatalogType {
+public interface PlantType extends CatalogType, Translatable {
 
 }

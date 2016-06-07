@@ -28,10 +28,9 @@ import org.spongepowered.api.block.tileentity.Banner;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BannerData;
 import org.spongepowered.api.data.meta.PatternLayer;
+import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.immutable.ImmutablePatternListValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-
-import java.awt.Color;
 
 /**
  * An {@link ImmutableDataManipulator} handling the various information for a
@@ -41,11 +40,11 @@ import java.awt.Color;
 public interface ImmutableBannerData extends ImmutableDataManipulator<ImmutableBannerData, BannerData> {
 
     /**
-     * Gets the {@link ImmutableValue} for the base {@link Color}.
+     * Gets the {@link ImmutableValue} for the base {@link DyeColor}.
      *
      * @return The immutable value for the base color
      */
-    ImmutableValue<Color> baseColor();
+    ImmutableValue<DyeColor> baseColor();
 
     /**
      * Gets the {@link ImmutablePatternListValue} of all patterns for the

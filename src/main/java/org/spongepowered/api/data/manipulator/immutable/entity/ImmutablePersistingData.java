@@ -28,12 +28,14 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.PersistingData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.world.extent.Extent;
 
 /**
  * An {@link ImmutableDataManipulator} that marks the "persisting" state for an
- * {@link Entity}. When a {@link Extent} is unloaded, all {@link Entity}
- * instances are stored, if and only if they are marked to persist.
+ * {@link Entity}. A persisting entity will not naturally despawn, even if it
+ * would otherwise be able to.
+ *
+ * <p>In Vanilla, certain entities despawn when no player is close to them, as
+ * long as their "persisting" state is not <code>true</code>.</p>
  */
 public interface ImmutablePersistingData extends ImmutableDataManipulator<ImmutablePersistingData, PersistingData> {
 

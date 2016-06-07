@@ -24,22 +24,38 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * A utility class for getting all available {@link Career}s.
  */
 public final class Careers {
 
-    public static final Career FARMER = null;
-    public static final Career FISHERMAN = null;
-    public static final Career SHEPHERD = null;
-    public static final Career FLETCHER = null;
-    public static final Career LIBRARIAN = null;
-    public static final Career CLERIC = null;
-    public static final Career ARMORER = null;
-    public static final Career WEAPON_SMITH = null;
-    public static final Career TOOL_SMITH = null;
-    public static final Career BUTCHER = null;
-    public static final Career LEATHERWORKER = null;
+    // SORTFIELDS:ON
+
+    public static final Career ARMORER = DummyObjectProvider.createFor(Career.class, "ARMORER");
+
+    public static final Career BUTCHER = DummyObjectProvider.createFor(Career.class, "BUTCHER");
+
+    public static final Career CLERIC = DummyObjectProvider.createFor(Career.class, "CLERIC");
+
+    public static final Career FARMER = DummyObjectProvider.createFor(Career.class, "FARMER");
+
+    public static final Career FISHERMAN = DummyObjectProvider.createFor(Career.class, "FISHERMAN");
+
+    public static final Career FLETCHER = DummyObjectProvider.createFor(Career.class, "FLETCHER");
+
+    public static final Career LEATHERWORKER = DummyObjectProvider.createFor(Career.class, "LEATHERWORKER");
+
+    public static final Career LIBRARIAN = DummyObjectProvider.createFor(Career.class, "LIBRARIAN");
+
+    public static final Career SHEPHERD = DummyObjectProvider.createFor(Career.class, "SHEPHERD");
+
+    public static final Career TOOL_SMITH = DummyObjectProvider.createFor(Career.class, "TOOL_SMITH");
+
+    public static final Career WEAPON_SMITH = DummyObjectProvider.createFor(Career.class, "WEAPON_SMITH");
+
+    // SORTFIELDS:OFF
 
     private Careers() {
 

@@ -36,7 +36,7 @@ import java.util.concurrent.Executor;
 import java.util.function.Predicate;
 
 /**
- * Utility methods to help with function work
+ * Utility methods to help with function work.
  */
 public class Functional {
 
@@ -50,6 +50,8 @@ public class Functional {
      * @param <E> The type to accept
      * @return The combined predicate
      */
+    @SafeVarargs
+    @SuppressWarnings("varargs")
     public static <E> Predicate<E> predicateAnd(Predicate<E>... predicates) {
         return predicateAnd(Arrays.asList(predicates));
     }
@@ -78,6 +80,10 @@ public class Functional {
 
     public static <E> com.google.common.base.Predicate<E> java8ToGuava(Predicate<E> predicate) {
         return predicate::test;
+    }
+
+    public static <E> Predicate<E> guavaToJava8(com.google.common.base.Predicate<E> p) {
+        return p::apply;
     }
 
     /**
@@ -129,4 +135,5 @@ public class Functional {
         });
         return ret;
     }
+
 }

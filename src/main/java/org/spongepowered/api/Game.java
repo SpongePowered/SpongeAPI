@@ -24,17 +24,24 @@
  */
 package org.spongepowered.api;
 
+import org.spongepowered.api.asset.AssetManager;
+import org.spongepowered.api.command.CommandManager;
+import org.spongepowered.api.config.ConfigManager;
+import org.spongepowered.api.data.DataManager;
+import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.property.PropertyRegistry;
+import org.spongepowered.api.data.property.PropertyStore;
+import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceManager;
-import org.spongepowered.api.service.command.CommandService;
-import org.spongepowered.api.service.event.EventManager;
-import org.spongepowered.api.service.scheduler.SchedulerService;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 import org.spongepowered.api.world.World;
 
-import java.io.File;
+import java.nio.file.Path;
 
 /**
  * The core accessor of the API. The implementation uses this to pass
@@ -71,6 +78,13 @@ public interface Game {
     EventManager getEventManager();
 
     /**
+     * Gets the {@link AssetManager}.
+     *
+     * @return The asset manager
+     */
+    AssetManager getAssetManager();
+
+    /**
      * Gets the {@link GameRegistry}.
      *
      * @return The game registry
@@ -78,7 +92,14 @@ public interface Game {
     GameRegistry getRegistry();
 
     /**
-     * Get the game's instance of the service manager, which is the gateway
+     * Retrieves the GameDictionary (item dictionary) for this GameRegistry.
+     *
+     * @return The item dictionary
+     */
+    GameDictionary getGameDictionary();
+
+    /**
+     * Gets the game's instance of the service manager, which is the gateway
      * to various services provided by Sponge (command registration and so on).
      *
      * <p>Services registered by other plugins may be available too.</p>
@@ -92,15 +113,31 @@ public interface Game {
      *
      * @return The scheduler
      */
-    SchedulerService getScheduler();
+    Scheduler getScheduler();
 
     /**
-     * Get the command dispatcher used for registering and dispatching
+     * Gets the {@link DataManager} instance to register
+     * {@link DataSerializable}s, and get the related {@link DataBuilder}s.
+     *
+     * @return The serialization service
+     */
+    DataManager getDataManager();
+
+    /**
+     * Gets the {@link PropertyRegistry} instance to register
+     * {@link PropertyStore}s.
+     *
+     * @return The property registry
+     */
+    PropertyRegistry getPropertyRegistry();
+
+    /**
+     * Gets the command dispatcher used for registering and dispatching
      * registered commands.
      *
      * @return The command dispatcher
      */
-    CommandService getCommandDispatcher();
+    CommandManager getCommandManager();
 
     /**
      * Gets the {@link TeleportHelper}, used to find safe {@link Location}s.
@@ -109,10 +146,18 @@ public interface Game {
     TeleportHelper getTeleportHelper();
 
     /**
+     * Gets the {@link ConfigManager} used to load and manage configuration files
+     * for plugins.
+     *
+     * @return The configuration manager
+     */
+    ConfigManager getConfigManager();
+
+    /**
      * Gets the saves directory where {@link World} data currently resides.
      * @return The directory
      */
-    File getSavesDirectory();
+    Path getSavesDirectory();
 
     /**
      * Gets the current {@link GameState} that this game is currently in.

@@ -25,11 +25,10 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * An event that is called when an entity becomes leashed.
  */
-public interface LeashEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
+public interface LeashEntityEvent extends TargetEntityEvent, Cancellable {
 
 }

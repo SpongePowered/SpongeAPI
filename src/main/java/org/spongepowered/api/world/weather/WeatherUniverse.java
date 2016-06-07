@@ -55,7 +55,7 @@ public interface WeatherUniverse {
      *
      * @param weather The new {@link Weather}.
      */
-    void forecast(Weather weather);
+    void setWeather(Weather weather);
 
     /**
      * Sets the {@link Weather} of the volume with the specified duration.
@@ -63,5 +63,5 @@ public interface WeatherUniverse {
      * @param weather The new {@link Weather}.
      * @param duration The specified duration.
      */
-    void forecast(Weather weather, long duration);
+    void setWeather(Weather weather, long duration);
 }

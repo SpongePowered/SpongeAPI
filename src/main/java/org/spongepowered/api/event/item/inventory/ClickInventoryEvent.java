@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.item.inventory;
 
-public interface ClickInventoryEvent extends InteractInventoryEvent, AffectSlotEvent {
+public interface ClickInventoryEvent extends ChangeInventoryEvent, InteractInventoryEvent {
     interface Primary extends ClickInventoryEvent {}
 
     interface Middle extends ClickInventoryEvent {}
@@ -57,5 +57,9 @@ public interface ClickInventoryEvent extends InteractInventoryEvent, AffectSlotE
         interface Primary extends Drag, ClickInventoryEvent.Primary {}
 
         interface Secondary extends Drag, ClickInventoryEvent.Secondary {}
+    }
+
+    interface NumberPress extends ClickInventoryEvent {
+        int getNumber();
     }
 }

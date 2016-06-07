@@ -24,14 +24,18 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.HorseData;
-import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.data.type.HorseColor;
+import org.spongepowered.api.data.type.HorseStyle;
+import org.spongepowered.api.data.type.HorseVariant;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.item.inventory.Carrier;
 
 /**
  * Represents a Horse.
  */
-public interface Horse extends Animal, Agent, Carrier {
+public interface Horse extends Animal, Carrier {
 
     /**
      * Gets a copy of the {@link HorseData} representing this {@link Horse}.
@@ -42,4 +46,15 @@ public interface Horse extends Animal, Agent, Carrier {
         return get(HorseData.class).get();
     }
 
+    default Value<HorseVariant> variant() {
+        return getValue(Keys.HORSE_VARIANT).get();
+    }
+
+    default Value<HorseStyle> style() {
+        return getValue(Keys.HORSE_STYLE).get();
+    }
+
+    default Value<HorseColor> color() {
+        return getValue(Keys.HORSE_COLOR).get();
+    }
 }

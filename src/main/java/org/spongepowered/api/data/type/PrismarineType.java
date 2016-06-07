@@ -25,9 +25,10 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(PrismarineTypes.class)
-public interface PrismarineType extends CatalogType {
+public interface PrismarineType extends CatalogType, Translatable {
 
 }

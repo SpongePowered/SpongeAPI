@@ -24,16 +24,26 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known vanilla {@link HorseStyle}s.
  */
 public final class HorseStyles {
 
-    public static final HorseStyle NONE = null;
-    public static final HorseStyle WHITE = null;
-    public static final HorseStyle WHITEFIELD = null;
-    public static final HorseStyle WHITE_DOTS = null;
-    public static final HorseStyle BLACK_DOTS = null;
+    // SORTFIELDS:ON
+
+    public static final HorseStyle BLACK_DOTS = DummyObjectProvider.createFor(HorseStyle.class, "BLACK_DOTS");
+
+    public static final HorseStyle NONE = DummyObjectProvider.createFor(HorseStyle.class, "NONE");
+
+    public static final HorseStyle WHITE = DummyObjectProvider.createFor(HorseStyle.class, "WHITE");
+
+    public static final HorseStyle WHITEFIELD = DummyObjectProvider.createFor(HorseStyle.class, "WHITEFIELD");
+
+    public static final HorseStyle WHITE_DOTS = DummyObjectProvider.createFor(HorseStyle.class, "WHITE_DOTS");
+
+    // SORTFIELDS:OFF
 
     private HorseStyles() {
     }

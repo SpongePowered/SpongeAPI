@@ -24,17 +24,20 @@
  */
 package org.spongepowered.api.world.storage;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.util.Direction.Flag;
+import org.spongepowered.api.util.Direction.Division;
 
 import java.util.Optional;
 
 /**
  * A class for information about the chunk coordinate space, aka the layout.
- * This can be used to obtain information about the chunk size and the
- * space bounds, validate coordinates, convert from chunk to world and
- * vice-versa and translate coordinates; among other things.
+ * This can be used to obtain information about the chunk size and the space
+ * bounds, validate coordinates, convert from chunk to world and vice-versa and
+ * translate coordinates; among other things.
  */
 public interface ChunkLayout {
 
@@ -87,7 +90,10 @@ public interface ChunkLayout {
      * @param coords The coordinates to validate
      * @return Whether or not the coordinates are valid for chunks
      */
-    boolean isValidChunk(Vector3i coords);
+    default boolean isValidChunk(Vector3i coords) {
+        checkNotNull(coords, "coords");
+        return isValidChunk(coords.getX(), coords.getY(), coords.getZ());
+    }
 
     /**
      * Returns true if the coordinates are valid chunk coordinates. False if
@@ -98,20 +104,27 @@ public interface ChunkLayout {
      * @param z The z coordinate to validate
      * @return Whether or not the coordinates are valid for chunks
      */
-    boolean isValidChunk(int x, int y, int z);
+    default boolean isValidChunk(int x, int y, int z) {
+        return x >= getSpaceMin().getX() && x <= getSpaceMax().getX()
+            && y >= getSpaceMin().getY() && y <= getSpaceMax().getY()
+            && z >= getSpaceMin().getZ() && z <= getSpaceMax().getZ();
+    }
 
     /**
-     * Returns true if the local coordinates fit in a chunk. That is
-     * they are positive and smaller than the chunk's size.
+     * Returns true if the local coordinates fit in a chunk. That is they are
+     * positive and smaller than the chunk's size.
      *
      * @param localCoords The coordinates to check
      * @return Whether or not the coordinates fit in a chunk
      */
-    boolean isInChunk(Vector3i localCoords);
+    default boolean isInChunk(Vector3i localCoords) {
+        checkNotNull(localCoords, "localCoords");
+        return isInChunk(localCoords.getX(), localCoords.getY(), localCoords.getZ());
+    }
 
     /**
-     * Returns true if the local coordinates fit in a chunk. That is
-     * they are positive and smaller than the chunk's size.
+     * Returns true if the local coordinates fit in a chunk. That is they are
+     * positive and smaller than the chunk's size.
      *
      * @param x The x local coordinate to validate
      * @param y The y local coordinate to validate
@@ -121,18 +134,22 @@ public interface ChunkLayout {
     boolean isInChunk(int x, int y, int z);
 
     /**
-     * Returns true if the world coordinates fit in the chunk at the
-     * given coordinates.
+     * Returns true if the world coordinates fit in the chunk at the given
+     * coordinates.
      *
      * @param worldCoords The world coordinates to validate
      * @param chunkCoords The chunk coordinates in which they must fit
      * @return Whether or not the world coordinates fit in the chunk
      */
-    boolean isInChunk(Vector3i worldCoords, Vector3i chunkCoords);
+    default boolean isInChunk(Vector3i worldCoords, Vector3i chunkCoords) {
+        checkNotNull(worldCoords, "worldCoords");
+        checkNotNull(chunkCoords, "chunkCoords");
+        return isInChunk(worldCoords.getX(), worldCoords.getY(), worldCoords.getZ(), chunkCoords.getX(), chunkCoords.getY(), chunkCoords.getZ());
+    }
 
     /**
-     * Returns true if the world coordinates fit in the chunk at the
-     * given coordinates.
+     * Returns true if the world coordinates fit in the chunk at the given
+     * coordinates.
      *
      * @param wx The x world coordinate to validate
      * @param wy The y world coordinate to validate
@@ -151,7 +168,10 @@ public interface ChunkLayout {
      * @param worldCoords The world coordinates to convert to chunk coordinates
      * @return The chunk coordinates on success, else nothing
      */
-    Optional<Vector3i> toChunk(Vector3i worldCoords);
+    default Optional<Vector3i> toChunk(Vector3i worldCoords) {
+        checkNotNull(worldCoords, "worldCoords");
+        return toChunk(worldCoords.getX(), worldCoords.getY(), worldCoords.getZ());
+    }
 
     /**
      * Converts world coordinates to chunk coordinates. Returns nothing if the
@@ -162,7 +182,10 @@ public interface ChunkLayout {
      * @param z The z world coordinate to convert to chunk coordinates
      * @return The chunk coordinates on success, else nothing
      */
-    Optional<Vector3i> toChunk(int x, int y, int z);
+    default Optional<Vector3i> toChunk(int x, int y, int z) {
+        final Vector3i chunkCoords = forceToChunk(x, y, z);
+        return isValidChunk(chunkCoords) ? Optional.of(chunkCoords) : Optional.<Vector3i>empty();
+    }
 
     /**
      * Converts chunk coordinates to world coordinates. Returns nothing if the
@@ -171,7 +194,10 @@ public interface ChunkLayout {
      * @param chunkCoords The chunk coordinates to convert to world coordinates
      * @return The world coordinates on success, else nothing
      */
-    Optional<Vector3i> toWorld(Vector3i chunkCoords);
+    default Optional<Vector3i> toWorld(Vector3i chunkCoords) {
+        checkNotNull(chunkCoords, "chunkCoords");
+        return toWorld(chunkCoords.getX(), chunkCoords.getY(), chunkCoords.getZ());
+    }
 
     /**
      * Converts chunk coordinates to world coordinates. Returns nothing if the
@@ -182,7 +208,55 @@ public interface ChunkLayout {
      * @param z The z chunk coordinate to convert to world coordinates
      * @return The world coordinates on success, else nothing
      */
-    Optional<Vector3i> toWorld(int x, int y, int z);
+    default Optional<Vector3i> toWorld(int x, int y, int z) {
+        return isValidChunk(x, y, z) ? Optional.of(forceToWorld(x, y, z)) : Optional.<Vector3i>empty();
+    }
+
+    /**
+     * Converts world coordinates to chunk coordinates. This method never fails
+     * and can returns invalid chunk coordinates.
+     *
+     * @param worldCoords The world coordinates to convert to chunk coordinates
+     * @return The chunk coordinates
+     */
+    default Vector3i forceToChunk(Vector3i worldCoords) {
+        checkNotNull(worldCoords, "worldCoords");
+        return forceToChunk(worldCoords.getX(), worldCoords.getY(), worldCoords.getZ());
+    }
+
+    /**
+     * Converts world coordinates to chunk coordinates. This method never fails
+     * and can returns invalid chunk coordinates.
+     *
+     * @param x The x world coordinate to convert to chunk coordinates
+     * @param y The y world coordinate to convert to chunk coordinates
+     * @param z The z world coordinate to convert to chunk coordinates
+     * @return The chunk coordinates
+     */
+    Vector3i forceToChunk(int x, int y, int z);
+
+    /**
+     * Converts chunk coordinates to world coordinates. This method never fails
+     * and can returns invalid world coordinates.
+     *
+     * @param chunkCoords The chunk coordinates to convert to world coordinates
+     * @return The world coordinates
+     */
+    default Vector3i forceToWorld(Vector3i chunkCoords) {
+        checkNotNull(chunkCoords, "chunkCoords");
+        return forceToWorld(chunkCoords.getX(), chunkCoords.getY(), chunkCoords.getZ());
+    }
+
+    /**
+     * Converts chunk coordinates to world coordinates. This method never fails
+     * and can returns invalid world coordinates.
+     *
+     * @param x The x chunk coordinate to convert to world coordinates
+     * @param y The y chunk coordinate to convert to world coordinates
+     * @param z The z chunk coordinate to convert to world coordinates
+     * @return The world coordinates
+     */
+    Vector3i forceToWorld(int x, int y, int z);
 
     /**
      * Adds the chunk offset to the chunk coordinates. Returns nothing if the
@@ -192,7 +266,11 @@ public interface ChunkLayout {
      * @param chunkOffset The chunk offset to add to the chunk coordinates
      * @return The new chunk coordinates if they are valid
      */
-    Optional<Vector3i> addToChunk(Vector3i chunkCoords, Vector3i chunkOffset);
+    default Optional<Vector3i> addToChunk(Vector3i chunkCoords, Vector3i chunkOffset) {
+        checkNotNull(chunkCoords, "chunkCoords");
+        checkNotNull(chunkOffset, "chunkOffset");
+        return addToChunk(chunkCoords.getX(), chunkCoords.getY(), chunkCoords.getZ(), chunkOffset.getX(), chunkOffset.getY(), chunkOffset.getZ());
+    }
 
     /**
      * Adds the chunk offset to the chunk coordinates. Returns nothing if the
@@ -206,25 +284,31 @@ public interface ChunkLayout {
      * @param oz The z chunk offset to add to the chunk coordinates
      * @return The new chunk coordinates if they are valid
      */
-    Optional<Vector3i> addToChunk(int cx, int cy, int cz, int ox, int oy, int oz);
+    default Optional<Vector3i> addToChunk(int cx, int cy, int cz, int ox, int oy, int oz) {
+        final Vector3i newChunkCoords = new Vector3i(cx + ox, cy + oy, cz + oz);
+        return isValidChunk(newChunkCoords) ? Optional.of(newChunkCoords) : Optional.<Vector3i>empty();
+    }
 
     /**
      * Moves chunk coordinates one step in the given direction. Returns nothing
-     * if the new coordinates are not valid. {@link Flag#SECONDARY_ORDINAL}
+     * if the new coordinates are not valid. {@link Division#SECONDARY_ORDINAL}
      * directions are not a valid argument. These will throw an exception.
      *
      * @param chunkCoords The chunk coordinates to move from
      * @param direction The direction in which to move a step
      * @return The new chunk coordinates if they are valid
      * @throws IllegalArgumentException If the direction is a
-     *     {@link Flag#SECONDARY_ORDINAL}
+     * {@link Division#SECONDARY_ORDINAL}
      */
-    Optional<Vector3i> moveToChunk(Vector3i chunkCoords, Direction direction);
+    default Optional<Vector3i> moveToChunk(Vector3i chunkCoords, Direction direction) {
+        return moveToChunk(chunkCoords, direction, 1);
+    }
 
     /**
      * Moves chunk coordinates one step in the given direction. Returns nothing
-     * if the new coordinates are not valid. {@link Flag#SECONDARY_ORDINAL}
-     * directions are not a valid argument. These will throw an exception.
+     * if the new coordinates are not valid.
+     * {@link Division#SECONDARY_ORDINAL} directions are not a valid
+     * argument. These will throw an exception.
      *
      * @param x The x chunk coordinate to move from
      * @param y The y chunk coordinate to move from
@@ -232,30 +316,36 @@ public interface ChunkLayout {
      * @param direction The direction in which to move a step
      * @return The new chunk coordinates if they are valid
      * @throws IllegalArgumentException If the direction is a
-     *     {@link Flag#SECONDARY_ORDINAL}
+     * {@link Division#SECONDARY_ORDINAL}
      */
-    Optional<Vector3i> moveToChunk(int x, int y, int z, Direction direction);
+    default Optional<Vector3i> moveToChunk(int x, int y, int z, Direction direction) {
+        return moveToChunk(new Vector3i(x, y, z), direction);
+    }
 
     /**
-     * Moves chunk coordinates a number of steps in the given direction.
-     * Returns nothing if the new coordinates are not valid.
-     * {@link Flag#SECONDARY_ORDINAL} directions are not a valid argument.
-     * These will throw an exception.
+     * Moves chunk coordinates a number of steps in the given direction. Returns
+     * nothing if the new coordinates are not valid.
+     * {@link Division#SECONDARY_ORDINAL} directions are not a valid
+     * argument. These will throw an exception.
      *
      * @param chunkCoords The chunk coordinates to move from
      * @param direction The direction in which to move
      * @param steps The number of steps to take
      * @return The new chunk coordinates if they are valid
      * @throws IllegalArgumentException If the direction is a
-     *     {@link Flag#SECONDARY_ORDINAL}
+     * {@link Division#SECONDARY_ORDINAL}
      */
-    Optional<Vector3i> moveToChunk(Vector3i chunkCoords, Direction direction, int steps);
+    default Optional<Vector3i> moveToChunk(Vector3i chunkCoords, Direction direction, int steps) {
+        checkNotNull(direction, "direction");
+        checkArgument(!direction.isSecondaryOrdinal(), "Secondary cardinal directions can't be used here");
+        return addToChunk(chunkCoords, direction.toVector3d().ceil().toInt().mul(steps));
+    }
 
     /**
-     * Moves chunk coordinates a number of steps in the given direction.
-     * Returns nothing if the new coordinates are not valid.
-     * {@link Flag#SECONDARY_ORDINAL} directions are not a valid argument.
-     * These will throw an exception.
+     * Moves chunk coordinates a number of steps in the given direction. Returns
+     * nothing if the new coordinates are not valid.
+     * {@link Division#SECONDARY_ORDINAL} directions are not a valid
+     * argument. These will throw an exception.
      *
      * @param x The x chunk coordinate to move from
      * @param y The y chunk coordinate to move from
@@ -264,8 +354,10 @@ public interface ChunkLayout {
      * @param steps The number of steps to take
      * @return The new chunk coordinates if they are valid
      * @throws IllegalArgumentException If the direction is a
-     *      {@link Flag#SECONDARY_ORDINAL}
+     * {@link Division#SECONDARY_ORDINAL}
      */
-    Optional<Vector3i> moveToChunk(int x, int y, int z, Direction direction, int steps);
+    default Optional<Vector3i> moveToChunk(int x, int y, int z, Direction direction, int steps) {
+        return moveToChunk(new Vector3i(x, y, z), direction, steps);
+    }
 
 }

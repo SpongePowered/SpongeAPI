@@ -26,6 +26,7 @@ package org.spongepowered.api.world.gen;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.gen.populator.RandomObject;
 
 import java.util.Random;
 
@@ -37,14 +38,27 @@ import java.util.Random;
  * objects that cross chunk boundaries.</p>
  *
  * <p>Instead of directly implementing this interface, it may be easier to
- * implement {@link PopulatorObject} instead, and use the
- * {@link PopulatorObjects} class to get a populator that spawns that
- * object.</p>
+ * implement {@link PopulatorObject} instead, and use the {@link RandomObject}
+ * populator to get a populator that spawns that object.</p>
  *
- * @see PopulatorObjects
  * @see PopulatorObject
  */
 public interface Populator {
+
+    /**
+     * Gets the type of this populator.
+     * 
+     * <p>It should be noted that the relationship of classes implementing
+     * {@link Populator} and {@link PopulatorType}s is not a one-to-one
+     * relationship. That is to say that multiple different populators could
+     * return the same {@link PopulatorType} for the purposes of grouping (A
+     * plugin populator creating custom glowstone clusters may want to return
+     * {@link PopulatorTypes#GLOWSTONE} so that other plugins can recognize
+     * changes that it makes as being part of the generation of glowstone).</p>
+     * 
+     * @return The populator type
+     */
+    PopulatorType getType();
 
     /**
      * Applies the populator to the given chunk. The chunks at
@@ -64,33 +78,35 @@ public interface Populator {
      * effectively use this area, it is recommend to make sure the centers of
      * all objects are placed from
      * {@code (block x, block z) (chunkX * 16 + 8, chunkZ * 16 + 8)} to
-     * {@code (chunkX * 16 + 23, chunkZ * 16 + 23)}. This ensures both that
-     * each object can extend 8 blocks on the x and z axis from its center and
-     * that every area in the world is populated exactly once.</p>
+     * {@code (chunkX * 16 + 23, chunkZ * 16 + 23)}. This ensures both that each
+     * object can extend 8 blocks on the x and z axis from its center and that
+     * every area in the world is populated exactly once.</p>
      *
      * <pre>
-     *   +----------+----------+      . . The chunk provided as a parameter
-     *   |          |          |      . . to this method.
-     *   |          |          |
-     *   |     #####|#####     |      ### The area you should populate.
-     *   |     #####|#####     |      ###
-     *   +----------+----------+
-     *   | . . #####|#####     |
-     *   | . . #####|#####     |
-     *   | . . . . .|          |
-     *   | . . . . .|          |
-     *   +----------+----------+
+     *       +----------+----------+ . . The chunk provided as a parameter
+     *       |          |          | . . to this method.
+     *       |          |          |
+     *       |     #####|#####     | ### The area you should populate.
+     *       |     #####|#####     | ###
+     *       +----------+----------+
+     *       | . . #####|#####     |
+     *       | . . #####|#####     |
+     *       | . . . . .|          |
+     *       | . . . . .|          |
+     *       +----------+----------+
      * </pre>
-     * <p><b>Figure 1</b> <i>The four chunks guanteed to be loaded, along
-     * with the area you are allowed to populate.</i></p>
+     * 
+     * <p><b>Figure 1</b> <i>The four chunks guanteed to be loaded, along with
+     * the area you are allowed to populate.</i></p>
      *
      * <p>The following code guantantees that the center of your object is
      * placed with its center in the recommend area:
+     * 
      * <pre>
-     *   {@link Vector3i} chunkStartBlockPos = chunk.getPosition().mul(16);
-     *   Vector3i populationAreaStartBlockPos = chunkStartBlockPos.add(8, 0, 8);
-     *   Vector3i objectCenterBlockPos = populationAreaStart.add(
-     *       random.nextInt(16), justSomeValueForY, random.nextInt(16));
+     *  {@link Vector3i} chunkStartBlockPos = chunk.getPosition().mul(16);
+     *  Vector3i populationAreaStartBlockPos = chunkStartBlockPos.add(8, 0, 8);
+     *  Vector3i objectCenterBlockPos = populationAreaStart.add(
+     *          random.nextInt(16), justSomeValueForY, random.nextInt(16));
      * </pre>
      *
      * @param chunk The provided chunk.

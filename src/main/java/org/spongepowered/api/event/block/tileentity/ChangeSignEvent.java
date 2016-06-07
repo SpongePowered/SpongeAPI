@@ -28,9 +28,8 @@ import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.SignData;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 
-public interface ChangeSignEvent extends TargetTileEntityEvent, Cancellable, CauseTracked {
+public interface ChangeSignEvent extends TargetTileEntityEvent, Cancellable {
 
     /**
      * Gets the target {@link Sign} being changed.

@@ -25,19 +25,20 @@
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
 import org.spongepowered.api.data.manipulator.mutable.entity.TradeOfferData;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Villager;
 import org.spongepowered.api.item.merchant.Merchant;
 import org.spongepowered.api.item.merchant.TradeOffer;
 
 /**
  * An {@link ImmutableDataManipulator} handling the {@link TradeOffer}s that
- * can be offered to {@link Human}s from {@link Merchant}s such as
+ * can be offered to {@link Humanoid}s from {@link Merchant}s such as
  * {@link Villager}s.
  */
-public interface ImmutableTradeOfferData extends ImmutableDataManipulator<ImmutableTradeOfferData, TradeOfferData> {
+public interface ImmutableTradeOfferData extends ImmutableListData<TradeOffer, ImmutableTradeOfferData, TradeOfferData> {
 
     /**
      * Gets the {@link ImmutableListValue} of {@link TradeOffer}s that can be
@@ -45,6 +46,8 @@ public interface ImmutableTradeOfferData extends ImmutableDataManipulator<Immuta
      *
      * @return The immutable list value of trade offers
      */
-    ImmutableListValue<TradeOffer> tradeOffers();
+    default ImmutableListValue<TradeOffer> tradeOffers() {
+        return getListValue();
+    }
 
 }

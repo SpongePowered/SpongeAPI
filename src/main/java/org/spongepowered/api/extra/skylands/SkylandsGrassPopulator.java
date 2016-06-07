@@ -37,12 +37,12 @@ import org.spongepowered.api.data.type.ShrubTypes;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.ImmutableBiomeArea;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
-import org.spongepowered.api.world.gen.GeneratorPopulator;
+import org.spongepowered.api.world.gen.GenerationPopulator;
 
 /**
  * Places tall grass with groups of flowers.
  */
-public class SkylandsGrassPopulator implements GeneratorPopulator {
+public class SkylandsGrassPopulator implements GenerationPopulator {
 
     private static final double GRASS_ODDS = 0.3;
     private static final double DOUBLE_GRASS_ODDS = 0.9;
@@ -182,29 +182,29 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
         private final boolean doubleHeight;
         private final BlockState upperBlock;
 
-        private Flower(PlantType type) {
+        Flower(PlantType type) {
             this(DEFAULT_FLOWER.with(Keys.PLANT_TYPE, type).get(), false);
         }
 
-        private Flower(BlockType block) {
+        Flower(BlockType block) {
             this(block.getDefaultState(), false);
         }
 
-        private Flower(BlockState block, boolean doubleHeight) {
+        Flower(BlockState block, boolean doubleHeight) {
             this.block = block;
             this.doubleHeight = doubleHeight;
             this.upperBlock = this.block;
         }
 
-        private BlockState getBlock() {
+        BlockState getBlock() {
             return this.block;
         }
 
-        private boolean isDoubleHeight() {
+        boolean isDoubleHeight() {
             return this.doubleHeight;
         }
 
-        private BlockState getUpperBlock() {
+        BlockState getUpperBlock() {
             return this.upperBlock;
         }
     }
@@ -213,11 +213,11 @@ public class SkylandsGrassPopulator implements GeneratorPopulator {
 
         private double degree;
 
-        private RarityCurve() {
+        RarityCurve() {
             super(1);
         }
 
-        private void setDegree(double degree) {
+        void setDegree(double degree) {
             this.degree = degree;
         }
 

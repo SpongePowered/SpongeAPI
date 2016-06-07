@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.world.chunk.TargetChunkEvent;
 import org.spongepowered.api.world.Chunk;
 
 /**
  * Called when a {@link Chunk} is about to be generated.
  */
-public interface GenerateChunkEvent extends TargetChunkEvent, CauseTracked {
+public interface GenerateChunkEvent extends TargetChunkEvent {
 
     interface Pre extends GenerateChunkEvent {
 

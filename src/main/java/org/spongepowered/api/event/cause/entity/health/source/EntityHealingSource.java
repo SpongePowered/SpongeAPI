@@ -25,10 +25,36 @@
 
 package org.spongepowered.api.event.cause.entity.health.source;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.monster.Boss;
+import org.spongepowered.api.entity.living.monster.Witch;
 
+/**
+ * Signifies that the healing source is another entity, can usually mean
+ * that the healing source is the same entity being healed. Examples may
+ * include self healing from {@link Boss} entities, {@link Witch}es, etc.
+ */
 public interface EntityHealingSource extends HealingSource {
+
+    /**
+     * Gets a new builder to build a new {@link EntityHealingSource}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     Entity getSource();
 
+    interface Builder extends EntityHealingSourceBuilder<EntityHealingSource, Builder> {
+
+    }
+
+    interface EntityHealingSourceBuilder<T extends EntityHealingSource, B extends EntityHealingSourceBuilder<T, B>> extends HealingSourceBuilder<T, B> {
+
+        B entity(Entity entity);
+
+    }
 }

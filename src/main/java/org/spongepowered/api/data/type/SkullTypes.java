@@ -24,16 +24,26 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of all possible {@link SkullType}s in vanilla minecraft.
  */
 public final class SkullTypes {
 
-    public static final SkullType SKELETON = null;
-    public static final SkullType WITHER_SKELETON = null;
-    public static final SkullType ZOMBIE = null;
-    public static final SkullType PLAYER = null;
-    public static final SkullType CREEPER = null;
+    // SORTFIELDS:ON
+
+    public static final SkullType CREEPER = DummyObjectProvider.createFor(SkullType.class, "CREEPER");
+
+    public static final SkullType PLAYER = DummyObjectProvider.createFor(SkullType.class, "PLAYER");
+
+    public static final SkullType SKELETON = DummyObjectProvider.createFor(SkullType.class, "SKELETON");
+
+    public static final SkullType WITHER_SKELETON = DummyObjectProvider.createFor(SkullType.class, "WITHER_SKELETON");
+
+    public static final SkullType ZOMBIE = DummyObjectProvider.createFor(SkullType.class, "ZOMBIE");
+
+    // SORTFIELDS:OFF
 
     private SkullTypes() {
     }

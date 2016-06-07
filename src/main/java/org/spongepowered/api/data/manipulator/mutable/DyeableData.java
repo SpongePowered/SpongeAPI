@@ -33,8 +33,9 @@ import org.spongepowered.api.entity.living.animal.Wolf;
 
 /**
  * An {@link VariantData} handling the {@link DyeColor} for a
- * {@link DataHolder}, including {@link BlockTypes#WOOL} to
- * {@link Sheep} to {@link Wolf}.
+ * {@link DataHolder}, including {@link BlockTypes#WOOL}, {@link BlockTypes#STAINED_HARDENED_CLAY},
+ * {@link BlockTypes#CARPET}, {@link BlockTypes#STAINED_GLASS}, {@link BlockTypes#STAINED_GLASS_PANE},
+ * {@link Sheep}, and {@link Wolf}.
  */
 public interface DyeableData extends VariantData<DyeColor, DyeableData, ImmutableDyeableData> {
 

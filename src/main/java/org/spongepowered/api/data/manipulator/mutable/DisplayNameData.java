@@ -49,11 +49,4 @@ public interface DisplayNameData extends DataManipulator<DisplayNameData, Immuta
      */
     Value<Text> displayName();
 
-    /**
-     * Returns whether the custom name is visible to players.
-     *
-     * @return Whether the custom name is visible or not
-     */
-    Value<Boolean> customNameVisible();
-
 }

@@ -24,26 +24,41 @@
  */
 package org.spongepowered.api.util.test;
 
-import org.spongepowered.api.text.Texts;
+import static org.mockito.Mockito.mock;
 
 import java.lang.reflect.Field;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.lang.reflect.Modifier;
 
-public class TestHooks {
-    private static final AtomicBoolean INITIALIZED = new AtomicBoolean();
+public final class TestHooks {
 
-    /**
-     * Perform initialization necessary to create a testing environment.
-     */
-    public static void initialize()  {
-        if (INITIALIZED.compareAndSet(false, true)) {
-            try {
-                Field textField = Texts.class.getDeclaredField("factory");
-                textField.setAccessible(true);
-                textField.set(null, new TestTextFactory());
-            } catch (Exception e) {
-                throw new ExceptionInInitializerError(e);
+    private TestHooks() {
+    }
+
+    public static void setCatalogElement(Class<?> catalog, String name, Object value) throws NoSuchFieldException, IllegalAccessException {
+        setStaticFinalField(catalog.getDeclaredField(name), value);
+    }
+
+    public static void setStaticFinalField(Field field, Object value) throws NoSuchFieldException, IllegalAccessException {
+        field.setAccessible(true);
+
+        Field modifiersField = Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+
+        field.set(null, value);
+    }
+
+    public static void mockFields(Class<?> catalogClass, Class<?> iface) throws ReflectiveOperationException {
+        for (Field field : catalogClass.getFields()) {
+            if (field.getType() != iface
+                    || !Modifier.isPublic(field.getModifiers())
+                    || !Modifier.isStatic(field.getModifiers())
+                    || !Modifier.isFinal(field.getModifiers())
+                    || field.get(null) != null) {
+                continue;
             }
+
+            setStaticFinalField(field, mock(iface));
         }
     }
 

@@ -26,10 +26,9 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * Raised when an {@link Entity} is being mounted
  */
-public interface MountEntityEvent extends TargetEntityEvent, Cancellable, CauseTracked {
+public interface MountEntityEvent extends TargetEntityEvent, Cancellable {
 }

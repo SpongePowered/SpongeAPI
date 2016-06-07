@@ -27,8 +27,6 @@ package org.spongepowered.api.event;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-import org.spongepowered.api.service.event.EventManager;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
@@ -49,14 +47,6 @@ public @interface Listener {
      * @return The order the listener should be called in
      */
     Order order() default Order.DEFAULT;
-
-    /**
-     * Whether this listener should ignore cancelled events. If enabled the
-     * listener will not be called for any cancelled events.
-     *
-     * @return If the listener should ignore cancelled events
-     */
-    boolean ignoreCancelled() default true;
 
     /**
      * Whether this listener should be called before any other server mods, such

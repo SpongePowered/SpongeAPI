@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.item.inventory.custom;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.type.OrderedInventory;
+import org.spongepowered.api.text.translation.Translation;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * A CustomInventory is an inventory that has no backing in the world that is
@@ -33,4 +36,41 @@ import org.spongepowered.api.util.Identifiable;
  */
 public interface CustomInventory extends OrderedInventory, Identifiable {
 
+    /**
+     * Creates a new {@link Builder} to build a {@link CustomInventory}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+
+    interface Builder extends ResettableBuilder<CustomInventory, Builder> {
+        /**
+         * Sets the title of the custom inventory, viewable by players looking
+         * at the inventory.
+         *
+         * @param name The title
+         * @return fluent pattern
+         */
+        Builder name(Translation name);
+
+        /**
+         * Sets the size of the custom inventory.
+         *
+         * @param size The size
+         * @return fluent pattern
+         */
+        Builder size(int size);
+
+        /**
+         * Builds the inventory instance.
+         *
+         * @return A new custom inventory
+         */
+        CustomInventory build();
+
+        // TODO add persistence methods
+    }
 }

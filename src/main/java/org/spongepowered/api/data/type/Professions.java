@@ -24,16 +24,26 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * A utility class to access all available {@link Profession}s.
  */
 public final class Professions {
 
-    public static final Profession FARMER = null;
-    public static final Profession LIBRARIAN = null;
-    public static final Profession PRIEST = null;
-    public static final Profession BLACKSMITH = null;
-    public static final Profession BUTCHER = null;
+    // SORTFIELDS:ON
+
+    public static final Profession BLACKSMITH = DummyObjectProvider.createFor(Profession.class, "BLACKSMITH");
+
+    public static final Profession BUTCHER = DummyObjectProvider.createFor(Profession.class, "BUTCHER");
+
+    public static final Profession FARMER = DummyObjectProvider.createFor(Profession.class, "FARMER");
+
+    public static final Profession LIBRARIAN = DummyObjectProvider.createFor(Profession.class, "LIBRARIAN");
+
+    public static final Profession PRIEST = DummyObjectProvider.createFor(Profession.class, "PRIEST");
+
+    // SORTFIELDS:OFF
 
     private Professions() {
     }

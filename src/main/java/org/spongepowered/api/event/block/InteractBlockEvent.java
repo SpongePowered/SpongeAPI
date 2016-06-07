@@ -24,14 +24,22 @@
  */
 package org.spongepowered.api.event.block;
 
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.action.InteractEvent;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.world.Location;
 
 /**
- * Base event for all interactions involving a {@link BlockState} at a
+ * Base event for all interactions involving a {@link BlockSnapshot} at a
  * {@link Location}.
+ * 
+ * <p>Note: Any interaction that occurs within {@link BlockTypes#AIR} where the
+ * {@link Location} is not known, will contain a {@link BlockSnapshot#NONE}.</p>
  */
 public interface InteractBlockEvent extends InteractEvent, TargetBlockEvent {
 
@@ -45,16 +53,96 @@ public interface InteractBlockEvent extends InteractEvent, TargetBlockEvent {
     Direction getTargetSide();
 
     /**
-     * An event where the targeted block is being interacted with the client's "primary" button.
+     * An event where the targeted block is being interacted with the client's 
+     * "primary" button.
      *
      * This is usually left-click.
      */
     interface Primary extends InteractBlockEvent {}
 
     /**
-     * An event where the targeted block is being interacted with the client's "secondary" button.
+     * An event where the targeted block is being interacted with the client's 
+     * "secondary" button.
      *
      * This is usually right-click.
      */
-    interface Secondary extends InteractBlockEvent {}
+    interface Secondary extends InteractBlockEvent {
+
+        /**
+         * Gets the original {@link #getUseItemResult}.
+         * 
+         * @return The original {@link #getUseItemResult}
+         */
+        Tristate getOriginalUseItemResult();
+
+        /**
+         * Gets the original {@link #getUseBlockResult}.
+         * 
+         * @return The original {@link #getUseBlockResult}
+         */
+        Tristate getOriginalUseBlockResult();
+
+        /**
+         * Gets whether the {@link Player#getItemInHand} should be used.
+         * 
+         * <ul>
+         * <li>FALSE: The {@link ItemStack} will never be used.</li>
+         * <li>UNDEFINED: The {@link ItemStack} will be used if the block fails.
+         * </li>
+         * <li>TRUE: The {@link ItemStack} will always be used.</li>
+         * </ul>
+         * 
+         * <p>Note: These results may differ depending on implementation.</p>
+         * 
+         * @return Whether the {@link Player#getItemInHand} should be used
+         */
+        Tristate getUseItemResult();
+
+        /**
+         * Gets whether the interacted {@link BlockSnapshot} should be used.
+         * 
+         * <ul>
+         * <li>FALSE: {@link BlockSnapshot} will never be used.</li>
+         * <li>UNDEFINED: {@link BlockSnapshot} will be used as normal.</li>
+         * <li>TRUE: {@link BlockSnapshot} will always be used.</li>
+         * </ul>
+         * 
+         * <p>Note: These results may differ depending on implementation.</p>
+         * 
+         * @return Whether the interacted {@link BlockSnapshot} should be used
+         */
+        Tristate getUseBlockResult();
+
+        /**
+         * Sets whether the {@link Player#getItemInHand} should be used.
+         * 
+         * <ul>
+         * <li>FALSE: The {@link ItemStack} will never be used.</li>
+         * <li>UNDEFINED: The {@link ItemStack} will be used if the block fails.
+         * </li>
+         * <li>TRUE: The {@link ItemStack} will always be used.</li>
+         * </ul>
+         * 
+         * <p>Note: These results may differ depending on implementation.</p>
+         * 
+         * @param result Whether the {@link Player#getItemInHand} should be used
+         */
+        void setUseItemResult(Tristate result);
+
+        /**
+         * Sets whether the interacted {@link BlockSnapshot} should be used.
+         * 
+         * <ul>
+         * <li>FALSE: {@link BlockSnapshot} will never be used.</li>
+         * <li>UNDEFINED: {@link BlockSnapshot} will be used as normal.</li>
+         * <li>TRUE: {@link BlockSnapshot} will always be used.</li>
+         * </ul>
+         * 
+         * <p>Note: These results may differ depending on implementation.</p>
+         * 
+         * @param result Whether the interacted {@link BlockSnapshot} should be
+         *     used
+         */
+        void setUseBlockResult(Tristate result);
+    }
 }

@@ -30,7 +30,8 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
-import org.spongepowered.api.service.permission.context.Context;
+
+import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.permission.option.OptionSubjectData;
 import org.spongepowered.api.util.Tristate;
 
@@ -84,13 +85,13 @@ public class MemorySubjectData implements OptionSubjectData {
      */
     public NodeTree getNodeTree(Set<Context> contexts) {
         NodeTree perms = this.permissions.get(contexts);
-        return perms == null ? NodeTree.of(Collections.<String, Boolean>emptyMap()) : perms;
+        return perms == null ? NodeTree.of(Collections.emptyMap()) : perms;
     }
 
     @Override
     public Map<String, Boolean> getPermissions(Set<Context> contexts) {
         NodeTree perms = this.permissions.get(contexts);
-        return perms == null ? Collections.<String, Boolean>emptyMap() : perms.asMap();
+        return perms == null ? Collections.emptyMap() : perms.asMap();
     }
 
     @Override
@@ -149,7 +150,7 @@ public class MemorySubjectData implements OptionSubjectData {
     @Override
     public List<Subject> getParents(Set<Context> contexts) {
         List<Map.Entry<String, String>> ret = this.parents.get(contexts);
-        return ret == null ? Collections.<Subject>emptyList() : toSubjectList(ret);
+        return ret == null ? Collections.emptyList() : toSubjectList(ret);
     }
 
     @Override
@@ -160,7 +161,7 @@ public class MemorySubjectData implements OptionSubjectData {
                     parent.getIdentifier());
             List<Map.Entry<String, String>> oldParents = this.parents.get(contexts);
             List<Map.Entry<String, String>> newParents = ImmutableList.<Map.Entry<String, String>>builder()
-                    .addAll(oldParents == null ? Collections.<Map.Entry<String, String>>emptyList() : oldParents)
+                    .addAll(oldParents == null ? Collections.emptyList() : oldParents)
                     .add(newEnt)
                     .build();
             if (oldParents != null && oldParents.contains(newEnt)) {
@@ -198,7 +199,7 @@ public class MemorySubjectData implements OptionSubjectData {
             if (oldParents == null || !oldParents.contains(removeEnt)) {
                 return false;
             }
-            newParents = new ArrayList<Map.Entry<String, String>>(oldParents);
+            newParents = new ArrayList<>(oldParents);
             newParents.remove(removeEnt);
 
             if (updateCollection(this.parents, contexts, oldParents, Collections.unmodifiableList(newParents))) {
@@ -227,7 +228,8 @@ public class MemorySubjectData implements OptionSubjectData {
 
     @Override
     public Map<String, String> getOptions(Set<Context> contexts) {
-        return this.options.get(contexts);
+        Map<String, String> ret = this.options.get(contexts);
+        return ret == null ? ImmutableMap.of() : ImmutableMap.copyOf(ret);
     }
 
     @Override
@@ -245,11 +247,11 @@ public class MemorySubjectData implements OptionSubjectData {
                 if (!origMap.containsKey(key)) {
                     return false;
                 }
-                newMap = new HashMap<String, String>();
+                newMap = new HashMap<>();
                 newMap.putAll(origMap);
                 newMap.remove(key);
             } else {
-                newMap = new HashMap<String, String>();
+                newMap = new HashMap<>();
                 newMap.putAll(origMap);
                 newMap.put(key, value);
             }

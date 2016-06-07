@@ -74,4 +74,18 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      */
     Value<Boolean> canDropAsItem();
 
+    /**
+     * Gets the time the block has been falling. Defaults to a value of 1.
+     *
+     * @return The time the block has been falling
+     */
+    Value<Integer> fallTime();
+
+    /**
+     * Gets whether this falling block will damage entities where it lands.
+     *
+     * @return Whether this falling block will damage entities where it lands
+     */
+    Value<Boolean> canHurtEntities();
+
 }

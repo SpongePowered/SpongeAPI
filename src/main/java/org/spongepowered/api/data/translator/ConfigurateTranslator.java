@@ -33,6 +33,7 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.MemoryDataContainer;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -61,14 +62,16 @@ public final class ConfigurateTranslator implements DataTranslator<Configuration
         node.setValue(container.getMap(of()).get());
     }
 
-    private static DataView translateFromNode(ConfigurationNode node) {
+    private static DataContainer translateFromNode(ConfigurationNode node) {
         checkNotNull(node, "node");
         DataContainer dataContainer = new MemoryDataContainer();
-        if (node.getValue() != null) {
-            if (node.getKey() == null) {
+        Object value = node.getValue();
+        Object key = node.getKey();
+        if (value != null) {
+            if (key == null || value instanceof Map || value instanceof List) {
                 translateMapOrList(node, dataContainer);
             } else {
-                dataContainer.set(of('.', node.getKey().toString()), node.getValue());
+                dataContainer.set(of('.', key.toString()), value);
             }
         }
         return dataContainer;
@@ -84,7 +87,6 @@ public final class ConfigurateTranslator implements DataTranslator<Configuration
         } else if (value != null) {
             container.set(of(node.getKey().toString()), value);
         }
-
     }
 
     @Override
@@ -100,7 +102,7 @@ public final class ConfigurateTranslator implements DataTranslator<Configuration
     }
 
     @Override
-    public DataView translateFrom(ConfigurationNode node) {
+    public DataContainer translateFrom(ConfigurationNode node) {
         return ConfigurateTranslator.translateFromNode(node);
     }
 

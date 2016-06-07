@@ -26,7 +26,6 @@ package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -34,7 +33,7 @@ import org.spongepowered.api.world.explosion.Explosion;
 /**
  * Called when an {@link Explosion} occurs in a {@link World}.
  */
-public interface ExplosionEvent extends TargetWorldEvent, CauseTracked {
+public interface ExplosionEvent extends TargetWorldEvent {
 
     /**
      * Gets the {@link Explosion} involved in this event.
@@ -46,7 +45,18 @@ public interface ExplosionEvent extends TargetWorldEvent, CauseTracked {
     /**
      * An event that is fired before the explosion occurs.
      */
-    interface Pre extends ExplosionEvent, Cancellable {}
+    interface Pre extends ExplosionEvent, Cancellable {
+
+        /**
+         * Sets the {@link Explosion} involved for this event. This
+         * will override the explosion used before calculations
+         * take place with regards to the blocks and entities affected.
+         *
+         * @param explosion The new explosion
+         */
+        void setExplosion(Explosion explosion);
+
+    }
 
     /**
      * An event that is fired as the explosion is going to start affecting

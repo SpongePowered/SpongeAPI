@@ -24,18 +24,33 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class PlantTypes {
 
-    public static final PlantType DANDELION = null;
-    public static final PlantType POPPY = null;
-    public static final PlantType BLUE_ORCHID = null;
-    public static final PlantType ALLIUM = null;
-    public static final PlantType HOUSTONIA = null;
-    public static final PlantType RED_TULIP = null;
-    public static final PlantType ORANGE_TULIP = null;
-    public static final PlantType WHITE_TULIP = null;
-    public static final PlantType PINK_TULIP = null;
-    public static final PlantType OXEYE_DAISY = null;
+    // SORTFIELDS:ON
+
+    public static final PlantType ALLIUM = DummyObjectProvider.createFor(PlantType.class, "ALLIUM");
+
+    public static final PlantType BLUE_ORCHID = DummyObjectProvider.createFor(PlantType.class, "BLUE_ORCHID");
+
+    public static final PlantType DANDELION = DummyObjectProvider.createFor(PlantType.class, "DANDELION");
+
+    public static final PlantType HOUSTONIA = DummyObjectProvider.createFor(PlantType.class, "HOUSTONIA");
+
+    public static final PlantType ORANGE_TULIP = DummyObjectProvider.createFor(PlantType.class, "ORANGE_TULIP");
+
+    public static final PlantType OXEYE_DAISY = DummyObjectProvider.createFor(PlantType.class, "OXEYE_DAISY");
+
+    public static final PlantType PINK_TULIP = DummyObjectProvider.createFor(PlantType.class, "PINK_TULIP");
+
+    public static final PlantType POPPY = DummyObjectProvider.createFor(PlantType.class, "POPPY");
+
+    public static final PlantType RED_TULIP = DummyObjectProvider.createFor(PlantType.class, "RED_TULIP");
+
+    public static final PlantType WHITE_TULIP = DummyObjectProvider.createFor(PlantType.class, "WHITE_TULIP");
+
+    // SORTFIELDS:OFF
 
     private PlantTypes() {
     }

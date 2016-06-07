@@ -25,43 +25,27 @@
 
 package org.spongepowered.api.event.cause.entity.health.source;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.event.cause.entity.health.HealingType;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 
 /**
  * Represents a {@link Cause} for damage on the {@link Entity} being
- * damaged. Usually the {@link HealingSource} will have different properties
- * based on the source of damage, such as {@link EntityHealingSource}s,
- * {@link BlockHealingSource}s, and {@link FallingBlockHealingSource}s.
- *
- * <p>Almost always, the {@link HealingSource} will be the first element in
- * the {@link Cause} of the event. Any additional modifiers that "aid" the
- * {@link Cause} of the event will be listed subsequently.</p>
+ * healed. This will help inform what type of healing
  */
 public interface HealingSource {
 
-    DamageType getDamageType();
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    HealingType getHealingType();
 
     /**
-     * Gets whether this {@link HealingSource} can not be modified and the
-     * damage is absolute.
-     *
-     * @return If this damage source deals absolute damage
-     */
-    boolean isAbsolute();
-
-    /**
-     * Gets whether this {@link HealingSource} will deal damage that
-     * bypasses any armor.
-     *
-     * @return True if this damage source bypasses armor
-     */
-    boolean isBypassingArmor();
-
-    /**
-     * Gets whether this {@link HealingSource}'s damage is scaled by
+     * Gets whether this {@link HealingSource}'s healing amount is scaled by
      * {@link Difficulty}.
      *
      * @return True if the damage from this source is scaled
@@ -69,26 +53,52 @@ public interface HealingSource {
     boolean isDifficultyScaled();
 
     /**
-     * Gets whether this {@link HealingSource} is an explosion.
-     *
-     * @return True if this damage source is an explosion
-     */
-    boolean isExplosion();
-
-    /**
-     * Gets whether this {@link HealingSource} is starvation based, and
-     * therefor should be considered to bypass armor and other resistances.
-     *
-     * @return If this damage is starvation based
-     */
-    boolean isStarvationBased();
-
-    /**
      * Gets whether this {@link HealingSource} is considered to be magical
-     * damage, such as potions, or other sources.
+     * healing, such as potions, or other sources.
      *
-     * @return If this damage is magic based
+     * @return If this healing is magic based
      */
     boolean isMagic();
 
+    /**
+     * A builder to build {@link HealingSource} specifically.
+     */
+    interface Builder extends HealingSourceBuilder<HealingSource, Builder> {
+
+    }
+
+    /**
+     * An abstract builder to build an extension of {@link HealingSource}.
+     *
+     * @param <T> The type of HealingSource
+     * @param <B> The builder type
+     */
+    interface HealingSourceBuilder<T extends HealingSource, B extends HealingSourceBuilder<T, B>> extends ResettableBuilder<T, B> {
+
+        /**
+         * Sets for the built {@link HealingSource} to have scaled with
+         * difficulty, usually meaning that the amount is scaled.
+         *
+         * @return This builder, for chaining
+         */
+        B scalesWithDifficulty();
+
+        /**
+         * Sets that the built {@link HealingSource} to have been a "magical"
+         * source.
+         *
+         * @return This builder, for chaining
+         */
+        B magical();
+
+        /**
+         * Sets the {@link HealingType}
+         * @param healingType The healing type
+         * @return This builder, for chaining
+         */
+        B type(HealingType healingType);
+
+        T build() throws IllegalStateException;
+
+    }
 }

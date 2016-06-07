@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.text;
 
-import com.google.common.collect.UnmodifiableIterator;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -35,7 +33,7 @@ import javax.annotation.Nullable;
  * Represents a recursive {@link Iterator} for {@link Text} including the text
  * itself as well as all children texts.
  */
-class TextIterator extends UnmodifiableIterator<Text> {
+final class TextIterator implements Iterator<Text> {
 
     private final Text text;
     @Nullable private Iterator<Text> children;

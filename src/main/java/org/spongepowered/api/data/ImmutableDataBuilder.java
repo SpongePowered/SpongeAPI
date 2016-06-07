@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.data;
 
+import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.service.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.value.BaseValue;
 
 /**
  * A builder, much like a normal {@link DataBuilder} except that it builds
@@ -57,6 +59,16 @@ public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extend
     E add(ImmutableDataManipulator<?, ?> manipulator);
 
     /**
+     * Adds the given {@link Key} with the given value.
+     *
+     * @param key The key to assign the value with
+     * @param value The value to assign with the key
+     * @param <V> The type of the value
+     * @return This builder, for chaining
+     */
+    <V> E add(Key<? extends BaseValue<V>> key, V value);
+
+    /**
      * Copies all known {@link DataManipulator}s from the given
      * {@link ImmutableDataHolder}. This is a defensive copy as
      * {@link DataManipulator} is mutable.
@@ -64,16 +76,8 @@ public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extend
      * @param holder The {@link ImmutableDataHolder} to copy from
      * @return This builder for chaining
      */
+    @Override
     E from(H holder);
-
-    /**
-     * Resets this builder to a "default" state such that there is no
-     * remaining {@link DataManipulator}s to set. This is to be the presumed
-     * "default" state.
-     *
-     * @return This builder, for chaining
-     */
-    E reset();
 
     /**
      * Attempts to build a new {@link ImmutableDataHolder}.
@@ -82,4 +86,6 @@ public interface ImmutableDataBuilder<H extends ImmutableDataHolder<H>, E extend
      */
     H build();
 
+    @Override
+    E reset();
 }

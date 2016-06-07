@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.entity.living.golem;
 
-import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.entity.living.Creature;
 
 /**
  * Represents a Golem type mob.
  */
-public interface Golem extends Agent {
+public interface Golem extends Creature {
 
 }

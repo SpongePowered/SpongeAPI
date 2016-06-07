@@ -24,8 +24,19 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.type.ShrubType;
+import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.weighted.VariableAmount;
+import org.spongepowered.api.util.weighted.WeightedTable;
+import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.gen.Populator;
+
+import java.util.Optional;
+import java.util.function.Function;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a populator which places down various variants of
@@ -34,18 +45,20 @@ import org.spongepowered.api.world.gen.Populator;
 public interface Shrub extends Populator {
 
     /**
-     * Gets the {@link ShrubType} to place.
-     * 
-     * @return The shrub type
+     * Creates a new {@link Builder} to build a {@link Shrub} populator.
+     *
+     * @return The new builder
      */
-    ShrubType getType();
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
-     * Sets the {@link ShrubType} to place.
+     * Gets a weighted collection of {@link ShrubType}s to place.
      * 
-     * @param type The new shrub type
+     * @return The shrub types
      */
-    void setType(ShrubType type);
+    WeightedTable<ShrubType> getTypes();
 
     /**
      * Gets the number of shrubs to attempt to spawn per chunk, must be greater
@@ -53,7 +66,7 @@ public interface Shrub extends Populator {
      * 
      * @return The amount of shrubs to spawn
      */
-    int getShrubsPerChunk();
+    VariableAmount getShrubsPerChunk();
 
     /**
      * Sets the number of shrubs to attempt to spawn per chunk, must be greater
@@ -61,12 +74,47 @@ public interface Shrub extends Populator {
      * 
      * @param count The new amount of shrubs to spawn
      */
-    void setShrubsPerChunk(int count);
+    void setShrubsPerChunk(VariableAmount count);
+
+    /**
+     * Sets the number of shrubs to attempt to spawn per chunk, must be greater
+     * than zero.
+     * 
+     * @param count The new amount of shrubs to spawn
+     */
+    default void setShrubsPerChunk(int count) {
+        setShrubsPerChunk(VariableAmount.fixed(count));
+    }
+
+    /**
+     * Gets the overriding supplier if it exists. If the supplier is present
+     * then it is used in place of the weighted table while determining what
+     * ShrubType to place.
+     * 
+     * @return The supplier override
+     */
+    Optional<Function<Location<Chunk>, ShrubType>> getSupplierOverride();
+
+    /**
+     * Sets the overriding supplier. If the supplier is present then it is used
+     * in place of the weighted table while determining what ShrubType to place.
+     * 
+     * @param override The new supplier override, or null
+     */
+    void setSupplierOverride(@Nullable Function<Location<Chunk>, ShrubType> override);
+
+    /**
+     * Clears the supplier override to force the weighted table to be used
+     * instead.
+     */
+    default void clearSupplierOverride() {
+        setSupplierOverride(null);
+    }
 
     /**
      * A builder for constructing {@link Shrub} populators.
      */
-    interface Builder {
+    interface Builder extends ResettableBuilder<Shrub, Builder> {
 
         /**
          * Sets the number of shrubs to attempt to spawn per chunk, must be
@@ -75,22 +123,44 @@ public interface Shrub extends Populator {
          * @param count The new amount of shrubs to spawn
          * @return This builder, for chaining
          */
-        Builder perChunk(int count);
+        Builder perChunk(VariableAmount count);
 
         /**
-         * Sets the {@link ShrubType} to place.
+         * Sets the number of shrubs to attempt to spawn per chunk, must be
+         * greater than zero.
+         * 
+         * @param count The new amount of shrubs to spawn
+         * @return This builder, for chaining
+         */
+        default Builder perChunk(int count) {
+            return perChunk(VariableAmount.fixed(count));
+        }
+
+        /**
+         * Sets the weighted {@link ShrubType}s to place.
+         * 
+         * @param types The new shrub types
+         * @return This builder, for chaining
+         */
+        Builder types(WeightedTable<ShrubType> types);
+
+        /**
+         * Adds the weighted {@link ShrubType}s to the list of types.
          * 
          * @param type The new shrub type
+         * @param weight The weight of the type
          * @return This builder, for chaining
          */
-        Builder type(ShrubType type);
+        Builder type(ShrubType type, int weight);
 
         /**
-         * Resets this builder to the default values.
+         * Sets the overriding supplier. If the supplier is present then it is
+         * used in place of the weighted table.
          * 
+         * @param override The new supplier override, or null
          * @return This builder, for chaining
          */
-        Builder reset();
+        Builder supplier(@Nullable Function<Location<Chunk>, ShrubType> override);
 
         /**
          * Builds a new instance of a {@link Shrub} populator with the settings
@@ -98,7 +168,7 @@ public interface Shrub extends Populator {
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
-         *             which do not have default values
+         *         which do not have default values
          */
         Shrub build() throws IllegalStateException;
 

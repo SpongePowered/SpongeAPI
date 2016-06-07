@@ -25,7 +25,9 @@
 package org.spongepowered.api.world.explosion;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.explosive.Explosive;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.World;
 
 import java.util.Optional;
@@ -38,18 +40,20 @@ import javax.annotation.Nullable;
 public interface Explosion {
 
     /**
+     * Creates a new {@link Builder} to build a {@link Explosion}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
      * Gets the world the explosion will occur in.
      *
      * @return The world
      */
     World getWorld();
-
-    /**
-     * Sets the world the explosion will occur in.
-     *
-     * @param world The world
-     */
-    void setWorld(World world);
 
     /**
      * Gets the source {@link Explosive} of the explosion.
@@ -59,25 +63,11 @@ public interface Explosion {
     Optional<Explosive> getSourceExplosive();
 
     /**
-     * Sets the source explosive of the explosion.
-     *
-     * @param source The source explosive
-     */
-    void setSourceExplosive(@Nullable Explosive source);
-
-    /**
      * Gets the radius of the explosion.
      *
      * @return The radius
      */
     float getRadius();
-
-    /**
-     * Sets the radius of the explosion.
-     *
-     * @param radius The radius
-     */
-    void setRadius(float radius);
 
     /**
      * Gets a copy of the explosion's origin.
@@ -87,25 +77,11 @@ public interface Explosion {
     Vector3d getOrigin();
 
     /**
-     * Sets the origin of the explosion.
-     *
-     * @param origin The origin
-     */
-    void setOrigin(Vector3d origin);
-
-    /**
      * Gets whether the affected blocks have a chance to catch on fire.
      *
      * @return Whether the affected blocks can catch on fire
      */
     boolean canCauseFire();
-
-    /**
-     * Sets whether the affected blocks have a chance to catch on fire.
-     *
-     * @param fire Whether the affected blocks can catch on fire
-     */
-    void canCauseFire(boolean fire);
 
     /**
      * Gets whether the explosion will play a smoke effect.
@@ -115,13 +91,6 @@ public interface Explosion {
     boolean shouldPlaySmoke();
 
     /**
-     * Sets whether the explosion will show smoke to the client
-     *
-     * @param smoke Whether the explosion will play smoke
-     */
-    void canPlaySmoke(boolean smoke);
-
-    /**
      * Gets whether the affected blocks should be destroyed on explosion.
      *
      * @return Whether the affected blocks should be destroyed
@@ -129,10 +98,88 @@ public interface Explosion {
     boolean shouldBreakBlocks();
 
     /**
-     * If true, blocks will be set to BlockTypes.AIR and items dropped.
-     * If false, blocks will be unaffected.
+     * Gets whether this explosion will damage entities.
      *
-     * @param destroy Whether the affected blocks should be destroyed
+     * @return Whether the explosion will damage entities
      */
-    void shouldBreakBlocks(boolean destroy);
+    boolean shouldDamageEntities();
+
+    /**
+     * A builder for {@link Explosion}.
+     */
+    interface Builder extends ResettableBuilder<Explosion, Builder> {
+
+        /**
+         * Sets the {@link World} the explosion will occur in.
+         *
+         * @param world The world
+         * @return The builder, for chaining
+         */
+        Builder world(World world);
+
+        /**
+         * Sets the source explosive of the explosion.
+         *
+         * @param source The source entity
+         * @return The builder, for chaining
+         */
+        Builder sourceExplosive(@Nullable Explosive source);
+
+        /**
+         * Sets the radius of the explosion.
+         *
+         * @param radius The radius
+         * @return The builder, for chaining
+         */
+        Builder radius(float radius);
+
+        /**
+         * Sets the origin of the explosion.
+         *
+         * @param origin The origin
+         * @return The builder, for chaining
+         */
+        Builder origin(Vector3d origin);
+
+        /**
+         * Sets whether the affected blocks have a chance to catch on fire.
+         *
+         * @param fire Whether the affected blocks can catch on fire
+         * @return The builder, for chaining
+         */
+        Builder canCauseFire(boolean fire);
+
+        /**
+         * Sets whether the explosion will damage entities nearby.
+         *
+         * @param damage Whether the explosion will damage entities
+         * @return This builder, for chaining
+         */
+        Builder shouldDamageEntities(boolean damage);
+
+        /**
+         * Sets whether the explosion will have smoke particles.
+         *
+         * @param smoke Whether the explosion will have smoke particles
+         * @return This builder, for chaining
+         */
+        Builder shouldPlaySmoke(boolean smoke);
+
+        /**
+         * Sets whether the affected blocks should be destroyed on explosion.
+         *
+         * @param destroy Whether the affected blocks should be destroyed
+         * @return The builder, for chaining
+         */
+        Builder shouldBreakBlocks(boolean destroy);
+
+        /**
+         * Attempts to create a {@link Explosion} from the specified parameters.
+         *
+         * @return The explosion, if successful
+         * @throws IllegalArgumentException If any builder parameter is invalid
+         */
+        Explosion build() throws IllegalArgumentException;
+
+    }
 }

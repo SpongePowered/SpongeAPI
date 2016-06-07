@@ -24,17 +24,28 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known vanilla {@link DoublePlantType}s.
  */
 public final class DoublePlantTypes {
 
-    public static final DoublePlantType SUNFLOWER = null;
-    public static final DoublePlantType SYRINGA = null;
-    public static final DoublePlantType GRASS = null;
-    public static final DoublePlantType FERN = null;
-    public static final DoublePlantType ROSE = null;
-    public static final DoublePlantType PAEONIA = null;
+    // SORTFIELDS:ON
+
+    public static final DoublePlantType FERN = DummyObjectProvider.createFor(DoublePlantType.class, "FERN");
+
+    public static final DoublePlantType GRASS = DummyObjectProvider.createFor(DoublePlantType.class, "GRASS");
+
+    public static final DoublePlantType PAEONIA = DummyObjectProvider.createFor(DoublePlantType.class, "PAEONIA");
+
+    public static final DoublePlantType ROSE = DummyObjectProvider.createFor(DoublePlantType.class, "ROSE");
+
+    public static final DoublePlantType SUNFLOWER = DummyObjectProvider.createFor(DoublePlantType.class, "SUNFLOWER");
+
+    public static final DoublePlantType SYRINGA = DummyObjectProvider.createFor(DoublePlantType.class, "SYRINGA");
+
+    // SORTFIELDS:OFF
 
     private DoublePlantTypes() {
     }

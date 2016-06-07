@@ -24,37 +24,50 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * All built-in equipment types.
  */
 public final class EquipmentTypes {
 
+    // SORTFIELDS:ON
+
     /**
      * Any type, all other types should sublass this to allow instanceof checks
      * to succeed.
      */
-    public static final EquipmentType ANY = null;
+    public static final EquipmentType ANY = DummyObjectProvider.createFor(EquipmentType.class, "ANY");
 
     /**
      * Held or otherwise equipped items.
      */
-    public static final EquipmentType EQUIPPED = null;
+    public static final EquipmentType EQUIPPED = DummyObjectProvider.createFor(EquipmentType.class, "EQUIPPED");
 
     /**
      * Armor types, HEADWEAR, CHESTPLATE, LEGGINGS and BOOTS should subclass
      * this.
      */
-    public static final EquipmentTypeWorn WORN = null;
+    public static final EquipmentTypeWorn WORN = DummyObjectProvider.createFor(EquipmentTypeWorn.class, "WORN");
+
+    // SORTFIELDS:OFF
+
+    // SORTFIELDS:ON
+
+    public static final EquipmentTypeWorn BOOTS = DummyObjectProvider.createFor(EquipmentTypeWorn.class, "BOOTS");
+
+    public static final EquipmentTypeWorn CHESTPLATE = DummyObjectProvider.createFor(EquipmentTypeWorn.class, "CHESTPLATE");
 
     // Armor
-    public static final EquipmentTypeWorn HEADWEAR = null;
-    public static final EquipmentTypeWorn CHESTPLATE = null;
-    public static final EquipmentTypeWorn LEGGINGS = null;
-    public static final EquipmentTypeWorn BOOTS = null;
+    public static final EquipmentTypeWorn HEADWEAR = DummyObjectProvider.createFor(EquipmentTypeWorn.class, "HEADWEAR");
+
+    public static final EquipmentTypeWorn LEGGINGS = DummyObjectProvider.createFor(EquipmentTypeWorn.class, "LEGGINGS");
+
+    // SORTFIELDS:OFF
 
     /**
      * No subclasses for you.
      */
     private EquipmentTypes() {}
-    
+
 }

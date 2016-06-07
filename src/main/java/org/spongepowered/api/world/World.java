@@ -26,13 +26,18 @@ package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.scoreboard.Scoreboard;
-import org.spongepowered.api.service.permission.context.Contextual;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.service.context.ContextSource;
+import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
+import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.world.extent.worker.MutableBiomeAreaWorker;
+import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
@@ -45,7 +50,7 @@ import java.util.UUID;
 /**
  * A loaded Minecraft world.
  */
-public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
+public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, MessageReceiver, ChatTypeMessageReceiver {
 
     @Override
     default Location<World> getLocation(Vector3i position) {
@@ -86,44 +91,68 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
     String getName();
 
     /**
-     * Get the loaded chunk at the given position.
+     * Get the loaded chunk at the given block coordinate position.
      *
-     * @param position The position
+     * @param blockPosition The position
      * @return The chunk, if available
      */
-    Optional<Chunk> getChunk(Vector3i position);
+    default Optional<Chunk> getChunkAtBlock(Vector3i blockPosition) {
+        return getChunkAtBlock(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ());
+    }
 
     /**
-     * Get the loaded chunk at the given position.
+     * Get the loaded chunk at the given block coordinate position.
      *
-     * @param x The x coordinate
-     * @param y The y coordinate
-     * @param z The z coordinate
+     * @param bx The x coordinate
+     * @param by The y coordinate
+     * @param bz The z coordinate
      * @return The chunk, if available
      */
-    Optional<Chunk> getChunk(int x, int y, int z);
+    default Optional<Chunk> getChunkAtBlock(int bx, int by, int bz) {
+        return getChunk(Sponge.getServer().getChunkLayout().forceToChunk(bx, by, bz));
+    }
 
     /**
-     * Get the chunk at the given position if it exists or if
+     * Get the loaded chunk at the given chunk coordinate position.
+     *
+     * @param chunkPosition The position
+     * @return The chunk, if available
+     */
+    default Optional<Chunk> getChunk(Vector3i chunkPosition) {
+        return getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
+    }
+
+    /**
+     * Get the loaded chunk at the given chunk coordinate position.
+     *
+     * @param cx The x coordinate
+     * @param cy The y coordinate
+     * @param cz The z coordinate
+     * @return The chunk, if available
+     */
+    Optional<Chunk> getChunk(int cx, int cy, int cz);
+
+    /**
+     * Get the chunk at the given chunk coordinate position if it exists or if
      * {@code shouldGenerate} is true and the chunk is generated.
      *
-     * @param position The position
+     * @param chunkPosition The position
      * @param shouldGenerate True to generate a new chunk
      * @return The loaded or generated chunk, if already generated
      */
-    Optional<Chunk> loadChunk(Vector3i position, boolean shouldGenerate);
+    Optional<Chunk> loadChunk(Vector3i chunkPosition, boolean shouldGenerate);
 
     /**
-     * Get the chunk at the given position if it exists or if
+     * Get the chunk at the given chunk coordinate position if it exists or if
      * {@code shouldGenerate} is true and the chunk is generated.
      *
-     * @param x The x coordinate
-     * @param y The y coordinate
-     * @param z The z coordinate
+     * @param cx The x coordinate
+     * @param cy The y coordinate
+     * @param cz The z coordinate
      * @param shouldGenerate True to generate a new chunk
      * @return The loaded or generated chunk, if already generated
      */
-    Optional<Chunk> loadChunk(int x, int y, int z, boolean shouldGenerate);
+    Optional<Chunk> loadChunk(int cx, int cy, int cz, boolean shouldGenerate);
 
     /**
      * Unloads the given chunk from the world. Returns a {@code boolean} flag
@@ -164,8 +193,20 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
     WorldBorder getWorldBorder();
 
     /**
+     * Returns a new builder for creating a task to pre-generate the chunks
+     * inside a square border with a given center and diameter.
+     *
+     * @param center The center of the border
+     * @param diameter The diameter of the border
+     * @return The builder for the chunk pre-generate task
+     * @see WorldBorder.ChunkPreGenerate
+     */
+    WorldBorder.ChunkPreGenerate newChunkPreGenerate(Vector3d center, double diameter);
+
+    /**
      * Gets the specified GameRule value.
-     **
+     * *
+     *
      * @param gameRule The name of the GameRule.
      * @return The GameRule value, if it exists.
      */
@@ -188,21 +229,12 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
     /**
      * Gets the {@link WorldGenerator} for this world.
      *
-     * <p>Any changes made to the world generator won't affect the world until
-     * {@link #setWorldGenerator(WorldGenerator)}, and even then only newly
-     * changed chunks will be affected.</p>
+     * <p>Any changes made to the world generator will only affect newly
+     * generated chunks.</p>
      *
      * @return The world generator
      */
     WorldGenerator getWorldGenerator();
-
-    /**
-     * Sets the {@link WorldGenerator} for this world to use to create new
-     * chunks.
-     *
-     * @param generator The new generator
-     */
-    void setWorldGenerator(WorldGenerator generator);
 
     /**
      * Returns whether this {@link World}'s spawn chunks remain loaded when no
@@ -210,7 +242,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
      * 's {@link DimensionType}'s keepLoaded value unless a plugin overrides it.
      *
      * @return True if {@link World} remains loaded without players, false if
-     *         not
+     * not
      */
     boolean doesKeepSpawnLoaded();
 
@@ -220,7 +252,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
      * {@link DimensionType}'s keepLoaded value.
      *
      * @param keepLoaded Whether this {@link World}'s spawn chunks remain loaded
-     *            without players
+     * without players
      */
     void setKeepSpawnLoaded(boolean keepLoaded);
 
@@ -230,20 +262,6 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
      * @return The associated world storage
      */
     WorldStorage getWorldStorage();
-
-    /**
-     * Gets the @link Scoreboard} for this world.
-     *
-     * @return The associated {@link Scoreboard}
-     */
-    Scoreboard getScoreboard();
-
-    /**
-     * Sets the {@link Scoreboard} for this world.
-     *
-     * @param scoreboard The scoreboard to set
-     */
-    void setScoreboard(Scoreboard scoreboard);
 
     /**
      * Gets the {@link WorldCreationSettings} which were used to create this
@@ -262,6 +280,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
 
     /**
      * Gets the {@link Location} of the spawn point.
+     *
      * @return The location
      */
     Location<World> getSpawnLocation();
@@ -274,17 +293,27 @@ public interface World extends Extent, WeatherUniverse, Viewer, Contextual {
     void triggerExplosion(Explosion explosion);
 
     /**
-     * Gets the teleporter agent, used for manipulating teleporters.
+     * Gets the portal agent, used for manipulating teleporters.
      *
-     * @return The teleporter agent
+     * @return The portal agent
      */
-    TeleporterAgent getTeleporterAgent();
+    PortalAgent getPortalAgent();
+
+    @Override
+    MutableBiomeAreaWorker<? extends World> getBiomeWorker();
+
+    @Override
+    MutableBlockVolumeWorker<? extends World> getBlockWorker();
 
     /**
-     * Gets the world's player simulator, used for simulating player actions
+     * Similar to {@link #spawnEntity(Entity, Cause)} except where multiple
+     * entities can be attempted to be spawned into this {@link World} with
+     * a customary {@link Cause}. The recommended use is to easily process
+     * the entity spawns without interference with the cause tracking system.
      *
-     * @return The player simulator
+     * @param entities The entities to be spawned
+     * @param cause The cause to be associated with the entities spawning
+     * @return True if any of the entities were successfully spawned
      */
-    PlayerSimulator getPlayerSimulator();
-
+    boolean spawnEntities(Iterable<? extends Entity> entities, Cause cause);
 }

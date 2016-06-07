@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util;
 
+import com.flowpowered.math.GenericMath;
+import com.flowpowered.math.TrigMath;
 import com.flowpowered.math.vector.Vector3d;
 
 /**
@@ -39,44 +41,47 @@ import com.flowpowered.math.vector.Vector3d;
  * </ul>
  */
 public enum Direction {
-    NORTH(new Vector3d(0, 0, -1), Flag.CARDINAL),
-    NORTH_NORTHEAST(new Vector3d(C.S8, 0, -C.C8), Flag.SECONDARY_ORDINAL),
-    NORTHEAST(new Vector3d(1, 0, -1), Flag.ORDINAL),
-    EAST_NORTHEAST(new Vector3d(C.C8, 0, -C.S8), Flag.SECONDARY_ORDINAL),
+    NORTH(new Vector3d(0, 0, -1), Division.CARDINAL),
+    NORTH_NORTHEAST(new Vector3d(C.S8, 0, -C.C8), Division.SECONDARY_ORDINAL),
+    NORTHEAST(new Vector3d(1, 0, -1), Division.ORDINAL),
+    EAST_NORTHEAST(new Vector3d(C.C8, 0, -C.S8), Division.SECONDARY_ORDINAL),
 
-    EAST(new Vector3d(1, 0, 0), Flag.CARDINAL),
-    EAST_SOUTHEAST(new Vector3d(C.C8, 0, C.S8), Flag.SECONDARY_ORDINAL),
-    SOUTHEAST(new Vector3d(1, 0, 1), Flag.ORDINAL),
-    SOUTH_SOUTHEAST(new Vector3d(C.S8, 0, C.C8), Flag.SECONDARY_ORDINAL),
+    EAST(new Vector3d(1, 0, 0), Division.CARDINAL),
+    EAST_SOUTHEAST(new Vector3d(C.C8, 0, C.S8), Division.SECONDARY_ORDINAL),
+    SOUTHEAST(new Vector3d(1, 0, 1), Division.ORDINAL),
+    SOUTH_SOUTHEAST(new Vector3d(C.S8, 0, C.C8), Division.SECONDARY_ORDINAL),
 
-    SOUTH(new Vector3d(0, 0, 1), Flag.CARDINAL),
-    SOUTH_SOUTHWEST(new Vector3d(-C.S8, 0, C.C8), Flag.SECONDARY_ORDINAL),
-    SOUTHWEST(new Vector3d(-1, 0, 1), Flag.ORDINAL),
-    WEST_SOUTHWEST(new Vector3d(-C.C8, 0, C.S8), Flag.SECONDARY_ORDINAL),
+    SOUTH(new Vector3d(0, 0, 1), Division.CARDINAL),
+    SOUTH_SOUTHWEST(new Vector3d(-C.S8, 0, C.C8), Division.SECONDARY_ORDINAL),
+    SOUTHWEST(new Vector3d(-1, 0, 1), Division.ORDINAL),
+    WEST_SOUTHWEST(new Vector3d(-C.C8, 0, C.S8), Division.SECONDARY_ORDINAL),
 
-    WEST(new Vector3d(-1, 0, 0), Flag.CARDINAL),
-    WEST_NORTHWEST(new Vector3d(-C.C8, 0, -C.S8), Flag.SECONDARY_ORDINAL),
-    NORTHWEST(new Vector3d(-1, 0, -1), Flag.ORDINAL),
-    NORTH_NORTHWEST(new Vector3d(-C.S8, 0, -C.C8), Flag.SECONDARY_ORDINAL),
+    WEST(new Vector3d(-1, 0, 0), Division.CARDINAL),
+    WEST_NORTHWEST(new Vector3d(-C.C8, 0, -C.S8), Division.SECONDARY_ORDINAL),
+    NORTHWEST(new Vector3d(-1, 0, -1), Division.ORDINAL),
+    NORTH_NORTHWEST(new Vector3d(-C.S8, 0, -C.C8), Division.SECONDARY_ORDINAL),
 
-    UP(new Vector3d(0, 1, 0), Flag.UPRIGHT),
-    DOWN(new Vector3d(0, -1, 0), Flag.UPRIGHT),
+    UP(new Vector3d(0, 1, 0), Division.CARDINAL),
+    DOWN(new Vector3d(0, -1, 0), Division.CARDINAL),
 
-    NONE(new Vector3d(0, 0, 0), 0);
+    NONE(new Vector3d(0, 0, 0), Division.NONE);
 
+    private static final Direction[] SECONDARY_ORDINAL_SET = {
+            NORTH, NORTH_NORTHEAST, NORTHEAST, EAST_NORTHEAST,
+            EAST, EAST_SOUTHEAST, SOUTHEAST, SOUTH_SOUTHEAST,
+            SOUTH, SOUTH_SOUTHWEST, SOUTHWEST, WEST_SOUTHWEST,
+            WEST, WEST_NORTHWEST, NORTHWEST, NORTH_NORTHWEST,
+    };
+    private static final Direction[] ORDINAL_SET = {
+            NORTH, NORTHEAST, EAST, SOUTHEAST,
+            SOUTH, SOUTHWEST, WEST, NORTHWEST,
+    };
+    private static final Direction[] CARDINAL_SET = {
+            NORTH, EAST, SOUTH, WEST
+    };
     private final Vector3d direction;
-    private final int flags;
+    private final Division division;
     private Direction opposite;
-
-    Direction(Vector3d vector3d, int flags) {
-        if (vector3d.lengthSquared() == 0) {
-            // Prevent normalization of the zero direction
-            this.direction = vector3d;
-        } else {
-            this.direction = vector3d.normalize();
-        }
-        this.flags = flags;
-    }
 
     static {
         NORTH.opposite = SOUTH;
@@ -104,19 +109,44 @@ public enum Direction {
         SOUTH_SOUTHWEST.opposite = NORTH_NORTHEAST;
     }
 
+    Direction(Vector3d vector3d, Division division) {
+        if (vector3d.lengthSquared() == 0) {
+            // Prevent normalization of the zero direction
+            this.direction = vector3d;
+        } else {
+            this.direction = vector3d.normalize();
+        }
+        this.division = division;
+    }
+
     /**
      * Gets the closest direction from the given vector. If the vector is the
      * 0-Vector, this method returns {@link #NONE}. If the vector has the same
      * horizontal and vertical length, a horizontal direction will be returned.
-     * If the vector has the same angle to two directions the clockwise next
-     * will be selected.
+     * If the vector is halfway between two directions the clockwise next will
+     * be selected.
      *
      * @param vector The vector to convert to a direction
      * @return The closest horizontal direction.
      */
     public static Direction getClosest(Vector3d vector) {
-        if (Math.pow(vector.getY(), 2) <= Math.pow(vector.getX(), 2) + Math.pow(vector.getZ(), 2)) {
-            return getClosestHorizonal(vector);
+        return getClosest(vector, Division.SECONDARY_ORDINAL);
+    }
+
+    /**
+     * Gets the closest direction from the given vector. If the vector is the
+     * 0-Vector, this method returns {@link #NONE}. If the vector has the same
+     * horizontal and vertical length, a horizontal direction will be returned.
+     * If the vector is halfway between two directions the clockwise next will
+     * be selected.
+     *
+     * @param vector The vector to convert to a direction
+     * @param smallestDivision The smallest compass division that can be returned
+     * @return The closest horizontal direction.
+     */
+    public static Direction getClosest(Vector3d vector, Division smallestDivision) {
+        if (vector.getY() * vector.getY() <= vector.getX() * vector.getX() + vector.getZ() * vector.getZ()) {
+            return getClosestHorizontal(vector, smallestDivision);
         } else if (vector.getY() > 0) {
             return UP;
         } else {
@@ -126,26 +156,58 @@ public enum Direction {
 
     /**
      * Gets the closest horizontal direction from the given vector. If the
-     * vector is the 0-Vector, this method returns {@link #NONE}. If the vector
-     * has the same angle to two directions the clockwise next will be selected.
+     * vector is the 0-Vector (ignoring y), this method returns {@link #NONE}.
+     * If the vector is halfway between two directions the clockwise next will
+     * be selected.
      *
      * @param vector The vector to convert to a direction
      * @return The closest horizontal direction.
      */
-    public static Direction getClosestHorizonal(Vector3d vector) {
-        if (vector.getX() == 0) {
-            if (vector.getZ() == 0) {
-                return NONE;
-            } else if (vector.getZ() < 0) {
-                return NORTH;
-            } else {
-                return SOUTH;
-            }
-        } else {
-            final double angle = Math.atan2(vector.getX(), -vector.getZ());
-            final int ordinal = (int) (angle * 8 / Math.PI + 16.5) % 16;
-            return values()[ordinal];
+    public static Direction getClosestHorizontal(Vector3d vector) {
+        return getClosestHorizontal(vector, Division.SECONDARY_ORDINAL);
+    }
+
+    /**
+     * Gets the closest horizontal direction from the given vector. If the
+     * vector is the 0-Vector (ignoring y), this method returns {@link #NONE}.
+     * If the vector is halfway between two directions the clockwise next will
+     * be selected.
+     *
+     * @param vector The vector to convert to a direction
+     * @param smallestDivision The smallest compass division that can be returned
+     * @return The closest horizontal direction.
+     */
+    public static Direction getClosestHorizontal(Vector3d vector, Division smallestDivision) {
+        // Ignore vectors not in the xz plane
+        if (Math.abs(vector.getX()) <= GenericMath.DBL_EPSILON && Math.abs(vector.getZ()) <= GenericMath.DBL_EPSILON) {
+            return NONE;
         }
+        // Normalize so it lies on the unit circle in xz
+        vector = vector.normalize();
+        // Get the angle from the x component and correct for complement with z
+        double angle = TrigMath.acos(vector.getX());
+        if (vector.getZ() < 0) {
+            angle = TrigMath.TWO_PI - angle;
+        }
+        // Make the angle positive, offset for MC's system, then wrap in [0, 2pi)
+        angle = (angle + TrigMath.TWO_PI + TrigMath.HALF_PI) % TrigMath.TWO_PI;
+        // Use a direction set; it needs to be sorted and the directions evenly spaced
+        final Direction[] set;
+        switch (smallestDivision) {
+            case CARDINAL:
+                set = CARDINAL_SET;
+                break;
+            case ORDINAL:
+                set = ORDINAL_SET;
+                break;
+            case SECONDARY_ORDINAL:
+                set = SECONDARY_ORDINAL_SET;
+                break;
+            default:
+                throw new IllegalArgumentException(smallestDivision.name());
+        }
+        // Round to the closest index in the direction set
+        return set[(int) Math.round(angle * set.length / TrigMath.TWO_PI) % set.length];
     }
 
     /**
@@ -157,13 +219,13 @@ public enum Direction {
     public static Direction getFromAxis(final Axis axis) {
         switch (axis) {
             case X:
-                return SOUTH;
+                return EAST;
             case Y:
                 return UP;
             case Z:
-                return EAST;
+                return SOUTH;
             default:
-                throw new IllegalStateException("Not capable of handling the " + axis.name() + " axis!");
+                throw new IllegalArgumentException(axis.name());
         }
     }
 
@@ -183,7 +245,7 @@ public enum Direction {
             case MINUS:
                 return getFromAxis(axis).getOpposite();
             default:
-                throw new IllegalStateException("Not capable of handling the " + direction.name() + " direction!");
+                throw new IllegalArgumentException(axis.name());
         }
     }
 
@@ -203,7 +265,7 @@ public enum Direction {
      * @return True if it is opposite
      */
     public boolean isOpposite(Direction d) {
-        return this.opposite.equals(d);
+        return this.opposite == d;
     }
 
     /**
@@ -216,7 +278,7 @@ public enum Direction {
      * @return True if cardinal
      */
     public boolean isCardinal() {
-        return (this.flags & Flag.CARDINAL) > 0;
+        return this.division == Division.CARDINAL;
     }
 
     /**
@@ -226,7 +288,7 @@ public enum Direction {
      * @return True if ordinal
      */
     public boolean isOrdinal() {
-        return (this.flags & Flag.ORDINAL) > 0;
+        return this.division == Division.ORDINAL;
     }
 
     /**
@@ -236,7 +298,7 @@ public enum Direction {
      * @return True if secondary ordinal
      */
     public boolean isSecondaryOrdinal() {
-        return (this.flags & Flag.SECONDARY_ORDINAL) > 0;
+        return this.division == Division.SECONDARY_ORDINAL;
     }
 
     /**
@@ -245,7 +307,7 @@ public enum Direction {
      * @return True if the Y component is non-zero
      */
     public boolean isUpright() {
-        return (this.flags & Flag.UPRIGHT) > 0;
+        return this == UP || this == DOWN;
     }
 
     /**
@@ -261,19 +323,19 @@ public enum Direction {
 
         double C8 = Math.cos(Math.PI / 8);
         double S8 = Math.sin(Math.PI / 8);
+
     }
 
-    public static final class Flag {
+    /**
+     * The compass division supported by this direction implementation.
+     */
+    public enum Division {
 
-        public static final int CARDINAL = 0x1;
-        public static final int ORDINAL = 0x2;
-        public static final int SECONDARY_ORDINAL = 0x4;
-        public static final int UPRIGHT = 0x8;
+        CARDINAL,
+        ORDINAL,
+        SECONDARY_ORDINAL,
+        NONE
 
-        public static final int ALL = CARDINAL | ORDINAL | SECONDARY_ORDINAL | UPRIGHT;
-
-        private Flag() {
-        }
     }
 
 }

@@ -24,17 +24,21 @@
  */
 package org.spongepowered.api.effect;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundType;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.chat.ChatType;
+import org.spongepowered.api.text.BookView;
 import org.spongepowered.api.text.title.Title;
-import org.spongepowered.api.text.title.Titles;
+import org.spongepowered.api.world.World;
 
 /**
  * A Viewer is something that sees effects.
- * The Viewer class contains methods for spawning particles and playing sound effects.
+ * The Viewer class contains methods for spawning particles and playing sound
+ * effects.
  */
 public interface Viewer {
 
@@ -77,7 +81,8 @@ public interface Viewer {
      * @param sound The sound to play
      * @param position The position to play the sound
      * @param volume The volume to play the sound at, usually between 0 and 2
-     * @param pitch The modulation of the sound to play at, usually between 0 and 2
+     * @param pitch The modulation of the sound to play at, usually between 0
+     *        and 2
      */
     void playSound(SoundType sound, Vector3d position, double volume, double pitch);
 
@@ -88,26 +93,12 @@ public interface Viewer {
      * @param sound The sound to play
      * @param position The position to play the sound
      * @param volume The volume to play the sound at, usually between 0 and 2
-     * @param pitch The modulation of the sound to play at, usually between 0 and 2
-     * @param minVolume The minimum volume to play the sound at, usually between 0 and 2
+     * @param pitch The modulation of the sound to play at, usually between 0
+     *        and 2
+     * @param minVolume The minimum volume to play the sound at, usually between
+     *        0 and 2
      */
     void playSound(SoundType sound, Vector3d position, double volume, double pitch, double minVolume);
-
-    /**
-     * Sends the message(s) with the specified {@link ChatType} on the client.
-     *
-     * @param type The chat type to send the messages to
-     * @param messages The message(s) to send
-     */
-    void sendMessage(ChatType type, Text... messages);
-
-    /**
-     * Sends the message(s) with the specified {@link ChatType} on the client.
-     *
-     * @param type The chat type to send the messages to
-     * @param messages The message(s) to send
-     */
-    void sendMessage(ChatType type, Iterable<Text> messages);
 
     /**
      * Sends a {@link Title} to this player.
@@ -121,14 +112,73 @@ public interface Viewer {
      * all settings back to default values.
      */
     default void resetTitle() {
-        sendTitle(Titles.RESET);
+        sendTitle(Title.RESET);
     }
 
     /**
      * Removes the currently displayed {@link Title} from the player's screen.
      */
     default void clearTitle() {
-        sendTitle(Titles.CLEAR);
+        sendTitle(Title.CLEAR);
     }
+
+    /**
+     * Sends a {@link BookView} to this viewer.
+     *
+     * @param bookView BookView to send
+     */
+    void sendBookView(BookView bookView);
+
+    /**
+     * Sends a client-only block change.
+     *
+     * <p>This will not change the {@link World} in any way.</p>
+     *
+     * @param vec The position
+     * @param state The block state
+     */
+    default void sendBlockChange(Vector3i vec, BlockState state) {
+        checkNotNull(vec, "vec");
+        this.sendBlockChange(vec.getX(), vec.getY(), vec.getZ(), state);
+    }
+
+    /**
+     * Sends a client-only block change.
+     *
+     * <p>This will not change the {@link World} in any way.</p>
+     *
+     * @param x The x position
+     * @param y The y position
+     * @param z The z position
+     * @param state The block state
+     */
+    void sendBlockChange(int x, int y, int z, BlockState state);
+
+    /**
+     * Resets the client's view of the provided position to what
+     * actually exists in the {@link World}.
+     *
+     * <p>This is useful for resetting what the client sees
+     * after sending a {@link #sendBlockChange block change}.</p>
+     *
+     * @param vec The position
+     */
+    default void resetBlockChange(Vector3i vec) {
+        checkNotNull(vec, "vec");
+        this.resetBlockChange(vec.getX(), vec.getY(), vec.getZ());
+    }
+
+    /**
+     * Resets the client's view of the provided position to what
+     * actually exists in the {@link World}.
+     *
+     * <p>This is useful for resetting what the client sees
+     * after sending a {@link #sendBlockChange block change}.</p>
+     *
+     * @param x The x position
+     * @param y The y position
+     * @param z The z position
+     */
+    void resetBlockChange(int x, int y, int z);
 
 }

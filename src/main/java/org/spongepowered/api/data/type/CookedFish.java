@@ -25,13 +25,14 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of cooked fish.
  */
 @CatalogedBy(CookedFishes.class)
-public interface CookedFish extends CatalogType {
+public interface CookedFish extends CatalogType, Translatable {
 
     /**
      * Gets this cooked fish type's corresponding {@link Fish} type.

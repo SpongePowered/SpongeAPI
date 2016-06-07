@@ -24,10 +24,17 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class PortionTypes {
 
-    public static final PortionType BOTTOM = null;
-    public static final PortionType TOP = null;
+    // SORTFIELDS:ON
+
+    public static final PortionType BOTTOM = DummyObjectProvider.createFor(PortionType.class, "BOTTOM");
+
+    public static final PortionType TOP = DummyObjectProvider.createFor(PortionType.class, "TOP");
+
+    // SORTFIELDS:OFF
 
     private PortionTypes() {
     }

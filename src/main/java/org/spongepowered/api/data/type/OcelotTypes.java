@@ -24,15 +24,24 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known vanilla {@link OcelotType}s.
  */
 public final class OcelotTypes {
 
-    public static final OcelotType WILD_OCELOT = null;
-    public static final OcelotType BLACK_CAT = null;
-    public static final OcelotType RED_CAT = null;
-    public static final OcelotType SIAMESE_CAT = null;
+    // SORTFIELDS:ON
+
+    public static final OcelotType BLACK_CAT = DummyObjectProvider.createFor(OcelotType.class, "BLACK_CAT");
+
+    public static final OcelotType RED_CAT = DummyObjectProvider.createFor(OcelotType.class, "RED_CAT");
+
+    public static final OcelotType SIAMESE_CAT = DummyObjectProvider.createFor(OcelotType.class, "SIAMESE_CAT");
+
+    public static final OcelotType WILD_OCELOT = DummyObjectProvider.createFor(OcelotType.class, "WILD_OCELOT");
+
+    // SORTFIELDS:OFF
 
     private OcelotTypes() {
     }

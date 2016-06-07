@@ -75,9 +75,8 @@ public final class OptBool {
     public static Optional<Boolean> of(@Nullable Boolean bool) {
         if (bool != null) {
             return of(bool.booleanValue());
-        } else {
-            return ABSENT;
         }
+        return ABSENT;
     }
 
     /**
@@ -89,9 +88,8 @@ public final class OptBool {
     public static Optional<Boolean> of(Optional<Boolean> bool) {
         if (bool.isPresent()) {
             return of(bool.get().booleanValue());
-        } else {
-            return ABSENT;
         }
+        return ABSENT;
     }
 
 }

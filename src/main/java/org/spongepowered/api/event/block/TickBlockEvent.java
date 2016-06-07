@@ -26,10 +26,9 @@ package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 
 /**
  * Called when a {@link BlockState} receives a tick.
  */
-public interface TickBlockEvent extends TargetBlockEvent, Cancellable, CauseTracked {
+public interface TickBlockEvent extends TargetBlockEvent, Cancellable {
 }

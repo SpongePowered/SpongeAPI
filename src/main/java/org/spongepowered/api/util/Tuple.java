@@ -30,14 +30,15 @@ import com.google.common.base.Objects;
 import org.apache.commons.lang3.tuple.Pair;
 
 /**
- * A tuple of objects. This can be considered a {@link Pair}
- * @param <K> 
- * @param <V>
+ * A tuple of objects. This can be considered a {@link Pair}.
+ *
+ * @param <K> The key
+ * @param <V> The value
  */
 public class Tuple<K, V> {
 
     public static <K, V> Tuple<K, V> of(K first, V second) {
-        return new Tuple<K, V>(first, second);
+        return new Tuple<>(first, second);
     }
 
     private final K first;
@@ -48,10 +49,20 @@ public class Tuple<K, V> {
         this.second = checkNotNull(second);
     }
 
+    /**
+     * Gets the first object, otherwise known as "key".
+     *
+     * @return The first object
+     */
     public K getFirst() {
         return this.first;
     }
 
+    /**
+     * Gets the second object, otherwise known as "value".
+     *
+     * @return The value
+     */
     public V getSecond() {
         return this.second;
     }

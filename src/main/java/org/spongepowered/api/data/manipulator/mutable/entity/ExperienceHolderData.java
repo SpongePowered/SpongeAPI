@@ -28,11 +28,11 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableExperienceHolderData;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 
 /**
  * Represents the "gained" experience information. Usually experience can be
- * used to enchant weapons and items. Usually applicable to {@link Human}s.
+ * used to enchant weapons and items. Usually applicable to {@link Humanoid}s.
  */
 public interface ExperienceHolderData extends DataManipulator<ExperienceHolderData, ImmutableExperienceHolderData> {
 

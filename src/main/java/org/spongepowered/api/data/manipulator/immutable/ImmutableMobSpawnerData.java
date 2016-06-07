@@ -30,13 +30,13 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.immutable.ImmutableWeightedEntityCollectionValue;
+import org.spongepowered.api.data.value.immutable.ImmutableWeightedCollectionValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.entity.vehicle.minecart.MinecartMobSpawner;
+import org.spongepowered.api.entity.vehicle.minecart.MobSpawnerMinecart;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 
 import java.util.Collection;
@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 
 /**
  * An {@link ImmutableDataManipulator} for all information surrounding a
- * {@link MobSpawner} and {@link MinecartMobSpawner}. The data defined will
+ * {@link MobSpawner} and {@link MobSpawnerMinecart}. The data defined will
  * provide new {@link Entity} spawns with varying types and data.
  */
 public interface ImmutableMobSpawnerData extends ImmutableDataManipulator<ImmutableMobSpawnerData, MobSpawnerData> {
@@ -102,7 +102,8 @@ public interface ImmutableMobSpawnerData extends ImmutableDataManipulator<Immuta
      * {@link Player} is NOT within the provided range, no attempts to spawn an
      * {@link Entity} is made.
      *
-     * @return The immutable value of the required player range to spawn entities
+     * @return The immutable value of the required player range to spawn
+     *     entities
      */
     ImmutableBoundedValue<Short> requiredPlayerRange();
 
@@ -126,21 +127,21 @@ public interface ImmutableMobSpawnerData extends ImmutableDataManipulator<Immuta
     ImmutableNextEntityToSpawnValue nextEntityToSpawn();
 
     /**
-     * Gets the {@link ImmutableWeightedEntityCollectionValue} of all possible
+     * Gets the {@link ImmutableWeightedCollectionValue} of all possible
      * {@link Entity} instances that can be spawned by the spawner. As they
-     * are all {@link WeightedSerializableObject} instances, their weight is defined as
-     * a {@link Random} to determine the next {@link Entity} that will be
-     * spawned, unless overriden by {@link #nextEntityToSpawn()}.
+     * are all {@link WeightedSerializableObject} instances, their weight is
+     * defined as a {@link Random} to determine the next {@link Entity} that
+     * will be spawned, unless overriden by {@link #nextEntityToSpawn()}.
      *
      * @return The immutable weighted entity collection value of entities
      */
-    ImmutableWeightedEntityCollectionValue possibleEntitiesToSpawn();
+    ImmutableWeightedCollectionValue<EntitySnapshot> possibleEntitiesToSpawn();
 
     /**
      * Represents a custom {@link Value} dealing with the next
-     * {@link WeightedSerializableObject} such that the next {@link Entity} to spawn may
-     * be pulled from the owning {@link #possibleEntitiesToSpawn()} with a
-     * default {@link Random}, or it may be custom defined on a case by
+     * {@link WeightedSerializableObject} such that the next {@link Entity} to
+     * spawn may be pulled from the owning {@link #possibleEntitiesToSpawn()}
+     * with a default {@link Random}, or it may be custom defined on a case by
      * case basis.
      */
     interface ImmutableNextEntityToSpawnValue extends ImmutableValue<WeightedSerializableObject<EntitySnapshot>> {
@@ -161,7 +162,8 @@ public interface ImmutableMobSpawnerData extends ImmutableDataManipulator<Immuta
         ImmutableNextEntityToSpawnValue with(WeightedSerializableObject<EntitySnapshot> value);
 
         @Override
-        ImmutableNextEntityToSpawnValue transform(Function<WeightedSerializableObject<EntitySnapshot>, WeightedSerializableObject<EntitySnapshot>> function);
+        ImmutableNextEntityToSpawnValue transform(Function<WeightedSerializableObject<EntitySnapshot>,
+                WeightedSerializableObject<EntitySnapshot>> function);
 
         @Override
         MobSpawnerData.NextEntityToSpawnValue asMutable();

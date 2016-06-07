@@ -227,7 +227,7 @@ public final class Coerce {
      *
      * @param obj Object to coerce
      * @return Object as an integer, <code>0</code> if the object is null or
-     *      cannot be parsed
+     *         cannot be parsed
      */
     public static int toInteger(@Nullable Object obj) {
         if (obj == null) {
@@ -267,9 +267,7 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Integer.valueOf(obj.toString()));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
 
@@ -279,9 +277,8 @@ public final class Coerce {
             Double dParsed = Doubles.tryParse(strObj);
             // try parsing as double now
             return dParsed == null ? Optional.<Integer>empty() : Optional.of(dParsed.intValue());
-        } else {
-            return Optional.of(iParsed);
         }
+        return Optional.of(iParsed);
     }
 
     /**
@@ -290,7 +287,7 @@ public final class Coerce {
      *
      * @param obj Object to coerce
      * @return Object as a double, <code>0.0</code> if the object is null or
-     *      cannot be parsed
+     *         cannot be parsed
      */
     public static double toDouble(@Nullable Object obj) {
         if (obj == null) {
@@ -324,9 +321,7 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Double.valueOf(obj.toString()));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
 
@@ -342,7 +337,7 @@ public final class Coerce {
      *
      * @param obj Object to coerce
      * @return Object as a float, <code>0.0</code> if the object is null or
-     *      cannot be parsed
+     *         cannot be parsed
      */
     public static float toFloat(@Nullable Object obj) {
         if (obj == null) {
@@ -375,9 +370,7 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Float.valueOf(obj.toString()));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
 
@@ -387,12 +380,11 @@ public final class Coerce {
     }
 
     /**
-     * Coerce the supplied object to a short number,
-     * parse it if necessary.
+     * Coerce the supplied object to a short number, parse it if necessary.
      *
      * @param obj Object to coerce
-     * @return Object as a short, <code>0</code> if the object is null or
-     *      cannot be parsed
+     * @return Object as a short, <code>0</code> if the object is null or cannot
+     *         be parsed
      */
     public static short toShort(@Nullable Object obj) {
         if (obj == null) {
@@ -428,21 +420,18 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Short.parseShort(Coerce.sanitiseNumber(obj)));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
         return Optional.empty();
     }
 
     /**
-     * Coerce the supplied object to a byte number,
-     * parse it if necessary.
+     * Coerce the supplied object to a byte number, parse it if necessary.
      *
      * @param obj Object to coerce
-     * @return Object as a byte, <code>0</code> if the object is null or
-     *      cannot be parsed
+     * @return Object as a byte, <code>0</code> if the object is null or cannot
+     *         be parsed
      */
     public static byte toByte(@Nullable Object obj) {
         if (obj == null) {
@@ -478,28 +467,25 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Byte.parseByte(Coerce.sanitiseNumber(obj)));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
         return Optional.empty();
     }
 
     /**
-     * Coerce the supplied object to a long number,
-     * parse it if necessary.
+     * Coerce the supplied object to a long number, parse it if necessary.
      *
      * @param obj Object to coerce
-     * @return Object as a long, <code>0</code> if the object is null or
-     *      cannot be parsed
+     * @return Object as a long, <code>0</code> if the object is null or cannot
+     *         be parsed
      */
     public static long toLong(@Nullable Object obj) {
         if (obj == null) {
             return 0;
         }
         if (obj instanceof Number) {
-            return ((Number) obj).shortValue();
+            return ((Number) obj).longValue();
         }
 
         try {
@@ -528,21 +514,18 @@ public final class Coerce {
 
         try {
             return Optional.ofNullable(Long.parseLong(Coerce.sanitiseNumber(obj)));
-        } catch (NumberFormatException e) {
-            // do nothing
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             // do nothing
         }
         return Optional.empty();
     }
 
     /**
-     * Coerce the supplied object to a character,
-     * parse it if necessary.
+     * Coerce the supplied object to a character, parse it if necessary.
      *
      * @param obj Object to coerce
-     * @return Object as a character, <code>'\u0000'</code> if the object is null or
-     *      cannot be parsed
+     * @return Object as a character, <code>'\u0000'</code> if the object is
+     *         null or cannot be parsed
      */
     public static char toChar(@Nullable Object obj) {
         if (obj == null) {

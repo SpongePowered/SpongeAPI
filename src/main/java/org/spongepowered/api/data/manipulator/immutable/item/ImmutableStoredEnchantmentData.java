@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.immutable.item;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
 import org.spongepowered.api.data.manipulator.mutable.item.StoredEnchantmentData;
 import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
@@ -37,7 +38,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
  * "transferred" to other {@link ItemStack}s. Examples include
  * {@link ItemTypes#ENCHANTED_BOOK}s storing enchantments to apply to weapons.
  */
-public interface ImmutableStoredEnchantmentData extends ImmutableDataManipulator<ImmutableStoredEnchantmentData, StoredEnchantmentData> {
+public interface ImmutableStoredEnchantmentData extends ImmutableListData<ItemEnchantment, ImmutableStoredEnchantmentData, StoredEnchantmentData> {
 
     /**
      * Gets the {@link ImmutableListValue} of {@link ItemEnchantment}s stored
@@ -45,6 +46,8 @@ public interface ImmutableStoredEnchantmentData extends ImmutableDataManipulator
      *
      * @return The immutable list value of item enchantments
      */
-    ImmutableListValue<ItemEnchantment> enchantments();
+    default ImmutableListValue<ItemEnchantment> enchantments() {
+        return getListValue();
+    }
 
 }

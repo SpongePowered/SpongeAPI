@@ -24,20 +24,34 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known {@link SlabType}s.
  */
 public final class SlabTypes {
 
-    public static final SlabType STONE = null;
-    public static final SlabType SAND = null;
-    public static final SlabType WOOD = null;
-    public static final SlabType COBBLESTONE = null;
-    public static final SlabType BRICK = null;
-    public static final SlabType SMOOTH_BRICK = null;
-    public static final SlabType NETHERBRICK = null;
-    public static final SlabType QUARTZ = null;
-    public static final SlabType RED_SAND = null;
+    // SORTFIELDS:ON
+
+    public static final SlabType BRICK = DummyObjectProvider.createFor(SlabType.class, "BRICK");
+
+    public static final SlabType COBBLESTONE = DummyObjectProvider.createFor(SlabType.class, "COBBLESTONE");
+
+    public static final SlabType NETHERBRICK = DummyObjectProvider.createFor(SlabType.class, "NETHERBRICK");
+
+    public static final SlabType QUARTZ = DummyObjectProvider.createFor(SlabType.class, "QUARTZ");
+
+    public static final SlabType RED_SAND = DummyObjectProvider.createFor(SlabType.class, "RED_SAND");
+
+    public static final SlabType SAND = DummyObjectProvider.createFor(SlabType.class, "SAND");
+
+    public static final SlabType SMOOTH_BRICK = DummyObjectProvider.createFor(SlabType.class, "SMOOTH_BRICK");
+
+    public static final SlabType STONE = DummyObjectProvider.createFor(SlabType.class, "STONE");
+
+    public static final SlabType WOOD = DummyObjectProvider.createFor(SlabType.class, "WOOD");
+
+    // SORTFIELDS:OFF
 
     private SlabTypes() {
     }

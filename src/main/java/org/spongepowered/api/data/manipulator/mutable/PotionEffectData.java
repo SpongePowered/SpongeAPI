@@ -25,13 +25,12 @@
 package org.spongepowered.api.data.manipulator.mutable;
 
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutablePotionEffectData;
 import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.potion.PotionEffect;
 
 import java.util.List;
 
@@ -40,13 +39,15 @@ import java.util.List;
  * various {@link DataHolder}s such as {@link Entity}s, {@link ItemStack}s as
  * {@link ItemTypes#POTION}, etc.
  */
-public interface PotionEffectData extends DataManipulator<PotionEffectData, ImmutablePotionEffectData> {
+public interface PotionEffectData extends ListData<PotionEffect, PotionEffectData, ImmutablePotionEffectData> {
 
     /**
      * Gets the {@link ListValue} of the {@link PotionEffect}s.
      *
      * @return The list value of all potion effects contained
      */
-    ListValue<PotionEffect> effects();
+    default ListValue<PotionEffect> effects() {
+        return getListValue();
+    }
 
 }

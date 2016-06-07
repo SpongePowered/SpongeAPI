@@ -35,7 +35,6 @@ import org.junit.Test;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataTransactionBuilder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
@@ -50,13 +49,15 @@ public class SpongeAbstractEventTest {
 
     private static final double ERROR = 0.03;
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testChangeBlockEvent_filter() {
         Transaction<BlockSnapshot> transaction = new Transaction<>(mockParam(BlockSnapshot.class), mockParam(BlockSnapshot.class));
 
         stub(transaction.getOriginal().getLocation()).toReturn(Optional.of(new Location<>(mockParam(World.class), Vector3d.ZERO)));
 
-        ChangeBlockEvent event = SpongeEventFactory.createChangeBlockEvent(mockParam(Game.class), Cause.empty(), mockParam(World.class), Lists.newArrayList(transaction));
+        ChangeBlockEvent event = SpongeEventFactory.createChangeBlockEvent(Cause.source("none").build(), mockParam(World.class),
+                Lists.newArrayList(transaction));
         event.filter(location -> false);
 
         assertThat(transaction.isValid(), is(false));
@@ -64,11 +65,11 @@ public class SpongeAbstractEventTest {
 
     @Test
     public void testValueChangeEvent() {
-        DataTransactionResult original = DataTransactionBuilder.failNoData();
-        DataTransactionResult modified = DataTransactionBuilder.successNoData();
+        DataTransactionResult original = DataTransactionResult.failNoData();
+        DataTransactionResult modified = DataTransactionResult.successNoData();
 
-        ChangeDataHolderEvent.ValueChange event = SpongeEventFactory.createChangeDataHolderEventValueChange(mockParam(Game.class),
-                original, mockParam(DataHolder.class));
+        ChangeDataHolderEvent.ValueChange event = SpongeEventFactory.createChangeDataHolderEventValueChange(Cause.source("none").build(), original,
+            mockParam(DataHolder.class));
 
         assertThat(event.getOriginalChanges(), is(equalTo(original)));
 

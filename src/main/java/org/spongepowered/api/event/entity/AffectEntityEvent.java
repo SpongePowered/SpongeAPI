@@ -24,33 +24,33 @@
  */
 package org.spongepowered.api.event.entity;
 
-import com.google.common.collect.Lists;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.world.TargetWorldEvent;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
 /**
  * An event that affects multiple {@link Entity} instances as a bulk action.
  * The constraint is that if an action can be deemed as necessary for selective
- * individualized processing, such as {@link InteractEntityEvent.Attack},
+ * individualized processing, such as {@link DamageEntityEvent},
  * the actioned {@link Event} is handled individually. If a bulk of
  * {@link Entity} instances are being affected, for example by an
  * {@link Explosion} "damaging" a varying amount of {@link Entity} instances.
  * Other cases will be included as necessary.
  */
-public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseTracked {
+public interface AffectEntityEvent extends TargetWorldEvent, Cancellable {
 
     /**
-     * Gets an {@link List<EntitySnapshot>} of the entity data
+     * Gets an {@link List} of the entity data
      * un-affected by event changes.
      *
      * @return The ImmutableList
@@ -58,7 +58,7 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseT
     List<EntitySnapshot> getEntitySnapshots();
 
     /**
-     * Gets the {@link List<Entity>} who will be affected after event
+     * Gets the {@link List} who will be affected after event
      * resolution.
      *
      * @return The List
@@ -66,7 +66,7 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseT
     List<Entity> getEntities();
 
     /**
-     * Filters out {@link Location<World>}'s from
+     * Filters out {@link Location}'s from
      * {@link AffectEntityEvent#getEntities()} to be affected by this event.
      *
      * <p>Locations for which the predicate returns <code>false</code> will
@@ -76,14 +76,17 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseT
      * @return The entities removed from {@link #getEntities()}
      */
     default List<Entity> filterEntityLocations(Predicate<Location<World>> predicate) {
-        List<Entity> removedEntites = Lists.newArrayList();
-        for (Entity entity: this.getEntities()) {
+        List<Entity> removedEntiies = new ArrayList<>();
+
+        Iterator<Entity> i = this.getEntities().iterator();
+        while (i.hasNext()) {
+            Entity entity = i.next();
             if (!predicate.test(entity.getLocation())) {
-                removedEntites.add(entity);
+                i.remove();
+                removedEntiies.add(entity);
             }
         }
-        this.getEntities().removeAll(removedEntites);
-        return removedEntites;
+        return removedEntiies;
     }
 
     /**
@@ -97,13 +100,16 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable, CauseT
      * @return The entities removed from {@link #getEntities()}
      */
     default List<? extends Entity> filterEntities(Predicate<Entity> predicate) {
-        List<Entity> removedEntites = Lists.newArrayList();
-        for (Entity entity: this.getEntities()) {
+        List<Entity> removedEntiies = new ArrayList<>();
+
+        Iterator<Entity> i = this.getEntities().iterator();
+        while (i.hasNext()) {
+            Entity entity = i.next();
             if (!predicate.test(entity)) {
-                removedEntites.add(entity);
+                i.remove();
+                removedEntiies.add(entity);
             }
         }
-        this.getEntities().removeAll(removedEntites);
-        return removedEntites;
+        return removedEntiies;
     }
 }

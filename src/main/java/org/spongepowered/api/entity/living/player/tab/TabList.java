@@ -27,9 +27,11 @@ package org.spongepowered.api.entity.living.player.tab;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a {@link Player}'s tab list.
@@ -37,67 +39,97 @@ import java.util.UUID;
 public interface TabList {
 
     /**
+     * Gets the associated {@link Player} with this {@link TabList}.
+     *
+     * @return The associated player
+     */
+    Player getPlayer();
+
+    /**
      * Gets this list's header.
      *
      * @return The current header
      */
-    Text getHeader();
+    Optional<Text> getHeader();
 
     /**
      * Sets this list's header.
      *
+     * <p>When {@code null} is passed, an empty {@link Text} will
+     * be sent.</p>
+     *
      * @param header The new header
      */
-    void setHeader(Text header);
+    TabList setHeader(@Nullable Text header);
 
     /**
      * Gets this list's footer.
      *
      * @return The current footer
      */
-    Text getFooter();
+    Optional<Text> getFooter();
 
     /**
      * Sets this list's footer.
      *
+     * <p>When {@code null} is passed, an empty {@link Text} will
+     * be sent.</p>
+     *
      * @param footer The new footer
      */
-    void setFooter(Text footer);
+    TabList setFooter(@Nullable Text footer);
 
     /**
-     * Gets the players on the list. The list should be immutable.
+     * Sets this list's header and footer.
      *
-     * @return The players on the list
+     * <p>When {@code null} is passed, an empty {@link Text} will
+     * be sent.</p>
+     *
+     * @param header The new header
+     * @param footer The new footer
      */
-    List<PlayerTabInfo> getPlayers();
+    default TabList setHeaderAndFooter(@Nullable Text header, @Nullable Text footer) {
+        this.setHeader(header);
+        this.setFooter(footer);
+        return this;
+    }
 
     /**
-     * Adds a player to the list.
+     * Gets the entries on the list.
      *
-     * @param player The player to add
-     * @throws IllegalArgumentException when it attempts to add a player already
-     *         on the list. This is to prevent modification of a
-     *         {@link PlayerTabInfo} by overwriting it
+     * <p>The returned collection should be immutable.</p>
+     *
+     * @return The entries on the list
      */
-    void addPlayer(PlayerTabInfo player) throws IllegalArgumentException;
+    Collection<TabListEntry> getEntries();
 
     /**
-     * Removes a player from the list. This should only be used to completely
-     * remove a player, not add it back later. Note that if this is used on a
-     * player, but they remain visible in-game, their skin will not work.
+     * Gets a {@link TabListEntry} matching the specified unique id.
      *
-     * @param playerId the UUID of the player to remove
-     * @return The {@link PlayerTabInfo} that was associated with the UUID
+     * @param uniqueId The unique id to search for
+     * @return The entry if present, otherwise {@link Optional#empty()}
      */
-    PlayerTabInfo removePlayer(UUID playerId);
+    Optional<TabListEntry> getEntry(UUID uniqueId);
 
     /**
-     * Finds a {@link PlayerTabInfo} matching the specified UUID. If none were
-     * found, it returns Optional.empty().
+     * Adds an entry to the list.
      *
-     * @param uuid The UUID to search for
-     * @return An Optional containing a PlayerTabInfo if one was found
+     * @param entry The entry to add
+     * @throws IllegalArgumentException if an entry already with the same unique
+     *     id exists on the list
+     * @throws IllegalStateException if the provided entry was not
      */
-    Optional<PlayerTabInfo> getPlayer(UUID uuid);
+    TabList addEntry(TabListEntry entry) throws IllegalArgumentException;
+
+    /**
+     * Removes an entry from the list.
+     *
+     * <p>Note that if this is used on a player, but they remain visible in-game,
+     * their skin will not work.</p>
+     *
+     * @param uniqueId The unique id of the entry to remove
+     * @return The entry that was associated with the unique id
+     */
+    Optional<TabListEntry> removeEntry(UUID uniqueId);
 
 }

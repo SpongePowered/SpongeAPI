@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.World;
 
-public interface TargetWorldEvent extends GameEvent {
+public interface TargetWorldEvent extends Event {
 
     /**
      * @return The target {@link World}

@@ -31,6 +31,7 @@ import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Objects;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
@@ -46,9 +47,9 @@ import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
+import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.service.persistence.InvalidDataException;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.extent.Extent;
@@ -57,6 +58,7 @@ import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import javax.annotation.Nullable;
@@ -65,13 +67,13 @@ import javax.annotation.Nullable;
  * A position within a particular {@link Extent}.
  *
  * <p>This class is primarily a helper class to represent a location in a
- * particular {@link Extent}. The methods provided are proxy methods to ones
- * on {@link Extent}.</p>
+ * particular {@link Extent}. The methods provided are proxy methods to ones on
+ * {@link Extent}.</p>
  *
- * <p>Each instance can be used to either represent a block or a location on
- * a continuous coordinate system. Internally, positions are stored using
- * doubles. When a block-related method is used, the components of the
- * position are each rounded to an integer.</p>
+ * <p>Each instance can be used to either represent a block or a location on a
+ * continuous coordinate system. Internally, positions are stored using doubles.
+ * When a block-related method is used, the components of the position are each
+ * rounded to an integer.</p>
  *
  * <p>Locations are immutable. Methods that change the properties of the
  * location create a new instance.</p>
@@ -87,6 +89,8 @@ public final class Location<E extends Extent> implements DataHolder {
     @Nullable
     private Vector3i blockPosition = null;
     @Nullable
+    private Vector3i chunkPosition = null;
+    @Nullable
     private Vector2i biomePosition = null;
 
     /**
@@ -96,7 +100,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param position The position
      */
     public Location(E extent, Vector3d position) {
-        this.extent = new WeakReference<E>(checkNotNull(extent, "extent"));
+        this.extent = new WeakReference<>(checkNotNull(extent, "extent"));
         this.position = checkNotNull(position, "position");
     }
 
@@ -119,7 +123,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param blockPosition The position
      */
     public Location(E extent, Vector3i blockPosition) {
-        this.extent = new WeakReference<E>(checkNotNull(extent, "extent"));
+        this.extent = new WeakReference<>(checkNotNull(extent, "extent"));
         this.blockPosition = checkNotNull(blockPosition, "blockPosition");
     }
 
@@ -176,6 +180,18 @@ public final class Location<E extends Extent> implements DataHolder {
             this.blockPosition = getPosition().toInt();
         }
         return this.blockPosition;
+    }
+
+    /**
+     * Get the underlying chunk position.
+     *
+     * @return The underlying chunk position
+     */
+    public Vector3i getChunkPosition() {
+        if (this.chunkPosition == null) {
+            this.chunkPosition = Sponge.getServer().getChunkLayout().forceToChunk(getBlockPosition());
+        }
+        return this.chunkPosition;
     }
 
     /**
@@ -245,8 +261,8 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Returns true if this location is in the given extent.
-     * This is implemented as an {@link Object#equals(Object)} check.
+     * Returns true if this location is in the given extent. This is implemented
+     * as an {@link Object#equals(Object)} check.
      *
      * @param extent The extent to check
      * @return Whether this location is in the extent
@@ -286,7 +302,7 @@ public final class Location<E extends Extent> implements DataHolder {
         if (extent == getExtent()) {
             return this;
         }
-        return new Location<E>(extent, getPosition());
+        return new Location<>(extent, getPosition());
     }
 
     /**
@@ -300,7 +316,7 @@ public final class Location<E extends Extent> implements DataHolder {
         if (position == getPosition()) {
             return this;
         }
-        return new Location<E>(getExtent(), position);
+        return new Location<>(getExtent(), position);
     }
 
     /**
@@ -315,8 +331,8 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Subtract vector components to the position on this instance, returning
-     * a new Location instance.
+     * Subtract vector components to the position on this instance, returning a
+     * new Location instance.
      *
      * @param x The x component
      * @param y The y component
@@ -328,8 +344,8 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Add another Vector3d to the position on this instance, returning
-     * a new Location instance.
+     * Add another Vector3d to the position on this instance, returning a new
+     * Location instance.
      *
      * @param v The vector to add
      * @return A new instance
@@ -339,8 +355,8 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Add vector components to the position on this instance, returning
-     * a new Location instance.
+     * Add vector components to the position on this instance, returning a new
+     * Location instance.
      *
      * @param x The x component
      * @param y The y component
@@ -349,6 +365,50 @@ public final class Location<E extends Extent> implements DataHolder {
      */
     public Location<E> add(double x, double y, double z) {
         return setPosition(getPosition().add(x, y, z));
+    }
+
+    /**
+     * Calls the mapper function on the extent and position.
+     *
+     * @param mapper The mapper
+     * @param <T> The return type of the mapper
+     * @return The results of the mapping
+     */
+    public <T> T map(BiFunction<E, Vector3d, T> mapper) {
+        return mapper.apply(getExtent(), getPosition());
+    }
+
+    /**
+     * Calls the mapper function on the extent and block position.
+     *
+     * @param mapper The mapper
+     * @param <T> The return type of the mapper
+     * @return The results of the mapping
+     */
+    public <T> T mapBlock(BiFunction<E, Vector3i, T> mapper) {
+        return mapper.apply(getExtent(), getBlockPosition());
+    }
+
+    /**
+     * Calls the mapper function on the extent and chunk position.
+     *
+     * @param mapper The mapper
+     * @param <T> The return type of the mapper
+     * @return The results of the mapping
+     */
+    public <T> T mapChunk(BiFunction<E, Vector3i, T> mapper) {
+        return mapper.apply(getExtent(), getChunkPosition());
+    }
+
+    /**
+     * Calls the mapper function on the extent and biome position.
+     *
+     * @param mapper The mapper
+     * @param <T> The return type of the mapper
+     * @return The results of the mapping
+     */
+    public <T> T mapBiome(BiFunction<E, Vector2i, T> mapper) {
+        return mapper.apply(getExtent(), getBiomePosition());
     }
 
     /**
@@ -394,7 +454,8 @@ public final class Location<E extends Extent> implements DataHolder {
     /**
      * Checks for whether the block at this position contains tile entity data.
      *
-     * @return True if the block at this position has tile entity data, false otherwise
+     * @return True if the block at this position has tile entity data, false
+     * otherwise
      */
     public boolean hasTileEntity() {
         return getExtent().getTileEntity(getBlockPosition()).isPresent();
@@ -427,7 +488,7 @@ public final class Location<E extends Extent> implements DataHolder {
      *
      * @param state The new block state
      * @param notifyNeighbors Whether or not you want to notify neighboring
-     *     blocks of this change. If true, this may cause blocks to change.
+     * blocks of this change. If true, this may cause blocks to change.
      */
     public void setBlock(BlockState state, boolean notifyNeighbors) {
         getExtent().setBlock(getBlockPosition(), state, notifyNeighbors);
@@ -451,7 +512,7 @@ public final class Location<E extends Extent> implements DataHolder {
      *
      * @param type The new type
      * @param notifyNeighbors Whether or not you want to notify neighboring
-     *     blocks of this change. If true, this may cause blocks to change.
+     * blocks of this change. If true, this may cause blocks to change.
      */
     public void setBlockType(BlockType type, boolean notifyNeighbors) {
         getExtent().setBlockType(getBlockPosition(), type, notifyNeighbors);
@@ -465,16 +526,17 @@ public final class Location<E extends Extent> implements DataHolder {
      *
      * @param snapshot The snapshot
      * @param force If true, forces block state to be set even if the
-     *     {@link BlockType} does not match the snapshot one.
+     * {@link BlockType} does not match the snapshot one.
      * @param notifyNeighbors Whether or not you want to notify neighboring
-     *     blocks of this change. If true, this may cause blocks to change.
+     * blocks of this change. If true, this may cause blocks to change.
      */
     public void restoreSnapshot(BlockSnapshot snapshot, boolean force, boolean notifyNeighbors) {
         getExtent().restoreSnapshot(getBlockPosition(), snapshot, force, notifyNeighbors);
     }
 
     /**
-     * Remove the block at this position by replacing it with {@link BlockTypes#AIR}.
+     * Remove the block at this position by replacing it with
+     * {@link BlockTypes#AIR}.
      *
      * <p>This will remove any extended block data at the given position.</p>
      */
@@ -560,8 +622,14 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
+    public int getContentVersion() {
+        return 1;
+    }
+
+    @Override
     public DataContainer toContainer() {
         final DataContainer container = new MemoryDataContainer();
+        container.set(Queries.CONTENT_VERSION, getContentVersion());
         if (getExtent() instanceof World) {
             container.set(Queries.WORLD_NAME, ((World) getExtent()).getName());
             container.set(Queries.WORLD_ID, getExtent().getUniqueId().toString());
@@ -666,7 +734,7 @@ public final class Location<E extends Extent> implements DataHolder {
 
     @Override
     public DataHolder copy() {
-        return new Location<>(this.extent.get(), getPosition());
+        return new Location<>(getExtent(), getPosition());
     }
 
     @Override
@@ -686,7 +754,7 @@ public final class Location<E extends Extent> implements DataHolder {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.extent, this.getPosition());
+        return Objects.hashCode(getExtent(), getPosition());
     }
 
     @Override
@@ -695,7 +763,8 @@ public final class Location<E extends Extent> implements DataHolder {
             return false;
         }
         Location<?> otherLoc = (Location<?>) other;
-        return otherLoc.extent.equals(this.extent) && otherLoc.getPosition().equals(this.getPosition());
+        return otherLoc.getExtent().equals(getExtent())
+            && otherLoc.getPosition().equals(getPosition());
     }
 
 }

@@ -24,10 +24,14 @@
  */
 package org.spongepowered.api.world.biome;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Objects;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.util.weighted.SeededVariableAmount;
+import org.spongepowered.api.util.weighted.VariableAmount;
+
+import java.util.function.Function;
 
 /**
  * Represents a layer of BlockStates specific to a biome which may be placed in
@@ -35,47 +39,29 @@ import org.spongepowered.api.block.BlockState;
  */
 public class GroundCoverLayer {
 
-    private BlockState state;
-    private double depth;
-    private double depthVariance;
+    private Function<Double, BlockState> block;
+    private SeededVariableAmount<Double> depth;
 
     /**
-     * Creates a new {@link GroundCoverLayer} with the given BlockState and a
-     * base depth of 1.
+     * Creates a new {@link GroundCoverLayer}.
      * 
-     * @param type The BlockState of the layer
+     * @param block The block state to place down for the layer
+     * @param depth The depth of the layer
      */
-    public GroundCoverLayer(BlockState type) {
-        this(type, 1, 0);
+    public GroundCoverLayer(BlockState block, SeededVariableAmount<Double> depth) {
+        this((s) -> block, depth);
     }
 
     /**
-     * Creates a new {@link GroundCoverLayer} with the given BlockState and base
-     * depth.
+     * Creates a new {@link GroundCoverLayer}.
      * 
-     * @param type The BlockState of the layer
-     * @param depth The layer depth
+     * @param block The function which is used to determine the blockstate to
+     *        place at this layer
+     * @param depth The depth of the layer
      */
-    public GroundCoverLayer(BlockState type, double depth) {
-        this(type, depth, 0);
-    }
-
-    /**
-     * Creates a new {@link GroundCoverLayer} with the given BlockState and
-     * depth. The final depth of the layer will vary randomly between
-     * {@code depth} and {@code depth+depthVariance} (both inclusive).
-     * 
-     * @param type The BlockState of the layer
-     * @param depth The layer depth
-     * @param depthVariance The depth variance
-     */
-    public GroundCoverLayer(BlockState type, double depth, double depthVariance) {
-        checkArgument(depth >= 0, "Depth cannot be negative.");
-        checkArgument(depthVariance >= 0, "Depth variance cannot be negative.");
-        checkArgument(depthVariance != 0 || depth != 0, "Depth variance and depth cannot both be zero.");
-        this.state = checkNotNull(type);
-        this.depth = depth;
-        this.depthVariance = depthVariance;
+    public GroundCoverLayer(Function<Double, BlockState> block, SeededVariableAmount<Double> depth) {
+        this.block = checkNotNull(block, "block");
+        this.depth = checkNotNull(depth, "depth");
     }
 
     /**
@@ -83,57 +69,101 @@ public class GroundCoverLayer {
      * 
      * @return The block state
      */
-    public BlockState getState() {
-        return this.state;
+    public Function<Double, BlockState> getBlockState() {
+        return this.block;
+    }
+
+    /**
+     * Sets the function which is used to determine the blockstate to place at
+     * this layer. The input to the function is a noise value.
+     * 
+     * @param block The block state function
+     */
+    public void setBlockState(Function<Double, BlockState> block) {
+        this.block = checkNotNull(block, "block");
     }
 
     /**
      * Sets the {@link BlockState} for this layer.
      * 
-     * @param state The new state
+     * @param block The block state
      */
-    public void setState(BlockState state) {
-        this.state = checkNotNull(state);
+    public void setBlockState(BlockState block) {
+        checkNotNull(block);
+        this.block = (s) -> block;
     }
 
     /**
-     * Gets the base depth of this layer.
+     * Gets a representation of the depth of this layer. The variable amount
+     * will be seeded with the stone noise at generation time.
      * 
-     * @return The base depth
+     * @return The depth
      */
-    public double getBaseDepth() {
+    public SeededVariableAmount<Double> getDepth() {
         return this.depth;
     }
 
     /**
-     * Sets the base depth of this layer.
+     * Sets the {@link SeededVariableAmount} representing the depth of this
+     * layer. The variable amount will be seeded with the stone noise at
+     * generation time.
      * 
-     * @param depth The new base depth
+     * @param depth The new variable amount
      */
-    public void setBaseDepth(double depth) {
-        checkArgument(depth >= 0, "Depth cannot be negative.");
-        checkArgument(this.depthVariance != 0 || depth != 0, "Depth variance and depth cannot both be zero.");
-        this.depth = depth;
+    public void setDepth(SeededVariableAmount<Double> depth) {
+        this.depth = checkNotNull(depth, "depth");
     }
 
     /**
-     * Gets the possible variance of the depth of this layer.
+     * Sets the {@link VariableAmount} representing the depth of this layer.
      * 
-     * @return The depth variance
+     * @param depth The new variable amount
      */
-    public double getDepthVariance() {
-        return this.depthVariance;
+    public void setDepth(VariableAmount depth) {
+        this.depth = SeededVariableAmount.wrapped(checkNotNull(depth, "depth"));
     }
 
     /**
-     * Sets the possible variance of the depth of this layer.
+     * Sets the depth of this layer to the given constant value.
      * 
-     * @param variance The new depth variance
+     * @param depth The new depth
      */
-    public void setDepthVariance(double variance) {
-        checkArgument(variance >= 0, "Depth variance cannot be negative.");
-        checkArgument(variance != 0 || this.depth != 0, "Depth variance and depth cannot both be zero.");
-        this.depthVariance = variance;
+    public void setDepth(double depth) {
+        this.depth = SeededVariableAmount.fixed(depth);
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("block", this.block)
+                .add("depth", this.depth)
+                .toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof GroundCoverLayer)) {
+            return false;
+        }
+        GroundCoverLayer object = (GroundCoverLayer) obj;
+        if (!this.depth.equals(object.depth)) {
+            return false;
+        }
+        if (!this.block.equals(object.block)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 1;
+        result = 37 * result + this.block.hashCode();
+        result = 37 * result + this.depth.hashCode();
+        return result;
     }
 
 }

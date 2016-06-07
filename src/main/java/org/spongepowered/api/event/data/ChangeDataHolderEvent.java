@@ -29,7 +29,7 @@ import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.impl.AbstractValueChangeEvent;
 import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 import org.spongepowered.api.eventgencore.annotation.PropertySettings;
@@ -40,7 +40,7 @@ import org.spongepowered.api.eventgencore.annotation.PropertySettings;
  * methods relating to modifying a {@link DataHolder} while this event
  * is being processed may produce awkward results.
  */
-public interface ChangeDataHolderEvent extends GameEvent, Cancellable {
+public interface ChangeDataHolderEvent extends Event, Cancellable {
 
     /**
      * Gets the {@link DataHolder} targeted in this event.

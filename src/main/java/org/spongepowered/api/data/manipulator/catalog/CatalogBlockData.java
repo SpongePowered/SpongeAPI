@@ -35,6 +35,7 @@ import org.spongepowered.api.data.manipulator.mutable.block.BigMushroomData;
 import org.spongepowered.api.data.manipulator.mutable.block.BrickData;
 import org.spongepowered.api.data.manipulator.mutable.block.ConnectedDirectionData;
 import org.spongepowered.api.data.manipulator.mutable.block.DecayableData;
+import org.spongepowered.api.data.manipulator.mutable.block.DelayableData;
 import org.spongepowered.api.data.manipulator.mutable.block.DirectionalData;
 import org.spongepowered.api.data.manipulator.mutable.block.DirtData;
 import org.spongepowered.api.data.manipulator.mutable.block.DisarmedData;
@@ -47,7 +48,6 @@ import org.spongepowered.api.data.manipulator.mutable.block.FluidLevelData;
 import org.spongepowered.api.data.manipulator.mutable.block.GrowthData;
 import org.spongepowered.api.data.manipulator.mutable.block.HingeData;
 import org.spongepowered.api.data.manipulator.mutable.block.InWallData;
-import org.spongepowered.api.data.manipulator.mutable.block.InstrumentData;
 import org.spongepowered.api.data.manipulator.mutable.block.LayeredData;
 import org.spongepowered.api.data.manipulator.mutable.block.MoistureData;
 import org.spongepowered.api.data.manipulator.mutable.block.OccupiedData;
@@ -74,7 +74,6 @@ import org.spongepowered.api.data.manipulator.mutable.block.WireAttachmentData;
 import org.spongepowered.api.data.type.BrickType;
 import org.spongepowered.api.data.type.DisguisedBlockType;
 import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.PistonType;
 import org.spongepowered.api.data.type.PrismarineType;
 import org.spongepowered.api.data.type.QuartzType;
@@ -103,9 +102,9 @@ public final class CatalogBlockData {
      */
     public static final Class<AttachedData> ATTACHED_DATA = AttachedData.class;
     /**
-     * Signifies that a block relies on {@link Axis}.
-     */
-    public static final Class<AxisData> AXIS_DATA = AxisData.class;
+     * Signifies that a block relies on {@link Axis}.      
+     */        
+    public static final Class<AxisData> AXIS_DATA = AxisData.class;               
     /**
      * Represents data related to {@link BlockTypes#BROWN_MUSHROOM_BLOCK} and
      * {@link BlockTypes#RED_MUSHROOM_BLOCK}.
@@ -128,6 +127,10 @@ public final class CatalogBlockData {
      * {@link BlockTypes#LEAVES2}.
      */
     public static final Class<DecayableData> DECAYABLE_DATA = DecayableData.class;
+    /**
+     * Represents the delay of a redstone repeater.    
+     */        
+    public static final Class<DelayableData> DELAYABLE_DATA = DelayableData.class;       
     /**
      * Signifies that a block has a {@link Direction}. Usually applies
      * to "rotational" blocks, such as {@link BlockTypes#LOG} and
@@ -184,11 +187,6 @@ public final class CatalogBlockData {
      * applicable to {@link BlockTypes#TRAPDOOR} and other doors.
      */
     public static final Class<HingeData> HINGE_DATA = HingeData.class;
-    /**
-     * Represents the {@link InstrumentType}. Usually applicable to
-     * {@link BlockTypes#NOTEBLOCK}.
-     */
-    public static final Class<InstrumentData> INSTRUMENT_DATA = InstrumentData.class;
     /**
      * Signifies that the owner is "connected" to a wall. Usually applicable to
      * {@link BlockTypes#FENCE_GATE}.

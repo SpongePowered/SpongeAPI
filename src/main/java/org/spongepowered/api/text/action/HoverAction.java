@@ -53,6 +53,11 @@ public abstract class HoverAction<R> extends TextAction<R> {
         super(result);
     }
 
+    @Override
+    public void applyTo(Text.Builder builder) {
+        builder.onHover(this);
+    }
+
     /**
      * Shows some text.
      */
@@ -119,8 +124,8 @@ public abstract class HoverAction<R> extends TextAction<R> {
         }
 
         /**
-         * Represents a reference to an entity, used in the underlying JSON of the
-         * show entity action.
+         * Represents a reference to an entity, used in the underlying JSON of
+         * the show entity action.
          */
         public static final class Ref implements Identifiable {
 
@@ -211,7 +216,7 @@ public abstract class HoverAction<R> extends TextAction<R> {
                 }
 
                 Ref that = (Ref) obj;
-                return  this.uuid.equals(that.uuid)
+                return this.uuid.equals(that.uuid)
                         && this.name.equals(that.name)
                         && this.type.equals(that.type);
             }
@@ -220,7 +225,6 @@ public abstract class HoverAction<R> extends TextAction<R> {
             public int hashCode() {
                 return Objects.hashCode(this.uuid, this.name, this.type);
             }
-
 
             @Override
             public String toString() {

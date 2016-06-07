@@ -26,15 +26,15 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Transform;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
-import org.spongepowered.api.event.entity.living.human.TargetHumanEvent;
-import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
-import org.spongepowered.api.world.TeleporterAgent;
+import org.spongepowered.api.event.entity.living.humanoid.TargetHumanoidEvent;
+import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
+import org.spongepowered.api.eventgencore.annotation.PropertySettings;
+import org.spongepowered.api.world.PortalAgent;
 import org.spongepowered.api.world.World;
 
 /**
@@ -82,29 +82,23 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
         interface TargetLiving extends Move, DisplaceEntityEvent.TargetLiving { }
 
         /**
-         * A {@link Move} event where the target entity is a {@link Human}
+         * A {@link Move} event where the target entity is a {@link Humanoid}
          * entity.
          */
-        interface TargetHuman extends TargetLiving, DisplaceEntityEvent.TargetHuman { }
+        interface TargetHumanoid extends TargetLiving, DisplaceEntityEvent.TargetHumanoid { }
 
         /**
          * A {@link Move} event where the target entity is a {@link Player}
          * entity.
          */
-        interface TargetPlayer extends TargetHuman, DisplaceEntityEvent.TargetPlayer { }
+        interface TargetPlayer extends TargetHumanoid, DisplaceEntityEvent.TargetPlayer { }
     }
 
-    interface Teleport extends DisplaceEntityEvent, CauseTracked {
-
-        /// TODO review teleporter stuff.
-
-        /**
-         * Gets the {@link TeleporterAgent} that was used to calculate the
-         * teleport locations.
-         *
-         * @return The teleporter agent
-         */
-        TeleporterAgent getTeleporterAgent();
+    /**
+     * An event where the {@link #getTargetEntity()} is teleported to a new
+     * location.
+     */
+    interface Teleport extends DisplaceEntityEvent {
 
         /**
          * Gets whether the entity teleporting will maintain its velocity
@@ -112,6 +106,7 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
          *
          * @return Whether the entity will maintain momentum after teleport
          */
+        @PropertySettings(requiredParameter = false)
         boolean getKeepsVelocity();
 
         /**
@@ -123,19 +118,59 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
         void setKeepsVelocity(boolean keepsVelocity);
 
         /**
-         * An event where the target entity is a {@link Living} entity.
+         * An event where the {@link #getTargetEntity()} is transported
+         * via a {@link PortalAgent} to a new location.
          */
-        interface TargetLiving extends Teleport, DisplaceEntityEvent.TargetLiving { }
+        interface Portal extends Teleport {
 
-        /**
-         * An event where the target entity is a {@link Human} entity.
-         */
-        interface TargetHuman extends TargetLiving, DisplaceEntityEvent.TargetHuman { }
+            /**
+             * Sets whether the {@link PortalAgent} will be used.
+             * <p>
+             * If this is set to true, the {@link PortalAgent} will search for a
+             * portal at the {@link #getToTransform()} location and will attempt to
+             * create one if not found.
+             * </p>
+             * <p>
+             * If this is set to false, the {@link #getTargetEntity()} will only be
+             * teleported to the {@link #getToTransform()} location.
+             * </p>
+             *
+             * @param usePortalAgent whether to use the portal agent
+             */
+            void setUsePortalAgent(boolean usePortalAgent);
 
-        /**
-         * An event where the target entity is a {@link Player} entity.
-         */
-        interface TargetPlayer extends TargetHuman, DisplaceEntityEvent.TargetPlayer { }
+            /**
+             * Gets whether the {@link PortalAgent} will be used.
+             * <p>
+             * If this is set to true, the {@link PortalAgent} will search for a
+             * Portal at the {@link #getToTransform()} location, and will attempt to
+             * create one if not found.
+             * </p>
+             * <p>
+             * If this is set to false, the {@link #getTargetEntity()} will only be
+             * teleported to the {@link #getToTransform()} location.
+             * </p>
+             *
+             * @return whether to use the portal agent
+             */
+            boolean getUsePortalAgent();
+
+            /**
+             * Gets the {@link PortalAgent} that will be responsible for teleporting
+             * the {@link #getTargetEntity()} through a Portal.
+             *
+             * @return The portal agent
+             */
+            PortalAgent getPortalAgent();
+
+            /**
+             * Sets the {@link PortalAgent} that will be responsible for teleporting
+             * the {@link #getTargetEntity()} through a Portal.
+             *
+             * @param portalAgent The portal agent
+             */
+            void setPortalAgent(PortalAgent portalAgent);
+        }
     }
 
     /**
@@ -144,13 +179,13 @@ public interface DisplaceEntityEvent extends TargetEntityEvent, Cancellable {
     interface TargetLiving extends DisplaceEntityEvent, TargetLivingEvent { }
 
     /**
-     * An event where the target entity is a {@link Human} entity.
+     * An event where the target entity is a {@link Humanoid} entity.
      */
-    interface TargetHuman extends TargetLiving, TargetHumanEvent { }
+    interface TargetHumanoid extends TargetLiving, TargetHumanoidEvent { }
 
     /**
      * An event where the target entity is a {@link Player} entity.
      */
-    interface TargetPlayer extends TargetHuman, TargetPlayerEvent { }
+    interface TargetPlayer extends TargetHumanoid, TargetPlayerEvent { }
 
 }

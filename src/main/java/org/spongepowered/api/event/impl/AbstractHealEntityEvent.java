@@ -27,11 +27,13 @@ package org.spongepowered.api.event.impl;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.health.HealthModifier;
 import org.spongepowered.api.event.entity.HealEntityEvent;
 import org.spongepowered.api.eventgencore.annotation.UseField;
 import org.spongepowered.api.util.Tuple;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -52,9 +54,9 @@ public abstract class AbstractHealEntityEvent extends AbstractModifierEvent<Heal
 
     @Override
     public final double getOriginalHealingModifierAmount(HealthModifier healthModifier) {
-        checkArgument(this.originalModifiers.containsKey(checkNotNull(healthModifier)), "The provided damage modifier is not applicable : "
+        checkArgument(this.originalModifierMap.containsKey(checkNotNull(healthModifier)), "The provided damage modifier is not applicable : "
                 + healthModifier.toString());
-        return this.originalModifiers.get(checkNotNull(healthModifier));
+        return this.originalModifierMap.get(checkNotNull(healthModifier));
     }
 
     @Override
@@ -64,7 +66,7 @@ public abstract class AbstractHealEntityEvent extends AbstractModifierEvent<Heal
 
     @Override
     public final Map<HealthModifier, Double> getOriginalHealingAmounts() {
-        return this.originalModifiers;
+        return this.originalModifierMap;
     }
 
     @Override
@@ -79,14 +81,31 @@ public abstract class AbstractHealEntityEvent extends AbstractModifierEvent<Heal
 
     @Override
     public final double getHealAmount(HealthModifier healthModifier) {
-        checkArgument(this.modifierFunctions.containsKey(checkNotNull(healthModifier)), "The provided damage modifier is not applicable : "
+        checkArgument(this.modifiers.containsKey(checkNotNull(healthModifier)), "The provided damage modifier is not applicable : "
                 + healthModifier.toString());
         return this.modifiers.get(checkNotNull(healthModifier));
     }
 
     @Override
     public final void setHealAmount(HealthModifier healthModifier, Function<? super Double, Double> function) {
-        this.modifierFunctions.put(checkNotNull(healthModifier), checkNotNull(function));
+        checkNotNull(healthModifier, "Damage modifier was null!");
+        checkNotNull(function, "Function was null!");
+        int indexToAddTo = 0;
+        boolean addAtEnd = true;
+        for (Iterator<Tuple<HealthModifier, Function<? super Double, Double>>> iterator = this.modifierFunctions.iterator(); iterator.hasNext(); ) {
+            Tuple<HealthModifier, Function<? super Double, Double>> tuple = iterator.next();
+            if (tuple.getFirst().equals(healthModifier)) {
+                iterator.remove();
+                addAtEnd = false;
+                break;
+            }
+            indexToAddTo++;
+        }
+        if (addAtEnd) {
+            this.modifierFunctions.add(new Tuple<>(healthModifier, function));
+        } else {
+            this.modifierFunctions.add(indexToAddTo, new Tuple<>(healthModifier, function));
+        }
         this.recalculateDamages(this.baseHealAmount);
     }
 

@@ -27,8 +27,11 @@ package org.spongepowered.api.data.manipulator.mutable.tileentity;
 import org.spongepowered.api.block.tileentity.Sign;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
+import org.spongepowered.api.data.manipulator.mutable.ListData;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
 
 import java.util.List;
@@ -36,8 +39,13 @@ import java.util.List;
 /**
  * An {@link DataManipulator} handling the {@link List} of
  * {@link Text} showing up on a {@link Sign} to a {@link Player}.
+ *
+ * <p>In Vanilla, this is always applicable to a {@link Sign}, which
+ * always has lines present (even if they are empty). It may be present
+ * on an {@link ItemStack} of {@link ItemTypes#SIGN}, depending on whether
+ * the {@link ItemStack} has sign data stored in it.</p>
  */
-public interface SignData extends DataManipulator<SignData, ImmutableSignData> {
+public interface SignData extends ListData<Text, SignData, ImmutableSignData> {
 
     /**
      * Gets the {@link ListValue} of {@link Text} for the {@link Sign}
@@ -45,7 +53,9 @@ public interface SignData extends DataManipulator<SignData, ImmutableSignData> {
      *
      * @return The list of text lines
      */
-    ListValue<Text> lines();
+    default ListValue<Text> lines() {
+        return getListValue();
+    }
 
 
 }

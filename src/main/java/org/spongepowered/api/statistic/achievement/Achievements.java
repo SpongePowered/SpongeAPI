@@ -24,45 +24,84 @@
  */
 package org.spongepowered.api.statistic.achievement;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * A list of the default achievements that are contained in Minecraft.
  */
 public final class Achievements {
 
-    public static final Achievement OPEN_INVENTORY = null;
-    public static final Achievement MINE_WOOD = null;
-    public static final Achievement BUILD_WORKBENCH = null;
-    public static final Achievement BUILD_PICKAXE = null;
-    public static final Achievement BUILD_FURNACE = null;
-    public static final Achievement ACQUIRE_IRON = null;
-    public static final Achievement BUILD_HOE = null;
-    public static final Achievement MAKE_BREAD = null;
-    public static final Achievement BAKE_CAKE = null;
-    public static final Achievement BUILD_BETTER_PICKAXE = null;
-    public static final Achievement COOK_FISH = null;
-    public static final Achievement ON_A_RAIL = null;
-    public static final Achievement BUILD_SWORD = null;
-    public static final Achievement KILL_ENEMY = null;
-    public static final Achievement KILL_COW = null;
-    public static final Achievement FLY_PIG = null;
-    public static final Achievement SNIPE_SKELETON = null;
-    public static final Achievement GET_DIAMONDS = null;
-    public static final Achievement NETHER_PORTAL = null;
-    public static final Achievement GHAST_RETURN = null;
-    public static final Achievement GET_BLAZE_ROD = null;
-    public static final Achievement BREW_POTION = null;
-    public static final Achievement END_PORTAL = null;
-    public static final Achievement THE_END = null;
-    public static final Achievement ENCHANTMENTS = null;
-    public static final Achievement OVERKILL = null;
-    public static final Achievement BOOKCASE = null;
-    public static final Achievement EXPLORE_ALL_BIOMES = null;
-    public static final Achievement SPAWN_WITHER = null;
-    public static final Achievement KILL_WITHER = null;
-    public static final Achievement FULL_BEACON = null;
-    public static final Achievement BREED_COW = null;
-    public static final Achievement DIAMONDS_TO_YOU = null;
-    public static final Achievement OVERPOWERED = null;
+    // SORTFIELDS:ON
+
+    public static final Achievement ACQUIRE_IRON = DummyObjectProvider.createFor(Achievement.class, "ACQUIRE_IRON");
+
+    public static final Achievement BAKE_CAKE = DummyObjectProvider.createFor(Achievement.class, "BAKE_CAKE");
+
+    public static final Achievement BOOKCASE = DummyObjectProvider.createFor(Achievement.class, "BOOKCASE");
+
+    public static final Achievement BREED_COW = DummyObjectProvider.createFor(Achievement.class, "BREED_COW");
+
+    public static final Achievement BREW_POTION = DummyObjectProvider.createFor(Achievement.class, "BREW_POTION");
+
+    public static final Achievement BUILD_BETTER_PICKAXE = DummyObjectProvider.createFor(Achievement.class, "BUILD_BETTER_PICKAXE");
+
+    public static final Achievement BUILD_FURNACE = DummyObjectProvider.createFor(Achievement.class, "BUILD_FURNACE");
+
+    public static final Achievement BUILD_HOE = DummyObjectProvider.createFor(Achievement.class, "BUILD_HOE");
+
+    public static final Achievement BUILD_PICKAXE = DummyObjectProvider.createFor(Achievement.class, "BUILD_PICKAXE");
+
+    public static final Achievement BUILD_SWORD = DummyObjectProvider.createFor(Achievement.class, "BUILD_SWORD");
+
+    public static final Achievement BUILD_WORKBENCH = DummyObjectProvider.createFor(Achievement.class, "BUILD_WORKBENCH");
+
+    public static final Achievement COOK_FISH = DummyObjectProvider.createFor(Achievement.class, "COOK_FISH");
+
+    public static final Achievement DIAMONDS_TO_YOU = DummyObjectProvider.createFor(Achievement.class, "DIAMONDS_TO_YOU");
+
+    public static final Achievement ENCHANTMENTS = DummyObjectProvider.createFor(Achievement.class, "ENCHANTMENTS");
+
+    public static final Achievement END_PORTAL = DummyObjectProvider.createFor(Achievement.class, "END_PORTAL");
+
+    public static final Achievement EXPLORE_ALL_BIOMES = DummyObjectProvider.createFor(Achievement.class, "EXPLORE_ALL_BIOMES");
+
+    public static final Achievement FLY_PIG = DummyObjectProvider.createFor(Achievement.class, "FLY_PIG");
+
+    public static final Achievement FULL_BEACON = DummyObjectProvider.createFor(Achievement.class, "FULL_BEACON");
+
+    public static final Achievement GET_BLAZE_ROD = DummyObjectProvider.createFor(Achievement.class, "GET_BLAZE_ROD");
+
+    public static final Achievement GET_DIAMONDS = DummyObjectProvider.createFor(Achievement.class, "GET_DIAMONDS");
+
+    public static final Achievement GHAST_RETURN = DummyObjectProvider.createFor(Achievement.class, "GHAST_RETURN");
+
+    public static final Achievement KILL_COW = DummyObjectProvider.createFor(Achievement.class, "KILL_COW");
+
+    public static final Achievement KILL_ENEMY = DummyObjectProvider.createFor(Achievement.class, "KILL_ENEMY");
+
+    public static final Achievement KILL_WITHER = DummyObjectProvider.createFor(Achievement.class, "KILL_WITHER");
+
+    public static final Achievement MAKE_BREAD = DummyObjectProvider.createFor(Achievement.class, "MAKE_BREAD");
+
+    public static final Achievement MINE_WOOD = DummyObjectProvider.createFor(Achievement.class, "MINE_WOOD");
+
+    public static final Achievement NETHER_PORTAL = DummyObjectProvider.createFor(Achievement.class, "NETHER_PORTAL");
+
+    public static final Achievement ON_A_RAIL = DummyObjectProvider.createFor(Achievement.class, "ON_A_RAIL");
+
+    public static final Achievement OPEN_INVENTORY = DummyObjectProvider.createFor(Achievement.class, "OPEN_INVENTORY");
+
+    public static final Achievement OVERKILL = DummyObjectProvider.createFor(Achievement.class, "OVERKILL");
+
+    public static final Achievement OVERPOWERED = DummyObjectProvider.createFor(Achievement.class, "OVERPOWERED");
+
+    public static final Achievement SNIPE_SKELETON = DummyObjectProvider.createFor(Achievement.class, "SNIPE_SKELETON");
+
+    public static final Achievement SPAWN_WITHER = DummyObjectProvider.createFor(Achievement.class, "SPAWN_WITHER");
+
+    public static final Achievement THE_END = DummyObjectProvider.createFor(Achievement.class, "THE_END");
+
+    // SORTFIELDS:OFF
 
     private Achievements() {
     }

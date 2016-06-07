@@ -27,8 +27,8 @@ package org.spongepowered.api.text.selector;
 import java.util.Set;
 
 /**
- * Represents the type of an {@link Argument}. This represents a single
- * argument key in a {@link Selector}.
+ * Represents the type of an {@link Argument}. This represents a single argument
+ * key in a {@link Selector}.
  *
  * @param <T> The type for the value of this argument type
  * @see Selector
@@ -46,7 +46,7 @@ public interface ArgumentType<T> extends ArgumentHolder<ArgumentType<T>> {
 
     /**
      * Returns 1.
-     * 
+     *
      * @return 1
      */
     @Override
@@ -54,7 +54,7 @@ public interface ArgumentType<T> extends ArgumentHolder<ArgumentType<T>> {
 
     /**
      * Returns a set containing this {@link ArgumentType}.
-     * 
+     *
      * @return A set containing this {@link ArgumentType}
      */
     @Override

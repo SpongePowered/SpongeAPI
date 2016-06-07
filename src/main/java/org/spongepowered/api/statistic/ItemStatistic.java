@@ -25,6 +25,9 @@
 package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.text.translation.Translation;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a {@link Statistic} for an {@link ItemType}.
@@ -38,4 +41,19 @@ public interface ItemStatistic extends Statistic {
      */
     ItemType getItemType();
 
+    /**
+     * Represents a builder to create new and custom instances of
+     * {@link ItemStatistic}s.
+     */
+    interface Builder extends StatisticBuilder<ItemStatistic, Builder> {
+
+        /**
+         * Sets the {@link ItemType} of this {@link ItemStatistic}.
+         *
+         * @param item The item
+         * @return This builder, for chaining
+         */
+        Builder item(ItemType item);
+
+    }
 }

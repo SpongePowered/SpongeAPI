@@ -27,6 +27,7 @@ package org.spongepowered.api.world.gen;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.WorldCreationSettings;
 
 /**
@@ -37,13 +38,16 @@ import org.spongepowered.api.world.WorldCreationSettings;
  * will be called.
  *
  * <p>The modifier can change every aspect of terrain generation using the
- * {@link WorldGenerator} provided as a parameter to {@code modifyWorldGenerator}.
- * This is no requirement, you can for example replace only the biome generator.
- * Multiple world generator modifiers can be applied on a single world.</p>
+ * {@link WorldGenerator} provided as a parameter to
+ * {@code modifyWorldGenerator}. This is no requirement, you can for example
+ * replace only the biome generator. Multiple world generator modifiers can be
+ * applied on a single world.</p>
  *
- * <p>Implementations of this interface must be registered using 
- * {@link GameRegistry#registerWorldGeneratorModifier(WorldGeneratorModifier)}.</p>
+ * <p>Implementations of this interface must be registered using
+ * {@link GameRegistry#register(Class, CatalogType)}
+ * .</p>
  */
+@CatalogedBy(WorldGeneratorModifiers.class)
 public interface WorldGeneratorModifier extends CatalogType {
 
     /**
@@ -53,12 +57,12 @@ public interface WorldGeneratorModifier extends CatalogType {
      *
      * <p>To replace the base chunk generator, replace the main generator
      * populator using
-     * {@link WorldGenerator#setBaseGeneratorPopulator(GeneratorPopulator)}. To
-     * replace the biome generator, use
+     * {@link WorldGenerator#setBaseGenerationPopulator(GenerationPopulator)}.
+     * To replace the biome generator, use
      * {@link WorldGenerator#setBiomeGenerator(BiomeGenerator)}. To change
      * terrain population, modify the populator list returned by
      * {@link WorldGenerator#getPopulators()} or
-     * {@link WorldGenerator#getGeneratorPopulators()}.</p>
+     * {@link WorldGenerator#getGenerationPopulators()}.</p>
      *
      * @param world The creation settings of the world.
      * @param settings A data container with (usually) user-provided settings,
@@ -67,16 +71,5 @@ public interface WorldGeneratorModifier extends CatalogType {
      * @see WorldGenerator Additional information on the generation process
      */
     void modifyWorldGenerator(WorldCreationSettings world, DataContainer settings, WorldGenerator worldGenerator);
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>This name must be something unique and may not contain spaces. The
-     * same name must be returned every time the method is invoked.</p>
-     *
-     * @return {@inheritDoc}
-     */
-    @Override
-    String getId();
 
 }

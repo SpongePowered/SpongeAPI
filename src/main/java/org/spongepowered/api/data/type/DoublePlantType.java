@@ -25,12 +25,13 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of double plant.
  */
 @CatalogedBy(DoublePlantTypes.class)
-public interface DoublePlantType extends CatalogType {
+public interface DoublePlantType extends CatalogType, Translatable {
 
 }

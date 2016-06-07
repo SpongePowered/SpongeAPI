@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.block.trait;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
@@ -77,13 +78,14 @@ import java.util.function.Predicate;
  * {@link BlockTypes#BOOKSHELF}.</p>
  *
  */
-public interface BlockTrait<T extends Comparable<T>> {
+public interface BlockTrait<T extends Comparable<T>> extends CatalogType {
 
     /**
      * Gets the name of this {@link BlockTrait}.
      *
      * @return The trait name
      */
+    @Override
     String getName();
 
     /**
@@ -105,7 +107,7 @@ public interface BlockTrait<T extends Comparable<T>> {
     /**
      * Gets the {@link Predicate} used to determine valid values for this
      * {@link BlockTrait}. Any "value" that returns <code>true</code> when
-     * {@link Predicate#apply(Object)} is called is valid. The
+     * {@link Predicate#test(Object)} is called is valid. The
      * {@link Predicate} is specific to this trait.
      * 
      * @return The predicate

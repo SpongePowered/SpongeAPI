@@ -28,6 +28,7 @@ import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.util.DiscreteTransform2;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.extent.worker.MutableBiomeAreaWorker;
 
 /**
  * An area containing biomes that can be accessed and modified.
@@ -42,9 +43,11 @@ public interface MutableBiomeArea extends BiomeArea {
      * @param position The position
      * @param biome The biome
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the area
+     *         bounds of the area
      */
-    void setBiome(Vector2i position, BiomeType biome);
+    default void setBiome(Vector2i position, BiomeType biome) {
+        setBiome(position.getX(), position.getY(), biome);
+    }
 
     /**
      * Sets the biome at the given position in the world.
@@ -53,7 +56,7 @@ public interface MutableBiomeArea extends BiomeArea {
      * @param z The Z position
      * @param biome The biome
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the area
+     *         bounds of the area
      */
     void setBiome(int x, int z, BiomeType biome);
 
@@ -65,16 +68,15 @@ public interface MutableBiomeArea extends BiomeArea {
      * @param newMin The new minimum coordinates in this area
      * @param newMax The new maximum coordinates in this area
      * @return The new area with the new bounds
-     * @throws PositionOutOfBoundsException If the new minimum and maximum
-     *     are outside the current area
+     * @throws PositionOutOfBoundsException If the new minimum and maximum are
+     *         outside the current area
      */
     @Override
     MutableBiomeArea getBiomeView(Vector2i newMin, Vector2i newMax);
 
     /**
-     * Returns a new area that is viewed through some transformation.
-     * This does not copy the biomes, it only provides a new view of the
-     * storage.
+     * Returns a new area that is viewed through some transformation. This does
+     * not copy the biomes, it only provides a new view of the storage.
      *
      * @param transform The transformation to be applied
      * @return The new area with the transform
@@ -84,13 +86,17 @@ public interface MutableBiomeArea extends BiomeArea {
 
     /**
      * Returns a new area that is translated so that
-     * {@link BiomeArea#getBiomeMin()} returns {@link Vector2i#ZERO}.
-     * This does not copy the biomes, it only provides a new view of the
-     * storage.
+     * {@link BiomeArea#getBiomeMin()} returns {@link Vector2i#ZERO}. This does
+     * not copy the biomes, it only provides a new view of the storage.
      *
      * @return The new area with its minimum at zero
      */
     @Override
-    MutableBiomeArea getRelativeBiomeView();
+    default MutableBiomeArea getRelativeBiomeView() {
+        return getBiomeView(DiscreteTransform2.fromTranslation(getBiomeMin().negate()));
+    }
+
+    @Override
+    MutableBiomeAreaWorker<? extends MutableBiomeArea> getBiomeWorker();
 
 }

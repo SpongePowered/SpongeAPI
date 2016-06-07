@@ -24,13 +24,20 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known {@link CookedFish} types.
  */
 public final class CookedFishes {
 
-    public static final CookedFish COD = null;
-    public static final CookedFish SALMON = null;
+    // SORTFIELDS:ON
+
+    public static final CookedFish COD = DummyObjectProvider.createFor(CookedFish.class, "COD");
+
+    public static final CookedFish SALMON = DummyObjectProvider.createFor(CookedFish.class, "SALMON");
+
+    // SORTFIELDS:OFF
 
     private CookedFishes() {
     }

@@ -28,6 +28,9 @@ import static org.spongepowered.api.data.DataQuery.of;
 
 public final class Queries {
 
+    // Content version
+    public static final DataQuery CONTENT_VERSION = of("ContentVersion");
+
     // Transaction
     public static final DataQuery TYPE_CLASS = of("TypeClass");
     public static final DataQuery ORIGINAL = of("Original");
@@ -62,6 +65,28 @@ public final class Queries {
     public static final DataQuery VARIABLE_BASE = of("Base");
     public static final DataQuery VARIABLE_VARIANCE = of("Variance");
     public static final DataQuery VARIABLE_AMOUNT = of("Amount");
+
+    // Color
+    public static final DataQuery COLOR_RED = of("Red");
+    public static final DataQuery COLOR_BLUE = of("Blue");
+    public static final DataQuery COLOR_GREEN = of("Green");
+
+    // Tracking
+    public static final DataQuery CREATOR_ID = of("Creator");
+    public static final DataQuery NOTIFIER_ID = of("Notifier");
+
+    // Text
+    public static final DataQuery JSON = of("JSON");
+    public static final DataQuery TEXT_TITLE = of("TextTitle");
+    public static final DataQuery TEXT_AUTHOR = of("TextAuthor");
+    public static final DataQuery TEXT_PAGE_LIST = of("TextPageList");
+
+    // RespawnLocation
+    public static final DataQuery FORCED_SPAWN = of("ForcedSpawn");
+
+    // UUID
+    public static final DataQuery UUID_LEAST = of("UuidLeast");
+    public static final DataQuery UUID_MOST = of("UuidMost");
 
     private Queries() {
     }

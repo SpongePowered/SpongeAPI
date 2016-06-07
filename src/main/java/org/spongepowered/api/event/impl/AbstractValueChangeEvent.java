@@ -36,7 +36,7 @@ public abstract class AbstractValueChangeEvent implements ChangeDataHolderEvent.
     protected DataTransactionResult endResult;
 
     protected void init() {
-        this.endResult = originalChanges;
+        this.endResult = this.originalChanges;
     }
 
     @Override

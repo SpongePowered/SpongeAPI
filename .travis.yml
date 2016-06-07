@@ -1,9 +1,12 @@
-sudo: false
+sudo: required
+dist: trusty
 
 language: java
 jdk:
+  - openjdk8
   - oraclejdk8
 
+env: GRADLE_OPTS="-Xms1g -Xmx3g"
 install: true
 script: ./gradlew build
 

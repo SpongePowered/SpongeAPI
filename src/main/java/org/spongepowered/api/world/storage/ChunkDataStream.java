@@ -30,24 +30,24 @@ import org.spongepowered.api.world.Chunk;
 import javax.annotation.Nullable;
 
 /**
- * A chunk iterator represents a buffer for obtaining chunk data from
- * storage without having to explicitly load into memory all available
- * chunks.
- * <p>This avoid loading all chunks into memory at once, reducing the memory
- * footprint and persistence operations.</p>
- * <p>The chunks are loaded individually in sequence. Strong references to
- * the chunks represented by {@link DataContainer}s should be avoided
- * <strong>AT ALL COSTS</strong>. The data represented is a copy and
- * therefore shouldn't be considered synchronized to live data.</p>
+ * A chunk iterator represents a buffer for obtaining chunk data from storage
+ * without having to explicitly load into memory all available chunks. <p>This
+ * avoid loading all chunks into memory at once, reducing the memory footprint
+ * and persistence operations.</p> <p>The chunks are loaded individually in
+ * sequence. Strong references to the chunks represented by
+ * {@link DataContainer}s should be avoided <strong>AT ALL COSTS</strong>. The
+ * data represented is a copy and therefore shouldn't be considered synchronized
+ * to live data.</p>
  *
- * <p>This is a data stream from the chunk storage system and should be
- * used in an asynchronous thread from the main thread.</p>
+ * <p>This is a data stream from the chunk storage system and should be used in
+ * an asynchronous thread from the main thread.</p>
  *
  */
 public interface ChunkDataStream {
 
     /**
-     * Gets the next {@link Chunk} represented by a read only {@link DataContainer}.
+     * Gets the next {@link Chunk} represented by a read only
+     * {@link DataContainer}.
      *
      * <p>This method BLOCKS the thread until the next available data has been
      * read.</p>

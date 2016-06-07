@@ -25,21 +25,20 @@
 package org.spongepowered.api.event.user;
 
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
+import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.util.ban.Ban;
 
 /**
  * Occurs when a user is banned.
  */
-public interface BanUserEvent extends TargetUserEvent, CauseTracked {
+public interface BanUserEvent extends TargetUserEvent {
 
     /**
      * Gets the ban involved in this event.
      *
      * @return The ban
      */
-    Ban.User getBan();
+    Ban.Profile getBan();
 
     /**
      * An event where a {@link Player} is the target.

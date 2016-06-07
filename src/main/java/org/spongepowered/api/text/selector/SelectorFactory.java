@@ -28,22 +28,21 @@ import org.spongepowered.api.text.selector.ArgumentHolder.Limit;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.List;
 import java.util.Set;
 
 /**
- * Represents the required implementation for the static methods in
- * {@link Selectors}, {@link Arguments} and {@link ArgumentTypes}.
+ * Internal implementation factory: Use the methods in
+ * {@link Selector}, {@link Argument} and {@link ArgumentTypes} instead.
  */
 public interface SelectorFactory {
 
     /**
-     * Creates a {@link SelectorBuilder} with the specified type and no
-     * arguments.
+     * Creates a {@link Selector.Builder}.
      *
-     * @param type The type of the selector
      * @return A new selector builder with the specified type
      */
-    SelectorBuilder createBuilder(SelectorType type);
+    Selector.Builder createBuilder();
 
     /**
      * Parses a {@link Selector} from the given selector string.
@@ -66,7 +65,8 @@ public interface SelectorFactory {
      * Gets the {@link ArgumentType} with the provided name.
      *
      * @param name The name of the argument type
-     * @return The {@link ArgumentType} with the given name or Optional.empty() if not found
+     * @return The {@link ArgumentType} with the given name or Optional.empty()
+     *         if not found
      */
     Optional<ArgumentType<?>> getArgumentType(String name);
 
@@ -119,7 +119,8 @@ public interface SelectorFactory {
     <T> Argument.Invertible<T> createArgument(ArgumentType.Invertible<T> type, T value, boolean inverted);
 
     /**
-     * Creates a new set of {@link Argument}s using the specified type and value.
+     * Creates a new set of {@link Argument}s using the specified type and
+     * value.
      *
      * @param type The type of the arguments
      * @param value The value of the arguments
@@ -140,5 +141,13 @@ public interface SelectorFactory {
      *         due to invalid format)
      */
     Argument<?> parseArgument(String argument) throws IllegalArgumentException;
+
+    /**
+     * Fetch completions for a selector command argument.
+     * 
+     * @param selector The partial selector
+     * @return Tab completions for the next part of the selector
+     */
+    List<String> complete(String selector);
 
 }

@@ -42,6 +42,20 @@ public class EyeLocationProperty extends AbstractProperty<String, Vector3d> {
 
     @Override
     public int compareTo(Property<?, ?> o) {
-        return 0;
+        if (o instanceof EyeLocationProperty) {
+            final EyeLocationProperty other = (EyeLocationProperty) o;
+            if (this.getValue() == other.getValue()) {
+                return 0;
+            }
+            if (other.getValue() == null) {
+                return 1;
+            }
+            if (this.getValue() == null) {
+                return -1;
+            }
+            return this.getValue().compareTo(other.getValue());
+        }
+        return this.getClass().getName().compareTo(o.getClass().getName());
     }
+
 }

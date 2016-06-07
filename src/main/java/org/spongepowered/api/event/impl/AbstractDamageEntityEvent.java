@@ -27,17 +27,18 @@ package org.spongepowered.api.event.impl;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
+import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.eventgencore.annotation.UseField;
 import org.spongepowered.api.util.Tuple;
 
-import java.util.LinkedHashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 
 public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<DamageModifier> implements DamageEntityEvent {
@@ -55,9 +56,13 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
 
     @Override
     public final double getOriginalModifierDamage(DamageModifier damageModifier) {
-        checkArgument(this.originalModifiers.containsKey(checkNotNull(damageModifier)), "The provided damage modifier is not applicable : "
-                + damageModifier.toString());
-        return this.originalModifiers.get(checkNotNull(damageModifier));
+        checkArgument(damageModifier != null, "The damage modifier cannot be null!");
+        for (Tuple<DamageModifier, Double> tuple : this.originalModifiers) {
+            if (tuple.getFirst().equals(damageModifier)) {
+                return tuple.getSecond();
+            }
+        }
+        throw new IllegalArgumentException("The provided damage modifier is not applicable: " + damageModifier.toString());
     }
 
     @Override
@@ -67,7 +72,8 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
 
     @Override
     public final Map<DamageModifier, Double> getOriginalDamages() {
-        return this.originalModifiers;
+
+        return this.originalModifierMap;
     }
 
     @Override
@@ -82,14 +88,75 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
 
     @Override
     public final double getDamage(DamageModifier damageModifier) {
-        checkArgument(this.modifierFunctions.containsKey(checkNotNull(damageModifier)), "The provided damage modifier is not applicable : "
+        checkArgument(this.modifiers.containsKey(checkNotNull(damageModifier)), "The provided damage modifier is not applicable : "
                 + damageModifier.toString());
         return this.modifiers.get(checkNotNull(damageModifier));
     }
 
     @Override
     public final void setDamage(DamageModifier damageModifier, Function<? super Double, Double> function) {
-        this.modifierFunctions.put(checkNotNull(damageModifier), checkNotNull(function));
+        checkNotNull(damageModifier, "Damage modifier was null!");
+        checkNotNull(function, "Function was null!");
+        int indexToAddTo = 0;
+        boolean addAtEnd = true;
+        for (Iterator<Tuple<DamageModifier, Function<? super Double, Double>>> iterator = this.modifierFunctions.iterator(); iterator.hasNext(); ) {
+            Tuple<DamageModifier, Function<? super Double, Double>> tuple = iterator.next();
+            if (tuple.getFirst().equals(damageModifier)) {
+                iterator.remove();
+                addAtEnd = false;
+                break;
+            }
+            indexToAddTo++;
+        }
+        if (addAtEnd) {
+            this.modifierFunctions.add(new Tuple<>(damageModifier, function));
+        } else {
+            this.modifierFunctions.add(indexToAddTo, new Tuple<>(damageModifier, function));
+        }
+        this.recalculateDamages(this.baseDamage);
+    }
+
+    @Override
+    public void addDamageModifierBefore(DamageModifier damageModifier, Function<? super Double, Double> function, Set<DamageModifierType> before) {
+        checkNotNull(damageModifier, "Damage modifier was null!");
+        checkNotNull(function, "Function was null!");
+        int indexToAddBefore = -1;
+        int index = 0;
+        for (Tuple<DamageModifier, Function<? super Double, Double>> tuple : this.modifierFunctions) {
+            checkArgument(!tuple.getFirst().equals(damageModifier), "Cannot add a duplicate modifier!");
+            if (before.contains(tuple.getFirst().getType())) {
+                indexToAddBefore = index;
+            }
+            index++;
+
+        }
+        if (indexToAddBefore == -1) {
+            this.modifierFunctions.add(new Tuple<>(damageModifier, function));
+        } else {
+            this.modifierFunctions.add(indexToAddBefore, new Tuple<>(damageModifier, function));
+        }
+        this.recalculateDamages(this.baseDamage);
+    }
+
+    @Override
+    public void addModifierAfter(DamageModifier damageModifier, Function<? super Double, Double> function, Set<DamageModifierType> after) {
+        checkNotNull(damageModifier, "Damage modifier was null!");
+        checkNotNull(function, "Function was null!");
+        int indexToAddAfter = -1;
+        int index = 0;
+        for (Tuple<DamageModifier, Function<? super Double, Double>> tuple : this.modifierFunctions) {
+            checkArgument(!tuple.getFirst().equals(damageModifier), "Cannot add a duplicate modifier!");
+            if (after.contains(tuple.getFirst().getType())) {
+                indexToAddAfter = index;
+            }
+            index++;
+
+        }
+        if (indexToAddAfter == -1) {
+            this.modifierFunctions.add(new Tuple<>(damageModifier, function));
+        } else {
+            this.modifierFunctions.add(indexToAddAfter + 1, new Tuple<>(damageModifier, function));
+        }
         this.recalculateDamages(this.baseDamage);
     }
 
@@ -102,6 +169,12 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
     public final void setBaseDamage(double baseDamage) {
         this.baseDamage = baseDamage;
         this.recalculateDamages(this.baseDamage);
+    }
+
+    @Override
+    public boolean willCauseDeath() {
+        Optional<Double> health = getTargetEntity().get(Keys.HEALTH);
+        return health.isPresent() ? health.get() - getFinalDamage() <= 0 : false;
     }
 
 }

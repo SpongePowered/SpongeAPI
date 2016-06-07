@@ -64,7 +64,7 @@ public enum Tristate {
 
     private final boolean val;
 
-    private Tristate(boolean val) {
+    Tristate(boolean val) {
         this.val = val;
     }
 

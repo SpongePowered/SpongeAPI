@@ -25,12 +25,12 @@
 package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.event.GameEvent;
+import org.spongepowered.api.event.Event;
 
 /**
  * Base event for when a {@link BlockSnapshot} is a target
  */
-public interface TargetBlockEvent extends GameEvent {
+public interface TargetBlockEvent extends Event {
 
     /**
      * @return The BlockSnapshot

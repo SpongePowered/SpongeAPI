@@ -24,15 +24,14 @@
  */
 package org.spongepowered.api.event.command;
 
+import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.event.cause.CauseTracked;
-import org.spongepowered.api.util.command.CommandResult;
+import org.spongepowered.api.event.Event;
 
 /**
  * Fired when a command is sent
  */
-public interface SendCommandEvent extends GameEvent, Cancellable, CauseTracked {
+public interface SendCommandEvent extends Event, Cancellable {
 
     /**
      * Get the command as a string, without any sort of command prefix.
@@ -40,9 +39,19 @@ public interface SendCommandEvent extends GameEvent, Cancellable, CauseTracked {
      * <p>For example, if the message was {@code /example bob 3 -f}, then
      * the command would be {@code example}.</p>
      *
-     * @return The commands
+     * @return The command
      */
     String getCommand();
+
+    /**
+     * Set the command as a string, without any sort of command prefix.
+     *
+     * <p>For example, if the message was {@code /example bob 3 -f}, then
+     * the command would be {@code example}.</p>
+     *
+     * @param command The command
+     */
+    void setCommand(String command);
 
     /**
      * Get the arguments as a string.
@@ -53,6 +62,16 @@ public interface SendCommandEvent extends GameEvent, Cancellable, CauseTracked {
      * @return The arguments
      */
     String getArguments();
+
+    /**
+     * Set the arguments as a string.
+     *
+     * <p>For example, if the message was {@code /example bob 3 -f}, then
+     * the arguments would be {@code bob 3 -f}.</p>
+     *
+     * @param arguments The arguments
+     */
+    void setArguments(String arguments);
 
     /**
      * The result of the command.

@@ -24,25 +24,28 @@
  */
 package org.spongepowered.api.item.inventory.transaction;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 
 public final class SlotTransaction extends Transaction<ItemStackSnapshot> {
+    
     private final Slot slot;
 
     public SlotTransaction(Slot slot, ItemStackSnapshot original, ItemStackSnapshot defaultReplacement) {
         super(original, defaultReplacement);
-        this.slot = slot;
+        this.slot = checkNotNull(slot, "Slot cannot be null!");
     }
 
     public final void setCustom(ItemStack stack) {
-        setCustom(stack.createSnapshot());
+        setCustom(checkNotNull(stack, "ItemStack was null").createSnapshot());
     }
 
     public final Slot getSlot() {
-        return slot;
+        return this.slot;
     }
 
     @Override public String toString() {
@@ -54,4 +57,5 @@ public final class SlotTransaction extends Transaction<ItemStackSnapshot> {
                 .add("valid", isValid())
                 .toString();
     }
+    
 }

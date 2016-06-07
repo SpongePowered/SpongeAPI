@@ -25,16 +25,31 @@
 package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.translation.Translatable;
+import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents some statistic in Minecraft with a string ID.
  */
 @CatalogedBy(Statistics.class)
 public interface Statistic extends CatalogType, Translatable {
+
+    /**
+     * Creates a new {@link StatisticBuilder} to build a {@link Statistic}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     /**
      * Gets the {@link StatisticFormat} of this statistic. If this is not
@@ -52,4 +67,61 @@ public interface Statistic extends CatalogType, Translatable {
      */
     StatisticGroup getGroup();
 
+    interface Builder extends StatisticBuilder<Statistic, Builder> {
+
+    }
+
+    /**
+     * Represents a builder to create new and custom instances of {@link Statistic}
+     * s.
+     */
+    interface StatisticBuilder<T extends Statistic, B extends StatisticBuilder<T, B>> extends ResettableBuilder<T, B> {
+
+        /**
+         * Sets the internal name for the {@link Statistic}.
+         *
+         * @param name The name of this achievement
+         * @return This builder, for chaining
+         */
+        B name(String name);
+
+        /**
+         * Sets the translation for the {@link Statistic}.
+         *
+         * @param translation The translation for the statistic
+         * @return This builder, for chaining
+         */
+        B translation(Translation translation);
+
+        /**
+         * Sets the format of the {@link Statistic}. May be null in which case the
+         * group default format will be used instead.
+         *
+         * @param format The format of the statistic
+         * @return This builder, for chaining
+         */
+        B format(@Nullable StatisticFormat format);
+
+        /**
+         * Sets the {@link StatisticGroup} the {@link Statistic} belongs to.
+         *
+         * @param group The statistic group the statistic belongs to
+         * @return This builder, for chaining
+         */
+        B group(StatisticGroup group);
+
+        /**
+         * Builds and registers an instance of a {@link Statistic}.
+         *
+         * @return A new instance of a statistic
+         * @throws IllegalStateException If the statistic is not completed
+         */
+        T buildAndRegister() throws IllegalStateException;
+
+        @Override
+        B from(T value);
+
+        @Override
+        B reset();
+    }
 }

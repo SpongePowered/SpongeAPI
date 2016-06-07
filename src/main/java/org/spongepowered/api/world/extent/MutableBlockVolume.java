@@ -29,6 +29,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
+import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
 /**
  * A volume containing blocks that can be accessed and modified.
@@ -43,9 +44,11 @@ public interface MutableBlockVolume extends BlockVolume {
      * @param position The position
      * @param block The block
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the volume
+     *         bounds of the volume
      */
-    void setBlock(Vector3i position, BlockState block);
+    default void setBlock(Vector3i position, BlockState block) {
+        setBlock(position.getX(), position.getY(), position.getZ(), block);
+    }
 
     /**
      * Sets the block at the given position in the world.
@@ -55,7 +58,7 @@ public interface MutableBlockVolume extends BlockVolume {
      * @param z The Z position
      * @param block The block
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the volume
+     *         bounds of the volume
      */
     void setBlock(int x, int y, int z, BlockState block);
 
@@ -67,9 +70,11 @@ public interface MutableBlockVolume extends BlockVolume {
      * @param position The position of the block
      * @param type The new type
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the area
+     *         bounds of the area
      */
-    void setBlockType(Vector3i position, BlockType type);
+    default void setBlockType(Vector3i position, BlockType type) {
+        setBlockType(position.getX(), position.getY(), position.getZ(), type);
+    }
 
     /**
      * Replace the block at this position by a new type.
@@ -81,28 +86,29 @@ public interface MutableBlockVolume extends BlockVolume {
      * @param z The Z position
      * @param type The new type
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *     bounds of the area
+     *         bounds of the area
      */
-    void setBlockType(int x, int y, int z, BlockType type);
+    default void setBlockType(int x, int y, int z, BlockType type) {
+        setBlock(x, y, z, type.getDefaultState());
+    }
 
     /**
-     * Returns a new volume that is the same or smaller than the current
-     * volume. This does not copy the blocks, it only provides a new view
-     * of the storage.
+     * Returns a new volume that is the same or smaller than the current volume.
+     * This does not copy the blocks, it only provides a new view of the
+     * storage.
      *
      * @param newMin The new minimum coordinates in this volume
      * @param newMax The new maximum coordinates in this volume
      * @return The new volume with the new bounds
-     * @throws PositionOutOfBoundsException If the new minimum and maximum
-     *     are outside the current volume
+     * @throws PositionOutOfBoundsException If the new minimum and maximum are
+     *         outside the current volume
      */
     @Override
     MutableBlockVolume getBlockView(Vector3i newMin, Vector3i newMax);
 
     /**
-     * Returns a new volume that is viewed through some transformation.
-     * This does not copy the blocks, it only provides a new view of the
-     * storage.
+     * Returns a new volume that is viewed through some transformation. This
+     * does not copy the blocks, it only provides a new view of the storage.
      *
      * @param transform The transformation to be applied
      * @return The new volume with the transform
@@ -112,13 +118,17 @@ public interface MutableBlockVolume extends BlockVolume {
 
     /**
      * Returns a new volume that is translated so that
-     * {@link BlockVolume#getBlockMin()} returns {@link Vector3i#ZERO}.
-     * This does not copy the blocks, it only provides a new view of the
-     * storage.
+     * {@link BlockVolume#getBlockMin()} returns {@link Vector3i#ZERO}. This
+     * does not copy the blocks, it only provides a new view of the storage.
      *
      * @return The new volume with its minimum at zero
      */
     @Override
-    MutableBlockVolume getRelativeBlockView();
+    default MutableBlockVolume getRelativeBlockView() {
+        return getBlockView(DiscreteTransform3.fromTranslation(getBlockMin().negate()));
+    }
+
+    @Override
+    MutableBlockVolumeWorker<? extends MutableBlockVolume> getBlockWorker();
 
 }

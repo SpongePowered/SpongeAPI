@@ -27,6 +27,7 @@ package org.spongepowered.api.util.rotation;
 
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
  * An enumeration of possible rotations for something that can rotate,
@@ -35,14 +36,25 @@ import org.spongepowered.api.item.inventory.ItemStack;
  */
 public final class Rotations {
 
-    public static final Rotation TOP = null;
-    public static final Rotation TOP_RIGHT = null;
-    public static final Rotation RIGHT = null;
-    public static final Rotation BOTTOM_RIGHT = null;
-    public static final Rotation BOTTOM = null;
-    public static final Rotation BOTTOM_LEFT = null;
-    public static final Rotation LEFT = null;
-    public static final Rotation TOP_LEFT = null;
+    // SORTFIELDS:ON
+
+    public static final Rotation BOTTOM = DummyObjectProvider.createFor(Rotation.class, "BOTTOM");
+
+    public static final Rotation BOTTOM_LEFT = DummyObjectProvider.createFor(Rotation.class, "BOTTOM_LEFT");
+
+    public static final Rotation BOTTOM_RIGHT = DummyObjectProvider.createFor(Rotation.class, "BOTTOM_RIGHT");
+
+    public static final Rotation LEFT = DummyObjectProvider.createFor(Rotation.class, "LEFT");
+
+    public static final Rotation RIGHT = DummyObjectProvider.createFor(Rotation.class, "RIGHT");
+
+    public static final Rotation TOP = DummyObjectProvider.createFor(Rotation.class, "TOP");
+
+    public static final Rotation TOP_LEFT = DummyObjectProvider.createFor(Rotation.class, "TOP_LEFT");
+
+    public static final Rotation TOP_RIGHT = DummyObjectProvider.createFor(Rotation.class, "TOP_RIGHT");
+
+    // SORTFIELDS:OFF
 
     private Rotations() {
     }

@@ -60,7 +60,7 @@ public interface ChannelBinding {
     PluginContainer getOwner();
 
     /**
-     * Represents a channel binding that sends an receives messages.
+     * Represents a channel binding that sends and receives messages.
      */
     interface IndexedMessageChannel extends ChannelBinding {
 
@@ -101,6 +101,23 @@ public interface ChannelBinding {
          * @param handler The handler that acts upon the message being received
          */
         <M extends Message> void registerMessage(Class<M> messageClass, int messageId, Platform.Type side, MessageHandler<M> handler);
+
+        /**
+         * Register a {@link MessageHandler} for a {@link Message}.
+         * @param messageClass The class to handle
+         * @param side The side being handled
+         * @param handler The handler
+         * @param <M> The type of message
+         */
+        <M extends Message> void addHandler(Class<M> messageClass, Platform.Type side, MessageHandler<M> handler);
+
+        /**
+         * Register a {@link MessageHandler} for a {@link Message}
+         * @param messageClass The class to handle
+         * @param handler The handler
+         * @param <M> The type of message
+         */
+        <M extends Message> void addHandler(Class<M> messageClass, MessageHandler<M> handler);
 
         /**
          * Sends the message to the player across this channel. The message may

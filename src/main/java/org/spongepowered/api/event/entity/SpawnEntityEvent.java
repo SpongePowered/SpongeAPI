@@ -26,7 +26,9 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.impl.AbstractSpawnEntityEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
+import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
 
 /**
  * Raised when an {@link Entity} is spawned. This usually follows the chain of
@@ -38,8 +40,9 @@ import org.spongepowered.api.event.network.ClientConnectionEvent;
  *
  * <p>For players, this event is fired before they have fully
  * joined the world. {@link ClientConnectionEvent} is the
- * reccomended event to interact with connecting players.</p>
+ * recommended event to interact with connecting players.</p>
  */
+@ImplementedBy(AbstractSpawnEntityEvent.class)
 public interface SpawnEntityEvent extends AffectEntityEvent {
 
     interface ChunkLoad extends SpawnEntityEvent {}

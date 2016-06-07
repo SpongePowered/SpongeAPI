@@ -26,7 +26,7 @@ package org.spongepowered.api.item.merchant;
 
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.mutable.entity.TradeOfferData;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.Carrier;
 
 import java.util.Optional;
@@ -43,16 +43,16 @@ public interface Merchant extends DataHolder, Carrier {
      *
      * @return The currently trading customer if available
      */
-    Optional<Human> getCustomer();
+    Optional<Humanoid> getCustomer();
 
     /**
      * Sets the currently trading customer with this merchant.
-     * <p>If the human entity is available, a new trading window may open
+     * <p>If the humanoid entity is available, a new trading window may open
      * with this merchant.</p>
      *
-     * @param human The human to trade with
+     * @param humanoid The humanoid to trade with
      */
-    void setCustomer(@Nullable Human human);
+    void setCustomer(@Nullable Humanoid humanoid);
 
     /**
      * Gets a copy of the used {@link TradeOfferData} containing all available

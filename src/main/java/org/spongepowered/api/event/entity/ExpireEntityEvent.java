@@ -28,7 +28,6 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.monster.Endermite;
 import org.spongepowered.api.entity.weather.Lightning;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.entity.item.TargetItemEvent;
 
 /**
@@ -36,7 +35,7 @@ import org.spongepowered.api.event.entity.item.TargetItemEvent;
  * include when an {@link Endermite} expires, or when {@link Lightning}
  * expires.
  */
-public interface ExpireEntityEvent extends TargetEntityEvent, CauseTracked {
+public interface ExpireEntityEvent extends TargetEntityEvent {
 
     /**
      * An event where the target is an {@link Item} entity.

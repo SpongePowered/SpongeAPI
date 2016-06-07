@@ -24,13 +24,20 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known {@link Hinge}s.
  */
 public final class Hinges {
 
-    public static final Hinge LEFT = null;
-    public static final Hinge RIGHT = null;
+    // SORTFIELDS:ON
+
+    public static final Hinge LEFT = DummyObjectProvider.createFor(Hinge.class, "LEFT");
+
+    public static final Hinge RIGHT = DummyObjectProvider.createFor(Hinge.class, "RIGHT");
+
+    // SORTFIELDS:OFF
 
     private Hinges() {
     }

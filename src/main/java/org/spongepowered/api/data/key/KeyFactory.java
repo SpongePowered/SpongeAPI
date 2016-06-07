@@ -30,17 +30,19 @@ import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
+import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.data.value.mutable.SetValue;
 import org.spongepowered.api.data.value.mutable.Value;
 
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * A factory of {@link Key}s, useful for both the implementation of SpongeAPI,
  * and for plugins wishing to provide their own {@link Key}s without having
  * to remain afraid of having to cast back and forth.
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"unchecked", "rawtypes"})
 public final class KeyFactory {
 
     private KeyFactory() {}
@@ -58,14 +60,20 @@ public final class KeyFactory {
      * @param valueClass The value class
      * @param query The query
      * @param <E> The type of element
-     * @param <V> The type of value
+     * @param <T> The type of base value class
+     * @param <V> The inferred return type
      * @return The generated key
      */
-    public static <E, V extends BaseValue<E>> Key<V> makeSingleKey(final Class<E> elementClass, final Class<V> valueClass, final DataQuery query) {
+    public static <E, T extends BaseValue, V extends BaseValue<E>> Key<V> makeSingleKey(final Class<E> elementClass, final Class<T> valueClass,
+            final DataQuery query) {
         return new Key<V>() {
+
+            private final int hash = Objects.hashCode(elementClass, valueClass, query);
+
+            @SuppressWarnings("rawtypes")
             @Override
             public Class<V> getValueClass() {
-                return valueClass;
+                return (Class<V>) (Class) valueClass;
             }
 
             @Override
@@ -75,12 +83,12 @@ public final class KeyFactory {
 
             @Override
             public int hashCode() {
-                return Objects.hashCode(elementClass, valueClass, query);
+                return this.hash;
             }
 
             @Override
             public String toString() {
-                return "Key{Value:" + valueClass.getName() + "<" + elementClass + ">, Query: " + query.toString() + "}";
+                return "Key{Value:" + valueClass.getSimpleName() + "<" + elementClass.getSimpleName() + ">, Query: " + query.toString() + "}";
             }
         };
     }
@@ -96,6 +104,9 @@ public final class KeyFactory {
      */
     public static <E> Key<ListValue<E>> makeListKey(final Class<E> elementClass, final DataQuery query) {
         return new Key<ListValue<E>>() {
+            private final int hash = Objects.hashCode(ListValue.class, elementClass, query);
+
+            @SuppressWarnings("rawtypes")
             @Override
             public Class<ListValue<E>> getValueClass() {
                 return (Class<ListValue<E>>) (Class) ListValue.class;
@@ -108,12 +119,12 @@ public final class KeyFactory {
 
             @Override
             public int hashCode() {
-                return Objects.hashCode(elementClass, query);
+                return this.hash;
             }
 
             @Override
             public String toString() {
-                return "Key{Value:" + "ListValue<" + elementClass + ">, Query: " + query.toString() + "}";
+                return "Key{Value:" + "ListValue<" + elementClass.getSimpleName() + ">, Query: " + query.toString() + "}";
             }
         };
     }
@@ -129,6 +140,9 @@ public final class KeyFactory {
      */
     public static <E> Key<SetValue<E>> makeSetKey(final Class<E> elementClass, final DataQuery query) {
         return new Key<SetValue<E>>() {
+            private final int hash = Objects.hashCode(ListValue.class, elementClass, query);
+
+            @SuppressWarnings("rawtypes")
             @Override
             public Class<SetValue<E>> getValueClass() {
                 return (Class<SetValue<E>>) (Class) SetValue.class;
@@ -141,12 +155,12 @@ public final class KeyFactory {
 
             @Override
             public int hashCode() {
-                return Objects.hashCode(elementClass, query);
+                return this.hash;
             }
 
             @Override
             public String toString() {
-                return "Key{Value:" + "SetValue<" + elementClass +">, Query: " + query.toString() + "}";
+                return "Key{Value:" + "SetValue<" + elementClass.getSimpleName() + ">, Query: " + query.toString() + "}";
             }
         };
     }
@@ -165,6 +179,10 @@ public final class KeyFactory {
      */
     public static <K, V> Key<MapValue<K, V>> makeMapKey(final Class<K> keyClass, final Class<V> valueclass, final DataQuery query) {
         return new Key<MapValue<K, V>>() {
+
+            private final int hash = Objects.hashCode(keyClass, valueclass, query);
+
+            @SuppressWarnings("rawtypes")
             @Override
             public Class<MapValue<K, V>> getValueClass() {
                 return (Class<MapValue<K, V>>) (Class) MapValue.class;
@@ -177,12 +195,64 @@ public final class KeyFactory {
 
             @Override
             public int hashCode() {
-                return Objects.hashCode(keyClass, valueclass, query);
+                return this.hash;
             }
 
             @Override
             public String toString() {
-                return "Key{Value:" + "MapValue<" + keyClass + "," + valueclass + ">, Query: " + query.toString() + "}";
+                return "Key{Value:" + "MapValue<" + keyClass.getSimpleName() + "," + valueclass.getSimpleName() + ">, Query: " + query.toString()
+                       + "}";
+            }
+        };
+    }
+
+    /**
+     * Creates a new {@link Key} based on an {@link OptionalValue} of the type
+     * <code>E</code> element type with the provided {@link DataQuery} for
+     * accessing the optionally null value in {@link DataView}s.
+     *
+     * @param elementClass The element class
+     * @param query The query
+     * @param <E> The element type
+     * @return The generated key
+     */
+    public static <E> Key<OptionalValue<E>> makeOptionalKey(final Class<E> elementClass, final DataQuery query) {
+        return new Key<OptionalValue<E>>() {
+
+            private final int hash = Objects.hashCode(Optional.class, elementClass, query);
+
+            @Override
+            public Class<OptionalValue<E>> getValueClass() {
+                return (Class<OptionalValue<E>>) (Class<?>) OptionalValue.class;
+            }
+
+            @Override
+            public DataQuery getQuery() {
+                return query;
+            }
+
+            @Override
+            public int hashCode() {
+                return this.hash;
+            }
+
+            @Override
+            public String toString() {
+                return "Key{Value:" + "OptionalValue<" + elementClass.getSimpleName() + ">, Query: " + query.toString() + "}";
+            }
+        };
+    }
+
+    static <E, V extends BaseValue<E>> Key<V> fake(final String keyName) {
+        return new Key<V>() {
+            @Override
+            public Class<V> getValueClass() {
+                throw new UnsupportedOperationException("Key " + keyName + " is not implemented");
+            }
+
+            @Override
+            public DataQuery getQuery() {
+                throw new UnsupportedOperationException("Key " + keyName + " is not implemented");
             }
         };
     }

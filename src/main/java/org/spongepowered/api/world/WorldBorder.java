@@ -25,14 +25,21 @@
 package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.slf4j.Logger;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.scheduler.Scheduler;
+import org.spongepowered.api.scheduler.Task;
+import org.spongepowered.api.util.ResettableBuilder;
+
+import javax.annotation.Nullable;
 
 /**
  * A world border is a square boundary, extending through the entire y-axis.
  *
- * <p>It can gradually grow or shrink to a radius over a period of time.
- * A warning is displayed when a contracting world border will reach the player
- * in a certain amount of time, or when the player is a certain number of
- * blocks away.</p>
+ * <p>It can gradually grow or shrink to a radius over a period of time. A
+ * warning is displayed when a contracting world border will reach the player in
+ * a certain amount of time, or when the player is a certain number of blocks
+ * away.</p>
  *
  * <p>In Minecraft, a warning is displayed in the form of a reddish tint.</p>
  */
@@ -71,30 +78,32 @@ public interface WorldBorder {
     /**
      * Set the diameter of the world border, over the given period of time.
      *
-     * <p>The world border diameter increases/decrease linearly over the specified time.
-     * The specified diameter applies to the x and z axis. The world border
-     * extends over the entire y-axis.</p>
+     * <p>The world border diameter increases/decrease linearly over the
+     * specified time. The specified diameter applies to the x and z axis. The
+     * world border extends over the entire y-axis.</p>
      *
      * @param diameter The diameter where the border will expand/contract to
-     * @param time     The time over which to change, in milliseconds
+     * @param time The time over which to change, in milliseconds
      */
     void setDiameter(double diameter, long time);
 
     /**
-     * Set the starting diameter and the ending diameter of the world border, over the given period of time.
+     * Set the starting diameter and the ending diameter of the world border,
+     * over the given period of time.
      *
-     * <p>The world border diameter increases/diameter linearly over the specified time.
-     * The specified diameter applies to the x and z axis. The world border
-     * extends over the entire y-axis.</p>
+     * <p>The world border diameter increases/diameter linearly over the
+     * specified time. The specified diameter applies to the x and z axis. The
+     * world border extends over the entire y-axis.</p>
      *
      * @param startDiameter The diameter where the border will start
-     * @param endDiameter   The diameter where the border will end
-     * @param time          The time over which to change, in milliseconds
+     * @param endDiameter The diameter where the border will end
+     * @param time The time over which to change, in milliseconds
      */
     void setDiameter(double startDiameter, double endDiameter, long time);
 
     /**
-     * Get the time remaining until the world border stops expanding or contracting.
+     * Get the time remaining until the world border stops expanding or
+     * contracting.
      *
      * @return The time remaining, in milliseconds
      */
@@ -112,8 +121,8 @@ public interface WorldBorder {
      * Get the center of the world border.
      *
      * <p>The returned position is three-dimensional. As the worldborder extends
-     * over the entire y-axis, the returned position will always have
-     * a {@code y} set to 0.</p>
+     * over the entire y-axis, the returned position will always have a
+     * {@code y} set to 0.</p>
      *
      * @return The center
      */
@@ -123,8 +132,8 @@ public interface WorldBorder {
      * Get the time when a contracting world border will warn a player for whom
      * the world border will reach in {@code time} seconds.
      *
-     * <p>In Minecraft, the warning is displayed in the form of a
-     * reddish tint.</p>
+     * <p>In Minecraft, the warning is displayed in the form of a reddish
+     * tint.</p>
      *
      * @return The time, in seconds
      */
@@ -134,38 +143,38 @@ public interface WorldBorder {
      * Set the time when a contracting world border will warn a player for whom
      * the world border will reach in {@code time} seconds.
      *
-     * <p>In Minecraft, the warning is displayed in the form of a
-     * reddish tint.</p>
+     * <p>In Minecraft, the warning is displayed in the form of a reddish
+     * tint.</p>
      *
      * @param time The time, in seconds
      */
     void setWarningTime(int time);
 
     /**
-     * Get the distance when a contracting world border will warn a player for whom
-     * the world border is {@code distance} blocks away.
+     * Get the distance when a contracting world border will warn a player for
+     * whom the world border is {@code distance} blocks away.
      *
-     * <p>In Minecraft, the warning is displayed in the form of a
-     * reddish tint.</p>
+     * <p>In Minecraft, the warning is displayed in the form of a reddish
+     * tint.</p>
      *
      * @return The distance, in blocks
      */
     int getWarningDistance();
 
     /**
-     * Set the distance when a contracting world border will warn a player for whom
-     * the world border is {@code distance} blocks away.
+     * Set the distance when a contracting world border will warn a player for
+     * whom the world border is {@code distance} blocks away.
      *
-     * <p>In Minecraft, the warning is displayed in the form of a
-     * reddish tint.</p>
+     * <p>In Minecraft, the warning is displayed in the form of a reddish
+     * tint.</p>
      *
      * @param distance The distance, in blocks
      */
     void setWarningDistance(int distance);
 
     /**
-     * Get the distance a player may be outside the world border before
-     * taking damage.
+     * Get the distance a player may be outside the world border before taking
+     * damage.
      *
      * @return The distance
      */
@@ -194,4 +203,108 @@ public interface WorldBorder {
      * @param damage The damage amount
      */
     void setDamageAmount(double damage);
+
+    /**
+     * Returns a new builder for creating a task to pre-generate the chunks
+     * inside the border. The current state of the border is "snapshoted" for
+     * the builder. It is not backed by this instance. If the border size is
+     * changing then the target size is used.
+     *
+     * @param world The target world
+     * @return The builder for the chunk pre-generate task
+     * @see ChunkPreGenerate
+     */
+    ChunkPreGenerate newChunkPreGenerate(World world);
+
+    /**
+     * A builder for submitting a task to pre-generate chunks inside a world
+     * border.
+     *
+     * <p>The task is synchronous and repeating with a given interval and either
+     * a target number of chunks per ticks and/or a percentage of the tick
+     * time.</p>
+     *
+     * <p>Chunk order is not defined but a proper implementation should use and
+     * "inside-out" strategy for better results if the task is cancelled.</p>
+     *
+     * @see WorldBorder#newChunkPreGenerate(World)
+     * @see World#newChunkPreGenerate(Vector3d, double)
+     */
+    interface ChunkPreGenerate extends ResettableBuilder<Task, ChunkPreGenerate> {
+
+        /**n
+         * Sets the owner of the resulting task.
+         *
+         * <p>Mandatory.</p>
+         *
+         * @param plugin The owner plugin
+         * @return This for chained calls
+         */
+        ChunkPreGenerate owner(Object plugin);
+
+        /**
+         * Sets the logger for logging generator efforts.
+         *
+         * <p>Optional.</p>
+         *
+         * @param logger A logger for the generator
+         * @return This for chained calls
+         */
+        ChunkPreGenerate logger(@Nullable Logger logger);
+
+        /**
+         * Sets the interval between generation runs.
+         *
+         * <p>Must be greater than 0.</p>
+         *
+         * <p>Optional.</p>
+         *
+         * <p>Default is 10.</p>
+         *
+         * @param tickInterval The tick interval
+         * @return This for chained calls
+         */
+        ChunkPreGenerate tickInterval(int tickInterval);
+
+        /**
+         * Sets maximum number of chunks per tick to generate.
+         *
+         * <p>Use a value smaller or equal to 0 to disable.</p>
+         *
+         * <p>Optional if {@link #tickPercentLimit(float)} is used.</p>
+         *
+         * <p>Default is disabled.</p>
+         *
+         * @param chunkCount The maximum number of chunks to generate
+         * @return This for chained calls
+         */
+        ChunkPreGenerate chunksPerTick(int chunkCount);
+
+        /**
+         * Sets the limit of tick time that can be used to generate chunks as a
+         * percentage of {@link Scheduler#getPreferredTickInterval()}. The
+         * percentage should be a value in the range (0, 1]. No estimation is
+         * used to decide when to stop so the actual value will always be
+         * somewhere above the given percentage.
+         *
+         * <p>Use a value smaller or equal to 0 to disable.</p>
+         *
+         * <p>Optional if {@link #chunksPerTick(int)} is used.</p>
+         *
+         * <p>Default is 15%.</p>
+         *
+         * @param tickPercent The
+         * @return This for chained calls
+         */
+        ChunkPreGenerate tickPercentLimit(float tickPercent);
+
+        /**
+         * Schedules the task with the {@link Game#getScheduler()}.
+         *
+         * @return The resulting task
+         */
+        Task start();
+
+    }
+
 }

@@ -26,13 +26,12 @@ package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.event.item.inventory.AffectItemStackEvent;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 import java.util.List;
 
-public interface SmeltEvent extends TargetTileEntityEvent, CauseTracked {
+public interface SmeltEvent extends TargetTileEntityEvent {
 
     @Override
     Furnace getTargetTile();

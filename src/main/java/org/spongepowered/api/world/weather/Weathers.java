@@ -24,14 +24,22 @@
  */
 package org.spongepowered.api.world.weather;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * All possible {@link Weather}s in vanilla minecraft.
  */
 public final class Weathers {
 
-    public static final Weather CLEAR = null;
-    public static final Weather RAIN = null;
-    public static final Weather THUNDER_STORM = null;
+    // SORTFIELDS:ON
+
+    public static final Weather CLEAR = DummyObjectProvider.createFor(Weather.class, "CLEAR");
+
+    public static final Weather RAIN = DummyObjectProvider.createFor(Weather.class, "RAIN");
+
+    public static final Weather THUNDER_STORM = DummyObjectProvider.createFor(Weather.class, "THUNDER_STORM");
+
+    // SORTFIELDS:OFF
 
     private Weathers() {
     }

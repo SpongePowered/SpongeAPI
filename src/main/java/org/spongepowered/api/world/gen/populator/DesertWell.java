@@ -24,53 +24,75 @@
  */
 package org.spongepowered.api.world.gen.populator;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.gen.Populator;
+import org.spongepowered.api.world.gen.PopulatorObject;
 
 /**
  * Represents a populator which spawns desert wells. The wells will be created
- * with a random chance of 1 in {@link #getSpawnChance()} and if the spawn
- * conditions are met (that the block its spawning on is sand).
+ * according to the spawn probability of {@link #getSpawnProbability} and if the
+ * spawn conditions are met (that the block its spawning on is sand).
  */
 public interface DesertWell extends Populator {
 
     /**
-     * Gets the chance of a desert well spawning. The final chance is calculated
-     * as {@code if ( [0,chance) == 0 )}.
+     * Creates a new {@link Builder} to build a {@link DesertWell} populator.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Gets the probability of a desert well spawning.
      * 
      * @return The spawn chance of a well
      */
-    int getSpawnChance();
+    double getSpawnProbability();
 
     /**
-     * Sets the chance of a desert well spawning. The final chance is calculated
-     * as {@code if ( [0,chance) == 0 )}. This must be greater than zero, The
-     * default is 1000.
+     * Sets the probability of a desert well spawning.
      * 
-     * @param chance The new spawn chance
+     * @param p The new spawn probability
      */
-    void setSpawnChance(int chance);
+    void setSpawnProbability(double p);
+
+    /**
+     * Gets the {@link PopulatorObject} representing the well.
+     * 
+     * @return The populator object
+     */
+    PopulatorObject getWellObject();
+
+    /**
+     * Sets the {@link PopulatorObject} representing the well.
+     * 
+     * @param obj The new populator object
+     */
+    void setWellObject(PopulatorObject obj);
 
     /**
      * A builder for constructing {@link DesertWell} populators.
      */
-    interface Builder {
+    interface Builder extends ResettableBuilder<DesertWell, Builder> {
 
         /**
-         * Sets the chance of a desert well spawning. The final chance is
-         * calculated as {@code if ( [0,chance) == 0 )}. This must be greater
-         * than zero, The default is 1000.
+         * Sets the probability of a desert well spawning.
          * 
-         * @param chance The new spawn chance
+         * @param p The new spawn probability
          * @return This builder, for chaining
          */
-        Builder chance(int chance);
+        Builder probability(double p);
 
         /**
-         * Resets this builder to the default values.
+         * Sets the {@link PopulatorObject} representing the well.
          * 
+         * @param obj The new populator object
          * @return This builder, for chaining
          */
-        Builder reset();
+        Builder wellObject(PopulatorObject obj);
 
         /**
          * Builds a new instance of a {@link DesertWell} populator with the
@@ -78,7 +100,7 @@ public interface DesertWell extends Populator {
          * 
          * @return A new instance of the populator
          * @throws IllegalStateException If there are any settings left unset
-         *             which do not have default values
+         *         which do not have default values
          */
         DesertWell build() throws IllegalStateException;
 

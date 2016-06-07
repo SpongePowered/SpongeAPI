@@ -24,17 +24,28 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of vanilla known {@link BodyPart}s.
  */
 public final class BodyParts {
 
-    public static final BodyPart HEAD = null;
-    public static final BodyPart CHEST = null;
-    public static final BodyPart LEFT_ARM = null;
-    public static final BodyPart RIGHT_ARM = null;
-    public static final BodyPart LEFT_LEG = null;
-    public static final BodyPart RIGHT_LEG = null;
+    // SORTFIELDS:ON
+
+    public static final BodyPart CHEST = DummyObjectProvider.createFor(BodyPart.class, "CHEST");
+
+    public static final BodyPart HEAD = DummyObjectProvider.createFor(BodyPart.class, "HEAD");
+
+    public static final BodyPart LEFT_ARM = DummyObjectProvider.createFor(BodyPart.class, "LEFT_ARM");
+
+    public static final BodyPart LEFT_LEG = DummyObjectProvider.createFor(BodyPart.class, "LEFT_LEG");
+
+    public static final BodyPart RIGHT_ARM = DummyObjectProvider.createFor(BodyPart.class, "RIGHT_ARM");
+
+    public static final BodyPart RIGHT_LEG = DummyObjectProvider.createFor(BodyPart.class, "RIGHT_LEG");
+
+    // SORTFIELDS:OFF
 
     private BodyParts() {
     }

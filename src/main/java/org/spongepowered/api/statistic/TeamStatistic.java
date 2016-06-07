@@ -25,6 +25,9 @@
 package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.text.format.TextColor;
+import org.spongepowered.api.text.translation.Translation;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a {@link Statistic} for a team's {@link TextColor}.
@@ -38,4 +41,19 @@ public interface TeamStatistic extends Statistic {
      */
     TextColor getTeamColor();
 
+    /**
+     * Represents a builder to create new and custom instances of
+     * {@link TeamStatistic}s.
+     */
+    interface Builder extends StatisticBuilder<TeamStatistic, Builder> {
+
+        /**
+         * Sets the {@link TextColor} of this {@link TeamStatistic}.
+         *
+         * @param color The color
+         * @return This builder, for chaining
+         */
+        Builder teamColor(TextColor color);
+
+    }
 }

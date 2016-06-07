@@ -28,4 +28,5 @@ package org.spongepowered.api.block.tileentity;
  * Represents a Redstone Comparator.
  */
 public interface Comparator extends TileEntity {
+
 }

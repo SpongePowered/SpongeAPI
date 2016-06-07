@@ -24,15 +24,27 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class StoneTypes {
 
-    public static final StoneType STONE = null;
-    public static final StoneType GRANITE = null;
-    public static final StoneType SMOOTH_GRANITE = null;
-    public static final StoneType DIORITE = null;
-    public static final StoneType SMOOTH_DIORITE = null;
-    public static final StoneType ANDESITE = null;
-    public static final StoneType SMOOTH_ANDESITE = null;
+    // SORTFIELDS:ON
+
+    public static final StoneType ANDESITE = DummyObjectProvider.createFor(StoneType.class, "ANDESITE");
+
+    public static final StoneType DIORITE = DummyObjectProvider.createFor(StoneType.class, "DIORITE");
+
+    public static final StoneType GRANITE = DummyObjectProvider.createFor(StoneType.class, "GRANITE");
+
+    public static final StoneType SMOOTH_ANDESITE = DummyObjectProvider.createFor(StoneType.class, "SMOOTH_ANDESITE");
+
+    public static final StoneType SMOOTH_DIORITE = DummyObjectProvider.createFor(StoneType.class, "SMOOTH_DIORITE");
+
+    public static final StoneType SMOOTH_GRANITE = DummyObjectProvider.createFor(StoneType.class, "SMOOTH_GRANITE");
+
+    public static final StoneType STONE = DummyObjectProvider.createFor(StoneType.class, "STONE");
+
+    // SORTFIELDS:OFF
 
     private StoneTypes() {
     }

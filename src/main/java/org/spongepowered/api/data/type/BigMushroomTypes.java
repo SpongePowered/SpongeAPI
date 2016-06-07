@@ -24,24 +24,42 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known vanilla {@link BigMushroomType}s.
  */
 public final class BigMushroomTypes {
 
-    public static final BigMushroomType NORTH_WEST = null;
-    public static final BigMushroomType NORTH = null;
-    public static final BigMushroomType NORTH_EAST = null;
-    public static final BigMushroomType WEST = null;
-    public static final BigMushroomType CENTER = null;
-    public static final BigMushroomType EAST = null;
-    public static final BigMushroomType SOUTH_WEST = null;
-    public static final BigMushroomType SOUTH = null;
-    public static final BigMushroomType SOUTH_EAST = null;
-    public static final BigMushroomType STEM = null;
-    public static final BigMushroomType ALL_INSIDE = null;
-    public static final BigMushroomType ALL_OUTSIDE = null;
-    public static final BigMushroomType ALL_STEM = null;
+    // SORTFIELDS:ON
+
+    public static final BigMushroomType ALL_INSIDE = DummyObjectProvider.createFor(BigMushroomType.class, "ALL_INSIDE");
+
+    public static final BigMushroomType ALL_OUTSIDE = DummyObjectProvider.createFor(BigMushroomType.class, "ALL_OUTSIDE");
+
+    public static final BigMushroomType ALL_STEM = DummyObjectProvider.createFor(BigMushroomType.class, "ALL_STEM");
+
+    public static final BigMushroomType CENTER = DummyObjectProvider.createFor(BigMushroomType.class, "CENTER");
+
+    public static final BigMushroomType EAST = DummyObjectProvider.createFor(BigMushroomType.class, "EAST");
+
+    public static final BigMushroomType NORTH = DummyObjectProvider.createFor(BigMushroomType.class, "NORTH");
+
+    public static final BigMushroomType NORTH_EAST = DummyObjectProvider.createFor(BigMushroomType.class, "NORTH_EAST");
+
+    public static final BigMushroomType NORTH_WEST = DummyObjectProvider.createFor(BigMushroomType.class, "NORTH_WEST");
+
+    public static final BigMushroomType SOUTH = DummyObjectProvider.createFor(BigMushroomType.class, "SOUTH");
+
+    public static final BigMushroomType SOUTH_EAST = DummyObjectProvider.createFor(BigMushroomType.class, "SOUTH_EAST");
+
+    public static final BigMushroomType SOUTH_WEST = DummyObjectProvider.createFor(BigMushroomType.class, "SOUTH_WEST");
+
+    public static final BigMushroomType STEM = DummyObjectProvider.createFor(BigMushroomType.class, "STEM");
+
+    public static final BigMushroomType WEST = DummyObjectProvider.createFor(BigMushroomType.class, "WEST");
+
+    // SORTFIELDS:OFF
 
     private BigMushroomTypes() {
     }

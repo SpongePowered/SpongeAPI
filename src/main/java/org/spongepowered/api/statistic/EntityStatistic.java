@@ -25,6 +25,9 @@
 package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.text.translation.Translation;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a {@link Statistic} for an {@link EntityType}.
@@ -38,4 +41,19 @@ public interface EntityStatistic extends Statistic {
      */
     EntityType getEntityType();
 
+    /**
+     * Represents a builder to create new and custom instances of
+     * {@link EntityStatistic}s.
+     */
+    interface Builder extends StatisticBuilder<EntityStatistic, Builder> {
+
+        /**
+         * Sets the {@link EntityType} of this {@link EntityStatistic}.
+         *
+         * @param entity The entity
+         * @return This builder, for chaining
+         */
+        Builder entity(EntityType entity);
+
+    }
 }

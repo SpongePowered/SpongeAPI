@@ -28,7 +28,7 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableMobSpawnerData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.data.value.mutable.WeightedEntityCollectionValue;
+import org.spongepowered.api.data.value.mutable.WeightedCollectionValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
@@ -120,7 +120,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
     NextEntityToSpawnValue nextEntityToSpawn();
 
     /**
-     * Gets the {@link WeightedEntityCollectionValue} of all possible
+     * Gets the {@link WeightedCollectionValue} of all possible
      * {@link Entity} instances that can be spawned by the spawner. As they
      * are all {@link WeightedSerializableObject}{@code <EntitySnapshot>}
      * instances, their weight is defined as a {@link Random} to determine
@@ -129,7 +129,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      *
      * @return The immutable weighted entity collection value of entities
      */
-    WeightedEntityCollectionValue possibleEntitiesToSpawn();
+    WeightedCollectionValue<EntitySnapshot> possibleEntitiesToSpawn();
 
     /**
      * Represents a custom {@link Value} dealing with the next

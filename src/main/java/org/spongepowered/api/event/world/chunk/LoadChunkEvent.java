@@ -24,12 +24,11 @@
  */
 package org.spongepowered.api.event.world.chunk;
 
-import org.spongepowered.api.event.cause.CauseTracked;
 import org.spongepowered.api.world.Chunk;
 
 /**
  * Base event for when a {@link Chunk} is triggered to load.
  */
-public interface LoadChunkEvent extends TargetChunkEvent, CauseTracked {
+public interface LoadChunkEvent extends TargetChunkEvent {
 
 }

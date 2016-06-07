@@ -24,18 +24,49 @@
  */
 package org.spongepowered.api.item.inventory.transaction;
 
-import org.spongepowered.api.item.inventory.ItemStack;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
+import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.util.ResettableBuilder;
+
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Optional;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * An interface for structs returned by inventory operations which encapsulate
  * the result of an attempted operation.
  */
-public interface InventoryTransactionResult {
+public final class InventoryTransactionResult {
 
-    enum Type {
+    /**
+     * Begin building a new InventoryTransactionResult.
+     */
+    public static Builder builder() {
+        return new Builder();
+    }
+    
+    /**
+     * Returns a builder which indicates that the transaction succeeded, but the
+     * transaction result was no-op.
+     */
+    public static InventoryTransactionResult successNoTransactions() {
+        return InventoryTransactionResult.builder().type(Type.SUCCESS).build();
+    }
+
+    /**
+     * Returns a builder which indicates that the transaction failed, and the
+     * transaction result was no-op.
+     */
+    public static InventoryTransactionResult failNoTransactions() {
+        return InventoryTransactionResult.builder().type(Type.ERROR).build();
+    }
+
+    public enum Type {
 
         /**
          * The actual result of the operation is undefined, this probably
@@ -68,6 +99,17 @@ public interface InventoryTransactionResult {
          * was cancelled). The condition of the inventory is unchanged.
          */
         CANCELLED
+        
+    }
+
+    final Type type;
+    private final List<ItemStackSnapshot> rejected;
+    private final List<ItemStackSnapshot> replaced;
+
+    InventoryTransactionResult(Builder builder) {
+        this.type = builder.resultType;
+        this.rejected = builder.rejected != null ? ImmutableList.copyOf(builder.rejected) : Collections.<ItemStackSnapshot>emptyList();
+        this.replaced = builder.replaced != null ? ImmutableList.copyOf(builder.replaced) : Collections.<ItemStackSnapshot>emptyList();
     }
 
     /**
@@ -75,7 +117,9 @@ public interface InventoryTransactionResult {
      *
      * @return the type of result
      */
-    Type getType();
+    public Type getType() {
+        return this.type;
+    }
 
     /**
      * If items were supplied to the operation, this collection will return any
@@ -83,7 +127,9 @@ public interface InventoryTransactionResult {
      *
      * @return any items which were rejected as part of the inventory operation
      */
-    Optional<Collection<ItemStack>> getRejectedItems();
+    public Collection<ItemStackSnapshot> getRejectedItems() {
+        return this.rejected;
+    }
 
     /**
      * If the operation replaced items in the inventory, this collection returns
@@ -91,6 +137,68 @@ public interface InventoryTransactionResult {
      *
      * @return any items which were ejected as part of the inventory operation
      */
-    Optional<Collection<ItemStack>> getReplacedItems();
+    public Collection<ItemStackSnapshot> getReplacedItems() {
+        return this.replaced;
+    }
 
+    public static final class Builder implements ResettableBuilder<InventoryTransactionResult, Builder> {
+
+        Type resultType;
+        List<ItemStackSnapshot> rejected;
+        List<ItemStackSnapshot> replaced;
+
+        Builder() {}
+
+        public Builder type(final Type type) {
+            this.resultType = checkNotNull(type, "Type cannot be null!");
+            return this;
+        }
+
+        public Builder reject(ItemStack... itemStacks) {
+            if (this.rejected == null) {
+                this.rejected = new ArrayList<>();
+            }
+            for (ItemStack itemStack1 : itemStacks) {
+                if (itemStack1 != null) {
+                    this.rejected.add(itemStack1.createSnapshot());
+                }
+            }
+            return this;
+        }
+
+        public Builder replace(ItemStack... itemStacks) {
+            if (this.replaced == null) {
+                this.replaced = new ArrayList<>();
+            }
+            for (ItemStack itemStack1 : itemStacks) {
+                if (itemStack1 != null) {
+                    this.replaced.add(itemStack1.createSnapshot());
+                }
+            }
+            return this;
+        }
+
+        public InventoryTransactionResult build() {
+            checkState(this.resultType != null, "ResultType cannot be null!");
+            return new InventoryTransactionResult(this);
+        }
+
+        @Override
+        public Builder from(InventoryTransactionResult value) {
+            checkNotNull(value, "InventoryTransactionResult cannot be null!");
+            this.resultType = checkNotNull(value.type, "ResultType cannot be null!");
+            this.replaced = new ArrayList<>(value.getReplacedItems());
+            this.rejected = new ArrayList<>(value.getRejectedItems());
+            return this;
+        }
+
+        @Override
+        public Builder reset() {
+            this.resultType = null;
+            this.rejected = null;
+            this.replaced = null;
+            return this;
+        }
+
+    }
 }

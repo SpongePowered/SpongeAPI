@@ -35,6 +35,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.GeneratorType;
+import org.spongepowered.api.world.PortalAgentType;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 
@@ -96,6 +97,20 @@ public interface WorldProperties extends DataSerializable {
      * @param state Should keep spawn loaded
      */
     void setKeepSpawnLoaded(boolean state);
+
+    /**
+     * Gets whether spawn chunks of this world will generate on load.
+     *
+     * @return True if spawn chunks of this world generate on load.
+     */
+    boolean doesGenerateSpawnOnLoad();
+
+    /**
+     * Sets whether the spawn chunks of the world will generate on load.
+     *
+     * @param state Should generate spawn chunks on load.
+     */
+    void setGenerateSpawnOnLoad(boolean state);
 
     /**
      * Gets the name of this world.
@@ -186,6 +201,27 @@ public interface WorldProperties extends DataSerializable {
      * @return The dimension type
      */
     DimensionType getDimensionType();
+
+    /**
+     * Gets the {@link PortalAgentType} for the world.
+     *
+     * @return The portal agent type
+     */
+    PortalAgentType getPortalAgentType();
+
+    /**
+     * Gets whether PVP combat is enabled in this world.
+     *
+     * @return Whether PVP is enabled
+     */
+    boolean isPVPEnabled();
+
+    /**
+     * Sets whether PVP combat is enabled in this world.
+     *
+     * @param enabled Whether PVP is enabled
+     */
+    void setPVPEnabled(boolean enabled);
 
     /**
      * Gets whether this world is currently experiencing rain/snow/cloud-cover
@@ -538,6 +574,7 @@ public interface WorldProperties extends DataSerializable {
     /**
      * Gets an immutable collection of the world generator modifiers currently
      * in use.
+     * 
      * @return The world generator modifiers in use.
      */
     Collection<WorldGeneratorModifier> getGeneratorModifiers();
@@ -547,13 +584,13 @@ public interface WorldProperties extends DataSerializable {
      *
      * @param modifiers The modifiers to set.
      * @throws IllegalArgumentException If any of the modifiers has not been
-     *             registered in the {@link GameRegistry}.
+     *         registered in the {@link GameRegistry}.
      */
     void setGeneratorModifiers(Collection<WorldGeneratorModifier> modifiers);
 
     /**
-     * Gets the generator settings. These can be used by the generator type and/or
-     * by the generator modifiers.
+     * Gets the generator settings. These can be used by the generator type
+     * and/or by the generator modifiers.
      *
      * @return The generator settings.
      */

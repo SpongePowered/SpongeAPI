@@ -24,16 +24,26 @@
  */
 package org.spongepowered.api.item;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * A class containing known {@link FireworkShape}s.
  */
 public final class FireworkShapes {
 
-    public static final FireworkShape BALL = null;
-    public static final FireworkShape LARGE_BALL = null;
-    public static final FireworkShape STAR = null;
-    public static final FireworkShape CREEPER = null;
-    public static final FireworkShape BURST = null;
+    // SORTFIELDS:ON
+
+    public static final FireworkShape BALL = DummyObjectProvider.createFor(FireworkShape.class, "BALL");
+
+    public static final FireworkShape BURST = DummyObjectProvider.createFor(FireworkShape.class, "BURST");
+
+    public static final FireworkShape CREEPER = DummyObjectProvider.createFor(FireworkShape.class, "CREEPER");
+
+    public static final FireworkShape LARGE_BALL = DummyObjectProvider.createFor(FireworkShape.class, "LARGE_BALL");
+
+    public static final FireworkShape STAR = DummyObjectProvider.createFor(FireworkShape.class, "STAR");
+
+    // SORTFIELDS:OFF
 
     private FireworkShapes() {
     }

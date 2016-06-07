@@ -24,16 +24,24 @@
  */
 package org.spongepowered.api.event.network;
 
-import org.spongepowered.api.GameProfile;
+import org.spongepowered.api.Platform;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.GameEvent;
-import org.spongepowered.api.event.command.MessageSinkEvent;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
-import org.spongepowered.api.event.entity.living.player.TargetPlayerEvent;
+import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
+import org.spongepowered.api.event.message.MessageChannelEvent;
+import org.spongepowered.api.event.message.MessageEvent;
+import org.spongepowered.api.event.user.TargetUserEvent;
 import org.spongepowered.api.network.RemoteConnection;
+import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.service.ban.BanService;
+import org.spongepowered.api.service.whitelist.WhitelistService;
+import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.world.World;
+
+import java.net.InetAddress;
 
 /**
  * Represents an event fired during the login process.
@@ -51,7 +59,7 @@ import org.spongepowered.api.world.World;
  * It's recommended to use the this event's subinterfaces to interact
  * with the player at well-defined moments during the connection process.
  */
-public interface ClientConnectionEvent extends GameEvent {
+public interface ClientConnectionEvent extends Event {
 
     /**
      * Called asynchronously when the client attempts to authenticate against
@@ -59,7 +67,7 @@ public interface ClientConnectionEvent extends GameEvent {
      *
      * <p>Note: This event is fired before #Login.</p>
      */
-    interface Auth extends ClientConnectionEvent, MessageSinkEvent, Cancellable {
+    interface Auth extends ClientConnectionEvent, MessageEvent, Cancellable {
         /**
          * Gets the {@link RemoteConnection} representing the client connection.
          *
@@ -79,12 +87,24 @@ public interface ClientConnectionEvent extends GameEvent {
      * Called after the client authenticates and attempts to login to the
      * server.
      *
-     * <p>Note: This event is fired after #Auth and is NOT async. Any changes 
-     * required for the {@link Player}s {@link Transform} should be done during 
+     * <p>Note: This event is fired after #Auth and is NOT async. Any changes
+     * required for the {@link Player}s {@link Transform} should be done during
      * this event and NOT during #Join.
      * </p>
+     *
+     * <p>If the registered {@link BanService} or {@link WhitelistService}
+     * indicates that a player should not be allowed to join
+     * ({@link GameProfile} or {@link InetAddress} has an ban, or is
+     * not on the whitelist), then this event will automatically cancelled by
+     * the {@link Platform#getImplementation() 'game' plugin}, with the proper
+     * message set through {@link MessageEvent#setMessage(TextRepresentable)}. No action
+     * on the part of the registered {@link BanService} or
+     * {@link WhitelistService} is required for this to occur.
+     *
+     * Plugins may uncancel the event to allow a client to join, regardless of
+     * its ban/whitelist status.</p>
      */
-    interface Login extends ClientConnectionEvent, MessageSinkEvent, Cancellable {
+    interface Login extends ClientConnectionEvent, MessageEvent, TargetUserEvent, Cancellable {
 
         /**
          * Gets the {@link RemoteConnection} representing the client connection.
@@ -130,10 +150,11 @@ public interface ClientConnectionEvent extends GameEvent {
      * the #Login event. This event is fired after both.</p>
      * </p>
      */
-    interface Join extends ClientConnectionEvent, TargetPlayerEvent, MessageSinkEvent {}
+    interface Join extends ClientConnectionEvent, TargetPlayerEvent, MessageChannelEvent {}
 
     /**
      * Called when a {@link Player} disconnects from the game.
      */
-    interface Disconnect extends ClientConnectionEvent, TargetPlayerEvent, MessageSinkEvent {}
+    interface Disconnect extends ClientConnectionEvent, TargetPlayerEvent, MessageChannelEvent {}
+
 }

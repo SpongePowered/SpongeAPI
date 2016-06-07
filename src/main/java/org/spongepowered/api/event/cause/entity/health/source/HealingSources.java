@@ -27,6 +27,7 @@ package org.spongepowered.api.event.cause.entity.health.source;
 
 import org.spongepowered.api.data.manipulator.mutable.entity.IgniteableData;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.Location;
 
 /**
@@ -43,9 +44,15 @@ import org.spongepowered.api.world.Location;
  */
 public final class HealingSources {
 
-    public static final HealingSource FOOD = null;
-    public static final HealingSource GENERIC = null;
-    public static final HealingSource MAGIC = null;
+    // SORTFIELDS:ON
+
+    public static final HealingSource FOOD = DummyObjectProvider.createFor(HealingSource.class, "FOOD");
+
+    public static final HealingSource GENERIC = DummyObjectProvider.createFor(HealingSource.class, "GENERIC");
+
+    public static final HealingSource MAGIC = DummyObjectProvider.createFor(HealingSource.class, "MAGIC");
+
+    // SORTFIELDS:OFF
 
 
     private HealingSources() {

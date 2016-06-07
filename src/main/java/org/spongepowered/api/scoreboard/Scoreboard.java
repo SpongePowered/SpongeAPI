@@ -24,12 +24,15 @@
  */
 package org.spongepowered.api.scoreboard;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -43,6 +46,15 @@ import javax.annotation.Nullable;
  * @see <a href="http://minecraft.gamepedia.com/Scoreboard">Scoreboards on the Minecraft Wiki</a>
  */
 public interface Scoreboard {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link Scoreboard}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets an {@link Objective} on this scoreboard by name, if it exists.
@@ -62,6 +74,16 @@ public interface Scoreboard {
     Optional<Objective> getObjective(DisplaySlot slot);
 
     /**
+     * Adds the specified {@link Objective} to this scoreboard.
+     *
+     * @param objective The {@link Objective} add
+     * @throws IllegalArgumentException if an {@link Objective} with the same
+     *             {@link Objective#getName() name} already exists, or if the
+     *             specified {@link Objective} has already been added.
+     */
+    void addObjective(Objective objective) throws IllegalArgumentException;
+
+    /**
      * Sets the specified {@link Objective} in the specified {@link DisplaySlot}.
      *
      * <p>If the {@link Objective} is <code>null</code>, then the specified
@@ -72,17 +94,16 @@ public interface Scoreboard {
      * @throws IllegalStateException if the specified {@link Objective} does not exist
      *                               on this scoreboard
      */
-    void addObjective(@Nullable Objective objective, DisplaySlot displaySlot) throws IllegalStateException;
+    void updateDisplaySlot(@Nullable Objective objective, DisplaySlot displaySlot) throws IllegalStateException;
 
     /**
-     * Adds the specified {@link Objective} to this scoreboard.
+     * Clears any {@link Objective} in the specified slot.
      *
-     * @param objective The {@link Objective} add
-     * @throws IllegalArgumentException if an {@link Objective} with the same
-     *             {@link Objective#getName() name} already exists, or if the
-     *             specified {@link Objective} has already been added.
+     * @param slot The {@link DisplaySlot} to remove any {@link Objective} for
      */
-    void addObjective(Objective objective) throws IllegalArgumentException;
+    default void clearSlot(DisplaySlot slot) {
+        this.updateDisplaySlot(null, slot);
+    }
 
     /**
      * Gets all {@link Objective}s of a Criteria on this scoreboard.
@@ -107,8 +128,21 @@ public interface Scoreboard {
     void removeObjective(Objective objective);
 
     /**
+     * Gets all the scores on this scoreboard, across all objectives.
+     *
+     * <p>If the same {@link Score} has been added to multiple objectives,
+     * it will only appear once in the set.</p>
+     *
+     * @return A set of all scores
+     */
+    Set<Score> getScores();
+
+    /**
      * Gets all scores with the specified name on this scoreboard,
      * across all objectives.
+     *
+     * <p>If the same {@link Score} has been added to multiple objectives,
+     * it will only appear once in the set.</p>
      *
      * @param name The name whose scores are being retrieved
      * @return A set of all scores for the name
@@ -124,15 +158,6 @@ public interface Scoreboard {
     void removeScores(Text name);
 
     /**
-     * Gets a {@link Text} member's {@link Team} on this scoreboard.
-     *
-     * @param member The {@link Text} to search for
-     * @return The {@link Text} member's {@link Team}, or Optional.empty()
-     *     if the member has no team
-     */
-    Optional<Team> getMemberTeam(Text member);
-
-    /**
      * Gets a {@link Team} by name on this scoreboard.
      *
      * @param teamName The name of the {@link Team}
@@ -141,21 +166,15 @@ public interface Scoreboard {
     Optional<Team> getTeam(String teamName);
 
     /**
-     * Removes the specified {@link Team} to this scoreboard.
+     * Registers the specified {@link Team} to this scoreboard.
      *
-     * @param team The {@link Team} to remove
-     */
-    void removeTeam(Team team);
-
-    /**
-     * Adds the specified {@link Team} to this scoreboard.
-     *
-     * @param team The {@link Team} to add
+     * @param team The {@link Team} to register
      * @throws IllegalArgumentException if a team with the same
-     *             {@link Team#getName() name} already exists, or the specified
-     *             {@link Team} has been added
+     *             {@link Team#getName() name} already exists on this scoreboard, or if the specified
+     *             {@link Team} is already registered to a scoreboard (this scoreboard,
+     *             or another one).
      */
-    void addTeam(Team team) throws IllegalArgumentException;
+    void registerTeam(Team team) throws IllegalArgumentException;
 
     /**
      * Gets all the {@link Team}s on this scoreboard.
@@ -165,10 +184,46 @@ public interface Scoreboard {
     Set<Team> getTeams();
 
     /**
-     * Clears any {@link Objective} in the specified slot.
+     * Gets a {@link Text} member's {@link Team} on this scoreboard.
      *
-     * @param slot The {@link DisplaySlot} to remove any {@link Objective} for
+     * @param member The {@link Text} to search for
+     * @return The {@link Text} member's {@link Team}, or Optional.empty()
+     *     if the member has no team
      */
-    void clearSlot(DisplaySlot slot);
+    Optional<Team> getMemberTeam(Text member);
 
+    /**
+     * Represents a builder to create {@link Scoreboard} instances.
+     */
+    interface Builder extends ResettableBuilder<Scoreboard, Builder> {
+
+        /**
+         * Sets the list of {@link Objective}s of the {@link Scoreboard}.
+         *
+         * <p>By default, this is the empty list.</p>
+         *
+         * @param objectives The list of {@link Objective}s to set
+         * @return This builder
+         */
+        Builder objectives(List<Objective> objectives);
+
+        /**
+         * Sets the list of {@link Team}s of the {@link Scoreboard}.
+         *
+         * <p>By default, this is the empty list.</p>
+         *
+         * @param teams The list of {@link Team}s to set
+         * @return This builder
+         */
+        Builder teams(List<Team> teams);
+
+        /**
+         * Builds an instance of a {@link Scoreboard}.
+         *
+         * @return A new instance of a {@link Scoreboard}
+         * @throws IllegalStateException if the {@link Scoreboard} is not complete
+         */
+        Scoreboard build() throws IllegalStateException;
+
+    }
 }

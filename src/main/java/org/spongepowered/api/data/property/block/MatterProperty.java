@@ -49,7 +49,6 @@ public class MatterProperty extends AbstractProperty<String, MatterProperty.Matt
         SOLID,
         LIQUID,
         GAS;
-
     }
 
 }

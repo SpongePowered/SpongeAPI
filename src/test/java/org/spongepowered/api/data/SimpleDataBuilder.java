@@ -24,30 +24,30 @@
  */
 package org.spongepowered.api.data;
 
-import java.util.Optional;
-import org.spongepowered.api.service.persistence.DataBuilder;
-import org.spongepowered.api.service.persistence.InvalidDataException;
+import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.InvalidDataException;
 
 import java.util.List;
+import java.util.Optional;
 
 class SimpleDataBuilder implements DataBuilder<SimpleData> {
 
     @Override
     public Optional<SimpleData> build(final DataView container) {
 
-        Optional<Integer> testInt = container.getInt(new DataQuery("myInt"));
+        Optional<Integer> testInt = container.getInt(DataQuery.of("myInt"));
         if (!testInt.isPresent()) {
             throw new InvalidDataException("Missing important data: {myInt}");
         }
-        Optional<Double> testDouble = container.getDouble(new DataQuery("myDouble"));
+        Optional<Double> testDouble = container.getDouble(DataQuery.of("myDouble"));
         if (!testDouble.isPresent()) {
             throw new InvalidDataException("Missing important data: {myDouble}");
         }
-        Optional<String> testString = container.getString(new DataQuery("myString"));
+        Optional<String> testString = container.getString(DataQuery.of("myString"));
         if (!testString.isPresent()) {
             throw new InvalidDataException("Missing important data: {myString}");
         }
-        Optional<List<String>> testList = container.getStringList(new DataQuery("myStringList"));
+        Optional<List<String>> testList = container.getStringList(DataQuery.of("myStringList"));
         if (!testList.isPresent()) {
             throw new InvalidDataException("Missing important data: {myStringList}");
         }
@@ -56,5 +56,10 @@ class SimpleDataBuilder implements DataBuilder<SimpleData> {
                                                       testDouble.get(),
                                                       testString.get(),
                                                       testList.get()));
+    }
+
+    @Override
+    public DataBuilder<SimpleData> reset() {
+        return this;
     }
 }

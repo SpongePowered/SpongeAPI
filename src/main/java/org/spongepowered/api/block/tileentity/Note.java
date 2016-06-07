@@ -24,8 +24,10 @@
  */
 package org.spongepowered.api.block.tileentity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.NoteData;
 import org.spongepowered.api.data.type.NotePitch;
+import org.spongepowered.api.data.value.mutable.Value;
 
 /**
  * Represents a note block.
@@ -39,5 +41,18 @@ public interface Note extends TileEntity {
      * {@link Note} tile entity.
      */
     void playNote();
+
+    default NoteData getNoteData() {
+        return get(NoteData.class).get();
+    }
+
+    /**
+     * Gets the {@link Value} for the {@link NotePitch}.
+     *
+     * @return The value for the note pitch
+     */
+    default Value<NotePitch> note() {
+        return getValue(Keys.NOTE_PITCH).get();
+    }
 
 }

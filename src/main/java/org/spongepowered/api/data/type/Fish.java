@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -33,7 +34,7 @@ import java.util.Optional;
  * Represents a type of raw fish item.
  */
 @CatalogedBy(Fishes.class)
-public interface Fish extends CatalogType {
+public interface Fish extends CatalogType, Translatable {
 
     /**
      * Gets this raw fish type's corresponding {@link CookedFish} type.

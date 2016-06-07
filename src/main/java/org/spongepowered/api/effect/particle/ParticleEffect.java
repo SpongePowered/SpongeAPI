@@ -25,14 +25,23 @@
 package org.spongepowered.api.effect.particle;
 
 import com.flowpowered.math.vector.Vector3d;
-import org.spongepowered.api.item.inventory.ItemStack;
-
-import java.awt.Color;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * Represents a particle effect that can be send to the Minecraft client.
  */
 public interface ParticleEffect {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link ParticleEffect}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
 
     /**
      * Gets the type of the particle effect.
@@ -63,61 +72,68 @@ public interface ParticleEffect {
     int getCount();
 
     /**
-     * Represents a colored particle effect.
+     * Represents a builder to create a {@link ParticleEffect}.
      */
-    interface Colorable extends ParticleEffect {
-
-        /**
-         * Gets the color of the particle effect.
-         *
-         * @return The color
-         */
-        Color getColor();
+    interface Builder extends ParticleBuilder<ParticleEffect, ParticleType, Builder> {
 
     }
 
     /**
-     * Represents a resized particle effect.
+     * An inherently abstract builder for building a particular type of
+     * {@link ParticleEffect}.
+     *
+     * @param <P> The type of the particle effect
+     * @param <T> The type of particle type
+     * @param <B> The self referencing builder
      */
-    interface Resizable extends ParticleEffect {
+    interface ParticleBuilder<P extends ParticleEffect,T extends ParticleType, B extends ParticleBuilder<P,T, B>> extends ResettableBuilder<P, B> {
 
         /**
-         * Gets the size of the particle effect.
+         * Sets the particle type for the particle effect.
          *
-         * @return The size
+         * @param particleType The particle type
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException If the particle type is not
+         *     compatible with this builder
          */
-        float getSize();
-
-    }
-
-    /**
-     * Represents a particle effect that uses a note value.
-     */
-    interface Note extends ParticleEffect {
+        B type(T particleType);
 
         /**
-         * Gets the note value of the particle effect.
+         * Sets the motion vector of the particle effect.
          *
-         * <p>The value scales between 0 and 24.</p>
+         * <p>The default motion vector is {@link Vector3d#ZERO}.</p>
          *
-         * @return The note value
+         * @param motion The motion vector
+         * @return This builder, for chaining
          */
-        float getNote();
-
-    }
-
-    /**
-     * Represents a particle effect that needs a item stack to be rendered on the client.
-     */
-    interface Material extends ParticleEffect {
+        B motion(Vector3d motion);
 
         /**
-         * Gets the item stack of the particle effect.
+         * Sets the offset vector of the particle effect.
          *
-         * @return The item stack
+         * <p>The default offset vector is {@link Vector3d#ZERO}.</p>
+         *
+         * @param offset The offset vector
+         * @return This builder, for chaining
          */
-        ItemStack getItem();
+        B offset(Vector3d offset);
 
+        /**
+         * Sets the amount of particles of the particle effect.
+         *
+         * <p>The default count is 1.</p>
+         *
+         * @param count The count particles
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException If the count is less than one
+         */
+        B count(int count) throws IllegalArgumentException;
+
+        /**
+         * Builds an instance of a ParticleEffect.
+         *
+         * @return A new instance of a ParticleEffect
+         */
+        P build();
     }
-
 }

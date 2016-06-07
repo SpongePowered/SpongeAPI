@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.event.cause.entity.damage.source;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 
 /**
@@ -41,12 +43,16 @@ import org.spongepowered.api.world.difficulty.Difficulty;
  */
 public interface DamageSource {
 
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
     /**
      * Gets the {@link DamageType} of this source.
      *
      * @return The damage type
      */
-    DamageType getDamageType();
+    DamageType getType();
 
     /**
      * Gets whether this {@link DamageSource} can not be modified and the
@@ -70,14 +76,14 @@ public interface DamageSource {
      *
      * @return True if the damage from this source is scaled
      */
-    boolean isDifficultyScaled();
+    boolean isScaledByDifficulty();
 
     /**
      * Gets whether this {@link DamageSource} is an explosion.
      *
      * @return True if this damage source is an explosion
      */
-    boolean isExplosion();
+    boolean isExplosive();
 
     /**
      * Gets whether this {@link DamageSource} is considered to be magical
@@ -87,4 +93,27 @@ public interface DamageSource {
      */
     boolean isMagic();
 
+    boolean doesAffectCreative();
+
+    interface Builder extends DamageSourceBuilder<DamageSource, Builder> { }
+
+    interface DamageSourceBuilder<T extends DamageSource, B extends DamageSourceBuilder<T, B>> extends ResettableBuilder<T, B> {
+
+        B scalesWithDifficulty();
+
+        B bypassesArmor();
+
+        B explosion();
+
+        B absolute();
+
+        B magical();
+
+        B creative();
+
+        B type(DamageType damageType);
+
+        T build() throws IllegalStateException;
+
+    }
 }

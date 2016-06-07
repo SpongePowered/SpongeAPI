@@ -24,16 +24,26 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 /**
  * An enumeration of known {@link StairShape}s.
  */
 public final class StairShapes {
 
-    public static final StairShape STRAIGHT = null;
-    public static final StairShape INNER_LEFT = null;
-    public static final StairShape INNER_RIGHT = null;
-    public static final StairShape OUTER_LEFT = null;
-    public static final StairShape OUTER_RIGHT = null;
+    // SORTFIELDS:ON
+
+    public static final StairShape INNER_LEFT = DummyObjectProvider.createFor(StairShape.class, "INNER_LEFT");
+
+    public static final StairShape INNER_RIGHT = DummyObjectProvider.createFor(StairShape.class, "INNER_RIGHT");
+
+    public static final StairShape OUTER_LEFT = DummyObjectProvider.createFor(StairShape.class, "OUTER_LEFT");
+
+    public static final StairShape OUTER_RIGHT = DummyObjectProvider.createFor(StairShape.class, "OUTER_RIGHT");
+
+    public static final StairShape STRAIGHT = DummyObjectProvider.createFor(StairShape.class, "STRAIGHT");
+
+    // SORTFIELDS:OFF
 
     private StairShapes() {
     }

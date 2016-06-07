@@ -38,6 +38,12 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
     private boolean valid = true;
     @Nullable private T custom;
 
+    /**
+     * Creates a new transaction.
+     *
+     * @param original The original object being replaced
+     * @param defaultReplacement The default replacement
+     */
     public Transaction(T original, T defaultReplacement) {
         this.original = checkNotNull(original);
         this.defaultReplacement = checkNotNull(defaultReplacement);
@@ -141,8 +147,14 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
     }
 
     @Override
+    public int getContentVersion() {
+        return 1;
+    }
+
+    @Override
     public DataContainer toContainer() {
         final DataContainer container = new MemoryDataContainer()
+            .set(Queries.CONTENT_VERSION, getContentVersion())
             .set(Queries.TYPE_CLASS, this.original.getClass().getName())
             .set(Queries.ORIGINAL, this.original)
             .set(Queries.DEFAULT_REPLACEMENT, this.defaultReplacement)

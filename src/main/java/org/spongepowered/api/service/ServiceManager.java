@@ -43,11 +43,7 @@ public interface ServiceManager {
     /**
      * Register a provider with the service manager.
      *
-     * <p>If a provider already exists for the given service, it will be
-     * replaced if was flagged as replaceable. Otherwise, a
-     * {@link ProviderExistsException} will be thrown. Plugins should provide
-     * options to not install their providers if the plugin is not dedicated
-     * to a single function (such as purely authorization).</p>
+     * <p>Services are by definition replaceable at any given time.</p>
      *
      * <p>Services should only be registered during initialization. If services
      * are registered later, then they may not be utilized.</p>
@@ -56,11 +52,10 @@ public interface ServiceManager {
      * @param service The service
      * @param provider The implementation
      * @param <T> The type of service
-     * @throws ProviderExistsException Thrown if a provider already exists
-     *                                 and cannot be replaced
-     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
+     * @throws IllegalArgumentException Thrown if {@code plugin} is not a
+     *     plugin instance
      */
-    <T> void setProvider(Object plugin, Class<T> service, T provider) throws ProviderExistsException;
+    <T> void setProvider(Object plugin, Class<T> service, T provider);
 
     /**
      * Return a provider for the given service, if one is available.
@@ -75,15 +70,24 @@ public interface ServiceManager {
     <T> Optional<T> provide(Class<T> service);
 
     /**
-     * Return reference to a provider for the given service that may exist now or at any point in the future.
-     *
-     * <p>This allows performing actions when a service is registered, or on the existing service if it is already registered
+     * Gets the {@link ProviderRegistration} for the given service, if available.
      *
      * @param service The service
      * @param <T> The type of service
-     * @return A reference to a current or future provider
+     * @return The {@link ProviderRegistration}, if available.
      */
-    <T> ServiceReference<T> potentiallyProvide(Class<T> service);
+    <T> Optional<ProviderRegistration<T>> getRegistration(Class<T> service);
+
+    /**
+     * Gets whether the class of the type of service is already registered with
+     * this manager. This does not register or unregister any services.
+     *
+     * @param service The service class
+     * @return True if there is a provider for the desired service
+     */
+    default boolean isRegistered(Class<?> service) {
+        return provide(service).isPresent();
+    }
 
     /**
      * Return a provider for the given service, raising an unchecked exception

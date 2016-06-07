@@ -24,15 +24,18 @@
  */
 package org.spongepowered.api.item.merchant;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 import java.util.Optional;
 
 /**
  * <p>Represents a trade offer that a {@link Merchant} may offer a
- * {@link Human}.</p>
+ * {@link Humanoid}.</p>
  *
  * <p>TradeOffers usually have a limited amount of times they can be used.</p>
  *
@@ -41,13 +44,22 @@ import java.util.Optional;
 public interface TradeOffer extends DataSerializable {
 
     /**
+     * Creates a new {@link Builder} to build a {@link TradeOffer}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
      * Gets the first buying item.
      * <p>The first buying item is an item that the customer is selling to the
      * merchant in exchange for {@link #getSellingItem()}.</p>
      *
      * @return The first buying item
      */
-    ItemStack getFirstBuyingItem();
+    ItemStackSnapshot getFirstBuyingItem();
 
     /**
      * Returns whether this trade offer has a second item the merchant is buying
@@ -66,7 +78,7 @@ public interface TradeOffer extends DataSerializable {
      *
      * @return The second buying item, if available
      */
-    Optional<ItemStack> getSecondBuyingItem();
+    Optional<ItemStackSnapshot> getSecondBuyingItem();
 
     /**
      * Gets the selling item the {@link Merchant} will give to the customer
@@ -76,7 +88,7 @@ public interface TradeOffer extends DataSerializable {
      *
      * @return The selling item
      */
-    ItemStack getSellingItem();
+    ItemStackSnapshot getSellingItem();
 
     /**
      * <p>Gets the current uses of this offer.</p>
@@ -115,4 +127,89 @@ public interface TradeOffer extends DataSerializable {
      */
     boolean doesGrantExperience();
 
+    /**
+     * Represents a builder to generate immutable {@link TradeOffer}s.
+     */
+    interface Builder extends DataBuilder<TradeOffer> {
+
+        /**
+         * <p>Sets the first selling item of the trade offer to be generated.</p>
+         *
+         * <p>Trade offers require at least one item to be generated.</p>
+         *
+         * @param item The first item to buy
+         * @return This builder
+         */
+        Builder firstBuyingItem(ItemStack item);
+
+        /**
+         * Sets the second selling item of the trade offer to be generated.
+         *
+         * @param item The second item to buy
+         * @return This builder
+         */
+        Builder secondBuyingItem(ItemStack item);
+
+        /**
+         * Sets the selling item of the trade offer to be generated.
+         *
+         * @param item The item to sell
+         * @return This builder
+         */
+        Builder sellingItem(ItemStack item);
+
+        /**
+         * Sets the existing uses of the trade offer to be generated. A trade offer
+         * will become unusable when the uses surpasses the max uses.
+         *
+         * @param uses The uses
+         * @return This builder
+         */
+        Builder uses(int uses);
+
+        /**
+         * Sets the maximum uses the generated trade offer will have. A trade offer
+         * will become unusable when the uses surpasses the max uses.
+         *
+         * @param maxUses The maximum uses of the trade offer
+         * @return This builder
+         */
+        Builder maxUses(int maxUses);
+
+        /**
+         * Sets the trade offer to be generated to grant experience upon use.
+         *
+         * @param experience Whether the offer will grant experience
+         * @return This builder
+         */
+        Builder canGrantExperience(boolean experience);
+
+        /**
+         * Creates a new TradeOffer instance with the current state of the builder.
+         *
+         * @return A new trade offer instance
+         * @throws IllegalStateException If the resulting trade offer would be
+         *      invalid
+         */
+        TradeOffer build() throws IllegalStateException;
+
+        /**
+         * Sets all the settings of this builder with the provided trade offer as a
+         * blueprint.
+         *
+         * @param offer The offer to copy
+         * @return This builder
+         */
+        @Override
+        Builder from(TradeOffer offer);
+
+        /**
+         * Clears all settings of this builder.
+         *
+         * @return This builder
+         */
+        @Override
+        Builder reset();
+
+    }
 }

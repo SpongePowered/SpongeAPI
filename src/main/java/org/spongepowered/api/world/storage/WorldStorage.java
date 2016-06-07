@@ -25,12 +25,12 @@
 package org.spongepowered.api.world.storage;
 
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.util.concurrent.ListenableFuture;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.World;
 
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Represents the storage manager of a particular {@link World}.
@@ -55,37 +55,38 @@ public interface WorldStorage {
      * Checks if the given chunk coordinates represented by {@link Vector3i}
      * exist in the world.
      *
-     * <p>Note that this is an asynchronous check as the storage of chunks
-     * can not be guaranteed to remain in synch with the server, let alone
-     * on the server thread.</p>
+     * <p>Note that this is an asynchronous check as the storage of chunks can
+     * not be guaranteed to remain in synch with the server, let alone on the
+     * server thread.</p>
      *
-     * <p>It is imperative to avoid waiting for the {@link ListenableFuture} to complete
-     * its task.</p>
+     * <p>It is imperative to understand that the {@link CompletableFuture} task
+     * is blocking, and should avoid using {@link CompletableFuture#get()} while
+     * on the main thread.</p>
      *
      * @param chunkCoords The chunk coordinates
      * @return Whether the chunk exists or not
      */
-    ListenableFuture<Boolean> doesChunkExist(Vector3i chunkCoords);
+    CompletableFuture<Boolean> doesChunkExist(Vector3i chunkCoords);
 
     /**
-     * Gets a {@link DataContainer} including all data related to a {@link Chunk}.
+     * Gets a {@link DataContainer} including all data related to a
+     * {@link Chunk}.
      *
-     * <p>The container is a read only instance of the data, and therefor
-     * should not be considered as mutable data. Changes are NOT saved, and
-     * the data may not be in synch with the server if the chunk is currently
-     * loaded.</p>
+     * <p>The container is a read only instance of the data, and therefor should
+     * not be considered as mutable data. Changes are NOT saved, and the data
+     * may not be in synch with the server if the chunk is currently loaded.</p>
      *
      * <p>This may not return a {@link DataContainer} in the event there is no
      * chunk data generated at the desired coordinates.</p>
      *
-     * <p>It is imperative to understand that the {@link ListenableFuture} task is
-     * blocking, and should avoid using {@link ListenableFuture#get()} while on the main
-     * thread.</p>
+     * <p>It is imperative to understand that the {@link CompletableFuture} task
+     * is blocking, and should avoid using {@link CompletableFuture#get()} while
+     * on the main thread.</p>
      *
      * @param chunkCoords The chunk coordinates
      * @return The data container representing the chunk data, if available
      */
-    ListenableFuture<Optional<DataContainer>> getChunkData(Vector3i chunkCoords);
+    CompletableFuture<Optional<DataContainer>> getChunkData(Vector3i chunkCoords);
 
     /**
      * Gets the {@link WorldProperties} of this storage. In the vanilla storage

@@ -25,11 +25,14 @@
 package org.spongepowered.api.scoreboard;
 
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -40,10 +43,31 @@ import java.util.Set;
  * While any {@link Text} can be added to a team, certain {@link Text}s convey a special
  * meaning.</p>
  *
- * <p>Examples of this include players, whose names gain the prefix and suffix of
- * the team they are on.</p>
+ * <p>Examples of this include players, whose names gain the prefix and suffix
+ * of the team they are on.</p>
+ *
+ * <p>With the exception of {@link #getNameTagVisibility()} (which is handled client-side),
+ * all of the team options require players to have the same team object (and by
+ * extension, the same scoreboard).
+ *
+ * For example, consider two players who each have different scoreboards set.
+ * Each scoreboard has a team registered with identical names, each containing
+ * the same players. Both players would always be able to attack each other,
+ * regardless of the value of {@link #allowFriendlyFire()}.
+ *
+ * For it to work, both players must have the same scoreboard, and be on a team
+ * registered to said scoreboard.</p>
  */
 public interface Team {
+
+    /**
+     * Creates a new {@link Builder} to build a {@link Team}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the name of this team.
@@ -58,6 +82,15 @@ public interface Team {
      * @return The display name for this team
      */
     Text getDisplayName();
+
+    /**
+     * Sets the name displayed to users for this team.
+     *
+     * @param displayName The {@link Text} to use
+     * @throws IllegalArgumentException If displayName is longer than 32
+     *     characters (in its legacy representation)
+     */
+    void setDisplayName(Text displayName) throws IllegalArgumentException;
 
     /**
      * Gets the color of this team.
@@ -81,15 +114,6 @@ public interface Team {
      * @throws IllegalArgumentException If color is {@link TextColors#RESET}
      */
     void setColor(TextColor color) throws IllegalArgumentException;
-
-    /**
-     * Sets the name displayed to users for this team.
-     *
-     * @param displayName The {@link Text} to use
-     * @throws IllegalArgumentException If displayName is longer than 32
-     *     characters
-     */
-    void setDisplayName(Text displayName) throws IllegalArgumentException;
 
     /**
      * Gets the prefix prepended to the display name of users on this team.
@@ -119,12 +143,16 @@ public interface Team {
      *
      * @param suffix The new suffix for this team.
      * @throws IllegalArgumentException If suffix is longer than 16
-     *     characters
+     *     characters (in its legacy representation)
      */
     void setSuffix(Text suffix) throws IllegalArgumentException;
 
     /**
      * Gets whether friendly fire is enabled.
+     *
+     * <p>This option only controls players attacking other players. It has no
+     * affect other entities attacking other entities, or players attacking
+     * other entities (or vice-versa).</p>
      *
      * @return Whether friendly fire is enabled
      */
@@ -173,7 +201,7 @@ public interface Team {
      *
      * @return The {@link Visibility} for this team's death Texts
      */
-    Visibility getDeathTextVisibility();
+    Visibility getDeathMessageVisibility();
 
     /**
      * Sets the {@link Visibility} which controls who death Texts
@@ -181,7 +209,7 @@ public interface Team {
      *
      * @param visibility The {@link Visibility} for this team's death Texts
      */
-    void setDeathTextVisibility(Visibility visibility);
+    void setDeathMessageVisibility(Visibility visibility);
 
     /**
      * Gets the {@link Text}s representing the members of this team.
@@ -193,9 +221,10 @@ public interface Team {
     /**
      * Adds the specified {@link Text} to this team.
      *
-     * <p>While any {@link Text} may be added, the {@link Text}
-     * to use should normally be obtained by calling {@link TeamMember#getTeamRepresentation()}
-     * on a {@link TeamMember}, such as a {@link Player}.</p>
+     * <p>While any {@link Text} may be added, the {@link Text} to use should
+     * normally be obtained by calling
+     * {@link TeamMember#getTeamRepresentation()} on a {@link TeamMember}, such
+     * as a {@link Player}.</p>
      *
      * @param member the {@link Text} to add
      */
@@ -206,7 +235,7 @@ public interface Team {
      *
      * <p>While any {@link Text} may be removed, the {@link Text}
      * to use should normally be obtained by calling {@link TeamMember#getTeamRepresentation()}
-     * on a {@link TeamMember}, such as a {@link Player}.</p
+     * on a {@link TeamMember}, such as a {@link Player}.</p>
      *
      * @param member The {@link Text} to remove
      * @return Whether the {@link Text} was on this team
@@ -214,12 +243,140 @@ public interface Team {
     boolean removeMember(Text member);
 
     /**
-     * Returns a {@link Set} of parent {@link Scoreboard}s this {@link Team} is
-     * registered to.
+     * Returns the scoreboard this team is registered on, if available.
      *
-     * @return A {@link Set} of parent {@link Scoreboard}s this {@link Team} is
-     *         registered to
+     * <p>This will return {@link Optional#empty()} when a team has
+     * been removed from its {@link Scoreboard}, or has been created
+     * but not yet registered.</p>
+     *
+     * @return The scoreboard this team is registered on, if available.
      */
-    Set<Scoreboard> getScoreboards();
+    Optional<Scoreboard> getScoreboard();
 
+    /**
+     * Unregisters this team from its {@link Scoreboard}, if present.
+     *
+     * <p>A team can still be fully used after being unregistered. However,
+     * it will not affect the game in any way until registered to a {@link Scoreboard}
+     * again, through {@link Scoreboard#registerTeam(Team)}.</p>
+     *
+     * @return Whether this team was registered to a {@link Scoreboard}.
+     */
+    boolean unregister();
+
+    /**
+     * Represents a builder tp create {@link Team} instances.
+     */
+    interface Builder extends ResettableBuilder<Team, Builder> {
+
+        /**
+         * Sets the name of the {@link Team}.
+         *
+         * @param name The name to set
+         * @return This builder
+         */
+        Builder name(String name);
+
+        /**
+         * Sets the color of the {@link Team}.
+         *
+         * <p>The team's color is a distinct concept from its prefix or suffix.
+         * It is only used for colored sidebar display slots, and certain statistic
+         * criteria.</p>
+         *
+         * @param color The color to set
+         * @return This builder
+         * @throws IllegalArgumentException If color is {@link TextColors#RESET}
+         */
+        Builder color(TextColor color) throws IllegalArgumentException;
+
+        /**
+         * Sets the name displayed to users for the {@link Team}.
+         *
+         * <p>Display names may be truncated in order to meet an implementation-defined length limit.
+         * In Vanilla, this is sixteen characters.</p>
+         *
+         * <p>By default, this is set to {@link #name(String)}</p>
+         *
+         * @param displayName The {@link Text} to set
+         * @return This builder
+         * @throws IllegalArgumentException If the name is longer than 16 characters
+         */
+        Builder displayName(Text displayName) throws IllegalArgumentException;
+
+        /**
+         * Sets the prefix prepended to the display name of users on the {@link Team}.
+         *
+         * <p>Display names may be truncated in order to meet an implementation-defined length limit.
+         * In Vanilla, this is sixteen characters.</p>
+         *
+         * @param prefix The new prefix for the {@link Team}
+         * @return This builder
+         */
+        Builder prefix(Text prefix);
+
+        /**
+         * Sets the suffix appended to the display name of users on the {@link Team}.
+         *
+         * <p>Display names may be truncated in order to meet an implementation-defined length limit.
+         * In Vanilla, this is sixteen characters.</p>
+         *
+         * @param suffix The new suffix for the {@link Team}.
+         * @return This builder
+         */
+        Builder suffix(Text suffix);
+
+        /**
+         * Sets whether friendly fire is enabled for the {@link Team}.
+         *
+         * @param enabled Whether friendly fire is enabled
+         * @return This builder
+         */
+        Builder allowFriendlyFire(boolean enabled);
+
+        /**
+         * Sets whether invisible team members are shown for the {@link Team}.
+         *
+         * @param enabled Whether to show invisible teammates
+         * @return This builder
+         */
+        Builder canSeeFriendlyInvisibles(boolean enabled);
+
+        /**
+         * Sets the {@link Visibility} which controls to who nametags
+         * of players on the {@link Team} are visible to.
+         *
+         * @param visibility The {@link Visibility} for the {@link Team}'s nametags
+         * @return This builder
+         */
+        Builder nameTagVisibility(Visibility visibility);
+
+        /**
+         * Sets the {@link Visibility} which controls who death Texts
+         * of players on the {@link Team} are visible to.
+         *
+         * @param visibility The {@link Visibility} for the {@link Team}'s death Texts
+         * @return This builder
+         */
+        Builder deathTextVisibility(Visibility visibility);
+
+        /**
+         * Sets the set of {@link Text} members on the {@link Team}.
+         *
+         * <p>By default, this is the empty set.</p>
+         *
+         * @param users The set of {@link Text} members on the {@link Team}
+         * @return This builder
+         */
+        Builder members(Set<Text> users);
+
+        /**
+         * Builds an instance of a {@link Team}.
+         *
+         * @return A new instance of a {@link Team}
+         * @throws IllegalStateException if the {@link Team} is not complete
+         */
+        Team build() throws IllegalStateException;
+
+    }
 }
