@@ -102,9 +102,9 @@ public interface ControlEntityEvent extends TargetEntityEvent {
      * Sets whether or not the mounted player was sneaking during this control
      * event.
      * 
-     * @param flag whether or not the player was sneaking
+     * @param sneaking whether or not the player was sneaking
      */
-    void setSneaking(boolean flag);
+    void setSneaking(boolean sneaking);
 
     /**
      * Returns whether or not the mounted player jumped during this control
@@ -118,7 +118,7 @@ public interface ControlEntityEvent extends TargetEntityEvent {
      * Sets whether or not the mounted player was jumping during this control
      * event.
      * 
-     * @param flag whether or not the player was jumping
+     * @param jumping whether or not the player was jumping
      */
-    void setJumping(boolean flag);
+    void setJumping(boolean jumping);
 }
