@@ -50,7 +50,6 @@ import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.extra.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
-import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.merchant.TradeOffer;
@@ -486,18 +485,31 @@ public final class Keys {
 
     public static final Key<Value<HorseVariant>> HORSE_VARIANT = KeyFactory.fake("HORSE_VARIANT");
 
-    public static final Key<Value<Boolean>> INVISIBILITY_IGNORES_COLLISION = KeyFactory.fake("INVISIBILITY_IGNORES_COLLISION");
+    public static final Key<Value<Boolean>> VANISH_IGNORES_COLLISION = KeyFactory.fake("VANISH_IGNORES_COLLISION");
 
     /**
      *
      */
-    public static final Key<Value<Boolean>> INVISIBILITY_PREVENTS_TARGETING = KeyFactory.fake("INVISIBILITY_PREVENTS_TARGETING");
+    public static final Key<Value<Boolean>> VANISH_PREVENTS_TARGETING = KeyFactory.fake("VANISH_PREVENTS_TARGETING");
 
     /**
-     * Represents the {@link Key} for representing the "invisible" state
-     * of an {@link Entity}.
+     * Represents the {@link Key} for representing the "vanish" state
+     * of an {@link Entity}. This will only simply render the entity as
+     * vanish, but not prevent any entity updates being sent to clients.
+     * To fully "vanish" an {@link Entity}, use {@link #VANISH}.
      */
     public static final Key<Value<Boolean>> INVISIBLE = KeyFactory.fake("INVISIBLE");
+
+    /**
+     * Represents the {@link Key} for representing the "vanish" state
+     * of an {@link Entity}. If the state is {@code true}, the entity is
+     * not only rendered invisible, but removed from being tracked by all
+     * clients in the vincinity of the entity. In simpler terms, the entity
+     * with a "vanish" state being {@code true} will not send any updates
+     * to any clients. This may cause issues if the vanished entity is being
+     * ridden by
+     */
+    public static final Key<Value<Boolean>> VANISH = KeyFactory.fake("VANISH");
 
     public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY_TICKS = KeyFactory.fake("INVULNERABILITY_TICKS");
 

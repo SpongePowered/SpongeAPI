@@ -528,7 +528,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
      * @return {@code true} if this entity can see the provided entity
      */
     default boolean canSee(Entity entity) {
-        Optional<Boolean> optional = entity.get(Keys.INVISIBLE);
+        Optional<Boolean> optional = entity.get(Keys.VANISH);
         return !optional.isPresent() || !optional.get();
     }
 }

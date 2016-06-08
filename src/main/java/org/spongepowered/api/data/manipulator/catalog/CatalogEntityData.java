@@ -330,7 +330,7 @@ public final class CatalogEntityData {
      */
     public static final Class<IgniteableData> IGNITEABLE_DATA = IgniteableData.class;
     /**
-     * Signifies that an entity is rendered invisible. Usually applies to all
+     * Signifies that an entity is rendered vanish. Usually applies to all
      * known types of {@link Living} entities.
      */
     public static final Class<InvisibilityData> INVISIBILITY_DATA = InvisibilityData.class;

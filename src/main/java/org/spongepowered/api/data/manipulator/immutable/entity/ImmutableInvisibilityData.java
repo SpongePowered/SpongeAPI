@@ -30,8 +30,8 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.Entity;
 
 /**
- * An {@link ImmutableDataManipulator} for the "invisible" state. If present,
- * the {@link Entity} is rendered "invisible".
+ * An {@link ImmutableDataManipulator} for the "vanish" state. If present,
+ * the {@link Entity} is rendered "vanish".
  */
 public interface ImmutableInvisibilityData extends ImmutableDataManipulator<ImmutableInvisibilityData, InvisibilityData> {
 
@@ -39,9 +39,21 @@ public interface ImmutableInvisibilityData extends ImmutableDataManipulator<Immu
      * Gets the {@link ImmutableValue} of the "invisible" state of an
      * {@link Entity}.
      *
+     * <p>Note that this is different from the {@link #vanish()} state as when an
+     * {@link Entity} is "invisible", update packets are still sent to all clients
+     * and the server. Likewise, no </p>
+     *
      * @return The immutable value of the invisible state
      */
     ImmutableValue<Boolean> invisible();
+
+    /**
+     * Gets the {@link ImmutableValue} of the "vanish" state of an
+     * {@link Entity}.
+     *
+     * @return The immutable value of the vanish state
+     */
+    ImmutableValue<Boolean> vanish();
 
     ImmutableValue<Boolean> ignoresCollisionDetection();
 
