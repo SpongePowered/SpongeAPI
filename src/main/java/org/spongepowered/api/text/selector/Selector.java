@@ -51,18 +51,6 @@ import java.util.Optional;
  * </p>
  * </p>
  *
- * <p>
- * Additionally, Vanilla will ignore position data unless one of the following
- * arguments is present:
- * <ul>
- *   <li>{@link ArgumentTypes#POSITION}</li>
- *   <li>{@link ArgumentTypes#DIMENSION}</li>
- *   <li>{@link ArgumentTypes#RADIUS}</li>
- * </ul>
- * All {@code resolve} methods have a look-alike named {@code resolveForce}
- * which always uses the given position data.
- * </p>
- *
  * @see <a href="http://minecraft.gamepedia.com/Selector#Target_selectors">
  *      Target selectors on the Minecraft Wiki</a>
  */
@@ -197,42 +185,6 @@ public interface Selector {
      * @return The matched entities
      */
     List<Entity> resolve(Location<World> location);
-
-    /**
-     * Resolves this {@link Selector} to a list of entities around the origin.
-     *
-     * @param origin The source that should be considered the origin of this
-     *        selector
-     * @return The matched entities
-     */
-    List<Entity> resolveForce(CommandSource origin);
-
-    /**
-     * Resolves this {@link Selector} to a list of entities around (0|0|0) in
-     * the given {@link Extent Extent(s)}.
-     *
-     * @param extent The extents to search for targets
-     * @return The matched entities
-     */
-    List<Entity> resolveForce(Extent... extent);
-
-    /**
-     * Resolves this {@link Selector} to a list of entities around (0|0|0) in
-     * the given {@link Extent Extent(s)}.
-     *
-     * @param extent The extents to search for targets
-     * @return The matched entities
-     */
-    List<Entity> resolveForce(Collection<? extends Extent> extent);
-
-    /**
-     * Resolves this {@link Selector} to a list of entities around the given
-     * {@link Location}.
-     *
-     * @param location The location to resolve the selector around
-     * @return The matched entities
-     */
-    List<Entity> resolveForce(Location<World> location);
 
     /**
      * Converts this {@link Selector} to a valid selector string.
