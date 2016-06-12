@@ -36,7 +36,6 @@ import org.spongepowered.api.world.extent.Extent;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * Represents an immutable selector of targets, as used in commands.
@@ -170,7 +169,7 @@ public interface Selector {
      *        selector
      * @return The matched entities
      */
-    Set<Entity> resolve(CommandSource origin);
+    List<Entity> resolve(CommandSource origin);
 
     /**
      * Resolves this {@link Selector} to a list of entities around (0|0|0) in
@@ -179,7 +178,7 @@ public interface Selector {
      * @param extent The extents to search for targets
      * @return The matched entities
      */
-    Set<Entity> resolve(Extent... extent);
+    List<Entity> resolve(Extent... extent);
 
     /**
      * Resolves this {@link Selector} to a list of entities around (0|0|0) in
@@ -188,7 +187,7 @@ public interface Selector {
      * @param extent The extents to search for targets
      * @return The matched entities
      */
-    Set<Entity> resolve(Collection<? extends Extent> extent);
+    List<Entity> resolve(Collection<? extends Extent> extent);
 
     /**
      * Resolves this {@link Selector} to a list of entities around the given
@@ -197,7 +196,7 @@ public interface Selector {
      * @param location The location to resolve the selector around
      * @return The matched entities
      */
-    Set<Entity> resolve(Location<World> location);
+    List<Entity> resolve(Location<World> location);
 
     /**
      * Resolves this {@link Selector} to a list of entities around the origin.
@@ -206,7 +205,7 @@ public interface Selector {
      *        selector
      * @return The matched entities
      */
-    Set<Entity> resolveForce(CommandSource origin);
+    List<Entity> resolveForce(CommandSource origin);
 
     /**
      * Resolves this {@link Selector} to a list of entities around (0|0|0) in
@@ -215,7 +214,7 @@ public interface Selector {
      * @param extent The extents to search for targets
      * @return The matched entities
      */
-    Set<Entity> resolveForce(Extent... extent);
+    List<Entity> resolveForce(Extent... extent);
 
     /**
      * Resolves this {@link Selector} to a list of entities around (0|0|0) in
@@ -224,7 +223,7 @@ public interface Selector {
      * @param extent The extents to search for targets
      * @return The matched entities
      */
-    Set<Entity> resolveForce(Collection<? extends Extent> extent);
+    List<Entity> resolveForce(Collection<? extends Extent> extent);
 
     /**
      * Resolves this {@link Selector} to a list of entities around the given
@@ -233,7 +232,7 @@ public interface Selector {
      * @param location The location to resolve the selector around
      * @return The matched entities
      */
-    Set<Entity> resolveForce(Location<World> location);
+    List<Entity> resolveForce(Location<World> location);
 
     /**
      * Converts this {@link Selector} to a valid selector string.
