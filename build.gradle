@@ -19,7 +19,7 @@ buildscript {
         classpath 'gradle.plugin.net.minecrell:licenser:0.2.1'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
         classpath 'org.spongepowered:event-impl-gen:2.0.0-SNAPSHOT'
-        classpath 'org.spongepowered:spongegradle:0.5.1'
+        classpath 'gradle.plugin.org.spongepowered:spongegradle:0.6'
     }
 }
 
