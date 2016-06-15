@@ -339,7 +339,7 @@ public final class CommandSpec implements CommandCallable {
         if (targetPos != null) {
             ctx.putArg(CommandContext.TARGET_BLOCK_ARG, targetPos);
         }
-        return complete(source, args, new CommandContext());
+        return complete(source, args, ctx);
     }
 
     @Override
