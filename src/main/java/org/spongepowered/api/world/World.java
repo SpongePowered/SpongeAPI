@@ -216,6 +216,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     /**
      * @see WorldProperties#getUniqueId()
      */
+    @Override
     default UUID getUniqueId() {
         return getProperties().getUniqueId();
     }
