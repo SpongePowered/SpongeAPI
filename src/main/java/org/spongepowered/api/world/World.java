@@ -140,7 +140,9 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      * @param shouldGenerate True to generate a new chunk
      * @return The loaded or generated chunk, if already generated
      */
-    Optional<Chunk> loadChunk(Vector3i chunkPosition, boolean shouldGenerate);
+    default Optional<Chunk> loadChunk(Vector3i chunkPosition, boolean shouldGenerate) {
+        return this.loadChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), shouldGenerate);
+    }
 
     /**
      * Get the chunk at the given chunk coordinate position if it exists or if
