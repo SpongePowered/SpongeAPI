@@ -65,6 +65,8 @@ public final class BlockTypes {
 
     public static final BlockType BIRCH_STAIRS = DummyObjectProvider.createFor(BlockType.class, "BIRCH_STAIRS");
 
+    public static final BlockType BONE_BLOCK = DummyObjectProvider.createFor(BlockType.class, "BONE_BLOCK");
+
     public static final BlockType BOOKSHELF = DummyObjectProvider.createFor(BlockType.class, "BOOKSHELF");
 
     public static final BlockType BREWING_STAND = DummyObjectProvider.createFor(BlockType.class, "BREWING_STAND");
@@ -181,7 +183,7 @@ public final class BlockTypes {
 
     public static final BlockType FLOWING_WATER = DummyObjectProvider.createFor(BlockType.class, "FLOWING_WATER");
 
-    public static final BlockType FROSTED_ICE = DummyObjectProvider.createFor(BlockType.class, "FORESTED_ICE");
+    public static final BlockType FROSTED_ICE = DummyObjectProvider.createFor(BlockType.class, "FROSTED_ICE");
 
     public static final BlockType FURNACE = DummyObjectProvider.createFor(BlockType.class, "FURNACE");
 
@@ -261,6 +263,8 @@ public final class BlockTypes {
 
     public static final BlockType LOG2 = DummyObjectProvider.createFor(BlockType.class, "LOG2");
 
+    public static final BlockType MAGMA = DummyObjectProvider.createFor(BlockType.class, "MAGMA");
+
     public static final BlockType MELON_BLOCK = DummyObjectProvider.createFor(BlockType.class, "MELON_BLOCK");
 
     public static final BlockType MELON_STEM = DummyObjectProvider.createFor(BlockType.class, "MELON_STEM");
@@ -282,6 +286,8 @@ public final class BlockTypes {
     public static final BlockType NETHER_BRICK_STAIRS = DummyObjectProvider.createFor(BlockType.class, "NETHER_BRICK_STAIRS");
 
     public static final BlockType NETHER_WART = DummyObjectProvider.createFor(BlockType.class, "NETHER_WART");
+
+    public static final BlockType NETHER_WART_BLOCK = DummyObjectProvider.createFor(BlockType.class, "NETHER_WART_BLOCK");
 
     public static final BlockType NOTEBLOCK = DummyObjectProvider.createFor(BlockType.class, "NOTEBLOCK");
 
@@ -346,6 +352,8 @@ public final class BlockTypes {
     public static final BlockType RED_MUSHROOM = DummyObjectProvider.createFor(BlockType.class, "RED_MUSHROOM");
 
     public static final BlockType RED_MUSHROOM_BLOCK = DummyObjectProvider.createFor(BlockType.class, "RED_MUSHROOM_BLOCK");
+
+    public static final BlockType RED_NETHER_BRICK = DummyObjectProvider.createFor(BlockType.class, "RED_NETHER_BRICK");
 
     public static final BlockType RED_SANDSTONE = DummyObjectProvider.createFor(BlockType.class, "RED_SANDSTONE");
 
@@ -414,6 +422,8 @@ public final class BlockTypes {
     public static final BlockType STONE_STAIRS = DummyObjectProvider.createFor(BlockType.class, "STONE_STAIRS");
 
     public static final BlockType STRUCTURE_BLOCK = DummyObjectProvider.createFor(BlockType.class, "STRUCTURE_BLOCK");
+
+    public static final BlockType STRUCTURE_VOID = DummyObjectProvider.createFor(BlockType.class, "STRUCTURE_VOID");
 
     public static final BlockType TALLGRASS = DummyObjectProvider.createFor(BlockType.class, "TALLGRASS");
 
