@@ -53,6 +53,8 @@ public final class Enchantments {
 
     public static final Enchantment FORTUNE = DummyObjectProvider.createFor(Enchantment.class, "FORTUNE");
 
+    public static final Enchantment FROST_WALKER = DummyObjectProvider.createFor(Enchantment.class, "FROST_WALKER");
+
     public static final Enchantment INFINITY = DummyObjectProvider.createFor(Enchantment.class, "INFINITY");
 
     public static final Enchantment KNOCKBACK = DummyObjectProvider.createFor(Enchantment.class, "KNOCKBACK");
@@ -62,6 +64,8 @@ public final class Enchantments {
     public static final Enchantment LUCK_OF_THE_SEA = DummyObjectProvider.createFor(Enchantment.class, "LUCK_OF_THE_SEA");
 
     public static final Enchantment LURE = DummyObjectProvider.createFor(Enchantment.class, "LURE");
+
+    public static final Enchantment MENDING = DummyObjectProvider.createFor(Enchantment.class, "MENDING");
 
     public static final Enchantment POWER = DummyObjectProvider.createFor(Enchantment.class, "POWER");
 
