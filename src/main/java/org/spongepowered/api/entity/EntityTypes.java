@@ -123,6 +123,8 @@ public final class EntityTypes {
 
     public static final EntityType PLAYER = DummyObjectProvider.createFor(EntityType.class, "PLAYER");
 
+    public static final EntityType POLAR_BEAR = DummyObjectProvider.createFor(EntityType.class, "POLAR_BEAR");
+
     public static final EntityType PRIMED_TNT = DummyObjectProvider.createFor(EntityType.class, "PRIMED_TNT");
 
     public static final EntityType RABBIT = DummyObjectProvider.createFor(EntityType.class, "RABBIT");
