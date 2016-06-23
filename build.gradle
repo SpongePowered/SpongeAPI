@@ -23,7 +23,7 @@ buildscript {
     }
 }
 
-version = '5.0.0-SNAPSHOT'
+version = 'bleeding-1.10-SNAPSHOT'
 
 // Include shared Gradle configuration
 ext.api = project
