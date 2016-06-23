@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.service.permission;
 
-import org.spongepowered.api.service.context.ContextCalculator;
 import org.spongepowered.api.service.context.ContextualService;
 
 import java.util.Collection;
@@ -61,12 +60,13 @@ public interface PermissionService extends ContextualService<Subject> {
     SubjectCollection getGroupSubjects();
 
     /**
-     * This is a transient data object that contains data that will be applied
-     * by default to all subjects.
+     * Get the subject holding data that is applied by default to all subjects. This
+     * subject is at the root of all inheritance trees, above even subject type-specific
+     * defaults, meaning it has the lowest priority when all other weighting is equal.
      *
-     * @return The default data object, which will accept modifications but which is transient
+     * @return The default subject data
      */
-    SubjectData getDefaultData();
+    Subject getDefaults();
 
     /**
      * Returns a subject collection with the given identifier.

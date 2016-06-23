@@ -90,4 +90,11 @@ public interface SubjectCollection {
      *         permission is set to
      */
     Map<Subject, Boolean> getAllWithPermission(Set<Context> contexts, String permission);
+
+    /**
+     * Get the subject that provides defaults for subjects of this type. This subject is placed at the root of any inheritance tree involving subjects of this type.
+     *
+     * @return The subject holding defaults
+     */
+    Subject getDefaults();
 }
