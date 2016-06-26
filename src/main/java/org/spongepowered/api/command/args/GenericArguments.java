@@ -1319,16 +1319,16 @@ public final class GenericArguments {
                     final int parts = arg.split(",", -1).length;
                     final int index = arg.lastIndexOf(',');
 
-                    final Location pos = this.targetBlockTabCompletion ?
-                            context.<Location>getOne(CommandContext.TARGET_BLOCK_ARG).orElse(null) : null;
+                    final Location<World> pos = this.targetBlockTabCompletion ?
+                            context.<Location<World>>getOne(CommandContext.TARGET_BLOCK_ARG).orElse(null) : null;
                     final String prefix = arg.substring(0, index + 1);
                     switch (parts) {
                         case 1:
-                            return ImmutableList.of(prefix + (pos != null ? Double.toString(pos.getX()) : "~"));
+                            return this.getCommaSeparatedCompletion(src, Location::getX, prefix, pos);
                         case 2:
-                            return ImmutableList.of(prefix + (pos != null ? Double.toString(pos.getY()) : "~"));
+                            return this.getCommaSeparatedCompletion(src, Location::getY, prefix, pos);
                         case 3:
-                            return ImmutableList.of(prefix + (pos != null ? Double.toString(pos.getZ()) : "~"));
+                            return this.getCommaSeparatedCompletion(src, Location::getZ, prefix, pos);
                     }
                 } else {
                     if ((optArg = args.nextIfPresent()).isPresent()) {
@@ -1345,6 +1345,12 @@ public final class GenericArguments {
             } else {
                 return ImmutableList.of();
             }
+        }
+
+        private List<String> getCommaSeparatedCompletion(CommandSource src,
+                Function<Location<World>, Double> function, String prefix, @Nullable Location<World> pos) {
+            return ImmutableList.of(prefix + (pos != null ? Double.toString(function.apply(pos)) :
+                    src instanceof Locatable ? "~" : ""));
         }
 
         private List<String> getCompletion(CommandSource src, CommandContext context,
