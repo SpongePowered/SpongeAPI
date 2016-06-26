@@ -122,6 +122,10 @@ public final class CommandArgs {
         return this.args;
     }
 
+    void setArgs(List<SingleArg> args) {
+        this.args = args;
+    }
+
     /**
      * Return this arguments object's current state. Can be used to reset with the {@link #setState(Object)} method.
      *
@@ -153,6 +157,20 @@ public final class CommandArgs {
     }
 
     /**
+     * Insert an {@link Iterable} of args as the next args to be
+     * returned by {@link #next()}.
+     *
+     * @param values The arguments to insert
+     */
+    public void insertArgs(Iterable<String> values) {
+        int index = this.index < 0 ? 0 : this.args.get(this.index).getEndIdx();
+        int pos = this.index;
+        for (String value : values) {
+            this.args.add(++pos, new SingleArg(value, index, index));
+        }
+    }
+
+    /**
      * Insert an arg as the next arg to be returned by {@link #next()}.
      *
      * @param value The argument to insert
@@ -163,12 +181,29 @@ public final class CommandArgs {
     }
 
     /**
+     * Remove the arguments parsed at the state.
+     *
+     * @param state The state
+     */
+    public void removeArg(Object state) {
+        if (!(state instanceof Integer)) {
+            throw new IllegalArgumentException("The provided state was not of the correct type!");
+        }
+        int index = (Integer) state;
+        if (this.index > index) {
+            this.index--;
+        }
+        this.args.remove(index);
+    }
+
+    /**
      * Remove the arguments parsed between startState and endState.
      *
      * @param startState The starting state
      * @param endState The ending state
+     * @return The removed arguments
      */
-    public void removeArgs(Object startState, Object endState) {
+    public List<String> removeArgs(Object startState, Object endState) {
         if (!(startState instanceof Integer) || !(endState instanceof Integer)) {
             throw new IllegalArgumentException("One of the states provided was not of the correct type!");
         }
@@ -181,9 +216,11 @@ public final class CommandArgs {
                 this.index -= (endIdx - startIdx) + 1;
             }
         }
+        final List<String> args = new ArrayList<>();
         for (int i = startIdx; i <= endIdx; ++i) {
-            this.args.remove(startIdx);
+            args.add(this.args.remove(startIdx).getValue());
         }
+        return args;
     }
 
     /**

@@ -30,11 +30,12 @@ import static org.spongepowered.api.command.args.GenericArguments.string;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
-import org.spongepowered.api.command.CommandSource;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -43,9 +44,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.stream.Collectors;
-
-import javax.annotation.Nullable;
 
 public final class CommandFlags extends CommandElement {
     @Nullable
@@ -73,6 +71,8 @@ public final class CommandFlags extends CommandElement {
     @Override
     public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
         Object startIdx = args.getState();
+        // All the flag args that were removed
+        List<String> removedArgs = new ArrayList<>();
         String arg;
         while (args.hasNext()) {
             arg = args.next();
@@ -87,7 +87,7 @@ public final class CommandFlags extends CommandElement {
                     ignore = !parseShortFlags(source, arg, args, context);
                 }
                 if (!ignore) {
-                    args.removeArgs(flagStartIdx, args.getState());
+                    removedArgs.addAll(args.removeArgs(flagStartIdx, args.getState()));
                 }
             } else if (this.anchorFlags) {
                 break;
@@ -95,10 +95,15 @@ public final class CommandFlags extends CommandElement {
         }
 
         args.setState(startIdx);
+        // Do not remove the args, we will just insert them at a other position
+        // so they won't cause trouble with the other args
+        args.insertArgs(removedArgs);
+        // Set the pointer after the moved args
+        args.setState(((Integer) startIdx) + removedArgs.size());
+
         if (this.childElement != null) {
             this.childElement.parse(source, args, context);
         }
-
     }
 
     private boolean parseLongFlag(CommandSource source, String longFlag, CommandArgs args, CommandContext context) throws ArgumentParseException {
@@ -212,6 +217,8 @@ public final class CommandFlags extends CommandElement {
     @Override
     public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
         Object startIdx = args.getState();
+        // All the flag args that were removed
+        List<String> removedArgs = new ArrayList<>();
         Optional<String> arg;
         while (args.hasNext()) {
             arg = args.nextIfPresent();
@@ -230,18 +237,23 @@ public final class CommandFlags extends CommandElement {
                         return ret;
                     }
                 }
-                args.removeArgs(flagStartIdx, args.getState());
+                removedArgs.addAll(args.removeArgs(flagStartIdx, args.getState()));
             } else if (this.anchorFlags) {
                 break;
             }
         }
 
         args.setState(startIdx);
+        // Do not remove the args, we will just insert them at a other position
+        // so they won't cause trouble with the other args
+        args.insertArgs(removedArgs);
+        // Set the pointer after the moved args
+        args.setState(((Integer) startIdx) + removedArgs.size());
+
         if (this.childElement != null) {
             return this.childElement.complete(src, args, context);
-        } else {
-            return Collections.emptyList();
         }
+        return NullCompletionList.INSTANCE;
     }
 
     @Nullable
@@ -256,41 +268,41 @@ public final class CommandFlags extends CommandElement {
             } else {
                 args.insertArg(value);
                 final String finalLongFlag = longFlag;
-                Object position = args.getState();
+                Object state = args.getState();
                 try {
                     element.parse(src, args, context);
                 } catch (ArgumentParseException ex) {
-                    args.setState(position);
-                    return ImmutableList.copyOf(
-                        element.complete(src, args, context).stream().map(input -> "--" + finalLongFlag + "=" + input).collect(Collectors.toList()));
+                    args.setState(state);
+                    List<String> ret = element.complete(src, args, context);
+                    if ((Integer) args.getState() <= (Integer) state + 1) {
+                        return ret.stream().map(input -> "--" + finalLongFlag + "=" + input)
+                                .collect(GuavaCollectors.toImmutableList());
+                    } else {
+                        return ImmutableList.copyOf(ret);
+                    }
                 }
             }
         } else {
             CommandElement element = this.longFlags.get(longFlag.toLowerCase());
             if (element == null) {
-                List<String> retStrings = this.longFlags.keySet().stream()
+                List<String> ret = this.longFlags.keySet().stream()
                     .filter(new StartsWithPredicate(longFlag))
                     .map(arg -> "--" + arg)
                     .collect(GuavaCollectors.toImmutableList());
-                if (retStrings.isEmpty() && this.unknownLongFlagBehavior == UnknownFlagBehavior.ACCEPT_VALUE) { // Then we probably have a
-                // following arg specified, if there's anything
+                if (ret.isEmpty() && this.unknownLongFlagBehavior == UnknownFlagBehavior.ACCEPT_VALUE) {
+                    // Then we probably have a following arg specified, if there's anything
                     args.nextIfPresent();
                     return null;
                 }
+                return ret;
             } else {
-                boolean complete = false;
                 Object state = args.getState();
                 try {
                     element.parse(src, args, context);
                 } catch (ArgumentParseException ex) {
-                    complete = true;
-                }
-                if (!args.hasNext()) {
-                    complete = true;
-                }
-                if (complete) {
                     args.setState(state);
-                    return element.complete(src, args, context);
+                    List<String> ret = element.complete(src, args, context);
+                    return ret == NullCompletionList.INSTANCE ? Collections.emptyList() : ImmutableList.copyOf(ret);
                 }
             }
         }
@@ -307,7 +319,6 @@ public final class CommandFlags extends CommandElement {
                     args.nextIfPresent();
                     return null;
                 }
-
                 continue;
             }
             Object start = args.getState();

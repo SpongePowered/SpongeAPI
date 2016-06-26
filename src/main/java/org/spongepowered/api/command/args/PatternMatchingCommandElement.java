@@ -48,6 +48,27 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
         super(key);
     }
 
+    @Override
+    public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
+        this.store(context, this.parseValue(source, args,
+                context.<Boolean>getOne(CommandContext.TAB_COMPLETION_CONTEXT).orElse(false)));
+    }
+
+    @Nullable
+    protected Object parseValue(CommandSource source, CommandArgs args, boolean exact) throws ArgumentParseException {
+        return exact ? parseValueExact(source, args) : parseValue(source, args);
+    }
+
+    @Nullable
+    protected Object parseValueExact(CommandSource source, CommandArgs args) throws ArgumentParseException {
+        final String unformattedPattern = args.next();
+        try {
+            return this.getValue(unformattedPattern);
+        } catch (IllegalArgumentException e) {
+            throw args.createError(Text.of(e.getMessage()));
+        }
+    }
+
     @Nullable
     @Override
     protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
@@ -60,10 +81,9 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
             }
         }
         Iterable<Object> ret = Iterables.transform(filteredChoices, this::getValue);
-
         if (!ret.iterator().hasNext()) {
-            throw args.createError(t("No values matching pattern '%s' present for %s!", unformattedPattern, getKey() == null
-                                                                                                            ? nullKeyArg : getKey()));
+            throw args.createError(t("No values matching pattern '%s' present for %s!", unformattedPattern,
+                    getKey() == null ? nullKeyArg : getKey()));
         }
         return ret;
     }
@@ -83,7 +103,6 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
             input = "^" + input;
         }
         return Pattern.compile(input, Pattern.CASE_INSENSITIVE);
-
     }
 
     /**

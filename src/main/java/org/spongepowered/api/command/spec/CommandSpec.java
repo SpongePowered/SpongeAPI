@@ -339,6 +339,7 @@ public final class CommandSpec implements CommandCallable {
         if (targetPos != null) {
             ctx.putArg(CommandContext.TARGET_BLOCK_ARG, targetPos);
         }
+        ctx.putArg(CommandContext.TAB_COMPLETION_CONTEXT, true);
         return complete(source, args, ctx);
     }
 

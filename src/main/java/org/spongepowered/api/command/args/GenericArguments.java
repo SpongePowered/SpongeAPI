@@ -28,18 +28,22 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Joiner;
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Multimap;
+import org.apache.commons.lang3.StringUtils;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.command.args.parsing.SingleArg;
 import org.spongepowered.api.command.source.ProxySource;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -47,15 +51,20 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.user.UserStorageService;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.selector.Selector;
+import org.spongepowered.api.text.serializer.TextSerializers;
+import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.blockray.BlockRay;
 import org.spongepowered.api.util.blockray.BlockRayHit;
 import org.spongepowered.api.world.DimensionType;
+import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.storage.WorldProperties;
 
+import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -67,9 +76,8 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import javax.annotation.Nullable;
 
 
 /**
@@ -77,7 +85,18 @@ import javax.annotation.Nullable;
  */
 public final class GenericArguments {
 
-    private static final CommandElement NONE = new SequenceCommandElement(ImmutableList.<CommandElement>of());
+    private static final CommandElement NONE = new CommandElement(null) {
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            return null;
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            return NullCompletionList.INSTANCE;
+        }
+    };
 
     private GenericArguments() {}
 
@@ -165,13 +184,24 @@ public final class GenericArguments {
     }
 
     /**
+     * Expect an argument to represent a {@link Vector3d}. The vector3d
+     * can also be tab completed based on the block you have selected.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement targetedBlockVector3d(Text key) {
+        return new Vector3dCommandElement(key, true);
+    }
+
+    /**
      * Expect an argument to represent a {@link Vector3d}.
      *
      * @param key The key to store under
      * @return the argument
      */
     public static CommandElement vector3d(Text key) {
-        return new Vector3dCommandElement(key);
+        return new Vector3dCommandElement(key, false);
     }
 
     /**
@@ -181,7 +211,18 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement location(Text key) {
-        return new LocationCommandElement(key);
+        return new LocationCommandElement(key, false);
+    }
+
+    /**
+     * Expect an argument to represent a {@link Location}. The location
+     * can also be tab completed based on the block you have selected.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement targetedBlockLocation(Text key) {
+        return new LocationCommandElement(key, true);
     }
 
     /**
@@ -281,29 +322,28 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            for (Iterator<CommandElement> it = this.elements.iterator(); it.hasNext(); ) {
-                CommandElement element = it.next();
+            for (CommandElement element : this.elements) {
                 Object startState = args.getState();
                 try {
                     element.parse(src, args, context);
                     Object endState = args.getState();
                     if (!args.hasNext()) {
                         args.setState(startState);
-                        List<String> inputs = element.complete(src, args, context);
+                        List<String> ret = element.complete(src, args, context);
                         args.previous();
-                        if (!inputs.contains(args.next())) { // Tabcomplete returns results to complete the last word in an argument.
+                        if (ret != NullCompletionList.INSTANCE && !ret.contains(args.next())) {
+                            // Tab complete returns results to complete the last word in an argument.
                             // If the last word is one of the completions, the command is most likely complete
-                            return inputs;
+                            return ret;
                         }
-
                         args.setState(endState);
                     }
                 } catch (ArgumentParseException e) {
                     args.setState(startState);
-                    return element.complete(src, args, context);
-                }
-
-                if (!it.hasNext()) {
+                    List<String> ret = element.complete(src, args, context);
+                    if (ret != NullCompletionList.INSTANCE) {
+                        return ret;
+                    }
                     args.setState(startState);
                 }
             }
@@ -418,12 +458,19 @@ public final class GenericArguments {
             ArgumentParseException lastException = null;
             for (CommandElement element : this.elements) {
                 Object startState = args.getState();
+                final Multimap<String, Object> ctxParsedArgs = context.getParsedArgs();
+                final Multimap<String, Object> parsedArgs = ArrayListMultimap.create(ctxParsedArgs);
+                final List<SingleArg> singleArgs = new ArrayList<>(args.getArgs());
                 try {
                     element.parse(source, args, context);
                     return;
                 } catch (ArgumentParseException ex) {
                     lastException = ex;
+                    args.setArgs(singleArgs);
                     args.setState(startState);
+                    // Reset the arguments
+                    ctxParsedArgs.clear();
+                    ctxParsedArgs.putAll(parsedArgs);
                 }
             }
             if (lastException != null) {
@@ -438,17 +485,45 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
-            return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements,
-                    input -> {
-                        if (input == null) {
-                            return ImmutableList.of();
-                        }
+            final Object startState = args.getState();
+            final List<CommandElement> elements = new ArrayList<>();
+            int chainStart = (int) startState;
+            int longestChain = -1;
+            for (CommandElement element : this.elements) {
+                final List<SingleArg> singleArgs = new ArrayList<>(args.getArgs());
+                try {
+                    element.parse(src, args, context);
+                } catch (ArgumentParseException ex) {
+                    int chainEnd = (Integer) args.getState();
+                    int chain = chainEnd - chainStart;
+                    if (chain > longestChain) {
+                        elements.clear();
+                        elements.add(element);
+                        longestChain = chain;
+                    } else if (chain == longestChain) {
+                        elements.add(element);
+                    }
+                }
+                args.setArgs(singleArgs);
+                args.setState(startState);
+            }
+            if (!elements.isEmpty()) {
+                final List<String> ret0 = new ArrayList<>();
+                for (Iterator<CommandElement> it = elements.iterator(); it.hasNext(); ) {
+                    final CommandElement element = it.next();
+                    final List<SingleArg> singleArgs = it.hasNext() ? new ArrayList<>(args.getArgs()) : null;
 
-                        Object startState = args.getState();
-                        List<String> ret = input.complete(src, args, context);
+                    final List<String> ret = element.complete(src, args, context);
+                    ret0.addAll(ret);
+
+                    if (singleArgs != null) {
+                        args.setArgs(singleArgs);
                         args.setState(startState);
-                        return ret;
-                    })));
+                    }
+                }
+                return ImmutableList.copyOf(ret0);
+            }
+            return ImmutableList.of();
         }
 
         @Override
@@ -561,7 +636,8 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            return this.element.complete(src, args, context);
+            List<String> ret = this.element.complete(src, args, context);
+            return ret.isEmpty() ? NullCompletionList.INSTANCE : ret;
         }
 
         @Override
@@ -638,7 +714,6 @@ public final class GenericArguments {
 
     private static class AllOfCommandElement extends CommandElement {
         private final CommandElement element;
-
 
         protected AllOfCommandElement(CommandElement element) {
             super(null);
@@ -848,7 +923,7 @@ public final class GenericArguments {
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
             return Arrays.asList(this.type.getEnumConstants()).stream()
-                .map(input -> input == null ? null : input.name())
+                .map(input -> input.name())
                 .collect(Collectors.toList());
         }
 
@@ -1052,7 +1127,7 @@ public final class GenericArguments {
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
             return Sponge.getGame().getServer().getOnlinePlayers().stream()
-                .map(input -> input == null ? null : input.getName())
+                .map(CommandSource::getName)
                 .collect(Collectors.toList());
         }
 
@@ -1082,7 +1157,7 @@ public final class GenericArguments {
     }
 
     /**
-     * Acceped formats:
+     * Accepted formats:
      *
      * <ul>
      *     <li>#first</li>
@@ -1100,14 +1175,15 @@ public final class GenericArguments {
         }
 
         @Nullable
-        @Override
-        public Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+        private Object parseValue0(CommandSource source, CommandArgs args, boolean exact)
+                throws ArgumentParseException {
             final String next = args.peek();
             if (next.startsWith("#")) {
                 String specifier = next.substring(1);
                 if (specifier.equalsIgnoreCase("first")) {
                     args.next();
-                    return Sponge.getGame().getServer().getAllWorldProperties().stream().filter(input -> input != null && input.isEnabled())
+                    return Sponge.getGame().getServer().getAllWorldProperties().stream()
+                            .filter(WorldProperties::isEnabled)
                             .collect(Collectors.toList()).iterator().next();
                 } else if (specifier.equalsIgnoreCase("me") && source instanceof Locatable) {
                     args.next();
@@ -1121,24 +1197,39 @@ public final class GenericArguments {
                     args.next();
                     args.insertArg(specifier);
                     @SuppressWarnings("unchecked")
-                    final DimensionType type = ((Iterable<DimensionType>) this.dimensionTypeElement.parseValue(source, args)).iterator().next();
-                    Iterable<WorldProperties> ret = Sponge.getGame().getServer().getAllWorldProperties().stream().filter(input -> input != null &&
-                            input.isEnabled() && input.getDimensionType().equals(type)).collect(Collectors.toList());
+                    final Object dimensionValue = this.dimensionTypeElement.parseValue(source, args);
+                    final DimensionType type = ((Iterable<DimensionType>) dimensionValue).iterator().next();
+                    Iterable<WorldProperties> ret = Sponge.getGame().getServer().getAllWorldProperties().stream()
+                            .filter(input -> input.isEnabled() && input.getDimensionType().equals(type))
+                            .collect(Collectors.toList());
                     return firstOnly ? ret.iterator().next() : ret;
                 }
             }
+            return null;
+        }
 
-            return super.parseValue(source, args);
+        @Nullable
+        @Override
+        public Object parseValueExact(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            Object value = this.parseValue0(source, args, true);
+            return value == null ? super.parseValueExact(source, args) : value;
+        }
+
+        @Nullable
+        @Override
+        public Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            Object value = this.parseValue0(source, args, false);
+            return value == null ? super.parseValue(source, args) : value;
         }
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            Iterable<String> choices = getCompletionChoices(src);
-            final Optional<String> nextArg = args.nextIfPresent();
-            if (nextArg.isPresent()) {
-                choices = Iterables.filter(choices, input -> getFormattedPattern(nextArg.get()).matcher(input).find());
+            if (args.hasNext()) {
+                final String arg = args.nextIfPresent().get();
+                return ImmutableList.copyOf(Iterables.filter(getCompletionChoices(src),
+                        input -> getFormattedPattern(arg).matcher(input).find()));
             }
-            return ImmutableList.copyOf(choices);
+            return Collections.emptyList();
         }
 
         protected Iterable<String> getCompletionChoices(CommandSource source) {
@@ -1150,9 +1241,9 @@ public final class GenericArguments {
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
             return Sponge.getGame().getServer().getAllWorldProperties().stream()
-                    .map(input -> input == null || !input.isEnabled() ? null : input.getWorldName())
+                    .filter(WorldProperties::isEnabled)
+                    .map(WorldProperties::getWorldName)
                     .collect(Collectors.toList());
-
         }
 
         @Override
@@ -1175,8 +1266,11 @@ public final class GenericArguments {
     private static class Vector3dCommandElement extends CommandElement {
         private static final ImmutableSet<String> SPECIAL_TOKENS = ImmutableSet.of("#target", "#me");
 
-        protected Vector3dCommandElement(@Nullable Text key) {
+        private final boolean targetBlockTabCompletion;
+
+        protected Vector3dCommandElement(@Nullable Text key, boolean targetBlockTabComplete) {
             super(key);
+            this.targetBlockTabCompletion = targetBlockTabComplete;
         }
 
         @Override
@@ -1214,24 +1308,51 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            Optional<String> arg = args.nextIfPresent();
+            Optional<String> optArg = args.nextIfPresent();
             // Traverse through the possible arguments. We can't really complete arbitrary integers
-            if (arg.isPresent()) {
-                if (arg.get().startsWith("#")) {
-                    return SPECIAL_TOKENS.stream().filter(new StartsWithPredicate(arg.get())).collect(GuavaCollectors.toImmutableList());
-                } else if (arg.get().contains(",") || !args.hasNext()) {
-                    return ImmutableList.of(arg.get());
+            if (optArg.isPresent()) {
+                String arg = optArg.get();
+                if (arg.startsWith("#")) {
+                    return SPECIAL_TOKENS.stream().filter(new StartsWithPredicate(arg))
+                            .collect(GuavaCollectors.toImmutableList());
+                } else if (arg.contains(",")) {
+                    final int parts = arg.split(",", -1).length;
+                    final int index = arg.lastIndexOf(',');
+
+                    final Location pos = this.targetBlockTabCompletion ?
+                            context.<Location>getOne(CommandContext.TARGET_BLOCK_ARG).orElse(null) : null;
+                    final String prefix = arg.substring(0, index + 1);
+                    switch (parts) {
+                        case 1:
+                            return ImmutableList.of(prefix + (pos != null ? Double.toString(pos.getX()) : "~"));
+                        case 2:
+                            return ImmutableList.of(prefix + (pos != null ? Double.toString(pos.getY()) : "~"));
+                        case 3:
+                            return ImmutableList.of(prefix + (pos != null ? Double.toString(pos.getZ()) : "~"));
+                    }
                 } else {
-                    arg = args.nextIfPresent();
-                    if (args.hasNext()) {
-                        return ImmutableList.of(args.nextIfPresent().get());
+                    if ((optArg = args.nextIfPresent()).isPresent()) {
+                        final Optional<String> optArg1 = args.nextIfPresent();
+                        if (optArg1.isPresent()) {
+                            return this.getCompletion(src, context, Location::getZ, optArg1.get());
+                        }
+                        return this.getCompletion(src, context, Location::getY, optArg.get());
                     } else {
-                        return ImmutableList.of(arg.get());
+                        return this.getCompletion(src, context, Location::getX, arg);
                     }
                 }
+                return ImmutableList.of(arg);
             } else {
                 return ImmutableList.of();
             }
+        }
+
+        private List<String> getCompletion(CommandSource src, CommandContext context,
+                Function<Location<World>, Double> function, String arg) {
+            final Optional<Location<World>> pos = this.targetBlockTabCompletion ?
+                    context.<Location<World>>getOne(CommandContext.TARGET_BLOCK_ARG) : Optional.empty();
+            return pos.isPresent() ? ImmutableList.of(Double.toString(function.apply(pos.get()))) :
+                    src instanceof Locatable && arg.isEmpty() ? ImmutableList.of("~") : ImmutableList.of(arg);
         }
 
         private double parseRelativeDouble(CommandArgs args, String arg, @Nullable Double relativeTo) throws ArgumentParseException {
@@ -1265,10 +1386,10 @@ public final class GenericArguments {
         private final WorldPropertiesCommandElement worldParser;
         private final Vector3dCommandElement vectorParser;
 
-        protected LocationCommandElement(Text key) {
+        protected LocationCommandElement(Text key, boolean targetBlockTabCompletion) {
             super(key);
             this.worldParser = new WorldPropertiesCommandElement(null);
-            this.vectorParser = new Vector3dCommandElement(null);
+            this.vectorParser = new Vector3dCommandElement(null, targetBlockTabCompletion);
         }
 
         @Override
@@ -1533,6 +1654,238 @@ public final class GenericArguments {
         @Override
         public Text getUsage(CommandSource src) {
             return src instanceof Player && this.returnSource ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+        }
+    }
+
+    /**
+     * Gives a {@link Color}, the color can be parsed
+     * in 3 different formats: literal which will match
+     * some inbuilt mappings, rgb which will use 3 components
+     * to parse the color and hex which will parse the
+     * hex format of a color.
+     *
+     * @param key The key to store the color under
+     * @return The element to match the input
+     */
+    public static CommandElement color(Text key) {
+        return new ColorElement(key, null);
+    }
+
+    /**
+     * Gives a {@link Color}, the color can be parsed
+     * in 3 different formats: literal which will match
+     * some inbuilt mappings, rgb which will use 3 components
+     * to parse the color and hex which will parse the
+     * hex format of a color.
+     *
+     * <p>The default color will be used in the tab completation,
+     * it will be the first entry when completing a empty color
+     * element or the only entry when completing hex or rgb.</p>
+     *
+     * @param key The key to store the color under
+     * @param defaultColor The default color used in tab completation
+     * @return The element to match the input
+     */
+    public static CommandElement color(Text key, @Nullable Color defaultColor) {
+        return new ColorElement(key, defaultColor);
+    }
+
+    private static class ColorElement extends CommandElement {
+
+        private static final Pattern RGB_PATTERN = Pattern.compile("^[0-9,]+$");
+        private static final Map<String, Color> INBUILT_COLORS = ImmutableMap.<String, Color>builder()
+                .put("black", Color.BLACK)
+                .put("blue", Color.BLUE)
+                .put("cyan", Color.CYAN)
+                .put("darkcyan", Color.DARK_CYAN)
+                .put("darkgreen", Color.DARK_GREEN)
+                .put("darkmagenta", Color.DARK_MAGENTA)
+                .put("gray", Color.GRAY)
+                .put("green", Color.GREEN)
+                .put("lime", Color.LIME)
+                .put("magenta", Color.MAGENTA)
+                .put("navy", Color.NAVY)
+                .put("pink", Color.PINK)
+                .put("purple", Color.PURPLE)
+                .put("red", Color.RED)
+                .put("white", Color.WHITE)
+                .put("yellow", Color.YELLOW)
+                .build();
+        private static final List<String> INBUILT_COLOR_NAMES = ImmutableList.copyOf(INBUILT_COLORS.keySet());
+
+        public static String findClosestColorName(String target) {
+            int distance = Integer.MAX_VALUE;
+            String closest = null;
+            for (String name : INBUILT_COLORS.keySet()) {
+                int currentDistance = StringUtils.getLevenshteinDistance(name, target);
+                if (currentDistance < distance) {
+                    distance = currentDistance;
+                    closest = name;
+                }
+            }
+            return closest;
+        }
+
+        @Nullable private final Color defaultColor;
+        @Nullable private final ImmutableList<String> sortedColorNames;
+
+        ColorElement(Text key, @Nullable Color defaultColor) {
+            super(key);
+            this.defaultColor = defaultColor;
+            if (defaultColor != null) {
+                for (Map.Entry<String, Color> entry : INBUILT_COLORS.entrySet()) {
+                    if (entry.getValue().equals(defaultColor)) {
+                        final ImmutableList.Builder<String> entries = ImmutableList.builder();
+                        entries.add(entry.getKey());
+                        // Add all the other colors except the first element
+                        INBUILT_COLORS.keySet().stream()
+                                .filter(colorName -> !colorName.equals(entry.getKey()))
+                                .forEach(entries::add);
+                        this.sortedColorNames = entries.build();
+                        return;
+                    }
+                }
+            }
+            this.sortedColorNames = null;
+        }
+
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String rStr = args.next();
+            // Check for hex format if allowed
+            if (rStr.startsWith("0x") || rStr.startsWith("#")) {
+                // Get the hex value without the prefix
+                String value = rStr.substring(rStr.startsWith("0x") ? 2 : 1);
+                int hex;
+                try {
+                    hex = Integer.parseInt(value, 16);
+                } catch (NumberFormatException e) {
+                    throw args.createError(t("Expected input %s to be hexadecimal, but it was not"));
+                }
+                return Color.ofRgb(hex);
+            }
+            // Check whether the format matches
+            if (RGB_PATTERN.matcher(rStr).matches()) {
+                String gStr;
+                String bStr;
+                // Try for the comma-separated format
+                if (rStr.contains(",")) {
+                    String[] split = rStr.split(",");
+                    if (split.length != 3) {
+                        throw args.createError(t("Comma-separated color must have 3 elements, not %s", split.length));
+                    }
+                    rStr = split[0];
+                    gStr = split[1];
+                    bStr = split[2];
+                } else {
+                    gStr = args.next();
+                    bStr = args.next();
+                }
+                int r = parseComponent(args, rStr, "r");
+                int g = parseComponent(args, gStr, "g");
+                int b = parseComponent(args, bStr, "b");
+                return Color.of(new Vector3i(r, g, b));
+            }
+            Color color = INBUILT_COLORS.get(rStr.toLowerCase());
+            if (color == null) {
+                throw args.createError(t("Unknown inbuilt color: %s Did you mean: %s ?",
+                        rStr, findClosestColorName(rStr)));
+            }
+            return color;
+        }
+
+        private static int parseComponent(CommandArgs args, String arg, String name) throws ArgumentParseException {
+            try {
+                int value = Integer.parseInt(arg);
+                if (value < 0) {
+                    throw args.createError(t("Number %s for %s component is too small, it must be at least %s",
+                            value, name, 0));
+                }
+                if (value > 255) {
+                    throw args.createError(t("Number %s for %s component is too big, it must be at most %s",
+                            value, name, 255));
+                }
+                return value;
+            } catch (NumberFormatException e) {
+                throw args.createError(t("Expected input %s for %s component to be a number, but it was not",
+                        arg, name));
+            }
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            Optional<String> arg = args.nextIfPresent();
+            if (!arg.isPresent()) {
+                return ImmutableList.of();
+            }
+            final String rStr = arg.get();
+            if (args.nextIfPresent().isPresent()) {
+                if (rStr.startsWith("0x") || rStr.startsWith("#") ||
+                        !RGB_PATTERN.matcher(rStr).matches() || rStr.contains(",")) {
+                    return ImmutableList.of();
+                }
+                if (args.nextIfPresent().isPresent()) {
+                    // Store the current state
+                    Object state = args.getState();
+                    if (args.nextIfPresent().isPresent()) {
+                        // We finished the vector3d, reset before the last arg
+                        args.setState(state);
+                    } else {
+                        // The blue is being completed
+                        if (this.defaultColor != null) {
+                            return ImmutableList.of(Integer.toString(this.defaultColor.getBlue()));
+                        } else {
+                            return ImmutableList.of();
+                        }
+                    }
+                } else {
+                    // The green is being completed
+                    if (this.defaultColor != null) {
+                        return ImmutableList.of(Integer.toString(this.defaultColor.getGreen()));
+                    } else {
+                        return ImmutableList.of();
+                    }
+                }
+            } else {
+                if (rStr.isEmpty()) {
+                    if (this.sortedColorNames == null) {
+                        return INBUILT_COLOR_NAMES;
+                    }
+                    return this.sortedColorNames;
+                }
+                if (rStr.startsWith("0x") || rStr.startsWith("#")) {
+                    if (this.defaultColor == null) {
+                        return ImmutableList.of();
+                    }
+                    final String prefix = rStr.charAt(0) == '#' ? "#" : "0x";
+                    return ImmutableList.of(prefix + Integer.toHexString(this.defaultColor.getRgb()));
+                }
+                if (RGB_PATTERN.matcher(rStr).matches()) {
+                    if (this.defaultColor == null) {
+                        return ImmutableList.of();
+                    }
+                    if (rStr.contains(",")) {
+                        final int parts = rStr.split(",", -1).length;
+                        final int index = rStr.lastIndexOf(',');
+
+                        final String prefix = rStr.substring(0, index + 1);
+                        switch (parts) {
+                            case 1:
+                                return ImmutableList.of(prefix + this.defaultColor.getRed());
+                            case 2:
+                                return ImmutableList.of(prefix + this.defaultColor.getGreen());
+                            case 3:
+                                return ImmutableList.of(prefix + this.defaultColor.getBlue());
+                        }
+                        return ImmutableList.of();
+                    }
+                    return ImmutableList.of(Integer.toString(this.defaultColor.getRed()));
+                } else {
+                    return INBUILT_COLOR_NAMES.stream().filter(new StartsWithPredicate(rStr.toLowerCase()))
+                            .collect(GuavaCollectors.toImmutableList());
+                }
+            }
+            return ImmutableList.of();
         }
     }
 

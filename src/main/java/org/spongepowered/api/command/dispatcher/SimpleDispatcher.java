@@ -340,7 +340,7 @@ public final class SimpleDispatcher implements Dispatcher {
     public List<String> getSuggestions(CommandSource src, final String arguments, @Nullable Location<World> targetPosition) throws CommandException {
         final String[] argSplit = arguments.split(" ", 2);
         Optional<CommandMapping> cmdOptional = get(argSplit[0], src);
-        if (argSplit.length == 1) {
+        if (argSplit.length == 1 && !arguments.endsWith(" ")) {
             return filterCommands(src).stream().filter(new StartsWithPredicate(argSplit[0])).collect(GuavaCollectors.toImmutableList());
         } else if (!cmdOptional.isPresent()) {
             return ImmutableList.of();

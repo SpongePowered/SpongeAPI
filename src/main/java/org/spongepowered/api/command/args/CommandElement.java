@@ -24,13 +24,12 @@
  */
 package org.spongepowered.api.command.args;
 
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TranslatableText;
 
-import java.util.List;
-
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Represents a command argument element.
@@ -81,6 +80,10 @@ public abstract class CommandElement {
      */
     public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
         Object val = parseValue(source, args);
+        this.store(context, val);
+    }
+
+    void store(CommandContext context, @Nullable Object val) {
         String key = getUntranslatedKey();
         if (key != null && val != null) {
             if (val instanceof Iterable<?>) {
