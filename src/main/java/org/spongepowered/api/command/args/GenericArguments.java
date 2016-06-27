@@ -159,7 +159,8 @@ public final class GenericArguments {
 	}
 
     /**
-     * Expect an argument to represent a world. This gives a WorldProperties object rather than an actual world in order to include unloaded worlds
+     * Expect an argument to represent a world. This gives a WorldProperties
+     * object rather than an actual world in order to include unloaded worlds
      * as well
      * Gives values of type {@link WorldProperties}
      *
@@ -193,7 +194,7 @@ public final class GenericArguments {
 
     /**
      * Expect an argument to represent a {@link Vector3d}. Positions
-     * support relative values, special tokens and tab completation.
+     * support relative values, special tokens and tab completion.
      * The position can also be completed based on the block you have
      * selected.
      *
@@ -206,7 +207,7 @@ public final class GenericArguments {
 
     /**
      * Expect an argument to represent a {@link Vector3d}. Positions
-     * support relative values, special tokens and tab completation.
+     * support relative values, special tokens and tab completion.
      *
      * @param key The key to store under
      * @return the argument
@@ -217,7 +218,7 @@ public final class GenericArguments {
 
     /**
      * Expect an argument to represent a {@link RelativeVector3d}. Positions
-     * support relative values, special tokens and tab completation.
+     * support relative values, special tokens and tab completion.
      *
      * @param key The key to store under
      * @return the argument
@@ -228,7 +229,7 @@ public final class GenericArguments {
 
     /**
      * Expect an argument to represent a {@link RelativeVector3d}. Positions
-     * support relative values, special tokens and tab completation. The position
+     * support relative values, special tokens and tab completion. The position
      * can also be completed based on the block you have selected.
      *
      * @param key The key to store under
