@@ -163,7 +163,7 @@ public interface EntityUniverse {
      * @param position The position
      * @return An entity, if one was created
      */
-    Optional<Entity> createNaturallyEntity(EntityType type, Vector3d position);
+    Optional<Entity> createEntityNaturally(EntityType type, Vector3d position);
 
     /**
      * Create an entity instance at the given position with the default equipment.
@@ -179,7 +179,7 @@ public interface EntityUniverse {
      * @param position The position
      * @return An entity, if one was created
      */
-    default Optional<Entity> createNaturallyEntity(EntityType type, Vector3i position) {
+    default Optional<Entity> createEntityNaturally(EntityType type, Vector3i position) {
         return createNaturallyEntity(type, position.toDouble());
     }
 
