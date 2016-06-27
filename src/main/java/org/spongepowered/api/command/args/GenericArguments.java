@@ -63,10 +63,8 @@ import org.spongepowered.api.world.storage.WorldProperties;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -183,45 +181,60 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent a {@link Vector3d}. The vector3d
-     * can also be tab completed based on the block you have selected.
-     *
-     * @param key The key to store under
-     * @return the argument
-     */
-    public static CommandElement targetedBlockVector3d(Text key) {
-        return new Vector3dCommandElement(key, true);
-    }
-
-    /**
      * Expect an argument to represent a {@link Vector3d}.
      *
      * @param key The key to store under
      * @return the argument
      */
     public static CommandElement vector3d(Text key) {
-        return new Vector3dCommandElement(key, false);
+        return new Vector3dCommandElement(key, false, false);
     }
 
     /**
-     * Expect an argument to represent a {@link RelativeVector3d}.
+     * Expect an argument to represent a {@link Vector3d}. Positions
+     * support relative values, special tokens and tab completation.
+     * The position can also be completed based on the block you have
+     * selected.
      *
      * @param key The key to store under
      * @return the argument
      */
-    public static CommandElement relativeVector3d(Text key) {
-        return new RelativeVector3dCommandElement(key, false);
+    public static CommandElement targetedBlockPosition(Text key) {
+        return new Vector3dCommandElement(key, true, true);
     }
 
     /**
-     * Expect an argument to represent a {@link RelativeVector3d}. The vector3d
-     * can also be tab completed based on the block you have selected.
+     * Expect an argument to represent a {@link Vector3d}. Positions
+     * support relative values, special tokens and tab completation.
      *
      * @param key The key to store under
      * @return the argument
      */
-    public static CommandElement targetedBlockRelativeVector3d(Text key) {
-        return new RelativeVector3dCommandElement(key, true);
+    public static CommandElement position(Text key) {
+        return new Vector3dCommandElement(key, false, true);
+    }
+
+    /**
+     * Expect an argument to represent a {@link RelativeVector3d}. Positions
+     * support relative values, special tokens and tab completation.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement relativePosition(Text key) {
+        return new RelativeVector3dCommandElement(key, false, true);
+    }
+
+    /**
+     * Expect an argument to represent a {@link RelativeVector3d}. Positions
+     * support relative values, special tokens and tab completation. The position
+     * can also be completed based on the block you have selected.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement targetedBlockRelativePosition(Text key) {
+        return new RelativeVector3dCommandElement(key, true, true);
     }
 
     /**
@@ -1272,6 +1285,11 @@ public final class GenericArguments {
     }
 
     /**
+     * This element is used for multiple purposes:
+     * - Regular vectors with 3 components
+     * - Position vectors with 3 components that support
+     *   relative values, position tab completion.
+     *
      * Syntax:
      * x,y,z
      * x y z.
@@ -1282,10 +1300,22 @@ public final class GenericArguments {
         private static final ImmutableSet<String> SPECIAL_TOKENS = ImmutableSet.of("#target", "#me");
 
         private final boolean targetBlockTabCompletion;
+        private final boolean parsePosition; // Whether this element is used to parse positions
 
-        protected RelativeVector3dCommandElement(@Nullable Text key, boolean targetBlockTabComplete) {
+        protected RelativeVector3dCommandElement(@Nullable Text key,
+                boolean targetBlockTabComplete, boolean parsePosition) {
             super(key);
             this.targetBlockTabCompletion = targetBlockTabComplete;
+            this.parsePosition = parsePosition;
+        }
+
+        private String getName() {
+            if (!this.parsePosition) {
+                final String name = this.getUntranslatedKey();
+                return name == null ? "vector" : name;
+            } else {
+                return "position";
+            }
         }
 
         @Override
@@ -1297,18 +1327,18 @@ public final class GenericArguments {
             if (xStr.contains(",")) {
                 String[] split = xStr.split(",");
                 if (split.length != 3) {
-                    throw args.createError(t("Comma-separated location must have 3 elements, not %s", split.length));
+                    throw args.createError(t("Comma-separated %s must have 3 elements, not %s", getName(), split.length));
                 }
                 xStr = split[0];
                 yStr = split[1];
                 zStr = split[2];
-            } else if (xStr.equals("#target") && source instanceof Entity) {
+            } else if (this.parsePosition && xStr.equals("#target") && source instanceof Entity) {
                 Optional<BlockRayHit<World>> hit = BlockRay.from(((Entity) source)).filter(BlockRay.onlyAirFilter()).build().end();
                 if (!hit.isPresent()) {
                     throw args.createError(t("No target block is available! Stop stargazing!"));
                 }
                 return new RelativeVector3d(hit.get().getPosition());
-            } else if (xStr.equalsIgnoreCase("#me") && source instanceof Locatable) {
+            } else if (this.parsePosition && xStr.equalsIgnoreCase("#me") && source instanceof Locatable) {
                 return new RelativeVector3d(((Locatable) source).getLocation().getPosition());
             } else {
                 yStr = args.next();
@@ -1327,7 +1357,7 @@ public final class GenericArguments {
             // Traverse through the possible arguments. We can't really complete arbitrary integers
             if (optArg.isPresent()) {
                 String arg = optArg.get();
-                if (arg.startsWith("#")) {
+                if (this.parsePosition && arg.startsWith("#")) {
                     return SPECIAL_TOKENS.stream().filter(new StartsWithPredicate(arg))
                             .collect(GuavaCollectors.toImmutableList());
                 } else if (arg.contains(",")) {
@@ -1364,12 +1394,18 @@ public final class GenericArguments {
 
         private List<String> getCommaSeparatedCompletion(CommandSource src,
                 Function<Location<World>, Double> function, String prefix, @Nullable Location<World> pos) {
+            if (!this.parsePosition) {
+                return ImmutableList.of("");
+            }
             return ImmutableList.of(prefix + (pos != null ? Double.toString(function.apply(pos)) :
                     src instanceof Locatable ? "~" : ""));
         }
 
         private List<String> getCompletion(CommandSource src, CommandContext context,
                 Function<Location<World>, Double> function, String arg) {
+            if (!this.parsePosition) {
+                return ImmutableList.of("");
+            }
             final Optional<Location<World>> pos = this.targetBlockTabCompletion ?
                     context.<Location<World>>getOne(CommandContext.TARGET_BLOCK_ARG) : Optional.empty();
             return pos.isPresent() ? ImmutableList.of(Double.toString(function.apply(pos.get()))) :
@@ -1379,6 +1415,9 @@ public final class GenericArguments {
         private RelativeDouble parseRelativeDouble(CommandArgs args, String arg)
                 throws ArgumentParseException {
             boolean relative = arg.startsWith("~");
+            if (this.parsePosition && relative) {
+                throw args.createError(t("%s doesn't support relative values.", getName()));
+            }
             if (relative) {
                 arg = arg.substring(1);
                 if (arg.isEmpty()) {
@@ -1404,9 +1443,9 @@ public final class GenericArguments {
     private static class Vector3dCommandElement extends CommandElement {
         private final RelativeVector3dCommandElement element;
 
-        protected Vector3dCommandElement(@Nullable Text key, boolean targetBlockTabComplete) {
+        protected Vector3dCommandElement(@Nullable Text key, boolean targetBlockTabComplete, boolean parsePosition) {
             super(key);
-            this.element = new RelativeVector3dCommandElement(key, targetBlockTabComplete);
+            this.element = new RelativeVector3dCommandElement(key, targetBlockTabComplete, parsePosition);
         }
 
         @Override
@@ -1415,7 +1454,7 @@ public final class GenericArguments {
             if (relativeVector3d == null) {
                 return null;
             }
-            if (relativeVector3d.isRelative()) {
+            if (relativeVector3d.isRelative()) { // Always false for regular vectors
                 if (!(source instanceof Locatable)) {
                     throw args.createError(t("Relative position specified but source does not have a position"));
                 }
@@ -1444,7 +1483,7 @@ public final class GenericArguments {
         protected LocationCommandElement(Text key, boolean targetBlockTabCompletion) {
             super(key);
             this.worldParser = new WorldPropertiesCommandElement(null);
-            this.vectorParser = new Vector3dCommandElement(null, targetBlockTabCompletion);
+            this.vectorParser = new Vector3dCommandElement(null, targetBlockTabCompletion, true);
         }
 
         @Override
