@@ -180,7 +180,7 @@ public interface EntityUniverse {
      * @return An entity, if one was created
      */
     default Optional<Entity> createEntityNaturally(EntityType type, Vector3i position) {
-        return createNaturallyEntity(type, position.toDouble());
+        return createEntityNaturally(type, position.toDouble());
     }
 
     /**
