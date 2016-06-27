@@ -238,7 +238,7 @@ public final class CommandContext {
     /**
      * A snapshot of the {@link CommandContext}.
      */
-    static class Snapshot {
+    static final class Snapshot {
 
         private final Multimap<String, Object> parsedArgs;
 

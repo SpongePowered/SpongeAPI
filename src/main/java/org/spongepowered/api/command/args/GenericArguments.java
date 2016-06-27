@@ -67,6 +67,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -341,11 +342,45 @@ public final class GenericArguments {
             this.elements = elements;
         }
 
+        private void parse(CommandSource source, CommandArgs args, CommandContext context, int index)
+                throws ArgumentParseException {
+            for (ListIterator<CommandElement> it = this.elements.listIterator(index); it.hasNext(); ) {
+                final CommandElement element = it.next();
+
+                if (element instanceof OptionalCommandElement) {
+                    final CommandArgs.Snapshot argsSnapshot = args.createSnapshot();
+                    final CommandContext.Snapshot contextSnapshot = context.createSnapshot();
+
+                    try {
+                        // Try to parse with optional first
+                        // Parse the optional
+                        element.parse(source, args, context);
+                        // Parse the rest of the sequence
+                        this.parse(source, args, context, it.nextIndex());
+                    } catch (ArgumentParseException ex) {
+                        // Try to parse without the optional
+                        args.restoreSnapshot(argsSnapshot);
+                        context.restoreSnapshot(contextSnapshot);
+
+                        try {
+                            this.parse(source, args, context, it.nextIndex());
+                        } catch (ArgumentParseException ex1) {
+                            // If without the optional also fails, just
+                            // throw the exception with the optional
+                            throw ex;
+                        }
+                    }
+                    break;
+                } else {
+                    // Just handle like usual
+                    element.parse(source, args, context);
+                }
+            }
+        }
+
         @Override
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
-            for (CommandElement element : this.elements) {
-                element.parse(source, args, context);
-            }
+            this.parse(source, args, context, 0);
         }
 
         @Override
@@ -685,7 +720,6 @@ public final class GenericArguments {
     private static class RepeatedCommandElement extends CommandElement {
         private final CommandElement element;
         private final int times;
-
 
         protected RepeatedCommandElement(CommandElement element, int times) {
             super(null);

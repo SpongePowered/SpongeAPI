@@ -257,7 +257,7 @@ public final class CommandArgs {
     /**
      * A snapshot of the {@link CommandArgs}.
      */
-    static class Snapshot {
+    static final class Snapshot {
 
         private final List<SingleArg> args;
         private final int index;
