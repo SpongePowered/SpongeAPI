@@ -54,7 +54,7 @@ public final class CommandContext {
      */
     public static final String TAB_COMPLETION_CONTEXT = "tab-completion-context-963485";
 
-    private final Multimap<String, Object> parsedArgs;
+    private Multimap<String, Object> parsedArgs;
 
     /**
      * Create a new empty CommandContext.
@@ -63,8 +63,24 @@ public final class CommandContext {
         this.parsedArgs = ArrayListMultimap.create();
     }
 
-    Multimap<String, Object> getParsedArgs() {
-        return this.parsedArgs;
+    /**
+     * Creates a {@link org.spongepowered.api.command.args.CommandContext.Snapshot}
+     * of the current state of this command context.
+     *
+     * @return The snapshot
+     */
+    Snapshot createSnapshot() {
+        return new Snapshot(ArrayListMultimap.create(this.parsedArgs));
+    }
+
+    /**
+     * Restores the {@link org.spongepowered.api.command.args.CommandContext.Snapshot}
+     * values.
+     *
+     * @param snapshot The snapshot
+     */
+    void restoreSnapshot(Snapshot snapshot) {
+        this.parsedArgs = ArrayListMultimap.create(snapshot.parsedArgs);
     }
 
     /**
@@ -219,4 +235,15 @@ public final class CommandContext {
         return hasAny(ArgUtils.textToArgKey(key));
     }
 
+    /**
+     * A snapshot of the {@link CommandContext}.
+     */
+    static class Snapshot {
+
+        private final Multimap<String, Object> parsedArgs;
+
+        Snapshot(Multimap<String, Object> parsedArgs) {
+            this.parsedArgs = parsedArgs;
+        }
+    }
 }

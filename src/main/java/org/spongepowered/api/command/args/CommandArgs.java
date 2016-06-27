@@ -55,6 +55,27 @@ public final class CommandArgs {
     }
 
     /**
+     * Creates a {@link org.spongepowered.api.command.args.CommandArgs.Snapshot}
+     * of the current state of this command args.
+     *
+     * @return The snapshot
+     */
+    Snapshot createSnapshot() {
+        return new Snapshot(new ArrayList<>(this.args), this.index);
+    }
+
+    /**
+     * Restores the {@link org.spongepowered.api.command.args.CommandArgs.Snapshot}
+     * values.
+     *
+     * @param snapshot The snapshot
+     */
+    void restoreSnapshot(Snapshot snapshot) {
+        this.args = new ArrayList<>(snapshot.args);
+        this.index = snapshot.index;
+    }
+
+    /**
      * Return whether more arguments remain to be read.
      *
      * @return Whether more arguments remain
@@ -116,14 +137,6 @@ public final class CommandArgs {
      */
     public List<String> getAll() {
         return Collections.unmodifiableList(this.args.stream().map(SingleArg::getValue).collect(Collectors.toList()));
-    }
-
-    List<SingleArg> getArgs() {
-        return this.args;
-    }
-
-    void setArgs(List<SingleArg> args) {
-        this.args = args;
     }
 
     /**
@@ -241,4 +254,17 @@ public final class CommandArgs {
         return this.index < 0 ? 0 : this.args.get(this.index).getStartIdx();
     }
 
+    /**
+     * A snapshot of the {@link CommandArgs}.
+     */
+    static class Snapshot {
+
+        private final List<SingleArg> args;
+        private final int index;
+
+        Snapshot(List<SingleArg> args, int index) {
+            this.args = args;
+            this.index = index;
+        }
+    }
 }

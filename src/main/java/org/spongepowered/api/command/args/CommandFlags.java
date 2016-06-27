@@ -44,6 +44,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.regex.Pattern;
 
 public final class CommandFlags extends CommandElement {
     @Nullable
@@ -68,6 +69,15 @@ public final class CommandFlags extends CommandElement {
         this.anchorFlags = anchorFlags;
     }
 
+    private static boolean isNumber(String arg) {
+        try {
+            Double.parseDouble(arg);
+            return true;
+        } catch (NumberFormatException ignored) {
+        }
+        return false;
+    }
+
     @Override
     public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
         Object startIdx = args.getState();
@@ -77,7 +87,7 @@ public final class CommandFlags extends CommandElement {
         while (args.hasNext()) {
             arg = args.next();
             boolean ignore;
-            if (arg.startsWith("-")) {
+            if (arg.startsWith("-") && !isNumber(arg)) { // Avoid issues with vector args
                 Object flagStartIdx = args.getState();
                 if (arg.startsWith("--")) { // Long flag
                     String longFlag = arg.substring(2);
@@ -354,6 +364,8 @@ public final class CommandFlags extends CommandElement {
     }
 
     public static class Builder {
+        private final static Pattern NUMBER_PATTERN = Pattern.compile("[0-9]");
+
         private final Map<List<String>, CommandElement> usageFlags = new HashMap<>();
         private final Map<String, CommandElement> shortFlags = new HashMap<>();
         private final Map<String, CommandElement> longFlags = new HashMap<>();
@@ -385,6 +397,9 @@ public final class CommandFlags extends CommandElement {
                 } else {
                     for (int i = 0; i < spec.length(); ++i) {
                         final String flagKey = spec.substring(i, i + 1);
+                        if (NUMBER_PATTERN.matcher(flagKey).matches()) {
+                            throw new IllegalArgumentException("Short flags may not contain numbers.");
+                        }
                         if (el == null) {
                             el = func.apply(flagKey);
                         }
@@ -403,7 +418,7 @@ public final class CommandFlags extends CommandElement {
          * The specifications are handled as so for each element in the {@code specs} array:
          * <ul>
          *     <li>If the element starts with -, the remainder of the element is interpreted as a long flag</li>
-         *     <li>Otherwise, each code point of the element is interpreted as a short flag</li>
+         *     <li>Otherwise, each code point of the element is interpreted as a short flag. Short flags may not contain numbers.</li>
          * </ul>
          *
          * @param specs The flag specifications

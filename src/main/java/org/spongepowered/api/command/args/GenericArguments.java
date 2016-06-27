@@ -30,18 +30,15 @@ import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Joiner;
-import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Multimap;
 import org.apache.commons.lang3.StringUtils;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.command.args.parsing.SingleArg;
 import org.spongepowered.api.command.source.ProxySource;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
@@ -51,9 +48,10 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.user.UserStorageService;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.selector.Selector;
-import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.GuavaCollectors;
+import org.spongepowered.api.util.RelativeDouble;
+import org.spongepowered.api.util.RelativeVector3d;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.blockray.BlockRay;
 import org.spongepowered.api.util.blockray.BlockRayHit;
@@ -68,6 +66,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -202,6 +201,27 @@ public final class GenericArguments {
      */
     public static CommandElement vector3d(Text key) {
         return new Vector3dCommandElement(key, false);
+    }
+
+    /**
+     * Expect an argument to represent a {@link RelativeVector3d}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement relativeVector3d(Text key) {
+        return new RelativeVector3dCommandElement(key, false);
+    }
+
+    /**
+     * Expect an argument to represent a {@link RelativeVector3d}. The vector3d
+     * can also be tab completed based on the block you have selected.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement targetedBlockRelativeVector3d(Text key) {
+        return new RelativeVector3dCommandElement(key, true);
     }
 
     /**
@@ -456,21 +476,16 @@ public final class GenericArguments {
         @Override
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
             ArgumentParseException lastException = null;
+            final CommandArgs.Snapshot argsSnapshot = args.createSnapshot();
+            final CommandContext.Snapshot contextSnapshot = context.createSnapshot();
             for (CommandElement element : this.elements) {
-                Object startState = args.getState();
-                final Multimap<String, Object> ctxParsedArgs = context.getParsedArgs();
-                final Multimap<String, Object> parsedArgs = ArrayListMultimap.create(ctxParsedArgs);
-                final List<SingleArg> singleArgs = new ArrayList<>(args.getArgs());
                 try {
                     element.parse(source, args, context);
                     return;
                 } catch (ArgumentParseException ex) {
                     lastException = ex;
-                    args.setArgs(singleArgs);
-                    args.setState(startState);
-                    // Reset the arguments
-                    ctxParsedArgs.clear();
-                    ctxParsedArgs.putAll(parsedArgs);
+                    args.restoreSnapshot(argsSnapshot);
+                    context.restoreSnapshot(contextSnapshot);
                 }
             }
             if (lastException != null) {
@@ -485,12 +500,11 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
-            final Object startState = args.getState();
+            final CommandArgs.Snapshot argsSnapshot = args.createSnapshot();
             final List<CommandElement> elements = new ArrayList<>();
-            int chainStart = (int) startState;
+            int chainStart = (int) args.getState();
             int longestChain = -1;
             for (CommandElement element : this.elements) {
-                final List<SingleArg> singleArgs = new ArrayList<>(args.getArgs());
                 try {
                     element.parse(src, args, context);
                 } catch (ArgumentParseException ex) {
@@ -504,21 +518,18 @@ public final class GenericArguments {
                         elements.add(element);
                     }
                 }
-                args.setArgs(singleArgs);
-                args.setState(startState);
+                args.restoreSnapshot(argsSnapshot);
             }
             if (!elements.isEmpty()) {
                 final List<String> ret0 = new ArrayList<>();
                 for (Iterator<CommandElement> it = elements.iterator(); it.hasNext(); ) {
                     final CommandElement element = it.next();
-                    final List<SingleArg> singleArgs = it.hasNext() ? new ArrayList<>(args.getArgs()) : null;
 
                     final List<String> ret = element.complete(src, args, context);
                     ret0.addAll(ret);
 
-                    if (singleArgs != null) {
-                        args.setArgs(singleArgs);
-                        args.setState(startState);
+                    if (it.hasNext()) {
+                        args.restoreSnapshot(argsSnapshot);
                     }
                 }
                 return ImmutableList.copyOf(ret0);
@@ -913,23 +924,27 @@ public final class GenericArguments {
     }
 
     private static class EnumValueElement<T extends Enum<T>> extends PatternMatchingCommandElement {
-        private final Class<T> type;
+        private final Map<String, T> choices;
 
         EnumValueElement(Text key, Class<T> type) {
             super(key);
-            this.type = type;
+            final ImmutableMap.Builder<String, T> builder = ImmutableMap.builder();
+            for (T value : type.getEnumConstants()) {
+                builder.put(value.name().toLowerCase(), value);
+            }
+            this.choices = builder.build();
         }
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Arrays.asList(this.type.getEnumConstants()).stream()
-                .map(input -> input.name())
+            return this.choices.values().stream()
+                .map(Enum::name)
                 .collect(Collectors.toList());
         }
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            return Enum.valueOf(this.type, choice.toUpperCase());
+            return this.choices.get(choice.toLowerCase());
         }
     }
 
@@ -1175,7 +1190,7 @@ public final class GenericArguments {
         }
 
         @Nullable
-        private Object parseValue0(CommandSource source, CommandArgs args, boolean exact)
+        private Object parseValue0(CommandSource source, CommandArgs args)
                 throws ArgumentParseException {
             final String next = args.peek();
             if (next.startsWith("#")) {
@@ -1211,14 +1226,14 @@ public final class GenericArguments {
         @Nullable
         @Override
         public Object parseValueExact(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            Object value = this.parseValue0(source, args, true);
+            Object value = this.parseValue0(source, args);
             return value == null ? super.parseValueExact(source, args) : value;
         }
 
         @Nullable
         @Override
         public Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            Object value = this.parseValue0(source, args, false);
+            Object value = this.parseValue0(source, args);
             return value == null ? super.parseValue(source, args) : value;
         }
 
@@ -1263,12 +1278,12 @@ public final class GenericArguments {
      * each element can be relative to a location? so parseRelativeDouble() -- relative is ~(num)
      *
      */
-    private static class Vector3dCommandElement extends CommandElement {
+    private static class RelativeVector3dCommandElement extends CommandElement {
         private static final ImmutableSet<String> SPECIAL_TOKENS = ImmutableSet.of("#target", "#me");
 
         private final boolean targetBlockTabCompletion;
 
-        protected Vector3dCommandElement(@Nullable Text key, boolean targetBlockTabComplete) {
+        protected RelativeVector3dCommandElement(@Nullable Text key, boolean targetBlockTabComplete) {
             super(key);
             this.targetBlockTabCompletion = targetBlockTabComplete;
         }
@@ -1292,18 +1307,18 @@ public final class GenericArguments {
                 if (!hit.isPresent()) {
                     throw args.createError(t("No target block is available! Stop stargazing!"));
                 }
-                return hit.get().getPosition();
+                return new RelativeVector3d(hit.get().getPosition());
             } else if (xStr.equalsIgnoreCase("#me") && source instanceof Locatable) {
-                return ((Locatable) source).getLocation().getPosition();
+                return new RelativeVector3d(((Locatable) source).getLocation().getPosition());
             } else {
                 yStr = args.next();
                 zStr = args.next();
             }
-            final double x = parseRelativeDouble(args, xStr, source instanceof Locatable ? ((Locatable) source).getLocation().getX() : null);
-            final double y = parseRelativeDouble(args, yStr, source instanceof Locatable ? ((Locatable) source).getLocation().getY() : null);
-            final double z = parseRelativeDouble(args, zStr, source instanceof Locatable ? ((Locatable) source).getLocation().getZ() : null);
+            final RelativeDouble x = parseRelativeDouble(args, xStr);
+            final RelativeDouble y = parseRelativeDouble(args, yStr);
+            final RelativeDouble z = parseRelativeDouble(args, zStr);
 
-            return new Vector3d(x, y, z);
+            return new RelativeVector3d(x, y, z);
         }
 
         @Override
@@ -1361,23 +1376,57 @@ public final class GenericArguments {
                     src instanceof Locatable && arg.isEmpty() ? ImmutableList.of("~") : ImmutableList.of(arg);
         }
 
-        private double parseRelativeDouble(CommandArgs args, String arg, @Nullable Double relativeTo) throws ArgumentParseException {
+        private RelativeDouble parseRelativeDouble(CommandArgs args, String arg)
+                throws ArgumentParseException {
             boolean relative = arg.startsWith("~");
             if (relative) {
-                if (relativeTo == null) {
-                    throw args.createError(t("Relative position specified but source does not have a postion"));
-                }
                 arg = arg.substring(1);
                 if (arg.isEmpty()) {
-                    return relativeTo;
+                    return RelativeDouble.ZERO_RELATIVE;
                 }
             }
             try {
                 double ret = Double.parseDouble(arg);
-                return relative ? ret + relativeTo : ret;
+                return new RelativeDouble(ret, relative);
             } catch (NumberFormatException e) {
                 throw args.createError(t("Expected input %s to be a double, but was not", arg));
             }
+        }
+    }
+
+    /**
+     * Syntax:
+     * x,y,z
+     * x y z.
+     * each element can be relative to a location? so parseRelativeDouble() -- relative is ~(num)
+     *
+     */
+    private static class Vector3dCommandElement extends CommandElement {
+        private final RelativeVector3dCommandElement element;
+
+        protected Vector3dCommandElement(@Nullable Text key, boolean targetBlockTabComplete) {
+            super(key);
+            this.element = new RelativeVector3dCommandElement(key, targetBlockTabComplete);
+        }
+
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            final RelativeVector3d relativeVector3d = (RelativeVector3d) this.element.parseValue(source, args);
+            if (relativeVector3d == null) {
+                return null;
+            }
+            if (relativeVector3d.isRelative()) {
+                if (!(source instanceof Locatable)) {
+                    throw args.createError(t("Relative position specified but source does not have a position"));
+                }
+                return relativeVector3d.applyToValue(((Locatable) source).getLocation().getPosition());
+            }
+            return relativeVector3d.applyToValue(Vector3d.ZERO);
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            return this.element.complete(src, args, context);
         }
     }
 
