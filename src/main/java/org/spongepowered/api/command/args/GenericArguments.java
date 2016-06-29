@@ -48,6 +48,7 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.user.UserStorageService;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.selector.Selector;
+import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.RelativeDouble;
@@ -63,8 +64,10 @@ import org.spongepowered.api.world.storage.WorldProperties;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -352,6 +355,9 @@ public final class GenericArguments {
                     final CommandArgs.Snapshot argsSnapshot = args.createSnapshot();
                     final CommandContext.Snapshot contextSnapshot = context.createSnapshot();
 
+                    final boolean commandCtx = context.<Boolean>getOne(CommandContext.TAB_COMPLETION_CONTEXT).orElse(false);
+                    ArgumentParseException exception = null;
+
                     try {
                         // Try to parse with optional first
                         // Parse the optional
@@ -359,6 +365,17 @@ public final class GenericArguments {
                         // Parse the rest of the sequence
                         this.parse(source, args, context, it.nextIndex());
                     } catch (ArgumentParseException ex) {
+                        // Just throw the exception
+                        if (commandCtx) {
+                            throw ex;
+                        }
+                        exception = ex;
+                    }
+                    // Always retry if we are in the tab completion context, to make
+                    // sure that there is nothing left to complete
+                    if (exception != null || commandCtx) {
+                        final CommandArgs.Snapshot optArgsSnapshot = args.createSnapshot();
+                        final CommandContext.Snapshot optContextSnapshot = context.createSnapshot();
                         // Try to parse without the optional
                         args.restoreSnapshot(argsSnapshot);
                         context.restoreSnapshot(contextSnapshot);
@@ -366,9 +383,11 @@ public final class GenericArguments {
                         try {
                             this.parse(source, args, context, it.nextIndex());
                         } catch (ArgumentParseException ex1) {
+                            args.restoreSnapshot(optArgsSnapshot);
+                            context.restoreSnapshot(optContextSnapshot);
                             // If without the optional also fails, just
                             // throw the exception with the optional
-                            throw ex;
+                            throw exception == null ? ex1 : exception;
                         }
                     }
                     break;
@@ -389,34 +408,79 @@ public final class GenericArguments {
             return null;
         }
 
-        @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            for (CommandElement element : this.elements) {
-                Object startState = args.getState();
-                try {
-                    element.parse(src, args, context);
-                    Object endState = args.getState();
-                    if (!args.hasNext()) {
-                        args.setState(startState);
-                        List<String> ret = element.complete(src, args, context);
-                        args.previous();
-                        if (ret != NullCompletionList.INSTANCE && !ret.contains(args.next())) {
-                            // Tab complete returns results to complete the last word in an argument.
-                            // If the last word is one of the completions, the command is most likely complete
-                            return ret;
-                        }
-                        args.setState(endState);
+        private List<String> complete(CommandSource src, CommandArgs args, CommandContext context, int index) {
+            List<String> completions = new ArrayList<>();
+            for (ListIterator<CommandElement> it = this.elements.listIterator(index); it.hasNext(); ) {
+                final CommandElement element = it.next();
+
+                // Try first for completions with the optional
+                if (element instanceof OptionalCommandElement) {
+                    final CommandArgs.Snapshot argsSnapshot = args.createSnapshot();
+                    final CommandContext.Snapshot contextSnapshot = context.createSnapshot();
+                    List<String> ret = complete(src, args, context, element);
+                    if (ret != null) {
+                        add(completions, ret);
+                    } else {
+                        add(completions, complete(src, args, context, it.nextIndex()));
+                        break;
                     }
-                } catch (ArgumentParseException e) {
-                    args.setState(startState);
-                    List<String> ret = element.complete(src, args, context);
-                    if (ret != NullCompletionList.INSTANCE) {
-                        return ret;
+                    final CommandArgs.Snapshot optArgsSnapshot = args.createSnapshot();
+                    final CommandContext.Snapshot optContextSnapshot = context.createSnapshot();
+                    args.restoreSnapshot(argsSnapshot);
+                    context.restoreSnapshot(contextSnapshot);
+                    // Complete without the optional
+                    add(completions, complete(src, args, context, it.nextIndex()));
+                    // Reset to optional parsed snapshots, to avoid issues with the
+                    // firstParsing element
+                    args.restoreSnapshot(optArgsSnapshot);
+                    context.restoreSnapshot(optContextSnapshot);
+                    break;
+                } else {
+                    List<String> ret = complete(src, args, context, element);
+                    if (ret != null) {
+                        add(completions, ret);
+                        break;
                     }
-                    args.setState(startState);
                 }
             }
-            return Collections.emptyList();
+            return ImmutableList.copyOf(completions);
+        }
+
+        private static void add(List<String> list, List<String> entries) {
+            list.addAll(entries.stream().filter(e -> !list.contains(e)).collect(Collectors.toList()));
+        }
+
+        @Nullable
+        private List<String> complete(CommandSource src, CommandArgs args, CommandContext context,
+                CommandElement element) {
+            Object startState = args.getState();
+            try {
+                element.parse(src, args, context);
+                Object endState = args.getState();
+                if (!args.hasNext()) {
+                    args.setState(startState);
+                    List<String> ret = element.complete(src, args, context);
+                    args.previous();
+                    if (ret != NullCompletionList.INSTANCE && !ret.contains(args.next())) {
+                        // Tab complete returns results to complete the last word in an argument.
+                        // If the last word is one of the completions, the command is most likely complete
+                        return ret;
+                    }
+                    args.setState(endState);
+                }
+            } catch (ArgumentParseException e) {
+                args.setState(startState);
+                List<String> ret = element.complete(src, args, context);
+                if (ret != NullCompletionList.INSTANCE) {
+                    return ret;
+                }
+            }
+            return null;
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            return complete(src, args, context, 0);
         }
 
         @Override
@@ -550,32 +614,53 @@ public final class GenericArguments {
         @Override
         public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
             final CommandArgs.Snapshot argsSnapshot = args.createSnapshot();
-            final List<CommandElement> elements = new ArrayList<>();
-            int chainStart = (int) args.getState();
-            int longestChain = -1;
+            final Map<CommandElement, Object> elements = new HashMap<>();
+            int lastIndex = args.getRawPosition();
             for (CommandElement element : this.elements) {
+                boolean complete = false;
+                boolean flag = false;
                 try {
                     element.parse(src, args, context);
+                    if (!args.hasNext()) {
+                        complete = true;
+                        flag = true;
+                    }
                 } catch (ArgumentParseException ex) {
-                    int chainEnd = (Integer) args.getState();
-                    int chain = chainEnd - chainStart;
-                    if (chain > longestChain) {
+                    complete = true;
+                }
+                if (complete) {
+                    int index = args.getRawPosition();
+                    if (index > lastIndex) {
                         elements.clear();
-                        elements.add(element);
-                        longestChain = chain;
-                    } else if (chain == longestChain) {
-                        elements.add(element);
+                        elements.put(element, flag ? args.getState() : null);
+                        lastIndex = index;
+                    } else if (index == lastIndex) {
+                        elements.put(element, flag ? args.getState() : null);
                     }
                 }
                 args.restoreSnapshot(argsSnapshot);
             }
             if (!elements.isEmpty()) {
                 final List<String> ret0 = new ArrayList<>();
-                for (Iterator<CommandElement> it = elements.iterator(); it.hasNext(); ) {
-                    final CommandElement element = it.next();
+                for (Iterator<Map.Entry<CommandElement, Object>> it = elements.entrySet().iterator(); it.hasNext(); ) {
+                    final Map.Entry<CommandElement, Object> entry = it.next();
+                    final CommandElement element = entry.getKey();
 
-                    final List<String> ret = element.complete(src, args, context);
-                    ret0.addAll(ret);
+                    final Object endState = entry.getValue();
+                    final Object startState = args.getState();
+                    List<String> ret = element.complete(src, args, context);
+                    if (endState != null) {
+                        args.setState(startState);
+                        args.previous();
+                        if (ret == NullCompletionList.INSTANCE || ret.contains(args.nextIfPresent().get())) {
+                            ret = null;
+                        }
+                        args.setState(endState);
+                    }
+                    if (ret != null) {
+                        // Filter out the duplicates and add them to the result list
+                        ret0.addAll(ret.stream().filter(e -> !ret0.contains(e)).collect(Collectors.toList()));
+                    }
 
                     if (it.hasNext()) {
                         args.restoreSnapshot(argsSnapshot);
@@ -849,7 +934,6 @@ public final class GenericArguments {
             return args.next();
         }
     }
-
 
     /**
      * Require an argument to be an integer (base 10).
@@ -1388,43 +1472,47 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            Optional<String> optArg = args.nextIfPresent();
-            // Traverse through the possible arguments. We can't really complete arbitrary integers
-            if (optArg.isPresent()) {
-                String arg = optArg.get();
-                if (this.parsePosition && arg.startsWith("#")) {
-                    return SPECIAL_TOKENS.stream().filter(new StartsWithPredicate(arg))
-                            .collect(GuavaCollectors.toImmutableList());
-                } else if (arg.contains(",")) {
-                    final int parts = arg.split(",", -1).length;
-                    final int index = arg.lastIndexOf(',');
-
-                    final Location<World> pos = this.targetBlockTabCompletion ?
-                            context.<Location<World>>getOne(CommandContext.TARGET_BLOCK_ARG).orElse(null) : null;
-                    final String prefix = arg.substring(0, index + 1);
-                    switch (parts) {
-                        case 1:
-                            return this.getCommaSeparatedCompletion(src, Location::getX, prefix, pos);
-                        case 2:
-                            return this.getCommaSeparatedCompletion(src, Location::getY, prefix, pos);
-                        case 3:
-                            return this.getCommaSeparatedCompletion(src, Location::getZ, prefix, pos);
-                    }
-                } else {
-                    if ((optArg = args.nextIfPresent()).isPresent()) {
-                        final Optional<String> optArg1 = args.nextIfPresent();
-                        if (optArg1.isPresent()) {
-                            return this.getCompletion(src, context, Location::getZ, optArg1.get());
-                        }
-                        return this.getCompletion(src, context, Location::getY, optArg.get());
-                    } else {
-                        return this.getCompletion(src, context, Location::getX, arg);
-                    }
+            final String arg = args.nextIfPresent().orElse("");
+            if (this.parsePosition && arg.startsWith("#")) {
+                if (args.hasNext()) {
+                    return ImmutableList.of();
                 }
-                return ImmutableList.of(arg);
+                return SPECIAL_TOKENS.stream().filter(new StartsWithPredicate(arg))
+                        .collect(GuavaCollectors.toImmutableList());
+            } else if (arg.contains(",")) {
+                if (args.hasNext()) {
+                    return ImmutableList.of();
+                }
+                final int parts = arg.split(",", -1).length;
+                final int index = arg.lastIndexOf(',');
+
+                final Location<World> pos = this.targetBlockTabCompletion ?
+                        context.<Location<World>>getOne(CommandContext.TARGET_BLOCK_ARG).orElse(null) : null;
+                final String prefix = arg.substring(0, index + 1);
+                switch (parts) {
+                    case 1:
+                        return this.getCommaSeparatedCompletion(src, Location::getX, prefix, pos);
+                    case 2:
+                        return this.getCommaSeparatedCompletion(src, Location::getY, prefix, pos);
+                    case 3:
+                        return this.getCommaSeparatedCompletion(src, Location::getZ, prefix, pos);
+                }
             } else {
-                return ImmutableList.of();
+                final Optional<String> optArg = args.nextIfPresent();
+                if (optArg.isPresent()) {
+                    final Optional<String> optArg1 = args.nextIfPresent();
+                    if (optArg1.isPresent()) {
+                        if (args.hasNext()) {
+                            return ImmutableList.of();
+                        }
+                        return this.getCompletion(src, context, Location::getZ, optArg1.get());
+                    }
+                    return this.getCompletion(src, context, Location::getY, optArg.get());
+                } else {
+                    return this.getCompletion(src, context, Location::getX, arg);
+                }
             }
+            return ImmutableList.of(arg);
         }
 
         private List<String> getCommaSeparatedCompletion(CommandSource src,
@@ -1450,7 +1538,7 @@ public final class GenericArguments {
         private RelativeDouble parseRelativeDouble(CommandArgs args, String arg)
                 throws ArgumentParseException {
             boolean relative = arg.startsWith("~");
-            if (this.parsePosition && relative) {
+            if (!this.parsePosition && relative) {
                 throw args.createError(t("%s doesn't support relative values.", getName()));
             }
             if (relative) {
