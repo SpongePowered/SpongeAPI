@@ -129,4 +129,15 @@ public abstract class CommandElement {
     public Text getUsage(CommandSource src) {
         return getKey() == null ? Text.of() : Text.of("<", getKey(), ">");
     }
+
+    /**
+     * Gets whether this specific argument is optional for
+     * the specified source.
+     *
+     * @param src The command source
+     * @return Is optional
+     */
+    public boolean isOptional(CommandSource src) {
+        return false;
+    }
 }

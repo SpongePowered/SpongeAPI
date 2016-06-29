@@ -69,6 +69,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
@@ -351,7 +352,7 @@ public final class GenericArguments {
             for (ListIterator<CommandElement> it = this.elements.listIterator(index); it.hasNext(); ) {
                 final CommandElement element = it.next();
 
-                if (element instanceof OptionalCommandElement) {
+                if (element.isOptional(source)) {
                     final CommandArgs.Snapshot argsSnapshot = args.createSnapshot();
                     final CommandContext.Snapshot contextSnapshot = context.createSnapshot();
 
@@ -414,7 +415,7 @@ public final class GenericArguments {
                 final CommandElement element = it.next();
 
                 // Try first for completions with the optional
-                if (element instanceof OptionalCommandElement) {
+                if (element.isOptional(src)) {
                     final CommandArgs.Snapshot argsSnapshot = args.createSnapshot();
                     final CommandContext.Snapshot contextSnapshot = context.createSnapshot();
                     List<String> ret = complete(src, args, context, element);
@@ -614,7 +615,7 @@ public final class GenericArguments {
         @Override
         public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
             final CommandArgs.Snapshot argsSnapshot = args.createSnapshot();
-            final Map<CommandElement, Object> elements = new HashMap<>();
+            final Map<CommandElement, Object> elements = new LinkedHashMap<>();
             int lastIndex = args.getRawPosition();
             for (CommandElement element : this.elements) {
                 boolean complete = false;
@@ -788,6 +789,11 @@ public final class GenericArguments {
         @Override
         public Text getUsage(CommandSource src) {
             return Text.of("[", this.element.getUsage(src), "]");
+        }
+
+        @Override
+        public boolean isOptional(CommandSource src) {
+            return true;
         }
     }
 
@@ -1240,6 +1246,16 @@ public final class GenericArguments {
         protected Object getValue(String choice) throws IllegalArgumentException {
             return Sponge.getGame().getServiceManager().provideUnchecked(UserStorageService.class).get(choice).get();
         }
+
+        @Override
+        public Text getUsage(CommandSource src) {
+            return isOptional(src) ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+        }
+
+        @Override
+        public boolean isOptional(CommandSource src) {
+            return src instanceof Player && this.returnSource;
+        }
     }
 
     private static class PlayerCommandElement extends SelectorCommandElement {
@@ -1299,7 +1315,12 @@ public final class GenericArguments {
 
         @Override
         public Text getUsage(CommandSource src) {
-            return src instanceof Player && this.returnSource ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+            return isOptional(src) ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+        }
+
+        @Override
+        public boolean isOptional(CommandSource src) {
+            return src instanceof Player && this.returnSource;
         }
     }
 
@@ -1870,7 +1891,12 @@ public final class GenericArguments {
 
         @Override
         public Text getUsage(CommandSource src) {
-            return src instanceof Player && this.returnSource ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+            return isOptional(src) ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+        }
+
+        @Override
+        public boolean isOptional(CommandSource src) {
+            return src instanceof Player && this.returnSource;
         }
     }
 
