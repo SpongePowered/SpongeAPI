@@ -238,11 +238,15 @@ public final class CommandArgs {
 
     /**
      * Go back to the previous argument.
+     *
+     * @return Whether the state has changed
      */
-    void previous() {
+    boolean previous() {
         if (this.index > -1) {
             --this.index;
+            return true;
         }
+        return false;
     }
 
     /**

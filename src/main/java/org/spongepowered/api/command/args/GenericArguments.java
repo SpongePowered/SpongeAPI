@@ -93,7 +93,7 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            return NullCompletionList.INSTANCE;
+            return Collections.emptyList();
         }
     };
 
@@ -389,12 +389,14 @@ public final class GenericArguments {
                         // otherwise, so parse them when no argument is present and
                         // hiding the errors.
                         // Move the pointer at the end of the args
+                        final Object state = args.getState();
                         args.setState(args.getAll().size());
                         // Try to parse without args
                         try {
                             element.parse(source, args, context);
                         } catch (ArgumentParseException ignored) {
                         }
+                        args.setState(state);
                     }
                     break;
                 } else {
@@ -459,15 +461,14 @@ public final class GenericArguments {
         @Nullable
         private List<String> complete(CommandSource src, CommandArgs args, CommandContext context,
                 CommandElement element) {
-            Object startState = args.getState();
+            final Object startState = args.getState();
             try {
                 element.parse(src, args, context);
-                Object endState = args.getState();
+                final Object endState = args.getState();
                 if (!args.hasNext()) {
                     args.setState(startState);
-                    List<String> ret = element.complete(src, args, context);
-                    args.previous();
-                    if (ret != NullCompletionList.INSTANCE && !ret.contains(args.next())) {
+                    final List<String> ret = element.complete(src, args, context);
+                    if (args.previous() && !ret.contains(args.next())) {
                         // Tab complete returns results to complete the last word in an argument.
                         // If the last word is one of the completions, the command is most likely complete
                         return ret;
@@ -476,10 +477,7 @@ public final class GenericArguments {
                 }
             } catch (ArgumentParseException e) {
                 args.setState(startState);
-                List<String> ret = element.complete(src, args, context);
-                if (ret != NullCompletionList.INSTANCE) {
-                    return ret;
-                }
+                return element.complete(src, args, context);
             }
             return null;
         }
@@ -657,8 +655,7 @@ public final class GenericArguments {
                     List<String> ret = element.complete(src, args, context);
                     if (endState != null) {
                         args.setState(startState);
-                        args.previous();
-                        if (ret == NullCompletionList.INSTANCE || ret.contains(args.nextIfPresent().get())) {
+                        if (args.previous() && ret.contains(args.nextIfPresent().get())) {
                             ret = null;
                         }
                         args.setState(endState);
@@ -787,8 +784,7 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            List<String> ret = this.element.complete(src, args, context);
-            return ret.isEmpty() ? NullCompletionList.INSTANCE : ret;
+            return this.element.complete(src, args, context);
         }
 
         @Override

@@ -81,13 +81,11 @@ public final class CommandFlags extends CommandElement {
     @Override
     public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
         Object startIdx = args.getState();
-        // All the flag args that were removed
-        List<String> removedArgs = new ArrayList<>();
         String arg;
         while (args.hasNext()) {
             arg = args.next();
             boolean ignore;
-            if (arg.startsWith("-") && !isNumber(arg)) { // Avoid issues with vector args
+            if (arg.startsWith("-") && !isNumber(arg)) { // Avoid issues with vector and number args
                 Object flagStartIdx = args.getState();
                 if (arg.startsWith("--")) { // Long flag
                     String longFlag = arg.substring(2);
@@ -97,7 +95,7 @@ public final class CommandFlags extends CommandElement {
                     ignore = !parseShortFlags(source, arg, args, context);
                 }
                 if (!ignore) {
-                    removedArgs.addAll(args.removeArgs(flagStartIdx, args.getState()));
+                    args.removeArgs(flagStartIdx, args.getState());
                 }
             } else if (this.anchorFlags) {
                 break;
@@ -105,12 +103,6 @@ public final class CommandFlags extends CommandElement {
         }
 
         args.setState(startIdx);
-        // Do not remove the args, we will just insert them at a other position
-        // so they won't cause trouble with the other args
-        args.insertArgs(removedArgs);
-        // Set the pointer after the moved args
-        args.setState(((Integer) startIdx) + removedArgs.size());
-
         if (this.childElement != null) {
             this.childElement.parse(source, args, context);
         }
@@ -233,8 +225,6 @@ public final class CommandFlags extends CommandElement {
     @Override
     public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
         Object startIdx = args.getState();
-        // All the flag args that were removed
-        List<String> removedArgs = new ArrayList<>();
         Optional<String> arg;
         while (args.hasNext()) {
             arg = args.nextIfPresent();
@@ -253,23 +243,17 @@ public final class CommandFlags extends CommandElement {
                         return ret;
                     }
                 }
-                removedArgs.addAll(args.removeArgs(flagStartIdx, args.getState()));
+                args.removeArgs(flagStartIdx, args.getState());
             } else if (this.anchorFlags) {
                 break;
             }
         }
 
         args.setState(startIdx);
-        // Do not remove the args, we will just insert them at a other position
-        // so they won't cause trouble with the other args
-        args.insertArgs(removedArgs);
-        // Set the pointer after the moved args
-        args.setState(((Integer) startIdx) + removedArgs.size());
-
         if (this.childElement != null) {
             return this.childElement.complete(src, args, context);
         }
-        return NullCompletionList.INSTANCE;
+        return Collections.emptyList();
     }
 
     @Nullable
@@ -317,8 +301,7 @@ public final class CommandFlags extends CommandElement {
                     element.parse(src, args, context);
                 } catch (ArgumentParseException ex) {
                     args.setState(state);
-                    List<String> ret = element.complete(src, args, context);
-                    return ret == NullCompletionList.INSTANCE ? Collections.emptyList() : ImmutableList.copyOf(ret);
+                    return element.complete(src, args, context);
                 }
             }
         }
