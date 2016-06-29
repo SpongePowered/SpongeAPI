@@ -7,5 +7,6 @@
     <suppress checks="AbbreviationAsWordInName" files="TNT"/>
     <suppress checks="AbbreviationAsWordInName" files="PVP"/>
     <suppress checks="AbbreviationAsWordInName" files="PEBKAC"/>
+    <suppress checks="AbbreviationAsWordInName" files="AABB"/>
     <suppress checks=".*" files="SpongeEventFactory\.java"/>
 </suppressions>
