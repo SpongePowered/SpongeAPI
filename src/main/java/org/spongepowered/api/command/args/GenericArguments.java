@@ -364,7 +364,7 @@ public final class GenericArguments {
                         // Parse the optional
                         element.parse(source, args, context);
                         // Parse the rest of the sequence
-                        this.parse(source, args, context, it.nextIndex());
+                        parse(source, args, context, it.nextIndex());
                     } catch (ArgumentParseException ex) {
                         // Just throw the exception
                         if (commandCtx) {
@@ -375,20 +375,28 @@ public final class GenericArguments {
                     // Always retry if we are in the tab completion context, to make
                     // sure that there is nothing left to complete
                     if (exception != null || commandCtx) {
-                        final CommandArgs.Snapshot optArgsSnapshot = args.createSnapshot();
-                        final CommandContext.Snapshot optContextSnapshot = context.createSnapshot();
                         // Try to parse without the optional
                         args.restoreSnapshot(argsSnapshot);
                         context.restoreSnapshot(contextSnapshot);
 
                         try {
-                            this.parse(source, args, context, it.nextIndex());
+                            parse(source, args, context, it.nextIndex());
                         } catch (ArgumentParseException ex1) {
-                            args.restoreSnapshot(optArgsSnapshot);
-                            context.restoreSnapshot(optContextSnapshot);
                             // If without the optional also fails, just
                             // throw the exception with the optional
                             throw exception == null ? ex1 : exception;
+                        }
+
+                        // Command elements like playerOrSource would like to return
+                        // source when no argument is specified, but will be skipped
+                        // otherwise, so parse them when no argument is present and
+                        // hiding the errors.
+                        // Move the pointer at the end of the args
+                        args.setState(args.getAll().size());
+                        // Try to parse without args
+                        try {
+                            element.parse(source, args, context);
+                        } catch (ArgumentParseException ignored) {
                         }
                     }
                     break;
@@ -1254,7 +1262,8 @@ public final class GenericArguments {
 
         @Override
         public boolean isOptional(CommandSource src) {
-            return src instanceof Player && this.returnSource;
+            return this.returnSource && (src instanceof Player ||
+                    (src instanceof ProxySource && ((ProxySource) src).getOriginalSource() instanceof Player));
         }
     }
 
@@ -1276,7 +1285,7 @@ public final class GenericArguments {
 
             Object state = args.getState();
             try {
-                return Iterables.filter((Iterable<Entity>)super.parseValue(source, args), e -> e instanceof Player);
+                return Iterables.filter((Iterable<Entity>) super.parseValue(source, args), e -> e instanceof Player);
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
                     args.setState(state);
@@ -1320,7 +1329,8 @@ public final class GenericArguments {
 
         @Override
         public boolean isOptional(CommandSource src) {
-            return src instanceof Player && this.returnSource;
+            return this.returnSource && (src instanceof Player ||
+                    (src instanceof ProxySource && ((ProxySource) src).getOriginalSource() instanceof Player));
         }
     }
 

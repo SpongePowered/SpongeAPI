@@ -195,12 +195,13 @@ public final class CommandFlags extends CommandElement {
     @Override
     public Text getUsage(CommandSource src) {
         final List<Object> builder = new ArrayList<>();
-        for (Map.Entry<List<String>, CommandElement> arg : this.usageFlags.entrySet()) {
+        for (Iterator<Map.Entry<List<String>, CommandElement>> it = this.usageFlags.entrySet().iterator(); it.hasNext(); ) {
+            final Map.Entry<List<String>, CommandElement> arg = it.next();
             builder.add("[");
-            for (Iterator<String> it = arg.getKey().iterator(); it.hasNext();) {
+            for (Iterator<String> it1 = arg.getKey().iterator(); it1.hasNext();) {
                 builder.add("-");
-                builder.add(it.next());
-                if (it.hasNext()) {
+                builder.add(it1.next());
+                if (it1.hasNext()) {
                     builder.add("|");
                 }
             }
@@ -210,11 +211,16 @@ public final class CommandFlags extends CommandElement {
                 builder.add(usage);
             }
             builder.add("]");
-            builder.add(" ");
+            if (it.hasNext()) {
+                builder.add(" ");
+            }
         }
-
         if (this.childElement != null) {
-            builder.add(this.childElement.getUsage(src));
+            final Text usage = this.childElement.getUsage(src);
+            if (!usage.isEmpty()) {
+                builder.add(" ");
+                builder.add(this.childElement.getUsage(src));
+            }
         }
         return Text.of(builder.toArray());
     }
