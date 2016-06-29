@@ -48,7 +48,6 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.user.UserStorageService;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.selector.Selector;
-import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.RelativeDouble;
@@ -64,10 +63,8 @@ import org.spongepowered.api.world.storage.WorldProperties;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -2067,11 +2064,7 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            Optional<String> arg = args.nextIfPresent();
-            if (!arg.isPresent()) {
-                return ImmutableList.of();
-            }
-            final String rStr = arg.get();
+            final String rStr = args.nextIfPresent().orElse("");
             if (args.nextIfPresent().isPresent()) {
                 if (rStr.startsWith("0x") || rStr.startsWith("#") ||
                         !RGB_PATTERN.matcher(rStr).matches() || rStr.contains(",")) {
