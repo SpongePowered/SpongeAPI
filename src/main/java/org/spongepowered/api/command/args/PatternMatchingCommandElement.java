@@ -50,13 +50,8 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
 
     @Override
     public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
-        this.store(context, this.parseValue(source, args,
-                context.<Boolean>getOne(CommandContext.TAB_COMPLETION_CONTEXT).orElse(false)));
-    }
-
-    @Nullable
-    protected Object parseValue(CommandSource source, CommandArgs args, boolean exact) throws ArgumentParseException {
-        return exact ? parseValueExact(source, args) : parseValue(source, args);
+        this.store(context, context.<Boolean>getOne(CommandContext.TAB_COMPLETION_CONTEXT).orElse(false) ?
+                parseValueExact(source, args) : parseValue(source, args));
     }
 
     @Nullable

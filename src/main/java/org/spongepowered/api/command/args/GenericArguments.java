@@ -392,10 +392,7 @@ public final class GenericArguments {
                         final Object state = args.getState();
                         args.setState(args.getAll().size());
                         // Try to parse without args
-                        try {
-                            element.parse(source, args, context);
-                        } catch (ArgumentParseException ignored) {
-                        }
+                        element.parse(source, args, context);
                         args.setState(state);
                     }
                     break;
@@ -766,14 +763,13 @@ public final class GenericArguments {
             try {
                 this.element.parse(source, args, context);
             } catch (ArgumentParseException ex) {
-                if (this.considerInvalidFormatEmpty || args.hasNext()) { // If there are more args, suppress. Otherwise, throw the error
+                if (this.considerInvalidFormatEmpty) {
                     args.setState(startState);
                     if (this.element.getKey() != null && this.value != null) {
                         context.putArg(this.element.getUntranslatedKey(), this.value);
                     }
-                } else {
-                    throw ex;
                 }
+                throw ex;
             }
         }
 
