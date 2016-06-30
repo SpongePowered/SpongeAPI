@@ -33,6 +33,7 @@ import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.data.property.LocationBasePropertyHolder;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
@@ -460,4 +461,46 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param uuid The {@link UUID} to set as notifier
      */
     void setNotifier(int x, int y, int z, @Nullable UUID uuid);
+
+    /**
+     * Gets the bounding box used to select blocks, which appears
+     * as a black outline on a vanilla client.
+     *
+     * @param pos The position of the block from which to get the selection box
+     * @return The selection box
+     */
+    default Optional<AABB> getBlockSelectionBox(Vector3i pos) {
+        return getBlockSelectionBox(pos.getX(), pos.getY(), pos.getZ());
+    }
+
+    /**
+     * Gets the bounding box used to select blocks, which appears
+     * as a black outline on a vanilla client.
+     *
+     * @param x The x coordinate of the block from which to get the selection box
+     * @param y The y coordinate of the block from which to get the selection box
+     * @param z The z coordinate of the block from which to get the selection box
+     * @return The selection box
+     */
+    Optional<AABB> getBlockSelectionBox(int x, int y, int z);
+
+    /**
+     * Gets the bounding box used for block collisions.
+     *
+     * @param pos The position of the block from which to get the collision box
+     * @return The collision box
+     */
+    default Optional<AABB> getBlockCollisionBox(Vector3i pos) {
+        return getBlockCollisionBox(pos.getX(), pos.getY(), pos.getZ());
+    }
+
+    /**
+     * Gets the bounding box used for block collisions.
+     *
+     * @param x The x coordinate of the block from which to get the collision box
+     * @param y The y coordinate of the block from which to get the collision box
+     * @param z The z coordinate of the block from which to get the collision box
+     * @return The collision box
+     */
+    Optional<AABB> getBlockCollisionBox(int x, int y, int z);
 }
