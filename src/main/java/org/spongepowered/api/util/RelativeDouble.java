@@ -24,12 +24,33 @@
  */
 package org.spongepowered.api.util;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
 
 public final class RelativeDouble {
 
     public static final RelativeDouble ZERO_RELATIVE = new RelativeDouble(0, true);
     public static final RelativeDouble ZERO_ABSOLUTE = new RelativeDouble(0, false);
+
+    /**
+     * Parses a {@link RelativeDouble} from the specified value.
+     *
+     * @param value The value to parse
+     * @return The relative double
+     * @throws NumberFormatException If the double value couldn't be parsed
+     */
+    public static RelativeDouble parse(String value) throws NumberFormatException {
+        requireNonNull(value, "value");
+        final boolean relative = value.startsWith("~");
+        if (relative) {
+            value = value.substring(1);
+            if (value.isEmpty()) {
+                return RelativeDouble.ZERO_RELATIVE;
+            }
+        }
+        return new RelativeDouble(Double.parseDouble(value), relative);
+    }
 
     private final double value;
     private final boolean relative;
@@ -81,7 +102,7 @@ public final class RelativeDouble {
 
     @Override
     public String toString() {
-        return (this.relative ? "~" : "") + Double.toString(this.value);
+        return this.value == 0.0 && this.relative ? "~" : (this.relative ? "~" : "") + Double.toString(this.value);
     }
 
     @Override

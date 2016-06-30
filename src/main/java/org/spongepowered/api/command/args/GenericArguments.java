@@ -190,7 +190,18 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement vector3d(Text key) {
-        return new Vector3dCommandElement(key, false, false);
+        return new Vector3dCommandElement(key, false, false, null);
+    }
+
+    /**
+     * Expect an argument to represent a {@link Vector3d}.
+     *
+     * @param key The key to store under
+     * @param defaultValue The default value that will be used for tab completion
+     * @return the argument
+     */
+    public static CommandElement vector3d(Text key, Vector3d defaultValue) {
+        return new Vector3dCommandElement(key, false, false, checkNotNull(defaultValue, "defaultValue"));
     }
 
     /**
@@ -203,7 +214,7 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement targetedBlockPosition(Text key) {
-        return new Vector3dCommandElement(key, true, true);
+        return new Vector3dCommandElement(key, true, true, null);
     }
 
     /**
@@ -214,7 +225,7 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement position(Text key) {
-        return new Vector3dCommandElement(key, false, true);
+        return new Vector3dCommandElement(key, false, true, null);
     }
 
     /**
@@ -946,21 +957,39 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement integer(Text key) {
-        return new NumericElement<>(key, Integer::parseInt, Integer::parseInt, input -> t("Expected an integer, but input '%s' was not", input));
+        return integer(key, null);
+    }
+
+    /**
+     * Require an argument to be an integer (base 10).
+     * Gives values of type {@link Integer}
+     *
+     * @param key The key to store the parsed argument under
+     * @param defaultValue The default value that will be used for tab completion
+     * @return the element to match the input
+     */
+    public static CommandElement integer(Text key, int defaultValue) {
+        return integer(key, (Integer) defaultValue);
+    }
+
+    private static CommandElement integer(Text key, @Nullable Integer defaultValue) {
+        return new NumericElement<>(key, Integer::parseInt, Integer::parseInt,
+                input -> t("Expected an integer, but input '%s' was not", input), defaultValue);
     }
 
     private static class NumericElement<T extends Number> extends KeyElement {
         private final Function<String, T> parseFunc;
-        @Nullable
-        private final BiFunction<String, Integer, T> parseRadixFunction;
+        @Nullable private final BiFunction<String, Integer, T> parseRadixFunction;
         private final Function<String, Text> errorSupplier;
+        @Nullable private final Number defaultValue;
 
         protected NumericElement(Text key, Function<String, T> parseFunc, @Nullable BiFunction<String, Integer, T> parseRadixFunction,
-                Function<String, Text> errorSupplier) {
+                Function<String, Text> errorSupplier, @Nullable Number defaultValue) {
             super(key);
             this.parseFunc = parseFunc;
             this.parseRadixFunction = parseRadixFunction;
             this.errorSupplier = errorSupplier;
+            this.defaultValue = defaultValue;
         }
 
         @Override
@@ -979,6 +1008,27 @@ public final class GenericArguments {
                 throw args.createError(this.errorSupplier.apply(input));
             }
         }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            if (this.defaultValue == null) {
+                return Collections.emptyList();
+            }
+            final String arg = args.nextIfPresent().orElse("");
+            if (arg.isEmpty()) {
+                return ImmutableList.of(this.defaultValue.toString());
+            } else {
+                return toList(arg, this.defaultValue.toString());
+            }
+        }
+    }
+
+    private static List<String> toList(String a, String b) {
+        if (a.equals(b)) {
+            return ImmutableList.of(a);
+        } else {
+            return ImmutableList.of(b, a);
+        }
     }
 
     /**
@@ -989,7 +1039,24 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement longNum(Text key) {
-        return new NumericElement<>(key, Long::parseLong, Long::parseLong, input -> t("Expected a long, but input '%s' was not", input));
+        return longNum(key, null);
+    }
+
+    /**
+     * Require an argument to be a long (base 10).
+     * Gives values of type {@link Integer}
+     *
+     * @param key The key to store the parsed argument under
+     * @param defaultValue The default value that will be used for tab completion
+     * @return the element to match the input
+     */
+    public static CommandElement longNum(Text key, long defaultValue) {
+        return longNum(key, (Long) defaultValue);
+    }
+
+    private static CommandElement longNum(Text key, @Nullable Long defaultValue) {
+        return new NumericElement<>(key, Long::parseLong, Long::parseLong,
+                input -> t("Expected a long, but input '%s' was not", input), defaultValue);
     }
 
     /**
@@ -1000,7 +1067,24 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement doubleNum(Text key) {
-        return new NumericElement<>(key, Double::parseDouble, null, input -> t("Expected a number, but input '%s' was not", input));
+        return doubleNum(key, null);
+    }
+
+    /**
+     * Require an argument to be an double-precision floating point number.
+     * Gives values of type {@link Double}
+     *
+     * @param key The key to store the parsed argument under
+     * @param defaultValue The default value that will be used for tab completion
+     * @return the element to match the input
+     */
+    public static CommandElement doubleNum(Text key, double defaultValue) {
+        return doubleNum(key, (Double) defaultValue);
+    }
+
+    private static CommandElement doubleNum(Text key, @Nullable Double defaultValue) {
+        return new NumericElement<>(key, Double::parseDouble, null,
+                input -> t("Expected a number, but input '%s' was not", input), defaultValue);
     }
 
     private static final Map<String, Boolean> BOOLEAN_CHOICES = ImmutableMap.<String, Boolean>builder()
@@ -1490,6 +1574,11 @@ public final class GenericArguments {
             return new RelativeVector3d(x, y, z);
         }
 
+        @Nullable
+        protected RelativeVector3d getDefaultCompletionVector(CommandSource src) {
+            return this.parsePosition && src instanceof Locatable ? RelativeVector3d.ZERO_RELATIVE : null;
+        }
+
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             final String arg = args.nextIfPresent().orElse("");
@@ -1511,11 +1600,11 @@ public final class GenericArguments {
                 final String prefix = arg.substring(0, index + 1);
                 switch (parts) {
                     case 1:
-                        return this.getCommaSeparatedCompletion(src, Location::getX, prefix, pos);
+                        return this.getCommaSeparatedCompletion(src, Vector3d::getX, RelativeVector3d::getX, prefix, arg, pos);
                     case 2:
-                        return this.getCommaSeparatedCompletion(src, Location::getY, prefix, pos);
+                        return this.getCommaSeparatedCompletion(src, Vector3d::getY, RelativeVector3d::getY, prefix, arg, pos);
                     case 3:
-                        return this.getCommaSeparatedCompletion(src, Location::getZ, prefix, pos);
+                        return this.getCommaSeparatedCompletion(src, Vector3d::getZ, RelativeVector3d::getZ, prefix, arg, pos);
                 }
             } else {
                 final Optional<String> optArg = args.nextIfPresent();
@@ -1525,75 +1614,72 @@ public final class GenericArguments {
                         if (args.hasNext()) {
                             return ImmutableList.of();
                         }
-                        return this.getCompletion(src, context, Location::getZ, optArg1.get());
+                        return this.getCompletion(src, context, Vector3d::getZ, RelativeVector3d::getX, optArg1.get());
                     }
-                    return this.getCompletion(src, context, Location::getY, optArg.get());
+                    return this.getCompletion(src, context, Vector3d::getY, RelativeVector3d::getY, optArg.get());
                 } else {
-                    return this.getCompletion(src, context, Location::getX, arg);
+                    return this.getCompletion(src, context, Vector3d::getX, RelativeVector3d::getZ, arg);
                 }
             }
             return ImmutableList.of(arg);
         }
 
-        private List<String> getCommaSeparatedCompletion(CommandSource src,
-                Function<Location<World>, Double> function, String prefix, @Nullable Location<World> pos) {
-            if (!this.parsePosition) {
-                return ImmutableList.of("");
+        private List<String> getCommaSeparatedCompletion(CommandSource src, Function<Vector3d, Double> function,
+                Function<RelativeVector3d, RelativeDouble> relFunction, String prefix, String arg,
+                @Nullable Location<World> pos) {
+            if (pos != null) {
+                return toList(arg, prefix + Double.toString(function.apply(pos.getPosition())));
             }
-            return ImmutableList.of(prefix + (pos != null ? Double.toString(function.apply(pos)) :
-                    src instanceof Locatable ? "~" : ""));
+            final RelativeVector3d def = this.getDefaultCompletionVector(src);
+            if (def != null) {
+                return toList(arg, prefix + relFunction.apply(def).toString());
+            } else {
+                return ImmutableList.of(arg);
+            }
         }
 
-        private List<String> getCompletion(CommandSource src, CommandContext context,
-                Function<Location<World>, Double> function, String arg) {
-            if (!this.parsePosition) {
-                return ImmutableList.of("");
-            }
+        private List<String> getCompletion(CommandSource src, CommandContext context, Function<Vector3d, Double> function,
+                Function<RelativeVector3d, RelativeDouble> relFunction, String arg) {
             final Optional<Location<World>> pos = this.targetBlockTabCompletion ?
                     context.<Location<World>>getOne(CommandContext.TARGET_BLOCK_ARG) : Optional.empty();
-            return pos.isPresent() ? ImmutableList.of(Double.toString(function.apply(pos.get()))) :
-                    src instanceof Locatable && arg.isEmpty() ? ImmutableList.of("~") : ImmutableList.of(arg);
+            if (pos.isPresent()) {
+                return toList(arg, Double.toString(function.apply(pos.get().getPosition())));
+            }
+            final RelativeVector3d def = this.getDefaultCompletionVector(src);
+            if (def != null) {
+                return toList(arg, relFunction.apply(def).toString());
+            } else {
+                return ImmutableList.of(arg);
+            }
         }
 
         private RelativeDouble parseRelativeDouble(CommandArgs args, String arg)
                 throws ArgumentParseException {
-            boolean relative = arg.startsWith("~");
-            if (!this.parsePosition && relative) {
-                throw args.createError(t("%s doesn't support relative values.", getName()));
-            }
-            if (relative) {
-                arg = arg.substring(1);
-                if (arg.isEmpty()) {
-                    return RelativeDouble.ZERO_RELATIVE;
-                }
-            }
             try {
-                double ret = Double.parseDouble(arg);
-                return new RelativeDouble(ret, relative);
+                final RelativeDouble value = RelativeDouble.parse(arg);
+                if (!this.parsePosition && value.isRelative()) {
+                    throw args.createError(t("%s doesn't support relative values.", getName()));
+                }
+                return value;
             } catch (NumberFormatException e) {
                 throw args.createError(t("Expected input %s to be a double, but was not", arg));
             }
         }
     }
 
-    /**
-     * Syntax:
-     * x,y,z
-     * x y z.
-     * each element can be relative to a location? so parseRelativeDouble() -- relative is ~(num)
-     *
-     */
-    private static class Vector3dCommandElement extends CommandElement {
-        private final RelativeVector3dCommandElement element;
+    private static class Vector3dCommandElement extends RelativeVector3dCommandElement {
 
-        protected Vector3dCommandElement(@Nullable Text key, boolean targetBlockTabComplete, boolean parsePosition) {
-            super(key);
-            this.element = new RelativeVector3dCommandElement(key, targetBlockTabComplete, parsePosition);
+        @Nullable private final RelativeVector3d defaultValue;
+
+        protected Vector3dCommandElement(@Nullable Text key, boolean targetBlockTabComplete, boolean parsePosition,
+                @Nullable Vector3d defaultValue) {
+            super(key, targetBlockTabComplete, parsePosition);
+            this.defaultValue = defaultValue == null ? null : new RelativeVector3d(defaultValue);
         }
 
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            final RelativeVector3d relativeVector3d = (RelativeVector3d) this.element.parseValue(source, args);
+            final RelativeVector3d relativeVector3d = (RelativeVector3d) super.parseValue(source, args);
             if (relativeVector3d == null) {
                 return null;
             }
@@ -1606,9 +1692,9 @@ public final class GenericArguments {
             return relativeVector3d.applyToValue(Vector3d.ZERO);
         }
 
-        @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            return this.element.complete(src, args, context);
+        @Nullable
+        protected RelativeVector3d getDefaultCompletionVector(CommandSource src) {
+            return this.defaultValue != null ? this.defaultValue : super.getDefaultCompletionVector(src);
         }
     }
 
@@ -1626,7 +1712,7 @@ public final class GenericArguments {
         protected LocationCommandElement(Text key, boolean targetBlockTabCompletion) {
             super(key);
             this.worldParser = new WorldPropertiesCommandElement(null);
-            this.vectorParser = new Vector3dCommandElement(null, targetBlockTabCompletion, true);
+            this.vectorParser = new Vector3dCommandElement(null, targetBlockTabCompletion, true, null);
         }
 
         @Override
