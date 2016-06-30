@@ -51,6 +51,8 @@ public final class DamageTypes {
 
     public static final DamageType MAGIC = DummyObjectProvider.createFor(DamageType.class, "MAGIC");
 
+    public static final DamageType MAGMA = DummyObjectProvider.createFor(DamageType.class, "MAGMA");
+
     public static final DamageType PROJECTILE = DummyObjectProvider.createFor(DamageType.class, "PROJECTILE");
 
     public static final DamageType SUFFOCATE = DummyObjectProvider.createFor(DamageType.class, "SUFFOCATE");

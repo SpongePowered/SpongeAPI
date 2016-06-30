@@ -493,13 +493,6 @@ public final class Keys {
 
     public static final Key<Value<HorseVariant>> HORSE_VARIANT = KeyFactory.fake("HORSE_VARIANT");
 
-    public static final Key<Value<Boolean>> VANISH_IGNORES_COLLISION = KeyFactory.fake("VANISH_IGNORES_COLLISION");
-
-    /**
-     *
-     */
-    public static final Key<Value<Boolean>> VANISH_PREVENTS_TARGETING = KeyFactory.fake("VANISH_PREVENTS_TARGETING");
-
     /**
      * Represents the {@link Key} for representing the "vanish" state
      * of an {@link Entity}. This will only simply render the entity as
@@ -507,17 +500,6 @@ public final class Keys {
      * To fully "vanish" an {@link Entity}, use {@link #VANISH}.
      */
     public static final Key<Value<Boolean>> INVISIBLE = KeyFactory.fake("INVISIBLE");
-
-    /**
-     * Represents the {@link Key} for representing the "vanish" state
-     * of an {@link Entity}. If the state is {@code true}, the entity is
-     * not only rendered invisible, but removed from being tracked by all
-     * clients in the vincinity of the entity. In simpler terms, the entity
-     * with a "vanish" state being {@code true} will not send any updates
-     * to any clients. This may cause issues if the vanished entity is being
-     * ridden by
-     */
-    public static final Key<Value<Boolean>> VANISH = KeyFactory.fake("VANISH");
 
     public static final Key<MutableBoundedValue<Integer>> INVULNERABILITY_TICKS = KeyFactory.fake("INVULNERABILITY_TICKS");
 
@@ -896,6 +878,24 @@ public final class Keys {
     public static final Key<Value<TreeType>> TREE_TYPE = KeyFactory.fake("TREE_TYPE");
 
     public static final Key<Value<Boolean>> UNBREAKABLE = KeyFactory.fake("UNBREAKABLE");
+
+    /**
+     * Represents the {@link Key} for representing the "vanish" state
+     * of an {@link Entity}. If the state is {@code true}, the entity is
+     * not only rendered invisible, but removed from being tracked by all
+     * clients in the vincinity of the entity. In simpler terms, the entity
+     * with a "vanish" state being {@code true} will not send any updates
+     * to any clients. This may cause issues if the vanished entity is being
+     * ridden by
+     */
+    public static final Key<Value<Boolean>> VANISH = KeyFactory.fake("VANISH");
+
+    public static final Key<Value<Boolean>> VANISH_IGNORES_COLLISION = KeyFactory.fake("VANISH_IGNORES_COLLISION");
+
+    /**
+     *
+     */
+    public static final Key<Value<Boolean>> VANISH_PREVENTS_TARGETING = KeyFactory.fake("VANISH_PREVENTS_TARGETING");
 
     public static final Key<Value<EntitySnapshot>> VEHICLE = KeyFactory.fake("VEHICLE");
 
