@@ -66,7 +66,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
@@ -452,7 +451,7 @@ public final class GenericArguments {
                     context.restoreSnapshot(optContextSnapshot);
                     break;
                 } else {
-                    List<String> ret = complete(src, args, context, element);
+                    final List<String> ret = complete(src, args, context, element);
                     if (ret != null) {
                         add(completions, ret);
                         break;
@@ -472,20 +471,16 @@ public final class GenericArguments {
             final Object startState = args.getState();
             try {
                 element.parse(src, args, context);
-                final Object endState = args.getState();
                 if (!args.hasNext()) {
                     args.setState(startState);
-                    final List<String> ret = element.complete(src, args, context);
-                    if (args.previous() && !ret.contains(args.next())) {
-                        // Tab complete returns results to complete the last word in an argument.
-                        // If the last word is one of the completions, the command is most likely complete
-                        return ret;
-                    }
-                    args.setState(endState);
+                    return element.complete(src, args, context);
                 }
             } catch (ArgumentParseException e) {
                 args.setState(startState);
-                return element.complete(src, args, context);
+                final List<String> ret = element.complete(src, args, context);
+                if (!args.hasNext()) {
+                    return ret;
+                }
             }
             return null;
         }
@@ -626,16 +621,14 @@ public final class GenericArguments {
         @Override
         public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
             final CommandArgs.Snapshot argsSnapshot = args.createSnapshot();
-            final Map<CommandElement, Object> elements = new LinkedHashMap<>();
+            final List<CommandElement> elements = new ArrayList<>();
             int lastIndex = args.getRawPosition();
             for (CommandElement element : this.elements) {
                 boolean complete = false;
-                boolean flag = false;
                 try {
                     element.parse(src, args, context);
                     if (!args.hasNext()) {
                         complete = true;
-                        flag = true;
                     }
                 } catch (ArgumentParseException ex) {
                     complete = true;
@@ -644,34 +637,21 @@ public final class GenericArguments {
                     int index = args.getRawPosition();
                     if (index > lastIndex) {
                         elements.clear();
-                        elements.put(element, flag ? args.getState() : null);
+                        elements.add(element);
                         lastIndex = index;
                     } else if (index == lastIndex) {
-                        elements.put(element, flag ? args.getState() : null);
+                        elements.add(element);
                     }
                 }
                 args.restoreSnapshot(argsSnapshot);
             }
             if (!elements.isEmpty()) {
                 final List<String> ret0 = new ArrayList<>();
-                for (Iterator<Map.Entry<CommandElement, Object>> it = elements.entrySet().iterator(); it.hasNext(); ) {
-                    final Map.Entry<CommandElement, Object> entry = it.next();
-                    final CommandElement element = entry.getKey();
-
-                    final Object endState = entry.getValue();
-                    final Object startState = args.getState();
-                    List<String> ret = element.complete(src, args, context);
-                    if (endState != null) {
-                        args.setState(startState);
-                        if (args.previous() && ret.contains(args.nextIfPresent().get())) {
-                            ret = null;
-                        }
-                        args.setState(endState);
-                    }
-                    if (ret != null) {
-                        // Filter out the duplicates and add them to the result list
-                        ret0.addAll(ret.stream().filter(e -> !ret0.contains(e)).collect(Collectors.toList()));
-                    }
+                for (Iterator<CommandElement> it = elements.iterator(); it.hasNext(); ) {
+                    final CommandElement element = it.next();
+                    final List<String> ret = element.complete(src, args, context);
+                    // Filter out the duplicates and add them to the result list
+                    ret0.addAll(ret.stream().filter(e -> !ret0.contains(e)).collect(Collectors.toList()));
 
                     if (it.hasNext()) {
                         args.restoreSnapshot(argsSnapshot);
@@ -1335,8 +1315,8 @@ public final class GenericArguments {
 
         @Override
         public boolean isOptional(CommandSource src) {
-            return this.returnSource && (src instanceof Player ||
-                    (src instanceof ProxySource && ((ProxySource) src).getOriginalSource() instanceof Player));
+            return this.returnSource && (src instanceof User ||
+                    (src instanceof ProxySource && ((ProxySource) src).getOriginalSource() instanceof User));
         }
     }
 
@@ -1981,7 +1961,8 @@ public final class GenericArguments {
 
         @Override
         public boolean isOptional(CommandSource src) {
-            return src instanceof Player && this.returnSource;
+            return this.returnSource && (src instanceof Entity ||
+                    (src instanceof ProxySource && ((ProxySource) src).getOriginalSource() instanceof Entity));
         }
     }
 
@@ -2014,7 +1995,7 @@ public final class GenericArguments {
      * @param defaultColor The default color used in tab completation
      * @return The element to match the input
      */
-    public static CommandElement color(Text key, @Nullable Color defaultColor) {
+    public static CommandElement color(Text key, Color defaultColor) {
         return new ColorElement(key, defaultColor);
     }
 
