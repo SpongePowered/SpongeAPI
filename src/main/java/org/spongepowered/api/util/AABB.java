@@ -60,6 +60,21 @@ public class AABB {
      * Constructs a new bounding box from two corners.
      * Fails the resulting box would be degenerate (a dimension is 0).
      *
+     * @param x1 The first corner x coordinate
+     * @param y1 The first corner y coordinate
+     * @param z1 The first corner z coordinate
+     * @param x2 The second corner x coordinate
+     * @param y2 The second corner y coordinate
+     * @param z2 The second corner z coordinate
+     */
+    public AABB(double x1, double y1, double z1, double x2, double y2, double z2) {
+        this(new Vector3d(x1, y1, z1), new Vector3d(x2, y2, z2));
+    }
+
+    /**
+     * Constructs a new bounding box from two corners.
+     * Fails the resulting box would be degenerate (a dimension is 0).
+     *
      * @param firstCorner The first corner
      * @param secondCorner The second corner
      */

@@ -62,6 +62,10 @@ public class AABBTest {
             Assert.fail();
         } catch (IllegalArgumentException ignored) {
         }
+
+        final AABB aabb3 = new AABB(1, 2, 3, 7, 10, 13);
+        Assert.assertEquals(new Vector3d(1, 2, 3), aabb3.getMin());
+        Assert.assertEquals(new Vector3d(7, 10, 13), aabb3.getMax());
     }
 
     @Test
