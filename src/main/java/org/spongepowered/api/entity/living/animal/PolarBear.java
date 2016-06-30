@@ -22,25 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
-
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+package org.spongepowered.api.entity.living.animal;
 
 /**
- * An enumeration of known vanilla {@link SkeletonType}s.
+ * Represents a polar bear.
  */
-public final class SkeletonTypes {
+public interface PolarBear extends Animal {
 
-    // SORTFIELDS:ON
-
-    public static final SkeletonType NORMAL = DummyObjectProvider.createFor(SkeletonType.class, "NORMAL");
-
-    public static final SkeletonType STRAY = DummyObjectProvider.createFor(SkeletonType.class, "STRAY");
-
-    public static final SkeletonType WITHER = DummyObjectProvider.createFor(SkeletonType.class, "WITHER");
-
-    // SORTFIELDS:OFF
-
-    private SkeletonTypes() {
-    }
 }
