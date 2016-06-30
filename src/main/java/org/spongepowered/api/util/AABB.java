@@ -46,7 +46,7 @@ public class AABB {
     private final Vector3d max;
 
     /**
-     * Constructs a new bounding box from two corners.
+     * Constructs a new bounding box from two opposite corners.
      * Fails the resulting box would be degenerate (a dimension is 0).
      *
      * @param firstCorner The first corner
@@ -57,7 +57,7 @@ public class AABB {
     }
 
     /**
-     * Constructs a new bounding box from two corners.
+     * Constructs a new bounding box from two opposite corners.
      * Fails the resulting box would be degenerate (a dimension is 0).
      *
      * @param x1 The first corner x coordinate
@@ -72,7 +72,7 @@ public class AABB {
     }
 
     /**
-     * Constructs a new bounding box from two corners.
+     * Constructs a new bounding box from two opposite corners.
      * Fails the resulting box would be degenerate (a dimension is 0).
      *
      * @param firstCorner The first corner
