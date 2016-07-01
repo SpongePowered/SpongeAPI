@@ -3841,12 +3841,14 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param channel The channel
+     * @param player The player
      * @return A new channel registration event
      */
-    public static ChannelRegistrationEvent createChannelRegistrationEvent(Cause cause, String channel) {
+    public static ChannelRegistrationEvent createChannelRegistrationEvent(Cause cause, String channel, Optional<Player> player) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("channel", channel);
+        values.put("player", player);
         return SpongeEventFactoryUtils.createEventImpl(ChannelRegistrationEvent.class, values);
     }
 
@@ -3857,12 +3859,14 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param channel The channel
+     * @param player The player
      * @return A new register channel registration event
      */
-    public static ChannelRegistrationEvent.Register createChannelRegistrationEventRegister(Cause cause, String channel) {
+    public static ChannelRegistrationEvent.Register createChannelRegistrationEventRegister(Cause cause, String channel, Optional<Player> player) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("channel", channel);
+        values.put("player", player);
         return SpongeEventFactoryUtils.createEventImpl(ChannelRegistrationEvent.Register.class, values);
     }
 
@@ -3873,12 +3877,14 @@ public class SpongeEventFactory {
      * 
      * @param cause The cause
      * @param channel The channel
+     * @param player The player
      * @return A new unregister channel registration event
      */
-    public static ChannelRegistrationEvent.Unregister createChannelRegistrationEventUnregister(Cause cause, String channel) {
+    public static ChannelRegistrationEvent.Unregister createChannelRegistrationEventUnregister(Cause cause, String channel, Optional<Player> player) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("channel", channel);
+        values.put("player", player);
         return SpongeEventFactoryUtils.createEventImpl(ChannelRegistrationEvent.Unregister.class, values);
     }
 
