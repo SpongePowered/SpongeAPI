@@ -338,7 +338,7 @@ public interface ChunkLayout {
     default Optional<Vector3i> moveToChunk(Vector3i chunkCoords, Direction direction, int steps) {
         checkNotNull(direction, "direction");
         checkArgument(!direction.isSecondaryOrdinal(), "Secondary cardinal directions can't be used here");
-        return addToChunk(chunkCoords, direction.toVector3d().ceil().toInt().mul(steps));
+        return addToChunk(chunkCoords, direction.asBlockOffset().mul(steps));
     }
 
     /**

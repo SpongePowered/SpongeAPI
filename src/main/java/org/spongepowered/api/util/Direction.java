@@ -27,6 +27,7 @@ package org.spongepowered.api.util;
 import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.TrigMath;
 import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3i;
 
 /**
  * Represent the 16 main and secondary cardinal directions plus up and down.
@@ -79,7 +80,8 @@ public enum Direction {
     private static final Direction[] CARDINAL_SET = {
             NORTH, EAST, SOUTH, WEST
     };
-    private final Vector3d direction;
+    private final Vector3d offset;
+    private final Vector3i blockOffset;
     private final Division division;
     private Direction opposite;
 
@@ -109,13 +111,14 @@ public enum Direction {
         SOUTH_SOUTHWEST.opposite = NORTH_NORTHEAST;
     }
 
-    Direction(Vector3d vector3d, Division division) {
-        if (vector3d.lengthSquared() == 0) {
+    Direction(Vector3d direction, Division division) {
+        if (direction.lengthSquared() == 0) {
             // Prevent normalization of the zero direction
-            this.direction = vector3d;
+            this.offset = direction;
         } else {
-            this.direction = vector3d.normalize();
+            this.offset = direction.normalize();
         }
+        this.blockOffset = direction.round().toInt();
         this.division = division;
     }
 
@@ -314,9 +317,35 @@ public enum Direction {
      * Get the Vector3d.
      *
      * @return The Vector3d
+     * @deprecated Use {@link #asOffset()} instead. Will be removed in 5.0.
      */
+    @Deprecated
     public Vector3d toVector3d() {
-        return this.direction;
+        return this.offset;
+    }
+
+    /**
+     * Returns the direction as a unit offset vector.
+     * This vector is also suitable as a unit direction vector.
+     *
+     * @return The direction as an offset
+     */
+    public Vector3d asOffset() {
+        return this.offset;
+    }
+
+    /**
+     * Returns the direction as a block offset vector.
+     * For secondary ordinals the results are approximated to the nearest
+     * block.
+     *
+     * <p>The difference between this offset and {@link #asOffset()} is that
+     * a block offset has unit components instead of unit length.</p>
+     *
+     * @return The direction as a block offset
+     */
+    public Vector3i asBlockOffset() {
+        return this.blockOffset;
     }
 
     private interface C {
