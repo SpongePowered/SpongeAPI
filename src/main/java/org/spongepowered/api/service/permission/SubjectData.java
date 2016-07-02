@@ -150,4 +150,43 @@ public interface SubjectData {
      */
     boolean clearParents(Set<Context> contexts);
 
+    /**
+     * Return all options for all context combinations currently registered.
+     *
+     * @return An immutable snapshot of all options data
+     */
+    Map<Set<Context>, Map<String, String>> getAllOptions();
+
+    /**
+     * Get options for a specific context combination.
+     *
+     * @param contexts The context combination to get options for
+     * @return All available options, returning an empty map if none are present
+     */
+    Map<String, String> getOptions(Set<Context> contexts);
+
+    /**
+     * Set a specific option to a value.
+     *
+     * @param contexts The context combination to set the given option in
+     * @param key The key to set. Case-insensitive.
+     * @param value The value to set.
+     * @return Whether the operation was successful
+     */
+    boolean setOption(Set<Context> contexts, String key, String value);
+
+    /**
+     * Clear all options in the given context combination.
+     *
+     * @param contexts The context combination
+     * @return Whether the operation was successful (any options were remowed)
+     */
+    boolean clearOptions(Set<Context> contexts);
+
+    /**
+     * Clear all options.
+     *
+     * @return Whether the operation was successful
+     */
+    boolean clearOptions();
 }

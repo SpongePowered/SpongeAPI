@@ -32,7 +32,6 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
 
 import org.spongepowered.api.service.context.Context;
-import org.spongepowered.api.service.permission.option.OptionSubjectData;
 import org.spongepowered.api.util.Tristate;
 
 import java.util.ArrayList;
@@ -50,7 +49,7 @@ import javax.annotation.Nullable;
  *
  * <p>This class is thread-safe.
  */
-public class MemorySubjectData implements OptionSubjectData {
+public class MemorySubjectData implements SubjectData {
 
     private final PermissionService service;
     private final ConcurrentMap<Set<Context>, Map<String, String>> options = Maps.newConcurrentMap();
