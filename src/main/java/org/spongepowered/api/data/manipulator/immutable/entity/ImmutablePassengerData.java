@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
 import org.spongepowered.api.data.manipulator.mutable.entity.PassengerData;
 import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 import org.spongepowered.api.entity.Entity;
@@ -35,7 +36,7 @@ import org.spongepowered.api.entity.EntitySnapshot;
  * vehicle being ridden by an {@link Entity}. With any "vehicle", there is
  * always a "base" vehicle.
  */
-public interface ImmutablePassengerData extends ImmutableDataManipulator<ImmutablePassengerData, PassengerData> {
+public interface ImmutablePassengerData extends ImmutableListData<EntitySnapshot, ImmutablePassengerData, PassengerData> {
 
     /**
      * Gets the {@link ImmutableListValue} for the current {@link Entity}

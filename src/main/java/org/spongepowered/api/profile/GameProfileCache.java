@@ -45,7 +45,7 @@ public interface GameProfileCache {
      *
      * @param profile The profile to cache
      * @return {@code true} if the profile was successfully cached,
-     * otherwise {@code false}
+     *     otherwise {@code false}
      */
     default boolean add(GameProfile profile) {
         return this.add(profile, null);
@@ -57,7 +57,7 @@ public interface GameProfileCache {
      * @param profile The profile to cache
      * @param expiry The expiration date
      * @return {@code true} if the profile was successfully cached,
-     * otherwise {@code false}
+     *     otherwise {@code false}
      */
     default boolean add(GameProfile profile, @Nullable Date expiry) {
         return this.add(profile, false, expiry);
@@ -71,16 +71,38 @@ public interface GameProfileCache {
      * the provided profile
      * @param expiry The expiration date
      * @return {@code true} if the profile was successfully cached,
-     * otherwise {@code false}
+     *     otherwise {@code false}
      */
     boolean add(GameProfile profile, boolean overwrite, @Nullable Date expiry);
+
+    /**
+     * Remove an entry from this cache.
+     *
+     * @param profile The profile to remove from the cache
+     * @return {@code true} if the profile was successfully removed,
+     *     otherwise {@code false}
+     */
+    boolean remove(GameProfile profile);
+
+    /**
+     * Remove entries from this cache in bulk.
+     *
+     * @param profiles The profiles to remove from the cache
+     * @return A collection of profiles successfully removed
+     */
+    Collection<GameProfile> remove(Iterable<GameProfile> profiles);
+
+    /**
+     * Clear all entries from this cache.
+     */
+    void clear();
 
     /**
      * Gets a {@link GameProfile} from this cache by its unique id.
      *
      * @param uniqueId The unique id of the profile
      * @return The profile, if present, or {@link Optional#empty()} if
-     * the cache did not contain a profile with the provided id
+     *     the cache did not contain a profile with the provided id
      */
     Optional<GameProfile> getById(UUID uniqueId);
 
@@ -98,7 +120,7 @@ public interface GameProfileCache {
      *
      * @param uniqueId The unique id of the profile
      * @return The profile, if present, or {@link Optional#empty()} if
-     * we couldn't find a profile with the provided id
+     *     we couldn't find a profile with the provided id
      */
     Optional<GameProfile> lookupById(UUID uniqueId);
 
@@ -117,8 +139,8 @@ public interface GameProfileCache {
      *
      * @param uniqueId The unique id of the profile
      * @return The profile, if present, or {@link Optional#empty()} if
-     * the cache did not contain a profile with the provided id and
-     * we couldn't lookup a profile with the provided id
+     *     the cache did not contain a profile with the provided id and
+     *     we couldn't lookup a profile with the provided id
      */
     Optional<GameProfile> getOrLookupById(UUID uniqueId);
     /**
@@ -135,7 +157,7 @@ public interface GameProfileCache {
      *
      * @param name The name of the profile
      * @return The profile, if present, or {@link Optional#empty()} if
-     * the cache did not contain a profile with the provided name
+     *     the cache did not contain a profile with the provided name
      */
     Optional<GameProfile> getByName(String name);
 
@@ -153,7 +175,7 @@ public interface GameProfileCache {
      *
      * @param name The name of the profile
      * @return The profile, if present, or {@link Optional#empty()} if
-     * we couldn't find a profile with the provided name
+     *     we couldn't find a profile with the provided name
      */
     Optional<GameProfile> lookupByName(String name);
 
@@ -172,8 +194,8 @@ public interface GameProfileCache {
      *
      * @param name The name of the profile
      * @return The profile, if present, or {@link Optional#empty()} if
-     * the cache did not contain a profile with the provided name and
-     * we couldn't lookup a profile with the provided name
+     *     the cache did not contain a profile with the provided name and
+     *     we couldn't lookup a profile with the provided name
      */
     Optional<GameProfile> getOrLookupByName(String name);
 
@@ -191,7 +213,7 @@ public interface GameProfileCache {
      *
      * @param profile The profile to fill
      * @return The filled profile, if present, or {@link Optional#empty()} if
-     * we were unable to fill the profile
+     *     we were unable to fill the profile
      */
     default Optional<GameProfile> fillProfile(GameProfile profile) {
         return this.fillProfile(profile, false);
@@ -203,7 +225,7 @@ public interface GameProfileCache {
      * @param profile The profile to fill
      * @param signed true if we should request that the profile data be signed
      * @return The filled profile, if present, or {@link Optional#empty()} if
-     * we were unable to fill the profile
+     *     we were unable to fill the profile
      */
     Optional<GameProfile> fillProfile(GameProfile profile, boolean signed);
 

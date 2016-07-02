@@ -24,7 +24,10 @@
  */
 package org.spongepowered.api.event.network;
 
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Event;
+
+import java.util.Optional;
 
 /**
  * Fired when a channel is registered or unregistered.
@@ -37,6 +40,16 @@ public interface ChannelRegistrationEvent extends Event {
      * @return The channel name
      */
     String getChannel();
+
+    /**
+     * Gets the {@link Player} who registered the channel, if available.
+     *
+     * <p>If the channel is being registered on the client side, this will
+     * return {@link Optional#empty()}.</p>
+     *
+     * @return The player, if available
+     */
+    Optional<Player> getPlayer();
 
     /**
      * Fired when a channel is registered.

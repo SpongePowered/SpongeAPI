@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
@@ -331,6 +332,17 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
+     * Subtract another Vector3i to the position on this instance, returning
+     * a new Location instance.
+     *
+     * @param v The vector to subtract
+     * @return A new instance
+     */
+    public Location<E> sub(Vector3i v) {
+        return sub(v.getX(), v.getY(), v.getZ());
+    }
+
+    /**
      * Subtract vector components to the position on this instance, returning a
      * new Location instance.
      *
@@ -351,6 +363,17 @@ public final class Location<E extends Extent> implements DataHolder {
      * @return A new instance
      */
     public Location<E> add(Vector3d v) {
+        return add(v.getX(), v.getY(), v.getZ());
+    }
+
+    /**
+     * Add another Vector3i to the position on this instance, returning a new
+     * Location instance.
+     *
+     * @param v The vector to add
+     * @return A new instance
+     */
+    public Location<E> add(Vector3i v) {
         return add(v.getX(), v.getY(), v.getZ());
     }
 
@@ -412,13 +435,31 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Gets the location next to this one in the give direction.
+     * Gets the location next to this one in the given direction.
+     * Always moves by a unit amount, even diagonally.
      *
-     * @param direction The direction to look in
-     * @return The block in that direction
+     * @param direction The direction to move in
+     * @return The location in that direction
      */
     public Location<E> getRelative(Direction direction) {
-        return add(direction.toVector3d());
+        return add(direction.asOffset());
+    }
+
+    /**
+     * Gets the location next to this one in the given direction.
+     * Always moves by a block amount, even diagonally.
+     *
+     * {@link Direction.Division#SECONDARY_ORDINAL} directions are not a valid
+     * argument. These will throw an exception.
+     *
+     * @param direction The direction to move in
+     * @return The location in that direction
+     * @throws IllegalArgumentException If the direction is a
+     * {@link Direction.Division#SECONDARY_ORDINAL}
+     */
+    public Location<E> getBlockRelative(Direction direction) {
+        checkArgument(!direction.isSecondaryOrdinal(), "Secondary cardinal directions can't be used here");
+        return add(direction.asBlockOffset());
     }
 
     /**
