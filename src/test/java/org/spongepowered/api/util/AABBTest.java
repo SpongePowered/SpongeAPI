@@ -105,7 +105,7 @@ public class AABBTest {
     }
 
     @Test
-    public void testIntersects() {
+    public void testIntersectsAABB() {
         for (int i = 0; i < 1000; i++) {
             final AABB aabb1 = newAABB();
             final AABB aabb2 = newIntersectingAABB(aabb1);
@@ -115,6 +115,16 @@ public class AABBTest {
             Assert.assertFalse(aabb1.intersects(aabb3));
             Assert.assertFalse(aabb3.intersects(aabb1));
         }
+    }
+
+    @Test
+    public void testIntersectsRay() {
+        final AABB aabb = new AABB(new Vector3d(0, 0, 0), new Vector3d(2, 2, 2));
+        Assert.assertEquals(new Vector3d(2, 1, 1), aabb.intersects(new Vector3d(1, 1, 1), new Vector3d(1, 0, 0)).get());
+        Assert.assertEquals(new Vector3d(1, 2, 1), aabb.intersects(new Vector3d(1, 1, 1), new Vector3d(0, 1, 0)).get());
+        Assert.assertEquals(new Vector3d(1, 1, 2), aabb.intersects(new Vector3d(1, 1, 1), new Vector3d(0, 0, 1)).get());
+        Assert.assertEquals(new Vector3d(0, 0, 0), aabb.intersects(new Vector3d(-1, -1, -1), new Vector3d(1, 1, 1)).get());
+        Assert.assertFalse(aabb.intersects(new Vector3d(-1, -1, -1), new Vector3d(0, 1, 0)).isPresent());
     }
 
     @Test

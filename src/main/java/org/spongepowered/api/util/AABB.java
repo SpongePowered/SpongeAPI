@@ -29,6 +29,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.util.blockray.BlockRay;
+import org.spongepowered.api.util.blockray.BlockRayHit;
+import org.spongepowered.api.world.World;
+
+import java.util.Optional;
 
 /**
  * An axis aligned bounding box. That is, an un-rotated cuboid.
@@ -173,6 +179,73 @@ public class AABB {
     public AABB offset(Vector3i offset) {
         checkNotNull(offset, "offset");
         return offset(offset.getX(), offset.getY(), offset.getZ());
+    }
+
+    /**
+     * Tests for intersection between the box and a ray defined by a starting
+     * point and a direction.
+     *
+     * @param start The starting point of the ray
+     * @param direction The direction of the ray
+     * @return An intersection point, if any
+     */
+    public Optional<Vector3d> intersects(Vector3d start, Vector3d direction) {
+        // Adapted from: https://github.com/flow/react/blob/develop/src/main/java/com/flowpowered/react/collision/RayCaster.java#L156
+        double t0;
+        double t1;
+        if (direction.getX() >= 0) {
+            t0 = (this.min.getX() - start.getX()) / direction.getX();
+            t1 = (this.max.getX() - start.getX()) / direction.getX();
+        } else {
+            t0 = (this.max.getX() - start.getX()) / direction.getX();
+            t1 = (this.min.getX() - start.getX()) / direction.getX();
+        }
+        final double tyMin;
+        final double tyMax;
+        if (direction.getY() >= 0) {
+            tyMin = (this.min.getY() - start.getY()) / direction.getY();
+            tyMax = (this.max.getY() - start.getY()) / direction.getY();
+        } else {
+            tyMin = (this.max.getY() - start.getY()) / direction.getY();
+            tyMax = (this.min.getY() - start.getY()) / direction.getY();
+        }
+        if (t0 > tyMax || tyMin > t1) {
+            return Optional.empty();
+        }
+        if (tyMin > t0) {
+            t0 = tyMin;
+        }
+        if (tyMax < t1) {
+            t1 = tyMax;
+        }
+        final double tzMin;
+        final double tzMax;
+        if (direction.getZ() >= 0) {
+            tzMin = (this.min.getZ() - start.getZ()) / direction.getZ();
+            tzMax = (this.max.getZ() - start.getZ()) / direction.getZ();
+        } else {
+            tzMin = (this.max.getZ() - start.getZ()) / direction.getZ();
+            tzMax = (this.min.getZ() - start.getZ()) / direction.getZ();
+        }
+        if (t0 > tzMax || tzMin > t1) {
+            return Optional.empty();
+        }
+        if (tzMin > t0) {
+            t0 = tzMin;
+        }
+        if (tzMax < t1) {
+            t1 = tzMax;
+        }
+        if (t1 >= 0) {
+            final double t;
+            if (t0 >= 0) {
+                t = t0;
+            } else {
+                t = t1;
+            }
+            return Optional.of(start.add(direction.mul(t)));
+        }
+        return Optional.empty();
     }
 
     /**
