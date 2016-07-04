@@ -34,7 +34,7 @@ import org.spongepowered.api.util.Tristate;
 import java.util.Collection;
 
 /**
- * Each {@link Dialogue} is made up of a dynamic tree of {@link Question}s,
+ * Each {@link DialogueArchetype} is made up of a dynamic tree of {@link Question}s,
  * meaning that each {@link Question} chooses the next one. A {@link Question}
  * is responded to by a {@link Speaker} with an {@link Answer}.
  */
@@ -88,7 +88,7 @@ public interface Question extends TextRepresentable {
 
         /**
          * Sets whether or not all messages should be suppressed. If
-         * {@link Tristate#UNDEFINED}, the {@link Dialogue}'s setting is used
+         * {@link Tristate#UNDEFINED}, the {@link DialogueArchetype}'s setting is used
          * instead.
          *
          * @param suppress Whether or not all messages should be suppressed
@@ -108,7 +108,7 @@ public interface Question extends TextRepresentable {
         /**
          * Sets whether or not any output by the {@link Speaker} should be
          * suppressed (as opposed to allowing it to go to, for example, main
-         * chat). If {@link Tristate#UNDEFINED}, the {@link Dialogue}'s setting
+         * chat). If {@link Tristate#UNDEFINED}, the {@link DialogueArchetype}'s setting
          * is used instead.
          *
          * @param suppress Whether output should be suppressed

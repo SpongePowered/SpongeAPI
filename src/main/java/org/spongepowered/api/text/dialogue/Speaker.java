@@ -31,7 +31,7 @@ import java.util.Optional;
 public interface Speaker extends MessageReceiver {
 
     /**
-     * Gets whether this speaker is currently in a {@link Dialogue.Instance}.
+     * Gets whether this speaker is currently in a {@link Dialogue}.
      * This is equivalent to calling {@link #getCurrentDialogue()
      * getCurrentDialogue().isPresent()}, minus the {@link Optional} boxing.
      *
@@ -40,22 +40,22 @@ public interface Speaker extends MessageReceiver {
     boolean isSpeaking();
 
     /**
-     * Gets the current {@link Dialogue.Instance} that this speaker is in.
+     * Gets the current {@link Dialogue} that this speaker is in.
      *
      * @return The instance if the speaker is in one, otherwise
      * {@link Optional#empty}
      */
-    Optional<Dialogue.Instance> getCurrentDialogue();
+    Optional<Dialogue> getCurrentDialogue();
 
     /**
-     * Adds this speaker to the provided {@link Dialogue.Instance}.
+     * Adds this speaker to the provided {@link Dialogue}.
      *
      * @param instance The dialogue to add the speaker to
      * @throws IllegalStateException If the speaker is already in a
-     * {@link Dialogue.Instance}
-     * @see Dialogue.Instance#addSpeaker(Speaker)
+     * {@link Dialogue}
+     * @see Dialogue#addSpeaker(Speaker)
      */
-    default void addToDialogue(Dialogue.Instance instance) {
+    default void addToDialogue(Dialogue instance) {
         instance.addSpeaker(this);
     }
 

@@ -48,4 +48,18 @@ public interface Answer extends TextRepresentable {
      * @return The speaker
      */
     Speaker getSpeaker();
+
+    /**
+     * Gets the {@link Question} that this is an answer to.
+     *
+     * @return The question
+     */
+    Question getQuestion();
+
+    /**
+     * Gets the dialogue that this is part of
+     *
+     * @return The dialogue
+     */
+    Dialogue getDialogue();
 }
