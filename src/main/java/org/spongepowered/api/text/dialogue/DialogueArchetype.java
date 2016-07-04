@@ -30,6 +30,7 @@ import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.util.ResettableBuilder;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collection;
 
@@ -57,6 +58,15 @@ public interface DialogueArchetype {
      */
     Dialogue start(Speaker... speakers);
 
+    /**
+     * Creates a new {@link Dialogue} for the specified {@link Speaker}(s).
+     *
+     * @param speakers The speakers to send the initial {@link Question} to
+     * @return The newly created {@link Dialogue}
+     * @throws IllegalArgumentException If {@code speakers} is empty
+     */
+    Dialogue start(Iterable<? extends Speaker> speakers);
+
     interface Builder extends ResettableBuilder<DialogueArchetype, Builder> {
 
         /**
@@ -83,6 +93,7 @@ public interface DialogueArchetype {
          * @return This builder, for chaining
          */
         default Builder initialData(DataView view) {
+            checkNotNull(view);
             view.getValues(true).forEach(this::initialData);
             return this;
         }

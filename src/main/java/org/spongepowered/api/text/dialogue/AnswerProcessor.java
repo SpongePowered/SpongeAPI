@@ -26,6 +26,8 @@ package org.spongepowered.api.text.dialogue;
 
 import org.spongepowered.api.data.DataContainer;
 
+import java.util.Optional;
+
 /**
  * A functional interface which processes {@link Answer}s.
  */
@@ -41,5 +43,5 @@ public interface AnswerProcessor {
      * @param answer The answer to the question
      * @return The next {@link Question} in the {@link Dialogue}
      */
-    Question process(Dialogue dialogue, DataContainer data, Question question, Answer answer);
+    Optional<Question> process(Dialogue dialogue, DataContainer data, Question question, Answer answer);
 }

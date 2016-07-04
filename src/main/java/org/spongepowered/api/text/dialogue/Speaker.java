@@ -25,6 +25,7 @@
 package org.spongepowered.api.text.dialogue;
 
 import org.spongepowered.api.text.channel.MessageReceiver;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Optional;
 
@@ -33,11 +34,13 @@ public interface Speaker extends MessageReceiver {
     /**
      * Gets whether this speaker is currently in a {@link Dialogue}.
      * This is equivalent to calling {@link #getCurrentDialogue()
-     * getCurrentDialogue().isPresent()}, minus the {@link Optional} boxing.
+     * getCurrentDialogue().isPresent()}, but shorter.
      *
      * @return Whether or not the speaker is in a dialogue
      */
-    boolean isSpeaking();
+    default boolean isSpeaking() {
+        return this.getCurrentDialogue().isPresent();
+    }
 
     /**
      * Gets the current {@link Dialogue} that this speaker is in.
@@ -56,6 +59,7 @@ public interface Speaker extends MessageReceiver {
      * @see Dialogue#addSpeaker(Speaker)
      */
     default void addToDialogue(Dialogue instance) {
+        checkNotNull(instance);
         instance.addSpeaker(this);
     }
 
@@ -66,6 +70,6 @@ public interface Speaker extends MessageReceiver {
      * {@link Optional#empty()}
      */
     default Optional<Question> getCurrentQuestion() {
-        return this.getCurrentDialogue().flatMap(inst -> inst.getCurrentQuestionFor(this));
+        return this.getCurrentDialogue().flatMap(dialogue -> dialogue.getCurrentQuestionFor(this));
     }
 }

@@ -38,9 +38,9 @@ public interface Dialogue {
     /**
      * Gets the {@link DialogueArchetype} object that this is an instance of.
      *
-     * @return The dialogue object
+     * @return The archetype
      */
-    DialogueArchetype getDialogue();
+    DialogueArchetype getArchetype();
 
     /**
      * Gets the current dialogue-persistent data object.

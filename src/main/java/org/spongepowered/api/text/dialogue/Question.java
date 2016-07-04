@@ -33,6 +33,8 @@ import org.spongepowered.api.util.Tristate;
 
 import java.util.Collection;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Each {@link DialogueArchetype} is made up of a dynamic tree of {@link Question}s,
  * meaning that each {@link Question} chooses the next one. A {@link Question}
@@ -75,7 +77,11 @@ public interface Question extends TextRepresentable {
          * @param processors The processors to use.
          * @return This builder, for chaining
          */
-        Builder additionalProcessors(Iterable<AdditionalAnswerProcessor> processors);
+        default Builder additionalProcessors(Iterable<? extends AdditionalAnswerProcessor> processors) {
+            checkNotNull(processors);
+            processors.forEach(this::additionalProcessor);
+            return this;
+        }
 
         /**
          * Adds an extra processor to use when processing {@link Answer}s. They
