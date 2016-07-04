@@ -148,6 +148,27 @@ public class AABBTest {
         Assert.assertEquals(aabb2, aabb1.offset(new Vector3i(10, -2, 1)));
     }
 
+    @Test
+    public void testExpandCoordinates() {
+        final AABB aabb1 = new AABB(new Vector3d(1, 2, 3), new Vector3d(7, 10, 13));
+        final AABB aabb2 = new AABB(new Vector3d(-4, 3, 2.5), new Vector3d(12, 9, 13.5));
+        Assert.assertEquals(aabb2, aabb1.expand(10, -2, 1));
+    }
+
+    @Test
+    public void testExpandVector3d() {
+        final AABB aabb1 = new AABB(new Vector3d(1, 2, 3), new Vector3d(7, 10, 13));
+        final AABB aabb2 = new AABB(new Vector3d(-4, 3, 2.5), new Vector3d(12, 9, 13.5));
+        Assert.assertEquals(aabb2, aabb1.expand(new Vector3d(10, -2, 1)));
+    }
+
+    @Test
+    public void testExpandVector3i() {
+        final AABB aabb1 = new AABB(new Vector3d(1, 2, 3), new Vector3d(7, 10, 13));
+        final AABB aabb2 = new AABB(new Vector3d(-4, 3, 2.5), new Vector3d(12, 9, 13.5));
+        Assert.assertEquals(aabb2, aabb1.expand(new Vector3i(10, -2, 1)));
+    }
+
     private static AABB newAABB() {
         final Vector3d min = new Vector3d(RANDOM.nextDouble() * 20 - 10, RANDOM.nextDouble() * 20 - 10, RANDOM.nextDouble() * 20 - 10);
         return new AABB(min, min.add(RANDOM.nextDouble() * 4 + 4, RANDOM.nextDouble() * 4 + 4, RANDOM.nextDouble() * 4 + 4));

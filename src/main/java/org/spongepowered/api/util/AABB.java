@@ -171,17 +171,6 @@ public class AABB {
     }
 
     /**
-     * Offsets this bounding box by a given amount and returns a new box.
-     *
-     * @param offset The offset to apply
-     * @return The new offset box
-     */
-    public AABB offset(Vector3i offset) {
-        checkNotNull(offset, "offset");
-        return offset(offset.getX(), offset.getY(), offset.getZ());
-    }
-
-    /**
      * Tests for intersection between the box and a ray defined by a starting
      * point and a direction.
      *
@@ -254,6 +243,17 @@ public class AABB {
      * @param offset The offset to apply
      * @return The new offset box
      */
+    public AABB offset(Vector3i offset) {
+        checkNotNull(offset, "offset");
+        return offset(offset.getX(), offset.getY(), offset.getZ());
+    }
+
+    /**
+     * Offsets this bounding box by a given amount and returns a new box.
+     *
+     * @param offset The offset to apply
+     * @return The new offset box
+     */
     public AABB offset(Vector3d offset) {
         checkNotNull(offset, "offset");
         return offset(offset.getX(), offset.getY(), offset.getZ());
@@ -269,6 +269,49 @@ public class AABB {
      */
     public AABB offset(double x, double y, double z) {
         return new AABB(this.min.add(x, y, z), this.max.add(x, y, z));
+    }
+
+    /**
+     * Expands this bounding box by a given amount in both directions and
+     * returns a new box. The expansion is applied half and half to the
+     * minimum and maximum corners.
+     *
+     * @param amount The amount of expansion to apply
+     * @return The new expanded box
+     */
+    public AABB expand(Vector3i amount) {
+        checkNotNull(amount, "amount");
+        return expand(amount.getX(), amount.getY(), amount.getZ());
+    }
+
+    /**
+     * Expands this bounding box by a given amount in both directions and
+     * returns a new box. The expansion is applied half and half to the
+     * minimum and maximum corners.
+     *
+     * @param amount The amount of expansion to apply
+     * @return The new expanded box
+     */
+    public AABB expand(Vector3d amount) {
+        checkNotNull(amount, "amount");
+        return expand(amount.getX(), amount.getY(), amount.getZ());
+    }
+
+    /**
+     * Expands this bounding box by a given amount in both directions and
+     * returns a new box. The expansion is applied half and half to the
+     * minimum and maximum corners.
+     *
+     * @param x The amount of expansion for the x coordinate
+     * @param y The amount of expansion for the y coordinate
+     * @param z The amount of expansion for the z coordinate
+     * @return The new expanded box
+     */
+    public AABB expand(double x, double y, double z) {
+        x /= 2;
+        y /= 2;
+        z /= 2;
+        return new AABB(this.min.sub(x, y, z), this.max.add(x, y, z));
     }
 
     @Override
