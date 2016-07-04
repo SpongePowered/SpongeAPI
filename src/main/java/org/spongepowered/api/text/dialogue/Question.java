@@ -94,11 +94,11 @@ public interface Question extends TextRepresentable {
          * @param suppress Whether or not all messages should be suppressed
          * @return This builder, for chaining
          */
-        Builder suppressAllMessages(Tristate suppress);
+        Builder suppressesAllMessages(Tristate suppress);
 
         /**
          * Sets specific {@link MessageChannel}s to not suppress. This is
-         * ignored if {@link #suppressAllMessages(Tristate)} is set to false.
+         * ignored if {@link #suppressesAllMessages(Tristate)} is set to false.
          *
          * @param channels The channels to allow
          * @return This builder, for chaining
@@ -114,7 +114,7 @@ public interface Question extends TextRepresentable {
          * @param suppress Whether output should be suppressed
          * @return This builder, for chaining
          */
-        Builder suppressOutput(Tristate suppress);
+        Builder suppressesOutput(Tristate suppress);
 
         /**
          * Builds an instance of a {@link Question}.

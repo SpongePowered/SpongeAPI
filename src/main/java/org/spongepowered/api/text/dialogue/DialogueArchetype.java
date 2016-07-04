@@ -31,7 +31,7 @@ import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.Optional;
+import java.util.Collection;
 
 /**
  * Represents a structure for a back-and-forth communication between one or
@@ -94,11 +94,11 @@ public interface DialogueArchetype {
          * @param suppress Whether or not to suppress messages
          * @return This builder, for chaining
          */
-        Builder suppressAllMessages(boolean suppress);
+        Builder suppressesAllMessages(boolean suppress);
 
         /**
          * Sets channels to allow messages from. This is ignored if
-         * {@link #suppressAllMessages(boolean)}, or the {@link Question}
+         * {@link #suppressesAllMessages(boolean)}, or the {@link Question}
          * equivalent, is set to true.
          *
          * @param channels The channels to allow
@@ -114,13 +114,53 @@ public interface DialogueArchetype {
          * @param suppress Whether or not to suppress output
          * @return This builder, for chaining
          */
-        Builder suppressOutput(boolean suppress);
+        Builder suppressesOutput(boolean suppress);
 
         /**
          * Builds the new DialogueArchetype instance.
          *
          * @return The new DialogueArchetype
+         * @throws IllegalStateException If the archetype is incomplete
          */
         DialogueArchetype build();
     }
+
+    /**
+     * Gets the first question that is shown to the {@link Speaker} when the
+     * {@link Dialogue} is instantiated.
+     *
+     * @return The initial question
+     */
+    Question getInitialQuestion();
+
+    /**
+     * Gets the initial data that the generated {@link Dialogue} will be
+     * populated with. This is a copy of the data.
+     *
+     * @return The data
+     */
+    DataContainer getInitialData();
+
+    /**
+     * Gets whether or not output is suppressed by default.
+     *
+     * @return Whether output is suppressed
+     * @see Builder#suppressesOutput(boolean)
+     */
+    boolean suppressesOutput();
+
+    /**
+     * Gets whether or not messages are suppressed by default.
+     *
+     * @return Whether messages are suppressed
+     */
+    boolean suppressesAllMessages();
+
+    /**
+     * Gets the channels that are allowed through {@link
+     * #suppressesAllMessages()}. This {@link Collection} is immutable.
+     *
+     * @return The allowed channels
+     */
+    Collection<MessageChannel> getAllowedChannels();
 }
