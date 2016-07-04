@@ -65,4 +65,5 @@ public interface Dialogue {
      * {@link Optional#empty()}
      */
     Optional<Question> getCurrentQuestionFor(Speaker speaker);
+
 }

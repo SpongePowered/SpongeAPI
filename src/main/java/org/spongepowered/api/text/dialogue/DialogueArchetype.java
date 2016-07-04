@@ -193,4 +193,5 @@ public interface DialogueArchetype {
      * @return The allowed channels
      */
     Collection<MessageChannel> getAllowedChannels();
+
 }

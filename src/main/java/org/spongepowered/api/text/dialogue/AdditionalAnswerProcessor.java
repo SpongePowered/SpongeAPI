@@ -42,4 +42,5 @@ public interface AdditionalAnswerProcessor {
      * @param answer The answer to the question
      */
     void process(Dialogue dialogue, DataContainer data, Question question, Answer answer);
+
 }

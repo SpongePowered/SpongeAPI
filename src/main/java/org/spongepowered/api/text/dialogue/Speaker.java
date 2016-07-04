@@ -71,4 +71,5 @@ public interface Speaker extends MessageReceiver {
     default Optional<Question> getCurrentQuestion() {
         return this.getCurrentDialogue().flatMap(dialogue -> dialogue.getCurrentQuestionFor(this));
     }
+
 }

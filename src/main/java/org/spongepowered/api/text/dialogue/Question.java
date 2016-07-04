@@ -200,4 +200,5 @@ public interface Question extends TextRepresentable {
      * suppressed
      */
     Tristate suppressesOutputToPeers();
+
 }

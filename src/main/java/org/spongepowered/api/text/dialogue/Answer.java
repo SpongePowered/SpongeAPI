@@ -64,4 +64,5 @@ public interface Answer extends TextRepresentable {
      * @return The dialogue
      */
     Dialogue getDialogue();
+
 }

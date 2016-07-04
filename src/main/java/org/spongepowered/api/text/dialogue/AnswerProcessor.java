@@ -45,4 +45,5 @@ public interface AnswerProcessor {
      * @return The next {@link Question} in the {@link Dialogue}
      */
     Optional<Question> process(Dialogue dialogue, DataContainer data, Question question, Answer answer);
+
 }
