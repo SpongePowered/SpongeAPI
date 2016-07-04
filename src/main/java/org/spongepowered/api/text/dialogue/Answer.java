@@ -34,7 +34,7 @@ public interface Answer extends TextRepresentable {
 
     @Override
     default Text toText() {
-        return Text.of(getAnswer());
+        return getAnswer();
     }
 
     /**
@@ -42,7 +42,7 @@ public interface Answer extends TextRepresentable {
      *
      * @return The response
      */
-    String getAnswer();
+    Text getAnswer();
 
     /**
      * Gets who sent the response.
