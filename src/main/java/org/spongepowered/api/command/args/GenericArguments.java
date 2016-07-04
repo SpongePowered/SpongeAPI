@@ -33,6 +33,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
@@ -1477,6 +1478,7 @@ public final class GenericArguments {
 
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String arg = args.peek();
             if (!args.hasNext() && this.returnSource) {
                 return tryReturnSource(source, args);
             }
@@ -1489,7 +1491,12 @@ public final class GenericArguments {
                     args.setState(state);
                     return tryReturnSource(source, args);
                 } else {
-                    throw ex;
+                    try {
+                        UUID uuid = UUID.fromString(arg);
+                        throw args.createError(t("The entity '%s' can not be found", arg));
+                    } catch (IllegalArgumentException uuidException) {
+                        throw args.createError(t("No entities matching pattern '%s' found for %s", arg, getKey()));
+                    }
                 }
             }
         }
@@ -1497,26 +1504,43 @@ public final class GenericArguments {
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
             Set<Iterable<Entity>> worldEntities = Sponge.getServer().getWorlds().stream().map(World::getEntities).collect(Collectors.toSet());
-            return Iterables.transform(Iterables.concat(worldEntities), input -> {
-                if (input == null) {
-                    return null;
+            List<String> prepend = Lists.newLinkedList();
+
+            if (source instanceof Player) {
+                prepend.add(0, ((Player) source).getUniqueId().toString());
+                prepend.add(0, source.getName());
+            }
+            prepend.addAll(Selector.complete("@"));
+
+            return Iterables.concat(prepend, Iterables.concat(Iterables.transform(Iterables.concat(worldEntities), input -> {
+                if (input == null || input == source) {
+                    return Collections.emptyList();
                 }
                 if (input instanceof Player) {
-                    return ((Player)input).getName();
+                    return Lists.newArrayList(((Player) input).getName(), input.getUniqueId().toString());
                 }
-                return input.getUniqueId().toString();
-            });
+                return Collections.singleton(input.getUniqueId().toString());
+            })));
         }
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            UUID uuid = UUID.fromString(choice);
-            for (World world : Sponge.getServer().getWorlds()) {
-                Optional<Entity> ret = world.getEntity(uuid);
-                if (ret.isPresent()) {
-                    return ret.get();
+            try{
+                UUID uuid = UUID.fromString(choice);
+                for (World world : Sponge.getServer().getWorlds()) {
+                    Optional<Entity> ret = world.getEntity(uuid);
+                    if (ret.isPresent()) {
+                        return ret.get();
+                    }
+                }
+            } catch (IllegalArgumentException uuidException) {
+                //assume player
+                Optional<Player> optPlayer = Sponge.getServer().getPlayer(choice);
+                if(optPlayer.isPresent()) {
+                    return optPlayer.get();
                 }
             }
+
             throw new IllegalArgumentException("Input value " + choice + " was not an entity");
         }
 
