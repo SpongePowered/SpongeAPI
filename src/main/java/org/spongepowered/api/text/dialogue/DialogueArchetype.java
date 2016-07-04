@@ -128,6 +128,17 @@ public interface DialogueArchetype {
         Builder suppressesOutput(boolean suppress);
 
         /**
+         * Sets whether or not other {@link Speaker}s in the same {@link
+         * Dialogue} can see responses to this question. {@link Question}s can
+         * override this.
+         *
+         * @param suppress Whether output to speakers in the same dialogue
+         * should be suppressed
+         * @return This builder, for chaining
+         */
+        Builder suppressesOutputToPeers(boolean suppress);
+
+        /**
          * Builds the new DialogueArchetype instance.
          *
          * @return The new DialogueArchetype
@@ -166,6 +177,15 @@ public interface DialogueArchetype {
      * @return Whether messages are suppressed
      */
     boolean suppressesAllMessages();
+
+    /**
+     * Gets whether or not this question suppresses output to {@link Speaker}s
+     * in the same {@link Dialogue}.
+     *
+     * @return Whether or not output to speakers in the same conversation is
+     * suppressed
+     */
+    boolean suppressesOutputToPeers();
 
     /**
      * Gets the channels that are allowed through {@link

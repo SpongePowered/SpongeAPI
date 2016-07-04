@@ -63,7 +63,8 @@ public interface Question extends TextRepresentable {
         Builder text(Text text);
 
         /**
-         * Sets the {@link AnswerProcessor} to use when processing {@link Answer}s.
+         * Sets the {@link AnswerProcessor} to use when processing {@link
+         * Answer}s.
          *
          * @param processor The processor to use
          * @return This builder, for chaining
@@ -94,8 +95,8 @@ public interface Question extends TextRepresentable {
 
         /**
          * Sets whether or not all messages should be suppressed. If
-         * {@link Tristate#UNDEFINED}, the {@link DialogueArchetype}'s setting is used
-         * instead.
+         * {@link Tristate#UNDEFINED}, the {@link DialogueArchetype}'s setting
+         * is used instead.
          *
          * @param suppress Whether or not all messages should be suppressed
          * @return This builder, for chaining
@@ -114,13 +115,25 @@ public interface Question extends TextRepresentable {
         /**
          * Sets whether or not any output by the {@link Speaker} should be
          * suppressed (as opposed to allowing it to go to, for example, main
-         * chat). If {@link Tristate#UNDEFINED}, the {@link DialogueArchetype}'s setting
-         * is used instead.
+         * chat). If {@link Tristate#UNDEFINED}, the {@link DialogueArchetype}'s
+         * setting is used instead.
          *
          * @param suppress Whether output should be suppressed
          * @return This builder, for chaining
          */
         Builder suppressesOutput(Tristate suppress);
+
+        /**
+         * Sets whether or not other {@link Speaker}s in the same {@link
+         * Dialogue} can see responses to this question. If {@link
+         * Tristate#UNDEFINED}, the {@link DialogueArchetype}'s setting is used
+         * instead.
+         *
+         * @param suppress Whether output to speakers in the same dialogue
+         * should be suppressed
+         * @return This builder, for chaining
+         */
+        Builder suppressesOutputToPeers(Tristate suppress);
 
         /**
          * Builds an instance of a {@link Question}.
@@ -179,4 +192,13 @@ public interface Question extends TextRepresentable {
      * @return Whether or not messages are suppressed.
      */
     Tristate suppressesOutput();
+
+    /**
+     * Gets whether or not this question suppresses output to {@link Speaker}s
+     * in the same {@link Dialogue}.
+     *
+     * @return Whether or not output to speakers in the same conversation is
+     * suppressed
+     */
+    Tristate suppressesOutputToPeers();
 }

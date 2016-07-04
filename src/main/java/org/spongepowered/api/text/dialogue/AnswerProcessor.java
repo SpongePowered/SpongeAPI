@@ -35,7 +35,8 @@ import java.util.Optional;
 public interface AnswerProcessor {
 
     /**
-     * Processes an {@link Answer} and returns the next {@link Question} in the {@link Dialogue}.
+     * Processes an {@link Answer} and returns the next {@link Question} in
+     * the {@link Dialogue}.
      *
      * @param dialogue The current dialogue
      * @param data The current dialogue-persistent data
