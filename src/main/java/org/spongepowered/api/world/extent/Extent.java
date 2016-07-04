@@ -31,6 +31,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.data.property.LocationBasePropertyHolder;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.AABB;
@@ -44,7 +45,9 @@ import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
@@ -503,4 +506,26 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @return The collision box
      */
     Optional<AABB> getBlockCollisionBox(int x, int y, int z);
+
+    /**
+     * Gets all the entities that intersect the bounding box, in no particular
+     * order.
+     *
+     * @param box The intersection box
+     * @return All the intersecting entities
+     */
+    default Set<Entity> getIntersectingEntities(AABB box) {
+        return getIntersectingEntities(box, entity -> true);
+    }
+
+    /**
+     * Gets all the entities that intersect the bounding box, in no particular
+     * order, as long as the pass the given filter test.
+     *
+     * @param box The intersection box
+     * @param filter The filter test
+     * @return All the intersecting entities that pass the filter test
+     */
+    Set<Entity> getIntersectingEntities(AABB box, Predicate<Entity> filter);
+
 }
