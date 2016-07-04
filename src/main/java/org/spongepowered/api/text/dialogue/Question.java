@@ -79,8 +79,7 @@ public interface Question extends TextRepresentable {
          * @return This builder, for chaining
          */
         default Builder additionalProcessors(Iterable<? extends AdditionalAnswerProcessor> processors) {
-            checkNotNull(processors);
-            processors.forEach(this::additionalProcessor);
+            checkNotNull(processors, "processors").forEach(this::additionalProcessor);
             return this;
         }
 

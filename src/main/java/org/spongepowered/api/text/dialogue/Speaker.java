@@ -53,14 +53,13 @@ public interface Speaker extends MessageReceiver {
     /**
      * Adds this speaker to the provided {@link Dialogue}.
      *
-     * @param instance The dialogue to add the speaker to
+     * @param dialogue The dialogue to add the speaker to
      * @throws IllegalStateException If the speaker is already in a
      * {@link Dialogue}
      * @see Dialogue#addSpeaker(Speaker)
      */
-    default void addToDialogue(Dialogue instance) {
-        checkNotNull(instance);
-        instance.addSpeaker(this);
+    default void addToDialogue(Dialogue dialogue) {
+        checkNotNull(dialogue, "dialogue").addSpeaker(this);
     }
 
     /**

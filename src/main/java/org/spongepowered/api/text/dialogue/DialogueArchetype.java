@@ -93,8 +93,7 @@ public interface DialogueArchetype {
          * @return This builder, for chaining
          */
         default Builder initialData(DataView view) {
-            checkNotNull(view);
-            view.getValues(true).forEach(this::initialData);
+            checkNotNull(view, "view").getValues(true).forEach(this::initialData);
             return this;
         }
 
