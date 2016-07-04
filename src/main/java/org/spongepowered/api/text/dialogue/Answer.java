@@ -39,12 +39,14 @@ public interface Answer extends TextRepresentable {
 
     /**
      * Gets the response that was sent.
+     *
      * @return The response
      */
     String getAnswer();
 
     /**
      * Gets who sent the response.
+     *
      * @return The speaker
      */
     Speaker getSpeaker();
