@@ -69,6 +69,7 @@ import java.util.UUID;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
@@ -1503,24 +1504,38 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            Set<Iterable<Entity>> worldEntities = Sponge.getServer().getWorlds().stream().map(World::getEntities).collect(Collectors.toSet());
-            List<String> prepend = Lists.newLinkedList();
+            Stream<Entity> worldEntities = Sponge.getServer().getWorlds().stream().flatMap(world -> world.getEntities().stream());
+            Stream<String> prepend = Stream.empty();
 
             if (source instanceof Player) {
-                prepend.add(0, ((Player) source).getUniqueId().toString());
-                prepend.add(0, source.getName());
+                prepend = Stream.of(
+                        source.getName(),
+                        ((Player) source).getUniqueId().toString()
+                );
             }
-            prepend.addAll(Selector.complete("@"));
+            final Stream<String> selectors = Selector.complete("@").stream();
 
-            return Iterables.concat(prepend, Iterables.concat(Iterables.transform(Iterables.concat(worldEntities), input -> {
-                if (input == null || input == source) {
-                    return Collections.emptyList();
-                }
-                if (input instanceof Player) {
-                    return Lists.newArrayList(((Player) input).getName(), input.getUniqueId().toString());
-                }
-                return Collections.singleton(input.getUniqueId().toString());
-            })));
+            final Stream<String> stringEntities = worldEntities.flatMap(
+                    input -> {
+                        if (input == null || input == source) {
+                            return Stream.empty();
+                        } else if (input instanceof Player) {
+                            return Stream.of(
+                                    ((Player) input).getName(),
+                                    input.getUniqueId().toString()
+                            );
+                        } else {
+                            return Stream.of(input.getUniqueId().toString());
+                        }
+                    }
+            );
+
+            final Stream<String> out = Stream.of(
+                    prepend,
+                    selectors,
+                    stringEntities
+            ).flatMap(Function.identity());
+            return out.collect(Collectors.toList());
         }
 
         @Override
