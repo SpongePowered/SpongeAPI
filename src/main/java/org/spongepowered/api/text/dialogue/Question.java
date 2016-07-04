@@ -58,7 +58,7 @@ public interface Question extends TextRepresentable {
          * @param text The text to show
          * @return This builder, for chaining
          */
-        Builder setText(Text text);
+        Builder text(Text text);
 
         /**
          * Sets the {@link AnswerProcessor} to use when processing {@link Answer}s.
@@ -66,7 +66,7 @@ public interface Question extends TextRepresentable {
          * @param processor The processor to use
          * @return This builder, for chaining
          */
-        Builder setProcessor(AnswerProcessor processor);
+        Builder processor(AnswerProcessor processor);
 
         /**
          * Adds extra processors to use when processing {@link Answer}s. They
@@ -75,7 +75,7 @@ public interface Question extends TextRepresentable {
          * @param processors The processors to use.
          * @return This builder, for chaining
          */
-        Builder setAdditionalProcessors(Iterable<AdditionalAnswerProcessor> processors);
+        Builder additionalProcessors(Iterable<AdditionalAnswerProcessor> processors);
 
         /**
          * Adds an extra processor to use when processing {@link Answer}s. They
@@ -84,7 +84,7 @@ public interface Question extends TextRepresentable {
          * @param processor The processor to add
          * @return This builder, for chaining
          */
-        Builder addAdditionalProcessor(AdditionalAnswerProcessor processor);
+        Builder additionalProcessor(AdditionalAnswerProcessor processor);
 
         /**
          * Sets whether or not all messages should be suppressed. If
@@ -146,7 +146,7 @@ public interface Question extends TextRepresentable {
 
     /**
      * Gets the {@link AdditionalAnswerProcessor}s to use when processing
-     * {@link Answer}s.
+     * {@link Answer}s. This {@link Collection} is immutable.
      *
      * @return The processor
      */
@@ -154,6 +154,7 @@ public interface Question extends TextRepresentable {
 
     /**
      * Gets all {@link MessageChannel}s that are allowed through suppression.
+     * This {@link Collection} is immutable.
      *
      * @return The channels
      */
