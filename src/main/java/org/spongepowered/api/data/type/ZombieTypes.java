@@ -22,19 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
-import org.spongepowered.api.data.manipulator.mutable.entity.VillagerZombieData;
-import org.spongepowered.api.data.type.Profession;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.living.monster.Zombie;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-/**
- * Represents an {@link ImmutableDataManipulator} handling the "villager
- * zombie" state of a {@link Zombie}.
- */
-public interface ImmutableVillagerZombieData extends ImmutableVariantData<Profession, ImmutableVillagerZombieData, VillagerZombieData> {
+public final class ZombieTypes {
+
+    // SORTFIELDS:ON
+
+    public static final ZombieType HUSK = DummyObjectProvider.createFor(ZombieType.class, "HUSK");
+
+    public static final ZombieType NORMAL = DummyObjectProvider.createFor(ZombieType.class, "NORMAL");
+
+    public static final ZombieType VILLAGER = DummyObjectProvider.createFor(ZombieType.class, "VILLAGER");
+
+    // SORTFIELDS:OFF
+
+    private ZombieTypes() {
+    }
 
 }

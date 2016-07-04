@@ -909,7 +909,7 @@ public final class Keys {
 
     public static final Key<Value<Vector3d>> VELOCITY = KeyFactory.fake("VELOCITY");
 
-    public static final Key<Value<Profession>> VILLAGER_ZOMBIE_PROFESSION = KeyFactory.fake("VILLAGER_ZOMBIE_PROFESSION");
+    public static final Key<OptionalValue<Profession>> VILLAGER_ZOMBIE_PROFESSION = KeyFactory.fake("VILLAGER_ZOMBIE_PROFESSION");
 
     public static final Key<Value<Double>> WALKING_SPEED = KeyFactory.fake("WALKING_SPEED");
 
@@ -926,6 +926,8 @@ public final class Keys {
     public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_SOUTH = KeyFactory.fake("WIRE_ATTACHMENT_SOUTH");
 
     public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = KeyFactory.fake("WIRE_ATTACHMENT_WEST");
+
+    public static final Key<Value<ZombieType>> ZOMBIE_TYPE = KeyFactory.fake("ZOMBIE_TYPE");
 
     // SORTFIELDS:OFF
 

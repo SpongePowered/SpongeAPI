@@ -91,7 +91,7 @@ import org.spongepowered.api.data.manipulator.mutable.entity.StatisticData;
 import org.spongepowered.api.data.manipulator.mutable.entity.TameableData;
 import org.spongepowered.api.data.manipulator.mutable.entity.VehicleData;
 import org.spongepowered.api.data.manipulator.mutable.entity.VelocityData;
-import org.spongepowered.api.data.manipulator.mutable.entity.VillagerZombieData;
+import org.spongepowered.api.data.manipulator.mutable.entity.ZombieData;
 import org.spongepowered.api.data.type.Art;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.HandType;
@@ -480,10 +480,10 @@ public final class CatalogEntityData {
      */
     public static final Class<VelocityData> VELOCITY_DATA = VelocityData.class;
     /**
-     * Signifies that a {@link Zombie} is a "villager" zombie. Usually
-     * applicable to all {@link Zombie}s.
+     * Specifies the type of a {@link Zombie}, as well as its profession
+     * (if it has one).
      */
-    public static final Class<VillagerZombieData> VILLAGER_ZOMBIE_DATA = VillagerZombieData.class;
+    public static final Class<ZombieData> ZOMBIE_DATA = ZombieData.class;
     /**
      * Signifies that an entity is currently "wet". Usually applicable to
      * {@link Wolf} entities.
