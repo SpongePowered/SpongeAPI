@@ -129,18 +129,18 @@ public final class GenericArguments {
         return new UserCommandElement(key, false);
     }
 
-	/**
-	 * Expect an argument to represent a player who has been online at some point,
-	 * as a {@link User}, or if nothing matches and the source is a {@link User},
-	 * give the user. If nothing matches and the source is not a {@link User}, throw
-	 * an exception.
-	 *
-	 * @param key The key to store under
-	 * @return the argument
-	 */
-	public static CommandElement userOrSource(Text key) {
-		return new UserCommandElement(key, true);
-	}
+    /**
+     * Expect an argument to represent a player who has been online at some point,
+     * as a {@link User}, or if nothing matches and the source is a {@link User},
+     * give the user. If nothing matches and the source is not a {@link User}, throw
+     * an exception.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement userOrSource(Text key) {
+        return new UserCommandElement(key, true);
+    }
 
     /**
      * Expect an argument to represent a world. This gives a WorldProperties object rather than an actual world in order to include unloaded worlds
