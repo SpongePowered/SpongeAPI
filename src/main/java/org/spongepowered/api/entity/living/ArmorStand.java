@@ -90,18 +90,6 @@ public interface ArmorStand extends Living, ArmorEquipable {
     }
 
     /**
-     * Gets the {@link Boolean} {@link Value} of whether this
-     * {@link ArmorStand} reacts to "gravity". If
-     * {@code true}, the armor stand will naturally obey the laws
-     * of physics and fall.
-     *
-     * @return The value for the gravity state
-     */
-    default Value<Boolean> gravity() {
-        return getValue(Keys.ARMOR_STAND_HAS_GRAVITY).get();
-    }
-
-    /**
      * Gets the {@link ArmorStandData} for this armor stand.
      *
      * @return The data manipulator for this armorstand

@@ -34,6 +34,7 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource; 
 import org.spongepowered.api.text.translation.Translatable;
@@ -549,5 +550,14 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
      * @return The created archetype for re-creating this entity
      */
     EntityArchetype createArchetype();
+
+    /**
+     * Returns whether this entity has gravity.
+     *
+     * @return True if this entity has gravity
+     */
+    default Value<Boolean> gravity() {
+        return getValue(Keys.HAS_GRAVITY).get();
+    }
 
 }

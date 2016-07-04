@@ -96,8 +96,6 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> ARMOR_STAND_HAS_BASE_PLATE = KeyFactory.fake("ARMOR_STAND_HAS_BASE_PLATE");
 
-    public static final Key<Value<Boolean>> ARMOR_STAND_HAS_GRAVITY = KeyFactory.fake("ARMOR_STAND_HAS_GRAVITY");
-
     public static final Key<Value<Boolean>> ARMOR_STAND_IS_SMALL = KeyFactory.fake("ARMOR_STAND_IS_SMALL");
 
     public static final Key<Value<Boolean>> ARMOR_STAND_MARKER = KeyFactory.fake("ARMOR_STAND_MARKER");
@@ -421,6 +419,8 @@ public final class Keys {
      * @see GrowthData#growthStage()
      */
     public static final Key<MutableBoundedValue<Integer>> GROWTH_STAGE = KeyFactory.fake("GROWTH_STAGE");
+
+    public static final Key<Value<Boolean>> HAS_GRAVITY = KeyFactory.fake("HAS_GRAVITY");
 
     public static final Key<Value<Vector3d>> HEAD_ROTATION = KeyFactory.fake("HEAD_ROTATION");
 

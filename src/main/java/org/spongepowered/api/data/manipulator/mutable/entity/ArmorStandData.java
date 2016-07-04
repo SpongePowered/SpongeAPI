@@ -40,13 +40,6 @@ public interface ArmorStandData extends DataManipulator<ArmorStandData, Immutabl
     Value<Boolean> small();
 
     /**
-     * Returns whether this armor stand is affected by gravity or not.
-     *
-     * @return Whether this armor stand is affected by gravity or not
-     */
-    Value<Boolean> gravity();
-
-    /**
      * Returns whether this armor stand shows arms or not.
      * <p>Arms that do not show may also not show an item in hand.</p>
      *

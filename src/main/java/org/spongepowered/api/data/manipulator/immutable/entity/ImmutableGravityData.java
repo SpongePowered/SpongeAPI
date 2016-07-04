@@ -25,33 +25,22 @@
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.ArmorStandData;
+import org.spongepowered.api.data.manipulator.mutable.entity.GravityData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.entity.Entity;
 
-public interface ImmutableArmorStandData extends ImmutableDataManipulator<ImmutableArmorStandData, ArmorStandData> {
-
-    ImmutableValue<Boolean> marker();
-
-    /**
-     * Returns whether this armor stand is a small armor stand or not.
-     *
-     * @return Whether this is a small armor stand
-     */
-    ImmutableValue<Boolean> small();
+/**
+ * An {@link ImmutableDataManipulator} for the gravity state. If the value is
+ * true, the {@link Entity} will have gravity.
+ */
+public interface ImmutableGravityData extends ImmutableDataManipulator<ImmutableGravityData, GravityData> {
 
     /**
-     * Returns whether this armor stand shows arms or not.
-     * <p>Arms that do not show may also not show an item in hand.</p>
+     * Gets the {@link ImmutableValue} of the gravity of an {@link Entity}.
+     * Returns true when the {@link Entity} has gravity.
      *
-     * @return Whether this armor stand shows its arms
+     * @return The immutable value of the gravity
      */
-    ImmutableValue<Boolean> arms();
-
-    /**
-     * Gets whether this armor stand has a visible base plate or not.
-     *
-     * @return Whether this armor stand has a visible base plate
-     */
-    ImmutableValue<Boolean> basePlate();
+    ImmutableValue<Boolean> gravity();
 
 }
