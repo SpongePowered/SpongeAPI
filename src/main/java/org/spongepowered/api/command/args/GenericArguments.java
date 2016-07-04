@@ -1525,7 +1525,7 @@ public final class GenericArguments {
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            try{
+            try {
                 UUID uuid = UUID.fromString(choice);
                 for (World world : Sponge.getServer().getWorlds()) {
                     Optional<Entity> ret = world.getEntity(uuid);
@@ -1536,7 +1536,7 @@ public final class GenericArguments {
             } catch (IllegalArgumentException uuidException) {
                 //assume player
                 Optional<Player> optPlayer = Sponge.getServer().getPlayer(choice);
-                if(optPlayer.isPresent()) {
+                if (optPlayer.isPresent()) {
                     return optPlayer.get();
                 }
             }
