@@ -488,26 +488,6 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     Optional<AABB> getBlockSelectionBox(int x, int y, int z);
 
     /**
-     * Gets the bounding box used for block collisions.
-     *
-     * @param pos The position of the block from which to get the collision box
-     * @return The collision box
-     */
-    default Optional<AABB> getBlockCollisionBox(Vector3i pos) {
-        return getBlockCollisionBox(pos.getX(), pos.getY(), pos.getZ());
-    }
-
-    /**
-     * Gets the bounding box used for block collisions.
-     *
-     * @param x The x coordinate of the block from which to get the collision box
-     * @param y The y coordinate of the block from which to get the collision box
-     * @param z The z coordinate of the block from which to get the collision box
-     * @return The collision box
-     */
-    Optional<AABB> getBlockCollisionBox(int x, int y, int z);
-
-    /**
      * Gets all the entities that intersect the bounding box, in no particular
      * order.
      *
