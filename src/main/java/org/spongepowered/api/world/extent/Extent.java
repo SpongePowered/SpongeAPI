@@ -508,4 +508,13 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      */
     Set<Entity> getIntersectingEntities(AABB box, Predicate<Entity> filter);
 
+    /**
+     * Gets all the block collision boxes that intersect the bounding box, in
+     * no particular order. There may be more than one box per block.
+     *
+     * @param box The intersection box
+     * @return All the intersecting block collision boxes
+     */
+    Set<AABB> getIntersectingBlockCollisionBoxes(AABB box);
+
 }
