@@ -32,9 +32,9 @@ package org.spongepowered.api.text.dialogue;
 public interface AdditionalAnswerProcessor {
 
     /**
-     * Processes an {@link Question}.
+     * Processes a {@link Question}.
      *
-     * @param dialogue The current dialogue.
+     * @param dialogue The current dialogue
      * @param question The question being answered
      * @param answer The answer to the question
      */

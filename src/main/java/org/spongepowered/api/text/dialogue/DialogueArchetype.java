@@ -109,8 +109,10 @@ public interface DialogueArchetype {
     boolean suppressesOutputToPeers();
 
     /**
-     * Gets the channels that are allowed through {@link
-     * #suppressesAllMessages()}. This {@link Collection} is immutable.
+     * Gets a collection of message channels which are allowed
+     * through {@link #suppressesAllMessages()}.
+     *
+     * <p>The returned {@link Collection} is immutable.</p>
      *
      * @return The allowed channels
      */

@@ -43,7 +43,7 @@ import java.util.Collection;
 public interface Question extends TextRepresentable {
 
     /**
-     * Creates a {@link Builder} to return an {@link Question}.
+     * Creates a {@link Builder} to return a {@link Question}.
      *
      * @return The new builder
      */
@@ -68,11 +68,13 @@ public interface Question extends TextRepresentable {
      *
      * @return The processor
      */
-    AnswerProcessor getMainProcessor();
+    AnswerProcessor getProcessor();
 
     /**
      * Gets the {@link AdditionalAnswerProcessor}s to use when processing
-     * {@link Answer}s. This {@link Collection} is immutable.
+     * {@link Answer}s.
+     *
+     * <p>The returned {@link Collection} is immutable.</p>
      *
      * @return The processor
      */
@@ -133,7 +135,7 @@ public interface Question extends TextRepresentable {
          * Adds extra processors to use when processing {@link Answer}s. They
          * cannot determine the next {@link Question}.
          *
-         * @param processors The processors to use.
+         * @param processors The processors to use
          * @return This builder, for chaining
          */
         default Builder additionalProcessors(Iterable<? extends AdditionalAnswerProcessor> processors) {
