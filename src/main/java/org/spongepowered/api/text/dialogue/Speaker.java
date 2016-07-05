@@ -26,14 +26,14 @@ package org.spongepowered.api.text.dialogue;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.command.CommandSource;
 
 import java.util.Optional;
 
 /**
  * Anything that can take part in the answering side of a {@link Dialogue}.
  */
-public interface Speaker extends MessageReceiver {
+public interface Speaker extends CommandSource {
 
     /**
      * Gets whether this speaker is currently in a {@link Dialogue}.
