@@ -29,7 +29,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextRepresentable;
-import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.Tristate;
 
@@ -81,35 +80,11 @@ public interface Question extends TextRepresentable {
     Collection<AdditionalAnswerProcessor> getAdditionalProcessors();
 
     /**
-     * Gets all {@link MessageChannel}s that are allowed through suppression.
-     * This {@link Collection} is immutable.
-     *
-     * @return The channels
-     */
-    Collection<MessageChannel> getAllowedChannels();
-
-    /**
-     * Gets whether or not this question suppresses messages.
-     *
-     * @return Whether or not messages are suppressed.
-     */
-    Tristate suppressesMessages();
-
-    /**
      * Gets whether or not this question suppresses output.
      *
      * @return Whether or not messages are suppressed.
      */
     Tristate suppressesOutput();
-
-    /**
-     * Gets whether or not this question suppresses output to {@link Speaker}s
-     * in the same {@link Dialogue}.
-     *
-     * @return Whether or not output to speakers in the same conversation is
-     * suppressed
-     */
-    Tristate suppressesOutputToPeers();
 
     interface Builder extends ResettableBuilder<Question, Builder> {
 
@@ -153,25 +128,6 @@ public interface Question extends TextRepresentable {
         Builder additionalProcessor(AdditionalAnswerProcessor processor);
 
         /**
-         * Sets whether or not all messages should be suppressed. If
-         * {@link Tristate#UNDEFINED}, the {@link DialogueArchetype}'s setting
-         * is used instead.
-         *
-         * @param suppress Whether or not all messages should be suppressed
-         * @return This builder, for chaining
-         */
-        Builder suppressesAllMessages(Tristate suppress);
-
-        /**
-         * Sets specific {@link MessageChannel}s to not suppress. This is
-         * ignored if {@link #suppressesAllMessages(Tristate)} is set to false.
-         *
-         * @param channels The channels to allow
-         * @return This builder, for chaining
-         */
-        Builder allowedChannels(Iterable<MessageChannel> channels);
-
-        /**
          * Sets whether or not any output by the {@link Speaker} should be
          * suppressed (as opposed to allowing it to go to, for example, main
          * chat). If {@link Tristate#UNDEFINED}, the {@link DialogueArchetype}'s
@@ -181,18 +137,6 @@ public interface Question extends TextRepresentable {
          * @return This builder, for chaining
          */
         Builder suppressesOutput(Tristate suppress);
-
-        /**
-         * Sets whether or not other {@link Speaker}s in the same {@link
-         * Dialogue} can see responses to this question. If {@link
-         * Tristate#UNDEFINED}, the {@link DialogueArchetype}'s setting is used
-         * instead.
-         *
-         * @param suppress Whether output to speakers in the same dialogue
-         * should be suppressed
-         * @return This builder, for chaining
-         */
-        Builder suppressesOutputToPeers(Tristate suppress);
 
         /**
          * Builds an instance of a {@link Question}.

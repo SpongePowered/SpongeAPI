@@ -30,10 +30,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.util.ResettableBuilder;
-
-import java.util.Collection;
 
 /**
  * Represents a structure for a back-and-forth communication between one or
@@ -93,30 +90,11 @@ public interface DialogueArchetype {
     boolean suppressesOutput();
 
     /**
-     * Gets whether or not messages are suppressed by default.
+     * Gets the handler for chat messages that occur during {@link Dialogue}s.
      *
-     * @return Whether messages are suppressed
+     * @return The handler
      */
-    boolean suppressesAllMessages();
-
-    /**
-     * Gets whether or not this question suppresses output to {@link Speaker}s
-     * in the same {@link Dialogue}.
-     *
-     * @return Whether or not output to speakers in the same conversation is
-     * suppressed
-     */
-    boolean suppressesOutputToPeers();
-
-    /**
-     * Gets a collection of message channels which are allowed
-     * through {@link #suppressesAllMessages()}.
-     *
-     * <p>The returned {@link Collection} is immutable.</p>
-     *
-     * @return The allowed channels
-     */
-    Collection<MessageChannel> getAllowedChannels();
+    DialogueChatHandler getChatHandler();
 
     interface Builder extends ResettableBuilder<DialogueArchetype, Builder> {
 
@@ -149,25 +127,6 @@ public interface DialogueArchetype {
         }
 
         /**
-         * Sets whether or not to suppress all messages by default.
-         * {@link Question}s can override this.
-         *
-         * @param suppress Whether or not to suppress messages
-         * @return This builder, for chaining
-         */
-        Builder suppressesAllMessages(boolean suppress);
-
-        /**
-         * Sets channels to allow messages from. This is ignored if
-         * {@link #suppressesAllMessages(boolean)}, or the {@link Question}
-         * equivalent, is set to true.
-         *
-         * @param channels The channels to allow
-         * @return This builder, for chaining
-         */
-        Builder allowedChannels(Iterable<MessageChannel> channels);
-
-        /**
          * Sets whether or not output by the {@link Speaker} should be
          * suppressed by default (as opposed to allowing it to go to, for
          * example, main chat). This can be overridden by {@link Question}s.
@@ -178,15 +137,13 @@ public interface DialogueArchetype {
         Builder suppressesOutput(boolean suppress);
 
         /**
-         * Sets whether or not other {@link Speaker}s in the same {@link
-         * Dialogue} can see responses to this question. {@link Question}s can
-         * override this.
+         * Sets the {@link DialogueChatHandler} to use when a chat message is
+         * sent to a {@link Speaker}.
          *
-         * @param suppress Whether output to speakers in the same dialogue
-         * should be suppressed
+         * @param handler The handler to use
          * @return This builder, for chaining
          */
-        Builder suppressesOutputToPeers(boolean suppress);
+        Builder chatHandler(DialogueChatHandler handler);
 
         /**
          * Builds the new DialogueArchetype instance.
