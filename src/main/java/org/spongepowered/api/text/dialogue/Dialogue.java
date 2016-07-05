@@ -29,9 +29,9 @@ import org.spongepowered.api.data.DataContainer;
 import java.util.Optional;
 
 /**
- * An instance of a {@link DialogueArchetype} that is in progress.
- * While {@link DialogueArchetype} is a structure, this is an actual instance of the
- * back-and-forth that it structures.
+ * An instance of a dialogue that is in progress.
+ * While {@link DialogueArchetype} is a structure, this is an actual instance
+ * of the back-and-forth that it structures.
  */
 public interface Dialogue {
 

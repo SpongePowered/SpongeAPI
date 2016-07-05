@@ -39,7 +39,8 @@ public interface AnswerProcessor {
      * @param dialogue The current dialogue
      * @param question The question being answered
      * @param answer The answer to the question
-     * @return The next {@link Question} in the {@link Dialogue}
+     * @return The next {@link Question} in the {@link Dialogue}. If {@link
+     * Optional#empty()}, the dialogue is concluded.
      */
     Optional<Question> process(Dialogue dialogue, Question question, Answer answer);
 
