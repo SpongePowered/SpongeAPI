@@ -29,12 +29,15 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.entity.EntityTypes;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.blockray.BlockRay;
 import org.spongepowered.api.util.blockray.BlockRayHit;
 import org.spongepowered.api.world.World;
 
 import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * An axis aligned bounding box. That is, an un-rotated cuboid.
@@ -50,6 +53,8 @@ public class AABB {
 
     private final Vector3d min;
     private final Vector3d max;
+    @Nullable private Vector3d size = null;
+    @Nullable private Vector3d center = null;
 
     /**
      * Constructs a new bounding box from two opposite corners.
@@ -113,12 +118,27 @@ public class AABB {
     }
 
     /**
+     * Returns the center of the box, halfway between each corner.
+     *
+     * @return The center
+     */
+    public Vector3d getCenter() {
+        if (this.center == null) {
+            this.center = this.min.add(getSize().div(2));
+        }
+        return this.center;
+    }
+
+    /**
      * Gets the size of the box.
      *
      * @return The size
      */
     public Vector3d getSize() {
-        return this.max.sub(this.min);
+        if (this.size == null) {
+            this.size = this.max.sub(this.min);
+        }
+        return this.size;
     }
 
     /**

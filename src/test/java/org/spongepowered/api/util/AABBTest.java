@@ -75,6 +75,12 @@ public class AABBTest {
     }
 
     @Test
+    public void testCenter() {
+        final AABB aabb = new AABB(new Vector3d(1, 2, 3), new Vector3d(7, 10, 13));
+        Assert.assertEquals(new Vector3d(4, 6, 8), aabb.getCenter());
+    }
+
+    @Test
     public void testContainsCoordinates() {
         final AABB aabb = new AABB(new Vector3d(1, 2, 3), new Vector3d(7, 10, 13));
         Assert.assertTrue(aabb.contains(5, 3, 11));
