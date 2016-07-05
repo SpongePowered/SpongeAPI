@@ -25,10 +25,11 @@
 package org.spongepowered.api.command.source;
 
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.text.dialogue.Speaker;
 
 /**
  * Represents the server console.
  */
-public interface ConsoleSource extends CommandSource {
+public interface ConsoleSource extends Speaker, CommandSource {
 
 }

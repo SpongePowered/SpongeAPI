@@ -46,6 +46,7 @@ import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.chat.ChatVisibility;
+import org.spongepowered.api.text.dialogue.Speaker;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -59,7 +60,7 @@ import java.util.Set;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Humanoid, User, LocatedSource, RemoteSource, Viewer, ChatTypeMessageReceiver {
+public interface Player extends Humanoid, User, LocatedSource, Speaker, RemoteSource, Viewer, ChatTypeMessageReceiver {
 
     /**
      * Returns whether this player has an open inventory at the moment

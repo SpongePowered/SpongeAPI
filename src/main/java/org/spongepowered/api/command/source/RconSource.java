@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.command.source;
 
+import org.spongepowered.api.text.dialogue.Speaker;
+
 /**
  * Represents an Rcon client.
  */
-public interface RconSource extends RemoteSource {
+public interface RconSource extends RemoteSource, Speaker {
 
     /**
      * Gets whether this client is logged in, or authenticated.
