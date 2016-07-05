@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.text.dialogue;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextRepresentable;
@@ -32,8 +34,6 @@ import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.Tristate;
 
 import java.util.Collection;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Each {@link DialogueArchetype} is made up of a dynamic tree of {@link Question}s,

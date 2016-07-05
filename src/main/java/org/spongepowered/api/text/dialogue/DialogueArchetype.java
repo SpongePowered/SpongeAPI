@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.text.dialogue;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.util.ResettableBuilder;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collection;
 

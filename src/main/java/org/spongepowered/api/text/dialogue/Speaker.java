@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.text.dialogue;
 
-import org.spongepowered.api.text.channel.MessageReceiver;
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.spongepowered.api.text.channel.MessageReceiver;
 
 import java.util.Optional;
 
