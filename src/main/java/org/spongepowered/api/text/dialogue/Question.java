@@ -51,6 +51,64 @@ public interface Question extends TextRepresentable {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the {@link Text} that this question shows when asked.
+     *
+     * @return The text object
+     */
+    Text getText();
+
+    @Override
+    default Text toText() {
+        return getText();
+    }
+
+    /**
+     * Gets the {@link AnswerProcessor} to use when processing {@link Answer}s.
+     *
+     * @return The processor
+     */
+    AnswerProcessor getMainProcessor();
+
+    /**
+     * Gets the {@link AdditionalAnswerProcessor}s to use when processing
+     * {@link Answer}s. This {@link Collection} is immutable.
+     *
+     * @return The processor
+     */
+    Collection<AdditionalAnswerProcessor> getAdditionalProcessors();
+
+    /**
+     * Gets all {@link MessageChannel}s that are allowed through suppression.
+     * This {@link Collection} is immutable.
+     *
+     * @return The channels
+     */
+    Collection<MessageChannel> getAllowedChannels();
+
+    /**
+     * Gets whether or not this question suppresses messages.
+     *
+     * @return Whether or not messages are suppressed.
+     */
+    Tristate suppressesMessages();
+
+    /**
+     * Gets whether or not this question suppresses output.
+     *
+     * @return Whether or not messages are suppressed.
+     */
+    Tristate suppressesOutput();
+
+    /**
+     * Gets whether or not this question suppresses output to {@link Speaker}s
+     * in the same {@link Dialogue}.
+     *
+     * @return Whether or not output to speakers in the same conversation is
+     * suppressed
+     */
+    Tristate suppressesOutputToPeers();
+
     interface Builder extends ResettableBuilder<Question, Builder> {
 
         /**
@@ -141,64 +199,7 @@ public interface Question extends TextRepresentable {
          * @throws IllegalStateException If the question is not complete
          */
         Question build();
+
     }
-
-    /**
-     * Gets the {@link Text} that this question shows when asked.
-     *
-     * @return The text object
-     */
-    Text getText();
-
-    @Override
-    default Text toText() {
-        return getText();
-    }
-
-    /**
-     * Gets the {@link AnswerProcessor} to use when processing {@link Answer}s.
-     *
-     * @return The processor
-     */
-    AnswerProcessor getMainProcessor();
-
-    /**
-     * Gets the {@link AdditionalAnswerProcessor}s to use when processing
-     * {@link Answer}s. This {@link Collection} is immutable.
-     *
-     * @return The processor
-     */
-    Collection<AdditionalAnswerProcessor> getAdditionalProcessors();
-
-    /**
-     * Gets all {@link MessageChannel}s that are allowed through suppression.
-     * This {@link Collection} is immutable.
-     *
-     * @return The channels
-     */
-    Collection<MessageChannel> getAllowedChannels();
-
-    /**
-     * Gets whether or not this question suppresses messages.
-     *
-     * @return Whether or not messages are suppressed.
-     */
-    Tristate suppressesMessages();
-
-    /**
-     * Gets whether or not this question suppresses output.
-     *
-     * @return Whether or not messages are suppressed.
-     */
-    Tristate suppressesOutput();
-
-    /**
-     * Gets whether or not this question suppresses output to {@link Speaker}s
-     * in the same {@link Dialogue}.
-     *
-     * @return Whether or not output to speakers in the same conversation is
-     * suppressed
-     */
-    Tristate suppressesOutputToPeers();
 
 }

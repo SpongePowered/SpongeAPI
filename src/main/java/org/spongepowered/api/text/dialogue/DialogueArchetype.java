@@ -68,6 +68,54 @@ public interface DialogueArchetype {
      */
     Dialogue start(Iterable<? extends Speaker> speakers);
 
+    /**
+     * Gets the first question that is shown to the {@link Speaker} when the
+     * {@link Dialogue} is instantiated.
+     *
+     * @return The initial question
+     */
+    Question getInitialQuestion();
+
+    /**
+     * Gets the initial data that the generated {@link Dialogue} will be
+     * populated with. This is a copy of the data.
+     *
+     * @return The data
+     */
+    DataContainer getInitialData();
+
+    /**
+     * Gets whether or not output is suppressed by default.
+     *
+     * @return Whether output is suppressed
+     * @see Builder#suppressesOutput(boolean)
+     */
+    boolean suppressesOutput();
+
+    /**
+     * Gets whether or not messages are suppressed by default.
+     *
+     * @return Whether messages are suppressed
+     */
+    boolean suppressesAllMessages();
+
+    /**
+     * Gets whether or not this question suppresses output to {@link Speaker}s
+     * in the same {@link Dialogue}.
+     *
+     * @return Whether or not output to speakers in the same conversation is
+     * suppressed
+     */
+    boolean suppressesOutputToPeers();
+
+    /**
+     * Gets the channels that are allowed through {@link
+     * #suppressesAllMessages()}. This {@link Collection} is immutable.
+     *
+     * @return The allowed channels
+     */
+    Collection<MessageChannel> getAllowedChannels();
+
     interface Builder extends ResettableBuilder<DialogueArchetype, Builder> {
 
         /**
@@ -145,54 +193,6 @@ public interface DialogueArchetype {
          * @throws IllegalStateException If the archetype is incomplete
          */
         DialogueArchetype build();
+
     }
-
-    /**
-     * Gets the first question that is shown to the {@link Speaker} when the
-     * {@link Dialogue} is instantiated.
-     *
-     * @return The initial question
-     */
-    Question getInitialQuestion();
-
-    /**
-     * Gets the initial data that the generated {@link Dialogue} will be
-     * populated with. This is a copy of the data.
-     *
-     * @return The data
-     */
-    DataContainer getInitialData();
-
-    /**
-     * Gets whether or not output is suppressed by default.
-     *
-     * @return Whether output is suppressed
-     * @see Builder#suppressesOutput(boolean)
-     */
-    boolean suppressesOutput();
-
-    /**
-     * Gets whether or not messages are suppressed by default.
-     *
-     * @return Whether messages are suppressed
-     */
-    boolean suppressesAllMessages();
-
-    /**
-     * Gets whether or not this question suppresses output to {@link Speaker}s
-     * in the same {@link Dialogue}.
-     *
-     * @return Whether or not output to speakers in the same conversation is
-     * suppressed
-     */
-    boolean suppressesOutputToPeers();
-
-    /**
-     * Gets the channels that are allowed through {@link
-     * #suppressesAllMessages()}. This {@link Collection} is immutable.
-     *
-     * @return The allowed channels
-     */
-    Collection<MessageChannel> getAllowedChannels();
-
 }
