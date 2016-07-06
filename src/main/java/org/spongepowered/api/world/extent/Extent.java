@@ -44,6 +44,7 @@ import org.spongepowered.api.world.extent.worker.MutableBiomeAreaWorker;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -516,5 +517,31 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @return All the intersecting block collision boxes
      */
     Set<AABB> getIntersectingBlockCollisionBoxes(AABB box);
+
+    /**
+     * Gets all the collision boxes that intersect the bounding box owned by
+     * the entity, in no particular order. There may be more than one box per
+     * block. This also includes entities. Will return an empty set if the
+     * owner does not have a bounding box.
+     *
+     * @param owner The entity that owns the bounding box
+     * @return All the intersecting collision boxes
+     */
+    default Set<AABB> getIntersectingCollisionBoxes(Entity owner) {
+        return owner.getBoundingBox().
+            map(box -> getIntersectingCollisionBoxes(owner, box)).
+            orElse(Collections.emptySet());
+    }
+
+    /**
+     * Gets all the collision boxes that intersect the bounding box owned by
+     * the entity, in no particular order. There may be more than one box per
+     * block. This also includes entities.
+     *
+     * @param owner The entity that owns the bounding box
+     * @param box The intersection box
+     * @return All the intersecting collision boxes
+     */
+    Set<AABB> getIntersectingCollisionBoxes(Entity owner, AABB box);
 
 }
