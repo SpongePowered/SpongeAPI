@@ -91,6 +91,27 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable {
     }
 
     /**
+     * Called before running specific block logic at a {@link Location} such as
+     * {@link BlockTypes#FLOWING_WATER}.
+     */
+    interface Pre extends TargetWorldEvent, Cancellable {
+        /**
+         * Represents the starting {@link Location} where one or more
+         * {@link BlockState} changes can occur.
+         * 
+         * <p> Canceling this event will prevent block logic from running
+         * and also stop {@link BlockSnapshot}'s from being generated.</p>
+         * 
+         * <p> Note: This event is not intended to always be fired before changing
+         * a {@link BlockState} but rather it is primarily used to prevent one
+         * or more {@link BlockState}'s from being changed.</p>
+         * 
+         * @return The location of target block
+         */
+        Location<World> getLocation();
+    }
+
+    /**
      * Called when specific {@link BlockType}s have a notion of "decaying"
      * for various reasons such that the changes are always caused by
      * themselves.
