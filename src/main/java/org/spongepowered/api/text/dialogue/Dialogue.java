@@ -56,8 +56,8 @@ public interface Dialogue {
      * subsequently receive all {@link Question}s.
      *
      * @param speaker The speaker to add
-     * @throws IllegalStateException If the speaker is already part of the
-     *     dialogue
+     * @throws IllegalStateException If the speaker is already in a dialogue,
+     *     including this one
      */
     void addSpeaker(Speaker speaker);
 
