@@ -31,8 +31,9 @@ import java.util.Optional;
 
 /**
  * An instance of a dialogue that is in progress.
- * While {@link DialogueArchetype} is a structure, this is an actual instance
- * of the back-and-forth that it structures.
+ *
+ * <p>While {@link DialogueArchetype} is a structure, this is an actual instance
+ * of the back-and-forth that it structures.</p>
  */
 public interface Dialogue {
 
@@ -56,7 +57,7 @@ public interface Dialogue {
      *
      * @param speaker The speaker to add
      * @throws IllegalStateException If the speaker is already part of the
-     * dialogue
+     *     dialogue
      */
     void addSpeaker(Speaker speaker);
 
@@ -65,7 +66,7 @@ public interface Dialogue {
      *
      * @param speaker The speaker
      * @return The question if the speaker is in this dialogue, otherwise
-     * {@link Optional#empty()}
+     *     {@link Optional#empty()}
      */
     Optional<Question> getCurrentQuestionFor(Speaker speaker);
 
@@ -85,7 +86,7 @@ public interface Dialogue {
      * @param suppress Whether or not to suppress the next chat message
      * @param speaker The speaker to remove
      * @throws IllegalStateException If the dialogue is already concluded, or
-     * if the speaker is not part of the dialogue
+     *     if the speaker is not part of the dialogue
      */
     void removeSpeaker(Speaker speaker, Text message, boolean suppress);
 

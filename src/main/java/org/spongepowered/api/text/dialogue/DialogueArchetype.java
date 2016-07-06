@@ -36,7 +36,7 @@ import java.util.Collection;
 
 /**
  * Represents a structure for a back-and-forth communication between one or
- * more {@link Speaker}s and one or more plugiins.
+ * more {@link Speaker}s and one or more plugins.
  */
 public interface DialogueArchetype {
 

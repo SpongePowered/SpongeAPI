@@ -50,7 +50,7 @@ public interface Speaker extends CommandSource {
      * Gets the current {@link Dialogue} that this speaker is in.
      *
      * @return The instance if the speaker is in one, otherwise
-     * {@link Optional#empty}
+     *     {@link Optional#empty}
      */
     Optional<Dialogue> getCurrentDialogue();
 
@@ -59,7 +59,7 @@ public interface Speaker extends CommandSource {
      *
      * @param dialogue The dialogue to add the speaker to
      * @throws IllegalStateException If the speaker is already in a
-     * {@link Dialogue}
+     *     {@link Dialogue}
      * @see Dialogue#addSpeaker(Speaker)
      */
     default void addToDialogue(Dialogue dialogue) {
@@ -70,7 +70,7 @@ public interface Speaker extends CommandSource {
      * Gets the {@link Question} that the speaker is currently in.
      *
      * @return The question if the speaker is in a dialogue, otherwise
-     * {@link Optional#empty()}
+     *     {@link Optional#empty()}
      */
     default Optional<Question> getCurrentQuestion() {
         return this.getCurrentDialogue().flatMap(dialogue -> dialogue.getCurrentQuestionFor(this));

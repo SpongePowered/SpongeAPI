@@ -42,7 +42,7 @@ public interface DialogueChatHandler {
      *
      * @param dialogue The dialogue that is currently open.
      * @param details The details of the chat that has been sent to a {@link
-     * Speaker} and has been intercepted.
+     *     Speaker} and has been intercepted.
      * @return Whether or not to proceed with sending the message.
      */
     boolean process(Dialogue dialogue, ChatDetails details);
