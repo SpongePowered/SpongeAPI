@@ -32,6 +32,8 @@ import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.Collection;
+
 /**
  * Represents a structure for a back-and-forth communication between one or
  * more {@link Speaker}s and one or more plugiins.
@@ -96,6 +98,15 @@ public interface DialogueArchetype {
      */
     DialogueChatHandler getChatHandler();
 
+    /**
+     * Gets the handlers for when the {@link Dialogue} concludes.
+     *
+     * <p>The returned collection is immutable.</p>
+     *
+     * @return The handlers
+     */
+    Collection<DialogueConclusionHandler> getConclusionHandlers();
+
     interface Builder extends ResettableBuilder<DialogueArchetype, Builder> {
 
         /**
@@ -144,6 +155,26 @@ public interface DialogueArchetype {
          * @return This builder, for chaining
          */
         Builder chatHandler(DialogueChatHandler handler);
+
+        /**
+         * Adds a handler for when the dialogue concludes. This is repeatable.
+         *
+         * @param handler The handler to use
+         * @return This builder, for chaining
+         */
+        Builder conclusionHandler(DialogueConclusionHandler handler);
+
+        /**
+         * Adds multiple handlers for when the dialogue concludes. This is
+         * repeatable (but likely unnecessarily so).
+         *
+         * @param handlers The handlers to add
+         * @return This builder, for chaining
+         */
+        default Builder conclusionHandlers(Iterable<DialogueConclusionHandler> handlers) {
+            checkNotNull(handlers).forEach(this::conclusionHandler);
+            return this;
+        }
 
         /**
          * Builds the new DialogueArchetype instance.

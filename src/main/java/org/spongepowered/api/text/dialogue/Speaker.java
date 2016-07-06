@@ -76,4 +76,5 @@ public interface Speaker extends CommandSource {
         return this.getCurrentDialogue().flatMap(dialogue -> dialogue.getCurrentQuestionFor(this));
     }
 
+
 }

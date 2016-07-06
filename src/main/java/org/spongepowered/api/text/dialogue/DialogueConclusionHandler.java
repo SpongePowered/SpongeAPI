@@ -24,27 +24,19 @@
  */
 package org.spongepowered.api.text.dialogue;
 
-import java.util.Optional;
-
 /**
- * A functional interface which processes {@link Answer}s.
+ * A functional interface acting as an event handler for the conclusion of
+ * dialogues.
  */
 @FunctionalInterface
-public interface AnswerProcessor {
+public interface DialogueConclusionHandler {
 
     /**
-     * Processes an {@link Answer} and returns the next {@link Question} in
-     * the {@link Dialogue}.
+     * Called when a {@link Dialogue} that this handler has been registered
+     * with concludes.
      *
-     * <p>If an exception is thrown, the {@link Speaker} is removed from the
-     * {@link Dialogue}.</p>
-     *
-     * @param dialogue The current dialogue
-     * @param question The question being answered
-     * @param answer The answer to the question
-     * @return The next {@link Question} in the {@link Dialogue}. If {@link
-     * Optional#empty()}, the dialogue is concluded.
+     * @param dialogue The dialogue that has concluded
      */
-    Optional<Question> process(Dialogue dialogue, Question question, Answer answer);
+    void handle(Dialogue dialogue);
 
 }

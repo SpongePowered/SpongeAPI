@@ -25,6 +25,7 @@
 package org.spongepowered.api.text.dialogue;
 
 import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.text.Text;
 
 import java.util.Optional;
 
@@ -54,6 +55,8 @@ public interface Dialogue {
      * subsequently receive all {@link Question}s.
      *
      * @param speaker The speaker to add
+     * @throws IllegalStateException If the speaker is already part of the
+     * dialogue
      */
     void addSpeaker(Speaker speaker);
 
@@ -65,5 +68,25 @@ public interface Dialogue {
      * {@link Optional#empty()}
      */
     Optional<Question> getCurrentQuestionFor(Speaker speaker);
+
+    /**
+     * Stops the dialogue, removing all {@link Speaker}s.
+     *
+     * @param message The message to send as notification to the speakers
+     * @param suppress Whether or not to suppress the next chat message
+     * @throws IllegalStateException If the dialogue is already concluded
+     */
+    void conclude(Text message, boolean suppress);
+
+    /**
+     * Removes a speaker from this dialogue.
+     *
+     * @param message The message to send as notification to the speakers
+     * @param suppress Whether or not to suppress the next chat message
+     * @param speaker The speaker to remove
+     * @throws IllegalStateException If the dialogue is already concluded, or
+     * if the speaker is not part of the dialogue
+     */
+    void removeSpeaker(Speaker speaker, Text message, boolean suppress);
 
 }
