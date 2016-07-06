@@ -64,11 +64,11 @@ public class DialogueChatHandlers {
      * @return The new handler
      */
     public static DialogueChatHandler queue(int max) {
-        checkArgument(max > 0, "max > 0");
+        checkArgument(max > 0, "max must be greater than 0");
         return new QueueingChatHandler(max);
     }
 
-    private static class DiscardAllChatHandler implements DialogueChatHandler {
+    public static class DiscardAllChatHandler implements DialogueChatHandler {
 
         @Override
         public boolean process(Dialogue dialogue, ChatDetails details) {
@@ -80,11 +80,11 @@ public class DialogueChatHandlers {
 
     }
 
-    private static class QueueingChatHandler implements DialogueChatHandler {
+    public static class QueueingChatHandler implements DialogueChatHandler {
 
-        final ListMultimap<Dialogue, ChatDetails> map = ArrayListMultimap.create();
-        final int max;
-        final boolean hasLimit;
+        protected final ListMultimap<Dialogue, ChatDetails> map = ArrayListMultimap.create();
+        protected final int max;
+        protected final boolean hasLimit;
 
         public QueueingChatHandler() {
             this.max = 0;

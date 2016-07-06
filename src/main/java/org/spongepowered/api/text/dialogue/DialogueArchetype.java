@@ -172,7 +172,7 @@ public interface DialogueArchetype {
          * @return This builder, for chaining
          */
         default Builder conclusionHandlers(Iterable<DialogueConclusionHandler> handlers) {
-            checkNotNull(handlers).forEach(this::conclusionHandler);
+            checkNotNull(handlers, "handlers").forEach(this::conclusionHandler);
             return this;
         }
 

@@ -51,7 +51,7 @@ public interface DialogueChatHandler {
      * Notifies this handler of the end of the dialogue.
      *
      * <p>This method can be used to send queued messages after the dialogue
-     * has been completed. Please ensure that they are sent to the correct
+     * has been concluded. Please ensure that they are sent to the correct
      * {@link MessageChannel}.</p>
      *
      * @param dialogue The dialogue that was concluded

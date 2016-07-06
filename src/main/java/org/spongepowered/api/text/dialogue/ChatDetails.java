@@ -25,6 +25,7 @@
 package org.spongepowered.api.text.dialogue;
 
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.chat.ChatType;
 
@@ -33,7 +34,7 @@ import java.util.Optional;
 /**
  * A container class for use in {@link DialogueChatHandler}s.
  */
-public interface ChatDetails {
+public interface ChatDetails extends TextRepresentable {
 
     /**
      * Gets the message that was sent in chat.
@@ -62,5 +63,10 @@ public interface ChatDetails {
      * @return The sender, if there was one
      */
     Optional<Object> getSender();
+
+    @Override
+    default Text toText() {
+        return this.getMessage();
+    }
 
 }
