@@ -578,6 +578,24 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.ChangeBlockEvent.Pre}.
+     * 
+     * @param cause The cause
+     * @param locations The locations
+     * @param targetWorld The target world
+     * @return A new pre change block event
+     */
+    public static ChangeBlockEvent.Pre createChangeBlockEventPre(Cause cause, List<Location<World>> locations, World targetWorld) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("locations", locations);
+        values.put("targetWorld", targetWorld);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.Pre.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.block.CollideBlockEvent}.
      * 
      * @param cause The cause
