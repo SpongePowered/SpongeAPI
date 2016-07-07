@@ -53,7 +53,6 @@ public interface BlockVolumeWorker<V extends BlockVolume> {
     /**
      * Applies a mapping operation to all the blocks in the volume and saves the
      * results to the destination volume.
-     *
      * @param mapper The mapping operation
      * @param destination The destination volume
      */
@@ -62,7 +61,6 @@ public interface BlockVolumeWorker<V extends BlockVolume> {
     /**
      * Applies a merging operation to the blocks of the operating volume and an
      * external one. Saves the results to the destination volume.
-     *
      * @param second The volume to merge with
      * @param merger The merging operation
      * @param destination The destination volume

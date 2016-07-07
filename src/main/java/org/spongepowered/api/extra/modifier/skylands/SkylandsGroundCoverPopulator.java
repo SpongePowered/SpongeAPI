@@ -29,6 +29,7 @@ import com.flowpowered.noise.Noise;
 import com.flowpowered.noise.NoiseQuality;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.ImmutableBiomeArea;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
@@ -45,6 +46,8 @@ public class SkylandsGroundCoverPopulator implements GenerationPopulator {
         new VariableGroundCoverLayer(BlockTypes.DIRT, 1, 4)
     };
     private static final double HOLE_THRESHOLD = 0.6;
+
+    private final Cause populatorCause = Cause.source(this).build();
 
     @Override
     public void populate(World world, MutableBlockVolume buffer, ImmutableBiomeArea biomes) {
@@ -83,7 +86,7 @@ public class SkylandsGroundCoverPopulator implements GenerationPopulator {
                                     break yIteration;
                                 }
                                 if (!buffer.getBlockType(xx, yy, zz).equals(BlockTypes.AIR)) {
-                                    buffer.setBlockType(xx, yy, zz, cover);
+                                    buffer.setBlockType(xx, yy, zz, cover, this.populatorCause);
                                 } else {
                                     break layerIteration;
                                 }

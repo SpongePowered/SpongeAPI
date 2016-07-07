@@ -310,6 +310,6 @@ public interface InteractableVolume extends MutableBlockVolume {
     int getBlockDigTimeWith(int x, int y, int z, ItemStack itemStack, Cause cause);
 
     @Override
-    MutableBlockVolumeWorker<? extends InteractableVolume> getBlockWorker();
+    MutableBlockVolumeWorker<? extends InteractableVolume> getBlockWorker(Cause cause);
 
 }

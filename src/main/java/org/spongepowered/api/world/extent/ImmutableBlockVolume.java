@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.extent.worker.BlockVolumeWorker;
@@ -79,6 +80,6 @@ public interface ImmutableBlockVolume extends UnmodifiableBlockVolume {
     }
 
     @Override
-    BlockVolumeWorker<? extends ImmutableBlockVolume> getBlockWorker();
+    BlockVolumeWorker<? extends ImmutableBlockVolume> getBlockWorker(Cause cause);
 
 }

@@ -32,6 +32,7 @@ import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.ImmutableDataBuilder;
 import org.spongepowered.api.data.LocatableSnapshot;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -116,11 +117,11 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
      *
      * @param force If true, forces block state to be set even if the
      *     {@link BlockType} does not match the snapshot one.
-     * @param notifyNeighbors If true, notifies neighboring blocks to update
-     *     physics
-     * @return true if the restore was successful, false otherwise
+     * @param flag The block change flags to determine whether neighbors are
+     *     notified, block physics performed, etc.
+     * @return True if the restore was successful, false otherwise
      */
-    boolean restore(boolean force, boolean notifyNeighbors);
+    boolean restore(boolean force, BlockChangeFlag flag);
 
     /**
      * Gets the {@link UUID}, if available, of the user who created this

@@ -51,6 +51,7 @@ import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.extent.Extent;
@@ -518,22 +519,24 @@ public final class Location<E extends Extent> implements DataHolder {
      * <p>This will remove any extended block data at the given position.</p>
      *
      * @param state The new block state
+     * @param cause The cause for the block change
+     * @return True if the block change was successful
      */
-    public void setBlock(BlockState state) {
-        getExtent().setBlock(getBlockPosition(), state);
+    public boolean setBlock(BlockState state, Cause cause) {
+        return getExtent().setBlock(getBlockPosition(), state, cause);
     }
 
     /**
      * Replace the block at this position with a new state.
      *
      * <p>This will remove any extended block data at the given position.</p>
-     *
-     * @param state The new block state
-     * @param notifyNeighbors Whether or not you want to notify neighboring
-     * blocks of this change. If true, this may cause blocks to change.
+     *  @param state The new block state
+     * @param flag The various change flags controlling some interactions
+     * @param cause The cause for the block change
+     * @return True if the block change was successful
      */
-    public void setBlock(BlockState state, boolean notifyNeighbors) {
-        getExtent().setBlock(getBlockPosition(), state, notifyNeighbors);
+    public boolean setBlock(BlockState state, BlockChangeFlag flag, Cause cause) {
+        return getExtent().setBlock(getBlockPosition(), state, flag, cause);
     }
 
     /**
@@ -542,22 +545,24 @@ public final class Location<E extends Extent> implements DataHolder {
      * <p>This will remove any extended block data at the given position.</p>
      *
      * @param type The new type
+     * @param cause The cause for the block change
+     * @return True if the block change was successful
      */
-    public void setBlockType(BlockType type) {
-        getExtent().setBlockType(getBlockPosition(), type);
+    public boolean setBlockType(BlockType type, Cause cause) {
+        return getExtent().setBlockType(getBlockPosition(), type, cause);
     }
 
     /**
      * Replace the block type at this position by a new type.
      *
      * <p>This will remove any extended block data at the given position.</p>
-     *
      * @param type The new type
-     * @param notifyNeighbors Whether or not you want to notify neighboring
-     * blocks of this change. If true, this may cause blocks to change.
+     * @param flag The various change flags controlling some interactions
+     * @param cause The cause for the block change
+     * @return True if the block change was successful
      */
-    public void setBlockType(BlockType type, boolean notifyNeighbors) {
-        getExtent().setBlockType(getBlockPosition(), type, notifyNeighbors);
+    public boolean setBlockType(BlockType type, BlockChangeFlag flag, Cause cause) {
+        return getExtent().setBlockType(getBlockPosition(), type, flag, cause);
     }
 
     /**
@@ -565,15 +570,15 @@ public final class Location<E extends Extent> implements DataHolder {
      *
      * <p>Changing the snapshot afterwards will not affect the block that has
      * been placed at this location.</p>
-     *
-     * @param snapshot The snapshot
+     *  @param snapshot The snapshot
      * @param force If true, forces block state to be set even if the
      * {@link BlockType} does not match the snapshot one.
-     * @param notifyNeighbors Whether or not you want to notify neighboring
-     * blocks of this change. If true, this may cause blocks to change.
+     * @param flag The various change flags controlling some interactions
+     * @param cause The cause for the block change
+     * @return True if the snapshot restore was successful
      */
-    public void restoreSnapshot(BlockSnapshot snapshot, boolean force, boolean notifyNeighbors) {
-        getExtent().restoreSnapshot(getBlockPosition(), snapshot, force, notifyNeighbors);
+    public boolean restoreSnapshot(BlockSnapshot snapshot, boolean force, BlockChangeFlag flag, Cause cause) {
+        return getExtent().restoreSnapshot(getBlockPosition(), snapshot, force, flag, cause);
     }
 
     /**
@@ -581,10 +586,12 @@ public final class Location<E extends Extent> implements DataHolder {
      * {@link BlockTypes#AIR}.
      *
      * <p>This will remove any extended block data at the given position.</p>
+     * @param cause The cause for the block change
+     * @return True if the block change was successful
      */
     @SuppressWarnings("ConstantConditions")
-    public void removeBlock() {
-        getExtent().setBlockType(getBlockPosition(), BlockTypes.AIR, true);
+    public boolean removeBlock(Cause cause) {
+        return getExtent().setBlockType(getBlockPosition(), BlockTypes.AIR, BlockChangeFlag.ALL, cause);
     }
 
     @Override
@@ -710,6 +717,11 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
+    public <T> DataTransactionResult offer(Key<? extends BaseValue<T>> key, T value, Cause cause) {
+        return getExtent().offer(getBlockPosition(), key, value, cause);
+    }
+
+    @Override
     public DataTransactionResult offer(Iterable<DataManipulator<?, ?>> valueHolders) {
         return getExtent().offer(getBlockPosition(), valueHolders);
     }
@@ -732,6 +744,11 @@ public final class Location<E extends Extent> implements DataHolder {
     @Override
     public DataTransactionResult offer(DataManipulator<?, ?> valueContainer, MergeFunction function) {
         return getExtent().offer(getBlockPosition(), valueContainer, function);
+    }
+
+    @Override
+    public DataTransactionResult offer(DataManipulator<?, ?> valueContainer, MergeFunction function, Cause cause) {
+        return getExtent().offer(getBlockPosition(), valueContainer, function, cause);
     }
 
     @Override

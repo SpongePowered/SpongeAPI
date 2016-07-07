@@ -29,6 +29,7 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.channel.MessageReceiver;
@@ -313,7 +314,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     MutableBiomeAreaWorker<? extends World> getBiomeWorker();
 
     @Override
-    MutableBlockVolumeWorker<? extends World> getBlockWorker();
+    MutableBlockVolumeWorker<? extends World> getBlockWorker(Cause cause);
 
     /**
      * Instructs the world to save all data.

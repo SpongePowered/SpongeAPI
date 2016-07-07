@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.world.gen;
 
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.gen.populator.RandomObject;
@@ -40,6 +42,11 @@ import java.util.Random;
  * <p>Instead of directly implementing this interface, it may be easier to
  * implement {@link PopulatorObject} instead, and use the {@link RandomObject}
  * populator to get a populator that spawns that object.</p>
+ *
+ * <p>Note that while {@link Extent#setBlock(int, int, int, BlockState, Cause)}
+ * and other like minded methods take a {@link Cause}, blocks are not captured,
+ * nor are events thrown for block changes from a populator performing block
+ * changes.</p>
  *
  * @see PopulatorObject
  */
