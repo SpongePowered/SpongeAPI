@@ -155,6 +155,11 @@ public abstract class AbstractProperty<K, V> implements Property<K, V> {
         return this.hashCodeOf(this.getKey()) ^ this.hashCodeOf(this.getValue()) * 37;
     }
 
+    @Override
+    public String toString() {
+        return this.key + "(" + this.value + ")";
+    }
+
     /**
      * Convenience method to avoid null-checking. Returns 0 if <em>value</em> is
      * null.
@@ -162,7 +167,7 @@ public abstract class AbstractProperty<K, V> implements Property<K, V> {
      * @param value The value to get the hashcode of
      * @return The hashcode value
      */
-    protected int hashCodeOf(Object value) {
+    protected int hashCodeOf(@Nullable Object value) {
         return value != null ? value.hashCode() : 0;
     }
 }

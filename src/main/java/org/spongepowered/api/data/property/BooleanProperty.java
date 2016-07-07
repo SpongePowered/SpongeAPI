@@ -139,5 +139,4 @@ public class BooleanProperty extends AbstractProperty<String, Boolean> {
         return new BooleanProperty(value, Operator.LEQUAL);
     }
 
-
 }
