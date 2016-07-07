@@ -684,14 +684,14 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.Pre}.
      * 
      * @param cause The cause
-     * @param location The location
+     * @param locations The locations
      * @param targetWorld The target world
      * @return A new pre change block event
      */
-    public static ChangeBlockEvent.Pre createChangeBlockEventPre(Cause cause, Location<World> location, World targetWorld) {
+    public static ChangeBlockEvent.Pre createChangeBlockEventPre(Cause cause, List<Location<World>> locations, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("location", location);
+        values.put("locations", locations);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(ChangeBlockEvent.Pre.class, values);
     }
