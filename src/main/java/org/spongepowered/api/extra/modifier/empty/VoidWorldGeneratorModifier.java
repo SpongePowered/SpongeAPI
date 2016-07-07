@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.extra.modifier.empty;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.biome.BiomeGenerationSettings;
+import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.biome.BiomeTypes;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
@@ -40,6 +43,12 @@ public class VoidWorldGeneratorModifier implements WorldGeneratorModifier {
     public void modifyWorldGenerator(WorldProperties world, DataContainer settings, WorldGenerator worldGenerator) {
         worldGenerator.getGenerationPopulators().clear();
         worldGenerator.getPopulators().clear();
+        for(BiomeType biome: Sponge.getRegistry().getAllOf(BiomeType.class)) {
+            BiomeGenerationSettings biomeSettings = worldGenerator.getBiomeSettings(biome);
+            biomeSettings.getGenerationPopulators().clear();
+            biomeSettings.getPopulators().clear();
+            biomeSettings.getGroundCoverLayers().clear();
+        }
         worldGenerator.setBaseGenerationPopulator((world1, buffer, biomes) -> {});
         worldGenerator.setBiomeGenerator(buffer -> buffer.getBiomeWorker().fill((x, z) -> BiomeTypes.VOID));
     }
