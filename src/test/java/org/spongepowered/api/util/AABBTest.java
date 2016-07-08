@@ -26,6 +26,7 @@ package org.spongepowered.api.util;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -126,10 +127,28 @@ public class AABBTest {
     @Test
     public void testIntersectsRay() {
         final AABB aabb = new AABB(new Vector3d(0, 0, 0), new Vector3d(2, 2, 2));
-        Assert.assertEquals(new Vector3d(2, 1, 1), aabb.intersects(new Vector3d(1, 1, 1), new Vector3d(1, 0, 0)).get());
-        Assert.assertEquals(new Vector3d(1, 2, 1), aabb.intersects(new Vector3d(1, 1, 1), new Vector3d(0, 1, 0)).get());
-        Assert.assertEquals(new Vector3d(1, 1, 2), aabb.intersects(new Vector3d(1, 1, 1), new Vector3d(0, 0, 1)).get());
-        Assert.assertEquals(new Vector3d(0, 0, 0), aabb.intersects(new Vector3d(-1, -1, -1), new Vector3d(1, 1, 1)).get());
+        Assert.assertEquals(new ImmutablePair<>(new Vector3d(2, 1, 1), new Vector3d(1, 0, 0)),
+            aabb.intersects(new Vector3d(1, 1, 1), new Vector3d(1, 0, 0)).get());
+        Assert.assertEquals(new ImmutablePair<>(new Vector3d(1, 2, 1), new Vector3d(0, 1, 0)),
+            aabb.intersects(new Vector3d(1, 1, 1), new Vector3d(0, 1, 0)).get());
+        Assert.assertEquals(new ImmutablePair<>(new Vector3d(1, 1, 2), new Vector3d(0, 0, 1)),
+            aabb.intersects(new Vector3d(1, 1, 1), new Vector3d(0, 0, 1)).get());
+        Assert.assertEquals(new ImmutablePair<>(new Vector3d(0, 0, 0), new Vector3d(-1, -1, -1).normalize()),
+            aabb.intersects(new Vector3d(-1, -1, -1), new Vector3d(1, 1, 1)).get());
+        Assert.assertEquals(new ImmutablePair<>(new Vector3d(0, 0, 1), new Vector3d(-1, -1, -0.0).normalize()),
+            aabb.intersects(new Vector3d(-1, -1, 1), new Vector3d(1, 1, 0)).get());
+        Assert.assertEquals(new ImmutablePair<>(new Vector3d(0, 1, 1), new Vector3d(-1, -0.0, -0.0)),
+            aabb.intersects(new Vector3d(-1, 1, 1), new Vector3d(1, 0, 0)).get());
+        Assert.assertEquals(new ImmutablePair<>(new Vector3d(2, 1, 1), new Vector3d(1, 0, 0)),
+            aabb.intersects(new Vector3d(3, 1, 1), new Vector3d(-1, 0, 0)).get());
+        Assert.assertEquals(new ImmutablePair<>(new Vector3d(1, 0, 1), new Vector3d(-0.0, -1, -0.0)),
+            aabb.intersects(new Vector3d(1, -1, 1), new Vector3d(0, 1, 0)).get());
+        Assert.assertEquals(new ImmutablePair<>(new Vector3d(1, 2, 1), new Vector3d(0, 1, 0)),
+            aabb.intersects(new Vector3d(1, 3, 1), new Vector3d(0, -1, 0)).get());
+        Assert.assertEquals(new ImmutablePair<>(new Vector3d(1, 1, 0), new Vector3d(-0.0, -0.0, -1)),
+            aabb.intersects(new Vector3d(1, 1, -1), new Vector3d(0, 0, 1)).get());
+        Assert.assertEquals(new ImmutablePair<>(new Vector3d(1, 1, 2), new Vector3d(0, 0, 1)),
+            aabb.intersects(new Vector3d(1, 1, 3), new Vector3d(0, 0, -1)).get());
         Assert.assertFalse(aabb.intersects(new Vector3d(-1, -1, -1), new Vector3d(0, 1, 0)).isPresent());
     }
 

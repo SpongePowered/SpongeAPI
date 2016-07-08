@@ -29,11 +29,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.api.entity.EntityTypes;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.blockray.BlockRay;
 import org.spongepowered.api.util.blockray.BlockRayHit;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Optional;
 
@@ -196,65 +199,122 @@ public class AABB {
      *
      * @param start The starting point of the ray
      * @param direction The direction of the ray
-     * @return An intersection point, if any
+     * @return An intersection point its normal, if any
      */
-    public Optional<Vector3d> intersects(Vector3d start, Vector3d direction) {
+    public Optional<Pair<Vector3d, Vector3d>> intersects(Vector3d start, Vector3d direction) {
         // Adapted from: https://github.com/flow/react/blob/develop/src/main/java/com/flowpowered/react/collision/RayCaster.java#L156
-        double t0;
-        double t1;
+        // The box is interpreted as 6 infinite perpendicular places, one for each face (being expanded infinitely)
+        // "t" variables are multipliers: start + direction * t gives the intersection point
+        // Find the intersections on the -x and +x planes, oriented by direction
+        final double txMin;
+        final double txMax;
+        final Vector3d xNormal;
         if (direction.getX() >= 0) {
-            t0 = (this.min.getX() - start.getX()) / direction.getX();
-            t1 = (this.max.getX() - start.getX()) / direction.getX();
+            txMin = (this.min.getX() - start.getX()) / direction.getX();
+            txMax = (this.max.getX() - start.getX()) / direction.getX();
+            xNormal = Vector3d.UNIT_X;
         } else {
-            t0 = (this.max.getX() - start.getX()) / direction.getX();
-            t1 = (this.min.getX() - start.getX()) / direction.getX();
+            txMin = (this.max.getX() - start.getX()) / direction.getX();
+            txMax = (this.min.getX() - start.getX()) / direction.getX();
+            xNormal = Vector3d.UNIT_X.negate();
         }
+        // Find the intersections on the -y and +y planes, oriented by direction
         final double tyMin;
         final double tyMax;
+        final Vector3d yNormal;
         if (direction.getY() >= 0) {
             tyMin = (this.min.getY() - start.getY()) / direction.getY();
             tyMax = (this.max.getY() - start.getY()) / direction.getY();
+            yNormal = Vector3d.UNIT_Y;
         } else {
             tyMin = (this.max.getY() - start.getY()) / direction.getY();
             tyMax = (this.min.getY() - start.getY()) / direction.getY();
+            yNormal = Vector3d.UNIT_Y.negate();
         }
-        if (t0 > tyMax || tyMin > t1) {
+        // The ray should intersect the -x plane before the +y plane and intersect
+        // the -y plane before the +x plane, else it is outside the box
+        if (txMin > tyMax || txMax < tyMin) {
             return Optional.empty();
         }
-        if (tyMin > t0) {
-            t0 = tyMin;
+        // Keep track of the intersection normal which also helps with floating point errors
+        Vector3d normalMax;
+        Vector3d normalMin;
+        // The ray intersects only the furthest min plane on the box and only the closest
+        // max plane on the box
+        double tMin;
+        if (tyMin == txMin) {
+            tMin = tyMin;
+            normalMin = xNormal.negate().sub(yNormal);
+        } else if (tyMin > txMin) {
+            tMin = tyMin;
+            normalMin = yNormal.negate();
+        } else {
+            tMin = txMin;
+            normalMin = xNormal.negate();
         }
-        if (tyMax < t1) {
-            t1 = tyMax;
+        double tMax;
+        if (tyMax == txMax) {
+            tMax = tyMax;
+            normalMax = xNormal.add(yNormal);
+        } else if (tyMax < txMax) {
+            tMax = tyMax;
+            normalMax = yNormal;
+        } else {
+            tMax = txMax;
+            normalMax = xNormal;
         }
+        // Find the intersections on the -z and +z planes, oriented by direction
         final double tzMin;
         final double tzMax;
+        final Vector3d zNormal;
         if (direction.getZ() >= 0) {
             tzMin = (this.min.getZ() - start.getZ()) / direction.getZ();
             tzMax = (this.max.getZ() - start.getZ()) / direction.getZ();
+            zNormal = Vector3d.UNIT_Z;
         } else {
             tzMin = (this.max.getZ() - start.getZ()) / direction.getZ();
             tzMax = (this.min.getZ() - start.getZ()) / direction.getZ();
+            zNormal = Vector3d.UNIT_Z.negate();
         }
-        if (t0 > tzMax || tzMin > t1) {
+        // The ray intersects only the furthest min plane on the box and only the closest
+        // max plane on the box
+        if (tMin > tzMax || tMax < tzMin) {
             return Optional.empty();
         }
-        if (tzMin > t0) {
-            t0 = tzMin;
+        // The ray should intersect the closest plane outside first and the furthest
+        // plane outside last
+        if (tzMin == tMin) {
+            normalMin = normalMin.sub(zNormal);
+        } else if (tzMin > tMin) {
+            tMin = tzMin;
+            normalMin = zNormal.negate();
         }
-        if (tzMax < t1) {
-            t1 = tzMax;
+        if (tzMax == tMax) {
+            normalMax = normalMax.add(zNormal);
+        } else if (tzMax < tMax) {
+            tMax = tzMax;
+            normalMax = zNormal;
         }
-        if (t1 >= 0) {
-            final double t;
-            if (t0 >= 0) {
-                t = t0;
-            } else {
-                t = t1;
-            }
-            return Optional.of(start.add(direction.mul(t)));
+        // Both intersection points are behind the start, there are no intersections
+        if (tMax < 0) {
+            return Optional.empty();
         }
-        return Optional.empty();
+        // To avoid rounding point errors leaving the intersection point just off the plane
+        // we jump through some hoops to use the actual plane value from the box coordinates
+        final double t;
+        final Vector3d normal;
+        if (tMin < 0) {
+            // Only the furthest intersection is after the start, so use it
+            t = tMax;
+            normal = normalMax;
+        } else {
+            // Both are after the start, use the closest one
+            t = tMin;
+            normal = normalMin;
+        }
+        // Compute the final intersection point
+        // TODO: use box coordinates
+        return Optional.of(new ImmutablePair<>(direction.mul(t).add(start), normal.normalize()));
     }
 
     /**
