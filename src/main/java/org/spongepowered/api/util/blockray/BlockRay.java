@@ -32,8 +32,11 @@ import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.imaginary.Quaterniond;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.property.AbstractProperty;
+import org.spongepowered.api.data.property.block.FullBlockSelectionBoxProperty;
 import org.spongepowered.api.data.property.entity.EyeLocationProperty;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.Functional;
@@ -103,6 +106,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     private final Vector3d position;
     // Direction of the ray
     private final Vector3d direction;
+    // Perform narrow phase intersections for blocks with smaller selection boxes
+    private final boolean narrowPhase;
     // The directions the faces are passed through
     private final Vector3d xNormal;
     private final Vector3d yNormal;
@@ -138,7 +143,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     // If hasNext() is called, we need to move ahead to check the next hit
     private boolean ahead;
 
-    BlockRay(Predicate<BlockRayHit<E>> filter, E extent, Vector3d position, Vector3d direction) {
+    BlockRay(Predicate<BlockRayHit<E>> filter, E extent, Vector3d position, Vector3d direction, boolean narrowPhase) {
         checkArgument(direction.lengthSquared() != 0, "Direction cannot be the zero vector");
 
         this.filter = filter;
@@ -146,6 +151,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         this.extent = extent;
         this.position = position;
         this.direction = direction;
+
+        this.narrowPhase = narrowPhase;
 
         // Figure out the direction of the ray for each axis
         if (this.direction.getX() >= 0) {
@@ -264,7 +271,13 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         return Optional.ofNullable(this.hit);
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
     private void advance() {
+        while (!advanceOneBlock()) {
+        }
+    }
+
+    private boolean advanceOneBlock() {
         // Check the block limit if in use
         if (this.blockLimit >= 0 && this.blockCount >= this.blockLimit) {
             this.hit = null;
@@ -323,13 +336,31 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
             solveIntersections();
         }
 
-        final BlockRayHit<E> hit = new BlockRayHit<>(this.extent, this.xCurrent, this.yCurrent, this.zCurrent, this.direction, this.normalCurrent);
+        BlockRayHit<E> hit = new BlockRayHit<>(this.extent, this.xCurrent, this.yCurrent, this.zCurrent, this.direction, this.normalCurrent);
 
         // Make sure we actually have a block
-        if (!this.extent.containsBlock(hit.getBlockX(), hit.getBlockY(), hit.getBlockZ())) {
+        if (!hit.mapBlock(Extent::containsBlock)) {
             this.hit = null;
             throw new NoSuchElementException("Extent limit reached");
         }
+
+        // Now if using the narrow phase, test on small selection boxes, if needed
+        if (this.narrowPhase && !hit.getExtent().getProperty(hit.getBlockPosition(), FullBlockSelectionBoxProperty.class)
+                .map(AbstractProperty::getValue).orElse(true)) {
+            // Get the selection box and perform the narrow phase intersection test
+            final Optional<Pair<Vector3d, Vector3d>> intersection = hit.mapBlock(Extent::getBlockSelectionBox)
+                .flatMap(aabb -> aabb.intersects(this.position, this.direction));
+            // Create the new narrow hit if there was an intersection
+            if (intersection.isPresent()) {
+                final Pair<Vector3d, Vector3d> pair = intersection.get();
+                final Vector3d narrowHit = pair.getLeft();
+                hit = new BlockRayHit<>(this.extent, narrowHit.getX(), narrowHit.getY(), narrowHit.getZ(), this.direction, pair.getRight());
+            } else {
+                // Otherwise return false to attempt the next block
+                return false;
+            }
+        }
+
         // Check the block filter
         if (!this.filter.test(hit)) {
             throw new NoSuchElementException("Filter limit reached");
@@ -337,6 +368,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
 
         this.hit = hit;
         this.blockCount++;
+        return true;
     }
 
     private void solveIntersections() {
@@ -483,8 +515,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      * Initializes a block ray builder with the given starting location.
      *
      * @param start The starting location
-     * @return A new block ray builder
      * @param <E> The extent to be applied in
+     * @return A new block ray builder
      */
     public static <E extends Extent> BlockRayBuilder<E> from(Location<E> start) {
         checkNotNull(start, "start");
@@ -496,8 +528,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      *
      * @param extent The extent in which to trace the ray
      * @param start The starting position
-     * @return A new block ray builder
      * @param <E> The extent to be applied in
+     * @return A new block ray builder
      */
     public static <E extends Extent> BlockRayBuilder<E> from(E extent, Vector3d start) {
         checkNotNull(extent, "extent");
@@ -530,7 +562,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     }
 
     /**
-     * A builder for block ray, which also implements {@link Iterable}, which makes it
+     * A builder for block ray, which also implements {@link Iterable}, making it
      * useful for 'advanced for loops'. Use {@link #from(Location)} to get an instance.
      *
      * @param <E> The type of the extent for the block ray
@@ -542,8 +574,9 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         private Predicate<BlockRayHit<E>> filter = allFilter();
         private Vector3d direction = null;
         private int blockLimit = DEFAULT_BLOCK_LIMIT;
+        private boolean narrowPhase = true;
 
-        BlockRayBuilder(E extent, Vector3d position) {
+        private BlockRayBuilder(E extent, Vector3d position) {
             this.extent = extent;
             this.position = position;
         }
@@ -628,13 +661,28 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         }
 
         /**
+         * Sets whether or not to perform narrow phase intersections. The
+         * narrow phase performs intersections with the block selection boxes
+         * if they are smaller than a voxel. This is necessary to obtain
+         * correct intersections with small blocks like: signs, buttons,
+         * fences, etc. This is enabled by default.
+         *
+         * @param enable Whether or not to enable the narrow phase
+         * @return This for chained calls
+         */
+        public BlockRayBuilder<E> narrowPhase(boolean enable) {
+            this.narrowPhase = enable;
+            return this;
+        }
+
+        /**
          * Returns a block ray build from the settings. An ending location or direction needs to have been set.
          *
          * @return A block ray
          */
         public BlockRay<E> build() {
             checkState(this.direction != null, "Either end point or direction needs to be set");
-            final BlockRay<E> blockRay = new BlockRay<>(this.filter, this.extent, this.position, this.direction);
+            final BlockRay<E> blockRay = new BlockRay<>(this.filter, this.extent, this.position, this.direction, this.narrowPhase);
             blockRay.setBlockLimit(this.blockLimit);
             return blockRay;
         }
@@ -661,8 +709,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      * A filter that accepts all blocks. A {@link BlockRay} combined with no other filter than this
      * one could run endlessly.
      *
-     * @return A filter that accepts all blocks
      * @param <E> The extent to be applied in
+     * @return A filter that accepts all blocks
      */
     @SuppressWarnings("unchecked")
     public static <E extends Extent> Predicate<BlockRayHit<E>> allFilter() {
@@ -675,8 +723,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      * <p>This is provided for convenience, as the default behavior in previous systems was to pass
      * through air blocks only until a non-air block was hit.</p>
      *
-     * @return A filter that only accepts air blocks
      * @param <E> The extent to be applied in
+     * @return A filter that only accepts air blocks
      */
     @SuppressWarnings("unchecked")
     public static <E extends Extent> Predicate<BlockRayHit<E>> onlyAirFilter() {

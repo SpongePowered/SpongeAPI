@@ -31,13 +31,14 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
+import java.util.function.BiFunction;
+
 /**
  * Represents a block hit by a ray. Stores more information than a regular location.
  * Extra object are lazily computed and cached.
  *
- *  * @param <E> The extent containing the hit
+ * * @param <E> The extent containing the hit
  */
-@SuppressWarnings("Convert2Diamond")
 public class BlockRayHit<E extends Extent> {
 
     private final E extent;
@@ -74,10 +75,22 @@ public class BlockRayHit<E extends Extent> {
         this.normal = normal;
         // Take into account the face through which we entered
         // so we know which block is the correct one
-        this.xBlock = GenericMath.floor(x) - (normal.getX() > 0 ? 1 : 0);
-        //noinspection SuspiciousNameCombination
-        this.yBlock = GenericMath.floor(y) - (normal.getY() > 0 ? 1 : 0);
-        this.zBlock = GenericMath.floor(z) - (normal.getZ() > 0 ? 1 : 0);
+        if (x % 1 == 0 && normal.getX() > 0) {
+            this.xBlock = (int) x - 1;
+        } else {
+            this.xBlock = GenericMath.floor(x);
+        }
+        if (y % 1 == 0 && normal.getY() > 0) {
+            this.yBlock = (int) y - 1;
+        } else {
+            //noinspection SuspiciousNameCombination
+            this.yBlock = GenericMath.floor(y);
+        }
+        if (z % 1 == 0 && normal.getZ() > 0) {
+            this.zBlock = (int) z - 1;
+        } else {
+            this.zBlock = GenericMath.floor(z);
+        }
     }
 
     /**
@@ -220,6 +233,28 @@ public class BlockRayHit<E extends Extent> {
             }
         }
         return this.faces;
+    }
+
+    /**
+     * Calls the mapper function on the extent and position.
+     *
+     * @param mapper The mapper
+     * @param <T> The return type of the mapper
+     * @return The results of the mapping
+     */
+    public <T> T map(BiFunction<E, Vector3d, T> mapper) {
+        return mapper.apply(this.extent, getPosition());
+    }
+
+    /**
+     * Calls the mapper function on the extent and block position.
+     *
+     * @param mapper The mapper
+     * @param <T> The return type of the mapper
+     * @return The results of the mapping
+     */
+    public <T> T mapBlock(BiFunction<E, Vector3i, T> mapper) {
+        return mapper.apply(this.extent, getBlockPosition());
     }
 
     @Override
