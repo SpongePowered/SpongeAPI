@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.message;
 
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 
@@ -35,6 +36,7 @@ import javax.annotation.Nullable;
 /**
  * Describes events when a involving a {@link Text} message and {@link MessageChannel}s.
  */
+@GenerateFactoryMethod
 public interface MessageChannelEvent extends MessageEvent {
 
     /**

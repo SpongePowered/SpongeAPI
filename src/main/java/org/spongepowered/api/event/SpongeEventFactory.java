@@ -3316,6 +3316,28 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.message.MessageChannelEvent}.
+     * 
+     * @param cause The cause
+     * @param originalChannel The original channel
+     * @param channel The channel
+     * @param formatter The formatter
+     * @param messageCancelled The message cancelled
+     * @return A new message channel event
+     */
+    public static MessageChannelEvent createMessageChannelEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, MessageEvent.MessageFormatter formatter, boolean messageCancelled) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("originalChannel", originalChannel);
+        values.put("channel", channel);
+        values.put("formatter", formatter);
+        values.put("messageCancelled", messageCancelled);
+        return SpongeEventFactoryUtils.createEventImpl(MessageChannelEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.message.MessageChannelEvent.Chat}.
      * 
      * @param cause The cause
