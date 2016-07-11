@@ -93,9 +93,8 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
     }
 
     @SuppressWarnings("unchecked")
-    public static abstract class AbstractEntityDamageSourceBuilder<T extends EntityDamageSource, B extends AbstractEntityDamageSourceBuilder<T, B>>
-        extends AbstractDamageSourceBuilder<T, B>
-    implements EntityDamageSourceBuilder<T, B> {
+    public static abstract class AbstractEntityDamageSourceBuilder<T extends EntityDamageSource, B extends EntityDamageSource.EntityDamageSourceBuilder<T, B>>
+            extends AbstractDamageSourceBuilder<T, B> implements EntityDamageSourceBuilder<T, B> {
 
         protected Entity source;
 
