@@ -449,13 +449,14 @@ public final class Location<E extends Extent> implements DataHolder {
      * Gets the location next to this one in the given direction.
      * Always moves by a block amount, even diagonally.
      *
-     * {@link Direction.Division#SECONDARY_ORDINAL} directions are not a valid
-     * argument. These will throw an exception.
+     * <p>{@link org.spongepowered.api.util.Direction.Division#SECONDARY_ORDINAL}
+     * directions are not a valid argument. These will throw an exception.
+     * </p>
      *
      * @param direction The direction to move in
      * @return The location in that direction
      * @throws IllegalArgumentException If the direction is a
-     * {@link Direction.Division#SECONDARY_ORDINAL}
+     * {@link org.spongepowered.api.util.Direction.Division#SECONDARY_ORDINAL}
      */
     public Location<E> getBlockRelative(Direction direction) {
         checkArgument(!direction.isSecondaryOrdinal(), "Secondary cardinal directions can't be used here");
