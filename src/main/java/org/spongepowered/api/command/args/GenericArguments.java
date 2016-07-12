@@ -28,18 +28,19 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.flowpowered.math.vector.Vector3d;
+import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
+import org.apache.commons.lang3.StringUtils;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.ProxySource;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -47,29 +48,34 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.user.UserStorageService;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.selector.Selector;
+import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.GuavaCollectors;
+import org.spongepowered.api.util.RelativeDouble;
+import org.spongepowered.api.util.RelativeVector3d;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.blockray.BlockRay;
 import org.spongepowered.api.util.blockray.BlockRayHit;
 import org.spongepowered.api.world.DimensionType;
+import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.storage.WorldProperties;
 
-import java.util.Arrays;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import javax.annotation.Nullable;
 
 
 /**
@@ -77,7 +83,18 @@ import javax.annotation.Nullable;
  */
 public final class GenericArguments {
 
-    private static final CommandElement NONE = new SequenceCommandElement(ImmutableList.<CommandElement>of());
+    private static final CommandElement NONE = new CommandElement(null) {
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            return null;
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            return Collections.emptyList();
+        }
+    };
 
     private GenericArguments() {}
 
@@ -142,7 +159,8 @@ public final class GenericArguments {
 	}
 
     /**
-     * Expect an argument to represent a world. This gives a WorldProperties object rather than an actual world in order to include unloaded worlds
+     * Expect an argument to represent a world. This gives a WorldProperties
+     * object rather than an actual world in order to include unloaded worlds
      * as well
      * Gives values of type {@link WorldProperties}
      *
@@ -171,7 +189,65 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement vector3d(Text key) {
-        return new Vector3dCommandElement(key);
+        return new Vector3dCommandElement(key, false, false, null);
+    }
+
+    /**
+     * Expect an argument to represent a {@link Vector3d}.
+     *
+     * @param key The key to store under
+     * @param defaultValue The default value that will be used for tab completion
+     * @return the argument
+     */
+    public static CommandElement vector3d(Text key, Vector3d defaultValue) {
+        return new Vector3dCommandElement(key, false, false, checkNotNull(defaultValue, "defaultValue"));
+    }
+
+    /**
+     * Expect an argument to represent a {@link Vector3d}. Positions
+     * support relative values, special tokens and tab completion.
+     * The position can also be completed based on the block you have
+     * selected.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement targetedBlockPosition(Text key) {
+        return new Vector3dCommandElement(key, true, true, null);
+    }
+
+    /**
+     * Expect an argument to represent a {@link Vector3d}. Positions
+     * support relative values, special tokens and tab completion.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement position(Text key) {
+        return new Vector3dCommandElement(key, false, true, null);
+    }
+
+    /**
+     * Expect an argument to represent a {@link RelativeVector3d}. Positions
+     * support relative values, special tokens and tab completion.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement relativePosition(Text key) {
+        return new RelativeVector3dCommandElement(key, false, true);
+    }
+
+    /**
+     * Expect an argument to represent a {@link RelativeVector3d}. Positions
+     * support relative values, special tokens and tab completion. The position
+     * can also be completed based on the block you have selected.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement targetedBlockRelativePosition(Text key) {
+        return new RelativeVector3dCommandElement(key, true, true);
     }
 
     /**
@@ -181,7 +257,18 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement location(Text key) {
-        return new LocationCommandElement(key);
+        return new LocationCommandElement(key, false);
+    }
+
+    /**
+     * Expect an argument to represent a {@link Location}. The location
+     * can also be tab completed based on the block you have selected.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement targetedBlockLocation(Text key) {
+        return new LocationCommandElement(key, true);
     }
 
     /**
@@ -267,11 +354,68 @@ public final class GenericArguments {
             this.elements = elements;
         }
 
+        private void parse(CommandSource source, CommandArgs args, CommandContext context, int index)
+                throws ArgumentParseException {
+            for (ListIterator<CommandElement> it = this.elements.listIterator(index); it.hasNext(); ) {
+                final CommandElement element = it.next();
+
+                if (element.isOptional(source)) {
+                    final CommandArgs.Snapshot argsSnapshot = args.createSnapshot();
+                    final CommandContext.Snapshot contextSnapshot = context.createSnapshot();
+
+                    final boolean commandCtx = context.<Boolean>getOne(CommandContext.TAB_COMPLETION_CONTEXT).orElse(false);
+                    ArgumentParseException exception = null;
+
+                    try {
+                        // Try to parse with optional first
+                        // Parse the optional
+                        element.parse(source, args, context);
+                        // Parse the rest of the sequence
+                        parse(source, args, context, it.nextIndex());
+                    } catch (ArgumentParseException ex) {
+                        // Just throw the exception
+                        if (commandCtx) {
+                            throw ex;
+                        }
+                        exception = ex;
+                    }
+                    // Always retry if we are in the tab completion context, to make
+                    // sure that there is nothing left to complete
+                    if (exception != null || commandCtx) {
+                        // Try to parse without the optional
+                        args.restoreSnapshot(argsSnapshot);
+                        context.restoreSnapshot(contextSnapshot);
+
+                        try {
+                            parse(source, args, context, it.nextIndex());
+                        } catch (ArgumentParseException ex1) {
+                            // If without the optional also fails, just
+                            // throw the exception with the optional
+                            throw exception == null ? ex1 : exception;
+                        }
+
+                        // Command elements like playerOrSource would like to return
+                        // source when no argument is specified, but will be skipped
+                        // otherwise, so parse them when no argument is present and
+                        // hiding the errors.
+                        // Move the pointer at the end of the args
+                        final Object state = args.getState();
+                        args.setState(args.getAll().size());
+                        // Try to parse without args
+                        element.parse(source, args, context);
+                        args.setState(state);
+                    }
+                    break;
+                } else {
+                    // Just handle like usual
+                    element.parse(source, args, context);
+                }
+            }
+        }
+
         @Override
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
-            for (CommandElement element : this.elements) {
-                element.parse(source, args, context);
-            }
+            this.parse(source, args, context, 0);
         }
 
         @Override
@@ -279,35 +423,71 @@ public final class GenericArguments {
             return null;
         }
 
-        @Override
-        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            for (Iterator<CommandElement> it = this.elements.iterator(); it.hasNext(); ) {
-                CommandElement element = it.next();
-                Object startState = args.getState();
-                try {
-                    element.parse(src, args, context);
-                    Object endState = args.getState();
-                    if (!args.hasNext()) {
-                        args.setState(startState);
-                        List<String> inputs = element.complete(src, args, context);
-                        args.previous();
-                        if (!inputs.contains(args.next())) { // Tabcomplete returns results to complete the last word in an argument.
-                            // If the last word is one of the completions, the command is most likely complete
-                            return inputs;
-                        }
+        private List<String> complete(CommandSource src, CommandArgs args, CommandContext context, int index) {
+            List<String> completions = new ArrayList<>();
+            for (ListIterator<CommandElement> it = this.elements.listIterator(index); it.hasNext(); ) {
+                final CommandElement element = it.next();
 
-                        args.setState(endState);
+                // Try first for completions with the optional
+                if (element.isOptional(src)) {
+                    final CommandArgs.Snapshot argsSnapshot = args.createSnapshot();
+                    final CommandContext.Snapshot contextSnapshot = context.createSnapshot();
+                    List<String> ret = complete(src, args, context, element);
+                    if (ret != null) {
+                        add(completions, ret);
+                    } else {
+                        add(completions, complete(src, args, context, it.nextIndex()));
+                        break;
                     }
-                } catch (ArgumentParseException e) {
+                    final CommandArgs.Snapshot optArgsSnapshot = args.createSnapshot();
+                    final CommandContext.Snapshot optContextSnapshot = context.createSnapshot();
+                    args.restoreSnapshot(argsSnapshot);
+                    context.restoreSnapshot(contextSnapshot);
+                    // Complete without the optional
+                    add(completions, complete(src, args, context, it.nextIndex()));
+                    // Reset to optional parsed snapshots, to avoid issues with the
+                    // firstParsing element
+                    args.restoreSnapshot(optArgsSnapshot);
+                    context.restoreSnapshot(optContextSnapshot);
+                    break;
+                } else {
+                    final List<String> ret = complete(src, args, context, element);
+                    if (ret != null) {
+                        add(completions, ret);
+                        break;
+                    }
+                }
+            }
+            return ImmutableList.copyOf(completions);
+        }
+
+        private static void add(List<String> list, List<String> entries) {
+            list.addAll(entries.stream().filter(e -> !list.contains(e)).collect(Collectors.toList()));
+        }
+
+        @Nullable
+        private List<String> complete(CommandSource src, CommandArgs args, CommandContext context,
+                CommandElement element) {
+            final Object startState = args.getState();
+            try {
+                element.parse(src, args, context);
+                if (!args.hasNext()) {
                     args.setState(startState);
                     return element.complete(src, args, context);
                 }
-
-                if (!it.hasNext()) {
-                    args.setState(startState);
+            } catch (ArgumentParseException e) {
+                args.setState(startState);
+                final List<String> ret = element.complete(src, args, context);
+                if (!args.hasNext()) {
+                    return ret;
                 }
             }
-            return Collections.emptyList();
+            return null;
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            return complete(src, args, context, 0);
         }
 
         @Override
@@ -416,14 +596,16 @@ public final class GenericArguments {
         @Override
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
             ArgumentParseException lastException = null;
+            final CommandArgs.Snapshot argsSnapshot = args.createSnapshot();
+            final CommandContext.Snapshot contextSnapshot = context.createSnapshot();
             for (CommandElement element : this.elements) {
-                Object startState = args.getState();
                 try {
                     element.parse(source, args, context);
                     return;
                 } catch (ArgumentParseException ex) {
                     lastException = ex;
-                    args.setState(startState);
+                    args.restoreSnapshot(argsSnapshot);
+                    context.restoreSnapshot(contextSnapshot);
                 }
             }
             if (lastException != null) {
@@ -438,17 +620,46 @@ public final class GenericArguments {
 
         @Override
         public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
-            return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements,
-                    input -> {
-                        if (input == null) {
-                            return ImmutableList.of();
-                        }
+            final CommandArgs.Snapshot argsSnapshot = args.createSnapshot();
+            final List<CommandElement> elements = new ArrayList<>();
+            int lastIndex = args.getRawPosition();
+            for (CommandElement element : this.elements) {
+                boolean complete = false;
+                try {
+                    element.parse(src, args, context);
+                    if (!args.hasNext()) {
+                        complete = true;
+                    }
+                } catch (ArgumentParseException ex) {
+                    complete = true;
+                }
+                if (complete) {
+                    int index = args.getRawPosition();
+                    if (index > lastIndex) {
+                        elements.clear();
+                        elements.add(element);
+                        lastIndex = index;
+                    } else if (index == lastIndex) {
+                        elements.add(element);
+                    }
+                }
+                args.restoreSnapshot(argsSnapshot);
+            }
+            if (!elements.isEmpty()) {
+                final List<String> ret0 = new ArrayList<>();
+                for (Iterator<CommandElement> it = elements.iterator(); it.hasNext(); ) {
+                    final CommandElement element = it.next();
+                    final List<String> ret = element.complete(src, args, context);
+                    // Filter out the duplicates and add them to the result list
+                    ret0.addAll(ret.stream().filter(e -> !ret0.contains(e)).collect(Collectors.toList()));
 
-                        Object startState = args.getState();
-                        List<String> ret = input.complete(src, args, context);
-                        args.setState(startState);
-                        return ret;
-                    })));
+                    if (it.hasNext()) {
+                        args.restoreSnapshot(argsSnapshot);
+                    }
+                }
+                return ImmutableList.copyOf(ret0);
+            }
+            return ImmutableList.of();
         }
 
         @Override
@@ -543,14 +754,13 @@ public final class GenericArguments {
             try {
                 this.element.parse(source, args, context);
             } catch (ArgumentParseException ex) {
-                if (this.considerInvalidFormatEmpty || args.hasNext()) { // If there are more args, suppress. Otherwise, throw the error
+                if (this.considerInvalidFormatEmpty) {
                     args.setState(startState);
                     if (this.element.getKey() != null && this.value != null) {
                         context.putArg(this.element.getUntranslatedKey(), this.value);
                     }
-                } else {
-                    throw ex;
                 }
+                throw ex;
             }
         }
 
@@ -567,6 +777,11 @@ public final class GenericArguments {
         @Override
         public Text getUsage(CommandSource src) {
             return Text.of("[", this.element.getUsage(src), "]");
+        }
+
+        @Override
+        public boolean isOptional(CommandSource src) {
+            return true;
         }
     }
 
@@ -585,7 +800,6 @@ public final class GenericArguments {
     private static class RepeatedCommandElement extends CommandElement {
         private final CommandElement element;
         private final int times;
-
 
         protected RepeatedCommandElement(CommandElement element, int times) {
             super(null);
@@ -638,7 +852,6 @@ public final class GenericArguments {
 
     private static class AllOfCommandElement extends CommandElement {
         private final CommandElement element;
-
 
         protected AllOfCommandElement(CommandElement element) {
             super(null);
@@ -716,7 +929,6 @@ public final class GenericArguments {
         }
     }
 
-
     /**
      * Require an argument to be an integer (base 10).
      * Gives values of type {@link Integer}
@@ -725,21 +937,39 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement integer(Text key) {
-        return new NumericElement<>(key, Integer::parseInt, Integer::parseInt, input -> t("Expected an integer, but input '%s' was not", input));
+        return integer(key, null);
+    }
+
+    /**
+     * Require an argument to be an integer (base 10).
+     * Gives values of type {@link Integer}
+     *
+     * @param key The key to store the parsed argument under
+     * @param defaultValue The default value that will be used for tab completion
+     * @return the element to match the input
+     */
+    public static CommandElement integer(Text key, int defaultValue) {
+        return integer(key, (Integer) defaultValue);
+    }
+
+    private static CommandElement integer(Text key, @Nullable Integer defaultValue) {
+        return new NumericElement<>(key, Integer::parseInt, Integer::parseInt,
+                input -> t("Expected an integer, but input '%s' was not", input), defaultValue);
     }
 
     private static class NumericElement<T extends Number> extends KeyElement {
         private final Function<String, T> parseFunc;
-        @Nullable
-        private final BiFunction<String, Integer, T> parseRadixFunction;
+        @Nullable private final BiFunction<String, Integer, T> parseRadixFunction;
         private final Function<String, Text> errorSupplier;
+        @Nullable private final Number defaultValue;
 
         protected NumericElement(Text key, Function<String, T> parseFunc, @Nullable BiFunction<String, Integer, T> parseRadixFunction,
-                Function<String, Text> errorSupplier) {
+                Function<String, Text> errorSupplier, @Nullable Number defaultValue) {
             super(key);
             this.parseFunc = parseFunc;
             this.parseRadixFunction = parseRadixFunction;
             this.errorSupplier = errorSupplier;
+            this.defaultValue = defaultValue;
         }
 
         @Override
@@ -758,6 +988,27 @@ public final class GenericArguments {
                 throw args.createError(this.errorSupplier.apply(input));
             }
         }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            if (this.defaultValue == null) {
+                return Collections.emptyList();
+            }
+            final String arg = args.nextIfPresent().orElse("");
+            if (arg.isEmpty()) {
+                return ImmutableList.of(this.defaultValue.toString());
+            } else {
+                return toList(arg, this.defaultValue.toString());
+            }
+        }
+    }
+
+    private static List<String> toList(String a, String b) {
+        if (a.equals(b)) {
+            return ImmutableList.of(a);
+        } else {
+            return ImmutableList.of(b, a);
+        }
     }
 
     /**
@@ -768,7 +1019,24 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement longNum(Text key) {
-        return new NumericElement<>(key, Long::parseLong, Long::parseLong, input -> t("Expected a long, but input '%s' was not", input));
+        return longNum(key, null);
+    }
+
+    /**
+     * Require an argument to be a long (base 10).
+     * Gives values of type {@link Integer}
+     *
+     * @param key The key to store the parsed argument under
+     * @param defaultValue The default value that will be used for tab completion
+     * @return the element to match the input
+     */
+    public static CommandElement longNum(Text key, long defaultValue) {
+        return longNum(key, (Long) defaultValue);
+    }
+
+    private static CommandElement longNum(Text key, @Nullable Long defaultValue) {
+        return new NumericElement<>(key, Long::parseLong, Long::parseLong,
+                input -> t("Expected a long, but input '%s' was not", input), defaultValue);
     }
 
     /**
@@ -779,7 +1047,24 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement doubleNum(Text key) {
-        return new NumericElement<>(key, Double::parseDouble, null, input -> t("Expected a number, but input '%s' was not", input));
+        return doubleNum(key, null);
+    }
+
+    /**
+     * Require an argument to be an double-precision floating point number.
+     * Gives values of type {@link Double}
+     *
+     * @param key The key to store the parsed argument under
+     * @param defaultValue The default value that will be used for tab completion
+     * @return the element to match the input
+     */
+    public static CommandElement doubleNum(Text key, double defaultValue) {
+        return doubleNum(key, (Double) defaultValue);
+    }
+
+    private static CommandElement doubleNum(Text key, @Nullable Double defaultValue) {
+        return new NumericElement<>(key, Double::parseDouble, null,
+                input -> t("Expected a number, but input '%s' was not", input), defaultValue);
     }
 
     private static final Map<String, Boolean> BOOLEAN_CHOICES = ImmutableMap.<String, Boolean>builder()
@@ -838,23 +1123,27 @@ public final class GenericArguments {
     }
 
     private static class EnumValueElement<T extends Enum<T>> extends PatternMatchingCommandElement {
-        private final Class<T> type;
+        private final Map<String, T> choices;
 
         EnumValueElement(Text key, Class<T> type) {
             super(key);
-            this.type = type;
+            final ImmutableMap.Builder<String, T> builder = ImmutableMap.builder();
+            for (T value : type.getEnumConstants()) {
+                builder.put(value.name().toLowerCase(), value);
+            }
+            this.choices = builder.build();
         }
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Arrays.asList(this.type.getEnumConstants()).stream()
-                .map(input -> input == null ? null : input.name())
+            return this.choices.values().stream()
+                .map(Enum::name)
                 .collect(Collectors.toList());
         }
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            return Enum.valueOf(this.type, choice.toUpperCase());
+            return this.choices.get(choice.toLowerCase());
         }
     }
 
@@ -1018,6 +1307,17 @@ public final class GenericArguments {
         protected Object getValue(String choice) throws IllegalArgumentException {
             return Sponge.getGame().getServiceManager().provideUnchecked(UserStorageService.class).get(choice).get();
         }
+
+        @Override
+        public Text getUsage(CommandSource src) {
+            return isOptional(src) ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+        }
+
+        @Override
+        public boolean isOptional(CommandSource src) {
+            return this.returnSource && (src instanceof User ||
+                    (src instanceof ProxySource && ((ProxySource) src).getOriginalSource() instanceof User));
+        }
     }
 
     private static class PlayerCommandElement extends SelectorCommandElement {
@@ -1038,7 +1338,7 @@ public final class GenericArguments {
 
             Object state = args.getState();
             try {
-                return Iterables.filter((Iterable<Entity>)super.parseValue(source, args), e -> e instanceof Player);
+                return Iterables.filter((Iterable<Entity>) super.parseValue(source, args), e -> e instanceof Player);
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
                     args.setState(state);
@@ -1052,7 +1352,7 @@ public final class GenericArguments {
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
             return Sponge.getGame().getServer().getOnlinePlayers().stream()
-                .map(input -> input == null ? null : input.getName())
+                .map(CommandSource::getName)
                 .collect(Collectors.toList());
         }
 
@@ -1077,12 +1377,18 @@ public final class GenericArguments {
 
         @Override
         public Text getUsage(CommandSource src) {
-            return src instanceof Player && this.returnSource ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+            return isOptional(src) ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+        }
+
+        @Override
+        public boolean isOptional(CommandSource src) {
+            return this.returnSource && (src instanceof Player ||
+                    (src instanceof ProxySource && ((ProxySource) src).getOriginalSource() instanceof Player));
         }
     }
 
     /**
-     * Acceped formats:
+     * Accepted formats:
      *
      * <ul>
      *     <li>#first</li>
@@ -1100,14 +1406,15 @@ public final class GenericArguments {
         }
 
         @Nullable
-        @Override
-        public Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+        private Object parseValue0(CommandSource source, CommandArgs args)
+                throws ArgumentParseException {
             final String next = args.peek();
             if (next.startsWith("#")) {
                 String specifier = next.substring(1);
                 if (specifier.equalsIgnoreCase("first")) {
                     args.next();
-                    return Sponge.getGame().getServer().getAllWorldProperties().stream().filter(input -> input != null && input.isEnabled())
+                    return Sponge.getGame().getServer().getAllWorldProperties().stream()
+                            .filter(WorldProperties::isEnabled)
                             .collect(Collectors.toList()).iterator().next();
                 } else if (specifier.equalsIgnoreCase("me") && source instanceof Locatable) {
                     args.next();
@@ -1121,24 +1428,39 @@ public final class GenericArguments {
                     args.next();
                     args.insertArg(specifier);
                     @SuppressWarnings("unchecked")
-                    final DimensionType type = ((Iterable<DimensionType>) this.dimensionTypeElement.parseValue(source, args)).iterator().next();
-                    Iterable<WorldProperties> ret = Sponge.getGame().getServer().getAllWorldProperties().stream().filter(input -> input != null &&
-                            input.isEnabled() && input.getDimensionType().equals(type)).collect(Collectors.toList());
+                    final Object dimensionValue = this.dimensionTypeElement.parseValue(source, args);
+                    final DimensionType type = ((Iterable<DimensionType>) dimensionValue).iterator().next();
+                    Iterable<WorldProperties> ret = Sponge.getGame().getServer().getAllWorldProperties().stream()
+                            .filter(input -> input.isEnabled() && input.getDimensionType().equals(type))
+                            .collect(Collectors.toList());
                     return firstOnly ? ret.iterator().next() : ret;
                 }
             }
+            return null;
+        }
 
-            return super.parseValue(source, args);
+        @Nullable
+        @Override
+        public Object parseValueExact(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            Object value = this.parseValue0(source, args);
+            return value == null ? super.parseValueExact(source, args) : value;
+        }
+
+        @Nullable
+        @Override
+        public Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            Object value = this.parseValue0(source, args);
+            return value == null ? super.parseValue(source, args) : value;
         }
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            Iterable<String> choices = getCompletionChoices(src);
-            final Optional<String> nextArg = args.nextIfPresent();
-            if (nextArg.isPresent()) {
-                choices = Iterables.filter(choices, input -> getFormattedPattern(nextArg.get()).matcher(input).find());
+            if (args.hasNext()) {
+                final String arg = args.nextIfPresent().get();
+                return ImmutableList.copyOf(Iterables.filter(getCompletionChoices(src),
+                        input -> getFormattedPattern(arg).matcher(input).find()));
             }
-            return ImmutableList.copyOf(choices);
+            return Collections.emptyList();
         }
 
         protected Iterable<String> getCompletionChoices(CommandSource source) {
@@ -1150,9 +1472,9 @@ public final class GenericArguments {
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
             return Sponge.getGame().getServer().getAllWorldProperties().stream()
-                    .map(input -> input == null || !input.isEnabled() ? null : input.getWorldName())
+                    .filter(WorldProperties::isEnabled)
+                    .map(WorldProperties::getWorldName)
                     .collect(Collectors.toList());
-
         }
 
         @Override
@@ -1166,17 +1488,37 @@ public final class GenericArguments {
     }
 
     /**
+     * This element is used for multiple purposes:
+     * - Regular vectors with 3 components
+     * - Position vectors with 3 components that support
+     *   relative values, position tab completion.
+     *
      * Syntax:
      * x,y,z
      * x y z.
      * each element can be relative to a location? so parseRelativeDouble() -- relative is ~(num)
      *
      */
-    private static class Vector3dCommandElement extends CommandElement {
+    private static class RelativeVector3dCommandElement extends CommandElement {
         private static final ImmutableSet<String> SPECIAL_TOKENS = ImmutableSet.of("#target", "#me");
 
-        protected Vector3dCommandElement(@Nullable Text key) {
+        private final boolean targetBlockTabCompletion;
+        private final boolean parsePosition; // Whether this element is used to parse positions
+
+        protected RelativeVector3dCommandElement(@Nullable Text key,
+                boolean targetBlockTabComplete, boolean parsePosition) {
             super(key);
+            this.targetBlockTabCompletion = targetBlockTabComplete;
+            this.parsePosition = parsePosition;
+        }
+
+        private String getName() {
+            if (!this.parsePosition) {
+                final String name = this.getUntranslatedKey();
+                return name == null ? "vector" : name;
+            } else {
+                return "position";
+            }
         }
 
         @Override
@@ -1188,69 +1530,151 @@ public final class GenericArguments {
             if (xStr.contains(",")) {
                 String[] split = xStr.split(",");
                 if (split.length != 3) {
-                    throw args.createError(t("Comma-separated location must have 3 elements, not %s", split.length));
+                    throw args.createError(t("Comma-separated %s must have 3 elements, not %s", getName(), split.length));
                 }
                 xStr = split[0];
                 yStr = split[1];
                 zStr = split[2];
-            } else if (xStr.equals("#target") && source instanceof Entity) {
+            } else if (this.parsePosition && xStr.equals("#target") && source instanceof Entity) {
                 Optional<BlockRayHit<World>> hit = BlockRay.from(((Entity) source)).filter(BlockRay.onlyAirFilter()).build().end();
                 if (!hit.isPresent()) {
                     throw args.createError(t("No target block is available! Stop stargazing!"));
                 }
-                return hit.get().getPosition();
-            } else if (xStr.equalsIgnoreCase("#me") && source instanceof Locatable) {
-                return ((Locatable) source).getLocation().getPosition();
+                return new RelativeVector3d(hit.get().getPosition());
+            } else if (this.parsePosition && xStr.equalsIgnoreCase("#me") && source instanceof Locatable) {
+                return new RelativeVector3d(((Locatable) source).getLocation().getPosition());
             } else {
                 yStr = args.next();
                 zStr = args.next();
             }
-            final double x = parseRelativeDouble(args, xStr, source instanceof Locatable ? ((Locatable) source).getLocation().getX() : null);
-            final double y = parseRelativeDouble(args, yStr, source instanceof Locatable ? ((Locatable) source).getLocation().getY() : null);
-            final double z = parseRelativeDouble(args, zStr, source instanceof Locatable ? ((Locatable) source).getLocation().getZ() : null);
+            final RelativeDouble x = parseRelativeDouble(args, xStr);
+            final RelativeDouble y = parseRelativeDouble(args, yStr);
+            final RelativeDouble z = parseRelativeDouble(args, zStr);
 
-            return new Vector3d(x, y, z);
+            return new RelativeVector3d(x, y, z);
+        }
+
+        @Nullable
+        protected RelativeVector3d getDefaultCompletionVector(CommandSource src) {
+            return this.parsePosition && src instanceof Locatable ? RelativeVector3d.ZERO_RELATIVE : null;
         }
 
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
-            Optional<String> arg = args.nextIfPresent();
-            // Traverse through the possible arguments. We can't really complete arbitrary integers
-            if (arg.isPresent()) {
-                if (arg.get().startsWith("#")) {
-                    return SPECIAL_TOKENS.stream().filter(new StartsWithPredicate(arg.get())).collect(GuavaCollectors.toImmutableList());
-                } else if (arg.get().contains(",") || !args.hasNext()) {
-                    return ImmutableList.of(arg.get());
-                } else {
-                    arg = args.nextIfPresent();
-                    if (args.hasNext()) {
-                        return ImmutableList.of(args.nextIfPresent().get());
-                    } else {
-                        return ImmutableList.of(arg.get());
-                    }
+            final String arg = args.nextIfPresent().orElse("");
+            if (this.parsePosition && arg.startsWith("#")) {
+                if (args.hasNext()) {
+                    return ImmutableList.of();
+                }
+                return SPECIAL_TOKENS.stream().filter(new StartsWithPredicate(arg))
+                        .collect(GuavaCollectors.toImmutableList());
+            } else if (arg.contains(",")) {
+                if (args.hasNext()) {
+                    return ImmutableList.of();
+                }
+                final int parts = arg.split(",", -1).length;
+                final int index = arg.lastIndexOf(',');
+
+                final Location<World> pos = this.targetBlockTabCompletion ?
+                        context.<Location<World>>getOne(CommandContext.TARGET_BLOCK_ARG).orElse(null) : null;
+                final String prefix = arg.substring(0, index + 1);
+                switch (parts) {
+                    case 1:
+                        return this.getCommaSeparatedCompletion(src, Vector3d::getX, RelativeVector3d::getX, prefix, arg, pos);
+                    case 2:
+                        return this.getCommaSeparatedCompletion(src, Vector3d::getY, RelativeVector3d::getY, prefix, arg, pos);
+                    case 3:
+                        return this.getCommaSeparatedCompletion(src, Vector3d::getZ, RelativeVector3d::getZ, prefix, arg, pos);
                 }
             } else {
-                return ImmutableList.of();
+                final Optional<String> optArg = args.nextIfPresent();
+                if (optArg.isPresent()) {
+                    final Optional<String> optArg1 = args.nextIfPresent();
+                    if (optArg1.isPresent()) {
+                        if (args.hasNext()) {
+                            return ImmutableList.of();
+                        }
+                        return this.getCompletion(src, context, Vector3d::getZ, RelativeVector3d::getX, optArg1.get());
+                    }
+                    return this.getCompletion(src, context, Vector3d::getY, RelativeVector3d::getY, optArg.get());
+                } else {
+                    return this.getCompletion(src, context, Vector3d::getX, RelativeVector3d::getZ, arg);
+                }
+            }
+            return ImmutableList.of(arg);
+        }
+
+        private List<String> getCommaSeparatedCompletion(CommandSource src, Function<Vector3d, Double> function,
+                Function<RelativeVector3d, RelativeDouble> relFunction, String prefix, String arg,
+                @Nullable Location<World> pos) {
+            if (pos != null) {
+                return toList(arg, prefix + Double.toString(function.apply(pos.getPosition())));
+            }
+            final RelativeVector3d def = this.getDefaultCompletionVector(src);
+            if (def != null) {
+                return toList(arg, prefix + relFunction.apply(def).toString());
+            } else {
+                return ImmutableList.of(arg);
             }
         }
 
-        private double parseRelativeDouble(CommandArgs args, String arg, @Nullable Double relativeTo) throws ArgumentParseException {
-            boolean relative = arg.startsWith("~");
-            if (relative) {
-                if (relativeTo == null) {
-                    throw args.createError(t("Relative position specified but source does not have a postion"));
-                }
-                arg = arg.substring(1);
-                if (arg.isEmpty()) {
-                    return relativeTo;
-                }
+        private List<String> getCompletion(CommandSource src, CommandContext context, Function<Vector3d, Double> function,
+                Function<RelativeVector3d, RelativeDouble> relFunction, String arg) {
+            final Optional<Location<World>> pos = this.targetBlockTabCompletion ?
+                    context.<Location<World>>getOne(CommandContext.TARGET_BLOCK_ARG) : Optional.empty();
+            if (pos.isPresent()) {
+                return toList(arg, Double.toString(function.apply(pos.get().getPosition())));
             }
+            final RelativeVector3d def = this.getDefaultCompletionVector(src);
+            if (def != null) {
+                return toList(arg, relFunction.apply(def).toString());
+            } else {
+                return ImmutableList.of(arg);
+            }
+        }
+
+        private RelativeDouble parseRelativeDouble(CommandArgs args, String arg)
+                throws ArgumentParseException {
             try {
-                double ret = Double.parseDouble(arg);
-                return relative ? ret + relativeTo : ret;
+                final RelativeDouble value = RelativeDouble.parse(arg);
+                if (!this.parsePosition && value.isRelative()) {
+                    throw args.createError(t("%s doesn't support relative values.", getName()));
+                }
+                return value;
             } catch (NumberFormatException e) {
                 throw args.createError(t("Expected input %s to be a double, but was not", arg));
             }
+        }
+    }
+
+    private static class Vector3dCommandElement extends RelativeVector3dCommandElement {
+
+        @Nullable private final RelativeVector3d defaultValue;
+
+        protected Vector3dCommandElement(@Nullable Text key, boolean targetBlockTabComplete, boolean parsePosition,
+                @Nullable Vector3d defaultValue) {
+            super(key, targetBlockTabComplete, parsePosition);
+            this.defaultValue = defaultValue == null ? null : new RelativeVector3d(defaultValue);
+        }
+
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            final RelativeVector3d relativeVector3d = (RelativeVector3d) super.parseValue(source, args);
+            if (relativeVector3d == null) {
+                return null;
+            }
+            if (relativeVector3d.isRelative()) { // Always false for regular vectors
+                if (!(source instanceof Locatable)) {
+                    throw args.createError(t("Relative position specified but source does not have a position"));
+                }
+                return relativeVector3d.applyToValue(((Locatable) source).getLocation().getPosition());
+            }
+            return relativeVector3d.applyToValue(Vector3d.ZERO);
+        }
+
+        @Nullable
+        protected RelativeVector3d getDefaultCompletionVector(CommandSource src) {
+            return this.defaultValue != null ? this.defaultValue : super.getDefaultCompletionVector(src);
         }
     }
 
@@ -1265,10 +1689,10 @@ public final class GenericArguments {
         private final WorldPropertiesCommandElement worldParser;
         private final Vector3dCommandElement vectorParser;
 
-        protected LocationCommandElement(Text key) {
+        protected LocationCommandElement(Text key, boolean targetBlockTabCompletion) {
             super(key);
             this.worldParser = new WorldPropertiesCommandElement(null);
-            this.vectorParser = new Vector3dCommandElement(null);
+            this.vectorParser = new Vector3dCommandElement(null, targetBlockTabCompletion, true, null);
         }
 
         @Override
@@ -1532,7 +1956,241 @@ public final class GenericArguments {
 
         @Override
         public Text getUsage(CommandSource src) {
-            return src instanceof Player && this.returnSource ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+            return isOptional(src) ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+        }
+
+        @Override
+        public boolean isOptional(CommandSource src) {
+            return this.returnSource && (src instanceof Entity ||
+                    (src instanceof ProxySource && ((ProxySource) src).getOriginalSource() instanceof Entity));
+        }
+    }
+
+    /**
+     * Gives a {@link Color}, the color can be parsed
+     * in 3 different formats: literal which will match
+     * some inbuilt mappings, rgb which will use 3 components
+     * to parse the color and hex which will parse the
+     * hex format of a color.
+     *
+     * @param key The key to store the color under
+     * @return The element to match the input
+     */
+    public static CommandElement color(Text key) {
+        return new ColorElement(key, null);
+    }
+
+    /**
+     * Gives a {@link Color}, the color can be parsed
+     * in 3 different formats: literal which will match
+     * some inbuilt mappings, rgb which will use 3 components
+     * to parse the color and hex which will parse the
+     * hex format of a color.
+     *
+     * <p>The default color will be used in the tab completation,
+     * it will be the first entry when completing a empty color
+     * element or the only entry when completing hex or rgb.</p>
+     *
+     * @param key The key to store the color under
+     * @param defaultColor The default color used in tab completation
+     * @return The element to match the input
+     */
+    public static CommandElement color(Text key, Color defaultColor) {
+        return new ColorElement(key, defaultColor);
+    }
+
+    private static class ColorElement extends CommandElement {
+
+        private static final Pattern RGB_PATTERN = Pattern.compile("^[0-9,]+$");
+        private static final Map<String, Color> INBUILT_COLORS = ImmutableMap.<String, Color>builder()
+                .put("black", Color.BLACK)
+                .put("blue", Color.BLUE)
+                .put("cyan", Color.CYAN)
+                .put("darkcyan", Color.DARK_CYAN)
+                .put("darkgreen", Color.DARK_GREEN)
+                .put("darkmagenta", Color.DARK_MAGENTA)
+                .put("gray", Color.GRAY)
+                .put("green", Color.GREEN)
+                .put("lime", Color.LIME)
+                .put("magenta", Color.MAGENTA)
+                .put("navy", Color.NAVY)
+                .put("pink", Color.PINK)
+                .put("purple", Color.PURPLE)
+                .put("red", Color.RED)
+                .put("white", Color.WHITE)
+                .put("yellow", Color.YELLOW)
+                .build();
+        private static final List<String> INBUILT_COLOR_NAMES = ImmutableList.copyOf(INBUILT_COLORS.keySet());
+
+        public static String findClosestColorName(String target) {
+            int distance = Integer.MAX_VALUE;
+            String closest = null;
+            for (String name : INBUILT_COLORS.keySet()) {
+                int currentDistance = StringUtils.getLevenshteinDistance(name, target);
+                if (currentDistance < distance) {
+                    distance = currentDistance;
+                    closest = name;
+                }
+            }
+            return closest;
+        }
+
+        @Nullable private final Color defaultColor;
+        @Nullable private final ImmutableList<String> sortedColorNames;
+
+        ColorElement(Text key, @Nullable Color defaultColor) {
+            super(key);
+            this.defaultColor = defaultColor;
+            if (defaultColor != null) {
+                for (Map.Entry<String, Color> entry : INBUILT_COLORS.entrySet()) {
+                    if (entry.getValue().equals(defaultColor)) {
+                        final ImmutableList.Builder<String> entries = ImmutableList.builder();
+                        entries.add(entry.getKey());
+                        // Add all the other colors except the first element
+                        INBUILT_COLORS.keySet().stream()
+                                .filter(colorName -> !colorName.equals(entry.getKey()))
+                                .forEach(entries::add);
+                        this.sortedColorNames = entries.build();
+                        return;
+                    }
+                }
+            }
+            this.sortedColorNames = null;
+        }
+
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String rStr = args.next();
+            // Check for hex format if allowed
+            if (rStr.startsWith("0x") || rStr.startsWith("#")) {
+                // Get the hex value without the prefix
+                String value = rStr.substring(rStr.startsWith("0x") ? 2 : 1);
+                int hex;
+                try {
+                    hex = Integer.parseInt(value, 16);
+                } catch (NumberFormatException e) {
+                    throw args.createError(t("Expected input %s to be hexadecimal, but it was not"));
+                }
+                return Color.ofRgb(hex);
+            }
+            // Check whether the format matches
+            if (RGB_PATTERN.matcher(rStr).matches()) {
+                String gStr;
+                String bStr;
+                // Try for the comma-separated format
+                if (rStr.contains(",")) {
+                    String[] split = rStr.split(",");
+                    if (split.length != 3) {
+                        throw args.createError(t("Comma-separated color must have 3 elements, not %s", split.length));
+                    }
+                    rStr = split[0];
+                    gStr = split[1];
+                    bStr = split[2];
+                } else {
+                    gStr = args.next();
+                    bStr = args.next();
+                }
+                int r = parseComponent(args, rStr, "r");
+                int g = parseComponent(args, gStr, "g");
+                int b = parseComponent(args, bStr, "b");
+                return Color.of(new Vector3i(r, g, b));
+            }
+            Color color = INBUILT_COLORS.get(rStr.toLowerCase());
+            if (color == null) {
+                throw args.createError(t("Unknown inbuilt color: %s Did you mean: %s ?",
+                        rStr, findClosestColorName(rStr)));
+            }
+            return color;
+        }
+
+        private static int parseComponent(CommandArgs args, String arg, String name) throws ArgumentParseException {
+            try {
+                int value = Integer.parseInt(arg);
+                if (value < 0) {
+                    throw args.createError(t("Number %s for %s component is too small, it must be at least %s",
+                            value, name, 0));
+                }
+                if (value > 255) {
+                    throw args.createError(t("Number %s for %s component is too big, it must be at most %s",
+                            value, name, 255));
+                }
+                return value;
+            } catch (NumberFormatException e) {
+                throw args.createError(t("Expected input %s for %s component to be a number, but it was not",
+                        arg, name));
+            }
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            final String rStr = args.nextIfPresent().orElse("");
+            if (args.nextIfPresent().isPresent()) {
+                if (rStr.startsWith("0x") || rStr.startsWith("#") ||
+                        !RGB_PATTERN.matcher(rStr).matches() || rStr.contains(",")) {
+                    return ImmutableList.of();
+                }
+                if (args.nextIfPresent().isPresent()) {
+                    // Store the current state
+                    Object state = args.getState();
+                    if (args.nextIfPresent().isPresent()) {
+                        // We finished the vector3d, reset before the last arg
+                        args.setState(state);
+                    } else {
+                        // The blue is being completed
+                        if (this.defaultColor != null) {
+                            return ImmutableList.of(Integer.toString(this.defaultColor.getBlue()));
+                        } else {
+                            return ImmutableList.of();
+                        }
+                    }
+                } else {
+                    // The green is being completed
+                    if (this.defaultColor != null) {
+                        return ImmutableList.of(Integer.toString(this.defaultColor.getGreen()));
+                    } else {
+                        return ImmutableList.of();
+                    }
+                }
+            } else {
+                if (rStr.isEmpty()) {
+                    if (this.sortedColorNames == null) {
+                        return INBUILT_COLOR_NAMES;
+                    }
+                    return this.sortedColorNames;
+                }
+                if (rStr.startsWith("0x") || rStr.startsWith("#")) {
+                    if (this.defaultColor == null) {
+                        return ImmutableList.of();
+                    }
+                    final String prefix = rStr.charAt(0) == '#' ? "#" : "0x";
+                    return ImmutableList.of(prefix + Integer.toHexString(this.defaultColor.getRgb()));
+                }
+                if (RGB_PATTERN.matcher(rStr).matches()) {
+                    if (this.defaultColor == null) {
+                        return ImmutableList.of();
+                    }
+                    if (rStr.contains(",")) {
+                        final int parts = rStr.split(",", -1).length;
+                        final int index = rStr.lastIndexOf(',');
+
+                        final String prefix = rStr.substring(0, index + 1);
+                        switch (parts) {
+                            case 1:
+                                return ImmutableList.of(prefix + this.defaultColor.getRed());
+                            case 2:
+                                return ImmutableList.of(prefix + this.defaultColor.getGreen());
+                            case 3:
+                                return ImmutableList.of(prefix + this.defaultColor.getBlue());
+                        }
+                        return ImmutableList.of();
+                    }
+                    return ImmutableList.of(Integer.toString(this.defaultColor.getRed()));
+                } else {
+                    return INBUILT_COLOR_NAMES.stream().filter(new StartsWithPredicate(rStr.toLowerCase()))
+                            .collect(GuavaCollectors.toImmutableList());
+                }
+            }
+            return ImmutableList.of();
         }
     }
 

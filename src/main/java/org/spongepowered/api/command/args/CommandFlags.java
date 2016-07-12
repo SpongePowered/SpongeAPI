@@ -30,11 +30,12 @@ import static org.spongepowered.api.command.args.GenericArguments.string;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
-import org.spongepowered.api.command.CommandSource;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -43,9 +44,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.stream.Collectors;
-
-import javax.annotation.Nullable;
+import java.util.regex.Pattern;
 
 public final class CommandFlags extends CommandElement {
     @Nullable
@@ -70,6 +69,15 @@ public final class CommandFlags extends CommandElement {
         this.anchorFlags = anchorFlags;
     }
 
+    private static boolean isNumber(String arg) {
+        try {
+            Double.parseDouble(arg);
+            return true;
+        } catch (NumberFormatException ignored) {
+        }
+        return false;
+    }
+
     @Override
     public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
         Object startIdx = args.getState();
@@ -77,7 +85,7 @@ public final class CommandFlags extends CommandElement {
         while (args.hasNext()) {
             arg = args.next();
             boolean ignore;
-            if (arg.startsWith("-")) {
+            if (arg.startsWith("-") && !isNumber(arg)) { // Avoid issues with vector and number args
                 Object flagStartIdx = args.getState();
                 if (arg.startsWith("--")) { // Long flag
                     String longFlag = arg.substring(2);
@@ -98,7 +106,6 @@ public final class CommandFlags extends CommandElement {
         if (this.childElement != null) {
             this.childElement.parse(source, args, context);
         }
-
     }
 
     private boolean parseLongFlag(CommandSource source, String longFlag, CommandArgs args, CommandContext context) throws ArgumentParseException {
@@ -180,12 +187,13 @@ public final class CommandFlags extends CommandElement {
     @Override
     public Text getUsage(CommandSource src) {
         final List<Object> builder = new ArrayList<>();
-        for (Map.Entry<List<String>, CommandElement> arg : this.usageFlags.entrySet()) {
+        for (Iterator<Map.Entry<List<String>, CommandElement>> it = this.usageFlags.entrySet().iterator(); it.hasNext(); ) {
+            final Map.Entry<List<String>, CommandElement> arg = it.next();
             builder.add("[");
-            for (Iterator<String> it = arg.getKey().iterator(); it.hasNext();) {
+            for (Iterator<String> it1 = arg.getKey().iterator(); it1.hasNext();) {
                 builder.add("-");
-                builder.add(it.next());
-                if (it.hasNext()) {
+                builder.add(it1.next());
+                if (it1.hasNext()) {
                     builder.add("|");
                 }
             }
@@ -195,11 +203,16 @@ public final class CommandFlags extends CommandElement {
                 builder.add(usage);
             }
             builder.add("]");
-            builder.add(" ");
+            if (it.hasNext()) {
+                builder.add(" ");
+            }
         }
-
         if (this.childElement != null) {
-            builder.add(this.childElement.getUsage(src));
+            final Text usage = this.childElement.getUsage(src);
+            if (!usage.isEmpty()) {
+                builder.add(" ");
+                builder.add(this.childElement.getUsage(src));
+            }
         }
         return Text.of(builder.toArray());
     }
@@ -239,9 +252,8 @@ public final class CommandFlags extends CommandElement {
         args.setState(startIdx);
         if (this.childElement != null) {
             return this.childElement.complete(src, args, context);
-        } else {
-            return Collections.emptyList();
         }
+        return Collections.emptyList();
     }
 
     @Nullable
@@ -256,39 +268,38 @@ public final class CommandFlags extends CommandElement {
             } else {
                 args.insertArg(value);
                 final String finalLongFlag = longFlag;
-                Object position = args.getState();
+                Object state = args.getState();
                 try {
                     element.parse(src, args, context);
                 } catch (ArgumentParseException ex) {
-                    args.setState(position);
-                    return ImmutableList.copyOf(
-                        element.complete(src, args, context).stream().map(input -> "--" + finalLongFlag + "=" + input).collect(Collectors.toList()));
+                    args.setState(state);
+                    List<String> ret = element.complete(src, args, context);
+                    if ((Integer) args.getState() <= (Integer) state + 1) {
+                        return ret.stream().map(input -> "--" + finalLongFlag + "=" + input)
+                                .collect(GuavaCollectors.toImmutableList());
+                    } else {
+                        return ImmutableList.copyOf(ret);
+                    }
                 }
             }
         } else {
             CommandElement element = this.longFlags.get(longFlag.toLowerCase());
             if (element == null) {
-                List<String> retStrings = this.longFlags.keySet().stream()
+                List<String> ret = this.longFlags.keySet().stream()
                     .filter(new StartsWithPredicate(longFlag))
                     .map(arg -> "--" + arg)
                     .collect(GuavaCollectors.toImmutableList());
-                if (retStrings.isEmpty() && this.unknownLongFlagBehavior == UnknownFlagBehavior.ACCEPT_VALUE) { // Then we probably have a
-                // following arg specified, if there's anything
+                if (ret.isEmpty() && this.unknownLongFlagBehavior == UnknownFlagBehavior.ACCEPT_VALUE) {
+                    // Then we probably have a following arg specified, if there's anything
                     args.nextIfPresent();
                     return null;
                 }
+                return ret;
             } else {
-                boolean complete = false;
                 Object state = args.getState();
                 try {
                     element.parse(src, args, context);
                 } catch (ArgumentParseException ex) {
-                    complete = true;
-                }
-                if (!args.hasNext()) {
-                    complete = true;
-                }
-                if (complete) {
                     args.setState(state);
                     return element.complete(src, args, context);
                 }
@@ -307,7 +318,6 @@ public final class CommandFlags extends CommandElement {
                     args.nextIfPresent();
                     return null;
                 }
-
                 continue;
             }
             Object start = args.getState();
@@ -343,6 +353,8 @@ public final class CommandFlags extends CommandElement {
     }
 
     public static class Builder {
+        private final static Pattern NUMBER_PATTERN = Pattern.compile("[0-9]");
+
         private final Map<List<String>, CommandElement> usageFlags = new HashMap<>();
         private final Map<String, CommandElement> shortFlags = new HashMap<>();
         private final Map<String, CommandElement> longFlags = new HashMap<>();
@@ -374,6 +386,9 @@ public final class CommandFlags extends CommandElement {
                 } else {
                     for (int i = 0; i < spec.length(); ++i) {
                         final String flagKey = spec.substring(i, i + 1);
+                        if (NUMBER_PATTERN.matcher(flagKey).matches()) {
+                            throw new IllegalArgumentException("Short flags may not contain numbers.");
+                        }
                         if (el == null) {
                             el = func.apply(flagKey);
                         }
@@ -392,7 +407,7 @@ public final class CommandFlags extends CommandElement {
          * The specifications are handled as so for each element in the {@code specs} array:
          * <ul>
          *     <li>If the element starts with -, the remainder of the element is interpreted as a long flag</li>
-         *     <li>Otherwise, each code point of the element is interpreted as a short flag</li>
+         *     <li>Otherwise, each code point of the element is interpreted as a short flag. Short flags may not contain numbers.</li>
          * </ul>
          *
          * @param specs The flag specifications

@@ -55,6 +55,27 @@ public final class CommandArgs {
     }
 
     /**
+     * Creates a {@link org.spongepowered.api.command.args.CommandArgs.Snapshot}
+     * of the current state of this command args.
+     *
+     * @return The snapshot
+     */
+    Snapshot createSnapshot() {
+        return new Snapshot(new ArrayList<>(this.args), this.index);
+    }
+
+    /**
+     * Restores the {@link org.spongepowered.api.command.args.CommandArgs.Snapshot}
+     * values.
+     *
+     * @param snapshot The snapshot
+     */
+    void restoreSnapshot(Snapshot snapshot) {
+        this.args = new ArrayList<>(snapshot.args);
+        this.index = snapshot.index;
+    }
+
+    /**
      * Return whether more arguments remain to be read.
      *
      * @return Whether more arguments remain
@@ -118,10 +139,6 @@ public final class CommandArgs {
         return Collections.unmodifiableList(this.args.stream().map(SingleArg::getValue).collect(Collectors.toList()));
     }
 
-    List<SingleArg> getArgs() {
-        return this.args;
-    }
-
     /**
      * Return this arguments object's current state. Can be used to reset with the {@link #setState(Object)} method.
      *
@@ -153,6 +170,20 @@ public final class CommandArgs {
     }
 
     /**
+     * Insert an {@link Iterable} of args as the next args to be
+     * returned by {@link #next()}.
+     *
+     * @param values The arguments to insert
+     */
+    public void insertArgs(Iterable<String> values) {
+        int index = this.index < 0 ? 0 : this.args.get(this.index).getEndIdx();
+        int pos = this.index;
+        for (String value : values) {
+            this.args.add(++pos, new SingleArg(value, index, index));
+        }
+    }
+
+    /**
      * Insert an arg as the next arg to be returned by {@link #next()}.
      *
      * @param value The argument to insert
@@ -163,12 +194,29 @@ public final class CommandArgs {
     }
 
     /**
+     * Remove the arguments parsed at the state.
+     *
+     * @param state The state
+     */
+    public void removeArg(Object state) {
+        if (!(state instanceof Integer)) {
+            throw new IllegalArgumentException("The provided state was not of the correct type!");
+        }
+        int index = (Integer) state;
+        if (this.index > index) {
+            this.index--;
+        }
+        this.args.remove(index);
+    }
+
+    /**
      * Remove the arguments parsed between startState and endState.
      *
      * @param startState The starting state
      * @param endState The ending state
+     * @return The removed arguments
      */
-    public void removeArgs(Object startState, Object endState) {
+    public List<String> removeArgs(Object startState, Object endState) {
         if (!(startState instanceof Integer) || !(endState instanceof Integer)) {
             throw new IllegalArgumentException("One of the states provided was not of the correct type!");
         }
@@ -181,18 +229,24 @@ public final class CommandArgs {
                 this.index -= (endIdx - startIdx) + 1;
             }
         }
+        final List<String> args = new ArrayList<>();
         for (int i = startIdx; i <= endIdx; ++i) {
-            this.args.remove(startIdx);
+            args.add(this.args.remove(startIdx).getValue());
         }
+        return args;
     }
 
     /**
      * Go back to the previous argument.
+     *
+     * @return Whether the state has changed
      */
-    void previous() {
+    boolean previous() {
         if (this.index > -1) {
             --this.index;
+            return true;
         }
+        return false;
     }
 
     /**
@@ -204,4 +258,17 @@ public final class CommandArgs {
         return this.index < 0 ? 0 : this.args.get(this.index).getStartIdx();
     }
 
+    /**
+     * A snapshot of the {@link CommandArgs}.
+     */
+    static final class Snapshot {
+
+        private final List<SingleArg> args;
+        private final int index;
+
+        Snapshot(List<SingleArg> args, int index) {
+            this.args = args;
+            this.index = index;
+        }
+    }
 }

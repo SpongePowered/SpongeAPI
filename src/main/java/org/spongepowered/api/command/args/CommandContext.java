@@ -46,15 +46,41 @@ public final class CommandContext {
     /**
      * The argument key for a target block position that may be present during tab completion, of type {@link Location Location&lt;World>}
      */
-    public static final String TARGET_BLOCK_ARG = "targetblock-pos048658"; // Random junk afterwards so we don't accidentally conflict with other args
+    public static final String TARGET_BLOCK_ARG = "target-block-pos-048658"; // Random junk afterwards so we don't accidentally conflict with other args
 
-    private final Multimap<String, Object> parsedArgs;
+    /**
+     * The argument key which represents that a command context is being used
+     * for tab completation.
+     */
+    public static final String TAB_COMPLETION_CONTEXT = "tab-completion-context-963485";
+
+    private Multimap<String, Object> parsedArgs;
 
     /**
      * Create a new empty CommandContext.
      */
     public CommandContext() {
         this.parsedArgs = ArrayListMultimap.create();
+    }
+
+    /**
+     * Creates a {@link org.spongepowered.api.command.args.CommandContext.Snapshot}
+     * of the current state of this command context.
+     *
+     * @return The snapshot
+     */
+    Snapshot createSnapshot() {
+        return new Snapshot(ArrayListMultimap.create(this.parsedArgs));
+    }
+
+    /**
+     * Restores the {@link org.spongepowered.api.command.args.CommandContext.Snapshot}
+     * values.
+     *
+     * @param snapshot The snapshot
+     */
+    void restoreSnapshot(Snapshot snapshot) {
+        this.parsedArgs = ArrayListMultimap.create(snapshot.parsedArgs);
     }
 
     /**
@@ -118,6 +144,7 @@ public final class CommandContext {
      * @param value the value for this argument
      */
     public void putArg(String key, Object value) {
+        checkNotNull(key, "key");
         checkNotNull(value, "value");
         this.parsedArgs.put(key, value);
     }
@@ -130,6 +157,49 @@ public final class CommandContext {
      */
     public void putArg(Text key, Object value) {
         putArg(ArgUtils.textToArgKey(key), value);
+    }
+
+    /**
+     * Removes all the arguments with the specified
+     * key from this context.
+     *
+     * @param key the key the args are stored under
+     */
+    public void removeArgs(String key) {
+        checkNotNull(key, "key");
+        this.parsedArgs.removeAll(key);
+    }
+
+    /**
+     * Removes all the arguments with the specified
+     * key from this context.
+     *
+     * @param key the key the args are stored under
+     */
+    public void removeArgs(Text key) {
+        removeArgs(ArgUtils.textToArgKey(key));
+    }
+
+    /**
+     * Removes an argument from this context.
+     *
+     * @param key the key the arg is stored under
+     * @param value the value of the argument
+     */
+    public void removeArg(String key, Object value) {
+        checkNotNull(key, "key");
+        checkNotNull(value, "value");
+        this.parsedArgs.remove(key, value);
+    }
+
+    /**
+     * Removes an argument from this context.
+     *
+     * @param key the key the arg is stored under
+     * @param value the value of the argument
+     */
+    public void removeArg(Text key, Object value) {
+        removeArg(ArgUtils.textToArgKey(key), value);
     }
 
     /**
@@ -163,5 +233,17 @@ public final class CommandContext {
      */
     public boolean hasAny(Text key) {
         return hasAny(ArgUtils.textToArgKey(key));
+    }
+
+    /**
+     * A snapshot of the {@link CommandContext}.
+     */
+    static final class Snapshot {
+
+        private final Multimap<String, Object> parsedArgs;
+
+        Snapshot(Multimap<String, Object> parsedArgs) {
+            this.parsedArgs = parsedArgs;
+        }
     }
 }
