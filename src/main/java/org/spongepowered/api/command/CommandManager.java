@@ -124,6 +124,14 @@ public interface CommandManager extends Dispatcher {
     Set<CommandMapping> getOwnedBy(Object instance);
 
     /**
+     * Get the owner of a CommandMapping, if any is present
+     *
+     * @param mapping The mapping to get an owner for
+     * @return The owner, if present.
+     */
+    Optional<PluginContainer> getOwner(CommandMapping mapping);
+
+    /**
      * Get the number of registered aliases.
      *
      * @return The number of aliases
