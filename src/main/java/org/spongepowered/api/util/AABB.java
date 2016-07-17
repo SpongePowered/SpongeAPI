@@ -29,8 +29,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.api.entity.EntityTypes;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.blockray.BlockRay;
@@ -201,7 +199,7 @@ public class AABB {
      * @param direction The direction of the ray
      * @return An intersection point its normal, if any
      */
-    public Optional<Pair<Vector3d, Vector3d>> intersects(Vector3d start, Vector3d direction) {
+    public Optional<Tuple<Vector3d, Vector3d>> intersects(Vector3d start, Vector3d direction) {
         // Adapted from: https://github.com/flow/react/blob/develop/src/main/java/com/flowpowered/react/collision/RayCaster.java#L156
         // The box is interpreted as 6 infinite perpendicular places, one for each face (being expanded infinitely)
         // "t" variables are multipliers: start + direction * t gives the intersection point
@@ -299,10 +297,9 @@ public class AABB {
         if (tMax < 0) {
             return Optional.empty();
         }
-        // To avoid rounding point errors leaving the intersection point just off the plane
-        // we jump through some hoops to use the actual plane value from the box coordinates
+        // Find the final intersection multiplier and normal
         final double t;
-        final Vector3d normal;
+        Vector3d normal;
         if (tMin < 0) {
             // Only the furthest intersection is after the start, so use it
             t = tMax;
@@ -312,9 +309,34 @@ public class AABB {
             t = tMin;
             normal = normalMin;
         }
-        // Compute the final intersection point
-        // TODO: use box coordinates
-        return Optional.of(new ImmutablePair<>(direction.mul(t).add(start), normal.normalize()));
+        normal = normal.normalize();
+        // To avoid rounding point errors leaving the intersection point just off the plane
+        // we check the normal to use the actual plane value from the box coordinates
+        final double x;
+        final double y;
+        final double z;
+        if (normal.getX() > 0) {
+            x = max.getX();
+        } else if (normal.getX() < 0) {
+            x = min.getX();
+        } else {
+            x = direction.getX() * t + start.getX();
+        }
+        if (normal.getY() > 0) {
+            y = max.getY();
+        } else if (normal.getY() < 0) {
+            y = min.getY();
+        } else {
+            y = direction.getY() * t + start.getY();
+        }
+        if (normal.getZ() > 0) {
+            z = max.getZ();
+        } else if (normal.getZ() < 0) {
+            z = min.getZ();
+        } else {
+            z = direction.getZ() * t + start.getZ();
+        }
+        return Optional.of(new Tuple<>(new Vector3d(x, y, z), normal));
     }
 
     /**

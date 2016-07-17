@@ -32,7 +32,6 @@ import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.imaginary.Quaterniond;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.property.AbstractProperty;
@@ -40,6 +39,7 @@ import org.spongepowered.api.data.property.block.FullBlockSelectionBoxProperty;
 import org.spongepowered.api.data.property.entity.EyeLocationProperty;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.Functional;
+import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.Extent;
@@ -348,13 +348,13 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         if (this.narrowPhase && !hit.getExtent().getProperty(hit.getBlockPosition(), FullBlockSelectionBoxProperty.class)
                 .map(AbstractProperty::getValue).orElse(true)) {
             // Get the selection box and perform the narrow phase intersection test
-            final Optional<Pair<Vector3d, Vector3d>> intersection = hit.mapBlock(Extent::getBlockSelectionBox)
+            final Optional<Tuple<Vector3d, Vector3d>> intersection = hit.mapBlock(Extent::getBlockSelectionBox)
                 .flatMap(aabb -> aabb.intersects(this.position, this.direction));
             // Create the new narrow hit if there was an intersection
             if (intersection.isPresent()) {
-                final Pair<Vector3d, Vector3d> pair = intersection.get();
-                final Vector3d narrowHit = pair.getLeft();
-                hit = new BlockRayHit<>(this.extent, narrowHit.getX(), narrowHit.getY(), narrowHit.getZ(), this.direction, pair.getRight());
+                final Tuple<Vector3d, Vector3d> pair = intersection.get();
+                final Vector3d narrowHit = pair.getFirst();
+                hit = new BlockRayHit<>(this.extent, narrowHit.getX(), narrowHit.getY(), narrowHit.getZ(), this.direction, pair.getSecond());
             } else {
                 // Otherwise return false to attempt the next block
                 return false;
