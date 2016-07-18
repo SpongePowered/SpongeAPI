@@ -33,6 +33,7 @@ import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
+import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 /**
@@ -67,6 +68,39 @@ public class Functional {
         return e -> {
             for (Predicate<E> pred : predicates) {
                 if (!pred.test(e)) {
+                    return false;
+                }
+            }
+            return true;
+        };
+    }
+
+    /**
+     * Perform an AND using an array of bi-predicates.
+     *
+     * @param predicates The bi-predicates to AND
+     * @param <L> The left type to accept
+     * @param <R> The right type to accept
+     * @return The combined bi-predicate
+     */
+    @SafeVarargs
+    @SuppressWarnings("varargs")
+    public static <L, R> BiPredicate<L, R> biPredicateAnd(BiPredicate<L, R>... predicates) {
+        return biPredicateAnd(Arrays.asList(predicates));
+    }
+
+    /**
+     * Perform an AND using an iterable of bi-predicates.
+     *
+     * @param predicates The bi-predicates to and
+     * @param <L> The left type to accept
+     * @param <R> The right type to accept
+     * @return The combined bi-predicate
+     */
+    public static <L, R> BiPredicate<L, R> biPredicateAnd(Iterable<BiPredicate<L, R>> predicates) {
+        return (l, r) -> {
+            for (BiPredicate<L, R> pred : predicates) {
+                if (!pred.test(l, r)) {
                     return false;
                 }
             }
