@@ -756,7 +756,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
             final double deltaX = lastHit.getX() - start.getX();
             final double deltaY = lastHit.getY() - start.getY();
             final double deltaZ = lastHit.getZ() - start.getZ();
-            return deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ < distanceSquared;
+            return deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ <= distanceSquared;
         };
     }
 
