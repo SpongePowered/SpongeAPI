@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.extent;
 
+import com.flowpowered.math.imaginary.Quaterniond;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -31,6 +32,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.data.property.LocationBasePropertyHolder;
+import org.spongepowered.api.data.property.entity.EyeLocationProperty;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -39,6 +41,7 @@ import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.BlockChangeFlag;
+import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.worker.MutableBiomeAreaWorker;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
@@ -48,6 +51,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
@@ -543,5 +547,97 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @return All the intersecting collision boxes
      */
     Set<AABB> getIntersectingCollisionBoxes(Entity owner, AABB box);
+
+    /**
+     * Gets all the entities that intersect the ray (by their bounding box)
+     * The ray is defined by its start and end point.
+     *
+     * @param start The start of the ray
+     * @param end The end of the ray
+     * @return The intersecting entities in no particular order, with the
+     * associated intersection point and normal
+     */
+    default Set<Tuple<Entity, Tuple<Vector3d, Vector3d>>> getIntersectingEntities(Vector3d start, Vector3d end) {
+        return getIntersectingEntities(start, end, (entity, intersection) -> true);
+    }
+
+    /**
+     * Gets all the entities that intersect the ray (by their bounding box)
+     * The ray is defined by its start and end point. Only the entities that
+     * pass the filter test are added.
+     *
+     * @param start The start of the ray
+     * @param end The end of the ray
+     * @param filter The filter test
+     * @return The intersecting entities in no particular order, with the
+     * associated intersection point and normal
+     */
+    Set<Tuple<Entity, Tuple<Vector3d, Vector3d>>> getIntersectingEntities(Vector3d start, Vector3d end,
+            BiPredicate<Entity, Tuple<Vector3d, Vector3d>> filter);
+
+    /**
+     * Gets all the entities that are in the line of sight of the given entity,
+     * up to a given distance. This ignores occluders like blocks or other
+     * entities. That is to say, the returned entities might not actually be
+     * visible.
+     *
+     * @param looker The looking entity
+     * @param distance The distance of the ray (from the start)
+     * @return The intersecting entities in no particular order, with the
+     * associated intersection point and normal
+     */
+    default Set<Tuple<Entity, Tuple<Vector3d, Vector3d>>> getIntersectingEntities(Entity looker, double distance) {
+        return getIntersectingEntities(looker, distance, (entity, intersection) -> true);
+    }
+
+    /**
+     * Gets all the entities that are in the line of sight of the given entity,
+     * up to a given distance. This ignores occluders like blocks or other
+     * entities. That is to say, the returned entities might not actually be
+     * visible. Only the entities that pass the filter test are added.
+     *
+     * @param looker The looking entity
+     * @param distance The distance of the ray (from the start)
+     * @param filter The filter test
+     * @return The intersecting entities in no particular order, with the
+     * associated intersection point and normal
+     */
+    default Set<Tuple<Entity, Tuple<Vector3d, Vector3d>>> getIntersectingEntities(Entity looker, double distance,
+            BiPredicate<Entity, Tuple<Vector3d, Vector3d>> filter) {
+        final Vector3d rotation = looker.getRotation();
+        final Vector3d direction = Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
+        final Optional<EyeLocationProperty> data = looker.getProperty(EyeLocationProperty.class);
+        final Vector3d start = data.map(EyeLocationProperty::getValue).orElse(looker.getLocation().getPosition());
+        return getIntersectingEntities(start, direction, distance, filter);
+    }
+
+    /**
+     * Gets all the entities that intersect the ray (by their bounding box)
+     * The ray is defined by its start, direction and distance.
+     *
+     * @param start The start of the ray
+     * @param direction The direction of the ray
+     * @param distance The distance of the ray (from the start)
+     * @return The intersecting entities in no particular order, with the
+     * associated intersection point and normal
+     */
+    default Set<Tuple<Entity, Tuple<Vector3d, Vector3d>>> getIntersectingEntities(Vector3d start, Vector3d direction, double distance) {
+        return getIntersectingEntities(start, direction, distance, (entity, intersection) -> true);
+    }
+
+    /**
+     * Gets all the entities that intersect the ray (by their bounding box)
+     * The ray is defined by its start, direction and distance. Only the
+     * entities that pass the filter test are added.
+     *
+     * @param start The start of the ray
+     * @param direction The direction of the ray
+     * @param distance The distance of the ray (from the start)
+     * @param filter The filter test
+     * @return The intersecting entities in no particular order, with the
+     * associated intersection point and normal
+     */
+    Set<Tuple<Entity, Tuple<Vector3d, Vector3d>>> getIntersectingEntities(Vector3d start, Vector3d direction, double distance,
+            BiPredicate<Entity, Tuple<Vector3d, Vector3d>> filter);
 
 }
