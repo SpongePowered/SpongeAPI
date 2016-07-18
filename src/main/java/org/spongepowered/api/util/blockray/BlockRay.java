@@ -551,13 +551,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         final Vector3d rotation = entity.getRotation();
         final Vector3d direction = Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
         final Location<World> location = entity.getLocation();
-        final Vector3d position;
         final Optional<EyeLocationProperty> data = entity.getProperty(EyeLocationProperty.class);
-        if (data.isPresent()) {
-            position = data.get().getValue();
-        } else {
-            position = location.getPosition();
-        }
+        final Vector3d position = data.map(EyeLocationProperty::getValue).orElse(location.getPosition());
         return from(location.getExtent(), position).direction(direction);
     }
 
