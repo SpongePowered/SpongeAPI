@@ -207,7 +207,7 @@ public class AABB {
         final double txMin;
         final double txMax;
         final Vector3d xNormal;
-        if (direction.getX() >= 0) {
+        if (Math.copySign(1, direction.getX()) > 0) {
             txMin = (this.min.getX() - start.getX()) / direction.getX();
             txMax = (this.max.getX() - start.getX()) / direction.getX();
             xNormal = Vector3d.UNIT_X;
@@ -220,7 +220,7 @@ public class AABB {
         final double tyMin;
         final double tyMax;
         final Vector3d yNormal;
-        if (direction.getY() >= 0) {
+        if (Math.copySign(1, direction.getY()) > 0) {
             tyMin = (this.min.getY() - start.getY()) / direction.getY();
             tyMax = (this.max.getY() - start.getY()) / direction.getY();
             yNormal = Vector3d.UNIT_Y;
@@ -265,7 +265,7 @@ public class AABB {
         final double tzMin;
         final double tzMax;
         final Vector3d zNormal;
-        if (direction.getZ() >= 0) {
+        if (Math.copySign(1, direction.getZ()) > 0) {
             tzMin = (this.min.getZ() - start.getZ()) / direction.getZ();
             tzMax = (this.max.getZ() - start.getZ()) / direction.getZ();
             zNormal = Vector3d.UNIT_Z;
