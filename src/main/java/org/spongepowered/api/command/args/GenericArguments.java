@@ -39,6 +39,7 @@ import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.ProxySource;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
@@ -67,6 +68,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
@@ -333,7 +335,7 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement choices(Text key, Map<String, ?> choices) {
-        return choices(key, choices, choices.size() <= 5);
+        return choices(key, choices, choices.size() <= ChoicesCommandElement.CUTOFF);
     }
 
     /**
@@ -346,24 +348,56 @@ public final class GenericArguments {
      * @return the element to match the input
      */
     public static CommandElement choices(Text key, Map<String, ?> choices, boolean choicesInUsage) {
-        return new ChoicesCommandElement(key, ImmutableMap.copyOf(choices), choicesInUsage);
+        Map<String, Object> immChoices = ImmutableMap.copyOf(choices);
+        return choices(key, immChoices::keySet, immChoices::get, choicesInUsage);
+    }
+
+    /**
+     * Return an argument that allows selecting from a limited set of values.
+     * If there are 5 or fewer choices available, the choices will be shown in the command usage. Otherwise, the usage
+     * will only display only the key. To override this behavior, see {@link #choices(Text, Map, boolean)}.
+     *
+     * @param key The key to store the resulting value under
+     * @param keys The function that will supply available keys
+     * @param values The function that maps an element of {@code key} to a value and any other key to {@code null}
+     * @return the element to match the input
+     */
+    public static CommandElement choices(Text key, Supplier<Collection<String>> keys, Function<String, ?> values) {
+        return new ChoicesCommandElement(key, keys, values, Tristate.UNDEFINED);
+    }
+
+    /**
+     * Return an argument that allows selecting from a limited set of values.
+     * Unless {@code choicesInUsage} is true, general command usage will only display the provided key
+     *
+     * @param key The key to store the resulting value under
+     * @param keys The function that will supply available keys
+     * @param values The function that maps an element of {@code key} to a value and any other key to {@code null}
+     * @param choicesInUsage Whether to display the available choices, or simply the provided key, as part of usage
+     * @return the element to match the input
+     */
+    public static CommandElement choices(Text key, Supplier<Collection<String>> keys, Function<String, ?> values, boolean choicesInUsage) {
+        return new ChoicesCommandElement(key, keys, values, choicesInUsage ? Tristate.TRUE : Tristate.FALSE);
     }
 
     private static class ChoicesCommandElement extends CommandElement {
-        private final Map<String, Object> choices;
-        private final boolean choicesInUsage;
+        private static final int CUTOFF = 5;
+        private final Supplier<Collection<String>> keySupplier;
+        private final Function<String, ?> valueSupplier;
+        private final Tristate choicesInUsage;
 
-        ChoicesCommandElement(Text key, Map<String, Object> choices, boolean choicesInUsage) {
+        ChoicesCommandElement(Text key, Supplier<Collection<String>> keySupplier, Function<String, ?> valueSupplier, Tristate choicesInUsage) {
             super(key);
-            this.choices = choices;
+            this.keySupplier = keySupplier;
+            this.valueSupplier = valueSupplier;
             this.choicesInUsage = choicesInUsage;
         }
 
         @Override
         public Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            Object value = this.choices.get(args.next());
+            Object value = this.valueSupplier.apply(args.next());
             if (value == null) {
-                throw args.createError(t("Argument was not a valid choice. Valid choices: %s", this.choices.keySet().toString()));
+                throw args.createError(t("Argument was not a valid choice. Valid choices: %s", this.keySupplier.get().toString()));
             }
             return value;
         }
@@ -371,15 +405,16 @@ public final class GenericArguments {
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             final String prefix = args.nextIfPresent().orElse("");
-            return this.choices.keySet().stream().filter(new StartsWithPredicate(prefix)).collect(GuavaCollectors.toImmutableList());
+            return this.keySupplier.get().stream().filter(new StartsWithPredicate(prefix)).collect(GuavaCollectors.toImmutableList());
         }
 
         @Override
         public Text getUsage(CommandSource commander) {
-            if (this.choicesInUsage) {
+            Collection<String> keys = this.keySupplier.get();
+            if (this.choicesInUsage == Tristate.TRUE || (this.choicesInUsage == Tristate.UNDEFINED && keys.size() <= CUTOFF)) {
                 final Text.Builder build = Text.builder();
                 build.append(CommandMessageFormatting.LT_TEXT);
-                for (Iterator<String> it = this.choices.keySet().iterator(); it.hasNext();) {
+                for (Iterator<String> it = keys.iterator(); it.hasNext();) {
                     build.append(Text.of(it.next()));
                     if (it.hasNext()) {
                         build.append(CommandMessageFormatting.PIPE_TEXT);
