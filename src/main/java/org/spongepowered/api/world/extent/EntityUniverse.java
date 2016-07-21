@@ -24,20 +24,24 @@
  */
 package org.spongepowered.api.world.extent;
 
+import com.flowpowered.math.imaginary.Quaterniond;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.property.entity.EyeLocationProperty;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
+import org.spongepowered.api.util.AABB;
 
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.Set;
 import java.util.function.Predicate;
 
 /**
@@ -201,4 +205,172 @@ public interface EntityUniverse {
      * @return True if any of the entities were successfully spawned
      */
     boolean spawnEntities(Iterable<? extends Entity> entities, Cause cause);
+
+    /**
+     * Gets all the entities that intersect the bounding box, in no particular
+     * order.
+     *
+     * @param box The intersection box
+     * @return All the intersecting entities
+     */
+    default Set<Entity> getIntersectingEntities(AABB box) {
+        return getIntersectingEntities(box, entity -> true);
+    }
+
+    /**
+     * Gets all the entities that intersect the bounding box, in no particular
+     * order, as long as the pass the given filter test.
+     *
+     * @param box The intersection box
+     * @param filter The filter test
+     * @return All the intersecting entities that pass the filter test
+     */
+    Set<Entity> getIntersectingEntities(AABB box, Predicate<Entity> filter);
+
+    /**
+     * Gets all the entities that intersect the ray (by their bounding box)
+     * The ray is defined by its start and end point.
+     *
+     * @param start The start of the ray
+     * @param end The end of the ray
+     * @return The intersecting entities in no particular order, with the
+     * associated intersection point and normal
+     */
+    default Set<EntityHit> getIntersectingEntities(Vector3d start, Vector3d end) {
+        return getIntersectingEntities(start, end, hit -> true);
+    }
+
+    /**
+     * Gets all the entities that intersect the ray (by their bounding box)
+     * The ray is defined by its start and end point. Only the entities that
+     * pass the filter test are added.
+     *
+     * @param start The start of the ray
+     * @param end The end of the ray
+     * @param filter The filter test
+     * @return The intersecting entities in no particular order, with the
+     * associated intersection point and normal
+     */
+    Set<EntityHit> getIntersectingEntities(Vector3d start, Vector3d end, Predicate<EntityHit> filter);
+
+    /**
+     * Gets all the entities that are in the line of sight of the given entity,
+     * up to a given distance. This ignores occluders like blocks or other
+     * entities. That is to say, the returned entities might not actually be
+     * visible.
+     *
+     * @param looker The looking entity
+     * @param distance The distance of the ray (from the start)
+     * @return The intersecting entities in no particular order, with the
+     * associated intersection point and normal
+     */
+    default Set<EntityHit> getIntersectingEntities(Entity looker, double distance) {
+        return getIntersectingEntities(looker, distance, hit -> true);
+    }
+
+    /**
+     * Gets all the entities that are in the line of sight of the given entity,
+     * up to a given distance. This ignores occluders like blocks or other
+     * entities. That is to say, the returned entities might not actually be
+     * visible. Only the entities that pass the filter test are added.
+     *
+     * @param looker The looking entity
+     * @param distance The distance of the ray (from the start)
+     * @param filter The filter test
+     * @return The intersecting entities in no particular order, with the
+     * associated intersection point and normal
+     */
+    default Set<EntityHit> getIntersectingEntities(Entity looker, double distance, Predicate<EntityHit> filter) {
+        final Vector3d rotation = looker.getRotation();
+        final Vector3d direction = Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
+        final Optional<EyeLocationProperty> data = looker.getProperty(EyeLocationProperty.class);
+        final Vector3d start = data.map(EyeLocationProperty::getValue).orElse(looker.getLocation().getPosition());
+        return getIntersectingEntities(start, direction, distance, filter);
+    }
+
+    /**
+     * Gets all the entities that intersect the ray (by their bounding box)
+     * The ray is defined by its start, direction and distance.
+     *
+     * @param start The start of the ray
+     * @param direction The direction of the ray
+     * @param distance The distance of the ray (from the start)
+     * @return The intersecting entities in no particular order, with the
+     * associated intersection point and normal
+     */
+    default Set<EntityHit> getIntersectingEntities(Vector3d start, Vector3d direction, double distance) {
+        return getIntersectingEntities(start, direction, distance, hit -> true);
+    }
+
+    /**
+     * Gets all the entities that intersect the ray (by their bounding box)
+     * The ray is defined by its start, direction and distance. Only the
+     * entities that pass the filter test are added.
+     *
+     * @param start The start of the ray
+     * @param direction The direction of the ray
+     * @param distance The distance of the ray (from the start)
+     * @param filter The filter test
+     * @return The intersecting entities in no particular order, with the
+     * associated intersection point and normal
+     */
+    Set<EntityHit> getIntersectingEntities(Vector3d start, Vector3d direction, double distance, Predicate<EntityHit> filter);
+
+    /**
+     * The result of an intersection between a ray and an entity.
+     */
+    class EntityHit {
+
+        private final Entity entity;
+        private final Vector3d intersection;
+        private final Vector3d normal;
+
+        /**
+         * Creates a new entity hit from the entity, the intersection point and
+         * the normal.
+         *
+         * @param entity The intersected entity
+         * @param intersection The intersection point
+         * @param normal The intersection normal
+         */
+        public EntityHit(Entity entity, Vector3d intersection, Vector3d normal) {
+            this.entity = entity;
+            this.intersection = intersection;
+            this.normal = normal;
+        }
+
+        /**
+         * Gets the intersected entity.
+         *
+         * @return The intersected entity
+         */
+        public Entity getEntity() {
+            return entity;
+        }
+
+        /**
+         * Gets the intersection point.
+         *
+         * @return The point of intersection
+         */
+        public Vector3d getIntersection() {
+            return intersection;
+        }
+
+        /**
+         * Gets the intersection normal.
+         *
+         * @return The normal of intersection
+         */
+        public Vector3d getNormal() {
+            return normal;
+        }
+
+        @Override
+        public String toString() {
+            return "EntityHit(" + entity + " at " + intersection + " on " + normal + ")";
+        }
+
+    }
+
 }
