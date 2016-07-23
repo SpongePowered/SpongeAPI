@@ -29,7 +29,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
@@ -111,9 +110,8 @@ public interface Team {
      * criteria.</p>
      *
      * @param color The team color
-     * @throws IllegalArgumentException If color is {@link TextColors#RESET}
      */
-    void setColor(TextColor color) throws IllegalArgumentException;
+    void setColor(TextColor color);
 
     /**
      * Gets the prefix prepended to the display name of users on this team.
@@ -286,9 +284,8 @@ public interface Team {
          *
          * @param color The color to set
          * @return This builder
-         * @throws IllegalArgumentException If color is {@link TextColors#RESET}
          */
-        Builder color(TextColor color) throws IllegalArgumentException;
+        Builder color(TextColor color);
 
         /**
          * Sets the name displayed to users for the {@link Team}.
