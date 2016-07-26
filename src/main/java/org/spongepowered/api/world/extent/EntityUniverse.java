@@ -324,6 +324,7 @@ public interface EntityUniverse {
         private final Entity entity;
         private final Vector3d intersection;
         private final Vector3d normal;
+        private final double distance;
 
         /**
          * Creates a new entity hit from the entity, the intersection point and
@@ -332,11 +333,13 @@ public interface EntityUniverse {
          * @param entity The intersected entity
          * @param intersection The intersection point
          * @param normal The intersection normal
+         * @param distance The distance from the start to the intersection
          */
-        public EntityHit(Entity entity, Vector3d intersection, Vector3d normal) {
+        public EntityHit(Entity entity, Vector3d intersection, Vector3d normal, double distance) {
             this.entity = entity;
             this.intersection = intersection;
             this.normal = normal;
+            this.distance = distance;
         }
 
         /**
@@ -366,6 +369,15 @@ public interface EntityUniverse {
             return normal;
         }
 
+        /**
+         * Gets the distance from the start to the intersection.
+         *
+         * @return The distance from the start to the intersection
+         */
+        public double getDistance() {
+            return distance;
+        }
+
         @Override
         public boolean equals(Object other) {
             if (this == other) {
@@ -375,7 +387,8 @@ public interface EntityUniverse {
                 return false;
             }
             final EntityHit entityHit = (EntityHit) other;
-            return entity.equals(entityHit.entity) && intersection.equals(entityHit.intersection) && normal.equals(entityHit.normal);
+            return entity.equals(entityHit.entity) && intersection.equals(entityHit.intersection) && normal.equals(entityHit.normal)
+                    && distance == entityHit.distance;
 
         }
 
@@ -384,6 +397,7 @@ public interface EntityUniverse {
             int result = entity.hashCode();
             result = 31 * result + intersection.hashCode();
             result = 31 * result + normal.hashCode();
+            result = 31 * result + Double.hashCode(distance);
             return result;
         }
 
