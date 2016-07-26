@@ -26,9 +26,20 @@ package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.world.Location;
 
 /**
  * Called when a {@link BlockState} receives a tick.
  */
 public interface TickBlockEvent extends TargetBlockEvent, Cancellable {
+
+    /**
+     * An event when a block at a {@link Location} is scheduled to tick.
+     */
+    interface Scheduled extends TickBlockEvent { }
+
+    /**
+     * An event when a block is told to "randomly" tick.
+     */
+    interface Random extends TickBlockEvent { }
 }

@@ -768,17 +768,33 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.block.TickBlockEvent}.
+     * {@link org.spongepowered.api.event.block.TickBlockEvent.Random}.
      * 
      * @param cause The cause
      * @param targetBlock The target block
-     * @return A new tick block event
+     * @return A new random tick block event
      */
-    public static TickBlockEvent createTickBlockEvent(Cause cause, BlockSnapshot targetBlock) {
+    public static TickBlockEvent.Random createTickBlockEventRandom(Cause cause, BlockSnapshot targetBlock) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetBlock", targetBlock);
-        return SpongeEventFactoryUtils.createEventImpl(TickBlockEvent.class, values);
+        return SpongeEventFactoryUtils.createEventImpl(TickBlockEvent.Random.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.block.TickBlockEvent.Scheduled}.
+     * 
+     * @param cause The cause
+     * @param targetBlock The target block
+     * @return A new scheduled tick block event
+     */
+    public static TickBlockEvent.Scheduled createTickBlockEventScheduled(Cause cause, BlockSnapshot targetBlock) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetBlock", targetBlock);
+        return SpongeEventFactoryUtils.createEventImpl(TickBlockEvent.Scheduled.class, values);
     }
 
     /**
