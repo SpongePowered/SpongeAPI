@@ -34,7 +34,6 @@ import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.data.property.AbstractProperty;
 import org.spongepowered.api.data.property.block.FullBlockSelectionBoxProperty;
 import org.spongepowered.api.data.property.entity.EyeLocationProperty;
 import org.spongepowered.api.entity.Entity;
@@ -265,10 +264,11 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      * @return The last block of the ray, if any
      */
     public Optional<BlockRayHit<E>> end() {
+        BlockRayHit<E> last = null;
         while (hasNext()) {
-            next();
+            last = next();
         }
-        return Optional.ofNullable(this.hit);
+        return Optional.ofNullable(last);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -280,7 +280,6 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     private boolean advanceOneBlock() {
         // Check the block limit if in use
         if (this.blockLimit >= 0 && this.blockCount >= this.blockLimit) {
-            this.hit = null;
             throw new NoSuchElementException("Block limit reached");
         }
 
@@ -340,13 +339,12 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
 
         // Make sure we actually have a block
         if (!hit.mapBlock(Extent::containsBlock)) {
-            this.hit = null;
             throw new NoSuchElementException("Extent limit reached");
         }
 
         // Now if using the narrow phase, test on small selection boxes, if needed
         if (this.narrowPhase && !hit.getExtent().getProperty(hit.getBlockPosition(), FullBlockSelectionBoxProperty.class)
-                .map(AbstractProperty::getValue).orElse(true)) {
+                .map(FullBlockSelectionBoxProperty::getValue).orElse(true)) {
             // Get the selection box and perform the narrow phase intersection test
             final Optional<Tuple<Vector3d, Vector3d>> intersection = hit.mapBlock(Extent::getBlockSelectionBox)
                 .flatMap(aabb -> aabb.intersects(this.position, this.direction));
@@ -668,6 +666,17 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         public BlockRayBuilder<E> narrowPhase(boolean enable) {
             this.narrowPhase = enable;
             return this;
+        }
+
+        /**
+         * Gets the starting position of the block ray. Given here since some
+         * filters such as {@link #maxDistanceFilter(Vector3d, double)} require
+         * it.
+         *
+         * @return The position of the block ray
+         */
+        public Vector3d position() {
+            return this.position;
         }
 
         /**
