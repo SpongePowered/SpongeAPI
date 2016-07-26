@@ -29,6 +29,7 @@ import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.TileEntityArchetype;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
@@ -45,11 +46,11 @@ public interface ArchetypeVolume extends MutableBlockVolume {
      * Applies this archetype at the given location. The archetype will be
      * mapped onto the given world such that the origin on the archetype lines
      * up with the given position.
-     * 
      * @param location The location to apply at
+     * @param changeFlag The flag to use for toggling various operations on block placement
      * @param cause The cause of the changes
      */
-    void apply(Location<World> location, Cause cause);
+    void apply(Location<World> location, BlockChangeFlag changeFlag, Cause cause);
 
     /**
      * Gets the {@link TileEntityArchetype} for the tile entity carrying block
@@ -90,6 +91,6 @@ public interface ArchetypeVolume extends MutableBlockVolume {
     Map<Vector3f, EntityArchetype> getEntityArchetypes();
 
     @Override
-    MutableBlockVolumeWorker<? extends ArchetypeVolume> getBlockWorker();
+    MutableBlockVolumeWorker<? extends ArchetypeVolume> getBlockWorker(Cause cause);
 
 }
