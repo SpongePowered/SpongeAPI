@@ -367,6 +367,27 @@ public interface EntityUniverse {
         }
 
         @Override
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof EntityHit)) {
+                return false;
+            }
+            final EntityHit entityHit = (EntityHit) other;
+            return entity.equals(entityHit.entity) && intersection.equals(entityHit.intersection) && normal.equals(entityHit.normal);
+
+        }
+
+        @Override
+        public int hashCode() {
+            int result = entity.hashCode();
+            result = 31 * result + intersection.hashCode();
+            result = 31 * result + normal.hashCode();
+            return result;
+        }
+
+        @Override
         public String toString() {
             return "EntityHit(" + entity + " at " + intersection + " on " + normal + ")";
         }
