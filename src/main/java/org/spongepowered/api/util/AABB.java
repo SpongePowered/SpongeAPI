@@ -29,12 +29,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.entity.EntityTypes;
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.util.blockray.BlockRay;
-import org.spongepowered.api.util.blockray.BlockRayHit;
-import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.extent.Extent;
 
 import java.util.Optional;
 
@@ -65,7 +59,7 @@ public class AABB {
      * @param secondCorner The second corner
      */
     public AABB(Vector3i firstCorner, Vector3i secondCorner) {
-        this(firstCorner.toDouble(), secondCorner.toDouble());
+        this(checkNotNull(firstCorner, "firstCorner").toDouble(), checkNotNull(secondCorner, "secondCorner").toDouble());
     }
 
     /**
@@ -200,6 +194,8 @@ public class AABB {
      * @return An intersection point its normal, if any
      */
     public Optional<Tuple<Vector3d, Vector3d>> intersects(Vector3d start, Vector3d direction) {
+        checkNotNull(start, "start");
+        checkNotNull(direction, "direction");
         // Adapted from: https://github.com/flow/react/blob/develop/src/main/java/com/flowpowered/react/collision/RayCaster.java#L156
         // The box is interpreted as 6 infinite perpendicular places, one for each face (being expanded infinitely)
         // "t" variables are multipliers: start + direction * t gives the intersection point

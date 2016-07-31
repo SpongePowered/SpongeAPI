@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.world.extent;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.flowpowered.math.imaginary.Quaterniond;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
@@ -281,6 +283,7 @@ public interface EntityUniverse {
      * associated intersection point and normal
      */
     default Set<EntityHit> getIntersectingEntities(Entity looker, double distance, Predicate<EntityHit> filter) {
+        checkNotNull(looker, "looker");
         final Vector3d rotation = looker.getRotation();
         final Vector3d direction = Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
         final Optional<EyeLocationProperty> data = looker.getProperty(EyeLocationProperty.class);
@@ -336,9 +339,9 @@ public interface EntityUniverse {
          * @param distance The distance from the start to the intersection
          */
         public EntityHit(Entity entity, Vector3d intersection, Vector3d normal, double distance) {
-            this.entity = entity;
-            this.intersection = intersection;
-            this.normal = normal;
+            this.entity = checkNotNull(entity, "entity");
+            this.intersection = checkNotNull(intersection, "intersection");
+            this.normal = checkNotNull(normal, "normal");
             this.distance = distance;
         }
 
@@ -348,7 +351,7 @@ public interface EntityUniverse {
          * @return The intersected entity
          */
         public Entity getEntity() {
-            return entity;
+            return this.entity;
         }
 
         /**
@@ -357,7 +360,7 @@ public interface EntityUniverse {
          * @return The point of intersection
          */
         public Vector3d getIntersection() {
-            return intersection;
+            return this.intersection;
         }
 
         /**
@@ -366,7 +369,7 @@ public interface EntityUniverse {
          * @return The normal of intersection
          */
         public Vector3d getNormal() {
-            return normal;
+            return this.normal;
         }
 
         /**
@@ -375,7 +378,7 @@ public interface EntityUniverse {
          * @return The distance from the start to the intersection
          */
         public double getDistance() {
-            return distance;
+            return this.distance;
         }
 
         @Override
@@ -387,23 +390,23 @@ public interface EntityUniverse {
                 return false;
             }
             final EntityHit entityHit = (EntityHit) other;
-            return entity.equals(entityHit.entity) && intersection.equals(entityHit.intersection) && normal.equals(entityHit.normal)
-                    && distance == entityHit.distance;
+            return this.entity.equals(entityHit.entity) && this.intersection.equals(entityHit.intersection) && this.normal.equals(entityHit.normal)
+                    && this.distance == entityHit.distance;
 
         }
 
         @Override
         public int hashCode() {
-            int result = entity.hashCode();
-            result = 31 * result + intersection.hashCode();
-            result = 31 * result + normal.hashCode();
-            result = 31 * result + Double.hashCode(distance);
+            int result = this.entity.hashCode();
+            result = 31 * result + this.intersection.hashCode();
+            result = 31 * result + this.normal.hashCode();
+            result = 31 * result + Double.hashCode(this.distance);
             return result;
         }
 
         @Override
         public String toString() {
-            return "EntityHit(" + entity + " at " + intersection + " on " + normal + ")";
+            return "EntityHit(" + this.entity + " at " + this.intersection + " on " + this.normal + ")";
         }
 
     }

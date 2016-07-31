@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.world.extent;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -473,6 +475,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @return The selection box
      */
     default Optional<AABB> getBlockSelectionBox(Vector3i pos) {
+        checkNotNull(pos, "pos");
         return getBlockSelectionBox(pos.getX(), pos.getY(), pos.getZ());
     }
 
@@ -506,6 +509,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @return All the intersecting collision boxes
      */
     default Set<AABB> getIntersectingCollisionBoxes(Entity owner) {
+        checkNotNull(owner, "owner");
         return owner.getBoundingBox().
             map(box -> getIntersectingCollisionBoxes(owner, box)).
             orElse(Collections.emptySet());
