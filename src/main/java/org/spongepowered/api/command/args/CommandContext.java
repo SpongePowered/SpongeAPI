@@ -158,4 +158,29 @@ public final class CommandContext {
     public boolean hasAny(Text key) {
         return hasAny(ArgUtils.textToArgKey(key));
     }
+
+    /**
+     * Return this arguments object's current state. Can be used to reset with the {@link #setState(Object)} method.
+     *
+     * @return The current state
+     */
+    public Object getState() {
+        return ArrayListMultimap.create(this.parsedArgs);
+    }
+
+    /**
+     * Restore the arguments object's state to a state previously used.
+     *
+     * @param state the previous state
+     */
+    @SuppressWarnings("unchecked")
+    public void setState(Object state) {
+        // Check that the object we get back also only has String keys.
+        if (!(state instanceof Multimap) || !((Multimap<?, ?>) state).keySet().stream().allMatch(String.class::isInstance)) {
+            throw new IllegalArgumentException("Provided state was not of appropriate format returned by getState!");
+        }
+
+        this.parsedArgs.clear();
+        this.parsedArgs.putAll((Multimap)state);
+    }
 }

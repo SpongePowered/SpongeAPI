@@ -417,13 +417,15 @@ public final class GenericArguments {
         public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
             ArgumentParseException lastException = null;
             for (CommandElement element : this.elements) {
-                Object startState = args.getState();
+                Object argsStartState = args.getState();
+                Object contextStartState = context.getState();
                 try {
                     element.parse(source, args, context);
                     return;
                 } catch (ArgumentParseException ex) {
                     lastException = ex;
-                    args.setState(startState);
+                    args.setState(argsStartState);
+                    context.setState(contextStartState);
                 }
             }
             if (lastException != null) {

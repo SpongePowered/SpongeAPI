@@ -131,6 +131,20 @@ public class GenericArgumentsTest {
     }
 
     @Test
+    public void testFirstParsingWithSequence() throws ArgumentParseException {
+        CommandElement el = firstParsing(seq(string(untr("val1")), string(untr("val2"))), string(untr("val3")));
+        CommandContext context = parseForInput("word", el);
+        assertFalse(context.getOne("val1").isPresent());
+        assertFalse(context.getOne("val2").isPresent());
+        assertEquals("word", context.getOne("val3").get());
+
+        context = parseForInput("word 42", el);
+        assertFalse(context.getOne("val3").isPresent());
+        assertEquals("word", context.getOne("val1").get());
+        assertEquals("42", context.getOne("val2").get());
+    }
+
+    @Test
     public void testOptional() throws ArgumentParseException {
         CommandElement el = optional(string(untr("val")));
         CommandContext context = parseForInput("", el);
