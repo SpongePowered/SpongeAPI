@@ -41,7 +41,7 @@ public @interface Plugin {
      * @deprecated Moved to plugin-meta project
      */
     @Deprecated
-    Pattern ID_PATTERN = Pattern.compile("[a-z][a-z0-9-_.]*");
+    Pattern ID_PATTERN = Pattern.compile("[a-z][a-z0-9-_.]{0,63}");
 
     /**
      * An ID for the plugin to be used internally. The ID should be unique as to
