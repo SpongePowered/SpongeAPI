@@ -103,8 +103,10 @@ public interface EntityUniverse {
      * @param type The type
      * @param position The position
      * @return An entity, if one was created
+     * @throws IllegalArgumentException If the position or entity type is not valid to create
+     * @throws IllegalStateException If a constructor cannot be found
      */
-    Optional<Entity> createEntity(EntityType type, Vector3d position);
+    Entity createEntity(EntityType type, Vector3d position) throws IllegalArgumentException, IllegalStateException;
 
     /**
      * Create an entity instance at the given position.
@@ -119,8 +121,10 @@ public interface EntityUniverse {
      * @param type The type
      * @param position The position
      * @return An entity, if one was created
+     * @throws IllegalArgumentException If the position or entity type is not valid to create
+     * @throws IllegalStateException If a constructor cannot be found
      */
-    default Optional<Entity> createEntity(EntityType type, Vector3i position) {
+    default Entity createEntity(EntityType type, Vector3i position) throws IllegalArgumentException, IllegalStateException {
         return createEntity(type, position.toDouble());
     }
 
