@@ -25,7 +25,6 @@
 package org.spongepowered.api.data.manipulator.catalog;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.DyeableData;
@@ -62,7 +61,6 @@ import org.spongepowered.api.data.manipulator.mutable.entity.FuseData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GlowingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GriefingData;
-import org.spongepowered.api.data.manipulator.mutable.entity.HealingSourceData;
 import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
 import org.spongepowered.api.data.manipulator.mutable.entity.HorseData;
 import org.spongepowered.api.data.manipulator.mutable.entity.IgniteableData;
@@ -104,7 +102,6 @@ import org.spongepowered.api.data.type.OcelotType;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.SkeletonType;
 import org.spongepowered.api.effect.potion.PotionEffect;
-import org.spongepowered.api.entity.EnderCrystal;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
@@ -127,7 +124,6 @@ import org.spongepowered.api.entity.living.animal.Pig;
 import org.spongepowered.api.entity.living.animal.Rabbit;
 import org.spongepowered.api.entity.living.animal.Sheep;
 import org.spongepowered.api.entity.living.animal.Wolf;
-import org.spongepowered.api.entity.living.complex.EnderDragon;
 import org.spongepowered.api.entity.living.golem.IronGolem;
 import org.spongepowered.api.entity.living.monster.Blaze;
 import org.spongepowered.api.entity.living.monster.Creeper;
@@ -316,12 +312,6 @@ public final class CatalogEntityData {
      * to {@link Enderman} and {@link Humanoid}s.
      */
     public static final Class<GriefingData> GRIEFING_DATA = GriefingData.class;
-    /**
-     * Signifies that an {@link Entity} is "healing" the owning
-     * {@link DataHolder}. Usually applicable to {@link EnderDragon}s being healed
-     * by {@link EnderCrystal}s.
-     */
-    public static final Class<HealingSourceData> HEALING_SOURCE_DATA = HealingSourceData.class;
     /**
      * Signifies that an entity can have health and dies upon the depletion
      * of health. Usually applies to all {@link Living} entities.
