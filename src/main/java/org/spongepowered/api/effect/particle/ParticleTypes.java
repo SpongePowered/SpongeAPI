@@ -61,6 +61,8 @@ public final class ParticleTypes {
 
     public static final ParticleType EXPLOSION = DummyObjectProvider.createFor(ParticleType.class, "EXPLOSION");
 
+    public static final ParticleType FALLING_DUST = DummyObjectProvider.createFor(ParticleType.class, "FALLING_DUST");
+
     public static final ParticleType FIREWORKS_SPARK = DummyObjectProvider.createFor(ParticleType.class, "FIREWORKS_SPARK");
 
     public static final ParticleType FLAME = DummyObjectProvider.createFor(ParticleType.class, "FLAME");
