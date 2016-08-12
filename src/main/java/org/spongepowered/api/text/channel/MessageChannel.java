@@ -106,6 +106,30 @@ public interface MessageChannel {
     }
 
     /**
+     * Creates a message channel that targets subjects contained within every given
+     * channels and applies the message transformations of each channel in order.
+     *
+     * @param channels The channels to combine
+     * @return The channel
+     * @see IntersectedMessageChannel
+     */
+    static MessageChannel intersected(MessageChannel... channels) {
+        return new IntersectedMessageChannel(channels);
+    }
+
+    /**
+     * Gets a message channel that targets subjects contained within every given channels
+     * and applies the message transformations of each channel in order.
+     *
+     * @param channels The channels to combine
+     * @return The channel
+     * @see IntersectedMessageChannel
+     */
+    static MessageChannel intersected(Collection<MessageChannel> channels) {
+        return new IntersectedMessageChannel(channels);
+    }
+
+    /**
      * Creates a message channel that targets the given sources.
      *
      * @param recipients The recipients
