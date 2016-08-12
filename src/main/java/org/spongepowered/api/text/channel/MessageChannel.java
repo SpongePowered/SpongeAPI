@@ -33,6 +33,7 @@ import org.spongepowered.api.text.channel.impl.DelegateMutableMessageChannel;
 import org.spongepowered.api.text.channel.type.CombinedMessageChannel;
 import org.spongepowered.api.text.channel.type.FixedMessageChannel;
 import org.spongepowered.api.text.channel.type.PermissionMessageChannel;
+import org.spongepowered.api.text.channel.type.IntersectedMessageChannel;
 import org.spongepowered.api.text.channel.type.WorldMessageChannel;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.chat.ChatTypes;
