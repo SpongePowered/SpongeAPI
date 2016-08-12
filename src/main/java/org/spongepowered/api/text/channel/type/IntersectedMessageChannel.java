@@ -71,12 +71,14 @@ public class IntersectedMessageChannel implements MessageChannel {
     public Collection<MessageReceiver> getMembers() {
         // Collects members present in all channels. (Intersecting members).
         // Not sure how to do this with streams.
+        List<MessageChannel> channels = new ArrayList<>();
+        channels.addAll(this.channels);
         if (channels.size() == 1) {
             return channels.get(0).getMembers();
         }
         List<MessageReceiver> sr = new ArrayList<>();
-        sr.addAll(channels.get(0).getMembers());
         List<MessageReceiver> tr = new ArrayList<>();
+        sr.addAll(channels.get(0).getMembers());
         for (int i = 1; i < channels.size(); i++) {
             for (MessageReceiver r : sr) {
                 if (!channels.get(i).getMembers().contains(r)) {
