@@ -29,9 +29,10 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.text.chat.ChatType;
-import org.spongepowered.api.util.GuavaCollectors;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -44,15 +45,15 @@ import javax.annotation.Nullable;
  * {@code channels[n-1].transformMessage(channels[n-2].transformMessage(channels[...]
  * .transformMessage(channels[0].transformMessage(input))))} would occur)
  */
-public class CombinedMessageChannel implements MessageChannel {
+public class IntersectedMessageChannel implements MessageChannel {
 
     protected final Collection<MessageChannel> channels;
 
-    public CombinedMessageChannel(MessageChannel... channels) {
+    public IntersectedMessageChannel(MessageChannel... channels) {
         this(Arrays.asList(channels));
     }
 
-    public CombinedMessageChannel(Collection<MessageChannel> channels) {
+    public IntersectededMessageChannel(Collection<MessageChannel> channels) {
         this.channels = ImmutableSet.copyOf(channels);
     }
 
