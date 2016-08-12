@@ -53,7 +53,7 @@ public class IntersectedMessageChannel implements MessageChannel {
         this(Arrays.asList(channels));
     }
 
-    public IntersectededMessageChannel(Collection<MessageChannel> channels) {
+    public IntersectedMessageChannel(Collection<MessageChannel> channels) {
         this.channels = ImmutableSet.copyOf(channels);
     }
 
