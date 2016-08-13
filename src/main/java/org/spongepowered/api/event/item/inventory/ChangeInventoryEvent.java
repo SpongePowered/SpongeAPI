@@ -26,6 +26,7 @@ package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.entity.item.TargetItemEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEvent, Cancellable {
@@ -42,5 +43,5 @@ public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEv
 
     interface Transfer extends ChangeInventoryEvent {}
 
-    interface Pickup extends ChangeInventoryEvent {}
+    interface Pickup extends ChangeInventoryEvent, TargetItemEvent {}
 }

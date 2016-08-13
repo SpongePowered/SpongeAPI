@@ -153,7 +153,6 @@ import org.spongepowered.api.event.item.inventory.AffectItemStackEvent;
 import org.spongepowered.api.event.item.inventory.AffectSlotEvent;
 import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent;
-import org.spongepowered.api.event.item.inventory.CreativeInventoryEvent;
 import org.spongepowered.api.event.item.inventory.DropItemEvent;
 import org.spongepowered.api.event.item.inventory.InteractInventoryEvent;
 import org.spongepowered.api.event.item.inventory.TargetContainerEvent;
@@ -2695,13 +2694,15 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.item.inventory.ChangeInventoryEvent.Pickup}.
      * 
      * @param cause The cause
+     * @param targetEntity The target entity
      * @param targetInventory The target inventory
      * @param transactions The transactions
      * @return A new pickup change inventory event
      */
-    public static ChangeInventoryEvent.Pickup createChangeInventoryEventPickup(Cause cause, Inventory targetInventory, List<SlotTransaction> transactions) {
+    public static ChangeInventoryEvent.Pickup createChangeInventoryEventPickup(Cause cause, Item targetEntity, Inventory targetInventory, List<SlotTransaction> transactions) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
         values.put("targetInventory", targetInventory);
         values.put("transactions", transactions);
         return SpongeEventFactoryUtils.createEventImpl(ChangeInventoryEvent.Pickup.class, values);
@@ -3021,50 +3022,6 @@ public class SpongeEventFactory {
         values.put("targetInventory", targetInventory);
         values.put("transactions", transactions);
         return SpongeEventFactoryUtils.createEventImpl(ClickInventoryEvent.Shift.Secondary.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.item.inventory.CreativeInventoryEvent.Click}.
-     * 
-     * @param cause The cause
-     * @param cursorTransaction The cursor transaction
-     * @param targetInventory The target inventory
-     * @param transactions The transactions
-     * @return A new click creative inventory event
-     */
-    public static CreativeInventoryEvent.Click createCreativeInventoryEventClick(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, Container targetInventory, List<SlotTransaction> transactions) {
-        HashMap<String, Object> values = new HashMap<>();
-        values.put("cause", cause);
-        values.put("cursorTransaction", cursorTransaction);
-        values.put("targetInventory", targetInventory);
-        values.put("transactions", transactions);
-        return SpongeEventFactoryUtils.createEventImpl(CreativeInventoryEvent.Click.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.item.inventory.CreativeInventoryEvent.Drop}.
-     * 
-     * @param cause The cause
-     * @param cursorTransaction The cursor transaction
-     * @param entities The entities
-     * @param targetInventory The target inventory
-     * @param targetWorld The target world
-     * @param transactions The transactions
-     * @return A new drop creative inventory event
-     */
-    public static CreativeInventoryEvent.Drop createCreativeInventoryEventDrop(Cause cause, Transaction<ItemStackSnapshot> cursorTransaction, List<Entity> entities, Container targetInventory, World targetWorld, List<SlotTransaction> transactions) {
-        HashMap<String, Object> values = new HashMap<>();
-        values.put("cause", cause);
-        values.put("cursorTransaction", cursorTransaction);
-        values.put("entities", entities);
-        values.put("targetInventory", targetInventory);
-        values.put("targetWorld", targetWorld);
-        values.put("transactions", transactions);
-        return SpongeEventFactoryUtils.createEventImpl(CreativeInventoryEvent.Drop.class, values);
     }
 
     /**
