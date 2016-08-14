@@ -24,10 +24,8 @@
  */
 package org.spongepowered.api.world.extent;
 
-import com.flowpowered.math.vector.Vector3f;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.TileEntityArchetype;
-import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.Location;
@@ -81,14 +79,6 @@ public interface ArchetypeVolume extends MutableBlockVolume {
      * @return The tile entity map
      */
     Map<Vector3i, TileEntityArchetype> getTileEntityArchetypes();
-
-    /**
-     * Gets a map of all {@link EntityArchetype}s within this volume, keyed by
-     * their positions.
-     * 
-     * @return The entity map
-     */
-    Map<Vector3f, EntityArchetype> getEntityArchetypes();
 
     @Override
     MutableBlockVolumeWorker<? extends ArchetypeVolume> getBlockWorker(Cause cause);

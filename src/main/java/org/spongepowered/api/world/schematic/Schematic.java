@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.schematic;
 
-import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.event.cause.Cause;
@@ -114,23 +113,6 @@ public interface Schematic extends ArchetypeVolume {
          * @return This builder, for chaining
          */
         Builder paletteType(PaletteType type);
-
-        /**
-         * Specifies the origin of the schematic's area relative to the minimum
-         * point of the passed in volume.
-         * 
-         * @param origin The origin
-         * @return This builder, for chaining
-         */
-        Builder origin(Vector3i origin);
-
-        /**
-         * Specifies whether this schematic should store entity data.
-         * 
-         * @param state If entities should be stored
-         * @return This builder, for chaining
-         */
-        Builder storeEntities(boolean state);
 
         /**
          * Specifies the metadata container.
