@@ -65,19 +65,22 @@ public class MemoryDataView implements DataView {
     private final DataContainer container;
     private final DataView parent;
     private final DataQuery path;
+    private final DataView.SafetyMode safety;
 
-    protected MemoryDataView() {
+    protected MemoryDataView(DataView.SafetyMode safety) {
         checkState(this instanceof DataContainer, "Cannot construct a root MemoryDataView without a container!");
         this.path = of();
         this.parent = this;
         this.container = (DataContainer) this;
+        this.safety = checkNotNull(safety, "Safety mode");
     }
 
-    protected MemoryDataView(DataView parent, DataQuery path) {
+    protected MemoryDataView(DataView parent, DataQuery path, DataView.SafetyMode safety) {
         checkArgument(path.getParts().size() >= 1, "Path must have at least one part");
         this.parent = parent;
         this.container = parent.getContainer();
         this.path = parent.getCurrentPath().then(path);
+        this.safety = checkNotNull(safety, "Safety mode");
     }
 
     @Override
@@ -187,23 +190,25 @@ public class MemoryDataView implements DataView {
             if (object == null) {
                 return Optional.empty();
             }
-            if (object.getClass().isArray()) {
-                if (object instanceof byte[]) {
-                    return Optional.<Object>of(ArrayUtils.clone((byte[]) object));
-                } else if (object instanceof short[]) {
-                    return Optional.<Object>of(ArrayUtils.clone((short[]) object));
-                } else if (object instanceof int[]) {
-                    return Optional.<Object>of(ArrayUtils.clone((int[]) object));
-                } else if (object instanceof long[]) {
-                    return Optional.<Object>of(ArrayUtils.clone((long[]) object));
-                } else if (object instanceof float[]) {
-                    return Optional.<Object>of(ArrayUtils.clone((float[]) object));
-                } else if (object instanceof double[]) {
-                    return Optional.<Object>of(ArrayUtils.clone((double[]) object));
-                } else if (object instanceof boolean[]) {
-                    return Optional.<Object>of(ArrayUtils.clone((boolean[]) object));
-                } else {
-                    return Optional.<Object>of(ArrayUtils.clone((Object[]) object));
+            if(this.safety == SafetyMode.ALL_DATA_CLONED) {
+                if (object.getClass().isArray()) {
+                    if (object instanceof byte[]) {
+                        return Optional.<Object>of(ArrayUtils.clone((byte[]) object));
+                    } else if (object instanceof short[]) {
+                        return Optional.<Object>of(ArrayUtils.clone((short[]) object));
+                    } else if (object instanceof int[]) {
+                        return Optional.<Object>of(ArrayUtils.clone((int[]) object));
+                    } else if (object instanceof long[]) {
+                        return Optional.<Object>of(ArrayUtils.clone((long[]) object));
+                    } else if (object instanceof float[]) {
+                        return Optional.<Object>of(ArrayUtils.clone((float[]) object));
+                    } else if (object instanceof double[]) {
+                        return Optional.<Object>of(ArrayUtils.clone((double[]) object));
+                    } else if (object instanceof boolean[]) {
+                        return Optional.<Object>of(ArrayUtils.clone((boolean[]) object));
+                    } else {
+                        return Optional.<Object>of(ArrayUtils.clone((Object[]) object));
+                    }
                 }
             }
             return Optional.of(object);
@@ -226,18 +231,37 @@ public class MemoryDataView implements DataView {
 
         @Nullable DataManager manager;
 
+        // TODO: this call to getDataManager each set can be cleaned up
         try {
             manager = Sponge.getDataManager();
         } catch (Exception e) {
             manager = null;
         }
 
+        List<String> parts = path.getParts();
+        String key = parts.get(0);
+        if (parts.size() > 1) {
+            DataQuery subQuery = of(key);
+            Optional<DataView> subViewOptional = this.getUnsafeView(subQuery);
+            DataView subView;
+            if (!subViewOptional.isPresent()) {
+                this.createView(subQuery);
+                subView = (DataView) this.map.get(key);
+            } else {
+                subView = subViewOptional.get();
+            }
+            subView.set(path.popFirst(), value);
+            return this;
+        }
         if (value instanceof DataView) {
             checkArgument(value != this, "Cannot set a DataView to itself.");
+            // always have to copy a data view to avoid overwriting existing
+            // views and to set the interior path correctly.
             copyDataView(path, (DataView) value);
-        }else if (value instanceof DataSerializable) {
+        } else if (value instanceof DataSerializable) {
             DataContainer valueContainer = ((DataSerializable) value).toContainer();
             checkArgument(!(valueContainer).equals(this), "Cannot insert self-referencing DataSerializable");
+            // see above for why this is copied
             copyDataView(path, valueContainer);
         } else if (value instanceof CatalogType) {
             return set(path, ((CatalogType) value).getId());
@@ -245,48 +269,36 @@ public class MemoryDataView implements DataView {
             DataTranslator serializer = manager.getTranslator(value.getClass()).get();
             final DataContainer container = serializer.translate(value);
             checkArgument(!container.equals(this), "Cannot insert self-referencing Objects!");
+            // see above for why this is copied
             copyDataView(path, container);
-        } else {
-            List<String> parts = path.getParts();
-            if (parts.size() > 1) {
-                String subKey = parts.get(0);
-                DataQuery subQuery = of(subKey);
-                Optional<DataView> subViewOptional = this.getUnsafeView(subQuery);
-                DataView subView;
-                if (!subViewOptional.isPresent()) {
-                    this.createView(subQuery);
-                    subView = (DataView) this.map.get(subKey);
+        } else if (value instanceof Collection) {
+            setCollection(key, (Collection) value);
+        } else if (value instanceof Map) {
+            setMap(key, (Map) value);
+        } else if (value.getClass().isArray()) {
+            if (this.safety == SafetyMode.ALL_DATA_CLONED || this.safety == SafetyMode.CLONED_ON_SET) {
+                if (value instanceof byte[]) {
+                    this.map.put(key, ArrayUtils.clone((byte[]) value));
+                } else if (value instanceof short[]) {
+                    this.map.put(key, ArrayUtils.clone((short[]) value));
+                } else if (value instanceof int[]) {
+                    this.map.put(key, ArrayUtils.clone((int[]) value));
+                } else if (value instanceof long[]) {
+                    this.map.put(key, ArrayUtils.clone((long[]) value));
+                } else if (value instanceof float[]) {
+                    this.map.put(key, ArrayUtils.clone((float[]) value));
+                } else if (value instanceof double[]) {
+                    this.map.put(key, ArrayUtils.clone((double[]) value));
+                } else if (value instanceof boolean[]) {
+                    this.map.put(key, ArrayUtils.clone((boolean[]) value));
                 } else {
-                    subView = subViewOptional.get();
+                    this.map.put(key, ArrayUtils.clone((Object[]) value));
                 }
-                subView.set(path.popFirst(), value);
             } else {
-                if (value instanceof Collection) {
-                    setCollection(parts.get(0), (Collection) value);
-                } else if (value instanceof Map) {
-                    setMap(parts.get(0), (Map) value);
-                } else if (value.getClass().isArray()) {
-                    if (value instanceof byte[]) {
-                        this.map.put(parts.get(0), ArrayUtils.clone((byte[]) value));
-                    } else if (value instanceof short[]) {
-                        this.map.put(parts.get(0), ArrayUtils.clone((short[]) value));
-                    } else if (value instanceof int[]) {
-                        this.map.put(parts.get(0), ArrayUtils.clone((int[]) value));
-                    } else if (value instanceof long[]) {
-                        this.map.put(parts.get(0), ArrayUtils.clone((long[]) value));
-                    } else if (value instanceof float[]) {
-                        this.map.put(parts.get(0), ArrayUtils.clone((float[]) value));
-                    } else if (value instanceof double[]) {
-                        this.map.put(parts.get(0), ArrayUtils.clone((double[]) value));
-                    } else if (value instanceof boolean[]) {
-                        this.map.put(parts.get(0), ArrayUtils.clone((boolean[]) value));
-                    } else {
-                        this.map.put(parts.get(0), ArrayUtils.clone((Object[]) value));
-                    }
-                } else {
-                    this.map.put(parts.get(0), value);
-                }
+                this.map.put(key, value);
             }
+        } else {
+            this.map.put(key, value);
         }
         return this;
     }
@@ -311,12 +323,16 @@ public class MemoryDataView implements DataView {
             if (object instanceof DataSerializable) {
                 builder.add(((DataSerializable) object).toContainer());
             } else if (object instanceof DataView) {
-                MemoryDataView view = new MemoryDataContainer();
-                DataView internalView = (DataView) object;
-                for (Map.Entry<DataQuery, Object> entry : internalView.getValues(false).entrySet()) {
-                    view.set(entry.getKey(), entry.getValue());
+                if (this.safety == SafetyMode.ALL_DATA_CLONED || this.safety == SafetyMode.CLONED_ON_SET) {
+                    MemoryDataView view = new MemoryDataContainer(this.safety);
+                    DataView internalView = (DataView) object;
+                    for (Map.Entry<DataQuery, Object> entry : internalView.getValues(false).entrySet()) {
+                        view.set(entry.getKey(), entry.getValue());
+                    }
+                    builder.add(view);
+                } else {
+                    builder.add(object);
                 }
-                builder.add(view);
             } else if (object instanceof Map) {
                 builder.add(ensureSerialization((Map) object));
             } else if (object instanceof Collection) {
@@ -328,7 +344,7 @@ public class MemoryDataView implements DataView {
                         DataTranslator translator = translatorOptional.get();
                         final DataContainer container = translator.translate(value);
                         checkArgument(!container.equals(this), "Cannot insert self-referencing Objects!");
-                        copyDataView(this.path, container);
+                        builder.add(container);
                     } else {
                         builder.add(object);
                     }
@@ -420,14 +436,14 @@ public class MemoryDataView implements DataView {
         DataQuery keyQuery = of(key);
         
         if (sz == 1) {
-            DataView result = new MemoryDataView(this, keyQuery);
+            DataView result = new MemoryDataView(this, keyQuery, this.safety);
             this.map.put(key, result);
             return result;
         }
         DataQuery subQuery = path.popFirst();
         DataView subView = (DataView) this.map.get(key);
         if (subView == null) {
-            subView = new MemoryDataView(this.parent, keyQuery);
+            subView = new MemoryDataView(this.parent, keyQuery, this.safety);
             this.map.put(key, subView);
         }
         return subView.createView(subQuery);
@@ -780,7 +796,19 @@ public class MemoryDataView implements DataView {
 
     @Override
     public DataContainer copy() {
-        final DataContainer container = new MemoryDataContainer();
+        final DataContainer container = new MemoryDataContainer(this.safety);
+        getKeys(false).stream()
+                .forEach(query ->
+                        get(query).ifPresent(obj ->
+                                container.set(query, obj)
+                        )
+                );
+        return container;
+    }
+
+    @Override
+    public DataContainer copy(SafetyMode safety) {
+        final DataContainer container = new MemoryDataContainer(safety);
         getKeys(false).stream()
                 .forEach(query ->
                         get(query).ifPresent(obj ->
@@ -793,6 +821,11 @@ public class MemoryDataView implements DataView {
     @Override
     public boolean isEmpty() {
         return this.map.isEmpty();
+    }
+
+    @Override
+    public SafetyMode getSafetyMode() {
+        return this.safety;
     }
 
     @Override
@@ -820,6 +853,7 @@ public class MemoryDataView implements DataView {
         if (!this.path.toString().isEmpty()) {
             helper.add("path", this.path);
         }
+        helper.add("safety", this.safety.name());
         return helper.add("map", this.map).toString();
     }
 }

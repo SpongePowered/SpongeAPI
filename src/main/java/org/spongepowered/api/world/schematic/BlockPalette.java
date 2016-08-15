@@ -32,14 +32,14 @@ import java.util.Optional;
 /**
  * Represents a mapping for blockstates to a local identifier.
  */
-public interface Palette {
+public interface BlockPalette {
 
     /**
      * Gets the type of this palette.
      * 
      * @return The palette type
      */
-    PaletteType getType();
+    BlockPaletteType getType();
 
     /**
      * Gets the highest identifier in this palette.
@@ -77,6 +77,9 @@ public interface Palette {
 
     /**
      * Removes the given blockstate from the mapping.
+     * 
+     * <p>If this palette is the {@link BlockPaletteTypes#GLOBAL} palette then
+     * removal is not supported.</p>
      * 
      * @param state The blockstate to remove
      * @return If the blockstate existed in the mapping

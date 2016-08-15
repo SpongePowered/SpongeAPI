@@ -53,11 +53,11 @@ public interface Schematic extends ArchetypeVolume {
     }
 
     /**
-     * Gets the {@link Palette} used by this schematic for serialization.
+     * Gets the {@link BlockPalette} used by this schematic for serialization.
      * 
      * @return The palette
      */
-    Palette getPalette();
+    BlockPalette getPalette();
 
     /**
      * Gets any additional metadata attached to this schematic.
@@ -103,7 +103,7 @@ public interface Schematic extends ArchetypeVolume {
          * @param palette The palette to use for serialization
          * @return This builder, for chaining
          */
-        Builder palette(Palette palette);
+        Builder palette(BlockPalette palette);
 
         /**
          * Specifies the palette type to use if the {@link #palette} is not
@@ -112,7 +112,7 @@ public interface Schematic extends ArchetypeVolume {
          * @param type The palette type
          * @return This builder, for chaining
          */
-        Builder paletteType(PaletteType type);
+        Builder paletteType(BlockPaletteType type);
 
         /**
          * Specifies the metadata container.

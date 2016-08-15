@@ -28,16 +28,19 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a type of palette.
+ * Represents a type of {@link BlockPalette}.
  */
-@CatalogedBy(PaletteTypes.class)
-public interface PaletteType extends CatalogType {
+@CatalogedBy(BlockPaletteTypes.class)
+public interface BlockPaletteType extends CatalogType {
 
     /**
      * Gets an instance of this palette type.
      * 
+     * <p>If this is the global type then the global palette instance will be
+     * returned, otherwise a new instance will be created.</p>
+     * 
      * @return The palette instance
      */
-    Palette create();
+    BlockPalette create();
 
 }

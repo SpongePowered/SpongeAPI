@@ -38,6 +38,14 @@ import java.util.Optional;
  */
 public class MemoryDataContainer extends MemoryDataView implements DataContainer {
 
+    public MemoryDataContainer() {
+        this(DataView.SafetyMode.ALL_DATA_CLONED);
+    }
+
+    public MemoryDataContainer(DataView.SafetyMode safety) {
+        super(safety);
+    }
+
     @Override
     public Optional<DataView> getParent() {
         return Optional.empty();

@@ -54,7 +54,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot> {
 
     /**
      * Gets the raw {@link Entity} data that would be applied to the generated
-     * tile entity. Note that this is a copied container.
+     * entity. Note that this is a copied container.
      *
      * @return The copied container of the entity
      */
