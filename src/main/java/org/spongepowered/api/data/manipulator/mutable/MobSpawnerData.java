@@ -30,15 +30,11 @@ import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.data.value.mutable.WeightedCollectionValue;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntitySnapshot;
-import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 
-import java.util.Collection;
 import java.util.Random;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents the data associated with a mob spawner, including the spawn delay,
@@ -110,49 +106,25 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
     MutableBoundedValue<Short> spawnRange();
 
     /**
-     * Gets the {@link NextEntityToSpawnValue} for the overridden
-     * {@link WeightedSerializableObject}{@code <EntitySnapshot>} to spawn
+     * Gets the {@link Value} for the overridden
+     * {@link WeightedSerializableObject}{@code <EntityArchetype>} to spawn
      * next. If possible, the next entity to spawn may be chosen from the
      * already provided {@link #possibleEntitiesToSpawn()}.
      *
      * @return The next possible entity to spawn
      */
-    NextEntityToSpawnValue nextEntityToSpawn();
+    Value<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn();
 
     /**
      * Gets the {@link WeightedCollectionValue} of all possible
      * {@link Entity} instances that can be spawned by the spawner. As they
-     * are all {@link WeightedSerializableObject}{@code <EntitySnapshot>}
+     * are all {@link WeightedSerializableObject}{@code <EntityArchetype>}
      * instances, their weight is defined as a {@link Random} to determine
      * the next {@link Entity} that will be spawned, unless overriden by
      * {@link #nextEntityToSpawn()}.
      *
      * @return The immutable weighted entity collection value of entities
      */
-    WeightedCollectionValue<EntitySnapshot> possibleEntitiesToSpawn();
-
-    /**
-     * Represents a custom {@link Value} dealing with the next
-     * {@link WeightedSerializableObject}{@code <EntitySnapshot>} such that
-     * the next {@link Entity} to spawn may be pulled from the owning
-     * {@link #possibleEntitiesToSpawn()} with a default {@link Random},
-     * or it may be custom defined on a case by case basis.
-     */
-    interface NextEntityToSpawnValue extends Value<WeightedSerializableObject<EntitySnapshot>> {
-
-        /**
-         * Sets this value with the provided {@link EntityType} and
-         * {@link Collection} of {@link DataManipulator}s.
-         *
-         * @param type The type of {@link Entity}
-         * @param additionalProperties Any additional properties to spawn the
-         *     {@link Entity} with
-         * @return The new value, for chaining
-         */
-        NextEntityToSpawnValue set(EntityType type, @Nullable Collection<DataManipulator<?, ?>> additionalProperties);
-
-        @Override
-        ImmutableMobSpawnerData.ImmutableNextEntityToSpawnValue asImmutable();
-    }
+    WeightedCollectionValue<EntityArchetype> possibleEntitiesToSpawn();
 
 }

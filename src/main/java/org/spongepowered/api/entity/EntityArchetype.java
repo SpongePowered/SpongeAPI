@@ -46,6 +46,15 @@ public interface EntityArchetype extends Archetype<EntitySnapshot> {
     }
 
     /**
+     * Creates a new {@link EntityArchetype} with the specified {@link EntityType}.
+     * @param type Type of the entity
+     * @return An archetype of the given entity type
+     */
+    static EntityArchetype of(EntityType type) {
+        return builder().type(type).build();
+    }
+
+    /**
      * Gets the {@link EntityType} of the entity contained in this archetype.
      * 
      * @return The entity type
