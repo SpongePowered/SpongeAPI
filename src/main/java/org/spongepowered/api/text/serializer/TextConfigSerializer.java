@@ -62,19 +62,34 @@ public class TextConfigSerializer extends AbstractDataBuilder<Text> implements T
     @Override
     public Text deserialize(TypeToken<?> type, ConfigurationNode value) throws ObjectMappingException {
         StringWriter writer = new StringWriter();
-        GsonConfigurationLoader gsonLoader = GsonConfigurationLoader.builder().setSink(() -> new BufferedWriter(writer)).build();
+
+        // TODO: Disable writing config headers in configurate 3.2
+        GsonConfigurationLoader gsonLoader = GsonConfigurationLoader.builder()
+                .setIndent(0)
+                .setSink(() -> new BufferedWriter(writer))
+                .build();
+
+        // Set the configuration node to a new empty value to remove headers in
+        // the configuration node
+        // TODO: Remove this with configurate 3.2
+        value = gsonLoader.createEmptyNode().setValue(value);
+
         try {
             gsonLoader.save(value);
         } catch (IOException e) {
             throw new ObjectMappingException(e);
         }
-        return Sponge.getDataManager().deserialize(Text.class, new MemoryDataContainer().set(Queries.JSON, writer.getBuffer().toString())).get();
+
+        return Sponge.getDataManager().deserialize(Text.class, new MemoryDataContainer().set(Queries.JSON, writer.toString())).get();
     }
 
     @Override
     public void serialize(TypeToken<?> type, Text obj, ConfigurationNode value) throws ObjectMappingException {
         String json = (String) obj.toContainer().get(Queries.JSON).get();
-        GsonConfigurationLoader gsonLoader = GsonConfigurationLoader.builder().setSource(() -> new BufferedReader(new StringReader(json))).build();
+        GsonConfigurationLoader gsonLoader = GsonConfigurationLoader.builder()
+                .setSource(() -> new BufferedReader(new StringReader(json)))
+                .build();
+
         try {
             value.setValue(gsonLoader.load());
         } catch (IOException e) {
@@ -84,15 +99,11 @@ public class TextConfigSerializer extends AbstractDataBuilder<Text> implements T
 
     @Override
     protected Optional<Text> buildContent(DataView container) throws InvalidDataException {
-        Optional<Object> json = container.get(Queries.JSON);
-        if (json.isPresent()) {
-            try {
-                //noinspection ConstantConditions
-                return Optional.of(TextSerializers.JSON.deserialize(json.get().toString()));
-            } catch (TextParseException e) {
-                throw new InvalidDataException(e);
-            }
+        try {
+            return container.get(Queries.JSON).map(json -> TextSerializers.JSON.deserialize(json.toString()));
+        } catch (TextParseException e) {
+            throw new InvalidDataException(e);
         }
-        return Optional.empty();
     }
+
 }
