@@ -36,12 +36,12 @@ public interface CommandProcessEvent extends Event {
     /**
      * Fired before the command is processed
      */
-    public interface Before extends CommandProcessEvent, Cancellable {}
+    public interface Pre extends CommandProcessEvent, Cancellable {}
 
     /**
      * Fired after the command is processed
      */
-    public interface After extends CommandProcessEvent {
+    public interface Post extends CommandProcessEvent {
 
         /**
          * The result of the command.
