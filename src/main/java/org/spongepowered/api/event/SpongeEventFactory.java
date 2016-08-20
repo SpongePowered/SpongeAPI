@@ -1016,6 +1016,44 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
+     * {@link org.spongepowered.api.event.command.CommandProcessEvent.After}.
+     * 
+     * @param cause The cause
+     * @param arguments The arguments
+     * @param command The command
+     * @param result The result
+     * @return A new after command process event
+     */
+    public static CommandProcessEvent.After createCommandProcessEventAfter(Cause cause, String arguments, String command, CommandResult result) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("arguments", arguments);
+        values.put("command", command);
+        values.put("result", result);
+        return SpongeEventFactoryUtils.createEventImpl(CommandProcessEvent.After.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.command.CommandProcessEvent.Before}.
+     * 
+     * @param cause The cause
+     * @param arguments The arguments
+     * @param command The command
+     * @return A new before command process event
+     */
+    public static CommandProcessEvent.Before createCommandProcessEventBefore(Cause cause, String arguments, String command) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("arguments", arguments);
+        values.put("command", command);
+        return SpongeEventFactoryUtils.createEventImpl(CommandProcessEvent.Before.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
      * {@link org.spongepowered.api.event.command.SendCommandEvent}.
      * 
      * @param cause The cause
@@ -1031,42 +1069,6 @@ public class SpongeEventFactory {
         values.put("command", command);
         values.put("result", result);
         return SpongeEventFactoryUtils.createEventImpl(SendCommandEvent.class, values);
-    }
-
-    /**
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.command.CommandProcessEvent.Before}.
-     *
-     * @param cause The cause
-     * @param arguments The arguments
-     * @param command The command
-     * @return A new send command event
-     */
-    public static CommandProcessEvent.Before creatCommandProcessEventBefore(Cause cause, String arguments, String command) {
-        HashMap<String, Object> values = new HashMap<>();
-        values.put("cause", cause);
-        values.put("arguments", arguments);
-        values.put("command", command);
-        return SpongeEventFactoryUtils.createEventImpl(CommandProcessEvent.Before.class, values);
-    }
-
-    /**
-     * Creates a new instance of
-     * {@link org.spongepowered.api.event.command.CommandProcessEvent.After}.
-     *
-     * @param cause The cause
-     * @param arguments The arguments
-     * @param command The command
-     * @param result The result
-     * @return A new send command event
-     */
-    public static CommandProcessEvent.After creatCommandProcessEventAfter(Cause cause, String arguments, String command, CommandResult result) {
-        HashMap<String, Object> values = new HashMap<>();
-        values.put("cause", cause);
-        values.put("arguments", arguments);
-        values.put("command", command);
-        values.put("result", result);
-        return SpongeEventFactoryUtils.createEventImpl(CommandProcessEvent.After.class, values);
     }
 
     /**
