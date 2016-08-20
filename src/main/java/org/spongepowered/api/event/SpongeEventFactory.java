@@ -88,6 +88,7 @@ import org.spongepowered.api.event.block.tileentity.TargetTileEntityEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.health.HealthModifier;
+import org.spongepowered.api.event.command.CommandProcessEvent;
 import org.spongepowered.api.event.command.SendCommandEvent;
 import org.spongepowered.api.event.command.TabCompleteEvent;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
@@ -1030,6 +1031,42 @@ public class SpongeEventFactory {
         values.put("command", command);
         values.put("result", result);
         return SpongeEventFactoryUtils.createEventImpl(SendCommandEvent.class, values);
+    }
+
+    /**
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.command.CommandProcessEvent.Before}.
+     *
+     * @param cause The cause
+     * @param arguments The arguments
+     * @param command The command
+     * @return A new send command event
+     */
+    public static CommandProcessEvent.Before creatCommandProcessEventBefore(Cause cause, String arguments, String command) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("arguments", arguments);
+        values.put("command", command);
+        return SpongeEventFactoryUtils.createEventImpl(CommandProcessEvent.Before.class, values);
+    }
+
+    /**
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.command.CommandProcessEvent.After}.
+     *
+     * @param cause The cause
+     * @param arguments The arguments
+     * @param command The command
+     * @param result The result
+     * @return A new send command event
+     */
+    public static CommandProcessEvent.After creatCommandProcessEventAfter(Cause cause, String arguments, String command, CommandResult result) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("arguments", arguments);
+        values.put("command", command);
+        values.put("result", result);
+        return SpongeEventFactoryUtils.createEventImpl(CommandProcessEvent.After.class, values);
     }
 
     /**
