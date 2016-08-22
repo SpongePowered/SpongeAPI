@@ -52,7 +52,9 @@ dependencies {
 
     // Java 8 high performance cache (+ wrapper for Guava)
     compile 'com.github.ben-manes.caffeine:caffeine:2.3.2'
-    compile 'com.github.ben-manes.caffeine:guava:2.3.2'
+    compile('com.github.ben-manes.caffeine:guava:2.3.2') {
+        exclude group: 'com.google.guava', module: 'guava'
+    }
 
     // Plugin meta
     compile 'org.spongepowered:plugin-meta:0.1.1'
