@@ -26,6 +26,7 @@ package org.spongepowered.api.item.inventory.property;
 
 import static org.spongepowered.api.data.Property.Operator.EQUAL;
 
+// TODO-feature/custominventory remove?
 /**
  * Property for inventories of a particular capacity. For example to allow querying for Inventories with 5 Slots.
  */
