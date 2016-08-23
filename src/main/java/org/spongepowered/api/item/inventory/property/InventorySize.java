@@ -34,7 +34,7 @@ import org.spongepowered.api.util.Coerce;
  * Property for inventories of a particular size. For example to allow querying
  * for InventoryRows of length 9 or GridInventories of size 3x3
  *
- * TODO InventorySize -> Dimensions ; re-add InventorySize as IntProperty for OrderedInventories Thoughts?
+ * TODO-feature/custominventory  InventorySize -> Dimensions ; re-add InventorySize as IntProperty for OrderedInventories Thoughts?
  * naming based of {@link GridInventory#getDimensions()}
  */
 public class InventorySize extends AbstractInventoryProperty<String, Vector2i> {

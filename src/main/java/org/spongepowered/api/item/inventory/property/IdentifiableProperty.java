@@ -32,12 +32,12 @@ import java.util.UUID;
 /**
  * A property to uniquely identify an Inventory instance
  */
-public class IndentifiableProperty extends AbstractInventoryProperty<String, UUID> {
+public class IdentifiableProperty extends AbstractInventoryProperty<String, UUID> {
 
     /**
      * Creates an IdentifiableProperty with a random UUID.
      */
-    public IndentifiableProperty() {
+    public IdentifiableProperty() {
         this(UUID.randomUUID());
     }
 
@@ -46,7 +46,7 @@ public class IndentifiableProperty extends AbstractInventoryProperty<String, UUI
      *
      * @param value The UUID
      */
-    public IndentifiableProperty(UUID value) {
+    public IdentifiableProperty(UUID value) {
         super(value);
     }
 
@@ -56,7 +56,7 @@ public class IndentifiableProperty extends AbstractInventoryProperty<String, UUI
      * @param value The UUID
      * @param op The operator
      */
-    public IndentifiableProperty(UUID value, Operator op) {
+    public IdentifiableProperty(UUID value, Operator op) {
         super(value, op);
     }
 

@@ -28,6 +28,7 @@ import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Coerce;
 
+// TODO-feature/custominventory remove?
 /**
  * Inventory property which sets the {@link ItemStack} displayed in a Slot.
  * The ItemStack displayed cannot be moved by a player

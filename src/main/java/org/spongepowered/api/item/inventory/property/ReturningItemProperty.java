@@ -38,6 +38,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
  * Default Property of {@link BlockTypes#CRAFTING_TABLE}, {@link BlockTypes#ANVIL},
  * {@link BlockTypes#ENCHANTING_TABLE}, {@link EntityTypes#VILLAGER}, the players crafting grid.
  */
+// TODO-feature/custominventory remove? was supposed to be what workbenches etc. do in vanilla
 public class ReturningItemProperty extends AbstractInventoryProperty<String, Carrier>{
 
     public ReturningItemProperty(Carrier carrier) {

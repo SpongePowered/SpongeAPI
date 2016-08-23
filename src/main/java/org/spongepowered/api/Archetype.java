@@ -27,6 +27,7 @@ package org.spongepowered.api;
 /**
  * Base Interface for Archetypes
  */
+// TODO-feature/custominventory make WorldArchetype an Archetype
 public interface Archetype extends CatalogType {
 
 }

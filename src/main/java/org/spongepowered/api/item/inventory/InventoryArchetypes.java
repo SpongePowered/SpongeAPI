@@ -29,6 +29,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 /**
  * An enumeration of {@link InventoryArchetype}s.
  */
+// TODO-feature/custominventory remove non-vanilla / base-archetypes for now?
 public class InventoryArchetypes {
 
     // Base Archetypes

@@ -115,7 +115,7 @@ public interface InventoryArchetype extends Archetype {
      * A Builder for InventoryArchetypes.
      * Compositions of multiple base InventoryArchetypes are possible
      *
-     * TODO include example
+     * TODO-feature/custominventory include example
      */
     interface Builder extends ResettableBuilder<InventoryArchetype, Builder> {
 
@@ -135,7 +135,7 @@ public interface InventoryArchetype extends Archetype {
          * @param title The default title
          * @return Fluent patternI
          */
-        // TODO decide if Translation should be forced / Colors seem to be possible using the old colorcodes
+        // TODO-feature/custominventory  decide if Translation should be forced / Colors seem to be possible using the old colorcodes
         default Builder title(Text title) {
             property(new TitleProperty(title));
             return this;
@@ -166,7 +166,7 @@ public interface InventoryArchetype extends Archetype {
         Builder with(InventoryArchetype... archetypes);
 
         /**
-         * TODO maybe remove this? Why not always allow all events on any Inventory?
+         * TODO-feature/custominventory maybe remove this? Why not always allow all events on any Inventory?
          * Adds an event to this Archetype
          *
          * @param type The type
