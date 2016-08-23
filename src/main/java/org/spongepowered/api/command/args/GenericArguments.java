@@ -1185,9 +1185,8 @@ public final class GenericArguments {
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
             return Sponge.getGame().getServer().getAllWorldProperties().stream()
-                    .map(input -> input == null || !input.isEnabled() ? null : input.getWorldName())
+                    .map(input -> input.getWorldName())
                     .collect(Collectors.toList());
-
         }
 
         @Override
