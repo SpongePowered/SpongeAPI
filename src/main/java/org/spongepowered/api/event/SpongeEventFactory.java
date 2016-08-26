@@ -102,15 +102,14 @@ import org.spongepowered.api.event.entity.CollideEntityEvent;
 import org.spongepowered.api.event.entity.ConstructEntityEvent;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.DestructEntityEvent;
-import org.spongepowered.api.event.entity.DismountEntityEvent;
 import org.spongepowered.api.event.entity.ExpireEntityEvent;
 import org.spongepowered.api.event.entity.HarvestEntityEvent;
 import org.spongepowered.api.event.entity.HealEntityEvent;
 import org.spongepowered.api.event.entity.IgniteEntityEvent;
 import org.spongepowered.api.event.entity.InteractEntityEvent;
 import org.spongepowered.api.event.entity.LeashEntityEvent;
-import org.spongepowered.api.event.entity.MountEntityEvent;
 import org.spongepowered.api.event.entity.MoveEntityEvent;
+import org.spongepowered.api.event.entity.RideEntityEvent;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.entity.TameEntityEvent;
 import org.spongepowered.api.event.entity.TargetEntityEvent;
@@ -1509,22 +1508,6 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.DismountEntityEvent}.
-     * 
-     * @param cause The cause
-     * @param targetEntity The target entity
-     * @return A new dismount entity event
-     */
-    public static DismountEntityEvent createDismountEntityEvent(Cause cause, Entity targetEntity) {
-        HashMap<String, Object> values = new HashMap<>();
-        values.put("cause", cause);
-        values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(DismountEntityEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.ExpireEntityEvent.TargetItem}.
      * 
      * @param cause The cause
@@ -1735,22 +1718,6 @@ public class SpongeEventFactory {
     /**
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
-     * {@link org.spongepowered.api.event.entity.MountEntityEvent}.
-     * 
-     * @param cause The cause
-     * @param targetEntity The target entity
-     * @return A new mount entity event
-     */
-    public static MountEntityEvent createMountEntityEvent(Cause cause, Entity targetEntity) {
-        HashMap<String, Object> values = new HashMap<>();
-        values.put("cause", cause);
-        values.put("targetEntity", targetEntity);
-        return SpongeEventFactoryUtils.createEventImpl(MountEntityEvent.class, values);
-    }
-
-    /**
-     * AUTOMATICALLY GENERATED, DO NOT EDIT.
-     * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.MoveEntityEvent}.
      * 
      * @param cause The cause
@@ -1810,6 +1777,38 @@ public class SpongeEventFactory {
         values.put("targetEntity", targetEntity);
         values.put("usePortalAgent", usePortalAgent);
         return SpongeEventFactoryUtils.createEventImpl(MoveEntityEvent.Teleport.Portal.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.RideEntityEvent.Dismount}.
+     * 
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @return A new dismount ride entity event
+     */
+    public static RideEntityEvent.Dismount createRideEntityEventDismount(Cause cause, Entity targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(RideEntityEvent.Dismount.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.RideEntityEvent.Mount}.
+     * 
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @return A new mount ride entity event
+     */
+    public static RideEntityEvent.Mount createRideEntityEventMount(Cause cause, Entity targetEntity) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        return SpongeEventFactoryUtils.createEventImpl(RideEntityEvent.Mount.class, values);
     }
 
     /**
