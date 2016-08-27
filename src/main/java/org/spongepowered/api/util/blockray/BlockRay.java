@@ -367,6 +367,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
             return false;
         }
 
+        // Check if the end predicate is satisfied.
         if (!this.endPredicate.test(hit)) {
             throw new NoSuchElementException("End predicate satisfied");
         }
