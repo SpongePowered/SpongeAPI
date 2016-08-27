@@ -97,8 +97,10 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     private static final Vector3d Z_POSITIVE = Vector3d.UNIT_Z;
     private static final Vector3d Z_NEGATIVE = Z_POSITIVE.negate();
     private static final int DEFAULT_BLOCK_LIMIT = 1000;
-    // Ending test predicate
+    // Filter for removing hits
     private final Predicate<BlockRayHit<E>> filter;
+    // Ending test predicate
+    private final Predicate<BlockRayHit<E>> endPredicate;
     // Extent to iterate in
     private final E extent;
     // Starting position
@@ -142,10 +144,11 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     // If hasNext() is called, we need to move ahead to check the next hit
     private boolean ahead;
 
-    BlockRay(Predicate<BlockRayHit<E>> filter, E extent, Vector3d position, Vector3d direction, boolean narrowPhase) {
+    BlockRay(Predicate<BlockRayHit<E>> filter, Predicate<BlockRayHit<E>> endPredicate, E extent, Vector3d position, Vector3d direction, boolean narrowPhase) {
         checkArgument(direction.lengthSquared() != 0, "Direction cannot be the zero vector");
 
         this.filter = filter;
+        this.endPredicate = endPredicate;
 
         this.extent = extent;
         this.position = position;
@@ -359,9 +362,13 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
             }
         }
 
-        // Check the block filter
+        // Check if this hit should be filtered out
         if (!this.filter.test(hit)) {
-            throw new NoSuchElementException("Filter limit reached");
+            return false;
+        }
+
+        if (!this.endPredicate.test(hit)) {
+            throw new NoSuchElementException("End predicate satisfied");
         }
 
         this.hit = hit;
@@ -565,6 +572,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         private final E extent;
         private final Vector3d position;
         private Predicate<BlockRayHit<E>> filter = allFilter();
+        private Predicate<BlockRayHit<E>> endPredicate = allFilter();
         private Vector3d direction = null;
         private int blockLimit = DEFAULT_BLOCK_LIMIT;
         private boolean narrowPhase = true;
@@ -613,6 +621,44 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         }
 
         /**
+         * Adds a predicate to stop the block ray. This is optional.
+         * Multiple predicates will be ANDed together.
+         *
+         * @param endPredicate The predicate to add
+         * @return This for chained calls
+         */
+        public final BlockRayBuilder<E> stopWhen(final Predicate<BlockRayHit<E>> endPredicate) {
+            checkNotNull(endPredicate, "endPredicate");
+            if (this.endPredicate == ALL_FILTER) {
+                this.endPredicate = endPredicate;
+            } else {
+                this.endPredicate = this.endPredicate.and(endPredicate);
+            }
+            return this;
+        }
+
+        /**
+         * Adds predicates for stopping the block ray. This is optional.
+         * Multiple predicates will be ANDed together.
+         *
+         * @param endPredicates The predicates to add
+         * @return This for chained calls
+         */
+        @SafeVarargs
+        @SuppressWarnings("varargs")
+        public final BlockRayBuilder<E> stopWhen(final Predicate<BlockRayHit<E>>... endPredicates) {
+            checkNotNull(endPredicates, "endPredicates");
+            @SuppressWarnings("RedundantTypeArguments") // For Apple JDK 6, don't remove
+            final Predicate<BlockRayHit<E>> endPredicate = endPredicates.length == 1 ? endPredicates[0] : Functional.predicateAnd(endPredicates);
+            if (this.endPredicate == ALL_FILTER) {
+                this.endPredicate = endPredicate;
+            } else {
+                this.endPredicate = this.endPredicate.and(endPredicate);
+            }
+            return this;
+        }
+
+        /**
          * Sets the direction and ending location. This or setting the direction is required and can only be done once.
          *
          * @param end The ending location
@@ -623,7 +669,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
             checkNotNull(end, "end");
             checkArgument(!this.position.equals(end), "Start and end cannot be equal");
             this.direction = end.sub(this.position).normalize();
-            return filter(new TargetBlockFilter<>(end));
+            return stopWhen(new TargetBlockFilter<>(end));
         }
 
         /**
@@ -686,7 +732,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
          */
         public BlockRay<E> build() {
             checkState(this.direction != null, "Either end point or direction needs to be set");
-            final BlockRay<E> blockRay = new BlockRay<>(this.filter, this.extent, this.position, this.direction, this.narrowPhase);
+            final BlockRay<E> blockRay = new BlockRay<>(this.filter, this.endPredicate, this.extent, this.position, this.direction, this.narrowPhase);
             blockRay.setBlockLimit(this.blockLimit);
             return blockRay;
         }
