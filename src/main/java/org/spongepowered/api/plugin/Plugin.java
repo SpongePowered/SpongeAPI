@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.plugin;
 
+import org.spongepowered.plugin.meta.SpongeExtension;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -37,11 +39,7 @@ import java.util.regex.Pattern;
 @Target(ElementType.TYPE)
 public @interface Plugin {
 
-    /**
-     * @deprecated Moved to plugin-meta project
-     */
-    @Deprecated
-    Pattern ID_PATTERN = Pattern.compile("[a-z][a-z0-9-_.]{0,63}");
+    Pattern ID_PATTERN = SpongeExtension.ID_PATTERN;
 
     /**
      * An ID for the plugin to be used internally. The ID should be unique as to

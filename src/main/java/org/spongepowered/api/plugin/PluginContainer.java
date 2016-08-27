@@ -90,6 +90,20 @@ public interface PluginContainer {
     }
 
     /**
+     * Gets the Minecraft version the {@link Plugin} within this container was
+     * designed for.
+     *
+     * <p>Note: This will be empty for most plugins because SpongeAPI plugins
+     * are usually designed for a specific API version and not for a specific
+     * Minecraft version.</p>
+     *
+     * @return The Minecraft version, or {@link Optional#empty()} if unknown
+     */
+    default Optional<String> getMinecraftVersion() {
+        return Optional.empty();
+    }
+
+    /**
      * Gets the authors of the {@link Plugin} within this container.
      *
      * @return The plugin authors, or empty if unknown
