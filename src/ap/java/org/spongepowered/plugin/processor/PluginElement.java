@@ -40,8 +40,6 @@ import org.spongepowered.plugin.meta.version.VersionRange;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.InvalidPathException;
-import java.nio.file.Paths;
 
 import javax.annotation.processing.Messager;
 import javax.lang.model.element.TypeElement;
@@ -120,23 +118,6 @@ final class PluginElement {
             }
         }
 
-        value = this.annotation.get().assets();
-        if (!value.isEmpty()) {
-            if (!isValidPath(value)) {
-                messager.printMessage(ERROR, "Invalid asset directory path: " + value, this.element, this.annotation.getMirror(),
-                        this.annotation.getValue("assets"));
-            }
-            SpongeExtension ext = new SpongeExtension();
-            ext.setAssetDirectory(value);
-            this.metadata.setExtension("sponge", ext);
-        } else {
-            SpongeExtension ext = this.metadata.getExtension("sponge");
-            if (ext != null && ext.getAssetDirectory() != null && !isValidPath(ext.getAssetDirectory())) {
-                messager.printMessage(ERROR, "Invalid asset directory path: " + value + " in extra metadata files", this.element,
-                        this.annotation.getMirror());
-            }
-        }
-
         String[] authors = this.annotation.get().authors();
         if (authors.length > 0) {
             this.metadata.getAuthors().clear();
@@ -200,15 +181,6 @@ final class PluginElement {
             new URL(url).toURI();
             return true;
         } catch (MalformedURLException | URISyntaxException ignored) {
-            return false;
-        }
-    }
-
-    private static boolean isValidPath(String path) {
-        try {
-            Paths.get(path);
-            return true;
-        } catch (InvalidPathException e) {
             return false;
         }
     }

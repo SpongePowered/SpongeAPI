@@ -114,15 +114,6 @@ public interface PluginContainer {
     }
 
     /**
-     * Gets the directory that contains this {@link Plugin}'s assets.
-     *
-     * @return Asset directory, or empty if none
-     */
-    default Optional<Path> getAssetDirectory() {
-        return Optional.empty();
-    }
-
-    /**
      * Retrieves the {@link Asset} of the specified name from the
      * {@link AssetManager} for this {@link Plugin}.
      *
