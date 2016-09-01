@@ -27,7 +27,6 @@ package org.spongepowered.api.data.manipulator.mutable.common;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
@@ -76,16 +75,6 @@ public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends
     // We have to have this abstract to properly override for generics.
     @Override
     public abstract I asImmutable();
-
-    // Again, overriding for generics
-    @Override
-    public int compareTo(M o) {
-        final List<E> thisList = getValue();
-        final List<E> otherList = o.asList();
-        return ComparisonChain.start()
-            .compare(thisList.containsAll(otherList), otherList.containsAll(thisList))
-            .result();
-    }
 
     @Override
     protected List<E> getValue() {

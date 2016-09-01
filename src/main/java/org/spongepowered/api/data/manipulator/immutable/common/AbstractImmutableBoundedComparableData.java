@@ -76,8 +76,4 @@ public abstract class AbstractImmutableBoundedComparableData<T extends Comparabl
         return this.immutableBoundedValue;
     }
 
-    @Override
-    public int compareTo(I o) {
-        return this.comparator.compare(o.get(this.usedKey).get(), this.value);
-    }
 }

@@ -58,20 +58,6 @@ public abstract class AbstractImmutableMappedData<K, V, I extends ImmutableMappe
     }
 
     @Override
-    public int compareTo(I o) {
-        final Map<K, V> thisMap = getValue();
-        final Map<K, V> otherMap = o.asMap();
-        final Set<K> thisKeySet = thisMap.keySet();
-        final Set<K> otherKeySet = otherMap.keySet();
-        final Collection<V> thisValueSet = thisMap.values();
-        final Collection<V> otherValueSet = otherMap.values();
-        return ComparisonChain.start()
-            .compare(thisKeySet.containsAll(otherKeySet), otherKeySet.containsAll(thisKeySet))
-            .compare(thisValueSet.containsAll(otherValueSet), otherValueSet.containsAll(thisValueSet))
-            .result();
-    }
-
-    @Override
     public Optional<V> get(K key) {
         return Optional.ofNullable(super.getValue().get(checkNotNull(key, "Key cannot be null!")));
     }

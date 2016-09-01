@@ -26,7 +26,6 @@ package org.spongepowered.api.data.manipulator.mutable.common;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.collect.ComparisonChain;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
@@ -56,13 +55,6 @@ public abstract class AbstractBooleanData<M extends DataManipulator<M, I>, I ext
     @Override
     protected Value<Boolean> getValueGetter() {
         return Sponge.getRegistry().getValueFactory().createValue((Key<Value<Boolean>>) this.usedKey, this.getValue(), this.defaultValue);
-    }
-
-    @Override
-    public int compareTo(M o) {
-        return ComparisonChain.start()
-            .compare(o.get(this.usedKey).get(), this.getValue())
-            .result();
     }
 
     @Override

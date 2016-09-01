@@ -53,11 +53,6 @@ public abstract class AbstractSingleEnumData<E extends Enum<E>, M extends DataMa
     }
 
     @Override
-    public int compareTo(M o) {
-        return o.get(this.usedKey).get().ordinal() - this.getValue().ordinal();
-    }
-
-    @Override
     public DataContainer toContainer() {
         return super.toContainer()
                 .set(this.usedKey.getQuery(), this.getValue().name());

@@ -54,7 +54,7 @@ import java.util.function.Function;
  *
  * @param <M> The type of {@link DataManipulator} for comparisons
  */
-public interface DataManipulator<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>> extends Comparable<M>, DataSerializable,
+public interface DataManipulator<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>> extends DataSerializable,
         ValueContainer<M> {
 
     /**

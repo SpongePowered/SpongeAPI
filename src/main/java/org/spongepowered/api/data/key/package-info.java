@@ -22,25 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.common;
-
-import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.BaseValue;
-
-/**
- * An abstract {@link DataManipulator} specifically dealing with {@code int}
- * values.
- *
- * @param <M> The manipulator type
- * @param <I> The immutable manipulator type
- */
-public abstract class AbstractIntData<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>>
-    extends AbstractSingleData<Integer, M, I> {
-
-    protected AbstractIntData(int value, Key<? extends BaseValue<Integer>> usedKey) {
-        super(value, usedKey);
-    }
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.data.key;

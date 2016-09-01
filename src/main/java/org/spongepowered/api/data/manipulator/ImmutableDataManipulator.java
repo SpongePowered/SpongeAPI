@@ -46,8 +46,7 @@ import java.util.Optional;
  * @param <I> The type of immutable data manipulator
  * @param <M> The type of mutable data manipulator
  */
-public interface ImmutableDataManipulator<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>> extends Comparable<I>,
-                                                                                                                             DataSerializable,
+public interface ImmutableDataManipulator<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>> extends DataSerializable,
                                                                                                                              ValueContainer<I> {
 
     /**

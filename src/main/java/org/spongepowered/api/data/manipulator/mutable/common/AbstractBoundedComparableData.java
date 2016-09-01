@@ -78,11 +78,6 @@ public abstract class AbstractBoundedComparableData<T extends Comparable<T>, M e
     }
 
     @Override
-    public int compareTo(M o) {
-        return this.comparator.compare(o.get(this.usedKey).get(), this.getValue());
-    }
-
-    @Override
     public M setValue(T value) {
         checkArgument(this.comparator.compare(this.lowerBound, value) >= 0);
         checkArgument(this.comparator.compare(this.upperBound, value) <= 0);

@@ -25,7 +25,6 @@
 package org.spongepowered.api.data.manipulator.mutable.common;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
@@ -38,9 +37,7 @@ import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.util.CollectionUtils;
 
-import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * A common implementation for {@link ListData}s provided by the API.
@@ -61,21 +58,6 @@ public abstract class AbstractMappedData<K, V, M extends MappedData<K, V, M, I>,
     @Override
     protected MapValue<K, V> getValueGetter() {
         return Sponge.getRegistry().getValueFactory().createMapValue((Key<MapValue<K, V>>) this.usedKey, this.getValue());
-    }
-
-    // Again, overriding for generics
-    @Override
-    public int compareTo(M o) {
-        final Map<K, V> thisMap = getValue();
-        final Map<K, V> otherMap = o.asMap();
-        final Set<K> thisKeySet = thisMap.keySet();
-        final Set<K> otherKeySet = otherMap.keySet();
-        final Collection<V> thisValueSet = thisMap.values();
-        final Collection<V> otherValueSet = otherMap.values();
-        return ComparisonChain.start()
-            .compare(thisKeySet.containsAll(otherKeySet), otherKeySet.containsAll(thisKeySet))
-            .compare(thisValueSet.containsAll(otherValueSet), otherValueSet.containsAll(thisValueSet))
-            .result();
     }
 
     @Override

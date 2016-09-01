@@ -52,12 +52,6 @@ public abstract class AbstractImmutableListData<E, I extends ImmutableListData<E
     }
 
     @Override
-    public int compareTo(I o) {
-        final List<E> list = o.get(this.usedKey).get();
-        return Boolean.compare(list.containsAll(this.getValue()), this.getValue().containsAll(list));
-    }
-
-    @Override
     public ImmutableListValue<E> getListValue() {
         return getValueGetter();
     }

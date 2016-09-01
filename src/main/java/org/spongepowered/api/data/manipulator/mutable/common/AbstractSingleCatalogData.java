@@ -52,11 +52,6 @@ public abstract class AbstractSingleCatalogData<T extends CatalogType, M extends
         return type();
     }
 
-    @Override
-    public int compareTo(M o) {
-        return o.get(this.usedKey).get().getId().compareToIgnoreCase(this.getValue().getId());
-    }
-
     @SuppressWarnings("unchecked")
     @Override
     public Value<T> type() {

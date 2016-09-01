@@ -63,11 +63,6 @@ public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I exten
     }
 
     @Override
-    public int compareTo(I o) {
-        return o.get(this.usedKey).get().ordinal() - this.value.ordinal();
-    }
-
-    @Override
     public DataContainer toContainer() {
         return super.toContainer()
                 .set(this.usedKey.getQuery(), this.value.name());
