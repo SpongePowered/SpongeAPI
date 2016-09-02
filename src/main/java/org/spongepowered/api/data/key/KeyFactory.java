@@ -130,7 +130,8 @@ public final class KeyFactory {
      * @param query The query to access the data
      * @return The generated key
      */
-    public static <E> Key<ListValue<E>> makeListKey(final TypeToken<E> elementToken, final DataQuery query, final String id, final String name) {
+    public static <E> Key<ListValue<E>> makeListKey(final TypeToken<? extends List<E>> elementToken, final TypeToken<ListValue<E>> valueToken,
+            final DataQuery query, final String id, final String name) {
         return new Key<ListValue<E>>() {
 
             @Override
@@ -148,12 +149,12 @@ public final class KeyFactory {
             @SuppressWarnings("rawtypes")
             @Override
             public TypeToken<ListValue<E>> getValueToken() {
-                return (Class<ListValue<E>>) (Class) ListValue.class;
+                return valueToken;
             }
 
             @Override
             public TypeToken<?> getElementToken() {
-                return List.class;
+                return elementToken;
             }
 
             @Override
@@ -185,9 +186,6 @@ public final class KeyFactory {
     public static <E> Key<SetValue<E>> makeSetKey(final TypeToken<? extends Set<E>> elementToken, TypeToken<SetValue<E>> valueToken,
             final DataQuery query, final String id, final String name) {
         return new Key<SetValue<E>>() {
-
-            private final TypeToken<Set<E>> SET_TOKEN = new TypeToken<Set<E>>() {};
-            private final TypeToken<SetValue<E>> SET_VALUE_TOKEN = new TypeToken<SetValue<E>>() {};
 
             @Override
             public String getId() {
@@ -236,12 +234,12 @@ public final class KeyFactory {
      *
      * @param <K> The type of keys
      * @param <V> The type of values
-     * @param keyToken The key class of the map
+     * @param elementToken The element token
      * @param valueToken The value class of the map
      * @param query The query
      * @return The generated key
      */
-    public static <K, V> Key<MapValue<K, V>> makeMapKey(final TypeToken<K> keyToken, final TypeToken<V> valueToken, final DataQuery query, final String id, final String name) {
+    public static <K, V> Key<MapValue<K, V>> makeMapKey(final TypeToken<Map<K, V>> elementToken, final TypeToken<MapValue<K, V>> valueToken, final DataQuery query, final String id, final String name) {
         return new Key<MapValue<K, V>>() {
 
             @Override
@@ -254,18 +252,18 @@ public final class KeyFactory {
                 return name;
             }
 
-            private final int hash = Objects.hashCode(keyToken, valueToken, query);
+            private final int hash = Objects.hashCode(elementToken, valueToken, query);
 
             @SuppressWarnings("rawtypes")
             @Override
             public TypeToken<MapValue<K, V>> getValueToken() {
-                return (Class<MapValue<K, V>>) (Class) MapValue.class;
+                return valueToken;
             }
 
             @SuppressWarnings("rawtypes")
             @Override
             public TypeToken<?> getElementToken() {
-                return Map.class;
+                return elementToken;
             }
 
             @Override
