@@ -35,25 +35,30 @@ public final class Visibilities {
     // SORTFIELDS:ON
 
     /**
-     * Displays nametags or death messages for all players.
+     * Death messages or nametags are always visible.
+     *
+     * <p>This is the default value.</p>
      */
-    public static final Visibility ALL = DummyObjectProvider.createFor(Visibility.class, "ALL");
+    public static final Visibility ALWAYS = DummyObjectProvider.createFor(Visibility.class, "ALWAYS");
 
     /**
-     * Displays nametags or death messages for no players.
+     * Death messages or nametags are never visible.
      */
-    public static final Visibility NONE = DummyObjectProvider.createFor(Visibility.class, "NONE");
+    public static final Visibility NEVER = DummyObjectProvider.createFor(Visibility.class, "NEVER");
 
     /**
-     * Displays nametags or death messages for all players on teams other
-     * than their team.
+     * Death messages or nametags for members of other teams will not be
+     * visible, but death messages or nametags for members of the same team
+     * will be visible.
      */
-    public static final Visibility OTHER_TEAMS = DummyObjectProvider.createFor(Visibility.class, "OTHER_TEAMS");
+    public static final Visibility HIDE_FOR_OTHER_TEAMS = DummyObjectProvider.createFor(Visibility.class, "HIDE_FOR_OTHER_TEAMS");
 
     /**
-     * Displays nametags or death messages for players on their own team.
+     * Death messages or nametags for members of other teams will be
+     * visible, but death messages or nametags for members of the same team
+     * will not be visible.
      */
-    public static final Visibility OWN_TEAM = DummyObjectProvider.createFor(Visibility.class, "OWN_TEAM");
+    public static final Visibility HIDE_FOR_OWN_TEAM = DummyObjectProvider.createFor(Visibility.class, "HIDE_FOR_OWN_TEAM");
 
     // SORTFIELDS:OFF
 
