@@ -477,8 +477,15 @@ public class ClassGenerator {
         return toStringMv;
     }
 
-    private void contributeToString(String internalName, Property<Class<?>, Method> property, MethodVisitor toStringMv) {
+    private void contributeToString(String internalName, Class<?> parentType, Property<Class<?>, Method> property, MethodVisitor toStringMv) {
         if (property.isLeastSpecificType()) {
+
+            boolean overrideToString = false;
+            UseField useField = getUseField(parentType, property.getName());
+            if (useField != null) {
+                overrideToString = useField.overrideToString();
+            }
+
             Type returnType = Type.getReturnType(property.getAccessor());
 
             toStringMv.visitVarInsn(ALOAD, 0);
@@ -493,8 +500,12 @@ public class ClassGenerator {
                     .visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
 
             toStringMv.visitVarInsn(ALOAD, 0);
-            toStringMv.visitMethodInsn(INVOKESPECIAL, internalName, property.getAccessor().getName(),
-                    Type.getMethodDescriptor(property.getAccessor()), false);
+            if (overrideToString) {
+                toStringMv.visitFieldInsn(GETFIELD, internalName, property.getName(), Type.getDescriptor(property.getType()));
+            } else {
+                toStringMv.visitMethodInsn(INVOKESPECIAL, internalName, property.getAccessor().getName(),
+                        Type.getMethodDescriptor(property.getAccessor()), false);
+            }
 
             String desc = property.getType().isPrimitive() ? Type.getDescriptor(property.getType()) : "Ljava/lang/Object;";
 
@@ -589,7 +600,7 @@ public class ClassGenerator {
                 }
             }
 
-            this.contributeToString(internalName, property, toStringMv);
+            this.contributeToString(internalName, parentType, property, toStringMv);
 
             if (!processed) {
                 this.contributeField(cw, parentType, property);

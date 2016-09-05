@@ -30,6 +30,7 @@ import static org.mockito.Mockito.withSettings;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -68,8 +69,10 @@ import javax.annotation.Nullable;
 @RunWith(Parameterized.class)
 public class SpongeEventFactoryTest {
 
-    private static final Set<Class<?>> excludedEvents = Sets.newHashSet(DamageEntityEvent.class, HealEntityEvent.class,
+    private static final Set<Class<?>> excludedEvents = ImmutableSet.of(DamageEntityEvent.class, HealEntityEvent.class,
         AITaskEvent.class, AITaskEvent.Add.class, AITaskEvent.Remove.class, AttackEntityEvent.class);
+
+    private static final Set<String> excludedMethods = ImmutableSet.of("getEntitySnapshots");
 
     // We need to keep a reference to any mocked Extent passed into a Location,
     // to ensure that it is not GC'd for the duration of a test. This list
@@ -120,6 +123,11 @@ public class SpongeEventFactoryTest {
             }
             Object testEvent = this.method.invoke(null, params);
             for (Method eventMethod : testEvent.getClass().getMethods()) {
+
+                if (excludedMethods.contains(eventMethod.getName())) {
+                    continue;
+                }
+
                 try {
                     paramTypes = eventMethod.getParameterTypes();
                     params = new Object[paramTypes.length];

@@ -36,22 +36,21 @@ import java.util.List;
 public abstract class AbstractAffectEntityEvent extends AbstractEvent implements AffectEntityEvent {
 
     @UseField protected List<Entity> entities;
-
-    private ImmutableList<EntitySnapshot> snapshots;
+    @UseField(overrideToString = true) protected List<EntitySnapshot> entitySnapshots;
 
     @Override
     public List<EntitySnapshot> getEntitySnapshots() {
-        if (this.snapshots == null) {
+        if (this.entitySnapshots == null) {
             if (this.currentOrder == Order.PRE) {
                 ImmutableList.Builder<EntitySnapshot> builder = ImmutableList.builder();
                 for (Entity entity: this.entities) {
                     builder.add(entity.createSnapshot());
                 }
-                this.snapshots = builder.build();
+                this.entitySnapshots = builder.build();
             } else {
                 throw new IllegalStateException("Can't initialize entity snapshots after PRE!");
             }
         }
-        return this.snapshots;
+        return this.entitySnapshots;
     }
 }
