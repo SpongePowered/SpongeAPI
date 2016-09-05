@@ -27,8 +27,11 @@ package org.spongepowered.api.event.world;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
+
+import java.util.List;
 
 /**
  * Called when an {@link Explosion} occurs in a {@link World}.
@@ -60,9 +63,29 @@ public interface ExplosionEvent extends TargetWorldEvent {
 
     /**
      * An event that is fired as the explosion is going to start affecting
-     * multiple blocks and entities.
+     * multiple blocks and entities. Note that none of the locations have
+     * been affected yet as this is mainly an event when an explosion has
+     * already calculated all the blocks and entities the explosion should
+     * affect.
      */
-    interface Detonate extends ExplosionEvent, AffectEntityEvent, ChangeBlockEvent {}
+    interface Detonate extends ExplosionEvent, AffectEntityEvent {
 
-    interface Post extends ExplosionEvent {}
+        /**
+         * Gets the list of calculated affected locations for blocks that will be
+         * removed due to the explosion. Note that the list is mutable, however,
+         * adding new locations may cause unknown effects.
+         *
+         * @return The list of blocks that will be affected by the explosion
+         */
+        List<Location<World>> getAffectedLocations();
+
+    }
+
+    /**
+     * An event that is fired after the completion of an explosion such that
+     * all block changes that took place due to the explosion (including side
+     * affected blocks) will be included. This is where the block changes
+     * can be updated and/or changed.
+     */
+    interface Post extends ExplosionEvent, ChangeBlockEvent.Post {}
 }

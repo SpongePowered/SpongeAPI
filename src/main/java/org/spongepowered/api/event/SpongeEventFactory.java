@@ -3867,19 +3867,19 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.world.ExplosionEvent.Detonate}.
      * 
      * @param cause The cause
+     * @param affectedLocations The affected locations
      * @param entities The entities
      * @param explosion The explosion
      * @param targetWorld The target world
-     * @param transactions The transactions
      * @return A new detonate explosion event
      */
-    public static ExplosionEvent.Detonate createExplosionEventDetonate(Cause cause, List<Entity> entities, Explosion explosion, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
+    public static ExplosionEvent.Detonate createExplosionEventDetonate(Cause cause, List<Location<World>> affectedLocations, List<Entity> entities, Explosion explosion, World targetWorld) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
+        values.put("affectedLocations", affectedLocations);
         values.put("entities", entities);
         values.put("explosion", explosion);
         values.put("targetWorld", targetWorld);
-        values.put("transactions", transactions);
         return SpongeEventFactoryUtils.createEventImpl(ExplosionEvent.Detonate.class, values);
     }
 
@@ -3891,13 +3891,15 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param explosion The explosion
      * @param targetWorld The target world
+     * @param transactions The transactions
      * @return A new post explosion event
      */
-    public static ExplosionEvent.Post createExplosionEventPost(Cause cause, Explosion explosion, World targetWorld) {
+    public static ExplosionEvent.Post createExplosionEventPost(Cause cause, Explosion explosion, World targetWorld, List<Transaction<BlockSnapshot>> transactions) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("explosion", explosion);
         values.put("targetWorld", targetWorld);
+        values.put("transactions", transactions);
         return SpongeEventFactoryUtils.createEventImpl(ExplosionEvent.Post.class, values);
     }
 
