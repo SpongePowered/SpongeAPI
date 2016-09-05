@@ -24,31 +24,34 @@
  */
 package org.spongepowered.api.event.impl;
 
-import org.spongepowered.api.event.Event;
+import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.Order;
+import org.spongepowered.api.event.entity.AffectEntityEvent;
+import org.spongepowered.api.eventgencore.annotation.UseField;
 
-/**
- * An abstract event that can be extended for any and all custom events as
- * necessary.
- */
-public abstract class AbstractEvent implements Event {
+import java.util.List;
 
-    /**
-     * Called once all fields have been set by the generated
-     * constructor in a subclass.
-     *
-     * <p>This method should be used
-     * to initialize any fields that depend on parameters
-     * passed to the constructor.</p>
-     */
-    protected void init() {}
+public abstract class AbstractAffectEntityEvent extends AbstractEvent implements AffectEntityEvent {
 
-    /**
-     * This field is automatically set by the event manager.
-     * It represents the {@link Order} of the event handler currently
-     * processing the event. When no handler is processing the event,
-     * it will be set to <code>null</code>
-     */
-    public Order currentOrder;
+    @UseField protected List<Entity> entities;
 
+    private ImmutableList<EntitySnapshot> snapshots;
+
+    @Override
+    public List<EntitySnapshot> getEntitySnapshots() {
+        if (this.snapshots == null) {
+            if (this.currentOrder == Order.PRE) {
+                ImmutableList.Builder<EntitySnapshot> builder = ImmutableList.builder();
+                for (Entity entity: this.entities) {
+                    builder.add(entity.createSnapshot());
+                }
+                this.snapshots = builder.build();
+            } else {
+                throw new IllegalStateException("Can't initialize entity snapshots after PRE!");
+            }
+        }
+        return this.snapshots;
+    }
 }
