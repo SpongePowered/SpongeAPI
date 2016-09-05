@@ -88,6 +88,8 @@ import org.spongepowered.api.event.block.tileentity.SmeltEvent;
 import org.spongepowered.api.event.block.tileentity.TargetTileEntityEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
+import org.spongepowered.api.event.cause.entity.dismount.DismountType;
+import org.spongepowered.api.event.cause.entity.dismount.DismountTypes;
 import org.spongepowered.api.event.cause.entity.health.HealthModifier;
 import org.spongepowered.api.event.command.SendCommandEvent;
 import org.spongepowered.api.event.command.TabCompleteEvent;
@@ -1818,10 +1820,26 @@ public class SpongeEventFactory {
      * @param targetEntity The target entity
      * @return A new dismount ride entity event
      */
+    @Deprecated
     public static RideEntityEvent.Dismount createRideEntityEventDismount(Cause cause, Entity targetEntity) {
+        return SpongeEventFactory.createRideEntityEventDismount(cause, targetEntity, DismountTypes.PLAYER);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.RideEntityEvent.Dismount}.
+     * 
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @param dismountType The dismount type
+     * @return A new dismount ride entity event
+     */
+    public static RideEntityEvent.Dismount createRideEntityEventDismount(Cause cause, Entity targetEntity, DismountType dismountType) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("targetEntity", targetEntity);
+        values.put("dismountType", dismountType);
         return SpongeEventFactoryUtils.createEventImpl(RideEntityEvent.Dismount.class, values);
     }
 
