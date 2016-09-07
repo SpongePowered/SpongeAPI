@@ -55,6 +55,18 @@ public interface VariableAmount extends DataSerializable {
     }
 
     /**
+     * Creates a new variable amount which return values between the given min
+     * (inclusive) and max (exclusive).
+     * 
+     * @param min The minimum of the range (inclusive)
+     * @param max The maximum of the range (exclusive)
+     * @return A variable amount representation
+     */
+    static VariableAmount range(double min, double max) {
+        return new BaseAndAddition(min, fixed(max-min));
+    }
+
+    /**
      * Creates a new variable about which has a base and variance. The final
      * amount will be the base amount plus or minus a random amount between zero
      * (inclusive) and the variance (exclusive).
