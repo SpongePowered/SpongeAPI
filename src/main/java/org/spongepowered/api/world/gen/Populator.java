@@ -28,6 +28,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.world.extent.ImmutableBiomeArea;
 import org.spongepowered.api.world.gen.populator.RandomObject;
 
 import java.util.Random;
@@ -70,13 +71,34 @@ public interface Populator {
     /**
      * Applies the populator to the given {@link Extent} volume. The entire area
      * of the given extent should be populated.
+     * 
+     * <p>Due to their transitive nature virtual biomes cannot be fetched from
+     * the given extent, instead your populator should override
+     * {@link #populate(World, Extent, Random, ImmutableBiomeArea)} to make use
+     * of the ImmutableBiomeArea which does contain virtual biome types.</p>
      *
      * @param world The World within which the generation in happening
      * @param volume The volume to be populated
      * @param random A random number generator. This random number generator is
      *        based on the world seed and the chunk position. It is shared with
-     *        with other populators.
+     *        with other populators
      */
     void populate(World world, Extent volume, Random random);
+
+    /**
+     * Applies the populator to the given {@link Extent} volume. The entire area
+     * of the given extent should be populated.
+     *
+     * @param world The World within which the generation in happening
+     * @param volume The volume to be populated
+     * @param random A random number generator. This random number generator is
+     *        based on the world seed and the chunk position. It is shared with
+     *        with other populators
+     * @param virtualBiomes A biome area for the extent being populated which
+     *        includes any virtual biomes not persisted to the world
+     */
+    default void populate(World world, Extent volume, Random random, ImmutableBiomeArea virtualBiomes) {
+        populate(world, volume, random);
+    }
 
 }

@@ -26,6 +26,7 @@ package org.spongepowered.api.world.biome;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.World;
 
 /**
  * Represents a biome.
@@ -46,5 +47,13 @@ public interface BiomeType extends CatalogType {
      * @return The humidity
      */
     double getHumidity();
+
+    /**
+     * Gets the default generation settings of this biome for the given world.
+     * 
+     * @param world The world the settings are being made for
+     * @return The default generation settings
+     */
+    BiomeGenerationSettings createDefaultGenerationSettings(World world);
 
 }
