@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.Archetype;
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.item.inventory.InteractInventoryEvent;
 import org.spongepowered.api.item.inventory.property.TitleProperty;
@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @CatalogedBy(InventoryArchetypes.class)
-public interface InventoryArchetype extends Archetype {
+public interface InventoryArchetype extends CatalogType {
 
     /**
      * Gets all child InventoryArchetypes
@@ -93,15 +93,6 @@ public interface InventoryArchetype extends Archetype {
     }
 
     /**
-     * Builds a new {@link Inventory} based of this InventoryArchetype alone.
-     *
-     * @return The new Inventory
-     */
-    default Inventory newInventory() {
-        return Inventory.builder().of(this).build();
-    }
-
-    /**
      * Creates a new {@link Builder} to build an {@link InventoryArchetype}.
      *
      * @return The builder
@@ -115,7 +106,6 @@ public interface InventoryArchetype extends Archetype {
      * A Builder for InventoryArchetypes.
      * Compositions of multiple base InventoryArchetypes are possible
      *
-     * TODO-feature/custominventory include example
      */
     interface Builder extends ResettableBuilder<InventoryArchetype, Builder> {
 
@@ -135,7 +125,6 @@ public interface InventoryArchetype extends Archetype {
          * @param title The default title
          * @return Fluent patternI
          */
-        // TODO-feature/custominventory  decide if Translation should be forced / Colors seem to be possible using the old colorcodes
         default Builder title(Text title) {
             property(new TitleProperty(title));
             return this;
@@ -164,15 +153,6 @@ public interface InventoryArchetype extends Archetype {
          * @return Fluent pattern
          */
         Builder with(InventoryArchetype... archetypes);
-
-        /**
-         * TODO-feature/custominventory maybe remove this? Why not always allow all events on any Inventory?
-         * Adds an event to this Archetype
-         *
-         * @param type The type
-         * @return Fluent interface
-         */
-        Builder withEvent(Class<? extends InteractInventoryEvent> type);
 
         /**
          * Registers the InventoryArchetype
