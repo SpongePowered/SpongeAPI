@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.impl;
 
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.event.Order;
 
 /**
  * An abstract event that can be extended for any and all custom events as
@@ -41,5 +42,13 @@ public abstract class AbstractEvent implements Event {
      * passed to the constructor.</p>
      */
     protected void init() {}
+
+    /**
+     * This field is automatically set by the event manager.
+     * It represents the {@link Order} of the event handler currently
+     * processing the event. When no handler is processing the event,
+     * it will be set to <code>null</code>
+     */
+    public Order currentOrder;
 
 }

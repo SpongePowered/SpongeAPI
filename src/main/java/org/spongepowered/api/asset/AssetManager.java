@@ -31,14 +31,8 @@ import java.util.Optional;
 
 /**
  * The AssetManager offers a convenient way to easily retrieve resources from
- * Sponge {@link Plugin}s. A {@link Plugin} may specify it's {@link Asset}
- * directory in it's annotation declaring class as well as in the plugin meta
- * file. If no directory is specified the manager will attempt to find the
- * asset of the specified name at:
- *
- * <p><code>assets/&lt;id&gt;</code> where 'ID' is the plugin's fully
- * qualified ID with all '.'s replaced with '/'s to more fit a directory
- * structure.</p>
+ * Sponge {@link Plugin}s. The asset manager will attempt to find the
+ * asset of the specified name at: <code>assets/&lt;plugin_id&gt;</code>
  */
 public interface AssetManager {
 

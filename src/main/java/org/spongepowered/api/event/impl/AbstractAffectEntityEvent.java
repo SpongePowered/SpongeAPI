@@ -22,12 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.event.impl;
 
-/**
- * Base Interface for Archetypes
- */
-// TODO-feature/custominventory make WorldArchetype an Archetype
-public interface Archetype extends CatalogType {
+import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntitySnapshot;
+import org.spongepowered.api.event.Order;
+import org.spongepowered.api.event.entity.AffectEntityEvent;
+import org.spongepowered.api.eventgencore.annotation.UseField;
 
+import java.util.List;
+
+public abstract class AbstractAffectEntityEvent extends AbstractEvent implements AffectEntityEvent {
+
+    @UseField protected List<Entity> entities;
+    @UseField(overrideToString = true) protected List<EntitySnapshot> entitySnapshots;
+
+    @Override
+    public List<EntitySnapshot> getEntitySnapshots() {
+        if (this.entitySnapshots == null) {
+            if (this.currentOrder == Order.PRE) {
+                ImmutableList.Builder<EntitySnapshot> builder = ImmutableList.builder();
+                for (Entity entity: this.entities) {
+                    builder.add(entity.createSnapshot());
+                }
+                this.entitySnapshots = builder.build();
+            } else {
+                throw new IllegalStateException("Can't initialize entity snapshots after PRE!");
+            }
+        }
+        return this.entitySnapshots;
+    }
 }

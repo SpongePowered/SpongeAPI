@@ -28,7 +28,11 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.event.Order;
+import org.spongepowered.api.event.impl.AbstractAffectEntityEvent;
 import org.spongepowered.api.event.world.TargetWorldEvent;
+import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
+import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -47,7 +51,22 @@ import java.util.function.Predicate;
  * {@link Explosion} "damaging" a varying amount of {@link Entity} instances.
  * Other cases will be included as necessary.
  */
+@ImplementedBy(AbstractAffectEntityEvent.class)
 public interface AffectEntityEvent extends TargetWorldEvent, Cancellable {
+
+    /**
+     * Gets an {@link List} of the entity data
+     * un-affected by event changes.
+     *
+     * <p>This method <b>MUST</b> be called at {@link Order#PRE} in order
+     * to be properly initialized, after whih it can be called at any time.
+     * If it is not first called at {@link Order#PRE}, it will throw an {@link IllegalStateException}
+     * when invoked.</p>
+     *
+     * @return The ImmutableList
+     */
+    @PropertySettings(requiredParameter = false, generateMethods = false)
+    List<EntitySnapshot> getEntitySnapshots() throws IllegalStateException;
 
     /**
      * Gets the {@link List} who will be affected after event

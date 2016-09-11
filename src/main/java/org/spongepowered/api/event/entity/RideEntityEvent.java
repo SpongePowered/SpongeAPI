@@ -25,15 +25,20 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.animal.Horse;
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.Cancellable;
 
 /**
- * Raised when the targeted {@link Entity} is being dismounted from another
- * {@link Entity}. Traditionally, if a {@link Player} is riding a
- * {@link Horse}, and the {@link Player} "dismounts", the {@link Horse}
- * would be the {@link #getTargetEntity()} in this event.
+ * An event that involves an {@link Entity} riding another.
  */
-public interface DismountEntityEvent extends TargetEntityEvent {
+public interface RideEntityEvent extends TargetEntityEvent, Cancellable {
 
+    /**
+     * Raised when an {@link Entity} is being mounted
+     */
+    interface Mount extends RideEntityEvent {}
+
+    /**
+     * Raised when an {@link Entity} is being dismounted
+     */
+    interface Dismount extends RideEntityEvent {}
 }

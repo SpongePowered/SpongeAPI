@@ -520,7 +520,6 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
         Builder forCarrier(Class<? extends Carrier> carrier);
 
         /**
-         * TODO maybe require plugin instance?
          * Builds the Inventory
          *
          * @return The new Inventory instance

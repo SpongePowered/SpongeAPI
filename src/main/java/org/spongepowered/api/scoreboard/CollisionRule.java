@@ -22,13 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.scoreboard;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Raised when an {@link Entity} is being mounted
+ * Represents a collision rule.
+ *
+ * <p>A collision rule controls how {@link TeamMember}s on
+ * a {@link Team} collide with other entities.</p>
  */
-public interface MountEntityEvent extends TargetEntityEvent, Cancellable {
+@CatalogedBy(CollisionRules.class)
+public interface CollisionRule extends CatalogType {
+
 }
