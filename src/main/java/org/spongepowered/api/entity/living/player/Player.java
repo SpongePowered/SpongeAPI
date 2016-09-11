@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.living.player;
 
 import org.spongepowered.api.Server;
+import org.spongepowered.api.block.tileentity.EnderChest;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.command.source.RemoteSource;
 import org.spongepowered.api.data.key.Keys;
@@ -268,4 +269,11 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
      */
     void setSleepingIgnored(boolean sleepingIgnored);
 
+    /**
+     * Gets the {@link Inventory} available for this Player's shared {@link EnderChest}
+     * contents.
+     *
+     * @return The ender chest inventory
+     */
+    Inventory getEnderChestInventory();
 }
