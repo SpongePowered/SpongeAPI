@@ -30,7 +30,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 /**
  * Represents a {@link Minecart} with a Hopper in it.
  */
-public interface HopperMinecart extends ContainerMinecart {
+public interface HopperMinecart extends ContainerMinecart<HopperMinecart> {
 
     /**
      * Gets a copy of the {@link CooldownData}. The cooldown data represents

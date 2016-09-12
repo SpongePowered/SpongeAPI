@@ -27,6 +27,5 @@ package org.spongepowered.api.entity.vehicle.minecart;
 /**
  * Represents a minecart with a chest inside it.
  */
-public interface ChestMinecart extends ContainerMinecart {
-
+public interface ChestMinecart extends ContainerMinecart<ChestMinecart> {
 }
