@@ -208,7 +208,6 @@ final class PluginElement {
         SpongeExtension ext = other.getExtension("sponge");
         if (ext != null) {
             SpongeExtension otherExt = new SpongeExtension();
-            otherExt.setAssetDirectory(ext.getAssetDirectory());
             meta.setExtension("sponge", otherExt);
         }
 
