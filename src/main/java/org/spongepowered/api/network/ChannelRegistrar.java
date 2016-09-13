@@ -26,6 +26,7 @@ package org.spongepowered.api.network;
 
 import org.spongepowered.api.Platform;
 
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -58,6 +59,68 @@ public interface ChannelRegistrar {
      * @see #createChannel
      */
     ChannelBinding.RawDataChannel createRawChannel(Object plugin, String channel) throws ChannelRegistrationException;
+
+    /**
+     * Gets a channel binding if a channel registered by that name exists.
+     *
+     * @param channel The name of the channel
+     * @return The channel if it exists
+     */
+    Optional<ChannelBinding> getChannel(String channel);
+
+    /**
+     * Gets or creates a {@link ChannelBinding.IndexedMessageChannel} by the
+     * given name. If the channel exists and is a indexed message channel, then
+     * it is returned. If the channel is not an indexed message channel, then
+     * {@link IllegalStateException} is thrown. Otherwise, a new channel is
+     * created.
+     *
+     * @param plugin The plugin to register the channel if it doesn't exist
+     * @param channel The channel name
+     * @return A new or existing indexed message channel binding
+     * @throws IllegalStateException if the existing channel is not an
+     *         IndexedMessageChannel
+     * @throws ChannelRegistrationException for same reasons as
+     *         {@link #createChannel}.
+     */
+    default ChannelBinding.IndexedMessageChannel getOrCreate(Object plugin, String channel) throws ChannelRegistrationException {
+        Optional<ChannelBinding> existing = getChannel(channel);
+        if (existing.isPresent()) {
+            if (existing.get() instanceof ChannelBinding.IndexedMessageChannel) {
+                return (ChannelBinding.IndexedMessageChannel) existing.get();
+            }
+            throw new IllegalStateException("Tried to get existing channel "
+                    + channel + " as an IndexedMessageChannel but found it was a RawDataChannel");
+        }
+        return createChannel(plugin, channel);
+    }
+
+    /**
+     * Gets or creates a {@link ChannelBinding.RawDataChannel} by the given
+     * name. If the channel exists and is a raw data channel, then it is
+     * returned. If the channel is not a raw data channel, then
+     * {@link IllegalStateException} is thrown. Otherwise, a new channel is
+     * created.
+     *
+     * @param plugin The plugin to register the channel if it doesn't exist
+     * @param channel The channel name
+     * @return A new or existing raw data channel binding
+     * @throws IllegalStateException if the existing channel is not an
+     *         RawDataChannel
+     * @throws ChannelRegistrationException for same reasons as
+     *         {@link #createRawChannel}.
+     */
+    default ChannelBinding.RawDataChannel getOrCreateRaw(Object plugin, String channel) throws ChannelRegistrationException {
+        Optional<ChannelBinding> existing = getChannel(channel);
+        if (existing.isPresent()) {
+            if (existing.get() instanceof ChannelBinding.RawDataChannel) {
+                return (ChannelBinding.RawDataChannel) existing.get();
+            }
+            throw new IllegalStateException("Tried to get existing channel "
+                    + channel + " as a RawDataChannel but found it was an IndexedMessageChannel");
+        }
+        return createRawChannel(plugin, channel);
+    }
 
     /**
      * Remove the channel binding from this registrar, freeing up the channel
