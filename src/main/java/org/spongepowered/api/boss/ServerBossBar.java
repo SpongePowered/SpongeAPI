@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.boss;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
@@ -98,12 +101,36 @@ public interface ServerBossBar extends BossBar {
     ServerBossBar addPlayer(Player player);
 
     /**
+     * Adds a collection of players to this boss bar.
+     *
+     * @param players The players to add
+     * @return This boss bar
+     */
+    default ServerBossBar addPlayers(Collection<Player> players) {
+        checkNotNull(players, "players");
+        ImmutableSet.copyOf(players).forEach(this::addPlayer);
+        return this;
+    }
+
+    /**
      * Removes a player from this boss bar.
      *
      * @param player The player to remove
      * @return This boss bar
      */
     ServerBossBar removePlayer(Player player);
+
+    /**
+     * Removes a collection of players from this boss bar.
+     *
+     * @param players The players to remove
+     * @return This boss bar
+     */
+    default ServerBossBar removePlayers(Collection<Player> players) {
+        checkNotNull(players, "players");
+        ImmutableSet.copyOf(players).forEach(this::removePlayer);
+        return this;
+    }
 
     /**
      * Represents a builder class to create mutable {@link ServerBossBar}s.

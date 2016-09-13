@@ -627,7 +627,7 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the "pickup rule" of an {@link Arrow}.
      *
-     * @see PickupRuleData#rule()
+     * @see PickupRuleData#type()
      */
     public static final Key<Value<PickupRule>> PICKUP_RULE = KeyFactory.fake("PICKUP_RULE");
 
