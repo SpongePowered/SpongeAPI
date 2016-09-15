@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util;
+package org.spongepowered.api.util.file;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -75,6 +75,11 @@ public final class CopyFileVisitor extends SimpleFileVisitor<Path> {
 
     @Override
     public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+        // Don't copy target folder itself if it is part of the source folder
+        if (this.target.equals(dir)) {
+            return FileVisitResult.SKIP_SUBTREE;
+        }
+
         if (this.source == null) {
             this.source = dir;
             copy(dir, this.target);
