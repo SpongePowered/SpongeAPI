@@ -69,6 +69,60 @@ public class CommandResult {
     }
 
     /**
+     * Returns a result indicating the command was processed with a single success.
+     *
+     * @param count The success count
+     * @return The result
+     */
+    public static CommandResult successCount(int count) {
+        return builder().successCount(count).build();
+    }
+
+    /**
+     * Returns a result indicating the command was processed with an
+     * amount of affected blocks.
+     *
+     * @param count The amount of blocks affected
+     * @return The result
+     */
+    public static CommandResult affectedBlocks(int count) {
+        return builder().affectedBlocks(count).build();
+    }
+
+    /**
+     * Returns a result indicating the command was processed with an
+     * amount of affected entities.
+     *
+     * @param count The amount of entities affected
+     * @return The result
+     */
+    public static CommandResult affectedEntities(int count) {
+        return builder().affectedEntities(count).build();
+    }
+
+    /**
+     * Returns a result indicating the command was processed with an
+     * amount of affected items.
+     *
+     * @param count The amount of items affected
+     * @return The result
+     */
+    public static CommandResult affectedItems(int count) {
+        return builder().affectedItems(count).build();
+    }
+
+    /**
+     * Returns a result indicating the command was processed with an
+     * amount of queries.
+     *
+     * @param count The amount of queries
+     * @return The result
+     */
+    public static CommandResult queryResult(int count) {
+        return builder().queryResult(count).build();
+    }
+
+    /**
      * Constructs a new command result.
      *
      * @param successCount The success count
