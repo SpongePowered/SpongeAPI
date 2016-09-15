@@ -904,6 +904,17 @@ public final class GenericArguments {
         return new RemainingJoinedStringsCommandElement(key, false);
     }
 
+    /**
+     * Require one or more strings, without any processing, which are combined into a single, space-separated string.
+     * Gives values of type {@link String}.
+     *
+     * @param key The key to store the parsed argument under
+     * @return the element to match the input
+     */
+    public static CommandElement remainingRawJoinedStrings(Text key) {
+        return new RemainingJoinedStringsCommandElement(key, true);
+    }
+
     private static class RemainingJoinedStringsCommandElement extends KeyElement {
         private final boolean raw;
 
