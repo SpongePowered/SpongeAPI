@@ -30,10 +30,10 @@ import static javax.tools.Diagnostic.Kind.ERROR;
 import static javax.tools.Diagnostic.Kind.WARNING;
 import static org.spongepowered.api.plugin.Plugin.ID_PATTERN;
 
+import org.spongepowered.api.Platform;
 import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.plugin.meta.PluginMetadata;
-import org.spongepowered.plugin.meta.SpongeExtension;
 import org.spongepowered.plugin.meta.version.InvalidVersionSpecificationException;
 import org.spongepowered.plugin.meta.version.VersionRange;
 
@@ -45,6 +45,8 @@ import javax.annotation.processing.Messager;
 import javax.lang.model.element.TypeElement;
 
 final class PluginElement {
+
+    private static final String API_VERSION = PluginElement.class.getPackage().getImplementationVersion();
 
     private final TypeElement element;
     private final AnnotationWrapper<Plugin> annotation;
@@ -160,6 +162,22 @@ final class PluginElement {
                 this.metadata.loadAfter(new PluginMetadata.Dependency(id, dependency.version()), !dependency.optional());
             }
         }
+
+        if (!findDependency(this.metadata.getRequiredDependencies(), Platform.API_ID)
+                && !findDependency(this.metadata.getLoadAfter(), Platform.API_ID)) {
+            // Add SpongeAPI as required dependency to the metadata
+            this.metadata.addRequiredDependency(new PluginMetadata.Dependency(Platform.API_ID, API_VERSION));
+        }
+    }
+
+    private static boolean findDependency(Iterable<PluginMetadata.Dependency> dependencies, String id) {
+        for (PluginMetadata.Dependency dependency : dependencies) {
+            if (dependency.getId().equals(id)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void checkDependencies(Iterable<PluginMetadata.Dependency> dependencies, Messager messager) {
@@ -203,12 +221,6 @@ final class PluginElement {
         if (!other.getAuthors().isEmpty()) {
             meta.getAuthors().clear();
             meta.getAuthors().addAll(other.getAuthors());
-        }
-
-        SpongeExtension ext = other.getExtension("sponge");
-        if (ext != null) {
-            SpongeExtension otherExt = new SpongeExtension();
-            meta.setExtension("sponge", otherExt);
         }
 
         // TODO: Dependencies

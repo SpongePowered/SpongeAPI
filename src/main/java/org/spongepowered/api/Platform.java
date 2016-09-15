@@ -34,6 +34,8 @@ import java.util.Map;
  */
 public interface Platform {
 
+    String API_ID = "spongeapi";
+
     /**
      * Retrieves the current {@link Type} this platform is running on.
      *
