@@ -61,11 +61,6 @@ public abstract class AbstractImmutableSingleCatalogData<E extends CatalogType, 
     }
 
     @Override
-    public int compareTo(I o) {
-        return o.get(this.usedKey).get().getId().compareToIgnoreCase(this.getValue().getId());
-    }
-
-    @Override
     protected ImmutableValue<E> getValueGetter() {
         return this.immutableValue;
     }

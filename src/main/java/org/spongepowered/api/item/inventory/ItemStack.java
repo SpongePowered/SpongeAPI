@@ -141,7 +141,10 @@ public interface ItemStack extends DataHolder, DataSerializable, Translatable {
     ItemStack copy();
     
     interface Builder extends DataBuilder<ItemStack> {
-        
+
+        @Override
+        Builder from(ItemStack value);
+
         /**
          * Sets the {@link ItemType} of the item stack.
          *

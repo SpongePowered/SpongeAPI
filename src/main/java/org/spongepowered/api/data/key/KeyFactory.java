@@ -133,6 +133,7 @@ public final class KeyFactory {
     public static <E> Key<ListValue<E>> makeListKey(final TypeToken<? extends List<E>> elementToken, final TypeToken<ListValue<E>> valueToken,
             final DataQuery query, final String id, final String name) {
         return new Key<ListValue<E>>() {
+            @Nullable private String string;
 
             @Override
             public String getId() {
@@ -169,7 +170,10 @@ public final class KeyFactory {
 
             @Override
             public String toString() {
-                return "Key{Value:" + "ListValue<" + elementToken.getSimpleName() + ">, Query: " + query.toString() + "}";
+                if (this.string == null) {
+                    this.string = "Key{Value:ListValue<" + elementToken.toString() + ">, Query: " + query.toString() + "}";
+                }
+                return this.string;
             }
         };
     }
@@ -186,6 +190,8 @@ public final class KeyFactory {
     public static <E> Key<SetValue<E>> makeSetKey(final TypeToken<? extends Set<E>> elementToken, TypeToken<SetValue<E>> valueToken,
             final DataQuery query, final String id, final String name) {
         return new Key<SetValue<E>>() {
+
+            @Nullable private String string;
 
             @Override
             public String getId() {
@@ -222,7 +228,10 @@ public final class KeyFactory {
 
             @Override
             public String toString() {
-                return "Key{Value:" + "SetValue<" + elementToken.getSimpleName() + ">, Query: " + query.toString() + "}";
+                if (this.string == null) {
+                    this.string = "Key{Value:" + "SetValue<" + elementToken.toString() + ">, Query: " + query.toString() + "}";
+                }
+                return this.string;
             }
         };
     }
@@ -241,6 +250,8 @@ public final class KeyFactory {
      */
     public static <K, V> Key<MapValue<K, V>> makeMapKey(final TypeToken<Map<K, V>> elementToken, final TypeToken<MapValue<K, V>> valueToken, final DataQuery query, final String id, final String name) {
         return new Key<MapValue<K, V>>() {
+
+            @Nullable private String string;
 
             @Override
             public String getId() {
@@ -278,8 +289,11 @@ public final class KeyFactory {
 
             @Override
             public String toString() {
-                return "Key{Value:" + "MapValue<" + keyToken.getSimpleName() + "," + valueToken.getSimpleName() + ">, Query: " + query.toString()
-                       + "}";
+                if (this.string == null) {
+                    this.string = "Key{Value:" + "MapValue<" + elementToken.toString() + ","
+                                  + valueToken.toString() + ">, Query: " + query.toString() + "}";
+                }
+                return this.string;
             }
         };
     }
@@ -299,6 +313,7 @@ public final class KeyFactory {
             final DataQuery query, final String id,
             final String name) {
         return new Key<OptionalValue<E>>() {
+            @Nullable private String string;
 
             @Override
             public String getId() {
@@ -334,7 +349,10 @@ public final class KeyFactory {
 
             @Override
             public String toString() {
-                return "Key{Value:" + "OptionalValue<" + elementToken.getSimpleName() + ">, Query: " + query.toString() + "}";
+                if (this.string == null) {
+                    this.string = "Key{Value:" + "OptionalValue<" + elementToken.toString() + ">, Query: " + query.toString() + "}";
+                }
+                return this.string;
             }
         };
     }
