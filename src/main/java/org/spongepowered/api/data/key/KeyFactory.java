@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.data.key;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import com.google.common.base.Objects;
 import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.data.DataQuery;
@@ -70,6 +72,7 @@ public final class KeyFactory {
      */
     public static <E, V extends BaseValue<E>> Key<V> makeSingleKey(final TypeToken<E> elementToken, final TypeToken<V> valueToken,
             final DataQuery query, final String id, final String name) {
+        validateId(id);
         return new Key<V>() {
 
             @Nullable private String string;
@@ -132,6 +135,7 @@ public final class KeyFactory {
      */
     public static <E> Key<ListValue<E>> makeListKey(final TypeToken<? extends List<E>> elementToken, final TypeToken<ListValue<E>> valueToken,
             final DataQuery query, final String id, final String name) {
+        validateId(id);
         return new Key<ListValue<E>>() {
             @Nullable private String string;
 
@@ -189,6 +193,7 @@ public final class KeyFactory {
      */
     public static <E> Key<SetValue<E>> makeSetKey(final TypeToken<? extends Set<E>> elementToken, TypeToken<SetValue<E>> valueToken,
             final DataQuery query, final String id, final String name) {
+        validateId(id);
         return new Key<SetValue<E>>() {
 
             @Nullable private String string;
@@ -249,6 +254,7 @@ public final class KeyFactory {
      * @return The generated key
      */
     public static <K, V> Key<MapValue<K, V>> makeMapKey(final TypeToken<Map<K, V>> elementToken, final TypeToken<MapValue<K, V>> valueToken, final DataQuery query, final String id, final String name) {
+        validateId(id);
         return new Key<MapValue<K, V>>() {
 
             @Nullable private String string;
@@ -312,6 +318,7 @@ public final class KeyFactory {
     public static <E> Key<OptionalValue<E>> makeOptionalKey(final TypeToken<Optional<E>> elementToken, TypeToken<OptionalValue<E>> valueToken,
             final DataQuery query, final String id,
             final String name) {
+        validateId(id);
         return new Key<OptionalValue<E>>() {
             @Nullable private String string;
 
@@ -355,6 +362,11 @@ public final class KeyFactory {
                 return this.string;
             }
         };
+    }
+
+    private static void validateId(String id) {
+        checkArgument(id != null, "A Key's id cannot be null!");
+        checkArgument(id.contains(":"), "A key must have a plugin id prefix with \":\" separating the plugin id and key id!");
     }
 
     static <E, V extends BaseValue<E>> Key<V> fake(final String keyName) {

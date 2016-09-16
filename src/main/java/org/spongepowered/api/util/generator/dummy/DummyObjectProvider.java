@@ -66,6 +66,7 @@ public final class DummyObjectProvider {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public static <T, I extends T> I createExtendedFor(Class<T> type, String fieldName) {
         try {
             return (I) factories.getUnchecked(type).getConstructor(String.class).newInstance(fieldName);
