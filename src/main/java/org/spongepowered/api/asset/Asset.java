@@ -77,6 +77,33 @@ public interface Asset {
     }
 
     /**
+     * Copies this Asset to the specified 'outputDirectory' {@link Path}.
+     *
+     * @param outputDirectory The directory to copy to
+     * @throws IOException
+     */
+    default void copyToDirectory(Path outputDirectory) throws IOException {
+        checkNotNull(outputDirectory, "outputDirectory");
+        copyToFile(outputDirectory.resolve(this.getFileName()));
+    }
+
+    /**
+     * Returns the the last portion of the Asset URL, e.g. the file name.
+     *
+     * @return The file name
+     */
+    default String getFileName() {
+        String path = getUrl().getPath();
+        //We don't need to worry about file system specific file separators as we are dealing with a substring of URL
+        int end = path.lastIndexOf('/');
+        if (end < 0) {
+            return path;
+        } else {
+            return path.substring(end + 1);
+        }
+    }
+
+    /**
      * Reads this Asset in it's entirety as a {@link String} and returns the
      * result.
      *
