@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.ai.task;
 import com.google.common.base.Preconditions;
 import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.entity.ai.Goal;
+import org.spongepowered.api.entity.ai.task.builtin.SwimmingAITask;
 import org.spongepowered.api.entity.living.Agent;
 
 import java.util.Optional;
@@ -36,13 +37,20 @@ import java.util.Optional;
  *
  * It is required for anyone wanting to write their own logic that a Goal can
  * run to utilize this class. If you desire to use the builtin AI included with
- * Minecraft, use {@link GameRegistry#createBuilder(Class)} and pass a builder to
- * it instead.
+ * Minecraft, find the specific class of the task, for example, {@link
+ * SwimmingAITask}, and call its static{@link SwimmingAITask#builder()
+ * builder()} method to create a builder. You can also get an instance of such
+ * builders via {@link GameRegistry#createBuilder(Class)} and pass the builder
+ * class to it instead, but the returned type would be raw type, without
+ * necessary generic information.
  *
  * @param <O> The type of Agent
  */
 public abstract class AbstractAITask<O extends Agent> implements AITask<O> {
 
+    /**
+     * The {@link AITaskType type} of this {@link AITask}.
+     */
     private final AITaskType type;
 
     public AbstractAITask(AITaskType type) {
@@ -61,13 +69,33 @@ public abstract class AbstractAITask<O extends Agent> implements AITask<O> {
         return Optional.empty();
     }
 
+    /**
+     * Start the execution of the task.
+     */
     public abstract void start();
 
+    /**
+     * Tells that whether the task can update after starting.
+     *
+     * @return Whether the task can update
+     */
     public abstract boolean shouldUpdate();
 
+    /**
+     * Update the task.
+     */
     public abstract void update();
 
+    /**
+     * Tells that whether the task can update after updating.
+     *
+     * @return Whether the task can update
+     */
     public abstract boolean continueUpdating();
 
+    /**
+     * Finalizes this task, and reset it to default state.
+     */
     public abstract void reset();
+
 }

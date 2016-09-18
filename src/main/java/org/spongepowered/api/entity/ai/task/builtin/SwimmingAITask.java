@@ -24,19 +24,55 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
-public interface SwimmingAITask extends AITask<Agent> {
+/**
+ * An {@link AITask} which the executor has swimming enabled in the pathfinder
+ * and will try to stay above liquid randomly when in the liquid.
+ */
+public interface SwimmingAITask<O extends Agent, A extends SwimmingAITask<O, A>> extends AITask<O> {
 
+    /**
+     * Creates a new {@link Builder} to build an {@link SwimmingAITask}.
+     *
+     * @return The new builder
+     */
+    @SuppressWarnings("unchecked")
+    static <O extends Agent, A extends SwimmingAITask<O, A>, B extends Builder<O, A, B>> Builder<O, A, B> builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Get the chance for the executor to stay above the liquid.
+     *
+     * @return The chance for the executor to swim as a fraction
+     */
     float getSwimChance();
 
-    void setSwimChance(float chance);
+    /**
+     * Set the chance for the executor to stay above the liquid.
+     *
+     * @param chance The chance for the executor to swim as a fraction
+     * @return The task for chaining
+     */
+    A setSwimChance(float chance);
 
-    interface Builder extends AITaskBuilder<Agent, SwimmingAITask, Builder> {
+    /**
+     * A utility builder for {@link SwimmingAITask}.
+     */
+    interface Builder<O extends Agent, A extends SwimmingAITask<O, A>, B extends Builder<O, A, B>> extends AITaskBuilder<O, A, B> {
 
-        Builder swimChance(float chance);
+        /**
+         * Set the chance for the executor to stay above the liquid.
+         *
+         * @param chance The chance for the executor to swim as a fraction
+         * @return The builder for chaining
+         */
+        B swimChance(float chance);
 
     }
+
 }

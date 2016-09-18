@@ -40,7 +40,8 @@ import org.spongepowered.api.scoreboard.TeamMember;
  * Represents an entity that is living, and therefor can be damaged.
  *
  * <p>Living entities can have {@link PotionEffect}s, breathing air
- * under water, custom names, be meaningfully added to teams, and become invisible.</p>
+ * under water, custom names, be meaningfully added to teams, and become
+ * invisible.</p>
  */
 public interface Living extends Entity, TeamMember {
 

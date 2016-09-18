@@ -36,4 +36,5 @@ public interface GoalType extends CatalogType {
      * @return The goal class
      */
     Class<? extends Goal<?>> getGoalClass();
+
 }

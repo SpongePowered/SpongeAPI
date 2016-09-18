@@ -24,31 +24,115 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.target;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.ai.task.AITask;
+import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Living;
 
 import java.util.function.Predicate;
 
-public interface FindNearestAttackableTargetAITask extends TargetAITask<FindNearestAttackableTargetAITask> {
-    
+/**
+ * An {@link AITask} which the executor finds entities of a type and tries to
+ * attack the closest one.
+ *
+ * @param <O> The type of owner
+ * @param <A> The type of task
+ */
+public interface FindNearestAttackableTargetAITask<O extends Creature, A extends FindNearestAttackableTargetAITask<O, A>> extends
+        TargetAITask<O, A> {
+
+    /**
+     * Creates a new {@link Builder} to build an {@link FindNearestAttackableTargetAITask}.
+     *
+     * @return The new builder
+     */
+    @SuppressWarnings("unchecked")
+    static <O extends Creature, A extends FindNearestAttackableTargetAITask<O, A>, B extends Builder<O, A, B>> Builder<O, A, B> builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Get the target type of the task.
+     *
+     * @return The target type
+     */
     Class<? extends Living> getTargetClass();
 
-    FindNearestAttackableTargetAITask setTargetClass(Class<? extends Living> targetClass);
+    /**
+     * Set the target type of the task.
+     *
+     * @param targetClass The target type
+     * @return The task for chaining
+     */
+    A setTargetClass(Class<? extends Living> targetClass);
 
+    /**
+     * Get the chance of task execution as a fraction of 1 divided by chance.
+     * If the chance is non-positive, then the task always executes.
+     *
+     * @return The chance
+     */
     int getChance();
 
-    FindNearestAttackableTargetAITask setChance(int chance);
+    /**
+     * Set the chance of task execution as a fraction of 1 divided by chance.
+     * If the chance is non-positive, then the task always executes.
+     *
+     * @param chance The chance
+     * @return The task for chaining
+     */
+    A setChance(int chance);
 
-    FindNearestAttackableTargetAITask filter(Predicate<Living> predicate);
-
+    /**
+     * Get the filter of targets of the task.
+     *
+     * @return The filter
+     */
     Predicate<Living> getFilter();
 
-    interface Builder extends TargetAITask.Builder<FindNearestAttackableTargetAITask, Builder> {
+    /**
+     * Set the filter of targets of the task.
+     *
+     * @param filter The filter
+     * @return The task for chaining
+     */
+    A setFilter(Predicate<Living> filter);
 
-        Builder target(Class<? extends Living> targetClass);
+    /**
+     * Utility builder for {@link FindNearestAttackableTargetAITask}.
+     *
+     * @param <O> The executor type
+     * @param <A> The task type
+     * @param <B> The builder type
+     */
+    interface Builder<O extends Creature, A extends FindNearestAttackableTargetAITask<O, A>, B extends Builder<O, A, B>>
+            extends TargetAITask.Builder<O, A, B> {
 
-        Builder chance(int chance);
+        /**
+         * Set the target type of the task.
+         *
+         * @param targetClass The target type
+         * @return The builder for chaining
+         */
+        B targetClass(Class<? extends Living> targetClass);
 
-        Builder filter(Predicate<? extends Living> predicate);
+        /**
+         * Set the chance of task execution as a fraction of 1 divided by
+         * chance. If the chance is non-positive, then the task always executes.
+         *
+         * @param chance The chance
+         * @return The builder for chaining
+         */
+        B chance(int chance);
+
+        /**
+         * Set the filter of targets of the task.
+         *
+         * @param filter The filter
+         * @return The builder for chaining
+         */
+        B filter(Predicate<? extends Living> filter);
 
     }
+
 }

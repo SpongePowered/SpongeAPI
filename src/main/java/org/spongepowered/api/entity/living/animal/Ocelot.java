@@ -32,7 +32,7 @@ import org.spongepowered.api.data.value.mutable.Value;
 /**
  * Represents an Ocelot.
  */
-public interface Ocelot extends Animal {
+public interface Ocelot extends Tameable {
 
     /**
      * Gets a copy of the current {@link OcelotData} being represented by

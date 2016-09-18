@@ -24,25 +24,79 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 
+/**
+ * An {@link AITask} which the executor walks around.
+ */
 public interface WanderAITask extends AITask<Creature> {
 
+    /**
+     * Creates a new {@link Builder} to build an {@link WanderAITask}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Get the executor's walking speed when executing the task.
+     *
+     * @return The walking speed
+     */
     double getSpeed();
 
+    /**
+     * Set the executor's walking speed when executing the task.
+     *
+     * @param speed The walking speed
+     * @return The task for chaining
+     */
     WanderAITask setSpeed(double speed);
 
+    /**
+     * Get the chance of execution represented as a fraction of one divided by
+     * the execution chance. Default to 120.
+     *
+     * @return The execution chance
+     */
     int getExecutionChance();
 
+    /**
+     * Set the chance of execution represented as a fraction of one divided by
+     * the execution chance. Default to 120.
+     *
+     * @param executionChance The execution chance
+     * @return The task for chaining
+     */
     WanderAITask setExecutionChance(int executionChance);
 
+    /**
+     * Utility builder for {@link WanderAITask}.
+     */
     interface Builder extends AITaskBuilder<Creature, WanderAITask, Builder> {
 
+        /**
+         * Set the executor's walking speed when executing the task.
+         *
+         * @param speed The walking speed
+         * @return The builder for chaining
+         */
         Builder speed(double speed);
 
+        /**
+         * Set the chance of execution represented as a fraction of one divided
+         * by the execution chance. Default to 120.
+         *
+         * @param executionChance The execution chance
+         * @return The builder for chaining
+         */
         Builder executionChance(int executionChance);
 
     }
+
 }
