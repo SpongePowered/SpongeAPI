@@ -24,11 +24,16 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.horse;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.animal.Horse;
 
 public interface RunAroundLikeCrazyAITask extends AITask<Horse> {
+
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     double getSpeed();
 

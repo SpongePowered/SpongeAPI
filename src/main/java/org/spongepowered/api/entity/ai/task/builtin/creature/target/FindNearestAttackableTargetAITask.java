@@ -24,12 +24,17 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature.target;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.Living;
 
 import java.util.function.Predicate;
 
 public interface FindNearestAttackableTargetAITask extends TargetAITask<FindNearestAttackableTargetAITask> {
-    
+
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
     Class<? extends Living> getTargetClass();
 
     FindNearestAttackableTargetAITask setTargetClass(Class<? extends Living> targetClass);

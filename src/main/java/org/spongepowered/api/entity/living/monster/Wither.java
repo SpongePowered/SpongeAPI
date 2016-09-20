@@ -28,14 +28,14 @@ import org.spongepowered.api.entity.explosive.FusedExplosive;
 import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.entity.living.Ranger;
 
 import java.util.List;
 
 /**
  * Represents the Wither.
  */
-public interface Wither extends Monster, ProjectileSource, Boss, Aerial, FusedExplosive {
+public interface Wither extends Monster, Ranger, Boss, Aerial, FusedExplosive {
 
     /**
      * Gets the list of {@link Living} targets that this wither is targeting.

@@ -22,13 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.entity.ai.task.builtin;
 
-import org.spongepowered.api.entity.living.Ranger;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.ai.task.AITask;
+import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.entity.living.Agent;
 
-/**
- * Represents a Witch.
- */
-public interface Witch extends Monster, Ranger {
+public interface LookIdleAITask extends AITask<Agent> {
 
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    interface Builder extends AITaskBuilder<Agent, LookIdleAITask, Builder> {
+
+    }
 }

@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.entity.living.golem;
 
+import org.spongepowered.api.entity.living.Ranger;
+
 /**
  * Represents a Snow Golem.
  */
-public interface SnowGolem extends Golem {
+public interface SnowGolem extends Golem, Ranger {
 
 }

@@ -22,13 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.entity.ai.task.builtin;
 
-import org.spongepowered.api.entity.living.Ranger;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.ai.task.AITask;
+import org.spongepowered.api.entity.ai.task.AITaskBuilder;
+import org.spongepowered.api.entity.living.Agent;
 
-/**
- * Represents a Witch.
- */
-public interface Witch extends Monster, Ranger {
+public interface WatchClosestAITask extends AITask<Agent> {
 
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    Class<? extends Entity> getWatchedClass();
+
+    WatchClosestAITask setWatchedClass(Class<? extends Entity> watchedClass);
+
+    float getMaxDistance();
+
+    WatchClosestAITask setMaxDistance(float maxDistance);
+
+    float getChance();
+
+    WatchClosestAITask setChance(float chance);
+
+    interface Builder extends AITaskBuilder<Agent, WatchClosestAITask, Builder> {
+
+        Builder watch(Class<? extends Entity> watchClass);
+
+        Builder maxDistance(float maxDistance);
+
+        Builder chance(float chance);
+
+    }
 }

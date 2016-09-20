@@ -24,11 +24,16 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
 public interface SwimmingAITask extends AITask<Agent> {
+
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     float getSwimChance();
 

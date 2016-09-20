@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
@@ -32,6 +33,10 @@ import org.spongepowered.api.entity.living.Creature;
 import java.util.function.Predicate;
 
 public interface AvoidEntityAITask extends AITask<Creature> {
+
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     Predicate<Entity> getTargetSelector();
 

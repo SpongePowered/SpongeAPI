@@ -24,32 +24,45 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
-import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.entity.living.Ranger;
 
-public interface WatchClosestAITask extends AITask<Agent> {
+/**
+ * An {@link AITask} which uses the ranging aspect of the Ranger to attack the target.
+ */
+public interface RangeAgentAITask extends AITask<Ranger> {
 
-    Class<? extends Entity> getWatchedClass();
-
-    WatchClosestAITask setWatchedClass(Class<? extends Entity> watchedClass);
-
-    float getMaxDistance();
-
-    WatchClosestAITask setMaxDistance(float maxDistance);
-
-    float getChance();
-
-    WatchClosestAITask setChance(float chance);
-
-    interface Builder extends AITaskBuilder<Agent, WatchClosestAITask, Builder> {
-
-        Builder watch(Class<? extends Entity> watchClass);
-
-        Builder maxDistance(float maxDistance);
-
-        Builder chance(float chance);
-
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
     }
+
+    double getMoveSpeed();
+
+    RangeAgentAITask setMoveSpeed(double speed);
+
+    int getDelayBetweenAttacks();
+
+    /**
+     * The time, in ticks, this {@link Ranger} will wait before attacking again.
+     *
+     * @param delay The delay, in ticks
+     * @return This task, for chaining
+     */
+    RangeAgentAITask setDelayBetweenAttacks(int delay);
+
+    float getAttackRadius();
+
+    RangeAgentAITask setAttackRadius(float radius);
+
+    interface Builder extends AITaskBuilder<Ranger, RangeAgentAITask, RangeAgentAITask.Builder> {
+
+        Builder moveSpeed(double speed);
+
+        Builder delayBetweenAttacks(int delay);
+
+        Builder attackRadius(float radius);
+    }
+
 }

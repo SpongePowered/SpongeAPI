@@ -24,11 +24,16 @@
  */
 package org.spongepowered.api.entity.ai.task.builtin.creature;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 
 public interface WanderAITask extends AITask<Creature> {
+
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     double getSpeed();
 
