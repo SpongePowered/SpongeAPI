@@ -35,6 +35,8 @@ public final class DataFormats {
 
     public static final DataFormat HOCON = DummyObjectProvider.createFor(DataFormat.class, "HOCON");
 
+    public static final DataFormat JSON = DummyObjectProvider.createFor(DataFormat.class, "JSON");
+
     public static final DataFormat NBT = DummyObjectProvider.createFor(DataFormat.class, "NBT");
 
     // SORTFIELDS:OFF
