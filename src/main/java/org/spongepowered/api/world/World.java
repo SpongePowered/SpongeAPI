@@ -300,8 +300,9 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      * Causes an {@link Explosion} in a world.
      *
      * @param explosion The explosion to cause
+     * @param cause The cause for the explosion
      */
-    void triggerExplosion(Explosion explosion);
+    void triggerExplosion(Explosion explosion, Cause cause);
 
     /**
      * Gets the portal agent, used for manipulating teleporters.
