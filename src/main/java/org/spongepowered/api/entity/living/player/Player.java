@@ -213,7 +213,7 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
     /**
      * Gets if the {@link Player} has played on the {@link Server} before. Added
      * as a utility.
-     * 
+     *
      * @return True if played before, false otherwise
      */
     default boolean hasPlayedBefore() {
@@ -276,4 +276,13 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
      * @return The ender chest inventory
      */
     Inventory getEnderChestInventory();
+
+    /**
+     * Manually respawns the player.
+     *
+     * <p>If the player is not dead, this method will return <code>false</code></p>
+     *
+     * @return Whether the respawn was successful
+     */
+    boolean respawnPlayer();
 }
