@@ -114,4 +114,23 @@ public interface ExtentBufferFactory {
         return createThreadSafeBlockBuffer(new Vector3i(xSize, ySize, zSize));
     }
 
+    /**
+     * Returns a new archetype volume of the desired size.
+     * 
+     * @param size The size of the volume
+     * @param origin The origin of the buffer
+     * @return A new archetype volume
+     */
+    ArchetypeVolume createArchetypeVolume(Vector3i size, Vector3i origin);
+
+    /**
+     * Returns a new archetype volume of the desired size.
+     * 
+     * @param size The size of the volume
+     * @return A new archetype volume
+     */
+    default ArchetypeVolume createArchetypeVolume(Vector3i size) {
+        return createArchetypeVolume(size, Vector3i.ZERO);
+    }
+
 }
