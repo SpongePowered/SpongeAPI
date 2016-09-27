@@ -28,7 +28,6 @@ import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.collect.ImmutableSet;
-import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
@@ -39,7 +38,6 @@ import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.world.Location;
 
 import java.util.Collection;
@@ -467,58 +465,6 @@ public interface LocationCompositeValueStore {
     <E> DataTransactionResult offer(int x, int y, int z, Key<? extends BaseValue<E>> key, E value);
 
     /**
-     * Offers the given <code>E</code> value that is keyed by the provided
-     * {@link Key} to the block at the provided location.
-     *
-     * <p>If any data is rejected or existing data is replaced, the
-     * {@link DataTransactionResult} will retain the rejected and replaced
-     * data.</p>
-     *
-     * <p>Note that this differs from {@link #offer(Vector3i, Key, Object)}
-     * as in that if a change is required to a
-     * {@link MutableBlockVolume#setBlock(int, int, int, BlockState, Cause)}
-     * or similar is performed, the provided {@link Cause} is used for the change
-     * in {@link BlockState}s. Traditional offer methods that do <strong>NOT</strong>
-     * take a {@link Cause} will fail if a block change is required.</p>
-     *
-     * @param coordinates The position of the block
-     * @param key The key for the data
-     * @param value The value to offer
-     * @param cause The cause to use for events if necessary
-     * @param <E> The type of data being offered
-     * @return The transaction result
-     */
-    default <E> DataTransactionResult offer(Vector3i coordinates, Key<? extends BaseValue<E>> key, E value, Cause cause) {
-        return offer(coordinates.getX(), coordinates.getY(), coordinates.getZ(), key, value, cause);
-    }
-
-    /**
-     * Offers the given <code>E</code> value that is keyed by the provided
-     * {@link Key} to the block at the provided location.
-     *
-     * <p>If any data is rejected or existing data is replaced, the
-     * {@link DataTransactionResult} will retain the rejected and replaced
-     * data.</p>
-     *
-     * <p>Note that this differs from {@link #offer(Vector3i, Key, Object)}
-     * as in that if a change is required to a
-     * {@link MutableBlockVolume#setBlock(int, int, int, BlockState, Cause)}
-     * or similar is performed, the provided {@link Cause} is used for the change
-     * in {@link BlockState}s. Traditional offer methods that do <strong>NOT</strong>
-     * take a {@link Cause} will fail if a block change is required.</p>
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param key The key for the data
-     * @param value The value to offer
-     * @param cause The cause to use for events if necessary
-     * @param <E> The type of data being offered
-     * @return The transaction result
-     */
-    <E> DataTransactionResult offer(int x, int y, int z, Key<? extends BaseValue<E>> key, E value, Cause cause);
-
-    /**
      * Offers the given {@link BaseValue} to the block at the given position.
      *
      * <p>If any data is rejected or existing data is replaced, the
@@ -550,56 +496,6 @@ public interface LocationCompositeValueStore {
      */
     default <E> DataTransactionResult offer(int x, int y, int z, BaseValue<E> value) {
         return offer(x, y, z, value.getKey(), value.get());
-    }
-
-    /**
-     * Offers the given {@link BaseValue} to the block at the given position.
-     *
-     * <p>If any data is rejected or existing data is replaced, the
-     * {@link DataTransactionResult} will retain the rejected and replaced
-     * data.</p>
-     *
-     * <p>Note that this differs from {@link #offer(Vector3i, Key, Object)}
-     * as in that if a change is required to a
-     * {@link MutableBlockVolume#setBlock(int, int, int, BlockState, Cause)}
-     * or similar is performed, the provided {@link Cause} is used for the change
-     * in {@link BlockState}s. Traditional offer methods that do <strong>NOT</strong>
-     * take a {@link Cause} will fail if a block change is required.</p>
-     *
-     * @param coordinates The position of the block
-     * @param value The value to offer
-     * @param cause The cause to use for events if necessary
-     * @param <E> The type of the element wrapped by the value
-     * @return The transaction result
-     */
-    default <E> DataTransactionResult offer(Vector3i coordinates, BaseValue<E> value, Cause cause) {
-        return offer(coordinates.getX(), coordinates.getY(), coordinates.getZ(), value.getKey(), value.get(), cause);
-    }
-
-    /**
-     * Offers the given {@link BaseValue} to the block at the given position.
-     *
-     * <p>If any data is rejected or existing data is replaced, the
-     * {@link DataTransactionResult} will retain the rejected and replaced
-     * data.</p>
-     *
-     * <p>Note that this differs from {@link #offer(Vector3i, Key, Object)}
-     * as in that if a change is required to a
-     * {@link MutableBlockVolume#setBlock(int, int, int, BlockState, Cause)}
-     * or similar is performed, the provided {@link Cause} is used for the change
-     * in {@link BlockState}s. Traditional offer methods that do <strong>NOT</strong>
-     * take a {@link Cause} will fail if a block change is required.</p>
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param value The value to offer
-     * @param cause The cause to use for events if necessary
-     * @param <E> The type of the element wrapped by the value
-     * @return The transaction result
-     */
-    default <E> DataTransactionResult offer(int x, int y, int z, BaseValue<E> value, Cause cause) {
-        return offer(x, y, z, value.getKey(), value.get(), cause);
     }
 
     /**
@@ -644,56 +540,6 @@ public interface LocationCompositeValueStore {
      * {@link DataTransactionResult} will retain the rejected and replaced
      * data.</p>
      *
-     * <p>Note that this differs from {@link #offer(Vector3i, Key, Object)}
-     * as in that if a change is required to a
-     * {@link MutableBlockVolume#setBlock(int, int, int, BlockState, Cause)}
-     * or similar is performed, the provided {@link Cause} is used for the change
-     * in {@link BlockState}s. Traditional offer methods that do <strong>NOT</strong>
-     * take a {@link Cause} will fail if a block change is required.</p>
-     *
-     * @param coordinates The position of the block
-     * @param manipulator The manipulator data to offer
-     * @param cause The cause to use for events if necessary
-     * @return The transaction result
-     */
-    default DataTransactionResult offer(Vector3i coordinates, DataManipulator<?, ?> manipulator, Cause cause) {
-        return offer(coordinates.getX(), coordinates.getY(), coordinates.getZ(), manipulator, MergeFunction.IGNORE_ALL, cause);
-    }
-
-    /**
-     * Offers the given {@link DataManipulator} to the block at the given
-     * position.
-     *
-     * <p>If any data is rejected or existing data is replaced, the
-     * {@link DataTransactionResult} will retain the rejected and replaced
-     * data.</p>
-     *
-     * <p>Note that this differs from {@link #offer(Vector3i, Key, Object)}
-     * as in that if a change is required to a
-     * {@link MutableBlockVolume#setBlock(int, int, int, BlockState, Cause)}
-     * or similar is performed, the provided {@link Cause} is used for the change
-     * in {@link BlockState}s. Traditional offer methods that do <strong>NOT</strong>
-     * take a {@link Cause} will fail if a block change is required.</p>
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param manipulator The manipulator data to offer
-     * @param cause The cause to use for events if necessary
-     * @return The transaction result
-     */
-    default DataTransactionResult offer(int x, int y, int z, DataManipulator<? ,?> manipulator, Cause cause) {
-        return offer(x, y, z, manipulator, MergeFunction.IGNORE_ALL, cause);
-    }
-
-    /**
-     * Offers the given {@link DataManipulator} to the block at the given
-     * position.
-     *
-     * <p>If any data is rejected or existing data is replaced, the
-     * {@link DataTransactionResult} will retain the rejected and replaced
-     * data.</p>
-     *
      * @param coordinates The position of the block
      * @param manipulator The manipulator data to offer
      * @param function The merge function to resolve conflicts
@@ -719,56 +565,6 @@ public interface LocationCompositeValueStore {
      * @return The transaction result
      */
     DataTransactionResult offer(int x, int y, int z, DataManipulator<?, ?> manipulator, MergeFunction function);
-
-    /**
-     * Offers the given {@link DataManipulator} to the block at the given
-     * position.
-     *
-     * <p>If any data is rejected or existing data is replaced, the
-     * {@link DataTransactionResult} will retain the rejected and replaced
-     * data.</p>
-     *
-     * <p>Note that this differs from {@link #offer(Vector3i, Key, Object)}
-     * as in that if a change is required to a
-     * {@link MutableBlockVolume#setBlock(int, int, int, BlockState, Cause)}
-     * or similar is performed, the provided {@link Cause} is used for the change
-     * in {@link BlockState}s. Traditional offer methods that do <strong>NOT</strong>
-     * take a {@link Cause} will fail if a block change is required.</p>
-     *
-     * @param coordinates The position of the block
-     * @param manipulator The manipulator data to offer
-     * @param function The merge function to resolve conflicts
-     * @param cause The cause to use for events if necessary
-     * @return The transaction result
-     */
-    default DataTransactionResult offer(Vector3i coordinates, DataManipulator<?, ?> manipulator, MergeFunction function, Cause cause) {
-        return offer(coordinates.getX(), coordinates.getY(), coordinates.getZ(), manipulator, function, cause);
-    }
-
-    /**
-     * Offers the given {@link DataManipulator} to the block at the given
-     * position.
-     *
-     * <p>If any data is rejected or existing data is replaced, the
-     * {@link DataTransactionResult} will retain the rejected and replaced
-     * data.</p>
-     *
-     * <p>Note that this differs from {@link #offer(Vector3i, Key, Object)}
-     * as in that if a change is required to a
-     * {@link MutableBlockVolume#setBlock(int, int, int, BlockState, Cause)}
-     * or similar is performed, the provided {@link Cause} is used for the change
-     * in {@link BlockState}s. Traditional offer methods that do <strong>NOT</strong>
-     * take a {@link Cause} will fail if a block change is required.</p>
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param manipulator The manipulator data to offer
-     * @param function The merge function to resolve conflicts
-     * @param cause The cause to use for events if necessary
-     * @return The transaction result
-     */
-    DataTransactionResult offer(int x, int y, int z, DataManipulator<?, ?> manipulator, MergeFunction function, Cause cause);
 
     /**
      * Offers the provided {@link DataManipulator}s to the block at the given

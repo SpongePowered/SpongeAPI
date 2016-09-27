@@ -34,7 +34,6 @@ import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.AABB;
@@ -474,21 +473,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      * @param damageSource The cause of the damage
      * @return True if damaging the entity was successful
      */
-    default boolean damage(double damage, DamageSource damageSource) {
-        return damage(damage, damageSource, Cause.source(damageSource).build());
-    }
-
-    /**
-     * Damages this {@link Entity} with the given {@link Cause}. It is
-     * imperative that a {@link DamageSource} is included with the cause for
-     * maximum compatibility with plugins and the game itself.
-     *
-     * @param damage The damage to deal
-     * @param damageSource The source of damage
-     * @param cause The cause containing auxiliary objects
-     * @return True if damaging the entity was successful
-     */
-    boolean damage(double damage, DamageSource damageSource, Cause cause);
+    boolean damage(double damage, DamageSource damageSource);
 
     /**
      * Gets the nearby entities within the desired distance.

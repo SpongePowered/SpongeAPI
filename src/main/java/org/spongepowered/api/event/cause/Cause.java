@@ -30,20 +30,15 @@ import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
-import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.Set;
 import java.util.StringJoiner;
 
 import javax.annotation.Nullable;
@@ -51,25 +46,22 @@ import javax.annotation.Nullable;
 /**
  * A cause represents the reason or initiator of an event.
  *
- * <p>For example, if a block of sand is placed where it drops, the block
- * of sand would create a falling sand entity, which then would place another
- * block of sand. The block place event for the final block of sand would have
- * the cause chain of the block of sand -&gt; falling sand entity.</p>
+ * <p>For example, if a block of sand is placed where it drops, the block of
+ * sand would create a falling sand entity, which then would place another block
+ * of sand. The block place event for the final block of sand would have the
+ * cause chain of the block of sand -&gt; falling sand entity.</p>
  *
- * <p>It is not possible to accurately the describe the chain of causes in
- * all scenarios so a best effort approach is generally acceptable. For
- * example, a player might press a lever, activating a complex Redstone
- * circuit, which would then launch TNT and cause the destruction of
- * some blocks, but tracing this event would be too complicated and thus
- * may not be attempted.</p>
+ * <p>It is not possible to accurately the describe the chain of causes in all
+ * scenarios so a best effort approach is generally acceptable. For example, a
+ * player might press a lever, activating a complex Redstone circuit, which
+ * would then launch TNT and cause the destruction of some blocks, but tracing
+ * this event would be too complicated and thus may not be attempted.</p>
  */
 @SuppressWarnings("unchecked")
-public final class Cause {
+public final class Cause implements Iterable<Object> {
 
     /**
-     * Creates a new {@link Builder} to make a new {@link Cause}. Note that the
-     * builder requires all objects to be named appropriately and does not
-     * accept duplicate names.
+     * Creates a new {@link Builder} to make a new {@link Cause}.
      *
      * @return The new builder
      */
@@ -77,90 +69,64 @@ public final class Cause {
         return new Builder();
     }
 
-    /**
-     * Creates a new {@link Builder} to make a new {@link Cause} with the
-     * desired {@link Object} as the root of the cause. Note that the
-     * builder requires all objects to be named appropriately and does not
-     * accept duplicate names.
-     *
-     * @param root The root object
-     * @return The new builder
-     */
-    public static Builder source(Object root) {
-        return new Builder().source(root);
-    }
-
-    /**
-     * Creates a single object contained {@link Cause} with the provided
-     * {@link NamedCause} as the source and root.
-     *
-     * @param cause The object of the cause
-     * @return The single object cause
-     */
-    public static Cause of(NamedCause cause) {
+    public static Cause of(EventContext ctx, Object cause) {
+        checkNotNull(ctx, "Context");
         checkNotNull(cause, "Cause cannot be null!");
-        return new Cause(new NamedCause[]{cause});
+        return new Cause(ctx, new Object[] {cause});
     }
 
-    /**
-     * Creates a new {@link Cause} with the provided {@link NamedCause}
-     * objects. Note that this is similar to using a {@link #builder()}
-     * and chaining {@link Builder#named(NamedCause)} consistently.
-     *
-     * @param cause The root object to be part of the cause
-     * @param causes The remaining objects to add to the cause
-     * @return The constructed cause
-     */
-    public static Cause of(NamedCause cause, NamedCause... causes) {
+    public static Cause of(EventContext ctx, Object cause, Object... causes) {
+        checkNotNull(ctx, "Context");
         Builder builder = builder();
-        builder.named(cause);
-        for (NamedCause namedCause : causes) {
-            builder.named(namedCause);
+        builder.append(cause);
+        for (Object namedCause : causes) {
+            builder.append(namedCause);
         }
-        return builder.build();
+        return builder.build(ctx);
     }
 
-    /**
-     * Creates a new {@link Cause} with the provided {@link NamedCause}
-     * objects. Note that this is similar to using a {@link #builder()}
-     * and chaining {@link Builder#named(NamedCause)} consistently.
-     *
-     * @param iterable The iterable containing all objects to be in the cause
-     * @return The constructed cause
-     */
-    public static Cause of(Iterable<NamedCause> iterable) {
+    public static Cause of(EventContext ctx, Iterable<Object> iterable) {
+        checkNotNull(ctx, "Context");
         Builder builder = builder();
-        for (NamedCause cause : iterable) {
-            builder.named(cause);
+        for (Object cause : iterable) {
+            builder.append(cause);
         }
-        return builder.build();
+        return builder.build(ctx);
     }
 
     final Object[] cause;
-    final String[] names;
+    private final EventContext context;
 
     // lazy load
-    @Nullable private Map<String, Object> namedObjectMap;
     @Nullable private ImmutableList<Object> immutableCauses;
 
-    Cause(NamedCause[] causes) {
-        // basically, no validation, all the validation should take place calling this constructor
+    Cause(EventContext ctx, Object[] causes) {
+        checkNotNull(ctx, "Context");
         final Object[] objects = new Object[causes.length];
-        final String[] names = new String[causes.length];
         for (int index = 0; index < causes.length; index++) {
-            NamedCause aCause = causes[index];
-            checkNotNull(aCause, "Null cause element!");
-            objects[index] = aCause.getCauseObject();
-            names[index] = aCause.getName();
+            objects[index] = checkNotNull(causes[index], "Null cause element!");
         }
         this.cause = objects;
-        this.names = names;
+        this.context = ctx;
+    }
+
+    Cause(EventContext ctx, Collection<Object> causes) {
+        checkNotNull(ctx, "Context");
+        final Object[] objects = new Object[causes.size()];
+        int index = 0;
+        for (Object cause: causes) {
+            objects[index++] = checkNotNull(cause, "Null cause element!");
+        }
+        this.cause = objects;
+        this.context = ctx;
+    }
+
+    public EventContext getContext() {
+        return this.context;
     }
 
     /**
-     * Gets the root {@link Object} of this cause. The root can be anything,
-     * including but not limited to: {@link DamageSource}, {@link Entity},
-     * {@link SpawnCause}, etc.
+     * Gets the root {@link Object} of this cause.
      *
      * @return The root object cause for this cause
      */
@@ -169,8 +135,7 @@ public final class Cause {
     }
 
     /**
-     * Gets the first <code>T</code> object of this {@link Cause}, if
-     * available.
+     * Gets the first <code>T</code> object of this {@link Cause}, if available.
      *
      * @param target The class of the target type
      * @param <T> The type of object being queried for
@@ -203,32 +168,8 @@ public final class Cause {
     }
 
     /**
-     * Gets the object associated with the provided name. Note that
-     * all objects in a cause are uniquely named.
-     *
-     * @param named The name associated with the object cause
-     * @param expected The expected class type of the cause object
-     * @param <T> The type of the object expected
-     * @return The object, if the type is correct and the name was associated
-     */
-    public <T> Optional<T> get(String named, Class<T> expected) {
-        checkArgument(named != null, "The name cannot be null!");
-        checkArgument(expected != null, "The expected class cannot be null!");
-        for (int i = 0; i < this.names.length; i++) {
-            if (this.names[i].equalsIgnoreCase(named)) {
-                final Object object = this.cause[i];
-                if (expected.isInstance(object)) {
-                    return Optional.of((T) object);
-                }
-                return Optional.empty();
-            }
-        }
-        return Optional.empty();
-    }
-
-    /**
-     * Gets the object immediately before the object that is an instance of
-     * the {@link Class} passed in.
+     * Gets the object immediately before the object that is an instance of the
+     * {@link Class} passed in.
      *
      * @param clazz The class of the object
      * @return The object
@@ -247,33 +188,8 @@ public final class Cause {
     }
 
     /**
-     * Gets the object immediate before the named object cause. The
-     * type of object is unknown.
-     *
-     * @param named The name associated with the cause object
-     * @return The object, if available
-     */
-    public Optional<?> before(String named) {
-        checkArgument(named != null, "The name cannot be null!");
-        if (this.cause.length == 1) {
-            return Optional.empty();
-        }
-        for (int i = 0; i < this.names.length; i++) {
-            if (this.names[i].equalsIgnoreCase(named)) {
-                try {
-                    final Object object = this.cause[i - 1];
-                    return Optional.of(object);
-                } catch (Exception e) {
-                    return Optional.empty();
-                }
-            }
-        }
-        return Optional.empty();
-    }
-
-    /**
-     * Gets the object immediately after the object that is an instance of
-     * the {@link Class} passed in.
+     * Gets the object immediately after the object that is an instance of the
+     * {@link Class} passed in.
      *
      * @param clazz The class to type check
      * @return The object after, if available
@@ -292,31 +208,9 @@ public final class Cause {
     }
 
     /**
-     * Gets the object immediately after the named object cause.
-     *
-     * @param named The name associated with the cause object
-     * @return The object after, if available
-     */
-    public Optional<?> after(String named) {
-        checkArgument(named != null, "The name cannot be null!");
-        if (this.cause.length == 1) {
-            return Optional.empty();
-        }
-        for (int i = 0; i < this.names.length; i++) {
-            if (this.names[i].equalsIgnoreCase(named) && i + 1 < this.cause.length) {
-                try {
-                    final Object object = this.cause[i + 1];
-                    return Optional.of(object);
-                } catch (Exception e) {
-                    return Optional.empty();
-                }
-            }
-        }
-        return Optional.empty();
-    }
-
-    /**
-     * Returns whether the target class matches any object of this {@link Cause}.
+     * Returns whether the target class matches any object of this {@link Cause}
+     * .
+     * 
      * @param target The class of the target type
      * @return True if found, false otherwise
      */
@@ -342,22 +236,6 @@ public final class Cause {
     public boolean contains(Object object) {
         for (Object aCause : this.cause) {
             if (aCause.equals(object)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Returns whether there are any objects associated with the provided name.
-     *
-     * @param named The name associated with a cause object
-     * @return True if found, false otherwise
-     */
-    public boolean containsNamed(String named) {
-        checkArgument(named != null, "The name cannot be null!");
-        for (String name : this.names) {
-            if (name.equalsIgnoreCase(named)) {
                 return true;
             }
         }
@@ -412,73 +290,72 @@ public final class Cause {
     }
 
     /**
-     * Creates a new {@link Cause} where the objects are added at the end of
-     * the cause array of objects.
+     * Creates a new {@link Cause} where the objects are added at the end of the
+     * cause array of objects.
      *
      * @param additional The additional object to add
      * @param additionals The remaining objects to add
      * @return The new cause
      */
-    public Cause with(NamedCause additional, NamedCause... additionals) {
-        checkArgument(additional != null, "No null arguments allowed!");
-        List<NamedCause> list = new ArrayList<>();
+    public Cause with(Object additional) {
+        checkNotNull(additional, "No null arguments allowed!");
+        List<Object> list = new ArrayList<>();
         list.add(additional);
-        for (NamedCause object : additionals) {
-            checkArgument(object != null, "Cannot add null objects!");
+        return with(list);
+    }
+
+    /**
+     * Creates a new {@link Cause} where the objects are added at the end of the
+     * cause array of objects.
+     *
+     * @param additional The additional object to add
+     * @param additionals The remaining objects to add
+     * @return The new cause
+     */
+    public Cause with(Object additional, Object... additionals) {
+        checkNotNull(additional, "No null arguments allowed!");
+        List<Object> list = new ArrayList<>();
+        list.add(additional);
+        for (Object object : additionals) {
+            checkNotNull(object, "Cannot add null objects!");
             list.add(object);
         }
         return with(list);
     }
 
     /**
-     * Creates a new {@link Cause} where the objects are added at the end of
-     * the cause array of objects.
+     * Creates a new {@link Cause} where the objects are added at the end of the
+     * cause array of objects.
      *
      * @param iterable The additional objects
      * @return The new cause
      */
-    public Cause with(Iterable<NamedCause> iterable) {
+    public Cause with(Iterable<Object> iterable) {
         Cause.Builder builder = new Builder().from(this);
-        for (NamedCause o : iterable) {
-            checkArgument(o != null, "Cannot add null causes");
-            builder.named(o);
+        for (Object o : iterable) {
+            checkNotNull(o, "Cannot add null causes");
+            builder.append(o);
         }
-        return builder.build();
+        return builder.build(this.context);
     }
 
     /**
-     * Merges this cause with the other cause. This provides some semblance of
-     * re-naming the previous "Source" of the other {@link Cause} to be
-     * renamed appropriately.
+     * Merges this cause with the other cause.
      *
      * @param cause The cause to merge with this
      * @return The new merged cause
      */
-    public Cause merge(Cause cause) {
+    public Cause with(Cause cause) {
         Cause.Builder builder = builder().from(this);
         for (int i = 0; i < cause.cause.length; i++) {
-            builder.suggestNamed(cause.names[i], cause.cause[i]);
+            builder.append(cause.cause[i]);
         }
-        return builder.build();
+        return builder.build(this.context);
     }
 
-    /**
-     * Gets an immutable {@link Map} of the named object causes that can be
-     * used for analysis. Note that the map should retain proper order of
-     * entries such that the order of entries should coincide with the order
-     * of objects in {@link #all()}.
-     *
-     * @return An immutable map of the names of cause objects to the objects
-     */
-    public Map<String, Object> getNamedCauses() {
-        if (this.namedObjectMap == null) {
-            final ImmutableMap.Builder<String, Object> builder = ImmutableMap.builder();
-            for (int i = 0; i < this.names.length; i++) {
-                builder.put(this.names[i], this.cause[i]);
-            }
-            this.namedObjectMap = builder.build();
-        }
-        return this.namedObjectMap;
+    @Override
+    public Iterator<Object> iterator() {
+        return new Itr();
     }
 
     @Override
@@ -497,148 +374,71 @@ public final class Cause {
 
     @Override
     public String toString() {
-        String causeString = "Cause[";
+        String causeString = "Cause[Context=" + this.context.toString() + ", Stack={";
         StringJoiner joiner = new StringJoiner(", ");
         for (int i = 0; i < this.cause.length; i++) {
-            joiner.add("{Name=" + this.names[i] + ", Object={" + this.cause[i].toString() + "}}");
+            joiner.add(this.cause[i].toString());
         }
-        return causeString + joiner.toString() + "]";
+        return causeString + joiner.toString() + "}]";
+    }
+
+    private class Itr implements Iterator<Object> {
+
+        private int index = 0;
+
+        public Itr() {
+        }
+
+        @Override
+        public Object next() {
+            if (this.index >= Cause.this.cause.length) {
+                throw new NoSuchElementException();
+            }
+            return Cause.this.cause[this.index++];
+        }
+
+        @Override
+        public boolean hasNext() {
+            return this.index != Cause.this.cause.length;
+        }
+
     }
 
     public static final class Builder implements ResettableBuilder<Cause, Builder> {
 
-        List<NamedCause> causes = new ArrayList<>();
-        Set<String> namesUsed = new HashSet<>();
+        List<Object> causes = new ArrayList<>();
 
         Builder() {
 
         }
 
-        Builder source(Object object) {
-            this.causes.add(NamedCause.source(checkNotNull(object, "Source cannot be null!")));
-            this.namesUsed.add(NamedCause.SOURCE);
-            return this;
-        }
-
-        /**
-         * Adds the desired {@link Object} with the {@link NamedCause} of
-         * {@link NamedCause#OWNER}.
-         *
-         * @param object The object to be considered the "owner"
-         * @return This builder, for chaining
-         */
-        public Builder owner(Object object) {
-            checkArgument(!this.namesUsed.contains(NamedCause.OWNER), "Already contains an owner!");
-            this.causes.add(NamedCause.owner(object));
-            this.namesUsed.add(NamedCause.OWNER);
-            return this;
-        }
-
-        /**
-         * Adds the desired {@link Object} with the {@link NamedCause} of
-         * {@link NamedCause#OWNER}.
-         *
-         * @param object The object to be considered the "owner"
-         * @return This builder, for chaining
-         */
-        public Builder notifier(Object object) {
-            checkArgument(!this.namesUsed.contains(NamedCause.NOTIFIER), "Already contains a notifier!");
-            this.causes.add(NamedCause.notifier(object));
-            this.namesUsed.add(NamedCause.NOTIFIER);
-            return this;
-        }
-
-        /**
-         * Adds the desired {@link NamedCause} with validation that the
-         * {@link NamedCause#getName()} is not already used in this builder.
-         *
-         * @param cause The named object
-         * @return This builder, for chaining
-         */
-        public Builder named(NamedCause cause) {
-            checkNotNull(cause, "NamedCause cannot be null!");
-            checkArgument(!this.namesUsed.contains(cause.getName()), "Already contains an entry for: {}", cause.getName());
+        public Builder append(Object cause) {
+            checkNotNull(cause, "Cause cannot be null!");
             this.causes.add(cause);
-            this.namesUsed.add(cause.getName());
             return this;
         }
 
-        /**
-         * Adds the desired {@link NamedCause} with validation that the
-         * {@link NamedCause#getName()} is not already used in this builder.
-         *
-         * @param name The named object
-         * @param object The object
-         * @return This builder, for chaining
-         */
-        public Builder named(String name, Object object) {
-            checkNotNull(name, "Name cannot be null!");
-            checkArgument(!this.namesUsed.contains(name), "Already contains an entry for {}", name);
-            this.causes.add(NamedCause.of(name, object));
-            this.namesUsed.add(name);
+        public Builder insert(int position, Object cause) {
+            checkNotNull(cause, "Cause cannot be null!");
+            this.causes.add(position, cause);
             return this;
         }
 
-        /**
-         * Attempts to add the desired {@link Object} with the given name. If
-         * the name is already taken, the name is suffixed with an index for
-         * that name. As an example, if it's suggested that the name is
-         * <code>"AdditionalSource"</code>,
-         * it may end up with <code>"AdditionalSource1"</code>.
-         *
-         * @param name The suggested name
-         * @param object The object
-         * @return This builder, for chaining
-         */
-        public Builder suggestNamed(String name, Object object) {
-            checkNotNull(name, "Name cannot be null!");
-            checkNotNull(object, "Object cannot be null!");
-            int iteration = 1;
-            if (this.namesUsed.contains(name)) {
-                while (true) {
-                    final String newName = name + iteration++;
-                    if (!this.namesUsed.contains(newName)) {
-                        this.causes.add(NamedCause.of(newName, object));
-                        this.namesUsed.add(newName);
-                        break;
-                    }
-                }
-            } else {
-                this.causes.add(NamedCause.of(name, object));
-                this.namesUsed.add(name);
-            }
-            return this;
-        }
-
-        /**
-         * Adds all desired {@link NamedCause}s in the provided
-         * {@link Collection}. Note that all rules still apply.
-         *
-         * @param causes The collection of named causes
-         * @return This builder, for chaining
-         */
-        public Builder addAll(Collection<NamedCause> causes) {
+        public Builder appendAll(Collection<Object> causes) {
             checkNotNull(causes, "Causes cannot be null!");
-            causes.forEach(this::named);
+            causes.forEach(this::append);
             return this;
         }
 
-        /**
-         * Constructs a fresh new {@link Cause} with all previously added
-         * {@link NamedCause} objects.
-         *
-         * @return The newly constructed cause
-         */
-        public Cause build() {
+        public Cause build(EventContext ctx) {
             checkState(!this.causes.isEmpty(), "Cannot create an empty Cause!");
-            return new Cause(this.causes.toArray(new NamedCause[this.causes.size()]));
+            return new Cause(ctx, this.causes);
         }
 
         @Override
         public Builder from(Cause value) {
             for (int i = 0; i < value.cause.length; i++) {
-                this.causes.add(NamedCause.of(value.names[i], value.cause[i]));
-                this.namesUsed.add(value.names[i]);
+                this.causes.add(value.cause[i]);
             }
             return this;
         }
@@ -646,7 +446,6 @@ public final class Cause {
         @Override
         public Builder reset() {
             this.causes.clear();
-            this.namesUsed.clear();
             return this;
         }
     }

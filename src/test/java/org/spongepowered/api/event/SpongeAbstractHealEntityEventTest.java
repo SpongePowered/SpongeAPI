@@ -33,6 +33,7 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.cause.entity.health.HealthFunction;
 import org.spongepowered.api.event.cause.entity.health.HealthModifier;
 import org.spongepowered.api.event.entity.HealEntityEvent;
@@ -50,8 +51,8 @@ public class SpongeAbstractHealEntityEventTest {
         Entity targetEntity = mockParam(Entity.class);
         int originalDamage = 5;
 
-        HealEntityEvent event =
-                SpongeEventFactory.createHealEntityEvent(Cause.source("none").build(), Lists.newArrayList(), targetEntity, originalDamage);
+        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.of(EventContext.empty(),"none"),
+                Lists.newArrayList(), targetEntity, originalDamage);
 
         assertThat(event.getOriginalHealAmount(), is(closeTo(originalDamage, ERROR)));
         assertThat(event.getOriginalFinalHealAmount(), is(closeTo(originalDamage, ERROR)));
@@ -65,8 +66,8 @@ public class SpongeAbstractHealEntityEventTest {
         Entity targetEntity = mockParam(Entity.class);
         int originalDamage = 5;
 
-        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.source("none").build(), Lists.newArrayList(), targetEntity,
-                originalDamage);
+        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.of(EventContext.empty(),"none"),
+                Lists.newArrayList(), targetEntity, originalDamage);
 
         assertThat(event.getOriginalHealAmount(), is(closeTo(originalDamage, ERROR)));
         assertThat(event.getOriginalFinalHealAmount(), is(closeTo(originalDamage, ERROR)));
@@ -96,7 +97,7 @@ public class SpongeAbstractHealEntityEventTest {
         List<HealthFunction>
                 originalFunctions = Lists.newArrayList(HealthFunction.of(firstModifer, p -> p * 2), HealthFunction.of(secondModifier, p -> p * 5));
 
-        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.source("none").build(), originalFunctions, targetEntity,
+        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.of(EventContext.empty(), "none"), originalFunctions, targetEntity,
                 originalDamage);
 
         assertThat(event.getOriginalFunctions(), is(Matchers.equalTo(originalFunctions)));
@@ -138,7 +139,7 @@ public class SpongeAbstractHealEntityEventTest {
         List<HealthFunction>
                 originalFunctions = Lists.newArrayList(HealthFunction.of(firstModifer, p -> p * 2), HealthFunction.of(secondModifier, p -> p * 5));
 
-        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.source("none").build(), originalFunctions, targetEntity,
+        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.of(EventContext.empty(), "none"), originalFunctions, targetEntity,
                 originalDamage);
 
         assertThat(event.getOriginalFunctions(), is(Matchers.equalTo(originalFunctions)));
@@ -188,7 +189,7 @@ public class SpongeAbstractHealEntityEventTest {
         List<HealthFunction> newFunctions = Lists.newArrayList(originalFunctions);
         newFunctions.add(HealthFunction.of(thirdModifier, thirdFunction));
 
-        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.source("none").build(), originalFunctions, targetEntity,
+        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.of(EventContext.empty(), "none"), originalFunctions, targetEntity,
                 originalDamage);
 
         assertThat(event.getOriginalFunctions(), is(Matchers.equalTo(originalFunctions)));
@@ -223,7 +224,7 @@ public class SpongeAbstractHealEntityEventTest {
         List<HealthFunction>
                 originalFunctions = Lists.newArrayList(HealthFunction.of(firstModifer, p -> p), HealthFunction.of(secondModifier, p -> p));
 
-        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.source("none").build(), originalFunctions, targetEntity, 0);
+        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.of(EventContext.empty(), "none"), originalFunctions, targetEntity, 0);
 
         assertThat(event.isModifierApplicable(firstModifer), is(true));
         assertThat(event.isModifierApplicable(secondModifier), is(true));
@@ -232,7 +233,7 @@ public class SpongeAbstractHealEntityEventTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testNotApplicableModifer() {
-        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.source("none").build(), Lists.newArrayList(),
+        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.of(EventContext.empty(), "none"), Lists.newArrayList(),
                 mockParam(Entity.class), 0);
 
         HealthModifier modifier = mockParam(HealthModifier.class);

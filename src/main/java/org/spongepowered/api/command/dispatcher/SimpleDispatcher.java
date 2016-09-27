@@ -35,6 +35,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandCallable;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandMapping;
@@ -43,6 +44,7 @@ import org.spongepowered.api.command.CommandNotFoundException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.ImmutableCommandMapping;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.action.TextActions;
 import org.spongepowered.api.text.format.TextColors;
@@ -171,18 +173,18 @@ public final class SimpleDispatcher implements Dispatcher {
         // Invoke the callback with the commands that /can/ be registered
         // noinspection ConstantConditions
         aliases = ImmutableList.copyOf(callback.apply(aliases));
-        if (!aliases.isEmpty()) {
-            String primary = aliases.get(0);
-            List<String> secondary = aliases.subList(1, aliases.size());
-            CommandMapping mapping = new ImmutableCommandMapping(callable, primary, secondary);
-
-            for (String alias : aliases) {
-                this.commands.put(alias.toLowerCase(), mapping);
-            }
-
-            return Optional.of(mapping);
+        if (aliases.isEmpty()) {
+            return Optional.empty();
         }
-        return Optional.empty();
+        String primary = aliases.get(0);
+        List<String> secondary = aliases.subList(1, aliases.size());
+        CommandMapping mapping = new ImmutableCommandMapping(callable, primary, secondary);
+
+        for (String alias : aliases) {
+            this.commands.put(alias.toLowerCase(), mapping);
+        }
+
+        return Optional.of(mapping);
     }
 
     /**
@@ -330,11 +332,20 @@ public final class SimpleDispatcher implements Dispatcher {
             throw new CommandNotFoundException(t("commands.generic.notFound"), argSplit[0]); // TODO: Fix properly to use a SpongeTranslation??
         }
         final String arguments = argSplit.length > 1 ? argSplit[1] : "";
-        final CommandCallable spec = cmdOptional.get().getCallable();
+        CommandMapping mapping = cmdOptional.get();
+        Optional<PluginContainer> pluginOwner = Sponge.getCommandManager().getOwner(mapping);
+        if(pluginOwner.isPresent()) {
+            Sponge.getCauseStackManager().pushCause(pluginOwner.get());
+        }
+        final CommandCallable spec = mapping.getCallable();
         try {
             return spec.process(source, arguments);
         } catch (CommandNotFoundException e) {
             throw new CommandException(t("No such child command: %s", e.getCommand()));
+        } finally {
+            if(pluginOwner.isPresent()) {
+                Sponge.getCauseStackManager().popCause();
+            }
         }
     }
 

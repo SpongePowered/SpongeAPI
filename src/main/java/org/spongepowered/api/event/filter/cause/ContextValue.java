@@ -24,8 +24,7 @@
  */
 package org.spongepowered.api.event.filter.cause;
 
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.NamedCause;
+import org.spongepowered.api.event.cause.EventContext;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -37,11 +36,11 @@ import java.lang.annotation.Target;
  * is done to ensure that the named cause object is of the correct type. The
  * filter fails if this is not the case.
  *
- * @see Cause#get(String, Class)
+ * @see EventContext#get(String)
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Named {
+public @interface ContextValue {
 
     /**
      * Gets the name to use with the {@link NamedCause}.

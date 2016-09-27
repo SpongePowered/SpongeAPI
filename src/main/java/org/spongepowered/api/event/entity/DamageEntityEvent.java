@@ -26,9 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.block.tileentity.carrier.Dispenser;
-import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
@@ -38,18 +36,14 @@ import org.spongepowered.api.event.cause.entity.damage.DamageFunction;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier.Builder;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
-import org.spongepowered.api.event.cause.entity.damage.DamageModifierTypes;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
-import org.spongepowered.api.event.cause.entity.damage.source.BlockDamageSource;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
-import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSource;
 import org.spongepowered.api.event.impl.AbstractDamageEntityEvent;
+import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
+import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.Tuple;
-import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
-import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.difficulty.Difficulties;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -146,84 +140,6 @@ import java.util.function.DoubleUnaryOperator;
  */
 @ImplementedBy(AbstractDamageEntityEvent.class)
 public interface DamageEntityEvent extends TargetEntityEvent, Cancellable {
-
-    /**
-     * For use with the {@link DamageSource} that is known as the "source"
-     * of the damage.
-     */
-    String SOURCE = "Source";
-    /**
-     * For use with a {@link DamageModifier} where it's type is a
-     * {@link DamageModifierTypes#HARD_HAT} and the {@link Cause} contains
-     * an {@link ItemStackSnapshot}, usually a helmet.
-     */
-    String HARD_HAT_ARMOR = "HardHat";
-
-    /**
-     * or use with a {@link DamageModifier} where its type is a
-     * {@link DamageModifierTypes#SHIELD} and the {@link Cause} contains
-     * an {@link ItemStackSnapshot} (in Vanilla, a shield).
-     */
-    String SHIELD = "Shield";
-
-    /**
-     * For use with a {@link DamageModifier} where it's type is a
-     * {@link DamageModifierTypes#ARMOR} and the {@link Cause} contains
-     * an {@link ItemStackSnapshot}. Separate from hard hat but still
-     * considered as "armor" where it will absorb a certain amount of damage
-     * before dealing damage to the wearer.
-     */
-    String GENERAL_ARMOR = "GeneralArmor";
-    /**
-     * For use with a {@link DamageModifier} where it's type is a
-     * {@link DamageModifierTypes#ARMOR} and the {@link Cause} contains
-     * an {@link ItemStackSnapshot} for a "helmet".
-     */
-    String HELMET = GENERAL_ARMOR + ":head";
-    /**
-     * For use with a {@link DamageModifier} where it's type is a
-     * {@link DamageModifierTypes#ARMOR} and the {@link Cause} contains
-     * an {@link ItemStackSnapshot} for a "chestplate".
-     */
-    String CHESTPLATE = GENERAL_ARMOR + ":chestplate";
-    /**
-     * For use with a {@link DamageModifier} where it's type is a
-     * {@link DamageModifierTypes#ARMOR} and the {@link Cause} contains
-     * an {@link ItemStackSnapshot} for "leggings".
-     */
-    String LEGGINGS = GENERAL_ARMOR + ":leggings";
-    /**
-     * For use with a {@link DamageModifier} where it's type is a
-     * {@link DamageModifierTypes#ARMOR} and the {@link Cause} contains
-     * an {@link ItemStackSnapshot} for "boots".
-     */
-    String BOOTS = GENERAL_ARMOR + ":boots";
-    /**
-     * For use with a {@link DamageModifier} where it's type is a
-     * {@link DamageModifierTypes#HARD_HAT} and the {@link Cause} contains
-     * a {@link PotionEffect}.
-     */
-    String RESISTANCE = "Resistance";
-    /**
-     * For use with a {@link DamageModifier} where it's type is a
-     * {@link DamageModifierTypes#ABSORPTION} and the {@link Cause} contains
-     * a {@link PotionEffect}.
-     */
-    String ABSORPTION = "AbsorptionPotion";
-    /**
-     * For use with a {@link DamageModifier} where the root cause is "created"
-     * by an object, usually the {@link Entity} or {@link Living} entity.
-     */
-    String CREATOR = "Creator";
-    /**
-     * For use with a {@link DamageSource} where it is either a
-     * {@link BlockDamageSource} or {@link EntityDamageSource} such that
-     * it was last "notified" by the object represented in the cause.
-     *
-     * <p>Usually this is used where a {@link Player} interacted with the
-     * now {@link DamageSource} such that they </p>
-     */
-    String NOTIFIER = "Notifier";
 
     /**
      * Gets the original "raw" amount of damage to deal to the targeted

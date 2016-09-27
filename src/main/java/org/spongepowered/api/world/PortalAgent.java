@@ -25,7 +25,6 @@
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.event.cause.entity.teleport.PortalTeleportCause;
 
 import java.util.Optional;
 
@@ -97,7 +96,7 @@ public interface PortalAgent {
      * </p>Note: In order to adjust or prevent the {@link Location}'s of each
      * {@link BlockState} set, listen to
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.Place} and
-     * check for the root cause {@link PortalTeleportCause}.</p>
+     * check for the root cause of this portal agent.
      *
      * @param targetLocation The targeted location
      * @return The newly created "portal" location, if available

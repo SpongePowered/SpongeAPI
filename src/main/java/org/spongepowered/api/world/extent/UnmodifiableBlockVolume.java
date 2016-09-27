@@ -80,6 +80,6 @@ public interface UnmodifiableBlockVolume extends BlockVolume {
     }
 
     @Override
-    BlockVolumeWorker<? extends UnmodifiableBlockVolume> getBlockWorker(Cause cause);
+    BlockVolumeWorker<? extends UnmodifiableBlockVolume> getBlockWorker();
 
 }

@@ -33,6 +33,7 @@ import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.property.PropertyRegistry;
 import org.spongepowered.api.data.property.PropertyStore;
+import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
@@ -251,6 +252,39 @@ public final class Sponge {
      */
     public static Optional<GameDictionary> getDictionary() {
         return getGame().getGameDictionary();
+    }
+
+    /**
+     * Gets the {@link CommandManager} instance from the
+     * {@link Game} instance.
+     *
+     * @see Game#getCommandManager()
+     * @return The command manager instance
+     */
+    public static CommandManager getCommandManager() {
+        return getGame().getCommandManager();
+    }
+
+    /**
+     * Gets the {@link ChannelRegistrar} instance from the
+     * {@link Game} instance.
+     *
+     * @see Game#getChannelRegistrar()
+     * @return The channel registrar instance
+     */
+    public static ChannelRegistrar getChannelRegistrar() {
+        return getGame().getChannelRegistrar();
+    }
+
+    /**
+     * Gets the {@link CauseStackManager} instance from the
+     * {@link Game} instance.
+     *
+     * @see Game#getCauseStackManager()
+     * @return The cause stack manager instance
+     */
+    public static CauseStackManager getCauseStackManager() {
+        return getGame().getCauseStackManager();
     }
 
 }

@@ -26,7 +26,6 @@ package org.spongepowered.api.world.schematic;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.extent.ArchetypeVolume;
 import org.spongepowered.api.world.extent.Extent;
@@ -67,7 +66,7 @@ public interface Schematic extends ArchetypeVolume {
     DataView getMetadata();
 
     @Override
-    MutableBlockVolumeWorker<Schematic> getBlockWorker(Cause cause);
+    MutableBlockVolumeWorker<Schematic> getBlockWorker();
 
     /**
      * A builder for {@link Schematic}s.

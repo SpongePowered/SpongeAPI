@@ -22,23 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.teleport.common;
+package org.spongepowered.api.event.cause;
 
-import org.spongepowered.api.event.cause.entity.teleport.PortalTeleportCause;
-import org.spongepowered.api.world.PortalAgent;
+/**
+ * Standard keys for use within {@link EventContext}s.
+ */
+public final class EventContextKeys {
 
-public abstract class AbstractPortalTeleportCause extends AbstractTeleportCause implements PortalTeleportCause {
+    public static final String CREATOR = "Creator";
+    public static final String DAMAGE_TYPE = "DamageType";
+    public static final String IGNITER = "Igniter";
+    public static final String NOTIFIER = "Notifier";
+    public static final String OWNER = "Owner";
+    public static final String PLAYER_SIMULATED = "PlayerSimulated";
+    public static final String PROJECTILE_SOURCE = "ProjectileSource";
+    public static final String SERVICE_MANAGER = "ServiceManager";
+    public static final String SPAWN_TYPE = "SpawnType";
+    public static final String TELEPORT_TYPE = "TeleportType";
+    public static final String THROWER = "Thrower";
+    public static final String WEAPON = "Weapon";
 
-    protected final PortalAgent agent;
-
-    protected AbstractPortalTeleportCause(AbstractPortalTeleportCauseBuilder<?, ?> builder) {
-        super(builder);
-        this.agent = builder.agent;
-    }
-
-    @Override
-    public PortalAgent getTeleporter() {
-        return this.agent;
+    private EventContextKeys() {
     }
 
 }

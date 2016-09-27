@@ -86,6 +86,6 @@ public interface TileEntityVolume extends MutableBlockVolume {
     Optional<TileEntity> getTileEntity(int x, int y, int z);
 
     @Override
-    MutableBlockVolumeWorker<? extends TileEntityVolume> getBlockWorker(Cause cause);
+    MutableBlockVolumeWorker<? extends TileEntityVolume> getBlockWorker();
 
 }

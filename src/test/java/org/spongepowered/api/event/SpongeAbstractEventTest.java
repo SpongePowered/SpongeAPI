@@ -38,6 +38,7 @@ import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -46,13 +47,14 @@ import java.util.Optional;
 
 public class SpongeAbstractEventTest {
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testChangeBlockEvent_filter() {
         Transaction<BlockSnapshot> transaction = new Transaction<>(mockParam(BlockSnapshot.class), mockParam(BlockSnapshot.class));
 
         when(transaction.getOriginal().getLocation()).thenReturn(Optional.of(new Location<>(mockParam(World.class), Vector3d.ZERO)));
 
-        ChangeBlockEvent.Break event = SpongeEventFactory.createChangeBlockEventBreak(Cause.source("none").build(), Lists.newArrayList(transaction));
+        ChangeBlockEvent.Break event = SpongeEventFactory.createChangeBlockEventBreak(Cause.of(EventContext.empty(), "none"), Lists.newArrayList(transaction));
         event.filter(location -> false);
 
         assertThat(transaction.isValid(), is(false));
@@ -63,7 +65,7 @@ public class SpongeAbstractEventTest {
         DataTransactionResult original = DataTransactionResult.failNoData();
         DataTransactionResult modified = DataTransactionResult.successNoData();
 
-        ChangeDataHolderEvent.ValueChange event = SpongeEventFactory.createChangeDataHolderEventValueChange(Cause.source("none").build(), original,
+        ChangeDataHolderEvent.ValueChange event = SpongeEventFactory.createChangeDataHolderEventValueChange(Cause.of(EventContext.empty(), "none"), original,
             mockParam(DataHolder.class));
 
         assertThat(event.getOriginalChanges(), is(equalTo(original)));

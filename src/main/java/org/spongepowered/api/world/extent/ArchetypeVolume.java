@@ -50,7 +50,7 @@ public interface ArchetypeVolume extends MutableBlockVolume {
      *     block placement
      * @param cause The cause of the changes
      */
-    void apply(Location<World> location, BlockChangeFlag changeFlag, Cause cause);
+    void apply(Location<World> location, BlockChangeFlag changeFlag);
 
     /**
      * Gets the {@link TileEntityArchetype} for the tile entity carrying block
@@ -83,6 +83,6 @@ public interface ArchetypeVolume extends MutableBlockVolume {
     Map<Vector3i, TileEntityArchetype> getTileEntityArchetypes();
 
     @Override
-    MutableBlockVolumeWorker<? extends ArchetypeVolume> getBlockWorker(Cause cause);
+    MutableBlockVolumeWorker<? extends ArchetypeVolume> getBlockWorker();
 
 }

@@ -168,6 +168,6 @@ public interface Chunk extends Extent {
     MutableBiomeVolumeWorker<Chunk> getBiomeWorker();
 
     @Override
-    MutableBlockVolumeWorker<Chunk> getBlockWorker(Cause cause);
+    MutableBlockVolumeWorker<Chunk> getBlockWorker();
 
 }

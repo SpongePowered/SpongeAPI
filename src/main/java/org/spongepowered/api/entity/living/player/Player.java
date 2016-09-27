@@ -46,7 +46,6 @@ import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.network.PlayerConnection;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
@@ -95,24 +94,22 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      * Opens the given Inventory for the player to view.
      *
      * @param inventory The inventory to view
-     * @param cause The {@link Cause} to use when opening the inventory
      * @return The opened Container if the inventory was opened, otherwise
      *      {@link Optional#empty()}
      * @throws IllegalArgumentException if a {@link PluginContainer} is not the
      *      root of the cause
      */
-    Optional<Container> openInventory(Inventory inventory, Cause cause) throws IllegalArgumentException;
+    Optional<Container> openInventory(Inventory inventory) throws IllegalArgumentException;
 
     /**
-     * Closes the currently viewed entity of this player, if it is
-     * currently viewing one.
+     * Closes the currently viewed entity of this player, if it is currently
+     * viewing one.
      *
-     * @param cause The {@link Cause} to provide when closing the inventory
      * @return whether or not closing the inventory succeeded
      * @throws IllegalArgumentException if a {@link PluginContainer} is not the
-     *      root of the cause
+     *         root of the cause
      */
-    boolean closeInventory(Cause cause) throws IllegalArgumentException;
+    boolean closeInventory() throws IllegalArgumentException;
 
     /**
      * Gets the view distance setting of the player. This value represents the

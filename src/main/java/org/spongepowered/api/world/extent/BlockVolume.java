@@ -214,6 +214,6 @@ public interface BlockVolume {
      * @param cause The cause for the block worker to use for changes
      * @return The block worker
      */
-    BlockVolumeWorker<? extends BlockVolume> getBlockWorker(Cause cause);
+    BlockVolumeWorker<? extends BlockVolume> getBlockWorker();
 
 }

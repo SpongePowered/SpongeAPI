@@ -25,15 +25,17 @@
 package org.spongepowered.api.event;
 
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.impl.AbstractEvent;
-import org.spongepowered.api.util.annotation.eventgen.AbsoluteSortPosition;
-import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
+import org.spongepowered.api.eventgencore.annotation.AbsoluteSortPosition;
+import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
+import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 
 /**
  * An event called within Sponge.
  *
- * <p>This is a marker interface, which must be implemented
- * by any event used with the Sponge event bus.</p>
+ * <p>This is a marker interface, which must be implemented by any event used
+ * with the Sponge event bus.</p>
  */
 @ImplementedBy(value = AbstractEvent.class, priority = Integer.MIN_VALUE)
 public interface Event {
@@ -41,8 +43,28 @@ public interface Event {
     /**
      * Gets the cause for the event.
      *
-     * @return The last cause
+     * @return The cause
      */
     @AbsoluteSortPosition(0)
     Cause getCause();
+
+    /**
+     * Gets the source of the event (the first object in the cause).
+     * 
+     * @return The event source
+     */
+    @PropertySettings(requiredParameter = false, generateMethods = false)
+    default Object getSource() {
+        return getCause().root();
+    }
+
+    /**
+     * Gets the context of the event.
+     * 
+     * @return The event context
+     */
+    @PropertySettings(requiredParameter = false, generateMethods = false)
+    default EventContext getContext() {
+        return getCause().getContext();
+    }
 }

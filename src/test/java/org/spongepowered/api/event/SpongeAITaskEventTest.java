@@ -33,6 +33,7 @@ import org.spongepowered.api.entity.ai.Goal;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.EventContext;
 
 @SuppressWarnings({"rawtypes"})
 public class SpongeAITaskEventTest {
@@ -43,8 +44,8 @@ public class SpongeAITaskEventTest {
         Goal goal = mock(Goal.class);
         Mockito.when(goal.getOwner()).thenReturn(targetEntity);
 
-        SpongeEventFactory.createAITaskEventAdd(Cause.source(mock(Game.class)).build(), 0, 0, goal, targetEntity, mock(AITask.class));
-        SpongeEventFactory.createAITaskEventRemove(Cause.source(mock(Game.class)).build(), goal, targetEntity, mock(AITask.class), 0);
+        SpongeEventFactory.createAITaskEventAdd(Cause.of(EventContext.empty(), mock(Game.class)), 0, 0, goal, targetEntity, mock(AITask.class));
+        SpongeEventFactory.createAITaskEventRemove(Cause.of(EventContext.empty(), mock(Game.class)), goal, targetEntity, mock(AITask.class), 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -54,7 +55,7 @@ public class SpongeAITaskEventTest {
         Goal goal = mock(Goal.class);
         Mockito.when(goal.getOwner()).thenReturn(secondEntity);
 
-        SpongeEventFactory.createAITaskEventAdd(Cause.source(mock(Game.class)).build(), 0, 0, goal, targetEntity, mock(AITask.class));
+        SpongeEventFactory.createAITaskEventAdd(Cause.of(EventContext.empty(), mock(Game.class)), 0, 0, goal, targetEntity, mock(AITask.class));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -64,7 +65,7 @@ public class SpongeAITaskEventTest {
         Goal goal = mock(Goal.class);
         Mockito.when(goal.getOwner()).thenReturn(secondEntity);
 
-        SpongeEventFactory.createAITaskEventRemove(Cause.source(mock(Game.class)).build(), goal, targetEntity, mock(AITask.class), 0);
+        SpongeEventFactory.createAITaskEventRemove(Cause.of(EventContext.empty(), mock(Game.class)), goal, targetEntity, mock(AITask.class), 0);
     }
 
 }

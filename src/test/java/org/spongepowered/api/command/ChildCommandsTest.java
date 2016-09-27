@@ -25,17 +25,21 @@
 package org.spongepowered.api.command;
 
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.spongepowered.api.Game;
 import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
+import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.text.TestPlainTextSerializer;
+import org.spongepowered.api.util.test.TestHooks;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -48,6 +52,15 @@ public class ChildCommandsTest {
     @Before
     public void initialize() throws Exception {
         TestPlainTextSerializer.inject();
+        
+        Game game = mock(Game.class);
+        CauseStackManager csm = mock(CauseStackManager.class);
+        Mockito.when(game.getCauseStackManager()).thenReturn(csm);
+        Mockito.when(csm.pushCause(null)).thenReturn(csm);
+        Mockito.when(csm.popCause()).thenReturn(null);
+        CommandManager cm = mock(CommandManager.class);
+        Mockito.when(game.getCommandManager()).thenReturn(cm);
+        TestHooks.setGame(game);
     }
 
     @Test
@@ -66,7 +79,7 @@ public class ChildCommandsTest {
                         .build();
         final SimpleDispatcher execute = new SimpleDispatcher();
         execute.register(spec, "parent");
-        execute.process(Mockito.mock(CommandSource.class), "parent child");
+        execute.process(mock(CommandSource.class), "parent child");
 
         assertTrue(childExecuted.get());
     }

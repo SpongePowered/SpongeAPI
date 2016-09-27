@@ -26,10 +26,8 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.impl.AbstractSpawnEntityEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
-import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
+import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
 
 /**
  * Raised when an {@link Entity} is spawned. This usually follows the chain of
@@ -43,7 +41,6 @@ import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
  * joined the world. {@link ClientConnectionEvent} is the
  * recommended event to interact with connecting players.</p>
  */
-@ImplementedBy(AbstractSpawnEntityEvent.class)
 @GenerateFactoryMethod
 public interface SpawnEntityEvent extends AffectEntityEvent {
 

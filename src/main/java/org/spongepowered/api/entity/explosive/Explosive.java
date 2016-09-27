@@ -58,9 +58,7 @@ public interface Explosive extends Entity {
 
     /**
      * Detonates this explosive as soon as possible.
-     *
-     * @param cause The cause of detonation
      */
-    void detonate(Cause cause);
+    void detonate();
 
 }

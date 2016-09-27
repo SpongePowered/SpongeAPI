@@ -34,7 +34,6 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.type.PlantType;
 import org.spongepowered.api.data.type.PlantTypes;
 import org.spongepowered.api.data.type.ShrubTypes;
-import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.ImmutableBiomeVolume;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
@@ -68,7 +67,6 @@ public class SkylandsGrassPopulator implements GenerationPopulator {
     private final Voronoi flowerCells = new Voronoi();
     private final Voronoi flowerDensities = new Voronoi();
     private final RarityCurve flowerOdds = new RarityCurve();
-    private final Cause populatorCause = Cause.source(this).build();
 
     static {
         //noinspection ConstantConditions
@@ -138,9 +136,9 @@ public class SkylandsGrassPopulator implements GenerationPopulator {
                         }
                     }
                     if (flower != null) {
-                        buffer.setBlock(xx, yy + 1, zz, flower.getBlock(), this.populatorCause);
+                        buffer.setBlock(xx, yy + 1, zz, flower.getBlock());
                         if (flower.isDoubleHeight()) {
-                            buffer.setBlock(xx, yy + 2, zz, flower.getUpperBlock(), this.populatorCause);
+                            buffer.setBlock(xx, yy + 2, zz, flower.getUpperBlock());
                         }
                     } else if (value >= GRASS_ODDS) {
                         // if no flower, check if the value is greater than the grass odds
@@ -149,9 +147,9 @@ public class SkylandsGrassPopulator implements GenerationPopulator {
                             //buffer.setBlockType(xx, yy + 1, zz, BlockTypes.MELON_BLOCK);
                             //buffer.setBlockType(xx, yy + 2, zz, BlockTypes.MELON_BLOCK);
                             // TODO: fix double plants
-                            buffer.setBlock(xx, yy + 1, zz, TALL_GRASS, this.populatorCause);
+                            buffer.setBlock(xx, yy + 1, zz, TALL_GRASS);
                         } else {
-                            buffer.setBlock(xx, yy + 1, zz, TALL_GRASS, this.populatorCause);
+                            buffer.setBlock(xx, yy + 1, zz, TALL_GRASS);
                         }
                     }
                 }
@@ -165,7 +163,7 @@ public class SkylandsGrassPopulator implements GenerationPopulator {
                         // generate a new random value for the layer
                         final float value = SkylandsUtil.hashToFloat(xx, layerNumber, zz, seed);
                         if (value >= COVERED_GRASS_ODDS) {
-                            buffer.setBlock(xx, yy + 1, zz, TALL_GRASS, this.populatorCause);
+                            buffer.setBlock(xx, yy + 1, zz, TALL_GRASS);
                         }
                     }
                     layerNumber++;

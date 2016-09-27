@@ -31,7 +31,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.NamedCause;
+import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.Direction;
@@ -47,9 +47,9 @@ public interface InteractableVolume extends MutableBlockVolume {
      * holding the primary mouse button until the block breaks.</p>
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile}.
-     * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
+     * cause stack and in the context under the key
+     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
      * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param position The position of the block
@@ -69,9 +69,9 @@ public interface InteractableVolume extends MutableBlockVolume {
      * holding the primary mouse button until the block breaks.</p>
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile}.
-     * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
+     * cause stack and in the context under the key
+     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
      * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param x The X position
@@ -87,9 +87,9 @@ public interface InteractableVolume extends MutableBlockVolume {
      * Simulates the interaction the block as if a player had done so.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile}.
-     * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
+     * cause stack and in the context under the key
+     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
      * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param position The position of the block
@@ -105,9 +105,9 @@ public interface InteractableVolume extends MutableBlockVolume {
      * Simulates the interaction the block as if a player had done so.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile}.
-     * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
+     * cause stack and in the context under the key
+     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
      * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param x The X position
@@ -124,9 +124,9 @@ public interface InteractableVolume extends MutableBlockVolume {
      * had done so.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile}.
-     * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
+     * cause stack and in the context under the key
+     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
      * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param position The position of the block
@@ -144,9 +144,9 @@ public interface InteractableVolume extends MutableBlockVolume {
      * had done so.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile}.
-     * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
+     * cause stack and in the context under the key
+     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
      * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param x The X position
@@ -164,9 +164,9 @@ public interface InteractableVolume extends MutableBlockVolume {
      * had done so.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile}.
-     * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
+     * cause stack and in the context under the key
+     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
      * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param position The position of the block
@@ -184,9 +184,9 @@ public interface InteractableVolume extends MutableBlockVolume {
      * had done so.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile}.
-     * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
+     * cause stack and in the context under the key
+     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
      * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param x The X position
@@ -203,9 +203,9 @@ public interface InteractableVolume extends MutableBlockVolume {
      * Simulate the digging of the block as if a player had done so.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile}.
-     * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
+     * cause stack and in the context under the key
+     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
      * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param position The position of the block
@@ -220,9 +220,9 @@ public interface InteractableVolume extends MutableBlockVolume {
      * Simulate the digging of the block as if a player had done so.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile}.
-     * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
+     * cause stack and in the context under the key
+     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
      * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param x The X position
@@ -238,9 +238,9 @@ public interface InteractableVolume extends MutableBlockVolume {
      * done so.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile}.
-     * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
+     * cause stack and in the context under the key
+     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
      * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param position The position of the block
@@ -257,9 +257,9 @@ public interface InteractableVolume extends MutableBlockVolume {
      * done so.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile}.
-     * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
+     * cause stack and in the context under the key
+     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
      * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param x The X position
@@ -276,9 +276,9 @@ public interface InteractableVolume extends MutableBlockVolume {
      * ticks.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile}.
-     * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
+     * cause stack and in the context under the key
+     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
      * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param position The position of the block
@@ -295,9 +295,9 @@ public interface InteractableVolume extends MutableBlockVolume {
      * ticks.
      *
      * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile}.
-     * Additionally, the {@link NamedCause} must be
-     * {@link NamedCause#simulated(Object)}. Failing to do either of these will
+     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
+     * cause stack and in the context under the key
+     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
      * result in an {@link IllegalArgumentException} being thrown.</p>
      *
      * @param x The X position
@@ -310,6 +310,6 @@ public interface InteractableVolume extends MutableBlockVolume {
     int getBlockDigTimeWith(int x, int y, int z, ItemStack itemStack, Cause cause);
 
     @Override
-    MutableBlockVolumeWorker<? extends InteractableVolume> getBlockWorker(Cause cause);
+    MutableBlockVolumeWorker<? extends InteractableVolume> getBlockWorker();
 
 }

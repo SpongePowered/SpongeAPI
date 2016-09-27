@@ -53,7 +53,6 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
@@ -556,11 +555,10 @@ public final class Location<E extends Extent> implements DataHolder {
      * <p>This will remove any extended block data at the given position.</p>
      *
      * @param state The new block state
-     * @param cause The cause for the block change
      * @return True if the block change was successful
      */
-    public boolean setBlock(BlockState state, Cause cause) {
-        return getExtent().setBlock(getBlockPosition(), state, cause);
+    public boolean setBlock(BlockState state) {
+        return getExtent().setBlock(getBlockPosition(), state);
     }
 
     /**
@@ -569,11 +567,10 @@ public final class Location<E extends Extent> implements DataHolder {
      * <p>This will remove any extended block data at the given position.</p>
      *  @param state The new block state
      * @param flag The various change flags controlling some interactions
-     * @param cause The cause for the block change
      * @return True if the block change was successful
      */
-    public boolean setBlock(BlockState state, BlockChangeFlag flag, Cause cause) {
-        return getExtent().setBlock(getBlockPosition(), state, flag, cause);
+    public boolean setBlock(BlockState state, BlockChangeFlag flag) {
+        return getExtent().setBlock(getBlockPosition(), state, flag);
     }
 
     /**
@@ -582,11 +579,10 @@ public final class Location<E extends Extent> implements DataHolder {
      * <p>This will remove any extended block data at the given position.</p>
      *
      * @param type The new type
-     * @param cause The cause for the block change
      * @return True if the block change was successful
      */
-    public boolean setBlockType(BlockType type, Cause cause) {
-        return getExtent().setBlockType(getBlockPosition(), type, cause);
+    public boolean setBlockType(BlockType type) {
+        return getExtent().setBlockType(getBlockPosition(), type);
     }
 
     /**
@@ -595,11 +591,10 @@ public final class Location<E extends Extent> implements DataHolder {
      * <p>This will remove any extended block data at the given position.</p>
      * @param type The new type
      * @param flag The various change flags controlling some interactions
-     * @param cause The cause for the block change
      * @return True if the block change was successful
      */
-    public boolean setBlockType(BlockType type, BlockChangeFlag flag, Cause cause) {
-        return getExtent().setBlockType(getBlockPosition(), type, flag, cause);
+    public boolean setBlockType(BlockType type, BlockChangeFlag flag) {
+        return getExtent().setBlockType(getBlockPosition(), type, flag);
     }
 
     /**
@@ -611,11 +606,10 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param force If true, forces block state to be set even if the
      * {@link BlockType} does not match the snapshot one.
      * @param flag The various change flags controlling some interactions
-     * @param cause The cause for the block change
      * @return True if the snapshot restore was successful
      */
-    public boolean restoreSnapshot(BlockSnapshot snapshot, boolean force, BlockChangeFlag flag, Cause cause) {
-        return getExtent().restoreSnapshot(getBlockPosition(), snapshot, force, flag, cause);
+    public boolean restoreSnapshot(BlockSnapshot snapshot, boolean force, BlockChangeFlag flag) {
+        return getExtent().restoreSnapshot(getBlockPosition(), snapshot, force, flag);
     }
 
     /**
@@ -623,12 +617,11 @@ public final class Location<E extends Extent> implements DataHolder {
      * {@link BlockTypes#AIR}.
      *
      * <p>This will remove any extended block data at the given position.</p>
-     * @param cause The cause for the block change
      * @return True if the block change was successful
      */
     @SuppressWarnings("ConstantConditions")
-    public boolean removeBlock(Cause cause) {
-        return getExtent().setBlockType(getBlockPosition(), BlockTypes.AIR, BlockChangeFlag.ALL, cause);
+    public boolean removeBlock() {
+        return getExtent().setBlockType(getBlockPosition(), BlockTypes.AIR, BlockChangeFlag.ALL);
     }
 
     /**
@@ -652,6 +645,7 @@ public final class Location<E extends Extent> implements DataHolder {
         return this.getExtent().createEntity(type, this.getPosition());
     }
 
+    // TODO change this cause advisory
     /**
      * Spawns an {@link Entity} using the already set properties (extent,
      * position, rotation) and applicable {@link DataManipulator}s with the
@@ -672,12 +666,11 @@ public final class Location<E extends Extent> implements DataHolder {
      * should be taken note that there can be many reasons for a failure.</p>
      *
      * @param entity The entity to spawn
-     * @param cause The cause for the entity spawn
      * @return True if successful, false if not
-     * @see EntityUniverse#spawnEntity(Entity, Cause)
+     * @see EntityUniverse#spawnEntity(Entity)
      */
-    public boolean spawnEntity(Entity entity, Cause cause) {
-        return this.getExtent().spawnEntity(entity, cause);
+    public boolean spawnEntity(Entity entity) {
+        return this.getExtent().spawnEntity(entity);
     }
 
     /**
@@ -687,12 +680,11 @@ public final class Location<E extends Extent> implements DataHolder {
      * interference with the cause tracking system.
      *
      * @param entities The entities to be spawned
-     * @param cause The cause to be associated with the entities spawning
      * @return True if any of the entities were successfully spawned
      * @see EntityUniverse#spawnEntities(Iterable, Cause)
      */
-    public boolean spawnEntities(Iterable<? extends Entity> entities, Cause cause) {
-        return this.getExtent().spawnEntities(entities, cause);
+    public boolean spawnEntities(Iterable<? extends Entity> entities) {
+        return this.getExtent().spawnEntities(entities);
     }
 
     /**
@@ -828,11 +820,6 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     @Override
-    public <T> DataTransactionResult offer(Key<? extends BaseValue<T>> key, T value, Cause cause) {
-        return getExtent().offer(getBlockPosition(), key, value, cause);
-    }
-
-    @Override
     public DataTransactionResult offer(Iterable<DataManipulator<?, ?>> valueHolders) {
         return getExtent().offer(getBlockPosition(), valueHolders);
     }
@@ -855,11 +842,6 @@ public final class Location<E extends Extent> implements DataHolder {
     @Override
     public DataTransactionResult offer(DataManipulator<?, ?> valueContainer, MergeFunction function) {
         return getExtent().offer(getBlockPosition(), valueContainer, function);
-    }
-
-    @Override
-    public DataTransactionResult offer(DataManipulator<?, ?> valueContainer, MergeFunction function, Cause cause) {
-        return getExtent().offer(getBlockPosition(), valueContainer, function, cause);
     }
 
     @Override
