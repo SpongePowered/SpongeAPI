@@ -117,7 +117,7 @@ public class PluginProcessor extends AbstractProcessor {
                 finish();
             }
 
-            return true;
+            return false;
         }
 
         if (!contains(annotations, Plugin.class)) {
@@ -162,7 +162,7 @@ public class PluginProcessor extends AbstractProcessor {
             plugin.apply(getMessager());
         }
 
-        return true;
+        return false;
     }
 
     private void finish() {
