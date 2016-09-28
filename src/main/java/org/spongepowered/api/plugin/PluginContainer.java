@@ -139,7 +139,9 @@ public interface PluginContainer {
      *
      * @return The instance if available
      */
-    Optional<?> getInstance();
+    default Optional<?> getInstance() {
+        return Optional.empty();
+    }
 
     /**
      * Returns the assigned logger to this {@link Plugin}.
