@@ -260,6 +260,16 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
     }
 
     /**
+     * Returns a plain text representation of this {@link Text} without any
+     * children.
+     *
+     * @return This text (without children) converted to plain text
+     */
+    public final String toPlainSingle() {
+        return TextSerializers.PLAIN.serializeSingle(this);
+    }
+
+    /**
      * Concatenates the specified {@link Text} to this Text and returns the
      * result.
      *

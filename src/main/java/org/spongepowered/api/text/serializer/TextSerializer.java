@@ -44,6 +44,18 @@ public interface TextSerializer {
     String serialize(Text text);
 
     /**
+     * Returns a string representation of only the provided {@link Text}
+     * (without any children) in a format that will be accepted by this
+     * {@link TextSerializer}'s {@link #deserialize(String)} method.
+     *
+     * @param text The text to serialize
+     * @return The string representation of this text (without any children)
+     */
+    default String serializeSingle(Text text) {
+        return serialize(text.toBuilder().removeAll().build());
+    }
+
+    /**
      * Returns a {@link Text} instance from an appropriately formatted string.
      *
      * @param input The raw input to parse into a text
