@@ -33,10 +33,8 @@ import org.spongepowered.api.util.Coerce;
 import java.util.Collection;
 import java.util.List;
 
-
 /**
- * A property type intended for use with
- * {@link InputSlot}s in order to
+ * A property type intended for use with {@link InputSlot}s in order to
  * query for slots which can accept items of the specified type. It is intended
  * that the semantics of the {@link #equals} will be such that the method will
  * return true if the other property contains <em>any</em> item present in this

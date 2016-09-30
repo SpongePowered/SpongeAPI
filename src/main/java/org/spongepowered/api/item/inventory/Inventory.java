@@ -25,14 +25,17 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.Nameable;
-import org.spongepowered.api.data.Property;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.event.item.inventory.InteractInventoryEvent;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.text.translation.Translation;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Queue;
+import java.util.function.Consumer;
 
 /**
  * Base interface for queryable inventories.
@@ -44,7 +47,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
 
     /**
      * Get the parent {@link Inventory} of this {@link Inventory}.
-     * 
+     *
      * @return the parent inventory, returns this inventory if there is no
      *      parent (this is a top-level inventory)
      */
@@ -451,4 +454,77 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      */
     <T extends Inventory> T query(Object... args);
 
+    /**
+     * Creates a new {@link Inventory.Builder} to build an {@link Inventory}.
+     *
+     * @return The builder
+     */
+    static Inventory.Builder builder() {
+        return Sponge.getRegistry().createBuilder(Inventory.Builder.class);
+    }
+
+    /**
+     * A Builder for Inventories based on {@link InventoryArchetype}s
+     */
+    interface Builder extends ResettableBuilder<Inventory, Builder> {
+
+        /**
+         * Sets the base {@link InventoryArchetype} for the Inventory
+         *
+         * @param archetype The InventoryArchetype
+         * @return Fluent pattern
+         */
+        Builder of(InventoryArchetype archetype);
+
+        /**
+         * Sets an {@link InventoryProperty}
+         * TODO only properties declared in the archetype are allowed? IllegalArguement?
+         *
+         * @param name The name
+         * @param property The property
+         * @return Fluent pattern
+         */
+        Builder property(String name, InventoryProperty property);
+
+        /**
+         * Sets the {@link Carrier} that carries the Inventory
+         *
+         * @param carrier The Carrier
+         * @return Fluent pattern
+         */
+        Builder withCarrier(Carrier carrier);
+
+        /**
+         * Registers a listener for given Event type
+         *
+         * @param type The type
+         * @param listener The listener
+         * @return Fluent pattern
+         */
+        <E extends InteractInventoryEvent> Builder listener(Class<E> type, Consumer<E> listener);
+
+        /**
+         * Sets the InventoryArchetype and Properties according to the {@link Carrier}s Inventory
+         *
+         * @param carrier The Carrier
+         * @return Fluent pattern
+         */
+        Builder forCarrier(Carrier carrier);
+
+        /**
+         * Sets the InventoryArchetype and Properties for a default Inventory of given {@link Carrier}
+         *
+         * @param carrier The Carrier class
+         * @return Fluent pattern
+         */
+        Builder forCarrier(Class<? extends Carrier> carrier);
+
+        /**
+         * Builds the Inventory
+         *
+         * @return The new Inventory instance
+         */
+        Inventory build();
+
+    }
 }

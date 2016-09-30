@@ -26,6 +26,7 @@ package org.spongepowered.api.entity.living.player;
 
 import org.spongepowered.api.Server;
 import org.spongepowered.api.block.tileentity.EnderChest;
+import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.command.source.RemoteSource;
 import org.spongepowered.api.data.key.Keys;
@@ -85,8 +86,9 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
      * @param inventory The inventory to view
      * @param cause The {@link Cause} to use when opening the inventory
      * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
+     * @return The opened Container
      */
-    void openInventory(Inventory inventory, Cause cause) throws IllegalArgumentException;
+    Container openInventory(Inventory inventory, Cause cause) throws IllegalArgumentException;
 
     /**
      * Closes the currently viewed entity of this player, if it is

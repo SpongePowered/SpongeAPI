@@ -87,7 +87,7 @@ public interface Property<K, V> extends Comparable<Property<?, ?>> {
         },
 
         /**
-         * Use <code>.compareTo()</code> amd match if target is greater than
+         * Use <code>.compareTo()</code> and match if target is greater than
          * or equal to supplied operand
          */
         GEQUAL {
