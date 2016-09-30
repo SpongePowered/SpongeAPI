@@ -1239,7 +1239,11 @@ public final class GenericArguments {
                 yStr = split[1];
                 zStr = split[2];
             } else if (xStr.equals("#target") && source instanceof Entity) {
-                Optional<BlockRayHit<World>> hit = BlockRay.from(((Entity) source)).filter(BlockRay.onlyAirFilter()).build().end();
+                Optional<BlockRayHit<World>> hit = BlockRay
+                        .from(((Entity) source))
+                        .stopFilter(BlockRay.continueAfterFilter(BlockRay.onlyAirFilter(), 1))
+                        .build()
+                        .end();
                 if (!hit.isPresent()) {
                     throw args.createError(t("No target block is available! Stop stargazing!"));
                 }
