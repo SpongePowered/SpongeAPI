@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.effect.particle;
 
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
@@ -43,6 +44,16 @@ public final class ParticleTypes {
 
     public static final ParticleType BLOCK_DUST = DummyObjectProvider.createFor(ParticleType.class, "BLOCK_DUST");
 
+    /**
+     * This particle type will play the effect that will occur when
+     * a {@link Player} uses bone meal on a plant to boost the growth.
+     * <p>
+     * This type has limited {@link ParticleOption}s, only
+     * {@link ParticleOptions#BLOCK_STATE} and
+     * {@link ParticleOptions#ITEM_STACK_SNAPSHOT} are supported.
+     */
+    public static final ParticleType BREAK_BLOCK = DummyObjectProvider.createFor(ParticleType.class, "BREAK_BLOCK");
+
     public static final ParticleType CLOUD = DummyObjectProvider.createFor(ParticleType.class, "CLOUD");
 
     public static final ParticleType CRITICAL_HIT = DummyObjectProvider.createFor(ParticleType.class, "CRITICAL_HIT");
@@ -51,17 +62,30 @@ public final class ParticleTypes {
 
     public static final ParticleType DRAGON_BREATH = DummyObjectProvider.createFor(ParticleType.class, "DRAGON_BREATH");
 
+    public static final ParticleType DRAGON_BREATH_ATTACK = DummyObjectProvider.createFor(ParticleType.class, "DRAGON_BREATH_ATTACK");
+
     public static final ParticleType DRIP_LAVA = DummyObjectProvider.createFor(ParticleType.class, "DRIP_LAVA");
 
     public static final ParticleType DRIP_WATER = DummyObjectProvider.createFor(ParticleType.class, "DRIP_WATER");
 
     public static final ParticleType ENCHANTING_GLYPHS = DummyObjectProvider.createFor(ParticleType.class, "ENCHANTING_GLYPHS");
 
+    public static final ParticleType ENDER_TELEPORT = DummyObjectProvider.createFor(ParticleType.class, "ENDER_TELEPORT");
+
     public static final ParticleType END_ROD = DummyObjectProvider.createFor(ParticleType.class, "END_ROD");
 
     public static final ParticleType EXPLOSION = DummyObjectProvider.createFor(ParticleType.class, "EXPLOSION");
 
     public static final ParticleType FALLING_DUST = DummyObjectProvider.createFor(ParticleType.class, "FALLING_DUST");
+
+    /**
+     * This particle type will play the effect that will occur when
+     * a {@link Player} uses bone meal on a plant to boost the growth.
+     * <p>
+     * This type has limited {@link ParticleOption}s, only
+     * {@link ParticleOptions#QUANTITY} is supported.
+     */
+    public static final ParticleType FERTILIZER = DummyObjectProvider.createFor(ParticleType.class, "FERTILIZER");
 
     public static final ParticleType FIREWORKS_SPARK = DummyObjectProvider.createFor(ParticleType.class, "FIREWORKS_SPARK");
 
@@ -77,6 +101,10 @@ public final class ParticleTypes {
 
     public static final ParticleType HUGE_EXPLOSION = DummyObjectProvider.createFor(ParticleType.class, "HUGE_EXPLOSION");
 
+    /**
+     * While this particle type the option {@link ParticleOptions#VELOCITY} supports, this
+     * will only affect the velocity in the y direction.
+     */
     public static final ParticleType INSTANT_SPELL = DummyObjectProvider.createFor(ParticleType.class, "INSTANT_SPELL");
 
     public static final ParticleType ITEM_CRACK = DummyObjectProvider.createFor(ParticleType.class, "ITEM_CRACK");
@@ -88,6 +116,8 @@ public final class ParticleTypes {
     public static final ParticleType LAVA = DummyObjectProvider.createFor(ParticleType.class, "LAVA");
 
     public static final ParticleType MAGIC_CRITICAL_HIT = DummyObjectProvider.createFor(ParticleType.class, "MAGIC_CRITICAL_HIT");
+
+    public static final ParticleType MOBSPAWNER_FLAMES = DummyObjectProvider.createFor(ParticleType.class, "MOBSPAWNER_FLAMES");
 
     public static final ParticleType MOB_SPELL = DummyObjectProvider.createFor(ParticleType.class, "MOB_SPELL");
 
@@ -105,7 +135,13 @@ public final class ParticleTypes {
 
     public static final ParticleType SNOW_SHOVEL = DummyObjectProvider.createFor(ParticleType.class, "SNOW_SHOVEL");
 
+    /**
+     * While this particle type the option {@link ParticleOptions#VELOCITY} supports, this
+     * will only affect the velocity in the y direction.
+     */
     public static final ParticleType SPELL = DummyObjectProvider.createFor(ParticleType.class, "SPELL");
+
+    public static final ParticleType SPLASH_POTION = DummyObjectProvider.createFor(ParticleType.class, "SPLASH_POTION");
 
     public static final ParticleType SUSPENDED = DummyObjectProvider.createFor(ParticleType.class, "SUSPENDED");
 
@@ -123,6 +159,10 @@ public final class ParticleTypes {
 
     public static final ParticleType WATER_WAKE = DummyObjectProvider.createFor(ParticleType.class, "WATER_WAKE");
 
+    /**
+     * While this particle type the option {@link ParticleOptions#VELOCITY} supports, this
+     * will only affect the velocity in the y direction.
+     */
     public static final ParticleType WITCH_SPELL = DummyObjectProvider.createFor(ParticleType.class, "WITCH_SPELL");
 
     // SORTFIELDS:OFF

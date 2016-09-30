@@ -63,6 +63,19 @@ public interface ParticleEffect extends DataSerializable {
     <V> Optional<V> getOption(ParticleOption<V> option);
 
     /**
+     * Gets the value for the specified {@link ParticleOption} or
+     * the default value if not present.
+     *
+     * @param option The particle option
+     * @param <V> The value type
+     * @return The option value if present, otherwise {@link Optional#empty()}
+     */
+    default <V> Optional<V> getOptionOrDefault(ParticleOption<V> option) {
+        final Optional<V> value = getOption(option);
+        return value.isPresent() ? value : getType().getDefaultOption(option);
+    }
+
+    /**
      * Gets a immutable {@link Map} with all the available
      * {@link ParticleOption}s and their values.
      *
@@ -133,7 +146,7 @@ public interface ParticleEffect extends DataSerializable {
          * @throws IllegalArgumentException If the count is less than one
          */
         default Builder count(int count) throws IllegalArgumentException {
-            return option(ParticleOptions.COUNT, count);
+            return option(ParticleOptions.QUANTITY, count);
         }
 
         /**
