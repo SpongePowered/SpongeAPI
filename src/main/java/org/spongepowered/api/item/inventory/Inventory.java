@@ -255,7 +255,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * liberty to provide {@link #peek}, {@link #poll}, {@link #offer} and
      * {@link #set} semantics even if it has no internal storage of its own.
      *
-     * @return true if and only if this inventory contains no child inventories
+     * @return true if and only if this inventory contains child inventories
      */
     boolean hasChildren();
 
