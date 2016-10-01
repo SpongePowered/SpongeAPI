@@ -45,8 +45,8 @@ public final class ParticleTypes {
     public static final ParticleType BLOCK_DUST = DummyObjectProvider.createFor(ParticleType.class, "BLOCK_DUST");
 
     /**
-     * This particle type will play the effect that will occur when
-     * a {@link Player} uses bone meal on a plant to boost the growth.
+     * This particle type will play the effect of a block that
+     * is being broken and it's break sound.
      * <p>
      * This type has limited {@link ParticleOption}s, only
      * {@link ParticleOptions#BLOCK_STATE} and
@@ -79,13 +79,23 @@ public final class ParticleTypes {
     public static final ParticleType FALLING_DUST = DummyObjectProvider.createFor(ParticleType.class, "FALLING_DUST");
 
     /**
-     * This particle type will play the effect that will occur when
+     * This particle type will play the effect that will occurs when
      * a {@link Player} uses bone meal on a plant to boost the growth.
      * <p>
      * This type has limited {@link ParticleOption}s, only
      * {@link ParticleOptions#QUANTITY} is supported.
      */
     public static final ParticleType FERTILIZER = DummyObjectProvider.createFor(ParticleType.class, "FERTILIZER");
+
+    /**
+     * This particle type will play the smoke particles of a fire.
+     * <p>
+     * This type has limited {@link ParticleOption}s, only
+     * {@link ParticleOptions#DIRECTION} is supported.
+     */
+    public static final ParticleType FIRE_SMOKE = DummyObjectProvider.createFor(ParticleType.class, "FIRE_SMOKE");
+
+    public static final ParticleType FIREWORKS = DummyObjectProvider.createFor(ParticleType.class, "FIREWORKS");
 
     public static final ParticleType FIREWORKS_SPARK = DummyObjectProvider.createFor(ParticleType.class, "FIREWORKS_SPARK");
 

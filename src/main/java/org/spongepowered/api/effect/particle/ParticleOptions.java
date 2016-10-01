@@ -28,9 +28,13 @@ import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.effect.potion.PotionEffectType;
+import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.Color;
+import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+import java.util.List;
 
 /**
  * An enumeration of all possible {@link ParticleOption}s in vanilla minecraft.
@@ -41,33 +45,58 @@ public final class ParticleOptions {
 
     /**
      * This option will affect the appearance of a particle, the only
-     * vanilla {@link ParticleType}s that this option will affect are
-     * {@link ParticleTypes#ITEM_CRACK}, {@link ParticleTypes#BLOCK_CRACK}
-     * and {@link ParticleTypes#BLOCK_DUST}.
+     * vanilla {@link ParticleType}s that this option is applicable to are:
+     * <ul>
+     *   <li>{@link ParticleTypes#BLOCK_CRACK}</li>
+     *   <li>{@link ParticleTypes#BLOCK_DUST}</li>
+     *   <li>{@link ParticleTypes#BREAK_BLOCK}</li>
+     *   <li>{@link ParticleTypes#ITEM_CRACK}</li>
+     * <ul/>
      */
     public static final ParticleOption<BlockState> BLOCK_STATE = dummy("BLOCK_STATE");
 
     /**
      * This option will modify the color of a particle, the only
-     * vanilla {@link ParticleType}s that this option will affect are
-     * {@link ParticleTypes#MOB_SPELL}, {@link ParticleTypes#AMBIENT_MOB_SPELL}
-     * and {@link ParticleTypes#REDSTONE_DUST}.
+     * vanilla {@link ParticleType}s this option is applicable to are:
+     * <ul>
+     *   <li>{@link ParticleTypes#AMBIENT_MOB_SPELL}</li>
+     *   <li>{@link ParticleTypes#MOB_SPELL}</li>
+     *   <li>{@link ParticleTypes#REDSTONE_DUST}</li>
+     * <ul/>
      */
     public static final ParticleOption<Color> COLOR = dummy("COLOR");
 
     /**
-     * This option will affect the amount of particles that are spawned. The
-     * minimum amount of particles is 1.
+     * This option will change the potion type of a particle, the only
+     * vanilla {@link ParticleType}s this option is applicable to is
+     * {@link ParticleTypes#FIRE_SMOKE}.
      */
-    public static final ParticleOption<Integer> QUANTITY = dummy("QUANTITY");
+    public static final ParticleOption<Direction> DIRECTION = dummy("DIRECTION");
+
+    /**
+     * This option will modify the color of a particle, the only
+     * vanilla {@link ParticleType}s this option is applicable to is
+     * {@link ParticleTypes#FIREWORKS}.
+     */
+    public static final ParticleOption<List<FireworkEffect>> FIREWORK_EFFECTS = dummy("FIREWORK_EFFECT");
 
     /**
      * This option will affect the appearance of a particle, the only
-     * vanilla {@link ParticleType} that this option will affect is
-     * {@link ParticleTypes#ITEM_CRACK}.
+     * vanilla {@link ParticleType} this option is applicable to are:
+     * <ul>
+     *   <li>{@link ParticleTypes#BLOCK_CRACK}</li>
+     *   <li>{@link ParticleTypes#BLOCK_DUST}</li>
+     *   <li>{@link ParticleTypes#BREAK_BLOCK}</li>
+     *   <li>{@link ParticleTypes#ITEM_CRACK}</li>
+     * <ul/>
      */
     public static final ParticleOption<ItemStackSnapshot> ITEM_STACK_SNAPSHOT = dummy("ITEM_STACK_SNAPSHOT");
 
+    /**
+     * This option will affect the appearance of a particle, the only
+     * vanilla {@link ParticleType} this option is applicable to is
+     * {@link ParticleTypes#NOTE}.
+     */
     public static final ParticleOption<NotePitch> NOTE = dummy("NOTE");
 
     /**
@@ -77,16 +106,18 @@ public final class ParticleOptions {
 
     /**
      * This option will change the potion type of a particle, the only
-     * vanilla {@link ParticleType}s that this option will affect is
+     * vanilla {@link ParticleType}s this option is applicable to is
      * {@link ParticleTypes#SPLASH_POTION}.
      */
     public static final ParticleOption<PotionEffectType> POTION_EFFECT_TYPE = dummy("POTION_EFFECT_TYPE");
 
     /**
      * This option will change the scale of a particle, the only
-     * vanilla {@link ParticleType}s that this option will affect are
-     * {@link ParticleTypes#LARGE_EXPLOSION} and
-     * {@link ParticleTypes#SWEEP_ATTACK}.
+     * vanilla {@link ParticleType}s this option is applicable to are:
+     * <ul>
+     *   <li>{@link ParticleTypes#LARGE_EXPLOSION}</li>
+     *   <li>{@link ParticleTypes#SWEEP_ATTACK}</li>
+     * <ul/>
      */
     public static final ParticleOption<Double> SCALE = dummy("SCALE");
 
@@ -108,6 +139,18 @@ public final class ParticleOptions {
      * This option will affect how all the particles are moving.
      */
     public static final ParticleOption<Vector3d> VELOCITY = dummy("VELOCITY");
+
+    /**
+     * This option will affect the amount of particles that are spawned. The
+     * minimum amount of particles is 1. the only vanilla {@link ParticleType}s
+     * this option isn't applicable to are:
+     * <ul>
+     *   <li>{@link ParticleTypes#MOBSPAWNER_FLAMES}</li>
+     *   <li>{@link ParticleTypes#SPLASH_POTION}</li>
+     *   <li>{@link ParticleTypes#BREAK_BLOCK}</li>
+     * <ul/>
+     */
+    public static final ParticleOption<Integer> QUANTITY = dummy("QUANTITY");
 
     // SORTFIELDS:OFF
 

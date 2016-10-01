@@ -139,14 +139,14 @@ public interface ParticleEffect extends DataSerializable {
         /**
          * Sets the amount of particles of the particle effect.
          *
-         * <p>The default count is 1.</p>
+         * <p>The default quantity is 1.</p>
          *
-         * @param count The count particles
+         * @param quantity The quantity particles
          * @return This builder, for chaining
-         * @throws IllegalArgumentException If the count is less than one
+         * @throws IllegalArgumentException If the quantity is less than one
          */
-        default Builder count(int count) throws IllegalArgumentException {
-            return option(ParticleOptions.QUANTITY, count);
+        default Builder quantity(int quantity) throws IllegalArgumentException {
+            return option(ParticleOptions.QUANTITY, quantity);
         }
 
         /**
