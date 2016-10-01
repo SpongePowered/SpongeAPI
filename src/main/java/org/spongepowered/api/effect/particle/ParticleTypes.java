@@ -79,7 +79,7 @@ public final class ParticleTypes {
     public static final ParticleType FALLING_DUST = DummyObjectProvider.createFor(ParticleType.class, "FALLING_DUST");
 
     /**
-     * This particle type will play the effect that will occurs when
+     * This particle type will play the effect that will occur when
      * a {@link Player} uses bone meal on a plant to boost the growth.
      * <p>
      * This type has limited {@link ParticleOption}s, only
