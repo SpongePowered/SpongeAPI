@@ -12,15 +12,17 @@ defaultTasks 'licenseFormat', 'build'
 group = 'org.spongepowered'
 archivesBaseName = project.name.toLowerCase()
 
-// Java version
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+afterEvaluate {
+    // Java version
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
 
 repositories {
     mavenCentral()
     maven {
         name = 'sponge'
-        url = 'http://repo.spongepowered.org/maven'
+        url = 'https://repo.spongepowered.org/maven'
     }
 }
 
@@ -126,7 +128,7 @@ processResources {
 // Checkstyle settings
 checkstyle {
     // TODO: Verify if custom modifications for checkstyle are still necessary (import order, @return on annotations)
-    toolVersion = '6.19'
+    toolVersion = '7.1.2'
     configFile = api.file('checkstyle.xml')
     configProperties = [
             'basedir': project.projectDir,
@@ -149,5 +151,5 @@ apply from: api.file('gradle/deploy.gradle')
 
 // Gradle version used for generating the Gradle wrapper
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.1'
+    gradleVersion = api.gradleVersion
 }

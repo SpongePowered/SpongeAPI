@@ -7,23 +7,17 @@ buildscript {
         }
         maven {
             name = 'sponge'
-            url = 'http://repo.spongepowered.org/maven'
-        }
-        maven {
-            name = 'eclipse-staging'
-            url = 'https://repo.eclipse.org/content/repositories/eclipse-staging'
+            url = 'https://repo.spongepowered.org/maven'
         }
     }
 
     dependencies {
-        classpath 'gradle.plugin.net.minecrell:licenser:0.2.1'
+        classpath 'gradle.plugin.net.minecrell:licenser:0.3'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
         classpath 'org.spongepowered:event-impl-gen:2.1.0-SNAPSHOT'
         classpath 'gradle.plugin.org.spongepowered:spongegradle:0.7'
     }
 }
-
-version = '5.0.0-SNAPSHOT'
 
 // Include shared Gradle configuration
 ext.api = project
