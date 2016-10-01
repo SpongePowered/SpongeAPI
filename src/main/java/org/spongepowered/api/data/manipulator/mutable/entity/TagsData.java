@@ -28,8 +28,17 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableTagsData;
 import org.spongepowered.api.data.value.mutable.SetValue;
 
+/**
+ * A {@link DataManipulator} representing the scoreboard tags applied to an
+ * entity.
+ */
 public interface TagsData extends DataManipulator<TagsData, ImmutableTagsData> {
 
+    /**
+     * Gets the {@link SetValue} of the scoreboard tags applied to this entity.
+     * 
+     * @return The set value of scoreboard tags
+     */
     SetValue<String> tags();
 
 }
