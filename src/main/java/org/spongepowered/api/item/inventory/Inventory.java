@@ -25,7 +25,6 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.Nameable;
-import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.text.translation.Translation;
@@ -251,18 +250,18 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     int capacity();
 
     /**
-     * Returns true if this Inventory contains no children. This does not imply
+     * Returns true if this Inventory contains children. If false, this does not imply
      * that the Inventory accepts no items, and an Inventory is perfectly at
      * liberty to provide {@link #peek}, {@link #poll}, {@link #offer} and
      * {@link #set} semantics even if it has no internal storage of its own.
      *
      * @return true if and only if this inventory contains no child inventories
      */
-    boolean isEmpty();
+    boolean hasChildren();
 
     /**
      * Checks for whether the given stack is contained in this Inventory. This
-     * is equivalent to calling <code>!inv.query(stack).isEmpty();</code>
+     * is equivalent to calling <code>!inv.query(stack).hasChildren();</code>
      *
      * @param stack The stack to check for
      * @return True if the stack is present in this list
@@ -272,7 +271,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     /**
      * Checks for whether there is a stack in this Inventory with the given
      * ItemType. This is equivalent to calling <code>!inv.query(stack)
-     * .isEmpty();</code>
+     * .hasChildren();</code>
      *
      * @param type The type to search for
      * @return True if at least one stack in this list has the given type
