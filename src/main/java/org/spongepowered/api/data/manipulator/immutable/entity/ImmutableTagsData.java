@@ -31,6 +31,7 @@ import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
 /**
  * An {@link ImmutableDataManipulator} representing the scoreboard tags applied
  * to an entity.
+ * @see <a href="https://www.reddit.com/r/MinecraftCommands/comments/3g0qnv/learning_about_tags_in_15w32b/">Learning about 'Tags' in 15w32b</a>
  */
 public interface ImmutableTagsData extends ImmutableDataManipulator<ImmutableTagsData, TagsData> {
 
