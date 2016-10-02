@@ -84,7 +84,7 @@ public final class ParticleOptions {
      * </p>
      */
     public static final ParticleOption<List<FireworkEffect>> FIREWORK_EFFECTS =
-            DummyObjectProvider.createFor(ParticleOption.class, "FIREWORK_EFFECT");
+            DummyObjectProvider.createFor(ParticleOption.class, "FIREWORK_EFFECTS");
 
     /**
      * This option will affect the appearance of a particle, the only
