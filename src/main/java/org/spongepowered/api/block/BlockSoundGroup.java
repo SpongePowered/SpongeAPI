@@ -39,14 +39,14 @@ public interface BlockSoundGroup {
      *
      * @return The pitch
      */
-    float getVolume();
+    double getVolume();
 
     /**
      * Gets the volume used when playing sounds.
      *
      * @return The volume
      */
-    float getPitch();
+    double getPitch();
 
     /**
      * Gets the sound played when the block is breaking.
