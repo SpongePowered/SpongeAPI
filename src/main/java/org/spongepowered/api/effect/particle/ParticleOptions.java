@@ -78,10 +78,8 @@ public final class ParticleOptions {
      * This option will modify the color of a particle, the only
      * vanilla {@link ParticleType}s this option is applicable to is
      * {@link ParticleTypes#FIREWORKS}.
-     * <p>
-     * The {@link List} may never be empty. Or a {@link IllegalArgumentException}
-     * will be thrown when applying.
-     * </p>
+     * <p>The {@link List} may never be empty. Or a {@link IllegalArgumentException}
+     * will be thrown when applying.</p>
      */
     public static final ParticleOption<List<FireworkEffect>> FIREWORK_EFFECTS =
             DummyObjectProvider.createFor(ParticleOption.class, "FIREWORK_EFFECTS");
@@ -126,10 +124,8 @@ public final class ParticleOptions {
      *   <li>{@link ParticleTypes#LARGE_EXPLOSION}</li>
      *   <li>{@link ParticleTypes#SWEEP_ATTACK}</li>
      * <ul/>
-     * <p>
-     * The scale may never be negative. Or a {@link IllegalArgumentException}
-     * will be thrown when applying.
-     * </p>
+     * <p>The scale may never be negative. Or a {@link IllegalArgumentException}
+     * will be thrown when applying.</p>
      */
     public static final ParticleOption<Double> SCALE = DummyObjectProvider.createFor(ParticleOption.class, "SCALE");
 
@@ -165,10 +161,8 @@ public final class ParticleOptions {
      *   <li>{@link ParticleTypes#MOBSPAWNER_FLAMES}</li>
      *   <li>{@link ParticleTypes#SPLASH_POTION}</li>
      * <ul/>
-     * <p>
-     * The quantity must be at least 1. Or a {@link IllegalArgumentException}
-     * will be thrown when applying.
-     * </p>
+     * <p>The quantity must be at least 1. Or a {@link IllegalArgumentException}
+     * will be thrown when applying.</p>
      */
     public static final ParticleOption<Integer> QUANTITY = DummyObjectProvider.createFor(ParticleOption.class, "QUANTITY");
 

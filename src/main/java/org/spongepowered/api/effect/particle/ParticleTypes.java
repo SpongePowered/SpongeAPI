@@ -47,11 +47,9 @@ public final class ParticleTypes {
     /**
      * This particle type will play the effect of a block that
      * is being broken and it's break sound.
-     * <p>
-     * This type has limited {@link ParticleOption}s, only
+     * <p>This type has limited {@link ParticleOption}s, only
      * {@link ParticleOptions#BLOCK_STATE} and
-     * {@link ParticleOptions#ITEM_STACK_SNAPSHOT} are supported.
-     * </p>
+     * {@link ParticleOptions#ITEM_STACK_SNAPSHOT} are supported.</p>
      */
     public static final ParticleType BREAK_BLOCK = DummyObjectProvider.createFor(ParticleType.class, "BREAK_BLOCK");
 
@@ -82,28 +80,22 @@ public final class ParticleTypes {
     /**
      * This particle type will play the effect that will occur when
      * a {@link Player} uses bone meal on a plant to boost the growth.
-     * <p>
-     * This type has limited {@link ParticleOption}s, only
-     * {@link ParticleOptions#QUANTITY} is supported.
-     * </p>
+     * <p>This type has limited {@link ParticleOption}s, only
+     * {@link ParticleOptions#QUANTITY} is supported.</p>
      */
     public static final ParticleType FERTILIZER = DummyObjectProvider.createFor(ParticleType.class, "FERTILIZER");
 
     /**
      * This particle type will play the smoke particles of a fire.
-     * <p>
-     * This type has limited {@link ParticleOption}s, only
-     * {@link ParticleOptions#DIRECTION} is supported.
-     * </p>
+     * <p>This type has limited {@link ParticleOption}s, only
+     * {@link ParticleOptions#DIRECTION} is supported.</p>
      */
     public static final ParticleType FIRE_SMOKE = DummyObjectProvider.createFor(ParticleType.class, "FIRE_SMOKE");
 
     /**
      * This particle type will play a fireworks effect.
-     * <p>
-     * This type has limited {@link ParticleOption}s, only
-     * {@link ParticleOptions#FIREWORK_EFFECTS} is supported.
-     * </p>
+     * <p>This type has limited {@link ParticleOption}s, only
+     * {@link ParticleOptions#FIREWORK_EFFECTS} is supported.</p>
      */
     public static final ParticleType FIREWORKS = DummyObjectProvider.createFor(ParticleType.class, "FIREWORKS");
 
