@@ -39,6 +39,7 @@ import java.util.List;
 /**
  * An enumeration of all possible {@link ParticleOption}s in vanilla minecraft.
  */
+@SuppressWarnings("unchecked")
 public final class ParticleOptions {
 
     // SORTFIELDS:ON
@@ -53,7 +54,7 @@ public final class ParticleOptions {
      *   <li>{@link ParticleTypes#ITEM_CRACK}</li>
      * <ul/>
      */
-    public static final ParticleOption<BlockState> BLOCK_STATE = dummy("BLOCK_STATE");
+    public static final ParticleOption<BlockState> BLOCK_STATE = DummyObjectProvider.createFor(ParticleOption.class, "BLOCK_STATE");
 
     /**
      * This option will modify the color of a particle, the only
@@ -64,21 +65,22 @@ public final class ParticleOptions {
      *   <li>{@link ParticleTypes#REDSTONE_DUST}</li>
      * <ul/>
      */
-    public static final ParticleOption<Color> COLOR = dummy("COLOR");
+    public static final ParticleOption<Color> COLOR = DummyObjectProvider.createFor(ParticleOption.class, "COLOR");
 
     /**
      * This option will change the potion type of a particle, the only
      * vanilla {@link ParticleType}s this option is applicable to is
      * {@link ParticleTypes#FIRE_SMOKE}.
      */
-    public static final ParticleOption<Direction> DIRECTION = dummy("DIRECTION");
+    public static final ParticleOption<Direction> DIRECTION = DummyObjectProvider.createFor(ParticleOption.class, "DIRECTION");
 
     /**
      * This option will modify the color of a particle, the only
      * vanilla {@link ParticleType}s this option is applicable to is
      * {@link ParticleTypes#FIREWORKS}.
      */
-    public static final ParticleOption<List<FireworkEffect>> FIREWORK_EFFECTS = dummy("FIREWORK_EFFECT");
+    public static final ParticleOption<List<FireworkEffect>> FIREWORK_EFFECTS =
+            DummyObjectProvider.createFor(ParticleOption.class, "FIREWORK_EFFECT");
 
     /**
      * This option will affect the appearance of a particle, the only
@@ -90,26 +92,28 @@ public final class ParticleOptions {
      *   <li>{@link ParticleTypes#ITEM_CRACK}</li>
      * <ul/>
      */
-    public static final ParticleOption<ItemStackSnapshot> ITEM_STACK_SNAPSHOT = dummy("ITEM_STACK_SNAPSHOT");
+    public static final ParticleOption<ItemStackSnapshot> ITEM_STACK_SNAPSHOT =
+            DummyObjectProvider.createFor(ParticleOption.class, "ITEM_STACK_SNAPSHOT");
 
     /**
      * This option will affect the appearance of a particle, the only
      * vanilla {@link ParticleType} this option is applicable to is
      * {@link ParticleTypes#NOTE}.
      */
-    public static final ParticleOption<NotePitch> NOTE = dummy("NOTE");
+    public static final ParticleOption<NotePitch> NOTE = DummyObjectProvider.createFor(ParticleOption.class, "NOTE");
 
     /**
      * This option will affect how all the particles are spread.
      */
-    public static final ParticleOption<Vector3d> OFFSET = dummy("OFFSET");
+    public static final ParticleOption<Vector3d> OFFSET = DummyObjectProvider.createFor(ParticleOption.class, "OFFSET");
 
     /**
      * This option will change the potion type of a particle, the only
      * vanilla {@link ParticleType}s this option is applicable to is
      * {@link ParticleTypes#SPLASH_POTION}.
      */
-    public static final ParticleOption<PotionEffectType> POTION_EFFECT_TYPE = dummy("POTION_EFFECT_TYPE");
+    public static final ParticleOption<PotionEffectType> POTION_EFFECT_TYPE =
+            DummyObjectProvider.createFor(ParticleOption.class, "POTION_EFFECT_TYPE");
 
     /**
      * This option will change the scale of a particle, the only
@@ -119,7 +123,7 @@ public final class ParticleOptions {
      *   <li>{@link ParticleTypes#SWEEP_ATTACK}</li>
      * <ul/>
      */
-    public static final ParticleOption<Double> SCALE = dummy("SCALE");
+    public static final ParticleOption<Double> SCALE = DummyObjectProvider.createFor(ParticleOption.class, "SCALE");
 
     /**
      * This option will affect whether a particle type will have a lower
@@ -133,12 +137,13 @@ public final class ParticleOptions {
      * These particle types don't have a configurable velocity
      * (through {@link #VELOCITY}) in the horizontal plane.
      */
-    public static final ParticleOption<Boolean> SLOW_HORIZONTAL_VELOCITY = dummy("SLOW_HORIZONTAL_VELOCITY");
+    public static final ParticleOption<Boolean> SLOW_HORIZONTAL_VELOCITY =
+            DummyObjectProvider.createFor(ParticleOption.class, "SLOW_HORIZONTAL_VELOCITY");
 
     /**
      * This option will affect how all the particles are moving.
      */
-    public static final ParticleOption<Vector3d> VELOCITY = dummy("VELOCITY");
+    public static final ParticleOption<Vector3d> VELOCITY = DummyObjectProvider.createFor(ParticleOption.class, "VELOCITY");
 
     /**
      * This option will affect the amount of particles that are spawned. The
@@ -150,14 +155,9 @@ public final class ParticleOptions {
      *   <li>{@link ParticleTypes#BREAK_BLOCK}</li>
      * <ul/>
      */
-    public static final ParticleOption<Integer> QUANTITY = dummy("QUANTITY");
+    public static final ParticleOption<Integer> QUANTITY = DummyObjectProvider.createFor(ParticleOption.class, "QUANTITY");
 
     // SORTFIELDS:OFF
-
-    @SuppressWarnings("unchecked")
-    private static <V> ParticleOption<V> dummy(String name) {
-        return DummyObjectProvider.createFor(ParticleOption.class, name);
-    }
 
     private ParticleOptions() {
     }

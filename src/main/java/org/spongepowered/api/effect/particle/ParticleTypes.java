@@ -95,6 +95,12 @@ public final class ParticleTypes {
      */
     public static final ParticleType FIRE_SMOKE = DummyObjectProvider.createFor(ParticleType.class, "FIRE_SMOKE");
 
+    /**
+     * This particle type will play a fireworks effect.
+     * <p>
+     * This type has limited {@link ParticleOption}s, only
+     * {@link ParticleOptions#FIREWORK_EFFECTS} is supported.
+     */
     public static final ParticleType FIREWORKS = DummyObjectProvider.createFor(ParticleType.class, "FIREWORKS");
 
     public static final ParticleType FIREWORKS_SPARK = DummyObjectProvider.createFor(ParticleType.class, "FIREWORKS_SPARK");
