@@ -111,5 +111,5 @@ public interface BlockType extends CatalogType, Translatable, PropertyHolder {
      *
      * @return The block sounds
      */
-    BlockSounds getSounds();
+    BlockSoundGroup getSounds();
 }

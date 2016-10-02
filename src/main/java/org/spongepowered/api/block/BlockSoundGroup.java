@@ -32,7 +32,7 @@ import com.google.common.base.Optional;
 /**
  * Represents sounds for a block.
  */
-public interface BlockSounds {
+public interface BlockSoundGroup {
 
     /**
      * Gets the pitch used when playing sounds.
