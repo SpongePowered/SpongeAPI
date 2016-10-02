@@ -22,25 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.data.manipulator.mutable.entity;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.ZombieData;
-import org.spongepowered.api.entity.ArmorEquipable;
-import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableZombieData;
+import org.spongepowered.api.data.type.Profession;
+import org.spongepowered.api.data.type.ZombieType;
+import org.spongepowered.api.data.type.ZombieTypes;
+import org.spongepowered.api.data.value.mutable.OptionalValue;
+import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.living.monster.Zombie;
+
+import java.util.Optional;
 
 /**
- * Represents a Zombie.
+ * Represents an {@link DataManipulator} handling the type and
+ * profession of a {@link Zombie}.
  */
-public interface Zombie extends Monster, ArmorEquipable, Ageable {
+public interface ZombieData extends DataManipulator<ZombieData, ImmutableZombieData> {
 
     /**
-     * Gets the {@link ZombieData} representing the type of the zombie, as well as its
-     * profession (if it has one).
-     *
-     * @return The zombie data
+     * Returns a value specifying Zombie's type
+     * @return Zombie's type
      */
-    default ZombieData getZombieData() {
-        return get(ZombieData.class).get();
-    }
+    Value<ZombieType> type();
+
+    /**
+     * Value representing a zombie's zombie's {@link Profession}.
+     * .
+     * @return Profession of the zombie, or {@link Optional#empty()} if it has none
+     */
+    OptionalValue<Profession> profession();
 
 }

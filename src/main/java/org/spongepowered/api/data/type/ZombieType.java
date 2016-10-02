@@ -22,19 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.entity;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableVillagerZombieData;
-import org.spongepowered.api.data.manipulator.mutable.VariantData;
-import org.spongepowered.api.data.type.Profession;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.entity.living.monster.Zombie;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Signifies that a {@link Zombie} is a "villager" zombie, with a specific profession. Usually applicable
- * to all {@link Zombie}s.
+ * <p>
+ *     Represents the type of a {@link Zombie}.
+ * </p>
+ * <p>
+ *     Note that zombies with {@link ZombieTypes#VILLAGER} must also have an
+ *     associated {@link Profession}.
+ * </p>
  */
-public interface VillagerZombieData extends VariantData<Profession, VillagerZombieData, ImmutableVillagerZombieData> {
+@CatalogedBy(ZombieTypes.class)
+public interface ZombieType extends CatalogType {
 
 }
