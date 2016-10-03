@@ -1,0 +1,15 @@
+// This task attempts to execute 'git rev-parse --short HEAD' on the SpongeAPI
+// submodule to resolve the current API revision short hash. If successful, it
+// will append it to the SpongeAPI version included in the implementation
+// jar files.
+task('resolveApiRevision') << {
+    def process = ['git', 'rev-parse', '--short', 'HEAD'].execute(null as String[], projectDir)
+
+    def result = process.waitFor()
+    if (result == 0) {
+        version += '-' + process.inputStream.readLines().first().trim()
+    } else {
+        logger.warn('Failed to resolve API revision (Process returned error code {})', result)
+        return
+    }
+}

@@ -27,12 +27,33 @@ package org.spongepowered.api;
 import org.spongepowered.api.plugin.PluginContainer;
 
 import java.util.Map;
+import java.util.Optional;
+
+import com.google.common.base.Objects;
 
 /**
  * Represents a possible platform or implementation a {@link Game} could be
  * running on.
  */
 public interface Platform {
+
+    /**
+     * The {@linkplain PluginContainer#getId() plugin ID} of the {@linkplain
+     * #getApi() SpongeAPI plugin container}.
+     */
+    String API_ID = "spongeapi";
+
+    /**
+     * The {@linkplain PluginContainer#getName() name} of the {@linkplain
+     * #getApi() SpongeAPI plugin container}.
+     */
+    String API_NAME = Objects.firstNonNull(Platform.class.getPackage().getSpecificationTitle(), "SpongeAPI");
+
+    /**
+     * The {@linkplain PluginContainer#getVersion() version} of the {@linkplain
+     * #getApi() SpongeAPI plugin container}.
+     */
+    Optional<String> API_VERSION = Optional.ofNullable(Platform.class.getPackage().getSpecificationVersion());
 
     /**
      * Retrieves the current {@link Type} this platform is running on.
