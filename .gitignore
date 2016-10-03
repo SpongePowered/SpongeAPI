@@ -58,6 +58,7 @@ Thumbs.db
 # Project #
 ###########
 .classpath
+.checkstyle
 .externalToolBuilders
 .gradle
 .nb-gradle
