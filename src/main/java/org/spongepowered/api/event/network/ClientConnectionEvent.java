@@ -143,6 +143,16 @@ public interface ClientConnectionEvent extends Event {
     }
 
     /**
+     * Fired after {@link Login}, but before {@link Join}.
+     *
+     * <p>This event should be used to set any data on the {@link Player}
+     * before it is spawned into the {@link World}.</p>
+     */
+    interface Prepare extends ClientConnectionEvent, TargetPlayerEvent {
+
+    }
+
+    /**
      * Called when a {@link Player} joins the game {@link World} for the first
      * time after initial connection.
      *
