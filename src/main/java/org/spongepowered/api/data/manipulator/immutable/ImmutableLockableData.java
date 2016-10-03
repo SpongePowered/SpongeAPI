@@ -22,28 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.tileentity;
-
+package org.spongepowered.api.data.manipulator.immutable;
 
 import org.spongepowered.api.block.tileentity.carrier.TileEntityCarrier;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableLockableData;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.LockableData;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.entity.vehicle.minecart.MinecartContainer;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * An {@link DataManipulator} handling the "locking" information for a
- * {@link TileEntityCarrier} that can be "locked" such that it can only be
+ * An {@link ImmutableDataManipulator} handling the "locking" information for a
+ * {@link DataHolder} that can be "locked" such that it can only be
  * interacted with if the "lock" has a matching {@link ItemStack} of the same
- * name.
+ * name. Examples of targets are {@link TileEntityCarrier}s and
+ * {@link MinecartContainer}s.
  */
-public interface LockableData extends DataManipulator<LockableData, ImmutableLockableData> {
+public interface ImmutableLockableData extends ImmutableDataManipulator<ImmutableLockableData, LockableData> {
 
     /**
-     * Gets the {@link Value} for the "lock" token.
+     * Gets the {@link ImmutableValue} for the "lock" token.
      *
      * @return The immutable value for the lock token
      */
-    Value<String> lockToken();
+    ImmutableValue<String> lockToken();
 
 }
