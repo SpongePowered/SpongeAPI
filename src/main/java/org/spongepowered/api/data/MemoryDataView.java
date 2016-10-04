@@ -342,7 +342,7 @@ public class MemoryDataView implements DataView {
                     final Optional<? extends DataTranslator<?>> translatorOptional = manager.getTranslator(object.getClass());
                     if (translatorOptional.isPresent()) {
                         DataTranslator translator = translatorOptional.get();
-                        final DataContainer container = translator.translate(value);
+                        final DataContainer container = translator.translate(object);
                         checkArgument(!container.equals(this), "Cannot insert self-referencing Objects!");
                         builder.add(container);
                     } else {
