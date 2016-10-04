@@ -117,6 +117,8 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     /**
      * Get the loaded chunk at the given chunk coordinate position.
      *
+     * <p>In Vanilla, the y coordinate will always be 0.</p>
+     *
      * @param cx The x coordinate
      * @param cy The y coordinate
      * @param cz The z coordinate
@@ -139,6 +141,8 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     /**
      * Get the chunk at the given chunk coordinate position if it exists or if
      * {@code shouldGenerate} is true and the chunk is generated.
+     *
+     * <p>In Vanilla, the y coordinate will always be 0.</p>
      *
      * @param cx The x coordinate
      * @param cy The y coordinate
