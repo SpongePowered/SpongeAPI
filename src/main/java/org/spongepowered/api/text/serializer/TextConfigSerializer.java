@@ -27,6 +27,7 @@ package org.spongepowered.api.text.serializer;
 import com.google.common.reflect.TypeToken;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.gson.GsonConfigurationLoader;
+import ninja.leaping.configurate.loader.HeaderMode;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import ninja.leaping.configurate.objectmapping.serialize.TypeSerializer;
 import org.spongepowered.api.Sponge;
@@ -63,16 +64,11 @@ public class TextConfigSerializer extends AbstractDataBuilder<Text> implements T
     public Text deserialize(TypeToken<?> type, ConfigurationNode value) throws ObjectMappingException {
         StringWriter writer = new StringWriter();
 
-        // TODO: Disable writing config headers in configurate 3.2
         GsonConfigurationLoader gsonLoader = GsonConfigurationLoader.builder()
                 .setIndent(0)
                 .setSink(() -> new BufferedWriter(writer))
+                .setHeaderMode(HeaderMode.NONE)
                 .build();
-
-        // Set the configuration node to a new empty value to remove headers in
-        // the configuration node
-        // TODO: Remove this with configurate 3.2
-        value = gsonLoader.createEmptyNode().setValue(value);
 
         try {
             gsonLoader.save(value);

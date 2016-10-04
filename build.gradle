@@ -54,9 +54,9 @@ dependencies {
     compile 'org.spongepowered:plugin-meta:0.2.1-SNAPSHOT'
 
     // Configuration
-    compile 'ninja.leaping.configurate:configurate-hocon:3.1.1'
-    compile 'ninja.leaping.configurate:configurate-gson:3.1.1'
-    compile 'ninja.leaping.configurate:configurate-yaml:3.1.1'
+    compile 'ninja.leaping.configurate:configurate-hocon:3.2'
+    compile 'ninja.leaping.configurate:configurate-gson:3.2'
+    compile 'ninja.leaping.configurate:configurate-yaml:3.2'
 
     compile 'com.flowpowered:flow-math:1.0.3'
     compile 'com.flowpowered:flow-noise:1.0.1-SNAPSHOT'
