@@ -37,7 +37,6 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.AABB;
-import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.BlockChangeFlag;
@@ -352,26 +351,6 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      *         outside the current extent
      */
     Extent getExtentView(Vector3i newMin, Vector3i newMax);
-
-    /**
-     * Returns a new extent that is viewed through some transformation. This
-     * does not copy the data, it only provides a new view of the extent.
-     *
-     * @param transform The transformation to be applied
-     * @return The new extent with the transform
-     */
-    Extent getExtentView(DiscreteTransform3 transform);
-
-    /**
-     * Returns a new extent that is translated so that
-     * {@link Extent#getBlockMin()} returns {@link Vector3i#ZERO}. This does not
-     * copy the data, it only provides a new view of the extent.
-     *
-     * @return The new extent its minimum at zero
-     */
-    default Extent getRelativeExtentView() {
-        return getExtentView(DiscreteTransform3.fromTranslation(getBlockMin().negate()));
-    }
 
     @Override
     MutableBiomeAreaWorker<? extends Extent> getBiomeWorker();
