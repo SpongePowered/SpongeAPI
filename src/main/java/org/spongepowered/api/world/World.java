@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world;
 
+import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Sponge;
@@ -81,6 +82,16 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     default Location<World> getLocation(double x, double y, double z) {
         return getLocation(new Vector3d(x, y, z));
     }
+
+    /**
+     * Get the {@link Location} of the lowest block that sunlight can reach in the given column.
+     *
+     * <p>This method ignores all transparent blocks, providing the highest opaque block.</p>
+     *
+     * @param position The column position
+     * @return The highest opaque block
+     */
+    Location<World> getHighestLocationAt(Vector2i position);
 
     /**
      * Get the loaded chunk at the given block coordinate position.
