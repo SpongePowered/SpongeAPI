@@ -79,7 +79,7 @@ public interface Schematic extends ArchetypeVolume {
          * 
          * <p>If purely creating a schematic it is recommended to instead use
          * the {@link #volume(Extent)} method and pass in an extent view (See
-         * {@link Extent#getExtentView}) of the area to prevent creating
+         * {@link Extent#getExtentView}) of the volume to prevent creating
          * multiple copies of the world data.</p>
          * 
          * @param volume The archetype volume

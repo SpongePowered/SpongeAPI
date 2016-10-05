@@ -24,28 +24,26 @@
  */
 package org.spongepowered.api.world.extent.worker.procedure;
 
-import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.extent.UnmodifiableBiomeArea;
+import org.spongepowered.api.world.extent.UnmodifiableBiomeVolume;
 
 /**
- * Produces a new biome from two original biomes given as their areas and their
- * coordinates.
+ * Reduces a biome given as its volume and coordinates into the ongoing
+ * reduction.
  */
 @FunctionalInterface
-public interface BiomeAreaMerger {
+public interface BiomeVolumeReducer<T> {
 
     /**
-     * Produces a new biome from two original biomes given as their areas and
-     * their coordinates.
+     * Reduces a biome given as its volume and coordinates into the ongoing
+     * reduction.
      *
-     * @param firstArea The area for the first biome
-     * @param xFirst The x coordinate for the first biome
-     * @param zFirst The z coordinate for the first biome
-     * @param secondArea The area for the second biome
-     * @param xSecond The x coordinate for the second biome
-     * @param zSecond The z coordinate for the second biome
-     * @return The produced biome
+     * @param volume The volume containing the biome
+     * @param x The x coordinate of the biome
+     * @param y The y coordinate of the biome
+     * @param z The z coordinate of the biome
+     * @param reduction The ongoing reduction
+     * @return The new reduction
      */
-    BiomeType merge(UnmodifiableBiomeArea firstArea, int xFirst, int zFirst, UnmodifiableBiomeArea secondArea, int xSecond, int zSecond);
+    T reduce(UnmodifiableBiomeVolume volume, int x, int y, int z, T reduction);
 
 }

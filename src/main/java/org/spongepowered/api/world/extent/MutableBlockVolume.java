@@ -74,7 +74,7 @@ public interface MutableBlockVolume extends BlockVolume {
      * @param type The new type
      * @param cause
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the area
+     *         bounds of the volume
      */
     default boolean setBlockType(Vector3i position, BlockType type, Cause cause) {
         return setBlockType(position.getX(), position.getY(), position.getZ(), type, cause);
@@ -91,7 +91,7 @@ public interface MutableBlockVolume extends BlockVolume {
      * @param type The new type
      * @param cause
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the area
+     *         bounds of the volume
      */
     default boolean setBlockType(int x, int y, int z, BlockType type, Cause cause) {
         return setBlock(x, y, z, type.getDefaultState(), cause);

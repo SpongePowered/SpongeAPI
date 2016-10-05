@@ -24,21 +24,31 @@
  */
 package org.spongepowered.api.world.extent.worker.procedure;
 
-import org.spongepowered.api.world.extent.BiomeArea;
+import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.extent.UnmodifiableBiomeVolume;
 
 /**
- * Visits a biome given as its area and coordinates.
+ * Produces a new biome from two original biomes given as their volumea and their
+ * coordinates.
  */
 @FunctionalInterface
-public interface BiomeAreaVisitor<A extends BiomeArea> {
+public interface BiomeVolumeMerger {
 
     /**
-     * Visits a biome given as its area and coordinates.
+     * Produces a new biome from two original biomes given as their volumes and
+     * their coordinates.
      *
-     * @param area The area containing the biome
-     * @param x The x coordinate of the biome
-     * @param z The z coordinate of the biome
+     * @param firstVolume The volume for the first biome
+     * @param xFirst The x coordinate for the first biome
+     * @param yFirst The y coordinate for the first biome
+     * @param zFirst The z coordinate for the first biome
+     * @param secondVolume The volume for the second biome
+     * @param xSecond The x coordinate for the second biome
+     * @param ySecond The y coordinate for the second biome
+     * @param zSecond The z coordinate for the second biome
+     * @return The produced biome
      */
-    void visit(A area, int x, int z);
+    BiomeType merge(UnmodifiableBiomeVolume firstVolume, int xFirst, int yFirst, int zFirst, UnmodifiableBiomeVolume secondVolume, int xSecond,
+            int ySecond, int zSecond);
 
 }

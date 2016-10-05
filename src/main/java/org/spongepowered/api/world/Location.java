@@ -28,7 +28,6 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
-import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Objects;
@@ -94,7 +93,7 @@ public final class Location<E extends Extent> implements DataHolder {
     @Nullable
     private Vector3i chunkPosition = null;
     @Nullable
-    private Vector2i biomePosition = null;
+    private Vector3i biomePosition = null;
 
     /**
      * Create a new instance.
@@ -202,9 +201,10 @@ public final class Location<E extends Extent> implements DataHolder {
      *
      * @return The underlying biome position
      */
-    public Vector2i getBiomePosition() {
+    public Vector3i getBiomePosition() {
         if (this.biomePosition == null) {
-            this.biomePosition = getBlockPosition().toVector2(true);
+            final Vector3i blockPosition = getBlockPosition();
+            this.biomePosition = new Vector3i(blockPosition.getX(), 0, blockPosition.getZ());
         }
         return this.biomePosition;
     }
@@ -432,7 +432,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * @param <T> The return type of the mapper
      * @return The results of the mapping
      */
-    public <T> T mapBiome(BiFunction<E, Vector2i, T> mapper) {
+    public <T> T mapBiome(BiFunction<E, Vector3i, T> mapper) {
         return mapper.apply(getExtent(), getBiomePosition());
     }
 

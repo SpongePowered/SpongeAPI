@@ -24,51 +24,51 @@
  */
 package org.spongepowered.api.world.extent.worker;
 
-import org.spongepowered.api.world.extent.BiomeArea;
-import org.spongepowered.api.world.extent.MutableBiomeArea;
-import org.spongepowered.api.world.extent.worker.procedure.BiomeAreaFiller;
-import org.spongepowered.api.world.extent.worker.procedure.BiomeAreaMapper;
-import org.spongepowered.api.world.extent.worker.procedure.BiomeAreaMerger;
+import org.spongepowered.api.world.extent.BiomeVolume;
+import org.spongepowered.api.world.extent.MutableBiomeVolume;
+import org.spongepowered.api.world.extent.worker.procedure.BiomeVolumeFiller;
+import org.spongepowered.api.world.extent.worker.procedure.BiomeVolumeMapper;
+import org.spongepowered.api.world.extent.worker.procedure.BiomeVolumeMerger;
 
 /**
- * Similar to {@link BiomeAreaWorker} but adds support for mutating the backing
- * area.
+ * Similar to {@link BiomeVolumeWorker} but adds support for mutating the backing
+ * volume.
  *
- * @param <A> The type of area being worked on
+ * @param <A> The type of volume being worked on
  */
-public interface MutableBiomeAreaWorker<A extends MutableBiomeArea> extends BiomeAreaWorker<A> {
+public interface MutableBiomeVolumeWorker<A extends MutableBiomeVolume> extends BiomeVolumeWorker<A> {
 
     /**
-     * Similar to {@link BiomeAreaWorker#map(BiomeAreaMapper,
-     * MutableBiomeArea)} but uses the operating area as the destination.
-     * Precautions must be taken as the area is modified while the operation is
+     * Similar to {@link BiomeVolumeWorker#map(BiomeVolumeMapper,
+     * MutableBiomeVolume)} but uses the operating volume as the destination.
+     * Precautions must be taken as the volume is modified while the operation is
      * being performed, and so the surrounding blocks might not be the original
      * ones.
      *
      * @param mapper The mapping operation
      */
-    default void map(BiomeAreaMapper mapper) {
-        map(mapper, getArea());
+    default void map(BiomeVolumeMapper mapper) {
+        map(mapper, getVolume());
     }
 
     /**
-     * Similar to {@link BiomeAreaWorker#merge(BiomeArea, BiomeAreaMerger,
-     * MutableBiomeArea)} but uses the operating area as the destination.
-     * Precautions must be taken as the area is modified while the operation is
+     * Similar to {@link BiomeVolumeWorker#merge(BiomeVolume, BiomeVolumeMerger,
+     * MutableBiomeVolume)} but uses the operating volume as the destination.
+     * Precautions must be taken as the volume is modified while the operation is
      * being performed, and so the surrounding blocks might not be the original
      * ones.
      *
      * @param merger The merging operation
      */
-    default void merge(BiomeArea right, BiomeAreaMerger merger) {
-        merge(right, merger, getArea());
+    default void merge(BiomeVolume right, BiomeVolumeMerger merger) {
+        merge(right, merger, getVolume());
     }
 
     /**
-     * Applies a filler operation to the area.
+     * Applies a filler operation to the volume.
      *
      * @param filler The filler operation
      */
-    void fill(BiomeAreaFiller filler);
+    void fill(BiomeVolumeFiller filler);
 
 }

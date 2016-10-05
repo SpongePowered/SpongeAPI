@@ -25,67 +25,66 @@
 package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector2i;
-import org.spongepowered.api.util.DiscreteTransform2;
+import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.extent.worker.BiomeAreaWorker;
+import org.spongepowered.api.world.extent.worker.BiomeVolumeWorker;
 
 /**
- * An area containing biomes that can be at least accessed.
+ * A volume containing biomes that can be at least accessed.
  *
- * <p>Some methods accept a pair of two ints, representing the x and z location
- * of a biome. Some other methods accept or return a {@link Vector2i}. The y
- * position of this vector is equal to the z position of a biome in the
- * world.</p>
+ * <p>In vanilla, the y coordinate is always zero.</p>
  */
-public interface BiomeArea {
+public interface BiomeVolume {
 
     /**
      * Gets the biome location with the lowest x and y that is still a valid
-     * position for {@link #getBiome(Vector2i)}.
+     * position for {@link #getBiome(Vector3i)}.
      *
      * @return The lowest biome location
      */
-    Vector2i getBiomeMin();
+    Vector3i getBiomeMin();
 
     /**
      * Gets the biome location with the highest x and y that is still a valid
-     * position for {@link #getBiome(Vector2i)}.
+     * position for {@link #getBiome(Vector3i)}.
      *
      * @return The highest biome location.
      */
-    Vector2i getBiomeMax();
+    Vector3i getBiomeMax();
 
     /**
-     * Gets the size of the area. Defined as <code>{@link #getBiomeMax()} -
+     * Gets the size of the volume. Defined as <code>{@link #getBiomeMax()} -
      * {@link #getBiomeMin()} + (1, 1)</code>.
      *
      * @return The size
      */
-    Vector2i getBiomeSize();
+    Vector3i getBiomeSize();
 
     /**
-     * Returns true if the biome area contains a biome at the specified
-     * position. This is defined as <code>{{@link #getBiomeMin()} <= position <=
-     * {@link #getBiomeMax()}</code>
+     * Returns true if the biome volume contains a biome at the specified
+     * position. This is defined as <code>{{@link #getBiomeMin()} <= position
+     * <= {@link #getBiomeMax()}</code>
      *
      * @param position The position to check
-     * @return Whether or not the position has a biome in this area
+     * @return Whether or not the position has a biome in this volume
      */
-    default boolean containsBiome(Vector2i position) {
-        return containsBiome(position.getX(), position.getY());
+    default boolean containsBiome(Vector3i position) {
+        return containsBiome(position.getX(), position.getY(), position.getZ());
     }
 
     /**
-     * Returns true if the biome area contains a biome at the specified
-     * position. This is defined as <code>{{@link #getBiomeMin()} <= (x, z) <=
-     * {@link #getBiomeMax()}</code>
+     * Returns true if the biome volume contains a biome at the specified
+     * position. This is defined as <code>{{@link #getBiomeMin()} <= (x, y, z)
+     * <= {@link #getBiomeMax()}</code>
      *
      * @param x The X coordinate to check
+     * @param y The Y coordinate to check
      * @param z The Z coordinate to check
-     * @return Whether or not the position has a biome in this area
+     * @return Whether or not the position has a biome in this volume
      */
-    boolean containsBiome(int x, int z);
+    boolean containsBiome(int x, int y, int z);
 
     /**
      * Get an object representing the biome at the given position.
@@ -93,97 +92,98 @@ public interface BiomeArea {
      * @param position The position
      * @return The biome
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the area
+     *         bounds of the volume
      */
-    default BiomeType getBiome(Vector2i position) {
-        return getBiome(position.getX(), position.getY());
+    default BiomeType getBiome(Vector3i position) {
+        return getBiome(position.getX(), position.getY(), position.getZ());
     }
 
     /**
      * Gets the {@link BiomeType} at the given location.
      *
      * @param x The X position
+     * @param y The Y position
      * @param z The Z position
      * @return The biome
      * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the area
+     *         bounds of the volume
      */
-    BiomeType getBiome(int x, int z);
+    BiomeType getBiome(int x, int y, int z);
 
     /**
-     * Returns a new area that is the same or smaller than the current area.
+     * Returns a new volume that is the same or smaller than the current volume.
      * This does not copy the biomes, it only provides a new view of the
      * storage.
      *
-     * @param newMin The new minimum coordinates in this area
-     * @param newMax The new maximum coordinates in this area
-     * @return The new area with the new bounds
+     * @param newMin The new minimum coordinates in this volume
+     * @param newMax The new maximum coordinates in this volume
+     * @return The new volume with the new bounds
      * @throws PositionOutOfBoundsException If the new minimum and maximum are
-     *         outside the current area
+     *         outside the current volume
      */
-    BiomeArea getBiomeView(Vector2i newMin, Vector2i newMax);
+    BiomeVolume getBiomeView(Vector3i newMin, Vector3i newMax);
 
     /**
-     * Returns a new area that is viewed through some transformation. This does
+     * Returns a new volume that is viewed through some transformation. This does
      * not copy the biomes, it only provides a new view of the storage.
      *
      * @param transform The transformation to be applied
-     * @return The new area with the transform
+     * @return The new volume with the transform
      */
-    BiomeArea getBiomeView(DiscreteTransform2 transform);
+    BiomeVolume getBiomeView(DiscreteTransform3 transform);
 
     /**
-     * Returns a new area that is translated so that
-     * {@link BiomeArea#getBiomeMin()} returns {@link Vector2i#ZERO}. This does
+     * Returns a new volume that is translated so that
+     * {@link BiomeVolume#getBiomeMin()} returns {@link Vector2i#ZERO}. This does
      * not copy the biomes, it only provides a new view of the storage.
      *
-     * @return The new area with its minimum at zero
+     * @return The new volume with its minimum at zero
      */
-    default BiomeArea getRelativeBiomeView() {
-        return getBiomeView(DiscreteTransform2.fromTranslation(getBiomeMin().negate()));
+    default BiomeVolume getRelativeBiomeView() {
+        return getBiomeView(DiscreteTransform3.fromTranslation(getBiomeMin().negate()));
     }
 
     /**
-     * Returns a new area that cannot be modified through this view. Unlike
+     * Returns a new volume that cannot be modified through this view. Unlike
      * immutable storage, it can be changed by holders of mutable views. This
      * does not copy the biomes, it only provides a new view of the storage.
      *
-     * @return The new area, which cannot be modified
+     * @return The new volume, which cannot be modified
      */
-    UnmodifiableBiomeArea getUnmodifiableBiomeView();
+    UnmodifiableBiomeVolume getUnmodifiableBiomeView();
 
     /**
-     * Returns a mutable copy of the biomes stored in this area. This uses the
+     * Returns a mutable copy of the biomes stored in this volume. This uses the
      * default storage type of {@link StorageType#STANDARD}.
      *
      * @return A copy of the biomes
      */
-    default MutableBiomeArea getBiomeCopy() {
+    default MutableBiomeVolume getBiomeCopy() {
         return getBiomeCopy(StorageType.STANDARD);
     }
 
     /**
-     * Returns a mutable copy of the biomes stored in this area. This uses the
+     * Returns a mutable copy of the biomes stored in this volume. This uses the
      * provided storage type.
      *
      * @param type The type of storage used by the new biomes
      * @return A copy of the biomes
      */
-    MutableBiomeArea getBiomeCopy(StorageType type);
+    MutableBiomeVolume getBiomeCopy(StorageType type);
 
     /**
-     * Returns an immutable copy of the biomes stored in this area. This uses
+     * Returns an immutable copy of the biomes stored in this volume. This uses
      * some internal storage solution that is thread-safe by nature.
      *
      * @return An immutable copy of the biomes
      */
-    ImmutableBiomeArea getImmutableBiomeCopy();
+    ImmutableBiomeVolume getImmutableBiomeCopy();
 
     /**
-     * Gets a new biome worker for this biome area.
+     * Gets a new biome worker for this biome volume.
      *
      * @return The biome worker
      */
-    BiomeAreaWorker<? extends BiomeArea> getBiomeWorker();
+    BiomeVolumeWorker<? extends BiomeVolume> getBiomeWorker();
 
 }

@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.extra.modifier.skylands;
 
-import com.flowpowered.math.vector.Vector2i;
+import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.world.biome.BiomeTypes;
-import org.spongepowered.api.world.extent.MutableBiomeArea;
+import org.spongepowered.api.world.extent.MutableBiomeVolume;
 import org.spongepowered.api.world.gen.BiomeGenerator;
 
 /**
@@ -36,13 +36,15 @@ public class SkylandsBiomeGenerator implements BiomeGenerator {
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public void generateBiomes(MutableBiomeArea buffer) {
+    public void generateBiomes(MutableBiomeVolume buffer) {
         // TODO: temporary, custom biome maybe?
-        final Vector2i min = buffer.getBiomeMin();
-        final Vector2i max = buffer.getBiomeMax();
-        for (int yy = min.getY(); yy <= max.getY(); yy++) {
-            for (int xx = min.getX(); xx <= max.getX(); xx++) {
-                buffer.setBiome(xx, yy, BiomeTypes.PLAINS);
+        final Vector3i min = buffer.getBiomeMin();
+        final Vector3i max = buffer.getBiomeMax();
+        for (int zz = min.getZ(); zz <= max.getZ(); zz++) {
+            for (int yy = min.getY(); yy <= max.getY(); yy++) {
+                for (int xx = min.getX(); xx <= max.getX(); xx++) {
+                    buffer.setBiome(xx, yy, zz, BiomeTypes.PLAINS);
+                }
             }
         }
     }

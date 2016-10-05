@@ -73,7 +73,7 @@ public interface ArchetypeVolume extends MutableBlockVolume {
     }
 
     /**
-     * Gets a map containing all tile entitiy archetypes within this volume,
+     * Gets a map containing all tile entity archetypes within this volume,
      * keyed by their positions within the volume.
      * 
      * @return The tile entity map
