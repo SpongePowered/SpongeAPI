@@ -36,7 +36,7 @@ import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.extent.Extent;
-import org.spongepowered.api.world.extent.worker.MutableBiomeAreaWorker;
+import org.spongepowered.api.world.extent.worker.MutableBiomeVolumeWorker;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -316,7 +316,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     PortalAgent getPortalAgent();
 
     @Override
-    MutableBiomeAreaWorker<World> getBiomeWorker();
+    MutableBiomeVolumeWorker<World> getBiomeWorker();
 
     @Override
     MutableBlockVolumeWorker<World> getBlockWorker(Cause cause);

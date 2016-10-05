@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.extent;
 
-import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3i;
 
 /**
@@ -38,7 +37,7 @@ public interface ExtentBufferFactory {
      * @param size The size of the buffer on x and z (y in the vector)
      * @return A new biome buffer
      */
-    MutableBiomeArea createBiomeBuffer(Vector2i size);
+    MutableBiomeVolume createBiomeBuffer(Vector3i size);
 
     /**
      * Returns a new biome buffer of the desired size.
@@ -47,8 +46,8 @@ public interface ExtentBufferFactory {
      * @param zSize The size of the buffer on z
      * @return A new biome buffer
      */
-    default MutableBiomeArea createBiomeBuffer(int xSize, int zSize) {
-        return createBiomeBuffer(new Vector2i(xSize, zSize));
+    default MutableBiomeVolume createBiomeBuffer(int xSize, int ySize, int zSize) {
+        return createBiomeBuffer(new Vector3i(xSize, ySize, zSize));
     }
 
     /**
@@ -58,7 +57,7 @@ public interface ExtentBufferFactory {
      * @param size The size of the buffer on x and z (y in the vector)
      * @return A new biome buffer
      */
-    MutableBiomeArea createThreadSafeBiomeBuffer(Vector2i size);
+    MutableBiomeVolume createThreadSafeBiomeBuffer(Vector3i size);
 
     /**
      * Returns a new biome buffer of the desired size. This buffer is thread
@@ -68,8 +67,8 @@ public interface ExtentBufferFactory {
      * @param zSize The size of the buffer on z
      * @return A new biome buffer
      */
-    default MutableBiomeArea createThreadSafeBiomeBuffer(int xSize, int zSize) {
-        return createThreadSafeBiomeBuffer(new Vector2i(xSize, zSize));
+    default MutableBiomeVolume createThreadSafeBiomeBuffer(int xSize, int ySize, int zSize) {
+        return createThreadSafeBiomeBuffer(new Vector3i(xSize, ySize, zSize));
     }
 
     /**

@@ -24,25 +24,22 @@
  */
 package org.spongepowered.api.world.extent.worker.procedure;
 
-import org.spongepowered.api.world.extent.UnmodifiableBiomeArea;
+import org.spongepowered.api.world.biome.BiomeType;
 
 /**
- * Reduces a biome given as its area and coordinates into the ongoing
- * reduction.
+ * Produces a biome for a coordinate pair.
  */
 @FunctionalInterface
-public interface BiomeAreaReducer<T> {
+public interface BiomeVolumeFiller {
 
     /**
-     * Reduces a biome given as its area and coordinates into the ongoing
-     * reduction.
+     * Produces a biome for the coordinate pair.
      *
-     * @param area The area containing the biome
-     * @param x The x coordinate of the biome
-     * @param z The z coordinate of the biome
-     * @param reduction The ongoing reduction
-     * @return The new reduction
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @return The produced biome
      */
-    T reduce(UnmodifiableBiomeArea area, int x, int z, T reduction);
+    BiomeType produce(int x, int y, int z);
 
 }

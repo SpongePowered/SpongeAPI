@@ -50,7 +50,7 @@ public class VoidWorldGeneratorModifier implements WorldGeneratorModifier {
             biomeSettings.getGroundCoverLayers().clear();
         }
         worldGenerator.setBaseGenerationPopulator((world1, buffer, biomes) -> {});
-        worldGenerator.setBiomeGenerator(buffer -> buffer.getBiomeWorker().fill((x, z) -> BiomeTypes.VOID));
+        worldGenerator.setBiomeGenerator(buffer -> buffer.getBiomeWorker().fill((x, y, z) -> BiomeTypes.VOID));
     }
 
     @Override

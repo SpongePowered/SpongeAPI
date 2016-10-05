@@ -25,20 +25,25 @@
 package org.spongepowered.api.world.extent.worker.procedure;
 
 import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.extent.UnmodifiableBiomeVolume;
 
 /**
- * Produces a biome for a coordinate pair.
+ * Produces a new biome from an original biome given as its volume and
+ * coordinates.
  */
 @FunctionalInterface
-public interface BiomeAreaFiller {
+public interface BiomeVolumeMapper {
 
     /**
-     * Produces a biome for the coordinate pair.
+     * Produces a new biome from the original biome given as its volume and
+     * coordinates.
      *
-     * @param x The x coordinate
-     * @param z The z coordinate
+     * @param volume The volume containing the original biome
+     * @param x The x coordinate of the original biome
+     * @param y The y coordinate of the original biome
+     * @param z The z coordinate of the original biome
      * @return The produced biome
      */
-    BiomeType produce(int x, int z);
+    BiomeType map(UnmodifiableBiomeVolume volume, int x, int y, int z);
 
 }

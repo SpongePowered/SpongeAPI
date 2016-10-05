@@ -41,7 +41,7 @@ import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.extent.worker.MutableBiomeAreaWorker;
+import org.spongepowered.api.world.extent.worker.MutableBiomeVolumeWorker;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
 import java.util.Collection;
@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  * A mutable object containing blocks, tile entities, entities, and possibly
  * other game objects.
  */
-public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVolume, MutableBiomeArea, LocationCompositeValueStore, Identifiable,
+public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVolume, MutableBiomeVolume, LocationCompositeValueStore, Identifiable,
     LocationBasePropertyHolder {
 
     /**
@@ -353,7 +353,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     Extent getExtentView(Vector3i newMin, Vector3i newMax);
 
     @Override
-    MutableBiomeAreaWorker<? extends Extent> getBiomeWorker();
+    MutableBiomeVolumeWorker<? extends Extent> getBiomeWorker();
 
     @Override
     MutableBlockVolumeWorker<? extends Extent> getBlockWorker(Cause cause);
@@ -510,8 +510,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * The archetype's volume will be shifted such that the position given in
      * the origin will be the origin of the volume.
      *
-     * @param min The minimum point of the area to copy
-     * @param max The maximum point of the area to copy
+     * @param min The minimum point of the volume to copy
+     * @param max The maximum point of the volume to copy
      * @param origin The eventual origin on the new archetype volume
      * @return The archetype volume
      */

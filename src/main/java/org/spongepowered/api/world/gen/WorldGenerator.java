@@ -48,7 +48,7 @@ import java.util.List;
  * boundaries.</p>
  * 
  * <ol><strong>The generation phase:</strong>
- *   <li>Create a BlockBufferrepresenting the chunk's area</li>
+ *   <li>Create a BlockBuffer representing the chunk's volume</li>
  *   <li>Call the {@link #getBaseGenerationPopulator() base GenerationPopulator}
  *     from the WorldGenerator to create the base terrain shape.</li>
  *   <li>Call each of the
