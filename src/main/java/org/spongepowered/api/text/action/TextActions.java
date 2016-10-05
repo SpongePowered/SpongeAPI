@@ -27,7 +27,7 @@ package org.spongepowered.api.text.action;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
 
@@ -119,7 +119,7 @@ public final class TextActions {
      * @param item The item to display
      * @return The created hover action instance
      */
-    public static HoverAction.ShowItem showItem(ItemStack item) {
+    public static HoverAction.ShowItem showItem(ItemStackSnapshot item) {
         return new HoverAction.ShowItem(item);
     }
 
