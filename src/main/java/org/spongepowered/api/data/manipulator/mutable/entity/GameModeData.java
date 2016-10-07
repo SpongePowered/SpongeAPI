@@ -35,4 +35,10 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
  */
 public interface GameModeData extends VariantData<GameMode, GameModeData, ImmutableGameModeData> {
 
+    /**
+     * Gets the {@link Value} for the {@link GameMode}.
+     *
+     * @return The value for the gamemode
+     */
+    Value<GameMode> gamemode();
 }
