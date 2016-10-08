@@ -29,10 +29,29 @@ import org.spongepowered.api.CatalogType;
 import java.util.Collection;
 import java.util.Optional;
 
+/**
+ * Registry module that is used to maintain a list of catalog types of a certain
+ * type.
+ *
+ * @param <T> The type of catalog type that is maintained by this module
+ */
 public interface CatalogRegistryModule<T extends CatalogType> extends RegistryModule {
 
+    /**
+     * Gets the registered catalog type with the given id or an equivalent.
+     *
+     * @param id The id of the catalog type to search
+     * @return The catalog type if a matching one is found
+     */
     Optional<T> getById(String id);
 
+    /**
+     * Gets a duplicate free collection of all registered catalog type instances
+     * of this type. The order of the contained elements should be considered
+     * random.
+     *
+     * @return A collection containing all registered catalog types
+     */
     Collection<T> getAll();
 
 }
