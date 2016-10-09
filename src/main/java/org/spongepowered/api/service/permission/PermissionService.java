@@ -64,6 +64,11 @@ public interface PermissionService extends ContextualService<Subject> {
      * subject is at the root of all inheritance trees, above even subject type-specific
      * defaults, meaning it has the lowest priority when all other weighting is equal.
      *
+     * <p>Note: This data should be persisted, so plugins that add permissions to this subject
+     * must take care to not override permissions already set or modified. It is also
+     * recommended to use {@link Subject#getTransientSubjectData()} where possible to
+     * avoid persisting unnecessary data.
+     *
      * @return The default subject data
      */
     Subject getDefaults();

@@ -48,6 +48,11 @@ import java.util.Set;
  * child levels would granted but {@code example.access} would denied (for
  * example).
  *
+ * <p>It is the responsibility of the {@link PermissionService} implementation
+ * to provide this behavior, and resolve the implicit permission node inheritance
+ * explained above when a Subject is queried for permissions. Use of a
+ * {@link NodeTree} is recommended.
+ *
  * <p>Plugins may opt to implement "dynamic" permissions such as {@code
  * example.region.define.&lt;region&gt;} where {@code region} would be a
  * dynamically added level based on the context, though some attention should be
@@ -59,7 +64,15 @@ import java.util.Set;
  * administrators to grant {@code example.function.self} to permit usage on
  * one's self and grant {@code example.function} to grant usage on other users.
  *
- * <p>Use a {@link PermissionService} to create instances.
+ * <p>All methods are expected unlike {@link SubjectData}, to account for data
+ * inherited from parent subjects. For a representation of the data that the
+ * subject explicitly holds, obtain the {@link SubjectData} for the object.
+ *
+ * <p>Additionally, all methods are expected to account for the defaults
+ * defined in the {@link SubjectCollection} containing this subject, as well
+ * as the defaults set globally in {@link PermissionService#getDefaults()}.
+ *
+ * <p>Use a {@link SubjectCollection} to create instances.
  *
  * @see PermissionService
  */
@@ -101,14 +114,17 @@ public interface Subject extends Contextual {
     SubjectData getTransientSubjectData();
 
     /**
-     * Test whether the subject is permitted to perform an action given as the
-     * given permission string.
+     * Test whether the subject is permitted to perform an action corresponding to the
+     * given permission string. This must return the same boolean equivalent as
+     * {@link #getPermissionValue(Set, String)}.
      *
      * @param contexts The set of contexts that represents the subject's current environment
      * @param permission The permission string
      * @return True if permission is granted
      */
-    boolean hasPermission(Set<Context> contexts, String permission);
+    default boolean hasPermission(Set<Context> contexts, String permission) {
+        return getPermissionValue(contexts, permission).asBoolean();
+    }
 
     /**
      * Test whether the subject is permitted to perform an action given as the
@@ -125,6 +141,17 @@ public interface Subject extends Contextual {
     /**
      * Returns the calculated value set for a given permission.
      *
+     * <p>It is expected that this method will also account for values
+     * inherited from parent subjects, as well as permission nodes inherited
+     * implicitly from a more generic level.
+     *
+     * <p>Additionally, the defaults defined the {@link SubjectCollection}
+     * that holds this subject, as well as defaults defined in
+     * {@link PermissionService#getDefaults()} should be considered for this lookup.
+     *
+     * <p> This method is likely to be called frequently, so it is desirable
+     * that implementations cache the results to method calls.
+     *
      * @param contexts The contexts to check for permissions in
      * @param permission The permission to check
      * @return The tristate true/false/unset value for permissions
@@ -134,7 +161,7 @@ public interface Subject extends Contextual {
     /**
      * Check if this subject is a child of the given parent in the subject's
      * current context, traversing inheritance. This must return the same value as
-     * {@link #hasPermission(Set, String)} using {@link #getActiveContexts()}.
+     * {@link #isChildOf(Set, Subject)} using {@link #getActiveContexts()}.
      *
      * @param parent The parent to check for inheritance
      * @return Whether this is a child of the given parent
@@ -157,7 +184,7 @@ public interface Subject extends Contextual {
      * Return all parents that this group has in its current context
      * combination. This must include inherited values if the permissions
      * service supports inheritance. This must return the same value as
-     * {@link #hasPermission(Set, String)} using {@link #getActiveContexts()}.
+     * {@link #getParents(Set)} using {@link #getActiveContexts()}.
      *
      * @return An immutable list of parents
      */
@@ -177,6 +204,13 @@ public interface Subject extends Contextual {
     /**
      * Get the value of a given option in the given context.
      *
+     * <p>It is expected that this method will account for options
+     * inherited from parent subjects.
+     *
+     * <p>Additionally, the default options defined the {@link SubjectCollection}
+     * that holds this subject, as well as defaults defined in
+     * {@link PermissionService#getDefaults()} should be considered for this lookup.
+     *
      * @param contexts The contexts to get the options from
      * @param key The key to get an option by. Case-insensitive.
      * @return The value of the option, if any is present
@@ -185,7 +219,7 @@ public interface Subject extends Contextual {
 
     /**
      * Get the value of a given option in the subject's current context
-     * This must return the same value as {@link #hasPermission(Set, String)}
+     * This must return the same value as {@link #getOption(Set, String)}
      * using {@link #getActiveContexts()}.
      *
      * @param key The key to get an option by. Case-insensitive.
