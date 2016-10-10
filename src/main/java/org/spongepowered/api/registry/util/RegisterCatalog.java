@@ -42,7 +42,7 @@ import java.util.Map;
  * first one is used.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
+@Target({ElementType.FIELD, ElementType.TYPE})
 public @interface RegisterCatalog {
 
     /**
