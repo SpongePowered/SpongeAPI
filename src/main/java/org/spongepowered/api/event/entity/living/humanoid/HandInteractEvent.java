@@ -22,24 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.action;
+package org.spongepowered.api.event.entity.living.humanoid;
 
-import com.flowpowered.math.vector.Vector3d;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
+import org.spongepowered.api.data.type.HandType;
+import org.spongepowered.api.event.action.InteractEvent;
 
-import java.util.Optional;
-
-/**
- * Base event for all interactions.
- */
-public interface InteractEvent extends Event, Cancellable {
+public interface HandInteractEvent extends InteractEvent {
 
     /**
-     * Gets the point of interaction where the interaction occurred as
-     * a {@link Vector3d}.
-     * 
-     * @return The interaction point if available
+     * Gets the {@link HandType} used for interaction.
+     *
+     * @return The hand type
      */
-    Optional<Vector3d> getInteractionPoint();
+    HandType getHandType();
 }

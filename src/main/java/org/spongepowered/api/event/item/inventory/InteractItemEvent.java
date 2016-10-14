@@ -22,23 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.item.inventory;
 
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.action.InteractEvent;
 import org.spongepowered.api.event.entity.living.humanoid.HandInteractEvent;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
- * Base event for all interactions targeting an {@link Entity}.
+ * Base event for all interactions with an @{link ItemStack} in hand.
+ * 
+ * <p>Note: Canceling this event will halt any future actions from
+ * occuring.</p>
  */
-public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
+public interface InteractItemEvent extends InteractEvent {
 
     /**
-     * An event where the targeted entity is being interacted with the client's "primary" button.
+     * Gets the {@link ItemStackSnapshot} being interacted with.
      *
-     * This is usually left-click.
+     * @return The item being interacted with
      */
-    interface Primary extends InteractEntityEvent, HandInteractEvent {
+    ItemStackSnapshot getItemStack();
+
+    interface Primary extends InteractItemEvent, HandInteractEvent { 
 
         /**
          * A {@link Primary} event where the interaction is from the client's main hand.
@@ -51,12 +56,7 @@ public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
         interface OffHand extends Primary {}
     }
 
-    /**
-     * An event where the targeted entity is being interacted with the client's "secondary" button.
-     *
-     * This is usually right-click.
-     */
-    interface Secondary extends InteractEntityEvent, HandInteractEvent {
+    interface Secondary extends InteractItemEvent, HandInteractEvent {
 
         /**
          * A {@link Secondary} event where the interaction is from the client's main hand.
@@ -68,5 +68,4 @@ public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
          */
         interface OffHand extends Secondary {}
     }
-
 }

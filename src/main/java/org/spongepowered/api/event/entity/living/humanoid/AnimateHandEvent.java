@@ -22,24 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.action;
+package org.spongepowered.api.event.entity.living.humanoid;
 
-import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.data.type.HandType;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-
-import java.util.Optional;
 
 /**
- * Base event for all interactions.
+ * Called when a {@link Humanoid} hand animation occurs.
+ *
+ * <p>Note: Canceling this event will only stop animation from being seen
+ * on server. Animation will always occur on client-side for {@link Player}'s.</p>
  */
-public interface InteractEvent extends Event, Cancellable {
+public interface AnimateHandEvent extends TargetHumanoidEvent, Cancellable {
 
     /**
-     * Gets the point of interaction where the interaction occurred as
-     * a {@link Vector3d}.
-     * 
-     * @return The interaction point if available
+     * Gets the {@link HandType} used for animation.
+     *
+     * @return The hand type
      */
-    Optional<Vector3d> getInteractionPoint();
+    HandType getHandType();
 }
