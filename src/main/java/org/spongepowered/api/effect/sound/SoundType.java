@@ -25,6 +25,9 @@
 package org.spongepowered.api.effect.sound;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.GameRegistry;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -33,4 +36,41 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(SoundTypes.class)
 public interface SoundType extends CatalogType {
 
+    /**
+     * Creates a new {@link Builder} for building SoundTypes.
+     *
+     * @return A new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Creates a <i>new</i>SoundType from the given ID. To fetch existing types,
+     * use {@link GameRegistry#getType(Class, String)}.
+     *
+     * @param id ID of the sound
+     * @return A new SoundType object
+     */
+    static SoundType of(String id) {
+        return builder().build(id);
+    }
+
+    /**
+     * Builds a SoundType, primarily for sending custom sounds to the client.
+     */
+    interface Builder extends ResettableBuilder<SoundType, Builder> {
+
+        /**
+         * <p>Builds a new instance of a {@link SoundType}.
+         *
+         * <p>Note: If no domain (indicated by the string before ':') is present
+         * in the id, the default "minecraft" domain will be used.</p>
+         *
+         * @param id ID of the sound
+         * @return A new instance of the sound type
+         */
+        SoundType build(String id);
+
+    }
 }
