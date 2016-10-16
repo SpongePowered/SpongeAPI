@@ -27,8 +27,8 @@ package org.spongepowered.api.data.property.entity;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.manipulator.mutable.entity.DominantHandData;
 import org.spongepowered.api.data.property.AbstractProperty;
-import org.spongepowered.api.data.type.HandSide;
-import org.spongepowered.api.data.type.HandSides;
+import org.spongepowered.api.data.type.HandPreference;
+import org.spongepowered.api.data.type.HandPreferences;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.Coerce;
@@ -36,7 +36,7 @@ import org.spongepowered.api.util.Coerce;
 import javax.annotation.Nullable;
 
 /**
- * Represents a {@link Property} for the dominant {@link HandSide} of a {@link Player}.
+ * Represents a {@link Property} for the dominant {@link HandPreference} of a {@link Player}.
  *
  * <p>Handedness usually determines which hand is used for "main" interactions,
  * such as tool use or block breaking.</p>
@@ -44,19 +44,19 @@ import javax.annotation.Nullable;
  * <p><i>NOTE: </i> This only applies to {@link Player}s, for {@link Living}
  * entities see {@link DominantHandData}.</p>
  */
-public class DominantHandProperty extends AbstractProperty<String, HandSide> {
+public class DominantHandProperty extends AbstractProperty<String, HandPreference> {
 
-    public DominantHandProperty(@Nullable HandSide value) {
+    public DominantHandProperty(@Nullable HandPreference value) {
         super(value);
     }
 
-    public DominantHandProperty(@Nullable HandSide value, @Nullable Operator op) {
+    public DominantHandProperty(@Nullable HandPreference value, @Nullable Operator op) {
         super(value, op);
     }
 
     @Override
     public int compareTo(@Nullable Property<?, ?> o) {
-        HandSide other = Coerce.toPseudoEnum(o == null ? null : o.getValue(), HandSide.class, HandSides.class, HandSides.RIGHT);
+        HandPreference other = Coerce.toPseudoEnum(o == null ? null : o.getValue(), HandPreference.class, HandPreferences.class, HandPreferences.RIGHT);
         return this.getValue().getId().compareTo(o == null ? "" : other.getId());
     }
 }

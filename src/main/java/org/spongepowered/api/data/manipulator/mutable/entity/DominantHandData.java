@@ -28,14 +28,14 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableDominantHandData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.property.entity.DominantHandProperty;
-import org.spongepowered.api.data.type.HandSide;
+import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 
 /**
- * A {@link DataManipulator} representing the dominant {@link HandSide} of a
+ * A {@link DataManipulator} representing the dominant {@link HandPreference} of a
  * {@link Living} entity.
  * <p>Handedness usually determines which hand is used for "main" interactions,
  * such as tool use or block placing/breaking.</p>
@@ -43,14 +43,14 @@ import org.spongepowered.api.entity.living.player.Player;
  * <p><i>NOTE: </i> This does not apply to {@link Player}s, for Player
  * entities see {@link DominantHandProperty}.</p>
  */
-public interface DominantHandData extends VariantData<HandSide, DominantHandData, ImmutableDominantHandData> {
+public interface DominantHandData extends VariantData<HandPreference, DominantHandData, ImmutableDominantHandData> {
 
     /**
-     * Gets the {@link Value} representing the dominant {@link HandSide} of an
+     * Gets the {@link Value} representing the dominant {@link HandPreference} of an
      * {@link Entity}.
      *
      * @return The value for handedness
      */
-    Value<HandSide> dominantHand();
+    Value<HandPreference> dominantHand();
 
 }

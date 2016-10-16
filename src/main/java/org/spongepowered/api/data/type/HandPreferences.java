@@ -27,14 +27,14 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * An enumeration of the various {@link HandSide}s.
+ * An enumeration of the various {@link HandPreference}s.
  */
-public final class HandSides {
+public final class HandPreferences {
 
-    public static final HandSide LEFT = DummyObjectProvider.createFor(HandSide.class, "LEFT");
-    public static final HandSide RIGHT = DummyObjectProvider.createFor(HandSide.class, "RIGHT");
+    public static final HandPreference LEFT = DummyObjectProvider.createFor(HandPreference.class, "LEFT");
+    public static final HandPreference RIGHT = DummyObjectProvider.createFor(HandPreference.class, "RIGHT");
 
-    private HandSides() {
+    private HandPreferences() {
     }
 
 }

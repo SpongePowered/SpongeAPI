@@ -30,10 +30,12 @@ import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a hand of a {@link Living} entity. This usually specifies the hand
+ * Represents the hand preference of a {@link Living} entity. This usually specifies the hand
  * used for interactions, such as tool use or block placing/breaking.
+ *
+ * <p>For players, this is controlled by the left hand/right hand setting</p>
  */
-@CatalogedBy(HandSides.class)
-public interface HandSide extends CatalogType, Translatable {
+@CatalogedBy(HandPreferences.class)
+public interface HandPreference extends CatalogType, Translatable {
 
 }

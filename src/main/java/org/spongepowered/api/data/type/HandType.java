@@ -32,7 +32,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the type of hand used for interaction. This will be resolved into
- * a {@link HandSide} based on an {@link Entity}'s/{@link Player}'s hand
+ * a {@link HandPreference} based on an {@link Entity}'s/{@link Player}'s hand
  * preference.
  */
 @CatalogedBy(HandTypes.class)

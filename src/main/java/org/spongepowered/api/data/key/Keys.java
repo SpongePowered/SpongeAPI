@@ -304,12 +304,12 @@ public final class Keys {
     public static final Key<Value<Text>> DISPLAY_NAME = KeyFactory.fake("DISPLAY_NAME");
 
     /**
-     * Represents the {@link Key} for representing the dominant {@link HandSide}
+     * Represents the {@link Key} for representing the dominant {@link HandPreference}
      * of a {@link Living} entity.
      *
      * @see DominantHandData#dominantHand()
      */
-    public static final Key<Value<HandSide>> DOMINANT_HAND = KeyFactory.fake("DOMINANT_HAND");
+    public static final Key<Value<HandPreference>> DOMINANT_HAND = KeyFactory.fake("DOMINANT_HAND");
 
     /**
      * Represents the {@link Key} for representing the {@link DoublePlantType}
