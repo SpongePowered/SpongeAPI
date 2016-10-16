@@ -25,12 +25,10 @@
 package org.spongepowered.api.effect.particle;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.data.type.NotePitch;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * Represents a particle that can be sent on a Minecraft client.
@@ -39,80 +37,24 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 public interface ParticleType extends CatalogType {
 
     /**
-     * Gets whether the particle able is to have a motion vector.
+     * Gets the default value for the specified {@link ParticleOption}, it may
+     * return {@link Optional#empty()} if the particle option isn't supported
+     * by this particle type.
      *
-     * @return Has motion
+     * @param option The particle option
+     * @param <V> The value type
+     * @return The option value if present, otherwise {@link Optional#empty()}
      */
-    boolean hasMotion();
+    <V> Optional<V> getDefaultOption(ParticleOption<V> option);
 
     /**
-     * Represents a particle that can be colored.
+     * Gets a immutable {@link Map} with all the available
+     * {@link ParticleOption}s and their values. When a option isn't
+     * available inside this {@link Map} it's most likely not supported
+     * by this particle type.
+     *
+     * @return The default options
      */
-    interface Colorable extends ParticleType {
-
-        /**
-         * Gets the default color of this particle.
-         *
-         * @return The default color
-         */
-        Color getDefaultColor();
-
-    }
-
-    /**
-     * Represents a particle that can be resized.
-     */
-    interface Resizable extends ParticleType {
-
-        /**
-         * Gets the default size of this particle.
-         *
-         * @return The default size
-         */
-        float getDefaultSize();
-
-    }
-
-    /**
-     * Represents a particle that uses a note value.
-     * Scales between 0 and 24, similar to the note block values.
-     */
-    interface Note extends ParticleType {
-
-        /**
-         * Gets the default note value of this particle.
-         *
-         * <p>The value scales between 0 and 24.</p>
-         *
-         * @return The default note
-         */
-        NotePitch getDefaultNote();
-
-    }
-
-    /**
-     * Represents a particle that utilizes a item stack to be
-     * able to render on the client.
-     */
-    interface Item extends ParticleType {
-
-        /**
-         * Gets the default item type of this particle.
-         *
-         * @return The item type
-         */
-        ItemStack getDefaultItem();
-
-    }
-
-    interface Block extends ParticleType {
-
-        /**
-         * Gets the default block state for this particle.
-         *
-         * @return The block state
-         */
-        BlockState getDefaultBlockState();
-    }
+    Map<ParticleOption<?>, Object> getDefaultOptions();
 
 }

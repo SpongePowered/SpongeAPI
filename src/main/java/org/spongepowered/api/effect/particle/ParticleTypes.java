@@ -24,38 +24,80 @@
  */
 package org.spongepowered.api.effect.particle;
 
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * The particles that can be sent on a vanilla Minecraft client.
+ * An enumeration of all possible {@link ParticleType}s in vanilla minecraft.
  */
 public final class ParticleTypes {
 
     // SORTFIELDS:ON
 
+    public static final ParticleType AMBIENT_MOB_SPELL = DummyObjectProvider.createFor(ParticleType.class, "AMBIENT_MOB_SPELL");
+
+    public static final ParticleType ANGRY_VILLAGER = DummyObjectProvider.createFor(ParticleType.class, "ANGRY_VILLAGER");
+
     public static final ParticleType BARRIER = DummyObjectProvider.createFor(ParticleType.class, "BARRIER");
 
-    public static final ParticleType.Block BLOCK_CRACK = DummyObjectProvider.createFor(ParticleType.Block.class, "BLOCK_CRACK");
+    public static final ParticleType BLOCK_CRACK = DummyObjectProvider.createFor(ParticleType.class, "BLOCK_CRACK");
 
-    public static final ParticleType.Block BLOCK_DUST = DummyObjectProvider.createFor(ParticleType.Block.class, "BLOCK_DUST");
+    public static final ParticleType BLOCK_DUST = DummyObjectProvider.createFor(ParticleType.class, "BLOCK_DUST");
+
+    /**
+     * This particle type will play the effect of a block that
+     * is being broken and it's break sound.
+     * <p>This type has limited {@link ParticleOption}s, only
+     * {@link ParticleOptions#BLOCK_STATE} and
+     * {@link ParticleOptions#ITEM_STACK_SNAPSHOT} are supported.</p>
+     */
+    public static final ParticleType BREAK_BLOCK = DummyObjectProvider.createFor(ParticleType.class, "BREAK_BLOCK");
 
     public static final ParticleType CLOUD = DummyObjectProvider.createFor(ParticleType.class, "CLOUD");
 
-    public static final ParticleType CRIT = DummyObjectProvider.createFor(ParticleType.class, "CRIT");
+    public static final ParticleType CRITICAL_HIT = DummyObjectProvider.createFor(ParticleType.class, "CRITICAL_HIT");
 
-    public static final ParticleType CRIT_MAGIC = DummyObjectProvider.createFor(ParticleType.class, "CRIT_MAGIC");
+    public static final ParticleType DAMAGE_INDICATOR = DummyObjectProvider.createFor(ParticleType.class, "DAMAGE_INDICATOR");
+
+    public static final ParticleType DRAGON_BREATH = DummyObjectProvider.createFor(ParticleType.class, "DRAGON_BREATH");
+
+    public static final ParticleType DRAGON_BREATH_ATTACK = DummyObjectProvider.createFor(ParticleType.class, "DRAGON_BREATH_ATTACK");
 
     public static final ParticleType DRIP_LAVA = DummyObjectProvider.createFor(ParticleType.class, "DRIP_LAVA");
 
     public static final ParticleType DRIP_WATER = DummyObjectProvider.createFor(ParticleType.class, "DRIP_WATER");
 
-    public static final ParticleType ENCHANTMENT_TABLE = DummyObjectProvider.createFor(ParticleType.class, "ENCHANTMENT_TABLE");
+    public static final ParticleType ENCHANTING_GLYPHS = DummyObjectProvider.createFor(ParticleType.class, "ENCHANTING_GLYPHS");
 
-    public static final ParticleType EXPLOSION_HUGE = DummyObjectProvider.createFor(ParticleType.class, "EXPLOSION_HUGE");
+    public static final ParticleType ENDER_TELEPORT = DummyObjectProvider.createFor(ParticleType.class, "ENDER_TELEPORT");
 
-    public static final ParticleType.Resizable EXPLOSION_LARGE = DummyObjectProvider.createFor(ParticleType.Resizable.class, "EXPLOSION_LARGE");
+    public static final ParticleType END_ROD = DummyObjectProvider.createFor(ParticleType.class, "END_ROD");
 
-    public static final ParticleType EXPLOSION_NORMAL = DummyObjectProvider.createFor(ParticleType.class, "EXPLOSION_NORMAL");
+    public static final ParticleType EXPLOSION = DummyObjectProvider.createFor(ParticleType.class, "EXPLOSION");
+
+    public static final ParticleType FALLING_DUST = DummyObjectProvider.createFor(ParticleType.class, "FALLING_DUST");
+
+    /**
+     * This particle type will play the effect that will occur when
+     * a {@link Player} uses bone meal on a plant to boost the growth.
+     * <p>This type has limited {@link ParticleOption}s, only
+     * {@link ParticleOptions#QUANTITY} is supported.</p>
+     */
+    public static final ParticleType FERTILIZER = DummyObjectProvider.createFor(ParticleType.class, "FERTILIZER");
+
+    /**
+     * This particle type will play the smoke particles of a fire.
+     * <p>This type has limited {@link ParticleOption}s, only
+     * {@link ParticleOptions#DIRECTION} is supported.</p>
+     */
+    public static final ParticleType FIRE_SMOKE = DummyObjectProvider.createFor(ParticleType.class, "FIRE_SMOKE");
+
+    /**
+     * This particle type will play a fireworks effect.
+     * <p>This type has limited {@link ParticleOption}s, only
+     * {@link ParticleOptions#FIREWORK_EFFECTS} is supported.</p>
+     */
+    public static final ParticleType FIREWORKS = DummyObjectProvider.createFor(ParticleType.class, "FIREWORKS");
 
     public static final ParticleType FIREWORKS_SPARK = DummyObjectProvider.createFor(ParticleType.class, "FIREWORKS_SPARK");
 
@@ -63,51 +105,63 @@ public final class ParticleTypes {
 
     public static final ParticleType FOOTSTEP = DummyObjectProvider.createFor(ParticleType.class, "FOOTSTEP");
 
+    public static final ParticleType GUARDIAN_APPEARANCE = DummyObjectProvider.createFor(ParticleType.class, "GUARDIAN_APPEARANCE");
+
+    public static final ParticleType HAPPY_VILLAGER = DummyObjectProvider.createFor(ParticleType.class, "HAPPY_VILLAGER");
+
     public static final ParticleType HEART = DummyObjectProvider.createFor(ParticleType.class, "HEART");
 
-    public static final ParticleType.Item ITEM_CRACK = DummyObjectProvider.createFor(ParticleType.Item.class, "ITEM_CRACK");
+    public static final ParticleType HUGE_EXPLOSION = DummyObjectProvider.createFor(ParticleType.class, "HUGE_EXPLOSION");
 
-    public static final ParticleType ITEM_TAKE = DummyObjectProvider.createFor(ParticleType.class, "ITEM_TAKE");
+    /**
+     * While this particle type the option {@link ParticleOptions#VELOCITY} supports, this
+     * will only affect the velocity in the y direction.
+     */
+    public static final ParticleType INSTANT_SPELL = DummyObjectProvider.createFor(ParticleType.class, "INSTANT_SPELL");
+
+    public static final ParticleType ITEM_CRACK = DummyObjectProvider.createFor(ParticleType.class, "ITEM_CRACK");
+
+    public static final ParticleType LARGE_EXPLOSION = DummyObjectProvider.createFor(ParticleType.class, "LARGE_EXPLOSION");
+
+    public static final ParticleType LARGE_SMOKE = DummyObjectProvider.createFor(ParticleType.class, "LARGE_SMOKE");
 
     public static final ParticleType LAVA = DummyObjectProvider.createFor(ParticleType.class, "LAVA");
 
-    public static final ParticleType MOB_APPEARANCE = DummyObjectProvider.createFor(ParticleType.class, "MOB_APPEARANCE");
+    public static final ParticleType MAGIC_CRITICAL_HIT = DummyObjectProvider.createFor(ParticleType.class, "MAGIC_CRITICAL_HIT");
 
-    public static final ParticleType.Note NOTE = DummyObjectProvider.createFor(ParticleType.Note.class, "NOTE");
+    public static final ParticleType MOBSPAWNER_FLAMES = DummyObjectProvider.createFor(ParticleType.class, "MOBSPAWNER_FLAMES");
+
+    public static final ParticleType MOB_SPELL = DummyObjectProvider.createFor(ParticleType.class, "MOB_SPELL");
+
+    public static final ParticleType NOTE = DummyObjectProvider.createFor(ParticleType.class, "NOTE");
 
     public static final ParticleType PORTAL = DummyObjectProvider.createFor(ParticleType.class, "PORTAL");
 
-    public static final ParticleType.Colorable REDSTONE = DummyObjectProvider.createFor(ParticleType.Colorable.class, "REDSTONE");
+    public static final ParticleType REDSTONE_DUST = DummyObjectProvider.createFor(ParticleType.class, "REDSTONE_DUST");
 
     public static final ParticleType SLIME = DummyObjectProvider.createFor(ParticleType.class, "SLIME");
 
-    public static final ParticleType SMOKE_LARGE = DummyObjectProvider.createFor(ParticleType.class, "SMOKE_LARGE");
-
-    public static final ParticleType SMOKE_NORMAL = DummyObjectProvider.createFor(ParticleType.class, "SMOKE_NORMAL");
+    public static final ParticleType SMOKE = DummyObjectProvider.createFor(ParticleType.class, "SMOKE");
 
     public static final ParticleType SNOWBALL = DummyObjectProvider.createFor(ParticleType.class, "SNOWBALL");
 
     public static final ParticleType SNOW_SHOVEL = DummyObjectProvider.createFor(ParticleType.class, "SNOW_SHOVEL");
 
+    /**
+     * While this particle type the option {@link ParticleOptions#VELOCITY} supports, this
+     * will only affect the velocity in the y direction.
+     */
     public static final ParticleType SPELL = DummyObjectProvider.createFor(ParticleType.class, "SPELL");
 
-    public static final ParticleType SPELL_INSTANT = DummyObjectProvider.createFor(ParticleType.class, "SPELL_INSTANT");
-
-    public static final ParticleType.Colorable SPELL_MOB = DummyObjectProvider.createFor(ParticleType.Colorable.class, "SPELL_MOB");
-
-    public static final ParticleType.Colorable SPELL_MOB_AMBIENT = DummyObjectProvider.createFor(ParticleType.Colorable.class, "SPELL_MOB_AMBIENT");
-
-    public static final ParticleType SPELL_WITCH = DummyObjectProvider.createFor(ParticleType.class, "SPELL_WITCH");
+    public static final ParticleType SPLASH_POTION = DummyObjectProvider.createFor(ParticleType.class, "SPLASH_POTION");
 
     public static final ParticleType SUSPENDED = DummyObjectProvider.createFor(ParticleType.class, "SUSPENDED");
 
     public static final ParticleType SUSPENDED_DEPTH = DummyObjectProvider.createFor(ParticleType.class, "SUSPENDED_DEPTH");
 
+    public static final ParticleType SWEEP_ATTACK = DummyObjectProvider.createFor(ParticleType.class, "SWEEP_ATTACK");
+
     public static final ParticleType TOWN_AURA = DummyObjectProvider.createFor(ParticleType.class, "TOWN_AURA");
-
-    public static final ParticleType VILLAGER_ANGRY = DummyObjectProvider.createFor(ParticleType.class, "VILLAGER_ANGRY");
-
-    public static final ParticleType VILLAGER_HAPPY = DummyObjectProvider.createFor(ParticleType.class, "VILLAGER_HAPPY");
 
     public static final ParticleType WATER_BUBBLE = DummyObjectProvider.createFor(ParticleType.class, "WATER_BUBBLE");
 
@@ -116,6 +170,12 @@ public final class ParticleTypes {
     public static final ParticleType WATER_SPLASH = DummyObjectProvider.createFor(ParticleType.class, "WATER_SPLASH");
 
     public static final ParticleType WATER_WAKE = DummyObjectProvider.createFor(ParticleType.class, "WATER_WAKE");
+
+    /**
+     * While this particle type the option {@link ParticleOptions#VELOCITY} supports, this
+     * will only affect the velocity in the y direction.
+     */
+    public static final ParticleType WITCH_SPELL = DummyObjectProvider.createFor(ParticleType.class, "WITCH_SPELL");
 
     // SORTFIELDS:OFF
 

@@ -24,45 +24,23 @@
  */
 package org.spongepowered.api.effect.particle;
 
-import org.spongepowered.api.Sponge;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a resized particle effect.
+ * Represents a option that may be used on a {@link ParticleEffect}. It
+ * will define how a particle will behave and it's appearance.
+ *
+ * @param <V> The type of the option value
  */
-public interface ResizableParticle extends ParticleEffect {
+@CatalogedBy(ParticleOptions.class)
+public interface ParticleOption<V> extends CatalogType {
 
     /**
-     * Creates a new {@link Builder} to build a {@link ResizableParticle}.
+     * Gets the type of the value.
      *
-     * @return The new builder
+     * @return The value type
      */
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
+    Class<V> getValueType();
 
-
-    /**
-     * Gets the size of the particle effect.
-     *
-     * @return The size
-     */
-    float getSize();
-
-    /**
-     * Represents a particle builder to create a {@link ResizableParticle}.
-     */
-    interface Builder extends ParticleEffect.ParticleBuilder<ResizableParticle, ParticleType.Resizable, Builder> {
-
-        /**
-         * Sets the size of the particle effect.
-         *
-         * <p>The default size is retrieved from the resizable particle type,
-         * by using {@link ParticleType.Resizable#getDefaultSize()}.</p>
-         *
-         * @param size The size
-         * @return This builder
-         */
-        Builder size(float size);
-
-    }
 }
