@@ -65,9 +65,6 @@ public class IntProperty extends AbstractInventoryProperty<String, Integer> {
         super(Coerce.toInteger(value), operator);
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
     @Override
     public int compareTo(Property<?, ?> other) {
         return this.getValue().compareTo(other == null ? 1 : Coerce.toInteger(other.getValue()));

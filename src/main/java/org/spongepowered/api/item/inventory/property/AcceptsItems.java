@@ -33,10 +33,8 @@ import org.spongepowered.api.util.Coerce;
 import java.util.Collection;
 import java.util.List;
 
-
 /**
- * A property type intended for use with
- * {@link InputSlot}s in order to
+ * A property type intended for use with {@link InputSlot}s in order to
  * query for slots which can accept items of the specified type. It is intended
  * that the semantics of the {@link #equals} will be such that the method will
  * return true if the other property contains <em>any</em> item present in this
@@ -75,9 +73,6 @@ public class AcceptsItems extends AbstractInventoryProperty<String, Collection<I
         super(Coerce.toListOf(value, ItemType.class), operator);
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
     @Override
     public int compareTo(Property<?, ?> other) {
         // This breaks the contract of Comparable, but we don't have a meaningful

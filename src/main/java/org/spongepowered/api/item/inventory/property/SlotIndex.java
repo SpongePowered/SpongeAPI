@@ -31,7 +31,7 @@ public class SlotIndex extends IntProperty {
 
     /**
      * Creates a new SlotIndex property for the specified value.
-     * 
+     *
      * @param value value to match
      */
     public SlotIndex(int value) {
@@ -40,7 +40,7 @@ public class SlotIndex extends IntProperty {
 
     /**
      * Creates a new SlotIndex property for the specified value and operator.
-     * 
+     *
      * @param value value to match
      * @param operator the operator to use when comparing with other properties
      */
@@ -50,7 +50,7 @@ public class SlotIndex extends IntProperty {
 
     /**
      * Creates a new SlotIndex property for the specified value and operator.
-     * 
+     *
      * @param value value to match
      * @param operator the operator to use when comparing with other properties
      */
@@ -61,7 +61,7 @@ public class SlotIndex extends IntProperty {
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
      * equal value.
-     * 
+     *
      * @param value the value to match
      * @return new property
      */
@@ -72,7 +72,7 @@ public class SlotIndex extends IntProperty {
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
      * unequal value.
-     * 
+     *
      * @param value the value to match
      * @return new property
      */
@@ -83,7 +83,7 @@ public class SlotIndex extends IntProperty {
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
      * value greater than this value.
-     * 
+     *
      * @param value the value to match
      * @return new property
      */
@@ -94,7 +94,7 @@ public class SlotIndex extends IntProperty {
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
      * value greater than or equal to this value.
-     * 
+     *
      * @param value the value to match
      * @return new property
      */
@@ -105,7 +105,7 @@ public class SlotIndex extends IntProperty {
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
      * value less than this value.
-     * 
+     *
      * @param value the value to match
      * @return new property
      */
@@ -116,7 +116,7 @@ public class SlotIndex extends IntProperty {
     /**
      * Create a SlotIndex property which matches SlotIndex properties with
      * value less than or equal to this value.
-     * 
+     *
      * @param value the value to match
      * @return new property
      */

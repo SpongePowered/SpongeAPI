@@ -25,7 +25,9 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.item.inventory.type.Interactable;
+import org.spongepowered.api.plugin.PluginContainer;
 
 import java.util.Set;
 
@@ -54,14 +56,18 @@ public interface Container extends Interactable {
      * Shows this Inventory to the given viewer.
      *
      * @param viewer The viewer to show this inventory to
+     * @param cause The {@link Cause} to use when opening the inventory
+     * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
      */
-    void open(Player viewer);
+    void open(Player viewer, Cause cause) throws IllegalArgumentException;;
 
     /**
      * Stops showing this Inventory to the given viewer.
      *
      * @param viewer The viewer to stop showing this inventory to
+     * @param cause The {@link Cause} to provide when closing the inventory
+     * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
      */
-    void close(Player viewer);
+    void close(Player viewer, Cause cause) throws IllegalArgumentException;;
 
 }

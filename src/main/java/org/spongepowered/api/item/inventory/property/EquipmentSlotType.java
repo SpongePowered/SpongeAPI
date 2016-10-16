@@ -69,9 +69,6 @@ public class EquipmentSlotType extends AbstractInventoryProperty<String, Equipme
         super(Coerce.<EquipmentType>toPseudoEnum(value, EquipmentType.class, EquipmentTypes.class, EquipmentTypes.WORN), operator);
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
     @Override
     public int compareTo(Property<?, ?> other) {
         if (other == null) {

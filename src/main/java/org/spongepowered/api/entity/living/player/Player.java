@@ -26,7 +26,6 @@ package org.spongepowered.api.entity.living.player;
 
 import org.spongepowered.api.Server;
 import org.spongepowered.api.block.tileentity.EnderChest;
-import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.command.source.RemoteSource;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
@@ -39,6 +38,7 @@ import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -47,6 +47,7 @@ import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.chat.ChatVisibility;
+import org.spongepowered.api.world.Locatable;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -68,7 +69,9 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
      *
      * @return Whether this player is viewing an inventory or not
      */
-    boolean isViewingInventory();
+    default boolean isViewingInventory() {
+        return getOpenInventory().isPresent();
+    }
 
     /**
      * Gets the currently viewed inventory of this player, if it is
@@ -77,7 +80,7 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
      * @return An inventory if this player is viewing one, otherwise
      * {@link Optional#empty()}
      */
-    Optional<Inventory> getOpenInventory();
+    Optional<Container> getOpenInventory();
 
     /**
      * Opens the given Inventory for the player to view.
@@ -85,8 +88,9 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
      * @param inventory The inventory to view
      * @param cause The {@link Cause} to use when opening the inventory
      * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
+     * @return The opened Container if the inventory was opened, otherwise {@link Optional#empty()}
      */
-    void openInventory(Inventory inventory, Cause cause) throws IllegalArgumentException;
+    Optional<Container> openInventory(Inventory inventory, Cause cause) throws IllegalArgumentException;
 
     /**
      * Closes the currently viewed entity of this player, if it is
@@ -94,8 +98,9 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
      *
      * @param cause The {@link Cause} to provide when closing the inventory
      * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
+     * @return whether or not closing the inventory succeeded
      */
-    void closeInventory(Cause cause) throws IllegalArgumentException;
+    boolean closeInventory(Cause cause) throws IllegalArgumentException;
 
     /**
      * Gets the view distance setting of the player. This value represents the
