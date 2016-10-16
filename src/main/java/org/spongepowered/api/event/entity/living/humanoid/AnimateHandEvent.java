@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity.living.humanoid;
 
 import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 
 /**
