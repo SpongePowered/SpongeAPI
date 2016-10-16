@@ -105,4 +105,11 @@ public interface BlockType extends CatalogType, Translatable, PropertyHolder {
      * @return The block trait, if available
      */
     Optional<BlockTrait<?>> getTrait(String blockTrait);
+
+    /**
+     * Gets the {@link BlockSoundGroup} for this block.
+     *
+     * @return This block's sound group.
+     */
+    BlockSoundGroup getSoundGroup();
 }
