@@ -314,17 +314,6 @@ public enum Direction {
     }
 
     /**
-     * Get the Vector3d.
-     *
-     * @return The Vector3d
-     * @deprecated Use {@link #asOffset()} instead. Will be removed in 5.0.
-     */
-    @Deprecated
-    public Vector3d toVector3d() {
-        return this.offset;
-    }
-
-    /**
      * Returns the direction as a unit offset vector.
      * This vector is also suitable as a unit direction vector.
      *

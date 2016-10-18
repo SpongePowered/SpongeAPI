@@ -24,9 +24,7 @@
  */
 package org.spongepowered.api.profile;
 
-import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.profile.property.ProfileProperty;
-import org.spongepowered.api.service.user.UserStorageService;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -221,38 +219,5 @@ public interface GameProfileManager {
      * @return The default cache.
      */
     GameProfileCache getDefaultCache();
-
-    /**
-     * Gets a collection of all cached {@link GameProfile}s.
-     *
-     * @return A {@link Collection} of {@link GameProfile}s
-     * @deprecated use {@link GameProfileCache#getProfiles()} instead
-     */
-    @Deprecated
-    default Collection<GameProfile> getCachedProfiles() {
-        return this.getCache().getProfiles();
-    }
-
-    /**
-     * Returns a collection of matching cached {@link GameProfile}s whose last
-     * known names start with the given string (case-insensitive).
-     *
-     * <p>This collection may also contain profiles of players who never played
-     * on the server!</p>
-     *
-     * <p>Use {@link UserStorageService#match(String)} for a collection that
-     * only contains {@link GameProfile}s with attached {@link User} data.</p>
-     *
-     * <p>This method only searches the local cache, so the data may not be up
-     * to date.</p>
-     *
-     * @param name The name
-     * @return A {@link Collection} of matching {@link GameProfile}s
-     * @deprecated use {@link GameProfileCache#match(String)} instead
-     */
-    @Deprecated
-    default Collection<GameProfile> match(String name) {
-        return this.getCache().match(name);
-    }
 
 }
