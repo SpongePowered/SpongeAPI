@@ -100,7 +100,7 @@ public interface PluginContainer {
      * @return The Minecraft version, or {@link Optional#empty()} if unknown
      */
     default Optional<String> getMinecraftVersion() {
-        return Optional.empty();
+        return Optional.of(Sponge.getPlatform().getMinecraftVersion().getName());
     }
 
     /**
