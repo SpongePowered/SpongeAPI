@@ -152,6 +152,11 @@ public interface ItemStack extends DataHolder, Translatable {
          */
         Builder itemType(ItemType itemType);
 
+        /**
+         * Gets the current {@link ItemType} of this builder.
+         *
+         * @return The current item type building
+         */
         ItemType getCurrentItem();
 
         /**
