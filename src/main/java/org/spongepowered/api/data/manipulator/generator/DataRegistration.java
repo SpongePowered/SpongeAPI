@@ -6,18 +6,17 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 
 public interface DataRegistration<T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>> {
 
+    Class<T> getSuperManipulator();
 
-    public Class<T> getSuperManipulator();
+    Class<? extends T> getGeneratedImplClass();
 
-    public Class<? extends T> getGeneratedImplClass();
+    Class<I> getSuperImmutable();
 
-    public Class<I> getSuperImmutable();
+    Class<? extends I> getGeneratedImmutable();
 
-    public Class<? extends I> getGeneratedImmutable();
+    Class<? extends DataManipulatorBuilder<T, I>> getBuilderClass();
 
-    public Class<? extends DataManipulatorBuilder<T, I>> getBuilderClass();
-
-    public Object getPluginInstance();
+    Object getPluginInstance();
 
     T makeDefaultMutable();
 

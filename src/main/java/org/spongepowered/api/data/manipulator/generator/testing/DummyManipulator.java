@@ -3,7 +3,10 @@ package org.spongepowered.api.data.manipulator.generator.testing;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.generator.KeyValue;
 import org.spongepowered.api.data.meta.ItemEnchantment;
+import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.Value;
+
+import java.util.List;
 
 public interface DummyManipulator extends DataManipulator<DummyManipulator, ImmutableDummyManipulator> {
 
@@ -11,7 +14,7 @@ public interface DummyManipulator extends DataManipulator<DummyManipulator, Immu
     Value<Integer> myInt();
 
     @KeyValue("myEnchantment")
-    Value<ItemEnchantment> enchantment();
+    ListValue<ItemEnchantment> enchantment();
 
     @KeyValue("myInt")
     int myIntValue();
@@ -20,9 +23,9 @@ public interface DummyManipulator extends DataManipulator<DummyManipulator, Immu
     void setMyInt(int value);
 
     @KeyValue("myEnchantment")
-    ItemEnchantment getEnchantment();
+    List<ItemEnchantment> getEnchantment();
 
     @KeyValue("myEnchantment")
-    void setEnchantment(ItemEnchantment enchantment);
+    void setEnchantment(List<ItemEnchantment> enchantment);
 
 }

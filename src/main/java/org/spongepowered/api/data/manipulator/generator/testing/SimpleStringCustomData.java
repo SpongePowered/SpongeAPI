@@ -1,6 +1,7 @@
 package org.spongepowered.api.data.manipulator.generator.testing;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.key.KeyFactory;
@@ -12,13 +13,21 @@ import org.spongepowered.api.data.manipulator.generator.DataRegistration;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.CommonTokens;
+
+import java.util.List;
 
 public class SimpleStringCustomData {
 
     // For obvious reasons, we want to be able to use the key for various things. so we generate it!
-    public static final Key<Value<String>> MY_STRING = KeyFactory.makeSingleKey(String.class, Value.class, DataQuery.of("MyString"), "com.gabizou.my_string", "MyStringKey");
+    public static final Key<Value<String>> MY_STRING = KeyFactory.makeSingleKey(CommonTokens.STRING_TOKEN, CommonTokens.STRING_VALUE_TOKEN, DataQuery.of("MyString"), "com.gabizou.my_string", "MyStringKey");
 
-    public static final Key<ListValue<ItemStack>> MY_STACKS = KeyFactory.makeListKey(ItemStack.class, DataQuery.of("MyItemStacks"), "com.gabizou.my_stacks", "MyStacks");
+    public static final TypeToken<List<ItemStack>> LIST_ITEM_STACK_TOKEN = new TypeToken<List<ItemStack>>() {
+    };
+    public static final TypeToken<ListValue<ItemStack>> LIST_ITEM_STACK_VALUE_TOKEN = new TypeToken<ListValue<ItemStack>>() {
+    };
+
+    public static final Key<ListValue<ItemStack>> MY_STACKS = KeyFactory.makeListKey(LIST_ITEM_STACK_TOKEN, LIST_ITEM_STACK_VALUE_TOKEN, DataQuery.of("MyItemStacks"), "com.gabizou.my_stacks", "MyStacks");
 
     // We get to use the CustomDataProvider, however, since there are no hard interfaces provided,
     // we can't use any form of generics. Fortunately for us, we don't really care about generics,
