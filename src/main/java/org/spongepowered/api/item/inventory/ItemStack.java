@@ -41,7 +41,6 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Map;
 import java.util.Set;
@@ -138,7 +137,7 @@ public interface ItemStack extends DataHolder, Translatable {
 
     @Override
     ItemStack copy();
-    
+
     interface Builder extends DataBuilder<ItemStack> {
 
         @Override
@@ -162,6 +161,16 @@ public interface ItemStack extends DataHolder, Translatable {
          * @throws IllegalArgumentException If the quantity is outside the allowed bounds
          */
         Builder quantity(int quantity) throws IllegalArgumentException;
+
+        /**
+         * Sets the quantity of the item stack without doing validation on the
+         * minimum stack size. Allows a quantity of zero and negative one but further
+         * negative numbers are not allowed.
+         *
+         * @param quantity The quantity of the item stack
+         * @return This builder, for chaining
+         */
+        Builder unsafeQuantity(int quantity);
 
         /**
          * Adds a {@link Key} and related {@link Object} value to apply to the
@@ -225,7 +234,7 @@ public interface ItemStack extends DataHolder, Translatable {
          */
         default Builder fromBlockState(BlockState blockState) {
             checkNotNull(blockState);
-            final BlockType blockType= blockState.getType();
+            final BlockType blockType = blockState.getType();
             checkArgument(blockType.getItem().isPresent(), "Missing valid ItemType for BlockType: " + blockType.getId());
             itemType(blockType.getItem().get());
             blockState.getContainers().forEach(this::itemData);
@@ -278,6 +287,6 @@ public interface ItemStack extends DataHolder, Translatable {
          * @return A new instance of an ItemStack
          * @throws IllegalStateException If the item stack is not completed
          */
-        ItemStack build() throws IllegalStateException;        
+        ItemStack build() throws IllegalStateException;
     }
 }
