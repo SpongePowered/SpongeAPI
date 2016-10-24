@@ -163,14 +163,12 @@ public interface ItemStack extends DataHolder, Translatable {
         Builder quantity(int quantity) throws IllegalArgumentException;
 
         /**
-         * Sets the quantity of the item stack without doing validation on the
-         * minimum stack size. Allows a quantity of zero and negative one but further
-         * negative numbers are not allowed.
+         * Sets the ItemStack's quantity to represent any size to be used for
+         * querying inventories.
          *
-         * @param quantity The quantity of the item stack
          * @return This builder, for chaining
          */
-        Builder unsafeQuantity(int quantity);
+        Builder anySize();
 
         /**
          * Adds a {@link Key} and related {@link Object} value to apply to the
