@@ -27,29 +27,26 @@ package org.spongepowered.api.data.manipulator.mutable.common;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.Lists;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
-import org.spongepowered.api.data.manipulator.mutable.ListData;
 import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.mutable.Value;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
- * A common implementation for {@link ListData}s provided by the API.
+ * An abstraction for the various {@link DataManipulator}s that handle a single
+ * value, adding the provided {@link #getValue()} and {@link #setValue(Object)}
+ * methods for easy manipulation. This as well simplifies handling various
+ * other common implementations, such as {@link #hashCode()} and
+ * {@link #equals(Object)}.
  *
- * @param <E> The type of element within the list
+ * @param <T> The type of single value this will hold
  * @param <M> The type of {@link DataManipulator}
  * @param <I> The type of {@link ImmutableDataManipulator}
-<<<<<<< HEAD
- */
-@SuppressWarnings("unchecked")
-=======
  * @deprecated These classes are only to be used for easing the compatibility requirements
  * for plugin developers moving to the new system introduced by
  * {@link org.spongepowered.api.data.manipulator.generator.CustomDataProvider}. It is highly
@@ -58,31 +55,39 @@ import java.util.Optional;
  */
 @SuppressWarnings("unchecked")
 @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
-public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends ImmutableListData<E, I, M>>
-        extends AbstractSingleData<List<E>, M, I> implements ListData<E, M, I> {
+public abstract class AbstractSingleData<T, M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>>
+        extends AbstractData<M, I> {
 
-    protected AbstractListData(List<E> value, Key<? extends BaseValue<List<E>>> usedKey) {
-        super(Lists.newArrayList(value), usedKey);
+    protected final Key<? extends BaseValue<T>> usedKey;
+    private T value;
+
+    protected AbstractSingleData(T value, Key<? extends BaseValue<T>> usedKey) {
+        this.value = checkNotNull(value);
+        this.usedKey = checkNotNull(usedKey);
+        registerGettersAndSetters();
     }
 
     @Override
-    protected ListValue<E> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createListValue((Key<ListValue<E>>) this.usedKey, this.getValue());
+    @Deprecated
+    protected final void registerGettersAndSetters() {
+        registerFieldGetter(this.usedKey, AbstractSingleData.this::getValue);
+        registerFieldSetter(this.usedKey, this::setValue);
+        registerKeyValue(this.usedKey, AbstractSingleData.this::getValueGetter);
     }
 
+    /**
+     * Gets the {@link Value} as a method since this manipulator only focuses
+     * on a single value.
+     *
+     * @return The constructed value
+     */
+    protected abstract Value<?> getValueGetter();
+
     @Override
-<<<<<<< HEAD
-    public <V> Optional<V> get(Key<? extends BaseValue<V>> key) {
-        // we can delegate this since we have a direct value check as this is
-        // a Single value.
-        return key == this.usedKey ? Optional.of((V) this.getValue()) : super.get(key);
-=======
     public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
         // we can delegate this since we have a direct value check as this is
         // a Single value.
-        return key == this.usedKey ? Optional.of((E) this.getValue()) : super.get(key);
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
+        return key == this.usedKey ? Optional.of((E) this.value) : super.get(key);
     }
 
     @Override
@@ -94,19 +99,32 @@ public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends
     @Override
     public abstract I asImmutable();
 
-    @Override
-    protected List<E> getValue() {
-        return Lists.newArrayList(super.getValue());
+    /**
+     * A simple getter for usage with a {@link Supplier} for
+     * the {@link #registerFieldGetter(Key, Supplier)} method.
+     *
+     * @return The value
+     */
+    protected T getValue() {
+        return this.value;
     }
 
-    @Override
-    protected M setValue(List<E> value) {
-        return super.setValue(Lists.newArrayList(value));
+    /**
+     * A simple setter for usage with a {@link Consumer} for
+     * the {@link #registerFieldSetter(Key, Consumer)} method.
+     *
+     * @param value The value
+     * @return This manipulator
+     */
+    protected M setValue(T value) {
+        this.value = checkNotNull(value);
+        // double casting due to jdk 6 type inference
+        return (M) this;
     }
 
     @Override
     public int hashCode() {
-        return 31 * super.hashCode() + Objects.hashCode(this.getValue());
+        return 31 * super.hashCode() + Objects.hashCode(this.value);
     }
 
     @SuppressWarnings("rawtypes")
@@ -121,17 +139,7 @@ public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends
         if (!super.equals(obj)) {
             return false;
         }
-        final AbstractListData other = (AbstractListData) obj;
-        return Objects.equal(this.getValue(), other.getValue());
-    }
-
-    @Override
-    public ListValue<E> getListValue() {
-        return getValueGetter();
-    }
-
-    @Override
-    public List<E> asList() {
-        return getValue();
+        final AbstractSingleData other = (AbstractSingleData) obj;
+        return Objects.equal(this.value, other.value);
     }
 }

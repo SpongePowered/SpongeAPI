@@ -22,29 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.common;
+package org.spongepowered.api.data.manipulator.mutable.common;
 
-<<<<<<< HEAD
-=======
-import com.google.common.collect.ComparisonChain;
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.value.BaseValue;
 
 /**
- * An abstract implementation of an {@link ImmutableDataManipulator} handling
- * specifically a {@code boolean} value. Technically these can be cached since
- * their values are immutable.
+ * An abstract {@link DataManipulator} specifically dealing with {@code int}
+ * values.
  *
+ * @param <M> The manipulator type
  * @param <I> The immutable manipulator type
- * @param <M> The mutable manipulator type
-<<<<<<< HEAD
- */
-=======
  * @deprecated These classes are only to be used for easing the compatibility requirements
  * for plugin developers moving to the new system introduced by
  * {@link org.spongepowered.api.data.manipulator.generator.CustomDataProvider}. It is highly
@@ -52,22 +42,11 @@ import org.spongepowered.api.data.value.mutable.Value;
  * by the API will be removed in the next major version (API 7.0.0).
  */
 @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
-public abstract class AbstractImmutableBooleanData<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>> extends
-        AbstractImmutableSingleData<Boolean, I, M> {
+public abstract class AbstractIntData<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>>
+    extends AbstractSingleData<Integer, M, I> {
 
-    private final boolean defaultValue;
-    private final ImmutableValue<Boolean> immutableValue;
-
-    protected AbstractImmutableBooleanData(boolean value, Key<Value<Boolean>> usedKey, boolean defaultValue) {
+    protected AbstractIntData(int value, Key<? extends BaseValue<Integer>> usedKey) {
         super(value, usedKey);
-        this.defaultValue = defaultValue;
-        this.immutableValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, defaultValue, value).asImmutable();
-    }
-
-    @Override
-    protected final ImmutableValue<Boolean> getValueGetter() {
-        return this.immutableValue;
     }
 
 }

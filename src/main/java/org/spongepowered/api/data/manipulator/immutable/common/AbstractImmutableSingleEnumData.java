@@ -24,11 +24,8 @@
  */
 package org.spongepowered.api.data.manipulator.immutable.common;
 
-<<<<<<< HEAD
-=======
-import com.google.common.collect.ComparisonChain;
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
@@ -36,15 +33,13 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.Value;
 
 /**
- * An abstract implementation of an {@link ImmutableDataManipulator} handling
- * specifically a {@code boolean} value. Technically these can be cached since
- * their values are immutable.
+ * An abstract implementation of an {@link ImmutableDataManipulator} dealing
+ * specifically with an {@link Enum} value. Note that due to the limitations
+ * of adding new values to an {@code Enum}, these may be cached.
  *
+ * @param <E> The enum type
  * @param <I> The immutable manipulator type
  * @param <M> The mutable manipulator type
-<<<<<<< HEAD
- */
-=======
  * @deprecated These classes are only to be used for easing the compatibility requirements
  * for plugin developers moving to the new system introduced by
  * {@link org.spongepowered.api.data.manipulator.generator.CustomDataProvider}. It is highly
@@ -52,22 +47,30 @@ import org.spongepowered.api.data.value.mutable.Value;
  * by the API will be removed in the next major version (API 7.0.0).
  */
 @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
-public abstract class AbstractImmutableBooleanData<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>> extends
-        AbstractImmutableSingleData<Boolean, I, M> {
+public abstract class AbstractImmutableSingleEnumData<E extends Enum<E>, I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>>
+        extends AbstractImmutableSingleData<E, I, M> {
 
-    private final boolean defaultValue;
-    private final ImmutableValue<Boolean> immutableValue;
+    private final E defaultValue;
+    private final ImmutableValue<E> cachedValue;
 
-    protected AbstractImmutableBooleanData(boolean value, Key<Value<Boolean>> usedKey, boolean defaultValue) {
+    protected AbstractImmutableSingleEnumData(E value, E defaultValue, Key<Value<E>> usedKey) {
         super(value, usedKey);
         this.defaultValue = defaultValue;
-        this.immutableValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, defaultValue, value).asImmutable();
+        this.cachedValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, this.defaultValue, this.value).asImmutable();
+    }
+
+    protected final ImmutableValue<E> enumType() {
+        return this.cachedValue;
     }
 
     @Override
-    protected final ImmutableValue<Boolean> getValueGetter() {
-        return this.immutableValue;
+    protected final ImmutableValue<E> getValueGetter() {
+        return this.cachedValue;
     }
 
+    @Override
+    public DataContainer toContainer() {
+        return super.toContainer()
+                .set(this.usedKey.getQuery(), this.value.name());
+    }
 }

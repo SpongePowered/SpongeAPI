@@ -26,6 +26,10 @@ package org.spongepowered.api.data.manipulator.immutable.common;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+<<<<<<< HEAD
+=======
+import com.google.common.collect.ComparisonChain;
+>>>>>>> be5ec10... Re-add common data implementations as deprecated...
 import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
@@ -35,10 +39,18 @@ import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableMapValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
 
+<<<<<<< HEAD
+=======
+import java.util.Collection;
+>>>>>>> be5ec10... Re-add common data implementations as deprecated...
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+<<<<<<< HEAD
+=======
+@Deprecated
+>>>>>>> be5ec10... Re-add common data implementations as deprecated...
 public abstract class AbstractImmutableMappedData<K, V, I extends ImmutableMappedData<K, V, I, M>, M extends MappedData<K, V, M, I>>
     extends AbstractImmutableSingleData<Map<K, V>, I, M> implements ImmutableMappedData<K, V, I, M> {
 

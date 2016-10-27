@@ -24,27 +24,23 @@
  */
 package org.spongepowered.api.data.manipulator.immutable.common;
 
-<<<<<<< HEAD
-=======
-import com.google.common.collect.ComparisonChain;
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.Value;
 
+import java.util.Comparator;
+
 /**
- * An abstract implementation of an {@link ImmutableDataManipulator} handling
- * specifically a {@code boolean} value. Technically these can be cached since
- * their values are immutable.
+ * An abstracted {@link ImmutableDataManipulator} that focuses solely on an
+ * {@link ImmutableBoundedValue} as it's {@link Value} return type.
  *
- * @param <I> The immutable manipulator type
- * @param <M> The mutable manipulator type
-<<<<<<< HEAD
- */
-=======
+ * @param <T> The type of comparable element
+ * @param <I> The immutable data manipulator type
+ * @param <M> The mutable data manipulator type
  * @deprecated These classes are only to be used for easing the compatibility requirements
  * for plugin developers moving to the new system introduced by
  * {@link org.spongepowered.api.data.manipulator.generator.CustomDataProvider}. It is highly
@@ -52,22 +48,38 @@ import org.spongepowered.api.data.value.mutable.Value;
  * by the API will be removed in the next major version (API 7.0.0).
  */
 @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
-public abstract class AbstractImmutableBooleanData<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>> extends
-        AbstractImmutableSingleData<Boolean, I, M> {
+public abstract class AbstractImmutableBoundedComparableData<T extends Comparable<T>, I extends ImmutableDataManipulator<I, M>,
+    M extends DataManipulator<M, I>> extends AbstractImmutableSingleData<T, I, M> {
 
-    private final boolean defaultValue;
-    private final ImmutableValue<Boolean> immutableValue;
+    protected final Comparator<T> comparator;
+    protected final T lowerBound;
+    protected final T upperBound;
+    protected final T defaultValue;
+    private final ImmutableBoundedValue<T> immutableBoundedValue;
 
-    protected AbstractImmutableBooleanData(boolean value, Key<Value<Boolean>> usedKey, boolean defaultValue) {
+    @SuppressWarnings("unchecked")
+    protected AbstractImmutableBoundedComparableData(T value, Key<MutableBoundedValue<T>> usedKey,
+                                                     Comparator<T> comparator, T lowerBound,
+                                                     T upperBound, T defaultValue) {
         super(value, usedKey);
+        this.comparator = comparator;
+        this.lowerBound = lowerBound;
+        this.upperBound = upperBound;
         this.defaultValue = defaultValue;
-        this.immutableValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, defaultValue, value).asImmutable();
+        this.immutableBoundedValue = Sponge.getRegistry().getValueFactory()
+            .createBoundedValueBuilder((Key<MutableBoundedValue<T>>) this.usedKey)
+            .defaultValue(this.defaultValue)
+            .actualValue(this.value)
+            .minimum(this.lowerBound)
+            .maximum(this.upperBound)
+            .comparator(this.comparator)
+            .build()
+            .asImmutable();
     }
 
     @Override
-    protected final ImmutableValue<Boolean> getValueGetter() {
-        return this.immutableValue;
+    protected final ImmutableBoundedValue<T> getValueGetter() {
+        return this.immutableBoundedValue;
     }
 
 }

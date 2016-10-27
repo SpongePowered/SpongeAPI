@@ -24,27 +24,22 @@
  */
 package org.spongepowered.api.data.manipulator.immutable.common;
 
-<<<<<<< HEAD
-=======
-import com.google.common.collect.ComparisonChain;
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
+import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
+import org.spongepowered.api.data.manipulator.mutable.ListData;
+import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.immutable.ImmutableListValue;
+import org.spongepowered.api.data.value.mutable.ListValue;
+
+import java.util.List;
 
 /**
- * An abstract implementation of an {@link ImmutableDataManipulator} handling
- * specifically a {@code boolean} value. Technically these can be cached since
- * their values are immutable.
  *
- * @param <I> The immutable manipulator type
- * @param <M> The mutable manipulator type
-<<<<<<< HEAD
- */
-=======
+ * @param <E>
+ * @param <I>
+ * @param <M>
  * @deprecated These classes are only to be used for easing the compatibility requirements
  * for plugin developers moving to the new system introduced by
  * {@link org.spongepowered.api.data.manipulator.generator.CustomDataProvider}. It is highly
@@ -52,22 +47,29 @@ import org.spongepowered.api.data.value.mutable.Value;
  * by the API will be removed in the next major version (API 7.0.0).
  */
 @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
-public abstract class AbstractImmutableBooleanData<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>> extends
-        AbstractImmutableSingleData<Boolean, I, M> {
+public abstract class AbstractImmutableListData<E, I extends ImmutableListData<E, I, M>, M extends ListData<E, M, I>>
+        extends AbstractImmutableSingleData<List<E>, I, M> implements ImmutableListData<E, I, M> {
 
-    private final boolean defaultValue;
-    private final ImmutableValue<Boolean> immutableValue;
+    private final ImmutableListValue<E> listValue;
 
-    protected AbstractImmutableBooleanData(boolean value, Key<Value<Boolean>> usedKey, boolean defaultValue) {
-        super(value, usedKey);
-        this.defaultValue = defaultValue;
-        this.immutableValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, defaultValue, value).asImmutable();
+    @SuppressWarnings("unchecked")
+    protected AbstractImmutableListData(List<E> value, Key<? extends BaseValue<List<E>>> usedKey) {
+        super(ImmutableList.copyOf(value), usedKey);
+        this.listValue = Sponge.getRegistry().getValueFactory().createListValue((Key<ListValue<E>>) this.usedKey, this.value).asImmutable();
     }
 
     @Override
-    protected final ImmutableValue<Boolean> getValueGetter() {
-        return this.immutableValue;
+    protected final ImmutableListValue<E> getValueGetter() {
+        return this.listValue;
     }
 
+    @Override
+    public ImmutableListValue<E> getListValue() {
+        return getValueGetter();
+    }
+
+    @Override
+    public List<E> asList() {
+        return getValue();
+    }
 }

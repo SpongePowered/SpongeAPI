@@ -24,32 +24,28 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.common;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.base.Objects;
-import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.ImmutableListData;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableMappedData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
+import org.spongepowered.api.data.manipulator.mutable.MappedData;
 import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.mutable.MapValue;
+import org.spongepowered.api.util.CollectionUtils;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 /**
  * A common implementation for {@link ListData}s provided by the API.
  *
- * @param <E> The type of element within the list
+ * @param <K> The type of key in the map
+ * @param <V> The type of value in the map
  * @param <M> The type of {@link DataManipulator}
  * @param <I> The type of {@link ImmutableDataManipulator}
-<<<<<<< HEAD
- */
-@SuppressWarnings("unchecked")
-=======
  * @deprecated These classes are only to be used for easing the compatibility requirements
  * for plugin developers moving to the new system introduced by
  * {@link org.spongepowered.api.data.manipulator.generator.CustomDataProvider}. It is highly
@@ -58,50 +54,26 @@ import java.util.Optional;
  */
 @SuppressWarnings("unchecked")
 @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
-public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends ImmutableListData<E, I, M>>
-        extends AbstractSingleData<List<E>, M, I> implements ListData<E, M, I> {
+public abstract class AbstractMappedData<K, V, M extends MappedData<K, V, M, I>, I extends ImmutableMappedData<K, V, I, M>>
+        extends AbstractSingleData<Map<K, V>, M, I> implements MappedData<K, V, M, I> {
 
-    protected AbstractListData(List<E> value, Key<? extends BaseValue<List<E>>> usedKey) {
-        super(Lists.newArrayList(value), usedKey);
+    protected AbstractMappedData(Map<K, V> value, Key<? extends BaseValue<Map<K, V>>> usedKey) {
+        super(CollectionUtils.copyMap(value), usedKey);
     }
 
     @Override
-    protected ListValue<E> getValueGetter() {
-        return Sponge.getRegistry().getValueFactory().createListValue((Key<ListValue<E>>) this.usedKey, this.getValue());
+    protected MapValue<K, V> getValueGetter() {
+        return Sponge.getRegistry().getValueFactory().createMapValue((Key<MapValue<K, V>>) this.usedKey, this.getValue());
     }
 
     @Override
-<<<<<<< HEAD
-    public <V> Optional<V> get(Key<? extends BaseValue<V>> key) {
-        // we can delegate this since we have a direct value check as this is
-        // a Single value.
-        return key == this.usedKey ? Optional.of((V) this.getValue()) : super.get(key);
-=======
-    public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
-        // we can delegate this since we have a direct value check as this is
-        // a Single value.
-        return key == this.usedKey ? Optional.of((E) this.getValue()) : super.get(key);
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
+    protected Map<K, V> getValue() {
+        return Maps.newHashMap(super.getValue());
     }
 
     @Override
-    public boolean supports(Key<?> key) {
-        return checkNotNull(key) == this.usedKey;
-    }
-
-    // We have to have this abstract to properly override for generics.
-    @Override
-    public abstract I asImmutable();
-
-    @Override
-    protected List<E> getValue() {
-        return Lists.newArrayList(super.getValue());
-    }
-
-    @Override
-    protected M setValue(List<E> value) {
-        return super.setValue(Lists.newArrayList(value));
+    protected M setValue(Map<K, V> value) {
+        return super.setValue(Maps.newHashMap(value));
     }
 
     @Override
@@ -121,17 +93,17 @@ public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends
         if (!super.equals(obj)) {
             return false;
         }
-        final AbstractListData other = (AbstractListData) obj;
+        final AbstractMappedData other = (AbstractMappedData) obj;
         return Objects.equal(this.getValue(), other.getValue());
     }
 
     @Override
-    public ListValue<E> getListValue() {
+    public MapValue<K, V> getMapValue() {
         return getValueGetter();
     }
 
     @Override
-    public List<E> asList() {
+    public Map<K, V> asMap() {
         return getValue();
     }
 }

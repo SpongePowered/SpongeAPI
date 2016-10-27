@@ -24,27 +24,25 @@
  */
 package org.spongepowered.api.data.manipulator.immutable.common;
 
-<<<<<<< HEAD
-=======
-import com.google.common.collect.ComparisonChain;
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
-import org.spongepowered.api.Sponge;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
+
+import java.util.Optional;
+import java.util.Set;
 
 /**
- * An abstract implementation of an {@link ImmutableDataManipulator} handling
- * specifically a {@code boolean} value. Technically these can be cached since
- * their values are immutable.
+ * An abstract implementation of an {@link ImmutableDataManipulator} that
+ * specificaly deals with a single value.
  *
- * @param <I> The immutable manipulator type
- * @param <M> The mutable manipulator type
-<<<<<<< HEAD
- */
-=======
+ * @param <T> The type of value
+ * @param <I> The type of immutable manipulator
+ * @param <M> The type of mutable manipulator
  * @deprecated These classes are only to be used for easing the compatibility requirements
  * for plugin developers moving to the new system introduced by
  * {@link org.spongepowered.api.data.manipulator.generator.CustomDataProvider}. It is highly
@@ -52,22 +50,50 @@ import org.spongepowered.api.data.value.mutable.Value;
  * by the API will be removed in the next major version (API 7.0.0).
  */
 @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
-public abstract class AbstractImmutableBooleanData<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>> extends
-        AbstractImmutableSingleData<Boolean, I, M> {
+public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>>
+        extends AbstractImmutableData<I, M> {
 
-    private final boolean defaultValue;
-    private final ImmutableValue<Boolean> immutableValue;
+    protected final Key<? extends BaseValue<T>> usedKey;
+    protected final T value;
 
-    protected AbstractImmutableBooleanData(boolean value, Key<Value<Boolean>> usedKey, boolean defaultValue) {
-        super(value, usedKey);
-        this.defaultValue = defaultValue;
-        this.immutableValue = Sponge.getRegistry().getValueFactory().createValue(usedKey, defaultValue, value).asImmutable();
+    protected AbstractImmutableSingleData(T value, Key<? extends BaseValue<T>> usedKey) {
+        super();
+        this.value = checkNotNull(value);
+        this.usedKey = checkNotNull(usedKey, "Hey, the key provided is null! Please make sure it is registered!");
+        registerGetters();
+    }
+
+    @Deprecated
+    protected abstract ImmutableValue<?> getValueGetter();
+
+    protected final T getValue() {
+        return this.value;
     }
 
     @Override
-    protected final ImmutableValue<Boolean> getValueGetter() {
-        return this.immutableValue;
+    public abstract M asMutable();
+
+
+    @Override
+    protected final void registerGetters() {
+        registerFieldGetter(this.usedKey, AbstractImmutableSingleData.this::getValue);
+        registerKeyValue(this.usedKey, AbstractImmutableSingleData.this::getValueGetter);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
+        return checkNotNull(key).equals(this.usedKey) ? Optional.of((E) this.value) : Optional.<E>empty();
+    }
+
+    @Override
+    public boolean supports(Key<?> key) {
+        return checkNotNull(key) == this.usedKey;
+    }
+
+    @Override
+    public Set<Key<?>> getKeys() {
+        return ImmutableSet.<Key<?>>of(this.usedKey);
     }
 
 }
