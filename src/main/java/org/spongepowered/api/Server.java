@@ -429,4 +429,10 @@ public interface Server {
      */
     void setPlayerIdleTimeout(int timeout);
 
+    /**
+     * Checks if the current thread matches the main thread of the server.
+     * 
+     * @return True if main thread, false if not
+     */
+    boolean isMainThread();
 }
