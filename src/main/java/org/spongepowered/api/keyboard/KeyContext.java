@@ -25,6 +25,7 @@
 package org.spongepowered.api.keyboard;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -40,6 +41,15 @@ import java.util.function.Predicate;
  */
 @CatalogedBy(KeyContexts.class)
 public interface KeyContext extends CatalogType {
+
+    /**
+     * Creates a new {@link Builder}.
+     *
+     * @return The builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets whether this context is currently active
@@ -79,7 +89,7 @@ public interface KeyContext extends CatalogType {
          * @param conflictPredicate The conflict predicate
          * @return This builder for chaining
          */
-        Builder conflics(Predicate<KeyContext> conflictPredicate);
+        Builder conflicts(Predicate<KeyContext> conflictPredicate);
 
         /**
          * Builds a new instanceof of a {@link KeyContext}.
