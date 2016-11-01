@@ -77,6 +77,7 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.keyboard.KeyBinding;
 import org.spongepowered.api.keyboard.KeyCategory;
+import org.spongepowered.api.keyboard.KeyContext;
 import org.spongepowered.api.scoreboard.Visibility;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
@@ -147,6 +148,7 @@ public final class CatalogTypes {
     public static final Class<ItemType> ITEM_TYPE = ItemType.class;
     public static final Class<KeyBinding> KEY_BINDING = KeyBinding.class;
     public static final Class<KeyCategory> KEY_CATEGORY = KeyCategory.class;
+    public static final Class<KeyContext> KEY_CONTEXT = KeyContext.class;
     public static final Class<ObjectiveDisplayMode> OBJECTIVE_DISPLAY_MODE = ObjectiveDisplayMode.class;
     public static final Class<OcelotType> OCELOT_TYPE = OcelotType.class;
     public static final Class<ParticleType> PARTICLE_TYPE = ParticleType.class;

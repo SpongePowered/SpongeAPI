@@ -22,52 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.keyboard;
+package org.spongepowered.api.keyboard;
 
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.keyboard.KeyBinding;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Is fired when a {@link Player} interacts with a {@link KeyBinding}.
+ * An enumeration of all possible {@link KeyContext}s.
  */
-public interface InteractKeyEvent extends KeyboardEvent {
+public final class KeyContexts {
+
+    // SORTFIELDS:ON
 
     /**
-     * Is fired when a {@link Player} a pressed the
-     * key assigned to a {@link KeyBinding}.
+     * The gui key context, is active when a window is open.
+     * For example: inventories, menus, books, ...
      */
-    interface Press extends InteractKeyEvent, Cancellable {
-
-    }
+    public static final KeyContext GUI = DummyObjectProvider.createFor(KeyContext.class, "GUI");
 
     /**
-     * Is fired when a every tick when a {@link Player} holds the
-     * key assigned to a {@link KeyBinding}.
+     * The default key context, is active when there aren't guis open.
      */
-    interface Tick extends InteractKeyEvent, Cancellable {
-
-        /**
-         * Gets the amount of time in ticks that the key
-         * is currently being pressed.
-         *
-         * @return The press time in ticks
-         */
-        int getPressTime();
-    }
+    public static final KeyContext IN_GAME = DummyObjectProvider.createFor(KeyContext.class, "IN_GAME");
 
     /**
-     * Is fired when a {@link Player} a released the
-     * key assigned to a {@link KeyBinding}.
+     * The gui key context, is active when a inventory is open.
      */
-    interface Release extends InteractKeyEvent, Cancellable {
+    public static final KeyContext INVENTORY = DummyObjectProvider.createFor(KeyContext.class, "INVENTORY");
 
-        /**
-         * Gets the amount of time in ticks that the key
-         * was pressed before it was released.
-         *
-         * @return The press time in ticks
-         */
-        int getPressTime();
+    /**
+     * The default key context, is always active.
+     */
+    public static final KeyContext UNIVERSAL = DummyObjectProvider.createFor(KeyContext.class, "UNIVERSAL");
+
+    // SORTFIELDS:OFF
+
+    private KeyContexts() {
     }
 }

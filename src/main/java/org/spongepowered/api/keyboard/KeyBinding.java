@@ -27,13 +27,12 @@ package org.spongepowered.api.keyboard;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.keyboard.InteractKeyEvent;
 import org.spongepowered.api.event.keyboard.RegisterKeyBindingsEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.function.BiConsumer;
-
-import javax.annotation.Nullable;
+import java.util.function.Consumer;
 
 /**
  * Represents a key binding, which a client may use to interact
@@ -55,6 +54,13 @@ public interface KeyBinding extends CatalogType {
     }
 
     /**
+     * Gets the {@link KeyContext} of this key binding.
+     *
+     * @return The key context
+     */
+    KeyContext getContext();
+
+    /**
      * Gets the {@link KeyCategory} of this key binding.
      *
      * @return The category
@@ -71,22 +77,21 @@ public interface KeyBinding extends CatalogType {
     interface Builder extends ResettableBuilder<KeyBinding, Builder> {
 
         /**
-         * Sets the {@link KeyCategory} of the key binding, when {@code null}
-         * is specified then will the builder default to the category
-         * {@link KeyCategories#MISC}.
+         * Sets the {@link KeyCategory} of the key binding.
          *
          * @param category The category
          * @return This builder for chaining
          */
-        Builder category(@Nullable KeyCategory category);
+        Builder category(KeyCategory category);
 
         /**
-         * Sets the identifier of the key category.
+         * Sets the {@link KeyContext} of the key binding, defaults
+         * to {@link KeyContexts#UNIVERSAL}.
          *
-         * @param identifier The identifier
+         * @param keyContext The key context
          * @return This builder for chaining
          */
-        Builder id(String identifier);
+        Builder context(KeyContext keyContext);
 
         /**
          * Sets the display name of the key binding (the one
@@ -98,39 +103,23 @@ public interface KeyBinding extends CatalogType {
         Builder displayName(Text displayName);
 
         /**
-         * Sets the press executor of this key binding, it will be called
-         * when a specific {@link Player} the key binding presses.
+         * Registers a listener for the specified {@link InteractKeyEvent}.
          *
-         * @param executor The press executor
+         * @param type The type of the key interact event
+         * @param listener The listener to register
          * @return This builder for chaining
          */
-        Builder pressExecutor(@Nullable BiConsumer<Player, KeyBinding> executor);
-
-        /**
-         * Sets the release executor of this key binding, it will be called
-         * when a specific {@link Player} the key binding releases.
-         *
-         * @param executor The release executor
-         * @return This builder for chaining
-         */
-        Builder releaseExecutor(@Nullable BiConsumer<Player, KeyBinding> executor);
-
-        /**
-         * Sets the tick executor of this key binding, it will be called
-         * when a specific {@link Player} the key binding holds the key
-         * and a tick occurred.
-         *
-         * @param executor The tick executor
-         * @return This builder for chaining
-         */
-        Builder tickExecutor(@Nullable BiConsumer<Player, KeyBinding> executor);
+        <E extends InteractKeyEvent> Builder listener(Class<E> type, Consumer<E> listener);
 
         /**
          * Builds a new instanceof of a {@link KeyBinding}.
          *
+         * @param plugin The plugin instance that owns the key binding and
+         *               should be used to register the events
+         * @param identifier The identifier
          * @return The key binding
          * @throws IllegalStateException If the key binding is not complete
          */
-        KeyBinding build();
+        KeyBinding build(Object plugin, String identifier);
     }
 }

@@ -295,16 +295,6 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
     boolean respawnPlayer();
 
     /**
-     * Gets the {@link PlayerKeyBinding} of this {@link Player}. This may be
-     * {@link Optional#empty()} if the player doesn't have the Sponge on the
-     * client side.
-     *
-     * @param keyBinding The key binding
-     * @return The player key binding
-     */
-    Optional<PlayerKeyBinding> getKeyBinding(KeyBinding keyBinding);
-
-    /**
      * Gets all the {@link KeyBinding}s that are available for this {@link Player},
      * if the player doesn't have a client that supports custom key bindings this
      * will always return a empty collection.

@@ -200,6 +200,7 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.scoreboard.CollisionRules'
     add 'main', 'org.spongepowered.api.keyboard.KeyBindings'
     add 'main', 'org.spongepowered.api.keyboard.KeyCategories'
+    add 'main', 'org.spongepowered.api.keyboard.KeyContexts'
     add 'main', 'org.spongepowered.api.scoreboard.Visibilities'
     add 'main', 'org.spongepowered.api.scoreboard.critieria.Criteria'
     add 'main', 'org.spongepowered.api.scoreboard.displayslot.DisplaySlots'

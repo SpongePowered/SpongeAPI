@@ -74,19 +74,13 @@ public interface KeyCategory extends CatalogType {
         Builder title(Text title);
 
         /**
-         * Sets the identifier of the category.
+         * Builds a new instanceof of a {@link KeyBinding}.
          *
+         * @param plugin The plugin instance that owns the key category
          * @param identifier The identifier
-         * @return This builder for chaining
-         */
-        Builder id(String identifier);
-
-        /**
-         * Builds a new instanceof of a {@link KeyCategory}.
-         *
          * @return The key category
          * @throws IllegalStateException If the key category is not complete
          */
-        KeyCategory build();
+        KeyBinding build(Object plugin, String identifier);
     }
 }
