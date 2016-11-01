@@ -26,6 +26,11 @@ package org.spongepowered.api.entity.living.player;
 
 import org.spongepowered.api.Server;
 import org.spongepowered.api.block.tileentity.EnderChest;
+import org.spongepowered.api.command.CommandManager;
+import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.event.message.MessageChannelEvent;
+import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.command.source.RemoteSource;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
@@ -125,6 +130,26 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      * @return True if colors are enabled in chat
      */
     boolean isChatColorsEnabled();
+
+    /**
+     * Simulates a chat message from a player.
+     *
+     * <p>This method sends a message as if it came from this player.
+     * To send a message to this player instead, see
+     * {@link MessageReceiver#sendMessage(Text)} or
+     * {@link ChatTypeMessageReceiver#sendMessage(ChatType, Text)}.</p>
+     *
+     * <p>Commands cannot be sent using this method. To send commands, use
+     * {@link CommandManager#process(CommandSource, String)}.</p>
+     *
+     * <p>If text formatting is not supported in the implementation
+     * it will be displayed as plain text.</p>
+     *
+     * @param message The message to send
+     * @param cause The cause for the message
+     * @return The event that was thrown from sending the message
+     */
+    MessageChannelEvent.Chat simulateChat(Text message, Cause cause);
 
     /**
      * Gets the skin parts that this player has allowed to render.
