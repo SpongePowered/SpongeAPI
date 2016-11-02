@@ -2391,17 +2391,21 @@ public class SpongeEventFactory {
      * @param cause The cause
      * @param fromTransform The from transform
      * @param toTransform The to transform
+     * @param originalPlayer The original player
      * @param targetEntity The target entity
      * @param bedSpawn The bed spawn
+     * @param death The death
      * @return A new respawn player event
      */
-    public static RespawnPlayerEvent createRespawnPlayerEvent(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Player targetEntity, boolean bedSpawn) {
+    public static RespawnPlayerEvent createRespawnPlayerEvent(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Player originalPlayer, Player targetEntity, boolean bedSpawn, boolean death) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("fromTransform", fromTransform);
         values.put("toTransform", toTransform);
+        values.put("originalPlayer", originalPlayer);
         values.put("targetEntity", targetEntity);
         values.put("bedSpawn", bedSpawn);
+        values.put("death", death);
         return SpongeEventFactoryUtils.createEventImpl(RespawnPlayerEvent.class, values);
     }
 
