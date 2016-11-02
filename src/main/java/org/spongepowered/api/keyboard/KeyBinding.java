@@ -77,7 +77,8 @@ public interface KeyBinding extends CatalogType {
     interface Builder extends ResettableBuilder<KeyBinding, Builder> {
 
         /**
-         * Sets the {@link KeyCategory} of the key binding.
+         * Sets the {@link KeyCategory} of the key binding, defaults
+         * to {@link KeyCategories#MISC}.
          *
          * @param category The category
          * @return This builder for chaining

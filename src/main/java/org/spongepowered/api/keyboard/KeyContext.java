@@ -67,7 +67,7 @@ public interface KeyContext extends CatalogType {
      * @param keyContext The other key context
      * @return Whether the contexts conflict
      */
-    boolean conflicts(KeyContext keyContext);
+    boolean conflictsWith(KeyContext keyContext);
 
     interface Builder extends ResettableBuilder<KeyContext, Builder> {
 
