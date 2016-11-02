@@ -7,10 +7,9 @@ import org.spongepowered.api.data.key.KeyFactory;
 import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
 import org.spongepowered.api.data.manipulator.generator.DataRegistration;
 import org.spongepowered.api.data.meta.ItemEnchantment;
-import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.util.CommonTokens;
 
 public class DummyCustomDataData {
@@ -34,8 +33,9 @@ public class DummyCustomDataData {
     public static final DataRegistration<DummyManipulator, ImmutableDummyManipulator> MY_REGISTRATION =
             Sponge.getDataManager()
                     .createCustomBuilder(DummyManipulator.class, ImmutableDummyManipulator.class)
-                    .boundedKey(MY_INT_KEY, "myInt", 0, 10)
+                    .boundedKey(MY_INT_KEY, "myInt", 10, 0, 10)
                     .key(MY_ENCHANTMENT_KEY, "myEnchantment")
+                    .predicate(dataHolder -> dataHolder instanceof Agent)
                     .version(1)
                     .build(null, "MyCustomData"); // Not supposed to be null
 
