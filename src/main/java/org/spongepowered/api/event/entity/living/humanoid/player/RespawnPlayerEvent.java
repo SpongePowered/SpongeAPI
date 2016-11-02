@@ -29,9 +29,20 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.world.World;
 
 /**
- * Called when a {@link Player} re-spawns.
+ * Called when a {@link Player} is cloned during a respawn.
+ * 
+ * <p>Either caused by death, or by traveling from the End.</p>
  */
 public interface RespawnPlayerEvent extends TargetPlayerEvent {
+
+    /**
+     * The original {@link Player} that this new player is a clone of.
+     *
+     * <p>When a player dies, or leaves The End, their {@link Player} is re-created.</p>
+     *
+     * @return The original player
+     */
+    Player getOriginalPlayer();
 
     /**
      * Gets a copy of the transform that the entity came from.
@@ -61,4 +72,10 @@ public interface RespawnPlayerEvent extends TargetPlayerEvent {
      */
     boolean isBedSpawn();
 
+    /**
+     * Gets whether this event was fired because the {@link Player} died.
+     * 
+     * @return {@code true} if player died, {@code false} if the player switched dimensions
+     */
+    boolean isDeath();
 }
