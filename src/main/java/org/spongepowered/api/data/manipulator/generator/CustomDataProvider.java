@@ -8,14 +8,12 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.persistence.DataContentUpdater;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.data.value.mutable.SetValue;
 import org.spongepowered.api.util.ResettableBuilder;
-import sun.plugin.dom.exception.InvalidStateException;
 
 import java.util.List;
 import java.util.Map;
@@ -83,7 +81,7 @@ public class CustomDataProvider {
 
         TypeBuilder<T, I> key(Key<?> key, String id) throws IllegalArgumentException;
 
-        <E> TypeBuilder<T, I> boundedKey(Key<? extends BoundedValue<E>> key, String id, E lowerBound, E upperBound) throws IllegalArgumentException;
+        <E> TypeBuilder<T, I> boundedKey(Key<? extends BoundedValue<E>> key, String id, E defaultValue, E lowerBound, E upperBound) throws IllegalArgumentException;
 
         TypeBuilder<T, I> predicate(Predicate<? extends DataHolder> predicate) throws IllegalArgumentException;
 
