@@ -171,6 +171,8 @@ import org.spongepowered.api.event.network.rcon.RconConnectionEvent;
 import org.spongepowered.api.event.server.ClientPingServerEvent;
 import org.spongepowered.api.event.server.query.QueryServerEvent;
 import org.spongepowered.api.event.service.ChangeServiceProviderEvent;
+import org.spongepowered.api.event.service.permission.ChangeSubjectEvent;
+import org.spongepowered.api.event.service.permission.TargetSubjectEvent;
 import org.spongepowered.api.event.statistic.ChangeStatisticEvent;
 import org.spongepowered.api.event.user.BanUserEvent;
 import org.spongepowered.api.event.user.PardonUserEvent;
@@ -201,7 +203,11 @@ import org.spongepowered.api.network.status.StatusClient;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.service.ProviderRegistration;
+import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.economy.transaction.TransactionResult;
+import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.service.permission.change.OptionChange;
+import org.spongepowered.api.service.permission.change.PermissionChange;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
@@ -3811,6 +3817,84 @@ public class SpongeEventFactory {
         values.put("newProviderRegistration", newProviderRegistration);
         values.put("previousProviderRegistration", previousProviderRegistration);
         return SpongeEventFactoryUtils.createEventImpl(ChangeServiceProviderEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.service.permission.ChangeSubjectEvent.Option}.
+     * 
+     * @param cause The cause
+     * @param changedOptions The changed options
+     * @param contexts The contexts
+     * @param targetSubject The target subject
+     * @return A new option change subject event
+     */
+    public static ChangeSubjectEvent.Option createChangeSubjectEventOption(Cause cause, List<OptionChange> changedOptions, Set<Context> contexts, Subject targetSubject) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("changedOptions", changedOptions);
+        values.put("contexts", contexts);
+        values.put("targetSubject", targetSubject);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeSubjectEvent.Option.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.service.permission.ChangeSubjectEvent.Parents}.
+     * 
+     * @param cause The cause
+     * @param contexts The contexts
+     * @param newParents The new parents
+     * @param oldParents The old parents
+     * @param targetSubject The target subject
+     * @return A new parents change subject event
+     */
+    public static ChangeSubjectEvent.Parents createChangeSubjectEventParents(Cause cause, Set<Context> contexts, List<Subject> newParents, List<Subject> oldParents, Subject targetSubject) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("contexts", contexts);
+        values.put("newParents", newParents);
+        values.put("oldParents", oldParents);
+        values.put("targetSubject", targetSubject);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeSubjectEvent.Parents.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.service.permission.ChangeSubjectEvent.Permission}.
+     * 
+     * @param cause The cause
+     * @param changedPermissions The changed permissions
+     * @param contexts The contexts
+     * @param targetSubject The target subject
+     * @return A new permission change subject event
+     */
+    public static ChangeSubjectEvent.Permission createChangeSubjectEventPermission(Cause cause, List<PermissionChange> changedPermissions, Set<Context> contexts, Subject targetSubject) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("changedPermissions", changedPermissions);
+        values.put("contexts", contexts);
+        values.put("targetSubject", targetSubject);
+        return SpongeEventFactoryUtils.createEventImpl(ChangeSubjectEvent.Permission.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.service.permission.TargetSubjectEvent}.
+     * 
+     * @param cause The cause
+     * @param targetSubject The target subject
+     * @return A new target subject event
+     */
+    public static TargetSubjectEvent createTargetSubjectEvent(Cause cause, Subject targetSubject) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetSubject", targetSubject);
+        return SpongeEventFactoryUtils.createEventImpl(TargetSubjectEvent.class, values);
     }
 
     /**

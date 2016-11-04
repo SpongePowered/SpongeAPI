@@ -29,9 +29,15 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Maps;
 
+import com.google.common.collect.Maps;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.event.SpongeEventFactory;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.service.context.Context;
+import org.spongepowered.api.service.permission.change.OptionChange;
+import org.spongepowered.api.service.permission.change.PermissionChange;
+import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.Tristate;
 
 import java.util.ArrayList;
@@ -40,37 +46,49 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicReference;
 
 import javax.annotation.Nullable;
 
 /**
  * A subject data implementation storing all contained data in memory.
+ * All events called from this subject data object occur after the data change has been made.
  *
  * <p>This class is thread-safe.
  */
 public class MemorySubjectData implements SubjectData {
 
     private final PermissionService service;
-    private final ConcurrentMap<Set<Context>, Map<String, String>> options = Maps.newConcurrentMap();
-    private final ConcurrentMap<Set<Context>, NodeTree> permissions = Maps.newConcurrentMap();
-    private final ConcurrentMap<Set<Context>, List<Map.Entry<String, String>>> parents = Maps.newConcurrentMap();
+    private final Subject subject;
+    private final Cause cause;
+    private final AtomicReference<ConcurrentMap<Set<Context>, Map<String, String>>> options = new AtomicReference<>(new ConcurrentHashMap<>());
+    private final AtomicReference<ConcurrentMap<Set<Context>, NodeTree>> permissions = new AtomicReference<>(new ConcurrentHashMap<>());
+    private final AtomicReference<ConcurrentMap<Set<Context>, List<Map.Entry<String, String>>>> parents = new AtomicReference<>(new ConcurrentHashMap<>());
 
     /**
      * Creates a new subject data instance, using the provided service to request instances of permission subjects.
      *
      * @param service The service to request subjects from
+     * @param subject The subject this data is attached to
      */
-    public MemorySubjectData(PermissionService service) {
+    public MemorySubjectData(PermissionService service, Subject subject) {
         checkNotNull(service, "service");
         this.service = service;
+        this.subject = subject;
+        this.cause = Cause.source(this.service).build();
+    }
+
+    private static <T> List<T> ls(T el) {
+        return ImmutableList.of(el);
     }
 
     @Override
     public Map<Set<Context>, Map<String, Boolean>> getAllPermissions() {
         ImmutableMap.Builder<Set<Context>, Map<String, Boolean>> ret = ImmutableMap.builder();
-        for (Map.Entry<Set<Context>, NodeTree> ent : this.permissions.entrySet()) {
+        for (Map.Entry<Set<Context>, NodeTree> ent : this.permissions.get().entrySet()) {
             ret.put(ent.getKey(), ent.getValue().asMap());
         }
         return ret.build();
@@ -84,13 +102,13 @@ public class MemorySubjectData implements SubjectData {
      * @return The node tree
      */
     public NodeTree getNodeTree(Set<Context> contexts) {
-        NodeTree perms = this.permissions.get(contexts);
+        NodeTree perms = this.permissions.get().get(contexts);
         return perms == null ? NodeTree.of(Collections.emptyMap()) : perms;
     }
 
     @Override
     public Map<String, Boolean> getPermissions(Set<Context> contexts) {
-        NodeTree perms = this.permissions.get(contexts);
+        NodeTree perms = this.permissions.get().get(contexts);
         return perms == null ? Collections.emptyMap() : perms.asMap();
     }
 
@@ -98,17 +116,23 @@ public class MemorySubjectData implements SubjectData {
     public boolean setPermission(Set<Context> contexts, String permission, Tristate value) {
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
-            NodeTree oldTree = this.permissions.get(contexts);
+            NodeTree oldTree = this.permissions.get().get(contexts);
             if (oldTree != null && oldTree.get(permission) == value) {
                 return false;
             }
 
             if (oldTree == null && value != Tristate.UNDEFINED) {
-                if (this.permissions.putIfAbsent(contexts, NodeTree.of(ImmutableMap.of(permission, value.asBoolean()))) == null) {
+                if (this.permissions.get().putIfAbsent(contexts, NodeTree.of(ImmutableMap.of(permission, value.asBoolean()))) == null) {
+                    Sponge.getEventManager().post(SpongeEventFactory.createChangeSubjectEventPermission(this.cause,
+                            ls(new PermissionChange(permission, Tristate.UNDEFINED, value)), contexts, this.subject));
                     break;
                 }
             } else {
-                if (oldTree == null || this.permissions.replace(contexts, oldTree, oldTree.withValue(permission, value))) {
+                if (oldTree == null) { // There is no permission set and we are unsetting the permission, so effectively a no-op
+                    break;
+                } else if (this.permissions.get().replace(contexts, oldTree, oldTree.withValue(permission, value))) {
+                    Sponge.getEventManager().post(SpongeEventFactory.createChangeSubjectEventPermission(this.cause,
+                            ls(new PermissionChange(permission, oldTree.getOwn(permission), value)), contexts, this.subject));
                     break;
                 }
             }
@@ -119,26 +143,43 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public boolean clearPermissions() {
-        boolean wasEmpty = this.permissions.isEmpty();
-        this.permissions.clear();
-        return !wasEmpty;
+        Map<Set<Context>, NodeTree> oldPerms = this.permissions.getAndSet(new ConcurrentHashMap<>());
+        if (oldPerms.isEmpty()) {
+            return false;
+        }
+        oldPerms.forEach((ctx, tree) -> {
+            Sponge.getEventManager().post(SpongeEventFactory.createChangeSubjectEventPermission(this.cause, tree.asMap().entrySet().stream()
+                    .map(ent -> new PermissionChange(ent.getKey(), Tristate.fromBoolean(ent.getValue()), Tristate.UNDEFINED))
+                    .collect(GuavaCollectors.toImmutableList()), ctx, this.subject));
+        });
+        return true;
     }
 
     @Override
-    public boolean clearPermissions(Set<Context> context) {
-        return this.permissions.remove(context) != null;
+    public boolean clearPermissions(Set<Context> context) { // TODO: How to throw events here?
+        NodeTree oldPerms = this.permissions.get().remove(context);
+        if (oldPerms != null) {
+            Sponge.getEventManager().post(SpongeEventFactory.createChangeSubjectEventPermission(this.cause, oldPerms.asMap().entrySet().stream()
+                    .map(ent -> new PermissionChange(ent.getKey(), Tristate.fromBoolean(ent.getValue()), Tristate.UNDEFINED))
+                    .collect(GuavaCollectors.toImmutableList()), context, this.subject));
+        }
+        return oldPerms != null;
     }
 
     @Override
     public Map<Set<Context>, List<Subject>> getAllParents() {
         ImmutableMap.Builder<Set<Context>, List<Subject>> ret = ImmutableMap.builder();
-        for (Map.Entry<Set<Context>, List<Map.Entry<String, String>>> ent : this.parents.entrySet()) {
+        for (Map.Entry<Set<Context>, List<Map.Entry<String, String>>> ent : this.parents.get().entrySet()) {
             ret.put(ent.getKey(), toSubjectList(ent.getValue()));
         }
         return ret.build();
     }
 
-    List<Subject> toSubjectList(List<Map.Entry<String, String>> parents) {
+    List<Subject> toSubjectList(@Nullable List<Map.Entry<String, String>> parents) {
+        if (parents == null) {
+            return ImmutableList.of();
+        }
+
         ImmutableList.Builder<Subject> ret = ImmutableList.builder();
         try {
             for (Map.Entry<String, String> ent : parents) {
@@ -152,8 +193,8 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public List<Subject> getParents(Set<Context> contexts) {
-        List<Map.Entry<String, String>> ret = this.parents.get(contexts);
-        return ret == null ? Collections.emptyList() : toSubjectList(ret);
+        List<Map.Entry<String, String>> ret = this.parents.get().get(contexts);
+        return toSubjectList(ret);
     }
 
     @Override
@@ -162,7 +203,7 @@ public class MemorySubjectData implements SubjectData {
         while (true) {
             Map.Entry<String, String> newEnt = Maps.immutableEntry(parent.getContainingCollection().getIdentifier(),
                     parent.getIdentifier());
-            List<Map.Entry<String, String>> oldParents = this.parents.get(contexts);
+            List<Map.Entry<String, String>> oldParents = this.parents.get().get(contexts);
             List<Map.Entry<String, String>> newParents = ImmutableList.<Map.Entry<String, String>>builder()
                     .addAll(oldParents == null ? Collections.emptyList() : oldParents)
                     .add(newEnt)
@@ -171,7 +212,9 @@ public class MemorySubjectData implements SubjectData {
                 return false;
             }
 
-            if (updateCollection(this.parents, contexts, oldParents, newParents)) {
+            if (updateCollection(this.parents.get(), contexts, oldParents, newParents)) {
+                Sponge.getEventManager().post(SpongeEventFactory.createChangeSubjectEventParents(this.cause, contexts, toSubjectList(newParents),
+                        toSubjectList(oldParents), this.subject));
                 return true;
             }
         }
@@ -196,7 +239,7 @@ public class MemorySubjectData implements SubjectData {
         while (true) {
             Map.Entry<String, String> removeEnt = Maps.immutableEntry(parent.getContainingCollection().getIdentifier(),
                     parent.getIdentifier());
-            List<Map.Entry<String, String>> oldParents = this.parents.get(contexts);
+            List<Map.Entry<String, String>> oldParents = this.parents.get().get(contexts);
             List<Map.Entry<String, String>> newParents;
 
             if (oldParents == null || !oldParents.contains(removeEnt)) {
@@ -205,7 +248,9 @@ public class MemorySubjectData implements SubjectData {
             newParents = new ArrayList<>(oldParents);
             newParents.remove(removeEnt);
 
-            if (updateCollection(this.parents, contexts, oldParents, Collections.unmodifiableList(newParents))) {
+            if (updateCollection(this.parents.get(), contexts, oldParents, Collections.unmodifiableList(newParents))) {
+                Sponge.getEventManager().post(SpongeEventFactory.createChangeSubjectEventParents(this.cause, contexts, toSubjectList(newParents),
+                        toSubjectList(oldParents), this.subject));
                 return true;
             }
         }
@@ -214,34 +259,48 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public boolean clearParents() {
-        boolean wasEmpty = this.parents.isEmpty();
-        this.parents.clear();
-        return !wasEmpty;
+        Map<Set<Context>, List<Map.Entry<String, String>>> oldParents = this.parents.getAndSet(new ConcurrentHashMap<>());
+        if (oldParents.isEmpty()) {
+            return false;
+        }
+
+        oldParents.forEach((ctx, parents) -> {
+            Sponge.getEventManager().post(SpongeEventFactory.createChangeSubjectEventParents(this.cause, ctx, ImmutableList.of(),
+                    toSubjectList(parents), this.subject));
+        });
+        return true;
     }
 
     @Override
     public boolean clearParents(Set<Context> contexts) {
-        return this.parents.remove(contexts) != null;
+        List<Map.Entry<String, String>> oldParents = this.parents.get().remove(contexts);
+        if (oldParents != null) {
+            Sponge.getEventManager().post(SpongeEventFactory.createChangeSubjectEventParents(this.cause, contexts, ImmutableList.of(),
+                    toSubjectList(oldParents), this.subject));
+        }
+        return oldParents != null;
     }
 
     @Override
     public Map<Set<Context>, Map<String, String>> getAllOptions() {
-        return ImmutableMap.copyOf(this.options);
+        return ImmutableMap.copyOf(this.options.get());
     }
 
     @Override
     public Map<String, String> getOptions(Set<Context> contexts) {
-        Map<String, String> ret = this.options.get(contexts);
+        Map<String, String> ret = this.options.get().get(contexts);
         return ret == null ? ImmutableMap.of() : ImmutableMap.copyOf(ret);
     }
 
     @Override
     public boolean setOption(Set<Context> contexts, String key, @Nullable String value) {
-        Map<String, String> origMap = this.options.get(contexts);
+        Map<String, String> origMap = this.options.get().get(contexts);
         Map<String, String> newMap;
 
         if (origMap == null) {
-            if ((origMap = this.options.putIfAbsent(ImmutableSet.copyOf(contexts), ImmutableMap.of(key.toLowerCase(), value))) == null) {
+            if ((origMap = this.options.get().putIfAbsent(ImmutableSet.copyOf(contexts), ImmutableMap.of(key.toLowerCase(), value))) == null) {
+                Sponge.getEventManager().post(SpongeEventFactory.createChangeSubjectEventOption(this.cause, ls(new OptionChange(key, null, value)),
+                        contexts, this.subject));
                 return true;
             }
         }
@@ -250,27 +309,41 @@ public class MemorySubjectData implements SubjectData {
                 if (!origMap.containsKey(key)) {
                     return false;
                 }
-                newMap = new HashMap<>();
-                newMap.putAll(origMap);
+                newMap = new HashMap<>(origMap);
                 newMap.remove(key);
             } else {
-                newMap = new HashMap<>();
-                newMap.putAll(origMap);
+                newMap = new HashMap<>(origMap);
                 newMap.put(key, value);
             }
             newMap = Collections.unmodifiableMap(newMap);
-        } while (!this.options.replace(contexts, origMap, newMap));
+        } while (!this.options.get().replace(contexts, origMap, newMap));
+        Sponge.getEventManager().post(SpongeEventFactory.createChangeSubjectEventOption(this.cause, ls(new OptionChange(key, origMap.get(key), value)),
+                contexts, this.subject));
         return true;
     }
 
     @Override
     public boolean clearOptions(Set<Context> contexts) {
-        return this.options.remove(contexts) != null;
+        Map<String, String> oldOptions = this.options.get().remove(contexts);
+        if (oldOptions != null) {
+            Sponge.getEventManager().post(SpongeEventFactory.createChangeSubjectEventOption(this.cause, oldOptions.entrySet().stream()
+                    .map(ent -> new OptionChange(ent.getKey(), ent.getValue(), null))
+                    .collect(GuavaCollectors.toImmutableList()), contexts, this.subject));
+        }
+        return oldOptions != null;
     }
 
     @Override
     public boolean clearOptions() {
-        this.options.clear();
+        Map<Set<Context>, Map<String, String>> oldOptions = this.options.getAndSet(new ConcurrentHashMap<>());
+        if (oldOptions.isEmpty()) {
+            return false;
+        }
+        oldOptions.forEach((ctx, options) -> {
+            Sponge.getEventManager().post(SpongeEventFactory.createChangeSubjectEventOption(this.cause, options.entrySet().stream()
+                    .map(ent -> new OptionChange(ent.getKey(), ent.getValue(), null))
+                    .collect(GuavaCollectors.toImmutableList()), ctx, this.subject));
+        });
         return true;
     }
 }
