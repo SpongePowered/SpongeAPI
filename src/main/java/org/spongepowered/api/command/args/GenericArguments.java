@@ -325,6 +325,35 @@ public final class GenericArguments {
         }
     }
 
+
+    /**
+     * Return an argument that allows selecting from a limited set of values.
+     * If there are 5 or fewer choices available, the choices will be shown in the command usage. Otherwise, the usage
+     * will only display only the key. To override this behavior, see {@link #choices(Text, Set, boolean)}.
+     *
+     * @param key The key to store the resulting value under
+     * @param choices The choices users can choose from
+     * @return the element to match the input
+     */
+    public static CommandElement.Value<String> choices(Text key, Set<String> choices) {
+        Set<String> immChoices = ImmutableSet.copyOf(choices);
+        return choices(key, () -> immChoices, Function.identity(), immChoices.size() <= ChoicesCommandElement.CUTOFF);
+    }
+
+    /**
+     * Return an argument that allows selecting from a limited set of values.
+     * Unless {@code choicesInUsage} is true, general command usage will only display the provided key
+     *
+     * @param key The key to store the resulting value under
+     * @param choices The choices users can choose from
+     * @param choicesInUsage Whether to display the available choices, or simply the provided key, as part of usage
+     * @return the element to match the input
+     */
+    public static CommandElement.Value<String> choices(Text key, Set<String> choices, boolean choicesInUsage) {
+        Set<String> immChoices = ImmutableSet.copyOf(choices);
+        return choices(key, () -> immChoices, Function.identity(), choicesInUsage);
+    }
+
     /**
      * Return an argument that allows selecting from a limited set of values.
      * If there are 5 or fewer choices available, the choices will be shown in the command usage. Otherwise, the usage
