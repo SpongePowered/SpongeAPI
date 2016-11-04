@@ -29,6 +29,7 @@ import org.spongepowered.api.service.context.ContextualService;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 
 /**
@@ -79,15 +80,23 @@ public interface PermissionService extends ContextualService<Subject> {
      * @param identifier The identifier
      * @return a subject collection for this type of subject
      */
-    SubjectCollection getSubjects(String identifier);
+    CompletableFuture<SubjectCollection> getSubjects(String identifier);
 
     /**
      * Returns an immutable copy of the mapping of all subject collections
      * stored by this permission service.
      *
-     * @return The known subjects for this map
+     * @return The known subjects for this service
      */
-    Map<String, SubjectCollection> getKnownSubjects();
+    CompletableFuture<Map<String, SubjectCollection>> getKnownSubjects();
+
+    /**
+     * Returns an immutable copy of the mapping of all subject collections
+     * currently cached by this permission service
+     *
+     * @return The active subjects for this service
+     */
+    Map<String, SubjectCollection> getCachedSubjects();
 
     /**
      * Creates a new description builder for the given plugin's permission. May

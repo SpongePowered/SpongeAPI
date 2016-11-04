@@ -28,6 +28,7 @@ import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.Text;
 
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * A description object for permissions. The description is meant to provide
@@ -120,7 +121,7 @@ public interface PermissionDescription {
      * @return An immutable set of subjects that have this permission set
      * @see SubjectCollection#getAllWithPermission(String)
      */
-    Map<Subject, Boolean> getAssignedSubjects(String type);
+    CompletableFuture<Map<Subject, Boolean>> getAssignedSubjects(String type);
 
     /**
      * Gets the owning plugin the permission belongs to.

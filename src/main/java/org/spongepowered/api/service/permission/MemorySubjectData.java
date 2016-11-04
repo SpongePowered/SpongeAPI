@@ -41,6 +41,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ExecutionException;
 
 import javax.annotation.Nullable;
 
@@ -139,9 +140,12 @@ public class MemorySubjectData implements SubjectData {
 
     List<Subject> toSubjectList(List<Map.Entry<String, String>> parents) {
         ImmutableList.Builder<Subject> ret = ImmutableList.builder();
-        for (Map.Entry<String, String> ent : parents) {
-            SubjectCollection collection = this.service.getSubjects(ent.getKey());
-            ret.add(collection.get(ent.getValue()));
+        try {
+            for (Map.Entry<String, String> ent : parents) {
+                ret.add(this.service.getSubjects(ent.getKey()).thenCompose(coll -> coll.get(ent.getValue())).get());
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException(e); // TODO: Figure out how to handle this
         }
         return ret.build();
     }
