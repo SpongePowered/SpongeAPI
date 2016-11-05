@@ -84,14 +84,14 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     }
 
     /**
-     * Get the {@link Location} of the lowest block that sunlight can reach in the given column.
+     * Get the {@link Location} where sunlight reaches in the given column.
      *
      * <p>This method ignores all transparent blocks, providing the highest opaque block.</p>
      *
      * @param position The column position
      * @return The highest opaque block
      */
-    Location<World> getHighestLocationAt(Vector2i position);
+    Location<World> getHighestBlockAt(Vector2i position);
 
     /**
      * Get the loaded chunk at the given block coordinate position.
