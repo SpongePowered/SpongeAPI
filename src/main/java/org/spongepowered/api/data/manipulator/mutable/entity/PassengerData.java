@@ -31,10 +31,12 @@ import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 
+import java.util.UUID;
+
 /**
  * Signifies that an {@link Entity} is a "passenger" of another {@link Entity}.
  */
-public interface PassengerData extends ListData<EntitySnapshot, PassengerData, ImmutablePassengerData> {
+public interface PassengerData extends ListData<UUID, PassengerData, ImmutablePassengerData> {
 
     /**
      * Gets the {@link Value} for the current {@link Entity} acting
@@ -42,6 +44,6 @@ public interface PassengerData extends ListData<EntitySnapshot, PassengerData, I
      *
      * @return The value for the passenger entity
      */
-    ListValue<EntitySnapshot> passengers();
+    ListValue<UUID> passengers();
 
 }

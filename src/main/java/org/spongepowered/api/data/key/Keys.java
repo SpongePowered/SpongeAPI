@@ -709,7 +709,7 @@ public final class Keys {
 
     public static final Key<MutableBoundedValue<Integer>> PASSED_COOK_TIME = KeyFactory.fake("PASSED_COOK_TIME");
 
-    public static final Key<ListValue<EntitySnapshot>> PASSENGERS = KeyFactory.fake("PASSENGERS");
+    public static final Key<ListValue<UUID>> PASSENGERS = KeyFactory.fake("PASSENGERS");
 
     public static final Key<Value<Boolean>> PERSISTS = KeyFactory.fake("PERSISTS");
 
