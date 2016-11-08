@@ -557,6 +557,14 @@ public interface WorldProperties extends DataSerializable {
     void setGameRule(String gameRule, String value);
 
     /**
+     * Removes custom GameRule
+     *
+     * @param gameRule The name of the GameRule.
+     * @return True if GameRule was deleted, false if not
+     */
+    boolean removeGameRule(String gameRule);
+
+    /**
      * Gets a {@link DataContainer} containing any additional properties for
      * this world. The returned data is a snapshot of the data and is not live.
      *
