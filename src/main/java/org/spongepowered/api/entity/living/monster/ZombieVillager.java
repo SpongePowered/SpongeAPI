@@ -24,27 +24,8 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.data.manipulator.mutable.entity.ZombieData;
-import org.spongepowered.api.data.type.ZombieType;
-import org.spongepowered.api.entity.ArmorEquipable;
-import org.spongepowered.api.entity.living.Ageable;
+public interface ZombieVillager extends Zombie {
 
-/**
- * Represents a Zombie.
- */
-public interface Zombie extends Monster, ArmorEquipable, Ageable {
-
-    /**
-     * Gets the {@link ZombieData} representing the type of the zombie, as well as its
-     * profession (if it has one).
-     *
-     * @return The zombie data
-     * @deprecated Since Zombies are no longer separated by {@link ZombieType}, the
-     *     proper discrimination is checking for {@link Husk} and {@link ZombieVillager}
-     */
-    @Deprecated
-    default ZombieData getZombieData() {
-        return get(ZombieData.class).get();
-    }
+    // TODO - Add ProfessionData for zombie villagers, since careers are not persisted.
 
 }
