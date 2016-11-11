@@ -29,6 +29,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 /**
  * An enumeration of known vanilla {@link HorseVariant}s.
  */
+@Deprecated
 public final class HorseVariants {
 
     // SORTFIELDS:ON

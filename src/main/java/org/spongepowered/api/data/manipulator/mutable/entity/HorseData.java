@@ -70,6 +70,7 @@ public interface HorseData extends DataManipulator<HorseData, ImmutableHorseData
      *
      * @return The value for the horse variant
      */
+    @Deprecated
     Value<HorseVariant> variant();
 
 

@@ -37,6 +37,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  *     associated {@link Profession}.
  * </p>
  */
+@Deprecated
 @CatalogedBy(ZombieTypes.class)
 public interface ZombieType extends CatalogType {
 

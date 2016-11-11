@@ -29,6 +29,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 /**
  * An enumeration of known vanilla {@link SkeletonType}s.
  */
+@Deprecated
 public final class SkeletonTypes {
 
     // SORTFIELDS:ON

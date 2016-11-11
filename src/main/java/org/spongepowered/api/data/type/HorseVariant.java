@@ -35,6 +35,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Some behaviors limit whether a horse can be chested, wear horse armor, or
  * can be saddled.</p>
  */
+@Deprecated
 @CatalogedBy(HorseVariants.class)
 public interface HorseVariant extends CatalogType, Translatable {
 
