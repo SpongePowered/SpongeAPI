@@ -28,9 +28,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.BiConsumer;
 
-public interface TradeOfferListMutator extends BiConsumer<List<TradeOffer>, Random> {
+public interface TradeOfferListMutator {
 
-    @Override
-    void accept(List<TradeOffer> tradeOffers, Random random);
+    void accept(Merchant owner, List<TradeOffer> tradeOffers, Random random);
 
 }

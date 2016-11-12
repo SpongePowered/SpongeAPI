@@ -63,7 +63,7 @@ public interface TradeOfferGenerator extends Function<Random, TradeOffer>, Trade
     }
 
     @Override
-    default void accept(List<TradeOffer> tradeOffers, Random random) {
+    default void accept(Merchant owner, List<TradeOffer> tradeOffers, Random random) {
         tradeOffers.add(apply(random));
     }
 

@@ -28,6 +28,7 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.mutable.entity.TradeOfferData;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.Carrier;
+import org.spongepowered.api.world.Locatable;
 
 import java.util.Optional;
 
@@ -36,7 +37,7 @@ import javax.annotation.Nullable;
 /**
  * Represents a Merchant which can offer trades to customers.
  */
-public interface Merchant extends DataHolder, Carrier {
+public interface Merchant extends DataHolder, Carrier, Locatable {
 
     /**
      * Gets the currently trading customer with this merchant.
