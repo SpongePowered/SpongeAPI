@@ -179,6 +179,23 @@ public final class EntityTypes {
 
     public static final EntityType ZOMBIE = DummyObjectProvider.createFor(EntityType.class, "ZOMBIE");
 
+    public static final EntityType EVOCATION_FANGS = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType EVOCATION_ILLAGER = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType VEX = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType VINDICATION_ILLAGER = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType STRAY = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType WITHER_SKELETON = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType HUSK = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType ELDER_GUARDIAN = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+
+    public static final EntityType SKELETON_HORSE = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType ZOMBIE_HORSE = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType DONKEY = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType MULE = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType LLAMA = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType LLAMA_SPIT = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType ZOMBIE_VILLAGER = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+
     // SORTFIELDS:OFF
 
     private EntityTypes() {
