@@ -37,6 +37,8 @@ public final class Enchantments {
 
     public static final Enchantment BANE_OF_ARTHROPODS = DummyObjectProvider.createFor(Enchantment.class, "BANE_OF_ARTHROPODS");
 
+    public static final Enchantment BINDING_CURSE = DummyObjectProvider.createFor(Enchantment.class, "BINDING_CURSE");
+
     public static final Enchantment BLAST_PROTECTION = DummyObjectProvider.createFor(Enchantment.class, "BLAST_PROTECTION");
 
     public static final Enchantment DEPTH_STRIDER = DummyObjectProvider.createFor(Enchantment.class, "DEPTH_STRIDER");
@@ -86,6 +88,8 @@ public final class Enchantments {
     public static final Enchantment THORNS = DummyObjectProvider.createFor(Enchantment.class, "THORNS");
 
     public static final Enchantment UNBREAKING = DummyObjectProvider.createFor(Enchantment.class, "UNBREAKING");
+
+    public static final Enchantment VANISHING_CURSE = DummyObjectProvider.createFor(Enchantment.class, "VANISHING_CURSE");
 
     // SORTFIELDS:OFF
 
