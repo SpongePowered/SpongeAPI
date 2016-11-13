@@ -203,6 +203,10 @@ public final class SoundTypes {
 
     public static final SoundType BLOCK_SAND_STEP = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SAND_STEP");
 
+    public static final SoundType BLOCK_SHULKER_BOX_CLOSE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SHULKER_BOX_CLOSE");
+
+    public static final SoundType BLOCK_SHULKER_BOX_OPEN = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SHULKER_BOX_OPEN");
+
     public static final SoundType BLOCK_SLIME_BREAK = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SLIME_BREAK");
 
     public static final SoundType BLOCK_SLIME_FALL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_SLIME_FALL");
@@ -379,6 +383,8 @@ public final class SoundTypes {
 
     public static final SoundType ENTITY_ELDER_GUARDIAN_DEATH_LAND = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ELDER_GUARDIAN_DEATH_LAND");
 
+    public static final SoundType ENTITY_ELDER_GUARDIAN_FLOP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ELDER_GUARDIAN_FLOP");
+
     public static final SoundType ENTITY_ELDER_GUARDIAN_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ELDER_GUARDIAN_HURT");
 
     public static final SoundType ENTITY_ELDER_GUARDIAN_HURT_LAND = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ELDER_GUARDIAN_HURT_LAND");
@@ -421,11 +427,25 @@ public final class SoundTypes {
 
     public static final SoundType ENTITY_ENDERPEARL_THROW = DummyObjectProvider.createFor(SoundType.class, "ENTITY_ENDERPEARL_THROW");
 
+    public static final SoundType ENTITY_EVOCATION_FANGS_ATTACK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_FANGS_ATTACK");
+
+    public static final SoundType ENTITY_EVOCATION_ILLAGER_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_AMBIENT");
+
+    public static final SoundType ENTITY_EVOCATION_ILLAGER_CAST_SPELL = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_CAST_SPELL");
+
+    public static final SoundType ENTITY_EVOCATION_ILLAGER_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_DEATH");
+
+    public static final SoundType ENTITY_EVOCATION_ILLAGER_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_HURT");
+
+    public static final SoundType ENTITY_EVOCATION_ILLAGER_PREPARE_ATTACK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_PREPARE_ATTACK");
+
+    public static final SoundType ENTITY_EVOCATION_ILLAGER_PREPARE_SUMMON = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_PREPARE_SUMMON");
+
+    public static final SoundType ENTITY_EVOCATION_ILLAGER_PREPARE_WOLOLO = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_PREPARE_WOLOLO");
+
     public static final SoundType ENTITY_EXPERIENCE_BOTTLE_THROW = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EXPERIENCE_BOTTLE_THROW");
 
     public static final SoundType ENTITY_EXPERIENCE_ORB_PICKUP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EXPERIENCE_ORB_PICKUP");
-
-    public static final SoundType ENTITY_EXPERIENCE_ORB_TOUCH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EXPERIENCE_ORB_TOUCH");
 
     public static final SoundType ENTITY_FIREWORK_BLAST = DummyObjectProvider.createFor(SoundType.class, "ENTITY_FIREWORK_BLAST");
 
@@ -571,6 +591,24 @@ public final class SoundTypes {
 
     public static final SoundType ENTITY_LINGERINGPOTION_THROW = DummyObjectProvider.createFor(SoundType.class, "ENTITY_LINGERINGPOTION_THROW");
 
+    public static final SoundType ENTITY_LLAMA_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_LLAMA_AMBIENT");
+
+    public static final SoundType ENTITY_LLAMA_ANGRY = DummyObjectProvider.createFor(SoundType.class, "ENTITY_LLAMA_ANGRY");
+
+    public static final SoundType ENTITY_LLAMA_CHEST = DummyObjectProvider.createFor(SoundType.class, "ENTITY_LLAMA_CHEST");
+
+    public static final SoundType ENTITY_LLAMA_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_LLAMA_DEATH");
+
+    public static final SoundType ENTITY_LLAMA_EAT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_LLAMA_EAT");
+
+    public static final SoundType ENTITY_LLAMA_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_LLAMA_HURT");
+
+    public static final SoundType ENTITY_LLAMA_SPIT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_LLAMA_SPIT");
+
+    public static final SoundType ENTITY_LLAMA_STEP = DummyObjectProvider.createFor(SoundType.class, "ENTITY_LLAMA_STEP");
+
+    public static final SoundType ENTITY_LLAMA_SWAG = DummyObjectProvider.createFor(SoundType.class, "ENTITY_LLAMA_SWAG");
+
     public static final SoundType ENTITY_MAGMACUBE_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MAGMACUBE_DEATH");
 
     public static final SoundType ENTITY_MAGMACUBE_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MAGMACUBE_HURT");
@@ -586,6 +624,8 @@ public final class SoundTypes {
     public static final SoundType ENTITY_MOOSHROOM_SHEAR = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MOOSHROOM_SHEAR");
 
     public static final SoundType ENTITY_MULE_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MULE_AMBIENT");
+
+    public static final SoundType ENTITY_MULE_CHEST = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MULE_CHEST");
 
     public static final SoundType ENTITY_MULE_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_MULE_DEATH");
 
@@ -773,6 +813,14 @@ public final class SoundTypes {
 
     public static final SoundType ENTITY_TNT_PRIMED = DummyObjectProvider.createFor(SoundType.class, "ENTITY_TNT_PRIMED");
 
+    public static final SoundType ENTITY_VEX_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VEX_AMBIENT");
+
+    public static final SoundType ENTITY_VEX_CHARGE = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VEX_CHARGE");
+
+    public static final SoundType ENTITY_VEX_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VEX_DEATH");
+
+    public static final SoundType ENTITY_VEX_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VEX_HURT");
+
     public static final SoundType ENTITY_VILLAGER_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VILLAGER_AMBIENT");
 
     public static final SoundType ENTITY_VILLAGER_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VILLAGER_DEATH");
@@ -784,6 +832,12 @@ public final class SoundTypes {
     public static final SoundType ENTITY_VILLAGER_TRADING = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VILLAGER_TRADING");
 
     public static final SoundType ENTITY_VILLAGER_YES = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VILLAGER_YES");
+
+    public static final SoundType ENTITY_VINDICATION_ILLAGER_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VINDICATION_ILLAGER_AMBIENT");
+
+    public static final SoundType ENTITY_VINDICATION_ILLAGER_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VINDICATION_ILLAGER_DEATH");
+
+    public static final SoundType ENTITY_VINDICATION_ILLAGER_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VINDICATION_ILLAGER_HURT");
 
     public static final SoundType ENTITY_WITCH_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_WITCH_AMBIENT");
 
@@ -879,6 +933,8 @@ public final class SoundTypes {
 
     public static final SoundType ITEM_ARMOR_EQUIP_DIAMOND = DummyObjectProvider.createFor(SoundType.class, "ITEM_ARMOR_EQUIP_DIAMOND");
 
+    public static final SoundType ITEM_ARMOR_EQUIP_ELYTRA = DummyObjectProvider.createFor(SoundType.class, "ITEM_ARMOR_EQUIP_ELYTRA");
+
     public static final SoundType ITEM_ARMOR_EQUIP_GENERIC = DummyObjectProvider.createFor(SoundType.class, "ITEM_ARMOR_EQUIP_GENERIC");
 
     public static final SoundType ITEM_ARMOR_EQUIP_GOLD = DummyObjectProvider.createFor(SoundType.class, "ITEM_ARMOR_EQUIP_GOLD");
@@ -886,6 +942,8 @@ public final class SoundTypes {
     public static final SoundType ITEM_ARMOR_EQUIP_IRON = DummyObjectProvider.createFor(SoundType.class, "ITEM_ARMOR_EQUIP_IRON");
 
     public static final SoundType ITEM_ARMOR_EQUIP_LEATHER = DummyObjectProvider.createFor(SoundType.class, "ITEM_ARMOR_EQUIP_LEATHER");
+
+    public static final SoundType ITEM_BOTTLE_EMPTY = DummyObjectProvider.createFor(SoundType.class, "ITEM_BOTTLE_EMPTY");
 
     public static final SoundType ITEM_BOTTLE_FILL = DummyObjectProvider.createFor(SoundType.class, "ITEM_BOTTLE_FILL");
 
@@ -914,6 +972,8 @@ public final class SoundTypes {
     public static final SoundType ITEM_SHIELD_BREAK = DummyObjectProvider.createFor(SoundType.class, "ITEM_SHIELD_BREAK");
 
     public static final SoundType ITEM_SHOVEL_FLATTEN = DummyObjectProvider.createFor(SoundType.class, "ITEM_SHOVEL_FLATTEN");
+
+    public static final SoundType ITEM_TOTEM_USE = DummyObjectProvider.createFor(SoundType.class, "ITEM_TOTEM_USE");
 
     public static final SoundType MUSIC_CREATIVE = DummyObjectProvider.createFor(SoundType.class, "MUSIC_CREATIVE");
 
