@@ -44,6 +44,13 @@ import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.animal.Donkey;
+import org.spongepowered.api.entity.living.animal.Horse;
+import org.spongepowered.api.entity.living.animal.Llama;
+import org.spongepowered.api.entity.living.animal.Mule;
+import org.spongepowered.api.entity.living.animal.RideableHorse;
+import org.spongepowered.api.entity.living.animal.SkeletonHorse;
+import org.spongepowered.api.entity.living.animal.ZombieHorse;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.util.RespawnLocation;
@@ -500,6 +507,13 @@ public final class Keys {
 
     public static final Key<Value<HorseStyle>> HORSE_STYLE = KeyFactory.fake("HORSE_STYLE");
 
+    /**
+     * Represents the type of {@link Horse}.
+     * @deprecated Due to the structural changes of Horses, they are now separate interfaces:
+     * {@link RideableHorse}, {@link Donkey}, {@link Mule}, {@link SkeletonHorse}, {@link ZombieHorse},
+     * and {@link Llama}.
+     */
+    @Deprecated
     public static final Key<Value<HorseVariant>> HORSE_VARIANT = KeyFactory.fake("HORSE_VARIANT");
 
     /**
@@ -961,6 +975,17 @@ public final class Keys {
     public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = KeyFactory.fake("WIRE_ATTACHMENT_WEST");
 
     public static final Key<Value<ZombieType>> ZOMBIE_TYPE = KeyFactory.fake("ZOMBIE_TYPE");
+
+    /**
+     * Represents the {@link Key} for a {@link Llama}s carrying strength. The higher the strength,
+     * the more items it can carry (effectively the size of inventory).
+     */
+    public static final Key<MutableBoundedValue<Integer>> LLAMA_STRENGTH = KeyFactory.fake("LLAMA_STRENGTH");
+
+    /**
+     * Represents the {@link Key} for a {@link Llama}'s {@link LlamaVariant}.
+     */
+    public static final Key<Value<LlamaVariant>> LLAMA_VARIANT = KeyFactory.fake("LLAMA_VARIANT");
 
     // SORTFIELDS:OFF
 

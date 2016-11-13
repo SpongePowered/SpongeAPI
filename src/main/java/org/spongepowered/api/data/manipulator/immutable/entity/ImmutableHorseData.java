@@ -30,11 +30,11 @@ import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.HorseVariant;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.living.animal.Horse;
+import org.spongepowered.api.entity.living.animal.RideableHorse;
 
 /**
  * An {@link ImmutableDataManipulator} handling the various information for a
- * {@link Horse} including {@link HorseColor}, {@link HorseStyle}, and
+ * {@link RideableHorse} including {@link HorseColor}, {@link HorseStyle}, and
  * {@link HorseVariant}.
  */
 public interface ImmutableHorseData extends ImmutableDataManipulator<ImmutableHorseData, HorseData> {

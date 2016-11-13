@@ -22,26 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin.creature.horse;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
-import org.spongepowered.api.entity.living.animal.RideableHorse;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public interface RunAroundLikeCrazyAITask extends AITask<RideableHorse> {
+@CatalogedBy(LlamaVariants.class)
+public interface LlamaVariant extends CatalogType {
 
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
-
-    double getSpeed();
-
-    RunAroundLikeCrazyAITask setSpeed(double speed);
-
-    interface Builder extends AITaskBuilder<RideableHorse, RunAroundLikeCrazyAITask, Builder> {
-
-        Builder speed(double speed);
-
-    }
 }

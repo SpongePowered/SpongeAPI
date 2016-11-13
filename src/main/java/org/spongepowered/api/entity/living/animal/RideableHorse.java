@@ -22,26 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin.creature.horse;
+package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
-import org.spongepowered.api.entity.living.animal.RideableHorse;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.mutable.entity.HorseData;
+import org.spongepowered.api.data.type.HorseColor;
+import org.spongepowered.api.data.type.HorseStyle;
+import org.spongepowered.api.data.type.HorseVariant;
+import org.spongepowered.api.data.value.mutable.Value;
 
-public interface RunAroundLikeCrazyAITask extends AITask<RideableHorse> {
+/**
+ * Represents a RideableHorse.
+ */
+public interface RideableHorse extends Horse {
 
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
+    /**
+     * Gets a copy of the {@link HorseData} representing this {@link RideableHorse}.
+     *
+     * @return A copy of the horse data
+     */
+    @SuppressWarnings("deprecation")
+    default HorseData getHorseData() {
+        return get(HorseData.class).get();
     }
 
-    double getSpeed();
+    default Value<HorseVariant> variant() {
+        return getValue(Keys.HORSE_VARIANT).get();
+    }
 
-    RunAroundLikeCrazyAITask setSpeed(double speed);
+    @SuppressWarnings("deprecation")
+    default Value<HorseStyle> style() {
+        return getValue(Keys.HORSE_STYLE).get();
+    }
 
-    interface Builder extends AITaskBuilder<RideableHorse, RunAroundLikeCrazyAITask, Builder> {
-
-        Builder speed(double speed);
-
+    @SuppressWarnings("deprecation")
+    default Value<HorseColor> color() {
+        return getValue(Keys.HORSE_COLOR).get();
     }
 }

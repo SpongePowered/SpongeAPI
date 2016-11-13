@@ -28,7 +28,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.entity.living.animal.Horse;
+import org.spongepowered.api.entity.living.animal.RideableHorse;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.function.Predicate;
@@ -43,7 +43,7 @@ public final class AITaskTypes {
     public static final AITaskType AVOID_ENTITY = DummyObjectProvider.createFor(AITaskType.class, "AVOID_ENTITY");
 
     /**
-     * {@link AITask} where {@link Horse}s run around while {@link Humanoid}s attempt to tame them.
+     * {@link AITask} where {@link RideableHorse}s run around while {@link Humanoid}s attempt to tame them.
      */
     public static final AITaskType RUN_AROUND_LIKE_CRAZY = DummyObjectProvider.createFor(AITaskType.class, "RUN_AROUND_LIKE_CRAZY");
 

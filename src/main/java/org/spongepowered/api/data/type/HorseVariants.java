@@ -44,6 +44,8 @@ public final class HorseVariants {
 
     public static final HorseVariant UNDEAD_HORSE = DummyObjectProvider.createFor(HorseVariant.class, "UNDEAD_HORSE");
 
+    public static final HorseVariant LLAMA = DummyObjectProvider.createFor(HorseVariant.class, "LLAMA");
+
     // SORTFIELDS:OFF
 
     private HorseVariants() {

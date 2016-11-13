@@ -119,7 +119,7 @@ import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.Villager;
 import org.spongepowered.api.entity.living.animal.Animal;
-import org.spongepowered.api.entity.living.animal.Horse;
+import org.spongepowered.api.entity.living.animal.RideableHorse;
 import org.spongepowered.api.entity.living.animal.Ocelot;
 import org.spongepowered.api.entity.living.animal.Pig;
 import org.spongepowered.api.entity.living.animal.Rabbit;
@@ -324,7 +324,7 @@ public final class CatalogEntityData {
      */
     public static final Class<HealthData> HEALTH_DATA = HealthData.class;
     /**
-     * Represents a {@link Horse}s specific data, such as {@link HorseVariant},
+     * Represents a {@link RideableHorse}s specific data, such as {@link HorseVariant},
      * {@link HorseStyle}, and {@link HorseColor}.
      */
     public static final Class<HorseData> HORSE_DATA = HorseData.class;
@@ -472,7 +472,7 @@ public final class CatalogEntityData {
     public static final Class<StatisticData> STATISTIC_DATA = StatisticData.class;
     /**
      * Signifies that an entity is "tamed" and has an owner. Usually applicable
-     * to {@link Horse}s, {@link Ocelot}s, and {@link Wolf} entities.
+     * to {@link RideableHorse}s, {@link Ocelot}s, and {@link Wolf} entities.
      */
     public static final Class<TameableData> TAMEABLE_DATA = TameableData.class;
     /**

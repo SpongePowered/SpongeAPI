@@ -22,26 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.ai.task.builtin.creature.horse;
+package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.ai.task.AITask;
-import org.spongepowered.api.entity.ai.task.AITaskBuilder;
-import org.spongepowered.api.entity.living.animal.RideableHorse;
+public interface Donkey extends Horse {
 
-public interface RunAroundLikeCrazyAITask extends AITask<RideableHorse> {
-
-    static Builder builder() {
-        return Sponge.getRegistry().createBuilder(Builder.class);
-    }
-
-    double getSpeed();
-
-    RunAroundLikeCrazyAITask setSpeed(double speed);
-
-    interface Builder extends AITaskBuilder<RideableHorse, RunAroundLikeCrazyAITask, Builder> {
-
-        Builder speed(double speed);
-
-    }
 }
