@@ -22,19 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.entity.living.monster.AbstractSkeleton;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.mutable.entity.SkeletonData;
+import org.spongepowered.api.data.type.SkeletonType;
+import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.ArmorEquipable;
+import org.spongepowered.api.entity.living.Ranger;
 
 /**
- * Represents the type of skeleton a {@link AbstractSkeleton}
- * can be. Certain skeleton types define the items a skeleton can equip and
- * can define the various status immunities, such as withering.
+ * Represents a AbstractSkeleton.
  */
-@Deprecated
-@CatalogedBy(SkeletonTypes.class)
-public interface SkeletonType extends CatalogType {
+public interface AbstractSkeleton extends Monster, ArmorEquipable, Ranger {
+
+    /**
+     * Gets the current {@link SkeletonData} represented by this
+     * {@link AbstractSkeleton}.
+     *
+     * @return A copy of the current skeleton data
+     */
+    @Deprecated
+    default SkeletonData getSkeletonData() {
+        return get(SkeletonData.class).get();
+    }
+
+    @Deprecated
+    default Value<SkeletonType> variant() {
+        return getValue(Keys.SKELETON_TYPE).get();
+    }
 
 }

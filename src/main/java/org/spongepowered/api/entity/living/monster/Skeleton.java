@@ -24,30 +24,6 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.SkeletonData;
-import org.spongepowered.api.data.type.SkeletonType;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.ArmorEquipable;
-import org.spongepowered.api.entity.living.Ranger;
-
-/**
- * Represents a Skeleton.
- */
-public interface Skeleton extends Monster, ArmorEquipable, Ranger {
-
-    /**
-     * Gets the current {@link SkeletonData} represented by this
-     * {@link Skeleton}.
-     *
-     * @return A copy of the current skeleton data
-     */
-    default SkeletonData getSkeletonData() {
-        return get(SkeletonData.class).get();
-    }
-
-    default Value<SkeletonType> variant() {
-        return getValue(Keys.SKELETON_TYPE).get();
-    }
+public interface Skeleton extends AbstractSkeleton {
 
 }

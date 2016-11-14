@@ -27,11 +27,11 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
 import org.spongepowered.api.data.manipulator.mutable.entity.SkeletonData;
 import org.spongepowered.api.data.type.SkeletonType;
-import org.spongepowered.api.entity.living.monster.Skeleton;
+import org.spongepowered.api.entity.living.monster.AbstractSkeleton;
 
 /**
  * A type of {@link ImmutableVariantData} for {@link SkeletonType}s belonging
- * to an {@link Skeleton}.
+ * to an {@link AbstractSkeleton}.
  */
 public interface ImmutableSkeletonData extends ImmutableVariantData<SkeletonType, ImmutableSkeletonData, SkeletonData> {
 

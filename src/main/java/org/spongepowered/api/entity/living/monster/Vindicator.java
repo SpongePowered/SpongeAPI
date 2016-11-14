@@ -22,19 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.entity.living.monster.AbstractSkeleton;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.value.mutable.Value;
 
-/**
- * Represents the type of skeleton a {@link AbstractSkeleton}
- * can be. Certain skeleton types define the items a skeleton can equip and
- * can define the various status immunities, such as withering.
- */
-@Deprecated
-@CatalogedBy(SkeletonTypes.class)
-public interface SkeletonType extends CatalogType {
+public interface Vindicator extends Monster {
+
+    // TODO - Add Vindicator Data
+
+    default Value<Boolean> johnny() {
+        return getValue(Keys.JOHNNY_VINDICATOR).get();
+    }
 
 }

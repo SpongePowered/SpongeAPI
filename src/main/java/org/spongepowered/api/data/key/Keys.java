@@ -986,6 +986,7 @@ public final class Keys {
      * Represents the {@link Key} for a {@link Llama}'s {@link LlamaVariant}.
      */
     public static final Key<Value<LlamaVariant>> LLAMA_VARIANT = KeyFactory.fake("LLAMA_VARIANT");
+    public static final Key<Value<Boolean>> JOHNNY_VINDICATOR = KeyFactory.fake("JOHNNY_VINDICATOR");
 
     // SORTFIELDS:OFF
 
