@@ -26,6 +26,7 @@ package org.spongepowered.api.service.permission;
 
 import org.spongepowered.api.service.context.Context;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -47,6 +48,20 @@ public interface SubjectCollection {
      * @return The appropriate identifier
      */
     String getIdentifier();
+
+    /**
+     * Get the type definition controlling how this subject functions.
+     *
+     * @return The type definition
+     */
+    SubjectTypeDefinition getDefinition();
+
+    /**
+     * Set the type definition that describes restrictions on this subject type.
+     *
+     * @param def The type definition. Must not be null.
+     */
+    void setDefinition(SubjectTypeDefinition def);
 
     /**
      * Returns the subject specified. Will not return null.
@@ -95,7 +110,14 @@ public interface SubjectCollection {
      *
      * @return An iterable providing all subjects stored by this collection.
      */
-    Iterable<Subject> getAllSubjects();
+    CompletableFuture<Collection<Subject>> getAllSubjects();
+
+    /**
+     * Returns all subjects currently cached.
+     *
+     * @return An iterable providing all subjects stored by this collection.
+     */
+    Collection<Subject> getCachedSubjects();
 
     /**
      * Return all known subjects with the given permission information. Because
@@ -152,4 +174,12 @@ public interface SubjectCollection {
      * @return The subject holding defaults
      */
     Subject getDefaults();
+
+    /**
+     * Indicate that a certain subject may be removed from cache. This is only a hint to the permissions plugin, though, so this does not guarantee
+     * that a certain subject is removed from the cache.
+     *
+     * @param identifier The identifier of the subject to remove from cache.
+     */
+    void uncache(String identifier);
 }
