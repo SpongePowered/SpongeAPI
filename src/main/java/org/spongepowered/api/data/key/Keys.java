@@ -51,6 +51,7 @@ import org.spongepowered.api.entity.living.animal.Mule;
 import org.spongepowered.api.entity.living.animal.RideableHorse;
 import org.spongepowered.api.entity.living.animal.SkeletonHorse;
 import org.spongepowered.api.entity.living.animal.ZombieHorse;
+import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.util.RespawnLocation;
@@ -826,6 +827,13 @@ public final class Keys {
 
     public static final Key<ListValue<Text>> SIGN_LINES = KeyFactory.fake("SIGN_LINES");
 
+    /**
+     * Represents the {@link Key} for representing the {@link SkeletonType}
+     * of a {@link Skeleton}.
+     *
+     * @deprecated Due to the fact that skeletons have interfaces instead of types now
+     */
+    @Deprecated
     public static final Key<Value<SkeletonType>> SKELETON_TYPE = KeyFactory.fake("SKELETON_TYPE");
 
     public static final Key<Value<UUID>> SKIN_UNIQUE_ID = KeyFactory.fake("SKIN_UNIQUE_ID");

@@ -126,7 +126,7 @@ import org.spongepowered.api.entity.living.animal.Rabbit;
 import org.spongepowered.api.entity.living.animal.Sheep;
 import org.spongepowered.api.entity.living.animal.Wolf;
 import org.spongepowered.api.entity.living.golem.IronGolem;
-import org.spongepowered.api.entity.living.monster.AbstractSkeleton;
+import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.entity.living.monster.Blaze;
 import org.spongepowered.api.entity.living.monster.Creeper;
 import org.spongepowered.api.entity.living.monster.Enderman;
@@ -446,7 +446,7 @@ public final class CatalogEntityData {
      */
     public static final Class<SizeData> SIZE_DATA = SizeData.class;
     /**
-     * Represents the {@link SkeletonType} of a {@link AbstractSkeleton}.
+     * Represents the {@link SkeletonType} of a {@link Skeleton}.
      */
     public static final Class<SkeletonData> SKELETON_DATA = SkeletonData.class;
     /**

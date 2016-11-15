@@ -24,16 +24,9 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.SkeletonData;
-import org.spongepowered.api.data.type.SkeletonType;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.ArmorEquipable;
-import org.spongepowered.api.entity.living.Ranger;
-
 /**
- * Represents a AbstractSkeleton.
+ * Represents a WitherSkeleton.
  */
-public interface WitherSkeleton extends AbstractSkeleton {
+public interface WitherSkeleton extends Skeleton {
 
 }

@@ -36,7 +36,7 @@ import org.spongepowered.api.entity.living.monster.Creeper;
 import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Ghast;
 import org.spongepowered.api.entity.living.monster.Silverfish;
-import org.spongepowered.api.entity.living.monster.AbstractSkeleton;
+import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.entity.living.monster.Wither;
 import org.spongepowered.api.entity.living.monster.Zombie;
 import org.spongepowered.api.entity.living.monster.ZombiePigman;
@@ -170,7 +170,7 @@ public class DefaultGameRules {
      * <ul>
      *     <li>{@link Villager}</li>
      *     <li>{@link Zombie}</li>
-     *     <li>{@link AbstractSkeleton}</li>
+     *     <li>{@link Skeleton}</li>
      *     <li>{@link ZombiePigman}</li>
      * </ul></p>
      *
