@@ -581,6 +581,8 @@ public final class Keys {
 
     public static final Key<ListValue<Text>> ITEM_LORE = KeyFactory.fake("ITEM_LORE");
 
+    public static final Key<Value<Boolean>> JOHNNY_VINDICATOR = KeyFactory.fake("JOHNNY_VINDICATOR");
+
     public static final Key<MutableBoundedValue<Integer>> KNOCKBACK_STRENGTH = KeyFactory.fake("KNOCKBACK_STRENGTH");
 
     public static final Key<OptionalValue<Living>> LAST_ATTACKER = KeyFactory.fake("LAST_ATTACKER");
@@ -604,6 +606,17 @@ public final class Keys {
     public static final Key<Value<Vector3d>> LEFT_ARM_ROTATION = KeyFactory.fake("LEFT_ARM_ROTATION");
 
     public static final Key<Value<Vector3d>> LEFT_LEG_ROTATION = KeyFactory.fake("LEFT_LEG_ROTATION");
+
+    /**
+     * Represents the {@link Key} for a {@link Llama}s carrying strength. The higher the strength,
+     * the more items it can carry (effectively the size of inventory).
+     */
+    public static final Key<MutableBoundedValue<Integer>> LLAMA_STRENGTH = KeyFactory.fake("LLAMA_STRENGTH");
+
+    /**
+     * Represents the {@link Key} for a {@link Llama}'s {@link LlamaVariant}.
+     */
+    public static final Key<Value<LlamaVariant>> LLAMA_VARIANT = KeyFactory.fake("LLAMA_VARIANT");
 
     public static final Key<Value<String>> LOCK_TOKEN = KeyFactory.fake("LOCK_TOKEN");
 
@@ -664,20 +677,19 @@ public final class Keys {
     public static final Key<Value<Boolean>> PERSISTS = KeyFactory.fake("PERSISTS");
 
     /**
-     * Represents the {@link Key} for the "pickup rule" of an {@link Arrow}.
-     *
-     * @see PickupRuleData#type()
-     */
-    public static final Key<Value<PickupRule>> PICKUP_RULE = KeyFactory.fake("PICKUP_RULE");
-
-
-    /**
      * Represents the {@link Key} for representing the pickup delay
      * of an {@link Item}.
      *
      * @see PickupDelayData#delay()
      */
     public static final Key<MutableBoundedValue<Integer>> PICKUP_DELAY = KeyFactory.fake("PICKUP_DELAY");
+
+    /**
+     * Represents the {@link Key} for the "pickup rule" of an {@link Arrow}.
+     *
+     * @see PickupRuleData#type()
+     */
+    public static final Key<Value<PickupRule>> PICKUP_RULE = KeyFactory.fake("PICKUP_RULE");
 
     public static final Key<Value<Boolean>> PIG_SADDLE = KeyFactory.fake("PIG_SADDLE");
 
@@ -983,18 +995,6 @@ public final class Keys {
     public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = KeyFactory.fake("WIRE_ATTACHMENT_WEST");
 
     public static final Key<Value<ZombieType>> ZOMBIE_TYPE = KeyFactory.fake("ZOMBIE_TYPE");
-
-    /**
-     * Represents the {@link Key} for a {@link Llama}s carrying strength. The higher the strength,
-     * the more items it can carry (effectively the size of inventory).
-     */
-    public static final Key<MutableBoundedValue<Integer>> LLAMA_STRENGTH = KeyFactory.fake("LLAMA_STRENGTH");
-
-    /**
-     * Represents the {@link Key} for a {@link Llama}'s {@link LlamaVariant}.
-     */
-    public static final Key<Value<LlamaVariant>> LLAMA_VARIANT = KeyFactory.fake("LLAMA_VARIANT");
-    public static final Key<Value<Boolean>> JOHNNY_VINDICATOR = KeyFactory.fake("JOHNNY_VINDICATOR");
 
     // SORTFIELDS:OFF
 

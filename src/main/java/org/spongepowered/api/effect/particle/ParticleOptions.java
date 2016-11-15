@@ -82,8 +82,8 @@ public final class ParticleOptions {
      * will be thrown when applying.</p>
      */
     public static final ParticleOption<List<FireworkEffect>> FIREWORK_EFFECTS =
-            DummyObjectProvider.createFor(ParticleOption.class, "FIREWORK_EFFECTS");
 
+            DummyObjectProvider.createFor(ParticleOption.class, "FIREWORK_EFFECTS");
     /**
      * This option will affect the appearance of a particle, the only
      * vanilla {@link ParticleType} this option is applicable to are:
@@ -95,8 +95,8 @@ public final class ParticleOptions {
      * <ul/>
      */
     public static final ParticleOption<ItemStackSnapshot> ITEM_STACK_SNAPSHOT =
-            DummyObjectProvider.createFor(ParticleOption.class, "ITEM_STACK_SNAPSHOT");
 
+            DummyObjectProvider.createFor(ParticleOption.class, "ITEM_STACK_SNAPSHOT");
     /**
      * This option will affect the appearance of a particle, the only
      * vanilla {@link ParticleType} this option is applicable to is
@@ -115,8 +115,25 @@ public final class ParticleOptions {
      * {@link ParticleTypes#SPLASH_POTION}.
      */
     public static final ParticleOption<PotionEffectType> POTION_EFFECT_TYPE =
-            DummyObjectProvider.createFor(ParticleOption.class, "POTION_EFFECT_TYPE");
 
+    /**
+     * This option will affect the amount of particles that are spawned. The
+     * minimum amount of particles is 1. the only vanilla {@link ParticleType}s
+     * this option isn't applicable to are:
+     * <ul>
+     *   <li>{@link ParticleTypes#BREAK_BLOCK}</li>
+     *   <li>{@link ParticleTypes#ENDER_TELEPORT}</li>
+     *   <li>{@link ParticleTypes#FIRE_SMOKE}</li>
+     *   <li>{@link ParticleTypes#FIREWORKS}</li>
+     *   <li>{@link ParticleTypes#MOBSPAWNER_FLAMES}</li>
+     *   <li>{@link ParticleTypes#SPLASH_POTION}</li>
+     * <ul/>
+     * <p>The quantity must be at least 1. Or a {@link IllegalArgumentException}
+     * will be thrown when applying.</p>
+     */
+    public static final ParticleOption<Integer> QUANTITY = DummyObjectProvider.createFor(ParticleOption.class, "QUANTITY");
+
+            DummyObjectProvider.createFor(ParticleOption.class, "POTION_EFFECT_TYPE");
     /**
      * This option will change the scale of a particle, the only
      * vanilla {@link ParticleType}s this option is applicable to are:
@@ -142,29 +159,12 @@ public final class ParticleOptions {
      * (through {@link #VELOCITY}) in the horizontal plane.
      */
     public static final ParticleOption<Boolean> SLOW_HORIZONTAL_VELOCITY =
-            DummyObjectProvider.createFor(ParticleOption.class, "SLOW_HORIZONTAL_VELOCITY");
 
+            DummyObjectProvider.createFor(ParticleOption.class, "SLOW_HORIZONTAL_VELOCITY");
     /**
      * This option will affect how all the particles are moving.
      */
     public static final ParticleOption<Vector3d> VELOCITY = DummyObjectProvider.createFor(ParticleOption.class, "VELOCITY");
-
-    /**
-     * This option will affect the amount of particles that are spawned. The
-     * minimum amount of particles is 1. the only vanilla {@link ParticleType}s
-     * this option isn't applicable to are:
-     * <ul>
-     *   <li>{@link ParticleTypes#BREAK_BLOCK}</li>
-     *   <li>{@link ParticleTypes#ENDER_TELEPORT}</li>
-     *   <li>{@link ParticleTypes#FIRE_SMOKE}</li>
-     *   <li>{@link ParticleTypes#FIREWORKS}</li>
-     *   <li>{@link ParticleTypes#MOBSPAWNER_FLAMES}</li>
-     *   <li>{@link ParticleTypes#SPLASH_POTION}</li>
-     * <ul/>
-     * <p>The quantity must be at least 1. Or a {@link IllegalArgumentException}
-     * will be thrown when applying.</p>
-     */
-    public static final ParticleOption<Integer> QUANTITY = DummyObjectProvider.createFor(ParticleOption.class, "QUANTITY");
 
     // SORTFIELDS:OFF
 

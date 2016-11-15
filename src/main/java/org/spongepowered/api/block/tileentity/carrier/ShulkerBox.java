@@ -22,32 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
-
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+package org.spongepowered.api.block.tileentity.carrier;
 
 /**
- * An enumeration of known vanilla {@link HorseVariant}s.
+ * Represents a ShulkerBox. ShulkerBoxes are specific in that when they are
+ * mined, they drop themselves with the contents added in themselves, so placing
+ * them back as items will result in a restored inventory.
  */
-@Deprecated
-public final class HorseVariants {
+public interface ShulkerBox extends TileEntityCarrier {
 
-    // SORTFIELDS:ON
-
-    public static final HorseVariant DONKEY = DummyObjectProvider.createFor(HorseVariant.class, "DONKEY");
-
-    public static final HorseVariant HORSE = DummyObjectProvider.createFor(HorseVariant.class, "HORSE");
-
-    public static final HorseVariant LLAMA = DummyObjectProvider.createFor(HorseVariant.class, "LLAMA");
-
-    public static final HorseVariant MULE = DummyObjectProvider.createFor(HorseVariant.class, "MULE");
-
-    public static final HorseVariant SKELETON_HORSE = DummyObjectProvider.createFor(HorseVariant.class, "SKELETON_HORSE");
-
-    public static final HorseVariant UNDEAD_HORSE = DummyObjectProvider.createFor(HorseVariant.class, "UNDEAD_HORSE");
-
-    // SORTFIELDS:OFF
-
-    private HorseVariants() {
-    }
 }

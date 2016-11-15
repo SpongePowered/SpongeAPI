@@ -42,11 +42,6 @@ public final class Visibilities {
     public static final Visibility ALWAYS = DummyObjectProvider.createFor(Visibility.class, "ALWAYS");
 
     /**
-     * Death messages or nametags are never visible.
-     */
-    public static final Visibility NEVER = DummyObjectProvider.createFor(Visibility.class, "NEVER");
-
-    /**
      * Death messages or nametags for members of other teams will not be
      * visible, but death messages or nametags for members of the same team
      * will be visible.
@@ -59,6 +54,11 @@ public final class Visibilities {
      * will not be visible.
      */
     public static final Visibility HIDE_FOR_OWN_TEAM = DummyObjectProvider.createFor(Visibility.class, "HIDE_FOR_OWN_TEAM");
+
+    /**
+     * Death messages or nametags are never visible.
+     */
+    public static final Visibility NEVER = DummyObjectProvider.createFor(Visibility.class, "NEVER");
 
     // SORTFIELDS:OFF
 
