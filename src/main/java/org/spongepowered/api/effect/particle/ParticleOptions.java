@@ -114,7 +114,7 @@ public final class ParticleOptions {
      * vanilla {@link ParticleType}s this option is applicable to is
      * {@link ParticleTypes#SPLASH_POTION}.
      */
-    public static final ParticleOption<PotionEffectType> POTION_EFFECT_TYPE =
+    public static final ParticleOption<PotionEffectType> POTION_EFFECT_TYPE = DummyObjectProvider.createFor(ParticleOption.class, "POTION_EFFECT_TYPE");
 
     /**
      * This option will affect the amount of particles that are spawned. The
@@ -133,7 +133,6 @@ public final class ParticleOptions {
      */
     public static final ParticleOption<Integer> QUANTITY = DummyObjectProvider.createFor(ParticleOption.class, "QUANTITY");
 
-            DummyObjectProvider.createFor(ParticleOption.class, "POTION_EFFECT_TYPE");
     /**
      * This option will change the scale of a particle, the only
      * vanilla {@link ParticleType}s this option is applicable to are:
