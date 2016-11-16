@@ -15,13 +15,16 @@ buildscript {
         classpath 'gradle.plugin.net.minecrell:licenser:0.3'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
         classpath 'org.spongepowered:event-impl-gen:2.1.0-SNAPSHOT'
-        classpath 'gradle.plugin.org.spongepowered:spongegradle:0.7'
+        classpath 'gradle.plugin.org.spongepowered:spongegradle:0.8'
     }
 }
 
 // Include shared Gradle configuration
 ext.api = project
 apply from: 'gradle/sponge.gradle'
+
+// Generate mcmod.info file for project
+apply plugin: 'org.spongepowered.meta'
 
 sourceSets {
     ap {
