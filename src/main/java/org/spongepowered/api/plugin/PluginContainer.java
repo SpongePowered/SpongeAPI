@@ -98,9 +98,12 @@ public interface PluginContainer {
      * Minecraft version.</p>
      *
      * @return The Minecraft version, or {@link Optional#empty()} if unknown
+     * @deprecated This will be removed in API 6.x as plugins and mods will
+     *     be including this in their dependencies
      */
+    @Deprecated
     default Optional<String> getMinecraftVersion() {
-        return Optional.of(Sponge.getPlatform().getMinecraftVersion().getName());
+        return Optional.empty();
     }
 
     /**
