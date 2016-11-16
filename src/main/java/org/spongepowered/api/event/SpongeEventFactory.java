@@ -2387,6 +2387,26 @@ public class SpongeEventFactory {
      * AUTOMATICALLY GENERATED, DO NOT EDIT.
      * Creates a new instance of
      * {@link org.spongepowered.api.event.entity.living.humanoid.player.RespawnPlayerEvent}.
+     *
+     * @param cause The cause
+     * @param fromTransform The from transform
+     * @param fromTransform The from transform
+     * @param toTransform The to transform
+     * @param targetEntity The target entity
+     * @param bedSpawn The bed spawn
+     * @return A new respawn player event
+     * @deprecated Due to players being re-created on death, this is only retained for
+     *     plugin usage. Due for removal in API 6.
+     */
+    @Deprecated
+    public static RespawnPlayerEvent createRespawnPlayerEvent(Cause cause, Transform<World> fromTransform, Transform<World> toTransform, Player targetEntity, boolean bedSpawn) {
+        return createRespawnPlayerEvent(cause, fromTransform, toTransform, targetEntity, targetEntity, bedSpawn, false);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.living.humanoid.player.RespawnPlayerEvent}.
      * 
      * @param cause The cause
      * @param fromTransform The from transform
