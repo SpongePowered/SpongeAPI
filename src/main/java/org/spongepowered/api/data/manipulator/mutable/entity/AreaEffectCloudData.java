@@ -22,69 +22,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.AreaEffectCloudData;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAreaEffectCloudData;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.Color;
 
-/**
- * Represents an AreaEffectCloud. The cloud will apply {@link PotionEffect}s
- * to {@link Entity} instances within it's bounding box.
- */
-public interface AreaEffectCloud extends Entity {
-
-
-
-    /**
-     * Gets the {@link AreaEffectCloudData} for this cloud.
-     *
-     * @return The area effect cloud data
-     */
-    default AreaEffectCloudData getAreaEffectCloudData() {
-        return get(AreaEffectCloudData.class).get();
-    }
+public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData, ImmutableAreaEffectCloudData> {
 
     /**
      * Gets the {@link Color} of this cloud, can be changed.
      *
      * @return The color of this cloud
      */
-    default Value<Color> color() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_COLOR).get();
-    }
+    Value<Color> color();
 
     /**
      * Gets the {@code radius} value of this cloud.
      *
      * @return The radius value of this cloud
      */
-    default MutableBoundedValue<Double> radius() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_RADIUS).get();
-    }
+    MutableBoundedValue<Double> radius();
 
     /**
      * Gets the {@link ParticleType} of this cloud.
      *
      * @return The particle type of this cloud
      */
-    default Value<ParticleType> particleType() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_PARTICLE_TYPE).get();
-    }
-
+    Value<ParticleType> particleType();
     /**
      * Gets the bounded {@code duration} value of this cloud.
      *
      * @return The bounded duration value
      */
-    default MutableBoundedValue<Integer> duration() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_DURATION).get();
-    }
+    MutableBoundedValue<Integer> duration();
 
     /**
      * Gets the bounded {@code waitTime} value of this cloud. The wait time
@@ -93,9 +71,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return The bounded wait time value
      */
-    default MutableBoundedValue<Integer> waitTime() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_WAIT_TIME).get();
-    }
+    MutableBoundedValue<Integer> waitTime();
 
     /**
      * Gets the bounded {@code radiusOnUse} value of this cloud.
@@ -104,9 +80,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return The bounded radius reduced on use value
      */
-    default MutableBoundedValue<Double> radiusOnUse() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_RADIUS_ON_USE).get();
-    }
+    MutableBoundedValue<Double> radiusOnUse();
 
     /**
      * Gets the bounded {@code radiusPerTick} value of this cloud.
@@ -116,9 +90,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return The bounded radius reduction per tick value
      */
-    default MutableBoundedValue<Double> radiusPerTick() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_RADIUS_PER_TICK).get();
-    }
+    MutableBoundedValue<Double> radiusPerTick();
 
     /**
      * Gets the bounded {@code durationOnUse} value of this cloud.
@@ -127,9 +99,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return The bounded duration on use value
      */
-    default MutableBoundedValue<Integer> durationOnUse() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_DURATION_ON_USE).get();
-    }
+    MutableBoundedValue<Integer> durationOnUse();
 
     /**
      * Gets the bounded {@code applicationDelay} value of this cloud.
@@ -138,9 +108,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return The bounded re-application delay value
      */
-    default MutableBoundedValue<Integer> applicationDelay() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_REAPPLICATION_DELAY).get();
-    }
+    MutableBoundedValue<Integer> applicationDelay();
 
     /**
      * Gets the {@link ListValue} of {@link PotionEffect}s of this cloud.
@@ -149,18 +117,13 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return The list of potion effects
      */
-    default ListValue<PotionEffect> effects() {
-        return getValue(Keys.POTION_EFFECTS).get();
-    }
+    ListValue<PotionEffect> effects();
 
     /**
      * Gets the bounded {@code age} value of this cloud.
      *
      * @return The bounded age value
      */
-    default MutableBoundedValue<Integer> age() {
-        return getValue(Keys.AREA_EFFECT_CLOUD_AGE).get();
-    }
-
+    MutableBoundedValue<Integer> age();
 
 }
