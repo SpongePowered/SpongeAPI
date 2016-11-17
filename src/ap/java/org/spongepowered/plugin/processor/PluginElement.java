@@ -24,7 +24,6 @@
  */
 package org.spongepowered.plugin.processor;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static javax.tools.Diagnostic.Kind.ERROR;
 import static javax.tools.Diagnostic.Kind.WARNING;
@@ -33,6 +32,7 @@ import static org.spongepowered.api.plugin.Plugin.ID_PATTERN;
 import org.spongepowered.api.Platform;
 import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
+import org.spongepowered.plugin.meta.PluginDependency;
 import org.spongepowered.plugin.meta.PluginMetadata;
 import org.spongepowered.plugin.meta.version.InvalidVersionSpecificationException;
 import org.spongepowered.plugin.meta.version.VersionRange;
@@ -40,6 +40,8 @@ import org.spongepowered.plugin.meta.version.VersionRange;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.annotation.processing.Messager;
 import javax.lang.model.element.TypeElement;
@@ -70,7 +72,6 @@ final class PluginElement {
         return this.metadata;
     }
 
-    @SuppressWarnings("deprecation")
     void apply(Messager messager) {
         String value = this.annotation.get().id();
         if (!ID_PATTERN.matcher(value).matches()) {
@@ -134,9 +135,9 @@ final class PluginElement {
             }
         }
 
-        checkDependencies(this.metadata.getRequiredDependencies(), messager);
-        checkDependencies(this.metadata.getLoadAfter(), messager);
-        checkDependencies(this.metadata.getLoadBefore(), messager);
+        checkDependencies(this.metadata.getDependencies(), messager);
+
+        Set<String> addedDependencies = new HashSet<>();
 
         Dependency[] dependencies = this.annotation.get().dependencies();
         if (dependencies.length > 0) {
@@ -145,6 +146,13 @@ final class PluginElement {
                 if (id.isEmpty()) {
                     messager.printMessage(ERROR, "Dependency ID should not be empty", this.element, this.annotation.getMirror(),
                             this.annotation.getValue("dependencies"));
+                    continue;
+                }
+
+                if (id.equals("*")) {
+                    messager.printMessage(ERROR, "Wildcard dependencies are not supported on Sponge", this.element, this.annotation.getMirror(),
+                            this.annotation.getValue("dependencies"));
+                    continue;
                 }
 
                 final String version = dependency.version();
@@ -158,30 +166,37 @@ final class PluginElement {
                     }
                 }
 
-                // TODO: Load order
-                this.metadata.loadAfter(new PluginMetadata.Dependency(id, dependency.version()), !dependency.optional());
+                if (addedDependencies.add(id)) {
+                    // TODO: Load order
+                    this.metadata.replaceDependency(new PluginDependency(PluginDependency.LoadOrder.BEFORE, id, dependency.version(),
+                            dependency.optional()));
+                } else {
+                    messager.printMessage(ERROR, "Duplicate dependency with plugin ID: " + id, this.element, this.annotation.getMirror(),
+                            this.annotation.getValue("dependencies"));
+                }
             }
         }
 
-        if (!findDependency(this.metadata.getRequiredDependencies(), Platform.API_ID)
-                && !findDependency(this.metadata.getLoadAfter(), Platform.API_ID)) {
+        if (this.metadata.getDependency(Platform.API_ID) == null) {
             // Add SpongeAPI as required dependency to the metadata
-            this.metadata.addRequiredDependency(new PluginMetadata.Dependency(Platform.API_ID, API_VERSION));
+            this.metadata.addDependency(new PluginDependency(PluginDependency.LoadOrder.BEFORE, Platform.API_ID, API_VERSION, false));
         }
     }
 
-    private static boolean findDependency(Iterable<PluginMetadata.Dependency> dependencies, String id) {
-        for (PluginMetadata.Dependency dependency : dependencies) {
-            if (dependency.getId().equals(id)) {
-                return true;
+    private void checkDependencies(Iterable<PluginDependency> dependencies, Messager messager) {
+        for (PluginDependency dependency : dependencies) {
+            if (dependency.getId().isEmpty()) {
+                messager.printMessage(ERROR, "Dependency from extra metadata file cannot have an empty plugin ID", this.element,
+                        this.annotation.getMirror());
+                continue;
             }
-        }
 
-        return false;
-    }
+            if (dependency.getId().equals("*")) {
+                messager.printMessage(ERROR, "Wildcard dependency from extra metadata file is not supported on Sponge", this.element,
+                        this.annotation.getMirror());
+                continue;
+            }
 
-    private void checkDependencies(Iterable<PluginMetadata.Dependency> dependencies, Messager messager) {
-        for (PluginMetadata.Dependency dependency : dependencies) {
             final String version = dependency.getVersion();
             if (version != null) {
                 try {
@@ -201,41 +216,6 @@ final class PluginElement {
         } catch (MalformedURLException | URISyntaxException ignored) {
             return false;
         }
-    }
-
-    static void applyMeta(PluginMetadata meta, PluginMetadata other, Messager messager) {
-        checkArgument(meta.getId().equals(other.getId()), "Plugin meta IDs don't match");
-
-        if (other.getName() != null) {
-            meta.setName(other.getName());
-        }
-        if (other.getVersion() != null) {
-            meta.setVersion(other.getVersion());
-        }
-        if (other.getDescription() != null) {
-            meta.setDescription(other.getDescription());
-        }
-        if (other.getUrl() != null) {
-            meta.setUrl(other.getUrl());
-        }
-        if (!other.getAuthors().isEmpty()) {
-            meta.getAuthors().clear();
-            meta.getAuthors().addAll(other.getAuthors());
-        }
-
-        // TODO: Dependencies
-        if (!other.getRequiredDependencies().isEmpty() || !other.getLoadAfter().isEmpty() || !other.getLoadBefore().isEmpty()) {
-            messager.printMessage(WARNING, "Trying to merge dependencies from extra metadata file. This is currently not supported.");
-        }
-
-        other.getExtensions().forEach((key, extension) -> {
-            // TODO
-            if (meta.getExtensions().containsKey(key)) {
-                messager.printMessage(WARNING, "Cannot merge extension " + key + " of type " + extension.getClass() + " from extra metadata file");
-            } else {
-                meta.setExtension(key, extension);
-            }
-        });
     }
 
 }

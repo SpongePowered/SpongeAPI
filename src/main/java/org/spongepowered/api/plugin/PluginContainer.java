@@ -25,15 +25,18 @@
 package org.spongepowered.api.plugin;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.asset.Asset;
 import org.spongepowered.api.asset.AssetManager;
+import org.spongepowered.plugin.meta.PluginDependency;
 
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * A wrapper around a class marked with an {@link Plugin} annotation to retrieve
@@ -90,20 +93,6 @@ public interface PluginContainer {
     }
 
     /**
-     * Gets the Minecraft version the {@link Plugin} within this container was
-     * designed for.
-     *
-     * <p>Note: This will be empty for most plugins because SpongeAPI plugins
-     * are usually designed for a specific API version and not for a specific
-     * Minecraft version.</p>
-     *
-     * @return The Minecraft version, or {@link Optional#empty()} if unknown
-     */
-    default Optional<String> getMinecraftVersion() {
-        return Optional.of(Sponge.getPlatform().getMinecraftVersion().getName());
-    }
-
-    /**
      * Gets the authors of the {@link Plugin} within this container.
      *
      * @return The plugin authors, or empty if unknown
@@ -111,6 +100,28 @@ public interface PluginContainer {
      */
     default List<String> getAuthors() {
         return ImmutableList.of();
+    }
+
+    /**
+     * Gets a {@link Set} of all dependencies of the {@link Plugin} within this
+     * container.
+     *
+     * @return The plugin dependencies, can be empty
+     * @see Plugin#dependencies()
+     */
+    default Set<PluginDependency> getDependencies() {
+        return ImmutableSet.of();
+    }
+
+    /**
+     * Gets the {@link PluginDependency} the plugin in this container has on
+     * the plugin with the specified plugin ID.
+     *
+     * @param id The plugin ID of the dependency
+     * @return The dependency, or {@link Optional#empty()} if unknown
+     */
+    default Optional<PluginDependency> getDependency(String id) {
+        return Optional.empty();
     }
 
     /**

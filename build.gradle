@@ -54,7 +54,7 @@ dependencies {
     }
 
     // Plugin meta
-    compile 'org.spongepowered:plugin-meta:0.2.1-SNAPSHOT'
+    compile 'org.spongepowered:plugin-meta:0.4'
 
     // Configuration
     compile 'ninja.leaping.configurate:configurate-hocon:3.2'
