@@ -336,9 +336,6 @@ public final class Keys {
     public static final Key<OptionalValue<Integer>> EXPLOSION_RADIUS = KeyFactory.fake("EXPLOSION_RADIUS");
 
     /**
-     * Represents the {@link Key} for representing the {@link BigMushroomType}
-     * of a {@link BlockState}.
-     *
      * @see ExtendedData#extended()
      */
     public static final Key<Value<Boolean>> EXTENDED = KeyFactory.fake("EXTENDED");
