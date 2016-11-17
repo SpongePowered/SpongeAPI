@@ -35,8 +35,10 @@ import org.spongepowered.api.data.manipulator.mutable.entity.*;
 import org.spongepowered.api.data.manipulator.mutable.item.*;
 import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.data.type.*;
+import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.*;
+import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.entity.Entity;
@@ -92,6 +94,26 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Integer>> ANGER = KeyFactory.fake("ANGER");
 
     public static final Key<Value<Boolean>> ANGRY = KeyFactory.fake("ANGRY");
+
+    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_AGE = KeyFactory.fake("AREA_EFFECT_CLOUD_AGE");
+
+    public static final Key<Value<Color>> AREA_EFFECT_CLOUD_COLOR = KeyFactory.fake("AREA_EFFECT_CLOUD_COLOR");
+
+    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION = KeyFactory.fake("AREA_EFFECT_CLOUD_DURATION");
+
+    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION_ON_USE = KeyFactory.fake("AREA_EFFECT_CLOUD_DURATION_ON_USE");
+
+    public static final Key<Value<ParticleType>> AREA_EFFECT_CLOUD_PARTICLE_TYPE = KeyFactory.fake("AREA_EFFECT_CLOUD_PARTICLE_TYPE");
+
+    public static final Key<MutableBoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS = KeyFactory.fake("AREA_EFFECT_CLOUD_RADIUS");
+
+    public static final Key<MutableBoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_ON_USE = KeyFactory.fake("AREA_EFFECT_CLOUD_RADIUS_ON_USE");
+
+    public static final Key<MutableBoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_PER_TICK = KeyFactory.fake("AREA_EFFECT_CLOUD_RADIUS_PER_TICK");
+
+    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_REAPPLICATION_DELAY = KeyFactory.fake("AREA_EFFECT_CLOUD_REAPPLICATION_DELAY");
+
+    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_WAIT_TIME = KeyFactory.fake("AREA_EFFECT_CLOUD_WAIT_TIME");
 
     public static final Key<Value<Boolean>> ARMOR_STAND_HAS_ARMS = KeyFactory.fake("ARMOR_STAND_HAS_ARMS");
 
@@ -649,20 +671,19 @@ public final class Keys {
     public static final Key<Value<Boolean>> PERSISTS = KeyFactory.fake("PERSISTS");
 
     /**
-     * Represents the {@link Key} for the "pickup rule" of an {@link Arrow}.
-     *
-     * @see PickupRuleData#type()
-     */
-    public static final Key<Value<PickupRule>> PICKUP_RULE = KeyFactory.fake("PICKUP_RULE");
-
-
-    /**
      * Represents the {@link Key} for representing the pickup delay
      * of an {@link Item}.
      *
      * @see PickupDelayData#delay()
      */
     public static final Key<MutableBoundedValue<Integer>> PICKUP_DELAY = KeyFactory.fake("PICKUP_DELAY");
+
+    /**
+     * Represents the {@link Key} for the "pickup rule" of an {@link Arrow}.
+     *
+     * @see PickupRuleData#type()
+     */
+    public static final Key<Value<PickupRule>> PICKUP_RULE = KeyFactory.fake("PICKUP_RULE");
 
     public static final Key<Value<Boolean>> PIG_SADDLE = KeyFactory.fake("PIG_SADDLE");
 
