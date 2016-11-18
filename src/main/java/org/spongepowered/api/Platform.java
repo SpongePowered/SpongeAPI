@@ -55,18 +55,37 @@ public interface Platform {
     Type getExecutionType();
 
     /**
+     * Returns the {@link PluginContainer} for the specified platform
+     * {@link Component}.
+     *
+     * @param component The platform component
+     * @return The plugin container for the component
+     */
+    PluginContainer getContainer(Component component);
+
+    /**
      * Returns the current API plugin container.
      *
      * @return The API plugin container
+     * @deprecated Use {@link #getContainer(Component)} with
+     *     {@link Component#API}
      */
-    PluginContainer getApi();
+    @Deprecated
+    default PluginContainer getApi() {
+        return getContainer(Component.API);
+    }
 
     /**
      * Returns the current implementation plugin container.
      *
      * @return The implementation plugin container
+     * @deprecated Use {@link #getContainer(Component)} with
+     *     {@link Component#IMPLEMENTATION}
      */
-    PluginContainer getImplementation();
+    @Deprecated
+    default PluginContainer getImplementation() {
+        return getContainer(Component.IMPLEMENTATION);
+    }
 
     /**
      * Gets the current Minecraft version of this platform.
@@ -140,6 +159,28 @@ public interface Platform {
         public boolean isKnown() {
             return this != UNKNOWN;
         }
+
+    }
+
+    /**
+     * Represents a part of the {@link Platform}.
+     */
+    enum Component {
+
+        /**
+         * The platform the {@link #IMPLEMENTATION} is based on.
+         */
+        GAME,
+
+        /**
+         * The abstraction layer for plugins.
+         */
+        API,
+
+        /**
+         * The implementation of the {@link #API} component.
+         */
+        IMPLEMENTATION
 
     }
 
