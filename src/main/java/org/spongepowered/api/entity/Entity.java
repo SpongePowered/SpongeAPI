@@ -35,6 +35,7 @@ import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource; 
 import org.spongepowered.api.text.translation.Translatable;
@@ -560,4 +561,17 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
         return getValue(Keys.HAS_GRAVITY).get();
     }
 
+    /**
+     * Gets the {@link SoundType} that is played when this entity moves in water.
+     *
+     * @return The SoundType for noise this entity makes when it swims
+     */
+    SoundType getSwimSound();
+
+    /**
+     * Gets the {@link SoundType} that is played when this entity jumps in water.
+     *
+     * @return The SoundType for the noise this entity makes when it enters water
+     */
+    SoundType getSplashSound();
 }

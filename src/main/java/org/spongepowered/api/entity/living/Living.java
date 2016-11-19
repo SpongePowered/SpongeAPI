@@ -33,6 +33,7 @@ import org.spongepowered.api.data.property.entity.EyeLocationProperty;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
+import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.scoreboard.TeamMember;
 
@@ -108,6 +109,43 @@ public interface Living extends Entity, TeamMember {
     default OptionalValue<Double> lastDamage() {
         return getValue(Keys.LAST_DAMAGE).get();
     }
+
+    /**
+     * Gets the volume that the sounds for this entity are played
+     *
+     * @return The volume of the sounds for this entity
+     */
+    double getVolume();
+
+    /**
+     * Gets the pitch for the sounds for this entity
+     * (e.g for if it's a baby)
+     *
+     * @return The pitch of the sounds for this entity
+     */
+    double getPitch();
+
+    /**
+     * Gets the {@link SoundType} that is played when this entity gets hurt.
+     *
+     * @return The {@link SoundType} that is played when this entity gets hurt
+     */
+    SoundType getHurtSound();
+
+    /**
+     * Gets the {@link SoundType} that is played when this entity dies.
+     *
+     * @return The {@link SoundType} that is played when this entity dies
+     */
+    SoundType getDeathSound();
+
+    /**
+     * Gets the {@link SoundType} that is played when this entity falls
+     * This return a big or small fall sound based on how far the entity is specified to fall.
+     * @param distance How far the entity fell
+     * @return The {@link SoundType} that is played when this entity falls that distance
+     */
+    SoundType getFallSound(int distance);
 
     /**
      * Returns this entity's head rotation.
