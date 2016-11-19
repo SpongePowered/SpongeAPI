@@ -95,7 +95,7 @@ public class PluginProcessor extends AbstractProcessor {
                     for (PluginMetadata meta : McModInfo.DEFAULT.read(path)) {
                         PluginMetadata base = this.meta.putIfAbsent(meta.getId(), meta);
                         if (base != null) {
-                            PluginElement.applyMeta(base, meta, getMessager());
+                            base.accept(meta);
                         }
                     }
                 } catch (IOException e) {
