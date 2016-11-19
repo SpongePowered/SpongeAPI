@@ -346,6 +346,20 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
+     * Create a new instance with a new block position.
+     *
+     * @param position The new position
+     * @return A new instance
+     */
+    public Location<E> setBlockPosition(Vector3i position) {
+        checkNotNull(position, "position");
+        if (position == getBlockPosition()) {
+            return this;
+        }
+        return new Location<>(getExtent(), position);
+    }
+
+    /**
      * Subtract another Vector3d to the position on this instance, returning
      * a new Location instance.
      *
@@ -678,6 +692,15 @@ public final class Location<E extends Extent> implements DataHolder {
      */
     public boolean spawnEntities(Iterable<? extends Entity> entities, Cause cause) {
         return this.getExtent().spawnEntities(entities, cause);
+    }
+
+    /**
+     * Gets the highest Location at this Location
+     * @return the highest Location at this Location
+     * @see Extent#getHighestPositionAt(Vector3i)
+     */
+    public Location<E> asHighestLocation() {
+        return this.setBlockPosition(this.getExtent().getHighestPositionAt(getBlockPosition()));
     }
 
     @Override
