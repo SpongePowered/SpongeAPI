@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.item.recipe.crafting;
 
 import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -35,7 +35,7 @@ import javax.annotation.Nullable;
 /**
  * A ShapedRecipe is a Recipe that has shape and fits into a grid.
  */
-public interface ShapedRecipe extends Recipe {
+public interface ShapedRecipe extends CraftingRecipe {
 
     /**
      * Gets the width of the grid this ShapedRecipe fits into.
@@ -73,7 +73,7 @@ public interface ShapedRecipe extends Recipe {
          * Sets the width of the grid for the ShapedRecipe.
          *
          * @param width The width of the grid
-         * @return fluent interface
+         * @return This builder, for chaining
          */
         Builder width(int width);
 
@@ -81,7 +81,7 @@ public interface ShapedRecipe extends Recipe {
          * Sets the height of the grid for the ShapedRecipe.
          *
          * @param height The height of the grid
-         * @return fluent interface
+         * @return This builder, for chaining
          */
         Builder height(int height);
 
@@ -89,7 +89,7 @@ public interface ShapedRecipe extends Recipe {
          * Sets the dimensions of the grid for the ShapedRecipe in one method call.
          *
          * @param dimensions The dimensions of the grid
-         * @return fluent interface
+         * @return This builder, for chaining
          */
         Builder dimensions(Vector2i dimensions);
 
@@ -99,7 +99,7 @@ public interface ShapedRecipe extends Recipe {
          * @param x The x coordinate
          * @param y The y coordinate
          * @param ingredient The ingredient to set, or remove if null
-         * @return fluent interface
+         * @return This builder, for chaining
          */
         Builder ingredient(int x, int y, @Nullable ItemStack ingredient);
 
@@ -108,7 +108,7 @@ public interface ShapedRecipe extends Recipe {
          *
          * @param pos The position
          * @param ingredient The ingredient to set, or remove if null
-         * @return fluent interface
+         * @return This builder, for chaining
          */
         Builder ingredient(Vector2i pos, @Nullable ItemStack ingredient);
 
@@ -119,7 +119,7 @@ public interface ShapedRecipe extends Recipe {
          * @param ingredients A list of ItemStacks to set as ingredients. If one
          *                    of them is null the ingredient in that position is
          *                    not added.
-         * @return fluent interface
+         * @return This builder, for chaining
          */
         Builder row(int row, ItemStack... ingredients);
 
@@ -128,7 +128,7 @@ public interface ShapedRecipe extends Recipe {
          * crafted.
          *
          * @param result The result
-         * @return fluent interface
+         * @return This builder, for chaining
          */
         Builder addResult(ItemStack result);
 
@@ -137,6 +137,6 @@ public interface ShapedRecipe extends Recipe {
          *
          * @return A new ShapedRecipe
          */
-        ShapedRecipe build();        
+        ShapedRecipe build();
     }
 }

@@ -22,32 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.item.recipe.crafting;
 
-import org.spongepowered.api.item.inventory.ItemStack;
-
-import java.util.List;
+import org.spongepowered.api.item.recipe.Recipe;
 
 /**
- * <p>A Recipe represents some craftable recipe in the game.</p>
- *
- * <p>It is essentially a Predicate that checks for if a recipe is valid as well
- * as a function from a crafting matrix to a list of {@link ItemStack}
- * (the crafting result), therefore making it an immutable interface.</p>
- *
- * <p>The passed in ItemGrid is usually a crafting inventory, e.g.
- * a 2x2 or 3x3 crafting matrix.</p>
- *
- * <p>The requirements of a Recipe can be general, they just have to
- * eventually return a boolean given an itemgrid.</p>
+ * This represents a {@link Recipe} to be used in a Crafting Table.
+ * @see Recipe
  */
-public interface Recipe {
-
-    /**
-     * Gets the result of this {@link Recipe}.
-     *
-     * @return the results of this {@link Recipe}
-     */
-    List<ItemStack> getResults();
+public interface CraftingRecipe extends Recipe {
 
 }

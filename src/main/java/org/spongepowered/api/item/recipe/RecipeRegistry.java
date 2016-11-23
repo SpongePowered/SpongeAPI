@@ -24,32 +24,36 @@
  */
 package org.spongepowered.api.item.recipe;
 
+import org.spongepowered.api.item.recipe.crafting.CraftingRegistry;
+import org.spongepowered.api.item.recipe.smelting.SmeltingRegistry;
+
 import java.util.Set;
 
 /**
- * A RecipeRegistry holds all registered recipes for a given game.
+ * Used for {@link SmeltingRegistry} and {@link CraftingRegistry}
  */
-public interface RecipeRegistry {
+public interface RecipeRegistry<T extends Recipe> {
 
     /**
      * Registers the given Recipe to make it available to craft.
      *
      * @param recipe The Recipe to register
      */
-    void register(Recipe recipe);
+    void register(T recipe);
 
     /**
      * Removes the given Recipe from registration in this registry.
      *
      * @param recipe The Recipe to unregister
+     * @return if it was successful or not
      */
-    void remove(Recipe recipe);
+    boolean remove(T recipe);
 
     /**
      * Retrieves all recipes registered in this registry.
      *
      * @return All registered recipes
      */
-    Set<Recipe> getRecipes();
+    Set<T> getRecipes();
 
 }

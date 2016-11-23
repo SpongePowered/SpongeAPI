@@ -22,32 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.item.recipe.smelting;
 
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.recipe.RecipeRegistry;
 
-import java.util.List;
+import java.util.Optional;
 
 /**
- * <p>A Recipe represents some craftable recipe in the game.</p>
- *
- * <p>It is essentially a Predicate that checks for if a recipe is valid as well
- * as a function from a crafting matrix to a list of {@link ItemStack}
- * (the crafting result), therefore making it an immutable interface.</p>
- *
- * <p>The passed in ItemGrid is usually a crafting inventory, e.g.
- * a 2x2 or 3x3 crafting matrix.</p>
- *
- * <p>The requirements of a Recipe can be general, they just have to
- * eventually return a boolean given an itemgrid.</p>
+ * A SmeltingRegistry holds all registered smelting recipes for a given game.
  */
-public interface Recipe {
+public interface SmeltingRegistry extends RecipeRegistry<SmeltingRecipe> {
 
     /**
-     * Gets the result of this {@link Recipe}.
+     * Gets the experience an {@link ItemStack} drops when it is made.
      *
-     * @return the results of this {@link Recipe}
+     * @param stack the {@link ItemStack}
+     * @return the experience of the {@link ItemStack}
      */
-    List<ItemStack> getResults();
+    Optional<Double> getExperience(ItemStack stack);
 
+    /**
+     * Returns the results for running this SmeltingRegistry over an {@link ItemStack}
+     *
+     * @param stack An ItemStack as input
+     * @return A ItemStack or {@link Optional#empty()} if the given
+     *          ItemStack does not match any recipes.
+     */
+    Optional<ItemStack> getResult(ItemStack stack);
 }

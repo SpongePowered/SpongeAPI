@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.item.recipe.crafting;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -34,7 +34,7 @@ import java.util.Collection;
  * A ShapelessRecipe is a Recipe that does not have shape and just has a
  * list of ingredients.
  */
-public interface ShapelessRecipe extends Recipe {
+public interface ShapelessRecipe extends CraftingRecipe {
 
     /**
      * Creates a new {@link Builder} to build a {@link ShapelessRecipe}.
@@ -44,7 +44,6 @@ public interface ShapelessRecipe extends Recipe {
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
-
 
     /**
      * Gets the ingredients for this ShapelessRecipe.
@@ -58,7 +57,7 @@ public interface ShapelessRecipe extends Recipe {
          * Adds an ingredient to the requirements of this ShapelessRecipe.
          *
          * @param ingredient The ingredient
-         * @return fluent interface
+         * @return This builder, for chaining
          */
         Builder addIngredient(ItemStack ingredient);
 
@@ -67,7 +66,7 @@ public interface ShapelessRecipe extends Recipe {
          * correctly crafted.
          *
          * @param result The result
-         * @return fluent interface
+         * @return This builder, for chaining
          */
         Builder addResult(ItemStack result);
 
@@ -76,6 +75,6 @@ public interface ShapelessRecipe extends Recipe {
          *
          * @return A new ShapelessRecipe
          */
-        ShapelessRecipe build();        
+        ShapelessRecipe build();
     }
 }
