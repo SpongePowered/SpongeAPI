@@ -22,50 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.complex;
+package org.spongepowered.api.entity.living.complex.dragon.phase;
 
-import org.spongepowered.api.boss.ServerBossBar;
-import org.spongepowered.api.entity.EnderCrystal;
-import org.spongepowered.api.entity.living.Aerial;
-import org.spongepowered.api.entity.living.complex.dragon.phase.EnderDragonPhase;
-import org.spongepowered.api.entity.living.complex.dragon.phase.EnderDragonPhaseManager;
-import org.spongepowered.api.entity.living.monster.Boss;
-import org.spongepowered.api.entity.projectile.ProjectileLauncher;
+import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.entity.living.complex.EnderDragon;
 
 import java.util.Optional;
-import java.util.Set;
 
 /**
- * Represents an Ender Dragon.
+ * An {@link EnderDragon} phase.
  */
-public interface EnderDragon extends ComplexLiving, Boss, Aerial, ProjectileLauncher {
-
-    @Override
-    Set<EnderDragonPart> getParts();
+public interface EnderDragonPhase {
 
     /**
-     * Returns the current {@code EnderCrystal} that is healing this
-     * ender dragon.
+     * Gets the type of this phase.
      *
-     * @return The ender crystal
+     * @return The type of this phase
      */
-    Optional<EnderCrystal> getHealingCrystal();
+    EnderDragonPhaseType getType();
 
     /**
-     * Gets the boss bar this dragon uses.
+     * Gets the position the dragon is flying towards.
      *
-     * @return The boss bar
+     * @return The target position
      */
-    ServerBossBar getBossBar();
-
-    /**
-     * Gets the phase manager.
-     *
-     * <p>The phase manager controls the active {@link EnderDragonPhase} of
-     * the dragon in The End.</p>
-     *
-     * @return The phase manager
-     */
-    EnderDragonPhaseManager getPhaseManager();
+    Optional<Vector3d> getTargetPosition();
 
 }
