@@ -78,7 +78,7 @@ public interface InventoryArchetype extends CatalogType {
      * @return The matching Property or Optional.empty() if not found
      */
     default <T extends InventoryProperty<String, ?>> Optional<T> getProperty(Class<T> type) {
-        return getProperty(type, type.getSimpleName());
+        return getProperty(type, type.getSimpleName().toLowerCase());
     }
 
     /**
