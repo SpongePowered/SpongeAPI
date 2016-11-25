@@ -45,13 +45,14 @@ import org.spongepowered.api.profile.GameProfile;
  */
 public final class NamedCause {
 
+    public static final String HIT_TARGET = "HitTarget";
     public static final String IGNITER = "Igniter";
     public static final String NOTIFIER = "Notifier";
     public static final String OWNER = "Owner";
     public static final String PHYSICAL = "Physical";
+    public static final String PLAYER_SIMULATED = "PlayerSimulated";
     public static final String SOURCE = "Source";
     public static final String THROWER = "Thrower";
-    public static final String PLAYER_SIMULATED = "PlayerSimulated";
 
     public static NamedCause source(Object object) {
         return of(SOURCE, object);
@@ -63,6 +64,10 @@ public final class NamedCause {
 
     public static NamedCause notifier(Object obj) {
         return of(NOTIFIER, obj);
+    }
+
+    public static NamedCause hitTarget(Object obj) {
+        return of(HIT_TARGET, obj);
     }
 
     public static NamedCause simulated(Object object) {
