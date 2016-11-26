@@ -27,9 +27,9 @@ package org.spongepowered.api.entity.ai.task.builtin.creature.horse;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
-import org.spongepowered.api.entity.living.animal.Horse;
+import org.spongepowered.api.entity.living.animal.RideableHorse;
 
-public interface RunAroundLikeCrazyAITask extends AITask<Horse> {
+public interface RunAroundLikeCrazyAITask extends AITask<RideableHorse> {
 
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
@@ -39,7 +39,7 @@ public interface RunAroundLikeCrazyAITask extends AITask<Horse> {
 
     RunAroundLikeCrazyAITask setSpeed(double speed);
 
-    interface Builder extends AITaskBuilder<Horse, RunAroundLikeCrazyAITask, Builder> {
+    interface Builder extends AITaskBuilder<RideableHorse, RunAroundLikeCrazyAITask, Builder> {
 
         Builder speed(double speed);
 

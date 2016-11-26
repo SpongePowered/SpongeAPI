@@ -29,6 +29,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 /**
  * An enumeration of known vanilla {@link HorseVariant}s.
  */
+@Deprecated
 public final class HorseVariants {
 
     // SORTFIELDS:ON
@@ -36,6 +37,8 @@ public final class HorseVariants {
     public static final HorseVariant DONKEY = DummyObjectProvider.createFor(HorseVariant.class, "DONKEY");
 
     public static final HorseVariant HORSE = DummyObjectProvider.createFor(HorseVariant.class, "HORSE");
+
+    public static final HorseVariant LLAMA = DummyObjectProvider.createFor(HorseVariant.class, "LLAMA");
 
     public static final HorseVariant MULE = DummyObjectProvider.createFor(HorseVariant.class, "MULE");
 

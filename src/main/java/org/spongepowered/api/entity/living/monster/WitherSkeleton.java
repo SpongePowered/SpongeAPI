@@ -22,24 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
-
-@Deprecated
-public final class ZombieTypes {
-
-    // SORTFIELDS:ON
-
-    public static final ZombieType HUSK = DummyObjectProvider.createFor(ZombieType.class, "HUSK");
-
-    public static final ZombieType NORMAL = DummyObjectProvider.createFor(ZombieType.class, "NORMAL");
-
-    public static final ZombieType VILLAGER = DummyObjectProvider.createFor(ZombieType.class, "VILLAGER");
-
-    // SORTFIELDS:OFF
-
-    private ZombieTypes() {
-    }
+/**
+ * Represents a WitherSkeleton.
+ */
+public interface WitherSkeleton extends Skeleton {
 
 }

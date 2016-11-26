@@ -26,20 +26,14 @@ package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-@Deprecated
-public final class ZombieTypes {
+public final class LlamaVariants {
 
     // SORTFIELDS:ON
-
-    public static final ZombieType HUSK = DummyObjectProvider.createFor(ZombieType.class, "HUSK");
-
-    public static final ZombieType NORMAL = DummyObjectProvider.createFor(ZombieType.class, "NORMAL");
-
-    public static final ZombieType VILLAGER = DummyObjectProvider.createFor(ZombieType.class, "VILLAGER");
-
+    public static final LlamaVariant CREAMY = DummyObjectProvider.createFor(LlamaVariant.class, "CREAMY");
+    public static final LlamaVariant WHITE = DummyObjectProvider.createFor(LlamaVariant.class, "WHTIE");
+    public static final LlamaVariant BROWN = DummyObjectProvider.createFor(LlamaVariant.class, "BROWN");
+    public static final LlamaVariant GRAY = DummyObjectProvider.createFor(LlamaVariant.class, "GRAY");
     // SORTFIELDS:OFF
-
-    private ZombieTypes() {
-    }
+    private LlamaVariants() {}
 
 }

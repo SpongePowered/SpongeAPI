@@ -22,24 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.block.tileentity.carrier;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
-
-@Deprecated
-public final class ZombieTypes {
-
-    // SORTFIELDS:ON
-
-    public static final ZombieType HUSK = DummyObjectProvider.createFor(ZombieType.class, "HUSK");
-
-    public static final ZombieType NORMAL = DummyObjectProvider.createFor(ZombieType.class, "NORMAL");
-
-    public static final ZombieType VILLAGER = DummyObjectProvider.createFor(ZombieType.class, "VILLAGER");
-
-    // SORTFIELDS:OFF
-
-    private ZombieTypes() {
-    }
+/**
+ * Represents a ShulkerBox. ShulkerBoxes are specific in that when they are
+ * mined, they drop themselves with the contents added in themselves, so placing
+ * them back as items will result in a restored inventory.
+ */
+public interface ShulkerBox extends TileEntityCarrier {
 
 }

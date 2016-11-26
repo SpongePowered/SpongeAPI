@@ -22,24 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.type.LlamaVariant;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.mutable.Value;
 
-@Deprecated
-public final class ZombieTypes {
+/**
+ * Represents a Llama in the base game. Llamas are unique in that
+ * they can be ridden by players, but not controlled by players. Likewise, they
+ * have colors and styles and can have storage "strength".
+ */
+public interface Llama extends Horse {
 
-    // SORTFIELDS:ON
+    default MutableBoundedValue<Integer> strength() {
+        return getValue(Keys.LLAMA_STRENGTH).get();
+    }
 
-    public static final ZombieType HUSK = DummyObjectProvider.createFor(ZombieType.class, "HUSK");
-
-    public static final ZombieType NORMAL = DummyObjectProvider.createFor(ZombieType.class, "NORMAL");
-
-    public static final ZombieType VILLAGER = DummyObjectProvider.createFor(ZombieType.class, "VILLAGER");
-
-    // SORTFIELDS:OFF
-
-    private ZombieTypes() {
+    default Value<LlamaVariant> llamaVariant() {
+        return getValue(Keys.LLAMA_VARIANT).get();
     }
 
 }

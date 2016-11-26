@@ -22,24 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.entity.living.animal.Llama;
 
-@Deprecated
-public final class ZombieTypes {
-
-    // SORTFIELDS:ON
-
-    public static final ZombieType HUSK = DummyObjectProvider.createFor(ZombieType.class, "HUSK");
-
-    public static final ZombieType NORMAL = DummyObjectProvider.createFor(ZombieType.class, "NORMAL");
-
-    public static final ZombieType VILLAGER = DummyObjectProvider.createFor(ZombieType.class, "VILLAGER");
-
-    // SORTFIELDS:OFF
-
-    private ZombieTypes() {
-    }
+/**
+ * A specific projectile that {@link Llama}s will use to attack other
+ * entities.
+ */
+public interface LlamaSpit extends Projectile {
 
 }

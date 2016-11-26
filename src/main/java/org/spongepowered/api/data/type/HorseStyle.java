@@ -25,11 +25,11 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.entity.living.animal.Horse;
+import org.spongepowered.api.entity.living.animal.RideableHorse;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents the style of a {@link Horse}.
+ * Represents the style of a {@link RideableHorse}.
  * <p>The style of a horse is applied on top of the {@link HorseColor} of the
  * horse. The style can be inherited to new born child horses.</p>
  */

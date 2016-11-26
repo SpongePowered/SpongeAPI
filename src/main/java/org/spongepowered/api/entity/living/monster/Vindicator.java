@@ -22,24 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.value.mutable.Value;
 
-@Deprecated
-public final class ZombieTypes {
+public interface Vindicator extends Monster {
 
-    // SORTFIELDS:ON
+    // TODO - Add Vindicator Data
 
-    public static final ZombieType HUSK = DummyObjectProvider.createFor(ZombieType.class, "HUSK");
-
-    public static final ZombieType NORMAL = DummyObjectProvider.createFor(ZombieType.class, "NORMAL");
-
-    public static final ZombieType VILLAGER = DummyObjectProvider.createFor(ZombieType.class, "VILLAGER");
-
-    // SORTFIELDS:OFF
-
-    private ZombieTypes() {
+    default Value<Boolean> johnny() {
+        return getValue(Keys.JOHNNY_VINDICATOR).get();
     }
 
 }

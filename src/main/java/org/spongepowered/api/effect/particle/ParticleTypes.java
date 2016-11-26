@@ -86,13 +86,6 @@ public final class ParticleTypes {
     public static final ParticleType FERTILIZER = DummyObjectProvider.createFor(ParticleType.class, "FERTILIZER");
 
     /**
-     * This particle type will play the smoke particles of a fire.
-     * <p>This type has limited {@link ParticleOption}s, only
-     * {@link ParticleOptions#DIRECTION} is supported.</p>
-     */
-    public static final ParticleType FIRE_SMOKE = DummyObjectProvider.createFor(ParticleType.class, "FIRE_SMOKE");
-
-    /**
      * This particle type will play a fireworks effect.
      * <p>This type has limited {@link ParticleOption}s, only
      * {@link ParticleOptions#FIREWORK_EFFECTS} is supported.</p>
@@ -100,6 +93,13 @@ public final class ParticleTypes {
     public static final ParticleType FIREWORKS = DummyObjectProvider.createFor(ParticleType.class, "FIREWORKS");
 
     public static final ParticleType FIREWORKS_SPARK = DummyObjectProvider.createFor(ParticleType.class, "FIREWORKS_SPARK");
+
+    /**
+     * This particle type will play the smoke particles of a fire.
+     * <p>This type has limited {@link ParticleOption}s, only
+     * {@link ParticleOptions#DIRECTION} is supported.</p>
+     */
+    public static final ParticleType FIRE_SMOKE = DummyObjectProvider.createFor(ParticleType.class, "FIRE_SMOKE");
 
     public static final ParticleType FLAME = DummyObjectProvider.createFor(ParticleType.class, "FLAME");
 

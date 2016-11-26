@@ -32,29 +32,48 @@ import org.spongepowered.api.data.type.HorseVariant;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.item.inventory.Carrier;
 
-/**
- * Represents a Horse.
- */
 public interface Horse extends Animal, Carrier {
+
 
     /**
      * Gets a copy of the {@link HorseData} representing this {@link Horse}.
      *
      * @return A copy of the horse data
+     * @deprecated This is now only usable with {@link RideableHorse}s.
      */
+    @Deprecated
     default HorseData getHorseData() {
         return get(HorseData.class).get();
     }
 
+    /**
+     * Gets the variant of {@link Horse}.
+     *
+     * @return The variant value of this horse
+     * @deprecated Use instances of other horse interfaces
+     */
+    @Deprecated
     default Value<HorseVariant> variant() {
         return getValue(Keys.HORSE_VARIANT).get();
     }
 
+    /**
+     * @return The style of this horse
+     * @deprecated Only applicable to {@link RideableHorse}s now
+     */
+    @Deprecated
     default Value<HorseStyle> style() {
         return getValue(Keys.HORSE_STYLE).get();
     }
 
+    /**
+     *
+     * @return The horse color
+     * @deprecated Only applicable to {@link RideableHorse}s now
+     */
+    @Deprecated
     default Value<HorseColor> color() {
         return getValue(Keys.HORSE_COLOR).get();
     }
+
 }

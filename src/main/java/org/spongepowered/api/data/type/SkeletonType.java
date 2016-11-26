@@ -33,6 +33,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * can be. Certain skeleton types define the items a skeleton can equip and
  * can define the various status immunities, such as withering.
  */
+@Deprecated
 @CatalogedBy(SkeletonTypes.class)
 public interface SkeletonType extends CatalogType {
 

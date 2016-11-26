@@ -39,6 +39,7 @@ import java.util.Optional;
  * Represents an {@link DataManipulator} handling the type and
  * profession of a {@link Zombie}.
  */
+@Deprecated
 public interface ZombieData extends DataManipulator<ZombieData, ImmutableZombieData> {
 
     /**

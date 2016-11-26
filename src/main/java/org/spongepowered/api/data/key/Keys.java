@@ -44,6 +44,14 @@ import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.animal.Donkey;
+import org.spongepowered.api.entity.living.animal.Horse;
+import org.spongepowered.api.entity.living.animal.Llama;
+import org.spongepowered.api.entity.living.animal.Mule;
+import org.spongepowered.api.entity.living.animal.RideableHorse;
+import org.spongepowered.api.entity.living.animal.SkeletonHorse;
+import org.spongepowered.api.entity.living.animal.ZombieHorse;
+import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.util.RespawnLocation;
@@ -500,6 +508,13 @@ public final class Keys {
 
     public static final Key<Value<HorseStyle>> HORSE_STYLE = KeyFactory.fake("HORSE_STYLE");
 
+    /**
+     * Represents the type of {@link Horse}.
+     * @deprecated Due to the structural changes of Horses, they are now separate interfaces:
+     * {@link RideableHorse}, {@link Donkey}, {@link Mule}, {@link SkeletonHorse}, {@link ZombieHorse},
+     * and {@link Llama}.
+     */
+    @Deprecated
     public static final Key<Value<HorseVariant>> HORSE_VARIANT = KeyFactory.fake("HORSE_VARIANT");
 
     /**
@@ -566,6 +581,8 @@ public final class Keys {
 
     public static final Key<ListValue<Text>> ITEM_LORE = KeyFactory.fake("ITEM_LORE");
 
+    public static final Key<Value<Boolean>> JOHNNY_VINDICATOR = KeyFactory.fake("JOHNNY_VINDICATOR");
+
     public static final Key<MutableBoundedValue<Integer>> KNOCKBACK_STRENGTH = KeyFactory.fake("KNOCKBACK_STRENGTH");
 
     public static final Key<OptionalValue<Living>> LAST_ATTACKER = KeyFactory.fake("LAST_ATTACKER");
@@ -589,6 +606,17 @@ public final class Keys {
     public static final Key<Value<Vector3d>> LEFT_ARM_ROTATION = KeyFactory.fake("LEFT_ARM_ROTATION");
 
     public static final Key<Value<Vector3d>> LEFT_LEG_ROTATION = KeyFactory.fake("LEFT_LEG_ROTATION");
+
+    /**
+     * Represents the {@link Key} for a {@link Llama}s carrying strength. The higher the strength,
+     * the more items it can carry (effectively the size of inventory).
+     */
+    public static final Key<MutableBoundedValue<Integer>> LLAMA_STRENGTH = KeyFactory.fake("LLAMA_STRENGTH");
+
+    /**
+     * Represents the {@link Key} for a {@link Llama}'s {@link LlamaVariant}.
+     */
+    public static final Key<Value<LlamaVariant>> LLAMA_VARIANT = KeyFactory.fake("LLAMA_VARIANT");
 
     public static final Key<Value<String>> LOCK_TOKEN = KeyFactory.fake("LOCK_TOKEN");
 
@@ -649,20 +677,19 @@ public final class Keys {
     public static final Key<Value<Boolean>> PERSISTS = KeyFactory.fake("PERSISTS");
 
     /**
-     * Represents the {@link Key} for the "pickup rule" of an {@link Arrow}.
-     *
-     * @see PickupRuleData#type()
-     */
-    public static final Key<Value<PickupRule>> PICKUP_RULE = KeyFactory.fake("PICKUP_RULE");
-
-
-    /**
      * Represents the {@link Key} for representing the pickup delay
      * of an {@link Item}.
      *
      * @see PickupDelayData#delay()
      */
     public static final Key<MutableBoundedValue<Integer>> PICKUP_DELAY = KeyFactory.fake("PICKUP_DELAY");
+
+    /**
+     * Represents the {@link Key} for the "pickup rule" of an {@link Arrow}.
+     *
+     * @see PickupRuleData#type()
+     */
+    public static final Key<Value<PickupRule>> PICKUP_RULE = KeyFactory.fake("PICKUP_RULE");
 
     public static final Key<Value<Boolean>> PIG_SADDLE = KeyFactory.fake("PIG_SADDLE");
 
@@ -812,6 +839,13 @@ public final class Keys {
 
     public static final Key<ListValue<Text>> SIGN_LINES = KeyFactory.fake("SIGN_LINES");
 
+    /**
+     * Represents the {@link Key} for representing the {@link SkeletonType}
+     * of a {@link Skeleton}.
+     *
+     * @deprecated Due to the fact that skeletons have interfaces instead of types now
+     */
+    @Deprecated
     public static final Key<Value<SkeletonType>> SKELETON_TYPE = KeyFactory.fake("SKELETON_TYPE");
 
     public static final Key<Value<UUID>> SKIN_UNIQUE_ID = KeyFactory.fake("SKIN_UNIQUE_ID");

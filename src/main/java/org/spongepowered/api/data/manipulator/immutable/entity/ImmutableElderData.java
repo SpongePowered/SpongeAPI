@@ -35,6 +35,7 @@ import org.spongepowered.api.entity.living.monster.Guardian;
  * a higher amount of health, deal more damage, and have a variance in the
  * items dropped when killed.
  */
+@Deprecated
 public interface ImmutableElderData extends ImmutableDataManipulator<ImmutableElderData, ElderData> {
 
     /**

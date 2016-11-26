@@ -24,22 +24,10 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@Deprecated
-public final class ZombieTypes {
-
-    // SORTFIELDS:ON
-
-    public static final ZombieType HUSK = DummyObjectProvider.createFor(ZombieType.class, "HUSK");
-
-    public static final ZombieType NORMAL = DummyObjectProvider.createFor(ZombieType.class, "NORMAL");
-
-    public static final ZombieType VILLAGER = DummyObjectProvider.createFor(ZombieType.class, "VILLAGER");
-
-    // SORTFIELDS:OFF
-
-    private ZombieTypes() {
-    }
+@CatalogedBy(LlamaVariants.class)
+public interface LlamaVariant extends CatalogType {
 
 }

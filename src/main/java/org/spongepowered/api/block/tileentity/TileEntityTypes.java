@@ -74,6 +74,8 @@ public final class TileEntityTypes {
 
     public static final TileEntityType PISTON = DummyObjectProvider.createFor(TileEntityType.class, "PISTON");
 
+    public static final TileEntityType SHULKER_BOX = DummyObjectProvider.createFor(TileEntityType.class, "SHULKER_BOX");
+
     public static final TileEntityType SIGN = DummyObjectProvider.createFor(TileEntityType.class, "SIGN");
 
     public static final TileEntityType SKULL = DummyObjectProvider.createFor(TileEntityType.class, "SKULL");

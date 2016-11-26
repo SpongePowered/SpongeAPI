@@ -41,11 +41,19 @@ public interface Skeleton extends Monster, ArmorEquipable, Ranger {
      * {@link Skeleton}.
      *
      * @return A copy of the current skeleton data
+     * @deprecated Skeleton now has subclassed interfaces for types
      */
+    @Deprecated
     default SkeletonData getSkeletonData() {
         return get(SkeletonData.class).get();
     }
 
+    /**
+     *
+     * @return The type of skeleton type this is
+     * @deprecated Skeleton now has subclassed interfaces for types
+     */
+    @Deprecated
     default Value<SkeletonType> variant() {
         return getValue(Keys.SKELETON_TYPE).get();
     }

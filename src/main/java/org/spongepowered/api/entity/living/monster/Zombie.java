@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.data.manipulator.mutable.entity.ZombieData;
+import org.spongepowered.api.data.type.ZombieType;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.living.Ageable;
 
@@ -38,7 +39,10 @@ public interface Zombie extends Monster, ArmorEquipable, Ageable {
      * profession (if it has one).
      *
      * @return The zombie data
+     * @deprecated Since Zombies are no longer separated by {@link ZombieType}, the
+     *     proper discrimination is checking for {@link Husk} and {@link ZombieVillager}
      */
+    @Deprecated
     default ZombieData getZombieData() {
         return get(ZombieData.class).get();
     }

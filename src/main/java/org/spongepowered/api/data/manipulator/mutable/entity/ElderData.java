@@ -27,6 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableElderData;
 import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.EntityTypes;
 import org.spongepowered.api.entity.living.monster.Guardian;
 
 /**
@@ -34,7 +35,10 @@ import org.spongepowered.api.entity.living.monster.Guardian;
  * {@link Guardian}. Usually, if a {@link Guardian} is an "elder", it will have
  * a higher amount of health, deal more damage, and have a variance in the
  * items dropped when killed.
+ * 
+ * @deprecated see {@link EntityTypes#ELDER_GUARDIAN}
  */
+@Deprecated
 public interface ElderData extends DataManipulator<ElderData, ImmutableElderData> {
 
     /**

@@ -22,24 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.mutable.entity.HorseData;
+import org.spongepowered.api.data.type.HorseColor;
+import org.spongepowered.api.data.type.HorseStyle;
+import org.spongepowered.api.data.type.HorseVariant;
+import org.spongepowered.api.data.value.mutable.Value;
 
-@Deprecated
-public final class ZombieTypes {
+/**
+ * Represents a RideableHorse.
+ */
+public interface RideableHorse extends Horse {
 
-    // SORTFIELDS:ON
-
-    public static final ZombieType HUSK = DummyObjectProvider.createFor(ZombieType.class, "HUSK");
-
-    public static final ZombieType NORMAL = DummyObjectProvider.createFor(ZombieType.class, "NORMAL");
-
-    public static final ZombieType VILLAGER = DummyObjectProvider.createFor(ZombieType.class, "VILLAGER");
-
-    // SORTFIELDS:OFF
-
-    private ZombieTypes() {
+    /**
+     * Gets a copy of the {@link HorseData} representing this {@link RideableHorse}.
+     *
+     * @return A copy of the horse data
+     */
+    @SuppressWarnings("deprecation")
+    default HorseData getHorseData() {
+        return get(HorseData.class).get();
     }
 
+    default Value<HorseVariant> variant() {
+        return getValue(Keys.HORSE_VARIANT).get();
+    }
+
+    @SuppressWarnings("deprecation")
+    default Value<HorseStyle> style() {
+        return getValue(Keys.HORSE_STYLE).get();
+    }
+
+    @SuppressWarnings("deprecation")
+    default Value<HorseColor> color() {
+        return getValue(Keys.HORSE_COLOR).get();
+    }
 }
