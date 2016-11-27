@@ -29,9 +29,50 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 
 /**
- * Fired when a command is sent
+ * Fired when a command is processed
  */
-public interface SendCommandEvent extends Event, Cancellable {
+public interface CommandProcessEvent extends Event {
+
+    /**
+     * Fired before the command is processed
+     */
+    public interface Pre extends CommandProcessEvent, Cancellable {
+
+        /**
+         * Set the command as a string, without any sort of command prefix.
+         *
+         * <p>For example, if the message was {@code /example bob 3 -f}, then
+         * the command would be {@code example}.</p>
+         *
+         * @param command The command
+         */
+        void setCommand(String command);
+
+        /**
+         * Set the arguments as a string.
+         *
+         * <p>For example, if the message was {@code /example bob 3 -f}, then
+         * the arguments would be {@code bob 3 -f}.</p>
+         *
+         * @param arguments The arguments
+         */
+        void setArguments(String arguments);
+
+    }
+
+    /**
+     * Fired after the command is processed
+     */
+    public interface Post extends CommandProcessEvent {
+
+        /**
+         * The result of the command.
+         *
+         * @return The result of the command
+         */
+        CommandResult getResult();
+
+    }
 
     /**
      * Get the command as a string, without any sort of command prefix.
@@ -44,16 +85,6 @@ public interface SendCommandEvent extends Event, Cancellable {
     String getCommand();
 
     /**
-     * Set the command as a string, without any sort of command prefix.
-     *
-     * <p>For example, if the message was {@code /example bob 3 -f}, then
-     * the command would be {@code example}.</p>
-     *
-     * @param command The command
-     */
-    void setCommand(String command);
-
-    /**
      * Get the arguments as a string.
      *
      * <p>For example, if the message was {@code /example bob 3 -f}, then
@@ -62,29 +93,5 @@ public interface SendCommandEvent extends Event, Cancellable {
      * @return The arguments
      */
     String getArguments();
-
-    /**
-     * Set the arguments as a string.
-     *
-     * <p>For example, if the message was {@code /example bob 3 -f}, then
-     * the arguments would be {@code bob 3 -f}.</p>
-     *
-     * @param arguments The arguments
-     */
-    void setArguments(String arguments);
-
-    /**
-     * The result of the command.
-     *
-     * @return The result of the command
-     */
-    CommandResult getResult();
-
-    /**
-     * Sets the result of the command.
-     *
-     * @param result The result of the command
-     */
-    void setResult(CommandResult result);
 
 }
