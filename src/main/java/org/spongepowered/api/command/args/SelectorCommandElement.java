@@ -26,30 +26,34 @@ package org.spongepowered.api.command.args;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.selector.Selector;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.annotation.Nullable;
 
 /**
  * Abstract command element that matches values based on a {@link Selector}.
  */
-public abstract class SelectorCommandElement extends PatternMatchingCommandElement {
+public abstract class SelectorCommandElement<T extends Entity> extends PatternMatchingCommandElement<T> {
+    private final Class<T> type;
 
-    protected SelectorCommandElement(@Nullable Text key) {
+    protected SelectorCommandElement(Text key, Class<T> type) {
         super(key);
+        this.type = type;
     }
 
-    @Nullable
     @Override
-    protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+    protected Collection<? extends T> parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
         String arg = args.peek();
         if (arg.startsWith("@")) { // Posibly a selector
             try {
-                return Selector.parse(args.next()).resolve(source);
+                return (Set) Selector.parse(args.next()).resolve(source);
             } catch (IllegalArgumentException ex) {
                 throw args.createError(Text.of(ex.getMessage()));
             }
