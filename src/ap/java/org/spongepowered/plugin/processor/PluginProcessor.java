@@ -99,7 +99,7 @@ public class PluginProcessor extends AbstractProcessor {
                         }
                     }
                 } catch (IOException e) {
-                    throw new PluginProcessExeption("Failed to read extra plugin metadata from " + path, e);
+                    throw new PluginProcessException("Failed to read extra plugin metadata from " + path, e);
                 }
             }
         }
@@ -178,7 +178,7 @@ public class PluginProcessor extends AbstractProcessor {
         try (BufferedWriter writer = createWriter()) {
             McModInfo.DEFAULT.write(writer, meta);
         } catch (IOException e) {
-            throw new PluginProcessExeption("Failed to write plugin metadata", e);
+            throw new PluginProcessException("Failed to write plugin metadata", e);
         }
     }
 

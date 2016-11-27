@@ -27,22 +27,22 @@ package org.spongepowered.plugin.processor;
 /**
  * Thrown if an exception occurs in the plugin annotation processor.
  */
-final class PluginProcessExeption extends RuntimeException {
+final class PluginProcessException extends RuntimeException {
 
     private static final long serialVersionUID = -8573308144869929605L;
 
-    public PluginProcessExeption() {
+    public PluginProcessException() {
     }
 
-    public PluginProcessExeption(String message) {
+    public PluginProcessException(String message) {
         super(message);
     }
 
-    public PluginProcessExeption(String message, Throwable cause) {
+    public PluginProcessException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public PluginProcessExeption(Throwable cause) {
+    public PluginProcessException(Throwable cause) {
         super(cause);
     }
 
