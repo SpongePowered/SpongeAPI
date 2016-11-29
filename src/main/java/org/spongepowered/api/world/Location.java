@@ -51,9 +51,14 @@ import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
+import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.extent.EntityUniverse;
 import org.spongepowered.api.world.extent.Extent;
 
 import java.lang.ref.WeakReference;
@@ -593,6 +598,68 @@ public final class Location<E extends Extent> implements DataHolder {
     @SuppressWarnings("ConstantConditions")
     public boolean removeBlock(Cause cause) {
         return getExtent().setBlockType(getBlockPosition(), BlockTypes.AIR, BlockChangeFlag.ALL, cause);
+    }
+
+    /**
+     * Create an entity instance at the given position.
+     *
+     * <p>Creating an entity does not spawn the entity into the world. An entity
+     * created means the entity can be spawned at the given location. If
+     * {@link Optional#empty()} was returned, the entity is not able to spawn at
+     * the given location. Furthermore, this allows for the {@link Entity} to be
+     * customized further prior to traditional "ticking" and processing by core
+     * systems.</p>
+     *
+     * @param type The type
+     * @return An entity, if one was created
+     * @throws IllegalArgumentException If the position or entity type is not valid to create
+     * @throws IllegalStateException If a constructor cannot be found
+     * @see EntityUniverse#createEntity(EntityType, Vector3d)
+     */
+    public Entity createEntity(EntityType type) {
+        return this.getExtent().createEntity(type, this.getPosition());
+    }
+
+    /**
+     * Spawns an {@link Entity} using the already set properties (extent,
+     * position, rotation) and applicable {@link DataManipulator}s with the
+     * specified {@link Cause} for spawning the entity.
+     *
+     * <p>Note that for the {@link Cause} to be useful in the expected
+     * {@link SpawnEntityEvent}, a {@link SpawnCause} should be provided in the
+     * {@link Cause} for other plugins to understand and have finer control over
+     * the event.</p>
+     *
+     * <p>The requirements involve that all necessary setup of states and data
+     * is already preformed on the entity retrieved from the various
+     * {@link EntityUniverse#createEntity(EntityType,Vector3d)} methods. Calling
+     * this will make the now-spawned entity able to be processed by various systems.</p>
+     *
+     * <p>If the entity was unable to spawn, the entity is not removed, but it
+     * should be taken note that there can be many reasons for a failure.</p>
+     *
+     * @param entity The entity to spawn
+     * @param cause The cause for the entity spawn
+     * @return True if successful, false if not
+     * @see EntityUniverse#spawnEntity(Entity, Cause)
+     */
+    public boolean spawnEntity(Entity entity, Cause cause) {
+        return this.getExtent().spawnEntity(entity, cause);
+    }
+
+    /**
+     * Similar to {@link #spawnEntity(Entity, Cause)} except where multiple
+     * entities can be attempted to be spawned with a customary {@link Cause}.
+     * The recommended use is to easily process the entity spawns without
+     * interference with the cause tracking system.
+     *
+     * @param entities The entities to be spawned
+     * @param cause The cause to be associated with the entities spawning
+     * @return True if any of the entities were successfully spawned
+     * @see EntityUniverse#spawnEntities(Iterable, Cause)
+     */
+    public boolean spawnEntities(Iterable<? extends Entity> entities, Cause cause) {
+        return this.getExtent().spawnEntities(entities, cause);
     }
 
     @Override
