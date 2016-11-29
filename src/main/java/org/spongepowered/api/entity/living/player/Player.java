@@ -39,8 +39,10 @@ import org.spongepowered.api.data.manipulator.mutable.entity.JoinData;
 import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.effect.Viewer;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.item.inventory.Container;
@@ -56,6 +58,8 @@ import org.spongepowered.api.text.chat.ChatVisibility;
 import java.time.Instant;
 import java.util.Optional;
 import java.util.Set;
+
+import javax.annotation.Nullable;
 
 /**
  * A Player represents the in-game entity of a human playing on a server.
@@ -319,4 +323,19 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      */
     boolean respawnPlayer();
 
+    /**
+     * Gets the {@link Entity} followed by the camera when in the
+     * {@link GameModes#SPECTATOR spectator gamemode}.
+     *
+     * @return The followed entity, if present, {@link Optional#empty()} otherwise
+     */
+    Optional<Entity> getSpectatorTarget();
+
+    /**
+     * Sets the {@link Entity} followed by the camera when in the
+     * {@link GameModes#SPECTATOR spectator gamemode}.
+     *
+     * @param entity The entity to spectate
+     */
+    void setSpectatorTarget(@Nullable Entity entity);
 }
