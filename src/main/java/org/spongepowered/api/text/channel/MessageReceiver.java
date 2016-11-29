@@ -112,7 +112,7 @@ public interface MessageReceiver {
     MessageChannel getMessageChannel();
 
     /**
-     * Set the message channel that messages sent by this source should be sent to.
+     * Sets the message channel that messages sent by this source should be sent to.
      *
      * @param channel The message channel to send messages to
      */

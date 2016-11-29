@@ -35,7 +35,7 @@ import java.util.List;
 public interface FactoryProvider {
 
     /**
-     * Get whether there should be any checks on whether a parameter is
+     * Gets whether there should be any checks on whether a parameter is
      * null when it should not be.
      *
      * @return The null policy
@@ -43,7 +43,7 @@ public interface FactoryProvider {
     NullPolicy getNullPolicy();
 
     /**
-     * Set whether there should be any checks on whether a parameter is
+     * Sets whether there should be any checks on whether a parameter is
      * null when it should not be.
      *
      * @param policy The null policy

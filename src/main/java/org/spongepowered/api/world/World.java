@@ -84,7 +84,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     }
 
     /**
-     * Get the loaded chunk at the given block coordinate position.
+     * Gets the loaded chunk at the given block coordinate position.
      *
      * @param blockPosition The position
      * @return The chunk, if available
@@ -94,7 +94,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     }
 
     /**
-     * Get the loaded chunk at the given block coordinate position.
+     * Gets the loaded chunk at the given block coordinate position.
      *
      * @param bx The x coordinate
      * @param by The y coordinate
@@ -106,7 +106,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     }
 
     /**
-     * Get the loaded chunk at the given chunk coordinate position.
+     * Gets the loaded chunk at the given chunk coordinate position.
      *
      * @param chunkPosition The position
      * @return The chunk, if available
@@ -116,7 +116,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     }
 
     /**
-     * Get the loaded chunk at the given chunk coordinate position.
+     * Gets the loaded chunk at the given chunk coordinate position.
      *
      * <p>In Vanilla, the y coordinate will always be 0.</p>
      *
@@ -128,7 +128,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     Optional<Chunk> getChunk(int cx, int cy, int cz);
 
     /**
-     * Get the chunk at the given chunk coordinate position if it exists or if
+     * Gets the chunk at the given chunk coordinate position if it exists or if
      * {@code shouldGenerate} is true and the chunk is generated.
      *
      * @param chunkPosition The position
@@ -140,7 +140,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     }
 
     /**
-     * Get the chunk at the given chunk coordinate position if it exists or if
+     * Gets the chunk at the given chunk coordinate position if it exists or if
      * {@code shouldGenerate} is true and the chunk is generated.
      *
      * <p>In Vanilla, the y coordinate will always be 0.</p>

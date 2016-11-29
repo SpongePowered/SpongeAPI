@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 public interface Equipable extends Identifiable, Carrier {
 
     /**
-     * Get whether this entity can equip equipment of the specified type (eg.
+     * Gets whether this entity can equip equipment of the specified type (eg.
      * whether calling {@link #equip} will fail because the entity doesn't
      * have this type of slot.
      *
@@ -49,7 +49,7 @@ public interface Equipable extends Identifiable, Carrier {
     boolean canEquip(EquipmentType type);
 
     /**
-     * Get whether this entity can equip the supplied equipment in its slot of
+     * Gets whether this entity can equip the supplied equipment in its slot of
      * the specified type (eg. whether calling {@link #equip} with the specified
      * slot type and item will succeed)
      *

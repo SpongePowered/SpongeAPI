@@ -60,7 +60,7 @@ public interface PermissionService extends ContextualService<Subject> {
     SubjectCollection getGroupSubjects();
 
     /**
-     * Get the subject holding data that is applied by default to all subjects. This
+     * Gets the subject holding data that is applied by default to all subjects. This
      * subject is at the root of all inheritance trees, above even subject type-specific
      * defaults, meaning it has the lowest priority when all other weighting is equal.
      *

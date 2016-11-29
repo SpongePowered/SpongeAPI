@@ -447,7 +447,7 @@ public final class CommandFlags extends CommandElement {
         }
 
         /**
-         * Set how long flags that are not registered should be handled when encountered.
+         * Sets how long flags that are not registered should be handled when encountered.
          *
          * @param behavior The behavior to use
          * @return this
@@ -458,7 +458,7 @@ public final class CommandFlags extends CommandElement {
         }
 
         /**
-         * Set how long flags that are not registered should be handled when encountered.
+         * Sets how long flags that are not registered should be handled when encountered.
          *
          * @param behavior The behavior to use
          * @return this

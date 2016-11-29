@@ -140,7 +140,7 @@ public interface LocationBasePropertyHolder {
     Collection<Property<?, ?>> getProperties(int x, int y, int z);
 
     /**
-     * Get all the faces of this block that have the given property.
+     * Gets all the faces of this block that have the given property.
      *
      * @param coords The coordinates
      * @param propertyClass The property class
@@ -151,7 +151,7 @@ public interface LocationBasePropertyHolder {
     }
 
     /**
-     * Get all the faces of this block that have the given property.
+     * Gets all the faces of this block that have the given property.
      *
      * @param x The x coordinate
      * @param y The y coordinate

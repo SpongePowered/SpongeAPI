@@ -77,7 +77,7 @@ import javax.annotation.Nullable;
 public interface Entity extends Identifiable, Locatable, DataHolder, DataSerializable, Translatable {
 
     /**
-     * Get the type of entity.
+     * Gets the type of entity.
      *
      * @return The type of entity
      */
@@ -275,8 +275,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
     /**
      * Sets the {@link Location} of this entity to the {@link World}'s spawn point.
      *
-     * <p>This is equivalent to setting the location via {@link TargetedLocationData}.</p>
-     *
      * @param world The world to transfer to
      */
     default boolean transferToWorld(World world) {
@@ -285,8 +283,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
 
     /**
      * Sets the {@link Location} of this entity to a new position in a world.
-     *
-     * <p>This is equivalent to setting the location via {@link TargetedLocationData}.</p>
      *
      * @param world The world to transfer to
      * @param position The position in the target world

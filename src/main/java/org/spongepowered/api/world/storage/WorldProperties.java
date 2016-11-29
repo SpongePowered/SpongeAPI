@@ -409,7 +409,7 @@ public interface WorldProperties extends DataSerializable {
     void setWorldBorderDiameter(double diameter);
 
     /**
-     * Get the time remaining until the world border stops expanding or
+     * Gets the time remaining until the world border stops expanding or
      * contracting.
      *
      * @return The time remaining, in milliseconds
@@ -447,7 +447,7 @@ public interface WorldProperties extends DataSerializable {
     void setWorldBorderTargetDiameter(double diameter);
 
     /**
-     * Get the distance a player may be outside the world border before taking
+     * Gets the distance a player may be outside the world border before taking
      * damage.
      *
      * @return The distance
@@ -455,7 +455,7 @@ public interface WorldProperties extends DataSerializable {
     double getWorldBorderDamageThreshold();
 
     /**
-     * Set the distance a player may be be outside the world border before
+     * Sets the distance a player may be be outside the world border before
      * taking damage.
      *
      * @param distance The distance
@@ -463,7 +463,7 @@ public interface WorldProperties extends DataSerializable {
     void setWorldBorderDamageThreshold(double distance);
 
     /**
-     * Get the damage done to a player per block per tick when outside the
+     * Gets the damage done to a player per block per tick when outside the
      * buffer.
      *
      * @return The damage amount
@@ -471,7 +471,7 @@ public interface WorldProperties extends DataSerializable {
     double getWorldBorderDamageAmount();
 
     /**
-     * Set the damage done to a player per block per tick when outside the
+     * Sets the damage done to a player per block per tick when outside the
      * buffer.
      *
      * @param damage The damage amount
@@ -479,7 +479,7 @@ public interface WorldProperties extends DataSerializable {
     void setWorldBorderDamageAmount(double damage);
 
     /**
-     * Get the time when a contracting world border will warn a player for whom
+     * Gets the time when a contracting world border will warn a player for whom
      * the world border will reach in {@code time} seconds.
      *
      * <p>In Minecraft, the warning is displayed in the form of a reddish
@@ -490,7 +490,7 @@ public interface WorldProperties extends DataSerializable {
     int getWorldBorderWarningTime();
 
     /**
-     * Set the time when a contracting world border will warn a player for whom
+     * Sets the time when a contracting world border will warn a player for whom
      * the world border will reach in {@code time} seconds.
      *
      * <p>In Minecraft, the warning is displayed in the form of a reddish
@@ -501,7 +501,7 @@ public interface WorldProperties extends DataSerializable {
     void setWorldBorderWarningTime(int time);
 
     /**
-     * Get the distance when a contracting world border will warn a player for
+     * Gets the distance when a contracting world border will warn a player for
      * whom the world border is {@code distance} blocks away.
      *
      * <p>In Minecraft, the warning is displayed in the form of a reddish
@@ -512,7 +512,7 @@ public interface WorldProperties extends DataSerializable {
     int getWorldBorderWarningDistance();
 
     /**
-     * Set the distance when a contracting world border will warn a player for
+     * Sets the distance when a contracting world border will warn a player for
      * whom the world border is {@code distance} blocks away.
      *
      * <p>In Minecraft, the warning is displayed in the form of a reddish

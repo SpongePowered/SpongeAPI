@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 public interface WorldBorder {
 
     /**
-     * Get the diameter the world border is expanding or contracting to.
+     * Gets the diameter the world border is expanding or contracting to.
      *
      * <p>This will return the same value as {@link #getDiameter} unless
      * {@link #getTimeRemaining} is greater than 0.</p>
@@ -56,7 +56,7 @@ public interface WorldBorder {
     double getNewDiameter();
 
     /**
-     * Get the diameter of the world border.
+     * Gets the diameter of the world border.
      *
      * <p>The returned diameter applies to the x and z axis. The world border
      * extends over the entire y-axis.</p>
@@ -66,7 +66,7 @@ public interface WorldBorder {
     double getDiameter();
 
     /**
-     * Set the diameter of the world border.
+     * Sets the diameter of the world border.
      *
      * <p>The specified diameter applies to the x and z axis. The world border
      * extends over the entire y-axis.</p>
@@ -76,7 +76,7 @@ public interface WorldBorder {
     void setDiameter(double diameter);
 
     /**
-     * Set the diameter of the world border, over the given period of time.
+     * Sets the diameter of the world border, over the given period of time.
      *
      * <p>The world border diameter increases/decrease linearly over the
      * specified time. The specified diameter applies to the x and z axis. The
@@ -88,7 +88,7 @@ public interface WorldBorder {
     void setDiameter(double diameter, long time);
 
     /**
-     * Set the starting diameter and the ending diameter of the world border,
+     * Sets the starting diameter and the ending diameter of the world border,
      * over the given period of time.
      *
      * <p>The world border diameter increases/diameter linearly over the
@@ -102,7 +102,7 @@ public interface WorldBorder {
     void setDiameter(double startDiameter, double endDiameter, long time);
 
     /**
-     * Get the time remaining until the world border stops expanding or
+     * Gets the time remaining until the world border stops expanding or
      * contracting.
      *
      * @return The time remaining, in milliseconds
@@ -110,7 +110,7 @@ public interface WorldBorder {
     long getTimeRemaining();
 
     /**
-     * Set the center of the world border.
+     * Sets the center of the world border.
      *
      * @param x The x-axis center of the world border
      * @param z The z-axis center of the world border
@@ -118,7 +118,7 @@ public interface WorldBorder {
     void setCenter(double x, double z);
 
     /**
-     * Get the center of the world border.
+     * Gets the center of the world border.
      *
      * <p>The returned position is three-dimensional. As the worldborder extends
      * over the entire y-axis, the returned position will always have a
@@ -129,7 +129,7 @@ public interface WorldBorder {
     Vector3d getCenter();
 
     /**
-     * Get the time when a contracting world border will warn a player for whom
+     * Gets the time when a contracting world border will warn a player for whom
      * the world border will reach in {@code time} seconds.
      *
      * <p>In Minecraft, the warning is displayed in the form of a reddish
@@ -140,7 +140,7 @@ public interface WorldBorder {
     int getWarningTime();
 
     /**
-     * Set the time when a contracting world border will warn a player for whom
+     * Sets the time when a contracting world border will warn a player for whom
      * the world border will reach in {@code time} seconds.
      *
      * <p>In Minecraft, the warning is displayed in the form of a reddish
@@ -151,7 +151,7 @@ public interface WorldBorder {
     void setWarningTime(int time);
 
     /**
-     * Get the distance when a contracting world border will warn a player for
+     * Gets the distance when a contracting world border will warn a player for
      * whom the world border is {@code distance} blocks away.
      *
      * <p>In Minecraft, the warning is displayed in the form of a reddish
@@ -162,7 +162,7 @@ public interface WorldBorder {
     int getWarningDistance();
 
     /**
-     * Set the distance when a contracting world border will warn a player for
+     * Sets the distance when a contracting world border will warn a player for
      * whom the world border is {@code distance} blocks away.
      *
      * <p>In Minecraft, the warning is displayed in the form of a reddish
@@ -173,7 +173,7 @@ public interface WorldBorder {
     void setWarningDistance(int distance);
 
     /**
-     * Get the distance a player may be outside the world border before taking
+     * Gets the distance a player may be outside the world border before taking
      * damage.
      *
      * @return The distance
@@ -181,7 +181,7 @@ public interface WorldBorder {
     double getDamageThreshold();
 
     /**
-     * Set the distance a player may be be outside the world border before
+     * Sets the distance a player may be be outside the world border before
      * taking damage.
      *
      * @param distance The distance
@@ -189,7 +189,7 @@ public interface WorldBorder {
     void setDamageThreshold(double distance);
 
     /**
-     * Get the damage done to a player per block per tick when outside the
+     * Gets the damage done to a player per block per tick when outside the
      * buffer.
      *
      * @return The damage amount
@@ -197,7 +197,7 @@ public interface WorldBorder {
     double getDamageAmount();
 
     /**
-     * Set the damage done to a player per block per tick when outside the
+     * Sets the damage done to a player per block per tick when outside the
      * buffer.
      *
      * @param damage The damage amount

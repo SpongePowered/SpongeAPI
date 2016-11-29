@@ -87,7 +87,7 @@ public interface BiomeVolume {
     boolean containsBiome(int x, int y, int z);
 
     /**
-     * Get an object representing the biome at the given position.
+     * Gets an object representing the biome at the given position.
      *
      * @param position The position
      * @return The biome

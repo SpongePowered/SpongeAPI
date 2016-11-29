@@ -48,7 +48,7 @@ package org.spongepowered.api.config;
 public interface ConfigManager {
 
     /**
-     * Get the configuration root for a plugin that utilizes the shared
+     * Gets the configuration root for a plugin that utilizes the shared
      * configuration folder.
      *
      * <p>The shared configuration folder <em>may</em> refer to
@@ -64,7 +64,7 @@ public interface ConfigManager {
     ConfigRoot getSharedConfig(Object instance);
 
     /**
-     * Get the configuration root for a plugin that utilizes a configuration
+     * Gets the configuration root for a plugin that utilizes a configuration
      * folder specific to the plugin, which <em>may</em> also be a
      * su-directory of the shared configuration folder.
      *

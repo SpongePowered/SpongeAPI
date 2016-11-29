@@ -48,16 +48,16 @@ import java.net.InetAddress;
  *
  * <p>Together with {@link SpawnEntityEvent}, these events represent
  * the progression of a {@link Player} from first authenticating, to being
- * fully loaded in the world.
+ * fully loaded in the world.</p>
  *
- * The events are fired in the following order:
+ * <p>The events are fired in the following order:
  *
- * #Auth -> #Login -> {@link SpawnEntityEvent} -> #Join
+ * {@link Auth} -> {@link Login} -> {@link SpawnEntityEvent} -> {@link Join}</p>
  *
- * {@link SpawnEntityEvent} is still fired for players, for consistency.
- * However, the player is not at a well-defined state at that point.
- * It's recommended to use the this event's subinterfaces to interact
- * with the player at well-defined moments during the connection process.
+ * <p>While {@link SpawnEntityEvent} is still fired for players, for consistency, the
+ * player is not at a well-defined state at that point. It's recommended to use
+ * this event's subinterfaces to interact with the player at well-defined
+ * moments during the connection process.</p>
  */
 public interface ClientConnectionEvent extends Event {
 

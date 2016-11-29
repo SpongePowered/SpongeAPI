@@ -92,7 +92,7 @@ public interface SubjectCollection {
     Map<Subject, Boolean> getAllWithPermission(Set<Context> contexts, String permission);
 
     /**
-     * Get the subject holding data that is applied by default for subjects of this type.
+     * Gets the subject holding data that is applied by default for subjects of this type.
      * This subject is placed at the root of any inheritance tree involving subjects of
      * this type, but has a higher priority than {@link PermissionService#getDefaults()}.
      *

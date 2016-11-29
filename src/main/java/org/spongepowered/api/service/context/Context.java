@@ -59,7 +59,7 @@ public final class Context implements Map.Entry<String, String> {
     }
 
     /**
-     * Get the type.
+     * Gets the type.
      *
      * @return the type of item this context represents, for example for a world
      *         this would be {@code world}
@@ -69,12 +69,11 @@ public final class Context implements Map.Entry<String, String> {
     }
 
     /**
-     * Get the name.
+     * Gets the name.
      *
      * @return the specific name of the item involved in this context, for
      *         example if the type were {@code world} this would be the name of the
      *         world.
-     * 
      */
     public String getName() {
         return getValue();

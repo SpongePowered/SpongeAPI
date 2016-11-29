@@ -65,7 +65,7 @@ public interface SubjectData {
     Map<String, Boolean> getPermissions(Set<Context> contexts);
 
     /**
-     * Set a permission to a given value. Setting value as
+     * Sets a permission to a given value. Setting value as
      * {@link Tristate#UNDEFINED} unsets the permission. An empty set of
      * contexts applies this permission to the global context.
      *
@@ -158,7 +158,7 @@ public interface SubjectData {
     Map<Set<Context>, Map<String, String>> getAllOptions();
 
     /**
-     * Get options for a specific context combination.
+     * Gets options for a specific context combination.
      *
      * @param contexts The context combination to get options for
      * @return All available options, returning an empty map if none are present
@@ -166,7 +166,7 @@ public interface SubjectData {
     Map<String, String> getOptions(Set<Context> contexts);
 
     /**
-     * Set a specific option to a value.
+     * Sets a specific option to a value.
      *
      * @param contexts The context combination to set the given option in
      * @param key The key to set. Case-insensitive.

@@ -53,7 +53,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     }
 
     /**
-     * Get the parent {@link Inventory} of this {@link Inventory}.
+     * Gets the parent {@link Inventory} of this {@link Inventory}.
      *
      * @return the parent inventory, returns this inventory if there is no
      *      parent (this is a top-level inventory)
@@ -97,7 +97,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     <T extends Inventory> T next();
 
     /**
-     * Get and remove the first available stack from this Inventory.
+     * Gets and remove the first available stack from this Inventory.
      *
      * <p>'Available' has a different meaning for different inventory types. In
      * a single-slot inventory this has a fixed implication. However larger and
@@ -152,7 +152,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     Optional<ItemStack> poll(int limit);
 
     /**
-     * Get without removing the first available stack from this Inventory. For
+     * Gets without removing the first available stack from this Inventory. For
      * the definition of 'available', see {@link #poll}.
      *
      * @return First available itemstack, or {@link Optional#empty()} if

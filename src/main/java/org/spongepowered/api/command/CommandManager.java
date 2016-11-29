@@ -112,14 +112,14 @@ public interface CommandManager extends Dispatcher {
     Optional<CommandMapping> removeMapping(CommandMapping mapping);
 
     /**
-     * Get a set of plugin containers that have commands registered.
+     * Gets a set of plugin containers that have commands registered.
      *
      * @return A set of plugin containers
      */
     Set<PluginContainer> getPluginContainers();
 
     /**
-     * Get a set of commands owned by the given plugin instance.
+     * Gets a set of commands owned by the given plugin instance.
      *
      * @param instance The plugin instance
      * @return A set of mappings
@@ -127,7 +127,7 @@ public interface CommandManager extends Dispatcher {
     Set<CommandMapping> getOwnedBy(Object instance);
 
     /**
-     * Get the owner of a CommandMapping, if any is present
+     * Gets the owner of a CommandMapping, if any is present
      *
      * @param mapping The mapping to get an owner for
      * @return The owner, if present.
@@ -135,7 +135,7 @@ public interface CommandManager extends Dispatcher {
     Optional<PluginContainer> getOwner(CommandMapping mapping);
 
     /**
-     * Get the number of registered aliases.
+     * Gets the number of registered aliases.
      *
      * @return The number of aliases
      */
@@ -155,7 +155,7 @@ public interface CommandManager extends Dispatcher {
     CommandResult process(CommandSource source, String arguments);
 
     /**
-     * Get a list of suggestions based on input.
+     * Gets a list of suggestions based on input.
      *
      * <p>If a suggestion is chosen by the user, it will replace the last
      * word.</p>

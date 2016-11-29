@@ -184,7 +184,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     }
 
     /**
-     * Get a snapshot of this block at the current point in time.
+     * Gets a snapshot of this block at the current point in time.
      *
      * <p>A snapshot is disconnected from the {@link Extent} that it was taken
      * from so changes to the original block do not affect the snapshot.</p>
@@ -197,7 +197,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     }
 
     /**
-     * Get a snapshot of this block at the current point in time.
+     * Gets a snapshot of this block at the current point in time.
      *
      * <p>A snapshot is disconnected from the {@link Extent} that it was taken
      * from so changes to the original block do not affect the snapshot.</p>

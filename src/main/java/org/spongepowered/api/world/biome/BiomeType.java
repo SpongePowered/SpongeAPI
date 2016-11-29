@@ -35,14 +35,14 @@ import org.spongepowered.api.world.World;
 public interface BiomeType extends CatalogType {
 
     /**
-     * Get the temperature of this biome.
+     * Gets the temperature of this biome.
      *
      * @return The temperature
      */
     double getTemperature();
 
     /**
-     * Get the humidity of this biome.
+     * Gets the humidity of this biome.
      *
      * @return The humidity
      */

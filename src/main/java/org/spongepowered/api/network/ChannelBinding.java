@@ -53,7 +53,7 @@ public interface ChannelBinding {
     String getName();
 
     /**
-     * Get the plugin that created this binding.
+     * Gets the plugin that created this binding.
      *
      * @return The owning plugin
      */

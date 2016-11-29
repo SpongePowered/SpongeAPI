@@ -207,7 +207,7 @@ public class ClassGenerator {
     }
 
     /**
-     * Get the policy regarding how null parameters are handled.
+     * Gets the policy regarding how null parameters are handled.
      *
      * @return The null policy
      */
@@ -216,7 +216,7 @@ public class ClassGenerator {
     }
 
     /**
-     * Set the policy regarding how null parameters are handled.
+     * Sets the policy regarding how null parameters are handled.
      *
      * @param nullPolicy The null policy
      */

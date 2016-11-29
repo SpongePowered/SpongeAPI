@@ -78,7 +78,7 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
     }
 
     /**
-     * Create a new SlotPos property for matching the specified value with the
+     * Creates a new SlotPos property for matching the specified value with the
      * specified operator.
      * 
      * @param value the value to match
@@ -89,7 +89,7 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
     }
 
     /**
-     * Get the X position of this slot within the queried parent.
+     * Gets the X position of this slot within the queried parent.
      * 
      * @return slot x coordinate
      */
@@ -98,7 +98,7 @@ public class SlotPos extends AbstractInventoryProperty<String, Vector2i> {
     }
 
     /**
-     * Get the Y position of this slot within the queried parent.
+     * Gets the Y position of this slot within the queried parent.
      * 
      * @return slot y coordinate
      */

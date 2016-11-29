@@ -45,28 +45,28 @@ public interface PlayerInventory extends CarriedInventory<Player> {
     /**
      * Gets the hotbar inventory.
      *
-     * @return the hotbar
+     * @return The hotbar
      */
     Hotbar getHotbar();
 
     /**
      * Gets the main inventory.
      *
-     * @return the hotbar
+     * @return The main inventory
      */
     GridInventory getMain();
 
     /**
      * Gets the equipment inventory.
      *
-     * @return the hotbar
+     * @return The equipment inventory
      */
     EquipmentInventory getEquipment();
 
     /**
      * Gets the offhand inventory.
      *
-     * @return the hotbar
+     * @return The offhand slot
      */
     Slot getOffhand();
 

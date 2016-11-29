@@ -142,7 +142,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the underlying extent.
+     * Gets the underlying extent.
      *
      * <p>Note: This can be null if the {@link Extent} is unloaded and garbage
      * collected.</p>
@@ -159,7 +159,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the underlying position.
+     * Gets the underlying position.
      *
      * @return The underlying position
      */
@@ -172,7 +172,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the underlying block position.
+     * Gets the underlying block position.
      *
      * @return The underlying block position
      */
@@ -185,7 +185,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the underlying chunk position.
+     * Gets the underlying chunk position.
      *
      * @return The underlying chunk position
      */
@@ -210,7 +210,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the X component of this instance's position.
+     * Gets the X component of this instance's position.
      *
      * @return The x component
      */
@@ -219,7 +219,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the Y component of this instance's position.
+     * Gets the Y component of this instance's position.
      *
      * @return The y component
      */
@@ -228,7 +228,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the Z component of this instance's position.
+     * Gets the Z component of this instance's position.
      *
      * @return The z component
      */
@@ -237,7 +237,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the floored X component of this instance's position.
+     * Gets the floored X component of this instance's position.
      *
      * @return The floored x component
      */
@@ -246,7 +246,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the floored Y component of this instance's position.
+     * Gets the floored Y component of this instance's position.
      *
      * @return The floored y component
      */
@@ -255,7 +255,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the floored Z component of this instance's position.
+     * Gets the floored Z component of this instance's position.
      *
      * @return The floored z component
      */
@@ -475,7 +475,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the base type of block.
+     * Gets the base type of block.
      *
      * <p>The type does not include block data such as the contents of
      * inventories.</p>
@@ -487,7 +487,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get the {@link BlockState} for this position.
+     * Gets the {@link BlockState} for this position.
      *
      * @return The block state
      */
@@ -611,7 +611,7 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
-     * Get a snapshot of this block at the current point in time.
+     * Gets a snapshot of this block at the current point in time.
      *
      * <p>A snapshot is disconnected from the {@link Extent} that it was taken
      * from so changes to the original block do not affect the snapshot.</p>

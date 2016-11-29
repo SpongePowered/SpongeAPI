@@ -93,7 +93,7 @@ public interface TradeOffer extends DataSerializable {
     /**
      * <p>Gets the current uses of this offer.</p>
      *
-     * <p>Usually, the uses of an offer a re limited by the amount of
+     * <p>Usually, the uses of an offer are limited by the amount of
      * {@link #getMaxUses()}. Once the uses reaches the max uses, the offer may
      * temporariliy become disabled.</p>
      *
@@ -104,7 +104,7 @@ public interface TradeOffer extends DataSerializable {
     /**
      * <p>Gets the current maximum uses of this offer.</p>
      *
-     * <p>Usually, the uses of an offer a re limited by the amount of maximum
+     * <p>Usually, the uses of an offer are limited by the amount of maximum
      * uses. Once the uses reaches the max uses, the offer may temporariliy
      * become disabled.</p>
      *

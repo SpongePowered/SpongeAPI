@@ -76,8 +76,9 @@ public abstract class AbstractDataBuilder<T extends DataSerializable> implements
                 Optional<DataContentUpdater> updater = Sponge.getDataManager().getWrappedContentUpdater(this.requiredClass, contentVersion,
                         this.supportedVersion);
                 if (!updater.isPresent()) {
-                    throw new InvalidDataException("Could not get an updater for ItemEnchantment data from the version: " + contentVersion
-                                                   + " to " + this.supportedVersion + ". Please notify the SpongePowered developers of this issue!");
+                    throw new InvalidDataException("Could not get an updater for " + this.requiredClass.getName()
+                            + " data from the version: " + contentVersion + " to " + this.supportedVersion
+                            + ". Please notify the SpongePowered developers of this issue!");
                 }
                 container = updater.get().update(container);
             }

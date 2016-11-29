@@ -40,7 +40,7 @@ public interface PluginManager {
     String SPONGE_PLUGIN_ID = "sponge";
 
     /**
-     * Get the plugin container from an instance.
+     * Gets the plugin container from an instance.
      *
      * @param instance The instance
      * @return The container

@@ -108,7 +108,7 @@ public final class CommandSpec implements CommandCallable {
         Builder() {}
 
         /**
-         * Set the permission that will be checked before using this command.
+         * Sets the permission that will be checked before using this command.
          *
          * @param permission The permission to check
          * @return this
@@ -119,7 +119,7 @@ public final class CommandSpec implements CommandCallable {
         }
 
         /**
-         * Set the callback that will handle this command's execution.
+         * Sets the callback that will handle this command's execution.
          *
          * @param executor The executor that will be called with this command's parsed arguments
          * @return this
@@ -206,7 +206,7 @@ public final class CommandSpec implements CommandCallable {
         }
 
         /**
-         * Set the argument specification for this command.
+         * Sets the argument specification for this command.
          * Generally, for a multi-argument command the {@link GenericArguments#seq(CommandElement...)} method is used to parse a sequence of args
          *
          * @see GenericArguments
@@ -220,7 +220,7 @@ public final class CommandSpec implements CommandCallable {
         }
 
         /**
-         * Set the argument specification for this command. This method accepts a sequence of arguments. This is equivalent to calling {@code
+         * Sets the argument specification for this command. This method accepts a sequence of arguments. This is equivalent to calling {@code
          * arguments(seq(args))}
          *
          * @see GenericArguments
@@ -234,7 +234,7 @@ public final class CommandSpec implements CommandCallable {
         }
 
         /**
-         * Set the input tokenizer to be used to convert input from a string into a list of argument tokens.
+         * Sets the input tokenizer to be used to convert input from a string into a list of argument tokens.
          *
          * @see InputTokenizer for common input parser implementations
          * @param parser The parser to use

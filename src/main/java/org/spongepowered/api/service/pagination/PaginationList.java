@@ -91,7 +91,7 @@ public interface PaginationList {
     Text getPadding();
 
     /**
-     * Get the maxinum number of lines that can be displayed on a source's screen.
+     * Gets the maxinum number of lines that can be displayed on a source's screen.
      *
      * @return The maximum number of lines per page
      */
@@ -120,7 +120,7 @@ public interface PaginationList {
     interface Builder extends ResettableBuilder<PaginationList, Builder> {
 
         /**
-         * Set the contents of this output as an Iterable.
+         * Sets the contents of this output as an Iterable.
          * If this {@link Iterable} is a {@link List}, bidirectional navigation is supported.
          * Otherwise, only going to the next page will be supported
          *
@@ -130,7 +130,7 @@ public interface PaginationList {
         Builder contents(Iterable<Text> contents);
 
         /**
-         * Set the contents of this output to be the given array of contents.
+         * Sets the contents of this output to be the given array of contents.
          *
          * @param contents The contents to output
          * @return this
@@ -138,7 +138,7 @@ public interface PaginationList {
         Builder contents(Text... contents);
 
         /**
-         * Set the title text to be used in the title bar of this pagination.
+         * Sets the title text to be used in the title bar of this pagination.
          * This should be less than one line long.
          *
          * @param title The title to use.
@@ -147,7 +147,7 @@ public interface PaginationList {
         Builder title(Text title);
 
         /**
-         * Set the header to be displayed for this output on all pages after the title bar but before the contents
+         * Sets the header to be displayed for this output on all pages after the title bar but before the contents
          * Header and footer will use this Text's style and color for formatting.
          *
          * <p>If the header is not specified, or passed in as <code>null</code>, it will
@@ -159,7 +159,7 @@ public interface PaginationList {
         Builder header(@Nullable Text header);
 
         /**
-         * Set the footer to be displayed for this output on all pages after the contents and page navigation bar.
+         * Sets the footer to be displayed for this output on all pages after the contents and page navigation bar.
          *
          * <p>If the footer is not specified, or passed in as <code>null</code>, it will
          * be omitted when displaying the list.</p>
@@ -170,7 +170,7 @@ public interface PaginationList {
         Builder footer(@Nullable Text footer);
 
         /**
-         * Set the padding character to be used when centering headers and footers.
+         * Sets the padding character to be used when centering headers and footers.
          *
          * @param padding The padding to use
          * @return this
@@ -178,7 +178,7 @@ public interface PaginationList {
         Builder padding(Text padding);
 
         /**
-         * Set the maximum number of lines that can be displayed per page.
+         * Sets the maximum number of lines that can be displayed per page.
          *
          * @param linesPerPage The number of lines
          * @return this

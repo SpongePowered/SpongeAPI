@@ -22,27 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event;
-
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.impl.AbstractEvent;
-import org.spongepowered.api.eventgencore.annotation.AbsoluteSortPosition;
-import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
-
-/**
- * An event called within Sponge.
- *
- * <p>This is a marker interface, which must be implemented
- * by any event used with the Sponge event bus.</p>
- */
-@ImplementedBy(value = AbstractEvent.class, priority = Integer.MIN_VALUE)
-public interface Event {
-
-    /**
-     * Gets the cause for the event.
-     *
-     * @return The last cause
-     */
-    @AbsoluteSortPosition(0)
-    Cause getCause();
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.service.pagination;

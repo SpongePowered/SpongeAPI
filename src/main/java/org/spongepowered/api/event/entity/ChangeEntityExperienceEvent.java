@@ -39,14 +39,14 @@ public interface ChangeEntityExperienceEvent extends TargetEntityEvent, Cancella
     int getOriginalExperience();
 
     /**
-     * Get the experience after an event has been processed.
+     * Gets the experience after an event has been processed.
      *
      * @return The experience to receive
      */
     int getExperience();
 
     /**
-     * Set the amount of experience after an event has been processed.
+     * Sets the amount of experience after an event has been processed.
      * Negative values will remove experience.
      *
      * @param exp The experience to give or take

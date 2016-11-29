@@ -142,7 +142,8 @@ public interface GameRegistry {
      * @param registryModule The registry module
      * @param <T> The type of dummy
      * @throws IllegalArgumentException If there is a module already registered
-     * @throws UnsupportedOperationException If the
+     * @throws RegistryModuleAlreadyRegisteredException If the module is already registered
+     * @throws UnsupportedOperationException If an attempt is made to register a module for an API catalog
      */
     <T extends CatalogType> GameRegistry registerModule(Class<T> catalogClass, CatalogRegistryModule<T> registryModule)
             throws IllegalArgumentException, RegistryModuleAlreadyRegisteredException;

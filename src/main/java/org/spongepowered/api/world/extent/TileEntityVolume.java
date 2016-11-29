@@ -76,7 +76,7 @@ public interface TileEntityVolume extends MutableBlockVolume {
     }
 
     /**
-     * Get the tile entity at the given position, if it exists.
+     * Gets the tile entity at the given position, if it exists.
      *
      * @param x The X position
      * @param y The Y position

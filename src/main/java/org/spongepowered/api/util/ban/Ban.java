@@ -80,7 +80,7 @@ public interface Ban {
     BanType getType();
 
     /**
-     * Get the reason for the ban, if available.
+     * Gets the reason for the ban, if available.
      *
      * @return The reason specified for the ban, if available
      */

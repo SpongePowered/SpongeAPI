@@ -202,7 +202,7 @@ public interface Subject extends Contextual {
     List<Subject> getParents(Set<Context> contexts);
 
     /**
-     * Get the value of a given option in the given context.
+     * Gets the value of a given option in the given context.
      *
      * <p>It is expected that this method will account for options
      * inherited from parent subjects.
@@ -218,7 +218,7 @@ public interface Subject extends Contextual {
     Optional<String> getOption(Set<Context> contexts, String key);
 
     /**
-     * Get the value of a given option in the subject's current context
+     * Gets the value of a given option in the subject's current context
      * This must return the same value as {@link #getOption(Set, String)}
      * using {@link #getActiveContexts()}.
      *

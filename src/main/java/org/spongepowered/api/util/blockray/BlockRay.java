@@ -576,7 +576,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
 
         /**
          * Adds the filter to the block ray.
-         * The block ray will skip over blocks that to not pass this predicate.
+         * The block ray will skip over blocks that do not pass this predicate.
          * This is optional.
          * Multiple filters will be ANDed together.
          *
@@ -595,7 +595,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
 
         /**
          * Adds filters to the block ray.
-         * The block ray will skip over blocks that to not pass this predicate.
+         * The block ray will skip over blocks that do not pass this predicate.
          * This is optional.
          * Multiple filters will be ANDed together.
          *

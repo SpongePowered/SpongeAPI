@@ -57,7 +57,7 @@ public interface MessageChannelEvent extends MessageEvent {
     Optional<MessageChannel> getChannel();
 
     /**
-     * Set the channel for this message to go to.
+     * Sets the channel for this message to go to.
      *
      * <p>Note that an {@link Optional#empty()} channel is different from a
      * {@link MessageChannel#TO_NONE} channel.</p>

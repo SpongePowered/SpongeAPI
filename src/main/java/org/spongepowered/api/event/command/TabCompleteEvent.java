@@ -67,7 +67,7 @@ public interface TabCompleteEvent extends Event, Cancellable {
     List<String> getOriginalTabCompletions();
 
     /**
-     * Get the list of available suggestions. This list is mutable, so any modifications should happen to this list. All suggestions will replace
+     * Gets the list of available suggestions. This list is mutable, so any modifications should happen to this list. All suggestions will replace
      * the last word in the arguments on the client.
      *
      * @return The list of suggestion
@@ -83,7 +83,7 @@ public interface TabCompleteEvent extends Event, Cancellable {
     interface Command extends TabCompleteEvent {
 
         /**
-         * Get the command as a string, without any sort of command prefix.
+         * Gets the command as a string, without any sort of command prefix.
          *
          * <p>For example, if the message was {@code /example bob 3 -f}, then the command would be {@code example}.</p>
          *
@@ -92,7 +92,7 @@ public interface TabCompleteEvent extends Event, Cancellable {
         String getCommand();
 
         /**
-         * Get the arguments as a string.
+         * Gets the arguments as a string.
          *
          * <p>For example, if the message was {@code /example bob 3 -f}, then the arguments would be {@code bob 3 -f}.</p>
          *

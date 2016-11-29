@@ -32,7 +32,7 @@ import org.spongepowered.api.service.context.ContextSource;
 public interface Dimension extends ContextSource {
 
     /**
-     * Get the type of dimension.
+     * Gets the type of dimension.
      *
      * @return The type of dimension
      */

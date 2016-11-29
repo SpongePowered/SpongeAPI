@@ -106,7 +106,7 @@ public interface ItemStack extends DataHolder, Translatable {
     void setQuantity(int quantity) throws IllegalArgumentException;
 
     /**
-     * Get the maximum quantity per stack. By default, returns
+     * Gets the maximum quantity per stack. By default, returns
      * {@link ItemType#getMaxStackQuantity()}, unless a
      * different value has been set for this specific stack.
      *

@@ -105,7 +105,7 @@ public interface PortalAgent {
     Optional<Location<World>> createPortal(Location<World> targetLocation);
 
     /**
-     * Get the type of {@link PortalAgent}.
+     * Gets the type of {@link PortalAgent}.
      *
      * @return The type
      */

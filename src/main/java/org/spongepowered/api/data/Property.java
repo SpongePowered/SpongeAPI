@@ -165,7 +165,7 @@ public interface Property<K, V> extends Comparable<Property<?, ?>> {
         protected abstract boolean apply(Property<?, ?> operand1, Property<?, ?> operand2);
 
         /**
-         * Get the default operator to use if none is specified.
+         * Gets the default operator to use if none is specified.
          *
          * @return the default operator
          */
@@ -176,7 +176,7 @@ public interface Property<K, V> extends Comparable<Property<?, ?>> {
     }
 
     /**
-     * Get the key for this property. Key is only used if an item stack can have
+     * Gets the key for this property. Key is only used if an item stack can have
      * more than one property of a particular type. If the property has no
      * specific key, the property class name is returned so that properties of
      * the same type are implicitly comparable.
@@ -186,7 +186,7 @@ public interface Property<K, V> extends Comparable<Property<?, ?>> {
     K getKey();
 
     /**
-     * Get the "value" of this property. "Value" may have different meanings
+     * Gets the "value" of this property. "Value" may have different meanings
      * depending on the exact type of this property.
      *
      * @return the value of this property
@@ -194,7 +194,7 @@ public interface Property<K, V> extends Comparable<Property<?, ?>> {
     @Nullable V getValue();
 
     /**
-     * Get the operator to use when comparing another property with this
+     * Gets the operator to use when comparing another property with this
      * property.
      *
      * @return the operator to use when comparing another property with this

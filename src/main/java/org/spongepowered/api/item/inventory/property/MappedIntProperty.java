@@ -69,7 +69,7 @@ public class MappedIntProperty extends AbstractInventoryProperty<Integer, Intege
     }
 
     /**
-     * Set this property to the specified value.
+     * Sets this property to the specified value.
      * 
      * @param value value to set
      */
