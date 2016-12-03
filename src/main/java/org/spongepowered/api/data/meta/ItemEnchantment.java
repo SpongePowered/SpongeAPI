@@ -54,7 +54,8 @@ public final class ItemEnchantment implements DataSerializable {
      */
     public ItemEnchantment(Enchantment enchantment, int level) {
         this.enchantment = checkNotNull(enchantment);
-        checkArgument(level >= 0);
+        checkArgument(level >= 0, "level must not be negative (was %s)", level);
+        checkArgument(level <= Short.MAX_VALUE, "level must not be greater than %s (was %s)", Short.MAX_VALUE, level);
         this.level = level;
     }
 
