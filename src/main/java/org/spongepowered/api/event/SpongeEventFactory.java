@@ -1052,14 +1052,18 @@ public class SpongeEventFactory {
      * @param originalTabCompletions The original tab completions
      * @param tabCompletions The tab completions
      * @param rawMessage The raw message
+     * @param targetPos The target pos
+     * @param usingBlock The using block
      * @return A new chat tab complete event
      */
-    public static TabCompleteEvent.Chat createTabCompleteEventChat(Cause cause, List<String> originalTabCompletions, List<String> tabCompletions, String rawMessage) {
+    public static TabCompleteEvent.Chat createTabCompleteEventChat(Cause cause, List<String> originalTabCompletions, List<String> tabCompletions, String rawMessage, Optional<Location<World>> targetPos, boolean usingBlock) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalTabCompletions", originalTabCompletions);
         values.put("tabCompletions", tabCompletions);
         values.put("rawMessage", rawMessage);
+        values.put("targetPos", targetPos);
+        values.put("usingBlock", usingBlock);
         return SpongeEventFactoryUtils.createEventImpl(TabCompleteEvent.Chat.class, values);
     }
 
@@ -1074,9 +1078,11 @@ public class SpongeEventFactory {
      * @param arguments The arguments
      * @param command The command
      * @param rawMessage The raw message
+     * @param targetPos The target pos
+     * @param usingBlock The using block
      * @return A new command tab complete event
      */
-    public static TabCompleteEvent.Command createTabCompleteEventCommand(Cause cause, List<String> originalTabCompletions, List<String> tabCompletions, String arguments, String command, String rawMessage) {
+    public static TabCompleteEvent.Command createTabCompleteEventCommand(Cause cause, List<String> originalTabCompletions, List<String> tabCompletions, String arguments, String command, String rawMessage, Optional<Location<World>> targetPos, boolean usingBlock) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
         values.put("originalTabCompletions", originalTabCompletions);
@@ -1084,6 +1090,8 @@ public class SpongeEventFactory {
         values.put("arguments", arguments);
         values.put("command", command);
         values.put("rawMessage", rawMessage);
+        values.put("targetPos", targetPos);
+        values.put("usingBlock", usingBlock);
         return SpongeEventFactoryUtils.createEventImpl(TabCompleteEvent.Command.class, values);
     }
 
