@@ -36,6 +36,8 @@ public interface TextFactory {
 
     Text of(final Object... args);
 
+    Text ofCompacted(final Object... args);
+
     Text joinWith(final Text separator, final Text... texts);
 
     Text joinWith(final Text separator, final Iterator<? extends Text> texts);
