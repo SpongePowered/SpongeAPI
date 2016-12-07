@@ -28,9 +28,17 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.command.args.CommandArgs;
 import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.event.block.ChangeBlockEvent.Pre;
+import org.spongepowered.api.event.block.CollideBlockEvent;
+import org.spongepowered.api.event.item.inventory.InteractItemEvent;
 import org.spongepowered.api.profile.GameProfile;
 
 /**
@@ -45,13 +53,101 @@ import org.spongepowered.api.profile.GameProfile;
  */
 public final class NamedCause {
 
+    /**
+     * Used by {@link ChangeBlockEvent.Pre} before a vanilla block event.
+     */
+    public static final String BLOCK_EVENT = "BlockEvent";
+
+    /**
+     * Used by {@link ChangeBlockEvent.Pre} during vanilla block protection
+     * checks.
+     */
+    public static final String BLOCK_PROTECTED = "BlockProtected";
+
+    /**
+     * Used by any event involving a fake {@link Player}.
+     */
+    public static final String FAKE_PLAYER = "FakePlayer";
+
+    /**
+     * Used by {@link ChangeBlockEvent.Pre} before fire spreads.
+     */
+    public static final String FIRE_SPREAD = "FireSpread";
+
+    /**
+     * Used by {@link InteractItemEvent} and will contain either a
+     * {@link Entity} or {@link BlockSnapshot} which represents
+     * the player's current target.
+     */
     public static final String HIT_TARGET = "HitTarget";
+
+    /**
+     * Used by any event where an {@link Entity} ignites one or more
+     * blocks.
+     */
     public static final String IGNITER = "Igniter";
+
+    /**
+     * Used by {@link ChangeBlockEvent.Pre} before liquid flows.
+     */
+    public static final String LIQUID_FLOW = "LiquidFlow";
+
+    /**
+     * Used by any event where a {@link User} notifies either a
+     * block or entity.
+     */
     public static final String NOTIFIER = "Notifier";
+
+    /**
+     * Used by any event where a {@link User} created a block
+     * or entity.
+     */
     public static final String OWNER = "Owner";
+
+    /**
+     * Used by {@link CollideBlockEvent} when an {@link Entity}
+     * collides with a block.
+     */
     public static final String PHYSICAL = "Physical";
+
+    /**
+     * Used by {@link ChangeBlockEvent.Pre} before a 
+     * {@link BlockTypes#PISTON_HEAD} extends;
+     */
+    public static final String PISTON_EXTEND = "PistonExtend";
+
+    /**
+     * Used by {@link ChangeBlockEvent.Pre} before a 
+     * {@link BlockTypes#PISTON_HEAD} retracts;
+     */
+    public static final String PISTON_RETRACT = "PistonRetract";
+
+    /**
+     * Used by {@link ChangeBlockEvent.Pre} before a {@link Player}
+     * breaks a block.
+     */
+    public static final String PLAYER_BREAK = "PlayerBreak";
+
+    /**
+     * Used by {@link ChangeBlockEvent.Pre} before a {@link Player}
+     * places a block.
+     */
+    public static final String PLAYER_PLACE = "PlayerPlace";
+
+    /**
+     * Used by any event where a simulated {@link Human} is involved.
+     */
     public static final String PLAYER_SIMULATED = "PlayerSimulated";
+
+    /**
+     * Used by any event that wants to represent a source.
+     */
     public static final String SOURCE = "Source";
+
+    /**
+     * Used by any event where an {@link Entity} threw another
+     * {@link Entity}, usually a {@link Projectile}.
+     */
     public static final String THROWER = "Thrower";
 
     public static NamedCause source(Object object) {
