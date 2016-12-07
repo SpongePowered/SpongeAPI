@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.profile;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.collect.Multimap;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
@@ -45,9 +47,21 @@ import javax.annotation.Nullable;
 public interface GameProfile extends Identifiable, DataSerializable {
 
     /**
+     * Creates a {@link GameProfile} from the provided ID.
+     *
+     * <p>The name of the created profile will be {@code null}.</p>
+     *
+     * @param uniqueId The unique id
+     * @return The created profile
+     */
+    static GameProfile of(UUID uniqueId) {
+        return of(uniqueId, null);
+    }
+
+    /**
      * Creates a {@link GameProfile} from the provided ID and name.
      *
-     * @param uniqueId The unique ID
+     * @param uniqueId The unique id
      * @param name The name
      * @return The created profile
      */
@@ -70,6 +84,61 @@ public interface GameProfile extends Identifiable, DataSerializable {
      * @return The property map
      */
     Multimap<String, ProfileProperty> getPropertyMap();
+
+    /**
+     * Adds a profile property to this game profile.
+     *
+     * <p>The {@link ProfileProperty#getName() name} of the property is used when
+     * adding the profile property to the {@link #getPropertyMap() property map}.</p>
+     *
+     * @param property The profile property
+     * @return The game profile
+     */
+    default GameProfile addProperty(ProfileProperty property) {
+        checkNotNull(property, "property");
+        return this.addProperty(property.getName(), property);
+    }
+
+    /**
+     * Adds a profile property to this game profile.
+     *
+     * @param name The name of the property
+     * @param property The profile property
+     * @return The game profile
+     */
+    default GameProfile addProperty(String name, ProfileProperty property) {
+        checkNotNull(name, "name");
+        checkNotNull(property, "property");
+        this.getPropertyMap().put(name, property);
+        return this;
+    }
+
+    /**
+     * Removes a profile property to this game profile.
+     *
+     * <p>The {@link ProfileProperty#getName() name} of the property is used when
+     * removing the profile property from the {@link #getPropertyMap() property map}.</p>
+     *
+     * @param property The profile property
+     * @return {@code true} if the property map changed
+     */
+    default boolean removeProperty(ProfileProperty property) {
+        checkNotNull(property, "property");
+        return this.getPropertyMap().remove(property.getName(), property);
+    }
+
+    /**
+     * Removes a profile property to this game profile.
+     *
+     * @param name The name of the property
+     * @param property The profile property
+     * @return {@code true} if the property map changed
+     */
+    default boolean removeProperty(String name, ProfileProperty property) {
+        checkNotNull(name, "name");
+        checkNotNull(property, "property");
+        return this.getPropertyMap().remove(name, property);
+    }
 
     /**
      * Checks if this profile is filled.
