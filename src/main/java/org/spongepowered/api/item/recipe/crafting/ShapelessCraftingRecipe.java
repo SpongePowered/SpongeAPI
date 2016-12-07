@@ -52,13 +52,18 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
      */
     Collection<ItemStack> getIngredients();
 
+    /**
+     * Represents a builder class to create {@link ShapelessCraftingRecipe}s.
+     *
+     * @see ShapelessCraftingRecipe
+     */
     interface Builder extends ResettableBuilder<ShapelessCraftingRecipe, Builder> {
 
         /**
          * Sets the ingredients of this shapeless recipe.
          *
          * @param ingredients The ingredients
-         * @return fluent interface
+         * @return The builder
          */
         Builder ingredients(ItemStack... ingredients);
 
@@ -66,7 +71,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * Sets the ingredients of this shapeless recipe.
          *
          * @param ingredients The ingredients
-         * @return fluent interface
+         * @return The builder
          */
         Builder ingredients(Collection<ItemStack> ingredients);
 
@@ -75,7 +80,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * correctly crafted.
          *
          * @param results The resultant stacks
-         * @return fluent interface
+         * @return The builder
          */
         Builder results(ItemStack... results);
 
@@ -84,7 +89,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * is correctly crafted.
          *
          * @param result The resultant stacks
-         * @return fluent interface
+         * @return The builder
          */
         Builder results(Collection<ItemStack> result);
 

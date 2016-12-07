@@ -28,7 +28,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -87,13 +86,18 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
      */
     int getHeight();
 
+    /**
+     * Represents a builder class to create {@link ShapedCraftingRecipe}s.
+     *
+     * @see ShapedCraftingRecipe
+     */
     interface Builder extends ResettableBuilder<ShapedCraftingRecipe, Builder> {
 
         /**
          * Sets the aisle pattern for the shaped recipe.
          *
          * @param aisle A string array of ingredients
-         * @return fluent interface
+         * @return The builder
          */
         Builder aisle(String... aisle);
 
@@ -102,7 +106,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          *
          * @param symbol The ingredient symbol
          * @param ingredient The ingredient to set, or remove if null
-         * @return fluent interface
+         * @return The builder
          * @throws IllegalArgumentException If the aisle does not contain
          *     the specified character symbol
          */
@@ -113,7 +117,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          * is correctly crafted.
          *
          * @param result The resultant stacks
-         * @return fluent interface
+         * @return The builder
          */
         Builder results(ItemStack... result);
 
@@ -122,9 +126,9 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          * is correctly crafted.
          *
          * @param result The resultant stacks
-         * @return fluent interface
+         * @return The builder
          */
-        Builder results(Collection<ItemStack> result);
+        Builder results(Iterable<ItemStack> result);
 
         /**
          * Builds a ShapedCraftingRecipe from this builder.

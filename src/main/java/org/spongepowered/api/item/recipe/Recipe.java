@@ -28,7 +28,6 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
@@ -68,8 +67,8 @@ public interface Recipe extends Predicate<GridInventory> {
      * Returns the results for running this Recipe over an {@link GridInventory}
      *
      * @param grid A grid inventory as input
-     * @return A list of ItemStacks or {@link Optional#empty()} if the given
-     *          grid inventory does not match this recipe's requirements
+     * @return A list of ItemStacks or an empty list if the given grid
+     *     inventory does not match this recipe's requirements
      */
     List<ItemStack> getResults(GridInventory grid);
 
