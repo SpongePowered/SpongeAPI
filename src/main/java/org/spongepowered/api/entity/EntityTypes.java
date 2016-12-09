@@ -57,13 +57,13 @@ public final class EntityTypes {
 
     public static final EntityType CREEPER = DummyObjectProvider.createFor(EntityType.class, "CREEPER");
 
-    public static final EntityType DONKEY = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType DONKEY = DummyObjectProvider.createFor(EntityType.class, "DONKEY");
 
     public static final EntityType DRAGON_FIREBALL = DummyObjectProvider.createFor(EntityType.class, "DRAGON_FIREBALL");
 
     public static final EntityType EGG = DummyObjectProvider.createFor(EntityType.class, "EGG");
 
-    public static final EntityType ELDER_GUARDIAN = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType ELDER_GUARDIAN = DummyObjectProvider.createFor(EntityType.class, "ELDER_GUARDIAN");
 
     public static final EntityType ENDERMAN = DummyObjectProvider.createFor(EntityType.class, "ENDERMAN");
 
@@ -77,7 +77,7 @@ public final class EntityTypes {
 
     public static final EntityType EVOCATION_FANGS = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
 
-    public static final EntityType EVOCATION_ILLAGER = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType EVOCATION_ILLAGER = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_ILLAGER");
 
     public static final EntityType EXPERIENCE_ORB = DummyObjectProvider.createFor(EntityType.class, "EXPERIENCE_ORB");
 
@@ -105,7 +105,7 @@ public final class EntityTypes {
 
     public static final EntityType HUMAN = DummyObjectProvider.createFor(EntityType.class, "HUMAN");
 
-    public static final EntityType HUSK = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType HUSK = DummyObjectProvider.createFor(EntityType.class, "HUSK");
 
     public static final EntityType IRON_GOLEM = DummyObjectProvider.createFor(EntityType.class, "IRON_GOLEM");
 
@@ -117,15 +117,15 @@ public final class EntityTypes {
 
     public static final EntityType LIGHTNING = DummyObjectProvider.createFor(EntityType.class, "LIGHTNING");
 
-    public static final EntityType LLAMA = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType LLAMA = DummyObjectProvider.createFor(EntityType.class, "LLAMA");
 
-    public static final EntityType LLAMA_SPIT = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType LLAMA_SPIT = DummyObjectProvider.createFor(EntityType.class, "LLAMA_SPIT");
 
     public static final EntityType MAGMA_CUBE = DummyObjectProvider.createFor(EntityType.class, "MAGMA_CUBE");
 
     public static final EntityType MOB_SPAWNER_MINECART = DummyObjectProvider.createFor(EntityType.class, "MOB_SPAWNER_MINECART");
 
-    public static final EntityType MULE = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType MULE = DummyObjectProvider.createFor(EntityType.class, "MULE");
 
     public static final EntityType MUSHROOM_COW = DummyObjectProvider.createFor(EntityType.class, "MUSHROOM_COW");
 
@@ -157,7 +157,7 @@ public final class EntityTypes {
 
     public static final EntityType SKELETON = DummyObjectProvider.createFor(EntityType.class, "SKELETON");
 
-    public static final EntityType SKELETON_HORSE = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType SKELETON_HORSE = DummyObjectProvider.createFor(EntityType.class, "SKELETON_HORSE");
 
     public static final EntityType SLIME = DummyObjectProvider.createFor(EntityType.class, "SLIME");
 
@@ -175,7 +175,7 @@ public final class EntityTypes {
 
     public static final EntityType SQUID = DummyObjectProvider.createFor(EntityType.class, "SQUID");
 
-    public static final EntityType STRAY = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType STRAY = DummyObjectProvider.createFor(EntityType.class, "STRAY");
 
     public static final EntityType THROWN_EXP_BOTTLE = DummyObjectProvider.createFor(EntityType.class, "THROWN_EXP_BOTTLE");
 
@@ -185,11 +185,11 @@ public final class EntityTypes {
 
     public static final EntityType UNKNOWN = DummyObjectProvider.createFor(EntityType.class, "UNKNOWN");
 
-    public static final EntityType VEX = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType VEX = DummyObjectProvider.createFor(EntityType.class, "VEX");
 
     public static final EntityType VILLAGER = DummyObjectProvider.createFor(EntityType.class, "VILLAGER");
 
-    public static final EntityType VINDICATION_ILLAGER = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType VINDICATION_ILLAGER = DummyObjectProvider.createFor(EntityType.class, "VINDICATION_ILLAGER");
 
     public static final EntityType WEATHER = DummyObjectProvider.createFor(EntityType.class, "WEATHER");
 
@@ -197,7 +197,7 @@ public final class EntityTypes {
 
     public static final EntityType WITHER = DummyObjectProvider.createFor(EntityType.class, "WITHER");
 
-    public static final EntityType WITHER_SKELETON = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType WITHER_SKELETON = DummyObjectProvider.createFor(EntityType.class, "WITHER_SKELETON");
 
     public static final EntityType WITHER_SKULL = DummyObjectProvider.createFor(EntityType.class, "WITHER_SKULL");
 
@@ -205,9 +205,9 @@ public final class EntityTypes {
 
     public static final EntityType ZOMBIE = DummyObjectProvider.createFor(EntityType.class, "ZOMBIE");
 
-    public static final EntityType ZOMBIE_HORSE = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType ZOMBIE_HORSE = DummyObjectProvider.createFor(EntityType.class, "ZOMBIE_HORSE");
 
-    public static final EntityType ZOMBIE_VILLAGER = DummyObjectProvider.createFor(EntityType.class, "EVOCATION_FANGS");
+    public static final EntityType ZOMBIE_VILLAGER = DummyObjectProvider.createFor(EntityType.class, "ZOMBIE_VILLAGER");
 
     // SORTFIELDS:OFF
 
