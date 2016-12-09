@@ -26,39 +26,31 @@ package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-/**
- * A utility class for getting all available {@link StatisticFormat}s.
- */
-public final class StatisticFormats {
+public final class StatisticTypes {
 
     // SORTFIELDS:ON
 
-    /**
-     * A statistic without a format.
-     */
-    public static StatisticFormat COUNT = DummyObjectProvider.createFor(StatisticFormat.class, "COUNT");
+    public static final StatisticType BASIC = DummyObjectProvider.createFor(StatisticType.class, "BASIC");
 
-    /**
-     * A statistic measured in centimeters, meters, or kilometers depending on
-     * the magnitude. The input is taken as centimeters with a scale of 1 block
-     * equaling 1 meter.
-     */
-    public static StatisticFormat DISTANCE = DummyObjectProvider.createFor(StatisticFormat.class, "DISTANCE");
+    public static final StatisticType BLOCKS_BROKEN = DummyObjectProvider.createFor(StatisticType.class, "BLOCKS_BROKEN");
 
-    /**
-     * A statistic measured in 0.1 steps.
-     */
-    public static StatisticFormat FRACTIONAL = DummyObjectProvider.createFor(StatisticFormat.class, "FRACTIONAL");
+    public static final StatisticType ENTITIES_KILLED = DummyObjectProvider.createFor(StatisticType.class, "ENTITIES_KILLED");
 
-    /**
-     * A statistic measured in seconds, minutes, hours, or days depending on the
-     * magnitude. The input is taken as ticks with 20 ticks equaling one second.
-     */
-    public static StatisticFormat TIME = DummyObjectProvider.createFor(StatisticFormat.class, "TIME");
+    public static final StatisticType ITEMS_BROKEN = DummyObjectProvider.createFor(StatisticType.class, "ITEMS_BROKEN");
+
+    public static final StatisticType ITEMS_CRAFTED = DummyObjectProvider.createFor(StatisticType.class, "ITEMS_CRAFTED");
+
+    public static final StatisticType ITEMS_DROPPED = DummyObjectProvider.createFor(StatisticType.class, "ITEMS_DROPPED");
+
+    public static final StatisticType ITEMS_PICKED_UP = DummyObjectProvider.createFor(StatisticType.class, "ITEMS_PICKED_UP");
+
+    public static final StatisticType ITEMS_USED = DummyObjectProvider.createFor(StatisticType.class, "ITEMS_USED");
+
+    public static final StatisticType KILLED_BY_ENTITY = DummyObjectProvider.createFor(StatisticType.class, "KILLED_BY_ENTITY");
 
     // SORTFIELDS:OFF
 
-    private StatisticFormats() {
+    private StatisticTypes() {
     }
 
 }

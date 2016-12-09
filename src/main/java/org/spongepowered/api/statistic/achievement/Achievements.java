@@ -37,11 +37,11 @@ public final class Achievements {
 
     public static final Achievement BAKE_CAKE = DummyObjectProvider.createFor(Achievement.class, "BAKE_CAKE");
 
+    public static final Achievement BLAZE_ROD = DummyObjectProvider.createFor(Achievement.class, "GET_BLAZE_ROD");
+
     public static final Achievement BOOKCASE = DummyObjectProvider.createFor(Achievement.class, "BOOKCASE");
 
     public static final Achievement BREED_COW = DummyObjectProvider.createFor(Achievement.class, "BREED_COW");
-
-    public static final Achievement BREW_POTION = DummyObjectProvider.createFor(Achievement.class, "BREW_POTION");
 
     public static final Achievement BUILD_BETTER_PICKAXE = DummyObjectProvider.createFor(Achievement.class, "BUILD_BETTER_PICKAXE");
 
@@ -53,15 +53,15 @@ public final class Achievements {
 
     public static final Achievement BUILD_SWORD = DummyObjectProvider.createFor(Achievement.class, "BUILD_SWORD");
 
-    public static final Achievement BUILD_WORKBENCH = DummyObjectProvider.createFor(Achievement.class, "BUILD_WORKBENCH");
+    public static final Achievement BUILD_WORK_BENCH = DummyObjectProvider.createFor(Achievement.class, "BUILD_WORKBENCH");
 
     public static final Achievement COOK_FISH = DummyObjectProvider.createFor(Achievement.class, "COOK_FISH");
+
+    public static final Achievement DIAMONDS = DummyObjectProvider.createFor(Achievement.class, "GET_DIAMONDS");
 
     public static final Achievement DIAMONDS_TO_YOU = DummyObjectProvider.createFor(Achievement.class, "DIAMONDS_TO_YOU");
 
     public static final Achievement ENCHANTMENTS = DummyObjectProvider.createFor(Achievement.class, "ENCHANTMENTS");
-
-    public static final Achievement END_PORTAL = DummyObjectProvider.createFor(Achievement.class, "END_PORTAL");
 
     public static final Achievement EXPLORE_ALL_BIOMES = DummyObjectProvider.createFor(Achievement.class, "EXPLORE_ALL_BIOMES");
 
@@ -69,11 +69,7 @@ public final class Achievements {
 
     public static final Achievement FULL_BEACON = DummyObjectProvider.createFor(Achievement.class, "FULL_BEACON");
 
-    public static final Achievement GET_BLAZE_ROD = DummyObjectProvider.createFor(Achievement.class, "GET_BLAZE_ROD");
-
-    public static final Achievement GET_DIAMONDS = DummyObjectProvider.createFor(Achievement.class, "GET_DIAMONDS");
-
-    public static final Achievement GHAST_RETURN = DummyObjectProvider.createFor(Achievement.class, "GHAST_RETURN");
+    public static final Achievement GHAST = DummyObjectProvider.createFor(Achievement.class, "GHAST_RETURN");
 
     public static final Achievement KILL_COW = DummyObjectProvider.createFor(Achievement.class, "KILL_COW");
 
@@ -85,8 +81,6 @@ public final class Achievements {
 
     public static final Achievement MINE_WOOD = DummyObjectProvider.createFor(Achievement.class, "MINE_WOOD");
 
-    public static final Achievement NETHER_PORTAL = DummyObjectProvider.createFor(Achievement.class, "NETHER_PORTAL");
-
     public static final Achievement ON_A_RAIL = DummyObjectProvider.createFor(Achievement.class, "ON_A_RAIL");
 
     public static final Achievement OPEN_INVENTORY = DummyObjectProvider.createFor(Achievement.class, "OPEN_INVENTORY");
@@ -95,11 +89,17 @@ public final class Achievements {
 
     public static final Achievement OVERPOWERED = DummyObjectProvider.createFor(Achievement.class, "OVERPOWERED");
 
+    public static final Achievement PORTAL = DummyObjectProvider.createFor(Achievement.class, "NETHER_PORTAL");
+
+    public static final Achievement POTION = DummyObjectProvider.createFor(Achievement.class, "BREW_POTION");
+
     public static final Achievement SNIPE_SKELETON = DummyObjectProvider.createFor(Achievement.class, "SNIPE_SKELETON");
 
     public static final Achievement SPAWN_WITHER = DummyObjectProvider.createFor(Achievement.class, "SPAWN_WITHER");
 
     public static final Achievement THE_END = DummyObjectProvider.createFor(Achievement.class, "THE_END");
+
+    public static final Achievement THE_END2 = DummyObjectProvider.createFor(Achievement.class, "THE_END2");
 
     // SORTFIELDS:OFF
 

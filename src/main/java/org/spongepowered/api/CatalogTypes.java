@@ -108,8 +108,7 @@ import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.service.economy.transaction.TransactionType;
 import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.statistic.StatisticFormat;
-import org.spongepowered.api.statistic.StatisticGroup;
+import org.spongepowered.api.statistic.StatisticType;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.chat.ChatVisibility;
@@ -332,9 +331,7 @@ public final class CatalogTypes {
 
     public static final Class<Statistic> STATISTIC = Statistic.class;
 
-    public static final Class<StatisticFormat> STATISTIC_FORMAT = StatisticFormat.class;
-
-    public static final Class<StatisticGroup> STATISTIC_GROUP = StatisticGroup.class;
+    public static final Class<StatisticType> STATISTIC_TYPE = StatisticType.class;
 
     public static final Class<StoneType> STONE_TYPE = StoneType.class;
 

@@ -25,35 +25,19 @@
 package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.text.translation.Translation;
-
-import javax.annotation.Nullable;
 
 /**
- * Represents a {@link Statistic} for a {@link BlockType}.
+ * Represents a {@link Statistic} on a particular {@link BlockType}.
  */
-public interface BlockStatistic extends Statistic {
+public interface BlockStatistic extends ItemStatistic {
 
     /**
-     * Gets the {@link BlockType} this {@link Statistic} measures.
+     * Returns the statistic's {@link BlockType}.
      *
-     * @return The block type this statistic measures
+     * @return BlockType
      */
-    BlockType getBlockType();
-
-    /**
-     * Represents a builder to create new and custom instances of
-     * {@link BlockStatistic}s.
-     */
-    interface Builder extends StatisticBuilder<BlockStatistic, Builder> {
-
-        /**
-         * Sets the {@link BlockType} of this {@link BlockStatistic}.
-         *
-         * @param block The block
-         * @return This builder, for chaining
-         */
-        Builder block(BlockType block);
-
+    default BlockType getBlockType() {
+        return getItemType().getBlock().get();
     }
+
 }

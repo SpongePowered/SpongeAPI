@@ -84,6 +84,7 @@ public final class ParticleOptions {
     public static final ParticleOption<List<FireworkEffect>> FIREWORK_EFFECTS =
 
             DummyObjectProvider.createFor(ParticleOption.class, "FIREWORK_EFFECTS");
+
     /**
      * This option will affect the appearance of a particle, the only
      * vanilla {@link ParticleType} this option is applicable to are:
@@ -97,6 +98,7 @@ public final class ParticleOptions {
     public static final ParticleOption<ItemStackSnapshot> ITEM_STACK_SNAPSHOT =
 
             DummyObjectProvider.createFor(ParticleOption.class, "ITEM_STACK_SNAPSHOT");
+
     /**
      * This option will affect the appearance of a particle, the only
      * vanilla {@link ParticleType} this option is applicable to is
@@ -160,6 +162,7 @@ public final class ParticleOptions {
     public static final ParticleOption<Boolean> SLOW_HORIZONTAL_VELOCITY =
 
             DummyObjectProvider.createFor(ParticleOption.class, "SLOW_HORIZONTAL_VELOCITY");
+
     /**
      * This option will affect how all the particles are moving.
      */
