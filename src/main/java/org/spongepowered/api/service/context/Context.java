@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.service.context;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.collect.Maps;
+import com.google.common.base.Objects;
 
 import java.util.Map;
 
@@ -44,18 +45,32 @@ public final class Context implements Map.Entry<String, String> {
     public static final String LOCAL_IP_KEY = "localip";
     public static final String LOCAL_PORT_KEY = "localport"; // This portkey is an old boot
 
-    private final Map.Entry<String, String> wrapped;
+    private final String key;
+    private final String value;
+    private final int weight;
 
     /**
      * Create a new context instance
      *
      * @param type Context type. Must not be null.
      * @param name Context name. Must not be null.
+     * @param weight Context weight. Must be greater than or equal to 1. Default is 1.
+     */
+    public Context(String type, String name, int weight) {
+        this.key = checkNotNull(type, "type");
+        this.value = checkNotNull(name, "name");
+        checkArgument(weight >= 1, "weight must be >= 1");
+        this.weight = weight;
+    }
+
+    /**
+     * Create a new context instance with the default weight
+     *
+     * @param type Context type. Must not be null.
+     * @param name Context name. Must not be null.
      */
     public Context(String type, String name) {
-        checkNotNull(type, "type");
-        checkNotNull(name, "name");
-        this.wrapped = Maps.immutableEntry(type, name);
+        this(type, name, 1);
     }
 
     /**
@@ -74,20 +89,32 @@ public final class Context implements Map.Entry<String, String> {
      * @return the specific name of the item involved in this context, for
      *         example if the type were {@code world} this would be the name of the
      *         world.
-     * 
      */
     public String getName() {
         return getValue();
     }
 
+    /**
+     * Get the weight.
+     *
+     * <p>This value should be used to calculate the total weight of a Context set. A value of
+     * 1 is considered default. The weight of a set is calculated by adding the weights of each
+     * contained Context. Higher value = higher/heavier priority.</p>
+     *
+     * @return the weight of the context pair.
+     */
+    public int getWeight() {
+        return this.weight;
+    }
+
     @Override
     public String getKey() {
-        return this.wrapped.getKey();
+        return this.key;
     }
 
     @Override
     public String getValue() {
-        return this.wrapped.getValue();
+        return this.value;
     }
 
     @Override
@@ -96,21 +123,21 @@ public final class Context implements Map.Entry<String, String> {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+    public boolean equals(Object obj) {
+        if (obj instanceof Map.Entry) {
+            Map.Entry<?, ?> other = (Map.Entry<?, ?>) obj;
+            return Objects.equal(this.getKey(), other.getKey()) && Objects.equal(this.getValue(), other.getValue());
         }
-        return o instanceof Map.Entry<?, ?> && this.wrapped.equals(o);
-
+        return false;
     }
 
     @Override
     public int hashCode() {
-        return this.wrapped.hashCode();
+        return this.key.hashCode() ^ this.value.hashCode();
     }
 
     @Override
     public String toString() {
-        return this.wrapped.toString();
+        return "Context(key=" + this.key + ", value=" + this.value + ", weight=" + this.weight + ")";
     }
 }
