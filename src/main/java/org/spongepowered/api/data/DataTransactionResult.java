@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.data;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
-
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
@@ -36,12 +33,15 @@ import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 /**
  * Represents a transaction taking place where a {@link DataHolder} is
@@ -287,6 +287,36 @@ public final class DataTransactionResult {
      */
     public boolean isSuccessful() {
         return getType() == Type.SUCCESS;
+    }
+
+    /**
+     * Executes the {@param consumer}, if this {@link DataTransactionResult} is successful,
+     * according to the {@link #isSuccessful()} method.
+     *
+     * @param consumer the code to execute
+     * @return this instance of {@link DataTransactionResult}, for chaining
+     */
+    public DataTransactionResult ifSuccessful(Consumer<DataTransactionResult> consumer) {
+        if(isSuccessful()) {
+            consumer.accept(this);
+        }
+
+        return this;
+    }
+
+    /**
+     * Executes the {@param consumer}, if this {@link DataTransactionResult} is not successful,
+     * according to the {@link #isSuccessful()} method.
+     *
+     * @param consumer the code to execute
+     * @return this instance of {@link DataTransactionResult}, for chaining
+     */
+    public DataTransactionResult ifUnsuccessful(Consumer<DataTransactionResult> consumer) {
+        if(!isSuccessful()) {
+            consumer.accept(this);
+        }
+
+        return this;
     }
 
     /**
