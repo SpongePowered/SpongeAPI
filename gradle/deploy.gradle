@@ -10,20 +10,9 @@ ext {
     branch = System.env.GIT_BRANCH
 }
 
-// Support uploading with FTP
-configurations {
-    deployerJars // Deployment dependency
-}
-
-dependencies {
-    deployerJars 'org.apache.maven.wagon:wagon-ftp:2.10'
-}
-
 uploadArchives {
     repositories {
         mavenDeployer {
-            configuration = configurations.deployerJars
-
             // This is set by the build server when deploying to the repo
             if (project.hasProperty('spongeRepo')) {
                 repository(url: project.spongeRepo) {
@@ -49,8 +38,8 @@ uploadArchives {
                     }
 
                     issueManagement {
-                        system = 'youtrack'
-                        url = 'https://issues.spongepowered.org'
+                        system = 'GitHub Issues'
+                        url = "https://github.com/$project.organization/$project.name/issues"
                     }
 
                     licenses {

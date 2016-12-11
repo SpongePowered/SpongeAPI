@@ -127,8 +127,7 @@ processResources {
 
 // Checkstyle settings
 checkstyle {
-    // TODO: Verify if custom modifications for checkstyle are still necessary (import order, @return on annotations)
-    toolVersion = '7.2'
+    toolVersion = '7.3'
     configFile = api.file('checkstyle.xml')
     configProperties = [
             'basedir': project.projectDir,
