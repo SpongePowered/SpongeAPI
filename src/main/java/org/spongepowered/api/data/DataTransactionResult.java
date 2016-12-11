@@ -38,7 +38,7 @@ import org.spongepowered.api.util.ResettableBuilder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
@@ -290,33 +290,21 @@ public final class DataTransactionResult {
     }
 
     /**
-     * Executes the {@param consumer}, if this {@link DataTransactionResult} is successful,
-     * according to the {@link #isSuccessful()} method.
+     * Returns the instance of this {@link DataTransactionResult}, if the transaction was successful.
      *
-     * @param consumer the code to execute
-     * @return this instance of {@link DataTransactionResult}, for chaining
+     * @return the instance of this {@link DataTransactionResult}, or {@code Optional.empty()}
      */
-    public DataTransactionResult ifSuccessful(Consumer<DataTransactionResult> consumer) {
-        if(isSuccessful()) {
-            consumer.accept(this);
-        }
-
-        return this;
+    public Optional<DataTransactionResult> ifSuccessful() {
+        return isSuccessful() ? Optional.of(this) : Optional.empty();
     }
 
     /**
-     * Executes the {@param consumer}, if this {@link DataTransactionResult} is not successful,
-     * according to the {@link #isSuccessful()} method.
+     * Returns the instance of this {@link DataTransactionResult}, if the transaction was not successful.
      *
-     * @param consumer the code to execute
-     * @return this instance of {@link DataTransactionResult}, for chaining
+     * @return the instance of this {@link DataTransactionResult}, or {@code Optional.empty()}
      */
-    public DataTransactionResult ifUnsuccessful(Consumer<DataTransactionResult> consumer) {
-        if(!isSuccessful()) {
-            consumer.accept(this);
-        }
-
-        return this;
+    public Optional<DataTransactionResult> ifUnsuccessful() {
+        return isSuccessful() ? Optional.empty() : Optional.of(this);
     }
 
     /**
