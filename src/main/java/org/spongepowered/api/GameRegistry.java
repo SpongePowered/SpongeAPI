@@ -34,7 +34,7 @@ import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.merchant.VillagerRegistry;
 import org.spongepowered.api.item.merchant.TradeOfferGenerator;
-import org.spongepowered.api.item.recipe.RecipeRegistry;
+import org.spongepowered.api.item.recipe.crafting.CraftingRecipeRegistry;
 import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
@@ -314,11 +314,11 @@ public interface GameRegistry {
     Favicon loadFavicon(BufferedImage image) throws IOException;
 
     /**
-     * Retrieves the RecipeRegistry for this GameRegistry.
+     * Retrieves the CraftingRecipeRegistry for this GameRegistry.
      *
      * @return The recipe registry
      */
-    RecipeRegistry getRecipeRegistry();
+    CraftingRecipeRegistry getCraftingRecipeRegistry();
 
     /**
      * Gets a {@link ResourcePack} that's already been created by its ID.

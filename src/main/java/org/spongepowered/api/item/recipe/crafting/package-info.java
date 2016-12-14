@@ -22,34 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
-
-import java.util.Set;
-
-/**
- * A RecipeRegistry holds all registered recipes for a given game.
- */
-public interface RecipeRegistry {
-
-    /**
-     * Registers the given Recipe to make it available to craft.
-     *
-     * @param recipe The Recipe to register
-     */
-    void register(Recipe recipe);
-
-    /**
-     * Removes the given Recipe from registration in this registry.
-     *
-     * @param recipe The Recipe to unregister
-     */
-    void remove(Recipe recipe);
-
-    /**
-     * Retrieves all recipes registered in this registry.
-     *
-     * @return All registered recipes
-     */
-    Set<Recipe> getRecipes();
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.item.recipe.crafting;
