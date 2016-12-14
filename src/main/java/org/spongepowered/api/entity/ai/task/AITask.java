@@ -75,7 +75,7 @@ public interface AITask<O extends Agent> {
      * @param other The other task
      * @return True if it can be, false if not
      */
-    boolean canRunConcurrentWith(AITask<? super O> other);
+    boolean canRunConcurrentWith(AITask<?> other);
 
     /**
      * Returns if this task can be interrupted. This determines if this task can be

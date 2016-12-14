@@ -45,36 +45,33 @@ public final class AITaskTypes {
      * {@link AITask} where {@link Creature}s avoid other {@link Agent}s based
      * on a {@link Predicate}.
      */
-    public static final AITaskType AVOID_ENTITY = dummy("AVOID_ENTITY");
+    public static final AITaskType AVOID_ENTITY = DummyObjectProvider.createFor(AITaskType.class, "AVOID_ENTITY");
 
     /**
      * {@link AITask} where {@link RideableHorse}s run around while {@link
      * Humanoid}s attempt to tame them.
      */
-    public static final AITaskType RUN_AROUND_LIKE_CRAZY = dummy("RUN_AROUND_LIKE_CRAZY");
+    public static final AITaskType RUN_AROUND_LIKE_CRAZY = DummyObjectProvider.createFor(AITaskType.class, "RUN_AROUND_LIKE_CRAZY");
 
     /**
      * {@link AITask} where {@link Agent}s swim in liquids.
      */
-    public static final AITaskType SWIMMING = dummy("SWIMMING");
+    public static final AITaskType SWIMMING = DummyObjectProvider.createFor(AITaskType.class, "SWIMMING");
 
     /**
      * {@link AITask} where {@link Creature}s walk around.
      */
-    public static final AITaskType WANDER = dummy("WANDER");
+    public static final AITaskType WANDER = DummyObjectProvider.createFor(AITaskType.class, "WANDER");
 
     /**
      * {@link AITask} where {@link Agent}s will "watch" other {@link Entity}s.
      */
-    public static final AITaskType WATCH_CLOSEST = dummy("WATCH_CLOSEST");
+    public static final AITaskType WATCH_CLOSEST = DummyObjectProvider.createFor(AITaskType.class, "WATCH_CLOSEST");
 
     // SORTFIELDS:OFF
 
-    private static AITaskType dummy(String fieldName) {
-        return DummyObjectProvider.createFor(AITaskType.class, fieldName);
-    }
-
     private AITaskTypes() {
+
     }
 
 }
