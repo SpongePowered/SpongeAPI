@@ -26,6 +26,7 @@ package org.spongepowered.api.statistic.achievement;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
@@ -98,9 +99,9 @@ public interface Achievement extends CatalogType, Translatable {
     interface Builder extends ResettableBuilder<Achievement, Builder> {
 
         /**
-         * Sets the internal name for the {@link Achievement}.
+         * Sets the human readable name for the {@link Achievement}.
          *
-         * @param name The name of this achievement
+         * @param name The name for the achievement
          * @return This builder, for chaining
          */
         Builder name(String name);
@@ -120,6 +121,16 @@ public interface Achievement extends CatalogType, Translatable {
          * @return This builder, for chaining
          */
         Builder description(Translation description);
+
+        /**
+         * Sets the item stack used as icon for the {@link Achievement} in the
+         * hover text.
+         *
+         * @param item The item used as icon of this achievement in the hover
+         *        text
+         * @return This builder, for chaining
+         */
+        Builder icon(ItemStack item);
 
         /**
          * Sets the parent of this {@link Achievement}, if there is one.
@@ -154,10 +165,11 @@ public interface Achievement extends CatalogType, Translatable {
         /**
          * Builds and registers an instance of an {@link Achievement}.
          *
+         * @param id The unique for the achievement
          * @return A new instance of a achievement
          * @throws IllegalStateException If the achievement is not completed
          */
-        Achievement buildAndRegister() throws IllegalStateException;
+        Achievement buildAndRegister(String id) throws IllegalStateException;
 
     }
 }

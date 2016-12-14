@@ -78,9 +78,9 @@ public interface Statistic extends CatalogType, Translatable {
     interface StatisticBuilder<T extends Statistic, B extends StatisticBuilder<T, B>> extends ResettableBuilder<T, B> {
 
         /**
-         * Sets the internal name for the {@link Statistic}.
+         * Sets the human readable name for the {@link Statistic}.
          *
-         * @param name The name of this achievement
+         * @param name The name for the statistic
          * @return This builder, for chaining
          */
         B name(String name);
@@ -113,10 +113,11 @@ public interface Statistic extends CatalogType, Translatable {
         /**
          * Builds and registers an instance of a {@link Statistic}.
          *
+         * @param id The unique for the statistic
          * @return A new instance of a statistic
          * @throws IllegalStateException If the statistic is not completed
          */
-        T buildAndRegister() throws IllegalStateException;
+        T buildAndRegister(String id) throws IllegalStateException;
 
         @Override
         B from(T value);

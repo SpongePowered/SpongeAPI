@@ -40,7 +40,7 @@ public final class StatisticGroups {
     public static final StatisticGroup BREAK_ITEM = DummyObjectProvider.createFor(StatisticGroup.class, "BREAK_ITEM");
 
     /**
-     * Statistic counting the number of crafted items of a specific type.
+     * Statistic counting the number of crafted blocks of a specific type.
      */
     public static final StatisticGroup CRAFT_BLOCK = DummyObjectProvider.createFor(StatisticGroup.class, "CRAFT_BLOCK");
 
@@ -48,6 +48,16 @@ public final class StatisticGroups {
      * Statistic counting the number of crafted items of a specific type.
      */
     public static final StatisticGroup CRAFT_ITEM = DummyObjectProvider.createFor(StatisticGroup.class, "CRAFT_ITEM");
+
+    /**
+     * Statistic counting the number of dropped blocks of a specific type.
+     */
+    public static final StatisticGroup DROP_BLOCK = DummyObjectProvider.createFor(StatisticGroup.class, "DROP_BLOCK");
+
+    /**
+     * Statistic counting the number of dropped items of a specific type.
+     */
+    public static final StatisticGroup DROP_ITEM = DummyObjectProvider.createFor(StatisticGroup.class, "DROP_ITEM");
 
     /**
      * Statistics belonging to the group of 'general' statistics.
@@ -87,6 +97,16 @@ public final class StatisticGroups {
      * type.
      */
     public static final StatisticGroup MINE_BLOCK = DummyObjectProvider.createFor(StatisticGroup.class, "MINE_BLOCK");
+
+    /**
+     * Statistic counting the number of picked up blocks of a specific type.
+     */
+    public static final StatisticGroup PICK_UP_BLOCK = DummyObjectProvider.createFor(StatisticGroup.class, "PICK_UP_BLOCK");
+
+    /**
+     * Statistic counting the number of picked up items of a specific type.
+     */
+    public static final StatisticGroup PICK_UP_ITEM = DummyObjectProvider.createFor(StatisticGroup.class, "PICK_UP_ITEM");
 
     /**
      * Statistic counting the number of used blocks of a specific type.
