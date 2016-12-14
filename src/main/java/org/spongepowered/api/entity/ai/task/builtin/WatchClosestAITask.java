@@ -30,30 +30,90 @@ import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
+/**
+ * An {@link AITask} which the owner watch the closest entity of a specified
+ * type.
+ */
 public interface WatchClosestAITask extends AITask<Agent> {
 
+    /**
+     * Creates a new {@link Builder} to build a {@link WatchClosestAITask}.
+     *
+     * @return The new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the type of entity watched by the task owner.
+     *
+     * @return The type of entity watched
+     */
     Class<? extends Entity> getWatchedClass();
 
+    /**
+     * Sets the type of entity watched by the task owner.
+     *
+     * @param watchedClass The type of entity watched
+     * @return This task, for chaining
+     */
     WatchClosestAITask setWatchedClass(Class<? extends Entity> watchedClass);
 
+    /**
+     * Gets the maximum distance of watching target from the task owner.
+     *
+     * @return The maximum distance of the target
+     */
     float getMaxDistance();
 
+    /**
+     * Sets the maximum distance of watching target from the task owner.
+     *
+     * @param maxDistance The maximum distance of the target
+     * @return This task, for chaining
+     */
     WatchClosestAITask setMaxDistance(float maxDistance);
 
+    /**
+     * Gets the chance of execution of the task every tick.
+     *
+     * @return The chance
+     */
     float getChance();
 
+    /**
+     * Sets the chance of execution of the task every tick.
+     *
+     * @param chance The chance
+     * @return This task, for chaining
+     */
     WatchClosestAITask setChance(float chance);
 
     interface Builder extends AITaskBuilder<Agent, WatchClosestAITask, Builder> {
 
+        /**
+         * Sets the type of entity watched by the task owner.
+         *
+         * @param watchClass The type of entity watched
+         * @return This builder, for chaining
+         */
         Builder watch(Class<? extends Entity> watchClass);
 
+        /**
+         * Sets the maximum distance of watching target from the task owner.
+         *
+         * @param maxDistance The maximum distance of the target
+         * @return This builder, for chaining
+         */
         Builder maxDistance(float maxDistance);
 
+        /**
+         * Sets the chance of execution of the task every tick.
+         *
+         * @param chance The chance
+         * @return This builder, for chaining
+         */
         Builder chance(float chance);
 
     }

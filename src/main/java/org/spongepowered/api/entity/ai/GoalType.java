@@ -27,6 +27,9 @@ package org.spongepowered.api.entity.ai;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * Represents a type of {@link Goal}.
+ */
 @CatalogedBy(GoalTypes.class)
 public interface GoalType extends CatalogType {
 
@@ -36,4 +39,5 @@ public interface GoalType extends CatalogType {
      * @return The goal class
      */
     Class<? extends Goal<?>> getGoalClass();
+
 }
