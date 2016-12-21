@@ -37,11 +37,13 @@ public final class Statistics {
 
     public static final Statistic ARMOR_CLEANED = DummyObjectProvider.createFor(Statistic.class, "ARMOR_CLEANED");
 
+    public static final Statistic AVIATE_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "AVIATE_ONE_CM");
+
     public static final Statistic BANNER_CLEANED = DummyObjectProvider.createFor(Statistic.class, "BANNER_CLEANED");
 
     public static final Statistic BEACON_INTERACTION = DummyObjectProvider.createFor(Statistic.class, "BEACON_INTERACTION");
 
-    public static final Statistic BOAT_DISTANCE = DummyObjectProvider.createFor(Statistic.class, "BOAT_DISTANCE");
+    public static final Statistic BOAT_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "BOAT_ONE_CM");
 
     public static final Statistic BREWINGSTAND_INTERACTION = DummyObjectProvider.createFor(Statistic.class, "BREWINGSTAND_INTERACTION");
 
@@ -53,11 +55,11 @@ public final class Statistics {
 
     public static final Statistic CHEST_OPENED = DummyObjectProvider.createFor(Statistic.class, "CHEST_OPENED");
 
-    public static final Statistic CLIMB_DISTANCE = DummyObjectProvider.createFor(Statistic.class, "CLIMB_DISTANCE");
+    public static final Statistic CLIMB_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "CLIMB_ONE_CM");
 
     public static final Statistic CRAFTING_TABLE_INTERACTION = DummyObjectProvider.createFor(Statistic.class, "CRAFTING_TABLE_INTERACTION");
 
-    public static final Statistic CROUCH_DISTANCE = DummyObjectProvider.createFor(Statistic.class, "CROUCH_DISTANCE");
+    public static final Statistic CROUCH_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "CROUCH_ONE_CM");
 
     public static final Statistic DAMAGE_DEALT = DummyObjectProvider.createFor(Statistic.class, "DAMAGE_DEALT");
 
@@ -67,29 +69,27 @@ public final class Statistics {
 
     public static final Statistic DISPENSER_INSPECTED = DummyObjectProvider.createFor(Statistic.class, "DISPENSER_INSPECTED");
 
-    public static final Statistic DIVE_DISTANCE = DummyObjectProvider.createFor(Statistic.class, "DIVE_DISTANCE");
+    public static final Statistic DIVE_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "DIVE_ONE_CM");
+
+    public static final Statistic DROP = DummyObjectProvider.createFor(Statistic.class, "DROP");
 
     public static final Statistic DROPPER_INSPECTED = DummyObjectProvider.createFor(Statistic.class, "DROPPER_INSPECTED");
 
     public static final Statistic ENDERCHEST_OPENED = DummyObjectProvider.createFor(Statistic.class, "ENDERCHEST_OPENED");
 
-    public static final Statistic FALL_DISTANCE = DummyObjectProvider.createFor(Statistic.class, "FALL_DISTANCE");
+    public static final Statistic FALL_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "FALL_ONE_CM");
 
     public static final Statistic FISH_CAUGHT = DummyObjectProvider.createFor(Statistic.class, "FISH_CAUGHT");
 
     public static final Statistic FLOWER_POTTED = DummyObjectProvider.createFor(Statistic.class, "FLOWER_POTTED");
 
-    public static final Statistic FLY_DISTANCE = DummyObjectProvider.createFor(Statistic.class, "FLY_DISTANCE");
-
     public static final Statistic FURNACE_INTERACTION = DummyObjectProvider.createFor(Statistic.class, "FURNACE_INTERACTION");
 
     public static final Statistic HOPPER_INSPECTED = DummyObjectProvider.createFor(Statistic.class, "HOPPER_INSPECTED");
 
-    public static final Statistic HORSE_DISTANCE = DummyObjectProvider.createFor(Statistic.class, "HORSE_DISTANCE");
+    public static final Statistic HORSE_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "HORSE_ONE_CM");
 
-    public static final Statistic ITEMS_DROPPED = DummyObjectProvider.createFor(Statistic.class, "ITEMS_DROPPED");
-
-    public static final Statistic ITEMS_ENCHANTED = DummyObjectProvider.createFor(Statistic.class, "ITEMS_ENCHANTED");
+    public static final Statistic ITEM_ENCHANTED = DummyObjectProvider.createFor(Statistic.class, "ITEM_ENCHANTED");
 
     public static final Statistic JUMP = DummyObjectProvider.createFor(Statistic.class, "JUMP");
 
@@ -97,7 +97,7 @@ public final class Statistics {
 
     public static final Statistic LEAVE_GAME = DummyObjectProvider.createFor(Statistic.class, "LEAVE_GAME");
 
-    public static final Statistic MINECART_DISTANCE = DummyObjectProvider.createFor(Statistic.class, "MINECART_DISTANCE");
+    public static final Statistic MINECART_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "MINECART_ONE_CM");
 
     public static final Statistic MOB_KILLS = DummyObjectProvider.createFor(Statistic.class, "MOB_KILLS");
 
@@ -105,15 +105,23 @@ public final class Statistics {
 
     public static final Statistic NOTEBLOCK_TUNED = DummyObjectProvider.createFor(Statistic.class, "NOTEBLOCK_TUNED");
 
-    public static final Statistic PIG_DISTANCE = DummyObjectProvider.createFor(Statistic.class, "PIG_DISTANCE");
+    public static final Statistic OPEN_SHULKER_BOX = DummyObjectProvider.createFor(Statistic.class, "OPEN_SHULKER_BOX");
+
+    public static final Statistic PIG_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "PIG_ONE_CM");
 
     public static final Statistic PLAYER_KILLS = DummyObjectProvider.createFor(Statistic.class, "PLAYER_KILLS");
 
+    public static final Statistic PLAY_ONE_MINUTE = DummyObjectProvider.createFor(Statistic.class, "PLAY_ONE_MINUTE");
+
     public static final Statistic RECORD_PLAYED = DummyObjectProvider.createFor(Statistic.class, "RECORD_PLAYED");
 
-    public static final Statistic SPRINT_DISTANCE = DummyObjectProvider.createFor(Statistic.class, "SPRINT_DISTANCE");
+    public static final Statistic SLEEP_IN_BED = DummyObjectProvider.createFor(Statistic.class, "SLEEP_IN_BED");
 
-    public static final Statistic SWIM_DISTANCE = DummyObjectProvider.createFor(Statistic.class, "SWIM_DISTANCE");
+    public static final Statistic SNEAK_TIME = DummyObjectProvider.createFor(Statistic.class, "SNEAK_TIME");
+
+    public static final Statistic SPRINT_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "SPRINT_ONE_CM");
+
+    public static final Statistic SWIM_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "SWIM_ONE_CM");
 
     public static final Statistic TALKED_TO_VILLAGER = DummyObjectProvider.createFor(Statistic.class, "TALKED_TO_VILLAGER");
 
@@ -127,7 +135,7 @@ public final class Statistics {
 
     public static final Statistic TREASURE_FISHED = DummyObjectProvider.createFor(Statistic.class, "TREASURE_FISHED");
 
-    public static final Statistic WALK_DISTANCE = DummyObjectProvider.createFor(Statistic.class, "WALK_DISTANCE");
+    public static final Statistic WALK_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "WALK_ONE_CM");
 
     // SORTFIELDS:OFF
 

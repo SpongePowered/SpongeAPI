@@ -26,7 +26,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableStatisticData;
-import org.spongepowered.api.data.value.mutable.MapValue;
+import org.spongepowered.api.data.manipulator.mutable.MappedData;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.statistic.Statistic;
 
@@ -34,14 +34,6 @@ import org.spongepowered.api.statistic.Statistic;
  * An {@link DataManipulator} handling all {@link Statistic}al information for
  * a {@link Player}.
  */
-public interface StatisticData extends DataManipulator<StatisticData, ImmutableStatisticData> {
-
-    /**
-     * Gets the {@link MapValue} for all gained {@link Statistic}s for
-     * a {@link Player}.
-     *
-     * @return The map value of statistics
-     */
-    MapValue<Statistic, Long> statistics();
+public interface StatisticData extends MappedData<Statistic, Long, StatisticData, ImmutableStatisticData> {
 
 }

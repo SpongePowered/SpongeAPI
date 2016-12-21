@@ -25,35 +25,17 @@
 package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.text.translation.Translation;
-
-import javax.annotation.Nullable;
 
 /**
- * Represents a {@link Statistic} for an {@link ItemType}.
+ * Represents a {@link Statistic} on a particular {@link ItemType}.
  */
 public interface ItemStatistic extends Statistic {
 
     /**
-     * Gets the {@link ItemType} this {@link Statistic} measures.
+     * Returns the {@link ItemType} this statistic is associated with.
      *
-     * @return The item type this statistic measures
+     * @return ItemType of statistic
      */
     ItemType getItemType();
 
-    /**
-     * Represents a builder to create new and custom instances of
-     * {@link ItemStatistic}s.
-     */
-    interface Builder extends StatisticBuilder<ItemStatistic, Builder> {
-
-        /**
-         * Sets the {@link ItemType} of this {@link ItemStatistic}.
-         *
-         * @param item The item
-         * @return This builder, for chaining
-         */
-        Builder item(ItemType item);
-
-    }
 }
