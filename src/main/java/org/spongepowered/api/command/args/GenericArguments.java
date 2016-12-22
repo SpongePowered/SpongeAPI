@@ -1767,10 +1767,12 @@ public final class GenericArguments {
     private static class IpElement extends KeyElement {
 
         private final boolean self;
+        private final PlayerCommandElement possiblePlayer;
 
         protected IpElement(Text key, boolean self) {
             super(key);
             this.self = self;
+            this.possiblePlayer = new PlayerCommandElement(key, false);
         }
 
         @Nullable
@@ -1788,15 +1790,15 @@ public final class GenericArguments {
             try {
                 return InetAddress.getByName(s);
             } catch (UnknownHostException e) {
-                if (this.self) {
-                    if (source instanceof RemoteSource) {
+                try {
+                    return ((Player) this.possiblePlayer.parseValue(source, args)).getConnection().getAddress().getAddress();
+                } catch (ArgumentParseException ex) {
+                    if (this.self && source instanceof RemoteSource) {
                         args.setState(state);
                         return ((RemoteSource) source).getConnection().getAddress().getAddress();
-                    } else {
-                        throw args.createError(Text.of("Invalid IP address, and source was not a player!"));
                     }
+                    throw args.createError(Text.of("Invalid IP address!"));
                 }
-                throw args.createError(Text.of("Invalid IP address!"));
             }
         }
 
