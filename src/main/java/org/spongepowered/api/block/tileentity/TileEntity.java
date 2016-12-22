@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.block.tileentity;
 
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.world.Locatable;
+import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.schematic.Schematic;
 
@@ -95,5 +97,15 @@ public interface TileEntity extends DataHolder, Locatable {
      * @return The created archetype for re-creating this tile entity
      */
     TileEntityArchetype createArchetype();
+
+    /**
+     * Creates a {@link LocatableBlock} for this {@link TileEntity}. Can be used
+     * as a simpler method of making them. Since this does not persist the
+     * data of this {@link TileEntity}, it should not be used in place of a
+     * {@link BlockSnapshot} where data is being safely cloned.
+     *
+     * @return The created locatable block, not as a block snapshot
+     */
+    LocatableBlock getLocatableBlock();
 
 }
