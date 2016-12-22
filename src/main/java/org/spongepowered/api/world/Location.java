@@ -295,6 +295,24 @@ public final class Location<E extends Extent> implements DataHolder {
     }
 
     /**
+     * Gets a {@link LocatableBlock} if the parent {@link Extent} of this
+     * {@link Location} is a {@link World}.
+     *
+     * @return The locatable block of this location, if available
+     */
+    public Optional<LocatableBlock> getLocatableBlock() {
+        return getExtent() instanceof World
+               ? Optional.of(
+                LocatableBlock
+                        .builder()
+                        .world((World) getExtent())
+                        .position(this.getBlockPosition())
+                        .build()
+                )
+               : Optional.empty();
+    }
+
+    /**
      * Create a new instance with a new extent.
      *
      * @param extent The new extent
