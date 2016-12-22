@@ -83,6 +83,14 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
         return getLocation(new Vector3d(x, y, z));
     }
 
+    default LocatableBlock getLocatableBlock(Vector3i position) {
+        return LocatableBlock.builder().world(this).position(position).build();
+    }
+
+    default LocatableBlock getLocatableBlock(int x, int y, int z) {
+        return LocatableBlock.builder().world(this).position(x, y, z).build();
+    }
+
     /**
      * Gets the loaded chunk at the given block coordinate position.
      *
@@ -182,6 +190,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      * @param uuid The unique id
      * @return An entity, if available
      */
+    @Override
     Optional<Entity> getEntity(UUID uuid);
 
     /**
