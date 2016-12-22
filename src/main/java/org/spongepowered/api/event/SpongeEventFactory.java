@@ -28,6 +28,7 @@ import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.Preconditions;
 import java.net.InetSocketAddress;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -177,6 +178,7 @@ import org.spongepowered.api.event.user.PardonUserEvent;
 import org.spongepowered.api.event.user.TargetUserEvent;
 import org.spongepowered.api.event.world.ChangeWorldGameRuleEvent;
 import org.spongepowered.api.event.world.ChangeWorldWeatherEvent;
+import org.spongepowered.api.event.world.ChunkPreGenerationEvent;
 import org.spongepowered.api.event.world.ConstructPortalEvent;
 import org.spongepowered.api.event.world.ConstructWorldPropertiesEvent;
 import org.spongepowered.api.event.world.ExplosionEvent;
@@ -212,6 +214,7 @@ import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.ban.Ban;
 import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.ChunkPreGenerate;
 import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.PortalAgent;
@@ -3973,6 +3976,86 @@ public class SpongeEventFactory {
         values.put("initialWeather", initialWeather);
         values.put("targetWorld", targetWorld);
         return SpongeEventFactoryUtils.createEventImpl(ChangeWorldWeatherEvent.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.ChunkPreGenerationEvent.Cancelled}.
+     * 
+     * @param cause The cause
+     * @param chunkPreGenerate The chunk pre generate
+     * @param targetWorld The target world
+     * @return A new cancelled chunk pre generation event
+     */
+    public static ChunkPreGenerationEvent.Cancelled createChunkPreGenerationEventCancelled(Cause cause, ChunkPreGenerate chunkPreGenerate, World targetWorld) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("chunkPreGenerate", chunkPreGenerate);
+        values.put("targetWorld", targetWorld);
+        return SpongeEventFactoryUtils.createEventImpl(ChunkPreGenerationEvent.Cancelled.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.ChunkPreGenerationEvent.Complete}.
+     * 
+     * @param cause The cause
+     * @param chunkPreGenerate The chunk pre generate
+     * @param targetWorld The target world
+     * @return A new complete chunk pre generation event
+     */
+    public static ChunkPreGenerationEvent.Complete createChunkPreGenerationEventComplete(Cause cause, ChunkPreGenerate chunkPreGenerate, World targetWorld) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("chunkPreGenerate", chunkPreGenerate);
+        values.put("targetWorld", targetWorld);
+        return SpongeEventFactoryUtils.createEventImpl(ChunkPreGenerationEvent.Complete.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.ChunkPreGenerationEvent.Post}.
+     * 
+     * @param cause The cause
+     * @param chunkPreGenerate The chunk pre generate
+     * @param targetWorld The target world
+     * @param timeTakenForStep The time taken for step
+     * @param chunksGeneratedThisStep The chunks generated this step
+     * @param chunksSkippedThisStep The chunks skipped this step
+     * @return A new post chunk pre generation event
+     */
+    public static ChunkPreGenerationEvent.Post createChunkPreGenerationEventPost(Cause cause, ChunkPreGenerate chunkPreGenerate, World targetWorld, Duration timeTakenForStep, int chunksGeneratedThisStep, int chunksSkippedThisStep) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("chunkPreGenerate", chunkPreGenerate);
+        values.put("targetWorld", targetWorld);
+        values.put("timeTakenForStep", timeTakenForStep);
+        values.put("chunksGeneratedThisStep", chunksGeneratedThisStep);
+        values.put("chunksSkippedThisStep", chunksSkippedThisStep);
+        return SpongeEventFactoryUtils.createEventImpl(ChunkPreGenerationEvent.Post.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.world.ChunkPreGenerationEvent.Pre}.
+     * 
+     * @param cause The cause
+     * @param chunkPreGenerate The chunk pre generate
+     * @param targetWorld The target world
+     * @param skipStep The skip step
+     * @return A new pre chunk pre generation event
+     */
+    public static ChunkPreGenerationEvent.Pre createChunkPreGenerationEventPre(Cause cause, ChunkPreGenerate chunkPreGenerate, World targetWorld, boolean skipStep) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("chunkPreGenerate", chunkPreGenerate);
+        values.put("targetWorld", targetWorld);
+        values.put("skipStep", skipStep);
+        return SpongeEventFactoryUtils.createEventImpl(ChunkPreGenerationEvent.Pre.class, values);
     }
 
     /**

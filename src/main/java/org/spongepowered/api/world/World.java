@@ -207,9 +207,9 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      * @param center The center of the border
      * @param diameter The diameter of the border
      * @return The builder for the chunk pre-generate task
-     * @see WorldBorder.ChunkPreGenerate
+     * @see ChunkPreGenerate
      */
-    WorldBorder.ChunkPreGenerate newChunkPreGenerate(Vector3d center, double diameter);
+    ChunkPreGenerate.Builder newChunkPreGenerate(Vector3d center, double diameter);
 
     /**
      * Returns the {@link Dimension} of this world.
