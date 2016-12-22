@@ -33,11 +33,18 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
+import com.google.common.reflect.TypeToken;
+import ninja.leaping.configurate.ConfigurationNode;
+import ninja.leaping.configurate.gson.GsonConfigurationLoader;
+import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
+import ninja.leaping.configurate.loader.ConfigurationLoader;
+import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.ProxySource;
+import org.spongepowered.api.command.source.RemoteSource;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
@@ -57,7 +64,17 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.storage.WorldProperties;
 
-import java.lang.reflect.Field;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.StringReader;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.InetAddress;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -67,6 +84,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -1668,6 +1686,249 @@ public final class GenericArguments {
         public Text getUsage(CommandSource src) {
             return src instanceof Player && this.returnSource ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
         }
+    }
+
+    /**
+     * Expect an argument to represent a {@link URL}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement url(Text key) {
+        return new URIElement(key, false);
+    }
+
+    /**
+     * Expect an argument to represent a {@link URI}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement uri(Text key) {
+        return new URIElement(key, true);
+    }
+
+    private static class URIElement extends KeyElement {
+
+        private final boolean returnURI;
+
+        protected URIElement(Text key, boolean returnURI) {
+            super(key);
+            this.returnURI = returnURI;
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String str = args.next();
+            URL url;
+            try {
+                url = new URL(str);
+            } catch (MalformedURLException ex) {
+                throw new ArgumentParseException(Text.of("Invalid URL!"), ex, str, 0);
+            }
+            URI uri;
+            try {
+                uri = url.toURI();
+            } catch (URISyntaxException ex) {
+                throw new ArgumentParseException(Text.of("Invalid URL!"), ex, str, 0);
+            }
+            if (this.returnURI) {
+                return uri;
+            } else {
+                return url;
+            }
+        }
+    }
+
+    /**
+     * Expect an argument to return an IP address, in the form of an
+     * {@link InetAddress}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement ip(Text key) {
+        return new IpElement(key, false);
+    }
+
+    /**
+     * Expect an argument to return an IP address, in the form of an
+     * {@link InetAddress}, or if nothing matches and the source is a
+     * {@link RemoteSource}, return the source's address.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement ipOrSource(Text key) {
+        return new IpElement(key, true);
+    }
+
+    private static class IpElement extends KeyElement {
+
+        private final boolean self;
+
+        protected IpElement(Text key, boolean self) {
+            super(key);
+            this.self = self;
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (!args.hasNext() && this.self) {
+                if (source instanceof Player) {
+                    return ((Player) source).getConnection().getAddress().getAddress();
+                } else {
+                    throw args.createError(Text.of("No IP address was specified!"));
+                }
+            }
+            Object state = args.getState();
+            String s = args.next();
+            try {
+                return InetAddress.getByName(s);
+            } catch (UnknownHostException e) {
+                if (this.self) {
+                    if (source instanceof RemoteSource) {
+                        args.setState(state);
+                        return ((RemoteSource) source).getConnection().getAddress().getAddress();
+                    } else {
+                        throw args.createError(Text.of("Invalid IP address, and source was not a player!"));
+                    }
+                }
+                throw args.createError(Text.of("Invalid IP address!"));
+            }
+        }
+
+        @Override
+        public Text getUsage(CommandSource src) {
+            return src instanceof RemoteSource && this.self ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+        }
+
+    }
+
+    /**
+     * Expect an argument to return a {@link BigDecimal}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement bigDecimal(Text key) {
+        return new BigDecimalElement(key);
+    }
+
+    private static class BigDecimalElement extends KeyElement {
+
+        protected BigDecimalElement(Text key) {
+            super(key);
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String next = args.next();
+            try {
+                return new BigDecimal(next);
+            } catch (NumberFormatException ex) {
+                throw args.createError(Text.of("Expected a number, but input " + next + " was not"));
+            }
+        }
+    }
+
+    /**
+     * Expect an argument to return a {@link BigInteger}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement bigInteger(Text key) {
+        return new BigIntegerElement(key);
+    }
+
+    private static class BigIntegerElement extends KeyElement {
+
+        protected BigIntegerElement(Text key) {
+            super(key);
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String integerString = args.next();
+            try {
+                return new BigInteger(integerString);
+            } catch (NumberFormatException ex) {
+                throw args.createError(Text.of("Expected an integer, but input "+integerString+" was not"));
+            }
+        }
+    }
+
+    /**
+     * Expect an argument to be a valid {@link ConfigurationNode}.
+     *
+     * @param key The key to store under
+     * @param forceJson If true, requires JSON; if false, allows the more
+     *                  lenient HOCON
+     * @return the argument
+     */
+    public static CommandElement configNode(Text key, boolean forceJson) {
+        return new NodeElement(key, forceJson, null);
+    }
+
+    /**
+     * Expect an argument to be a valid {@link ConfigurationNode}. Maps the
+     * result to the given {@link TypeToken}, and gives values of type {@code T}.
+     *
+     * @param key The key to store under
+     * @param forceJson If true, requires JSON; if false, allows the more
+     *                  lenient HOCON
+     * @param type The token representing the desired type
+     * @param <T> The type that this argument should provide
+     * @return the argument
+     */
+    public static <T> CommandElement configNode(Text key, boolean forceJson, TypeToken<T> type) {
+        return new NodeElement(key, forceJson, type);
+    }
+
+    private static class NodeElement extends RemainingJoinedStringsCommandElement {
+
+        private final boolean forceJson;
+        private final TypeToken<?> type;
+
+        protected NodeElement(Text key, boolean forceJson, @Nullable TypeToken<?> type) {
+            super(key, true);
+            this.forceJson = forceJson;
+            this.type = type;
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String argument = (String) super.parseValue(source, args);
+            Callable<BufferedReader> reader = () -> new BufferedReader(new StringReader(argument));
+            ConfigurationLoader<? extends ConfigurationNode> loader;
+            if (forceJson) {
+                loader = GsonConfigurationLoader.builder().setSource(reader).build();
+            } else {
+                loader = HoconConfigurationLoader.builder().setSource(reader).build();
+            }
+            ConfigurationNode node;
+            try {
+                node = loader.load();
+            } catch (IOException ex) {
+                throw args.createError(Text.of("Node parsing failed: ", ex.getMessage()));
+            }
+            if (type == null) {
+                return node;
+            } else {
+                try {
+                    return node.getValue(type);
+                } catch (ObjectMappingException ex) {
+                    throw args.createError(Text.of("Invalid node structure: ", ex.getMessage()));
+                }
+            }
+        }
+
     }
 
 }
