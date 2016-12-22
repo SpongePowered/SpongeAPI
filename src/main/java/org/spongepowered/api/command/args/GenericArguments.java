@@ -1907,7 +1907,7 @@ public final class GenericArguments {
             String argument = (String) super.parseValue(source, args);
             Callable<BufferedReader> reader = () -> new BufferedReader(new StringReader(argument));
             ConfigurationLoader<? extends ConfigurationNode> loader;
-            if (forceJson) {
+            if (this.forceJson) {
                 loader = GsonConfigurationLoader.builder().setSource(reader).build();
             } else {
                 loader = HoconConfigurationLoader.builder().setSource(reader).build();
@@ -1918,11 +1918,11 @@ public final class GenericArguments {
             } catch (IOException ex) {
                 throw args.createError(Text.of("Node parsing failed: ", ex.getMessage()));
             }
-            if (type == null) {
+            if (this.type == null) {
                 return node;
             } else {
                 try {
-                    return node.getValue(type);
+                    return node.getValue(this.type);
                 } catch (ObjectMappingException ex) {
                     throw args.createError(Text.of("Invalid node structure: ", ex.getMessage()));
                 }
