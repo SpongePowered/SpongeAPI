@@ -1813,8 +1813,8 @@ public final class GenericArguments {
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             if (!args.hasNext() && this.self) {
-                if (source instanceof Player) {
-                    return ((Player) source).getConnection().getAddress().getAddress();
+                if (source instanceof RemoteSource) {
+                    return ((RemoteSource) source).getConnection().getAddress().getAddress();
                 } else {
                     throw args.createError(Text.of("No IP address was specified!"));
                 }
