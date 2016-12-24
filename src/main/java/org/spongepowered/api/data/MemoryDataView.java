@@ -333,6 +333,8 @@ public class MemoryDataView implements DataView {
                 } else {
                     builder.add(object);
                 }
+            } else if (object instanceof CatalogType) {
+                builder.add(((CatalogType) object).getId());
             } else if (object instanceof Map) {
                 builder.add(ensureSerialization((Map) object));
             } else if (object instanceof Collection) {
