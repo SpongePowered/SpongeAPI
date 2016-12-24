@@ -74,7 +74,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -1722,26 +1721,13 @@ public final class GenericArguments {
      * @return the argument
      */
     public static CommandElement url(Text key) {
-        return new URIElement(key, false);
+        return new URLElement(key);
     }
 
-    /**
-     * Expect an argument to represent a {@link URI}.
-     *
-     * @param key The key to store under
-     * @return the argument
-     */
-    public static CommandElement uri(Text key) {
-        return new URIElement(key, true);
-    }
+    private static class URLElement extends KeyElement {
 
-    private static class URIElement extends KeyElement {
-
-        private final boolean returnURI;
-
-        protected URIElement(Text key, boolean returnURI) {
+        protected URLElement(Text key) {
             super(key);
-            this.returnURI = returnURI;
         }
 
         @Nullable
@@ -1754,17 +1740,12 @@ public final class GenericArguments {
             } catch (MalformedURLException ex) {
                 throw new ArgumentParseException(Text.of("Invalid URL!"), ex, str, 0);
             }
-            URI uri;
             try {
-                uri = url.toURI();
+                url.toURI();
             } catch (URISyntaxException ex) {
                 throw new ArgumentParseException(Text.of("Invalid URL!"), ex, str, 0);
             }
-            if (this.returnURI) {
-                return uri;
-            } else {
-                return url;
-            }
+            return url;
         }
     }
 
