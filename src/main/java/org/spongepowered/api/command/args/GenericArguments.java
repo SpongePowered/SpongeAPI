@@ -79,6 +79,11 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -1997,6 +2002,112 @@ public final class GenericArguments {
                 }
             } else {
                 return TextSerializers.FORMATTING_CODE.deserialize(arg);
+            }
+        }
+    }
+
+    /**
+     * Expect an argument to be a date-time, in the form of a
+     * {@link LocalDateTime}. If no date is specified, {@link LocalDate#now()}
+     * is used; if no time is specified, {@link LocalTime#MIDNIGHT} is used.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement dateTime(Text key) {
+        return new DateTimeElement(key, false);
+    }
+
+    /**
+     * Expect an argument to be a date-time, in the form of a
+     * {@link LocalDateTime}. If no date is specified, {@link LocalDate#now()}
+     * is used; if no time is specified, {@link LocalTime#MIDNIGHT} is used.
+     *
+     * <p>If no argument at all is specified, defaults to
+     * {@link LocalDateTime#now()}.</p>
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement dateTimeOrNow(Text key) {
+        return new DateTimeElement(key, true);
+    }
+
+    private static class DateTimeElement extends CommandElement {
+
+        private final boolean returnNow;
+
+        protected DateTimeElement(Text key, boolean returnNow) {
+            super(key);
+            this.returnNow = returnNow;
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (!args.hasNext() && this.returnNow) {
+                return LocalDateTime.now();
+            }
+            Object state = args.getState();
+            String date = args.next();
+            try {
+                return LocalDateTime.parse(date);
+            } catch (DateTimeParseException ex) {
+                try {
+                    return LocalDateTime.of(LocalDate.now(), LocalTime.parse(date));
+                } catch (DateTimeParseException ex2) {
+                    try {
+                        return LocalDateTime.of(LocalDate.parse(date), LocalTime.MIDNIGHT);
+                    } catch (DateTimeParseException ex3) {
+                        if (this.returnNow) {
+                            args.setState(state);
+                            return LocalDateTime.now();
+                        }
+                        throw args.createError(Text.of("Invalid date-time!"));
+                    }
+                }
+            }
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            String date = LocalDateTime.now().withNano(0).toString();
+            if (date.startsWith(args.nextIfPresent().orElse(""))) {
+                return ImmutableList.of(date);
+            } else {
+                return ImmutableList.of();
+            }
+        }
+
+    }
+
+    /**
+     * Expect an argument to be a {@link Duration}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement duration(Text key) {
+        return new DurationElement(key);
+    }
+
+    private static class DurationElement extends KeyElement {
+
+        protected DurationElement(Text key) {
+            super(key);
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String s = args.next();
+            if (!s.startsWith("P") && !s.startsWith("p")) {
+                s = "p" + s;
+            }
+            try {
+                return Duration.parse(s);
+            } catch (DateTimeParseException ex) {
+                throw args.createError(Text.of("Invalid duration!"));
             }
         }
     }
