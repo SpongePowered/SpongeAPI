@@ -85,6 +85,8 @@ public final class Enchantments {
 
     public static final Enchantment SMITE = DummyObjectProvider.createFor(Enchantment.class, "SMITE");
 
+    public static final Enchantment SWEEPING = DummyObjectProvider.createFor(Enchantment.class, "SWEEPING");
+
     public static final Enchantment THORNS = DummyObjectProvider.createFor(Enchantment.class, "THORNS");
 
     public static final Enchantment UNBREAKING = DummyObjectProvider.createFor(Enchantment.class, "UNBREAKING");
