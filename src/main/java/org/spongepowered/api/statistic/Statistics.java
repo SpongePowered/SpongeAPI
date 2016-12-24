@@ -93,8 +93,6 @@ public final class Statistics {
 
     public static final Statistic JUMP = DummyObjectProvider.createFor(Statistic.class, "JUMP");
 
-    public static final Statistic JUNK_FISHED = DummyObjectProvider.createFor(Statistic.class, "JUNK_FISHED");
-
     public static final Statistic LEAVE_GAME = DummyObjectProvider.createFor(Statistic.class, "LEAVE_GAME");
 
     public static final Statistic MINECART_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "MINECART_ONE_CM");
@@ -132,8 +130,6 @@ public final class Statistics {
     public static final Statistic TRADED_WITH_VILLAGER = DummyObjectProvider.createFor(Statistic.class, "TRADED_WITH_VILLAGER");
 
     public static final Statistic TRAPPED_CHEST_TRIGGERED = DummyObjectProvider.createFor(Statistic.class, "TRAPPED_CHEST_TRIGGERED");
-
-    public static final Statistic TREASURE_FISHED = DummyObjectProvider.createFor(Statistic.class, "TREASURE_FISHED");
 
     public static final Statistic WALK_ONE_CM = DummyObjectProvider.createFor(Statistic.class, "WALK_ONE_CM");
 

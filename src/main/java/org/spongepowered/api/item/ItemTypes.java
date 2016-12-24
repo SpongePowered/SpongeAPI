@@ -415,6 +415,8 @@ public final class ItemTypes {
 
     public static final ItemType IRON_LEGGINGS = DummyObjectProvider.createFor(ItemType.class, "IRON_LEGGINGS");
 
+    public static final ItemType IRON_NUGGET = DummyObjectProvider.createFor(ItemType.class, "IRON_NUGGET");
+
     public static final ItemType IRON_ORE = DummyObjectProvider.createFor(ItemType.class, "IRON_ORE");
 
     public static final ItemType IRON_PICKAXE = DummyObjectProvider.createFor(ItemType.class, "IRON_PICKAXE");
@@ -767,7 +769,7 @@ public final class ItemTypes {
 
     public static final ItemType TORCH = DummyObjectProvider.createFor(ItemType.class, "TORCH");
 
-    public static final ItemType TOTEM = DummyObjectProvider.createFor(ItemType.class, "TOTEM");
+    public static final ItemType TOTEM_OF_UNDYING = DummyObjectProvider.createFor(ItemType.class, "TOTEM_OF_UNDYING");
 
     public static final ItemType TRAPDOOR = DummyObjectProvider.createFor(ItemType.class, "TRAPDOOR");
 
