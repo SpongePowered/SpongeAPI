@@ -33,18 +33,17 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
-import com.google.common.reflect.TypeToken;
 import ninja.leaping.configurate.ConfigurationNode;
-import ninja.leaping.configurate.gson.GsonConfigurationLoader;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
-import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.ProxySource;
 import org.spongepowered.api.command.source.RemoteSource;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.persistence.DataTranslators;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.util.Tristate;
@@ -1899,41 +1898,19 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to be a valid {@link ConfigurationNode}.
+     * Expect an argument to be a valid {@link DataContainer}.
      *
      * @param key The key to store under
-     * @param forceJson If true, requires JSON; if false, allows the more
-     *                  lenient HOCON
      * @return the argument
      */
-    public static CommandElement configNode(Text key, boolean forceJson) {
-        return new NodeElement(key, forceJson, null);
+    public static CommandElement dataContainer(Text key) {
+        return new DataElement(key);
     }
 
-    /**
-     * Expect an argument to be a valid {@link ConfigurationNode}. Maps the
-     * result to the given {@link TypeToken}, and gives values of type {@code T}.
-     *
-     * @param key The key to store under
-     * @param forceJson If true, requires JSON; if false, allows the more
-     *                  lenient HOCON
-     * @param type The token representing the desired type
-     * @param <T> The type that this argument should provide
-     * @return the argument
-     */
-    public static <T> CommandElement configNode(Text key, boolean forceJson, TypeToken<T> type) {
-        return new NodeElement(key, forceJson, type);
-    }
+    private static class DataElement extends RemainingJoinedStringsCommandElement {
 
-    private static class NodeElement extends RemainingJoinedStringsCommandElement {
-
-        private final boolean forceJson;
-        private final TypeToken<?> type;
-
-        protected NodeElement(Text key, boolean forceJson, @Nullable TypeToken<?> type) {
+        protected DataElement(Text key) {
             super(key, true);
-            this.forceJson = forceJson;
-            this.type = type;
         }
 
         @Nullable
@@ -1941,27 +1918,15 @@ public final class GenericArguments {
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             String argument = (String) super.parseValue(source, args);
             Callable<BufferedReader> reader = () -> new BufferedReader(new StringReader(argument));
-            ConfigurationLoader<? extends ConfigurationNode> loader;
-            if (this.forceJson) {
-                loader = GsonConfigurationLoader.builder().setSource(reader).build();
-            } else {
-                loader = HoconConfigurationLoader.builder().setSource(reader).build();
-            }
+            ConfigurationLoader<? extends ConfigurationNode> loader = HoconConfigurationLoader.builder()
+                    .setSource(reader).build();
             ConfigurationNode node;
             try {
                 node = loader.load();
             } catch (IOException ex) {
                 throw args.createError(Text.of("Node parsing failed: ", ex.getMessage()));
             }
-            if (this.type == null) {
-                return node;
-            } else {
-                try {
-                    return node.getValue(this.type);
-                } catch (ObjectMappingException ex) {
-                    throw args.createError(Text.of("Invalid node structure: ", ex.getMessage()));
-                }
-            }
+            return DataTranslators.CONFIGURATION_NODE.translate(node);
         }
 
     }
