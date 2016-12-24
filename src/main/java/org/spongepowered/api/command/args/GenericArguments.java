@@ -46,6 +46,8 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.persistence.DataTranslators;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.text.serializer.TextParseException;
+import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.entity.living.player.Player;
@@ -1957,6 +1959,46 @@ public final class GenericArguments {
             }
         }
 
+    }
+
+    /**
+     * Expect an argument to be valid {@link Text}. Can use either JSON or color codes.
+     *
+     * @param key The key to store under
+     * @param complex If true, parsed as JSON text; if false, parsed as color-coded text
+     * @return the argument
+     */
+    public static CommandElement text(Text key, boolean complex, boolean allRemaining) {
+        return new TextCommandElement(key, complex, allRemaining);
+    }
+
+    private static class TextCommandElement extends KeyElement {
+
+        private final boolean complex;
+        private final boolean allRemaining;
+        private final RemainingJoinedStringsCommandElement joinedElement;
+
+        protected TextCommandElement(Text key, boolean complex, boolean allRemaining) {
+            super(key);
+            this.complex = complex;
+            this.allRemaining = allRemaining;
+            joinedElement = allRemaining ? new RemainingJoinedStringsCommandElement(key, false) : null;
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String arg = this.allRemaining ? (String) joinedElement.parseValue(source, args) : args.next();
+            if (this.complex) {
+                try {
+                    return TextSerializers.JSON.deserialize(arg);
+                } catch (TextParseException ex) {
+                    throw args.createError(Text.of("Invalid JSON text: ", ex.getMessage()));
+                }
+            } else {
+                return TextSerializers.FORMATTING_CODE.deserialize(arg);
+            }
+        }
     }
 
 }
