@@ -1933,4 +1933,32 @@ public final class GenericArguments {
 
     }
 
+    /**
+     * Expect an argument to be a {@link UUID}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement uuid(Text key) {
+        return new UUIDElement(key);
+    }
+
+    private static class UUIDElement extends KeyElement {
+
+        protected UUIDElement(Text key) {
+            super(key);
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            try {
+                return UUID.fromString(args.next());
+            } catch (IllegalArgumentException ex) {
+                throw args.createError(Text.of("Invalid UUID!"));
+            }
+        }
+
+    }
+
 }
