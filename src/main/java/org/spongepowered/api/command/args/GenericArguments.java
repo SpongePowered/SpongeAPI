@@ -65,6 +65,7 @@ import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.extent.EntityUniverse;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.io.BufferedReader;
@@ -91,6 +92,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import javax.annotation.Nullable;
 
@@ -1607,7 +1609,7 @@ public final class GenericArguments {
      * @return The command element
      */
     public static CommandElement entity(Text key) {
-        return new EntityCommandElement(key, false, null);
+        return new EntityCommandElement(key, false, false, null);
     }
 
     /**
@@ -1618,28 +1620,44 @@ public final class GenericArguments {
      * @return The command element
      */
     public static CommandElement entityOrSource(Text key) {
-        return new EntityCommandElement(key, true, null);
+        return new EntityCommandElement(key, true, false, null);
     }
 
     public static CommandElement entity(Text key, Class<? extends Entity> type) {
-        return new EntityCommandElement(key, false, type);
+        return new EntityCommandElement(key, false, false, type);
+    }
+
+    public static CommandElement entityOrTarget(Text key) {
+        return new EntityCommandElement(key, false, true, null);
+    }
+
+    public static CommandElement entityOrTarget(Text key, Class<? extends Entity> type) {
+        return new EntityCommandElement(key, false, true, type);
     }
 
     private static class EntityCommandElement extends SelectorCommandElement {
 
-        private final boolean returnSource;
-        private final Class<? extends Entity> type;
+        protected final boolean returnTarget;
+        protected final boolean returnSource;
+        protected final Class<? extends Entity> type;
 
-        protected EntityCommandElement(Text key, boolean returnSource, @Nullable Class<? extends Entity> type) {
+        protected EntityCommandElement(Text key, boolean returnSource, boolean returnTarget,
+                                       @Nullable Class<? extends Entity> type) {
             super(key);
             this.returnSource = returnSource;
+            this.returnTarget = returnTarget;
             this.type = type;
         }
 
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            if (!args.hasNext() && this.returnSource) {
-                return tryReturnSource(source, args);
+            if (!args.hasNext()) {
+                if (this.returnSource) {
+                    return tryReturnSource(source, args);
+                }
+                if (this.returnTarget) {
+                    return tryReturnTarget(source, args, this.type == null ? Entity.class : this.type);
+                }
             }
 
             Object state = args.getState();
@@ -1706,6 +1724,14 @@ public final class GenericArguments {
             } else {
                 throw args.createError(t("No entities matched and source was not an entity!"));
             }
+        }
+
+        private static Entity tryReturnTarget(CommandSource source, CommandArgs args, Class<? extends Entity> type) throws ArgumentParseException {
+            Entity entity = tryReturnSource(source, args);
+            return entity.getWorld().getIntersectingEntities(entity, 10).stream()
+                    .filter(e -> !e.getEntity().equals(entity)).map(EntityUniverse.EntityHit::getEntity)
+                    .filter(e -> !type.isAssignableFrom(e.getClass())).findFirst()
+                    .orElseThrow(() -> args.createError(t("No entities matched and source was not looking at a valid entity!")));
         }
 
         @Override
