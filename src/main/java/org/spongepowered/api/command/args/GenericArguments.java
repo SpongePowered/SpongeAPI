@@ -46,6 +46,9 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.ProxySource;
 import org.spongepowered.api.command.source.RemoteSource;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.util.Tristate;
+import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -1605,7 +1608,7 @@ public final class GenericArguments {
      * @return The command element
      */
     public static CommandElement entity(Text key) {
-        return new EntityCommandElement(key, false);
+        return new EntityCommandElement(key, false, null);
     }
 
     /**
@@ -1616,16 +1619,22 @@ public final class GenericArguments {
      * @return The command element
      */
     public static CommandElement entityOrSource(Text key) {
-        return new EntityCommandElement(key, true);
+        return new EntityCommandElement(key, true, null);
+    }
+
+    public static CommandElement entity(Text key, Class<? extends Entity> type) {
+        return new EntityCommandElement(key, false, type);
     }
 
     private static class EntityCommandElement extends SelectorCommandElement {
 
         private final boolean returnSource;
+        private final Class<? extends Entity> type;
 
-        protected EntityCommandElement(Text key, boolean returnSource) {
+        protected EntityCommandElement(Text key, boolean returnSource, @Nullable Class<? extends Entity> type) {
             super(key);
             this.returnSource = returnSource;
+            this.type = type;
         }
 
         @Override
@@ -1636,7 +1645,15 @@ public final class GenericArguments {
 
             Object state = args.getState();
             try {
-                return super.parseValue(source, args);
+                Entity entity = (Entity) super.parseValue(source, args);
+                if (!type.isAssignableFrom(entity.getClass())) {
+                    Text name = Sponge.getRegistry().getAllOf(EntityType.class).stream()
+                            .filter(t -> t.getEntityClass().equals(this.type)).findFirst()
+                            .map(EntityType::getTranslation).<Text>map(Text::of)
+                            .orElse(Text.of(this.type.getSimpleName()));
+                    throw args.createError(Text.of("The entity is not of the required type! (", name, ")"));
+                }
+                return entity;
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
                     args.setState(state);
@@ -1653,6 +1670,9 @@ public final class GenericArguments {
                 if (input == null) {
                     return null;
                 }
+                if (this.type != null && !this.type.isAssignableFrom(input.getClass())) {
+                    return null;
+                }
                 if (input instanceof Player) {
                     return ((Player)input).getName();
                 }
@@ -1663,11 +1683,18 @@ public final class GenericArguments {
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
             UUID uuid = UUID.fromString(choice);
+            boolean found = false;
             for (World world : Sponge.getServer().getWorlds()) {
                 Optional<Entity> ret = world.getEntity(uuid);
                 if (ret.isPresent()) {
-                    return ret.get();
+                    if (this.type == null || this.type.isAssignableFrom(ret.get().getClass())) {
+                        return ret.get();
+                    }
+                    found = true;
                 }
+            }
+            if (found) {
+                throw new IllegalArgumentException("Input value " + choice + " was not an entity of the required type!");
             }
             throw new IllegalArgumentException("Input value " + choice + " was not an entity");
         }
