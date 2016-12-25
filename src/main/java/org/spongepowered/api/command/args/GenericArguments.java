@@ -1741,7 +1741,7 @@ public final class GenericArguments {
 
         @Override
         public Text getUsage(CommandSource src) {
-            return src instanceof Player && this.returnSource ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+            return src instanceof Entity && (this.returnSource || this.returnTarget) ? Text.of("[", this.getKey(), "]") : super.getUsage(src);
         }
     }
 
@@ -2079,6 +2079,14 @@ public final class GenericArguments {
             }
         }
 
+        @Override
+        public Text getUsage(CommandSource src) {
+            if (!this.returnNow) {
+                return super.getUsage(src);
+            } else {
+                return Text.of("[", this.getKey(), "]");
+            }
+        }
     }
 
     /**
