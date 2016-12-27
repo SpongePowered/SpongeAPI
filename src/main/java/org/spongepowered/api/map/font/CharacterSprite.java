@@ -51,7 +51,8 @@ public class CharacterSprite {
         this.width = width;
         this.height = height;
 
-        this.shape = shape;
+        this.shape = new boolean[shape.length];
+        System.arraycopy(shape, 0, this.shape, 0, shape.length);
     }
 
     /**

@@ -30,6 +30,7 @@ import org.spongepowered.api.map.color.MapColorMatchers;
 import org.spongepowered.api.map.color.MapColors;
 import org.spongepowered.api.util.Color;
 
+import java.util.AbstractCollection;
 import java.util.function.Function;
 
 /**
@@ -39,12 +40,12 @@ import java.util.function.Function;
 public interface MapColorFactory {
 
     /**
-     * Returns all the possible {@link MapColor}s available, including the
-     * shaded colors.
+     * Returns an unmodifiable collection of all the possible {@link MapColor}s
+     * available, including the shaded colors.
      *
      * @return All the map colors including shades
      */
-    ImmutableCollection<MapColor> getAll();
+    AbstractCollection<MapColor> getAll();
 
     /**
      * Returns a {@link MapColor} that is closest matching to the given

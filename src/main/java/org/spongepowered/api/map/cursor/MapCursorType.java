@@ -34,4 +34,5 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  */
 @CatalogedBy(MapCursorTypes.class)
 public interface MapCursorType extends CatalogType {
+
 }

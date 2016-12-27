@@ -55,4 +55,5 @@ public final class MapColorMatchers {
     private static final Function<Color, MapColor> dummy(String name) {
         return (Function<Color, MapColor>) DummyObjectProvider.createFor(Function.class, name);
     }
+
 }

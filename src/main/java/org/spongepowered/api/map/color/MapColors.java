@@ -29,6 +29,7 @@ import org.spongepowered.api.map.util.MapColorFactory;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
+import java.util.Collection;
 import java.util.function.Function;
 
 /**
@@ -36,7 +37,7 @@ import java.util.function.Function;
  */
 public final class MapColors {
 
-    private static final MapColorFactory factory = null;
+    private static final MapColorFactory factory = DummyObjectProvider.createFor(MapColorFactory.class, "factory");
 
     // SORTFIELDS:ON
 
@@ -120,7 +121,7 @@ public final class MapColors {
      *
      * @return All the map colors including shades
      */
-    public static ImmutableCollection<MapColor> getAll() {
+    public static Collection<MapColor> getAll() {
         return factory.getAll();
     }
 

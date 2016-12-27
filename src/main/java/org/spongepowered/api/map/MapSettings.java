@@ -43,7 +43,7 @@ public interface MapSettings extends DataSerializable {
      * 
      * @return A new builder instance
      */
-    static MapSettings.Builder builder() {
+    static Builder builder() {
         return Sponge.getGame().getRegistry().createBuilder(Builder.class);
     }
 

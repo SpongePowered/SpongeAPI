@@ -32,7 +32,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 public final class MapFonts {
 
     /**
-     * Represents a default base font for use when drawing on maps
+     * The default base font builtin to the implementation.
      */
     public static final MapFont DEFAULT = DummyObjectProvider.createFor(MapFont.class, "DEFAULT");
 

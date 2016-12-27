@@ -298,10 +298,10 @@ public interface MapView {
 
     /**
      * Removes the {@link MapRenderer} at the specified index from the
-     * renderers on this map
+     * renderers on this map.
      *
      * @param index The index of the renderer to remove
-     * @return True The renderer removed
+     * @return The renderer that was removed
      * @throws IndexOutOfBoundsException If the provided index is out of bounds
      */
     MapRenderer removeRenderer(int index);
@@ -327,4 +327,5 @@ public interface MapView {
      * @return This map's settings
      */
     MapSettings getSettings();
+
 }
