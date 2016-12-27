@@ -288,6 +288,14 @@ public final class Keys {
     public static final Key<Value<Boolean>> ATTACHED = KeyFactory.fake("ATTACHED");
 
     /**
+     * Represents the {@link Key} for the attached map id for an
+     * {@link ItemTypes#FILLED_MAP} {@link ItemStack}.
+     *
+     * @see MapItemData#attachedMap()
+     */
+    public static final Key<Value<String>> ATTACHED_MAP = KeyFactory.fake("ATTACHED_MAP");
+    
+    /**
      * Represents the {@link Key} for the damage dealt by a
      * {@link DamagingProjectile}, e.g. an {@link Arrow}.
      *

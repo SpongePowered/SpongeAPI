@@ -22,27 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.item;
+package org.spongepowered.api.map;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.item.MapItemData;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
+
+import org.spongepowered.api.entity.living.player.Player;
+
+import javax.annotation.Nullable;
 
 /**
- * Represents an {@link ImmutableDataManipulator} hosting the specific map
- * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
+ * Plugin classes should implement this to modify the image shown on a map.
+ *
+ * <p>These are layered on the {@link MapView} and are rendered from the bottom
+ * layer to the top layer, letting overlays be built</p>
  */
-public interface ImmutableMapItemData extends ImmutableDataManipulator<ImmutableMapItemData, MapItemData> {
+public interface MapRenderer {
 
     /**
-     * Gets the {@link ImmutableValue} for the attached map id for an
-     * {@link ItemTypes#FILLED_MAP} {@link ItemStack}.
+     * Returns if this map renders different views for each player viewing it.
      *
-     * @return The attached map id
+     * <p>Most maps representing shared content are the same for all players
+     * that hold them, but sometimes a plugin may wish to render a unique view
+     * for each player.</p>
+     *
+     * @return True if the rendering is specific to each player, false otherwise
      */
-    ImmutableValue<String> attachedMap();
+    boolean isContextual();
+
+    /**
+     * Gives access to the {@link MapView} for rendering onto a map, this also
+     * provides a viewer and a reference to the original map data to allow
+     * updating cursors and accessing relevant information to the render.
+     *
+     * <p>The viewer is guaranteed to be present if {@link #isContextual()}
+     * returns true.</p>
+     *
+     * @param viewer The player viewing this render, null otherwise
+     * @param map The map that's being rendered
+     */
+    void render(@Nullable Player viewer, MapView map);
 
 }

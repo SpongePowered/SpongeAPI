@@ -26,6 +26,7 @@ package org.spongepowered.api;
 
 import org.spongepowered.api.command.source.ConsoleSource;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.map.MapViewStorage;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
@@ -439,4 +440,11 @@ public interface Server {
      * @return True if main thread, false if not
      */
     boolean isMainThread();
+
+    /**
+     * Gets the MapViewStorage used to create and retrieve {@link MapView}s.
+     *
+     * @return The server's map storage handler
+     */
+    MapViewStorage getMapViewStorage();
 }

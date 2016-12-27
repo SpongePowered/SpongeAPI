@@ -26,13 +26,22 @@ package org.spongepowered.api.data.manipulator.mutable.item;
 
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableMapItemData;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
  * Represents an {@link DataManipulator} hosting the specific map
  * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
- * // TODO for modwizcode
  */
 public interface MapItemData extends DataManipulator<MapItemData, ImmutableMapItemData> {
+
+    /**
+     * Gets the {@link Value} for the attached map id for an
+     * {@link ItemTypes#FILLED_MAP} {@link ItemStack}.
+     *
+     * @return The attached map id
+     */
+    Value<String> attachedMap();
+
 }
