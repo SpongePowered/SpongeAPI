@@ -326,11 +326,11 @@ public class TextStyle implements TextElement {
     public TextStyle negate() {
         // Do a negation of each property
         return new TextStyle(
-                propNegate(this.obfuscated),
                 propNegate(this.bold),
-                propNegate(this.strikethrough),
+                propNegate(this.italic),
                 propNegate(this.underline),
-                propNegate(this.italic)
+                propNegate(this.strikethrough),
+                propNegate(this.obfuscated)
         );
     }
 
