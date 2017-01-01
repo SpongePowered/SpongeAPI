@@ -29,6 +29,6 @@ import org.spongepowered.api.item.recipe.Recipe;
 
 public interface FurnaceRecipe extends Recipe {
 
-    float getExperience(GridInventory grid);
+    double getExperience(GridInventory grid);
 
 }
