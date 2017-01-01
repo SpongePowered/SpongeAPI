@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -119,7 +120,9 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          * @param result The resultant stacks
          * @return The builder
          */
-        Builder results(ItemStack... result);
+        default Builder results(ItemStack... result) {
+            return results(Arrays.asList(result));
+        }
 
         /**
          * Sets the resultant {@link ItemStack}s for when this shaped recipe

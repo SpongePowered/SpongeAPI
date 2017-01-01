@@ -52,7 +52,7 @@ public interface CraftingRecipeRegistry {
     /**
      * Gets a {@link Collection} of all recipes this registry is aware of.
      *
-     * @return A list of all registered recipes
+     * @return An unmodifiable collection of all registered recipes
      */
     Collection<CraftingRecipe> getRecipes();
 

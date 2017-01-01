@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 /**
@@ -65,7 +66,9 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @param ingredients The ingredients
          * @return The builder
          */
-        Builder ingredients(ItemStack... ingredients);
+        default Builder ingredients(ItemStack... ingredients) {
+            return ingredients(Arrays.asList(ingredients));
+        }
 
         /**
          * Sets the ingredients of this shapeless recipe.
@@ -73,7 +76,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @param ingredients The ingredients
          * @return The builder
          */
-        Builder ingredients(Collection<ItemStack> ingredients);
+        Builder ingredients(Iterable<ItemStack> ingredients);
 
         /**
          * Sets the resultant ItemStack for when this shapeless recipe is
@@ -82,7 +85,9 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @param results The resultant stacks
          * @return The builder
          */
-        Builder results(ItemStack... results);
+        default Builder results(ItemStack... results) {
+            return results(Arrays.asList(results));
+        }
 
         /**
          * Sets the resultant {@link ItemStack}s for when this shapeless recipe
@@ -91,7 +96,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @param result The resultant stacks
          * @return The builder
          */
-        Builder results(Collection<ItemStack> result);
+        Builder results(Iterable<ItemStack> result);
 
         /**
          * Builds a new {@link ShapelessCraftingRecipe} from this builder.
