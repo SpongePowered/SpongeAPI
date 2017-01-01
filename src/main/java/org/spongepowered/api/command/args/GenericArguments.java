@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.command.args;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
-
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
@@ -46,10 +43,6 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.persistence.DataTranslators;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.text.serializer.TextParseException;
-import org.spongepowered.api.text.serializer.TextSerializers;
-import org.spongepowered.api.util.Tristate;
-import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -57,6 +50,8 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.user.UserStorageService;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.selector.Selector;
+import org.spongepowered.api.text.serializer.TextParseException;
+import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.Tristate;
@@ -69,6 +64,7 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.EntityUniverse;
 import org.spongepowered.api.world.storage.WorldProperties;
 
+import javax.annotation.Nullable;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
@@ -99,7 +95,8 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nullable;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 
 /**
@@ -1970,7 +1967,10 @@ public final class GenericArguments {
      * Expect an argument to be valid {@link Text}. Can use either JSON or color codes.
      *
      * @param key The key to store under
-     * @param complex If true, parsed as JSON text; if false, parsed as color-coded text
+     * @param complex If true, parsed as JSON text; if false, parsed as
+     *                color-coded text
+     * @param allRemaining If true, consumes all remaining arguments; if false,
+     *                     uses a single argument
      * @return the argument
      */
     public static CommandElement text(Text key, boolean complex, boolean allRemaining) {
