@@ -22,42 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory.crafting;
+package org.spongepowered.api.item.recipe.smelting;
 
-import org.spongepowered.api.item.inventory.type.GridInventory;
-import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.recipe.RecipeRegistry;
 
 import java.util.Optional;
 
 /**
- * A CraftingInventory represents the inventory of something that can craft
- * items.
+ * A registry for Crafting Table recipes.
  */
-public interface CraftingInventory extends GridInventory {
+public interface SmeltingRecipeRegistry extends RecipeRegistry<SmeltingRecipe> {
 
     /**
-     * Gets the crafting matrix of this CraftingInventory.
+     * Retrieves the recipe used when smelting the given ingredient.
      *
-     * @return The crafting matrix
+     * @param ingredient The ingredient to check against
+     * @return The found {@link SmeltingRecipe}, or {@link Optional#empty()}
+     *         if no recipe was found for this {@link ItemStackSnapshot}
      */
-    CraftingGridInventory getCraftingGrid();
+    Optional<SmeltingRecipe> findMatchingRecipe(ItemStackSnapshot ingredient);
 
     /**
-     * Gets the result slot of this CraftingInventory.
+     * Finds the matching recipe and creates the {@link SmeltingResult},
+     * which is then returned.
      *
-     * @return The result slot
+     * @param ingredient The ingredient to check against
+     * @return The {@link SmeltingResult} if a recipe was found, or
+     *         {@link Optional#empty()} if not
      */
-    CraftingOutput getResult();
-
-    /**
-     * Retrieves the recipe formed by this CraftingInventory, if any.
-     *
-     * @param world The world where the item would be crafted in
-     * @return The recipe or {@link Optional#empty()} if no recipe is formed
-     */
-    default Optional<CraftingRecipe> getRecipe(World world) {
-        return getCraftingGrid().getRecipe(world);
+    default Optional<SmeltingResult> getResult(ItemStackSnapshot ingredient) {
+        return findMatchingRecipe(ingredient)
+                .flatMap(recipe -> recipe.getResult(ingredient));
     }
-
 }

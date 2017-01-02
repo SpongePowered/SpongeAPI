@@ -54,6 +54,7 @@ import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.InventoryArchetype;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
+import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.scoreboard.CollisionRule;
 import org.spongepowered.api.scoreboard.Visibility;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
@@ -135,6 +136,8 @@ public final class CatalogTypes {
     public static final Class<ComparatorType> COMPARISON_TYPE = ComparatorType.class;
 
     public static final Class<CookedFish> COOKED_FISH = CookedFish.class;
+
+    public static final Class<CraftingRecipe> CRAFTING_RECIPES = CraftingRecipe.class;
 
     public static final Class<Criterion> CRITERION = Criterion.class;
 
