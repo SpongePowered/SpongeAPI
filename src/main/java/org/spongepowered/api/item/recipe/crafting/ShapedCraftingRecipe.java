@@ -196,7 +196,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          *     the specified character symbol
          */
         default Builder where(char symbol, @Nullable ItemStack ingredient) throws IllegalArgumentException {
-            return where(symbol, ingredient.createSnapshot());
+            return where(symbol, ingredient != null ? ingredient.createSnapshot() : null);
         }
 
         /**
