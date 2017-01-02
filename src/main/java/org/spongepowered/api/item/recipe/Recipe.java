@@ -24,52 +24,19 @@
  */
 package org.spongepowered.api.item.recipe;
 
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.type.GridInventory;
-
-import java.util.List;
-import java.util.Optional;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
- * <p>A Recipe represents some craftable recipe in the game.</p>
- *
- * <p>It is essentially a Predicate that checks for if a recipe is valid as well
- * as a function from a crafting matrix to a list of {@link ItemStack}
- * (the crafting result), therefore making it an immutable interface.</p>
- *
- * <p>The passed in ItemGrid is usually a crafting inventory, e.g.
- * a 2x2 or 3x3 crafting matrix.</p>
- *
- * <p>The requirements of a Recipe can be general, they just have to
- * eventually return a boolean given an itemgrid.</p>
+ * A general interface for recipes
  */
 public interface Recipe {
 
     /**
-     * Returns the list of item types that result when successful crafting of
-     * this Recipe is completed.
+     * A general result of this recipe. This result may be customized depending
+     * on the context.
      *
-     * @return The resultant list of item types
+     * @return The exemplary result of this recipe
      */
-    List<ItemType> getResultTypes();
-
-    /**
-     * Checks if the given {@link GridInventory} fits the required constraints
-     * to craft this Recipe.
-     *
-     * @param grid The ItemGrid to check for validity
-     * @return True if the given input matches this recipe's requirements
-     */
-    boolean isValid(GridInventory grid);
-
-    /**
-     * Returns the results for running this Recipe over an {@link GridInventory}
-     *
-     * @param grid An ItemGrid as input
-     * @return A list of ItemStacks or {@link Optional#empty()} if the given
-     *          ItemGrid does not match this recipe's requirements.
-     */
-    Optional<List<ItemStack>> getResults(GridInventory grid);
+    ItemStackSnapshot getExemplaryResult();
 
 }
