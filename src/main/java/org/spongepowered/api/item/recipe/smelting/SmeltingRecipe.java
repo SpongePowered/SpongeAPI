@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.recipe.smelting;
 
+import com.google.common.base.Preconditions;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -59,6 +60,8 @@ public interface SmeltingRecipe extends Recipe {
      * @return Whether this {@param ingredient} can be used to craft the result
      */
     default boolean isValid(ItemStackSnapshot ingredient) {
+        Preconditions.checkNotNull(ingredient, "The ingredient must not be null");
+
         // ItemStackSnapshot#NONE gets replaced at runtime
         //noinspection ConstantConditions
         if(ingredient == ItemStackSnapshot.NONE)
@@ -83,6 +86,8 @@ public interface SmeltingRecipe extends Recipe {
      * @return The result of smelting the {@param ingredient} {@link ItemStack}, if the {@param ingredient} is valid
      */
     default Optional<ItemStack> getResult(ItemStackSnapshot ingredient) {
+        Preconditions.checkNotNull(ingredient, "The ingredient must not be null");
+
         if(!isValid(ingredient))
             return Optional.empty();
 

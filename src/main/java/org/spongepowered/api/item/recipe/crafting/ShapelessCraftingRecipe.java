@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
+import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -62,6 +63,9 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
 
     @Override
     default boolean isValid(GridInventory grid, World world) {
+        Preconditions.checkNotNull(grid, "The grid must not be null");
+        Preconditions.checkNotNull(world, "The world must not be null");
+
         List<Predicate<ItemStackSnapshot>> predicates = Lists.newLinkedList(getIngredientPredicates());
 
         for(Slot slot : grid.<Slot>slots()) {
