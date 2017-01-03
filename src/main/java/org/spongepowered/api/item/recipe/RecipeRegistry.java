@@ -32,16 +32,16 @@ import java.util.Collection;
 public interface RecipeRegistry<T extends Recipe> {
 
     /**
-     * Registers the given CraftingRecipe to make it available to craft.
+     * Registers the given {@link Recipe} to make it available to craft.
      *
-     * @param recipe The CraftingRecipe to register
+     * @param recipe The {@link Recipe} to register
      */
     void register(T recipe);
 
     /**
-     * Removes the given CraftingRecipe from registration in this registry.
+     * Removes the given {@link Recipe} from registration in this registry.
      *
-     * @param recipe The CraftingRecipe to unregister
+     * @param recipe The {@link Recipe} to unregister
      */
     void remove(T recipe);
 
