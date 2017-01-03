@@ -56,6 +56,7 @@ public interface CraftingRecipe extends Recipe {
      * to craft this CraftingRecipe.
      *
      * @param grid The ItemGrid to check for validity
+     * @param world The world this recipe would be used in
      * @return True if the given input matches this recipe's requirements
      */
     boolean isValid(GridInventory grid, World world);
@@ -68,10 +69,11 @@ public interface CraftingRecipe extends Recipe {
      * modify it accordingly, and {@code return} it.
      *
      * @param grid The crafting input, typically 3x3 or 2x2
+     * @param world The world this recipe would be used in
      * @return An {@link ItemStack} or {@link Optional#empty()} if the given
      *         {@link GridInventory} does not match this recipe's requirements.
      */
-    Optional<ItemStack> getResult(GridInventory grid);
+    Optional<ItemStack> getResult(GridInventory grid, World world);
 
     /**
      * A list of items to be added to the inventory of the player
@@ -80,12 +82,13 @@ public interface CraftingRecipe extends Recipe {
      * returned to their inventory.
      *
      * @param grid The crafting input, typically 3x3 or 2x2
+     * @param world The world this recipe would be used in
      * @return The list of items to be added to the inventory of the player
      *         when the recipe has been fulfilled (possibly empty),
      *         or {@link Optional#empty()} if the given
      *         {@link GridInventory} does not match this recipe's requirements.
      */
-    Optional<List<ItemStack>> getRemainingItems(GridInventory grid);
+    Optional<List<ItemStack>> getRemainingItems(GridInventory grid, World world);
 
     /**
      * The recipe size is used to determine the priority of this recipe compared to other recipes.
