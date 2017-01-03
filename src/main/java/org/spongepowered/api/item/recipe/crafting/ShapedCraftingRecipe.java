@@ -49,12 +49,16 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
     }
 
     /**
+     * This returns an unmodifiable copy of the original aisle.
+     *
      * @return An unmodifiable copy of the original aisle
      */
     List<String> getAisle();
 
     /**
-     * @return All ingredient predicates; if all of these are fulfilled, the recipe can be crafted
+     * This returns all of the ingredient predicates; if all of these are fulfilled, the recipe can be crafted
+     *
+     * @return All ingredient predicates
      */
     Map<Character, Predicate<ItemStackSnapshot>> getIngredientPredicates();
 
