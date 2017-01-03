@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.item.recipe;
 
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * <p>A Recipe represents some craftable recipe in the game.</p>
@@ -48,6 +48,14 @@ public interface Recipe {
      *
      * @return the results of this {@link Recipe}
      */
-    List<ItemStack> getResults();
+    Collection<ItemStackSnapshot> getResults();
+
+    /**
+     * Gets the {@link RecipeRegistry} that
+     * corresponds with this Recipe.
+     *
+     * @return the {@link RecipeRegistry} that corresponds with this Recipe
+     */
+    RecipeRegistry<?> getRegistry();
 
 }

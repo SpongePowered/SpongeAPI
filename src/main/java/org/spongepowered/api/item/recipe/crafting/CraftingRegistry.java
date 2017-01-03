@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -51,5 +51,5 @@ public interface CraftingRegistry extends RecipeRegistry<CraftingRecipe> {
      * @return A list of ItemStacks or {@link Optional#empty()} if the given
      *          {@link GridInventory} does not match any recipes.
      */
-    Optional<List<ItemStack>> getResults(GridInventory grid);
+    Optional<Collection<ItemStackSnapshot>> getResults(GridInventory grid);
 }

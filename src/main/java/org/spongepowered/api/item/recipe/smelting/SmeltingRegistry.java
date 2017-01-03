@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.item.recipe.smelting;
 
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 
 import java.util.Optional;
@@ -35,19 +37,19 @@ import java.util.Optional;
 public interface SmeltingRegistry extends RecipeRegistry<SmeltingRecipe> {
 
     /**
-     * Gets the experience an {@link ItemStack} drops when it is made.
+     * Gets the experience a {@link ItemType} drops when it is made.
      *
      * @param stack the {@link ItemStack}
      * @return the experience of the {@link ItemStack}
      */
-    Optional<Double> getExperience(ItemStack stack);
+    double getExperience(ItemStackSnapshot stack);
 
     /**
-     * Returns the results for running this SmeltingRegistry over an {@link ItemStack}
+     * Returns the results for running this SmeltingRegistry over an {@link ItemType}.
      *
-     * @param stack An ItemStack as input
-     * @return A ItemStack or {@link Optional#empty()} if the given
-     *          ItemStack does not match any recipes.
+     * @param type the type to search for
+     * @return A {@link ItemStackSnapshot} or {@link Optional#empty()} if the given
+     *          {@link ItemType} does not match any recipes.
      */
-    Optional<ItemStack> getResult(ItemStack stack);
+    Optional<ItemStackSnapshot> getResult(ItemType type);
 }

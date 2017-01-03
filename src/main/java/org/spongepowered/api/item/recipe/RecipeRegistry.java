@@ -27,7 +27,7 @@ package org.spongepowered.api.item.recipe;
 import org.spongepowered.api.item.recipe.crafting.CraftingRegistry;
 import org.spongepowered.api.item.recipe.smelting.SmeltingRegistry;
 
-import java.util.Set;
+import java.util.Collection;
 
 /**
  * Used for {@link SmeltingRegistry} and {@link CraftingRegistry}
@@ -54,6 +54,6 @@ public interface RecipeRegistry<T extends Recipe> {
      *
      * @return All registered recipes
      */
-    Set<T> getRecipes();
+    Collection<T> getRecipes();
 
 }

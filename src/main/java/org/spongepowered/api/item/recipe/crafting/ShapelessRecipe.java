@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.recipe.crafting;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Collection;
@@ -50,7 +50,7 @@ public interface ShapelessRecipe extends CraftingRecipe {
      *
      * @return The ingredients
      */
-    Collection<ItemStack> getIngredients();
+    Collection<ItemStackSnapshot> getIngredients();
 
     interface Builder extends ResettableBuilder<ShapelessRecipe, Builder> {
         /**
@@ -59,16 +59,16 @@ public interface ShapelessRecipe extends CraftingRecipe {
          * @param ingredient The ingredient
          * @return This builder, for chaining
          */
-        Builder addIngredient(ItemStack ingredient);
+        Builder addIngredient(ItemStackSnapshot ingredient);
 
         /**
-         * Adds a resultant ItemStack for when this ShapelessRecipe is
+         * Adds a resultant ItemStackSnapshot for when this ShapelessRecipe is
          * correctly crafted.
          *
          * @param result The result
          * @return This builder, for chaining
          */
-        Builder addResult(ItemStack result);
+        Builder addResult(ItemStackSnapshot result);
 
         /**
          * Builds a new ShapelessRecipe from this builder.

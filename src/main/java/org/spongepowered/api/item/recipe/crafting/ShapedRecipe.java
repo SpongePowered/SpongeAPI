@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.recipe.crafting;
 
 import com.flowpowered.math.vector.Vector2i;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
@@ -58,7 +58,7 @@ public interface ShapedRecipe extends CraftingRecipe {
      * @param y The y coordinate
      * @return The ingredient
      */
-    Optional<ItemStack> getIngredient(int x, int y);
+    Optional<ItemStackSnapshot> getIngredient(int x, int y);
 
     /**
      * Gets the ingredient required in the given position.
@@ -66,7 +66,7 @@ public interface ShapedRecipe extends CraftingRecipe {
      * @param pos The position
      * @return The ingredient
      */
-    Optional<ItemStack> getIngredient(Vector2i pos);
+    Optional<ItemStackSnapshot> getIngredient(Vector2i pos);
 
     interface Builder extends ResettableBuilder<ShapedRecipe, Builder> {
         /**
@@ -101,7 +101,7 @@ public interface ShapedRecipe extends CraftingRecipe {
          * @param ingredient The ingredient to set, or remove if null
          * @return This builder, for chaining
          */
-        Builder ingredient(int x, int y, @Nullable ItemStack ingredient);
+        Builder ingredient(int x, int y, @Nullable ItemStackSnapshot ingredient);
 
         /**
          * Sets the ingredient required by the recipe in the given position.
@@ -110,27 +110,27 @@ public interface ShapedRecipe extends CraftingRecipe {
          * @param ingredient The ingredient to set, or remove if null
          * @return This builder, for chaining
          */
-        Builder ingredient(Vector2i pos, @Nullable ItemStack ingredient);
+        Builder ingredient(Vector2i pos, @Nullable ItemStackSnapshot ingredient);
 
         /**
          * Sets the ingredients required by the recipe in the given row.
          *
          * @param row The number of the row
-         * @param ingredients A list of ItemStacks to set as ingredients. If one
+         * @param ingredients A list of ItemStackSnapshots to set as ingredients. If one
          *                    of them is null the ingredient in that position is
          *                    not added.
          * @return This builder, for chaining
          */
-        Builder row(int row, ItemStack... ingredients);
+        Builder row(int row, ItemStackSnapshot... ingredients);
 
         /**
-         * Adds a resultant ItemStack for when this ShapedRecipe is correctly
+         * Adds a resultant ItemStackSnapshot for when this ShapedRecipe is correctly
          * crafted.
          *
          * @param result The result
          * @return This builder, for chaining
          */
-        Builder addResult(ItemStack result);
+        Builder addResult(ItemStackSnapshot result);
 
         /**
          * Builds a ShapedRecipe from this builder.
