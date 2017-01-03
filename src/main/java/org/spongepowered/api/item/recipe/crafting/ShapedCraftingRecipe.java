@@ -77,7 +77,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
      * @return The ingredient predicate at this position defined by the aisle
      */
     default Optional<Predicate<ItemStackSnapshot>> getIngredientPredicate(int x, int y) {
-        if(x < 0 || x >= getWidth() || y < 0 || y >= getHeight())
+        if (x < 0 || x >= getWidth() || y < 0 || y >= getHeight())
             return Optional.empty();
 
         char symbol = getAisle().get(y).charAt(x);
@@ -91,12 +91,12 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
         int gapHeight = grid.getRows() - getHeight();
 
         // Shift the aisle along the grid wherever possible
-        for(int offsetX = 0; offsetX <= gapWidth; offsetX++) {
+        for (int offsetX = 0; offsetX <= gapWidth; offsetX++) {
             byShiftingTheAisle:
-            for(int offsetY = 0; offsetY <= gapHeight; offsetY++) {
+            for (int offsetY = 0; offsetY <= gapHeight; offsetY++) {
                 // Test each predicate in the aisle
-                for(int aisleX = 0; aisleX < getWidth(); aisleX++) {
-                    for(int aisleY = 0; aisleY < getHeight(); aisleY++) {
+                for (int aisleX = 0; aisleX < getWidth(); aisleX++) {
+                    for (int aisleY = 0; aisleY < getHeight(); aisleY++) {
                         final int finalAisleX = aisleX;
                         final int finalAisleY = aisleY;
                         int gridX = aisleX + offsetX;
@@ -112,14 +112,14 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
                                         finalAisleX + "; " + finalAisleY + "] is not present. There should be" +
                                         " one for each symbol in the aisle!"));
 
-                        if(!ingredientPredicate.test(itemStack.createSnapshot()))
+                        if (!ingredientPredicate.test(itemStack.createSnapshot()))
                             continue byShiftingTheAisle;
                     }
                 }
 
                 // Make sure the gap is empty
-                for(int gapX = 0; gapX < gapWidth; gapX++) {
-                    for(int gapY = 0; gapY < gapHeight; gapY++) {
+                for (int gapX = 0; gapX < gapWidth; gapX++) {
+                    for (int gapY = 0; gapY < gapHeight; gapY++) {
                         int gridX = gapX + (gapX >= offsetX ? getWidth() : 0);
                         int gridY = gapY + (gapY >= offsetY ? getHeight() : 0);
                         boolean empty = grid.getSlot(gridX, gridY)
@@ -127,7 +127,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
                                 .map(itemStack -> itemStack.getItem() == ItemTypes.NONE)
                                 .orElse(true);
 
-                        if(!empty)
+                        if (!empty)
                             continue byShiftingTheAisle;
                     }
                 }
