@@ -88,6 +88,8 @@ public interface CraftingRecipe extends Recipe {
     Optional<List<ItemStack>> getRemainingItems(GridInventory grid);
 
     /**
+     * The recipe size is used to determine the priority of this recipe compared to other recipes.
+     *
      * @return {@code width * height} for shaped recipes, or the number of ingredients for shapeless recipes
      */
     int getRecipeSize();
