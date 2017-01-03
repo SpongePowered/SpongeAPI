@@ -50,6 +50,7 @@ import java.util.Optional;
  * or you can simply use the {@link ShapelessCraftingRecipe.Builder} or {@link ShapedCraftingRecipe.Builder}.</p>
  */
 public interface CraftingRecipe extends Recipe {
+
     /**
      * Checks if the given {@link GridInventory} fits the required constraints
      * to craft this CraftingRecipe.
@@ -90,4 +91,5 @@ public interface CraftingRecipe extends Recipe {
      * @return {@code width * height} for shaped recipes, or the number of ingredients for shapeless recipes
      */
     int getRecipeSize();
+
 }

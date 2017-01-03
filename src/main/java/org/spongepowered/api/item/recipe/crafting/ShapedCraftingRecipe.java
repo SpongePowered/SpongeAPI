@@ -44,6 +44,7 @@ import javax.annotation.Nullable;
  * A ShapedCraftingRecipe is a CraftingRecipe that has shape and fits into a grid.
  */
 public interface ShapedCraftingRecipe extends CraftingRecipe {
+
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
