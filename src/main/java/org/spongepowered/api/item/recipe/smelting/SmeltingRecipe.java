@@ -34,28 +34,31 @@ import org.spongepowered.api.util.ResettableBuilder;
 import java.util.Optional;
 
 /**
- * A general interface for furnace recipes.
- * You can implement it manually to suit your creative needs,
- * or you can simply use the {@link SmeltingRecipe.Builder}.
+ * A general interface for furnace recipes. You can implement it manually to
+ * suit your creative needs, or you can simply use the
+ * {@link SmeltingRecipe.Builder}.
  */
 public interface SmeltingRecipe extends Recipe {
     /**
-     * Builds a simple furnace recipe.
-     * Note, that you can implement the {@link SmeltingRecipe} manually, too.
+     * Builds a simple furnace recipe. Note, that you can implement the
+     * {@link SmeltingRecipe} manually, too.
      */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
-     * An exemplary {@link ItemStackSnapshot},
-     * which will always make {@link #isValid(ItemStackSnapshot)} return {@code true}.
+     * An exemplary {@link ItemStackSnapshot}, which will always make
+     * {@link #isValid(ItemStackSnapshot)} return {@code true}.
      *
-     * return The {@link ItemStackSnapshot} as explained above
+     * @return The {@link ItemStackSnapshot} as explained above
      */
     ItemStackSnapshot getExemplaryIngredient();
 
     /**
+     * Checks if the given {@link ItemStackSnapshot} fits the required
+     * constraints to craft this {@link SmeltingRecipe}.
+     *
      * @param ingredient The ingredient to check against
      * @return Whether this {@param ingredient} can be used to craft the result
      */
@@ -76,14 +79,15 @@ public interface SmeltingRecipe extends Recipe {
     }
 
     /**
-     * This method is preferred over the {@link #getExemplaryResult()} method,
-     * as it customizes the result further depending on the specified
-     * {@param ingredient} {@link ItemStackSnapshot}.
-     * It is advised to use the output of {@link #getExemplaryResult()},
-     * modify it accordingly, and {@code return} it.
+     * This method should be used instead of the {@link #getExemplaryResult()}
+     * method, as it customizes the result further depending on the specified
+     * {@param ingredient} {@link ItemStackSnapshot}. It is advised to use
+     * the output of {@link #getExemplaryResult()}, modify it accordingly,
+     * and {@code return} it.
      *
      * @param ingredient The {@link ItemStackSnapshot} currently being smelted
-     * @return The result of smelting the {@param ingredient} {@link ItemStack}, if the {@param ingredient} is valid
+     * @return The result of smelting the {@param ingredient} {@link ItemStack},
+     *         if the {@param ingredient} is valid
      */
     default Optional<ItemStack> getResult(ItemStackSnapshot ingredient) {
         Preconditions.checkNotNull(ingredient, "The ingredient must not be null");
@@ -95,8 +99,11 @@ public interface SmeltingRecipe extends Recipe {
     }
 
     /**
+     * Returns the amount of experience released after completing this recipe.
+     *
      * @param ingredient The ingredient being smelted
-     * @return The amount of experience released after completing this recipe, if the {@param ingredient} is valid
+     * @return The amount of experience released after completing this recipe,
+     *         if the {@param ingredient} is valid
      */
     Optional<Double> getExperience(ItemStackSnapshot ingredient);
 
@@ -133,7 +140,8 @@ public interface SmeltingRecipe extends Recipe {
         }
 
         /**
-         * @param experience The amount of experience released when this recipe is completed
+         * @param experience The amount of experience released when this recipe
+         *                   is completed
          * @return This builder, for chaining
          */
         Builder experience(double experience);

@@ -31,6 +31,9 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
  */
 public interface Recipe {
     /**
+     * A general result of this recipe. This result may be customized depending
+     * on the context.
+     *
      * @return The exemplary result of this recipe
      */
     ItemStackSnapshot getExemplaryResult();

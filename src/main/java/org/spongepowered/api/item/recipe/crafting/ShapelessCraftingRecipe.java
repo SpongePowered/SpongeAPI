@@ -39,8 +39,8 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
- * A ShapelessCraftingRecipe is a CraftingRecipe that does not have shape and just has a
- * list of ingredients.
+ * A ShapelessCraftingRecipe is a CraftingRecipe that does not have shape and
+ * just has a list of ingredients.
  */
 public interface ShapelessCraftingRecipe extends CraftingRecipe {
 
@@ -88,7 +88,8 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
 
     interface Builder extends ResettableBuilder<ShapelessCraftingRecipe, Builder> {
         /**
-         * Adds an ingredient predicate to the requirements of this ShapelessCraftingRecipe.
+         * Adds an ingredient predicate to the requirements of this
+         * ShapelessCraftingRecipe.
          *
          * @param ingredient The ingredient predicate
          * @return fluent interface
@@ -96,8 +97,9 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
         Builder addIngredientPredicate(Predicate<ItemStackSnapshot> ingredient);
 
         /**
-         * Adds an ingredient predicate to the requirements of this ShapelessCraftingRecipe.
-         * This mimics the vanilla equality checking behavior.
+         * Adds an ingredient predicate to the requirements of this
+         * ShapelessCraftingRecipe. This mimics the vanilla equality checking
+         * behavior.
          *
          * @param ingredient The ingredient
          * @return fluent interface
@@ -105,8 +107,9 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
         Builder addIngredientPredicate(ItemStackSnapshot ingredient);
 
         /**
-         * Adds an ingredient predicate to the requirements of this ShapelessCraftingRecipe.
-         * This mimics the vanilla equality checking behavior.
+         * Adds an ingredient predicate to the requirements of this
+         * ShapelessCraftingRecipe. This mimics the vanilla equality checking
+         * behavior.
          *
          * @param ingredient The ingredient
          * @return fluent interface

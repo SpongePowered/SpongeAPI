@@ -34,26 +34,23 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * <p>A CraftingRecipe represents some craftable recipe in the game.</p>
+ * A CraftingRecipe represents some craftable recipe in the game.
  *
  * <p>It is essentially a Predicate that checks for if a recipe is valid as well
- * as a function from a crafting matrix to a list of {@link ItemStack}
- * (the crafting result), therefore making it an immutable interface.</p>
+ * as a function from a crafting matrix to a list of {@link ItemStack} (the
+ * crafting result), therefore making it an immutable interface.</p>
  *
- * <p>The passed in ItemGrid is usually a crafting inventory, e.g.
- * a 2x2 or 3x3 crafting matrix.</p>
+ * <p>The passed in ItemGrid is usually a crafting inventory, e.g. a 2x2 or 3x3
+ * crafting matrix.</p>
  *
  * <p>The requirements of a CraftingRecipe can be general, they just have to
  * eventually return a boolean given an itemgrid.</p>
- *
- * <p>You can implement it manually to suit your creative needs,
- * or you can simply use the {@link ShapelessCraftingRecipe.Builder} or {@link ShapedCraftingRecipe.Builder}.</p>
  */
 public interface CraftingRecipe extends Recipe {
 
     /**
      * Checks if the given {@link GridInventory} fits the required constraints
-     * to craft this CraftingRecipe.
+     * to craft this {@link CraftingRecipe}.
      *
      * @param grid The ItemGrid to check for validity
      * @param world The world this recipe would be used in
@@ -62,11 +59,12 @@ public interface CraftingRecipe extends Recipe {
     boolean isValid(GridInventory grid, World world);
 
     /**
-     * This method is preferred over the {@link #getExemplaryResult()} method,
-     * as it customizes the result further depending on the specified
+     * This method is preferred over the {@link #getExemplaryResult()}
+     * method, as it customizes the result further depending on the specified
      * input {@param grid}.
-     * It is advised to use the output of {@link #getExemplaryResult()},
-     * modify it accordingly, and {@code return} it.
+     *
+     * <p>It is advised to use the output of {@link #getExemplaryResult()},
+     * modify it accordingly, and {@code return} it.</p>
      *
      * @param grid The crafting input, typically 3x3 or 2x2
      * @param world The world this recipe would be used in
@@ -76,10 +74,10 @@ public interface CraftingRecipe extends Recipe {
     Optional<ItemStack> getResult(GridInventory grid, World world);
 
     /**
-     * A list of items to be added to the inventory of the player
-     * when they craft the result. For example, if a player
-     * crafts a {@link ItemTypes#CAKE}, the empty buckets are
-     * returned to their inventory.
+     * A list of items to be added to the inventory of the player when they
+     * craft the result. For example, if a player crafts a
+     * {@link ItemTypes#CAKE}, the empty buckets are returned to their
+     * inventory.
      *
      * @param grid The crafting input, typically 3x3 or 2x2
      * @param world The world this recipe would be used in
@@ -91,9 +89,11 @@ public interface CraftingRecipe extends Recipe {
     Optional<List<ItemStack>> getRemainingItems(GridInventory grid, World world);
 
     /**
-     * The recipe size is used to determine the priority of this recipe compared to other recipes.
+     * The recipe size is used to determine the priority of this recipe compared
+     * to other recipes.
      *
-     * @return {@code width * height} for shaped recipes, or the number of ingredients for shapeless recipes
+     * @return {@code width * height} for shaped recipes, or the number of
+     *         ingredients for shapeless recipes
      */
     int getRecipeSize();
 

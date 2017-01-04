@@ -37,7 +37,8 @@ import java.util.function.Predicate;
 import javax.annotation.Nullable;
 
 /**
- * A ShapedCraftingRecipe is a CraftingRecipe that has shape and fits into a grid.
+ * A ShapedCraftingRecipe is a CraftingRecipe that has shape and fits into
+ * a grid.
  */
 public interface ShapedCraftingRecipe extends CraftingRecipe {
 
@@ -53,19 +54,24 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
     List<String> getAisle();
 
     /**
-     * This returns all of the ingredient predicates; if all of these are fulfilled, the recipe can be crafted
+     * This returns all of the ingredient predicates; if all of these are
+     * fulfilled, the recipe can be crafted
      *
      * @return All ingredient predicates
      */
     Map<Character, Predicate<ItemStackSnapshot>> getIngredientPredicates();
 
     /**
-     * @param symbol The symbol paired with the ingredient predicate in the aisle
+     * @param symbol The symbol paired with the ingredient predicate in the
+     *               aisle
      * @return The paired ingredient predicate
      */
     Optional<Predicate<ItemStackSnapshot>> getIngredientPredicate(char symbol);
 
     /**
+     * Returns the ingredient predicate at the specified location in this
+     * recipe.
+     *
      * @param x The x coordinate counted from the left side
      * @param y The y coordinate counted from the top
      * @return The ingredient predicate at this position defined by the aisle
@@ -101,7 +107,8 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
         Builder aisle(String... aisle);
 
         /**
-         * Sets an ingredient predicate based on the aisle pattern for the shaped recipe.
+         * Sets an ingredient predicate based on the aisle pattern for the
+         * shaped recipe.
          *
          * @param symbol The ingredient symbol
          * @param ingredient The ingredient predicate to set, or remove if null
@@ -112,8 +119,8 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
         Builder where(char symbol, @Nullable Predicate<ItemStackSnapshot> ingredient) throws IllegalArgumentException;
 
         /**
-         * Sets an ingredient predicate based on the aisle pattern for the shaped recipe.
-         * This mimics the vanilla checking behavior.
+         * Sets an ingredient predicate based on the aisle pattern for the
+         * shaped recipe. This mimics the vanilla checking behavior.
          *
          * @param symbol The ingredient symbol
          * @param ingredient The ingredient to set, or remove if null
@@ -124,8 +131,8 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
         Builder where(char symbol, @Nullable ItemStackSnapshot ingredient) throws IllegalArgumentException;
 
         /**
-         * Sets an ingredient predicate based on the aisle pattern for the shaped recipe.
-         * This mimics the vanilla equality checking behavior.
+         * Sets an ingredient predicate based on the aisle pattern for the
+         * shaped recipe. This mimics the vanilla equality checking behavior.
          *
          * @param symbol The ingredient symbol
          * @param ingredient The predicate to set, or remove if null
@@ -138,8 +145,8 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
         }
 
         /**
-         * Sets the resultant {@link ItemStackSnapshot} for when this shaped recipe
-         * is correctly crafted.
+         * Sets the resultant {@link ItemStackSnapshot} for when this shaped
+         * recipe is correctly crafted.
          *
          * @param result The resultant snapshot
          * @return The builder
