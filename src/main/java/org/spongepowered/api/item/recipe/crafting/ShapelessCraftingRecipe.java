@@ -24,18 +24,12 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.inventory.Slot;
-import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.util.ResettableBuilder;
-import org.spongepowered.api.world.World;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
@@ -60,31 +54,6 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
      * @return An unmodifiable list of the ingredient predicates
      */
     List<Predicate<ItemStackSnapshot>> getIngredientPredicates();
-
-    @Override
-    default boolean isValid(GridInventory grid, World world) {
-        Preconditions.checkNotNull(grid, "The grid must not be null");
-        Preconditions.checkNotNull(world, "The world must not be null");
-
-        List<Predicate<ItemStackSnapshot>> predicates = Lists.newLinkedList(getIngredientPredicates());
-
-        for(Slot slot : grid.<Slot>slots()) {
-            ItemStackSnapshot itemStack = slot.peek()
-                    .map(ItemStack::createSnapshot)
-                    .orElse(ItemStackSnapshot.NONE);
-
-            Optional<Predicate<ItemStackSnapshot>> foundPredicate = predicates.stream()
-                    .filter(predicate -> predicate.test(itemStack))
-                    .findFirst();
-
-            if(foundPredicate.isPresent())
-                predicates.remove(foundPredicate.get());
-            else
-                return false;
-        }
-
-        return predicates.isEmpty();
-    }
 
     interface Builder extends ResettableBuilder<ShapelessCraftingRecipe, Builder> {
         /**

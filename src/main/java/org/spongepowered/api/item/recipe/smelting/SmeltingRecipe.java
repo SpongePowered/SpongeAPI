@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.recipe.smelting;
 
-import com.google.common.base.Preconditions;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -62,21 +61,7 @@ public interface SmeltingRecipe extends Recipe {
      * @param ingredient The ingredient to check against
      * @return Whether this {@param ingredient} can be used to craft the result
      */
-    default boolean isValid(ItemStackSnapshot ingredient) {
-        Preconditions.checkNotNull(ingredient, "The ingredient must not be null");
-
-        // ItemStackSnapshot#NONE gets replaced at runtime
-        //noinspection ConstantConditions
-        if(ingredient == ItemStackSnapshot.NONE)
-            return false;
-
-        ItemStack generalIngredient = getExemplaryIngredient().createStack();
-        ItemStack ingredientStack = ingredient.createStack();
-
-        generalIngredient.setQuantity(ingredientStack.getQuantity());
-
-        return generalIngredient.equalTo(ingredientStack);
-    }
+    boolean isValid(ItemStackSnapshot ingredient);
 
     /**
      * This method should be used instead of the {@link #getExemplaryResult()}
@@ -89,14 +74,7 @@ public interface SmeltingRecipe extends Recipe {
      * @return The result of smelting the {@param ingredient} {@link ItemStack},
      *         if the {@param ingredient} is valid
      */
-    default Optional<ItemStack> getResult(ItemStackSnapshot ingredient) {
-        Preconditions.checkNotNull(ingredient, "The ingredient must not be null");
-
-        if(!isValid(ingredient))
-            return Optional.empty();
-
-        return Optional.of(getExemplaryResult().createStack());
-    }
+    Optional<ItemStack> getResult(ItemStackSnapshot ingredient);
 
     /**
      * Returns the amount of experience released after completing this recipe.

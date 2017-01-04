@@ -29,8 +29,6 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -45,28 +43,6 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
-
-    /**
-     * This returns an unmodifiable copy of the original aisle.
-     *
-     * @return An unmodifiable copy of the original aisle
-     */
-    List<String> getAisle();
-
-    /**
-     * This returns all of the ingredient predicates; if all of these are
-     * fulfilled, the recipe can be crafted
-     *
-     * @return All ingredient predicates
-     */
-    Map<Character, Predicate<ItemStackSnapshot>> getIngredientPredicates();
-
-    /**
-     * @param symbol The symbol paired with the ingredient predicate in the
-     *               aisle
-     * @return The paired ingredient predicate
-     */
-    Optional<Predicate<ItemStackSnapshot>> getIngredientPredicate(char symbol);
 
     /**
      * Returns the ingredient predicate at the specified location in this
