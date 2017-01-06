@@ -65,6 +65,11 @@ public final class NamedCause {
     public static final String BLOCK_PROTECTED = "BlockProtected";
 
     /**
+     * Used by {@link ChangeBlockEvent.Pre} before a block decays.
+     */
+    public static final String DECAY = "Decay";
+
+    /**
      * Used by any event involving a fake {@link Player}.
      */
     public static final String FAKE_PLAYER = "FakePlayer";
