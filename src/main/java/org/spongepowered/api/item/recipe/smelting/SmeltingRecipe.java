@@ -108,7 +108,7 @@ public interface SmeltingRecipe extends Recipe {
          * @param exp the experience
          * @return This builder, for chaining
          */
-        Builder experience(float exp);
+        Builder experience(double exp);
 
         /**
          * Builds a new {@link SmeltingRecipe} from this builder.

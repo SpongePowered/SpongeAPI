@@ -28,6 +28,8 @@ import com.google.common.collect.ImmutableCollection;
 import org.spongepowered.api.item.recipe.crafting.CraftingRegistry;
 import org.spongepowered.api.item.recipe.smelting.SmeltingRegistry;
 
+import java.util.function.Predicate;
+
 /**
  * Used for {@link SmeltingRegistry} and {@link CraftingRegistry}
  */
@@ -41,12 +43,12 @@ public interface RecipeRegistry<T extends Recipe> {
     void register(T recipe);
 
     /**
-     * Removes the given Recipe from registration in this registry.
+     * Removes Recipes from this Registry using the given Predicate.
      *
-     * @param recipe The Recipe to unregister
-     * @return If it was successful or not
+     * @param predicate The check to remove the Recipe or not
+     * @return If it removed any recipes or not
      */
-    boolean remove(T recipe);
+    boolean remove(Predicate<? super T> predicate);
 
     /**
      * Retrieves all recipes registered in this registry.
