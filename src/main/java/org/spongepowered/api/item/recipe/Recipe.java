@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.item.recipe;
 
+import com.google.common.collect.ImmutableCollection;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-
-import java.util.Collection;
 
 /**
  * <p>A Recipe represents some craftable recipe in the game.</p>
@@ -48,7 +47,7 @@ public interface Recipe {
      *
      * @return the results of this {@link Recipe}
      */
-    Collection<ItemStackSnapshot> getResults();
+    ImmutableCollection<ItemStackSnapshot> getResults();
 
     /**
      * Gets the {@link RecipeRegistry} that

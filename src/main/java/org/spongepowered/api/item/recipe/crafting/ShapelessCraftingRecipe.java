@@ -24,20 +24,23 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
+import com.google.common.collect.ImmutableCollection;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 /**
- * A ShapelessRecipe is a Recipe that does not have shape and just has a
+ * A ShapelessCraftingRecipe is a Recipe that does not have shape and just has a
  * list of ingredients.
  */
-public interface ShapelessRecipe extends CraftingRecipe {
+public interface ShapelessCraftingRecipe extends CraftingRecipe {
 
     /**
-     * Creates a new {@link Builder} to build a {@link ShapelessRecipe}.
+     * Creates a new {@link Builder} to build a {@link ShapelessCraftingRecipe}.
      *
      * @return The new builder
      */
@@ -46,35 +49,63 @@ public interface ShapelessRecipe extends CraftingRecipe {
     }
 
     /**
-     * Gets the ingredients for this ShapelessRecipe.
+     * Gets the ingredients for this shapeless recipe.
      *
      * @return The ingredients
      */
-    Collection<ItemStackSnapshot> getIngredients();
+    ImmutableCollection<ItemStackSnapshot> getIngredients();
 
-    interface Builder extends ResettableBuilder<ShapelessRecipe, Builder> {
+    /**
+     * Represents a builder class to create {@link ShapelessCraftingRecipe}s.
+     *
+     * @see ShapelessCraftingRecipe
+     */
+    interface Builder extends ResettableBuilder<ShapelessCraftingRecipe, Builder> {
+
         /**
-         * Adds an ingredient to the requirements of this ShapelessRecipe.
+         * Sets the ingredients of this shapeless recipe.
          *
-         * @param ingredient The ingredient
-         * @return This builder, for chaining
+         * @param ingredients The ingredients
+         * @return The builder
          */
-        Builder addIngredient(ItemStackSnapshot ingredient);
+        default Builder ingredients(ItemStack... ingredients) {
+            return ingredients(Arrays.asList(ingredients));
+        }
 
         /**
-         * Adds a resultant ItemStackSnapshot for when this ShapelessRecipe is
+         * Sets the ingredients of this shapeless recipe.
+         *
+         * @param ingredients The ingredients
+         * @return The builder
+         */
+        Builder ingredients(Collection<ItemStack> ingredients);
+
+        /**
+         * Sets the resultant ItemStackSnapshot for when this shapeless recipe is
          * correctly crafted.
          *
-         * @param result The result
-         * @return This builder, for chaining
+         * @param results The resultant stacks
+         * @return The builder
          */
-        Builder addResult(ItemStackSnapshot result);
+        default Builder results(ItemStack... results) {
+            return results(Arrays.asList(results));
+        }
 
         /**
-         * Builds a new ShapelessRecipe from this builder.
+         * Sets the resultant {@link ItemStackSnapshot}s for when this shapeless recipe
+         * is correctly crafted.
          *
-         * @return A new ShapelessRecipe
+         * @param result The resultant stacks
+         * @return The builder
          */
-        ShapelessRecipe build();
+        Builder results(Collection<ItemStack> result);
+
+        /**
+         * Builds a new {@link ShapelessCraftingRecipe} from this builder.
+         *
+         * @return A new shapeless recipe
+         */
+        ShapelessCraftingRecipe build();
     }
+
 }

@@ -24,119 +24,122 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
-import com.flowpowered.math.vector.Vector2i;
+import com.google.common.collect.ImmutableCollection;
+import com.google.common.collect.ImmutableMap;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
 
 /**
- * A ShapedRecipe is a Recipe that has shape and fits into a grid.
+ * A ShapedCraftingRecipe is a Recipe that has shape and fits into a grid.
  */
-public interface ShapedRecipe extends CraftingRecipe {
+public interface ShapedCraftingRecipe extends CraftingRecipe {
 
     /**
-     * Gets the width of the grid this ShapedRecipe fits into.
+     * Creates a new {@link Builder} to build a {@link ShapedCraftingRecipe}.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
+
+    /**
+     * Gets the shape of the recipe.
+     *
+     * <p>This returns an unmodifiable copy of the original aisle.</p>
+     *
+     * @return The aisle
+     */
+    ImmutableCollection<String> getShape();
+
+    /**
+     * Gets the ingredients.
+     *
+     * @return The ingredients
+     */
+    ImmutableMap<Character, ItemStackSnapshot> getIngredients();
+
+    /**
+     * Gets the ingredient represented by the given symbol.
+     *
+     * @param symbol The ingredient's symbol
+     * @return The ingredient if present, otherwise {@link Optional#empty()}
+     */
+    Optional<ItemStackSnapshot> getIngredient(char symbol);
+
+    /**
+     * Gets the width of the grid this ShapedCraftingRecipe fits into.
      *
      * @return The width of the grid
      */
     int getWidth();
 
     /**
-     * Gets the height of the grid this ShapedRecipe fits into.
+     * Gets the height of the grid this ShapedCraftingRecipe fits into.
      *
      * @return The height of the grid
      */
     int getHeight();
 
     /**
-     * Gets the ingredient required in the given coordinates.
+     * Represents a builder class to create {@link ShapedCraftingRecipe}s.
      *
-     * @param x The x coordinate
-     * @param y The y coordinate
-     * @return The ingredient
+     * @see ShapedCraftingRecipe
      */
-    Optional<ItemStackSnapshot> getIngredient(int x, int y);
+    interface Builder extends ResettableBuilder<ShapedCraftingRecipe, Builder> {
 
-    /**
-     * Gets the ingredient required in the given position.
-     *
-     * @param pos The position
-     * @return The ingredient
-     */
-    Optional<ItemStackSnapshot> getIngredient(Vector2i pos);
-
-    interface Builder extends ResettableBuilder<ShapedRecipe, Builder> {
         /**
-         * Sets the width of the grid for the ShapedRecipe.
+         * Sets the aisle pattern for the shaped recipe.
          *
-         * @param width The width of the grid
-         * @return This builder, for chaining
+         * @param aisle A string array of ingredients
+         * @return The builder
          */
-        Builder width(int width);
+        Builder shape(String... aisle);
 
         /**
-         * Sets the height of the grid for the ShapedRecipe.
+         * Sets an ingredient based on the aisle pattern for the shaped recipe.
          *
-         * @param height The height of the grid
-         * @return This builder, for chaining
-         */
-        Builder height(int height);
-
-        /**
-         * Sets the dimensions of the grid for the ShapedRecipe in one method call.
-         *
-         * @param dimensions The dimensions of the grid
-         * @return This builder, for chaining
-         */
-        Builder dimensions(Vector2i dimensions);
-
-        /**
-         * Sets the ingredient required by the recipe in the given coordinates.
-         *
-         * @param x The x coordinate
-         * @param y The y coordinate
+         * @param symbol The ingredient symbol
          * @param ingredient The ingredient to set, or remove if null
-         * @return This builder, for chaining
+         * @return The builder
+         * @throws IllegalArgumentException If the aisle does not contain
+         *     the specified character symbol
          */
-        Builder ingredient(int x, int y, @Nullable ItemStackSnapshot ingredient);
+        Builder where(char symbol, @Nullable ItemStack ingredient) throws IllegalArgumentException;
 
         /**
-         * Sets the ingredient required by the recipe in the given position.
+         * Sets the resultant {@link ItemStackSnapshot}s for when this shaped recipe
+         * is correctly crafted.
          *
-         * @param pos The position
-         * @param ingredient The ingredient to set, or remove if null
-         * @return This builder, for chaining
+         * @param result The resultant stacks
+         * @return The builder
          */
-        Builder ingredient(Vector2i pos, @Nullable ItemStackSnapshot ingredient);
+        default Builder results(ItemStack... result) {
+            return results(Arrays.asList(result));
+        }
 
         /**
-         * Sets the ingredients required by the recipe in the given row.
+         * Sets the resultant {@link ItemStackSnapshot}s for when this shaped recipe
+         * is correctly crafted.
          *
-         * @param row The number of the row
-         * @param ingredients A list of ItemStackSnapshots to set as ingredients. If one
-         *                    of them is null the ingredient in that position is
-         *                    not added.
-         * @return This builder, for chaining
+         * @param result The resultant stacks
+         * @return The builder
          */
-        Builder row(int row, ItemStackSnapshot... ingredients);
+        Builder results(Iterable<ItemStack> result);
 
         /**
-         * Adds a resultant ItemStackSnapshot for when this ShapedRecipe is correctly
-         * crafted.
+         * Builds a ShapedCraftingRecipe from this builder.
          *
-         * @param result The result
-         * @return This builder, for chaining
+         * @return A new {@link ShapedCraftingRecipe}
          */
-        Builder addResult(ItemStackSnapshot result);
-
-        /**
-         * Builds a ShapedRecipe from this builder.
-         *
-         * @return A new ShapedRecipe
-         */
-        ShapedRecipe build();
+        ShapedCraftingRecipe build();
     }
+
 }

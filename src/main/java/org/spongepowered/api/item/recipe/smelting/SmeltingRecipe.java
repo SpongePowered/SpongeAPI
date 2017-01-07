@@ -24,14 +24,14 @@
  */
 package org.spongepowered.api.item.recipe.smelting;
 
+import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.util.ResettableBuilder;
-
-import java.util.Collection;
 
 /**
  * This represents a {@link Recipe} to be used in a Furnace.
@@ -70,7 +70,7 @@ public interface SmeltingRecipe extends Recipe {
      */
     ItemStackSnapshot getResult();
 
-    default Collection<ItemStackSnapshot> getResults() {
+    default ImmutableCollection<ItemStackSnapshot> getResults() {
         return ImmutableList.of(getResult());
     }
 
@@ -82,7 +82,7 @@ public interface SmeltingRecipe extends Recipe {
          * @param ingredient The ingredient
          * @return This builder, for chaining
          */
-        Builder ingredient(ItemStackSnapshot ingredient);
+        Builder ingredient(ItemStack ingredient);
 
         /**
          * Sets the ingredient for the requirements of this {@link SmeltingRecipe}.
@@ -94,13 +94,13 @@ public interface SmeltingRecipe extends Recipe {
         Builder ingredient(ItemType type);
 
         /**
-         * Sets the resultant ItemStackSnapshot for when this {@link SmeltingRecipe} is
+         * Sets the resultant ItemStack for when this {@link SmeltingRecipe} is
          * correctly crafted.
          *
          * @param result The result
          * @return This builder, for chaining
          */
-        Builder result(ItemStackSnapshot result);
+        Builder result(ItemStack result);
 
         /**
          * Sets the experience given when this {@link SmeltingRecipe} is crafted.

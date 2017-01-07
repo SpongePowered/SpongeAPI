@@ -24,25 +24,17 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
+import com.google.common.collect.ImmutableCollection;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 
-import java.util.Collection;
 import java.util.Optional;
 
 /**
  * A CraftingRegistry holds all registered crafting recipes for a given game.
  */
 public interface CraftingRegistry extends RecipeRegistry<CraftingRecipe> {
-    /**
-     * Checks if the given {@link GridInventory} fits the required constraints
-     * to craft this Recipe.
-     *
-     * @param grid The ItemGrid to check for validity
-     * @return True if the given input matches this recipe's requirements
-     */
-    boolean isValid(GridInventory grid);
 
     /**
      * Returns the results for running this CraftingRegistry over an {@link GridInventory}
@@ -51,5 +43,6 @@ public interface CraftingRegistry extends RecipeRegistry<CraftingRecipe> {
      * @return A list of ItemStacks or {@link Optional#empty()} if the given
      *          {@link GridInventory} does not match any recipes.
      */
-    Optional<Collection<ItemStackSnapshot>> getResults(GridInventory grid);
+    Optional<ImmutableCollection<ItemStackSnapshot>> getResults(GridInventory grid);
+
 }

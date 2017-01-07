@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.item.recipe;
 
+import com.google.common.collect.ImmutableCollection;
 import org.spongepowered.api.item.recipe.crafting.CraftingRegistry;
 import org.spongepowered.api.item.recipe.smelting.SmeltingRegistry;
-
-import java.util.Collection;
 
 /**
  * Used for {@link SmeltingRegistry} and {@link CraftingRegistry}
@@ -45,7 +44,7 @@ public interface RecipeRegistry<T extends Recipe> {
      * Removes the given Recipe from registration in this registry.
      *
      * @param recipe The Recipe to unregister
-     * @return if it was successful or not
+     * @return If it was successful or not
      */
     boolean remove(T recipe);
 
@@ -54,6 +53,6 @@ public interface RecipeRegistry<T extends Recipe> {
      *
      * @return All registered recipes
      */
-    Collection<T> getRecipes();
+    ImmutableCollection<T> getRecipes();
 
 }
