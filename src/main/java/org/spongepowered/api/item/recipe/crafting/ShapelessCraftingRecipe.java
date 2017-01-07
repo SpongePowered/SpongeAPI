@@ -25,13 +25,16 @@
 package org.spongepowered.api.item.recipe.crafting;
 
 import com.google.common.collect.ImmutableCollection;
+import com.google.common.collect.Lists;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 /**
  * A ShapelessCraftingRecipe is a Recipe that does not have shape and just has a
@@ -64,16 +67,30 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
 
         /**
          * Sets the ingredients of this shapeless recipe.
+         * (Minecraft codes it so that it only takes one item of a type)
+         *
+         * @param ingredients The ingredients
+         * @return The builder
+         */
+        default Builder ingredients(ItemType... ingredients) {
+            return ingredients(Lists.newArrayList(ingredients).stream().map(
+                    type -> type.getTemplate().createStack()).collect(Collectors.toList()));
+        }
+
+        /**
+         * Sets the ingredients of this shapeless recipe.
+         * (Minecraft codes it so that it only takes one item of a type)
          *
          * @param ingredients The ingredients
          * @return The builder
          */
         default Builder ingredients(ItemStack... ingredients) {
-            return ingredients(Arrays.asList(ingredients));
+            return ingredients(ingredients);
         }
 
         /**
          * Sets the ingredients of this shapeless recipe.
+         * (Minecraft codes it so that it only takes one item of a type)
          *
          * @param ingredients The ingredients
          * @return The builder

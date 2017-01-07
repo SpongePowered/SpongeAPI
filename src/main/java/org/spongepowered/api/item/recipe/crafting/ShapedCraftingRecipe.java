@@ -27,6 +27,7 @@ package org.spongepowered.api.item.recipe.crafting;
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -96,7 +97,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
     interface Builder extends ResettableBuilder<ShapedCraftingRecipe, Builder> {
 
         /**
-         * Sets the aisle pattern for the shaped recipe.
+         * Sets the pattern for the shaped recipe.
          *
          * @param aisle A string array of ingredients
          * @return The builder
@@ -104,12 +105,27 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
         Builder shape(String... aisle);
 
         /**
-         * Sets an ingredient based on the aisle pattern for the shaped recipe.
+         * Sets an ingredient based on the pattern for the shaped recipe.
+         * (Minecraft codes it so that it only takes one item)
          *
          * @param symbol The ingredient symbol
          * @param ingredient The ingredient to set, or remove if null
          * @return The builder
-         * @throws IllegalArgumentException If the aisle does not contain
+         * @throws IllegalArgumentException If the shape does not contain
+         *     the specified character symbol
+         */
+        default Builder where(char symbol, ItemType ingredient) throws IllegalArgumentException {
+            return where(symbol, ingredient.getTemplate().createStack());
+        }
+
+        /**
+         * Sets an ingredient based on the pattern for the shaped recipe.
+         * (Minecraft codes it so that it only takes one item)
+         *
+         * @param symbol The ingredient symbol
+         * @param ingredient The ingredient to set, or remove if null
+         * @return The builder
+         * @throws IllegalArgumentException If the shape does not contain
          *     the specified character symbol
          */
         Builder where(char symbol, @Nullable ItemStack ingredient) throws IllegalArgumentException;
