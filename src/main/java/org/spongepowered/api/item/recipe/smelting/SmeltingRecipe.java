@@ -30,6 +30,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import javax.annotation.Nullable;
 import java.util.Optional;
 
 /**
@@ -96,7 +97,7 @@ public interface SmeltingRecipe extends Recipe {
          * @param result The output of this recipe
          * @return This builder, for chaining
          */
-        Builder result(ItemStackSnapshot result);
+        Builder result(@Nullable ItemStackSnapshot result);
 
         /**
          * Changes the result and returns this builder. The result is the
@@ -105,8 +106,8 @@ public interface SmeltingRecipe extends Recipe {
          * @param result The output of this recipe
          * @return This builder, for chaining
          */
-        default Builder result(ItemStack result) {
-            return ingredient(result.createSnapshot());
+        default Builder result(@Nullable ItemStack result) {
+            return result(result != null ? result.createSnapshot() : null);
         }
 
         /**
@@ -117,7 +118,7 @@ public interface SmeltingRecipe extends Recipe {
          * @param ingredient The required ingredient
          * @return This builder, for chaining
          */
-        Builder ingredient(ItemStackSnapshot ingredient);
+        Builder ingredient(@Nullable ItemStackSnapshot ingredient);
 
         /**
          * Changes the ingredient and returns this builder. The ingredient is
@@ -127,8 +128,8 @@ public interface SmeltingRecipe extends Recipe {
          * @param ingredient The required ingredient
          * @return This builder, for chaining
          */
-        default Builder ingredient(ItemStack ingredient) {
-            return ingredient(ingredient.createSnapshot());
+        default Builder ingredient(@Nullable ItemStack ingredient) {
+            return ingredient(ingredient != null ? ingredient.createSnapshot() : null);
         }
 
         /**
@@ -140,7 +141,7 @@ public interface SmeltingRecipe extends Recipe {
          *                   is completed
          * @return This builder, for chaining
          */
-        Builder experience(double experience);
+        Builder experience(@Nullable Double experience);
 
         /**
          * Builds the recipe and returns it.

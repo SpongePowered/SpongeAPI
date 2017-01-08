@@ -29,6 +29,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -58,33 +59,33 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
     interface Builder extends ResettableBuilder<ShapelessCraftingRecipe, Builder> {
         /**
          * Adds an ingredient predicate to the requirements of this
-         * ShapelessCraftingRecipe.
+         * {@link ShapelessCraftingRecipe}.
          *
          * @param ingredient The ingredient predicate
          * @return This builder, for chaining
          */
-        Builder addIngredientPredicate(Predicate<ItemStackSnapshot> ingredient);
+        Builder addIngredientPredicate(@Nullable Predicate<ItemStackSnapshot> ingredient);
 
         /**
          * Adds an ingredient predicate to the requirements of this
-         * ShapelessCraftingRecipe. This mimics the vanilla equality checking
-         * behavior.
+         * {@link ShapelessCraftingRecipe}. This mimics the vanilla equality
+         * checking behavior.
          *
          * @param ingredient The ingredient
          * @return This builder, for chaining
          */
-        Builder addIngredientPredicate(ItemStackSnapshot ingredient);
+        Builder addIngredientPredicate(@Nullable ItemStackSnapshot ingredient);
 
         /**
          * Adds an ingredient predicate to the requirements of this
-         * ShapelessCraftingRecipe. This mimics the vanilla equality checking
-         * behavior.
+         * {@link ShapelessCraftingRecipe}. This mimics the vanilla equality
+         * checking behavior.
          *
          * @param ingredient The ingredient
          * @return This builder, for chaining
          */
-        default Builder addIngredientPredicate(ItemStack ingredient) {
-            return addIngredientPredicate(ingredient.createSnapshot());
+        default Builder addIngredientPredicate(@Nullable ItemStack ingredient) {
+            return addIngredientPredicate(ingredient != null ? ingredient.createSnapshot() : null);
         }
 
         /**
@@ -94,7 +95,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @param result The result
          * @return This builder, for chaining
          */
-        Builder result(ItemStackSnapshot result);
+        Builder result(@Nullable ItemStackSnapshot result);
 
         /**
          * Changes the result and returns this builder. The result is the
@@ -103,8 +104,8 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @param result The result
          * @return This builder, for chaining
          */
-        default Builder result(ItemStack result) {
-            return result(result.createSnapshot());
+        default Builder result(@Nullable ItemStack result) {
+            return result(result != null ? result.createSnapshot() : null);
         }
 
         /**

@@ -79,7 +79,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          * @param aisle A string array of ingredients
          * @return The builder
          */
-        Builder aisle(String... aisle);
+        Builder aisle(@Nullable String... aisle);
 
         /**
          * Sets an ingredient predicate based on the aisle pattern for the
@@ -126,7 +126,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          * @param result The resultant snapshot
          * @return The builder
          */
-        Builder result(ItemStackSnapshot result);
+        Builder result(@Nullable ItemStackSnapshot result);
 
         /**
          * Sets the resultant {@link ItemStack} for when this shaped recipe
@@ -135,8 +135,8 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          * @param result The resultant stack
          * @return The builder
          */
-        default Builder result(ItemStack result) {
-            return result(result.createSnapshot());
+        default Builder result(@Nullable ItemStack result) {
+            return result(result != null ? result.createSnapshot() : null);
         }
 
         /**
