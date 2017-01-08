@@ -61,7 +61,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * ShapelessCraftingRecipe.
          *
          * @param ingredient The ingredient predicate
-         * @return fluent interface
+         * @return This builder, for chaining
          */
         Builder addIngredientPredicate(Predicate<ItemStackSnapshot> ingredient);
 
@@ -71,7 +71,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * behavior.
          *
          * @param ingredient The ingredient
-         * @return fluent interface
+         * @return This builder, for chaining
          */
         Builder addIngredientPredicate(ItemStackSnapshot ingredient);
 
@@ -81,22 +81,36 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * behavior.
          *
          * @param ingredient The ingredient
-         * @return fluent interface
+         * @return This builder, for chaining
          */
         default Builder addIngredientPredicate(ItemStack ingredient) {
             return addIngredientPredicate(ingredient.createSnapshot());
         }
 
         /**
+         * Changes the result and returns this builder. The result is the
+         * {@link ItemStack} created when the recipe is fulfilled.
+         *
          * @param result The result
-         * @return fluent interface
+         * @return This builder, for chaining
          */
-        Builder result(ItemStack result);
+        Builder result(ItemStackSnapshot result);
 
         /**
-         * Builds a new ShapelessCraftingRecipe from this builder.
+         * Changes the result and returns this builder. The result is the
+         * {@link ItemStack} created when the recipe is fulfilled.
          *
-         * @return A new ShapelessCraftingRecipe
+         * @param result The result
+         * @return This builder, for chaining
+         */
+        default Builder result(ItemStack result) {
+            return result(result.createSnapshot());
+        }
+
+        /**
+         * Builds a new {@link ShapelessCraftingRecipe} from this builder.
+         *
+         * @return A new {@link ShapelessCraftingRecipe}
          */
         ShapelessCraftingRecipe build();
     }

@@ -90,12 +90,18 @@ public interface SmeltingRecipe extends Recipe {
      */
     interface Builder extends ResettableBuilder<SmeltingRecipe, Builder> {
         /**
+         * Changes the result and returns this builder. The result is the
+         * {@link ItemStack} created when the recipe is fulfilled.
+         *
          * @param result The output of this recipe
          * @return This builder, for chaining
          */
         Builder result(ItemStackSnapshot result);
 
         /**
+         * Changes the result and returns this builder. The result is the
+         * {@link ItemStack} created when the recipe is fulfilled.
+         *
          * @param result The output of this recipe
          * @return This builder, for chaining
          */
@@ -104,12 +110,20 @@ public interface SmeltingRecipe extends Recipe {
         }
 
         /**
+         * Changes the ingredient and returns this builder. The ingredient is
+         * the {@link ItemStack} required in order for the recipe to be
+         * fulfilled.
+         *
          * @param ingredient The required ingredient
          * @return This builder, for chaining
          */
         Builder ingredient(ItemStackSnapshot ingredient);
 
         /**
+         * Changes the ingredient and returns this builder. The ingredient is
+         * the {@link ItemStack} required in order for the recipe to be
+         * fulfilled.
+         *
          * @param ingredient The required ingredient
          * @return This builder, for chaining
          */
@@ -118,6 +132,10 @@ public interface SmeltingRecipe extends Recipe {
         }
 
         /**
+         * Changes the experience and returns this builder. It is the
+         * required amount of experience the user must possess in order to be
+         * able to fulfill the recipe.
+         *
          * @param experience The amount of experience released when this recipe
          *                   is completed
          * @return This builder, for chaining
@@ -125,6 +143,8 @@ public interface SmeltingRecipe extends Recipe {
         Builder experience(double experience);
 
         /**
+         * Builds the recipe and returns it.
+         *
          * @return The built recipe
          */
         SmeltingRecipe build();
