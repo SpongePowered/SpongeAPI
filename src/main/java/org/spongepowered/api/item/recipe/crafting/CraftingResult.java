@@ -25,14 +25,14 @@
 package org.spongepowered.api.item.recipe.crafting;
 
 import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 
 import java.util.List;
 import java.util.Optional;
 
 /**
- * Contains specific {@link ItemStack}s created as the result of
+ * Contains specific {@link ItemStackSnapshot}s created as the result of
  * {@link CraftingRecipe}s under specific conditions.
  */
 public interface CraftingResult {
@@ -46,10 +46,10 @@ public interface CraftingResult {
      * {@link CraftingRecipe#getExemplaryResult()}, modify it accordingly,
      * and {@code return} it.</p>
      *
-     * @return An {@link ItemStack} or {@link Optional#empty()} if the given
+     * @return An {@link ItemStackSnapshot} or {@link Optional#empty()} if the given
      *         {@link GridInventory} does not match this recipe's requirements.
      */
-    ItemStack getMainItem();
+    ItemStackSnapshot getMainItem();
 
     /**
      * A list of items to be added to the inventory of the player when they
@@ -62,6 +62,6 @@ public interface CraftingResult {
      *         or {@link Optional#empty()} if the given
      *         {@link GridInventory} does not match this recipe's requirements.
      */
-    List<ItemStack> getRemainingItems();
+    List<ItemStackSnapshot> getRemainingItems();
 
 }
