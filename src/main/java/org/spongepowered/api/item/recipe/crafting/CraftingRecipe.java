@@ -97,6 +97,6 @@ public interface CraftingRecipe extends Recipe {
      * @return {@code width * height} for shaped recipes, or the number of
      *         ingredients for shapeless recipes
      */
-    int getRecipeSize();
+    int getSize();
 
 }

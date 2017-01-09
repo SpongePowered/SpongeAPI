@@ -29,9 +29,10 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.function.Predicate;
+
+import javax.annotation.Nullable;
 
 /**
  * A ShapedCraftingRecipe is a CraftingRecipe that has shape and fits into
@@ -68,7 +69,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
     int getHeight();
 
     @Override
-    default int getRecipeSize() {
+    default int getSize() {
         return getWidth() * getHeight();
     }
 
