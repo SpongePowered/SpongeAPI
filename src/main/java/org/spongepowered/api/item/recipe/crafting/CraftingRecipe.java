@@ -32,7 +32,6 @@ import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.world.World;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * A CraftingRecipe represents some craftable recipe in the game.
@@ -60,37 +59,36 @@ public interface CraftingRecipe extends Recipe {
     boolean isValid(GridInventory grid, World world);
 
     /**
-     * This method is preferred over the
+     * This method should only be called if
+     * {@link #isValid(GridInventory, World)} returns {@code true}.
+     *
+     * <p>This method is preferred over the
      * {@link CraftingRecipe#getExemplaryResult()} method, as it customizes
-     * the result further depending on the context.
+     * the result further depending on the context.</p>
      *
      * <p>It is advised to use the output of
      * {@link CraftingRecipe#getExemplaryResult()}, modify it accordingly,
      * and {@code return} it.</p>
      *
      * @param grid The crafting input, typically 3x3 or 2x2
-     * @param world The world this recipe would be used in
-     * @return An {@link ItemStackSnapshot} or {@link Optional#empty()} if the
-     *         context does not match this recipe's requirements according to
-     *         {@link #isValid(GridInventory, World)}.
+     * @return An {@link ItemStackSnapshot}
      */
-    Optional<ItemStackSnapshot> getResult(GridInventory grid, World world);
+    ItemStackSnapshot getResult(GridInventory grid);
 
     /**
-     * A list of items to be added to the inventory of the player when they
+     * This method should only be called if
+     * {@link #isValid(GridInventory, World)} returns {@code true}.
+     *
+     * <p>A list of items to be added to the inventory of the player when they
      * craft the result. For example, if a player crafts a
      * {@link ItemTypes#CAKE}, the empty buckets are returned to their
-     * inventory.
+     * inventory.</p>
      *
      * @param grid The crafting input, typically 3x3 or 2x2
-     * @param world The world this recipe would be used in
      * @return The list of items to be added to the inventory of the player
-     *         when the recipe has been fulfilled (possibly empty),
-     *         or {@link Optional#empty()} if the context does not match this
-     *         recipe's requirements according to
-     *         {@link #isValid(GridInventory, World)}.
+     *         when the recipe has been fulfilled (possibly empty)
      */
-    Optional<List<ItemStackSnapshot>> getRemainingItems(GridInventory grid, World world);
+    List<ItemStackSnapshot> getRemainingItems(GridInventory grid);
 
     /**
      * The recipe size is used to determine the priority of this recipe compared
