@@ -34,9 +34,8 @@ import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.merchant.TradeOfferGenerator;
 import org.spongepowered.api.item.merchant.VillagerRegistry;
-import org.spongepowered.api.item.recipe.RecipeRegistry;
-import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
-import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
+import org.spongepowered.api.item.recipe.crafting.CraftingRecipeRegistry;
+import org.spongepowered.api.item.recipe.smelting.SmeltingRecipeRegistry;
 import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
@@ -298,14 +297,14 @@ public interface GameRegistry {
      *
      * @return The crafting recipe registry
      */
-    RecipeRegistry<CraftingRecipe> getCraftingRecipeRegistry();
+    CraftingRecipeRegistry getCraftingRecipeRegistry();
 
     /**
      * Retrieves the smelting RecipeRegistry for this GameRegistry.
      *
      * @return The smelting recipe registry
      */
-    RecipeRegistry<SmeltingRecipe> getSmeltingRecipeRegistry();
+    SmeltingRecipeRegistry getSmeltingRecipeRegistry();
 
     /**
      * Gets a {@link ResourcePack} that's already been created by its ID.
