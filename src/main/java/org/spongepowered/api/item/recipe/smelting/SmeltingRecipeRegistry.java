@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.item.recipe.smelting;
 
-public interface SmeltingRecipeRegistry {
+import org.spongepowered.api.item.recipe.RecipeRegistry;
+
+public interface SmeltingRecipeRegistry extends RecipeRegistry<SmeltingRecipe> {
 
 }
