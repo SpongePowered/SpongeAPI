@@ -84,10 +84,6 @@ import javax.annotation.Nullable;
  */
 public abstract class Text implements TextRepresentable, DataSerializable, Comparable<Text> {
 
-    static {
-        TypeSerializers.getDefaultSerializers().registerType(TypeToken.of(Text.class), new TextConfigSerializer());
-    }
-
     /**
      * The empty, unformatted {@link Text} instance.
      */
