@@ -30,14 +30,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.reflect.TypeToken;
 import ninja.leaping.configurate.objectmapping.Setting;
 import ninja.leaping.configurate.objectmapping.serialize.ConfigSerializable;
-import ninja.leaping.configurate.objectmapping.serialize.TypeSerializers;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.text.format.TextStyle;
-import org.spongepowered.api.text.serializer.TextTemplateConfigSerializer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -55,10 +52,6 @@ import javax.annotation.Nullable;
  * order that they are specified in {@link #of(Object...)}.
  */
 public final class TextTemplate implements TextRepresentable, Iterable<Object> {
-
-    static {
-        TypeSerializers.getDefaultSerializers().registerType(TypeToken.of(TextTemplate.class), new TextTemplateConfigSerializer());
-    }
 
     /**
      * Default "open" String for how arguments are contained within the template.

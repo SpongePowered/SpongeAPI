@@ -28,14 +28,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import com.google.common.reflect.TypeToken;
-import ninja.leaping.configurate.objectmapping.serialize.TypeSerializers;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.serializer.BookViewDataBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.ArrayList;
@@ -51,10 +48,6 @@ import java.util.stream.Collectors;
  * as it is currently impossible to tell the client to open an unsigned book.
  */
 public final class BookView implements DataSerializable {
-
-    static {
-        TypeSerializers.getDefaultSerializers().registerType(TypeToken.of(BookView.class), new BookViewDataBuilder());
-    }
 
     final Text title;
     final Text author;
