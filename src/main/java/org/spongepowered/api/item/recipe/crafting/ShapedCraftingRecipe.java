@@ -69,6 +69,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
     int getHeight();
 
     interface Builder extends ResettableBuilder<ShapedCraftingRecipe, Builder> {
+
         /**
          * Sets the aisle pattern for the shaped recipe.
          *
@@ -99,7 +100,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          * @throws IllegalArgumentException If the aisle does not contain
          *     the specified character symbol
          */
-        Builder where(char symbol, @Nullable ItemStackSnapshot ingredient) throws IllegalArgumentException;
+        Builder where(char symbol, ItemStackSnapshot ingredient) throws IllegalArgumentException;
 
         /**
          * Sets an ingredient predicate based on the aisle pattern for the
@@ -111,8 +112,9 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          * @throws IllegalArgumentException If the aisle does not contain
          *     the specified character symbol
          */
+        @SuppressWarnings("ConstantConditions")
         default Builder where(char symbol, @Nullable ItemStack ingredient) throws IllegalArgumentException {
-            return where(symbol, ingredient != null ? ingredient.createSnapshot() : null);
+            return where(symbol, ingredient != null ? ingredient.createSnapshot() : ItemStackSnapshot.NONE);
         }
 
         /**
@@ -122,7 +124,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          * @param result The resultant snapshot
          * @return The builder
          */
-        Builder result(@Nullable ItemStackSnapshot result);
+        Builder result(ItemStackSnapshot result);
 
         /**
          * Sets the resultant {@link ItemStack} for when this shaped recipe
@@ -131,8 +133,9 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          * @param result The resultant stack
          * @return The builder
          */
+        @SuppressWarnings("ConstantConditions")
         default Builder result(@Nullable ItemStack result) {
-            return result(result != null ? result.createSnapshot() : null);
+            return result(result != null ? result.createSnapshot() : ItemStackSnapshot.NONE);
         }
 
         /**
@@ -141,5 +144,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          * @return A new {@link ShapedCraftingRecipe}
          */
         ShapedCraftingRecipe build();
+
     }
+
 }

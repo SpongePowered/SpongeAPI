@@ -29,9 +29,10 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Predicate;
+
+import javax.annotation.Nullable;
 
 /**
  * A ShapelessCraftingRecipe is a CraftingRecipe that does not have shape and
@@ -48,7 +49,6 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
-
     /**
      * Gets the ingredient predicates for this ShapelessCraftingRecipe.
      *
@@ -57,6 +57,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
     List<Predicate<ItemStackSnapshot>> getIngredientPredicates();
 
     interface Builder extends ResettableBuilder<ShapelessCraftingRecipe, Builder> {
+
         /**
          * Adds an ingredient predicate to the requirements of this
          * {@link ShapelessCraftingRecipe}.
@@ -114,5 +115,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @return A new {@link ShapelessCraftingRecipe}
          */
         ShapelessCraftingRecipe build();
+
     }
+
 }
