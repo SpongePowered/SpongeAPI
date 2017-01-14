@@ -22,21 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.item.recipe.smelting;
 
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
-/**
- * A general interface for recipes
- */
-public interface Recipe {
+public interface SmeltingResult {
 
     /**
-     * A general result of this recipe. This result may be customized depending
-     * on the context.
+     * This method should be used instead of the
+     * {@link SmeltingRecipe#getExemplaryResult()} method, as it customizes the
+     * result further depending on the specified {@param ingredient}
+     * {@link ItemStackSnapshot}. It is advised to use the output of
+     * {@link SmeltingRecipe#getExemplaryResult()}, modify it accordingly, and
+     * {@code return} it.
      *
-     * @return The exemplary result of this recipe
+     * @return The result of fulfilling the requirements of a
+     *         {@link SmeltingRecipe}
      */
-    ItemStackSnapshot getExemplaryResult();
+    ItemStackSnapshot getResult();
+
+    /**
+     * Returns the amount of experience released after completing a recipe.
+     *
+     * @return The amount of experience released after fulfilling the
+     *         requirements of a {@link SmeltingRecipe}
+     */
+    double getExperience();
 
 }

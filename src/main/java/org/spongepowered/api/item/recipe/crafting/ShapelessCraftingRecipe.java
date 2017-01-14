@@ -25,14 +25,13 @@
 package org.spongepowered.api.item.recipe.crafting;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
 import java.util.function.Predicate;
-
-import javax.annotation.Nullable;
 
 /**
  * A ShapelessCraftingRecipe is a CraftingRecipe that does not have shape and
@@ -65,7 +64,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @param ingredient The ingredient predicate
          * @return This builder, for chaining
          */
-        Builder addIngredientPredicate(@Nullable Predicate<ItemStackSnapshot> ingredient);
+        Builder addIngredientPredicate(Predicate<ItemStackSnapshot> ingredient);
 
         /**
          * Adds an ingredient predicate to the requirements of this
@@ -85,9 +84,19 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @param ingredient The ingredient
          * @return This builder, for chaining
          */
-        @SuppressWarnings("ConstantConditions")
-        default Builder addIngredientPredicate(@Nullable ItemStack ingredient) {
-            return addIngredientPredicate(ingredient != null ? ingredient.createSnapshot() : ItemStackSnapshot.NONE);
+        default Builder addIngredientPredicate(ItemStack ingredient) {
+            return addIngredientPredicate(ingredient.createSnapshot());
+        }
+
+        /**
+         * Adds an ingredient predicate to the requirements of this
+         * {@link ShapelessCraftingRecipe}.
+         *
+         * @param ingredient The ingredient
+         * @return This builder, for chaining
+         */
+        default Builder addIngredientPredicate(ItemType ingredient) {
+            return addIngredientPredicate(itemStackSnapshot -> itemStackSnapshot.getType() == ingredient);
         }
 
         /**
@@ -106,15 +115,15 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @param result The result
          * @return This builder, for chaining
          */
-        @SuppressWarnings("ConstantConditions")
-        default Builder result(@Nullable ItemStack result) {
-            return result(result != null ? result.createSnapshot() : ItemStackSnapshot.NONE);
+        default Builder result(ItemStack result) {
+            return result(result.createSnapshot());
         }
 
         /**
          * Builds a new {@link ShapelessCraftingRecipe} from this builder.
          *
          * @return A new {@link ShapelessCraftingRecipe}
+         * @throws IllegalStateException If not all required options were specified
          */
         ShapelessCraftingRecipe build();
 

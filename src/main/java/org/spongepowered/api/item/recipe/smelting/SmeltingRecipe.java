@@ -25,13 +25,14 @@
 package org.spongepowered.api.item.recipe.smelting;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import javax.annotation.Nullable;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * A general interface for furnace recipes. You can implement it manually to
@@ -39,6 +40,7 @@ import java.util.Optional;
  * {@link SmeltingRecipe.Builder}.
  */
 public interface SmeltingRecipe extends Recipe {
+
     /**
      * Builds a simple furnace recipe. Note, that you can implement the
      * {@link SmeltingRecipe} manually, too.
@@ -65,39 +67,26 @@ public interface SmeltingRecipe extends Recipe {
     boolean isValid(ItemStackSnapshot ingredient);
 
     /**
-     * This method should be used instead of the {@link #getExemplaryResult()}
+     * <p>Returns the {@link SmeltingResult} containing the resulting
+     * {@link ItemStackSnapshot} and the amount of experience released.</p>
+     *
+     * <p>This method should be used instead of the {@link #getExemplaryResult()}
      * method, as it customizes the result further depending on the specified
      * {@param ingredient} {@link ItemStackSnapshot}. It is advised to use
      * the output of {@link #getExemplaryResult()}, modify it accordingly,
-     * and {@code return} it.
+     * and {@code return} it.</p>
      *
      * @param ingredient The {@link ItemStackSnapshot} currently being smelted
-     * @return The result of smelting the {@param ingredient} {@link ItemStack},
-     *         if the {@param ingredient} is valid
+     * @return The {@link SmeltingResult}, or {@link Optional#empty()}
+     *         if the recipe is not valid according to
+     *         {@link #isValid(ItemStackSnapshot)}.
      */
-    Optional<ItemStack> getResult(ItemStackSnapshot ingredient);
-
-    /**
-     * Returns the amount of experience released after completing this recipe.
-     *
-     * @param ingredient The ingredient being smelted
-     * @return The amount of experience released after completing this recipe,
-     *         if the {@param ingredient} is valid
-     */
-    Optional<Double> getExperience(ItemStackSnapshot ingredient);
+    Optional<SmeltingResult> getResult(ItemStackSnapshot ingredient);
 
     /**
      * Builds a simple furnace recipe
      */
     interface Builder extends ResettableBuilder<SmeltingRecipe, Builder> {
-        /**
-         * Changes the result and returns this builder. The result is the
-         * {@link ItemStack} created when the recipe is fulfilled.
-         *
-         * @param result The output of this recipe
-         * @return This builder, for chaining
-         */
-        Builder result(@Nullable ItemStackSnapshot result);
 
         /**
          * Changes the result and returns this builder. The result is the
@@ -106,8 +95,54 @@ public interface SmeltingRecipe extends Recipe {
          * @param result The output of this recipe
          * @return This builder, for chaining
          */
-        default Builder result(@Nullable ItemStack result) {
-            return result(result != null ? result.createSnapshot() : null);
+        Builder result(ItemStackSnapshot result);
+
+        /**
+         * Changes the result and returns this builder. The result is the
+         * {@link ItemStack} created when the recipe is fulfilled.
+         *
+         * @param result The output of this recipe
+         * @return This builder, for chaining
+         */
+        default Builder result(ItemStack result) {
+            return result(result.createSnapshot());
+        }
+
+        /**
+         * Changes the ingredient predicate and returns this builder.
+         * The ingredient predicate is the predicate which must return
+         * {@code true} in order for this recipe to be fulfilled.
+         *
+         * @param ingredientPredicate The ingredient predicate
+         * @param exemplaryIngredient An exemplary ingredient
+         * @return This builder, for chaining
+         */
+        Builder ingredient(Predicate<ItemStackSnapshot> ingredientPredicate,
+                           ItemStackSnapshot exemplaryIngredient);
+
+        /**
+         * Changes the ingredient predicate and returns this builder.
+         * The ingredient predicate is the predicate which must return
+         * {@code true} in order for this recipe to be fulfilled.
+         *
+         * <p>The vanilla {@link ItemStack} matching behavior is used as the
+         * ingredient predicate.</p>
+         *
+         * @param ingredient The required ingredient
+         * @return This builder, for chaining
+         */
+        Builder ingredient(ItemStackSnapshot ingredient);
+
+        /**
+         * Changes the ingredient and returns this builder. The ingredient is
+         * the {@link ItemStack} required in order for the recipe to be
+         * fulfilled.
+         *
+         * @param ingredient The required ingredient
+         * @return This builder, for chaining
+         */
+        default Builder ingredient(ItemStack ingredient) {
+            return ingredient(ingredient.createSnapshot());
         }
 
         /**
@@ -118,18 +153,8 @@ public interface SmeltingRecipe extends Recipe {
          * @param ingredient The required ingredient
          * @return This builder, for chaining
          */
-        Builder ingredient(@Nullable ItemStackSnapshot ingredient);
-
-        /**
-         * Changes the ingredient and returns this builder. The ingredient is
-         * the {@link ItemStack} required in order for the recipe to be
-         * fulfilled.
-         *
-         * @param ingredient The required ingredient
-         * @return This builder, for chaining
-         */
-        default Builder ingredient(@Nullable ItemStack ingredient) {
-            return ingredient(ingredient != null ? ingredient.createSnapshot() : null);
+        default Builder ingredient(ItemType ingredient) {
+            return ingredient(itemStackSnapshot -> itemStackSnapshot.getType() == ingredient, ingredient.getTemplate());
         }
 
         /**
@@ -141,13 +166,16 @@ public interface SmeltingRecipe extends Recipe {
          *                   is completed
          * @return This builder, for chaining
          */
-        Builder experience(@Nullable Double experience);
+        Builder experience(double experience);
 
         /**
          * Builds the recipe and returns it.
          *
          * @return The built recipe
+         * @throws IllegalStateException If not all required options were specified
          */
         SmeltingRecipe build();
+
     }
+
 }

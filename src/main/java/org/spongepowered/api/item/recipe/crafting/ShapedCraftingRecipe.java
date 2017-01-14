@@ -25,6 +25,7 @@
 package org.spongepowered.api.item.recipe.crafting;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -71,7 +72,8 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
     interface Builder extends ResettableBuilder<ShapedCraftingRecipe, Builder> {
 
         /**
-         * Sets the aisle pattern for the shaped recipe.
+         * Sets the aisle pattern for the shaped recipe and resets the
+         * registered ingredient predicates.
          *
          * @param aisle A string array of ingredients
          * @return The builder
@@ -80,7 +82,8 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
 
         /**
          * Sets an ingredient predicate based on the aisle pattern for the
-         * shaped recipe.
+         * shaped recipe. Removes the ingredient predicate if {@code null} is
+         * specified.
          *
          * @param symbol The ingredient symbol
          * @param ingredient The ingredient predicate to set, or remove if null
@@ -95,26 +98,40 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          * shaped recipe. This mimics the vanilla checking behavior.
          *
          * @param symbol The ingredient symbol
-         * @param ingredient The ingredient to set, or remove if null
+         * @param ingredient The ingredient to set, or remove if {@code null} or
+         *                   {@link ItemStackSnapshot#NONE}
          * @return The builder
          * @throws IllegalArgumentException If the aisle does not contain
          *     the specified character symbol
          */
-        Builder where(char symbol, ItemStackSnapshot ingredient) throws IllegalArgumentException;
+        Builder where(char symbol, @Nullable ItemStackSnapshot ingredient) throws IllegalArgumentException;
 
         /**
          * Sets an ingredient predicate based on the aisle pattern for the
          * shaped recipe. This mimics the vanilla equality checking behavior.
          *
          * @param symbol The ingredient symbol
-         * @param ingredient The predicate to set, or remove if null
+         * @param ingredient The ingredient to set, or remove if {@code null}
          * @return The builder
          * @throws IllegalArgumentException If the aisle does not contain
          *     the specified character symbol
          */
-        @SuppressWarnings("ConstantConditions")
         default Builder where(char symbol, @Nullable ItemStack ingredient) throws IllegalArgumentException {
-            return where(symbol, ingredient != null ? ingredient.createSnapshot() : ItemStackSnapshot.NONE);
+            return where(symbol, ingredient != null ? ingredient.createSnapshot() : null);
+        }
+
+        /**
+         * Sets an ingredient predicate based on the aisle pattern for the
+         * shaped recipe. This mimics the vanilla equality checking behavior.
+         *
+         * @param symbol The ingredient symbol
+         * @param ingredient The ingredient type to set, or remove if null
+         * @return The builder
+         * @throws IllegalArgumentException If the aisle does not contain
+         *     the specified character symbol
+         */
+        default Builder where(char symbol, @Nullable ItemType ingredient) throws IllegalArgumentException {
+            return where(symbol, ingredient != null ? (itemStackSnapshot -> itemStackSnapshot.getType() == ingredient) : null);
         }
 
         /**
@@ -133,15 +150,15 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
          * @param result The resultant stack
          * @return The builder
          */
-        @SuppressWarnings("ConstantConditions")
-        default Builder result(@Nullable ItemStack result) {
-            return result(result != null ? result.createSnapshot() : ItemStackSnapshot.NONE);
+        default Builder result(ItemStack result) {
+            return result(result.createSnapshot());
         }
 
         /**
          * Builds a {@link ShapedCraftingRecipe} from this builder.
          *
          * @return A new {@link ShapedCraftingRecipe}
+         * @throws IllegalStateException If not all required options were specified
          */
         ShapedCraftingRecipe build();
 
