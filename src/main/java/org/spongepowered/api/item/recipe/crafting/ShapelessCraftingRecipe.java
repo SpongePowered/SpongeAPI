@@ -75,7 +75,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @param ingredient The ingredient
          * @return This builder, for chaining
          */
-        Builder addIngredientPredicate(@Nullable ItemStackSnapshot ingredient);
+        Builder addIngredientPredicate(ItemStackSnapshot ingredient);
 
         /**
          * Adds an ingredient predicate to the requirements of this
@@ -85,8 +85,9 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @param ingredient The ingredient
          * @return This builder, for chaining
          */
+        @SuppressWarnings("ConstantConditions")
         default Builder addIngredientPredicate(@Nullable ItemStack ingredient) {
-            return addIngredientPredicate(ingredient != null ? ingredient.createSnapshot() : null);
+            return addIngredientPredicate(ingredient != null ? ingredient.createSnapshot() : ItemStackSnapshot.NONE);
         }
 
         /**
@@ -96,7 +97,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @param result The result
          * @return This builder, for chaining
          */
-        Builder result(@Nullable ItemStackSnapshot result);
+        Builder result(ItemStackSnapshot result);
 
         /**
          * Changes the result and returns this builder. The result is the
@@ -105,8 +106,9 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @param result The result
          * @return This builder, for chaining
          */
+        @SuppressWarnings("ConstantConditions")
         default Builder result(@Nullable ItemStack result) {
-            return result(result != null ? result.createSnapshot() : null);
+            return result(result != null ? result.createSnapshot() : ItemStackSnapshot.NONE);
         }
 
         /**
