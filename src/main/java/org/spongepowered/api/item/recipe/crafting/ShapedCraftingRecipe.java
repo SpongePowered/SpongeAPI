@@ -68,11 +68,6 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
      */
     int getHeight();
 
-    @Override
-    default int getSize() {
-        return getWidth() * getHeight();
-    }
-
     interface Builder extends ResettableBuilder<ShapedCraftingRecipe, Builder> {
         /**
          * Sets the aisle pattern for the shaped recipe.
