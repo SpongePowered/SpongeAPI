@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -116,6 +118,8 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @return This builder, for chaining
          */
         default Builder result(ItemStack result) {
+            checkNotNull(result, "result");
+
             return result(result.createSnapshot());
         }
 

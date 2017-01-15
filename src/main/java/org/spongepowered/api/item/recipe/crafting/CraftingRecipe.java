@@ -40,7 +40,7 @@ import java.util.List;
  * as a function from a crafting matrix to a list of {@link ItemStack} (the
  * crafting result), therefore making it an immutable interface.</p>
  *
- * <p>The passed in ItemGrid is usually a crafting inventory, e.g. a 2x2 or 3x3
+ * <p>The passed in {@link GridInventory} is usually a crafting inventory, e.g. a 2x2 or 3x3
  * crafting matrix.</p>
  *
  * <p>The requirements of a CraftingRecipe can be general, they just have to
@@ -52,7 +52,7 @@ public interface CraftingRecipe extends Recipe {
      * Checks if the given {@link GridInventory} fits the required constraints
      * to craft this {@link CraftingRecipe}.
      *
-     * @param grid The ItemGrid to check for validity
+     * @param grid The {@link GridInventory} to check for validity
      * @param world The world this recipe would be used in
      * @return True if the given input matches this recipe's requirements
      */
@@ -66,7 +66,7 @@ public interface CraftingRecipe extends Recipe {
      * {@link CraftingRecipe#getExemplaryResult()} method, as it customizes
      * the result further depending on the context.</p>
      *
-     * <p>It is advised to use the output of
+     * <p>Implementing classes are advised to use the output of
      * {@link CraftingRecipe#getExemplaryResult()}, modify it accordingly,
      * and {@code return} it.</p>
      *
