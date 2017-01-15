@@ -24,8 +24,23 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
+import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
+import org.spongepowered.api.world.World;
+
+import java.util.Optional;
 
 public interface CraftingRecipeRegistry extends RecipeRegistry<CraftingRecipe> {
+
+    /**
+     * Retrieves the recipe which would be crafted when the player clicks
+     * the output slot.
+     *
+     * @param grid The crafting grid
+     * @param world The world the player is in
+     * @return The found {@link CraftingRecipe}, or {@link Optional#empty()}
+     *         if no recipe was found for this configuration
+     */
+    Optional<CraftingRecipe> findMatchingRecipe(GridInventory grid, World world);
 
 }
