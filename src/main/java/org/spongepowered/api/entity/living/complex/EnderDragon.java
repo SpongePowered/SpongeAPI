@@ -27,23 +27,22 @@ package org.spongepowered.api.entity.living.complex;
 import org.spongepowered.api.entity.EnderCrystal;
 import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.living.monster.Boss;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
 import java.util.Optional;
 import java.util.Set;
 
-import javax.annotation.Nullable;
-
 /**
  * Represents an Ender Dragon.
  */
-public interface EnderDragon extends ComplexLiving, Boss, Aerial {
+public interface EnderDragon extends ComplexLiving, Boss, Aerial, ProjectileSource {
 
     @Override
     Set<EnderDragonPart> getParts();
-    
+
     /**
      * Returns the current {@code EnderCrystal} that is healing this ender dragon.
-     * 
+     *
      * @return The ender crystal
      */
     Optional<EnderCrystal> getHealingCrystal();
