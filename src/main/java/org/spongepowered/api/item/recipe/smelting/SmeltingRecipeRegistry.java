@@ -24,8 +24,13 @@
  */
 package org.spongepowered.api.item.recipe.smelting;
 
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 
+import java.util.Optional;
+
 public interface SmeltingRecipeRegistry extends RecipeRegistry<SmeltingRecipe> {
+
+    Optional<SmeltingResult> getResult(ItemStackSnapshot ingredient);
 
 }

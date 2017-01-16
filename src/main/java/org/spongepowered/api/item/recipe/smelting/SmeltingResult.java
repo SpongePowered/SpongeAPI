@@ -24,9 +24,26 @@
  */
 package org.spongepowered.api.item.recipe.smelting;
 
+import static com.google.common.base.Preconditions.*;
+
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
-public interface SmeltingResult {
+import javax.annotation.Nonnull;
+
+public final class SmeltingResult {
+
+    private final ItemStackSnapshot result;
+    private final double experience;
+
+    @SuppressWarnings("ConstantConditions")
+    public SmeltingResult(@Nonnull ItemStackSnapshot result, double experience) {
+        checkNotNull(result, "result");
+        checkArgument(result != ItemStackSnapshot.NONE, "The result must not be ItemStackSnapshot.NONE.");
+        checkArgument(experience >= 0, "The experience must be non-negative.");
+
+        this.result = result;
+        this.experience = experience;
+    }
 
     /**
      * This method should be used instead of the
@@ -39,7 +56,10 @@ public interface SmeltingResult {
      * @return The result of fulfilling the requirements of a
      *         {@link SmeltingRecipe}
      */
-    ItemStackSnapshot getResult();
+    @Nonnull
+    public ItemStackSnapshot getResult() {
+        return this.result;
+    }
 
     /**
      * Returns the amount of experience released after completing a recipe.
@@ -47,6 +67,8 @@ public interface SmeltingResult {
      * @return The amount of experience released after fulfilling the
      *         requirements of a {@link SmeltingRecipe}
      */
-    double getExperience();
+    public double getExperience() {
+        return this.experience;
+    }
 
 }
