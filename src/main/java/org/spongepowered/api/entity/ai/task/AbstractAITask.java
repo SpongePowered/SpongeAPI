@@ -78,21 +78,21 @@ public abstract class AbstractAITask<O extends Agent> implements AITask<O> {
     public abstract void start();
 
     /**
-     * Called every time when this AI task gets ticked and the task is not
-     * currently updating. This tells whether the task should start execute.
+     * Called every time this AI task gets ticked and the task is not
+     * currently updating. This tells whether the task should start execution.
      *
      * @return True if this task should start to update, false otherwise
      */
     public abstract boolean shouldUpdate();
 
     /**
-     * Called every time when {@link #continueUpdating()} returns {@code true}.
-     * This controls the owner to execute this AI task.
+     * Called every time {@link #continueUpdating()} returns {@code true}.
+     * Do actual execution in this method.
      */
     public abstract void update();
 
     /**
-     * Called every time when this AI task gets ticked and the task is updating.
+     * Called every time this AI task gets ticked and the task is updating.
      * This tells whether the task should start execute.
      *
      * @return True if this task should continue to update, false otherwise

@@ -31,7 +31,7 @@ import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
 /**
- * An {@link AITask} which the owner watch the closest entity of a specified
+ * An {@link AITask} in which the owner watch the closest entity of a specified
  * type.
  */
 public interface WatchClosestAITask extends AITask<Agent> {

@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
 /**
- * An {@link AITask} which the owner looks around in an idle way.
+ * An {@link AITask} in which the owner looks around in an idle way.
  */
 public interface LookIdleAITask extends AITask<Agent> {
 

@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
 /**
- * An {@link AITask} which the owner swims when in water.
+ * An {@link AITask} in which the owner swims when in water.
  */
 public interface SwimmingAITask extends AITask<Agent> {
 

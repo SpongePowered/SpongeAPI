@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 
 /**
- * An {@link AITask} which the owner wanders around.
+ * An {@link AITask} in which the owner wanders around.
  */
 public interface WanderAITask extends AITask<Creature> {
 
