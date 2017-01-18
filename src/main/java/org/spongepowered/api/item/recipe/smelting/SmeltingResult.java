@@ -24,11 +24,12 @@
  */
 package org.spongepowered.api.item.recipe.smelting;
 
-import static com.google.common.base.Preconditions.*;
+
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
-import javax.annotation.Nonnull;
 
 public final class SmeltingResult {
 
