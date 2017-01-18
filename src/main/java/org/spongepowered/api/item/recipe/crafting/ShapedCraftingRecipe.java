@@ -32,7 +32,6 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
@@ -53,9 +52,10 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
      *
      * @param x The x coordinate counted from the left side
      * @param y The y coordinate counted from the top
-     * @return The ingredient predicate at this position defined by the aisle
+     * @return The ingredient predicate at this position defined by the aisle,
+     *         or a predicate always returning false if out of bounds
      */
-    Optional<Predicate<ItemStackSnapshot>> getIngredientPredicate(int x, int y);
+    Predicate<ItemStackSnapshot> getIngredientPredicate(int x, int y);
 
     /**
      * Gets the width of the grid this ShapedCraftingRecipe fits into.
