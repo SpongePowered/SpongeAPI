@@ -36,7 +36,7 @@ public final class SmeltingResult {
     private final double experience;
 
     @SuppressWarnings("ConstantConditions")
-    public SmeltingResult(@Nonnull ItemStackSnapshot result, double experience) {
+    public SmeltingResult(ItemStackSnapshot result, double experience) {
         checkNotNull(result, "result");
         checkArgument(result != ItemStackSnapshot.NONE, "The result must not be ItemStackSnapshot.NONE.");
         checkArgument(experience >= 0, "The experience must be non-negative.");
@@ -56,7 +56,6 @@ public final class SmeltingResult {
      * @return The result of fulfilling the requirements of a
      *         {@link SmeltingRecipe}
      */
-    @Nonnull
     public ItemStackSnapshot getResult() {
         return this.result;
     }
