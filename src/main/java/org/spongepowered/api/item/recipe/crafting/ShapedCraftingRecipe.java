@@ -52,8 +52,8 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
      *
      * @param x The x coordinate counted from the left side
      * @param y The y coordinate counted from the top
-     * @return The ingredient predicate at this position defined by the aisle,
-     *         or a predicate always returning false if out of bounds
+     * @return The ingredient predicate at this position defined by the aisle
+     * @throws IndexOutOfBoundsException if the location is invalid
      */
     Predicate<ItemStackSnapshot> getIngredientPredicate(int x, int y);
 
