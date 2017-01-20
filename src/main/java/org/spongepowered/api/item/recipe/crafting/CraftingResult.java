@@ -27,6 +27,7 @@ package org.spongepowered.api.item.recipe.crafting;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.type.GridInventory;
@@ -78,6 +79,37 @@ public final class CraftingResult {
      */
     public List<ItemStackSnapshot> getRemainingItems() {
         return remainingItems;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        CraftingResult that = (CraftingResult) o;
+
+        return this.result.equals(that.result) && this.remainingItems.equals(that.remainingItems);
+    }
+
+    @Override
+    public int hashCode() {
+        int result1 = this.result.hashCode();
+        result1 = 31 * result1 + this.remainingItems.hashCode();
+
+        return result1;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("result", this.result)
+                .add("remainingItems", this.remainingItems)
+                .toString();
     }
 
 }

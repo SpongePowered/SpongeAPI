@@ -27,6 +27,7 @@ package org.spongepowered.api.item.recipe.smelting;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Objects;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
@@ -72,4 +73,35 @@ public final class SmeltingResult {
         return this.experience;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        SmeltingResult that = (SmeltingResult) o;
+
+        return Double.compare(that.experience, this.experience) == 0 && this.result.equals(that.result);
+    }
+
+    @Override
+    public int hashCode() {
+        int result1 = this.result.hashCode();
+        long temp = Double.doubleToLongBits(this.experience);
+        result1 = 31 * result1 + (int) (temp ^ (temp >>> 32));
+
+        return result1;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("result", this.result)
+                .add("experience", this.experience)
+                .toString();
+    }
 }
