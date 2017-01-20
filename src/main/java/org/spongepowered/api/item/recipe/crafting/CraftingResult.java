@@ -22,54 +22,62 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe.smelting;
+package org.spongepowered.api.item.recipe.crafting;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.type.GridInventory;
+
+import java.util.List;
 
 /**
- * The result of fulfilling a {@link SmeltingRecipe}.
+ * The result of fulfilling a {@link CraftingRecipe}.
  */
-public final class SmeltingResult {
+public final class CraftingResult {
 
     private final ItemStackSnapshot result;
-    private final double experience;
+    private final List<ItemStackSnapshot> remainingItems;
 
     @SuppressWarnings("ConstantConditions")
-    public SmeltingResult(ItemStackSnapshot result, double experience) {
+    public CraftingResult(ItemStackSnapshot result, List<ItemStackSnapshot> remainingItems) {
         checkNotNull(result, "result");
         checkArgument(result != ItemStackSnapshot.NONE, "The result must not be ItemStackSnapshot.NONE.");
-        checkArgument(experience >= 0, "The experience must be non-negative.");
+        checkNotNull(remainingItems, "remainingItems");
+        checkArgument(!remainingItems.isEmpty(), "The remainingItems list must not be empty."
+                + " It should contain ItemStackSnapshot.NONE values for slots which should be cleared.");
 
         this.result = result;
-        this.experience = experience;
+        this.remainingItems = ImmutableList.copyOf(remainingItems);
     }
 
     /**
      * This method should be used instead of the
-     * {@link SmeltingRecipe#getExemplaryResult()} method, as it customizes the
+     * {@link CraftingRecipe#getExemplaryResult()} method, as it customizes the
      * result further depending on the specified {@param ingredient}
      * {@link ItemStackSnapshot}. It is advised to use the output of
-     * {@link SmeltingRecipe#getExemplaryResult()}, modify it accordingly, and
+     * {@link CraftingRecipe#getExemplaryResult()}, modify it accordingly, and
      * {@code return} it.
      *
      * @return The result of fulfilling the requirements of a
-     *         {@link SmeltingRecipe}
+     *         {@link CraftingRecipe}
      */
     public ItemStackSnapshot getResult() {
         return this.result;
     }
 
     /**
-     * Returns the amount of experience released after completing a recipe.
+     * Returns a list of {@link ItemStackSnapshot} to be set in the input
+     * {@link GridInventory}, contains {@link ItemStackSnapshot#NONE}s for
+     * slots which should be cleared.
      *
-     * @return The amount of experience released after fulfilling the
-     *         requirements of a {@link SmeltingRecipe}
+     * @return A list of {@link ItemStackSnapshot}s to be set in the input
+     *         {@link GridInventory}
      */
-    public double getExperience() {
-        return this.experience;
+    public List<ItemStackSnapshot> getRemainingItems() {
+        return remainingItems;
     }
 
 }

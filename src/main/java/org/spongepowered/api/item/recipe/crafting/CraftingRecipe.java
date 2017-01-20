@@ -32,6 +32,7 @@ import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.world.World;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * A CraftingRecipe represents some craftable recipe in the game.
@@ -89,6 +90,24 @@ public interface CraftingRecipe extends Recipe {
      *         when the recipe has been fulfilled (possibly empty)
      */
     List<ItemStackSnapshot> getRemainingItems(GridInventory grid);
+
+    /**
+     * Returns the {@link CraftingResult} for the current crafting grid
+     * configuration and the {@link World} the player is in. Returns
+     * {@link Optional#empty()} if the arguments do not satisfy
+     * {@link #isValid(GridInventory, World)}.
+     *
+     * @param grid The crafting input, typically 3x3 or 2x2
+     * @param world The world this recipe would be used in
+     * @return A {@link CraftingResult} if the arguments satisfy
+     *         {@link #isValid(GridInventory, World)}, or
+     *         {@link Optional#empty()} if not
+     */
+    default Optional<CraftingResult> getResult(GridInventory grid, World world) {
+        return isValid(grid, world)
+                ? Optional.of(new CraftingResult(getResult(grid), getRemainingItems(grid)))
+                : Optional.empty();
+    }
 
     /**
      * The recipe size is used to determine the priority of this recipe compared

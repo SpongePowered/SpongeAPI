@@ -24,12 +24,17 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.world.World;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
+/**
+ * A registry for Crafting Table recipes.
+ */
 public interface CraftingRecipeRegistry extends RecipeRegistry<CraftingRecipe> {
 
     /**
@@ -42,5 +47,27 @@ public interface CraftingRecipeRegistry extends RecipeRegistry<CraftingRecipe> {
      *         if no recipe was found for this configuration
      */
     Optional<CraftingRecipe> findMatchingRecipe(GridInventory grid, World world);
+
+    /**
+     * Finds the matching recipe and creates the {@link CraftingResult},
+     * which is then returned.
+     *
+     * @param grid The crafting grid
+     * @param world The world the player is in
+     * @return The {@link CraftingResult} if a recipe was found, or
+     *         {@link Optional#empty()} if not
+     */
+    default Optional<CraftingResult> getResult(GridInventory grid, World world) {
+        return findMatchingRecipe(grid, world)
+                .flatMap(recipe -> recipe.getResult(grid, world));
+    }
+
+    /**
+     * Creates a predicate with vanilla matching behavior.
+     *
+     * @param ingredient The ingredient to check against
+     * @return The predicate
+     */
+    Predicate<ItemStackSnapshot> getVanillaIngredientPredicate(ItemStackSnapshot ingredient);
 
 }

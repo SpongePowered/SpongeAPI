@@ -28,9 +28,42 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
+/**
+ * A registry for Crafting Table recipes.
+ */
 public interface SmeltingRecipeRegistry extends RecipeRegistry<SmeltingRecipe> {
 
-    Optional<SmeltingResult> getResult(ItemStackSnapshot ingredient);
+    /**
+     * Retrieves the recipe which would be crafted when the player clicks
+     * the output slot.
+     *
+     * @param ingredient The ingredient to check against
+     * @return The found {@link SmeltingRecipe}, or {@link Optional#empty()}
+     *         if no recipe was found for this {@link ItemStackSnapshot}
+     */
+    Optional<SmeltingRecipe> findMatchingRecipe(ItemStackSnapshot ingredient);
+
+    /**
+     * Finds the matching recipe and creates the {@link SmeltingResult},
+     * which is then returned.
+     *
+     * @param ingredient The ingredient to check against
+     * @return The {@link SmeltingResult} if a recipe was found, or
+     *         {@link Optional#empty()} if not
+     */
+    default Optional<SmeltingResult> getResult(ItemStackSnapshot ingredient) {
+        return findMatchingRecipe(ingredient)
+                .flatMap(recipe -> recipe.getResult(ingredient));
+    }
+
+    /**
+     * Creates a predicate with vanilla matching behavior.
+     *
+     * @param ingredient The ingredient to check against
+     * @return The predicate
+     */
+    Predicate<ItemStackSnapshot> getVanillaIngredientPredicate(ItemStackSnapshot ingredient);
 
 }
