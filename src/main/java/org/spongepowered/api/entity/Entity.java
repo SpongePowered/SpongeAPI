@@ -354,27 +354,32 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
     List<Entity> getPassengers();
 
     /**
+     * Checks if the given entity is a passenger.
+     *
+     * @param entity The entity passenger
+     * @return If it is a passenger
+     */
+    boolean hasPassenger(Entity entity);
+
+    /**
      * Sets the passenger entity(the entity that rides this one).
      *
      * @param entity The entity passenger, or null to eject
-     * @return True if the set was successful
+     * @return If adding the passenger succeeded
      */
-    DataTransactionResult addPassenger(Entity entity);
+    boolean addPassenger(Entity entity);
 
     /**
      * Removes the given entity as a passenger.
      *
      * @param entity The entity to remove as passenger
-     * @return The transaction result
      */
-    DataTransactionResult removePassenger(Entity entity);
+    void removePassenger(Entity entity);
 
     /**
      * Removes all currently riding passengers from this entity.
-     *
-     * @return The transaction result
      */
-    DataTransactionResult clearPassengers();
+    void clearPassengers();
 
     /**
      * Gets the entity vehicle that this entity is riding, if available.
@@ -389,7 +394,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
      * @param entity The entity vehicle, or null to dismount
      * @return True if the set was successful
      */
-    DataTransactionResult setVehicle(@Nullable Entity entity);
+    boolean setVehicle(@Nullable Entity entity);
 
     /**
      * Gets the entity vehicle that is the base of what ever stack the
