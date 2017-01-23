@@ -282,7 +282,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
             reset();
             type(value.type);
             for (int i = 0; i < value.traits.length; i++) {
-                trait(value.traits[i], (Comparable) value.values[i]);
+                trait((BlockTrait) value.traits[i], (Comparable) value.values[i]);
             }
             return this;
         }
