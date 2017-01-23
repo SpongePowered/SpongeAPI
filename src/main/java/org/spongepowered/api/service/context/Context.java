@@ -35,7 +35,7 @@ import java.util.Map;
  * designed to function as cache keys, meaning they should be fairly lightweight
  * and not hold references to large objects
  */
-public final class Context implements Map.Entry<String, String> {
+public class Context implements Map.Entry<String, String> {
     public static final String USER_KEY = "user";
     public static final String WORLD_KEY = "world";
     public static final String DIMENSION_KEY = "dimension";

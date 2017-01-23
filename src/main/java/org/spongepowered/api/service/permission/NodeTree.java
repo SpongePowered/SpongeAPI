@@ -107,6 +107,26 @@ public class NodeTree {
             }
         }
         return lastUndefinedVal;
+    }
+
+    /**
+     * Returns the value assigned to a specific node, <em>without</em> returning parents
+     *
+     * @param node The path to get the node value at
+     * @return The tristate value for the given node
+     */
+    public Tristate getOwn(String node) {
+        String[] parts = SPLIT_REGEX.split(node.toLowerCase());
+        Node currentNode = this.rootNode;
+        Tristate nearestValue = Tristate.UNDEFINED;
+        for (String str : parts) {
+            if (!currentNode.children.containsKey(str)) {
+                return Tristate.UNDEFINED;
+            }
+            currentNode = currentNode.children.get(str);
+            nearestValue = currentNode.value;
+        }
+        return nearestValue;
 
     }
 
