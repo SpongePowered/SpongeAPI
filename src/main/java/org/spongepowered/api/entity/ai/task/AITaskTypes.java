@@ -30,6 +30,7 @@ import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.animal.RideableHorse;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.world.Location;
 
 import java.util.function.Predicate;
 
@@ -41,6 +42,11 @@ public final class AITaskTypes {
      * {@link AITask} where {@link Creature}s avoid other {@link Agent}s based on a {@link Predicate}.
      */
     public static final AITaskType AVOID_ENTITY = DummyObjectProvider.createFor(AITaskType.class, "AVOID_ENTITY");
+
+    /**
+     * {@link AITask} where {@link Creature}s move to a {@link Location} based on a {@link Predicate}.
+     */
+    public static final AITaskType MOVE_TO_BLOCK = DummyObjectProvider.createFor(AITaskType.class, "MOVE_TO_BLOCK");
 
     /**
      * {@link AITask} where {@link RideableHorse}s run around while {@link Humanoid}s attempt to tame them.
