@@ -125,7 +125,47 @@ public interface EntityUniverse {
      * @throws IllegalStateException If a constructor cannot be found
      */
     default Entity createEntity(EntityType type, Vector3i position) throws IllegalArgumentException, IllegalStateException {
+        checkNotNull(position, "position");
         return createEntity(type, position.toDouble());
+    }
+    
+    /**
+     * Create an entity instance at the given position with the default equipment.
+     *
+     * <p>Creating an entity does not spawn the entity into the world. An entity
+     * created means the entity can be spawned at the given location. If
+     * {@link Optional#empty()} was returned, the entity is not able to spawn at
+     * the given location. Furthermore, this allows for the {@link Entity} to be
+     * customized further prior to traditional "ticking" and processing by core
+     * systems.</p>
+     *
+     * @param type The type
+     * @param position The position
+     * @return An entity, if one was created
+     * @throws IllegalArgumentException If the position or entity type is not valid to create
+     * @throws IllegalStateException If a constructor cannot be found
+     */
+    Entity createEntityNaturally(EntityType type, Vector3d position) throws IllegalArgumentException, IllegalStateException;
+
+    /**
+     * Create an entity instance at the given position with the default equipment.
+     *
+     * <p>Creating an entity does not spawn the entity into the world. An entity
+     * created means the entity can be spawned at the given location. If
+     * {@link Optional#empty()} was returned, the entity is not able to spawn at
+     * the given location. Furthermore, this allows for the {@link Entity} to be
+     * customized further prior to traditional "ticking" and processing by core
+     * systems.</p>
+     *
+     * @param type The type
+     * @param position The position
+     * @return An entity, if one was created
+     * @throws IllegalArgumentException If the position or entity type is not valid to create
+     * @throws IllegalStateException If a constructor cannot be found
+     */
+    default Entity createEntityNaturally(EntityType type, Vector3i position) throws IllegalArgumentException, IllegalStateException {
+        checkNotNull(position, "position");
+        return createEntityNaturally(type, position.toDouble());
     }
 
     /**
