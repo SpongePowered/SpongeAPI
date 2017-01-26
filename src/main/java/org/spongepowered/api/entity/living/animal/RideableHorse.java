@@ -41,20 +41,24 @@ public interface RideableHorse extends Horse {
      *
      * @return A copy of the horse data
      */
+    @Override
     @SuppressWarnings("deprecation")
     default HorseData getHorseData() {
         return get(HorseData.class).get();
     }
 
+    @Override
     default Value<HorseVariant> variant() {
         return getValue(Keys.HORSE_VARIANT).get();
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     default Value<HorseStyle> style() {
         return getValue(Keys.HORSE_STYLE).get();
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     default Value<HorseColor> color() {
         return getValue(Keys.HORSE_COLOR).get();

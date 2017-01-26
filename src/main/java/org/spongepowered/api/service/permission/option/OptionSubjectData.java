@@ -37,6 +37,7 @@ public interface OptionSubjectData extends SubjectData {
      *
      * @return An immutable snapshot of all options data
      */
+    @Override
     Map<Set<Context>, Map<String, String>> getAllOptions();
 
     /**
@@ -45,6 +46,7 @@ public interface OptionSubjectData extends SubjectData {
      * @param contexts The context combination to get options for
      * @return All available options, returning an empty map if none are present
      */
+    @Override
     Map<String, String> getOptions(Set<Context> contexts);
 
     /**
@@ -55,6 +57,7 @@ public interface OptionSubjectData extends SubjectData {
      * @param value The value to set.
      * @return Whether the operation was successful
      */
+    @Override
     boolean setOption(Set<Context> contexts, String key, String value);
 
     /**
@@ -63,6 +66,7 @@ public interface OptionSubjectData extends SubjectData {
      * @param contexts The context combination
      * @return Whether the operation was successful (any options were removed)
      */
+    @Override
     boolean clearOptions(Set<Context> contexts);
 
     /**
@@ -70,5 +74,6 @@ public interface OptionSubjectData extends SubjectData {
      *
      * @return Whether the operation was successful
      */
+    @Override
     boolean clearOptions();
 }
