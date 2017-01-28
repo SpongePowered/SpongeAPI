@@ -30,6 +30,7 @@ public class CatalogTypeAlreadyRegisteredException extends RegistryException {
     private final String id;
 
     public CatalogTypeAlreadyRegisteredException(String id) {
+        super("Catalog type is already registered for id: " + id);
         this.id = id;
     }
 
