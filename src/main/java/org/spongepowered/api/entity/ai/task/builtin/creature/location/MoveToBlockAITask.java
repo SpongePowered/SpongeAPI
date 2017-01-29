@@ -52,6 +52,8 @@ public interface MoveToBlockAITask extends AITask<Creature> {
 
     MoveToBlockAITask setDestination(Vector3i destination);
 
+    Predicate<Location<World>> getDestinationPredicate();
+
     interface Builder extends AITaskBuilder<Creature, MoveToBlockAITask, MoveToBlockAITask.Builder> {
 
         MoveToBlockAITask.Builder speed(double speed);
