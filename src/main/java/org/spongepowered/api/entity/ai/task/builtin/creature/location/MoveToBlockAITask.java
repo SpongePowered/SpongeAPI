@@ -61,4 +61,5 @@ public interface MoveToBlockAITask extends AITask<Creature> {
         MoveToBlockAITask.Builder destinationPredicate(Predicate<Location<World>> destinationPredicate);
 
     }
+
 }
