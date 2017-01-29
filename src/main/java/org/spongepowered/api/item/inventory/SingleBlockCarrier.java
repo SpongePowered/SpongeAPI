@@ -22,22 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.tileentity.carrier;
-
-import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.item.inventory.BlockCarrier;
-import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.type.TileEntityInventory;
+package org.spongepowered.api.item.inventory;
 
 /**
- * Represents a {@link TileEntity} that is a carrier of 
- * {@link TileEntityInventory}.
- *
- * <p>Additional information regarding the {@link TileEntityCarrier} is
- * dependent on the {@link TileEntity} itself.</p>
+ * Represents a Block that is a carrier of an Inventory
+ * e.g. An Anvil
  */
-public interface TileEntityCarrier extends TileEntity, BlockCarrier {
+public interface SingleBlockCarrier extends BlockCarrier {
 
-    @Override
-    TileEntityInventory<TileEntityCarrier> getInventory();
+
 }
