@@ -42,7 +42,11 @@ public interface MoveToBlockAITask extends AITask<Creature> {
 
     double getSpeed();
 
+    MoveToBlockAITask setSpeed(double speed);
+
     int getSearchRange();
+
+    MoveToBlockAITask setSearchRange(int searchRange);
 
     Vector3i getDestination();
 
