@@ -22,22 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.tileentity.carrier;
+package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.item.inventory.BlockCarrier;
-import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.type.TileEntityInventory;
+import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
+
+import java.util.Optional;
 
 /**
- * Represents a {@link TileEntity} that is a carrier of 
- * {@link TileEntityInventory}.
- *
- * <p>Additional information regarding the {@link TileEntityCarrier} is
- * dependent on the {@link TileEntity} itself.</p>
+ * Represents a Block that is a carrier of an Inventory
+ * e.g. An Anvil
  */
-public interface TileEntityCarrier extends TileEntity, BlockCarrier {
+public interface BlockCarrier extends Carrier {
 
-    @Override
-    TileEntityInventory<TileEntityCarrier> getInventory();
+    /**
+     * Returns the Location of the Block.
+     *
+     * @return The Location of the Block
+     */
+    Location<World> getLocation();
+
+    /**
+     * Returns the Inventory owned by this Carrier and accessible from given direction.
+     *
+     * <p>e.g. A Furnace accessed from {@link Direction#DOWN} will return its Fuel Slot</p>
+     *
+     * <p>When no inventory is accessible a {@link EmptyInventory} is returned</p>
+     *
+     * @param from The Direction
+     * @return The inventory at the location when accessed from given direction
+     */
+    Inventory getInventory(Direction from);
 }
