@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.tileentity.TileEntity;
@@ -42,14 +43,17 @@ import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.util.Cycleable;
+import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
@@ -224,7 +228,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
     }
 
     /**
-     *
+     * A builder for building {@link StateMatcher}s.
      */
     final class MatcherBuilder implements ResettableBuilder<StateMatcher, MatcherBuilder> {
 
@@ -241,18 +245,20 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
         }
 
         /**
-         * Adds the desired {@link BlockTrait} and {code value} to this builder,
-         * if the desired {@link BlockTrait} does not belong to the original {@link BlockType}
-         * as provided by {@link #type(BlockType)}, an exception is thrown. Likewise,
-         * if a {@code value} is not within the possible values for the desired
-         * trait of the desired type, an exception is thrown.
+         * Adds the desired {@link BlockTrait} and {code value} to this
+         * builder, if the desired {@link BlockTrait} does not belong to the
+         * original {@link BlockType} as provided by {@link #type(BlockType)},
+         * an exception is thrown. Likewise, if a {@code value} is not within
+         * the possible values for the desired trait of the desired type, an
+         * exception is thrown.
          *
          * @param trait The desired block trait
          * @param value the desired value
          * @param <T> The type of comparable
          * @return This builder
-         * @throws IllegalArgumentException If the block trait does not match the block type,
-         *     or if the value does not belong to the trait with the desired block type
+         * @throws IllegalArgumentException If the block trait does not match
+         *     the block type, or if the value does not belong to the trait
+         *     with the desired block type
          */
         public <T extends Comparable<T>> MatcherBuilder trait(BlockTrait<T> trait, T value) throws IllegalArgumentException {
             checkState(this.type != null, "BlockType cannot be null! Must be set before using any traits!");
@@ -304,17 +310,25 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
      * that contains 4 traits, and only 2 are wanting to be matched,
      * then the other two traits may be variable).
      */
-    final class StateMatcher {
+    final class StateMatcher implements Predicate<BlockState> {
         private final BlockType type;
         private final BlockTrait<?>[] traits;
         private final Object[] values;
+        @Nullable private ImmutableList<BlockState> compatibleStates; // Lazily constructed
 
         private StateMatcher(BlockType type, BlockTrait<?>[] traits, Object[] values) {
             this.type = type;
-            this.traits =new BlockTrait<?>[traits.length];
+            this.traits = new BlockTrait<?>[traits.length];
             System.arraycopy(traits, 0, this.traits, 0, traits.length);
             this.values = new Object[values.length];
             System.arraycopy(values, 0, this.values, 0, values.length);
+        }
+
+        private ImmutableList<BlockState> computeCompatibleStates() {
+            return this.type.getAllBlockStates()
+                    .stream()
+                    .filter(this::matches)
+                    .collect(GuavaCollectors.toImmutableList());
         }
 
         /**
@@ -342,6 +356,26 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
                 }
             }
             return true;
+        }
+
+        @Override
+        public boolean test(BlockState blockState) {
+            return matches(blockState);
+        }
+
+        /**
+         * Gets a {@link List} of compatible {@link BlockState}s.
+         * Since all {@link BlockState}s are known in the initialization
+         * of a {@link BlockType}, the states are already deterministic
+         * and cannot change themselves.
+         *
+         * @return The list of compatible block states
+         */
+        public List<BlockState> getCompatibleStates() {
+            if (this.compatibleStates == null) {
+                this.compatibleStates = computeCompatibleStates();
+            }
+            return this.compatibleStates;
         }
 
         @Override
