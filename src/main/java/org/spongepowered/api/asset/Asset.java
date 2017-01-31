@@ -70,8 +70,38 @@ public interface Asset {
      * @throws IOException
      */
     default void copyToFile(Path output) throws IOException {
+        this.copyToFile(output, false);
+    }
+
+    /**
+     * Copies this Asset to the specified 'output' {@link Path}.
+     *
+     * @param output Path to copy to
+     * @param overwrite If the file should be overwritten if it exists
+     * @throws IOException
+     */
+    default void copyToFile(Path output, boolean overwrite) throws IOException {
+        this.copyToFile(output, overwrite, true);
+    }
+
+    /**
+     * Copies this Asset to the specified 'output' {@link Path}.
+     *
+     * @param output Path to copy to
+     * @param overwrite If the file should be overwritten if it exists
+     * @param onlyIfAbsent If the file should only be copied if absent
+     * @throws IOException
+     */
+    default void copyToFile(Path output, boolean overwrite, boolean onlyIfAbsent) throws IOException {
         checkNotNull(output, "output");
-        try (InputStream in = getUrl().openStream()) {
+        if (Files.exists(output)) {
+            if (overwrite) {
+                Files.delete(output);
+            } else if (onlyIfAbsent) {
+                return;
+            }
+        }
+        try (InputStream in = this.getUrl().openStream()) {
             Files.copy(in, output);
         }
     }
@@ -83,8 +113,32 @@ public interface Asset {
      * @throws IOException
      */
     default void copyToDirectory(Path outputDirectory) throws IOException {
+        this.copyToDirectory(outputDirectory, false);
+    }
+
+    /**
+     * Copies this Asset to the specified 'outputDirectory' {@link Path}.
+     *
+     * @param outputDirectory The directory to copy to
+     * @param overwrite If the file should be overwritten if it exists
+     * @throws IOException
+     */
+    default void copyToDirectory(Path outputDirectory, boolean overwrite) throws IOException {
+        this.copyToDirectory(outputDirectory, overwrite, true);
+    }
+
+    /**
+     * Copies this Asset to the specified 'outputDirectory' {@link Path}.
+     *
+     * @param outputDirectory The directory to copy to
+     * @param overwrite If the file should be overwritten if it exists
+     * @param onlyIfAbsent If the file should only be copied if absent
+     * @throws IOException
+     */
+    default void copyToDirectory(Path outputDirectory, boolean overwrite, boolean onlyIfAbsent) throws IOException {
         checkNotNull(outputDirectory, "outputDirectory");
-        copyToFile(outputDirectory.resolve(this.getFileName()));
+        Files.createDirectories(outputDirectory);
+        this.copyToFile(outputDirectory.resolve(this.getFileName()), overwrite, onlyIfAbsent);
     }
 
     /**
