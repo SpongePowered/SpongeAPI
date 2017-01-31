@@ -27,6 +27,7 @@ package org.spongepowered.api.item.inventory;
 import org.spongepowered.api.GameDictionary;
 import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
  * Represents a snapshot of an {@link ItemStack} as an
@@ -37,7 +38,7 @@ import org.spongepowered.api.item.ItemType;
  */
 public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot> {
 
-    ItemStackSnapshot NONE = null;
+    ItemStackSnapshot NONE = DummyObjectProvider.createFor(ItemStackSnapshot.class, "NONE");
 
     /**
      * Gets the {@link ItemType} of this {@link ItemStackSnapshot}. The
