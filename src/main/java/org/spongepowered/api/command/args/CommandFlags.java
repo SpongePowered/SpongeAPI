@@ -277,6 +277,7 @@ public final class CommandFlags extends CommandElement {
                     args.nextIfPresent();
                     return null;
                 }
+                return retStrings;
             } else {
                 boolean complete = false;
                 Object state = args.getState();
