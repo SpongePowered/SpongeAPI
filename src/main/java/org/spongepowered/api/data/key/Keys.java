@@ -91,6 +91,8 @@ public final class Keys {
 
     // SORTFIELDS:ON
 
+    public static final Key<Value<Double>> ABSORPTION = KeyFactory.fake("ABSORPTION");
+
     public static final Key<SetValue<Achievement>> ACHIEVEMENTS = KeyFactory.fake("ACHIEVEMENTS");
 
     /**
