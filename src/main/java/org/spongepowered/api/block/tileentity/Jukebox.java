@@ -39,6 +39,11 @@ public interface Jukebox extends TileEntity {
     void playRecord();
 
     /**
+     * Stops the currently playing record, if any.
+     */
+    void stopRecord();
+
+    /**
      * Ejects the record item in this Jukebox into the world.
      */
     void ejectRecord();
