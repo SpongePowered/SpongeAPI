@@ -189,7 +189,7 @@ public interface ChunkTicketManager {
         int getMaxNumChunks();
 
         /**
-         * Gets the world associated with this ticket during it's creation
+         * Gets the world associated with this ticket during its creation
          *
          * @return The world associated with this ticket
          */
