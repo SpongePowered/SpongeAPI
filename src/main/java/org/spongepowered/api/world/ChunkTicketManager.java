@@ -188,6 +188,13 @@ public interface ChunkTicketManager {
          */
         int getMaxNumChunks();
 
+        /**
+         * Gets the world associated with this ticket during its creation
+         *
+         * @return The world associated with this ticket
+         */
+        World getWorld();
+
         // TODO: NBTTag getCustomData(); (Is saved with ticket information)
 
         /**
