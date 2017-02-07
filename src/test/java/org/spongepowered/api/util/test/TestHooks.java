@@ -26,25 +26,42 @@ package org.spongepowered.api.util.test;
 
 import static org.mockito.Mockito.mock;
 
+import org.spongepowered.api.Game;
+import org.spongepowered.api.Sponge;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 public final class TestHooks {
 
+    private static Field gameField;
+
     private TestHooks() {
+    }
+
+    public static void setGame(Game game) throws NoSuchFieldException, IllegalAccessException {
+        if (gameField == null) {
+            gameField = Sponge.class.getDeclaredField("game");
+            removeFinal(gameField);
+        }
+
+        gameField.set(null, game);
     }
 
     public static void setCatalogElement(Class<?> catalog, String name, Object value) throws NoSuchFieldException, IllegalAccessException {
         setStaticFinalField(catalog.getDeclaredField(name), value);
     }
 
-    public static void setStaticFinalField(Field field, Object value) throws NoSuchFieldException, IllegalAccessException {
+    private static void removeFinal(Field field) throws NoSuchFieldException, IllegalAccessException {
         field.setAccessible(true);
 
         Field modifiersField = Field.class.getDeclaredField("modifiers");
         modifiersField.setAccessible(true);
         modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+    }
 
+    public static void setStaticFinalField(Field field, Object value) throws NoSuchFieldException, IllegalAccessException {
+        removeFinal(field);
         field.set(null, value);
     }
 
