@@ -27,7 +27,7 @@ package org.spongepowered.api.event;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.stub;
+import static org.mockito.Mockito.when;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.collect.Lists;
@@ -53,7 +53,7 @@ public class SpongeAbstractEventTest {
     public void testChangeBlockEvent_filter() {
         Transaction<BlockSnapshot> transaction = new Transaction<>(mockParam(BlockSnapshot.class), mockParam(BlockSnapshot.class));
 
-        stub(transaction.getOriginal().getLocation()).toReturn(Optional.of(new Location<>(mockParam(World.class), Vector3d.ZERO)));
+        when(transaction.getOriginal().getLocation()).thenReturn(Optional.of(new Location<>(mockParam(World.class), Vector3d.ZERO)));
 
         ChangeBlockEvent.Break event = SpongeEventFactory.createChangeBlockEventBreak(Cause.source("none").build(), mockParam(World.class),
                 Lists.newArrayList(transaction));

@@ -25,8 +25,8 @@
 package org.spongepowered.api.data;
 
 import static org.junit.Assert.assertTrue;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import static org.spongepowered.api.data.DataQuery.of;
 
 import com.google.common.base.Objects;
@@ -37,10 +37,10 @@ import com.google.common.collect.Sets;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.util.test.TestHooks;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,8 +48,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(Sponge.class)
 public class MemoryDataTest {
 
     @Test
@@ -245,15 +243,22 @@ public class MemoryDataTest {
         assertTrue(container.getName() !=  null);
     }
 
-    @Test
-    public void testGetSerializable() {
+    private static void initGame() throws Exception {
         // Need to mock the service Sadly, this takes the most amount of time
-        DataManager service = Mockito.mock(DataManager.class);
+        DataManager service = mock(DataManager.class);
         DataBuilder<SimpleData> builder = new SimpleDataBuilder();
-        mockStatic(Sponge.class);
-        when(Sponge.getDataManager()).thenReturn(service);
-        Mockito.stub(service.getBuilder(SimpleData.class)).toReturn(Optional.of(builder));
-        Mockito.stub(service.getTranslator(Mockito.any())).toReturn(Optional.empty());
+
+        Game game = mock(Game.class);
+        when(game.getDataManager()).thenReturn(service);
+        TestHooks.setGame(game);
+
+        when(service.getBuilder(SimpleData.class)).thenReturn(Optional.of(builder));
+        when(service.getTranslator(Mockito.any())).thenReturn(Optional.empty());
+    }
+
+    @Test
+    public void testGetSerializable() throws Exception {
+        initGame();
 
         List<String> myList = ImmutableList.of("foo", "bar", "baz");
 
@@ -268,13 +273,8 @@ public class MemoryDataTest {
     }
 
     @Test
-    public void testGetSerializableList() {
-        DataManager service = Mockito.mock(DataManager.class);
-        DataBuilder<SimpleData> builder = new SimpleDataBuilder();
-        mockStatic(Sponge.class);
-        when(Sponge.getDataManager()).thenReturn(service);
-        Mockito.stub(service.getBuilder(SimpleData.class)).toReturn(Optional.of(builder));
-        Mockito.stub(service.getTranslator(Mockito.any())).toReturn(Optional.empty());
+    public void testGetSerializableList() throws Exception {
+        initGame();
 
         List<SimpleData> list = Lists.newArrayList();
         for (int i = 0; i < 1000; i++) {
