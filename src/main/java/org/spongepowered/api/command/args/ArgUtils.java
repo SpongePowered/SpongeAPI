@@ -30,7 +30,7 @@ import org.spongepowered.api.text.TranslatableText;
 import javax.annotation.Nullable;
 
 /**
- * Internal utility methods
+ * Internal utility methods.
  */
 class ArgUtils {
     private ArgUtils() {

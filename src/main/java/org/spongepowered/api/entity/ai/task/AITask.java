@@ -61,16 +61,23 @@ public interface AITask<O extends Agent> {
     }
 
     /**
-     * Tests if the provided {@link AITask} is allowed to be ran concurrently with this task.
+     * Tests if the provided {@link AITask} is allowed to be ran concurrently
+     * with this task.
      *
-     * This plays a role in determining if tasks should be updated or not. If this method
-     * is being called on this task, that means:
+     * <p>This plays a role in determining if tasks should be updated or not.
+     * If this method
+     * is being called on this task, that means:</p>
      *
-     * 1. This task has higher priority than the provided task for our {@link AITask#getGoal()}.
-     * 2. Returning "false" will remove the provided task from the list of updated tasks, if not
-     *    there already.
-     * 3. Returning "true" will add the provided task to the list of updated tasks, if not there
-     *    already.
+     * <ol>
+     *   <li>This task has higher priority than the provided task for our
+     *   {@link AITask#getGoal()}.</li>
+     *   <li>Returning "false" will remove the provided task from the list of
+     *   updated tasks, if not
+     *   there already.</li>
+     *   <li>Returning "true" will add the provided task to the list of updated
+     *   tasks, if not there
+     *   already.</li>
+     * </ol>
      *
      * @param other The other task
      * @return True if it can be, false if not
@@ -78,19 +85,21 @@ public interface AITask<O extends Agent> {
     boolean canRunConcurrentWith(AITask<O> other);
 
     /**
-     * Returns if this task can be interrupted. This determines if this task can be
-     * added to the list of updated tasks as well as if it should continue updating.
+     * Returns if this task can be interrupted. This determines if this task
+     * can be added to the list of updated tasks as well as if it should
+     * continue updating.
      *
-     * Thought should be made before blindly returning true or false here. In Minecraft,
-     * all tasks can be interrupted by higher priority tasks (tasks added with lower numerical
-     * values in {@link Goal#addTask(int, AITask)}) but a task being created by a plugin might
-     * be deemed critical and as such should return false.
+     * <p>Thought should be made before blindly returning true or false here.
+     * In Minecraft, all tasks can be interrupted by higher priority tasks
+     * (tasks added with lower numerical values in
+     * {@link Goal#addTask(int, AITask)}) but a task being created by a plugin
+     * might be deemed critical and as such should return false.</p>
      *
-     * Due note that the meaning of "true" changes based on the state of the {@link Goal}.
-     * To put it simply, this value can mean "Should I be added as an updating task or "Should
-     * I continue updating?". Regardless of the question, the next step that happens is
-     * transferring from this method to {@link AITask#canRunConcurrentWith(AITask)} in the next
-     * AI tick loop.
+     * <p>Due note that the meaning of "true" changes based on the state of the
+     * {@link Goal}.  To put it simply, this value can mean "Should I be added
+     * as an updating task or "Should I continue updating?". Regardless of the
+     * question, the next step that happens is transferring from this method to
+     * {@link AITask#canRunConcurrentWith(AITask)} in the next AI tick loop.</p>
      *
      * @return True if can be interrupted, false if not
      */

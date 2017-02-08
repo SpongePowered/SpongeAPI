@@ -67,7 +67,7 @@ public interface Asset {
      * Copies this Asset to the specified 'output' {@link Path}.
      *
      * @param output Path to copy to
-     * @throws IOException
+     * @throws IOException If any file exception is thrown
      */
     default void copyToFile(Path output) throws IOException {
         this.copyToFile(output, false);
@@ -110,7 +110,7 @@ public interface Asset {
      * Copies this Asset to the specified 'outputDirectory' {@link Path}.
      *
      * @param outputDirectory The directory to copy to
-     * @throws IOException
+     * @throws IOException If any file exception is thrown
      */
     default void copyToDirectory(Path outputDirectory) throws IOException {
         this.copyToDirectory(outputDirectory, false);
@@ -162,7 +162,7 @@ public interface Asset {
      * result.
      *
      * @return String representation of Asset
-     * @throws IOException
+     * @throws IOException If any file exception is thrown
      */
     default String readString() throws IOException {
         return readString(DEFAULT_CHARSET);
@@ -174,7 +174,7 @@ public interface Asset {
      *
      * @param charset The charset to read the asset with
      * @return String representation of Asset
-     * @throws IOException
+     * @throws IOException If any file exception is thrown
      */
     default String readString(Charset charset) throws IOException {
         checkNotNull(charset, "charset");
@@ -185,7 +185,7 @@ public interface Asset {
      * Reads all lines from the asset and returns the result.
      *
      * @return The lines read from the asset
-     * @throws IOException
+     * @throws IOException If any file exception is thrown
      */
     default List<String> readLines() throws IOException {
         return readLines(DEFAULT_CHARSET);
@@ -196,7 +196,7 @@ public interface Asset {
      *
      * @param charset The charset to read the asset with
      * @return An immutable list of the lines read from the asset
-     * @throws IOException
+     * @throws IOException If any file exception is thrown
      */
     default List<String> readLines(Charset charset) throws IOException {
         checkNotNull(charset, "charset");
@@ -208,7 +208,7 @@ public interface Asset {
      * result.
      *
      * @return Byte array representation of Asset
-     * @throws IOException
+     * @throws IOException If any file exception is thrown
      */
     default byte[] readBytes() throws IOException {
         return Resources.toByteArray(getUrl());

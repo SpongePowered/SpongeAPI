@@ -41,7 +41,8 @@ import java.util.Map;
 import java.util.function.Function;
 
 /**
- * An abstract base class for implementations of {@link DamageEntityEvent} and {@link HealEntityEvent}
+ * An abstract base class for implementations of {@link DamageEntityEvent} and {@link HealEntityEvent}.
+ *
  * @param <T> The modifier type to use
  */
 public abstract class AbstractModifierEvent<T> extends AbstractEvent {
@@ -52,7 +53,8 @@ public abstract class AbstractModifierEvent<T> extends AbstractEvent {
     @UseField protected final LinkedHashMap<T, Double> modifiers = Maps.newLinkedHashMap();
     protected final List<Tuple<T, Function<? super Double, Double>>> modifierFunctions = new ArrayList<>();
 
-    protected ImmutableList<Tuple<T, Function<? super Double, Double>>> init(double originalValue, List<Tuple<T, Function<? super Double, Double>>> originalFunctions) {
+    protected ImmutableList<Tuple<T, Function<? super Double, Double>>> init(double originalValue,
+            List<Tuple<T, Function<? super Double, Double>>> originalFunctions) {
         final ImmutableList.Builder<Tuple<T, Double>> modifierMapBuilder = ImmutableList.builder();
         final ImmutableList.Builder<Tuple<T, Function<? super Double, Double>>> functionListBuilder = ImmutableList.builder();
         final ImmutableMap.Builder<T, Double> mapBuilder = ImmutableMap.builder();
@@ -100,6 +102,11 @@ public abstract class AbstractModifierEvent<T> extends AbstractEvent {
         return damage;
     }
 
+    /**
+     * Gets a list of all modifiers for this event.
+     *
+     * @return The list of modifiers and their functions
+     */
     public final List<Tuple<T, Function<? super Double, Double>>> getModifiers() {
         ImmutableList.Builder<Tuple<T, Function<? super Double, Double>>> builder = ImmutableList.builder();
         for (Tuple<T, Function<? super Double, Double>> entry : this.modifierFunctions) {

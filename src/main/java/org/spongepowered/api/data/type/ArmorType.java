@@ -33,7 +33,7 @@ import java.util.Optional;
 
 /**
  * Represents a type of "armor", usually applicable to any
- * {@link ItemTypes#DIAMOND_CHESTPLATE}
+ * {@link ItemTypes#DIAMOND_CHESTPLATE}.
  */
 @CatalogedBy(ArmorTypes.class)
 public interface ArmorType extends CatalogType {
