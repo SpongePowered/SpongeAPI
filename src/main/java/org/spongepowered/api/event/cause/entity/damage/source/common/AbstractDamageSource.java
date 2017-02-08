@@ -31,7 +31,8 @@ import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 
 /**
  * An abstract implementation of {@link DamageSource} to allow plugins to create
- * their own damage sources without having to implement all the required methods.
+ * their own damage sources without having to implement all the required
+ * methods.
  *
  * <p>Note that extending this class at the least is a requirement for custom
  * damage sources as not doing so will simply not work.</p>

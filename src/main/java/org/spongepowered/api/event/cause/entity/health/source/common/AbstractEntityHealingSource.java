@@ -31,6 +31,11 @@ public class AbstractEntityHealingSource extends AbstractHealingSource implement
 
     private final Entity entity;
 
+    /**
+     * Create an {@link EntityHealingSource} based on this abstract one.
+     *
+     * @param builder The builder providing the information
+     */
     public AbstractEntityHealingSource(AbstractEntityHealingSourceBuilder<?, ?> builder) {
         super(builder);
         this.entity = builder.entity;

@@ -32,10 +32,23 @@ import javax.annotation.Nullable;
 
 public class ArmorTypeProperty extends AbstractProperty<String, ArmorType> {
 
+    /**
+     * Construct a new {@link ArmorTypeProperty} with the desired
+     * {@link ArmorType}.
+     *
+     * @param value The armor type to use
+     */
     public ArmorTypeProperty(@Nullable ArmorType value) {
         super(value);
     }
 
+    /**
+     * Construct a new {@link ArmorTypeProperty} with the desired
+     * {@link ArmorType} and {@link Operator}.
+     *
+     * @param value The armor type to use
+     * @param op The operator to use for comparisons
+     */
     public ArmorTypeProperty(@Nullable ArmorType value, @Nullable Operator op) {
         super(value, op);
     }

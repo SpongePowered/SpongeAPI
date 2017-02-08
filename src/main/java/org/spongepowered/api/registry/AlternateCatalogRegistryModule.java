@@ -25,10 +25,17 @@
 package org.spongepowered.api.registry;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.util.RegisterCatalog;
 
 import java.util.Map;
 
 public interface AlternateCatalogRegistryModule<T extends CatalogType> extends CatalogRegistryModule<T> {
 
+    /**
+     * Gets the catalog {@link Map map} instead of defaulting to utilizing
+     * {@link RegisterCatalog} annotated field for the map of catalog types.
+     *
+     * @return The catalog map to use for the registry system
+     */
     Map<String, T> provideCatalogMap();
 }

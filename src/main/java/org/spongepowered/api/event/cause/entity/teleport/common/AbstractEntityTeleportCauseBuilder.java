@@ -30,8 +30,10 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.teleport.EntityTeleportCause;
 
 @SuppressWarnings("unchecked")
-public abstract class AbstractEntityTeleportCauseBuilder<T extends EntityTeleportCause, B extends EntityTeleportCause.EntityTeleportCauseBuilder<T, B>>
-        extends AbstractTeleportCauseBuilder<T, B> implements EntityTeleportCause.EntityTeleportCauseBuilder<T, B> {
+public abstract class AbstractEntityTeleportCauseBuilder<T extends EntityTeleportCause,
+        B extends EntityTeleportCause.EntityTeleportCauseBuilder<T, B>>
+        extends AbstractTeleportCauseBuilder<T, B>
+        implements EntityTeleportCause.EntityTeleportCauseBuilder<T, B> {
 
     protected Entity entity;
 

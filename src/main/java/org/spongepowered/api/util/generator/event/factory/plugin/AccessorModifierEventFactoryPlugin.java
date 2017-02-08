@@ -140,7 +140,7 @@ public class AccessorModifierEventFactoryPlugin implements EventFactoryPlugin {
          * @param transformerMethod The transformer method
          * @param property The property
          */
-        public MethodPair(String name, Method callerMethod, Method transformerMethod, Property<Class<?>, Method> property) {
+        MethodPair(String name, Method callerMethod, Method transformerMethod, Property<Class<?>, Method> property) {
             this.name = name;
             this.callerMethod = callerMethod;
             this.transformerMethod = transformerMethod;

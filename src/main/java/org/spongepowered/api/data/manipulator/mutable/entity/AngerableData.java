@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
-
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAngerableData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;

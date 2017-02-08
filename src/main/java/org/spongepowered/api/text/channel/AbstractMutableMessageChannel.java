@@ -49,10 +49,12 @@ public abstract class AbstractMutableMessageChannel implements MutableMessageCha
      * Creates a new instance of {@link AbstractMutableMessageChannel} with the
      * provided {@link Collection} as the underlying member list.
      *
-     * <p>The passed {@link Collection} directly affects the members of this channel.</p>
+     * <p>The passed {@link Collection} directly affects the members of this
+     * channel.</p>
      *
-     * <p>It is recommended to use a weak collection to avoid memory leaks. If you do not
-     * use a weak collection, please ensure that members are  cleaned up properly.</p>
+     * <p>It is recommended to use a weak collection to avoid memory leaks. If
+     * you do not use a weak collection, please ensure that members are  cleaned
+     * up properly.</p>
      *
      * @param members The collection of members
      */

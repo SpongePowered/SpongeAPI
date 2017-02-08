@@ -167,9 +167,9 @@ public class AABB {
      * @return Whether or not the box contains the point
      */
     public boolean contains(double x, double y, double z) {
-        return this.min.getX() <= x && this.max.getX() >= x &&
-            this.min.getY() <= y && this.max.getY() >= y &&
-            this.min.getZ() <= z && this.max.getZ() >= z;
+        return this.min.getX() <= x && this.max.getX() >= x
+               && this.min.getY() <= y && this.max.getY() >= y
+               && this.min.getZ() <= z && this.max.getZ() >= z;
     }
 
     /**
@@ -180,9 +180,9 @@ public class AABB {
      */
     public boolean intersects(AABB other) {
         checkNotNull(other, "other");
-        return this.max.getX() >= other.getMin().getX() && other.getMax().getX() >= this.min.getX() &&
-            this.max.getY() >= other.getMin().getY() && other.getMax().getY() >= this.min.getY() &&
-            this.max.getZ() >= other.getMin().getZ() && other.getMax().getZ() >= this.min.getZ();
+        return this.max.getX() >= other.getMin().getX() && other.getMax().getX() >= this.min.getX()
+               && this.max.getY() >= other.getMin().getY() && other.getMax().getY() >= this.min.getY()
+               && this.max.getZ() >= other.getMin().getZ() && other.getMax().getZ() >= this.min.getZ();
     }
 
     /**
@@ -312,23 +312,23 @@ public class AABB {
         final double y;
         final double z;
         if (normal.getX() > 0) {
-            x = max.getX();
+            x = this.max.getX();
         } else if (normal.getX() < 0) {
-            x = min.getX();
+            x = this.min.getX();
         } else {
             x = direction.getX() * t + start.getX();
         }
         if (normal.getY() > 0) {
-            y = max.getY();
+            y = this.max.getY();
         } else if (normal.getY() < 0) {
-            y = min.getY();
+            y = this.min.getY();
         } else {
             y = direction.getY() * t + start.getY();
         }
         if (normal.getZ() > 0) {
-            z = max.getZ();
+            z = this.max.getZ();
         } else if (normal.getZ() < 0) {
-            z = min.getZ();
+            z = this.min.getZ();
         } else {
             z = direction.getZ() * t + start.getZ();
         }
