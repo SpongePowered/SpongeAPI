@@ -34,6 +34,7 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValueStore;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -68,6 +69,26 @@ public interface ValueContainer<C extends ValueContainer<C>> {
      * @return The value, if available
      */
     <E> Optional<E> get(Key<? extends BaseValue<E>> key);
+
+    /**
+     * Attempts to get the underlying value backed by a {@link BaseValue}
+     * linked to the provided {@link Key}.
+     *
+     * <p>If the {@link Key} is not supported or
+     * available, {@link NoSuchElementException} will be thrown.</p>
+     *
+     * @param key The key
+     * @param <E> The type of value
+     * @return The value
+     * @throws NoSuchElementException If the value is not supported or present
+     */
+    default <E> E require(Key<? extends BaseValue<E>> key) {
+        final Optional<E> optional = this.get(key);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+        throw new NoSuchElementException(String.format("Could not retrieve value for key '%s'", key.getId()));
+    }
 
     /**
      * Attempts to get the underlying value if available and supported. If the
