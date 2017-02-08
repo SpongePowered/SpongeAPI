@@ -22,39 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.item.recipe.crafting;
 
 import com.google.common.collect.ImmutableCollection;
-import org.spongepowered.api.item.recipe.crafting.CraftingRegistry;
-import org.spongepowered.api.item.recipe.smelting.SmeltingRegistry;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.type.GridInventory;
+import org.spongepowered.api.item.recipe.RecipeRegistry;
 
-import java.util.function.Predicate;
+import java.util.Optional;
 
 /**
- * Used for {@link SmeltingRegistry} and {@link CraftingRegistry}
+ * A CraftingRegistry holds all registered crafting recipes for a given game.
  */
-public interface RecipeRegistry<T extends Recipe> {
+public interface CraftingRegistry extends RecipeRegistry<CraftingRecipe> {
 
     /**
-     * Registers the given Recipe to make it available to craft.
+     * Returns the results for running this CraftingRegistry over an {@link GridInventory}
      *
-     * @param recipe The Recipe to register
+     * @param grid An ItemGrid as input
+     * @return A list of ItemStacks or {@link Optional#empty()} if the given
+     *          {@link GridInventory} does not match any recipes.
      */
-    void register(T recipe);
-
-    /**
-     * Removes Recipes from this Registry using the given Predicate.
-     *
-     * @param predicate The check to remove the Recipe or not
-     * @return If it removed any recipes or not
-     */
-    boolean remove(Predicate<? super T> predicate);
-
-    /**
-     * Retrieves all recipes registered in this registry.
-     *
-     * @return All registered recipes
-     */
-    ImmutableCollection<T> getRecipes();
+    Optional<ImmutableCollection<ItemStackSnapshot>> getResults(GridInventory grid);
 
 }

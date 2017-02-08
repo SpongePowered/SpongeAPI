@@ -22,39 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.item.recipe.smelting;
 
-import com.google.common.collect.ImmutableCollection;
-import org.spongepowered.api.item.recipe.crafting.CraftingRegistry;
-import org.spongepowered.api.item.recipe.smelting.SmeltingRegistry;
+import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.recipe.RecipeRegistry;
 
-import java.util.function.Predicate;
+import java.util.Optional;
 
 /**
- * Used for {@link SmeltingRegistry} and {@link CraftingRegistry}
+ * A SmeltingRegistry holds all registered smelting recipes for a given game.
  */
-public interface RecipeRegistry<T extends Recipe> {
+public interface SmeltingRegistry extends RecipeRegistry<SmeltingRecipe> {
 
     /**
-     * Registers the given Recipe to make it available to craft.
+     * Gets the experience a {@link ItemType} drops when it is made.
      *
-     * @param recipe The Recipe to register
+     * @param stack the {@link ItemStack}
+     * @return the experience of the {@link ItemStack}
      */
-    void register(T recipe);
+    double getExperience(ItemStackSnapshot stack);
 
     /**
-     * Removes Recipes from this Registry using the given Predicate.
+     * Returns the results for running this SmeltingRegistry over an {@link ItemType}.
      *
-     * @param predicate The check to remove the Recipe or not
-     * @return If it removed any recipes or not
+     * @param type the type to search for
+     * @return A {@link ItemStackSnapshot} or {@link Optional#empty()} if the given
+     *          {@link ItemType} does not match any recipes.
      */
-    boolean remove(Predicate<? super T> predicate);
-
-    /**
-     * Retrieves all recipes registered in this registry.
-     *
-     * @return All registered recipes
-     */
-    ImmutableCollection<T> getRecipes();
-
+    Optional<ItemStackSnapshot> getResult(ItemType type);
 }

@@ -24,12 +24,8 @@
  */
 package org.spongepowered.api.item.recipe;
 
-import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.type.GridInventory;
-
-import java.util.List;
-import java.util.Optional;
+import com.google.common.collect.ImmutableCollection;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
  * <p>A Recipe represents some craftable recipe in the game.</p>
@@ -47,29 +43,18 @@ import java.util.Optional;
 public interface Recipe {
 
     /**
-     * Returns the list of item types that result when successful crafting of
-     * this Recipe is completed.
+     * Gets the result of this {@link Recipe}.
      *
-     * @return The resultant list of item types
+     * @return the results of this {@link Recipe}
      */
-    List<ItemType> getResultTypes();
+    ImmutableCollection<ItemStackSnapshot> getResults();
 
     /**
-     * Checks if the given {@link GridInventory} fits the required constraints
-     * to craft this Recipe.
+     * Gets the {@link RecipeRegistry} that
+     * corresponds with this Recipe.
      *
-     * @param grid The ItemGrid to check for validity
-     * @return True if the given input matches this recipe's requirements
+     * @return the {@link RecipeRegistry} that corresponds with this Recipe
      */
-    boolean isValid(GridInventory grid);
-
-    /**
-     * Returns the results for running this Recipe over an {@link GridInventory}
-     *
-     * @param grid An ItemGrid as input
-     * @return A list of ItemStacks or {@link Optional#empty()} if the given
-     *          ItemGrid does not match this recipe's requirements.
-     */
-    Optional<List<ItemStack>> getResults(GridInventory grid);
+    RecipeRegistry<?> getRegistry();
 
 }

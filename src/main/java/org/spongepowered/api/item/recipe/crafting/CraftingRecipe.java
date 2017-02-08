@@ -22,39 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.item.recipe.crafting;
 
-import com.google.common.collect.ImmutableCollection;
-import org.spongepowered.api.item.recipe.crafting.CraftingRegistry;
-import org.spongepowered.api.item.recipe.smelting.SmeltingRegistry;
-
-import java.util.function.Predicate;
+import org.spongepowered.api.item.recipe.Recipe;
 
 /**
- * Used for {@link SmeltingRegistry} and {@link CraftingRegistry}
+ * This represents a {@link Recipe} to be used in a Crafting Table.
+ * @see Recipe
  */
-public interface RecipeRegistry<T extends Recipe> {
-
-    /**
-     * Registers the given Recipe to make it available to craft.
-     *
-     * @param recipe The Recipe to register
-     */
-    void register(T recipe);
-
-    /**
-     * Removes Recipes from this Registry using the given Predicate.
-     *
-     * @param predicate The check to remove the Recipe or not
-     * @return If it removed any recipes or not
-     */
-    boolean remove(Predicate<? super T> predicate);
-
-    /**
-     * Retrieves all recipes registered in this registry.
-     *
-     * @return All registered recipes
-     */
-    ImmutableCollection<T> getRecipes();
+public interface CraftingRecipe extends Recipe {
 
 }
