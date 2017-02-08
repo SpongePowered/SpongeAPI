@@ -29,18 +29,42 @@ import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
+/**
+ * An {@link AITask} in which the owner swims when in water.
+ */
 public interface SwimmingAITask extends AITask<Agent> {
 
+    /**
+     * Creates a new {@link Builder} to build a {@link SwimmingAITask}.
+     *
+     * @return The new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the chance of swimming when the task owner is in water.
+     *
+     * @return The chance of swimming
+     */
     float getSwimChance();
 
+    /**
+     * Sets the chance of swimming when the task owner is in water.
+     *
+     * @param chance The chance of swimming
+     */
     void setSwimChance(float chance);
 
     interface Builder extends AITaskBuilder<Agent, SwimmingAITask, Builder> {
 
+        /**
+         * Sets the chance of swimming when the task owner is in water.
+         *
+         * @param chance The chance of swimming
+         * @return This builder, for chaining
+         */
         Builder swimChance(float chance);
 
     }

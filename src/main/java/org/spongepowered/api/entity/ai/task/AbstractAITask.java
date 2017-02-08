@@ -36,8 +36,8 @@ import java.util.Optional;
  *
  * It is required for anyone wanting to write their own logic that a Goal can
  * run to utilize this class. If you desire to use the builtin AI included with
- * Minecraft, use {@link GameRegistry#createBuilder(Class)} and pass a builder to
- * it instead.
+ * Minecraft, use {@link GameRegistry#createBuilder(Class)} and pass a builder
+ * to it instead.
  *
  * @param <O> The type of Agent
  */
@@ -45,7 +45,16 @@ public abstract class AbstractAITask<O extends Agent> implements AITask<O> {
 
     private final AITaskType type;
 
-    public AbstractAITask(AITaskType type) {
+    /**
+     * Constructs a new instance of a custom AI task. This constructor is
+     * designed to be used by subclasses.
+     *
+     * <p>Note: The type passed in as the argument should be a custom {@link
+     * AITaskType} instance representing this type of task.</p>
+     *
+     * @param type The type of this task
+     */
+    protected AbstractAITask(AITaskType type) {
         Preconditions.checkNotNull(type);
         this.type = type;
     }
@@ -61,13 +70,39 @@ public abstract class AbstractAITask<O extends Agent> implements AITask<O> {
         return Optional.empty();
     }
 
+    /**
+     * Called immediately after a call to {@link #shouldUpdate()} returns
+     * {@code true}. This allows the task to set up for the current state
+     * of the task owner.
+     */
     public abstract void start();
 
+    /**
+     * Called every time this AI task gets ticked and the task is not
+     * currently updating. This tells whether the task should start execution.
+     *
+     * @return True if this task should start to update, false otherwise
+     */
     public abstract boolean shouldUpdate();
 
+    /**
+     * Called every time {@link #continueUpdating()} returns {@code true}.
+     * Do actual execution in this method.
+     */
     public abstract void update();
 
+    /**
+     * Called every time this AI task gets ticked and the task is updating.
+     * This tells whether the task should start execute.
+     *
+     * @return True if this task should continue to update, false otherwise
+     */
     public abstract boolean continueUpdating();
 
+    /**
+     * Called immediately after {@link #continueUpdating()} returns {@code
+     * false}. This allows the task to reset to a clean beginning state.
+     */
     public abstract void reset();
+
 }

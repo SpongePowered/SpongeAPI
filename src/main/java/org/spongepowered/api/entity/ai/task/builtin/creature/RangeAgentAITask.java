@@ -30,39 +30,94 @@ import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Ranger;
 
 /**
- * An {@link AITask} which uses the ranging aspect of the Ranger to attack the target.
+ * An {@link AITask} which uses the ranging aspect of the {@link Ranger} to
+ * attack the target.
  */
 public interface RangeAgentAITask extends AITask<Ranger> {
 
+    /**
+     * Creates a new {@link Builder} to build a {@link RangeAgentAITask}.
+     *
+     * @return The new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the moving speed of this {@link Ranger}.
+     *
+     * @return The moving speed
+     */
     double getMoveSpeed();
 
+    /**
+     * Sets the moving speed of this {@link Ranger}.
+     *
+     * @param speed The moving speed
+     * @return This task, for chaining
+     */
     RangeAgentAITask setMoveSpeed(double speed);
 
+    /**
+     * Gets the time, in ticks, this {@link Ranger} will wait before attacking
+     * again.
+     *
+     * @return The delay, in ticks
+     */
     int getDelayBetweenAttacks();
 
     /**
-     * The time, in ticks, this {@link Ranger} will wait before attacking again.
+     * Sets the time, in ticks, this {@link Ranger} will wait before attacking
+     * again.
      *
      * @param delay The delay, in ticks
      * @return This task, for chaining
      */
     RangeAgentAITask setDelayBetweenAttacks(int delay);
 
+    /**
+     * Gets the attack radius of this {@link Ranger}.
+     *
+     * @return The attack radius
+     */
     float getAttackRadius();
 
+    /**
+     * Sets the attack radius of this {@link Ranger}.
+     *
+     * @param radius The attack radius
+     * @return This task, for chaining
+     */
     RangeAgentAITask setAttackRadius(float radius);
 
     interface Builder extends AITaskBuilder<Ranger, RangeAgentAITask, RangeAgentAITask.Builder> {
 
+        /**
+         * Sets the moving speed of the task owner.
+         *
+         * @param speed The moving speed
+         * @return This builder, for chaining
+         */
         Builder moveSpeed(double speed);
 
+        /**
+         * Sets the time, in ticks, the task owner will wait before attacking
+         * again.
+         *
+         * @param delay The delay, in ticks
+         * @return This builder, for chaining
+         */
         Builder delayBetweenAttacks(int delay);
 
+        /**
+         * Sets the attack radius of the task owner.
+         *
+         * @param radius The attack radius
+         * @return This builder, for chaining
+         */
         Builder attackRadius(float radius);
+
     }
 
 }

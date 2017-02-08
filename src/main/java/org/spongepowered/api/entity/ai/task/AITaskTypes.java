@@ -33,17 +33,23 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import java.util.function.Predicate;
 
+/**
+ * An enumeration of all possible {@link AITaskType}s available in vanilla
+ * minecraft.
+ */
 public final class AITaskTypes {
 
     // SORTFIELDS:ON
 
     /**
-     * {@link AITask} where {@link Creature}s avoid other {@link Agent}s based on a {@link Predicate}.
+     * {@link AITask} where {@link Creature}s avoid other {@link Agent}s based
+     * on a {@link Predicate}.
      */
     public static final AITaskType AVOID_ENTITY = DummyObjectProvider.createFor(AITaskType.class, "AVOID_ENTITY");
 
     /**
-     * {@link AITask} where {@link RideableHorse}s run around while {@link Humanoid}s attempt to tame them.
+     * {@link AITask} where {@link RideableHorse}s run around while {@link
+     * Humanoid}s attempt to tame them.
      */
     public static final AITaskType RUN_AROUND_LIKE_CRAZY = DummyObjectProvider.createFor(AITaskType.class, "RUN_AROUND_LIKE_CRAZY");
 
@@ -65,5 +71,7 @@ public final class AITaskTypes {
     // SORTFIELDS:OFF
 
     private AITaskTypes() {
+
     }
+
 }

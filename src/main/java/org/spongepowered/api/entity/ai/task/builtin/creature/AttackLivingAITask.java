@@ -29,24 +29,68 @@ import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 
+/**
+ * An {@link AITask} in which the owner uses melee attack.
+ */
 public interface AttackLivingAITask extends AITask<Creature> {
 
+    /**
+     * Creates a new {@link Builder} to build a {@link AttackLivingAITask}.
+     *
+     * @return The new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the moving speed of the task owner.
+     *
+     * @return The moving speed
+     */
     double getSpeed();
 
+    /**
+     * Sets the moving speed of the task owner.
+     *
+     * @param speed The moving speed
+     * @return This task, for chaining
+     */
     AttackLivingAITask setSpeed(double speed);
 
+    /**
+     * Gets whether the owner continues to chase even if it cannot find a path
+     * to its target.
+     *
+     * @return Whether the owner continues to chase
+     */
     boolean hasLongMemory();
 
+    /**
+     * Sets whether the owner continues to chase even if it cannot find a path
+     * to its target.
+     *
+     * @param longMemory Whether the owner continues to chase
+     * @return This task, for chaining
+     */
     AttackLivingAITask setLongMemory(boolean longMemory);
 
     interface Builder extends AITaskBuilder<Creature, AttackLivingAITask, Builder> {
 
+        /**
+         * Sets the moving speed of the task owner.
+         *
+         * @param speed The moving speed
+         * @return This builder, for chaining
+         */
         Builder speed(double speed);
 
+        /**
+         * Makes the owner continue to chase even if it cannot find a path
+         * to its target.
+         *
+         * @return This builder, for chaining
+         */
         Builder longMemory();
 
     }

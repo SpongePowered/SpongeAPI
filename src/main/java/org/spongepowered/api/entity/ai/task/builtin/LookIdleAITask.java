@@ -29,8 +29,16 @@ import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Agent;
 
+/**
+ * An {@link AITask} in which the owner looks around in an idle way.
+ */
 public interface LookIdleAITask extends AITask<Agent> {
 
+    /**
+     * Creates a new {@link Builder} to build a {@link LookIdleAITask}.
+     *
+     * @return The new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
@@ -38,4 +46,5 @@ public interface LookIdleAITask extends AITask<Agent> {
     interface Builder extends AITaskBuilder<Agent, LookIdleAITask, Builder> {
 
     }
+
 }

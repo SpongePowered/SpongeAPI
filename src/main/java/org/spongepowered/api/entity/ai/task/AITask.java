@@ -75,7 +75,7 @@ public interface AITask<O extends Agent> {
      * @param other The other task
      * @return True if it can be, false if not
      */
-    boolean canRunConcurrentWith(AITask<O> other);
+    boolean canRunConcurrentWith(AITask<?> other);
 
     /**
      * Returns if this task can be interrupted. This determines if this task can be
@@ -95,4 +95,5 @@ public interface AITask<O extends Agent> {
      * @return True if can be interrupted, false if not
      */
     boolean canBeInterrupted();
+
 }

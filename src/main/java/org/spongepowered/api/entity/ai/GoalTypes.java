@@ -27,6 +27,10 @@ package org.spongepowered.api.entity.ai;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
+/**
+ * An enumeration of all possible {@link GoalType}s available in vanilla
+ * minecraft.
+ */
 public final class GoalTypes {
 
     // SORTFIELDS:ON
@@ -51,4 +55,5 @@ public final class GoalTypes {
 
     private GoalTypes() {
     }
+
 }
