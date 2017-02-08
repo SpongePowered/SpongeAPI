@@ -228,37 +228,45 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
     }
 
     /**
-     * A builder for building {@link StateMatcher}s.
+     * A builder for the {@link StateMatcher}.
      */
     final class MatcherBuilder implements ResettableBuilder<StateMatcher, MatcherBuilder> {
 
-        @Nullable private BlockType type;
+        @Nullable
+        private BlockType type;
         private ArrayList<BlockTrait<?>> traits = new ArrayList<>();
         private ArrayList<Object> values = new ArrayList<>();
 
         private MatcherBuilder() {
         }
 
+        /**
+         * Set the block type of this builder.
+         *
+         * <p>The block type must be set before adding traits or building the
+         * block state matcher.</p>
+         *
+         * @param type The block type
+         * @return This builder
+         */
         public MatcherBuilder type(BlockType type) {
             this.type = checkNotNull(type, "BlockType cannot be null!");
             return this;
         }
 
         /**
-         * Adds the desired {@link BlockTrait} and {code value} to this
-         * builder, if the desired {@link BlockTrait} does not belong to the
-         * original {@link BlockType} as provided by {@link #type(BlockType)},
-         * an exception is thrown. Likewise, if a {@code value} is not within
-         * the possible values for the desired trait of the desired type, an
-         * exception is thrown.
+         * Adds the desired {@link BlockTrait} and {code value} to this builder,
+         * if the desired {@link BlockTrait} does not belong to the original {@link BlockType}
+         * as provided by {@link #type(BlockType)}, an exception is thrown. Likewise,
+         * if a {@code value} is not within the possible values for the desired
+         * trait of the desired type, an exception is thrown.
          *
          * @param trait The desired block trait
          * @param value the desired value
          * @param <T> The type of comparable
          * @return This builder
-         * @throws IllegalArgumentException If the block trait does not match
-         *     the block type, or if the value does not belong to the trait
-         *     with the desired block type
+         * @throws IllegalArgumentException If the block trait does not match the block type,
+         *     or if the value does not belong to the trait with the desired block type
          */
         public <T extends Comparable<T>> MatcherBuilder trait(BlockTrait<T> trait, T value) throws IllegalArgumentException {
             checkState(this.type != null, "BlockType cannot be null! Must be set before using any traits!");
@@ -279,7 +287,6 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
         public StateMatcher build() throws IllegalStateException {
             checkState(this.type != null, "BlockType cannot be null!");
             return new StateMatcher(this.type, this.traits.toArray(new BlockTrait[this.traits.size() - 1]), this.values.toArray());
-
         }
 
         @SuppressWarnings("unchecked")
@@ -300,6 +307,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
             this.values.clear();
             return this;
         }
+
     }
 
     /**
@@ -310,7 +318,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
      * that contains 4 traits, and only 2 are wanting to be matched,
      * then the other two traits may be variable).
      */
-    final class StateMatcher implements Predicate<BlockState> {
+    final class StateMatcher {
         private final BlockType type;
         private final BlockTrait<?>[] traits;
         private final Object[] values;
@@ -359,26 +367,6 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
         }
 
         @Override
-        public boolean test(BlockState blockState) {
-            return matches(blockState);
-        }
-
-        /**
-         * Gets a {@link List} of compatible {@link BlockState}s.
-         * Since all {@link BlockState}s are known in the initialization
-         * of a {@link BlockType}, the states are already deterministic
-         * and cannot change themselves.
-         *
-         * @return The list of compatible block states
-         */
-        public List<BlockState> getCompatibleStates() {
-            if (this.compatibleStates == null) {
-                this.compatibleStates = computeCompatibleStates();
-            }
-            return this.compatibleStates;
-        }
-
-        @Override
         public String toString() {
             return Objects.toStringHelper(this)
                     .add("type", this.type)
@@ -405,5 +393,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
         public int hashCode() {
             return Objects.hashCode(this.type, this.traits, this.values);
         }
+
     }
+
 }
