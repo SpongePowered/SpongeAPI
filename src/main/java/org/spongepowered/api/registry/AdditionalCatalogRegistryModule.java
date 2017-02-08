@@ -26,8 +26,23 @@ package org.spongepowered.api.registry;
 
 import org.spongepowered.api.CatalogType;
 
+/**
+ * Registry module that is used to maintain a list of catalog types of a certain
+ * type. This module also accepts catalog type instances that are created by
+ * plugins.
+ *
+ * @param <T> The type of catalog type that is maintained by this module
+ */
 public interface AdditionalCatalogRegistryModule<T extends CatalogType> extends CatalogRegistryModule<T> {
 
-    void registerAdditionalCatalog(T extraCatalog);
+    /**
+     * Registers the given catalog type instance in this registry module. The
+     * ids that can be used to access this instance are chosen automatically.
+     *
+     * @param extraCatalog The catalog type to register
+     * @throws IllegalArgumentException If there is an id conflict with the
+     *         given type and an existing type
+     */
+    void registerAdditionalCatalog(T extraCatalog) throws IllegalArgumentException;
 
 }

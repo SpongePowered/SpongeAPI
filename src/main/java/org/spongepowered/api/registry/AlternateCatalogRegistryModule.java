@@ -25,10 +25,28 @@
 package org.spongepowered.api.registry;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.util.RegisterCatalog;
 
 import java.util.Map;
 
+/**
+ * Registry module that is used to maintain a list of catalog types of a certain
+ * type. Implementations must also annotate the class or a field in the class
+ * with the {@link RegisterCatalog} annotation, to indicate which catalog type
+ * pseudo enum class should be populated with the given values. The
+ * {@link #provideCatalogMap()} method takes precedence before any fields
+ * annotated with the {@link RegisterCatalog} annotation.
+ *
+ * @param <T> The type of catalog type that is maintained by this module
+ */
 public interface AlternateCatalogRegistryModule<T extends CatalogType> extends CatalogRegistryModule<T> {
 
+    /**
+     * Returns a view of the internal id to instance mapping that can be used to
+     * populate the catalog type pseudo enums.
+     *
+     * @return The map that should be used to populate the pseudo enums.
+     */
     Map<String, T> provideCatalogMap();
+
 }

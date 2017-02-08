@@ -25,6 +25,7 @@
 package org.spongepowered.api.registry.util;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.AlternateCatalogRegistryModule;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -34,12 +35,14 @@ import java.util.Map;
 
 /**
  * An annotation to mark a {@link Map} where it's of type
- * {@code Map<String, CatalogType>} such that it is used with a helper to
+ * {@code Map<String, CatalogType>} or an implementation of
+ * {@link AlternateCatalogRegistryModule} such that it is used with a helper to
  * register the static fields of various pseudo enum classes containing
- * "default" {@link CatalogType}s.
+ * "default" {@link CatalogType}s. If multiple fields are annotated only the
+ * first one is used.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
+@Target({ElementType.FIELD, ElementType.TYPE})
 public @interface RegisterCatalog {
 
     /**
