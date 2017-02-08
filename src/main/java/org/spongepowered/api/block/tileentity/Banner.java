@@ -35,6 +35,11 @@ import org.spongepowered.api.data.value.mutable.Value;
  */
 public interface Banner extends TileEntity {
 
+    /**
+     * Gets the {@link BannerData data} of this {@link Banner banner}
+     *
+     * @return
+     */
     default BannerData getBannerData() {
         return get(BannerData.class).get();
     }

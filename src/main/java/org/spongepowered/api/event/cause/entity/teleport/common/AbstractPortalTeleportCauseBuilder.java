@@ -31,8 +31,10 @@ import org.spongepowered.api.event.cause.entity.teleport.PortalTeleportCause;
 import org.spongepowered.api.world.PortalAgent;
 
 @SuppressWarnings("unchecked")
-public abstract class AbstractPortalTeleportCauseBuilder<T extends PortalTeleportCause, B extends PortalTeleportCause.PortalTeleportCauseBuilder<T, B>>
-        extends AbstractTeleportCauseBuilder<T, B> implements PortalTeleportCause.PortalTeleportCauseBuilder<T, B> {
+public abstract class AbstractPortalTeleportCauseBuilder<T extends PortalTeleportCause,
+        B extends PortalTeleportCause.PortalTeleportCauseBuilder<T, B>>
+        extends AbstractTeleportCauseBuilder<T, B>
+        implements PortalTeleportCause.PortalTeleportCauseBuilder<T, B> {
 
     protected PortalAgent agent;
 

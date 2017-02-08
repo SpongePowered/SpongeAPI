@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Fired when {@link ItemStack}s are generated into a {@link Inventory}
+ * Fired when {@link ItemStack}s are generated into a {@link Inventory}.
  */
 public interface AffectItemStackEvent extends Event, Cancellable {
 
@@ -60,7 +60,8 @@ public interface AffectItemStackEvent extends Event, Cancellable {
      * the {@link ItemStack} to pass to the predicate</p>
      *
      * @param predicate The predicate to use for filtering
-     * @return The transactions for which the predicate returned <code>false</code>
+     * @return The transactions for which the predicate returned
+     *     <code>false</code>
      */
     default List<? extends  Transaction<ItemStackSnapshot>> filter(Predicate<ItemStack> predicate) {
         List<Transaction<ItemStackSnapshot>> invalidatedTransactions = Lists.newArrayList();

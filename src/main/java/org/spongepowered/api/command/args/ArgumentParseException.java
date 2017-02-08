@@ -25,8 +25,8 @@
 package org.spongepowered.api.command.args;
 
 import com.google.common.base.Strings;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandException;
+import org.spongepowered.api.text.Text;
 
 /**
  * Exception thrown when an error occurs while parsing arguments.
@@ -77,7 +77,8 @@ public class ArgumentParseException extends CommandException {
     }
 
     /**
-     * Return a string pointing to the position of the arguments when this exception occurs.
+     * Return a string pointing to the position of the arguments when this
+     * exception occurs.
      *
      * @return The appropriate position string
      */
@@ -102,7 +103,8 @@ public class ArgumentParseException extends CommandException {
     }
 
     /**
-     * Gets the position of the last fetched argument in the provided source string.
+     * Gets the position of the last fetched argument in the provided source
+     * string.
      *
      * @return The source string to get position for
      */

@@ -34,10 +34,10 @@ import java.util.Optional;
 /**
  * An abstract implementation of a {@link AITask} that a {@link Goal} can run.
  *
- * It is required for anyone wanting to write their own logic that a Goal can
+ * <p>It is required for anyone wanting to write their own logic that a Goal can
  * run to utilize this class. If you desire to use the builtin AI included with
  * Minecraft, use {@link GameRegistry#createBuilder(Class)} and pass a builder to
- * it instead.
+ * it instead.</p>
  *
  * @param <O> The type of Agent
  */

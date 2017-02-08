@@ -39,8 +39,6 @@ import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.ProxySource;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.Tristate;
-import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -50,9 +48,11 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.selector.Selector;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
+import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.blockray.BlockRay;
 import org.spongepowered.api.util.blockray.BlockRayHit;
 import org.spongepowered.api.world.DimensionType;
+import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -121,7 +121,8 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent a player who has been online at some point, as a {@link User}
+     * Expect an argument to represent a player who has been online at some
+     * point, as a {@link User}.
      *
      * @param key The key to store under
      * @return the argument
@@ -130,23 +131,23 @@ public final class GenericArguments {
         return new UserCommandElement(key, false);
     }
 
-	/**
-	 * Expect an argument to represent a player who has been online at some point,
-	 * as a {@link User}, or if nothing matches and the source is a {@link User},
-	 * give the user. If nothing matches and the source is not a {@link User}, throw
-	 * an exception.
-	 *
-	 * @param key The key to store under
-	 * @return the argument
-	 */
-	public static CommandElement userOrSource(Text key) {
-		return new UserCommandElement(key, true);
-	}
+    /**
+     * Expect an argument to represent a player who has been online at some
+     * point, as a {@link User}, or if nothing matches and the source is a
+     * {@link User}, give the user. If nothing matches and the source is not
+     * a {@link User}, throw an exception.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement userOrSource(Text key) {
+        return new UserCommandElement(key, true);
+    }
 
     /**
-     * Expect an argument to represent a world. This gives a WorldProperties object rather than an actual world in order to include unloaded worlds
-     * as well
-     * Gives values of type {@link WorldProperties}
+     * Expect an argument to represent a world. This gives a WorldProperties
+     * object rather than an actual world in order to include unloaded worlds
+     * as well. Gives values of type {@link WorldProperties}.
      *
      * @param key The key to store under
      * @return the argument

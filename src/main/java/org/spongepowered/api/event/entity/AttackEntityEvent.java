@@ -111,13 +111,16 @@ import java.util.function.Function;
  * <p>Note that due to the mechanics of the game, {@link DamageModifier}s
  * are always ordered in the order of which they apply their modifier onto
  * the "base" damage. The implementation for {@link #getFinalOutputDamage()} can be
- * exemplified like so: <pre>{@code
+ * exemplified like so:</p>
+ * {@code
  *  double damage = this.baseDamage;
- *  for (Map.Entry<DamageModifier, Function<? super Double, Double>> entry : this.modifierFunctions.entrySet()) {
+ *  for (Map.Entry<DamageModifier, Function<? super Double, Double>> entry
+ *   : this.modifierFunctions.entrySet()) {
  *   damage += checkNotNull(entry.getValue().apply(damage));
  *  }
  *  return damage;
- * }</pre> After which, the "final" damage is simply the summation of the
+ * }
+ * <p>After which, the "final" damage is simply the summation of the
  * "base" damage and all "modified damage" for each {@link DamageModifier}
  * prorivded in this event.</p>
  *
@@ -361,8 +364,9 @@ public interface AttackEntityEvent extends TargetEntityEvent, Cancellable {
 
     /**
      * Adds the provided {@link DamageModifier} and {@link Function} to the list
-     * of modifiers, such that the modifier will appear in order after any current modifiers
-     * whose type are included in the provided {@link Set} of {@link DamageModifierType}s.
+     * of modifiers, such that the modifier will appear in order after any
+     * current modifiers whose type are included in the provided {@link Set}
+     * of {@link DamageModifierType}s.
      *
      * @param damageModifier The damage modifier to add
      * @param function The associated function
@@ -381,8 +385,20 @@ public interface AttackEntityEvent extends TargetEntityEvent, Cancellable {
     @PropertySettings(requiredParameter = false, generateMethods = false)
     List<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers();
 
+    /**
+     * Gets the knock back modifier. The modifier itself will apply to the momentum
+     * of the attacked entity.
+     *
+     * @return The knock back modifier
+     */
     int getKnockbackModifier();
 
+    /**
+     * Sets the knock back modifier. The modifier itself will apply to the momentum
+     * of the attacked entity.
+     *
+     * @param modifier The knock back modifier to set
+     */
     void setKnockbackModifier(int modifier);
 
 }

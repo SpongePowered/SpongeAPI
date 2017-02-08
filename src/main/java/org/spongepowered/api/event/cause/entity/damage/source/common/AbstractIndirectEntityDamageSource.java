@@ -101,8 +101,10 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
     }
 
     @SuppressWarnings("unchecked")
-    public static abstract class AbstractIndirectEntityDamageSourceBuilder<T extends IndirectEntityDamageSource, B extends IndirectEntityDamageSource.AbstractBuilder<T, B>>
-            extends AbstractEntityDamageSource.AbstractEntityDamageSourceBuilder<T, B> implements IndirectEntityDamageSource.AbstractBuilder<T, B> {
+    public abstract static class AbstractIndirectEntityDamageSourceBuilder<T extends IndirectEntityDamageSource,
+            B extends IndirectEntityDamageSource.AbstractBuilder<T, B>>
+            extends AbstractEntityDamageSource.AbstractEntityDamageSourceBuilder<T, B>
+            implements IndirectEntityDamageSource.AbstractBuilder<T, B> {
 
         protected Entity source;
         protected Entity indirect;

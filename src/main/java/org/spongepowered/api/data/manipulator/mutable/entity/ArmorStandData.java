@@ -30,6 +30,13 @@ import org.spongepowered.api.data.value.mutable.Value;
 
 public interface ArmorStandData extends DataManipulator<ArmorStandData, ImmutableArmorStandData> {
 
+    /**
+     * Returns whether this armor stand is rendered invisible and simply a
+     * "marker". The inventory contents and nameplate will still show, but
+     * the body itself of the armor stand will not be visible.
+     *
+     * @return Whether this is a marker armor stand
+     */
     Value<Boolean> marker();
 
     /**

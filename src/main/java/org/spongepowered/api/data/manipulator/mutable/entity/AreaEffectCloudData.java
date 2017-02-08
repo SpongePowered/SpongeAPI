@@ -57,6 +57,7 @@ public interface AreaEffectCloudData extends DataManipulator<AreaEffectCloudData
      * @return The particle type of this cloud
      */
     Value<ParticleType> particleType();
+
     /**
      * Gets the bounded {@code duration} value of this cloud.
      *

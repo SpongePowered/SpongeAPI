@@ -28,6 +28,12 @@ import org.spongepowered.api.CatalogType;
 
 public interface AdditionalCatalogRegistryModule<T extends CatalogType> extends CatalogRegistryModule<T> {
 
+    /**
+     * Performs additional registration after initial registration of
+     * the pertaining {@link CatalogType}.
+     *
+     * @param extraCatalog The extra catalog to register
+     */
     void registerAdditionalCatalog(T extraCatalog);
 
 }

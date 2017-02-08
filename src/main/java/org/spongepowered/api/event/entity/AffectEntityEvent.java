@@ -64,6 +64,7 @@ public interface AffectEntityEvent extends TargetWorldEvent, Cancellable {
      * when invoked.</p>
      *
      * @return The ImmutableList
+     * @throws IllegalStateException If the method is called after the pre order
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
     List<EntitySnapshot> getEntitySnapshots() throws IllegalStateException;
