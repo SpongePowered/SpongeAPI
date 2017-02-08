@@ -30,6 +30,7 @@ import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSetMultimap;
 import com.google.common.collect.ListMultimap;
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.entity.Entity;
 
 import java.util.List;
@@ -188,7 +189,33 @@ public interface ChunkTicketManager {
          */
         int getMaxNumChunks();
 
-        // TODO: NBTTag getCustomData(); (Is saved with ticket information)
+        /**
+         * Gets the companion data stored in a {@link DataContainer}. Note that
+         * the provided {@link DataContainer} is modifiable, but a copy of the
+         * internal container, and as such may need to be
+         * {@link #setCompanionData(DataContainer)} before modifications can
+         * be handled.
+         *
+         * <p>The sort of data stored in the contianer is plugin/mod dependent
+         * and is based on the original creator of this {@link LoadingTicket}.
+         * As such, the structure and particular data stored in the container
+         * is not concrete or defined in any specific way.</p>
+         *
+         * @return The companion data in the form of a data container
+         */
+        DataContainer getCompanionData();
+
+        /**
+         * Sets the companion data for this loading ticket.
+         *
+         * <p>The sort of data stored in the contianer is plugin/mod dependent
+         * and is based on the original creator of this {@link LoadingTicket}.
+         * As such, the structure and particular data stored in the container
+         * is not concrete or defined in any specific way.</p>
+         *
+         * @param container The container containing the companion data
+         */
+        void setCompanionData(DataContainer container);
 
         /**
          * Gets the ID of the plugin that this ticket belongs to.
