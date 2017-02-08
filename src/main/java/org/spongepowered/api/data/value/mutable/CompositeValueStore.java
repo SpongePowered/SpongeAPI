@@ -37,6 +37,7 @@ import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
 
 import java.util.Collection;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -94,6 +95,26 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * @return The value container, if available
      */
     <T extends H> Optional<T> get(Class<T> containerClass);
+
+    /**
+     * Gets the desired {@link ValueContainer} of type <code>H</code> if the
+     * {@link ValueContainer} is compatible.
+     *
+     * <p>If the container class is not supported or
+     * available, {@link NoSuchElementException} will be thrown.</p>
+     *
+     * @param containerClass The container class
+     * @param <T> The type of {@link ValueContainer}
+     * @return The value
+     * @throws NoSuchElementException If the value is not supported or present
+     */
+    default <T extends H> T require(Class<T> containerClass) {
+        final Optional<T> optional = this.get(containerClass);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+        throw new NoSuchElementException(String.format("Could not retrieve value for container class '%s'", containerClass.getName()));
+    }
 
     /**
      * Gets the desired {@link ValueContainer} of type <code>H</code> if the
