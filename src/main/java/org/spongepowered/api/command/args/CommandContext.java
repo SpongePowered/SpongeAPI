@@ -96,9 +96,8 @@ public final class CommandContext {
         Collection<Object> values = this.parsedArgs.get(key);
         if (values.size() != 1) {
             return Optional.empty();
-        } else {
-            return Optional.ofNullable((T) values.iterator().next());
         }
+        return Optional.ofNullable((T) values.iterator().next());
     }
 
     /**
