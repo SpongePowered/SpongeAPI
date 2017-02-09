@@ -719,7 +719,8 @@ public final class GenericArguments {
      * Parent class that specifies elemenents as having no tab completions. Useful for inputs with a very large domain, like strings and integers
      */
     private abstract static class KeyElement extends CommandElement {
-        private KeyElement(Text key) {
+
+        protected KeyElement(Text key) {
             super(key);
         }
 
@@ -727,6 +728,7 @@ public final class GenericArguments {
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             return Collections.emptyList();
         }
+
     }
 
     /**

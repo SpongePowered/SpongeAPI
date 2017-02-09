@@ -232,7 +232,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
         private ArrayList<BlockTrait<?>> traits = new ArrayList<>();
         private ArrayList<Object> values = new ArrayList<>();
 
-        private MatcherBuilder() {
+        MatcherBuilder() {
         }
 
         /**
@@ -285,7 +285,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
 
         }
 
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings({ "unchecked", "rawtypes" })
         @Override
         public MatcherBuilder from(StateMatcher value) {
             reset();
@@ -314,11 +314,12 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
      * then the other two traits may be variable).
      */
     final class StateMatcher {
-        private final BlockType type;
-        private final BlockTrait<?>[] traits;
-        private final Object[] values;
 
-        private StateMatcher(BlockType type, BlockTrait<?>[] traits, Object[] values) {
+        final BlockType type;
+        final BlockTrait<?>[] traits;
+        final Object[] values;
+
+        StateMatcher(BlockType type, BlockTrait<?>[] traits, Object[] values) {
             this.type = type;
             this.traits = new BlockTrait<?>[traits.length];
             System.arraycopy(traits, 0, this.traits, 0, traits.length);
@@ -380,5 +381,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
         public int hashCode() {
             return Objects.hashCode(this.type, this.traits, this.values);
         }
+
     }
+
 }

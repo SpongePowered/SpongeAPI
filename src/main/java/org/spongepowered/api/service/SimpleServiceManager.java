@@ -90,7 +90,7 @@ public class SimpleServiceManager implements ServiceManager {
     @SuppressWarnings("unchecked")
     @Override
     public <T> Optional<ProviderRegistration<T>> getRegistration(Class<T> service) {
-        return Optional.ofNullable((ProviderRegistration) this.providers.get(service));
+        return Optional.ofNullable((ProviderRegistration<T>) this.providers.get(service));
     }
 
     @SuppressWarnings("unchecked")

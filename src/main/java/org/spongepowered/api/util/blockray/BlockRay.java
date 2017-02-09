@@ -142,7 +142,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     // If hasNext() is called, we need to move ahead to check the next hit
     private boolean ahead;
 
-    private BlockRay(Predicate<BlockRayHit<E>> skipFilter, Predicate<BlockRayHit<E>> stopFilter, E extent, Vector3d position, Vector3d direction,
+    BlockRay(Predicate<BlockRayHit<E>> skipFilter, Predicate<BlockRayHit<E>> stopFilter, E extent, Vector3d position, Vector3d direction,
             boolean narrowPhase, double distanceLimit) {
         checkArgument(direction.lengthSquared() != 0, "Direction cannot be the zero vector");
 
@@ -567,7 +567,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         private double distanceLimit = DEFAULT_DISTANCE_LIMIT;
         private boolean narrowPhase = true;
 
-        private BlockRayBuilder(E extent, Vector3d position) {
+        BlockRayBuilder(E extent, Vector3d position) {
             this.extent = extent;
             this.position = position;
         }

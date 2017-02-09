@@ -184,7 +184,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
 
     @Override
     public Iterator<TableEntry<T>> iterator() {
-        return new Itr();
+        return new Itr(super.iterator());
     }
 
     @Override
@@ -236,12 +236,12 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
      * An iterator which will properly trigger a rebuild of the total weight on
      * removal.
      */
-    private class Itr implements Iterator<TableEntry<T>> {
+    class Itr implements Iterator<TableEntry<T>> {
 
         private final Iterator<TableEntry<T>> iter;
 
-        protected Itr() {
-            this.iter = WeightedTable.super.iterator();
+        protected Itr(Iterator<TableEntry<T>> iter) {
+            this.iter = iter;
         }
 
         @Override
