@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.event.cause.entity.damage.DamageTypes;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 
@@ -43,6 +44,11 @@ import org.spongepowered.api.world.difficulty.Difficulty;
  */
 public interface DamageSource {
 
+    /**
+     * Creates a new {@link Builder builder} to build a {@link DamageSource}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
@@ -93,6 +99,13 @@ public interface DamageSource {
      */
     boolean isMagic();
 
+    /**
+     * Gets whether this {@link DamageSource} is considered to damage creative, or
+     * otherwise "normally unharmable" players. Usually associated with
+     * {@link DamageTypes#VOID}.
+     *
+     * @return If this damage should affect creative players
+     */
     boolean doesAffectCreative();
 
     interface Builder extends DamageSourceBuilder<DamageSource, Builder> { }

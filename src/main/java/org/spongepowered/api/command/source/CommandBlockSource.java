@@ -36,7 +36,8 @@ import org.spongepowered.api.world.Locatable;
 import java.util.Optional;
 
 /**
- * Represents a CommandBlock source, either a placed block or a CommandBlockMinecart.
+ * Represents a CommandBlock source, either a placed block or a
+ * CommandBlockMinecart.
  */
 public interface CommandBlockSource extends Locatable, CommandSource, DataHolder {
 

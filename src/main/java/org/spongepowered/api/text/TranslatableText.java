@@ -83,7 +83,7 @@ public final class TranslatableText extends Text {
      *
      * @return The translation of this text
      */
-    public final Translation getTranslation() {
+    public Translation getTranslation() {
         return this.translation;
     }
 
@@ -93,7 +93,7 @@ public final class TranslatableText extends Text {
      *
      * @return The list of translation arguments
      */
-    public final ImmutableList<Object> getArguments() {
+    public ImmutableList<Object> getArguments() {
         return this.arguments;
     }
 

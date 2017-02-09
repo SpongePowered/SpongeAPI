@@ -28,7 +28,8 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of {@link BlockTrait} that allows only {@link Boolean} of
- * which two possible values may exist: <code>true</code> and <code>false</code>.
+ * which two possible values may exist: <code>true</code> and
+ * <code>false</code>.
  */
 @CatalogedBy(BooleanTraits.class)
 public interface BooleanTrait extends BlockTrait<Boolean> {

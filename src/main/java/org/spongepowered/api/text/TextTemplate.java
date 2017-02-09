@@ -54,12 +54,14 @@ import javax.annotation.Nullable;
 public final class TextTemplate implements TextRepresentable, Iterable<Object> {
 
     /**
-     * Default "open" String for how arguments are contained within the template.
+     * Default "open" String for how arguments are contained within the
+     * template.
      */
     public static final String DEFAULT_OPEN_ARG = "{";
 
     /**
-     * Default "close" String for how arguments are contained within the template.
+     * Default "close" String for how arguments are contained within the
+     * template.
      */
     public static final String DEFAULT_CLOSE_ARG = "}";
 
@@ -212,17 +214,6 @@ public final class TextTemplate implements TextRepresentable, Iterable<Object> {
         return builder;
     }
 
-    private Text.Builder applyArg(Object param, Arg arg, @Nullable Text.Builder builder) {
-        if (builder == null) {
-            builder = Text.builder();
-        }
-        // wrap the parameter in the argument format
-        Text.Builder wrapper = Text.builder().format(arg.format);
-        apply(param, wrapper);
-        builder.append(wrapper.build());
-        return builder;
-    }
-
     private Text.Builder apply(Object element, @Nullable Text.Builder builder) {
         if (element instanceof Text) {
             Text text = (Text) element;
@@ -244,6 +235,17 @@ public final class TextTemplate implements TextRepresentable, Iterable<Object> {
                 builder.append(Text.of(str));
             }
         }
+        return builder;
+    }
+
+    private Text.Builder applyArg(Object param, Arg arg, @Nullable Text.Builder builder) {
+        if (builder == null) {
+            builder = Text.builder();
+        }
+        // wrap the parameter in the argument format
+        Text.Builder wrapper = Text.builder().format(arg.format);
+        apply(param, wrapper);
+        builder.append(wrapper.build());
         return builder;
     }
 
@@ -371,7 +373,7 @@ public final class TextTemplate implements TextRepresentable, Iterable<Object> {
      * replaced by parameters in {@link #apply(Map)}.
      */
     @ConfigSerializable
-    public final static class Arg implements TextRepresentable {
+    public static final class Arg implements TextRepresentable {
 
         @Setting final boolean optional;
         @Setting @Nullable final Text defaultValue;

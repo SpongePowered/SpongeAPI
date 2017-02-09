@@ -59,8 +59,8 @@ public final class TextSerializers {
      * @deprecated Legacy formatting codes are being phased out of Minecraft
      */
     @Deprecated
-    public static final FormattingCodeTextSerializer LEGACY_FORMATTING_CODE
-            = DummyObjectProvider.createFor(FormattingCodeTextSerializer.class, "LEGACY_FORMATTING_CODE");
+    public static final FormattingCodeTextSerializer LEGACY_FORMATTING_CODE = DummyObjectProvider
+            .createFor(FormattingCodeTextSerializer.class, "LEGACY_FORMATTING_CODE");
 
     /**
      * A {@link FormattingCodeTextSerializer} for a simple {@link Text}
@@ -79,8 +79,8 @@ public final class TextSerializers {
      *
      * @see FormattingCodeTextSerializer
      */
-    public static final FormattingCodeTextSerializer FORMATTING_CODE
-            = DummyObjectProvider.createFor(FormattingCodeTextSerializer.class, "FORMATTING_CODE");
+    public static final FormattingCodeTextSerializer FORMATTING_CODE = DummyObjectProvider
+            .createFor(FormattingCodeTextSerializer.class, "FORMATTING_CODE");
 
     /**
      * The {@link TextSerializer} for Mojang's JSON (<i>Mojangson</i>)

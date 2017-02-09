@@ -30,10 +30,10 @@ import static org.spongepowered.api.command.args.GenericArguments.string;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
-import org.spongepowered.api.command.CommandSource;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -159,6 +159,7 @@ public final class CommandFlags extends CommandElement {
                         if (i == 0) {
                             return false;
                         }
+                        throw args.createError(t("Unknown short flag %s specified", flagChar));
                     case ERROR:
                         throw args.createError(t("Unknown short flag %s specified", flagChar));
                     case ACCEPT_NONVALUE:

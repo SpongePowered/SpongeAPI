@@ -34,14 +34,32 @@ import org.spongepowered.api.entity.EntitySnapshot;
  */
 public interface BreedingSpawnCause extends EntitySpawnCause {
 
+    /**
+     * Creates a new {@link Builder builder} for building a
+     * {@link BreedingSpawnCause}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the secondary {@link Entity} considered to be the "mate"
+     * with the {@link #getEntity()}.
+     *
+     * @return The mate
+     */
     Entity getMate();
 
     interface Builder extends EntitySpawnCauseBuilder<BreedingSpawnCause, Builder> {
 
+        /**
+         * Sets the secondary {@link Entity} that is considered the "mate".
+         *
+         * @param entity The mate entity
+         * @return This builder, for chaining
+         */
         Builder mate(Entity entity);
 
     }

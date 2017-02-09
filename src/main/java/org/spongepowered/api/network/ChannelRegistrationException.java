@@ -27,7 +27,8 @@ package org.spongepowered.api.network;
 /**
  * An exception that is thrown when a channel registration fails.
  *
- * <p>Examples may include: Attempting to register an already registered channel.</p>
+ * <p>Examples may include: Attempting to register an already registered
+ * channel.</p>
  */
 public class ChannelRegistrationException extends RuntimeException {
 

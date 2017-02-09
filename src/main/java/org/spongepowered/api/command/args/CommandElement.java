@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.command.args;
 
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TranslatableText;
 
 import java.util.List;

@@ -62,7 +62,7 @@ public interface SoundType extends CatalogType {
     interface Builder extends ResettableBuilder<SoundType, Builder> {
 
         /**
-         * <p>Builds a new instance of a {@link SoundType}.
+         * Builds a new instance of a {@link SoundType}.
          *
          * <p>Note: If no domain (indicated by the string before ':') is present
          * in the id, the default "minecraft" domain will be used.</p>

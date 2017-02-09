@@ -26,10 +26,10 @@ package org.spongepowered.api.world.extent.worker;
 
 import org.spongepowered.api.world.extent.BlockVolume;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
-import org.spongepowered.api.world.extent.worker.procedure.BlockVolumeVisitor;
 import org.spongepowered.api.world.extent.worker.procedure.BlockVolumeMapper;
 import org.spongepowered.api.world.extent.worker.procedure.BlockVolumeMerger;
 import org.spongepowered.api.world.extent.worker.procedure.BlockVolumeReducer;
+import org.spongepowered.api.world.extent.worker.procedure.BlockVolumeVisitor;
 
 import java.util.function.BiFunction;
 

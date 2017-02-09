@@ -25,6 +25,7 @@
 package org.spongepowered.api.text.channel.impl;
 
 import org.spongepowered.api.text.channel.AbstractMutableMessageChannel;
+import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.text.channel.MutableMessageChannel;
 
@@ -35,9 +36,18 @@ import java.util.Collection;
  */
 public class SimpleMutableMessageChannel extends AbstractMutableMessageChannel {
 
+    /**
+     * Creates a new mutable {@link MessageChannel}.
+     */
     public SimpleMutableMessageChannel() {
     }
 
+    /**
+     * Creates a new mutable {@link MessageChannel} with the provided
+     * {@link Collection} of {@link MessageReceiver}s.
+     *
+     * @param members The members to add to this channel by default
+     */
     public SimpleMutableMessageChannel(Collection<MessageReceiver> members) {
         super(members);
     }

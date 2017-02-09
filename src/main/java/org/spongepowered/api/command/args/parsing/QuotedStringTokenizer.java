@@ -66,17 +66,17 @@ class QuotedStringTokenizer implements InputTokenizer {
 
         final TokenizerState state = new TokenizerState(arguments, lenient);
         List<SingleArg> returnedArgs = new ArrayList<>(arguments.length() / 4);
-        if (trimTrailingSpace) {
+        if (this.trimTrailingSpace) {
             skipWhiteSpace(state);
         }
         while (state.hasMore()) {
-            if (!trimTrailingSpace) {
+            if (!this.trimTrailingSpace) {
                 skipWhiteSpace(state);
             }
             int startIdx = state.getIndex() + 1;
             String arg = nextArg(state);
             returnedArgs.add(new SingleArg(arg, startIdx, state.getIndex()));
-            if (trimTrailingSpace) {
+            if (this.trimTrailingSpace) {
                 skipWhiteSpace(state);
             }
         }

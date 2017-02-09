@@ -69,7 +69,8 @@ public class SpongeEventFactoryUtils {
     }
 
     /**
-     * Creates an event class from an interface and a map of property names to values.
+     * Creates an event class from an interface and a map of property names
+     * to values.
      *
      * @param type The event interface to generate a class for
      * @param values The map of property names to values

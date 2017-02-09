@@ -28,10 +28,23 @@ import org.spongepowered.api.data.property.BooleanProperty;
 
 public class UnbreakableProperty extends BooleanProperty {
 
+    /**
+     * Creates a new {@link UnbreakableProperty} with the provided
+     * {@code value}.
+     *
+     * @param value The value whether something is unbreakable or not
+     */
     public UnbreakableProperty(boolean value) {
         super(value);
     }
 
+    /**
+     * Creates a new {@link UnbreakableProperty} with the provided
+     * {@code value} and {@link Operator}.
+     *
+     * @param value The value whether something is unbreakable or not
+     * @param operator The operator for comparisons
+     */
     public UnbreakableProperty(boolean value, Operator operator) {
         super(value, operator);
     }

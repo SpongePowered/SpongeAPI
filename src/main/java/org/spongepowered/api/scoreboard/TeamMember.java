@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.scoreboard;
 
-
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;

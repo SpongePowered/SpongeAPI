@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.service.permission;
 
+import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.context.Contextual;
 import org.spongepowered.api.util.Tristate;
-import org.spongepowered.api.command.CommandSource;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,20 +49,21 @@ import java.util.Set;
  * example).
  *
  * <p>It is the responsibility of the {@link PermissionService} implementation
- * to provide this behavior, and resolve the implicit permission node inheritance
- * explained above when a Subject is queried for permissions. Use of a
- * {@link NodeTree} is recommended.
+ * to provide this behavior, and resolve the implicit permission node
+ * inheritance explained above when a Subject is queried for permissions. Use
+ * of a {@link NodeTree} is recommended.
  *
  * <p>Plugins may opt to implement "dynamic" permissions such as {@code
  * example.region.define.&lt;region&gt;} where {@code region} would be a
  * dynamically added level based on the context, though some attention should be
  * made towards the handling of periods / full stops in such cases.
  *
- * <p>Due to the implicit inheritance, it is recommended that commands that allow a
- * user to "apply" an effect to other users use {@code example.function.self} as
- * the permission for applying this effect to one's self. This allows
- * administrators to grant {@code example.function.self} to permit usage on
- * one's self and grant {@code example.function} to grant usage on other users.
+ * <p>Due to the implicit inheritance, it is recommended that commands that
+ * allow a user to "apply" an effect to other users use
+ * {@code example.function.self} as the permission for applying this effect
+ * to one's self. This allows administrators to grant
+ * {@code example.function.self} to permit usage on one's self and grant
+ * {@code example.function} to grant usage on other users.
  *
  * <p>All methods are expected unlike {@link SubjectData}, to account for data
  * inherited from parent subjects. For a representation of the data that the
@@ -106,19 +107,21 @@ public interface Subject extends Contextual {
     /**
      * Returns container for subject data that is guaranteed to be transient
      * (only lasting for the duration of the subject's session, not persisted).
-     * This might return the same object as {@link #getSubjectData()} if the provider
-     * for this service does not implement persistence for permissions data
+     * This might return the same object as {@link #getSubjectData()} if the
+     * provider for this service does not implement persistence for permissions
+     * data.
      *
      * @return Transient data storage for this subject
      */
     SubjectData getTransientSubjectData();
 
     /**
-     * Test whether the subject is permitted to perform an action corresponding to the
-     * given permission string. This must return the same boolean equivalent as
-     * {@link #getPermissionValue(Set, String)}.
+     * Test whether the subject is permitted to perform an action corresponding
+     * to the given permission string. This must return the same boolean
+     * equivalent as {@link #getPermissionValue(Set, String)}.
      *
-     * @param contexts The set of contexts that represents the subject's current environment
+     * @param contexts The set of contexts that represents the subject's current
+     *     environment
      * @param permission The permission string
      * @return True if permission is granted
      */
@@ -143,14 +146,15 @@ public interface Subject extends Contextual {
      *
      * <p>It is expected that this method will also account for values
      * inherited from parent subjects, as well as permission nodes inherited
-     * implicitly from a more generic level.
+     * implicitly from a more generic level.</p>
      *
      * <p>Additionally, the defaults defined the {@link SubjectCollection}
      * that holds this subject, as well as defaults defined in
-     * {@link PermissionService#getDefaults()} should be considered for this lookup.
+     * {@link PermissionService#getDefaults()} should be considered for this
+     * lookup.</p>
      *
-     * <p> This method is likely to be called frequently, so it is desirable
-     * that implementations cache the results to method calls.
+     * <p>This method is likely to be called frequently, so it is desirable
+     * that implementations cache the results to method calls.</p>
      *
      * @param contexts The contexts to check for permissions in
      * @param permission The permission to check
@@ -160,8 +164,8 @@ public interface Subject extends Contextual {
 
     /**
      * Check if this subject is a child of the given parent in the subject's
-     * current context, traversing inheritance. This must return the same value as
-     * {@link #isChildOf(Set, Subject)} using {@link #getActiveContexts()}.
+     * current context, traversing inheritance. This must return the same value
+     * as {@link #isChildOf(Set, Subject)} using {@link #getActiveContexts()}.
      *
      * @param parent The parent to check for inheritance
      * @return Whether this is a child of the given parent
@@ -196,7 +200,8 @@ public interface Subject extends Contextual {
      * Return all parents that this group has. This must include inherited
      * values if the permissions service supports inheritance.
      *
-     * @param contexts The set of contexts that represents the subject's current environment
+     * @param contexts The set of contexts that represents the subject's
+     *     current environment
      * @return An immutable list of parents
      */
     List<Subject> getParents(Set<Context> contexts);

@@ -34,10 +34,10 @@ import org.spongepowered.api.world.extent.Extent;
 import java.util.function.BiFunction;
 
 /**
- * Represents a block hit by a ray. Stores more information than a regular location.
- * Extra object are lazily computed and cached.
+ * Represents a block hit by a ray. Stores more information than a regular
+ * location. Extra object are lazily computed and cached.
  *
- * * @param <E> The extent containing the hit
+ * @param <E> The extent containing the hit
  */
 public class BlockRayHit<E extends Extent> {
 
@@ -56,8 +56,8 @@ public class BlockRayHit<E extends Extent> {
     private Location<E> location = null;
 
     /**
-     * Constructs a new block ray hit from the extent that contains it, the coordinates
-     * and the face that was entered.
+     * Constructs a new block ray hit from the extent that contains it, the
+     * coordinates and the face that was entered.
      *
      * @param extent The extent of the block
      * @param x The x coordinate of the block
@@ -181,7 +181,8 @@ public class BlockRayHit<E extends Extent> {
     }
 
     /**
-     * Returns the location of the hit block, <b>not the intersection location</b>.
+     * Returns the location of the hit block, <b>not the intersection
+     * location</b>.
      *
      * @return The location of the hit block
      */
@@ -213,8 +214,8 @@ public class BlockRayHit<E extends Extent> {
 
     /**
      * Returns all the intersected faces. In most cases, this is only one face,
-     * but if the ray enters an edge, two faces are returned (the ones that form it).
-     * Similarly for corners, but three faces.
+     * but if the ray enters an edge, two faces are returned (the ones
+     * that form it). Similarly for corners, but three faces.
      *
      * @return An array of intersected faces, between one and three in length
      */

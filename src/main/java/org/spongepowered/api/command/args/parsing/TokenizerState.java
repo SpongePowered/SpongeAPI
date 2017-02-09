@@ -24,15 +24,15 @@
  */
 package org.spongepowered.api.command.args.parsing;
 
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.args.ArgumentParseException;
+import org.spongepowered.api.text.Text;
 
 class TokenizerState {
     private final boolean lenient;
     private final String buffer;
     private int index = -1;
 
-    public TokenizerState(String buffer, boolean lenient) {
+    TokenizerState(String buffer, boolean lenient) {
         this.buffer = buffer;
         this.lenient = lenient;
     }

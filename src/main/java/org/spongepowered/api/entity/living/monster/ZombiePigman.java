@@ -42,6 +42,12 @@ public interface ZombiePigman extends Zombie {
         return get(AngerableData.class).get();
     }
 
+    /**
+     * Gets the {@link MutableBoundedValue value} of the current "anger" level
+     * of this {@link ZombiePigman pigzombie}.
+     *
+     * @return The current anger level value
+     */
     default MutableBoundedValue<Integer> angerLevel() {
         return getValue(Keys.ANGER).get();
     }

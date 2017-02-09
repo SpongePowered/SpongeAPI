@@ -63,16 +63,22 @@ public interface TristateResult {
      * Returns whether the
      * {@link TristateResult.Result#ALLOW} can be
      * used.
+     *
+     * @return Whether allow can be used
      */
     boolean hasAllowResult();
 
     /**
      * Returns the original {@link Result} of this event.
+     *
+     * @return The original result of this event
      */
     Result getOriginalResult();
 
     /**
      * Returns the {@link Result} of this event.
+     *
+     * @return The result of this event
      */
     Result getResult();
 
@@ -84,8 +90,8 @@ public interface TristateResult {
      *
      * @param value The new result
      * @throws IllegalStateException if
-     *    {@link TristateResult.Result#ALLOW} is
-     *    given, but {@link #hasAllowResult} is {@code false}
+     *     {@link TristateResult.Result#ALLOW} is
+     *     given, but {@link #hasAllowResult} is {@code false}
      */
     void setResult(Result value) throws IllegalStateException;
 }

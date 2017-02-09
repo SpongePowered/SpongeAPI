@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.ConsoleSource;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 import javax.annotation.Nullable;
 
@@ -36,7 +37,7 @@ import javax.annotation.Nullable;
  */
 public final class Timings {
 
-    private static final TimingsFactory factory = null;
+    private static final TimingsFactory factory = DummyObjectProvider.createFor(TimingsFactory.class, "factory");
 
     private Timings() {
     }
@@ -162,8 +163,8 @@ public final class Timings {
     /**
      * Sets the interval between timing history report generations.
      *
-     * <p>This will re-check your history length, so lowering this value will lower
-     * your history length if you need more than 60 history windows.</p>
+     * <p>This will re-check your history length, so lowering this value will
+     * lower your history length if you need more than 60 history windows.</p>
      *
      * @param interval Interval in ticks
      */
@@ -186,8 +187,8 @@ public final class Timings {
      * <p>This value is capped at a maximum of getHistoryInterval() *
      * MAX_HISTORY_FRAMES (12).</p>
      *
-     * <p>Will not reset timing data but may truncate old history if the new length
-     * is less than old length.</p>
+     * <p>Will not reset timing data but may truncate old history if the new
+     * length is less than old length.</p>
      *
      * @param length Duration in ticks
      */

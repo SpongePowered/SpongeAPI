@@ -351,8 +351,8 @@ public interface WorldArchetype extends CatalogType {
 
         /**
          * Fills this {@link Builder} for creating {@link WorldArchetype}s,
-         * the builder is then seeded with the values from the given WorldProperties
-         * object.
+         * the builder is then seeded with the values from the given
+         * {@link WorldProperties} object.
          *
          * @param properties The seed properties
          * @return A new seeded builder

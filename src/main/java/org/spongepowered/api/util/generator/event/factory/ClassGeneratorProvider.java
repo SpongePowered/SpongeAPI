@@ -44,7 +44,8 @@ public class ClassGeneratorProvider implements FactoryProvider {
     /**
      * Create a new instance.
      *
-     * @param targetPackage The target package to place generated event classes in
+     * @param targetPackage The target package to place generated event
+     *     classes in
      */
     public ClassGeneratorProvider(String targetPackage) {
         checkNotNull(targetPackage, "targetPackage");

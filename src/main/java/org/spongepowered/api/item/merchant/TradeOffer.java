@@ -105,7 +105,7 @@ public interface TradeOffer extends DataSerializable {
      * <p>Gets the current maximum uses of this offer.</p>
      *
      * <p>Usually, the uses of an offer are limited by the amount of maximum
-     * uses. Once the uses reaches the max uses, the offer may temporariliy
+     * uses. Once the uses reaches the max uses, the offer may temporarily
      * become disabled.</p>
      *
      * @return The maximum uses of this trade offer
@@ -133,7 +133,8 @@ public interface TradeOffer extends DataSerializable {
     interface Builder extends DataBuilder<TradeOffer> {
 
         /**
-         * <p>Sets the first selling item of the trade offer to be generated.</p>
+         * <p>Sets the first selling item of the trade offer to be
+         * generated.</p>
          *
          * <p>Trade offers require at least one item to be generated.</p>
          *
@@ -159,8 +160,8 @@ public interface TradeOffer extends DataSerializable {
         Builder sellingItem(ItemStack item);
 
         /**
-         * Sets the existing uses of the trade offer to be generated. A trade offer
-         * will become unusable when the uses surpasses the max uses.
+         * Sets the existing uses of the trade offer to be generated. A trade
+         * offer will become unusable when the uses surpasses the max uses.
          *
          * @param uses The uses
          * @return This builder
@@ -168,8 +169,8 @@ public interface TradeOffer extends DataSerializable {
         Builder uses(int uses);
 
         /**
-         * Sets the maximum uses the generated trade offer will have. A trade offer
-         * will become unusable when the uses surpasses the max uses.
+         * Sets the maximum uses the generated trade offer will have. A trade
+         * offer will become unusable when the uses surpasses the max uses.
          *
          * @param maxUses The maximum uses of the trade offer
          * @return This builder
@@ -185,7 +186,8 @@ public interface TradeOffer extends DataSerializable {
         Builder canGrantExperience(boolean experience);
 
         /**
-         * Creates a new TradeOffer instance with the current state of the builder.
+         * Creates a new TradeOffer instance with the current state of the
+         * builder.
          *
          * @return A new trade offer instance
          * @throws IllegalStateException If the resulting trade offer would be
@@ -194,8 +196,8 @@ public interface TradeOffer extends DataSerializable {
         TradeOffer build() throws IllegalStateException;
 
         /**
-         * Sets all the settings of this builder with the provided trade offer as a
-         * blueprint.
+         * Sets all the settings of this builder with the provided trade offer
+         * as a blueprint.
          *
          * @param offer The offer to copy
          * @return This builder

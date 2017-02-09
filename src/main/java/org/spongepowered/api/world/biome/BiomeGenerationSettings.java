@@ -41,7 +41,7 @@ public interface BiomeGenerationSettings {
      * 
      * @return The builder
      */
-    public static Builder builder() {
+    static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 

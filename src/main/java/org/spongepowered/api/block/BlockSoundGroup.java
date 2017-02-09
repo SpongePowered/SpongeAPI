@@ -27,8 +27,6 @@ package org.spongepowered.api.block;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.entity.living.Living;
 
-import com.google.common.base.Optional;
-
 /**
  * Represents sounds for a block.
  */

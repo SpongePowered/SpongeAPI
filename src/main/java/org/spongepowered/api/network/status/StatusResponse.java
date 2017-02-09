@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.network.status;
 
-import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.MinecraftVersion;
 import org.spongepowered.api.event.server.ClientPingServerEvent;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.text.Text;
 
 import java.util.List;

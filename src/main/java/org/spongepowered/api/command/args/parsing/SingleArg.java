@@ -27,7 +27,8 @@ package org.spongepowered.api.command.args.parsing;
 import com.google.common.base.Objects;
 
 /**
- * This represents a single argument with its start and end indexes in the associated raw input string.
+ * This represents a single argument with its start and end indexes
+ * in the associated raw input string.
  */
 public final class SingleArg {
     private final String value;
@@ -76,25 +77,29 @@ public final class SingleArg {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof SingleArg)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof SingleArg)) {
+            return false;
+        }
         SingleArg singleArg = (SingleArg) o;
-        return startIdx == singleArg.startIdx &&
-                endIdx == singleArg.endIdx &&
-                Objects.equal(value, singleArg.value);
+        return this.startIdx == singleArg.startIdx
+               && this.endIdx == singleArg.endIdx
+               && Objects.equal(this.value, singleArg.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(value, startIdx, endIdx);
+        return Objects.hashCode(this.value, this.startIdx, this.endIdx);
     }
 
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
-                .add("value", value)
-                .add("startIdx", startIdx)
-                .add("endIdx", endIdx)
+                .add("value", this.value)
+                .add("startIdx", this.startIdx)
+                .add("endIdx", this.endIdx)
                 .toString();
     }
 }

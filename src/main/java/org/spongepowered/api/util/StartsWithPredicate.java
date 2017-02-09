@@ -29,7 +29,8 @@ import java.util.function.Predicate;
 import javax.annotation.Nullable;
 
 /**
- * Predicate that determines if the input string starts with the provided test string, case-insensitively.
+ * Predicate that determines if the input string starts with the provided
+ * test string, case-insensitively.
  */
 public final class StartsWithPredicate implements Predicate<String> {
     private final String test;
