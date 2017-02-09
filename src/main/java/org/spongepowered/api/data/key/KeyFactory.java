@@ -49,7 +49,6 @@ import javax.annotation.Nullable;
  * and for plugins wishing to provide their own {@link Key}s without having
  * to remain afraid of having to cast back and forth.
  */
-@SuppressWarnings({"unchecked", "rawtypes"})
 public final class KeyFactory {
 
     private KeyFactory() {}
@@ -90,7 +89,6 @@ public final class KeyFactory {
 
             private final int hash = Objects.hashCode(elementToken, valueToken, query);
 
-            @SuppressWarnings("rawtypes")
             @Override
             public TypeToken<V> getValueToken() {
                 return valueToken;
@@ -151,7 +149,6 @@ public final class KeyFactory {
 
             private final int hash = Objects.hashCode(ListValue.class, elementToken, query);
 
-            @SuppressWarnings("rawtypes")
             @Override
             public TypeToken<ListValue<E>> getValueToken() {
                 return valueToken;
@@ -210,7 +207,6 @@ public final class KeyFactory {
 
             private final int hash = Objects.hashCode(ListValue.class, elementToken, query);
 
-            @SuppressWarnings("rawtypes")
             @Override
             public TypeToken<SetValue<E>> getValueToken() {
                 return valueToken;
@@ -271,13 +267,11 @@ public final class KeyFactory {
 
             private final int hash = Objects.hashCode(elementToken, valueToken, query);
 
-            @SuppressWarnings("rawtypes")
             @Override
             public TypeToken<MapValue<K, V>> getValueToken() {
                 return valueToken;
             }
 
-            @SuppressWarnings("rawtypes")
             @Override
             public TypeToken<?> getElementToken() {
                 return elementToken;
