@@ -25,9 +25,7 @@
 package org.spongepowered.api.event.cause.entity.spawn.common;
 
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.cause.entity.spawn.BlockSpawnCause;
-import org.spongepowered.api.event.cause.entity.spawn.EntitySpawnCause;
 
 public abstract class AbstractBlockSpawnCause extends AbstractSpawnCause implements BlockSpawnCause {
 

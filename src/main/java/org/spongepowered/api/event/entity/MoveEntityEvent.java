@@ -26,7 +26,6 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Transform;
-import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
 import org.spongepowered.api.eventgencore.annotation.PropertySettings;

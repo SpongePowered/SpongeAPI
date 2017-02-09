@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator.immutable.common;
 
-import com.google.common.collect.ComparisonChain;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;

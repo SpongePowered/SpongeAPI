@@ -25,8 +25,6 @@
 package org.spongepowered.api.service;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -43,7 +41,6 @@ import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.util.test.TestHooks;
 
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SimpleServiceManagerTest {
 

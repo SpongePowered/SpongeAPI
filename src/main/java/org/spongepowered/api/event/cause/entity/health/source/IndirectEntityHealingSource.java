@@ -26,8 +26,6 @@ package org.spongepowered.api.event.cause.entity.health.source;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
 public interface IndirectEntityHealingSource extends EntityHealingSource {
 

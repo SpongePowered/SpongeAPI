@@ -26,7 +26,6 @@ package org.spongepowered.api.event.cause.entity.teleport.common;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.event.cause.entity.teleport.PortalTeleportCause;
 import org.spongepowered.api.world.PortalAgent;
 

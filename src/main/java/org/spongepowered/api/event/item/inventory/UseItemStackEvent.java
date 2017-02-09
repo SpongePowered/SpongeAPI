@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.data.Transaction;
-import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.ItemType;
