@@ -593,14 +593,14 @@ public interface DataView {
 
     /**
      * Gets if this view contains no data.
-     * 
+     *
      * @return True if no data
      */
     boolean isEmpty();
 
     /**
      * Gets the {@link SafetyMode} of this data view.
-     * 
+     *
      * @return The safety mode
      */
     SafetyMode getSafetyMode();
@@ -608,7 +608,8 @@ public interface DataView {
     /**
      * The safety mode of the container.
      */
-    public static enum SafetyMode {
+    enum SafetyMode {
+
         /**
          * All data added to the container will be cloned for safety.
          */
@@ -622,6 +623,7 @@ public interface DataView {
          * with a large amount of data where the cloning would be too costly.
          */
         NO_DATA_CLONED
+
     }
 
 }

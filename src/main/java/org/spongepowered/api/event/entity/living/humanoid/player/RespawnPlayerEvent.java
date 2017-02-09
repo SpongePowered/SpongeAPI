@@ -30,7 +30,7 @@ import org.spongepowered.api.world.World;
 
 /**
  * Called when a {@link Player} is cloned during a respawn.
- * 
+ *
  * <p>Either caused by death, or by traveling from the End.</p>
  */
 public interface RespawnPlayerEvent extends TargetPlayerEvent {
@@ -74,8 +74,9 @@ public interface RespawnPlayerEvent extends TargetPlayerEvent {
 
     /**
      * Gets whether this event was fired because the {@link Player} died.
-     * 
-     * @return {@code true} if player died, {@code false} if the player switched dimensions
+     *
+     * @return {@code true} if player died, {@code false} if the player switched
+     *      dimensions
      */
     boolean isDeath();
 }

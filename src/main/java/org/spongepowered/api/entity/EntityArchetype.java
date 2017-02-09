@@ -56,7 +56,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot> {
 
     /**
      * Gets the {@link EntityType} of the entity contained in this archetype.
-     * 
+     *
      * @return The entity type
      */
     EntityType getType();
@@ -86,9 +86,9 @@ public interface EntityArchetype extends Archetype<EntitySnapshot> {
         @Override
         Builder from(EntityArchetype value);
 
-        Builder type(EntityType type);
-
         Builder from(Entity entity);
+
+        Builder type(EntityType type);
 
         Builder entityData(DataView view);
 

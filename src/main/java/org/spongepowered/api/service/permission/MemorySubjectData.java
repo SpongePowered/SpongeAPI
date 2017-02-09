@@ -57,7 +57,8 @@ public class MemorySubjectData implements SubjectData {
     private final ConcurrentMap<Set<Context>, List<Map.Entry<String, String>>> parents = Maps.newConcurrentMap();
 
     /**
-     * Creates a new subject data instance, using the provided service to request instances of permission subjects.
+     * Creates a new subject data instance, using the provided service to
+     * request instances of permission subjects.
      *
      * @param service The service to request subjects from
      */
@@ -76,8 +77,9 @@ public class MemorySubjectData implements SubjectData {
     }
 
     /**
-     * Gets the calculated node tree representation of the permissions for this subject data instance.
-     * If no data is present for the given context, returns null.
+     * Gets the calculated node tree representation of the permissions for this
+     * subject data instance. If no data is present for the given context,
+     * returns null.
      *
      * @param contexts The contexts to get a node tree for
      * @return The node tree
@@ -255,7 +257,8 @@ public class MemorySubjectData implements SubjectData {
                 newMap.put(key, value);
             }
             newMap = Collections.unmodifiableMap(newMap);
-        } while (!this.options.replace(contexts, origMap, newMap));
+        }
+        while (!this.options.replace(contexts, origMap, newMap));
         return true;
     }
 

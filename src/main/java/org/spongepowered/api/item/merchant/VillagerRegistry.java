@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
 import org.spongepowered.api.data.type.Career;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

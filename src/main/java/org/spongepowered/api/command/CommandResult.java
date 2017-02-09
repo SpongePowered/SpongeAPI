@@ -60,7 +60,8 @@ public class CommandResult {
     }
 
     /**
-     * Returns a result indicating the command was processed with a single success.
+     * Returns a result indicating the command was processed with a single
+     * success.
      *
      * @return The result
      */
@@ -69,7 +70,8 @@ public class CommandResult {
     }
 
     /**
-     * Returns a result indicating the command was processed with a single success.
+     * Returns a result indicating the command was processed with a single
+     * success.
      *
      * @param count The success count
      * @return The result
@@ -231,7 +233,8 @@ public class CommandResult {
         /**
          * Sets the amount of entities affected by the command.
          *
-         * @param affectedEntities The amount of entities affected by the command
+         * @param affectedEntities The amount of entities affected by the
+         *      command
          * @return This builder, for chaining
          */
         public Builder affectedEntities(@Nullable Integer affectedEntities) {

@@ -31,8 +31,9 @@ import javax.annotation.Nullable;
 /**
  * Utility for working with {@code Optional&lt;Boolean&gt;}s.
  *
- * <p>This also saves memory by holding three static instances of {@code Optional&lt;Boolean&gt;},
- * which represents the possible states it can have.</p>
+ * <p>This also saves memory by holding three static instances of
+ * {@code Optional&lt;Boolean&gt;}, which represents the possible states it can
+ * have.</p>
  */
 public final class OptBool {
 
@@ -80,7 +81,8 @@ public final class OptBool {
     }
 
     /**
-     * Coerces the given {@code Optional&lt;Boolean&gt;} into one of the three stored states.
+     * Coerces the given {@code Optional&lt;Boolean&gt;} into one of the three
+     * stored states.
      *
      * @param bool The boolean
      * @return The constructed Optional, or {@link Optional#empty()}

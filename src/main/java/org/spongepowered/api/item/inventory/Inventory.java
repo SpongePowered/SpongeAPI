@@ -261,9 +261,9 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     int capacity();
 
     /**
-     * Returns true if this Inventory contains children. If false, this does not imply
-     * that the Inventory accepts no items, and an Inventory is perfectly at
-     * liberty to provide {@link #peek}, {@link #poll}, {@link #offer} and
+     * Returns true if this Inventory contains children. If false, this does not
+     * imply that the Inventory accepts no items, and an Inventory is perfectly
+     * at liberty to provide {@link #peek}, {@link #poll}, {@link #offer} and
      * {@link #set} semantics even if it has no internal storage of its own.
      *
      * @return true if and only if this inventory contains child inventories
@@ -499,12 +499,12 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     InventoryArchetype getArchetype();
 
     /**
-     * A Builder for Inventories based on {@link InventoryArchetype}s
+     * A Builder for Inventories based on {@link InventoryArchetype}s.
      */
     interface Builder extends ResettableBuilder<Inventory, Builder> {
 
         /**
-         * Sets the base {@link InventoryArchetype} for the Inventory
+         * Sets the base {@link InventoryArchetype} for the Inventory.
          *
          * @param archetype The InventoryArchetype
          * @return Fluent pattern
@@ -512,17 +512,17 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
         Builder of(InventoryArchetype archetype);
 
         /**
-         * Sets an {@link InventoryProperty}
-         * TODO only properties declared in the archetype are allowed? IllegalArgumentException?
+         * Sets an {@link InventoryProperty}.
          *
          * @param name The name
          * @param property The property
          * @return Fluent pattern
          */
-        Builder property(String name, InventoryProperty property);
+        // TODO only properties declared in the archetype are allowed? IllegalArgumentException?
+        Builder property(String name, InventoryProperty<?, ?> property);
 
         /**
-         * Sets the {@link Carrier} that carries the Inventory
+         * Sets the {@link Carrier} that carries the Inventory.
          *
          * @param carrier The Carrier
          * @return Fluent pattern
@@ -539,7 +539,8 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
         <E extends InteractInventoryEvent> Builder listener(Class<E> type, Consumer<E> listener);
 
         /**
-         * Sets the InventoryArchetype and Properties according to the {@link Carrier}s Inventory
+         * Sets the InventoryArchetype and Properties according to the
+         * {@link Carrier}s Inventory.
          *
          * @param carrier The Carrier
          * @return Fluent pattern
@@ -547,7 +548,8 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
         Builder forCarrier(Carrier carrier);
 
         /**
-         * Sets the InventoryArchetype and Properties for a default Inventory of given {@link Carrier}
+         * Sets the InventoryArchetype and Properties for a default Inventory of
+         * given {@link Carrier}.
          *
          * @param carrier The Carrier class
          * @return Fluent pattern

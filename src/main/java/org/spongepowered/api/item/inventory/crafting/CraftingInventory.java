@@ -30,7 +30,8 @@ import org.spongepowered.api.item.recipe.Recipe;
 import java.util.Optional;
 
 /**
- * A CraftingInventory represents the inventory of something that can craft items.
+ * A CraftingInventory represents the inventory of something that can craft
+ * items.
  */
 public interface CraftingInventory extends GridInventory {
 

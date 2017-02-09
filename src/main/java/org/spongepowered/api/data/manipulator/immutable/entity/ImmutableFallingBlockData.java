@@ -85,7 +85,7 @@ public interface ImmutableFallingBlockData extends ImmutableDataManipulator<Immu
     ImmutableValue<Integer> fallTime();
 
     /**
-     * Gets whether this falling block will damage entities where it lands
+     * Gets whether this falling block will damage entities where it lands.
      *
      * @return Whether this falling block will damage entities where it lands
      */

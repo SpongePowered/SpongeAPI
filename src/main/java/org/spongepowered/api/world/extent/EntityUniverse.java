@@ -42,8 +42,8 @@ import org.spongepowered.api.util.AABB;
 
 import java.util.Collection;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.Set;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 /**
@@ -103,7 +103,8 @@ public interface EntityUniverse {
      * @param type The type
      * @param position The position
      * @return An entity, if one was created
-     * @throws IllegalArgumentException If the position or entity type is not valid to create
+     * @throws IllegalArgumentException If the position or entity type is not
+     *      valid to create
      * @throws IllegalStateException If a constructor cannot be found
      */
     Entity createEntity(EntityType type, Vector3d position) throws IllegalArgumentException, IllegalStateException;
@@ -121,7 +122,8 @@ public interface EntityUniverse {
      * @param type The type
      * @param position The position
      * @return An entity, if one was created
-     * @throws IllegalArgumentException If the position or entity type is not valid to create
+     * @throws IllegalArgumentException If the position or entity type is not
+     *      valid to create
      * @throws IllegalStateException If a constructor cannot be found
      */
     default Entity createEntity(EntityType type, Vector3i position) throws IllegalArgumentException, IllegalStateException {
@@ -280,7 +282,7 @@ public interface EntityUniverse {
      * @param start The start of the ray
      * @param end The end of the ray
      * @return The intersecting entities in no particular order, with the
-     * associated intersection point and normal
+     *      associated intersection point and normal
      */
     default Set<EntityHit> getIntersectingEntities(Vector3d start, Vector3d end) {
         return getIntersectingEntities(start, end, hit -> true);
@@ -295,7 +297,7 @@ public interface EntityUniverse {
      * @param end The end of the ray
      * @param filter The filter test
      * @return The intersecting entities in no particular order, with the
-     * associated intersection point and normal
+     *      associated intersection point and normal
      */
     Set<EntityHit> getIntersectingEntities(Vector3d start, Vector3d end, Predicate<EntityHit> filter);
 
@@ -308,7 +310,7 @@ public interface EntityUniverse {
      * @param looker The looking entity
      * @param distance The distance of the ray (from the start)
      * @return The intersecting entities in no particular order, with the
-     * associated intersection point and normal
+     *      associated intersection point and normal
      */
     default Set<EntityHit> getIntersectingEntities(Entity looker, double distance) {
         return getIntersectingEntities(looker, distance, hit -> true);
@@ -324,7 +326,7 @@ public interface EntityUniverse {
      * @param distance The distance of the ray (from the start)
      * @param filter The filter test
      * @return The intersecting entities in no particular order, with the
-     * associated intersection point and normal
+     *      associated intersection point and normal
      */
     default Set<EntityHit> getIntersectingEntities(Entity looker, double distance, Predicate<EntityHit> filter) {
         checkNotNull(looker, "looker");
@@ -343,7 +345,7 @@ public interface EntityUniverse {
      * @param direction The direction of the ray
      * @param distance The distance of the ray (from the start)
      * @return The intersecting entities in no particular order, with the
-     * associated intersection point and normal
+     *      associated intersection point and normal
      */
     default Set<EntityHit> getIntersectingEntities(Vector3d start, Vector3d direction, double distance) {
         return getIntersectingEntities(start, direction, distance, hit -> true);
@@ -359,7 +361,7 @@ public interface EntityUniverse {
      * @param distance The distance of the ray (from the start)
      * @param filter The filter test
      * @return The intersecting entities in no particular order, with the
-     * associated intersection point and normal
+     *      associated intersection point and normal
      */
     Set<EntityHit> getIntersectingEntities(Vector3d start, Vector3d direction, double distance, Predicate<EntityHit> filter);
 

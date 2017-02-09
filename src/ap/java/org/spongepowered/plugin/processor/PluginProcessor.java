@@ -131,7 +131,7 @@ public class PluginProcessor extends AbstractProcessor {
             }
 
             final TypeElement pluginElement = (TypeElement) e;
-            AnnotationWrapper<Plugin> annotation = AnnotationWrapper.get(pluginElement, Plugin.class);
+            AnnotationWrapper<Plugin> annotation = AnnotationWrapper.of(pluginElement, Plugin.class);
 
             final String id = annotation.get().id();
             if (id.isEmpty()) {

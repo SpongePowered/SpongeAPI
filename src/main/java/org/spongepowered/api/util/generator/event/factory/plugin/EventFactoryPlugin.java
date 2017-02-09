@@ -35,16 +35,21 @@ import java.lang.reflect.Method;
 public interface EventFactoryPlugin {
 
     /**
-     * Called to allow a plugin to override the generation of the field and method(s) for a {@link Property}.
+     * Called to allow a plugin to override the generation of the field and
+     * method(s) for a {@link Property}.
      *
-     * <p>If an event factory plugin does not have any special behavior for the provided {@link Property}, it
-     * should return {@code false}, which passes on the property to other plugins for processing.</p>
+     * <p>If an event factory plugin does not have any special behavior for the
+     * provided {@link Property}, it should return {@code false}, which passes
+     * on the property to other plugins for processing.</p>
      *
-     * <p>Returning {@code true} stops the processing of the provided {@link Property}.</p>
+     * <p>Returning {@code true} stops the processing of the provided
+     * {@link Property}.</p>
      *
-     * @param eventClass The {@link Class} of the event an implementation is being generated for
+     * @param eventClass The {@link Class} of the event an implementation is
+     *      being generated for
      * @param internalName The internal name of the event
-     * @param classWriter The {@link ClassWriter} being used to generate the event class implementation
+     * @param classWriter The {@link ClassWriter} being used to generate the
+     *      event class implementation
      * @param property The {@link Property} being processed
      *
      * @return whether the provided {@link Property} was processed.

@@ -32,8 +32,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Declares the registry being dependent on another registry to have completed initial registration
- * of values before this one can continue.
+ * Declares the registry being dependent on another registry to have completed
+ * initial registration of values before this one can continue.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

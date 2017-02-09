@@ -30,7 +30,7 @@ import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.statistic.achievement.Achievement;
 
 /**
- * Represents an event that is called when an {@link Achievement} is granted
+ * Represents an event that is called when an {@link Achievement} is granted.
  */
 public interface GrantAchievementEvent extends MessageChannelEvent, Cancellable {
 

@@ -33,9 +33,8 @@ import org.spongepowered.api.world.World;
 /**
  * An event where a portal is created. Usually, this happens after a
  * {@link ChangeBlockEvent} from any source.
- *
- * TODO: Special object for Portal instead of just the location
  */
+// TODO: Special object for Portal instead of just the location
 public interface ConstructPortalEvent extends Event, Cancellable {
 
     Location<World> getPortalLocation();

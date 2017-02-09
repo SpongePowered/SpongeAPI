@@ -387,16 +387,16 @@ public interface AttackEntityEvent extends TargetEntityEvent, Cancellable {
     List<Tuple<DamageModifier, Function<? super Double, Double>>> getModifiers();
 
     /**
-     * Gets the knock back modifier. The modifier itself will apply to the momentum
-     * of the attacked entity.
+     * Gets the knock back modifier. The modifier itself will apply to the
+     * momentum of the attacked entity.
      *
      * @return The knock back modifier
      */
     int getKnockbackModifier();
 
     /**
-     * Sets the knock back modifier. The modifier itself will apply to the momentum
-     * of the attacked entity.
+     * Sets the knock back modifier. The modifier itself will apply to the
+     * momentum of the attacked entity.
      *
      * @param modifier The knock back modifier to set
      */

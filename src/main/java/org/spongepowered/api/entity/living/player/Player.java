@@ -86,8 +86,10 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      *
      * @param inventory The inventory to view
      * @param cause The {@link Cause} to use when opening the inventory
-     * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
-     * @return The opened Container if the inventory was opened, otherwise {@link Optional#empty()}
+     * @return The opened Container if the inventory was opened, otherwise
+     *      {@link Optional#empty()}
+     * @throws IllegalArgumentException if a {@link PluginContainer} is not the
+     *      root of the cause
      */
     Optional<Container> openInventory(Inventory inventory, Cause cause) throws IllegalArgumentException;
 
@@ -96,8 +98,9 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      * currently viewing one.
      *
      * @param cause The {@link Cause} to provide when closing the inventory
-     * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
      * @return whether or not closing the inventory succeeded
+     * @throws IllegalArgumentException if a {@link PluginContainer} is not the
+     *      root of the cause
      */
     boolean closeInventory(Cause cause) throws IllegalArgumentException;
 
@@ -195,8 +198,8 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
     }
 
     /**
-     * Gets the {@link Value} of the {@link Instant} that a {@link Player} joined
-     * the {@link Server} the first time.
+     * Gets the {@link Value} of the {@link Instant} that a {@link Player}
+     * joined the {@link Server} the first time.
      *
      * @return The value for the first time a player joined
      */
@@ -205,8 +208,8 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
     }
 
     /**
-     * Gets the {@link Value} of the {@link Instant} that a {@link Player} joined
-     * the {@link Server} the last time.
+     * Gets the {@link Value} of the {@link Instant} that a {@link Player}
+     * joined the {@link Server} the last time.
      *
      * @return The value for the last time a player joined
      */
@@ -223,6 +226,7 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
     default boolean hasPlayedBefore() {
         return !firstPlayed().equals(lastPlayed());
     }
+
     /**
      * Gets a copy of the current {@link DisplayNameData} for this
      * {@link Player}.
@@ -284,9 +288,10 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
     /**
      * Manually respawns the player.
      *
-     * <p>If the player is not dead, this method will return <code>false</code></p>
+     * <p>If the player is not dead, this method will return <tt>false</tt></p>
      *
      * @return Whether the respawn was successful
      */
     boolean respawnPlayer();
+
 }

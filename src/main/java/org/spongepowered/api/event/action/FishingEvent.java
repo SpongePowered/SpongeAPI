@@ -63,7 +63,8 @@ public interface FishingEvent extends Event {
     /**
      * An event where the {@link FishHook} is cast.
      *
-     * <p>This is fired before the {@link FishHook} has been spawned in the world.</p>
+     * <p>This is fired before the {@link FishHook} has been spawned in the
+     * world.</p>
      */
     interface Start extends FishingEvent, Cancellable {}
 
@@ -95,12 +96,12 @@ public interface FishingEvent extends Event {
     interface Stop extends FishingEvent, ChangeEntityExperienceEvent {
 
         /**
-         * Gets the {@link Transaction} that is the transaction
-         * involving the {@link ItemStack}, If you wish to
-         * change the itemstack result, use {@link Transaction#setCustom(DataSerializable)}
+         * Gets the {@link Transaction} that is the transaction involving the
+         * {@link ItemStack}, If you wish to change the itemstack result, use
+         * {@link Transaction#setCustom(DataSerializable)}.
          *
          * <p>The special item type {@link ItemTypes#NONE} is used to represent
-         * no item being caught,</p>
+         * no item being caught.</p>
          *
          * @return The itemstack transaction
          */

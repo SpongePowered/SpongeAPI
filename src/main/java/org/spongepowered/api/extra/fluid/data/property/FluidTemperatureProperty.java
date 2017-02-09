@@ -30,12 +30,12 @@ import org.spongepowered.api.data.property.IntProperty;
 
 /**
  * Temperature of the fluid - completely arbitrary; higher temperature indicates
- * that the fluid is hotter than air. Usually, depending on the implementation, the
- * "hotter" the fluid, the more likely it is to make flamable blocks and entities
- * catch on fire.
+ * that the fluid is hotter than air. Usually, depending on the implementation,
+ * the "hotter" the fluid, the more likely it is to make flamable blocks and
+ * entities catch on fire.
  *
- * Default value is approximately the real-life room temperature of water in degrees
- * Kelvin, otherwise known as 300K.
+ * <p>Default value is approximately the real-life room temperature of water in
+ * degrees Kelvin, otherwise known as 300K.</p>
  */
 public class FluidTemperatureProperty extends IntProperty {
 
@@ -60,4 +60,5 @@ public class FluidTemperatureProperty extends IntProperty {
         super(value, operator);
         checkArgument(value >= 0, "Temperature of a fluid cannot be less than zero!");
     }
+
 }

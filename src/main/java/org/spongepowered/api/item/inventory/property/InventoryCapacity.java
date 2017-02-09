@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.item.inventory.property;
 
-import static org.spongepowered.api.data.Property.Operator.EQUAL;
-
 /**
- * Property for inventories of a particular capacity. For example to allow querying for Inventories with 5 Slots.
+ * Property for inventories of a particular capacity. For example to allow
+ * querying for Inventories with 5 Slots.
  */
 public class InventoryCapacity extends IntProperty {
 
@@ -52,12 +51,13 @@ public class InventoryCapacity extends IntProperty {
     }
 
     /**
-     * Create an InventoryCapacity property which matches InventoryCapacity properties with equal value.
+     * Create an InventoryCapacity property which matches InventoryCapacity
+     * properties with equal value.
      *
      * @param capacity value to match
      * @return new property
      */
     public static InventoryCapacity of(int capacity) {
-        return new InventoryCapacity(capacity, EQUAL);
+        return new InventoryCapacity(capacity, Operator.EQUAL);
     }
 }

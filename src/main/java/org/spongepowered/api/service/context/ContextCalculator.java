@@ -27,32 +27,34 @@ package org.spongepowered.api.service.context;
 import java.util.Set;
 
 /**
- * Calculate the availability of {@link Context}s for a {@link Contextual}. 
+ * Calculate the availability of {@link Context}s for a {@link Contextual}.
  * These methods may be invoked frequently, and therefore should be fast.
- * 
+ *
  */
 public interface ContextCalculator<T extends Contextual> {
 
     /**
      * Add any {@link Context}s this calculator determines to be applicable to the
      * provided context accumulator.
-     * 
+     *
      *
      * @param calculable {@link Contextual} for this operation
-     * @param accumulator {@link Set} of {@link Context}s this operation will append to.
+     * @param accumulator {@link Set} of {@link Context}s this operation will
+     *      append to.
      */
     void accumulateContexts(T calculable, Set<Context> accumulator);
 
     /**
      * Checks if a {@link Context} is currently applicable to a {@link Contextual}.
-     * 
-     * <p>If this calculator does not handle the given type of context, this method
-     * should return false.</p>
+     *
+     * <p>If this calculator does not handle the given type of context, this
+     * method should return <tt>false</tt>.</p>
      *
      * @param context {@link Context} being checked
-     * @param subject {@link Contextual} the contextual that is being checked against
-     * @return True if the given {@link Context} is handled by this calculator and is
-     *         applicable to the given {@link Contextual}. Otherwise false.
+     * @param subject {@link Contextual} the contextual that is being checked
+     *      against
+     * @return True if the given {@link Context} is handled by this calculator
+     *      and is applicable to the given {@link Contextual}. Otherwise false.
      */
     boolean matches(Context context, T subject);
 }

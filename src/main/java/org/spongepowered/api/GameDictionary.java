@@ -51,8 +51,8 @@ public interface GameDictionary {
     void register(String key, Entry entry);
 
     /**
-     * Retrieves the entries registered for the given key. The stack sizes are set
-     * to 1.
+     * Retrieves the entries registered for the given key. The stack sizes are
+     * set to 1.
      *
      * @param key The key of the entries as a String
      * @return The entries registered for the given key

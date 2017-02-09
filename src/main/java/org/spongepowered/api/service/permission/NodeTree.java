@@ -32,9 +32,13 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
- * An immutable tree structure for determining node data. Any changes will create new copies of the necessary tree objects.
- * Keys are case-insensitive.
- * Segments of nodes are split by the '.' character
+ * An immutable tree structure for determining node data. Any changes will
+ * create new copies of the necessary tree objects.
+ *
+ * <ul>
+ *     <li>Keys are case-insensitive.</li>
+ *     <li>Segments of nodes are split by the '.' character</li>
+ * </ul>
  */
 public class NodeTree {
 
@@ -52,7 +56,8 @@ public class NodeTree {
     }
 
     /**
-     * Create a new node tree with the given values, and a default value of UNDEFINED.
+     * Create a new node tree with the given values, and a default value of
+     * UNDEFINED.
      *
      * @param values The values to set
      * @return The new node tree
@@ -62,7 +67,8 @@ public class NodeTree {
     }
 
     /**
-     * Create a new node tree with the given values, and the specified root fallback value.
+     * Create a new node tree with the given values, and the specified root
+     * fallback value.
      *
      * @param values The values to be contained in this node tree
      * @param defaultValue The fallback value for any completely undefined nodes
@@ -88,7 +94,8 @@ public class NodeTree {
     }
 
     /**
-     * Returns the value assigned to a specific node, or the nearest parent value in the tree if the node itself is undefined.
+     * Returns the value assigned to a specific node, or the nearest parent
+     * value in the tree if the node itself is undefined.
      *
      * @param node The path to get the node value at
      * @return The tristate value for the given node

@@ -34,7 +34,7 @@ public interface PortalTeleportCause extends TeleportCause {
     }
 
     /**
-     * Gets the {@link PortalAgent}
+     * Gets the {@link PortalAgent}.
      *
      * @return The portal agent
      */

@@ -31,11 +31,14 @@ import java.util.List;
 public interface InputTokenizer {
 
     /**
-     * Use an input string tokenizer that supports quoted arguments and character escapes.
-     * Forcing lenient to true makes the following apply:
+     * Use an input string tokenizer that supports quoted arguments and
+     * character escapes.
+     *
+     * <p>Forcing lenient to true makes the following apply:</p>
      *
      * <ul>
-     *     <li>Unclosed quotations are treated as a single string from the opening quotation to the end of the arguments rather than throwing
+     *     <li>Unclosed quotations are treated as a single string from the
+     *     opening quotation to the end of the arguments rather than throwing
      *     an exception </li>
      * </ul>
      *
@@ -47,7 +50,8 @@ public interface InputTokenizer {
     }
 
     /**
-     * Returns an input tokenizer that takes input strings and splits them by space.
+     * Returns an input tokenizer that takes input strings and splits them by
+     * space.
      *
      * @return The appropriate tokenizer
      */
@@ -56,7 +60,8 @@ public interface InputTokenizer {
     }
 
     /**
-     * Returns an input tokenizer that returns the input string as a single argument.
+     * Returns an input tokenizer that returns the input string as a single
+     * argument.
      *
      * @return The appropriate tokenizer
      */
