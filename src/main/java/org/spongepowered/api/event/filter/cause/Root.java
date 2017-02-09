@@ -35,7 +35,7 @@ import java.lang.annotation.Target;
  * Sets the parameter to the root object in the cause chain, an additional check
  * is done to ensure that the root object is of the correct type and the filter
  * fails if this is not the case.
- * 
+ *
  * @see Cause#root()
  */
 @Target(ElementType.PARAMETER)
@@ -43,21 +43,23 @@ import java.lang.annotation.Target;
 public @interface Root {
 
     /**
-     * If specified the possible type for the returned object (normally specified by the type of the annotated
-     * parameter) is restricted to only the specified types.
-     * 
-     * <p> For exampled annotating a parameter of type Monster would normally accept all entities extending
-     * Monster, however with the includes specified as Enderman and Zombie the possible Monsters returned
-     * would be restricted to entities extending either Enderman and Zombie. </p>
-     * 
+     * If specified the possible type for the returned object (normally
+     * specified by the type of the annotated parameter) is restricted to only
+     * the specified types.
+     *
+     * <p>For example annotating a parameter of type Monster would normally
+     * accept all entities extending Monster, however with the includes
+     * specified as Enderman and Zombie the possible Monsters returned would be
+     * restricted to entities extending either Enderman and Zombie.</p>
+     *
      * @return The included classes, if empty then the type is not restricted
      */
     Class<?>[] typeFilter() default {};
 
     /**
-     * If true then the behavior of the typeFilter is reversed and the specified types are excluded rather
-     * than included.
-     * 
+     * If true then the behavior of the typeFilter is reversed and the specified
+     * types are excluded rather than included.
+     *
      * @return If the type filter is reversed
      */
     boolean inverse() default false;

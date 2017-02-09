@@ -105,15 +105,6 @@ public interface FluidStack extends DataHolder {
         Builder volume(int volume);
 
         /**
-         * Resets and fills this builder with all the information from the
-         * provided {@link FluidStackSnapshot}.
-         *
-         * @param fluidStackSnapshot The fluid stack snapshot to copy data from
-         * @return This builder, for chaining
-         */
-        Builder from(FluidStackSnapshot fluidStackSnapshot);
-
-        /**
          * Builds a new {@link FluidStack} based on the desired volume and
          * {@link FluidType}. If either are not set (invalid), an
          * {@link IllegalStateException} may be thrown.
@@ -121,6 +112,15 @@ public interface FluidStack extends DataHolder {
          * @return The newly created fluid stack
          */
         FluidStack build();
+
+        /**
+         * Resets and fills this builder with all the information from the
+         * provided {@link FluidStackSnapshot}.
+         *
+         * @param fluidStackSnapshot The fluid stack snapshot to copy data from
+         * @return This builder, for chaining
+         */
+        Builder from(FluidStackSnapshot fluidStackSnapshot);
 
         @Override
         Builder from(FluidStack value);

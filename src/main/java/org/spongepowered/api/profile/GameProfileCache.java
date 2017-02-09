@@ -68,7 +68,7 @@ public interface GameProfileCache {
      *
      * @param profile The profile to cache
      * @param overwrite If we should overwrite the cache entry for
-     * the provided profile
+     *      the provided profile
      * @param expiry The expiration date
      * @return {@code true} if the profile was successfully cached,
      *     otherwise {@code false}
@@ -143,6 +143,7 @@ public interface GameProfileCache {
      *     we couldn't lookup a profile with the provided id
      */
     Optional<GameProfile> getOrLookupById(UUID uniqueId);
+
     /**
      * Gets {@link GameProfile}s in bulk from this cache by when available,
      * and lookups the profiles by their unique id when not cached.

@@ -40,7 +40,8 @@ public class DummyClassGeneratorProviderTest {
     public void testCreate_Simple()
             throws IOException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         DummyClassGeneratorProvider provider = this.createProvider();
-        SimpleInterface result = provider.create(SimpleInterface.class, UnsupportedOperationException.class).getConstructor(String.class).newInstance("BLAH");
+        SimpleInterface result = provider.create(SimpleInterface.class,
+                UnsupportedOperationException.class).getConstructor(String.class).newInstance("BLAH");
 
         result.foo();
     }
@@ -48,7 +49,8 @@ public class DummyClassGeneratorProviderTest {
     @Test(expected = UnsupportedOperationException.class)
     public void testCreate_SubInterface() throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         DummyClassGeneratorProvider provider = this.createProvider();
-        SubInterface result = provider.create(SubInterface.class, UnsupportedOperationException.class).getConstructor(String.class).newInstance("BLAH");
+        SubInterface result = provider.create(SubInterface.class,
+                UnsupportedOperationException.class).getConstructor(String.class).newInstance("BLAH");
 
         result.blah();
     }
@@ -57,7 +59,8 @@ public class DummyClassGeneratorProviderTest {
     public void testCreate_SubInterfaceSubMethod()
             throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         DummyClassGeneratorProvider provider = this.createProvider();
-        SubInterface result = provider.create(SubInterface.class, UnsupportedOperationException.class).getConstructor(String.class).newInstance("BLAH");
+        SubInterface result = provider.create(SubInterface.class,
+                UnsupportedOperationException.class).getConstructor(String.class).newInstance("BLAH");
 
         result.test();
     }

@@ -72,9 +72,8 @@ public final class Context implements Map.Entry<String, String> {
      * Get the name.
      *
      * @return the specific name of the item involved in this context, for
-     *         example if the type were {@code world} this would be the name of the
-     *         world.
-     * 
+     *         example if the type were {@code world} this would be the name of
+     *         the world.
      */
     public String getName() {
         return getValue();

@@ -24,16 +24,17 @@
  */
 package org.spongepowered.api.command;
 
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.command.dispatcher.Dispatcher;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
+
+import javax.annotation.Nullable;
 
 /**
  * A command dispatcher watches for commands (such as those said in chat)
@@ -55,8 +56,10 @@ public interface CommandManager extends Dispatcher {
      * @param plugin A plugin instance
      * @param callable The command
      * @param alias An array of aliases
-     * @return The registered command mapping, unless no aliases could be registered
-     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
+     * @return The registered command mapping, unless no aliases could be
+     *      registered
+     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
+     *      instance
      */
     Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... alias);
 
@@ -74,8 +77,10 @@ public interface CommandManager extends Dispatcher {
      * @param plugin A plugin instance
      * @param callable The command
      * @param aliases A list of aliases
-     * @return The registered command mapping, unless no aliases could be registered
-     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
+     * @return The registered command mapping, unless no aliases could be
+     *      registered
+     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
+     *      instance
      */
     Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases);
 
@@ -97,9 +102,12 @@ public interface CommandManager extends Dispatcher {
      * @param callable The command
      * @param aliases A list of aliases
      * @param callback The callback
-     * @return The registered command mapping, unless no aliases could be registered
-     * @throws IllegalArgumentException Thrown if new conflicting aliases are added in the callback
-     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin instance
+     * @return The registered command mapping, unless no aliases could be
+     *      registered
+     * @throws IllegalArgumentException Thrown if new conflicting aliases are
+     *      added in the callback
+     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
+     *      instance
      */
     Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases, Function<List<String>, List<String>> callback);
 

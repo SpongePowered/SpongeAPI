@@ -41,15 +41,17 @@ import java.util.Optional;
 public interface ImmutableZombieData extends ImmutableDataManipulator<ImmutableZombieData, ZombieData> {
 
     /**
-     * Returns a value specifying Zombie's type
+     * Returns a value specifying Zombie's type.
+     *
      * @return Zombie's type
      */
     ImmutableValue<ZombieType> type();
 
     /**
      * Value representing a zombie's {@link Profession}.
-     * .
-     * @return Profession of the zombie, or {@link Optional#empty()} if it has none
+     *
+     * @return Profession of the zombie, or {@link Optional#empty()} if it has
+     *      none
      */
     ImmutableOptionalValue<Profession> profession();
 

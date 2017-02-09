@@ -517,7 +517,7 @@ public final class Location<E extends Extent> implements DataHolder {
      * Checks for whether the block at this position contains tile entity data.
      *
      * @return True if the block at this position has tile entity data, false
-     * otherwise
+     *      otherwise
      */
     public boolean hasTileEntity() {
         return getExtent().getTileEntity(getBlockPosition()).isPresent();

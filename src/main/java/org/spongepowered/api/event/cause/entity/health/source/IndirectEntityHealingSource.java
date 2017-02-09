@@ -36,10 +36,11 @@ public interface IndirectEntityHealingSource extends EntityHealingSource {
     Entity getIndirectSource();
 
     interface Builder extends IndirectEntityHealingSourceBuilder<IndirectEntityHealingSource, Builder> {
-        
+
     }
 
-    interface IndirectEntityHealingSourceBuilder<T extends IndirectEntityHealingSource, B extends IndirectEntityHealingSourceBuilder<T, B>> extends EntityHealingSourceBuilder<T, B> {
+    interface IndirectEntityHealingSourceBuilder<T extends IndirectEntityHealingSource, B extends IndirectEntityHealingSourceBuilder<T, B>>
+            extends EntityHealingSourceBuilder<T, B> {
 
         B indirectEntity(Entity entity);
 

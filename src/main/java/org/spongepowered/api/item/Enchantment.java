@@ -97,7 +97,8 @@ public interface Enchantment extends CatalogType, Translatable {
     boolean canBeAppliedToStack(ItemStack stack);
 
     /**
-     * Test if this enchantment can be applied to an ItemStack by the Enchanting Table.
+     * Test if this enchantment can be applied to an ItemStack by the Enchanting
+     * Table.
      *
      * @param stack ItemStack to check
      * @return Whether this enchantment can be applied by the Enchanting Table

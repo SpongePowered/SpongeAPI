@@ -186,7 +186,8 @@ public final class KeyFactory {
      * @param <E> The type of element
      * @param elementToken The element class
      * @param valueToken
-     *@param query The query to access the data  @return The generated key
+     * @param query The query to access the data
+     * @return The generated key
      */
     public static <E> Key<SetValue<E>> makeSetKey(final TypeToken<? extends Set<E>> elementToken, TypeToken<SetValue<E>> valueToken,
             final DataQuery query, final String id, final String name) {
@@ -249,7 +250,8 @@ public final class KeyFactory {
      * @param query The query
      * @return The generated key
      */
-    public static <K, V> Key<MapValue<K, V>> makeMapKey(final TypeToken<Map<K, V>> elementToken, final TypeToken<MapValue<K, V>> valueToken, final DataQuery query, final String id, final String name) {
+    public static <K, V> Key<MapValue<K, V>> makeMapKey(final TypeToken<Map<K, V>> elementToken, final TypeToken<MapValue<K, V>> valueToken,
+                final DataQuery query, final String id, final String name) {
         validateId(id);
         return new Key<MapValue<K, V>>() {
 

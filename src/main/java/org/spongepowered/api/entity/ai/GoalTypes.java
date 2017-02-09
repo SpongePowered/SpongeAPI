@@ -39,11 +39,10 @@ public final class GoalTypes {
     /**
      * {@link Goal} that is the "target" set of tasks.
      *
-     * In this goal, the objective is to formulate the target so that the
-     * {@link Agent} can act on it. The best example is how monsters like
-     * zombie and skeleton attack enemies: they seek out a target and if
-     * a task in their normal goal sees that they have a target, they act
-     * accordingly.
+     * <p>In this goal, the objective is to formulate the target so that the
+     * {@link Agent} can act on it. The best example is how monsters like zombie
+     * and skeleton attack enemies: they seek out a target and if a task in
+     * their normal goal sees that they have a target, they act accordingly.</p>
      */
     public static final GoalType TARGET = DummyObjectProvider.createFor(GoalType.class, "TARGET");
 

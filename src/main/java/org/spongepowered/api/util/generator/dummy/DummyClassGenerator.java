@@ -142,7 +142,8 @@ public class DummyClassGenerator {
             mv.visitVarInsn(ALOAD, 2);
 
             // Call String.format
-            mv.visitMethodInsn(INVOKESTATIC, Type.getInternalName(String.class), "format", "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;", false);
+            mv.visitMethodInsn(INVOKESTATIC, Type.getInternalName(String.class), "format",
+                    "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;", false);
 
             // Invoke throwable constructor
             mv.visitMethodInsn(INVOKESPECIAL, internalException, "<init>", "(Ljava/lang/String;)V", false);

@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 public interface PaginationList {
 
     /**
-     * Creates a new {@link Builder} to build a pagination list
+     * Creates a new {@link Builder} to build a pagination list.
      *
      * @return The new builder
      */
@@ -66,18 +66,19 @@ public interface PaginationList {
     Optional<Text> getTitle();
 
     /**
-     * Gets the header to be displayed for this output on all pages after the title bar but before the contents,
-     * if available.
+     * Gets the header to be displayed for this output on all pages after the
+     * title bar but before the contents, if available.
      *
-     * Header and footer will use this Text's style and color for formatting.
+     * <p>Header and footer will use this Text's style and color for formatting.
+     * </p>
      *
      * @return The header to be displayed
      */
     Optional<Text> getHeader();
 
     /**
-     * Gets the footer to be displayed for this output on all pages after the contents and page navigation bar,
-     * if available.
+     * Gets the footer to be displayed for this output on all pages after the
+     * contents and page navigation bar, if available.
      *
      * @return The footer
      */
@@ -91,7 +92,8 @@ public interface PaginationList {
     Text getPadding();
 
     /**
-     * Get the maxinum number of lines that can be displayed on a source's screen.
+     * Get the maxinum number of lines that can be displayed on a source's
+     * screen.
      *
      * @return The maximum number of lines per page
      */
@@ -105,8 +107,10 @@ public interface PaginationList {
     void sendTo(MessageReceiver source);
 
     /**
-     * Send the constructed pagination list to the specified {@link MessageChannel}.
-     * @param channel
+     * Send the constructed pagination list to the specified
+     * {@link MessageChannel}.
+     *
+     * @param channel channel to send to
      */
     default void sendTo(MessageChannel channel) {
         for (MessageReceiver receiver : channel.getMembers()) {
@@ -147,11 +151,14 @@ public interface PaginationList {
         Builder title(Text title);
 
         /**
-         * Set the header to be displayed for this output on all pages after the title bar but before the contents
-         * Header and footer will use this Text's style and color for formatting.
+         * Set the header to be displayed for this output on all pages after the
+         * title bar but before the contents.</p>
          *
-         * <p>If the header is not specified, or passed in as <code>null</code>, it will
-         * be omitted when displaying the list.</p>
+         * <p>Header and footer will use this Text's style and color for
+         * formatting.</p>
+         *
+         * <p>If the header is not specified, or passed in as <tt>null</tt>, it
+         * will be omitted when displaying the list.</p>
          *
          * @param header The header to set
          * @return this
@@ -159,10 +166,11 @@ public interface PaginationList {
         Builder header(@Nullable Text header);
 
         /**
-         * Set the footer to be displayed for this output on all pages after the contents and page navigation bar.
+         * Set the footer to be displayed for this output on all pages after the
+         * contents and page navigation bar.
          *
-         * <p>If the footer is not specified, or passed in as <code>null</code>, it will
-         * be omitted when displaying the list.</p>
+         * <p>If the footer is not specified, or passed in as <code>null</code>,
+         * it will be omitted when displaying the list.</p>
          *
          * @param footer The footer to set
          * @return this
@@ -170,7 +178,8 @@ public interface PaginationList {
         Builder footer(@Nullable Text footer);
 
         /**
-         * Set the padding character to be used when centering headers and footers.
+         * Set the padding character to be used when centering headers and
+         * footers.
          *
          * @param padding The padding to use
          * @return this
@@ -202,8 +211,10 @@ public interface PaginationList {
         }
 
         /**
-         * Send the constructed pagination list to the specified {@link MessageChannel}.
-         * @param channel
+         * Send the constructed pagination list to the specified
+         * {@link MessageChannel}.
+         *
+         * @param channel channel to send to
          */
         default void sendTo(MessageChannel channel) {
             channel.getMembers().forEach(this::sendTo);

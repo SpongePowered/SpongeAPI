@@ -78,7 +78,7 @@ public final class LiteralText extends Text {
      *
      * @return The content of this text
      */
-    public final String getContent() {
+    public String getContent() {
         return this.content;
     }
 

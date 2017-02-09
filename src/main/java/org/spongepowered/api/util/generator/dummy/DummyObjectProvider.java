@@ -51,7 +51,7 @@ public final class DummyObjectProvider {
             });
 
     /**
-     * Creates a new dummy class implementing the specified interface
+     * Creates a new dummy class implementing the specified interface.
      *
      * @param type The interface to generate a dummy class for
      * @param <T> The type of class to be created

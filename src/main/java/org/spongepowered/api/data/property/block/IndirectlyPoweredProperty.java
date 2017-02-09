@@ -31,7 +31,8 @@ public class IndirectlyPoweredProperty extends BooleanProperty {
     /**
      * Creates a new {@link IndirectlyPoweredProperty}.
      *
-     * @param value The value of whether the property is indirectly powered or not
+     * @param value The value of whether the property is indirectly powered or
+     *      not
      */
     public IndirectlyPoweredProperty(boolean value) {
         super(value);
@@ -40,7 +41,8 @@ public class IndirectlyPoweredProperty extends BooleanProperty {
     /**
      * Creates a new {@link IndirectlyPoweredProperty}.
      *
-     * @param value The value of whether the property is indirectly powered or not
+     * @param value The value of whether the property is indirectly powered or
+     *      not
      * @param operator The operator for comparisons
      */
     public IndirectlyPoweredProperty(boolean value, Operator operator) {

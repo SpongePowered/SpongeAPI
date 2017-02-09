@@ -32,8 +32,8 @@ import org.spongepowered.api.entity.ai.task.AITaskType;
 import org.spongepowered.api.entity.ai.task.AbstractAITask;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.merchant.VillagerRegistry;
 import org.spongepowered.api.item.merchant.TradeOfferGenerator;
+import org.spongepowered.api.item.merchant.VillagerRegistry;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -75,8 +75,8 @@ import java.util.function.Supplier;
  *
  * <p>Note that the registries may be in flux, especially during game
  * initialization. These will be accurate for the time they are called, however
- * they may change at a later point. Do not assume that the contents of a collection
- * will be all the entries that will exist.</p>
+ * they may change at a later point. Do not assume that the contents of a
+ * collection will be all the entries that will exist.</p>
  *
  * <p>Some of the returned instances my become incorrect if they are later
  * overwritten. However, this should occur prior to
@@ -134,9 +134,12 @@ public interface GameRegistry {
     }
 
     /**
-     * Registers the {@link CatalogRegistryModule} for dummy registration and handling.
-     * By default, the only supported modules that can be registered are dependent that
-     * plugins are not attempting to register new modules for API provided {@link CatalogType}s.
+     * Registers the {@link CatalogRegistryModule} for dummy registration and
+     * handling.
+     *
+     * <p>By default, the only supported modules that can be registered are
+     * dependent that plugins are not attempting to register new modules for
+     * API-provided {@link CatalogType}s.</p>
      *
      * @param catalogClass The dummy class itself
      * @param registryModule The registry module
@@ -172,7 +175,8 @@ public interface GameRegistry {
      * @param builderClass The class of the builder
      * @param <T> The type of builder
      * @return The builder, if available
-     * @throws IllegalArgumentException If there is no supplier for the given builder class
+     * @throws IllegalArgumentException If there is no supplier for the given
+     *      builder class
      */
     <T extends ResettableBuilder<?, ? super T>> T createBuilder(Class<T> builderClass) throws IllegalArgumentException;
 

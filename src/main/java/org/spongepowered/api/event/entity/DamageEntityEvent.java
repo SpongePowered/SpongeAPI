@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.block.tileentity.carrier.Dispenser;
+import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.monster.Skeleton;
@@ -47,7 +48,6 @@ import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.difficulty.Difficulties;
@@ -349,8 +349,9 @@ public interface DamageEntityEvent extends TargetEntityEvent, Cancellable {
 
     /**
      * Adds the provided {@link DamageModifier} and {@link Function} to the list
-     * of modifiers, such that the modifier will appear in order after any current modifiers
-     * whose type are included in the provided {@link Set} of {@link DamageModifierType}s.
+     * of modifiers, such that the modifier will appear in order after any
+     * current modifiers whose type are included in the provided {@link Set} of
+     * {@link DamageModifierType}s.
      *
      * @param damageModifier The damage modifier to add
      * @param function The associated function

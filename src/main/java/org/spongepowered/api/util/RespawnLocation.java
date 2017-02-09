@@ -88,7 +88,6 @@ public final class RespawnLocation implements DataSerializable {
     }
 
     /**
-     *
      * Gets whether the spawn position is forced in the given world, if
      * available. A forced position will spawn the player there even if a bed is
      * missing or obstructed.
@@ -138,9 +137,9 @@ public final class RespawnLocation implements DataSerializable {
             return false;
         }
         RespawnLocation that = (RespawnLocation) o;
-        return this.forced == that.forced &&
-                Objects.equals(this.worldId, that.worldId) &&
-                Objects.equals(this.position, that.position);
+        return this.forced == that.forced
+                && Objects.equals(this.worldId, that.worldId)
+                && Objects.equals(this.position, that.position);
     }
 
     @Override

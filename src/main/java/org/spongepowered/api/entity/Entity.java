@@ -35,7 +35,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.entity.damage.source.DamageSource; 
+import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
@@ -113,9 +113,9 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *
      * @param location The location to set
      * @return True if location was set successfully, false if location couldn't
-     *    be set as no safe location was found or
-     *    {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *    was cancelled.
+     *     be set as no safe location was found or
+     *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
+     *     was cancelled.
      */
     default boolean setLocationSafely(Location<World> location) {
         return Sponge.getGame().getTeleportHelper()
@@ -166,30 +166,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
     boolean setLocationAndRotation(Location<World> location, Vector3d rotation);
 
     /**
-     * Sets the location using a safe one from
-     * {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this
-     * entity.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
-     *
-     * @param location The location to set
-     * @param rotation The rotation to set
-     * @return True if location was set successfully, false if either location
-     *    couldn't be set as no safe location was found or
-     *    {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *    was cancelled
-     */
-    default boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation) {
-        return Sponge.getGame().getTeleportHelper()
-                .getSafeLocation(location)
-                .map(safe -> this.setLocationAndRotation(safe, rotation))
-                .orElse(false);
-    }
-
-    /**
      * Moves the entity to the specified location, and sets the rotation.
      * {@link RelativePositions} listed inside the EnumSet are considered
      * relative.
@@ -212,6 +188,30 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
     /**
      * Sets the location using a safe one from
      * {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this
+     * entity.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @param location The location to set
+     * @param rotation The rotation to set
+     * @return True if location was set successfully, false if either location
+     *     couldn't be set as no safe location was found or
+     *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
+     *     was cancelled
+     */
+    default boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation) {
+        return Sponge.getGame().getTeleportHelper()
+                .getSafeLocation(location)
+                .map(safe -> this.setLocationAndRotation(safe, rotation))
+                .orElse(false);
+    }
+
+    /**
+     * Sets the location using a safe one from
+     * {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this
      * entity. {@link RelativePositions} listed inside the EnumSet are
      * considered relative.
      *
@@ -225,8 +225,8 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      * @param relativePositions The coordinates to set relatively
      * @return True if location was set successfully, false if either location
      *     couldn't be set as no safe location was found or
-     *    {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *    was cancelled
+     *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
+     *     was cancelled
      */
     default boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions) {
         return Sponge.getGame().getTeleportHelper()
@@ -265,9 +265,9 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *
      * @param transform The transform to set
      * @return True if the transform was set successfully, false if the
-     *  transform couldn't be set due to
-     *  {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *  being cancelled.
+     *     transform couldn't be set due to
+     *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
+     *     being cancelled.
      */
     boolean setTransform(Transform<World> transform);
 

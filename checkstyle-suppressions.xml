@@ -9,4 +9,8 @@
     <suppress checks="AbbreviationAsWordInName" files="PEBKAC"/>
     <suppress checks="AbbreviationAsWordInName" files="AABB"/>
     <suppress checks=".*" files="SpongeEventFactory\.java"/>
+    <suppress checks="LineLength" files="Keys\.java"/>
+    <suppress checks="AvoidStarImport" files="Keys\.java"/>
+    <suppress checks="AvoidStarImport" files="CatalogEntityData\.java"/>
+    <suppress checks="SummaryJavadoc" files="DataQueryTest\.java"/>
 </suppressions>

@@ -46,9 +46,8 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.entity.projectile.arrow.Arrow;
-import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.extra.fluid.FluidStackSnapshot;
@@ -63,6 +62,7 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.rotation.Rotation;
 
 import java.time.Instant;
@@ -417,7 +417,7 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for representing the directional tank
-     * information
+     * information.
      */
     public static final Key<MapValue<Direction, List<FluidStackSnapshot>>> FLUID_TANK_CONTENTS = KeyFactory.fake("FLUID_TANK_CONTENTS");
 
@@ -953,9 +953,6 @@ public final class Keys {
 
     public static final Key<Value<Boolean>> VANISH_IGNORES_COLLISION = KeyFactory.fake("VANISH_IGNORES_COLLISION");
 
-    /**
-     *
-     */
     public static final Key<Value<Boolean>> VANISH_PREVENTS_TARGETING = KeyFactory.fake("VANISH_PREVENTS_TARGETING");
 
     public static final Key<Value<EntitySnapshot>> VEHICLE = KeyFactory.fake("VEHICLE");

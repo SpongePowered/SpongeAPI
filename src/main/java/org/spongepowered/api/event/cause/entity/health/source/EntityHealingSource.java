@@ -51,7 +51,8 @@ public interface EntityHealingSource extends HealingSource {
 
     }
 
-    interface EntityHealingSourceBuilder<T extends EntityHealingSource, B extends EntityHealingSourceBuilder<T, B>> extends HealingSourceBuilder<T, B> {
+    interface EntityHealingSourceBuilder<T extends EntityHealingSource, B extends EntityHealingSourceBuilder<T, B>>
+            extends HealingSourceBuilder<T, B> {
 
         B entity(Entity entity);
 

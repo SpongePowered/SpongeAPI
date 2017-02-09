@@ -33,7 +33,7 @@ import org.spongepowered.api.event.Event;
 public interface GameStateEvent extends Event {
 
     /**
-     * Gets the {@link GameState} that this event represents
+     * Gets the {@link GameState} that this event represents.
      *
      * @return The game state
      */

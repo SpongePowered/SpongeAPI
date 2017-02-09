@@ -186,9 +186,10 @@ public class DiscreteTransform3 {
     }
 
     /**
-     * Returns a transform that is the composition of this transform and the given transform.
+     * Returns a transform that is the composition of this transform and the
+     * given transform.
      *
-     * The result will apply this transformation after the given one.
+     * <p>The result will apply this transformation after the given one.</p>
      *
      * @param that The transform to compose with
      * @return The new composed transform
@@ -198,9 +199,10 @@ public class DiscreteTransform3 {
     }
 
     /**
-     * Returns a transform that is the composition of the given transform with this transform.
+     * Returns a transform that is the composition of the given transform with
+     * this transform.
      *
-     * The result will apply the given transformation after this one.
+     * <p>The result will apply the given transformation after this one.</p>
      *
      * @param that The transform to compose with
      * @return The new composed transform
@@ -362,8 +364,8 @@ public class DiscreteTransform3 {
     }
 
     /**
-     * Returns a new transform from the given transformation matrix, if the resulting transform
-     * would be discrete.
+     * Returns a new transform from the given transformation matrix, if the
+     * resulting transform would be discrete.
      *
      * @param matrix The matrix to use for the transform
      * @return The new transform, or {@link Optional#empty()}

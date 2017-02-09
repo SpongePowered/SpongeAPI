@@ -39,8 +39,8 @@ import java.util.Set;
 /**
  * An objective tracks an integer score for each entry it contains.
  *
- * <p>Entries can be updated by plugins, by in-game commands, or automatically by the game, depending
- * on their {@link Criterion}.</p>
+ * <p>Entries can be updated by plugins, by in-game commands, or automatically
+ * by the game, depending on their {@link Criterion}.</p>
  */
 public interface Objective {
 

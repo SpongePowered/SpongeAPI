@@ -462,9 +462,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * Gets the bounding box used to select blocks, which appears
      * as a black outline on a vanilla client.
      *
-     * @param x The x coordinate of the block from which to get the selection box
-     * @param y The y coordinate of the block from which to get the selection box
-     * @param z The z coordinate of the block from which to get the selection box
+     * @param x The x coord of the block from which to get the selection box
+     * @param y The y coord of the block from which to get the selection box
+     * @param z The z coord of the block from which to get the selection box
      * @return The selection box
      */
     Optional<AABB> getBlockSelectionBox(int x, int y, int z);
@@ -489,9 +489,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      */
     default Set<AABB> getIntersectingCollisionBoxes(Entity owner) {
         checkNotNull(owner, "owner");
-        return owner.getBoundingBox().
-            map(box -> getIntersectingCollisionBoxes(owner, box)).
-            orElse(Collections.emptySet());
+        return owner.getBoundingBox()
+            .map(box -> getIntersectingCollisionBoxes(owner, box))
+            .orElse(Collections.emptySet());
     }
 
     /**

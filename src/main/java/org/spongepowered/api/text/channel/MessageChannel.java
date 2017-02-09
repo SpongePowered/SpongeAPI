@@ -54,16 +54,20 @@ public interface MessageChannel {
      * A channel with no members.
      */
     MessageChannel TO_NONE = ImmutableSet::of;
+
     /**
      * A channel with all online players as members.
      */
     MessageChannel TO_PLAYERS = () -> ImmutableSet.copyOf(Sponge.getGame().getServer().getOnlinePlayers());
+
     /**
      * A channel with the server console as a member.
      */
     MessageChannel TO_CONSOLE = () -> ImmutableSet.of(Sponge.getGame().getServer().getConsole());
+
     /**
-     * A channel with all online players, as well as the server console, as members.
+     * A channel with all online players, as well as the server console, as
+     * members.
      */
     MessageChannel TO_ALL = () -> ImmutableSet.<MessageReceiver>builder()
             .addAll(Sponge.getGame().getServer().getOnlinePlayers())
@@ -71,7 +75,8 @@ public interface MessageChannel {
             .build();
 
     /**
-     * Creates a message channel that targets all subjects with the given permission.
+     * Creates a message channel that targets all subjects with the given
+     * permission.
      *
      * @param permission The permission to target
      * @return The channel
@@ -82,8 +87,9 @@ public interface MessageChannel {
     }
 
     /**
-     * Creates a message channel that targets all subjects contained within the given
-     * channels and applies the message transformations of each channel in order.
+     * Creates a message channel that targets all subjects contained within the
+     * given channels and applies the message transformations of each channel in
+     * order.
      *
      * @param channels The channels to combine
      * @return The channel
@@ -94,8 +100,9 @@ public interface MessageChannel {
     }
 
     /**
-     * Gets a message channel that targets all subjects contained within the given channels
-     * and applies the message transformations of each channel in order.
+     * Gets a message channel that targets all subjects contained within the
+     * given channels and applies the message transformations of each channel in
+     * order.
      *
      * @param channels The channels to combine
      * @return The channel
@@ -163,7 +170,8 @@ public interface MessageChannel {
     }
 
     /**
-     * Send a message to this channel, transforming and sending it to the members.
+     * Send a message to this channel, transforming and sending it to the
+     * members.
      *
      * @param sender The sender of the message
      * @param original The original message to send
@@ -173,7 +181,8 @@ public interface MessageChannel {
     }
 
     /**
-     * Send a message to this channel, transforming and sending it to the members.
+     * Send a message to this channel, transforming and sending it to the
+     * members.
      *
      * @param sender The sender of the message
      * @param original The original message to send
@@ -214,9 +223,10 @@ public interface MessageChannel {
     /**
      * Gets or creates a mutable version of this channel.
      *
-     * <p>The default behaviour of this method is to copy the current member list into
-     * a {@link DelegateMutableMessageChannel}, which calls the
-     * {@link #transformMessage(Object, MessageReceiver, Text, ChatType)} method on this channel.</p>
+     * <p>The default behaviour of this method is to copy the current member
+     * list into a {@link DelegateMutableMessageChannel}, which calls the
+     * {@link #transformMessage(Object, MessageReceiver, Text, ChatType)} method
+     * on this channel.</p>
      *
      * @return A mutable channel
      */

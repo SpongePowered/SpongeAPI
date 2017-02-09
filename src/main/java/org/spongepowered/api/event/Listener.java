@@ -41,8 +41,8 @@ import java.lang.annotation.Target;
 public @interface Listener {
 
     /**
-     * The order this listener should be called in relation to other listeners in
-     * the {@link EventManager}.
+     * The order this listener should be called in relation to other listeners
+     * in the {@link EventManager}.
      *
      * @return The order the listener should be called in
      */

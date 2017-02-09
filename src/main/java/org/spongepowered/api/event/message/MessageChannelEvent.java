@@ -67,16 +67,19 @@ public interface MessageChannelEvent extends MessageEvent {
     void setChannel(@Nullable MessageChannel channel);
 
     /**
-     * Fired when the {@link Text} being sent to a {@link MessageChannel} was due to chatting.
+     * Fired when the {@link Text} being sent to a {@link MessageChannel} was
+     * due to chatting.
      */
     interface Chat extends MessageChannelEvent, Cancellable {
 
         /**
          * Gets the 'raw' chat message.
          *
-         * <p>This message is the original chat message, without any formatting whatsoever.
-         * In Vanilla, this is equivalent to what a player typed into the chat box
-         * (no name prefix or other elements).</p>
+         * <p>This message is the original chat message, without any formatting
+         * whatsoever.</p>
+         *
+         * <p>In Vanilla, this is equivalent to what a player typed into the
+         * chat box (no name prefix or other elements).</p>
          *
          * @return The raw message
          */

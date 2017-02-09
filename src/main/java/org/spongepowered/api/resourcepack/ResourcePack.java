@@ -60,7 +60,9 @@ public interface ResourcePack {
     /**
      * If this resource pack was initialized through
      * {@link ResourcePackFactory#fromUri(URI)}, the hash, as calculated with
-     * <code>com.google.common.hash.Hashing.sha1().hashBytes(com.google.common.io.Files.toByteArray(resourcepackfile)).toString();</code>
+     * <code>com.google.common.hash.Hashing.sha1().hashBytes(
+     *      com.google.common.io.Files.toByteArray(resourcepackfile)
+     *      ).toString();</code>
      *
      * @return The hash of this pack, if present
      */

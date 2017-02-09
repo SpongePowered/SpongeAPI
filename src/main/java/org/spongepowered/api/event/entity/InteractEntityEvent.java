@@ -34,37 +34,43 @@ import org.spongepowered.api.event.entity.living.humanoid.HandInteractEvent;
 public interface InteractEntityEvent extends InteractEvent, TargetEntityEvent {
 
     /**
-     * An event where the targeted entity is being interacted with the client's "primary" button.
+     * An event where the targeted entity is being interacted with the client's
+     * "primary" button.
      *
-     * This is usually left-click.
+     * <p>This is usually left-click.</p>
      */
     interface Primary extends InteractEntityEvent, HandInteractEvent {
 
         /**
-         * A {@link Primary} event where the interaction is from the client's main hand.
+         * A {@link Primary} event where the interaction is from the client's
+         * main hand.
          */
         interface MainHand extends Primary {}
 
         /**
-         * A {@link Primary} event where the interaction is from the client's off hand.
+         * A {@link Primary} event where the interaction is from the client's
+         * off hand.
          */
         interface OffHand extends Primary {}
     }
 
     /**
-     * An event where the targeted entity is being interacted with the client's "secondary" button.
+     * An event where the targeted entity is being interacted with the client's
+     * "secondary" button.
      *
-     * This is usually right-click.
+     * <p>This is usually right-click.</p>
      */
     interface Secondary extends InteractEntityEvent, HandInteractEvent {
 
         /**
-         * A {@link Secondary} event where the interaction is from the client's main hand.
+         * A {@link Secondary} event where the interaction is from the client's
+         * main hand.
          */
         interface MainHand extends Secondary {}
 
         /**
-         * A {@link Secondary} event where the interaction is from the client's off hand.
+         * A {@link Secondary} event where the interaction is from the client's
+         * off hand.
          */
         interface OffHand extends Secondary {}
     }
