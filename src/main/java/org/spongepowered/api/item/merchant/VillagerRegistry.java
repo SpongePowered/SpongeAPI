@@ -29,13 +29,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
 import org.spongepowered.api.data.type.Career;
-import org.spongepowered.api.util.GuavaCollectors;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public interface VillagerRegistry {
 

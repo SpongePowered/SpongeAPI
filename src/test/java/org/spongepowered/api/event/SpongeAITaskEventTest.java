@@ -33,8 +33,6 @@ import org.spongepowered.api.entity.ai.Goal;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.NamedCause;
-import org.spongepowered.api.event.entity.ai.AITaskEvent;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class SpongeAITaskEventTest {

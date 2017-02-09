@@ -36,7 +36,6 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.command.args.CommandArgs;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.event.block.ChangeBlockEvent.Pre;
 import org.spongepowered.api.event.block.CollideBlockEvent;
 import org.spongepowered.api.event.item.inventory.InteractItemEvent;
 import org.spongepowered.api.profile.GameProfile;

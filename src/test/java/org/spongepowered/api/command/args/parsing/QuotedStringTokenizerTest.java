@@ -36,7 +36,6 @@ import org.junit.rules.ExpectedException;
 import org.spongepowered.api.command.args.ArgumentParseException;
 import org.spongepowered.api.text.TestPlainTextSerializer;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
