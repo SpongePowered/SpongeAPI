@@ -124,8 +124,8 @@ public class InventoryDimension extends AbstractInventoryProperty<String, Vector
     }
 
     /**
-     * Create an InventoryDimension property which matches InventoryDimension properties
-     * with equal value.
+     * Create an InventoryDimension property which matches InventoryDimension
+     * properties with equal value.
      *
      * @param value value to match
      * @return new property
@@ -135,8 +135,8 @@ public class InventoryDimension extends AbstractInventoryProperty<String, Vector
     }
 
     /**
-     * Create an InventoryDimension property which matches InventoryDimension properties
-     * with equal value.
+     * Create an InventoryDimension property which matches InventoryDimension
+     * properties with equal value.
      *
      * @param width x coordinate to match
      * @param height y coordinate to match
@@ -147,8 +147,8 @@ public class InventoryDimension extends AbstractInventoryProperty<String, Vector
     }
 
     /**
-     * Create an InventoryDimension property which matches InventoryDimension properties
-     * with unequal value.
+     * Create an InventoryDimension property which matches InventoryDimension
+     * properties with unequal value.
      *
      * @param value value to match
      * @return new property
@@ -158,8 +158,8 @@ public class InventoryDimension extends AbstractInventoryProperty<String, Vector
     }
 
     /**
-     * Create an InventoryDimension property which matches InventoryDimension properties
-     * with value greater than this value.
+     * Create an InventoryDimension property which matches InventoryDimension
+     * properties with value greater than this value.
      *
      * @param value value to match
      * @return new property
@@ -169,8 +169,8 @@ public class InventoryDimension extends AbstractInventoryProperty<String, Vector
     }
 
     /**
-     * Create an InventoryDimension property which matches InventoryDimension properties
-     * with value greater than or equal to this value.
+     * Create an InventoryDimension property which matches InventoryDimension
+     * properties with value greater than or equal to this value.
      *
      * @param value value to match
      * @return new property
@@ -180,8 +180,8 @@ public class InventoryDimension extends AbstractInventoryProperty<String, Vector
     }
 
     /**
-     * Create an InventoryDimension property which matches InventoryDimension properties
-     * with value less than this value.
+     * Create an InventoryDimension property which matches InventoryDimension
+     * properties with value less than this value.
      *
      * @param value value to match
      * @return new property
@@ -191,8 +191,8 @@ public class InventoryDimension extends AbstractInventoryProperty<String, Vector
     }
 
     /**
-     * Create an InventoryDimension property which matches InventoryDimension properties
-     * with value less than or equal to this value.
+     * Create an InventoryDimension property which matches InventoryDimension
+     * properties with value less than or equal to this value.
      *
      * @param value value to match
      * @return new property

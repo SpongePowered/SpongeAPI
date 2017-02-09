@@ -91,7 +91,8 @@ public interface HealingSource {
         B magical();
 
         /**
-         * Sets the {@link HealingType}
+         * Sets the {@link HealingType}.
+         *
          * @param healingType The healing type
          * @return This builder, for chaining
          */

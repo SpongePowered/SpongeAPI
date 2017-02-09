@@ -122,7 +122,8 @@ public interface QueryServerEvent extends Event {
         /**
          * Gets the max player count to respond with.
          *
-         * <p>By default, this is the maximum number of players allowed on the server.</p>
+         * <p>By default, this is the maximum number of players allowed on the
+         * server.</p>
          *
          * @return The max player count to respond with
          */
@@ -192,7 +193,8 @@ public interface QueryServerEvent extends Event {
         /**
          * Gets the version to respond with.
          *
-         * <p>By default, this is the server's Minecraft version (e.g 1.8.1).</p>
+         * <p>By default, this is the server's Minecraft version (e.g 1.8.1).
+         * </p>
          *
          * @return The version to respond with
          */

@@ -34,15 +34,16 @@ import java.util.List;
 /**
  * Parser for converting a quoted string into a list of arguments.
  *
- * <p>Grammar is roughly (yeah, this is not really a proper grammar but it gives you an idea of what's happening:
+ * <p>Grammar is roughly (yeah, this is not really a proper grammar but it gives
+ * you an idea of what's happening:</p>
  *
- * <p>WHITESPACE = Character.isWhiteSpace(codePoint)
+ * <blockquote><pre> WHITESPACE = Character.isWhiteSpace(codePoint)
  * CHAR := (all unicode)
  * ESCAPE := '\' CHAR
  * QUOTE = ' | "
  * UNQUOTED_ARG := (CHAR | ESCAPE)+ WHITESPACE
  * QUOTED_ARG := QUOTE (CHAR | ESCAPE)+ QUOTE
- * ARGS := ((UNQUOTED_ARG | QUOTED_ARG) WHITESPACE+)+
+ * ARGS := ((UNQUOTED_ARG | QUOTED_ARG) WHITESPACE+)+</pre></blockquote>
  */
 class QuotedStringTokenizer implements InputTokenizer {
     private static final int CHAR_BACKSLASH = '\\';

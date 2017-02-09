@@ -39,6 +39,8 @@ import java.util.Optional;
 public interface ResourcePackStatusEvent extends Event {
 
     /**
+     * Get the player for this event.
+     *
      * @return The player
      */
     Player getPlayer();
@@ -61,6 +63,7 @@ public interface ResourcePackStatusEvent extends Event {
      * The different possible responses the client can have.
      */
     enum ResourcePackStatus {
+
         /**
          * The client is attempting to download the pack.
          */
@@ -74,9 +77,9 @@ public interface ResourcePackStatusEvent extends Event {
         /**
          * The client failed to download the resource pack.
          *
-         * <pIn some client versions, such as 1.8.0, this may only
-         * be send when the resource pack URL does not end in '.zip'.
-         * Otherwise, {@link #SUCCESSFULLY_LOADED} will be sent.</p>
+         * <p>In some client versions, such as 1.8.0, this may only be sent when
+         * the resource pack URL does not end in <tt>.zip</tt>. Otherwise,
+         * {@link #SUCCESSFULLY_LOADED} will be sent.</p>
          */
         FAILED(false),
 
@@ -104,4 +107,5 @@ public interface ResourcePackStatusEvent extends Event {
         }
 
     }
+
 }

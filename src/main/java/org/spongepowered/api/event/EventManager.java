@@ -24,11 +24,6 @@
  */
 package org.spongepowered.api.event;
 
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.EventListener;
-import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.Order;
-
 /**
  * Manages the registration of event listeners and the dispatching of events.
  */
@@ -92,7 +87,8 @@ public interface EventManager {
      * @param plugin The plugin instance
      * @param eventClass The event to listen to
      * @param order The order the listener will get called at
-     * @param beforeModifications Whether to call the listener before other server modifications
+     * @param beforeModifications Whether to call the listener before other
+     *      server modifications
      * @param listener The listener to receive the events
      * @param <T> The type of the event
      */

@@ -148,9 +148,10 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Returns a transform that is the composition of this transform and the given transform.
+     * Returns a transform that is the composition of this transform and the
+     * given transform.
      *
-     * The result will apply this transformation after the given one.
+     * <p>The result will apply this transformation after the given one.</p>
      *
      * @param that The transform to compose with
      * @return The new composed transform
@@ -160,9 +161,10 @@ public class DiscreteTransform2 {
     }
 
     /**
-     * Returns a transform that is the composition of the given transform with this transform.
+     * Returns a transform that is the composition of the given transform with
+     * this transform.
      *
-     * The result will apply the given transformation after this one.
+     * <p>The result will apply the given transformation after this one.</p>
      *
      * @param that The transform to compose with
      * @return The new composed transform

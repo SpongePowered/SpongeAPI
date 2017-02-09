@@ -204,8 +204,8 @@ public interface Server {
      * {@link WorldArchetype}. For the creation of the WorldArchetype please see
      * {@link org.spongepowered.api.world.WorldArchetype.Builder}.
      *
-     * <p>If the {@link World} exists at the folder name given, the properties representing
-     * that folder name are returned instead.</p>
+     * <p>If the {@link World} exists at the folder name given, the properties
+     * representing that folder name are returned instead.</p>
      *
      * <p>Although the world is created it is not loaded at this time. Please
      * see one of the following methods for loading the world.</p>
@@ -216,7 +216,8 @@ public interface Server {
      * @param folderName The name of the folder for the world
      * @param archetype The archetype for creation
      * @return The new or existing world properties, if creation was successful
-     * @throws IOException If there are any io issues creating the properties file
+     * @throws IOException If there are any io issues creating the properties
+     *      file
      */
     WorldProperties createWorldProperties(String folderName, WorldArchetype archetype) throws IOException;
 
@@ -317,8 +318,8 @@ public interface Server {
     void setBroadcastChannel(MessageChannel channel);
 
     /**
-     * Gets the bound {@link InetSocketAddress} from where this server is accepting
-     * connections.
+     * Gets the bound {@link InetSocketAddress} from where this server is
+     * accepting connections.
      *
      * @return The address or Optional.empty() if not found
      */
@@ -434,7 +435,7 @@ public interface Server {
 
     /**
      * Checks if the current thread matches the main thread of the server.
-     * 
+     *
      * @return True if main thread, false if not
      */
     boolean isMainThread();

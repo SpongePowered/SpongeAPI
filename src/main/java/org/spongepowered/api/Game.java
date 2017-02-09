@@ -171,18 +171,20 @@ public interface Game {
     /**
      * Gets the directory where the game will store save files.
      *
-     * This location differs based on the implementation and is therefore implementation-specific.
+     * <p>This location differs based on the implementation and is therefore
+     * implementation-specific.</p>
      *
-     * <p>
-     *     To elaborate, this is how it is handled in Minecraft based on side:
-     *     <ul>
-     *         <li>Client
-     *          <ul>This directory will point to {@link Game#getGameDirectory()}.resolve("saves").resolve(currentSaveName)</ul>
-     *         <li>Server
-     *          <ul>This directory will be equivalent to {@link Game#getGameDirectory()}.resolve(level-name).</ul>
-     *     </ul>
-     *     Consult your specific implementation if they support placing this elsewhere.
+     * <p>To elaborate, this is how it is handled in Minecraft based on side:
      * </p>
+     * <ul>
+     *     <li>Client
+     *      <ul>This directory will point to {@link Game#getGameDirectory()}.resolve("saves").resolve(currentSaveName)</ul>
+     *     <li>Server
+     *      <ul>This directory will be equivalent to {@link Game#getGameDirectory()}.resolve(level-name).</ul>
+     * </ul>
+     *
+     * <p>Consult your specific implementation if they support placing this
+     * elsewhere.</p>
      *
      * @return The saves directory
      */

@@ -24,11 +24,12 @@
  */
 package org.spongepowered.api.command.source;
 
-import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.network.RemoteConnection;
 
 /**
- * Represents a source that is not local to the server. This includes Rcon, player connections, and others
+ * Represents a source that is not local to the server. This includes Rcon,
+ * player connections, and others.
  */
 public interface RemoteSource extends CommandSource {
 

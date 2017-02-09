@@ -84,32 +84,6 @@ public interface GameProfileManager {
     }
 
     /**
-     * Looks up a {@link GameProfile} by its unique ID.
-     *
-     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
-     * caused by a {@link ProfileNotFoundException} if the profile does not exist or
-     * an {@link IOException} if a network error occurred.</p>
-     *
-     * @param uniqueId The unique ID
-     * @param useCache true to perform a cache lookup first
-     * @return The result of the request
-     */
-    CompletableFuture<GameProfile> get(UUID uniqueId, boolean useCache);
-
-    /**
-     * Gets a collection of {@link GameProfile}s by their unique IDs.
-     *
-     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
-     * caused by a {@link ProfileNotFoundException} if the profile does not exist or
-     * an {@link IOException} if a network error occurred.</p>
-     *
-     * @param uniqueIds The UUIDs
-     * @param useCache true to perform a cache lookup first
-     * @return The result of the request
-     */
-    CompletableFuture<Collection<GameProfile>> getAllById(Iterable<UUID> uniqueIds, boolean useCache);
-
-    /**
      * Looks up a {@link GameProfile} by its user name (case-insensitive).
      *
      * <p>This method checks the local profile cache before contacting the
@@ -128,6 +102,19 @@ public interface GameProfileManager {
     }
 
     /**
+     * Looks up a {@link GameProfile} by its unique ID.
+     *
+     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
+     * caused by a {@link ProfileNotFoundException} if the profile does not exist or
+     * an {@link IOException} if a network error occurred.</p>
+     *
+     * @param uniqueId The unique ID
+     * @param useCache true to perform a cache lookup first
+     * @return The result of the request
+     */
+    CompletableFuture<GameProfile> get(UUID uniqueId, boolean useCache);
+
+    /**
      * Looks up a {@link GameProfile} by its user name (case-insensitive).
      *
      * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
@@ -139,6 +126,19 @@ public interface GameProfileManager {
      * @return The result of the request
      */
     CompletableFuture<GameProfile> get(String name, boolean useCache);
+
+    /**
+     * Gets a collection of {@link GameProfile}s by their unique IDs.
+     *
+     * <p>The returned {@link CompletableFuture} throws an {@link ExecutionException}
+     * caused by a {@link ProfileNotFoundException} if the profile does not exist or
+     * an {@link IOException} if a network error occurred.</p>
+     *
+     * @param uniqueIds The UUIDs
+     * @param useCache true to perform a cache lookup first
+     * @return The result of the request
+     */
+    CompletableFuture<Collection<GameProfile>> getAllById(Iterable<UUID> uniqueIds, boolean useCache);
 
     /**
      * Gets a collection of {@link GameProfile}s by their user names

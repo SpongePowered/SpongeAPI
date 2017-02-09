@@ -34,7 +34,7 @@ public interface EntityTeleportCause extends TeleportCause {
     }
 
     /**
-     * Gets the {@link Entity} teleporter
+     * Gets the {@link Entity} teleporter.
      *
      * @return The entity teleporter
      */

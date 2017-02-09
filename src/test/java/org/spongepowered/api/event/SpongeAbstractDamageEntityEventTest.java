@@ -50,7 +50,8 @@ public class SpongeAbstractDamageEntityEventTest {
         Entity targetEntity = mockParam(Entity.class);
         int originalDamage = 5;
 
-        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.source("none").build(), Lists.newArrayList(), targetEntity, originalDamage);
+        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.source("none").build(),
+                Lists.newArrayList(), targetEntity, originalDamage);
 
         assertThat(event.getOriginalDamage(), is(closeTo(originalDamage, ERROR)));
         assertThat(event.getOriginalFinalDamage(), is(closeTo(originalDamage, ERROR)));
@@ -64,7 +65,8 @@ public class SpongeAbstractDamageEntityEventTest {
         Entity targetEntity = mockParam(Entity.class);
         int originalDamage = 5;
 
-        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.source("none").build(), Lists.newArrayList(), targetEntity, originalDamage);
+        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.source("none").build(),
+                Lists.newArrayList(), targetEntity, originalDamage);
 
         assertThat(event.getOriginalDamage(), is(closeTo(originalDamage, ERROR)));
         assertThat(event.getOriginalFinalDamage(), is(closeTo(originalDamage, ERROR)));
@@ -95,7 +97,8 @@ public class SpongeAbstractDamageEntityEventTest {
         List<Tuple<DamageModifier, Function<? super Double, Double>>>
                 originalFunctions = Lists.newArrayList(Tuple.of(firstModifer, p -> p * 2), Tuple.of(secondModifier, p -> p * 5));
 
-        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.source("none").build(), originalFunctions, targetEntity, originalDamage);
+        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.source("none").build(),
+                originalFunctions, targetEntity, originalDamage);
 
         assertThat(event.getOriginalFunctions(), is(Matchers.equalTo(originalFunctions)));
 
@@ -137,7 +140,8 @@ public class SpongeAbstractDamageEntityEventTest {
         List<Tuple<DamageModifier, Function<? super Double, Double>>>
                 originalFunctions = Lists.newArrayList(Tuple.of(firstModifer, p -> p * 2), Tuple.of(secondModifier, p -> p * 5));
 
-        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.source("none").build(), originalFunctions, targetEntity, originalDamage);
+        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.source("none").build(),
+                originalFunctions, targetEntity, originalDamage);
 
         assertThat(event.getOriginalFunctions(), is(Matchers.equalTo(originalFunctions)));
 
@@ -157,7 +161,8 @@ public class SpongeAbstractDamageEntityEventTest {
 
         assertThat(event.getOriginalFunctions(), is(Matchers.equalTo(originalFunctions)));
 
-        assertThat(event.getModifiers(), is(Matchers.equalTo(Lists.newArrayList(Tuple.of(firstModifer, newFunction), originalFunctions.get(1)))));
+        assertThat(event.getModifiers(), is(Matchers.equalTo(Lists.newArrayList(Tuple.of(firstModifer, newFunction),
+                originalFunctions.get(1)))));
     }
 
     @SuppressWarnings("unchecked")
@@ -187,7 +192,8 @@ public class SpongeAbstractDamageEntityEventTest {
         List<Tuple<DamageModifier, Function<? super Double, Double>>> newFunctions = Lists.newArrayList(originalFunctions);
         newFunctions.add(Tuple.of(thirdModifier, thirdFunction));
 
-        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.source("none").build(), originalFunctions, targetEntity, originalDamage);
+        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.source("none").build(),
+                originalFunctions, targetEntity, originalDamage);
 
         assertThat(event.getOriginalFunctions(), is(Matchers.equalTo(originalFunctions)));
 
@@ -231,7 +237,8 @@ public class SpongeAbstractDamageEntityEventTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testNotApplicableModifer() {
-        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.source("none").build(), Lists.newArrayList(), mockParam(Entity.class), 0);
+        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.source("none").build(), Lists.newArrayList(),
+                mockParam(Entity.class), 0);
 
         DamageModifier modifier = mockParam(DamageModifier.class);
 

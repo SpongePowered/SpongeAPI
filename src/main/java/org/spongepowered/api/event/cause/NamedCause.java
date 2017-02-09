@@ -28,12 +28,12 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.command.args.CommandArgs;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.event.block.CollideBlockEvent;
@@ -115,13 +115,13 @@ public final class NamedCause {
     public static final String PHYSICAL = "Physical";
 
     /**
-     * Used by {@link ChangeBlockEvent.Pre} before a 
+     * Used by {@link ChangeBlockEvent.Pre} before a
      * {@link BlockTypes#PISTON_HEAD} extends;
      */
     public static final String PISTON_EXTEND = "PistonExtend";
 
     /**
-     * Used by {@link ChangeBlockEvent.Pre} before a 
+     * Used by {@link ChangeBlockEvent.Pre} before a
      * {@link BlockTypes#PISTON_HEAD} retracts;
      */
     public static final String PISTON_RETRACT = "PistonRetract";

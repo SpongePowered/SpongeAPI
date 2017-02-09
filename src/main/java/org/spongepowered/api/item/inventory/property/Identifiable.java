@@ -30,7 +30,7 @@ import org.spongepowered.api.util.Coerce;
 import java.util.UUID;
 
 /**
- * A property to uniquely identify an Inventory instance
+ * A property to uniquely identify an Inventory instance.
  */
 public class Identifiable extends AbstractInventoryProperty<String, UUID> {
 

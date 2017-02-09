@@ -33,12 +33,13 @@ import org.spongepowered.api.event.Cancellable;
 public interface RideEntityEvent extends TargetEntityEvent, Cancellable {
 
     /**
-     * Raised when an {@link Entity} is being mounted
+     * Raised when an {@link Entity} is being mounted.
      */
     interface Mount extends RideEntityEvent {}
 
     /**
-     * Raised when an {@link Entity} is being dismounted
+     * Raised when an {@link Entity} is being dismounted.
      */
     interface Dismount extends RideEntityEvent {}
+
 }

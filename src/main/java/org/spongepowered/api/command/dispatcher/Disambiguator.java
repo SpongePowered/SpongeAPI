@@ -35,7 +35,8 @@ import javax.annotation.Nullable;
 public interface Disambiguator {
 
     /**
-     * Disambiguate an alias in cases where there are multiple command mappings registered for a given alias.
+     * Disambiguate an alias in cases where there are multiple command mappings
+     * registered for a given alias.
      *
      * @param source The CommandSource executing the command, if any
      * @param aliasUsed The alias input by the user

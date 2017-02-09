@@ -45,63 +45,65 @@ public final class ParticleOptions {
     // SORTFIELDS:ON
 
     /**
-     * This option will affect the appearance of a particle, the only
-     * vanilla {@link ParticleType}s that this option is applicable to are:
+     * This option will affect the appearance of a particle. The only vanilla
+     * {@link ParticleType}s that this option is applicable to are:
+     *
      * <ul>
      *   <li>{@link ParticleTypes#BLOCK_CRACK}</li>
      *   <li>{@link ParticleTypes#BLOCK_DUST}</li>
      *   <li>{@link ParticleTypes#BREAK_BLOCK}</li>
      *   <li>{@link ParticleTypes#ITEM_CRACK}</li>
-     * <ul/>
+     * </ul>
      */
     public static final ParticleOption<BlockState> BLOCK_STATE = DummyObjectProvider.createFor(ParticleOption.class, "BLOCK_STATE");
 
     /**
-     * This option will modify the color of a particle, the only
-     * vanilla {@link ParticleType}s this option is applicable to are:
+     * This option will modify the color of a particle. The only vanilla
+     * {@link ParticleType}s this option is applicable to are:
+     *
      * <ul>
      *   <li>{@link ParticleTypes#AMBIENT_MOB_SPELL}</li>
      *   <li>{@link ParticleTypes#MOB_SPELL}</li>
      *   <li>{@link ParticleTypes#REDSTONE_DUST}</li>
-     * <ul/>
+     * </ul>
      */
     public static final ParticleOption<Color> COLOR = DummyObjectProvider.createFor(ParticleOption.class, "COLOR");
 
     /**
-     * This option will change the potion type of a particle, the only
-     * vanilla {@link ParticleType}s this option is applicable to is
+     * This option will change the potion type of a particle. The only vanilla
+     * {@link ParticleType}s this option is applicable to is
      * {@link ParticleTypes#FIRE_SMOKE}.
      */
     public static final ParticleOption<Direction> DIRECTION = DummyObjectProvider.createFor(ParticleOption.class, "DIRECTION");
 
     /**
-     * This option will modify the color of a particle, the only
-     * vanilla {@link ParticleType}s this option is applicable to is
+     * This option will modify the color of a particle. The only vanilla
+     * {@link ParticleType}s this option is applicable to is
      * {@link ParticleTypes#FIREWORKS}.
+     *
      * <p>The {@link List} may never be empty. Or a {@link IllegalArgumentException}
      * will be thrown when applying.</p>
      */
     public static final ParticleOption<List<FireworkEffect>> FIREWORK_EFFECTS =
-
             DummyObjectProvider.createFor(ParticleOption.class, "FIREWORK_EFFECTS");
 
     /**
-     * This option will affect the appearance of a particle, the only
-     * vanilla {@link ParticleType} this option is applicable to are:
+     * This option will affect the appearance of a particle. The only vanilla
+     * {@link ParticleType} this option is applicable to are:
+     *
      * <ul>
      *   <li>{@link ParticleTypes#BLOCK_CRACK}</li>
      *   <li>{@link ParticleTypes#BLOCK_DUST}</li>
      *   <li>{@link ParticleTypes#BREAK_BLOCK}</li>
      *   <li>{@link ParticleTypes#ITEM_CRACK}</li>
-     * <ul/>
+     * </ul>
      */
     public static final ParticleOption<ItemStackSnapshot> ITEM_STACK_SNAPSHOT =
-
             DummyObjectProvider.createFor(ParticleOption.class, "ITEM_STACK_SNAPSHOT");
 
     /**
-     * This option will affect the appearance of a particle, the only
-     * vanilla {@link ParticleType} this option is applicable to is
+     * This option will affect the appearance of a particle. The only vanilla
+     * {@link ParticleType} this option is applicable to is
      * {@link ParticleTypes#NOTE}.
      */
     public static final ParticleOption<NotePitch> NOTE = DummyObjectProvider.createFor(ParticleOption.class, "NOTE");
@@ -112,16 +114,17 @@ public final class ParticleOptions {
     public static final ParticleOption<Vector3d> OFFSET = DummyObjectProvider.createFor(ParticleOption.class, "OFFSET");
 
     /**
-     * This option will change the potion type of a particle, the only
-     * vanilla {@link ParticleType}s this option is applicable to is
+     * This option will change the potion type of a particle. The only vanilla
+     * {@link ParticleType}s this option is applicable to is
      * {@link ParticleTypes#SPLASH_POTION}.
      */
     public static final ParticleOption<PotionEffectType> POTION_EFFECT_TYPE = DummyObjectProvider.createFor(ParticleOption.class, "POTION_EFFECT_TYPE");
 
     /**
      * This option will affect the amount of particles that are spawned. The
-     * minimum amount of particles is 1. the only vanilla {@link ParticleType}s
+     * minimum amount of particles is 1. The only vanilla {@link ParticleType}s
      * this option isn't applicable to are:
+     *
      * <ul>
      *   <li>{@link ParticleTypes#BREAK_BLOCK}</li>
      *   <li>{@link ParticleTypes#ENDER_TELEPORT}</li>
@@ -129,20 +132,23 @@ public final class ParticleOptions {
      *   <li>{@link ParticleTypes#FIREWORKS}</li>
      *   <li>{@link ParticleTypes#MOBSPAWNER_FLAMES}</li>
      *   <li>{@link ParticleTypes#SPLASH_POTION}</li>
-     * <ul/>
-     * <p>The quantity must be at least 1. Or a {@link IllegalArgumentException}
+     * </ul>
+     *
+     * <p>The quantity must be at least 1, or a {@link IllegalArgumentException}
      * will be thrown when applying.</p>
      */
     public static final ParticleOption<Integer> QUANTITY = DummyObjectProvider.createFor(ParticleOption.class, "QUANTITY");
 
     /**
-     * This option will change the scale of a particle, the only
+     * This option will change the scale of a particle. The only
      * vanilla {@link ParticleType}s this option is applicable to are:
+     *
      * <ul>
      *   <li>{@link ParticleTypes#LARGE_EXPLOSION}</li>
      *   <li>{@link ParticleTypes#SWEEP_ATTACK}</li>
-     * <ul/>
-     * <p>The scale may never be negative. Or a {@link IllegalArgumentException}
+     * </ul>
+     *
+     * <p>The scale may never be negative, or a {@link IllegalArgumentException}
      * will be thrown when applying.</p>
      */
     public static final ParticleOption<Double> SCALE = DummyObjectProvider.createFor(ParticleOption.class, "SCALE");
@@ -151,16 +157,17 @@ public final class ParticleOptions {
      * This option will affect whether a particle type will have a lower
      * velocity in the horizontal plane. The only vanilla {@link ParticleType}s
      * that this option will affect are:
+     *
      * <ul>
      *   <li>{@link ParticleTypes#SPELL}</li>
      *   <li>{@link ParticleTypes#INSTANT_SPELL}</li>
      *   <li>{@link ParticleTypes#WITCH_SPELL}</li>
-     * <ul/>
-     * These particle types don't have a configurable velocity
-     * (through {@link #VELOCITY}) in the horizontal plane.
+     * </ul>
+     *
+     * <p>These particle types don't have a configurable velocity (through
+     * {@link #VELOCITY}) in the horizontal plane.</p>
      */
     public static final ParticleOption<Boolean> SLOW_HORIZONTAL_VELOCITY =
-
             DummyObjectProvider.createFor(ParticleOption.class, "SLOW_HORIZONTAL_VELOCITY");
 
     /**

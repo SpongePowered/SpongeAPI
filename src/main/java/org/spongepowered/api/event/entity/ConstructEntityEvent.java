@@ -57,14 +57,14 @@ public interface ConstructEntityEvent extends Event {
      * occur whenever an {@link Entity} is going to be instantiated. The only thing known
      * for the event is the {@link EntityType}.
      *
-     * <p>Note: This does not cover all Entity construction. A best effort is made to
-     * capture as many as we can.</p>
+     * <p>Note: This does not cover all Entity construction. A best effort is
+     * made to capture as many as we can.</p>
      */
     interface Pre extends ConstructEntityEvent, Cancellable {}
 
     /**
      * Called after the construction of an {@link Entity}.
-     * 
+     *
      * <p>Note: This takes before spawning.</p>
      */
     interface Post extends ConstructEntityEvent, TargetEntityEvent {}

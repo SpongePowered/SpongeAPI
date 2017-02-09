@@ -33,9 +33,8 @@ import org.spongepowered.api.data.property.IntProperty;
  * are not valid. The default viscosity is closely approximated to that
  * of what exists in real life water: <code>meter/second^2 * (x10^-3)</code>.
  *
- * Higher viscosity means that a fluid flows more slowly, like molasses.
- * Lower viscosity means that a fluid flows more quickly, like alcohol.
- *
+ * <p>Higher viscosity means that a fluid flows more slowly, like molasses.
+ * Lower viscosity means that a fluid flows more quickly, like alcohol.</p>
  */
 public class FluidViscosityProperty extends IntProperty {
 
@@ -60,4 +59,5 @@ public class FluidViscosityProperty extends IntProperty {
         super(value, operator);
         checkArgument(value >= 0, "Viscosity of a fluid cannot be less than zero!");
     }
+
 }

@@ -40,7 +40,8 @@ public class CommandMessageFormatting {
     public static final Text ELLIPSIS_TEXT = Text.of("…");
 
     /**
-     * Format text to be output as an error directly to a sender. Not necessary when creating an exception to be thrown
+     * Format text to be output as an error directly to a sender. Not necessary
+     * when creating an exception to be thrown.
      *
      * @param error The error message
      * @return The formatted error message.

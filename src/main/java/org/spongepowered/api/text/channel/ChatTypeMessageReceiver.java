@@ -65,6 +65,21 @@ public interface ChatTypeMessageReceiver {
     }
 
     /**
+     * Sends a message constructed from the {@link TextTemplate} and
+     * {@code parameters} with the specified {@link ChatType} to this receiver.
+     *
+     * <p>If text formatting is not supported in the implementation
+     * it will be displayed as plain text.</p>
+     *
+     * @param type The chat type to send the messages to
+     * @param template The text template
+     * @param parameters The parameters to apply to the template
+     */
+    default void sendMessage(ChatType type, TextTemplate template, Map<String, TextElement> parameters) {
+        this.sendMessage(type, checkNotNull(template, "template").apply(parameters).build());
+    }
+
+    /**
      * Sends the message(s) with the specified {@link ChatType} to this receiver.
      *
      * <p>If text formatting is not supported in the implementation
@@ -96,21 +111,6 @@ public interface ChatTypeMessageReceiver {
         for (Text message : checkNotNull(messages, "messages")) {
             this.sendMessage(type, message);
         }
-    }
-
-    /**
-     * Sends a message constructed from the {@link TextTemplate} and
-     * {@code parameters} with the specified {@link ChatType} to this receiver.
-     *
-     * <p>If text formatting is not supported in the implementation
-     * it will be displayed as plain text.</p>
-     *
-     * @param type The chat type to send the messages to
-     * @param template The text template
-     * @param parameters The parameters to apply to the template
-     */
-    default void sendMessage(ChatType type, TextTemplate template, Map<String, TextElement> parameters) {
-        this.sendMessage(type, checkNotNull(template, "template").apply(parameters).build());
     }
 
 }

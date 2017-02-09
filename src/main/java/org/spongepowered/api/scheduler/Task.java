@@ -46,7 +46,6 @@ public interface Task extends Identifiable {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
-
     /**
      * Gets the name of this task.
      *
@@ -202,8 +201,8 @@ public interface Task extends Identifiable {
          * Sets the name of the task, the name cannot be blank.
          *
          * <p>If the name is not set in the builder, the name of the task
-         * will be the form:<br> <tt>PLUGIN_ID "-" ( "A-" | "S-" ) SERIAL_ID</tt>
-         * </p>
+         * will be the form:<br> <tt>PLUGIN_ID "-" ( "A-" | "S-" ) SERIAL_ID
+         * </tt></p>
          *
          * <p>Examples of default Task names:<br>
          *

@@ -50,7 +50,8 @@ public class SpongeAbstractHealEntityEventTest {
         Entity targetEntity = mockParam(Entity.class);
         int originalDamage = 5;
 
-        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.source("none").build(), Lists.newArrayList(), targetEntity, originalDamage);
+        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.source("none").build(),
+                Lists.newArrayList(), targetEntity, originalDamage);
 
         assertThat(event.getOriginalHealAmount(), is(closeTo(originalDamage, ERROR)));
         assertThat(event.getOriginalFinalHealAmount(), is(closeTo(originalDamage, ERROR)));
@@ -64,8 +65,8 @@ public class SpongeAbstractHealEntityEventTest {
         Entity targetEntity = mockParam(Entity.class);
         int originalDamage = 5;
 
-        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.source("none").build(), Lists.newArrayList(), targetEntity,
-                originalDamage);
+        HealEntityEvent event = SpongeEventFactory.createHealEntityEvent(Cause.source("none").build(),
+                Lists.newArrayList(), targetEntity, originalDamage);
 
         assertThat(event.getOriginalHealAmount(), is(closeTo(originalDamage, ERROR)));
         assertThat(event.getOriginalFinalHealAmount(), is(closeTo(originalDamage, ERROR)));

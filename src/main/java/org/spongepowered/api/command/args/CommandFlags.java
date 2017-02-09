@@ -272,7 +272,7 @@ public final class CommandFlags extends CommandElement {
                     .map(arg -> "--" + arg)
                     .collect(GuavaCollectors.toImmutableList());
                 if (retStrings.isEmpty() && this.unknownLongFlagBehavior == UnknownFlagBehavior.ACCEPT_VALUE) { // Then we probably have a
-                // following arg specified, if there's anything
+                    // following arg specified, if there's anything
                     args.nextIfPresent();
                     return null;
                 }
@@ -387,12 +387,19 @@ public final class CommandFlags extends CommandElement {
         }
 
         /**
-         * Allow a flag with any of the provided specifications that has no value.
-         * This flag will be exposed in a {@link CommandContext} under the key equivalent to the first flag in the specification array.
-         * The specifications are handled as so for each element in the {@code specs} array:
+         * Allow a flag with any of the provided specifications that has no
+         * value.
+         *
+         * <p>This flag will be exposed in a {@link CommandContext} under the
+         * key equivalent to the first flag in the specification array. The
+         * specifications are handled as so for each element in the
+         * {@code specs} array:</p>
+         *
          * <ul>
-         *     <li>If the element starts with -, the remainder of the element is interpreted as a long flag</li>
-         *     <li>Otherwise, each code point of the element is interpreted as a short flag</li>
+         *     <li>If the element starts with -, the remainder of the element is
+         *     interpreted as a long flag</li>
+         *     <li>Otherwise, each code point of the element is interpreted as a
+         *     short flag</li>
          * </ul>
          *
          * @param specs The flag specifications
@@ -403,8 +410,9 @@ public final class CommandFlags extends CommandElement {
         }
 
         /**
-         * Allow a flag with any of the provided specifications that has no value but requires the source to have a specific permission to specify
-         * the command.
+         * Allow a flag with any of the provided specifications that has no
+         * value but requires the source to have a specific permission to
+         * specify the command.
          *
          * @see #flag(String...) for details on the format
          * @param flagPermission The required permission
@@ -422,7 +430,8 @@ public final class CommandFlags extends CommandElement {
         }
 
         /**
-         * Allow a flag with any of the provided specifications, with the given command element. The flag may be present multiple times, and may
+         * Allow a flag with any of the provided specifications, with the given
+         * command element. The flag may be present multiple times, and may
          * therefore have multiple values.
          *
          * @see #flag(String...) for information on how the flag specifications are parsed
@@ -435,7 +444,8 @@ public final class CommandFlags extends CommandElement {
         }
 
         /**
-         * If this is true, any long flag (--) will be accepted and added as a flag.
+         * If this is true, any long flag (--) will be accepted and added as a
+         * flag.
          *
          * @param acceptsArbitraryLongFlags Whether any long flag is accepted
          * @return this
@@ -446,7 +456,8 @@ public final class CommandFlags extends CommandElement {
         }
 
         /**
-         * Sets how long flags that are not registered should be handled when encountered.
+         * Sets how long flags that are not registered should be handled when
+         * encountered.
          *
          * @param behavior The behavior to use
          * @return this
@@ -457,7 +468,8 @@ public final class CommandFlags extends CommandElement {
         }
 
         /**
-         * Sets how long flags that are not registered should be handled when encountered.
+         * Sets how long flags that are not registered should be handled when
+         * encountered.
          *
          * @param behavior The behavior to use
          * @return this
@@ -468,8 +480,9 @@ public final class CommandFlags extends CommandElement {
         }
 
         /**
-         * Whether flags should be anchored to the beginning of the text (so flags will
-         * only be picked up if they are at the beginning of the input).
+         * Whether flags should be anchored to the beginning of the text (so
+         * flags will only be picked up if they are at the beginning of the
+         * input).
          *
          * @param anchorFlags Whether flags are anchored
          * @return this
@@ -480,7 +493,8 @@ public final class CommandFlags extends CommandElement {
         }
 
         /**
-         * Build a flag command element using the given command element to handle all non-flag arguments.
+         * Build a flag command element using the given command element to
+         * handle all non-flag arguments.
          *
          * @param wrapped The wrapped command element
          * @return the new command element

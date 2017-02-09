@@ -106,8 +106,8 @@ public interface EconomyService extends ContextualService<Account> {
      * <p>Depending on the implementation, the {@link Account} may be a {@link UniqueAccount} or
      * a {@link VirtualAccount}.
      *
-     * <p>If an account does not already exists with the specified identifier, it will be
-     * created.</p>
+     * <p>If an account does not already exists with the specified identifier,
+     * it will be created.</p>
      *
      * <p>Creation may fail for an implementation-defined reason.</p>
      *

@@ -69,7 +69,7 @@ final class AnnotationWrapper<T extends Annotation> {
         return value;
     }
 
-    static <T extends Annotation> AnnotationWrapper<T> get(AnnotatedConstruct element, Class<T> annotationClass) {
+    static <T extends Annotation> AnnotationWrapper<T> of(AnnotatedConstruct element, Class<T> annotationClass) {
         checkNotNull(element, "element");
         checkNotNull(annotationClass, "annotationClass");
 

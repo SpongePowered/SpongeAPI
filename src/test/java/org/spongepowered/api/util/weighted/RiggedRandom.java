@@ -32,21 +32,21 @@ public class RiggedRandom extends Random {
 
     private static final long serialVersionUID = 6993710069489748494L;
     private Deque<Double> queue = new ArrayDeque<>();
-    
+
     public RiggedRandom() {
-        
+
     }
-    
+
     public void enqueue(double next) {
         this.queue.add(next);
     }
-    
+
     @Override
     public double nextDouble() {
-        if(!this.queue.isEmpty()) {
+        if (!this.queue.isEmpty()) {
             return this.queue.pop();
         }
         return super.nextDouble();
     }
-    
+
 }

@@ -190,7 +190,7 @@ public class MemoryDataView implements DataView {
             if (object == null) {
                 return Optional.empty();
             }
-            if(this.safety == SafetyMode.ALL_DATA_CLONED) {
+            if (this.safety == SafetyMode.ALL_DATA_CLONED) {
                 if (object.getClass().isArray()) {
                     if (object instanceof byte[]) {
                         return Optional.<Object>of(ArrayUtils.clone((byte[]) object));
@@ -436,7 +436,7 @@ public class MemoryDataView implements DataView {
 
         String key = queryParts.get(0);
         DataQuery keyQuery = of(key);
-        
+
         if (sz == 1) {
             DataView result = new MemoryDataView(this, keyQuery, this.safety);
             this.map.put(key, result);
@@ -519,7 +519,7 @@ public class MemoryDataView implements DataView {
 
     private Optional<DataView> getUnsafeView(String path) {
         final Object object = this.map.get(path);
-        if(!(object instanceof DataView)) {
+        if (!(object instanceof DataView)) {
             return Optional.empty();
         }
         return Optional.of((DataView) object);
@@ -734,27 +734,26 @@ public class MemoryDataView implements DataView {
         checkNotNull(path, "path");
         checkNotNull(clazz, "clazz");
         return Stream.<Supplier<Optional<List<T>>>>of(
-                () -> {
-                    if (clazz.isAssignableFrom(CatalogType.class)) {
-                        return (Optional<List<T>>) (Optional<?>) getCatalogTypeList(path, (Class<? extends CatalogType>) clazz);
-                    }
-                    return Optional.empty();
-                },
-                () -> getViewList(path).flatMap(list ->
-                        Sponge.getDataManager().getBuilder(clazz).map(builder ->
-                                list.stream()
-                                        .map(builder::build)
-                                        .filter(Optional::isPresent)
-                                        .map(Optional::get)
-                                        .collect(Collectors.toList())
-                        )
+            () -> {
+                if (clazz.isAssignableFrom(CatalogType.class)) {
+                    return (Optional<List<T>>) (Optional<?>) getCatalogTypeList(path, (Class<? extends CatalogType>) clazz);
+                }
+                return Optional.empty();
+            },
+            () -> getViewList(path).flatMap(list ->
+                    Sponge.getDataManager().getBuilder(clazz).map(builder ->
+                            list.stream()
+                                    .map(builder::build)
+                                    .filter(Optional::isPresent)
+                                    .map(Optional::get)
+                                    .collect(Collectors.toList())
                     )
                 )
-                .map(Supplier::get)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .findFirst();
-
+            )
+            .map(Supplier::get)
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .findFirst();
     }
 
     @Override
@@ -800,11 +799,11 @@ public class MemoryDataView implements DataView {
     public DataContainer copy() {
         final DataContainer container = new MemoryDataContainer(this.safety);
         getKeys(false).stream()
-                .forEach(query ->
-                        get(query).ifPresent(obj ->
-                                container.set(query, obj)
-                        )
-                );
+            .forEach(query ->
+                get(query).ifPresent(obj ->
+                        container.set(query, obj)
+                )
+        );
         return container;
     }
 
@@ -812,11 +811,11 @@ public class MemoryDataView implements DataView {
     public DataContainer copy(SafetyMode safety) {
         final DataContainer container = new MemoryDataContainer(safety);
         getKeys(false).stream()
-                .forEach(query ->
-                        get(query).ifPresent(obj ->
-                                container.set(query, obj)
-                        )
-                );
+            .forEach(query ->
+                get(query).ifPresent(obj ->
+                        container.set(query, obj)
+                )
+        );
         return container;
     }
 

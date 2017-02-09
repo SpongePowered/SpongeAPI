@@ -223,7 +223,7 @@ public class SpongeEventFactoryTest {
             return new Transform<>((Extent) mockParam(Extent.class));
         } else if (paramType == Text[].class) {
             return new Text[] {};
-        } else if (InetSocketAddress.class.isAssignableFrom(paramType)){
+        } else if (InetSocketAddress.class.isAssignableFrom(paramType)) {
             return new InetSocketAddress(12345);
         } else if (paramType == UUID.class) {
             return UUID.randomUUID();

@@ -329,7 +329,8 @@ public final class ItemStackBuilderPopulators {
      * @param <E> The type of element
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static <E> BiConsumer<ItemStack.Builder, Random> listValueSuppliers(Key<? extends ListValue<E>> key, WeightedTable<Function<Random, E>> weightedTable) {
+    public static <E> BiConsumer<ItemStack.Builder, Random> listValueSuppliers(Key<? extends ListValue<E>> key,
+            WeightedTable<Function<Random, E>> weightedTable) {
         checkNotNull(key, "Key cannot be null!");
         checkNotNull(weightedTable, "WeightedTable cannot be null!");
         return (builder, random) -> {
@@ -592,8 +593,10 @@ public final class ItemStackBuilderPopulators {
      * @param enchantments The additional enchantments to use
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(VariableAmount amount, Enchantment enchantment, Enchantment... enchantments) {
-        return enchantmentsWithVanillaLevelVariance(amount, ImmutableList.<Enchantment>builder().add(enchantment).addAll(Arrays.asList(enchantments)).build());
+    public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(VariableAmount amount, Enchantment enchantment,
+            Enchantment... enchantments) {
+        return enchantmentsWithVanillaLevelVariance(amount,
+                ImmutableList.<Enchantment>builder().add(enchantment).addAll(Arrays.asList(enchantments)).build());
     }
 
     /**
@@ -605,7 +608,8 @@ public final class ItemStackBuilderPopulators {
      * @param itemEnchantments The enchantment pool to use
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(VariableAmount amount, Collection<Enchantment> itemEnchantments) {
+    public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(VariableAmount amount,
+            Collection<Enchantment> itemEnchantments) {
         checkNotNull(amount, "Variable amount cannot be null!");
         checkNotNull(itemEnchantments, "Enchantment collection cannot be null!");
         List<Tuple<Enchantment, VariableAmount>> list = itemEnchantments.stream()
@@ -630,7 +634,8 @@ public final class ItemStackBuilderPopulators {
      *     enchantment and the variable amount of level to apply
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static BiConsumer<ItemStack.Builder, Random> enchantments(VariableAmount amount, Collection<Tuple<Enchantment, VariableAmount>> enchantments) {
+    public static BiConsumer<ItemStack.Builder, Random> enchantments(VariableAmount amount,
+            Collection<Tuple<Enchantment, VariableAmount>> enchantments) {
         checkNotNull(amount, "VariableAmount cannot be null!");
         final WeightedTable<Function<Random, ItemEnchantment>> suppliers = new WeightedTable<>(amount);
         for (Tuple<Enchantment, VariableAmount> enchantment : enchantments) {
