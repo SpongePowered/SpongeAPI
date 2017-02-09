@@ -120,9 +120,8 @@ class QuotedStringTokenizer implements InputTokenizer {
             if (!state.hasMore()) {
                 if (state.isLenient() || this.forceLenient) {
                     return;
-                } else {
-                    throw state.createException(Text.of("Unterminated quoted string found"));
                 }
+                throw state.createException(Text.of("Unterminated quoted string found"));
             }
             nextCodePoint = state.peek();
             if (nextCodePoint == startQuotation) {

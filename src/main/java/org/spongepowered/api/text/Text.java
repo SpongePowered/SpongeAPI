@@ -826,9 +826,8 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
     public static LiteralText of(char content) {
         if (content == NEW_LINE_CHAR) {
             return NEW_LINE;
-        } else {
-            return new LiteralText(String.valueOf(content));
         }
+        return new LiteralText(String.valueOf(content));
     }
 
     /**

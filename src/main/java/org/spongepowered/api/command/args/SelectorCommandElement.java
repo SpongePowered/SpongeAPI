@@ -53,9 +53,8 @@ public abstract class SelectorCommandElement extends PatternMatchingCommandEleme
             } catch (IllegalArgumentException ex) {
                 throw args.createError(Text.of(ex.getMessage()));
             }
-        } else {
-            return super.parseValue(source, args);
         }
+        return super.parseValue(source, args);
     }
 
     @Override

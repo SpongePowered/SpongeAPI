@@ -423,9 +423,8 @@ public final class GenericArguments {
                 }
                 build.append(CommandMessageFormatting.GT_TEXT);
                 return build.build();
-            } else {
-                return super.getUsage(commander);
             }
+            return super.getUsage(commander);
         }
     }
 
@@ -933,13 +932,12 @@ public final class GenericArguments {
                     args.next();
                 }
                 return ret;
-            } else {
-                final StringBuilder ret = new StringBuilder(args.next());
-                while (args.hasNext()) {
-                    ret.append(' ').append(args.next());
-                }
-                return ret.toString();
             }
+            final StringBuilder ret = new StringBuilder(args.next());
+            while (args.hasNext()) {
+                ret.append(' ').append(args.next());
+            }
+            return ret.toString();
         }
 
         @Override
@@ -1045,9 +1043,8 @@ public final class GenericArguments {
                 } catch (ArgumentParseException ex2) {
                     if (this.returnSource && source instanceof User) {
                         return source;
-                    } else {
-                        throw ex2;
                     }
+                    throw ex2;
                 }
             }
         }
@@ -1090,9 +1087,8 @@ public final class GenericArguments {
                 if (this.returnSource) {
                     args.setState(state);
                     return tryReturnSource(source, args);
-                } else {
-                    throw ex;
                 }
+                throw ex;
             }
         }
 
@@ -1275,13 +1271,11 @@ public final class GenericArguments {
                     arg = args.nextIfPresent();
                     if (args.hasNext()) {
                         return ImmutableList.of(args.nextIfPresent().get());
-                    } else {
-                        return ImmutableList.of(arg.get());
                     }
+                    return ImmutableList.of(arg.get());
                 }
-            } else {
-                return ImmutableList.of();
             }
+            return ImmutableList.of();
         }
 
         private double parseRelativeDouble(CommandArgs args, String arg, @Nullable Double relativeTo) throws ArgumentParseException {
@@ -1370,15 +1364,14 @@ public final class GenericArguments {
             Optional<String> nextPossibility = args.nextIfPresent();
             if (nextPossibility.isPresent() && nextPossibility.get().startsWith("@")) {
                 return Selector.complete(nextPossibility.get());
-            } else {
-                args.setState(state);
-                List<String> ret;
-                if ((ret = this.worldParser.complete(src, args, context)).isEmpty()) {
-                    args.setState(state);
-                    ret = this.vectorParser.complete(src, args, context);
-                }
-                return ret;
             }
+            args.setState(state);
+            List<String> ret;
+            if ((ret = this.worldParser.complete(src, args, context)).isEmpty()) {
+                args.setState(state);
+                ret = this.vectorParser.complete(src, args, context);
+            }
+            return ret;
         }
     }
 
@@ -1538,9 +1531,8 @@ public final class GenericArguments {
                 if (this.returnSource) {
                     args.setState(state);
                     return tryReturnSource(source, args);
-                } else {
-                    throw ex;
                 }
+                throw ex;
             }
         }
 

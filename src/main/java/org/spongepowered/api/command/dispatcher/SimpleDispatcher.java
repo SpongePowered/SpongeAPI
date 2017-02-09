@@ -182,9 +182,8 @@ public final class SimpleDispatcher implements Dispatcher {
             }
 
             return Optional.of(mapping);
-        } else {
-            return Optional.empty();
         }
+        return Optional.empty();
     }
 
     /**

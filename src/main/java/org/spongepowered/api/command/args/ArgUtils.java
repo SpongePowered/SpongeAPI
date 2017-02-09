@@ -44,9 +44,9 @@ class ArgUtils {
 
         if (key instanceof TranslatableText) { // Use translation key
             return ((TranslatableText) key).getTranslation().getId();
-        } else {
-            return key.toPlain();
         }
+
+        return key.toPlain();
     }
 
 }
