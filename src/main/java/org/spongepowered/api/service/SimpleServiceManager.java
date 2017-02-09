@@ -107,7 +107,6 @@ public class SimpleServiceManager implements ServiceManager {
 
     private static class Provider<T> implements ProviderRegistration<T> {
 
-        @SuppressWarnings("unused")
         private final PluginContainer container;
         private final Class<T> service;
         private final T provider;

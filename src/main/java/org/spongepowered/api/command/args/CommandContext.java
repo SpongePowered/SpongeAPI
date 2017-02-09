@@ -80,7 +80,6 @@ public final class CommandContext {
      * @param <T> the type of value to get
      * @return the collection of all values
      */
-    @SuppressWarnings("unchecked")
     public <T> Collection<T> getAll(Text key) {
         return getAll(ArgUtils.textToArgKey(key));
     }
@@ -109,7 +108,6 @@ public final class CommandContext {
      * @param <T> the expected type of the argument
      * @return the argument
      */
-    @SuppressWarnings("unchecked")
     public <T> Optional<T> getOne(Text key) {
         return getOne(ArgUtils.textToArgKey(key));
     }
