@@ -52,6 +52,7 @@ import java.util.Set;
 @PrepareForTest(Sponge.class)
 public class MemoryDataTest {
 
+    @SuppressWarnings("unused")
     @Test
     public void testCreateDataView() {
         new MemoryDataContainer();

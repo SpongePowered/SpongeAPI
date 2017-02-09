@@ -50,7 +50,7 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
         this.explosive = builder.explosion;
         this.magic = builder.magical;
         this.creative = builder.creative;
-        this.source = checkNotNull(builder.source, "Entity source cannot be null!");
+        this.source = checkNotNull(builder.sourceEntity, "Entity source cannot be null!");
         this.indirect = checkNotNull(builder.indirect, "Indirect source cannot be null!");
     }
 
@@ -105,12 +105,12 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
             extends AbstractEntityDamageSource.AbstractEntityDamageSourceBuilder<T, B>
             implements IndirectEntityDamageSource.AbstractBuilder<T, B> {
 
-        protected Entity source;
+        protected Entity sourceEntity;
         protected Entity indirect;
 
         @Override
         public B entity(Entity entity) {
-            this.source = checkNotNull(entity, "Entity source cannot be null!");
+            this.sourceEntity = checkNotNull(entity, "Entity source cannot be null!");
             return (B) this;
         }
 
@@ -124,7 +124,7 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
         @Override
         public B reset() {
             super.reset();
-            this.source = null;
+            this.sourceEntity = null;
             this.indirect = null;
             return (B) this;
         }
