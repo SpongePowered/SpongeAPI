@@ -50,6 +50,7 @@ import java.util.Set;
 
 public class MemoryDataTest {
 
+    @SuppressWarnings("unused")
     @Test
     public void testCreateDataView() {
         new MemoryDataContainer();

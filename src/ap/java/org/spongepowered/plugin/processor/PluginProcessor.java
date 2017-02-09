@@ -83,7 +83,7 @@ public class PluginProcessor extends AbstractProcessor {
     private Path outputPath;
 
     @Override
-    public void init(ProcessingEnvironment processingEnv) {
+    public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
 
         String extraFiles = processingEnv.getOptions().get(EXTRA_FILES_OPTION);
