@@ -43,7 +43,8 @@ import java.util.Optional;
 public interface ZombieData extends DataManipulator<ZombieData, ImmutableZombieData> {
 
     /**
-     * Returns a value specifying Zombie's type
+     * Returns a value specifying Zombie's type.
+     *
      * @return Zombie's type
      */
     Value<ZombieType> type();

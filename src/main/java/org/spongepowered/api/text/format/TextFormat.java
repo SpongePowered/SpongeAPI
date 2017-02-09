@@ -70,6 +70,7 @@ public final class TextFormat implements TextElement {
      * Constructs a new {@link TextFormat} with the specific style.
      *
      * @param style The style
+     * @return The new text format
      */
     public static TextFormat of(TextStyle style) {
         return new TextFormat(TextColors.NONE, style);
@@ -79,6 +80,7 @@ public final class TextFormat implements TextElement {
      * Constructs a new {@link TextFormat} with the specific color.
      *
      * @param color The color
+     * @return The new text format
      */
     public static TextFormat of(TextColor color) {
         return new TextFormat(color, TextStyles.NONE);
@@ -89,6 +91,7 @@ public final class TextFormat implements TextElement {
      *
      * @param color The color
      * @param style The style
+     * @return The new text format
      */
     public static TextFormat of(TextColor color, TextStyle style) {
         return new TextFormat(color, style);
@@ -110,7 +113,7 @@ public final class TextFormat implements TextElement {
      *
      * @return The color
      */
-    public final TextColor getColor() {
+    public TextColor getColor() {
         return this.color;
     }
 
@@ -120,7 +123,7 @@ public final class TextFormat implements TextElement {
      *
      * @return The style
      */
-    public final TextStyle getStyle() {
+    public TextStyle getStyle() {
         return this.style;
     }
 
@@ -130,7 +133,7 @@ public final class TextFormat implements TextElement {
      * @param color The color
      * @return The new text format
      */
-    public final TextFormat color(TextColor color) {
+    public TextFormat color(TextColor color) {
         return new TextFormat(color, this.style);
     }
 
@@ -140,7 +143,7 @@ public final class TextFormat implements TextElement {
      * @param style The style
      * @return The new text format
      */
-    public final TextFormat style(TextStyle style) {
+    public TextFormat style(TextStyle style) {
         return new TextFormat(this.color, style);
     }
 
@@ -155,7 +158,7 @@ public final class TextFormat implements TextElement {
      * @param format The format to merge
      * @return The new text format
      */
-    public final TextFormat merge(TextFormat format) {
+    public TextFormat merge(TextFormat format) {
         TextColor color = format.color;
         // If the given format's color is NONE use this ones
         if (color == TextColors.NONE) {
@@ -204,8 +207,8 @@ public final class TextFormat implements TextElement {
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
-                .add("color", color)
-                .add("style", style)
+                .add("color", this.color)
+                .add("style", this.style)
                 .toString();
     }
 

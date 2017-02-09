@@ -34,6 +34,12 @@ import org.spongepowered.api.entity.projectile.source.ProjectileSource;
  */
 public interface Blaze extends Monster, ProjectileSource, Aerial {
 
+    /**
+     * Gets the current {@link Value value} for whether this {@link Blaze}
+     * is considered "aflame".
+     *
+     * @return The value for whether this blaze is aflame
+     */
     default Value<Boolean> aflame() {
         return getValue(Keys.IS_AFLAME).get();
     }

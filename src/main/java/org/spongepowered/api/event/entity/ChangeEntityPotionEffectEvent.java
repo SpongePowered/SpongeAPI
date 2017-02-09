@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.effect.potion.PotionEffect;
+import org.spongepowered.api.event.Cancellable;
 
 import java.util.List;
 

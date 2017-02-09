@@ -26,9 +26,9 @@ package org.spongepowered.api.entity.living.player.tab;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.profile.GameProfile;
-import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
 
@@ -75,6 +75,7 @@ public interface TabListEntry {
      * Sets this entry's display name.
      *
      * @param displayName The new display name
+     * @return This entry, for chaining
      */
     TabListEntry setDisplayName(@Nullable Text displayName);
 
@@ -126,6 +127,7 @@ public interface TabListEntry {
      * </table>
      *
      * @param latency The new latency, in milliseconds
+     * @return This entry, for chaining
      */
     TabListEntry setLatency(int latency);
 
@@ -144,6 +146,7 @@ public interface TabListEntry {
      * effects can include invisibility and noclip.</p>
      *
      * @param gameMode The new gamemode
+     * @return This entry, for chaining
      */
     TabListEntry setGameMode(GameMode gameMode);
 

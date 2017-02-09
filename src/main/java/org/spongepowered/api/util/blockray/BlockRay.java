@@ -349,7 +349,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         }
 
         // Check the distance limit if in use
-        if (this.distanceLimit >= 0 && position.distanceSquared(hit.getPosition()) > this.distanceLimit * this.distanceLimit) {
+        if (this.distanceLimit >= 0 && this.position.distanceSquared(hit.getPosition()) > this.distanceLimit * this.distanceLimit) {
             throw new NoSuchElementException("Distance limit reached");
         }
 
@@ -657,7 +657,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         }
 
         /**
-         * Sets the direction and ending location. This or setting the direction is required and can only be done once.
+         * Sets the direction and ending location. This or setting the direction
+         * is required and can only be done once.
          *
          * @param end The ending location
          * @return This for chained calls
@@ -671,7 +672,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         }
 
         /**
-         * Sets the direction. This or setting the ending location is required and can only be done once.
+         * Sets the direction. This or setting the ending location is required
+         * and can only be done once.
          *
          * @param direction The direction
          * @return This for chained calls
@@ -723,7 +725,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         }
 
         /**
-         * Returns a block ray build from the settings. An ending location or direction needs to have been set.
+         * Returns a block ray build from the settings. An ending location or
+         * direction needs to have been set.
          *
          * @return A block ray
          */
@@ -751,8 +754,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     }
 
     /**
-     * A filter that accepts all blocks. A {@link BlockRay} combined with no other filter than this
-     * one could run endlessly.
+     * A filter that accepts all blocks. A {@link BlockRay} combined with no
+     * other filter than this one could run endlessly.
      *
      * @param <E> The extent to be applied in
      * @return A filter that accepts all blocks
@@ -765,8 +768,9 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     /**
      * A block type filter that only permits air as a transparent block.
      *
-     * <p>This is provided for convenience, as the default behavior in previous systems was to pass
-     * through air blocks only until a non-air block was hit.</p>
+     * <p>This is provided for convenience, as the default behavior in previous
+     * systems was to pass through air blocks only until a non-air block was
+     * hit.</p>
      *
      * @param <E> The extent to be applied in
      * @return A filter that only accepts air blocks
@@ -788,7 +792,8 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
     }
 
     /**
-     * Extends a filter by a number of blocks, regardless of what the extended filter does.
+     * Extends a filter by a number of blocks, regardless of what the extended
+     * filter does.
      *
      * @param filter The filter to extend
      * @param numberOfBlocks The number of blocks to extend it by
@@ -805,7 +810,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
         final int numberOfBlocks;
         int extraBlockCount = 0;
 
-        public ContinueAfterFilter(Predicate<BlockRayHit<E>> filter, int numberOfBlocks) {
+        ContinueAfterFilter(Predicate<BlockRayHit<E>> filter, int numberOfBlocks) {
             this.filter = filter;
             this.numberOfBlocks = numberOfBlocks;
         }

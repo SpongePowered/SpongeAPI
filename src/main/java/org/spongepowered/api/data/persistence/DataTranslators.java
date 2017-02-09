@@ -54,32 +54,80 @@ import java.util.UUID;
 public final class DataTranslators {
 
     // sortfields:ON
-    public static final DataTranslator<Schematic> SCHEMATIC = DummyObjectProvider.createExtendedFor(DataTranslator.class, "SCHEMATIC");
-    public static final DataTranslator<Schematic> LEGACY_SCHEMATIC = DummyObjectProvider.createExtendedFor(DataTranslator.class, "LEGACY_SCHEMATIC");
-    public static final DataTranslator<ConfigurationNode> CONFIGURATION_NODE = DummyObjectProvider.createExtendedFor(DataTranslator.class, "CONFIGURATION_NODE");
+    public static final DataTranslator<Schematic> SCHEMATIC = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "SCHEMATIC");
 
-    public static final DataTranslator<UUID> UUID = DummyObjectProvider.createExtendedFor(DataTranslator.class, "UUID");
-    public static final DataTranslator<Vector2d> VECTOR_2_D = DummyObjectProvider.createExtendedFor(DataTranslator.class, "VECTOR_2_D");
-    public static final DataTranslator<Vector2f> VECTOR_2_F = DummyObjectProvider.createExtendedFor(DataTranslator.class, "VECTOR_2_F");
-    public static final DataTranslator<Vector2i> VECTOR_2_I = DummyObjectProvider.createExtendedFor(DataTranslator.class, "VECTOR_2_I");
-    public static final DataTranslator<Vector2l> VECTOR_2_L = DummyObjectProvider.createExtendedFor(DataTranslator.class, "VECTOR_2_L");
-    public static final DataTranslator<Vector3d> VECTOR_3_D = DummyObjectProvider.createExtendedFor(DataTranslator.class, "VECTOR_3_D");
-    public static final DataTranslator<Vector3f> VECTOR_3_F = DummyObjectProvider.createExtendedFor(DataTranslator.class, "VECTOR_3_F");
-    public static final DataTranslator<Vector3i> VECTOR_3_I = DummyObjectProvider.createExtendedFor(DataTranslator.class, "VECTOR_3_I");
-    public static final DataTranslator<Vector3l> VECTOR_3_L = DummyObjectProvider.createExtendedFor(DataTranslator.class, "VECTOR_3_L");
-    public static final DataTranslator<Vector4d> VECTOR_4_D = DummyObjectProvider.createExtendedFor(DataTranslator.class, "VECTOR_4_D");
-    public static final DataTranslator<Vector4f> VECTOR_4_F = DummyObjectProvider.createExtendedFor(DataTranslator.class, "VECTOR_4_F");
-    public static final DataTranslator<Vector4i> VECTOR_4_I = DummyObjectProvider.createExtendedFor(DataTranslator.class, "VECTOR_4_I");
-    public static final DataTranslator<Vector4l> VECTOR_4_L = DummyObjectProvider.createExtendedFor(DataTranslator.class, "VECTOR_4_L");
-    public static final DataTranslator<Complexd> COMPLEXD = DummyObjectProvider.createExtendedFor(DataTranslator.class, "COMPLEXD");
-    public static final DataTranslator<Complexf> COMPLEXF = DummyObjectProvider.createExtendedFor(DataTranslator.class, "COMPLEXF");
-    public static final DataTranslator<Quaterniond> QUATERNIOND = DummyObjectProvider.createExtendedFor(DataTranslator.class, "QUATERNIOND");
-    public static final DataTranslator<Quaternionf> QUATERNIONF = DummyObjectProvider.createExtendedFor(DataTranslator.class, "QUATERNIONF");
-    public static final DataTranslator<LocalTime> LOCAL_TIME = DummyObjectProvider.createExtendedFor(DataTranslator.class, "LOCAL_TIME");
-    public static final DataTranslator<LocalDate> LOCAL_DATE = DummyObjectProvider.createExtendedFor(DataTranslator.class, "LOCAL_DATE");
-    public static final DataTranslator<LocalDateTime> LOCAL_DATE_TIME = DummyObjectProvider.createExtendedFor(DataTranslator.class, "LOCAL_DATE_TIME");
-    public static final DataTranslator<Instant> INSTANT = DummyObjectProvider.createExtendedFor(DataTranslator.class, "INSTANT");
-    public static final DataTranslator<ZonedDateTime> ZONED_DATE_TIME = DummyObjectProvider.createExtendedFor(DataTranslator.class, "ZONED_DATE_TIME");
+    public static final DataTranslator<Schematic> LEGACY_SCHEMATIC = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "LEGACY_SCHEMATIC");
+
+    public static final DataTranslator<ConfigurationNode> CONFIGURATION_NODE = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "CONFIGURATION_NODE");
+
+    public static final DataTranslator<UUID> UUID = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "UUID");
+
+    public static final DataTranslator<Vector2d> VECTOR_2_D = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "VECTOR_2_D");
+
+    public static final DataTranslator<Vector2f> VECTOR_2_F = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "VECTOR_2_F");
+
+    public static final DataTranslator<Vector2i> VECTOR_2_I = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "VECTOR_2_I");
+
+    public static final DataTranslator<Vector2l> VECTOR_2_L = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "VECTOR_2_L");
+
+    public static final DataTranslator<Vector3d> VECTOR_3_D = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "VECTOR_3_D");
+
+    public static final DataTranslator<Vector3f> VECTOR_3_F = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "VECTOR_3_F");
+
+    public static final DataTranslator<Vector3i> VECTOR_3_I = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "VECTOR_3_I");
+
+    public static final DataTranslator<Vector3l> VECTOR_3_L = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "VECTOR_3_L");
+
+    public static final DataTranslator<Vector4d> VECTOR_4_D = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "VECTOR_4_D");
+
+    public static final DataTranslator<Vector4f> VECTOR_4_F = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "VECTOR_4_F");
+
+    public static final DataTranslator<Vector4i> VECTOR_4_I = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "VECTOR_4_I");
+
+    public static final DataTranslator<Vector4l> VECTOR_4_L = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "VECTOR_4_L");
+
+    public static final DataTranslator<Complexd> COMPLEXD = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "COMPLEXD");
+
+    public static final DataTranslator<Complexf> COMPLEXF = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "COMPLEXF");
+
+    public static final DataTranslator<Quaterniond> QUATERNIOND = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "QUATERNIOND");
+
+    public static final DataTranslator<Quaternionf> QUATERNIONF = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "QUATERNIONF");
+
+    public static final DataTranslator<LocalTime> LOCAL_TIME = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "LOCAL_TIME");
+
+    public static final DataTranslator<LocalDate> LOCAL_DATE = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "LOCAL_DATE");
+
+    public static final DataTranslator<LocalDateTime> LOCAL_DATE_TIME = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "LOCAL_DATE_TIME");
+
+    public static final DataTranslator<Instant> INSTANT = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "INSTANT");
+
+    public static final DataTranslator<ZonedDateTime> ZONED_DATE_TIME = DummyObjectProvider
+            .createExtendedFor(DataTranslator.class, "ZONED_DATE_TIME");
 
     // sortfields:OFF
 

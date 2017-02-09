@@ -239,6 +239,14 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
         private MatcherBuilder() {
         }
 
+        /**
+         * Sets the root {@link BlockType} for the {@link StateMatcher}.
+         * <p>Note that the {@link BlockType type} <b>must be set prior</b>
+         * to setting various {@link BlockTrait traits} and their values.</p>
+         *
+         * @param type The block type to use
+         * @return This builder, for chaining
+         */
         public MatcherBuilder type(BlockType type) {
             this.type = checkNotNull(type, "BlockType cannot be null!");
             return this;
@@ -396,9 +404,9 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
                 return false;
             }
             StateMatcher that = (StateMatcher) o;
-            return Objects.equal(this.type, that.type) &&
-                   Objects.equal(this.traits, that.traits) &&
-                   Objects.equal(this.values, that.values);
+            return Objects.equal(this.type, that.type)
+                   && Objects.equal(this.traits, that.traits)
+                   && Objects.equal(this.values, that.values);
         }
 
         @Override

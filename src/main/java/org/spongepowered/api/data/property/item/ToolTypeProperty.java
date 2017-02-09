@@ -32,10 +32,23 @@ import javax.annotation.Nullable;
 
 public class ToolTypeProperty extends AbstractProperty<String, ToolType> {
 
+    /**
+     * Creates a new {@link ToolTypeProperty} with the provided
+     * {@link ToolType} value.
+     *
+     * @param value The value
+     */
     public ToolTypeProperty(@Nullable ToolType value) {
         super(value);
     }
 
+    /**
+     * Creates a new {@link ToolTypeProperty} with the provided
+     * {@link ToolType} value and {@link Operator} for comparisons.
+     *
+     * @param value The value
+     * @param op The operator for comparisons
+     */
     public ToolTypeProperty(@Nullable ToolType value, @Nullable Operator op) {
         super(value, op);
     }

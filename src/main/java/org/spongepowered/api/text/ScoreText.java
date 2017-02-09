@@ -85,7 +85,7 @@ public final class ScoreText extends Text {
      *
      * @return The score in this text
      */
-    public final Score getScore() {
+    public Score getScore() {
         return this.score;
     }
 
@@ -96,7 +96,7 @@ public final class ScoreText extends Text {
      *         {@link Optional#empty()} if the real score will be displayed
      *         instead
      */
-    public final Optional<String> getOverride() {
+    public Optional<String> getOverride() {
         return this.override;
     }
 

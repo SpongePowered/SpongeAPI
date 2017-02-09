@@ -33,24 +33,24 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  * are used on the client, this behavior cannot be changed by Sponge.</p>
  *
  * <p>The following truth table shows whether or not two entities will collide,
- * given the collision rules for their respective teams.
+ * given the collision rules for their respective teams.</p>
  *
- * For example, two entities on different teams will not collide if one team's {@link CollisionRule}
+ * <p>For example, two entities on different teams will not collide if one team's {@link CollisionRule}
  * is set to {@link #ALWAYS} and the other is set to {@link #PUSH_OWN_TEAM}.</p>
  *
- * Same team - {@link #ALWAYS} - Yes
+ * <p>Same team - {@link #ALWAYS} - Yes
  * Same team - {@link #PUSH_OWN_TEAM} - Yes
  * Same team - {@link #PUSH_OTHER_TEAMS} - No
- * Same team - {@link #NEVER} - No
+ * Same team - {@link #NEVER} - No</p>
  *
- * Different teams - {@link #NEVER} - *any* - No
+ * <p>Different teams - {@link #NEVER} - *any* - No</p>
  *
- * Different teams - {@link #ALWAYS} - {@link #PUSH_OWN_TEAM} - No
+ * <p>Different teams - {@link #ALWAYS} - {@link #PUSH_OWN_TEAM} - No
  * Different teams - {@link #ALWAYS} - {@link #PUSH_OTHER_TEAMS} - Yes
  * Different teams - {@link #ALWAYS} - {@link #ALWAYS} - Yes
  * Different teams - {@link #PUSH_OWN_TEAM} - {@link #PUSH_OTHER_TEAMS} - No
  * Different teams - {@link #PUSH_OWN_TEAM} - {@link #PUSH_OWN_TEAM} - No
- * Different teams - {@link #PUSH_OTHER_TEAMS} - {@link #PUSH_OTHER_TEAMS} - Yes
+ * Different teams - {@link #PUSH_OTHER_TEAMS} - {@link #PUSH_OTHER_TEAMS} - Yes</p>
  *
  */
 public final class CollisionRules {

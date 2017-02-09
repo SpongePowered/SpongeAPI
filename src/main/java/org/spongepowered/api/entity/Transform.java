@@ -65,33 +65,75 @@ public final class Transform<E extends Extent> {
     @Nullable private Location<E> location = null;
     @Nullable private Quaterniond rotationQuaternion = null;
 
+    /**
+     * Creates a new {@link Transform} based on the provided {@link Location}.
+     *
+     * @param location The provided location that provides the
+     *     extent, and position
+     */
     public Transform(Location<E> location) {
         this(location.getExtent(), location.getPosition());
     }
 
+    /**
+     * Creates a new {@link Transform} with the provided {@link Extent extent}.
+     * The default position is {@link Vector3d#ZERO}.
+     *
+     * @param extent The extent to use
+     */
     public Transform(E extent) {
         this(extent, Vector3d.ZERO);
     }
 
+    /**
+     * Creates a new {@link Transform} with the provided {@link Extent extent}
+     * and {@link Vector3d position}.
+     *
+     * @param extent The extent to use
+     * @param position The position to use
+     */
     public Transform(E extent, Vector3d position) {
         this(extent, position, Vector3d.ZERO);
     }
 
+    /**
+     * Creates a new {@link Transform} with the provided {@link Extent extent},
+     * {@link Vector3d position}, and {@link Vector3d rotation}.
+     *
+     * @param extent The extent to use
+     * @param position The position to use
+     * @param rotation The rotation to use
+     */
     public Transform(E extent, Vector3d position, Vector3d rotation) {
         this(extent, position, rotation, Vector3d.ONE);
     }
 
+    /**
+     * Creates a new {@link Transform} with the provided {@link Location},
+     * {@link Vector3d rotation}, and {@link Vector3d scale}.
+     *
+     * @param location The location to use, providing the extent and position
+     * @param rotation The rotation to use
+     * @param scale The scale to use
+     */
     public Transform(Location<E> location, Vector3d rotation, Vector3d scale) {
         this(location.getExtent(), location.getPosition(), rotation, scale);
     }
 
+    /**
+     * Creates a new {@link Transform}.
+     *
+     * @param extent The extent to use
+     * @param position The position to use
+     * @param rotation The rotation to use
+     * @param scale The scale to use
+     */
     public Transform(E extent, Vector3d position, Vector3d rotation, Vector3d scale) {
         this.extent = checkNotNull(extent, "extent");
         this.position = checkNotNull(position, "position");
         this.rotation = checkNotNull(rotation, "rotation");
         this.scale = checkNotNull(scale, "scale");
     }
-
 
     /**
      * Gets the {@link Location} this transform contains.
@@ -118,6 +160,7 @@ public final class Transform<E extends Extent> {
         checkNotNull(location, "location");
         return new Transform<>(location, getRotation(), getScale());
     }
+
     /**
      * Gets the {@link Extent} this transform contains.
      *
@@ -141,6 +184,7 @@ public final class Transform<E extends Extent> {
         checkNotNull(extent, "extent");
         return new Transform<>(extent, getPosition(), getRotation(), getScale());
     }
+
     /**
      * Gets the coordinates of this transform.
      *
@@ -151,7 +195,9 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * Creates a copy of this transform while setting the position of the new one.
+     * Creates a copy of this transform while setting the position of
+     * the new one.
+     *
      * @param position The position
      * @return A new transform
      */
@@ -159,6 +205,7 @@ public final class Transform<E extends Extent> {
         checkNotNull(position, "position");
         return new Transform<>(getExtent(), position, getRotation(), getScale());
     }
+
     /**
      * Gets the rotation of this transform, as a {@link Vector3d}.
      *
@@ -192,13 +239,31 @@ public final class Transform<E extends Extent> {
         checkNotNull(rotation, "rotation");
         return setRotation(toAxesAngles(rotation));
     }
+
+    /**
+     * Creates a copy of this transform and sets the rotation as
+     * a quaternion.
+     *
+     * <p>Quaternions are objectively better than
+     * the Euler angles preferred by Minecraft.
+     * This is for compatibility with
+     * the flow-math library.</p>
+     *
+     * @param rotation The new rotation
+     * @return A new transform
+     */
+    public Transform<E> setRotation(Vector3d rotation) {
+        checkNotNull(rotation, "rotation");
+        return new Transform<>(getExtent(), getPosition(), rotation, getScale());
+    }
+
     /**
      * Returns the rotation as a quaternion.
      *
-     * Quaternions are objectively better than
+     * <p>Quaternions are objectively better than
      * the Euler angles preferred by Minecraft.
      * This is for compatibility with
-     * the flow-math library.
+     * the flow-math library.</p>
      *
      * @return The rotation
      */
@@ -210,23 +275,7 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * Creates a copy of this transform and sets the rotation as
-     * a quaternion.
-     *
-     * Quaternions are objectively better than
-     * the Euler angles preferred by Minecraft.
-     * This is for compatibility with
-     * the flow-math library.
-     *
-     * @param rotation The new rotation
-     * @return A new transform
-     */
-    public Transform<E> setRotation(Vector3d rotation) {
-        checkNotNull(rotation, "rotation");
-        return new Transform<>(getExtent(), getPosition(), rotation, getScale());
-    }
-    /**
-     * Gets the pitch component of this transform rotation
+     * Gets the pitch component of this transform rotation.
      *
      * @return The pitch
      */
@@ -235,7 +284,7 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * Gets the yaw component of this transform rotation
+     * Gets the yaw component of this transform rotation.
      *
      * @return The yaw
      */
@@ -244,7 +293,7 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * Gets the roll component of this transform rotation
+     * Gets the roll component of this transform rotation.
      *
      * @return The roll
      */
@@ -272,6 +321,7 @@ public final class Transform<E extends Extent> {
         checkNotNull(scale, "scale");
         return new Transform<>(getExtent(), getPosition(), getRotation(), scale);
     }
+
     /**
      * "Adds" another transform to this one.
      * This is equivalent to adding the
@@ -291,6 +341,7 @@ public final class Transform<E extends Extent> {
             getScale().mul(other.getScale())
         );
     }
+
     /**
      * Adds a translation to this transform.
      * Returns the results as a new copy.
@@ -302,6 +353,7 @@ public final class Transform<E extends Extent> {
         checkNotNull(translation, "translation");
         return new Transform<>(getExtent(), getPosition().add(translation));
     }
+
     /**
      * Adds a rotation to this transform.
      * Returns the results as a new copy.
@@ -313,6 +365,7 @@ public final class Transform<E extends Extent> {
         checkNotNull(rotation, "rotation");
         return addRotation(fromAxesAngles(rotation));
     }
+
     /**
      * Adds a rotation to this transform.
      * Quaternions are objectively better than
@@ -330,6 +383,7 @@ public final class Transform<E extends Extent> {
         checkNotNull(rotation, "rotation");
         return new Transform<>(getExtent(), getPosition(), toAxesAngles(rotation.mul(getRotationAsQuaternion())), getScale());
     }
+
     /**
      * "Adds" a scale to this transform.
      * Scales are multiplicative, so
@@ -344,6 +398,7 @@ public final class Transform<E extends Extent> {
         checkNotNull(scale, "scale");
         return new Transform<>(getExtent(), getPosition(), getRotation(), getScale().mul(scale));
     }
+
     /**
      * Returns a matrix representation of this transform.
      * This includes the position, rotation and scale.
@@ -356,11 +411,13 @@ public final class Transform<E extends Extent> {
      * Vector3d transformed = transform.toMatrix().transform(original.toVector4(1)).toVector3();
      * }</pre></p>
      *
-     * <p>This converts the original 3D vector to 4D by appending 1 as the w coordinate,
-     * applies the transformation, then converts it back to 3D by dropping the w coordinate.</p>
+     * <p>This converts the original 3D vector to 4D by appending 1 as the
+     * w coordinate, applies the transformation, then converts it back to
+     * 3D by dropping the w coordinate.</p>
      *
-     * <p>Using a 4D matrix and a w coordinate with value 1 is what allows for the position
-     * to be included in the transformation applied by the matrix.</p>
+     * <p>Using a 4D matrix and a w coordinate with value 1 is what allows
+     * for the position to be included in the transformation applied by the
+     * matrix.</p>
      *
      * @return The transform as a matrix
      */
@@ -374,7 +431,8 @@ public final class Transform<E extends Extent> {
      * <ul>
      *     <li>A Transform without an {@link Extent}</li>
      *     <li>A Transform whose {@link Extent} object is no longer present</li>
-     *     <li>A Transform whose coordinates are illegal (defined by the implementation)</li>
+     *     <li>A Transform whose coordinates are illegal (defined by the
+     *     implementation)</li>
      * </ul>
      *
      * @return True if valid, false if not
@@ -385,10 +443,10 @@ public final class Transform<E extends Extent> {
 
     @Override
     public int hashCode() {
-        int result = extent.hashCode();
-        result = 31 * result + position.hashCode();
-        result = 31 * result + rotation.hashCode();
-        result = 31 * result + scale.hashCode();
+        int result = this.extent.hashCode();
+        result = 31 * result + this.position.hashCode();
+        result = 31 * result + this.rotation.hashCode();
+        result = 31 * result + this.scale.hashCode();
         return result;
     }
 
@@ -409,8 +467,8 @@ public final class Transform<E extends Extent> {
     public String toString() {
         return Objects.toStringHelper(this)
                 .add("location", getLocation())
-                .add("rotation", rotation)
-                .add("scale", scale)
+                .add("rotation", this.rotation)
+                .add("scale", this.scale)
                 .toString();
     }
 

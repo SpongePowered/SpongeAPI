@@ -350,7 +350,7 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
      *
      * @see Text
      */
-    public static abstract class Builder implements TextRepresentable {
+    public abstract static class Builder implements TextRepresentable {
 
         TextFormat format = TextFormat.NONE;
         List<Text> children = new ArrayList<>();
@@ -1268,7 +1268,8 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
         do {
             builder.append(separator);
             builder.append(texts.next());
-        } while (texts.hasNext());
+        }
+        while (texts.hasNext());
 
         return builder.build();
     }

@@ -38,20 +38,33 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * A message channel that targets all subjects contained within the given channels
- * and applies the message transformations of each channel in order (so with n
- * channels,
- * {@code channels[n-1].transformMessage(channels[n-2].transformMessage(channels[...]
- * .transformMessage(channels[0].transformMessage(input))))} would occur)
+ * A message channel that targets all subjects contained within the given
+ * channels and applies the message transformations of each channel in
+ * order (so with n channels,
+ * {@code channels[n-1].transformMessage(channels[n-2]
+ * .transformMessage(channels[...]
+ * .transformMessage(channels[0].transformMessage(input))))} would occur).
  */
 public class CombinedMessageChannel implements MessageChannel {
 
     protected final Collection<MessageChannel> channels;
 
+    /**
+     * Creates a new combined message channel of the provided
+     * {@link MessageChannel}s.
+     *
+     * @param channels The channels to combine into a single message channel
+     */
     public CombinedMessageChannel(MessageChannel... channels) {
         this(Arrays.asList(channels));
     }
 
+    /**
+     * Creates a new combined message channel of the provided {@link Collection}
+     * of {@link MessageChannel}s.
+     *
+     * @param channels The channels to combine into a single message channel
+     */
     public CombinedMessageChannel(Collection<MessageChannel> channels) {
         this.channels = ImmutableSet.copyOf(channels);
     }

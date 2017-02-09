@@ -37,6 +37,8 @@ public interface SmeltEvent extends TargetTileEntityEvent {
     Furnace getTargetTile();
 
     /**
+     * Gets the fuel represented as an {@link ItemStackSnapshot}.
+     *
      * @return The ingredient
      */
     ItemStackSnapshot getFuel();

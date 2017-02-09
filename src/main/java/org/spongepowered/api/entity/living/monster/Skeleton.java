@@ -49,8 +49,10 @@ public interface Skeleton extends Monster, ArmorEquipable, Ranger {
     }
 
     /**
+     * Gets the current {@link Value value} of {@link SkeletonType}
+     * for this {@link Skeleton}.
      *
-     * @return The type of skeleton type this is
+     * @return The value of the skeleton type
      * @deprecated Skeleton now has subclassed interfaces for types
      */
     @Deprecated

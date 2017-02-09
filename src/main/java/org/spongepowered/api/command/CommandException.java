@@ -61,6 +61,7 @@ public class CommandException extends TextMessageException {
      * Constructs a new {@link CommandException} with the given message.
      *
      * @param message The detail message
+     * @param includeUsage Whether to include usage in the exception
      */
     public CommandException(Text message, boolean includeUsage) {
         super(message);
@@ -73,12 +74,19 @@ public class CommandException extends TextMessageException {
      *
      * @param message The detail message
      * @param cause The cause
+     * @param includeUsage Whether to include the usage in the exception
      */
     public CommandException(Text message, Throwable cause, boolean includeUsage) {
         super(message, cause);
         this.includeUsage = includeUsage;
     }
 
+    /**
+     * Gets whether the exception should include usage in
+     * the presentation of the exception/stack-trace.
+     *
+     * @return Whether to include usage in the exception
+     */
     public boolean shouldIncludeUsage() {
         return this.includeUsage;
     }

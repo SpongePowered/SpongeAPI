@@ -32,6 +32,12 @@ import org.spongepowered.api.world.World;
 
 public interface BlockDamageSource extends DamageSource {
 
+    /**
+     * Creates a new {@link Builder builder} for building a
+     * {@link BlockDamageSource}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }

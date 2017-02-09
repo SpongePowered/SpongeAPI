@@ -38,10 +38,20 @@ import org.spongepowered.api.util.ResettableBuilder;
  */
 public interface SpawnCause {
 
+    /**
+     * Creates a new builder to construct {@link SpawnCause}s.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the {@link SpawnType} for this {@link SpawnCause}.
+     *
+     * @return The spawn type for this cause
+     */
     SpawnType getType();
 
     interface Builder extends SpawnCauseBuilder<SpawnCause, Builder> {
@@ -50,8 +60,21 @@ public interface SpawnCause {
 
     interface SpawnCauseBuilder<T extends SpawnCause, B extends SpawnCauseBuilder<T, B>> extends ResettableBuilder<T, B> {
 
+        /**
+         * Sets the {@link SpawnType} for this builder. Note that
+         * this is <strong>required</strong> for building a
+         * {@link SpawnCause}.
+         *
+         * @param spawnType The spawn type
+         * @return This builder, for chaining
+         */
         B type(SpawnType spawnType);
 
+        /**
+         * Builds a new {@code T extends} {@link SpawnCause}.
+         *
+         * @return A new SpawnCause
+         */
         T build();
 
     }

@@ -31,8 +31,22 @@ import java.util.Optional;
 
 public interface CatalogRegistryModule<T extends CatalogType> extends RegistryModule {
 
+    /**
+     * Gets the desired {@link CatalogType} from the provided {@link String} id.
+     * If a {@link CatalogType catalog type} is not registered for the given {@code id},
+     * {@link Optional#empty()} is returned.
+     *
+     * @param id The id of the catalog type requested
+     * @return The catalog type, if available
+     */
     Optional<T> getById(String id);
 
+    /**
+     * Gets all registered {@link CatalogType}s registered in this
+     * {@link RegistryModule}.
+     *
+     * @return All catalog types registered in this module
+     */
     Collection<T> getAll();
 
 }

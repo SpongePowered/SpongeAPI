@@ -43,7 +43,7 @@ public interface VirtualBiomeType extends BiomeType {
      * 
      * @return The builder
      */
-    public static Builder builder() {
+    static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 

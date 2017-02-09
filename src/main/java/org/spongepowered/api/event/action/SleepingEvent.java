@@ -39,7 +39,7 @@ import java.util.Optional;
 public interface SleepingEvent extends TargetEntityEvent {
 
     /**
-     * Gets the {@link BlockSnapshot} of the bed being used to sleep
+     * Gets the {@link BlockSnapshot} of the bed being used to sleep.
      *
      * @return The location of the bed
      */

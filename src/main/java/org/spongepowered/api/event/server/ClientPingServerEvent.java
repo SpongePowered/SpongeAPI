@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.event.server;
 
-import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
-import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
 import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.network.status.StatusClient;
 import org.spongepowered.api.network.status.StatusResponse;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.text.Text;
 
 import java.util.List;
@@ -78,17 +78,15 @@ public interface ClientPingServerEvent extends Event, Cancellable {
         Optional<Players> getPlayers();
 
         /**
-         * Sets whether the player count and the list of players on this server is
-         * hidden and doesn't get sent to the client. This will restore
+         * Sets whether the player count and the list of players on this server
+         * is hidden and doesn't get sent to the client. This will restore
          * {@link #getPlayers()} if the players were previously hidden.
-         * <p>
-         * Use {@link #getPlayers()}.{@link Optional#isPresent() isPresent()} to
-         * check if the players are already hidden.
-         * </p>
-         * <p>
-         * In Vanilla, this will display {@code ???} instead of the player count in
-         * the server list.
-         * </p>
+         *
+         * <p>Use {@link #getPlayers()}.{@link Optional#isPresent() isPresent()} to
+         * check if the players are already hidden.</p>
+         *
+         * <p>In Vanilla, this will display {@code ???} instead of the player
+         * count in the server list.</p>
          *
          * @param hide {@code True} if the players should be hidden
          */
@@ -102,8 +100,8 @@ public interface ClientPingServerEvent extends Event, Cancellable {
         void setFavicon(@Nullable Favicon favicon);
 
         /**
-         * Represents the information about the players on the server, sent after
-         * the {@link ClientPingServerEvent}.
+         * Represents the information about the players on the server, sent
+         * after the {@link ClientPingServerEvent}.
          */
         interface Players extends StatusResponse.Players {
 
@@ -115,15 +113,16 @@ public interface ClientPingServerEvent extends Event, Cancellable {
             void setOnline(int online);
 
             /**
-             * Sets the maximum amount of allowed players to display on the client.
+             * Sets the maximum amount of allowed players to display on the
+             * client.
              *
              * @param max The maximum amount of players
              */
             void setMax(int max);
 
             /**
-             * Gets an mutable list of online players on the server to display on
-             * the client.
+             * Gets an mutable list of online players on the server to display
+             * on the client.
              *
              * @return A mutable list of online players
              */

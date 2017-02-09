@@ -26,10 +26,10 @@ package org.spongepowered.api.world.extent.worker;
 
 import org.spongepowered.api.world.extent.BiomeVolume;
 import org.spongepowered.api.world.extent.MutableBiomeVolume;
-import org.spongepowered.api.world.extent.worker.procedure.BiomeVolumeReducer;
-import org.spongepowered.api.world.extent.worker.procedure.BiomeVolumeVisitor;
 import org.spongepowered.api.world.extent.worker.procedure.BiomeVolumeMapper;
 import org.spongepowered.api.world.extent.worker.procedure.BiomeVolumeMerger;
+import org.spongepowered.api.world.extent.worker.procedure.BiomeVolumeReducer;
+import org.spongepowered.api.world.extent.worker.procedure.BiomeVolumeVisitor;
 
 import java.util.function.BiFunction;
 

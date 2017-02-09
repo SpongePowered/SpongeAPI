@@ -66,8 +66,8 @@ public interface Game {
     /**
      * Gets the {@link Server}.
      *
-     * @throws IllegalStateException If the Server isn't currently available
      * @return The server
+     * @throws IllegalStateException If the Server isn't currently available
      */
     Server getServer();
 

@@ -42,14 +42,30 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
 
     private double totalWeight = 0;
 
+    /**
+     * Creates a new {@link WeightedTable} with a default roll
+     * count of {@code 1}.
+     */
     public WeightedTable() {
         super(1);
     }
 
+    /**
+     * Creates a new {@link WeightedTable} with the provided
+     * number of {@code rolls}.
+     *
+     * @param rolls The rolls for variance
+     */
     public WeightedTable(int rolls) {
         super(rolls);
     }
 
+    /**
+     * Creates a new {@link WeightedTable} with the provided
+     * {@link VariableAmount} for the amount of rolls and variance.
+     *
+     * @param rolls The rolls for variance
+     */
     public WeightedTable(VariableAmount rolls) {
         super(rolls);
     }
