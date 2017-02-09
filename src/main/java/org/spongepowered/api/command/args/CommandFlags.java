@@ -148,7 +148,6 @@ public final class CommandFlags extends CommandElement {
         return true;
     }
 
-    @SuppressWarnings("fallthrough")
     private boolean parseShortFlags(CommandSource source, String shortFlags, CommandArgs args, CommandContext context) throws ArgumentParseException {
         for (int i = 0; i < shortFlags.length(); ++i) {
             final String flagChar = shortFlags.substring(i, i + 1);
@@ -432,7 +431,6 @@ public final class CommandFlags extends CommandElement {
          * @param specs The flag specifications
          * @return this
          */
-        @SuppressWarnings({"unchecked", "rawtypes"}) // cuz generics suck
         public Builder valueFlag(CommandElement value, String... specs) {
             return flag(ignore -> value, specs);
         }

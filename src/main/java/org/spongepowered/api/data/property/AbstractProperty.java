@@ -140,7 +140,6 @@ public abstract class AbstractProperty<K, V> implements Property<K, V> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public boolean equals(Object obj) {
         if (!(obj instanceof AbstractProperty)) {
             return false;
