@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.service.pagination;
 
-import org.spongepowered.api.text.channel.MessageReceiver;
-
 /**
  * This service allows pagination of output to users.
  */

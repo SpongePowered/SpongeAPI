@@ -27,11 +27,8 @@ package org.spongepowered.api.event.cause.entity.spawn.common;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.cause.entity.spawn.BlockSpawnCause;
 import org.spongepowered.api.event.cause.entity.spawn.BlockSpawnCause.BlockSpawnCauseBuilder;
-import org.spongepowered.api.event.cause.entity.spawn.EntitySpawnCause;
 
 @SuppressWarnings("unchecked")
 public abstract class AbstractBlockSpawnCauseBuilder<T extends BlockSpawnCause, B extends BlockSpawnCauseBuilder<T, B>>

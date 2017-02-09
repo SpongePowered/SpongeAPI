@@ -41,8 +41,6 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.ResettableBuilder;
-
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;

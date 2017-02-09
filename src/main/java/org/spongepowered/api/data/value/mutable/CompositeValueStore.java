@@ -33,7 +33,6 @@ import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
 
 import java.util.Collection;

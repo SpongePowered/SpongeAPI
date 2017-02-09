@@ -31,7 +31,6 @@ import static org.junit.Assert.assertThat;
 import com.google.common.collect.Lists;
 import org.hamcrest.Matchers;
 import org.junit.Test;
-import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;

@@ -38,7 +38,6 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.world.Location;
