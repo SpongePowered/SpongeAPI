@@ -67,7 +67,7 @@ public class SimpleServiceManagerTest {
     public void testRegisterService() {
         SimpleServiceManager serviceManager = new SimpleServiceManager(manager);
 
-        serviceManager.setProvider(testPlugin, TestInterface.class, new TestImplCow());
+        serviceManager.setProvider(this.testPlugin, TestInterface.class, new TestImplCow());
 
         Optional<TestInterface> returned = serviceManager.provide(TestInterface.class);
         assertTrue(returned.isPresent());
@@ -89,14 +89,14 @@ public class SimpleServiceManagerTest {
     public void testGetProviderRegistration() {
         TestImplCow testImplCow = new TestImplCow();
 
-        SimpleServiceManager serviceManager = new SimpleServiceManager(manager);
-        serviceManager.setProvider(testPlugin, TestInterface.class, testImplCow);
+        SimpleServiceManager serviceManager = new SimpleServiceManager(this.manager);
+        serviceManager.setProvider(this.testPlugin, TestInterface.class, testImplCow);
 
         ProviderRegistration<TestInterface> registration = serviceManager.getRegistration(TestInterface.class).get();
 
         assertEquals(TestInterface.class, registration.getService());
         assertEquals(testImplCow, registration.getProvider());
-        assertEquals(testPluginContainer, registration.getPlugin());
+        assertEquals(this.testPluginContainer, registration.getPlugin());
     }
 
     public interface TestInterface {
