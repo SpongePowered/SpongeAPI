@@ -469,9 +469,8 @@ public class TextStyle implements TextElement {
     private static Optional<Boolean> propNegate(Optional<Boolean> prop) {
         if (prop.isPresent()) {
             return OptBool.of(!prop.get());
-        } else {
-            return OptBool.ABSENT;
         }
+        return OptBool.ABSENT;
     }
 
     /**

@@ -98,11 +98,10 @@ public class SimpleServiceManager implements ServiceManager {
     public <T> T provideUnchecked(Class<T> service) throws ProvisioningException {
         checkNotNull(service, "service");
         @Nullable ProviderRegistration<T> provider = (ProviderRegistration<T>) this.providers.get(service);
-        if (provider != null) {
-            return provider.getProvider();
-        } else {
+        if (provider == null) {
             throw new ProvisioningException("No provider is registered for the service '" + service.getName() + "'", service);
         }
+        return provider.getProvider();
     }
 
     private static class Provider<T> implements ProviderRegistration<T> {

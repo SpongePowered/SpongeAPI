@@ -186,11 +186,11 @@ public class PluginProcessor extends AbstractProcessor {
         if (this.outputPath != null) {
             getMessager().printMessage(NOTE, "Writing plugin metadata to " + this.outputPath);
             return Files.newBufferedWriter(this.outputPath);
-        } else {
-            FileObject obj = this.processingEnv.getFiler().createResource(CLASS_OUTPUT, "", McModInfo.STANDARD_FILENAME);
-            getMessager().printMessage(NOTE, "Writing plugin metadata to " + obj.toUri());
-            return new BufferedWriter(obj.openWriter());
         }
+
+        FileObject obj = this.processingEnv.getFiler().createResource(CLASS_OUTPUT, "", McModInfo.STANDARD_FILENAME);
+        getMessager().printMessage(NOTE, "Writing plugin metadata to " + obj.toUri());
+        return new BufferedWriter(obj.openWriter());
     }
 
     private void reportDuplicatePlugin(String id, PluginElement plugin) {

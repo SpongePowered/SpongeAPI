@@ -152,9 +152,9 @@ public interface Asset {
         int end = path.lastIndexOf('/');
         if (end < 0) {
             return path;
-        } else {
-            return path.substring(end + 1);
         }
+
+        return path.substring(end + 1);
     }
 
     /**
