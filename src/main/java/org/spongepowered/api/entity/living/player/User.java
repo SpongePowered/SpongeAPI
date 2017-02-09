@@ -25,15 +25,12 @@
 package org.spongepowered.api.entity.living.player;
 
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.manipulator.mutable.entity.AchievementData;
 import org.spongepowered.api.data.manipulator.mutable.entity.StatisticData;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
-import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.util.Identifiable;
 
 import java.util.Optional;
 
@@ -42,7 +39,7 @@ import java.util.Optional;
  * across server restarts. This is in contrast to Player which represents
  * the in-game entity associated with an online User.
  */
-public interface User extends DataHolder, Identifiable, ArmorEquipable, Tamer, DataSerializable, Subject, Carrier {
+public interface User extends DataHolder, ArmorEquipable, Tamer, Subject {
 
     /**
      * Gets the associated {@link GameProfile} of this player.

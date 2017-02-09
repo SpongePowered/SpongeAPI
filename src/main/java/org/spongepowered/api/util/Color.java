@@ -359,7 +359,7 @@ public final class Color implements DataSerializable {
             .toString();
     }
 
-    public static final class Builder extends AbstractDataBuilder<Color> implements DataBuilder<Color> {
+    public static final class Builder extends AbstractDataBuilder<Color> {
 
         public Builder() {
             super(Color.class, 1);
