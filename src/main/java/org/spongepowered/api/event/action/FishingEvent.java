@@ -92,7 +92,7 @@ public interface FishingEvent extends Event {
      * <p>In Vanilla, {@link Transaction#getOriginal() the original {@link ItemStack}}
      * will usually be a {@link Fish}, or miscellaneous item.</p>
      */
-    interface Stop extends FishingEvent, ChangeEntityExperienceEvent, Cancellable {
+    interface Stop extends FishingEvent, ChangeEntityExperienceEvent {
 
         /**
          * Gets the {@link Transaction} that is the transaction
