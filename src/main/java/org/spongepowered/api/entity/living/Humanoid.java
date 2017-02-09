@@ -31,12 +31,11 @@ import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
-import org.spongepowered.api.item.inventory.Carrier;
 
 /**
  * Represents a human-like entity in game, such as {@link Player} or {@link Human}s.
  */
-public interface Humanoid extends Living, ProjectileSource, ArmorEquipable, Tamer, Carrier {
+public interface Humanoid extends Living, ProjectileSource, ArmorEquipable, Tamer {
 
     /**
      * Gets a copy of the current {@link FoodData} for this {@link Humanoid}.

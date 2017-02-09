@@ -40,12 +40,12 @@ public interface BreedEntityEvent extends InteractEntityEvent {
      * <p>If {@link org.spongepowered.api.event.TristateResult.Result#ALLOW},
      * bypasses normal handling to force mate with {@link Entity}.</p>
      */
-    interface FindMate extends BreedEntityEvent, InteractEntityEvent, TristateResult {}
+    interface FindMate extends BreedEntityEvent, TristateResult {}
 
     /**
      * Called when an {@link Entity} begins to breed with an {@link Entity}.
      */
-    interface Breed extends BreedEntityEvent, InteractEntityEvent {
+    interface Breed extends BreedEntityEvent {
 
         /**
          * Gets the offspring {@link Entity}.
