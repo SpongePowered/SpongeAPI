@@ -34,6 +34,12 @@ import org.spongepowered.api.data.value.mutable.Value;
  */
 public interface Skull extends TileEntity {
 
+    /**
+     * Gets the current {@link SkullData} for this {@link Skull}
+     * {@link TileEntity}.
+     *
+     * @return The skull data for this skull
+     */
     default SkullData getSkullData() {
         return get(SkullData.class).get();
     }

@@ -24,16 +24,29 @@
  */
 package org.spongepowered.api.registry;
 
+import org.spongepowered.api.CatalogType;
+
 public class CatalogTypeAlreadyRegisteredException extends RegistryException {
 
     private static final long serialVersionUID = -3529519796547578613L;
     private final String id;
 
+    /**
+     * Creates a new {@link CatalogTypeAlreadyRegisteredException} with the provided
+     * {@link CatalogType} {@link String} id.
+     *
+     * @param id The id of the catalog type already registered
+     */
     public CatalogTypeAlreadyRegisteredException(String id) {
         super("Catalog type is already registered for id: " + id);
         this.id = id;
     }
 
+    /**
+     * Gets the {@link CatalogType} id already registered.
+     *
+     * @return The catalog type id already registered
+     */
     public String getAlreadyRegisteredId() {
         return this.id;
     }

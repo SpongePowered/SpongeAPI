@@ -33,6 +33,11 @@ import org.spongepowered.api.world.weather.Weather;
  */
 public interface WeatherSpawnCause extends SpawnCause {
 
+    /**
+     * Creates a new builder to construct a {@link WeatherSpawnCause}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }

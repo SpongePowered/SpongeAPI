@@ -77,15 +77,40 @@ public final class Cause {
         return new Builder();
     }
 
+    /**
+     * Creates a new {@link Builder} to make a new {@link Cause} with the
+     * desired {@link Object} as the root of the cause. Note that the
+     * builder requires all objects to be named appropriately and does not
+     * accept duplicate names.
+     *
+     * @param root The root object
+     * @return The new builder
+     */
     public static Builder source(Object root) {
         return new Builder().source(root);
     }
 
+    /**
+     * Creates a single object contained {@link Cause} with the provided
+     * {@link NamedCause} as the source and root.
+     *
+     * @param cause The object of the cause
+     * @return The single object cause
+     */
     public static Cause of(NamedCause cause) {
         checkNotNull(cause, "Cause cannot be null!");
         return new Cause(new NamedCause[]{cause});
     }
 
+    /**
+     * Creates a new {@link Cause} with the provided {@link NamedCause}
+     * objects. Note that this is similar to using a {@link #builder()}
+     * and chaining {@link Builder#named(NamedCause)} consistently.
+     *
+     * @param cause The root object to be part of the cause
+     * @param causes The remaining objects to add to the cause
+     * @return The constructed cause
+     */
     public static Cause of(NamedCause cause, NamedCause... causes) {
         Builder builder = builder();
         builder.named(cause);
@@ -95,6 +120,14 @@ public final class Cause {
         return builder.build();
     }
 
+    /**
+     * Creates a new {@link Cause} with the provided {@link NamedCause}
+     * objects. Note that this is similar to using a {@link #builder()}
+     * and chaining {@link Builder#named(NamedCause)} consistently.
+     *
+     * @param iterable The iterable containing all objects to be in the cause
+     * @return The constructed cause
+     */
     public static Cause of(Iterable<NamedCause> iterable) {
         Builder builder = builder();
         for (NamedCause cause : iterable) {
@@ -487,6 +520,13 @@ public final class Cause {
             return this;
         }
 
+        /**
+         * Adds the desired {@link Object} with the {@link NamedCause} of
+         * {@link NamedCause#OWNER}.
+         *
+         * @param object The object to be considered the "owner"
+         * @return This builder, for chaining
+         */
         public Builder owner(Object object) {
             checkArgument(!this.namesUsed.contains(NamedCause.OWNER), "Already contains an owner!");
             this.causes.add(NamedCause.owner(object));
@@ -494,6 +534,13 @@ public final class Cause {
             return this;
         }
 
+        /**
+         * Adds the desired {@link Object} with the {@link NamedCause} of
+         * {@link NamedCause#OWNER}.
+         *
+         * @param object The object to be considered the "owner"
+         * @return This builder, for chaining
+         */
         public Builder notifier(Object object) {
             checkArgument(!this.namesUsed.contains(NamedCause.NOTIFIER), "Already contains a notifier!");
             this.causes.add(NamedCause.notifier(object));
@@ -501,6 +548,13 @@ public final class Cause {
             return this;
         }
 
+        /**
+         * Adds the desired {@link NamedCause} with validation that the
+         * {@link NamedCause#getName()} is not already used in this builder.
+         *
+         * @param cause The named object
+         * @return This builder, for chaining
+         */
         public Builder named(NamedCause cause) {
             checkNotNull(cause, "NamedCause cannot be null!");
             checkArgument(!this.namesUsed.contains(cause.getName()), "Already contains an entry for: {}", cause.getName());
@@ -509,6 +563,14 @@ public final class Cause {
             return this;
         }
 
+        /**
+         * Adds the desired {@link NamedCause} with validation that the
+         * {@link NamedCause#getName()} is not already used in this builder.
+         *
+         * @param name The named object
+         * @param object The object
+         * @return This builder, for chaining
+         */
         public Builder named(String name, Object object) {
             checkNotNull(name, "Name cannot be null!");
             checkArgument(!this.namesUsed.contains(name), "Already contains an entry for {}", name);
@@ -548,12 +610,25 @@ public final class Cause {
             return this;
         }
 
+        /**
+         * Adds all desired {@link NamedCause}s in the provided
+         * {@link Collection}. Note that all rules still apply.
+         *
+         * @param causes The collection of named causes
+         * @return This builder, for chaining
+         */
         public Builder addAll(Collection<NamedCause> causes) {
             checkNotNull(causes, "Causes cannot be null!");
             causes.forEach(this::named);
             return this;
         }
 
+        /**
+         * Constructs a fresh new {@link Cause} with all previously added
+         * {@link NamedCause} objects.
+         *
+         * @return The newly constructed cause
+         */
         public Cause build() {
             checkState(!this.causes.isEmpty(), "Cannot create an empty Cause!");
             return new Cause(this.causes.toArray(new NamedCause[this.causes.size()]));

@@ -42,6 +42,8 @@ public interface BrewingEvent extends TargetTileEntityEvent {
     BrewingStand getTargetTile();
 
     /**
+     * Gets the {@link ItemStackSnapshot} as the ingredient used.
+     *
      * @return The ingredient
      */
     ItemStackSnapshot getIngredient();

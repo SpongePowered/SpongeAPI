@@ -29,19 +29,48 @@ import org.spongepowered.api.block.BlockSnapshot;
 
 public interface BlockSpawnCause extends SpawnCause {
 
+    /**
+     * Creates a new {@link Builder builder} to build a
+     * {@link BlockSpawnCause}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the {@link BlockSnapshot} representing the direct block that caused
+     * the spawn.
+     *
+     * @return The snapshot of the block that caused the spawn
+     */
     BlockSnapshot getBlockSnapshot();
 
+    /**
+     * An abstract builder for building {@link BlockSpawnCause block spawn causes}
+     * and potential derivatives.
+     *
+     * @param <T> The type extending BlockSpawnCause
+     * @param <B> The type of builder extending block spawn cause builder
+     */
     interface BlockSpawnCauseBuilder<T extends BlockSpawnCause, B extends BlockSpawnCauseBuilder<T, B>> extends
             SpawnCauseBuilder<T, B> {
 
+        /**
+         * Sets the {@link BlockSnapshot} to be used for building a
+         * {@link BlockSpawnCause}. The snapshot is <b>required</b>.
+         *
+         * @param blockSnapshot The block snapshot
+         * @return This builder, for chaining
+         */
         B block(BlockSnapshot blockSnapshot);
 
     }
 
+    /**
+     * The root builder specific to {@link BlockSpawnCause}.
+     */
     interface Builder extends BlockSpawnCauseBuilder<BlockSpawnCause, Builder> {
 
     }

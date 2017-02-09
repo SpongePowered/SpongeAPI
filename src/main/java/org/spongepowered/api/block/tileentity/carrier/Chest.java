@@ -34,10 +34,11 @@ import java.util.Optional;
 public interface Chest extends TileEntityCarrier {
 
     /**
-     * Returns the inventory representing the combination of this chest and its neighbor
-     * (which form a double chest), if availab le.
+     * Returns the inventory representing the combination of this chest
+     * and its neighbor (which form a double chest), if available.
      *
-     * <p>If this chest is not part of a double chest, then this method will return {@link Optional#empty()}.</p>
+     * <p>If this chest is not part of a double chest, then this method
+     * will return {@link Optional#empty()}.</p>
      *
      * @return The combined inventory, if available
      */

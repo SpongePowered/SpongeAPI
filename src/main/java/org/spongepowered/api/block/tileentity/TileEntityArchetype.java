@@ -104,17 +104,17 @@ public interface TileEntityArchetype extends Archetype<BlockSnapshot> {
         @Override
         Builder from(TileEntityArchetype value);
 
+        Builder from(Location<World> location);
+
         /**
          * Sets the {@link BlockState} of the archetype.
-         * 
+         *
          * @param state The new block state
          * @return This builder, for chaining
          */
         Builder state(BlockState state);
 
         Builder tile(TileEntityType tileEntityType);
-
-        Builder from(Location<World> location);
 
         Builder tile(TileEntity tileEntity);
 

@@ -42,10 +42,20 @@ public class SimpleTextTemplateApplier implements TextTemplateApplier {
     protected final Map<String, TextElement> params = new HashMap<>();
     protected TextTemplate template;
 
+    /**
+     * Creates a new {@link SimpleTextTemplateApplier} with the provided
+     * {@link TextTemplate}.
+     *
+     * @param template The template to use
+     */
     public SimpleTextTemplateApplier(TextTemplate template) {
         this.template = checkNotNull(template, "template");
     }
 
+    /**
+     * Creates a new {@link SimpleTextTemplateApplier} with an empty
+     * {@link TextTemplate}.
+     */
     public SimpleTextTemplateApplier() {
         this(TextTemplate.EMPTY);
     }

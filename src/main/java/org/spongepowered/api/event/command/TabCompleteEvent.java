@@ -36,7 +36,8 @@ import java.util.Optional;
 /**
  * Fired when a {@link Player} send a tab complete requests.
  *
- * <p>In Vanilla, this is done by pressing the <code>TAB</code> key while chat is open.</p>
+ * <p>In Vanilla, this is done by pressing the <code>TAB</code> key while chat
+ * is open.</p>
  */
 public interface TabCompleteEvent extends Event, Cancellable {
 
@@ -67,43 +68,51 @@ public interface TabCompleteEvent extends Event, Cancellable {
     List<String> getOriginalTabCompletions();
 
     /**
-     * Get the list of available suggestions. This list is mutable, so any modifications should happen to this list. All suggestions will replace
-     * the last word in the arguments on the client.
+     * Get the list of available suggestions. This list is mutable, so
+     * any modifications should happen to this list. All suggestions will
+     * replace the last word in the arguments on the client.
      *
      * @return The list of suggestion
      */
     List<String> getTabCompletions();
 
     /**
-     * Gets the location of the block that the player is looking at, if available.
+     * Gets the location of the block that the player is looking at, if
+     * available.
      *
-     * <p>In Vanilla, this will be available if the player is looking at a block within
-     * mineable range (the wireframe is displayed on the client).</p>
-     * @return
+     * <p>In Vanilla, this will be available if the player is looking at
+     * a block within mineable range (the wireframe is displayed on
+     * the client).</p>
+     *
+     * @return The target position
      */
     Optional<Location<World>> getTargetPos();
 
     /**
      * Gets whether the player is tab completing from a block's GUI
      *
-     * <p>In Vanilla, this will be <code>true</code> if the player is tab completing
-     * in a commandblock or commandblock minecart's GUI, and <code>false</code> otherwise.</p>
-     * @return
+     * <p>In Vanilla, this will be <code>true</code> if the player is tab
+     * completing in a commandblock or commandblock minecart's GUI, and
+     * <code>false</code> otherwise.</p>
+     *
+     * @return Whether this event is being used in a block
      */
     boolean isUsingBlock();
 
     /**
      * Fired when a {@link Player} sends a tab complete request for a command
      *
-     * <p>In Vanilla, this is fired when a {@link Player} presses the <code>TAB</code>
-     * key with a command in chat (a string starting with <code>/</code>).</p>
+     * <p>In Vanilla, this is fired when a {@link Player} presses the
+     * <code>TAB</code> key with a command in chat (a string starting with
+     * <code>/</code>).</p>
      */
     interface Command extends TabCompleteEvent {
 
         /**
          * Get the command as a string, without any sort of command prefix.
          *
-         * <p>For example, if the message was {@code /example bob 3 -f}, then the command would be {@code example}.</p>
+         * <p>For example, if the message was {@code /example bob 3 -f},
+         * then the command would be {@code example}.</p>
          *
          * @return The commands
          */
@@ -112,7 +121,8 @@ public interface TabCompleteEvent extends Event, Cancellable {
         /**
          * Get the arguments as a string.
          *
-         * <p>For example, if the message was {@code /example bob 3 -f}, then the arguments would be {@code bob 3 -f}.</p>
+         * <p>For example, if the message was {@code /example bob 3 -f},
+         * then the arguments would be {@code bob 3 -f}.</p>
          *
          * @return The arguments
          */
@@ -122,8 +132,9 @@ public interface TabCompleteEvent extends Event, Cancellable {
     /**
      * Fired when a {@link Player} sends a tab complete request for chat.
      *
-     * <p>In Vanilla, this is fired when a {@link Player} presses the <code>TAB</code>
-     * key with anything other than a command in chat (the contents of chat does not start with <code>/</code>.</p>
+     * <p>In Vanilla, this is fired when a {@link Player} presses the
+     * <code>TAB</code> key with anything other than a command in chat
+     * (the contents of chat does not start with <code>/</code>.</p>
      */
     interface Chat extends TabCompleteEvent {}
 

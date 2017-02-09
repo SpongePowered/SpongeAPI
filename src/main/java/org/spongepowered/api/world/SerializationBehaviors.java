@@ -36,7 +36,7 @@ public final class SerializationBehaviors {
     public static final SerializationBehavior AUTOMATIC = DummyObjectProvider.createFor(SerializationBehavior.class, "automatic");
 
     /**
-     * A {@link SerializationBehavior} where data is only saved when requested
+     * A {@link SerializationBehavior} where data is only saved when requested.
      */
     public static final SerializationBehavior MANUAL = DummyObjectProvider.createFor(SerializationBehavior.class, "manual");
 

@@ -24,14 +24,11 @@
  */
 package org.spongepowered.api.command.args;
 
-import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import static org.spongepowered.api.command.CommandMessageFormatting.error;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimaps;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.GuavaCollectors;
-import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.command.CommandCallable;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandMapping;
@@ -40,6 +37,9 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.GuavaCollectors;
+import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -110,7 +110,9 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
                         args.nextIfPresent();
                     }
                     try {
-                        return child.get().getCallable().getSuggestions(src, arguments, context.<Location<World>>getOne(CommandContext.TARGET_BLOCK_ARG).orElse(null));
+                        return child.get()
+                                .getCallable()
+                                .getSuggestions(src, arguments, context.<Location<World>>getOne(CommandContext.TARGET_BLOCK_ARG).orElse(null));
                     } catch (CommandException e) {
                         Text eText = e.getText();
                         if (eText != null) {
@@ -130,7 +132,12 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
     }
 
     private Set<String> filterCommands(final CommandSource src) {
-        return Multimaps.filterValues(this.dispatcher.getAll(), input -> input != null && input.getCallable().testPermission(src)).keys().elementSet();
+        return Multimaps.filterValues(this.dispatcher.getAll(),
+                input ->
+                     input != null && input.getCallable().testPermission(src)
+        )
+                .keys()
+                .elementSet();
     }
 
     @Override

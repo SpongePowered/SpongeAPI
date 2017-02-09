@@ -29,7 +29,7 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 
 /**
- * Fired when a command is sent
+ * Fired when a command is sent.
  */
 public interface SendCommandEvent extends Event, Cancellable {
 

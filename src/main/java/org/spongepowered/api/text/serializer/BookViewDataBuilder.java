@@ -57,6 +57,10 @@ public class BookViewDataBuilder extends AbstractDataBuilder<BookView> implement
         private static final long serialVersionUID = 1;
     };
 
+    /**
+     * Constructs a new {@link BookViewDataBuilder} to build
+     * {@link BookView}s.
+     */
     public BookViewDataBuilder() {
         super(BookView.class, 1);
     }

@@ -302,7 +302,8 @@ public final class BooleanTraits {
 
     public static final BooleanTrait WOODEN_DOOR_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "WOODEN_DOOR_POWERED");
 
-    public static final BooleanTrait WOODEN_PRESSURE_PLATE_POWERED = DummyObjectProvider.createFor(BooleanTrait.class, "WOODEN_PRESSURE_PLATE_POWERED");
+    public static final BooleanTrait WOODEN_PRESSURE_PLATE_POWERED = DummyObjectProvider
+            .createFor(BooleanTrait.class, "WOODEN_PRESSURE_PLATE_POWERED");
 
     // SORTFIELDS:OFF
 

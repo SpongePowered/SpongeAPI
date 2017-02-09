@@ -44,6 +44,12 @@ public interface Sheep extends Animal {
         return get(DyeableData.class).get();
     }
 
+    /**
+     * Gets the current {@link Value} of {@link DyeColor} for this
+     * {@link Sheep}.
+     *
+     * @return The current value of dye color for this sheep
+     */
     default Value<DyeColor> color() {
         return getValue(Keys.DYE_COLOR).get();
     }

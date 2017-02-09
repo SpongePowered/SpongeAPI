@@ -224,7 +224,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
     }
 
     /**
-     *
+     * A builder for building {@link StateMatcher}s.
      */
     final class MatcherBuilder implements ResettableBuilder<StateMatcher, MatcherBuilder> {
 
@@ -235,6 +235,14 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
         private MatcherBuilder() {
         }
 
+        /**
+         * Sets the root {@link BlockType} for the {@link StateMatcher}.
+         * <p>Note that the {@link BlockType type} <b>must be set prior</b>
+         * to setting various {@link BlockTrait traits} and their values.</p>
+         *
+         * @param type The block type to use
+         * @return This builder, for chaining
+         */
         public MatcherBuilder type(BlockType type) {
             this.type = checkNotNull(type, "BlockType cannot be null!");
             return this;
@@ -251,8 +259,9 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
          * @param value the desired value
          * @param <T> The type of comparable
          * @return This builder
-         * @throws IllegalArgumentException If the block trait does not match the block type,
-         *     or if the value does not belong to the trait with the desired block type
+         * @throws IllegalArgumentException If the block trait does not match
+         *     the block type, or if the value does not belong to the trait
+         *     with the desired block type
          */
         public <T extends Comparable<T>> MatcherBuilder trait(BlockTrait<T> trait, T value) throws IllegalArgumentException {
             checkState(this.type != null, "BlockType cannot be null! Must be set before using any traits!");
@@ -311,7 +320,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
 
         private StateMatcher(BlockType type, BlockTrait<?>[] traits, Object[] values) {
             this.type = type;
-            this.traits =new BlockTrait<?>[traits.length];
+            this.traits = new BlockTrait<?>[traits.length];
             System.arraycopy(traits, 0, this.traits, 0, traits.length);
             this.values = new Object[values.length];
             System.arraycopy(values, 0, this.values, 0, values.length);
@@ -362,9 +371,9 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
                 return false;
             }
             StateMatcher that = (StateMatcher) o;
-            return Objects.equal(this.type, that.type) &&
-                   Objects.equal(this.traits, that.traits) &&
-                   Objects.equal(this.values, that.values);
+            return Objects.equal(this.type, that.type)
+                   && Objects.equal(this.traits, that.traits)
+                   && Objects.equal(this.values, that.values);
         }
 
         @Override

@@ -35,20 +35,41 @@ public final class SlotTransaction extends Transaction<ItemStackSnapshot> {
     
     private final Slot slot;
 
+    /**
+     * Creates a new {@link SlotTransaction} with the provided {@link Slot},
+     * {@link ItemStackSnapshot original snapshot}, and
+     * {@link ItemStackSnapshot replacement snapshot}.
+     *
+     * @param slot The slot
+     * @param original The original item stack snapshot
+     * @param defaultReplacement The replacement item stack snapshot
+     */
     public SlotTransaction(Slot slot, ItemStackSnapshot original, ItemStackSnapshot defaultReplacement) {
         super(original, defaultReplacement);
         this.slot = checkNotNull(slot, "Slot cannot be null!");
     }
 
-    public final void setCustom(ItemStack stack) {
+    /**
+     * Sets the custom {@link ItemStack} output of this
+     * {@link SlotTransaction}.
+     *
+     * @param stack The stack
+     */
+    public void setCustom(ItemStack stack) {
         setCustom(checkNotNull(stack, "ItemStack was null").createSnapshot());
     }
 
-    public final Slot getSlot() {
+    /**
+     * Gets the {@link Slot} of this {@link SlotTransaction}.
+     *
+     * @return The slot of this transaction
+     */
+    public Slot getSlot() {
         return this.slot;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return com.google.common.base.Objects.toStringHelper(this)
                 .add("slot", this.slot)
                 .add("original", getOriginal())

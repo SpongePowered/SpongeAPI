@@ -30,7 +30,8 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.args.CommandContext;
 
 /**
- * Interface containing the method directing how a certain command will be executed.
+ * Interface containing the method directing how a certain command will
+ * be executed.
  */
 public interface CommandExecutor {
     /**
@@ -39,7 +40,8 @@ public interface CommandExecutor {
      * @param src The commander who is executing this command
      * @param args The parsed command arguments for this command
      * @return the result of executing this command
-     * @throws CommandException If a user-facing error occurs while executing this command
+     * @throws CommandException If a user-facing error occurs while
+     *     executing this command
      */
     CommandResult execute(CommandSource src, CommandContext args) throws CommandException;
 }

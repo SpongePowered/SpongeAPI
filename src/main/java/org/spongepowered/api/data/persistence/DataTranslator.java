@@ -44,6 +44,12 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(DataTranslators.class)
 public interface DataTranslator<T> extends CatalogType {
 
+    /**
+     * Gets the {@link TypeToken} of this translator.
+     *
+     * @see TypeToken
+     * @return The type token for this translator
+     */
     TypeToken<T> getToken();
 
     /**

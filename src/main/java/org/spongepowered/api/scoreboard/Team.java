@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.scoreboard;
 
-
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
@@ -269,8 +268,9 @@ public interface Team {
      * Unregisters this team from its {@link Scoreboard}, if present.
      *
      * <p>A team can still be fully used after being unregistered. However,
-     * it will not affect the game in any way until registered to a {@link Scoreboard}
-     * again, through {@link Scoreboard#registerTeam(Team)}.</p>
+     * it will not affect the game in any way until registered to a
+     * {@link Scoreboard} again, through
+     * {@link Scoreboard#registerTeam(Team)}.</p>
      *
      * @return Whether this team was registered to a {@link Scoreboard}.
      */
@@ -293,8 +293,8 @@ public interface Team {
          * Sets the color of the {@link Team}.
          *
          * <p>The team's color is a distinct concept from its prefix or suffix.
-         * It is only used for colored sidebar display slots, and certain statistic
-         * criteria.</p>
+         * It is only used for colored sidebar display slots, and certain
+         * statistic criteria.</p>
          *
          * @param color The color to set
          * @return This builder
@@ -304,22 +304,26 @@ public interface Team {
         /**
          * Sets the name displayed to users for the {@link Team}.
          *
-         * <p>Display names may be truncated in order to meet an implementation-defined length limit.
-         * In Vanilla, this is sixteen characters.</p>
+         * <p>Display names may be truncated in order to meet an
+         * implementation-defined length limit. In Vanilla, this is sixteen
+         * characters.</p>
          *
          * <p>By default, this is set to {@link #name(String)}</p>
          *
          * @param displayName The {@link Text} to set
          * @return This builder
-         * @throws IllegalArgumentException If the name is longer than 16 characters
+         * @throws IllegalArgumentException If the name is longer than 16
+         *     characters
          */
         Builder displayName(Text displayName) throws IllegalArgumentException;
 
         /**
-         * Sets the prefix prepended to the display name of users on the {@link Team}.
+         * Sets the prefix prepended to the display name of users on the
+         * {@link Team}.
          *
-         * <p>Display names may be truncated in order to meet an implementation-defined length limit.
-         * In Vanilla, this is sixteen characters.</p>
+         * <p>Display names may be truncated in order to meet an
+         * implementation-defined length limit. In Vanilla, this is sixteen
+         * characters.</p>
          *
          * @param prefix The new prefix for the {@link Team}
          * @return This builder
@@ -327,10 +331,12 @@ public interface Team {
         Builder prefix(Text prefix);
 
         /**
-         * Sets the suffix appended to the display name of users on the {@link Team}.
+         * Sets the suffix appended to the display name of users on the
+         * {@link Team}.
          *
-         * <p>Display names may be truncated in order to meet an implementation-defined length limit.
-         * In Vanilla, this is sixteen characters.</p>
+         * <p>Display names may be truncated in order to meet an
+         * implementation-defined length limit. In Vanilla, this is sixteen
+         * characters.</p>
          *
          * @param suffix The new suffix for the {@link Team}.
          * @return This builder
@@ -346,7 +352,8 @@ public interface Team {
         Builder allowFriendlyFire(boolean enabled);
 
         /**
-         * Sets whether invisible team members are shown for the {@link Team}.
+         * Sets whether invisible team members are shown for the
+         * {@link Team}.
          *
          * @param enabled Whether to show invisible teammates
          * @return This builder
@@ -357,7 +364,8 @@ public interface Team {
          * Sets the {@link Visibility} which controls to who nametags
          * of players on the {@link Team} are visible to.
          *
-         * @param visibility The {@link Visibility} for the {@link Team}'s nametags
+         * @param visibility The {@link Visibility} for the {@link Team}'s
+         *     nametags
          * @return This builder
          */
         Builder nameTagVisibility(Visibility visibility);
@@ -366,7 +374,8 @@ public interface Team {
          * Sets the {@link Visibility} which controls who death Texts
          * of players on the {@link Team} are visible to.
          *
-         * @param visibility The {@link Visibility} for the {@link Team}'s death Texts
+         * @param visibility The {@link Visibility} for the {@link Team}'s
+         *     death Texts
          * @return This builder
          */
         Builder deathTextVisibility(Visibility visibility);

@@ -63,7 +63,7 @@ public interface VariableAmount extends DataSerializable {
      * @return A variable amount representation
      */
     static VariableAmount range(double min, double max) {
-        return new BaseAndAddition(min, fixed(max-min));
+        return new BaseAndAddition(min, fixed(max - min));
     }
 
     /**

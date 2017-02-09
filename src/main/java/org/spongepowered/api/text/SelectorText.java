@@ -80,7 +80,7 @@ public final class SelectorText extends Text {
      *
      * @return The selector of this text
      */
-    public final Selector getSelector() {
+    public Selector getSelector() {
         return this.selector;
     }
 

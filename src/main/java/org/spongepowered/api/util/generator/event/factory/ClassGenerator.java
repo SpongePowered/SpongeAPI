@@ -178,6 +178,15 @@ public class ClassGenerator {
         }
     }
 
+    /**
+     * Gets whether the desired {@link Class} type has the desired method by
+     * {@code name} with the given {@code params}.
+     *
+     * @param type The type of class
+     * @param name The name of the method
+     * @param params The parameter array of parameter types
+     * @return True if the class has a method of the defined method and type
+     */
     public static boolean hasDeclaredMethod(Class<?> type, String name, Class<?>... params) {
         while (type != null) {
             try {

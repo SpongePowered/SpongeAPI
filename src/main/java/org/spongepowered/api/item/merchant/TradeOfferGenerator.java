@@ -37,18 +37,19 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
- * Represents a generator to create {@link TradeOffer}s with a bit of randomization
- * based on {@link ItemStackGenerator}s for populating {@link ItemStack}s and
- * finally generating a {@link TradeOffer}.
+ * Represents a generator to create {@link TradeOffer}s with a bit of
+ * randomization based on {@link ItemStackGenerator}s for populating
+ * {@link ItemStack}s and finally generating a {@link TradeOffer}.
  *
  * <p>The primary use of this, and why the {@link Random} must be provided as
- * part of the {@link Function} signature is that during multiple world instances,
- * there's different {@link Random} instances instantiated, and more can be provided
- * without the necessity to change the generator. One advantage to using a generator
- * is the ability to provide some "randomization" or "chance" on the various aspects
- * of the generated {@link TradeOffer} versus creating a static non-changing offer.
- * Normally, the vanilla {@link TradeOffer}s are using a similar generator with
- * limited scopes of what the {@link ItemStack} can be customized as.</p>
+ * part of the {@link Function} signature is that during multiple world
+ * instances, there's different {@link Random} instances instantiated, and more
+ * can be provided without the necessity to change the generator. One advantage
+ * to using a generator is the ability to provide some "randomization" or
+ * "chance" on the various aspects of the generated {@link TradeOffer} versus
+ * creating a static non-changing offer. Normally, the vanilla
+ * {@link TradeOffer}s are using a similar generator with limited scopes of
+ * what the {@link ItemStack} can be customized as.</p>
  */
 @FunctionalInterface
 public interface TradeOfferGenerator extends Function<Random, TradeOffer>, TradeOfferListMutator {

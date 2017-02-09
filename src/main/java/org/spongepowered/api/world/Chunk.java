@@ -93,7 +93,7 @@ public interface Chunk extends Extent {
      * Loads this chunk, and generates if specified and required.
      *
      * @param generate Whether or not to generate the chunk if it does not yet
-     * exist
+     *     exist
      * @return If the chunk was successfully loaded
      */
     boolean loadChunk(boolean generate);
@@ -155,7 +155,8 @@ public interface Chunk extends Extent {
      * Gets the chunk in the given direction from this chunk.
      *
      * @param direction The cardinal or ordinal direction to get the chunk from
-     * @param shouldLoad Whether the server should load or generate the chunk if unavailable
+     * @param shouldLoad Whether the server should load or generate the chunk
+     *     if unavailable
      * @return The neighbor chunk, if available or if {@code shouldLoad} is true
      */
     default Optional<Chunk> getNeighbor(Direction direction, boolean shouldLoad) {

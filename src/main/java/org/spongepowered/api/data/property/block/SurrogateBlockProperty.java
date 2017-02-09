@@ -35,10 +35,21 @@ import org.spongepowered.api.data.property.BooleanProperty;
  */
 public class SurrogateBlockProperty extends BooleanProperty {
 
+    /**
+     * Creates a new {@link SurrogateBlockProperty}.
+     *
+     * @param value  The value of whether a block is a surrogate block
+     */
     public SurrogateBlockProperty(boolean value) {
         super(value);
     }
 
+    /**
+     * Creates a new {@link SurrogateBlockProperty}.
+     *
+     * @param value The value
+     * @param operator The operator for comparisons
+     */
     public SurrogateBlockProperty(boolean value, Operator operator) {
         super(value, operator);
     }

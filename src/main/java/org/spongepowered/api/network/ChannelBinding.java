@@ -46,7 +46,7 @@ public interface ChannelBinding {
     ChannelRegistrar getRegistrar();
 
     /**
-     * Gets this channel's bound name
+     * Gets this channel's bound name.
      *
      * @return The channel name
      */

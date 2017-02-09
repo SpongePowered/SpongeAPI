@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.service.user;
 
-import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.GameProfileManager;
 
 import java.util.Collection;

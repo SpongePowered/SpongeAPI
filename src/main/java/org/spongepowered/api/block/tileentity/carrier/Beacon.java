@@ -46,6 +46,11 @@ public interface Beacon extends TileEntityCarrier {
      */
     int getCompletedLevels();
 
+    /**
+     * Gets the current {@link BeaconData} for this beacon.
+     *
+     * @return The current beacon data for this beacon
+     */
     default BeaconData getBeaconData() {
         return get(BeaconData.class).get();
     }
