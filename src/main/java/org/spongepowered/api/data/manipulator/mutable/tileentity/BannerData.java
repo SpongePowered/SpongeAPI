@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.tileentity;
 
 import org.spongepowered.api.block.tileentity.Banner;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableBannerData;
 import org.spongepowered.api.data.meta.PatternLayer;
@@ -43,6 +44,7 @@ public interface BannerData extends DataManipulator<BannerData, ImmutableBannerD
      * Gets the {@link Value} for the base {@link DyeColor}.
      *
      * @return The value for the base color
+     * @see Keys#BANNER_BASE_COLOR
      */
     Value<DyeColor> baseColor();
 
@@ -51,6 +53,7 @@ public interface BannerData extends DataManipulator<BannerData, ImmutableBannerD
      * {@link Banner}.
      *
      * @return The pattern list
+     * @see Keys#BANNER_PATTERNS
      */
     PatternListValue patternsList();
 

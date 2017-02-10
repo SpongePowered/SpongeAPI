@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.item;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableEnchantmentData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
 import org.spongepowered.api.data.meta.ItemEnchantment;
@@ -42,6 +43,7 @@ public interface EnchantmentData extends ListData<ItemEnchantment, EnchantmentDa
      * Gets the {@link ListValue} for the {@link ItemEnchantment}s.
      *
      * @return The list value for item enchantments
+     * @see Keys#ITEM_ENCHANTMENTS
      */
     default ListValue<ItemEnchantment> enchantments() {
         return getListValue();

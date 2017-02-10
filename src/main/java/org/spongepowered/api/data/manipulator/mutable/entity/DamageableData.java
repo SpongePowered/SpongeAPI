@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableDamageableData;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
@@ -45,6 +46,7 @@ public interface DamageableData extends DataManipulator<DamageableData, Immutabl
      * Gets the {@link OptionalValue} for the last attacker.
      *
      * @return The last attacker as an optional value
+     * @see Keys#LAST_ATTACKER
      */
     OptionalValue<Living> lastAttacker();
 
@@ -52,6 +54,7 @@ public interface DamageableData extends DataManipulator<DamageableData, Immutabl
      * Gets the last amount of damage dealt as an optional value.
      *
      * @return The last damage dealt as an optional value
+     * @see Keys#LAST_DAMAGE
      */
     OptionalValue<Double> lastDamage();
 

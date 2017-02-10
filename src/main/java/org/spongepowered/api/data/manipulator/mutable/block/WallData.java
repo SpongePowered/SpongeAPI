@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableWallData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.WallType;
@@ -32,6 +33,8 @@ import org.spongepowered.api.data.type.WallType;
 /**
  * An {@link VariantData} for the {@link WallType}. Usually applicable to
  * {@link BlockTypes#COBBLESTONE_WALL}.
+ *
+ * @see Keys#WALL_TYPE
  */
 public interface WallData extends VariantData<WallType, WallData, ImmutableWallData> {
 

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.item;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableLoreData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
@@ -42,6 +43,7 @@ public interface LoreData extends ListData<Text, LoreData, ImmutableLoreData> {
      * Gets the {@link ListValue} of the "lore" {@link Text}.
      *
      * @return The list value of text lore
+     * @see Keys#ITEM_LORE
      */
     default ListValue<Text> lore() {
         return getListValue();

@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableBigMushroomData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.BigMushroomType;
@@ -32,6 +33,8 @@ import org.spongepowered.api.data.type.BigMushroomType;
 /**
  * Represents data related to {@link BlockTypes#BROWN_MUSHROOM_BLOCK} and
  * {@link BlockTypes#RED_MUSHROOM_BLOCK}.
+ *
+ * @see Keys#BIG_MUSHROOM_TYPE
  */
 public interface BigMushroomData extends VariantData<BigMushroomType, BigMushroomData, ImmutableBigMushroomData> {
 

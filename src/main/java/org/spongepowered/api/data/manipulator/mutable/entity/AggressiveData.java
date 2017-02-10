@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAggressiveData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -38,6 +39,7 @@ public interface AggressiveData extends DataManipulator<AggressiveData, Immutabl
      * Gets the {@link Value} for the "aggressive" state.
      *
      * @return The value for the aggressive state
+     * @see Keys#ANGRY
      */
     Value<Boolean> aggressive();
 

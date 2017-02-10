@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable;
 
 import org.spongepowered.api.block.tileentity.Skull;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableSkullData;
 import org.spongepowered.api.data.type.SkullType;
 import org.spongepowered.api.item.ItemTypes;
@@ -34,6 +35,8 @@ import org.spongepowered.api.item.inventory.ItemStack;
  * An {@link VariantData} specializing in the {@link SkullType}
  * represented by a {@link Skull} or {@link ItemStack} of the type
  * {@link ItemTypes#SKULL}.
+ *
+ * @see Keys#SKULL_TYPE
  */
 public interface SkullData extends VariantData<SkullType, SkullData, ImmutableSkullData> {
 

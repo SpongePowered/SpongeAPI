@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.type.Profession;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
@@ -43,15 +44,17 @@ public interface ZombieData extends DataManipulator<ZombieData,
 
     /**
      * Returns a value specifying Zombie's type.
-     *
+
      * @return Zombie's type
+     * @see Keys#ZOMBIE_TYPE
      */
     Value<org.spongepowered.api.data.type.ZombieType> type();
 
     /**
      * Value representing a zombie's zombie's {@link Profession}.
-     * .
+     *
      * @return Profession of the zombie, or {@link Optional#empty()} if it has none
+     * @see Keys#VILLAGER_ZOMBIE_PROFESSION
      */
     OptionalValue<Profession> profession();
 

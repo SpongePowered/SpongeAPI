@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableMobSpawnerData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -47,6 +48,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * a new attempt at spawning an {@link Entity} is made.
      *
      * @return The immutable bounded value for the remaining delay
+     * @see Keys#SPAWNER_REMAINING_DELAY
      */
     MutableBoundedValue<Short> remainingDelay();
 
@@ -55,6 +57,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * required between attempts to spawn an {@link Entity}.
      *
      * @return The bounded value of the minimum spawn delay
+     * @see Keys#SPAWNER_MINIMUM_DELAY
      */
     MutableBoundedValue<Short> minimumSpawnDelay();
 
@@ -63,6 +66,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * required between attempts to spawn an {@link Entity}.
      *
      * @return The bounded value of the maximum spawn delay
+     * @see Keys#SPAWNER_MAXIMUM_DELAY
      */
     MutableBoundedValue<Short> maximumSpawnDelay();
 
@@ -73,6 +77,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * attempts are made to spawn an {@link Entity}.
      *
      * @return The immutable bounded value
+     * @see Keys#SPAWNER_SPAWN_COUNT
      */
     MutableBoundedValue<Short> spawnCount();
 
@@ -83,6 +88,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * provided value, no attempts to spawn a new {@link Entity} will be made.
      *
      * @return The bounded value of the maximum supported nearby entities
+     * @see Keys#SPAWNER_MAXIMUM_NEARBY_ENTITIES
      */
     MutableBoundedValue<Short> maximumNearbyEntities();
 
@@ -93,6 +99,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * {@link Entity} is made.
      *
      * @return The value of the required player range to spawn entities
+     * @see Keys#SPAWNER_REQUIRED_PLAYER_RANGE
      */
     MutableBoundedValue<Short> requiredPlayerRange();
 
@@ -102,6 +109,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      *
      * @return The immutable value of the maximum spawn range an entity can be
      *     spawned
+     * @see Keys#SPAWNER_SPAWN_RANGE
      */
     MutableBoundedValue<Short> spawnRange();
 
@@ -112,6 +120,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * already provided {@link #possibleEntitiesToSpawn()}.
      *
      * @return The next possible entity to spawn
+     * @see Keys#SPAWNER_NEXT_ENTITY_TO_SPAWN
      */
     Value<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn();
 
@@ -124,6 +133,7 @@ public interface MobSpawnerData extends DataManipulator<MobSpawnerData, Immutabl
      * {@link #nextEntityToSpawn()}.
      *
      * @return The immutable weighted entity collection value of entities
+     * @see Keys#SPAWNER_ENTITIES
      */
     WeightedCollectionValue<EntityArchetype> possibleEntitiesToSpawn();
 

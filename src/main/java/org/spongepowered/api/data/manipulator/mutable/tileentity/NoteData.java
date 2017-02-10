@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.tileentity;
 
 import org.spongepowered.api.block.tileentity.Note;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableNoteData;
 import org.spongepowered.api.data.type.NotePitch;
@@ -40,6 +41,7 @@ public interface NoteData extends DataManipulator<NoteData, ImmutableNoteData> {
      * Gets the {@link Value} for the {@link NotePitch}.
      *
      * @return The value for the note pitch
+     * @see Keys#NOTE_PITCH
      */
     Value<NotePitch> note();
 

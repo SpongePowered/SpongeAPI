@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableMovementSpeedData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -40,6 +41,7 @@ public interface MovementSpeedData extends DataManipulator<MovementSpeedData, Im
      * Gets the {@link MutableBoundedValue} for the "walking" speed.
      *
      * @return The value for the walking speed
+     * @see Keys#WALKING_SPEED
      */
     Value<Double> walkSpeed();
 
@@ -47,6 +49,7 @@ public interface MovementSpeedData extends DataManipulator<MovementSpeedData, Im
      * Gets the {@link MutableBoundedValue} for the "flying" speed.
      *
      * @return The value for the flying speed
+     * @see Keys#FLYING_SPEED
      */
     Value<Double> flySpeed();
 

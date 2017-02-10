@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFallingBlockData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -40,6 +41,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * the {@link FallingBlock} has fallen.
      *
      * @return The immutable value for the damage per block of falling
+     * @see Keys#FALL_DAMAGE_PER_BLOCK
      */
     Value<Double> fallDamagePerBlock();
 
@@ -48,6 +50,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * entity for falling on the entity.
      *
      * @return The maximum damage the block can deal
+     * @see Keys#MAX_FALL_DAMAGE
      */
     Value<Double> maxFallDamage();
 
@@ -55,6 +58,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * Gets the {@link BlockState} the falling block is representing.
      *
      * @return The falling block's block state
+     * @see Keys#FALLING_BLOCK_STATE
      */
     Value<BlockState> blockState();
 
@@ -63,6 +67,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * it lands.
      *
      * @return True if this block will attempt to place itself when it lands
+     * @see Keys#CAN_PLACE_AS_BLOCK
      */
     Value<Boolean> canPlaceAsBlock();
 
@@ -71,13 +76,15 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * way that it can not be placed.
      *
      * @return Whether this falling block can drop as an item
+     * @see Keys#CAN_DROP_AS_ITEM
      */
     Value<Boolean> canDropAsItem();
 
     /**
-     * Gets the time the block has been falling. Defaults to a value of 1.
+     * Gets the number of ticks the block has been falling for.
      *
      * @return The time the block has been falling
+     * @see Keys#FALL_TIME
      */
     Value<Integer> fallTime();
 
@@ -85,6 +92,7 @@ public interface FallingBlockData extends DataManipulator<FallingBlockData, Immu
      * Gets whether this falling block will damage entities where it lands.
      *
      * @return Whether this falling block will damage entities where it lands
+     * @see Keys#FALLING_BLOCK_CAN_HURT_ENTITIES
      */
     Value<Boolean> canHurtEntities();
 

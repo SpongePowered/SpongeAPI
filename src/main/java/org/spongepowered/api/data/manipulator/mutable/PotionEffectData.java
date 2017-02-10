@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable;
 
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.ImmutablePotionEffectData;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
@@ -45,6 +46,7 @@ public interface PotionEffectData extends ListData<PotionEffect, PotionEffectDat
      * Gets the {@link ListValue} of the {@link PotionEffect}s.
      *
      * @return The list value of all potion effects contained
+     * @see Keys#POTION_EFFECTS
      */
     default ListValue<PotionEffect> effects() {
         return getListValue();

@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.tileentity;
 
 import org.spongepowered.api.block.tileentity.Sign;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSignData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
@@ -52,6 +53,7 @@ public interface SignData extends ListData<Text, SignData, ImmutableSignData> {
      * to show.
      *
      * @return The list of text lines
+     * @see Keys#SIGN_LINES
      */
     default ListValue<Text> lines() {
         return getListValue();

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableInvisibilityData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -40,16 +41,26 @@ public interface InvisibilityData extends DataManipulator<InvisibilityData, Immu
      *
      * <p>Note that this is different from the {@link #vanish()} state as when an
      * {@link Entity} is "invisible", update packets are still sent to all clients
-     * and the server. Likewise, no </p>
+     * and the server.</p>
      *
      * @return The value of the invisible state
+     * @see Keys#INVISIBLE
      */
     Value<Boolean> invisible();
 
     /**
      * Gets the {@link Value} of the "vanish" state of an {@link Entity}.
      *
+     * <p>The presence of a vanished entity will not be made known to a client;
+     * no packets pertaining to this entity are sent. Client-side, this entity
+     * will cease to exist. Server-side it may still be targeted by hostile
+     * entities or collide with other entities.</p>
+     *
+     * <p>Vanishing an {@link Entity} ridden by other entities (see
+     * {@link PassengerData}) will cause problems.</p>
+     *
      * @return The value of the vanish state
+     * @see Keys#VANISH
      */
     Value<Boolean> vanish();
 
@@ -58,7 +69,8 @@ public interface InvisibilityData extends DataManipulator<InvisibilityData, Immu
      * be ignored for collision detection. The collision detection can affect
      * collisions with other {@link Entity entities}, blocks, etc.
      *
-     * @return The value of the collision detection state
+     * @return The value of the ignore collision detection state
+     * @see Keys#VANISH_IGNORES_COLLISION
      */
     Value<Boolean> ignoresCollisionDetection();
 
@@ -68,6 +80,7 @@ public interface InvisibilityData extends DataManipulator<InvisibilityData, Immu
      * for their AI.
      *
      * @return The value of the targetable detection state
+     * @see Keys#VANISH_PREVENTS_TARGETING
      */
     Value<Boolean> untargetable();
 

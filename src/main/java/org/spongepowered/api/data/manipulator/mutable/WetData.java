@@ -26,6 +26,7 @@ package org.spongepowered.api.data.manipulator.mutable;
 
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableWetData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -42,6 +43,7 @@ public interface WetData extends DataManipulator<WetData, ImmutableWetData> {
      * Gets the {@link Value} for the "wet" state.
      *
      * @return The value for the wet state
+     * @see Keys#IS_WET
      */
     Value<Boolean> wet();
 

@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableHingeData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.Hinge;
@@ -32,6 +33,8 @@ import org.spongepowered.api.data.type.Hinge;
 /**
  * An {@link VariantData} for a {@link Hinge}. Usually applicable to
  * {@link BlockTypes#ACACIA_DOOR}, {@link BlockTypes#IRON_DOOR} etc.
+ *
+ * @see Keys#HINGE_POSITION
  */
 public interface HingeData extends VariantData<Hinge, HingeData, ImmutableHingeData> {
 

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableFireworkEffectData;
 import org.spongepowered.api.data.value.mutable.ListValue;
@@ -46,6 +47,7 @@ public interface FireworkEffectData extends ListData<FireworkEffect, FireworkEff
      * will apply to the charge.</p>
      *
      * @return The list value of firework effects
+     * @see Keys#FIREWORK_EFFECTS
      */
     default ListValue<FireworkEffect> effects() {
         return getListValue();

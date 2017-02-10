@@ -24,12 +24,15 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.entity.living.monster.Skeleton;
 
 /**
  * A type of {@link VariantData} for {@link org.spongepowered.api.data.type.SkeletonType}s belonging
  * to an {@link Skeleton}.
+ *
+ * @see Keys#SKELETON_TYPE
  */
 @Deprecated
 @SuppressWarnings("deprecation")

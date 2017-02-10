@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.block;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableDelayableData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -37,6 +38,7 @@ public interface DelayableData extends DataManipulator<DelayableData, ImmutableD
      * Gets the {@link MutableBoundedValue} for the delay.
      *
      * @return The mutable bounded value delay.
+     * @see Keys#DELAY
      */
     MutableBoundedValue<Integer> delay();
 

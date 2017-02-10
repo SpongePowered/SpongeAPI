@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableTameableData;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
@@ -47,6 +48,7 @@ public interface TameableData extends DataManipulator<TameableData, ImmutableTam
      * {@link Tamer}.
      *
      * @return The optional value for the uuid of the tamer
+     * @see Keys#TAMED_OWNER
      */
     OptionalValue<UUID> owner();
 

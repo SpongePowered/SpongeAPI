@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutablePortionData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.PortionType;
@@ -34,6 +35,8 @@ import org.spongepowered.api.data.type.PortionType;
  * with the partial bounding boxes for the actual blocks. Usually applicable
  * to {@link BlockTypes#DOUBLE_PLANT}, {@link BlockTypes#STONE_SLAB}
  * {@link BlockTypes#WOODEN_DOOR}s, etc.
+ *
+ * @see Keys#PORTION_TYPE
  */
 public interface PortionData extends VariantData<PortionType, PortionData, ImmutablePortionData> {
 

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableCustomNameVisibleData;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
@@ -42,6 +43,7 @@ public interface CustomNameVisibleData extends DataManipulator<CustomNameVisible
      * Returns whether the display name is visible to players.
      *
      * @return Whether the display name is visible or not
+     * @see Keys#CUSTOM_NAME_VISIBLE
      */
     Value<Boolean> customNameVisible();
 

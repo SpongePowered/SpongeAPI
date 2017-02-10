@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableCriticalHitData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -39,6 +40,7 @@ public interface CriticalHitData extends DataManipulator<CriticalHitData, Immuta
      * Gets the {@link Value} for the "critical hit" state.
      *
      * @return The value for the "critical hit" state
+     * @see Keys#CRITICAL_HIT
      */
     Value<Boolean> criticalHit();
 

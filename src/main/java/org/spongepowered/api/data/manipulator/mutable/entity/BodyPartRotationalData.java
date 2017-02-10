@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableBodyPartRotationalData;
 import org.spongepowered.api.data.type.BodyPart;
@@ -44,6 +45,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * rotations.
      *
      * @return The map value of body parts to rotations
+     * @see Keys#BODY_ROTATIONS
      */
     MapValue<BodyPart, Vector3d> partRotation();
 
@@ -51,6 +53,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * Gets the direction the headpiece is aiming at.
      *
      * @return The direction the headpiece is aiming at
+     * @see Keys#HEAD_ROTATION
      */
     Value<Vector3d> headDirection();
 
@@ -58,6 +61,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * Gets the direction the body is aiming at.
      *
      * @return The direction the body is aiming at
+     * @see Keys#CHEST_ROTATION
      */
     Value<Vector3d> bodyRotation();
 
@@ -65,6 +69,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * Gets the direction the left arm is aiming at.
      *
      * @return The direction the left arm is aiming at
+     * @see Keys#LEFT_ARM_ROTATION
      */
     Value<Vector3d> leftArmDirection();
 
@@ -72,6 +77,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * Gets the direction the right arm is aiming at.
      *
      * @return The direction the right arm is aiming at
+     * @see Keys#RIGHT_ARM_ROTATION
      */
     Value<Vector3d> rightArmDirection();
 
@@ -79,6 +85,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * Gets the direction the left leg is aiming at.
      *
      * @return The direction the left leg is aiming at
+     * @see Keys#LEFT_LEG_ROTATION
      */
     Value<Vector3d> leftLegDirection();
 
@@ -86,6 +93,7 @@ public interface BodyPartRotationalData extends DataManipulator<BodyPartRotation
      * Gets the direction the right leg is aiming at.
      *
      * @return The direction the right leg is aiming at
+     * @see Keys#RIGHT_LEG_ROTATION
      */
     Value<Vector3d> rightLegDirection();
 

@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableShrubData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.ShrubType;
@@ -32,6 +33,8 @@ import org.spongepowered.api.data.type.ShrubType;
 /**
  * A {@link VariantData} for the {@link ShrubType}. Usually applicable to
  * {@link BlockTypes#TALLGRASS}.
+ *
+ * @see Keys#SHRUB_TYPE
  */
 public interface ShrubData extends VariantData<ShrubType, ShrubData, ImmutableShrubData> {
 

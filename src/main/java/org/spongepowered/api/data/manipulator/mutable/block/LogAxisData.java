@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableLogAxisData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.LogAxes;
@@ -34,6 +35,8 @@ import org.spongepowered.api.data.type.LogAxis;
  * An {@link VariantData} for the {@link LogAxis}. Usually applies to all types
  * of {@link BlockTypes#LOG}. This is fundamentally different from
  * {@link AxisData} due to the fact that a log can have a {@link LogAxes#NONE}.
+ *
+ * @see Keys#LOG_AXIS
  */
 public interface LogAxisData extends VariantData<LogAxis, LogAxisData, ImmutableLogAxisData> {
 
