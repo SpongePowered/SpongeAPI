@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableGameModeData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.entity.living.Humanoid;
@@ -32,6 +33,8 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 /**
  * An {@link VariantData} for the current {@link GameMode} of a
  * {@link Humanoid} entity.
+ *
+ * @see Keys#GAME_MODE
  */
 public interface GameModeData extends VariantData<GameMode, GameModeData, ImmutableGameModeData> {
 

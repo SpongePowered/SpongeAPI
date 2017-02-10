@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableHorseData;
 import org.spongepowered.api.data.type.HorseColor;
@@ -47,6 +48,7 @@ public interface HorseData extends DataManipulator<HorseData, ImmutableHorseData
      * is {@link HorseVariants#HORSE}</p>
      *
      * @return The value for the horse color
+     * @see Keys#HORSE_COLOR
      */
     Value<HorseColor> color();
 
@@ -58,6 +60,7 @@ public interface HorseData extends DataManipulator<HorseData, ImmutableHorseData
      * is {@link HorseVariants#HORSE}</p>
      *
      * @return The value for the horse style
+     * @see Keys#HORSE_STYLE
      */
     Value<HorseStyle> style();
 
@@ -69,8 +72,8 @@ public interface HorseData extends DataManipulator<HorseData, ImmutableHorseData
      * armor. Health may be affected.</p>
      *
      * @return The value for the horse variant
+     * @see Keys#HORSE_VARIANT
      */
     Value<HorseVariant> variant();
-
 
 }

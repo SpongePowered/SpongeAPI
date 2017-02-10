@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable;
 
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableRotationalData;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.util.rotation.Rotation;
@@ -32,6 +33,8 @@ import org.spongepowered.api.util.rotation.Rotation;
 /**
  * An {@link VariantData} handling the {@link Rotation} of a
  * {@link DataHolder}. It can be associated with blocks, or {@link ItemFrame}s.
+ *
+ * @see Keys#ROTATION
  */
 public interface RotationalData extends VariantData<Rotation, RotationalData, ImmutableRotationalData> {
 

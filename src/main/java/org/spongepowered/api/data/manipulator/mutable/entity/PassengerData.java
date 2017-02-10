@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutablePassengerData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
 import org.spongepowered.api.data.value.mutable.ListValue;
@@ -41,6 +42,7 @@ public interface PassengerData extends ListData<EntitySnapshot, PassengerData, I
      * as a passenger.
      *
      * @return The value for the passenger entity
+     * @see Keys#PASSENGERS
      */
     ListValue<EntitySnapshot> passengers();
 

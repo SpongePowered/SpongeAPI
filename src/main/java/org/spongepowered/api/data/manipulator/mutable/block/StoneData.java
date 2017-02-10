@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableStoneData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.StoneType;
@@ -32,6 +33,8 @@ import org.spongepowered.api.data.type.StoneType;
 /**
  * A {@link VariantData} for the {@link StoneType}. Usually applicable to
  * {@link BlockTypes#STONE}.
+ *
+ * @see Keys#STONE_TYPE
  */
 public interface StoneData extends VariantData<StoneType, StoneData, ImmutableStoneData> {
 

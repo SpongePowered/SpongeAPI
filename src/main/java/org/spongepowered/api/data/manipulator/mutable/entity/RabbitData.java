@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableRabbitData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.RabbitType;
@@ -32,6 +33,8 @@ import org.spongepowered.api.entity.living.animal.Rabbit;
 /**
  * A type of {@link VariantData} for {@link RabbitType}s belonging to an
  * {@link Rabbit}.
+ *
+ * @see Keys#RABBIT_TYPE
  */
 public interface RabbitData extends VariantData<RabbitType, RabbitData, ImmutableRabbitData> {
 

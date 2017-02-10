@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableTradeOfferData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
@@ -45,6 +46,7 @@ public interface TradeOfferData extends ListData<TradeOffer, TradeOfferData, Imm
      * offered.
      *
      * @return The list value of trade offers
+     * @see Keys#TRADE_OFFERS
      */
     default ListValue<TradeOffer> tradeOffers() {
         return getListValue();

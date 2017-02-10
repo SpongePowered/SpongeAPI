@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableOccupiedData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -39,6 +40,7 @@ public interface OccupiedData extends DataManipulator<OccupiedData, ImmutableOcc
      * Gets the {@link Value} for the "occupied" state.
      *
      * @return The value for the "occupied" state
+     * @see Keys#OCCUPIED
      */
     Value<Boolean> occupied();
 

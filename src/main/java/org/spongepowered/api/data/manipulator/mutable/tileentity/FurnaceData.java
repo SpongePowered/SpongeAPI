@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.tileentity;
 
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableFurnaceData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -41,6 +42,7 @@ public interface FurnaceData extends DataManipulator<FurnaceData, ImmutableFurna
      * the current used fuel is depleted.
      *
      * @return The value for the already passed burn time
+     * @see Keys#PASSED_BURN_TIME
      */
     MutableBoundedValue<Integer> passedBurnTime();
 
@@ -54,6 +56,7 @@ public interface FurnaceData extends DataManipulator<FurnaceData, ImmutableFurna
      *
      * @return The value for the maximum amount of fuel that can be supplied
      *     with the used fuel item
+     * @see Keys#MAX_BURN_TIME
      */
     MutableBoundedValue<Integer> maxBurnTime();
 
@@ -63,6 +66,7 @@ public interface FurnaceData extends DataManipulator<FurnaceData, ImmutableFurna
      * {@link #maxCookTime()}, the {@link ItemStack} is cooked.
      *
      * @return The value for the already passed cook time
+     * @see Keys#PASSED_COOK_TIME
      */
     MutableBoundedValue<Integer> passedCookTime();
 
@@ -75,6 +79,7 @@ public interface FurnaceData extends DataManipulator<FurnaceData, ImmutableFurna
      * the {@link #passedCookTime()}.</p>
      *
      * @return The value for the time the item has to cook
+     * @see Keys#MAX_COOK_TIME
      */
     MutableBoundedValue<Integer> maxCookTime();
 }

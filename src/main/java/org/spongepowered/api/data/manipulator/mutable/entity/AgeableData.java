@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAgeableData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -39,6 +40,7 @@ public interface AgeableData extends DataManipulator<AgeableData, ImmutableAgeab
      * Gets the {@link MutableBoundedValue} for the "age" state.
      *
      * @return The mutable bounded value for the "age"
+     * @see Keys#AGE
      */
     MutableBoundedValue<Integer> age();
 

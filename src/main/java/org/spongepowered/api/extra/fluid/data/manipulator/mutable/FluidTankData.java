@@ -27,6 +27,7 @@ package org.spongepowered.api.extra.fluid.data.manipulator.mutable;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.MappedData;
 import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.extra.fluid.FluidStack;
@@ -56,6 +57,7 @@ public interface FluidTankData extends MappedData<Direction, List<FluidStackSnap
      * {@link FluidStack}s differing based on {@link Direction}.
      *
      * @return The map value of direction to list of fluid snapshots
+     * @see Keys#FLUID_TANK_CONTENTS
      */
     MapValue<Direction, List<FluidStackSnapshot>> fluids();
 

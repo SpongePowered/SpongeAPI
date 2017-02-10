@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableStatisticData;
 import org.spongepowered.api.data.value.mutable.MapValue;
@@ -41,6 +42,7 @@ public interface StatisticData extends DataManipulator<StatisticData, ImmutableS
      * a {@link Player}.
      *
      * @return The map value of statistics
+     * @see Keys#STATISTICS
      */
     MapValue<Statistic, Long> statistics();
 

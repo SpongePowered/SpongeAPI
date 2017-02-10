@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSkeletonData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.SkeletonType;
@@ -32,6 +33,8 @@ import org.spongepowered.api.entity.living.monster.Skeleton;
 /**
  * A type of {@link VariantData} for {@link SkeletonType}s belonging
  * to an {@link Skeleton}.
+ *
+ * @see Keys#SKELETON_TYPE
  */
 public interface SkeletonData extends VariantData<SkeletonType, SkeletonData, ImmutableSkeletonData> {
 

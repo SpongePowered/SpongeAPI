@@ -26,6 +26,7 @@ package org.spongepowered.api.data.manipulator.mutable.item;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableBlockItemData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -51,6 +52,7 @@ public interface BlockItemData extends DataManipulator<BlockItemData, ImmutableB
      * {@link BlockState}.
      *
      * @return The value for the currently represented block state
+     * @see Keys#ITEM_BLOCKSTATE
      */
     Value<BlockState> state();
 

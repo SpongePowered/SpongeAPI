@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import org.spongepowered.api.Server;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableJoinData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -44,6 +45,7 @@ public interface JoinData extends DataManipulator<JoinData, ImmutableJoinData> {
      * the {@link Server} the first time.
      *
      * @return The value for the first time a player joined
+     * @see Keys#FIRST_DATE_PLAYED
      */
     Value<Instant> firstPlayed();
 
@@ -52,6 +54,7 @@ public interface JoinData extends DataManipulator<JoinData, ImmutableJoinData> {
      * the {@link Server} the last time.
      *
      * @return The value for the last time a player joined
+     * @see Keys#LAST_DATE_PLAYED
      */
     Value<Instant> lastPlayed();
 

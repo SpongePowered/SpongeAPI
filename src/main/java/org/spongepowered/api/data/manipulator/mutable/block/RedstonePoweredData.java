@@ -26,6 +26,7 @@ package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableRedstonePoweredData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -47,6 +48,7 @@ public interface RedstonePoweredData extends DataManipulator<RedstonePoweredData
      * power".
      *
      * @return The bounded value for "redstone power"
+     * @see Keys#POWER
      */
     MutableBoundedValue<Integer> power();
 

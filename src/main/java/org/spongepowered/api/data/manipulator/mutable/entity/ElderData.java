@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableElderData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -41,6 +42,7 @@ public interface ElderData extends DataManipulator<ElderData, ImmutableElderData
      * Gets the {@link Value} for the "elder" state.
      *
      * @return The value for the elder state
+     * @see Keys#ELDER_GUARDIAN
      */
     Value<Boolean> elder();
 

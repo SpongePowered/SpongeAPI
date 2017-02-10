@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableScreamingData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -40,6 +41,7 @@ public interface ScreamingData extends DataManipulator<ScreamingData, ImmutableS
      * Gets the {@link Value} for the "screaming" state.
      *
      * @return The value for the screaming state
+     * @see Keys#IS_SCREAMING
      */
     Value<Boolean> screaming();
 

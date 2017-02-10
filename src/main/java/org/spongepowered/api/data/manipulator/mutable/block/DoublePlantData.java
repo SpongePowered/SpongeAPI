@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableDoublePlantData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.DoublePlantType;
@@ -32,6 +33,8 @@ import org.spongepowered.api.data.type.DoublePlantType;
 /**
  * An {@link VariantData} for {@link DoublePlantType}. Usually applicable to
  * {@link BlockTypes#DOUBLE_PLANT}.
+ *
+ * @see Keys#DOUBLE_PLANT_TYPE
  */
 public interface DoublePlantData extends VariantData<DoublePlantType, DoublePlantData, ImmutableDoublePlantData> {
 

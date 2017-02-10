@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.tileentity;
 
 import org.spongepowered.api.block.tileentity.carrier.TileEntityCarrier;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableLockableData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -42,6 +43,7 @@ public interface LockableData extends DataManipulator<LockableData, ImmutableLoc
      * Gets the {@link Value} for the "lock" token.
      *
      * @return The immutable value for the lock token
+     * @see Keys#LOCK_TOKEN
      */
     Value<String> lockToken();
 
