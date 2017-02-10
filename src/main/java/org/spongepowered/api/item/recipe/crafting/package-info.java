@@ -22,39 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory.crafting;
-
-import org.spongepowered.api.item.inventory.type.GridInventory;
-import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
-import org.spongepowered.api.world.World;
-
-import java.util.Optional;
-
-/**
- * A CraftingInventory represents the inventory of something that can craft items.
- */
-public interface CraftingInventory extends GridInventory {
-
-    /**
-     * Gets the crafting matrix of this CraftingInventory.
-     *
-     * @return The crafting matrix
-     */
-    GridInventory getCraftingGrid();
-
-    /**
-     * Gets the result slot of this CraftingInventory.
-     *
-     * @return The result slot
-     */
-    CraftingOutput getResult();
-
-    /**
-     * Retrieves the recipe formed by this CraftingInventory, if any.
-     *
-     * @param world The world where the item would be crafted in
-     * @return The recipe or {@link Optional#empty()} if no recipe is formed
-     */
-    Optional<CraftingRecipe> getRecipe(World world);
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.item.recipe.crafting;

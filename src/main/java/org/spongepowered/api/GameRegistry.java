@@ -34,7 +34,8 @@ import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.merchant.TradeOfferGenerator;
 import org.spongepowered.api.item.merchant.VillagerRegistry;
-import org.spongepowered.api.item.recipe.RecipeRegistry;
+import org.spongepowered.api.item.recipe.crafting.CraftingRecipeRegistry;
+import org.spongepowered.api.item.recipe.smelting.SmeltingRecipeRegistry;
 import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
@@ -44,10 +45,10 @@ import org.spongepowered.api.registry.RegistryModule;
 import org.spongepowered.api.registry.RegistryModuleAlreadyRegisteredException;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
-import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.BlockStatistic;
 import org.spongepowered.api.statistic.EntityStatistic;
 import org.spongepowered.api.statistic.ItemStatistic;
+import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticType;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.selector.SelectorFactory;
@@ -292,11 +293,18 @@ public interface GameRegistry {
     Favicon loadFavicon(BufferedImage image) throws IOException;
 
     /**
-     * Retrieves the RecipeRegistry for this GameRegistry.
+     * Retrieves the crafting RecipeRegistry for this GameRegistry.
      *
-     * @return The recipe registry
+     * @return The crafting recipe registry
      */
-    RecipeRegistry getRecipeRegistry();
+    CraftingRecipeRegistry getCraftingRecipeRegistry();
+
+    /**
+     * Retrieves the smelting RecipeRegistry for this GameRegistry.
+     *
+     * @return The smelting recipe registry
+     */
+    SmeltingRecipeRegistry getSmeltingRecipeRegistry();
 
     /**
      * Gets a {@link ResourcePack} that's already been created by its ID.
