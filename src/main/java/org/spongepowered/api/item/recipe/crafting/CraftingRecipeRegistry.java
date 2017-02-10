@@ -64,6 +64,10 @@ public interface CraftingRecipeRegistry extends RecipeRegistry<CraftingRecipe> {
 
     /**
      * Creates a predicate with vanilla matching behavior.
+     * <p>Crafting recipes can only be crafted when all of the ingredients match
+     * the items in the input grid. Minecraft uses a specific way of determining
+     * whether the item matches the ingredient or not. This method exposes
+     * that behavior, so it can be used by plugins.</p>
      *
      * @param ingredient The ingredient to check against
      * @return The predicate

@@ -76,6 +76,9 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
         /**
          * Sets the aisle pattern for the shaped recipe and resets the
          * registered ingredient predicates.
+         * <p>An aisle represents a single row of the crafting inventory
+         * input. Use the {@link #where(char, Predicate)} to assign ingredient
+         * predicates to characters of the aisles.</p>
          *
          * @param aisle A string array of ingredients
          * @return The builder
