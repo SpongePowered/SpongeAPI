@@ -200,6 +200,40 @@ public interface EntityUniverse {
     Optional<Entity> createEntity(DataContainer entityContainer, Vector3d position);
 
     /**
+     * Create an entity instance at the given position with the default equipment.
+     *
+     * <p>Creating an entity does not spawn the entity into the world. An entity
+     * created means the entity can be spawned at the given location. If
+     * {@link Optional#empty()} was returned, the entity is not able to spawn at
+     * the given location. Furthermore, this allows for the {@link Entity} to be
+     * customized further prior to traditional "ticking" and processing by core
+     * systems.</p>
+     *
+     * @param type The type
+     * @param position The position
+     * @return An entity, if one was created
+     */
+    Optional<Entity> createEntityNaturally(EntityType type, Vector3d position);
+
+    /**
+     * Create an entity instance at the given position with the default equipment.
+     *
+     * <p>Creating an entity does not spawn the entity into the world. An entity
+     * created means the entity can be spawned at the given location. If
+     * {@link Optional#empty()} was returned, the entity is not able to spawn at
+     * the given location. Furthermore, this allows for the {@link Entity} to be
+     * customized further prior to traditional "ticking" and processing by core
+     * systems.</p>
+     *
+     * @param type The type
+     * @param position The position
+     * @return An entity, if one was created
+     */
+    default Optional<Entity> createEntityNaturally(EntityType type, Vector3i position) {
+        return createEntityNaturally(type, position.toDouble());
+    }
+
+    /**
      * Creates and restores an {@link Entity} from the provided
      * {@link EntitySnapshot} at the provided {@link Vector3d} position.
      *
