@@ -19,6 +19,7 @@ afterEvaluate {
 }
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven {
         name = 'sponge'
@@ -38,7 +39,7 @@ dependencies {
 
 // Source compiler configuration
 tasks.withType(JavaCompile) {
-    options.compilerArgs += ['-Xlint:all', '-Xlint:-path']
+    options.compilerArgs += ['-Xlint:all', '-Xlint:-path', '-parameters']
     options.deprecation = true
     options.encoding = 'UTF-8'
 }
