@@ -32,28 +32,22 @@ import java.util.ResourceBundle;
 import java.util.function.Function;
 
 /**
- * A translation class designed to be used for ResourceBundles. For convenience,
- * most users will want to wrap this in a class that keeps track of resource
- * bundles. A simple implementation would look like:
+ * <p>A translation class designed to be used for ResourceBundles. For
+ * convenience, most users will want to wrap this in a class that keeps track of
+ * resource bundles. A simple implementation would look like:</p>
  *
- * <pre>
- *     public class TranslationHelper {
- *         private static final Function&lt;Locale, ResourceBundle&gt; LOOKUP_FUNC = new Function&lt;Locale, ResourceBundle&gt;() {
- *             &at;Nullable
- *             &at;Override
- *             public ResourceBundle apply(Locale input) {
- *                return ResourceBundle.getBundle("com.mydomain.myplugin.Translations", input);
- *             }
- *         };
- *
- *         private TranslationHelper() {} // Prevent instance creation
- *
- *         public static Text t(String key, Object... args) {
- *             return Texts.of(new ResourceBundleTranslation(key, LOOKUP_FUNC), args);
- *         }
- *     }
- *
- * </pre>
+ * <blockquote><code>public class TranslationHelper {<br />&nbsp; &nbsp; private
+ * static final Function&lt;Locale, ResourceBundle&gt; LOOKUP_FUNC = new
+ * Function&lt;Locale, ResourceBundle&gt;() {<br />&nbsp; &nbsp; &nbsp; &nbsp;
+ * &#064;Nullable &#064;Override<br />&nbsp; &nbsp; &nbsp; &nbsp; public
+ * ResourceBundle apply(Locale input) {<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+ * &nbsp; return ResourceBundle.getBundle("com.mydomain.myplugin.Translations",
+ * input);<br /> &nbsp; &nbsp; &nbsp; &nbsp; }<br />&nbsp; &nbsp; };<br /><br />
+ * &nbsp; &nbsp; private TranslationHelper() {} // Prevent instance creation
+ * <br /><br />&nbsp; &nbsp; public static Text t(String key, Object... args) {
+ * <br />&nbsp; &nbsp; &nbsp; &nbsp; return Texts.of(new
+ * ResourceBundleTranslation(key, LOOKUP_FUNC), args);<br />&nbsp; &nbsp; }
+ * <br />}</code></blockquote>
  */
 public class ResourceBundleTranslation implements Translation {
 
