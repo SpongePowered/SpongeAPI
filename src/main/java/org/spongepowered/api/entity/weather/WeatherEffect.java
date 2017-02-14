@@ -58,12 +58,13 @@ public interface WeatherEffect extends Entity {
     }
 
     /**
-     * Gets the {@link MutableBoundedValue} for the amount of "ticks"
-     * remaining before the "expiration" occurs.
+     * Gets the {@link MutableBoundedValue} for the amount of "ticks" remaining
+     * before the "expiration" occurs.
      *
      * @return The immutable bounded value for the amount of ticks remaining
      */
     default MutableBoundedValue<Integer> expireTicks() {
         return getValue(Keys.EXPIRATION_TICKS).get();
     }
+
 }

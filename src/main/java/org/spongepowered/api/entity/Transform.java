@@ -37,22 +37,22 @@ import javax.annotation.Nullable;
 
 /**
  * Represents the immutable world attributes of an {@link Entity}. Comprised of
- * a {@link Location} and two {@link Vector3d} representing the rotation
- * and the scale. The implementation may internally use a location or a
- * separate extent and position. Be wary that calling {@link #getLocation()}
- * could result in object creation.
+ * a {@link Location} and two {@link Vector3d} representing the rotation and the
+ * scale. The implementation may internally use a location or a separate extent
+ * and position. Be wary that calling {@link #getLocation()} could result in
+ * object creation.
  *
- * <p>A transform might not have an extent if it is invalid. In this case
- * all methods which return a reference to it will throw
+ * <p>A transform might not have an extent if it is invalid. In this case all
+ * methods which return a reference to it will throw
  * {@link IllegalStateException}.</p>
  *
- * <p>This is an entity transform, not a model one. These values are subject
- * to interpretation by the implementation and may trigger animations
- * depending on the target model.</p>
+ * <p>This is an entity transform, not a model one. These values are subject to
+ * interpretation by the implementation and may trigger animations depending on
+ * the target model.</p>
  *
- * <p>Even though Minecraft doesn't currently support entity scales
- * it is part of the transform in case it gets added later. For now
- * this return {@link Vector3d#ONE}.</p>
+ * <p>Even though Minecraft doesn't currently support entity scales it is part
+ * of the transform in case it gets added later. For now this return
+ * {@link Vector3d#ONE}.</p>
  *
  * @param <E> The extent containing the transform
  */
@@ -136,8 +136,8 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * Gets the {@link Location} this transform contains.
-     * This is the position and the extent.
+     * Gets the {@link Location} this transform contains. This is the position
+     * and the extent.
      *
      * @return The location
      * @throws IllegalStateException If the transform doesn't have an extent
@@ -150,8 +150,8 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * Creates a copy of this transform and sets the {@link Location}.
-     * This sets both the position and the extent.
+     * Creates a copy of this transform and sets the {@link Location}. This sets
+     * both the position and the extent.
      *
      * @param location The new location
      * @return A new transform
@@ -195,8 +195,8 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * Creates a copy of this transform while setting the position of
-     * the new one.
+     * Creates a copy of this transform while setting the position of the new
+     * one.
      *
      * @param position The position
      * @return A new transform
@@ -241,13 +241,10 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * Creates a copy of this transform and sets the rotation as
-     * a quaternion.
+     * Creates a copy of this transform and sets the rotation as a quaternion.
      *
-     * <p>Quaternions are objectively better than
-     * the Euler angles preferred by Minecraft.
-     * This is for compatibility with
-     * the flow-math library.</p>
+     * <p>Quaternions are objectively better than the Euler angles preferred by
+     * Minecraft. This is for compatibility with the flow-math library.</p>
      *
      * @param rotation The new rotation
      * @return A new transform
@@ -260,10 +257,8 @@ public final class Transform<E extends Extent> {
     /**
      * Returns the rotation as a quaternion.
      *
-     * <p>Quaternions are objectively better than
-     * the Euler angles preferred by Minecraft.
-     * This is for compatibility with
-     * the flow-math library.</p>
+     * <p>Quaternions are objectively better than the Euler angles preferred by
+     * Minecraft. This is for compatibility with the flow-math library.</p>
      *
      * @return The rotation
      */
@@ -311,8 +306,7 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * Creates a copy of this transform and sets the scale for
-     * each axis.
+     * Creates a copy of this transform and sets the scale for each axis.
      *
      * @param scale The scale
      * @return A new transform
@@ -323,11 +317,10 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * "Adds" another transform to this one.
-     * This is equivalent to adding the
-     * translation, rotation and scale
-     * individually. Returns the results
-     * as a new copy.
+     * "Adds" another transform to this one. This is equivalent to adding the
+     * translation, rotation and scale individually.
+     *
+     * <p>Returns the results as a new copy.</p>
      *
      * @param other The transform to add
      * @return A new transform
@@ -344,7 +337,8 @@ public final class Transform<E extends Extent> {
 
     /**
      * Adds a translation to this transform.
-     * Returns the results as a new copy.
+     *
+     * <p>Returns the results as a new copy.</p>
      *
      * @param translation The translation to add
      * @return A new transform
@@ -355,8 +349,7 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * Adds a rotation to this transform.
-     * Returns the results as a new copy.
+     * Adds a rotation to this transform. Returns the results as a new copy.
      *
      * @param rotation The rotation to add
      * @return A new transform
@@ -368,13 +361,12 @@ public final class Transform<E extends Extent> {
 
     /**
      * Adds a rotation to this transform.
-     * Quaternions are objectively better than
-     * the Euler angles preferred by Minecraft.
-     * This is the preferred method when
-     * dealing with rotation additions.
-     * This is for compatibility with
-     * the flow-math library.
-     * Returns the results as a new copy.
+     *
+     * <p>Quaternions are objectively better than the Euler angles preferred by
+     * Minecraft. This is the preferred method when dealing with rotation
+     * additions. This is for compatibility with the flow-math library.</p>
+     *
+     * <p>Returns the results as a new copy.</p>
      *
      * @param rotation The rotation to add
      * @return A new transform
@@ -385,11 +377,10 @@ public final class Transform<E extends Extent> {
     }
 
     /**
-     * "Adds" a scale to this transform.
-     * Scales are multiplicative, so
-     * this actually multiplies the
-     * current scale.
-     * Returns the results as a new copy.
+     * "Adds" a scale to this transform. Scales are multiplicative, so this
+     * actually multiplies the current scale.
+     *
+     * <p>Returns the results as a new copy.</p>
      *
      * @param scale The scale to add
      * @return A new transform
@@ -427,7 +418,9 @@ public final class Transform<E extends Extent> {
 
     /**
      * Returns if this {@link Transform} is still valid.
-     * Examples of invalid Transforms are:
+     *
+     * <p>Examples of invalid Transforms are:</p>
+     *
      * <ul>
      *     <li>A Transform without an {@link Extent}</li>
      *     <li>A Transform whose {@link Extent} object is no longer present</li>
@@ -480,4 +473,5 @@ public final class Transform<E extends Extent> {
     private static Quaterniond fromAxesAngles(Vector3d angles) {
         return Quaterniond.fromAxesAnglesDeg(angles.getX(), -angles.getY(), angles.getZ());
     }
+
 }

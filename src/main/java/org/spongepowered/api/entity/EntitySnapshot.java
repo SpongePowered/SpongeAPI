@@ -66,19 +66,18 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
      * Gets an {@link Optional} containing the {@link UUID} of the
      * {@link Entity} that this {@link EntitySnapshot} is representing. If the
      * {@link Optional} is {@link Optional#empty()}, then this snapshot must
-     * have been created by an {@link Builder} without an
-     * {@link Entity} as a source.
+     * have been created by an {@link Builder} without an {@link Entity} as a
+     * source.
      *
      * @return The Optional where the UUID may be present
      */
     Optional<UUID> getUniqueId();
 
     /**
-     * Gets the {@link Transform} as an {@link Optional} as the
-     * {@link Location} may be undefined if this {@link EntitySnapshot} was
-     * built without a location. This method is linked to {@link #getLocation()}
-     * such that if there is a {@link Location}, there is usually a
-     * {@link Transform}.
+     * Gets the {@link Transform} as an {@link Optional} as the {@link Location}
+     * may be undefined if this {@link EntitySnapshot} was built without a
+     * location. This method is linked to {@link #getLocation()} such that if
+     * there is a {@link Location}, there is usually a {@link Transform}.
      *
      * @return The transform, if available
      */
@@ -117,9 +116,8 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
         /**
          * Sets the {@link WorldProperties} for this {@link EntitySnapshot}.
          *
-         * <p>
-         *     This is used to grab the {@link UUID} of the World for this snapshot.
-         * </p>
+         * <p>This is used to grab the {@link UUID} of the World for this
+         * snapshot.</p>
          *
          * @param worldProperties The WorldProperties
          * @return This builder, for chaining
@@ -135,7 +133,8 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
         Builder type(EntityType entityType);
 
         /**
-         * Sets the coordinates of this {@link EntitySnapshot} from a {@link Vector3i}.
+         * Sets the coordinates of this {@link EntitySnapshot} from a
+         * {@link Vector3i}.
          *
          * @param position The Vector3i representing the coordinates
          * @return This builder, for chaining
@@ -149,5 +148,7 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
          * @return This builder, for chaining
          */
         Builder from(Entity entity);
+
     }
+
 }

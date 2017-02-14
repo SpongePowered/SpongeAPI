@@ -33,9 +33,9 @@ import org.spongepowered.api.item.inventory.ItemStack;
 public interface HopperMinecart extends ContainerMinecart<HopperMinecart> {
 
     /**
-     * Gets a copy of the {@link CooldownData}. The cooldown data represents
-     * the delay before this {@link HopperMinecart} will attempt to transfer
-     * an {@link ItemStack}.
+     * Gets a copy of the {@link CooldownData}. The cooldown data represents the
+     * delay before this {@link HopperMinecart} will attempt to transfer an
+     * {@link ItemStack}.
      *
      * @return A copy of the cooldown data
      */
