@@ -54,6 +54,7 @@ public final class DummyObjectProvider {
      * Creates a new dummy class implementing the specified interface.
      *
      * @param type The interface to generate a dummy class for
+     * @param fieldName field name to pass to constructor
      * @param <T> The type of class to be created
      * @return The generated dummy class
      */
@@ -66,6 +67,15 @@ public final class DummyObjectProvider {
         }
     }
 
+    /**
+     * Creates a new dummy class implementing the specified interface.
+     *
+     * @param type The interface to generate a dummy class for
+     * @param fieldName field name to pass to constructor
+     * @param <T> Base type for the dummy class
+     * @param <I> Interface for the dummy class to implement
+     * @return The generated dummy class
+     */
     @SuppressWarnings("unchecked")
     public static <T, I extends T> I createExtendedFor(Class<T> type, String fieldName) {
         try {

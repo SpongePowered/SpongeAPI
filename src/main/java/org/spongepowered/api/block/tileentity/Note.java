@@ -42,6 +42,11 @@ public interface Note extends TileEntity {
      */
     void playNote();
 
+    /**
+     * Retrieves the {@link NoteData} for this note block.
+     *
+     * @return the note data
+     */
     default NoteData getNoteData() {
         return get(NoteData.class).get();
     }

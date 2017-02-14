@@ -67,6 +67,8 @@ public final class KeyFactory {
      * @param elementToken The element class
      * @param valueToken The value class
      * @param query The query
+     * @param id The id for the new key
+     * @param name The name for the new key
      * @return The generated key
      */
     public static <E, V extends BaseValue<E>> Key<V> makeSingleKey(final TypeToken<E> elementToken, final TypeToken<V> valueToken,
@@ -128,7 +130,10 @@ public final class KeyFactory {
      *
      * @param <E> The type of element
      * @param elementToken The element class
+     * @param valueToken The value class
      * @param query The query to access the data
+     * @param id The id for the new key
+     * @param name The name for the new key
      * @return The generated key
      */
     public static <E> Key<ListValue<E>> makeListKey(final TypeToken<? extends List<E>> elementToken, final TypeToken<ListValue<E>> valueToken,
@@ -185,8 +190,10 @@ public final class KeyFactory {
      *
      * @param <E> The type of element
      * @param elementToken The element class
-     * @param valueToken
+     * @param valueToken The value token
      * @param query The query to access the data
+     * @param id The id for the new key
+     * @param name The name for the new key
      * @return The generated key
      */
     public static <E> Key<SetValue<E>> makeSetKey(final TypeToken<? extends Set<E>> elementToken, TypeToken<SetValue<E>> valueToken,
@@ -248,6 +255,8 @@ public final class KeyFactory {
      * @param elementToken The element token
      * @param valueToken The value class of the map
      * @param query The query
+     * @param id The id for the new key
+     * @param name The name for the new key
      * @return The generated key
      */
     public static <K, V> Key<MapValue<K, V>> makeMapKey(final TypeToken<Map<K, V>> elementToken, final TypeToken<MapValue<K, V>> valueToken,
@@ -307,13 +316,14 @@ public final class KeyFactory {
      *
      * @param <E> The element type
      * @param elementToken The element class
-     * @param valueToken
+     * @param valueToken The value class
      * @param query The query
+     * @param id The id for the new key
+     * @param name The name for the new key
      * @return The generated key
      */
     public static <E> Key<OptionalValue<E>> makeOptionalKey(final TypeToken<Optional<E>> elementToken, TypeToken<OptionalValue<E>> valueToken,
-            final DataQuery query, final String id,
-            final String name) {
+            final DataQuery query, final String id, final String name) {
         validateId(id);
         return new Key<OptionalValue<E>>() {
             @Nullable private String string;

@@ -32,8 +32,8 @@ public class CatalogTypeAlreadyRegisteredException extends RegistryException {
     private final String id;
 
     /**
-     * Creates a new {@link CatalogTypeAlreadyRegisteredException} with the provided
-     * {@link CatalogType} {@link String} id.
+     * Creates a new {@link CatalogTypeAlreadyRegisteredException} with the
+     * provided {@link CatalogType} {@link String} id.
      *
      * @param id The id of the catalog type already registered
      */
