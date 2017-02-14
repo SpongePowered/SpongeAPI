@@ -52,30 +52,29 @@ import java.util.function.Function;
 public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H extends ValueContainer<?>> extends ValueContainer<S> {
 
     /**
-     * Gets the desired {@link ValueContainer} of type <code>H</code> if the
+     * <p>Gets the desired {@link ValueContainer} of type <code>H</code> if the
      * {@link ValueContainer} is compatible. Since the return type is an
      * {@link Optional}, a short way of checking compatibility and presence
-     * of the requested data is to mimic the following:
-     * <pre>
-     * {@code
-     * // MyCompositeValueStore extends CompositeValueStore<MyCompositeValueStore, DataManipulator<?>>
-     * MyCompositeValueStore valueStore;
-     * final Optional<DisplayNameData> displayOptional = valueStore.get(DisplayNameData.class);
-     * if (displayOptional.isPresent()) {
-     *     // We know that we have a present DataManipulator and it's supported
-     *     System.out.println(displayOptional.get().displayName().get().toString());
-     * }
-     * }
-     * </pre>
-     * This is the equivalent as performing the following:
-     * <pre>
-     * {@code
-     * MyCompositeValueStore valueStore;
-     * if (valueStore.supports(DisplayNameData.class)) {
-     *     System.out.println(valueStore.getOrNull(DisplayNameData.class).displayName().get().toString());
-     * }
-     * }
-     * </pre>
+     * of the requested data is to mimic the following:</p>
+     *
+     * <blockquote><code>// MyCompositeValueStore extends
+     * CompositeValueStore&lt;MyCompositeValueStore,
+     * DataManipulator&lt;?&gt;&gt;<br />
+     * MyCompositeValueStore valueStore;<br />
+     * final Optional&lt;DisplayNameData&gt; displayOptional =
+     * valueStore.get(DisplayNameData.class);<br />
+     * if (displayOptional.isPresent()) {<br />
+     * &nbsp; &nbsp; // We know that we have a present DataManipulator and it's
+     * supported<br />&nbsp; &nbsp;
+     * System.out.println(displayOptional.get().displayName().get().toString());
+     * <br />}</code></blockquote>
+     *
+     * <p>This is the equivalent to performing the following:</p>
+     *
+     * <blockquote><code>MyCompositeValueStore valueStore;<br />
+     * if (valueStore.supports(DisplayNameData.class)) {<br />&nbsp; &nbsp;
+     * System.out.println(valueStore.getOrNull(DisplayNameData.class
+     * ).displayName().get().toString());<br />}</code></blockquote>
      *
      * <p>The advantage of this returning an {@link Optional} is that the
      * {@link ValueContainer} may be unsupported, the required data missing
@@ -116,33 +115,32 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     }
 
     /**
-     * Gets the desired {@link ValueContainer} of type <code>H</code> if the
+     * <p>Gets the desired {@link ValueContainer} of type <code>H</code> if the
      * {@link ValueContainer} is compatible. If insufficient data is available
      * to provide a {@link ValueContainer} with all {@link Value}s preset, a
      * new instance of the {@link ValueContainer} is returned with "default"
      * values. Since the return type is an {@link Optional}, a short way of
      * checking compatibility and presence of the requested data is to mimic
-     * the following:
-     * <pre>
-     * {@code
-     * // MyCompositeValueStore extends CompositeValueStore<MyCompositeValueStore, DataManipulator<?>>
-     * MyCompositeValueStore valueStore;
-     * final Optional<DisplayNameData> displayOptional = valueStore.getOrCreate(DisplayNameData.class);
-     * if (displayOptional.isPresent()) {
-     *     // We know that we have a present DataManipulator and it's supported
-     *     System.out.println(displayOptional.get().displayName().get().toString());
-     * }
-     * }
-     * </pre>
-     * This is the equivalent as performing the following:
-     * <pre>
-     * {@code
-     * MyCompositeValueStore valueStore;
-     * if (valueStore.supports(DisplayNameData.class)) {
-     *     System.out.println(valueStore.get(DisplayNameData.class).get().displayName().get().toString());
-     * }
-     * }
-     * </pre>
+     * the following:</p>
+     *
+     * <blockquote><code>// MyCompositeValueStore extends
+     * CompositeValueStore&lt;MyCompositeValueStore,
+     * DataManipulator&lt;?&gt;&gt;<br />
+     * MyCompositeValueStore valueStore;<br />
+     * final Optional&lt;DisplayNameData&gt; displayOptional =
+     * valueStore.getOrCreate(DisplayNameData.class);<br />
+     * if (displayOptional.isPresent()) {<br />
+     * &nbsp; &nbsp; // We know that we have a present DataManipulator and it's
+     * supported<br />&nbsp; &nbsp;
+     * System.out.println(displayOptional.get().displayName().get().toString()
+     * );<br />}</code></blockquote>
+     *
+     * <p>This is the equivalent to performing the following:</p>
+     *
+     * <blockquote><code>MyCompositeValueStore valueStore;<br />
+     * if (valueStore.supports(DisplayNameData.class)) {<br />&nbsp; &nbsp;
+     * System.out.println(valueStore.get(DisplayNameData.class
+     * ).get().displayName().get().toString());<br />}</code></blockquote>
      *
      * <p>The advantage of this returning an {@link Optional} is that the
      * {@link ValueContainer} may be unsupported, the required data missing

@@ -401,23 +401,23 @@ public final class Transform<E extends Extent> {
 
     /**
      * Returns a matrix representation of this transform.
-     * This includes the position, rotation and scale.
-     * To apply the transform to a vector, use the following
      *
-     * <p><pre>{@code
-     * Vector3d original = ...;
-     * Transform transform = ...;
+     * <p>This includes the position, rotation and scale. To apply the transform
+     * to a vector, use the following:</p>
      *
-     * Vector3d transformed = transform.toMatrix().transform(original.toVector4(1)).toVector3();
-     * }</pre></p>
+     * <blockquote><code>Vector3d original = ...;<br />
+     * Transform transform = ...;<br /><br />
+     * Vector3d transformed =
+     * transform.toMatrix().transform(original.toVector4(1)).toVector3();<br />
+     * }</code></blockquote>
      *
-     * <p>This converts the original 3D vector to 4D by appending 1 as the
-     * w coordinate, applies the transformation, then converts it back to
-     * 3D by dropping the w coordinate.</p>
+     * <p>This converts the original 3D vector to 4D by appending 1 as the w
+     * coordinate, applies the transformation, then converts it back to 3D by
+     * dropping the w coordinate.</p>
      *
-     * <p>Using a 4D matrix and a w coordinate with value 1 is what allows
-     * for the position to be included in the transformation applied by the
-     * matrix.</p>
+     * <p>Using a 4D matrix and a w coordinate with value 1 is what allows for
+     * the position to be included in the transformation applied by the matrix.
+     * </p>
      *
      * @return The transform as a matrix
      */
