@@ -45,12 +45,13 @@ public interface ThrownPotion extends Projectile {
     }
 
     /**
-     * Gets the {@link Value} for the represented {@link ItemStack} as
-     * an {@link ItemStackSnapshot}.
+     * Gets the {@link Value} for the represented {@link ItemStack} as an
+     * {@link ItemStackSnapshot}.
      *
      * @return The value for the item stack snapshot
      */
     default Value<ItemStackSnapshot> item() {
         return getValue(Keys.REPRESENTED_ITEM).get();
     }
+
 }

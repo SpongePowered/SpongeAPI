@@ -56,4 +56,5 @@ public interface Firework extends Projectile, FusedExplosive {
     default ListValue<FireworkEffect> effects() {
         return getValue(Keys.FIREWORK_EFFECTS).get();
     }
+
 }

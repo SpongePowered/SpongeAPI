@@ -31,8 +31,9 @@ public interface FurnaceMinecart extends Minecart {
 
     /**
      * Gets the current fuel time in ticks.
-     * <p>Usually, the fuel time will decay until reaching 0. At
-     * zero, the fuel minecart will decelerate to a stop.</p>
+     *
+     * <p>Usually, the fuel time will decay until reaching 0. At zero, the fuel
+     * minecart will decelerate to a stop.</p>
      *
      * @return The current fuel time in ticks
      */
@@ -40,10 +41,12 @@ public interface FurnaceMinecart extends Minecart {
 
     /**
      * Sets the fuel time in ticks.
-     * <p>Usually, the fuel time will decay until reaching 0. At
-     * zero, the fuel minecart will decelerate to a stop.</p>
+     *
+     * <p>Usually, the fuel time will decay until reaching 0. At zero, the fuel
+     * minecart will decelerate to a stop.</p>
      *
      * @param fuel The fuel time in ticks
      */
     void setFuel(int fuel);
+
 }

@@ -46,20 +46,20 @@ import javax.annotation.Nullable;
 
 /**
  * A factory of {@link Key}s, useful for both the implementation of SpongeAPI,
- * and for plugins wishing to provide their own {@link Key}s without having
- * to remain afraid of having to cast back and forth.
+ * and for plugins wishing to provide their own {@link Key}s without having to
+ * remain afraid of having to cast back and forth.
  */
 public final class KeyFactory {
 
     private KeyFactory() {}
 
     /**
-     * Creates a new {@link Key} with the provided <code>E</code> element
-     * class and <code>V</code> {@link Value} class along with the provided
-     * default {@link DataQuery} to be used with the generated {@link Key}.
+     * Creates a new {@link Key} with the provided <code>E</code> element class
+     * and <code>V</code> {@link Value} class along with the provided default
+     * {@link DataQuery} to be used with the generated {@link Key}.
      *
-     * <p>Note that {@link Key}s are not registered, but it is recommended
-     * to avoid generating {@link Key}s of potentially conflicting
+     * <p>Note that {@link Key}s are not registered, but it is recommended to
+     * avoid generating {@link Key}s of potentially conflicting
      * {@link DataQuery}(s).</p>
      *
      * @param <E> The type of element
@@ -113,8 +113,8 @@ public final class KeyFactory {
             public String toString() {
                 if (this.string == null) {
                     this.string = "Key{Value:" + valueToken.getRawType().getSimpleName() + "<"
-                                  + elementToken.getRawType().getSimpleName() + ">, Query: "
-                                  + query.toString() + "}";
+                            + elementToken.getRawType().getSimpleName() + ">, Query: "
+                            + query.toString() + "}";
                 }
 
                 return this.string;

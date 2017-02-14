@@ -34,12 +34,10 @@ import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.util.Color;
 
 /**
- * Represents an AreaEffectCloud. The cloud will apply {@link PotionEffect}s
- * to {@link Entity} instances within it's bounding box.
+ * Represents an AreaEffectCloud. The cloud will apply {@link PotionEffect}s to
+ * {@link Entity} instances within it's bounding box.
  */
 public interface AreaEffectCloud extends Entity {
-
-
 
     /**
      * Gets the {@link AreaEffectCloudData} for this cloud.
@@ -98,9 +96,9 @@ public interface AreaEffectCloud extends Entity {
     }
 
     /**
-     * Gets the bounded {@code radiusOnUse} value of this cloud.
-     * The radius is reduced per {@link Entity} affected.
-     * Once the radius is {@code 0}, the cloud dissipates.
+     * Gets the bounded {@code radiusOnUse} value of this cloud. The radius is
+     * reduced per {@link Entity} affected. Once the radius is {@code 0}, the
+     * cloud dissipates.
      *
      * @return The bounded radius reduced on use value
      */
@@ -109,10 +107,9 @@ public interface AreaEffectCloud extends Entity {
     }
 
     /**
-     * Gets the bounded {@code radiusPerTick} value of this cloud.
-     * The radius is reduced per tick (so technically can be set to
-     * {@code 0} to have it remain permanent until it's effects have
-     * been used up.
+     * Gets the bounded {@code radiusPerTick} value of this cloud. The radius is
+     * reduced per tick (so technically can be set to {@code 0} to have it
+     * remain permanent until it's effects have been used up.
      *
      * @return The bounded radius reduction per tick value
      */
@@ -121,9 +118,9 @@ public interface AreaEffectCloud extends Entity {
     }
 
     /**
-     * Gets the bounded {@code durationOnUse} value of this cloud.
-     * The duration on use is reduced for every time that this cloud
-     * applies it's {@link PotionEffect}s on an {@link Entity}.
+     * Gets the bounded {@code durationOnUse} value of this cloud. The duration
+     * on use is reduced for every time that this cloud applies its
+     * {@link PotionEffect}s on an {@link Entity}.
      *
      * @return The bounded duration on use value
      */
@@ -132,9 +129,9 @@ public interface AreaEffectCloud extends Entity {
     }
 
     /**
-     * Gets the bounded {@code applicationDelay} value of this cloud.
-     * What this means is the application delay between times of application
-     * on an {@link Entity}.
+     * Gets the bounded {@code applicationDelay} value of this cloud. What this
+     * means is the application delay between times of application on an
+     * {@link Entity}.
      *
      * @return The bounded re-application delay value
      */
@@ -143,9 +140,9 @@ public interface AreaEffectCloud extends Entity {
     }
 
     /**
-     * Gets the {@link ListValue} of {@link PotionEffect}s of this cloud.
-     * The potion effects will affect any {@link Entity} according to the
-     * various delays and ticks remaining of this cloud.
+     * Gets the {@link ListValue} of {@link PotionEffect}s of this cloud. The
+     * potion effects will affect any {@link Entity} according to the various
+     * delays and ticks remaining of this cloud.
      *
      * @return The list of potion effects
      */
@@ -161,6 +158,5 @@ public interface AreaEffectCloud extends Entity {
     default MutableBoundedValue<Integer> age() {
         return getValue(Keys.AREA_EFFECT_CLOUD_AGE).get();
     }
-
 
 }
