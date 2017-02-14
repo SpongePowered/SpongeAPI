@@ -518,6 +518,7 @@ public class DiscreteTransform3 {
      * axes can only be rotated by multiples of 180 degrees.
      *
      * @param quarterTurns The amount of quarter turns in this rotation
+     * @param axis Axis for rotation
      * @param size The size of the volume to rotate
      * @return The new rotation transform
      */

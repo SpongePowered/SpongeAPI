@@ -40,24 +40,27 @@ import org.spongepowered.api.world.extent.worker.procedure.BlockVolumeMerger;
 public interface MutableBlockVolumeWorker<V extends MutableBlockVolume> extends BlockVolumeWorker<V> {
 
     /**
-     * Similar to {@link BlockVolumeWorker#map(BlockVolumeMapper, MutableBlockVolume)} but uses the operating volume as the destination.
+     * Similar to {@link BlockVolumeWorker#map(BlockVolumeMapper,
+     * MutableBlockVolume)} but uses the operating volume as the destination.
      * Precautions must be taken as the volume is modified while the operation
      * is being performed, and so the surrounding blocks might not be the
      * original ones.
-     *  @param mapper The mapping operation
      *
+     * @param mapper The mapping operation
      */
     default void map(BlockVolumeMapper mapper) {
         map(mapper, getVolume());
     }
 
     /**
-     * Similar to {@link BlockVolumeWorker#merge(BlockVolume, BlockVolumeMerger, MutableBlockVolume)} but uses the operating volume as
-     * the destination. Precautions must be taken as the volume is modified
-     * while the operation is being performed, and so the surrounding blocks
-     * might not be the original ones.
-     *  @param merger The merging operation
+     * Similar to {@link BlockVolumeWorker#merge(BlockVolume, BlockVolumeMerger,
+     * MutableBlockVolume)} but uses the operating volume as the destination.
+     * Precautions must be taken as the volume is modified while the operation
+     * is being performed, and so the surrounding blocks might not be the
+     * original ones.
      *
+     * @param right The right-hand operand of the merge operation
+     * @param merger The merging operation
      */
     default void merge(BlockVolume right, BlockVolumeMerger merger) {
         merge(right, merger, getVolume());
@@ -67,7 +70,7 @@ public interface MutableBlockVolumeWorker<V extends MutableBlockVolume> extends 
      * Applies a filler operation to the volume.
      *
      * @param filler The filler operation
-     * @param cause
+     * @param cause The cause of this operation
      */
     void fill(BlockVolumeFiller filler, Cause cause);
 

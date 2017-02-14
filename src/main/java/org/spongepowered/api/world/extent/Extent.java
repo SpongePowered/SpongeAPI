@@ -242,6 +242,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param force If true, forces block state to be set even if the
      *        {@link BlockType} does not match the snapshot one.
      * @param flag The various change flags controlling some interactions
+     * @param cause The cause of this operation
      * @return true if the restore was successful, false otherwise
      */
     default boolean restoreSnapshot(Vector3i position, BlockSnapshot snapshot, boolean force, BlockChangeFlag flag, Cause cause) {

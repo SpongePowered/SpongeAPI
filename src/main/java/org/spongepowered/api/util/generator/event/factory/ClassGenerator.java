@@ -552,16 +552,13 @@ public class ClassGenerator {
         mv.visitEnd();
     }
 
-    public static String getInternalName(String name) {
-        return name.replace('.', '/');
-    }
-
     /**
      * Create the event class.
      *
      * @param type The type
      * @param name The canonical of the generated class
      * @param parentType The parent type
+     * @param plugins Event factory plugins to use for this class creation
      * @return The class' contents, to be loaded via a {@link ClassLoader}
      */
     public byte[] createClass(final Class<?> type, final String name, final Class<?> parentType, List<? extends EventFactoryPlugin> plugins) {
@@ -687,6 +684,17 @@ public class ClassGenerator {
         cw.visitEnd();
 
         return cw.toByteArray();
+    }
+
+    /**
+     * Convert a java-style class name into a binary class name (replace dots
+     * with slashes).
+     *
+     * @param name class name
+     * @return class reference (binary name)
+     */
+    private static String getInternalName(String name) {
+        return name.replace('.', '/');
     }
 
 }

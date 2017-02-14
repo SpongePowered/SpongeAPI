@@ -58,6 +58,7 @@ public interface MutableBiomeVolumeWorker<A extends MutableBiomeVolume> extends 
      * is being performed, and so the surrounding blocks might not be the
      * original ones.
      *
+     * @param right the right-hand operand for the merge operation
      * @param merger The merging operation
      */
     default void merge(BiomeVolume right, BiomeVolumeMerger merger) {

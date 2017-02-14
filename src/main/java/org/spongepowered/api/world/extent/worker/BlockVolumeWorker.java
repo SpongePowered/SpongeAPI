@@ -61,6 +61,7 @@ public interface BlockVolumeWorker<V extends BlockVolume> {
     /**
      * Applies a merging operation to the blocks of the operating volume and an
      * external one. Saves the results to the destination volume.
+     *
      * @param second The volume to merge with
      * @param merger The merging operation
      * @param destination The destination volume
