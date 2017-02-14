@@ -114,8 +114,8 @@ public interface GameRegistry {
     <T extends CatalogType> Collection<T> getAllOf(Class<T> typeClass);
 
     /**
-     * Gets a collection of all available found specific types of {@link CatalogType}
-     * requested.
+     * Gets a collection of all available found specific types of
+     * {@link CatalogType} requested.
      *
      * @param pluginId The plugin id to check for types
      * @param typeClass The class of {@link CatalogType}
@@ -143,9 +143,12 @@ public interface GameRegistry {
      * @param catalogClass The dummy class itself
      * @param registryModule The registry module
      * @param <T> The type of dummy
+     * @return fluent interface
      * @throws IllegalArgumentException If there is a module already registered
-     * @throws RegistryModuleAlreadyRegisteredException If the module is already registered
-     * @throws UnsupportedOperationException If an attempt is made to register a module for an API catalog
+     * @throws RegistryModuleAlreadyRegisteredException If the registry module
+     *      is already registered
+     * @throws UnsupportedOperationException If an attempt is made to register
+     *      a module for an API catalog
      */
     <T extends CatalogType> GameRegistry registerModule(Class<T> catalogClass, CatalogRegistryModule<T> registryModule)
             throws IllegalArgumentException, RegistryModuleAlreadyRegisteredException;
@@ -155,6 +158,8 @@ public interface GameRegistry {
      *
      * @param module The module to register
      * @return This registry, for chaining
+     * @throws RegistryModuleAlreadyRegisteredException if the specified
+     *      registry module is already registered
      */
     GameRegistry registerModule(RegistryModule module) throws RegistryModuleAlreadyRegisteredException;
 
@@ -190,10 +195,14 @@ public interface GameRegistry {
      *
      * @param type The CatalogType class
      * @param obj The dummy type instance
+     * @param <T> dummy object type
+     * @return The registered type
      * @throws IllegalArgumentException If there is an id conflict with the
-     *         given type and an existing type
+     *      given type and an existing type
      * @throws UnsupportedOperationException If registration for the given type
-     *         is not supported
+     *      is not supported
+     * @throws CatalogTypeAlreadyRegisteredException if the type cannot be
+     *      registered because a matching type was already registered
      */
     <T extends CatalogType> T register(Class<T> type, T obj) throws IllegalArgumentException, CatalogTypeAlreadyRegisteredException;
 
@@ -244,7 +253,8 @@ public interface GameRegistry {
      * Gets the {@link Rotation} with the provided degrees.
      *
      * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or Optional.empty() if not found
+     * @return The {@link Rotation} with the given degrees or
+     *      <tt>Optional.empty()</tt> if not found
      */
     Optional<Rotation> getRotationFromDegree(int degrees);
 
@@ -312,20 +322,23 @@ public interface GameRegistry {
     Optional<ResourcePack> getResourcePackById(String id);
 
     /**
-     * Gets a {@link DisplaySlot} which displays only for teams
-     * with the provided color.
+     * Gets a {@link DisplaySlot} which displays only for teams with the
+     * provided color.
      *
      * @param color The color for the display slot
-     * @return The {@link DisplaySlot} with the provided color, or Optional.empty() if not found
+     * @return The {@link DisplaySlot} with the provided color, or
+     *      <tt>Optional.empty()</tt> if not found
      */
     Optional<DisplaySlot> getDisplaySlotForColor(TextColor color);
 
     /**
-     * Registers a new {@link AbstractAITask} with an {@link Agent} as the owner. The complete id
-     * will be in the format of <code>{@link PluginContainer#getId()}:id</code>.
+     * Registers a new {@link AbstractAITask} with an {@link Agent} as the
+     * owner. The complete id will be in the format of
+     * <code>{@link PluginContainer#getId()}:id</code>.
      *
      * @param plugin The plugin who owns it
      * @param id The id that represents the task type
+     * @param name The name for the task
      * @param aiClass The class of the task
      * @return The type
      */
@@ -347,9 +360,8 @@ public interface GameRegistry {
     ValueFactory getValueFactory();
 
     /**
-     * Gets the {@link VillagerRegistry} for the register mappings
-     * of {@link Career}s to {@link TradeOfferGenerator}s based on
-     * a level.
+     * Gets the {@link VillagerRegistry} for the register mappings of
+     * {@link Career}s to {@link TradeOfferGenerator}s based on a level.
      *
      * @return The villager registry instance
      */
@@ -385,7 +397,8 @@ public interface GameRegistry {
      * Gets the {@link Translation} with the provided ID.
      *
      * @param id The ID of the translation
-     * @return The {@link Translation} with the given ID or Optional.empty() if not found
+     * @return The {@link Translation} with the given ID or Optional.empty() if
+     *      not found
      */
     Optional<Translation> getTranslationById(String id);
 

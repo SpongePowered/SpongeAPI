@@ -161,8 +161,8 @@ public interface Living extends Entity, TeamMember {
         Vector2d p2 = new Vector2d(distance, targetPos.getY());
         Vector2d v1 = p2.sub(p1);
         Vector2d v2 = Vector2d.UNIT_X.mul(distance);
-        double pitchRad = Math.acos(v1.dot(v2) / (v1.length() * v2.length()));
-        double pitchDeg = pitchRad * 180 / Math.PI * (-v1.getY() / Math.abs(v1.getY()));
+        final double pitchRad = Math.acos(v1.dot(v2) / (v1.length() * v2.length()));
+        final double pitchDeg = pitchRad * 180 / Math.PI * (-v1.getY() / Math.abs(v1.getY()));
 
         // calculate yaw
         p1 = xz1;

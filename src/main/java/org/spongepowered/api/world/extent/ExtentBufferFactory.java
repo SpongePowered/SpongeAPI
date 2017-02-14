@@ -43,6 +43,7 @@ public interface ExtentBufferFactory {
      * Returns a new biome buffer of the desired size.
      *
      * @param xSize The size of the buffer on x
+     * @param ySize The size of the buffer on y
      * @param zSize The size of the buffer on z
      * @return A new biome buffer
      */
@@ -64,6 +65,7 @@ public interface ExtentBufferFactory {
      * safe.
      *
      * @param xSize The size of the buffer on x
+     * @param ySize The size of the buffer on y
      * @param zSize The size of the buffer on z
      * @return A new biome buffer
      */
@@ -115,7 +117,7 @@ public interface ExtentBufferFactory {
 
     /**
      * Returns a new archetype volume of the desired size.
-     * 
+     *
      * @param size The size of the volume
      * @param origin The origin of the buffer
      * @return A new archetype volume
@@ -124,7 +126,7 @@ public interface ExtentBufferFactory {
 
     /**
      * Returns a new archetype volume of the desired size.
-     * 
+     *
      * @param size The size of the volume
      * @return A new archetype volume
      */

@@ -36,6 +36,7 @@ public interface DirectionRelativePropertyHolder {
      * the desired {@link Direction}.
      *
      * @param direction The direction
+     * @param clazz Property class
      * @param <T> The type of property
      * @return The property, if available
      */
