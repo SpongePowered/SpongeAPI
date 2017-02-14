@@ -35,8 +35,9 @@ public interface Projectile extends Entity {
 
     /**
      * Gets the shooter of this projectile.
-     * <p>All projectiles have a {@link ProjectileSource} regardless
-     * whether the projectile was launched via plugin or mod.</p>
+     *
+     * <p>All projectiles have a {@link ProjectileSource} regardless of whether
+     * the projectile was launched via plugin or mod.</p>
      *
      * @return The projectile source that shot this projectile
      */
@@ -44,8 +45,9 @@ public interface Projectile extends Entity {
 
     /**
      * Sets the shooter of this projectile.
-     * <p>All projectiles have a {@link ProjectileSource} regardless
-     * whether the projectile was launched via plugin or mod.</p>
+     *
+     * <p>All projectiles have a {@link ProjectileSource} regardless of whether
+     * the projectile was launched via plugin or mod.</p>
      *
      * @param shooter The projectile source that shot this projectile
      */

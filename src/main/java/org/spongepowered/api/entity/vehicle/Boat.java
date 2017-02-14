@@ -32,16 +32,14 @@ import org.spongepowered.api.entity.Entity;
 public interface Boat extends Entity {
 
     /**
-     * Gets whether this boat is currently in
-     * water.
+     * Gets whether this boat is currently in water.
      *
      * @return If the boat is in water
      */
     boolean isInWater();
 
     /**
-     * Gets the maximum speed that this boat is
-     * allowed to travel at.
+     * Gets the maximum speed that this boat is allowed to travel at.
      *
      * <p>The Default value is 0.4.</p>
      *
@@ -50,8 +48,7 @@ public interface Boat extends Entity {
     double getMaxSpeed();
 
     /**
-     * Sets the maximum speed that this boat is
-     * allowed to travel at.
+     * Sets the maximum speed that this boat is allowed to travel at.
      *
      * <p>The Default value is 0.4.</p>
      *
@@ -60,16 +57,14 @@ public interface Boat extends Entity {
     void setMaxSpeed(double maxSpeed);
 
     /**
-     * Gets whether or not the boat is able to
-     * move freely on land.
+     * Gets whether or not the boat is able to move freely on land.
      *
      * @return If the boat can move on land
      */
     boolean canMoveOnLand();
 
     /**
-     * Gets whether or not the boat is able to
-     * move freely on land.
+     * Gets whether or not the boat is able to move freely on land.
      *
      * @param moveOnLand If the boat can move on land
      */
@@ -102,4 +97,5 @@ public interface Boat extends Entity {
      * @param unoccupiedDeceleration The new unoccupied deceleration rate
      */
     void setUnoccupiedDeceleration(double unoccupiedDeceleration);
+
 }

@@ -183,4 +183,5 @@ public final class EntityTypes {
 
     private EntityTypes() {
     }
+
 }
