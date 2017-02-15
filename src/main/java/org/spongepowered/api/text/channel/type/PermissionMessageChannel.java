@@ -42,10 +42,22 @@ public class PermissionMessageChannel implements MessageChannel {
 
     protected final String permission;
 
+    /**
+     * Creates a new {@link MessageChannel} with the provided {@link String permission}
+     * required to be considered a "target" {@link MessageReceiver}.
+     *
+     * @param permission The permission node
+     */
     public PermissionMessageChannel(String permission) {
         this.permission = checkNotNull(permission, "permission");
     }
 
+    /**
+     * Gets the {@link String} permission required to be included in this
+     * {@link MessageChannel}.
+     *
+     * @return The permission node
+     */
     public String getPermission() {
         return this.permission;
     }

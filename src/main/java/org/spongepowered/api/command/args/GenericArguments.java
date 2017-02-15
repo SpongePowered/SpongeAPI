@@ -1567,10 +1567,24 @@ public final class GenericArguments {
         }
     }
 
+    /**
+     * Creates a new {@link CommandElement} with an {@link Entity} target
+     * and the provided {@link Text} key.
+     *
+     * @param key The text key representation
+     * @return The command element
+     */
     public static CommandElement entity(Text key) {
         return new EntityCommandElement(key, false);
     }
 
+    /**
+     * Creates a new {@link CommandElement} with an {@link Entity} target
+     * or other source and the provided {@link Text} key.
+     *
+     * @param key The text key representation
+     * @return The command element
+     */
     public static CommandElement entityOrSource(Text key) {
         return new EntityCommandElement(key, true);
     }

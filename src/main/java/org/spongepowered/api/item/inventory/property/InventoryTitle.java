@@ -25,6 +25,7 @@
 package org.spongepowered.api.item.inventory.property;
 
 import org.spongepowered.api.data.Property;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Coerce;
 
@@ -35,6 +36,11 @@ public class InventoryTitle extends AbstractInventoryProperty<String, Text> {
 
     public static final String PROPERTY_NAME = "inventorytitle";
 
+    /**
+     * Creates a new {@link InventoryTitle} to be displayed on an {@link Inventory}.
+     *
+     * @param value The text value to display
+     */
     public InventoryTitle(Text value) {
         super(value);
     }
@@ -47,6 +53,12 @@ public class InventoryTitle extends AbstractInventoryProperty<String, Text> {
         return this.getValue().toString().compareTo(Coerce.toString(other.getValue()));
     }
 
+    /**
+     * Creates a new {@link InventoryTitle} with the provided {@link Text}.
+     *
+     * @param value The text value to display
+     * @return The new inventory title
+     */
     public static InventoryTitle of(Text value) {
         return new InventoryTitle(value);
     }

@@ -40,6 +40,11 @@ public class DynamicPartitionedTextFormatter implements PartitionedTextFormatter
 
     protected final List<SimpleTextFormatter> partitions;
 
+    /**
+     * Creates a new {@link DynamicPartitionedTextFormatter}.
+     *
+     * @param initialSize The initial size of partitions
+     */
     public DynamicPartitionedTextFormatter(int initialSize) {
         checkArgument(initialSize >= 0, "initial size must be greater than or equal to zero");
         this.partitions = new ArrayList<>(initialSize);
@@ -48,6 +53,9 @@ public class DynamicPartitionedTextFormatter implements PartitionedTextFormatter
         }
     }
 
+    /**
+     * creates a new partitioned text formatter.
+     */
     public DynamicPartitionedTextFormatter() {
         this(0);
     }

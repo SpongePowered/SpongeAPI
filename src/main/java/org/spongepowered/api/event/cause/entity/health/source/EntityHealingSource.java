@@ -45,6 +45,11 @@ public interface EntityHealingSource extends HealingSource {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the source entity acting as the healing source.
+     *
+     * @return The source entity
+     */
     Entity getSource();
 
     interface Builder extends EntityHealingSourceBuilder<EntityHealingSource, Builder> {

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.registry.util;
 
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -41,6 +40,11 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface OverrideRegistration {
 
+    /**
+     * The class of the other registry module.
+     *
+     * @return The value of the registry module
+     */
     Class<?> value();
 
 }

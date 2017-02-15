@@ -117,6 +117,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param blockState The block
      * @param flag The various change flags controlling some interactions
      * @param cause The cause to use
+     * @return Whether the block change was successful
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
@@ -138,6 +139,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param blockState The block
      * @param flag The various change flags controlling some interactions
      * @param cause The cause to use
+     * @return Whether the block change was successful
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
@@ -155,6 +157,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param type The block type
      * @param flag The various change flags controlling some interactions
      * @param cause The cause to use
+     * @return Whether the block change was successful
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
@@ -176,6 +179,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param type The block
      * @param flag The various change flags controlling some interactions
      * @param cause The cause to use
+     * @return Whether the block change was successful
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */

@@ -53,8 +53,22 @@ public interface InvisibilityData extends DataManipulator<InvisibilityData, Immu
      */
     Value<Boolean> vanish();
 
+    /**
+     * Gets the {@link Value} of whether an {@link Entity} that is "vanished" will
+     * be ignored for collision detection. The collision detection can affect
+     * collisions with other {@link Entity entities}, blocks, etc.
+     *
+     * @return The value of the collision detection state
+     */
     Value<Boolean> ignoresCollisionDetection();
 
+    /**
+     * Gets the {@link Value} of whether an {@link Entity} that is "vanished" will
+     * be ignored when other {@link Entity entities} are processing possible "targets"
+     * for their AI.
+     *
+     * @return The value of the targetable detection state
+     */
     Value<Boolean> untargetable();
 
 }

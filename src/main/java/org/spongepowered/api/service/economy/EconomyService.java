@@ -29,6 +29,7 @@ import org.spongepowered.api.service.economy.account.Account;
 import org.spongepowered.api.service.economy.account.UniqueAccount;
 import org.spongepowered.api.service.economy.account.VirtualAccount;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -78,8 +79,8 @@ public interface EconomyService extends ContextualService<Account> {
     /**
      * Returns whether an {@link Account} with the specified identifier exists.
      *
-     * <p>Depending on the implementation, the {@link Account} may be a {@link UniqueAccount} or
-     * a {@link VirtualAccount}.
+     * <p>Depending on the implementation, the {@link Account} may be a
+     * {@link UniqueAccount} or a {@link VirtualAccount}.
      *
      * @param identifier The identifier of the account to check for
      * @return Whether an {@link Account} with the specified identifier exists
@@ -89,11 +90,11 @@ public interface EconomyService extends ContextualService<Account> {
     /**
      * Gets the {@link UniqueAccount} for the user with the specified {@link UUID}.
      *
-     * <p>If an account does not already exists with the specified {@link UUID}, it will be
-     * created.</p>
+     * <p>If an account does not already exists with the specified {@link UUID},
+     * it will be created.</p>
      *
-     * <p>Creation might fail if the provided {@link UUID} does not correspond to an actual
-     * player, or for an implementation-defined reason.</p>
+     * <p>Creation might fail if the provided {@link UUID} does not correspond to
+     * an actual player, or for an implementation-defined reason.</p>
      *
      * @param uuid The {@link UUID} of the account to get.
      * @return The {@link UniqueAccount}, if available.
@@ -103,8 +104,8 @@ public interface EconomyService extends ContextualService<Account> {
     /**
      * Gets the {@link VirtualAccount} with the specified identifier
      *
-     * <p>Depending on the implementation, the {@link Account} may be a {@link UniqueAccount} or
-     * a {@link VirtualAccount}.
+     * <p>Depending on the implementation, the {@link Account} may be a
+     * {@link UniqueAccount} or a {@link VirtualAccount}.</p>
      *
      * <p>If an account does not already exists with the specified identifier,
      * it will be created.</p>

@@ -42,10 +42,22 @@ public class FixedMessageChannel implements MessageChannel {
 
     protected final Set<MessageReceiver> recipients;
 
+    /**
+     * Creates an unmodifiable {@link MessageChannel} with the
+     * provided {@link MessageReceiver}s.
+     *
+     * @param recipients The array of recipients
+     */
     public FixedMessageChannel(MessageReceiver... recipients) {
         this(Arrays.asList(checkNotNull(recipients, "recipients")));
     }
 
+    /**
+     * Creates an unmodifiable {@link MessageChannel} with the provided
+     * {@link Collection} of {@link MessageReceiver}s.
+     *
+     * @param provided The message receivers
+     */
     public FixedMessageChannel(Collection<? extends MessageReceiver> provided) {
         Set<MessageReceiver> recipients = Collections.newSetFromMap(new WeakHashMap<>());
         recipients.addAll(provided);

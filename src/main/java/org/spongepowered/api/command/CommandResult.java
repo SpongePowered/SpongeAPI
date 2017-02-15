@@ -234,7 +234,7 @@ public class CommandResult {
          * Sets the amount of entities affected by the command.
          *
          * @param affectedEntities The amount of entities affected by the
-         *      command
+         *     command
          * @return This builder, for chaining
          */
         public Builder affectedEntities(@Nullable Integer affectedEntities) {

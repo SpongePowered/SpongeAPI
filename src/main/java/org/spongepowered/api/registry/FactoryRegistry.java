@@ -26,10 +26,24 @@ package org.spongepowered.api.registry;
 
 public interface FactoryRegistry<T, TFactoryOwner> extends RegistryModule {
 
+    /**
+     * Gets the owning {@link Class} of the factory in question.
+     *
+     * @return The class owning the factory in question
+     */
     Class<TFactoryOwner> getFactoryOwner();
 
+    /**
+     * Provides the new factory instance.
+     *
+     * @return The factory instance
+     */
     T provideFactory();
 
+    /**
+     * Initialize this registry module to perform any required operations
+     * prior to initializing the factory, and or constructing the factory.
+     */
     default void initialize() {
 
     }

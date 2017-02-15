@@ -29,6 +29,12 @@ import org.spongepowered.api.entity.Entity;
 
 public interface IndirectEntityDamageSource extends EntityDamageSource {
 
+    /**
+     * Creates a new {@link Builder} for constructing
+     * {@link IndirectEntityDamageSource}s.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
@@ -47,6 +53,12 @@ public interface IndirectEntityDamageSource extends EntityDamageSource {
 
     interface AbstractBuilder<T extends IndirectEntityDamageSource, B extends AbstractBuilder<T, B>> extends EntityDamageSourceBuilder<T, B> {
 
+        /**
+         * Sets the {@link Entity} that is indirectly damaging.
+         *
+         * @param proxy The indirect entity
+         * @return This builder, for chaining
+         */
         B proxySource(Entity proxy);
 
     }

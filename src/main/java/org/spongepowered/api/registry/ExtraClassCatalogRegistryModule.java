@@ -26,10 +26,30 @@ package org.spongepowered.api.registry;
 
 import org.spongepowered.api.CatalogType;
 
+/**
+ * An enhanced {@link AdditionalCatalogRegistryModule} that explicitly
+ * has registrations of it's {@link CatalogType} based on a per-{@link Class}
+ * registration basis.
+ *
+ * @param <T> The type of catalog type
+ * @param <TExtra> The class
+ */
 public interface ExtraClassCatalogRegistryModule<T extends CatalogType, TExtra> extends AdditionalCatalogRegistryModule<T> {
 
+    /**
+     * Gets whether the provided {@link Class} is already registered.
+     *
+     * @param mappedClass The mapped class to check for registration
+     * @return Whether the class has a registration already or not
+     */
     boolean hasRegistrationFor(Class<? extends TExtra> mappedClass);
 
+    /**
+     * Gets the {@link CatalogType} based on the provided {@link Class}.
+     *
+     * @param clazz The class to get the catalog type for
+     * @return The catalog type
+     */
     T getForClass(Class<? extends TExtra> clazz);
 
 }

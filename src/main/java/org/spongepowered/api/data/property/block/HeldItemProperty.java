@@ -31,6 +31,10 @@ import org.spongepowered.api.util.Coerce;
 
 public class HeldItemProperty extends AbstractProperty<String, ItemType> {
 
+    /**
+     * Creates a new {@link HeldItemProperty}
+     * @param value
+     */
     public HeldItemProperty(ItemType value) {
         super(value);
     }

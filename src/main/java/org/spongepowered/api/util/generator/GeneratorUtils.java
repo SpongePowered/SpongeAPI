@@ -26,6 +26,14 @@ package org.spongepowered.api.util.generator;
 
 public final class GeneratorUtils {
 
+    /**
+     * Gets a class name with the provided classifier.
+     *
+     * @param targetPackage The target package
+     * @param clazz The parent class
+     * @param classifier The classifier
+     * @return The java class name equivalent with the provided classifier
+     */
     public static String getClassName(String targetPackage, Class<?> clazz, String classifier) {
         String name = clazz.getSimpleName();
         while (clazz.getEnclosingClass() != null) {

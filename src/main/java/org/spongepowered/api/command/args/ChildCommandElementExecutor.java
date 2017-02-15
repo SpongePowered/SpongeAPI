@@ -103,35 +103,38 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
                 }
                 if (child.get().getCallable() instanceof CommandSpec) {
                     return ((CommandSpec) child.get().getCallable()).complete(src, args, context);
-                }
-                args.nextIfPresent();
-                final String arguments = args.getRaw().substring(args.getRawPosition());
-                while (args.hasNext()) {
+                } else {
                     args.nextIfPresent();
-                }
-                try {
-                    return child.get()
-                            .getCallable()
-                            .getSuggestions(src, arguments, context.<Location<World>>getOne(CommandContext.TARGET_BLOCK_ARG).orElse(null));
-                } catch (CommandException e) {
-                    Text eText = e.getText();
-                    if (eText != null) {
-                        src.sendMessage(error(eText));
+                    final String arguments = args.getRaw().substring(args.getRawPosition());
+                    while (args.hasNext()) {
+                        args.nextIfPresent();
                     }
-                    return ImmutableList.of();
+                    try {
+                        return child.get()
+                                .getCallable()
+                                .getSuggestions(src, arguments, context.<Location<World>>getOne(CommandContext.TARGET_BLOCK_ARG).orElse(null));
+                    } catch (CommandException e) {
+                        Text eText = e.getText();
+                        if (eText != null) {
+                            src.sendMessage(error(eText));
+                        }
+                        return ImmutableList.of();
+                    }
                 }
+            } else {
+                return filterCommands(src).stream()
+                    .filter(new StartsWithPredicate(commandComponent.get()))
+                    .collect(GuavaCollectors.toImmutableList());
             }
-            return filterCommands(src).stream()
-                .filter(new StartsWithPredicate(commandComponent.get()))
-                .collect(GuavaCollectors.toImmutableList());
+        } else {
+            return ImmutableList.copyOf(filterCommands(src));
         }
-        return ImmutableList.copyOf(filterCommands(src));
     }
 
     private Set<String> filterCommands(final CommandSource src) {
         return Multimaps.filterValues(this.dispatcher.getAll(),
             input ->
-                 input != null && input.getCallable().testPermission(src)
+                input != null && input.getCallable().testPermission(src)
         )
             .keys()
             .elementSet();
@@ -173,16 +176,18 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
         if (mapping == null) {
             if (this.fallbackExecutor != null) {
                 return this.fallbackExecutor.execute(src, args);
+            } else {
+                throw new CommandException(t("Invalid subcommand state -- no more than one mapping may be provided for child arg %s", getKey()));
             }
-            throw new CommandException(t("Invalid subcommand state -- no more than one mapping may be provided for child arg %s", getKey()));
         }
         if (mapping.getCallable() instanceof CommandSpec) {
             CommandSpec spec = ((CommandSpec) mapping.getCallable());
             spec.checkPermission(src);
             return spec.getExecutor().execute(src, args);
+        } else {
+            final String arguments = args.<String>getOne(getUntranslatedKey() + "_args").orElse("");
+            return mapping.getCallable().process(src, arguments);
         }
-        final String arguments = args.<String>getOne(getUntranslatedKey() + "_args").orElse("");
-        return mapping.getCallable().process(src, arguments);
     }
 
     @Override

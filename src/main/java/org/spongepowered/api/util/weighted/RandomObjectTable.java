@@ -46,11 +46,23 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
     protected final List<TableEntry<T>> entries = Lists.newArrayList();
     private VariableAmount rolls;
 
+    /**
+     * Creates a new {@link RandomObjectTable} with the provided number of rolls.
+     *
+     * @see RandomObjectTable#getRolls()
+     * @param rolls the rolls
+     */
     public RandomObjectTable(int rolls) {
         checkArgument(rolls >= 0, "Rolls cannot be negative");
         this.rolls = VariableAmount.fixed(rolls);
     }
 
+    /**
+     * Creates a new {@link RandomObjectTable} with the provided number of rolls.
+     *
+     * @see RandomObjectTable#getRolls()
+     * @param rolls the rolls
+     */
     public RandomObjectTable(VariableAmount rolls) {
         this.rolls = checkNotNull(rolls);
     }

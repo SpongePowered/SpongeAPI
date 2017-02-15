@@ -145,7 +145,7 @@ public enum Direction {
      *
      * @param vector The vector to convert to a direction
      * @param smallestDivision The smallest compass division that can be
-     *      returned
+     *     returned
      * @return The closest horizontal direction.
      */
     public static Direction getClosest(Vector3d vector, Division smallestDivision) {
@@ -179,7 +179,7 @@ public enum Direction {
      *
      * @param vector The vector to convert to a direction
      * @param smallestDivision The smallest compass division that can be
-     *      returned
+     *     returned
      * @return The closest horizontal direction.
      */
     public static Direction getClosestHorizontal(Vector3d vector, Division smallestDivision) {
