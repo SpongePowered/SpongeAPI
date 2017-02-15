@@ -42,6 +42,11 @@ public interface Pig extends Animal {
         return get(PigSaddleData.class).get();
     }
 
+    /**
+     * Gets the {@link Value} for whether this {@link Pig} is saddled.
+     *
+     * @return The value whether this pig is saddled
+     */
     default Value<Boolean> saddled() {
         return getValue(Keys.PIG_SADDLE).get();
     }

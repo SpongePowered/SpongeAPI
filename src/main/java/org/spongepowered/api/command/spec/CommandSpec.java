@@ -122,7 +122,7 @@ public final class CommandSpec implements CommandCallable {
          * Sets the callback that will handle this command's execution.
          *
          * @param executor The executor that will be called with this command's
-         *      parsed arguments
+         *     parsed arguments
          * @return this
          */
         public Builder executor(CommandExecutor executor) {
@@ -151,9 +151,10 @@ public final class CommandSpec implements CommandCallable {
          * Add a single child command to this command.
          *
          * @param child The child to add
-         * @param aliases Aliases to make the child available under. First one
-         *      is primary and is the only one guaranteed to be listed in usage
-         *      outputs.
+         * @param aliases Aliases to make the child available under. First
+         *     one is primary and is the only one guaranteed to be listed in
+         *     usage outputs.
+         *
          * @return this
          */
         public Builder child(CommandCallable child, String... aliases) {
@@ -168,9 +169,9 @@ public final class CommandSpec implements CommandCallable {
          * Add a single child command to this command.
          *
          * @param child The child to add.
-         * @param aliases Aliases to make the child available under. First one
-         *      is primary and is the only one guaranteed to be listed in usage
-         *      outputs.
+         * @param aliases Aliases to make the child available under. First
+         *     one is primary and is the only one guaranteed to be listed in
+         *     usage outputs.
          *
          * @return this
          */
@@ -195,10 +196,8 @@ public final class CommandSpec implements CommandCallable {
 
         /**
          * Sets an extended description to use in longer help listings for this
-         * command.
-         *
-         * <p> Will be appended to the short description and the command's
-         * usage.</p>
+         * command. Will be appended to the short description and the command's
+         * usage.
          *
          * @param extendedDescription The description to set
          * @return this
@@ -209,8 +208,9 @@ public final class CommandSpec implements CommandCallable {
         }
 
         /**
-         * Sets the argument specification for this command.
-         * Generally, for a multi-argument command the {@link GenericArguments#seq(CommandElement...)} method is used to parse a sequence of args
+         * Sets the argument specification for this command. Generally, for a
+         * multi-argument command the {@link GenericArguments#seq(CommandElement...)}
+         * method is used to parse a sequence of args.
          *
          * @see GenericArguments
          * @param args The arguments object to use
@@ -224,8 +224,8 @@ public final class CommandSpec implements CommandCallable {
 
         /**
          * Sets the argument specification for this command. This method accepts
-         * a sequence of arguments. This is equivalent to calling
-         * {@code arguments(seq(args))}
+         * a sequence of arguments. This is equivalent to calling {@code
+         * arguments(seq(args))}.
          *
          * @see GenericArguments
          * @param args The arguments object to use
@@ -285,8 +285,8 @@ public final class CommandSpec implements CommandCallable {
 
     /**
      * Check the relevant permission for this command with the provided source,
-     * throwing an exception if the source does not have permission to use the
-     * command.
+     * throwing an exception if the source does not have permission to use
+     * the command.
      *
      * @param source The source to check
      * @throws CommandException if the source does not have permission

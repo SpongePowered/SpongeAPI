@@ -29,15 +29,31 @@ import org.spongepowered.api.data.manipulator.immutable.ImmutableMobSpawnerData;
 
 public interface MobSpawnerSpawnCause extends SpawnCause {
 
+    /**
+     * Creates a new {@link Builder} to build a new {@link MobSpawnerSpawnCause}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
-
+    /**
+     * Gets the {@link ImmutableMobSpawnerData} related to this
+     * {@link MobSpawnerSpawnCause}.
+     *
+     * @return The mob spawner data
+     */
     ImmutableMobSpawnerData getMobSpawnerData();
 
     interface Builder extends SpawnCauseBuilder<MobSpawnerSpawnCause, Builder> {
 
+        /**
+         * Sets the {@link ImmutableMobSpawnerData} for this builder.
+         *
+         * @param spawnerData The spawner data
+         * @return This builder, for chaining
+         */
         Builder spawnerData(ImmutableMobSpawnerData spawnerData);
 
     }

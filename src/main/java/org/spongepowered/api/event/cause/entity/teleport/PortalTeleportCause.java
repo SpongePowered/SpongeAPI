@@ -29,6 +29,12 @@ import org.spongepowered.api.world.PortalAgent;
 
 public interface PortalTeleportCause extends TeleportCause {
 
+    /**
+     * Creates a new {@link Builder} for constructing new
+     * {@link PortalTeleportCause}s.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
@@ -42,6 +48,12 @@ public interface PortalTeleportCause extends TeleportCause {
 
     interface PortalTeleportCauseBuilder<T extends PortalTeleportCause, B extends TeleporterCauseBuilder<T, B>> extends TeleporterCauseBuilder<T, B> {
 
+        /**
+         * Sets the {@link PortalAgent} for this builder.
+         *
+         * @param agent The agent
+         * @return This builder, for chaining
+         */
         B agent(PortalAgent agent);
 
     }

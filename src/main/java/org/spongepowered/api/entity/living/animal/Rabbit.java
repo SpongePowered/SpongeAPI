@@ -44,6 +44,11 @@ public interface Rabbit extends Animal {
         return get(RabbitData.class).get();
     }
 
+    /**
+     * Gets the {@link Value} for the {@link RabbitType} of this {@link Rabbit}.
+     *
+     * @return The rabbit type for this rabit
+     */
     default Value<RabbitType> variant() {
         return getValue(Keys.RABBIT_TYPE).get();
     }

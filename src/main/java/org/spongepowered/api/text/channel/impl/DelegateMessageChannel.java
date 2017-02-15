@@ -46,6 +46,12 @@ public class DelegateMessageChannel implements MessageChannel {
 
     protected final MessageChannel delegate;
 
+    /**
+     * Creates a delegate {@link MessageChannel} that delegates all functions
+     * to the delegated message channel.
+     *
+     * @param delegate The delegated message channel
+     */
     public DelegateMessageChannel(final MessageChannel delegate) {
         this.delegate = checkNotNull(delegate, "delegate");
     }

@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.data.value.BaseValue;
 
 import java.util.ArrayList;
@@ -517,7 +518,6 @@ public interface DataView {
     /**
      * Gets the {@link List} of {@link DataSerializable} by path, if available.
      *
-     *
      * <p>If a {@link List} exists, but the contents of the list are not
      * considered {@link DataSerializable} or are not of the proper type of
      * {@link DataSerializable}, an absent is returned.</p>
@@ -534,9 +534,42 @@ public interface DataView {
      */
     <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz);
 
+    /**
+     * Gets the {@link Object} object by path, if available.
+     *
+     * <p>If a {@link Object} exists, but is not the proper class
+     * type, or there is no data at the path given, an absent is returned.</p>
+     *
+     * <p>It is important that the {@link DataManager} provided is
+     * the same one that has registered many of the
+     * {@link DataTranslator}s to ensure the {@link DataSerializable}
+     * requested can be returned.</p>
+     *
+     * @param <T> The type of {@link Object} object
+     * @param path The path of the value to get
+     * @param objectClass The class of the {@link Object}
+     * @return The deserialized object, if available
+     */
     <T> Optional<T> getObject(DataQuery path, Class<T> objectClass);
 
-    <T> Optional<List<T>> getObjectList(DataQuery path, Class<T> objectclass);
+    /**
+     * Gets the {@link List} of {@link DataSerializable} by path, if available.
+     *
+     * <p>If a {@link List} exists, but the contents of the list are not
+     * considered {@link DataTranslator}"able" or are not of the proper type of
+     * {@link DataTranslator}, an absent is returned.</p>
+     *
+     * <p>It is important that the {@link DataManager} provided is
+     * the same one that has registered many of the
+     * {@link DataTranslator}s to ensure the {@link Object}
+     * requested can be returned.</p>
+     *
+     * @param <T> The type of {@link Object} object
+     * @param path The path of the value to get
+     * @param objectClass The class of the {@link Object}
+     * @return The deserialized objects in a list, if available
+     */
+    <T> Optional<List<T>> getObjectList(DataQuery path, Class<T> objectClass);
 
     /**
      * Gets the {@link CatalogType} object by path, if available.

@@ -41,6 +41,13 @@ public class NestedTableEntry<T> extends TableEntry<T> {
 
     private final RandomObjectTable<T> table;
 
+    /**
+     * Creates a new {@link NestedTableEntry} with the provided
+     * {@code weight} and {@link RandomObjectTable table}.
+     *
+     * @param weight The weight to apply to the entry
+     * @param table The table itself
+     */
     public NestedTableEntry(double weight, RandomObjectTable<T> table) {
         super(weight);
         this.table = checkNotNull(table);

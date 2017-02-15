@@ -46,6 +46,7 @@ public interface ProfileProperty {
      *
      * @param name The name for the property
      * @param value The value of the property
+     * @return The new property
      */
     static ProfileProperty of(String name, String value) {
         return of(name, value, null);
@@ -60,6 +61,7 @@ public interface ProfileProperty {
      * @param name The name for the property
      * @param value The value of the property
      * @param signature The signature of the property
+     * @return The new property
      */
     static ProfileProperty of(String name, String value, @Nullable String signature) {
         return Sponge.getServer().getGameProfileManager().createProfileProperty(name, value, signature);

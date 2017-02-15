@@ -41,8 +41,8 @@ public interface EnderDragon extends ComplexLiving, Boss, Aerial, ProjectileSour
     Set<EnderDragonPart> getParts();
 
     /**
-     * Returns the current {@code EnderCrystal} that is healing this ender
-     * dragon.
+     * Returns the current {@code EnderCrystal} that is healing this
+     * ender dragon.
      *
      * @return The ender crystal
      */

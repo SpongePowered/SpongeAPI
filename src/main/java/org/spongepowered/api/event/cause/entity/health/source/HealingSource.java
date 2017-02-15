@@ -37,10 +37,20 @@ import org.spongepowered.api.world.difficulty.Difficulty;
  */
 public interface HealingSource {
 
+    /**
+     * Creates a new {@link Builder} to construct a new {@link HealingSource}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the {@link HealingType} for this source.
+     *
+     * @return The healing type for this source
+     */
     HealingType getHealingType();
 
     /**

@@ -360,6 +360,10 @@ public final class Color implements DataSerializable {
 
     public static final class Builder extends AbstractDataBuilder<Color> {
 
+        /**
+         * Creates a new {@link Builder} for building {@link Color} objects, either
+         * from {@link DataView}s, or otherwise.
+         */
         public Builder() {
             super(Color.class, 1);
         }

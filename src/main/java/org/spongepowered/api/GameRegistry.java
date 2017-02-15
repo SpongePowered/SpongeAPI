@@ -124,10 +124,28 @@ public interface GameRegistry {
      */
     <T extends CatalogType> Collection<T> getAllFor(String pluginId, Class<T> typeClass);
 
+    /**
+     * Gets all {@link CatalogType} for Minecraft as a base mod. Note that
+     * some {@link CatalogType}s are not originally from the game itself, and
+     * may be provided by Sponge.
+     *
+     * @param typeClass The type of catalog type
+     * @param <T> The type of catalog type
+     * @return The collection of all known types of the requested catalog type
+     */
     default <T extends CatalogType> Collection<T> getAllForMinecraft(Class<T> typeClass) {
         return getAllFor(PluginManager.MINECRAFT_PLUGIN_ID, typeClass);
     }
 
+    /**
+     * Gets all {@link CatalogType} for Sponge as a base mod. Note that
+     * some {@link CatalogType}s are not originally from the game itself, and
+     * may be provided by Sponge.
+     *
+     * @param typeClass The type of catalog type
+     * @param <T> The type of catalog type
+     * @return The collection of all known types of the requested catalog type
+     */
     default <T extends CatalogType> Collection<T> getAllForSponge(Class<T> typeClass) {
         return getAllFor(PluginManager.SPONGE_PLUGIN_ID, typeClass);
     }

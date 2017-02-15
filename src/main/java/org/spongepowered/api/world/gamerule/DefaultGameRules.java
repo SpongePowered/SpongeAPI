@@ -150,8 +150,7 @@ public class DefaultGameRules {
      * {@link Agent}s can pick up items.
      *
      * <p>In vanilla Minecraft, the following entities can change blocks when
-     * this gamerule is {@code true}:</p>
-     *
+     * this gamerule is {@code true}:
      * <ul>
      *     <li>{@link Creeper}</li>
      *     <li>{@link Zombie}</li>
@@ -164,17 +163,16 @@ public class DefaultGameRules {
      *     <li>{@link Villager}</li>
      *     <li>{@link SnowGolem}</li>
      *     <li>{@link Silverfish}</li>
-     * </ul>
+     * </ul></p>
      *
      * <p>In vanilla Minecraft, the following entities can pick up items when
-     * this gamerule is{@code true}:</p>
-     *
+     * this gamerule is{@code true}:
      * <ul>
      *     <li>{@link Villager}</li>
      *     <li>{@link Zombie}</li>
      *     <li>{@link Skeleton}</li>
      *     <li>{@link ZombiePigman}</li>
-     * </ul>
+     * </ul></p>
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */
@@ -194,7 +192,7 @@ public class DefaultGameRules {
      * leaf decay, etc.) per chunk section per game tick.
      *
      * <p>0 will disable random ticks, higher numbers will increase random
-     * ticks.</p>
+     * ticks</p>
      *
      * <p>This is a numerical game rule, with a default value of {@code 3}.</p>
      */

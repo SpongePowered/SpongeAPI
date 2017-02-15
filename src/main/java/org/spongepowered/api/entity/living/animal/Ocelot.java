@@ -44,6 +44,12 @@ public interface Ocelot extends Animal {
         return get(OcelotData.class).get();
     }
 
+    /**
+     * Gets the {@link Value} for the {@link OcelotType} of this
+     * {@link Ocelot}.
+     *
+     * @return The ocelot variant value
+     */
     default Value<OcelotType> variant() {
         return getValue(Keys.OCELOT_TYPE).get();
     }

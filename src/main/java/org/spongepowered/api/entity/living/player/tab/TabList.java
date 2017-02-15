@@ -89,6 +89,7 @@ public interface TabList {
      *
      * @param header The new header
      * @param footer The new footer
+     * @return This tab list, for chaining
      */
     default TabList setHeaderAndFooter(@Nullable Text header, @Nullable Text footer) {
         this.setHeader(header);

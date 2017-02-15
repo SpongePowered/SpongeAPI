@@ -202,6 +202,16 @@ public class ClassGenerator {
         return false;
     }
 
+    /**
+     * Gets a {@link Field} from the desired {@link Class} by the
+     * {@link String field name}. However, this will attempt to climb
+     * superclasses to fetch a field from a superclass
+     *
+     * @see Class#getField(String)
+     * @param type The class type
+     * @param fieldName The name of the field
+     * @return The field, or null
+     */
     public static Field getField(Class<?> type, String fieldName) {
         while (type != null) {
             try {
@@ -242,6 +252,13 @@ public class ClassGenerator {
         return method.getAnnotation(Nonnull.class) != null;
     }
 
+    /**
+     * Creates a field with the provided {@link ClassWriter} and based on the provided
+     * {@link Property}.
+     *
+     * @param classWriter The class writer to use
+     * @param property The property containing various information
+     */
     public static void generateField(ClassWriter classWriter, Property<Class<?>, Method> property) {
         FieldVisitor fv = classWriter.visitField(ACC_PRIVATE, property.getName(), Type.getDescriptor(property.getType()), null, null);
         fv.visitEnd();

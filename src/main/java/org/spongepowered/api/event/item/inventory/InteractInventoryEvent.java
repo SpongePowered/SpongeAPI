@@ -30,6 +30,11 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 public interface InteractInventoryEvent extends TargetContainerEvent, Cancellable {
 
+    /**
+     * Gets the {@link Transaction} of {@link ItemStackSnapshot}s for this event.
+     *
+     * @return The transaction of the item
+     */
     Transaction<ItemStackSnapshot> getCursorTransaction();
 
     interface Open extends InteractInventoryEvent {}
