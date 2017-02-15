@@ -27,9 +27,9 @@ package org.spongepowered.api.event;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.impl.AbstractEvent;
-import org.spongepowered.api.eventgencore.annotation.AbsoluteSortPosition;
-import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
-import org.spongepowered.api.eventgencore.annotation.PropertySettings;
+import org.spongepowered.api.util.annotation.eventgen.AbsoluteSortPosition;
+import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 /**
  * An event called within Sponge.

@@ -26,6 +26,7 @@ package org.spongepowered.api.event;
 
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
+import org.spongepowered.api.event.cause.EventContextKey;
 import org.spongepowered.api.event.cause.EventContextKeys;
 
 import java.util.Optional;
@@ -130,7 +131,7 @@ public interface CauseStackManager {
      * @return The cause stack manager, for chaining
      * @see EventContextKeys
      */
-    CauseStackManager addContext(String key, Object value);
+    <T> CauseStackManager addContext(EventContextKey<T> key, T value);
 
     /**
      * Gets the context value with the given key.
@@ -138,24 +139,15 @@ public interface CauseStackManager {
      * @param key The context key
      * @return The context object, if present
      */
-    Optional<?> getContext(String key);
+    <T> Optional<T> getContext(EventContextKey<T> key);
 
     /**
-     * Gets the context value with the given key and expected type.
-     * 
-     * @param key The context key
-     * @param expectedType The expected type of the context object
-     * @return The context object, if present and of the correct type
-     */
-    <T> Optional<T> getContext(String key, Class<T> expectedType);
-
-    /**
-     * Clears the given context key from the current context.
+     * Removes the given context key from the current context.
      * 
      * @param key The key to clear
      * @return The existing context value, if it was present
      * @see EventContextKeys
      */
-    Optional<?> clearContext(String key);
+    <T> Optional<T> removeContext(EventContextKey<T> key);
 
 }

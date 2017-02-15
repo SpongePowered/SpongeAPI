@@ -35,7 +35,6 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.data.property.LocationBasePropertyHolder;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
@@ -179,12 +178,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     }
 
     /**
-     * Sets the block at the given position in the world. Note that the
-     * difference between this an
-     * {@link MutableBlockVolume#setBlock(Vector3i, BlockState)} is that no
-     * block tracking chaining will take place. Note that there is a requirement
-     * that the {@link PluginContainer} of the plugin calling this method is
-     * <strong>REQUIRED</strong>.
+     * Sets the block at the given position in the world.
      *
      * @param position The position
      * @param blockState The block
@@ -198,12 +192,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     }
 
     /**
-     * Sets the block at the given position in the world. Note that the
-     * difference between this an
-     * {@link MutableBlockVolume#setBlock(Vector3i, BlockState)} is that no
-     * block tracking chaining will take place. Note that there is a requirement
-     * that the {@link PluginContainer} of the plugin calling this method is
-     * <strong>REQUIRED</strong>.
+     * Sets the block at the given position in the world.
      *
      * @param x The X position
      * @param y The Y position
@@ -217,12 +206,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     boolean setBlock(int x, int y, int z, BlockState blockState, BlockChangeFlag flag);
 
     /**
-     * Sets the block at the given position in the world. Note that the
-     * difference between this an
-     * {@link MutableBlockVolume#setBlockType(Vector3i, BlockType)} is that no
-     * block tracking chaining will take place. Note that there is a requirement
-     * that the {@link PluginContainer} of the plugin calling this method is
-     * <strong>REQUIRED</strong>.
+     * Sets the block at the given position in the world.
      *
      * @param position The position
      * @param type The block type
@@ -236,12 +220,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     }
 
     /**
-     * Sets the block at the given position in the world. Note that the
-     * difference between this an
-     * {@link MutableBlockVolume#setBlockType(Vector3i, BlockType, Cause)} is
-     * that no block tracking chaining will take place. Note that there is a
-     * requirement that the {@link PluginContainer} of the plugin calling this
-     * method is <strong>REQUIRED</strong>.
+     * Sets the block at the given position in the world.
      *
      * @param x The X position
      * @param y The Y position

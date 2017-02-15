@@ -60,9 +60,9 @@ public final class EventContext {
      * @param entries The context entries
      * @return The new EventContext
      */
-    public static EventContext of(Map<String, Object> entries) {
+    public static EventContext of(Map<EventContextKey<?>, Object> entries) {
         checkNotNull(entries, "Context entries cannot be null");
-        for (Map.Entry<String, Object> entry : entries.entrySet()) {
+        for (Map.Entry<EventContextKey<?>, Object> entry : entries.entrySet()) {
             checkNotNull(entry.getValue(), "Entries cannot contain null values");
         }
         return new EventContext(entries);
@@ -77,9 +77,9 @@ public final class EventContext {
         return new Builder();
     }
 
-    private final Map<String, Object> entries;
+    private final Map<EventContextKey<?>, Object> entries;
 
-    EventContext(Map<String, Object> values) {
+    EventContext(Map<EventContextKey<?>, Object> values) {
         this.entries = ImmutableMap.copyOf(values);
     }
 
@@ -89,29 +89,10 @@ public final class EventContext {
      * @param key The key
      * @return The context value, if found
      */
-    public Optional<?> get(String key) {
-        checkNotNull(key, "Name cannot be null");
-        return Optional.ofNullable(this.entries.get(key));
-    }
-
-    /**
-     * Gets the value corresponding to the given key from the context. If the
-     * value is not of the expected type then {@link Optional#empty()} is
-     * returned instead.
-     * 
-     * @param key The key
-     * @param expectedType The expected type
-     * @return The context value, if found and of the correct type
-     */
     @SuppressWarnings("unchecked")
-    public <T> Optional<T> get(String key, Class<T> expectedType) {
-        checkNotNull(key, "Name cannot be null");
-        checkNotNull(expectedType, "Expected type cannot be null");
-        Object val = this.entries.get(key);
-        if (val == null || !expectedType.isInstance(val)) {
-            return Optional.empty();
-        }
-        return Optional.of((T) val);
+    public <T> Optional<T> get(EventContextKey<T> key) {
+        checkNotNull(key, "EventContextKey cannot be null");
+        return Optional.ofNullable((T) this.entries.get(key.getId()));
     }
 
     @Override
@@ -123,7 +104,7 @@ public final class EventContext {
             return false;
         }
         EventContext ctx = (EventContext) object;
-        for (Map.Entry<String, Object> entry : this.entries.entrySet()) {
+        for (Map.Entry<EventContextKey<?>, Object> entry : this.entries.entrySet()) {
             Object other = ctx.entries.get(entry.getKey());
             if (other == null) {
                 return false;
@@ -143,19 +124,19 @@ public final class EventContext {
     @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner(", ");
-        for (Map.Entry<String, Object> entry : this.entries.entrySet()) {
-            joiner.add("\"" + entry.getKey() + "\"=" + entry.getValue().toString());
+        for (Map.Entry<EventContextKey<?>, Object> entry : this.entries.entrySet()) {
+            joiner.add("\"" + entry.getKey().getId() + "\"=" + entry.getValue().toString());
         }
         return "Context[" + joiner.toString() + "]";
     }
 
     public static final class Builder implements ResettableBuilder<EventContext, Builder> {
 
-        private final Map<String, Object> entries = Maps.newHashMap();
+        private final Map<EventContextKey<?>, Object> entries = Maps.newHashMap();
 
         Builder() {
 
-        }
+        } 
 
         /**
          * Adds the given context key value pair to the context.
@@ -164,9 +145,9 @@ public final class EventContext {
          * @param value The value
          * @return This builder, for chaining
          */
-        public Builder add(String key, Object value) {
+        public <T> Builder add(EventContextKey<T> key, T value) {
             checkNotNull(value, "Context object cannot be null");
-            checkArgument(!this.entries.containsKey(key), "Duplicate context value name");
+            checkArgument(!this.entries.containsKey(key), "Duplicate context keys");
             this.entries.put(key, value);
             return this;
         }

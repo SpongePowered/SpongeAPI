@@ -26,12 +26,12 @@ package org.spongepowered.api.command;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.dispatcher.SimpleDispatcher;
@@ -55,11 +55,11 @@ public class ChildCommandsTest {
         
         Game game = mock(Game.class);
         CauseStackManager csm = mock(CauseStackManager.class);
-        Mockito.when(game.getCauseStackManager()).thenReturn(csm);
-        Mockito.when(csm.pushCause(null)).thenReturn(csm);
-        Mockito.when(csm.popCause()).thenReturn(null);
+        when(game.getCauseStackManager()).thenReturn(csm);
+        when(csm.pushCause(null)).thenReturn(csm);
+        when(csm.popCause()).thenReturn(null);
         CommandManager cm = mock(CommandManager.class);
-        Mockito.when(game.getCommandManager()).thenReturn(cm);
+        when(game.getCommandManager()).thenReturn(cm);
         TestHooks.setGame(game);
     }
 

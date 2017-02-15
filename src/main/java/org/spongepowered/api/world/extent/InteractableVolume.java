@@ -28,10 +28,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.entity.living.player.User;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.Direction;
@@ -46,19 +42,13 @@ public interface InteractableVolume extends MutableBlockVolume {
      * only do a single instantaneous "click" whereas digBlock will simulate
      * holding the primary mouse button until the block breaks.</p>
      *
-     * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
-     * cause stack and in the context under the key
-     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
-     * result in an {@link IllegalArgumentException} being thrown.</p>
-     *
      * @param position The position of the block
      * @param side The side of the block to interact with
-     * @param cause The cause containing either a player, user, or game profile
+     * @param profile The game profile of the player this is imitating
      * @return True if the interact succeeded
      */
-    default boolean hitBlock(Vector3i position, Direction side, Cause cause) {
-        return hitBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), side, cause);
+    default boolean hitBlock(Vector3i position, Direction side, GameProfile profile) {
+        return hitBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), side, profile);
     }
 
     /**
@@ -68,246 +58,168 @@ public interface InteractableVolume extends MutableBlockVolume {
      * only do a single instantaneous "click" whereas digBlock will simulate
      * holding the primary mouse button until the block breaks.</p>
      *
-     * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
-     * cause stack and in the context under the key
-     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
-     * result in an {@link IllegalArgumentException} being thrown.</p>
-     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      * @param side The side of the block to interact with
-     * @param cause The cause containing either a player, user, or game profile
+     * @param profile The game profile of the player this is imitating
      * @return True if the interact succeeded
      */
-    boolean hitBlock(int x, int y, int z, Direction side, Cause cause);
+    boolean hitBlock(int x, int y, int z, Direction side, GameProfile profile);
 
     /**
      * Simulates the interaction the block as if a player had done so.
      *
-     * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
-     * cause stack and in the context under the key
-     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
-     * result in an {@link IllegalArgumentException} being thrown.</p>
-     *
      * @param position The position of the block
      * @param side The side of the block to interact with
-     * @param cause The cause containing either a player, user, or game profile
+     * @param profile The game profile of the player this is imitating
      * @return True if the interact succeeded
      */
-    default boolean interactBlock(Vector3i position, Direction side, Cause cause) {
-        return interactBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), side, cause);
+    default boolean interactBlock(Vector3i position, Direction side, GameProfile profile) {
+        return interactBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), side, profile);
     }
 
     /**
      * Simulates the interaction the block as if a player had done so.
      *
-     * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
-     * cause stack and in the context under the key
-     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
-     * result in an {@link IllegalArgumentException} being thrown.</p>
-     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      * @param side The side of the block to interact with
-     * @param cause The cause containing either a player, user, or game profile
+     * @param profile The game profile of the player this is imitating
      * @return True if the interact succeeded
      */
-    boolean interactBlock(int x, int y, int z, Direction side, Cause cause);
+    boolean interactBlock(int x, int y, int z, Direction side, GameProfile profile);
 
     /**
      * Simulates the interaction the block using the given item as if the player
      * had done so.
      *
-     * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
-     * cause stack and in the context under the key
-     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
-     * result in an {@link IllegalArgumentException} being thrown.</p>
-     *
      * @param position The position of the block
      * @param itemStack The item
      * @param side The side of the block to interact with
-     * @param cause The cause containing either a player, user, or game profile
+     * @param profile The game profile of the player this is imitating
      * @return True if the interact succeeded
      */
-    default boolean interactBlockWith(Vector3i position, ItemStack itemStack, Direction side, Cause cause) {
-        return interactBlockWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, side, cause);
+    default boolean interactBlockWith(Vector3i position, ItemStack itemStack, Direction side, GameProfile profile) {
+        return interactBlockWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, side, profile);
     }
 
     /**
      * Simulates the interaction the block using the given item as if the player
      * had done so.
      *
-     * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
-     * cause stack and in the context under the key
-     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
-     * result in an {@link IllegalArgumentException} being thrown.</p>
-     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      * @param itemStack The item
      * @param side The side of the block to interact with
-     * @param cause The cause containing either a player, user, or game profile
+     * @param profile The game profile of the player this is imitating
      * @return True if the interact succeeded
      */
-    boolean interactBlockWith(int x, int y, int z, ItemStack itemStack, Direction side, Cause cause);
+    boolean interactBlockWith(int x, int y, int z, ItemStack itemStack, Direction side, GameProfile profile);
 
     /**
      * Simulates the placement of a block at the given location as if a player
      * had done so.
      *
-     * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
-     * cause stack and in the context under the key
-     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
-     * result in an {@link IllegalArgumentException} being thrown.</p>
-     *
      * @param position The position of the block
      * @param block The block state to be set to
      * @param side The face of the block to place on
-     * @param cause The cause containing either a player, user, or game profile
+     * @param profile The game profile of the player this is imitating
      * @return Whether the block was successfully set
      */
-    default boolean placeBlock(Vector3i position, BlockState block, Direction side, Cause cause) {
-        return placeBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), block, side, cause);
+    default boolean placeBlock(Vector3i position, BlockState block, Direction side, GameProfile profile) {
+        return placeBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), block, side, profile);
     }
 
     /**
      * Simulates the placement of a block at the given location as if a player
      * had done so.
      *
-     * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
-     * cause stack and in the context under the key
-     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
-     * result in an {@link IllegalArgumentException} being thrown.</p>
-     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      * @param block The block state to be set to
      * @param side The face of the block to place on
-     * @param cause The cause containing either a player, user, or game profile
+     * @param profile The game profile of the player this is imitating
      * @return Whether the block was successfully set
      */
-    boolean placeBlock(int x, int y, int z, BlockState block, Direction side, Cause cause);
+    boolean placeBlock(int x, int y, int z, BlockState block, Direction side, GameProfile profile);
 
     /**
      * Simulate the digging of the block as if a player had done so.
      *
-     * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
-     * cause stack and in the context under the key
-     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
-     * result in an {@link IllegalArgumentException} being thrown.</p>
-     *
      * @param position The position of the block
-     * @param cause The cause containing either a player, user, or game profile
+     * @param profile The game profile of the player this is imitating
      * @return Whether the block was destroyed
      */
-    default boolean digBlock(Vector3i position, Cause cause) {
-        return digBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), cause);
+    default boolean digBlock(Vector3i position, GameProfile profile) {
+        return digBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), profile);
     }
 
     /**
      * Simulate the digging of the block as if a player had done so.
      *
-     * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
-     * cause stack and in the context under the key
-     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
-     * result in an {@link IllegalArgumentException} being thrown.</p>
-     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
-     * @param cause The cause containing either a player, user, or game profile
+     * @param profile The game profile of the player this is imitating
      * @return Whether the block was destroyed
      */
-    boolean digBlock(int x, int y, int z, Cause cause);
+    boolean digBlock(int x, int y, int z, GameProfile profile);
 
     /**
      * Simulate the digging of the block with the given tool as if a player had
      * done so.
-     *
-     * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
-     * cause stack and in the context under the key
-     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
-     * result in an {@link IllegalArgumentException} being thrown.</p>
-     *
+     * 
      * @param position The position of the block
      * @param itemStack The tool
-     * @param cause The cause containing either a player, user, or game profile
+     * @param profile The game profile of the player this is imitating
      * @return Whether the block was destroyed
      */
-    default boolean digBlockWith(Vector3i position, ItemStack itemStack, Cause cause) {
-        return digBlockWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, cause);
+    default boolean digBlockWith(Vector3i position, ItemStack itemStack, GameProfile profile) {
+        return digBlockWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
     }
 
     /**
      * Simulate the digging of the block with the given tool as if a player had
      * done so.
      *
-     * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
-     * cause stack and in the context under the key
-     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
-     * result in an {@link IllegalArgumentException} being thrown.</p>
-     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      * @param itemStack The tool
-     * @param cause The cause containing either a player, user, or game profile
+     * @param profile The game profile of the player this is imitating
      * @return Whether the block was destroyed
      */
-    boolean digBlockWith(int x, int y, int z, ItemStack itemStack, Cause cause);
+    boolean digBlockWith(int x, int y, int z, ItemStack itemStack,GameProfile profile);
 
     /**
      * Gets the time it takes to dig this block with the specified item in
      * ticks.
      *
-     * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
-     * cause stack and in the context under the key
-     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
-     * result in an {@link IllegalArgumentException} being thrown.</p>
-     *
      * @param position The position of the block
      * @param itemStack The item to pretend-dig with
-     * @param cause The cause containing either a player, user, or game profile
+     * @param profile The game profile of the player this is imitating
      * @return The time in ticks
      */
-    default int getBlockDigTimeWith(Vector3i position, ItemStack itemStack, Cause cause) {
-        return getBlockDigTimeWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, cause);
+    default int getBlockDigTimeWith(Vector3i position, ItemStack itemStack, GameProfile profile) {
+        return getBlockDigTimeWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
     }
 
     /**
      * Gets the time it takes to dig this block with the specified item in
      * ticks.
      *
-     * <p>Note that the requirement in the {@link Cause} is that it contains
-     * either a {@link Player}, {@link User}, or {@link GameProfile} both in the
-     * cause stack and in the context under the key
-     * {@link EventContext#PLAYER_SIMULATED}. Failing to do either of these will
-     * result in an {@link IllegalArgumentException} being thrown.</p>
-     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      * @param itemStack The item to pretend-dig with
-     * @param cause The cause containing either a player, user, or game profile
+     * @param profile The game profile of the player this is imitating
      * @return The time in ticks
      */
-    int getBlockDigTimeWith(int x, int y, int z, ItemStack itemStack, Cause cause);
+    int getBlockDigTimeWith(int x, int y, int z, ItemStack itemStack, GameProfile profile);
 
     @Override
     MutableBlockVolumeWorker<? extends InteractableVolume> getBlockWorker();

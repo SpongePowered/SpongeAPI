@@ -24,23 +24,46 @@
  */
 package org.spongepowered.api.event.cause;
 
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
+import org.spongepowered.api.event.cause.entity.dismount.DismountType;
+import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
+import org.spongepowered.api.event.cause.entity.teleport.TeleportType;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.service.ServiceManager;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+import java.util.UUID;
+
 /**
  * Standard keys for use within {@link EventContext}s.
  */
 public final class EventContextKeys {
 
-    public static final String CREATOR = "Creator";
-    public static final String DAMAGE_TYPE = "DamageType";
-    public static final String IGNITER = "Igniter";
-    public static final String NOTIFIER = "Notifier";
-    public static final String OWNER = "Owner";
-    public static final String PLAYER_SIMULATED = "PlayerSimulated";
-    public static final String PROJECTILE_SOURCE = "ProjectileSource";
-    public static final String SERVICE_MANAGER = "ServiceManager";
-    public static final String SPAWN_TYPE = "SpawnType";
-    public static final String TELEPORT_TYPE = "TeleportType";
-    public static final String THROWER = "Thrower";
-    public static final String WEAPON = "Weapon";
+    public static final EventContextKey<UUID> CREATOR = createFor("CREATOR");
+    public static final EventContextKey<DamageType> DAMAGE_TYPE = createFor("DAMAGE_TYPE");
+    public static final EventContextKey<DismountType> DISMOUNT_TYPE = createFor("DISMOUNT_TYPE");
+    public static final EventContextKey<User> IGNITER = createFor("IGNITER");
+    public static final EventContextKey<DamageSource> LAST_DAMAGE_SOURCE = createFor("LAST_DAMAGE_SOURCE");
+    public static final EventContextKey<User> NOTIFIER = createFor("NOTIFIER");
+    public static final EventContextKey<User> OWNER = createFor("OWNER");
+    public static final EventContextKey<Player> PLAYER = createFor("PLAYER");
+    public static final EventContextKey<GameProfile> PLAYER_SIMULATED = createFor("PLAYER_SIMULATED");
+    public static final EventContextKey<ProjectileSource> PROJECTILE_SOURCE = createFor("PROJECTILE_SOURCE");
+    public static final EventContextKey<ServiceManager> SERVICE_MANAGER = createFor("SERVICE_MANAGER");
+    public static final EventContextKey<SpawnType> SPAWN_TYPE = createFor("SPAWN_TYPE");
+    public static final EventContextKey<TeleportType> TELEPORT_TYPE = createFor("TELEPORT_TYPE");
+    public static final EventContextKey<User> THROWER = createFor("THROWER");
+    public static final EventContextKey<ItemStackSnapshot> WEAPON = createFor("WEAPON");
+
+    @SuppressWarnings("unchecked")
+    private static <T> EventContextKey<T> createFor(String id) {
+        return DummyObjectProvider.createFor(EventContextKey.class, id);
+    }
 
     private EventContextKeys() {
     }

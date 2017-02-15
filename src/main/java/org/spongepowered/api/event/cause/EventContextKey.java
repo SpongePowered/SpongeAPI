@@ -22,31 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.event.cause;
 
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.network.ClientConnectionEvent;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Raised when an {@link Entity} is spawned. This usually follows the chain of
- * the various entity creation events: {@link ConstructEntityEvent.Pre},
- * {@link ConstructEntityEvent.Post}, and finally {@link SpawnEntityEvent}.
+ * A key for values in the {@link EventContext}.
  *
- * <p>Note: To determine the {@link Cause}, refer to package
- * org.spongepowered.api.event.cause.entity.spawn.</p>
- *
- * <p>For players, this event is fired before they have fully
- * joined the world. {@link ClientConnectionEvent} is the
- * recommended event to interact with connecting players.</p>
+ * @param <T> The type of the value stored with this key
  */
-@GenerateFactoryMethod
-public interface SpawnEntityEvent extends AffectEntityEvent {
+@CatalogedBy(EventContextKeys.class)
+public interface EventContextKey<T> extends CatalogType {
 
-    interface ChunkLoad extends SpawnEntityEvent {}
+    /**
+     * Gets the allowed type for the value of this key.
+     * 
+     * @return The allowed type
+     */
+    Class<T> getAllowedType();
 
-    interface Spawner extends SpawnEntityEvent {}
-
-    interface Custom extends SpawnEntityEvent {}
 }
