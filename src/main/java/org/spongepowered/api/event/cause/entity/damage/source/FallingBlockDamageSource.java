@@ -30,6 +30,11 @@ import org.spongepowered.api.entity.FallingBlock;
 
 public interface FallingBlockDamageSource extends EntityDamageSource {
 
+    /**
+     * Creates a new {@link Builder} for constructing a new {@link FallingBlockDamageSource}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
@@ -48,6 +53,12 @@ public interface FallingBlockDamageSource extends EntityDamageSource {
 
     interface Builder extends EntityDamageSource.EntityDamageSourceBuilder<FallingBlockDamageSource, Builder> {
 
+        /**
+         * Sets the {@link ImmutableFallingBlockData} for the damage source.
+         *
+         * @param fallingBlock The falling block data
+         * @return This builder, for chaining
+         */
         Builder fallingBlock(ImmutableFallingBlockData fallingBlock);
 
     }

@@ -45,6 +45,12 @@ public abstract class AbstractAITask<O extends Agent> implements AITask<O> {
 
     private final AITaskType type;
 
+    /**
+     * Creates a new {@link AbstractAITask} with the provided
+     * {@link AITask}.
+     *
+     * @param type The type
+     */
     public AbstractAITask(AITaskType type) {
         Preconditions.checkNotNull(type);
         this.type = type;

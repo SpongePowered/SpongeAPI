@@ -29,11 +29,10 @@ import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import org.spongepowered.api.text.Text;
 
 /**
- * This exception is thrown when a subject does not have permission to execute a
- * command.
+ * This exception is thrown when a subject does not have permission to execute
+ * a command.
  */
 public class CommandPermissionException extends CommandException {
-
     private static final long serialVersionUID = -6057386975881181213L;
 
     /**
@@ -61,5 +60,4 @@ public class CommandPermissionException extends CommandException {
     public CommandPermissionException(Text message, Throwable cause) {
         super(message, cause);
     }
-
 }

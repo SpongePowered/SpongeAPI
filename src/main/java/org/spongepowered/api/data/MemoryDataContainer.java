@@ -38,10 +38,21 @@ import java.util.Optional;
  */
 public class MemoryDataContainer extends MemoryDataView implements DataContainer {
 
+    /**
+     * Creates a new {@link MemoryDataContainer} with a default
+     * {@link SafetyMode} of {@link SafetyMode#ALL_DATA_CLONED}.
+     */
     public MemoryDataContainer() {
         this(DataView.SafetyMode.ALL_DATA_CLONED);
     }
 
+    /**
+     * Creates a new {@link MemoryDataContainer} with the provided
+     * {@link SafetyMode}.
+     *
+     * @param safety The safety mode to use
+     * @see SafetyMode
+     */
     public MemoryDataContainer(DataView.SafetyMode safety) {
         super(safety);
     }

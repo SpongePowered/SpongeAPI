@@ -46,10 +46,23 @@ import javax.annotation.Nullable;
  */
 public class DominantHandProperty extends AbstractProperty<String, HandPreference> {
 
+    /**
+     * Creates a new {@link DominantHandProperty} with the provided {@link HandPreference}
+     * value.
+     *
+     * @param value The value
+     */
     public DominantHandProperty(@Nullable HandPreference value) {
         super(value);
     }
 
+    /**
+     * Creates a new {@link DominantHandProperty} with the provided {@link HandPreference}
+     * and {@link Operator} value.
+     *
+     * @param value The value
+     * @param op The operator for comparison
+     */
     public DominantHandProperty(@Nullable HandPreference value, @Nullable Operator op) {
         super(value, op);
     }

@@ -43,6 +43,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
+import javax.annotation.Nullable;
+
 /**
  * Represents a position for a player to respawn in in a particular world.
  * Instances can be obtained using {@link RespawnLocationData} or by using the
@@ -64,8 +66,8 @@ public final class RespawnLocation implements DataSerializable {
     private final boolean forced;
 
     RespawnLocation(Builder builder) {
-        this.worldId = builder.world;
-        this.position = builder.position;
+        this.worldId = checkNotNull(builder.world, "World UUID");
+        this.position = checkNotNull(builder.position, "Position");
         this.forced = builder.forced;
     }
 
@@ -161,10 +163,13 @@ public final class RespawnLocation implements DataSerializable {
      */
     public static final class Builder extends AbstractDataBuilder<RespawnLocation> {
 
-        UUID world;
-        Vector3d position;
+        @Nullable UUID world;
+        @Nullable Vector3d position;
         boolean forced = false;
 
+        /**
+         * Creates a new {@link Builder}.
+         */
         public Builder() {
             super(RespawnLocation.class, 1);
         }
@@ -265,6 +270,11 @@ public final class RespawnLocation implements DataSerializable {
             return this;
         }
 
+        /**
+         * Creates a new {@link RespawnLocation} from this builder.
+         *
+         * @return The new respawn location
+         */
         public RespawnLocation build() {
             checkNotNull(this.world, "World id cannot be null!");
             checkNotNull(this.position, "Position cannot be null!");

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.registry.util;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.registry.RegistrationPhase;
 
 import java.lang.annotation.ElementType;
@@ -35,6 +36,13 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface DelayedRegistration {
 
+    /**
+     * Gets the {@link RegistrationPhase} at which default registration
+     * of {@link CatalogType}s should take place.
+     *
+     * @return The delayed registration phase to perform default
+     *     registration of catalog types
+     */
     RegistrationPhase value();
 
 }

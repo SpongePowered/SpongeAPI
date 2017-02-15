@@ -43,6 +43,11 @@ import java.util.function.Function;
  */
 public interface HealthModifier {
 
+    /**
+     * Creates a new {@link Builder} for constructing new {@link HealthModifier}s.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }

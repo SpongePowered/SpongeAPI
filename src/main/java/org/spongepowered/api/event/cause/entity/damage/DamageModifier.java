@@ -42,6 +42,11 @@ import java.util.function.Function;
  */
 public interface DamageModifier {
 
+    /**
+     * Creates a new {@link Builder} for constructing a {@link DamageModifier}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return new Builder();
     }

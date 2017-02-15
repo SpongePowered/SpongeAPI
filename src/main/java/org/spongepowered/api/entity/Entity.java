@@ -30,6 +30,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
@@ -116,9 +117,9 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *
      * @param location The location to set
      * @return True if location was set successfully, false if location couldn't
-     *     be set as no safe location was found or
-     *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *     was cancelled.
+     *      be set as no safe location was found or
+     *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
+     *      was cancelled.
      */
     default boolean setLocationSafely(Location<World> location) {
         return Sponge.getGame().getTeleportHelper()
@@ -182,9 +183,9 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      * @param rotation The rotation to set
      * @param relativePositions The coordinates to set relatively
      * @return True if location was set successfully, false if location couldn't
-     *     be set due to
-     *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *     being cancelled
+     *      be set due to
+     *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
+     *      being cancelled
      */
     boolean setLocationAndRotation(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
 
@@ -201,9 +202,9 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      * @param location The location to set
      * @param rotation The rotation to set
      * @return True if location was set successfully, false if either location
-     *     couldn't be set as no safe location was found or
-     *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *     was cancelled
+     *      couldn't be set as no safe location was found or
+     *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
+     *      was cancelled
      */
     default boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation) {
         return Sponge.getGame().getTeleportHelper()
@@ -227,9 +228,9 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      * @param rotation The rotation to set
      * @param relativePositions The coordinates to set relatively
      * @return True if location was set successfully, false if either location
-     *     couldn't be set as no safe location was found or
-     *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *     was cancelled
+     *      couldn't be set as no safe location was found or
+     *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
+     *      was cancelled
      */
     default boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions) {
         return Sponge.getGame().getTeleportHelper()
@@ -279,7 +280,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      * {@link TargetedLocationData}.</p>
      *
      * @param world The world to transfer to
-     * @return whether the transfer was successful, returns false if the action
+     * @return Whether the transfer was successful, returns false if the action
      *      is cancelled or not possible (eg. because the entity has been
      *      removed)
      */
@@ -295,7 +296,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
      *
      * @param world The world to transfer to
      * @param position The position in the target world
-     * @return whether the transfer was successful, returns false if the action
+     * @return Whether the transfer was successful, returns false if the action
      *      is cancelled or not possible (eg. because the entity has been
      *      removed)
      */

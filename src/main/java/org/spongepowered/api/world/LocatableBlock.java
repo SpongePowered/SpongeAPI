@@ -32,26 +32,75 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 
 public interface LocatableBlock extends ImmutableDataHolder<LocatableBlock>, Locatable {
 
+    /**
+     * Creates a new {@link Builder} for creating new {@link LocatableBlock}s.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the {@link BlockState} for this lcoatable block.
+     *
+     * @return The block state
+     */
     BlockState getBlockState();
 
+    /**
+     * Gets the {@link Vector3i position} for this locatable block.
+     *
+     * @return The position for the block
+     */
     default Vector3i getPosition() {
         return getLocation().getBlockPosition();
     }
 
     interface Builder extends DataBuilder<LocatableBlock> {
 
+        /**
+         * Sets the {@link BlockState} for this builder.
+         *
+         * @param blockState The block state
+         * @return This builder, for chaining
+         */
         Builder state(BlockState blockState);
 
+        /**
+         * Sets the {@link BlockState} and {@link Vector3i position} for this
+         * builder.
+         *
+         * @param location The location containing the block state and position
+         * @return This builder, for chaining
+         */
         Builder location(Location<World> location);
 
+        /**
+         * Sets the {@link Vector3i position} for this builder.
+         *
+         * @param position The position
+         * @return This builder, for chaining
+         */
         Builder position(Vector3i position);
 
+        /**
+         * Sets the {@code x} {@code y} {@code z} positions for this builder.
+         *
+         * @param x The x coordinate
+         * @param y The y coordinate
+         * @param z The z coordinate
+         * @return This builder, for chaining
+         */
         Builder position(int x, int y, int z);
 
+        /**
+         * Sets the {@link World} for this builder, used to get the {@link BlockState}
+         * for a desired position.
+         *
+         * @param world The world
+         * @return This builder, for chaining
+         */
         Builder world(World world);
 
         @Override
@@ -60,6 +109,11 @@ public interface LocatableBlock extends ImmutableDataHolder<LocatableBlock>, Loc
         @Override
         Builder from(LocatableBlock value);
 
+        /**
+         * Creates a new {@link LocatableBlock}.
+         *
+         * @return The new locatable block
+         */
         LocatableBlock build();
     }
 

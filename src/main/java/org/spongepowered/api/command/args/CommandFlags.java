@@ -148,6 +148,7 @@ public final class CommandFlags extends CommandElement {
         return true;
     }
 
+    @SuppressWarnings("fallthrough")
     private boolean parseShortFlags(CommandSource source, String shortFlags, CommandArgs args, CommandContext context) throws ArgumentParseException {
         for (int i = 0; i < shortFlags.length(); ++i) {
             final String flagChar = shortFlags.substring(i, i + 1);
@@ -239,8 +240,9 @@ public final class CommandFlags extends CommandElement {
         args.setState(startIdx);
         if (this.childElement != null) {
             return this.childElement.complete(src, args, context);
+        } else {
+            return Collections.emptyList();
         }
-        return Collections.emptyList();
     }
 
     @Nullable
@@ -388,18 +390,15 @@ public final class CommandFlags extends CommandElement {
 
         /**
          * Allow a flag with any of the provided specifications that has no
-         * value.
-         *
-         * <p>This flag will be exposed in a {@link CommandContext} under the
-         * key equivalent to the first flag in the specification array. The
-         * specifications are handled as so for each element in the
-         * {@code specs} array:</p>
-         *
+         * value. This flag will be exposed in a {@link CommandContext} under
+         * the key equivalent to the first flag in the specification array.
+         * The specifications are handled as so for each element in the
+         * {@code specs} array:
          * <ul>
-         *     <li>If the element starts with -, the remainder of the element is
-         *     interpreted as a long flag</li>
-         *     <li>Otherwise, each code point of the element is interpreted as a
-         *     short flag</li>
+         *     <li>If the element starts with -, the remainder of the element
+         *     is interpreted as a long flag</li>
+         *     <li>Otherwise, each code point of the element is interpreted
+         *     as a short flag</li>
          * </ul>
          *
          * @param specs The flag specifications
@@ -434,11 +433,13 @@ public final class CommandFlags extends CommandElement {
          * command element. The flag may be present multiple times, and may
          * therefore have multiple values.
          *
-         * @see #flag(String...) for information on how the flag specifications are parsed
+         * @see #flag(String...) for information on how the flag specifications
+         *     are parsed
          * @param value The command element used to parse any occurrences
          * @param specs The flag specifications
          * @return this
          */
+        @SuppressWarnings({"unchecked", "rawtypes"}) // cuz generics suck
         public Builder valueFlag(CommandElement value, String... specs) {
             return flag(ignore -> value, specs);
         }

@@ -29,11 +29,20 @@ import org.spongepowered.api.entity.Entity;
 
 public interface EntitySpawnCause extends SpawnCause {
 
+    /**
+     * Creates a new {@link Builder} to construct a new {@link EntitySpawnCause}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
-
+    /**
+     * Gets the {@link Entity} responsible for the spawn.
+     *
+     * @return The entity
+     */
     Entity getEntity();
 
     interface Builder extends EntitySpawnCauseBuilder<EntitySpawnCause, Builder> {
@@ -42,6 +51,12 @@ public interface EntitySpawnCause extends SpawnCause {
 
     interface EntitySpawnCauseBuilder<T extends EntitySpawnCause, B extends EntitySpawnCauseBuilder<T, B>> extends SpawnCauseBuilder<T, B> {
 
+        /**
+         * Sets the entity for this builder.
+         *
+         * @param entity The entity
+         * @return This builder, for chaining
+         */
         B entity(Entity entity);
 
     }

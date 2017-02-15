@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.tileentity;
 
-
 import org.spongepowered.api.block.tileentity.carrier.TileEntityCarrier;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableLockableData;

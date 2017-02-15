@@ -55,6 +55,14 @@ public class DummyClassGenerator {
 
     private static final String FIELD_NAME = "fieldName";
 
+    /**
+     * Creates a new class prepared to be loaded into the {@link ClassLoader}.
+     *
+     * @param type The type of class to implement
+     * @param name The name of the class
+     * @param exceptionType The exception type to throw for all methods
+     * @return The generated class
+     */
     public byte[] createClass(final Class<?> type, final String name, final Class<?> exceptionType) {
 
         checkNotNull(type, "type");
@@ -143,7 +151,7 @@ public class DummyClassGenerator {
 
             // Call String.format
             mv.visitMethodInsn(INVOKESTATIC, Type.getInternalName(String.class), "format",
-                    "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;", false);
+                "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;", false);
 
             // Invoke throwable constructor
             mv.visitMethodInsn(INVOKESPECIAL, internalException, "<init>", "(Ljava/lang/String;)V", false);

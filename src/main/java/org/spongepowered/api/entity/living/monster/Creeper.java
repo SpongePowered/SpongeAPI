@@ -33,6 +33,13 @@ import org.spongepowered.api.entity.explosive.FusedExplosive;
  */
 public interface Creeper extends Monster, FusedExplosive {
 
+    /**
+     * Gets the current {@link Value value} of whether this {@link Creeper}
+     * is considered "charged". Note that "charged" creepers will likely
+     * cause larger than normal explosions.
+     *
+     * @return The value whether this creeper is charged
+     */
     default Value<Boolean> charged() {
         return getValue(Keys.CREEPER_CHARGED).get();
     }

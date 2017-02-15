@@ -53,18 +53,18 @@ import org.spongepowered.api.profile.GameProfile;
 public final class NamedCause {
 
     /**
-     * Used by {@link ChangeBlockEvent.Pre} before a vanilla block event.
+     * Used by {@link org.spongepowered.api.event.block.ChangeBlockEvent.Pre} before a vanilla block event.
      */
     public static final String BLOCK_EVENT = "BlockEvent";
 
     /**
-     * Used by {@link ChangeBlockEvent.Pre} during vanilla block protection
+     * Used by {@link org.spongepowered.api.event.block.ChangeBlockEvent.Pre} during vanilla block protection
      * checks.
      */
     public static final String BLOCK_PROTECTED = "BlockProtected";
 
     /**
-     * Used by {@link ChangeBlockEvent.Pre} before a block decays.
+     * Used by {@link org.spongepowered.api.event.block.ChangeBlockEvent.Pre} before a block decays.
      */
     public static final String DECAY = "Decay";
 
@@ -74,7 +74,7 @@ public final class NamedCause {
     public static final String FAKE_PLAYER = "FakePlayer";
 
     /**
-     * Used by {@link ChangeBlockEvent.Pre} before fire spreads.
+     * Used by {@link org.spongepowered.api.event.block.ChangeBlockEvent.Pre} before fire spreads.
      */
     public static final String FIRE_SPREAD = "FireSpread";
 
@@ -92,7 +92,7 @@ public final class NamedCause {
     public static final String IGNITER = "Igniter";
 
     /**
-     * Used by {@link ChangeBlockEvent.Pre} before liquid flows.
+     * Used by {@link org.spongepowered.api.event.block.ChangeBlockEvent.Pre} before liquid flows.
      */
     public static final String LIQUID_FLOW = "LiquidFlow";
 
@@ -115,25 +115,25 @@ public final class NamedCause {
     public static final String PHYSICAL = "Physical";
 
     /**
-     * Used by {@link ChangeBlockEvent.Pre} before a
+     * Used by {@link org.spongepowered.api.event.block.ChangeBlockEvent.Pre} before a
      * {@link BlockTypes#PISTON_HEAD} extends;
      */
     public static final String PISTON_EXTEND = "PistonExtend";
 
     /**
-     * Used by {@link ChangeBlockEvent.Pre} before a
+     * Used by {@link org.spongepowered.api.event.block.ChangeBlockEvent.Pre} before a
      * {@link BlockTypes#PISTON_HEAD} retracts;
      */
     public static final String PISTON_RETRACT = "PistonRetract";
 
     /**
-     * Used by {@link ChangeBlockEvent.Pre} before a {@link Player}
+     * Used by {@link org.spongepowered.api.event.block.ChangeBlockEvent.Pre} before a {@link Player}
      * breaks a block.
      */
     public static final String PLAYER_BREAK = "PlayerBreak";
 
     /**
-     * Used by {@link ChangeBlockEvent.Pre} before a {@link Player}
+     * Used by {@link org.spongepowered.api.event.block.ChangeBlockEvent.Pre} before a {@link Player}
      * places a block.
      */
     public static final String PLAYER_PLACE = "PlayerPlace";
@@ -154,40 +154,105 @@ public final class NamedCause {
      */
     public static final String THROWER = "Thrower";
 
+    /**
+     * Creates a new {@link NamedCause} with the object being "named"
+     * as {@link NamedCause#SOURCE}.
+     *
+     * @param object The object being the source
+     * @return The new named cause
+     */
     public static NamedCause source(Object object) {
         return of(SOURCE, object);
     }
 
+    /**
+     * Creates a new {@link NamedCause} with the object being "named"
+     * as {@link NamedCause#OWNER}.
+     *
+     * @param object The object being the owner
+     * @return The new named cause
+     */
     public static NamedCause owner(Object object) {
         return of(OWNER, object);
     }
 
-    public static NamedCause notifier(Object obj) {
-        return of(NOTIFIER, obj);
+    /**
+     * Creates a new {@link NamedCause} with the object being "named"
+     * as {@link NamedCause#NOTIFIER}.
+     *
+     * @param object The object being the notifier
+     * @return The new named cause
+     */
+    public static NamedCause notifier(Object object) {
+        return of(NOTIFIER, object);
     }
 
-    public static NamedCause hitTarget(Object obj) {
-        return of(HIT_TARGET, obj);
+    /**
+     * Creates a new {@link NamedCause} with the object being "named"
+     * as {@link NamedCause#HIT_TARGET}.
+     *
+     * @param object The object being the hit target
+     * @return The new named cause
+     */
+    public static NamedCause hitTarget(Object object) {
+        return of(HIT_TARGET, object);
     }
 
+    /**
+     * Creates a new {@link NamedCause} with the object being "named"
+     * as a {@link NamedCause#PLAYER_SIMULATED} player.
+     *
+     * @param object The simulated player object
+     * @return The new named cause
+     */
     public static NamedCause simulated(Object object) {
         checkArgument(object instanceof Player || object instanceof User || object instanceof GameProfile,
             "Invalid object provided for player simulated methods");
         return of(PLAYER_SIMULATED, object);
     }
 
+    /**
+     * Creates a new {@link NamedCause} with the object being "named"
+     * as a {@link NamedCause#PLAYER_SIMULATED} player.
+     *
+     * @param player The simulated player
+     * @return The new named cause
+     */
     public static NamedCause simulated(Player player) {
         return of(PLAYER_SIMULATED, player);
     }
 
+    /**
+     * Creates a new {@link NamedCause} with the object being "named"
+     * as a {@link NamedCause#PLAYER_SIMULATED} player.
+     *
+     * @param user The simulated user
+     * @return The new named cause
+     */
     public static NamedCause simulated(User user) {
         return of(PLAYER_SIMULATED, user);
     }
 
+    /**
+     * Creates a new {@link NamedCause} with the object being "named"
+     * as a {@link NamedCause#PLAYER_SIMULATED} player.
+     *
+     * @param profile The simulated game profile
+     * @return The new named cause
+     */
     public static NamedCause simulated(GameProfile profile) {
         return of(PLAYER_SIMULATED, profile);
     }
 
+    /**
+     * Constructs a new {@link NamedCause} where the {@code name} is not
+     * {@code null} or {@link String#isEmpty() empty}. The object as well
+     * can not be another instance of a {@link NamedCause}.
+     *
+     * @param name The name of the object
+     * @param object The object itself
+     * @return The new named cause
+     */
     public static NamedCause of(String name, Object object) {
         checkNotNull(name, "Cannot have a null name!");
         checkNotNull(object, "Cannot have a null object!");
@@ -205,10 +270,20 @@ public final class NamedCause {
         this.object = checkNotNull(object);
     }
 
+    /**
+     * Gets the name of this {@link NamedCause}.
+     *
+     * @return The name of this cause
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Gets the {@link Object} of this {@link NamedCause}.
+     *
+     * @return The object
+     */
     public Object getCauseObject() {
         return this.object;
     }

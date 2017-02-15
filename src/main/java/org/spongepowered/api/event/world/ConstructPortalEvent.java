@@ -37,6 +37,11 @@ import org.spongepowered.api.world.World;
 // TODO: Special object for Portal instead of just the location
 public interface ConstructPortalEvent extends Event, Cancellable {
 
+    /**
+     * Gets the position location of a portal.
+     *
+     * @return The location of a portal
+     */
     Location<World> getPortalLocation();
 
 }

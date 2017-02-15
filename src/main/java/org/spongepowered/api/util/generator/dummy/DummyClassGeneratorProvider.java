@@ -32,10 +32,25 @@ public class DummyClassGeneratorProvider {
     private final DummyClassGenerator generator = new DummyClassGenerator();
     private final String targetPackage;
 
+    /**
+     * Creates a new dummy class provider.
+     *
+     * @param targetPackage The target package
+     */
     public DummyClassGeneratorProvider(String targetPackage) {
         this.targetPackage = targetPackage;
     }
 
+    /**
+     * Creates a new class extended based on the provided {@code type} with the
+     * provided {@code exceptionType} to throw for all methods provided by the
+     * target class.
+     *
+     * @param type The type of class to generate
+     * @param exceptionType The exception to throw
+     * @param <T> The type of class
+     * @return The generated class
+     */
     @SuppressWarnings("unchecked")
     public <T> Class<T> create(final Class<T> type, Class<? extends Throwable> exceptionType) {
         String name = GeneratorUtils.getClassName(this.targetPackage, type, "DummyClass");

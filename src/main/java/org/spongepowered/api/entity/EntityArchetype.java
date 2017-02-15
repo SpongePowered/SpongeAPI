@@ -47,7 +47,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot> {
 
     /**
      * Gets the {@link EntityType} of the entity contained in this archetype.
-     *
+     * 
      * @return The entity type
      */
     EntityType getType();
@@ -77,18 +77,60 @@ public interface EntityArchetype extends Archetype<EntitySnapshot> {
         @Override
         Builder from(EntityArchetype value);
 
+        /**
+         * Sets all possible bits of information from the provided {@link Entity}.
+         *
+         * @param entity The entity to get information from
+         * @return This builder, for chaining
+         */
         Builder from(Entity entity);
 
+        /**
+         * Sets the desired {@link EntityType} of the produced {@link EntityArchetype}.
+         *
+         * @param type The type of entity type
+         * @return This builder, for chaining
+         */
         Builder type(EntityType type);
 
+        /**
+         * Sets the desired {@link EntityType} of the produced {@link EntityArchetype}.
+         *
+         * @param type The type of entity type
+         * @return This builder, for chaining
+         */
         Builder entityData(DataView view);
 
+        /**
+         * Sets the desired {@link EntityType} of the produced {@link EntityArchetype}.
+         *
+         * @param type The type of entity type
+         * @return This builder, for chaining
+         */
         Builder setData(DataManipulator<?, ?> manipulator);
 
+        /**
+         * Sets the desired {@link EntityType} of the produced {@link EntityArchetype}.
+         *
+         * @param value The type of entity type
+         * @return This builder, for chaining
+         */
         <E, V extends BaseValue<E>> Builder set(V value);
 
+        /**
+         * Sets the desired {@link EntityType} of the produced {@link EntityArchetype}.
+         *
+         * @param key The key
+         * @param value The value to set
+         * @return This builder, for chaining
+         */
         <E, V extends BaseValue<E>> Builder set(Key<V> key, E value);
 
+        /**
+         * Constructs a new {@link EntityArchetype}.
+         *
+         * @return The new entity archetype
+         */
         EntityArchetype build();
     }
 

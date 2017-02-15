@@ -41,7 +41,7 @@ public class CommandMessageFormatting {
 
     /**
      * Format text to be output as an error directly to a sender. Not necessary
-     * when creating an exception to be thrown.
+     * when creating an exception to be thrown
      *
      * @param error The error message
      * @return The formatted error message.
