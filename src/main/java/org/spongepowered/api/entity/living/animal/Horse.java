@@ -46,14 +46,32 @@ public interface Horse extends Animal, Carrier {
         return get(HorseData.class).get();
     }
 
+    /**
+     * Gets the {@link Value} of the {@link HorseVariant} for this
+     * {@link Horse}.
+     *
+     * @return The variant value
+     */
     default Value<HorseVariant> variant() {
         return getValue(Keys.HORSE_VARIANT).get();
     }
 
+    /**
+     * Gets the {@link Value} of the {@link HorseStyle} for this
+     * {@link Horse}.
+     *
+     * @return The horse style
+     */
     default Value<HorseStyle> style() {
         return getValue(Keys.HORSE_STYLE).get();
     }
 
+    /**
+     * Gets the {@link Value} of the {@link HorseColor} for this
+     * {@link Horse}.
+     *
+     * @return The horse color
+     */
     default Value<HorseColor> color() {
         return getValue(Keys.HORSE_COLOR).get();
     }

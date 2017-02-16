@@ -38,6 +38,12 @@ public class FixedPartitionedTextFormatter implements PartitionedTextFormatter<S
 
     final SimpleTextFormatter[] partitions;
 
+    /**
+     * Creates a new {@link FixedPartitionedTextFormatter} with
+     * the provided size of partitions.
+     *
+     * @param size The size of partitions
+     */
     public FixedPartitionedTextFormatter(int size) {
         checkArgument(size >= 0, "size must be greater than or equal to zero");
         this.partitions = new SimpleTextFormatter[size];
@@ -46,6 +52,10 @@ public class FixedPartitionedTextFormatter implements PartitionedTextFormatter<S
         }
     }
 
+    /**
+     * Creates a new {@link FixedPartitionedTextFormatter} with
+     * the provided size of partitions.
+     */
     public FixedPartitionedTextFormatter() {
         this(2);
     }
