@@ -32,19 +32,48 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-public interface ImmutableMappedData<K, V, I extends ImmutableMappedData<K, V, I, M>,
-    M extends MappedData<K, V, M, I>> extends ImmutableDataManipulator<I, M> {
+public interface ImmutableMappedData<K, V, I extends ImmutableMappedData<K, V, I, M>, M extends MappedData<K, V, M, I>>
+    extends ImmutableDataManipulator<I, M> {
 
+    /**
+     * Gets the {@code value} for the provided {@code key}, if available.
+     *
+     * @param key The key
+     * @return The value, if available
+     * @see Map#get(Object)
+     */
     Optional<V> get(K key);
 
+    /**
+     * Gets a {@link Set} of {@code keys} available in this manipulator.
+     *
+     * @return The key set
+     * @see Map#keySet()
+     */
     Set<K> getMapKeys();
 
+    /**
+     * Gets the {@link java.util.Map.Entry} {@link Set} of values.
+     *
+     * @return The entry set
+     * @see Map#entrySet()
+     */
     default Set<Map.Entry<K, V>> getMapValues() {
         return asMap().entrySet();
     }
 
+    /**
+     * Gets the {@link ImmutableMapValue} of this manipulator.
+     *
+     * @return The map value of this manipulator
+     */
     ImmutableMapValue<K, V> getMapValue();
 
+    /**
+     * Gets this manipulator as a {@link Map}.
+     *
+     * @return The map
+     */
     default Map<K, V> asMap() {
         return getMapValue().get();
     }

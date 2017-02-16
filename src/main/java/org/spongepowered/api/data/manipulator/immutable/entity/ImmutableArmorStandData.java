@@ -30,6 +30,13 @@ import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
 public interface ImmutableArmorStandData extends ImmutableDataManipulator<ImmutableArmorStandData, ArmorStandData> {
 
+    /**
+     * Returns whether this armor stand is considered a "marker" where if
+     * it is a "marker", then the armor stand is not rendered itself, but
+     * the equipment it has would still be rendered.
+     *
+     * @return Whether this armor stand is a marker
+     */
     ImmutableValue<Boolean> marker();
 
     /**
