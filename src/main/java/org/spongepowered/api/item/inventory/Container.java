@@ -57,9 +57,12 @@ public interface Container extends Interactable {
      *
      * @param viewer The viewer to show this inventory to
      * @param cause The {@link Cause} to use when opening the inventory
-     * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
+     * @return {@code true}, if the {@link Container} was opened, {@code false}
+     *         otherwise.
+     * @throws IllegalArgumentException if a {@link PluginContainer} is not the
+     *         root of the cause
      */
-    void open(Player viewer, Cause cause) throws IllegalArgumentException;
+    boolean open(Player viewer, Cause cause) throws IllegalArgumentException;
 
     /**
      * Stops showing this Inventory to the given viewer, if it is currently
@@ -67,8 +70,11 @@ public interface Container extends Interactable {
      *
      * @param viewer The viewer to stop showing this inventory to
      * @param cause The {@link Cause} to provide when closing the inventory
-     * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
+     * @return {@code true}, if the {@link Container} was closed, {@code false}
+     *         otherwise.
+     * @throws IllegalArgumentException if a {@link PluginContainer} is not the
+     *         root of the cause
      */
-    void close(Player viewer, Cause cause) throws IllegalArgumentException;
+    boolean close(Player viewer, Cause cause) throws IllegalArgumentException;
 
 }
