@@ -147,10 +147,7 @@ public class MemoryDataView implements DataView {
             return this.map.containsKey(key);
         }
         Optional<DataView> subViewOptional = this.getUnsafeView(key);
-        if (!subViewOptional.isPresent()) {
-            return false;
-        }
-        return subViewOptional.get().contains(path.popFirst());
+        return subViewOptional.isPresent() && subViewOptional.get().contains(path.popFirst());
     }
 
     @Override

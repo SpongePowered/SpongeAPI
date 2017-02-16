@@ -29,7 +29,6 @@ import org.spongepowered.api.service.economy.account.Account;
 import org.spongepowered.api.service.economy.account.UniqueAccount;
 import org.spongepowered.api.service.economy.account.VirtualAccount;
 
-import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
