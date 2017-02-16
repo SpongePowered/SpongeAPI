@@ -60,17 +60,15 @@ import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
 import javax.tools.FileObject;
 
-@SupportedAnnotationTypes({
-        "org.spongepowered.api.plugin.Plugin",
-        "org.spongepowered.api.plugin.Dependency"
-})
-@SupportedOptions({
-        PluginProcessor.EXTRA_FILES_OPTION,
-        PluginProcessor.OUTPUT_FILE_OPTION
-})
+@SupportedAnnotationTypes({ PluginProcessor.PLUGIN_ANNOTATION_CLASS, PluginProcessor.DEPENDENCY_ANNOTATION_CLASS })
+@SupportedOptions({ PluginProcessor.EXTRA_FILES_OPTION, PluginProcessor.OUTPUT_FILE_OPTION })
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class PluginProcessor extends AbstractProcessor {
 
+    static final String PLUGIN_PACKAGE = "org.spongepowered.api.plugin.";
+    static final String PLUGIN_ANNOTATION_CLASS = PluginProcessor.PLUGIN_PACKAGE + "Plugin";
+    static final String DEPENDENCY_ANNOTATION_CLASS = PluginProcessor.PLUGIN_PACKAGE + "Dependency";
+    
     public static final String EXTRA_FILES_OPTION = "extraMetadataFiles";
     public static final String OUTPUT_FILE_OPTION = "metadataOutputFile";
 
