@@ -149,13 +149,7 @@ public class GroundCoverLayer {
             return false;
         }
         GroundCoverLayer object = (GroundCoverLayer) obj;
-        if (!this.depth.equals(object.depth)) {
-            return false;
-        }
-        if (!this.block.equals(object.block)) {
-            return false;
-        }
-        return true;
+        return this.depth.equals(object.depth) && this.block.equals(object.block);
     }
 
     @Override
