@@ -59,15 +59,16 @@ public interface Container extends Interactable {
      * @param cause The {@link Cause} to use when opening the inventory
      * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
      */
-    void open(Player viewer, Cause cause) throws IllegalArgumentException;;
+    void open(Player viewer, Cause cause) throws IllegalArgumentException;
 
     /**
-     * Stops showing this Inventory to the given viewer.
+     * Stops showing this Inventory to the given viewer, if it is currently
+     * being shown.
      *
      * @param viewer The viewer to stop showing this inventory to
      * @param cause The {@link Cause} to provide when closing the inventory
      * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
      */
-    void close(Player viewer, Cause cause) throws IllegalArgumentException;;
+    void close(Player viewer, Cause cause) throws IllegalArgumentException;
 
 }
