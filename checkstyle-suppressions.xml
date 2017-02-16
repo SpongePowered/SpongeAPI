@@ -2,7 +2,7 @@
 <!DOCTYPE suppressions PUBLIC "-//Puppy Crawl//DTD Suppressions 1.1//EN" "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
 
 <suppressions>
-    <suppress checks="JavadocMethod|SummaryJavadoc" files="src[\\/]test[\\/]java[\\/].*"/>
+    <suppress checks="JavadocMethod|SummaryJavadoc|AvoidEscapedUnicodeCharacters" files="src[\\/]test[\\/]java[\\/].*"/>
     <suppress checks="Indentation" files="package-info\.java"/>
     <suppress checks="AbbreviationAsWordInName" files="AI"/>
     <suppress checks="AbbreviationAsWordInName" files="TNT"/>
