@@ -95,40 +95,37 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
     @Override
     public List<String> complete(final CommandSource src, CommandArgs args, CommandContext context) {
         final Optional<String> commandComponent = args.nextIfPresent();
-        if (commandComponent.isPresent()) {
-            if (args.hasNext()) {
-                Optional<CommandMapping> child = this.dispatcher.get(commandComponent.get(), src);
-                if (!child.isPresent()) {
-                    return ImmutableList.of();
-                }
-                if (child.get().getCallable() instanceof CommandSpec) {
-                    return ((CommandSpec) child.get().getCallable()).complete(src, args, context);
-                } else {
-                    args.nextIfPresent();
-                    final String arguments = args.getRaw().substring(args.getRawPosition());
-                    while (args.hasNext()) {
-                        args.nextIfPresent();
-                    }
-                    try {
-                        return child.get()
-                                .getCallable()
-                                .getSuggestions(src, arguments, context.<Location<World>>getOne(CommandContext.TARGET_BLOCK_ARG).orElse(null));
-                    } catch (CommandException e) {
-                        Text eText = e.getText();
-                        if (eText != null) {
-                            src.sendMessage(error(eText));
-                        }
-                        return ImmutableList.of();
-                    }
-                }
-            } else {
-                return filterCommands(src).stream()
-                    .filter(new StartsWithPredicate(commandComponent.get()))
-                    .collect(GuavaCollectors.toImmutableList());
-            }
-        } else {
+        if (!commandComponent.isPresent()) {
             return ImmutableList.copyOf(filterCommands(src));
         }
+        if (args.hasNext()) {
+            Optional<CommandMapping> child = this.dispatcher.get(commandComponent.get(), src);
+            if (!child.isPresent()) {
+                return ImmutableList.of();
+            }
+            if (child.get().getCallable() instanceof CommandSpec) {
+                return ((CommandSpec) child.get().getCallable()).complete(src, args, context);
+            }
+            args.nextIfPresent();
+            final String arguments = args.getRaw().substring(args.getRawPosition());
+            while (args.hasNext()) {
+                args.nextIfPresent();
+            }
+            try {
+                return child.get()
+                        .getCallable()
+                        .getSuggestions(src, arguments, context.<Location<World>>getOne(CommandContext.TARGET_BLOCK_ARG).orElse(null));
+            } catch (CommandException e) {
+                Text eText = e.getText();
+                if (eText != null) {
+                    src.sendMessage(error(eText));
+                }
+                return ImmutableList.of();
+            }
+        }
+        return filterCommands(src).stream()
+                .filter(new StartsWithPredicate(commandComponent.get()))
+                .collect(GuavaCollectors.toImmutableList());
     }
 
     private Set<String> filterCommands(final CommandSource src) {
@@ -174,20 +171,18 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
         CommandMapping mapping = args.<CommandMapping>getOne(getUntranslatedKey()).orElse(null);
         if (mapping == null) {
-            if (this.fallbackExecutor != null) {
-                return this.fallbackExecutor.execute(src, args);
-            } else {
+            if (this.fallbackExecutor == null) {
                 throw new CommandException(t("Invalid subcommand state -- no more than one mapping may be provided for child arg %s", getKey()));
             }
+            return this.fallbackExecutor.execute(src, args);
         }
         if (mapping.getCallable() instanceof CommandSpec) {
             CommandSpec spec = ((CommandSpec) mapping.getCallable());
             spec.checkPermission(src);
             return spec.getExecutor().execute(src, args);
-        } else {
-            final String arguments = args.<String>getOne(getUntranslatedKey() + "_args").orElse("");
-            return mapping.getCallable().process(src, arguments);
         }
+        final String arguments = args.<String>getOne(getUntranslatedKey() + "_args").orElse("");
+        return mapping.getCallable().process(src, arguments);
     }
 
     @Override

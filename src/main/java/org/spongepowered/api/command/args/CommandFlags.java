@@ -238,11 +238,10 @@ public final class CommandFlags extends CommandElement {
         }
 
         args.setState(startIdx);
-        if (this.childElement != null) {
-            return this.childElement.complete(src, args, context);
-        } else {
+        if (this.childElement == null) {
             return Collections.emptyList();
         }
+        return this.childElement.complete(src, args, context);
     }
 
     @Nullable
