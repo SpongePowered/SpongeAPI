@@ -34,7 +34,6 @@ import org.spongepowered.api.item.inventory.Carrier;
 
 public interface Horse extends Animal, Carrier {
 
-
     /**
      * Gets a copy of the {@link HorseData} representing this {@link Horse}.
      *
@@ -47,10 +46,11 @@ public interface Horse extends Animal, Carrier {
     }
 
     /**
-     * Gets the variant of {@link Horse}.
+     * Gets the {@link Value} of the {@link HorseVariant} for this
+     * {@link Horse}.
      *
-     * @return The variant value of this horse
-     * @deprecated Use instances of other horse interfaces
+     * @return The variant value
+     * @deprecated This is now only usable with {@link RideableHorse}s.
      */
     @Deprecated
     default Value<HorseVariant> variant() {
@@ -58,8 +58,11 @@ public interface Horse extends Animal, Carrier {
     }
 
     /**
-     * @return The style of this horse
-     * @deprecated Only applicable to {@link RideableHorse}s now
+     * Gets the {@link Value} of the {@link HorseStyle} for this
+     * {@link Horse}.
+     *
+     * @return The horse style
+     * @deprecated This is now only usable with {@link RideableHorse}s.
      */
     @Deprecated
     default Value<HorseStyle> style() {
@@ -67,9 +70,11 @@ public interface Horse extends Animal, Carrier {
     }
 
     /**
+     * Gets the {@link Value} of the {@link HorseColor} for this
+     * {@link Horse}.
      *
      * @return The horse color
-     * @deprecated Only applicable to {@link RideableHorse}s now
+     * @deprecated This is now only usable with {@link RideableHorse}s.
      */
     @Deprecated
     default Value<HorseColor> color() {
