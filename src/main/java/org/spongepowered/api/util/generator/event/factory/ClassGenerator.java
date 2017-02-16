@@ -618,7 +618,7 @@ public class ClassGenerator {
 
             for (EventFactoryPlugin plugin : plugins) {
                 processed = plugin.contributeProperty(eventClass, internalName, cw, property);
-                if (processed == true) {
+                if (processed) {
                     break;
                 }
             }

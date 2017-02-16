@@ -96,7 +96,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot> {
         /**
          * Sets the desired {@link EntityType} of the produced {@link EntityArchetype}.
          *
-         * @param type The type of entity type
+         * @param view The data to set for the archetype
          * @return This builder, for chaining
          */
         Builder entityData(DataView view);
@@ -104,7 +104,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot> {
         /**
          * Sets the desired {@link EntityType} of the produced {@link EntityArchetype}.
          *
-         * @param type The type of entity type
+         * @param manipulator The manipulator to set for the archetype
          * @return This builder, for chaining
          */
         Builder setData(DataManipulator<?, ?> manipulator);
