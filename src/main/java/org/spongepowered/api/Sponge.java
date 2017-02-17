@@ -30,7 +30,7 @@ import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.event.EventManager;
-import org.spongepowered.api.event.SpongeEventFactoryImpl;
+import org.spongepowered.api.event.EventFactory;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.scheduler.Scheduler;
@@ -207,7 +207,7 @@ public final class Sponge {
         return getGame().getChannelRegistrar();
     }
 
-    public static SpongeEventFactoryImpl getEventFactory() {
+    public static EventFactory getEventFactory() {
         return getGame().getEventFactory();
     }
 

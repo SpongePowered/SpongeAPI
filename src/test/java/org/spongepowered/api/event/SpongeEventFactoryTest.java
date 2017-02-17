@@ -98,7 +98,7 @@ public class SpongeEventFactoryTest {
     });
 
     private static ClassGeneratorProvider provider = new ClassGeneratorProvider("org.spongepowered.test");
-    private static SpongeEventFactoryImpl factory = provider.createFactoryInterfaceImpl(SpongeEventFactoryImpl.class);
+    private static EventFactory factory = provider.createFactoryInterfaceImpl(EventFactory.class);
 
     @Before
     public void setUp() {

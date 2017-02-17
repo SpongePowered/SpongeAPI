@@ -40,7 +40,6 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
-import org.spongepowered.api.eventgencore.annotation.Name;
 import org.spongepowered.api.eventgencore.classwrapper.reflection.ReflectionUtils;
 import org.spongepowered.api.util.generator.event.factory.plugin.AccessorModifierEventFactoryPlugin;
 import org.spongepowered.api.util.generator.event.factory.plugin.EventFactoryPlugin;

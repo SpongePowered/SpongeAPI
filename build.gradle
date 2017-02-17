@@ -115,7 +115,7 @@ genEventImpl {
     excludeSrc = []
     outputDir = 'src/main/java/'
     outputFactory = 'org.spongepowered.api.event.SpongeEventFactory'
-    outputInterface = 'org.spongepowered.api.event.SpongeEventFactoryImpl'
+    outputInterface = 'org.spongepowered.api.event.EventFactory'
     eventImplCreateMethod = 'org.spongepowered.api.Sponge.getEventFactory'
     sortPriorityPrefix = 'original'
     groupingPrefixes = ['from': 'to']

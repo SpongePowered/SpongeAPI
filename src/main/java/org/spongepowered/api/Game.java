@@ -33,7 +33,7 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.property.PropertyRegistry;
 import org.spongepowered.api.data.property.PropertyStore;
 import org.spongepowered.api.event.EventManager;
-import org.spongepowered.api.event.SpongeEventFactoryImpl;
+import org.spongepowered.api.event.EventFactory;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.scheduler.Scheduler;
@@ -205,6 +205,6 @@ public interface Game {
      */
     ChannelRegistrar getChannelRegistrar();
 
-    SpongeEventFactoryImpl getEventFactory();
+    EventFactory getEventFactory();
 
 }
