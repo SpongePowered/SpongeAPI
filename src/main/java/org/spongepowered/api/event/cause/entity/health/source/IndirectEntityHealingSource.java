@@ -26,23 +26,38 @@ package org.spongepowered.api.event.cause.entity.health.source;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
 public interface IndirectEntityHealingSource extends EntityHealingSource {
 
+    /**
+     * Creates a new {@link Builder} for constructing an {@link IndirectEntityHealingSource}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the {@link Entity} indirect source of healing.
+     *
+     * @return The entity that is indirectly healing
+     */
     Entity getIndirectSource();
 
     interface Builder extends IndirectEntityHealingSourceBuilder<IndirectEntityHealingSource, Builder> {
-        
+
     }
 
-    interface IndirectEntityHealingSourceBuilder<T extends IndirectEntityHealingSource, B extends IndirectEntityHealingSourceBuilder<T, B>> extends EntityHealingSourceBuilder<T, B> {
+    interface IndirectEntityHealingSourceBuilder<T extends IndirectEntityHealingSource, B extends IndirectEntityHealingSourceBuilder<T, B>>
+            extends EntityHealingSourceBuilder<T, B> {
 
+        /**
+         * Sets the indirect {@link Entity} that is providing healing.
+         *
+         * @param entity The entity that is indirectly providing healing
+         * @return This builder, for chaining
+         */
         B indirectEntity(Entity entity);
 
     }

@@ -43,8 +43,10 @@ import java.util.Optional;
  * This object stores parsed arguments from other commands
  */
 public final class CommandContext {
+
     /**
-     * The argument key for a target block position that may be present during tab completion, of type {@link Location Location&lt;World>}
+     * The argument key for a target block position that may be present
+     * during tab completion, of type {@link Location Location&lt;World&gt;}.
      */
     public static final String TARGET_BLOCK_ARG = "targetblock-pos048658"; // Random junk afterwards so we don't accidentally conflict with other args
 
@@ -71,13 +73,13 @@ public final class CommandContext {
     }
 
     /**
-     * Get all values for the given argument. May return an empty list if no values are present.
+     * Get all values for the given argument. May return an empty list if no
+     * values are present.
      *
      * @param key The key to get values for
      * @param <T> the type of value to get
      * @return the collection of all values
      */
-    @SuppressWarnings("unchecked")
     public <T> Collection<T> getAll(Text key) {
         return getAll(ArgUtils.textToArgKey(key));
     }
@@ -94,9 +96,8 @@ public final class CommandContext {
         Collection<Object> values = this.parsedArgs.get(key);
         if (values.size() != 1) {
             return Optional.empty();
-        } else {
-            return Optional.ofNullable((T) values.iterator().next());
         }
+        return Optional.ofNullable((T) values.iterator().next());
     }
 
     /**
@@ -106,7 +107,6 @@ public final class CommandContext {
      * @param <T> the expected type of the argument
      * @return the argument
      */
-    @SuppressWarnings("unchecked")
     public <T> Optional<T> getOne(Text key) {
         return getOne(ArgUtils.textToArgKey(key));
     }
@@ -133,7 +133,8 @@ public final class CommandContext {
     }
 
     /**
-     * Perform a permissions check, throwing an exception if the required permissions are not present.
+     * Perform a permissions check, throwing an exception if the required
+     * permissions are not present.
      *
      * @param commander the source to check against
      * @param permission The permission to check

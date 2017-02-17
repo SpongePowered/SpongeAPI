@@ -90,14 +90,14 @@ public interface PortalAgent {
 
     /**
      * Tells this agent to create a new "portal" location at the suggested
-     * {@link Location}. 
+     * {@link Location}.
      * If {@link org.spongepowered.api.event.block.ChangeBlockEvent.Place}
      * is cancelled, {@link Optional#empty()} is returned.
      *
-     * Note: In order to adjust or prevent the {@link Location}'s of each
-     * {@link BlockState} set, listen to 
+     * </p>Note: In order to adjust or prevent the {@link Location}'s of each
+     * {@link BlockState} set, listen to
      * {@link org.spongepowered.api.event.block.ChangeBlockEvent.Place} and
-     * check for the root cause {@link PortalTeleportCause}.
+     * check for the root cause {@link PortalTeleportCause}.</p>
      *
      * @param targetLocation The targeted location
      * @return The newly created "portal" location, if available
@@ -110,4 +110,5 @@ public interface PortalAgent {
      * @return The type
      */
     PortalAgentType getType();
+
 }

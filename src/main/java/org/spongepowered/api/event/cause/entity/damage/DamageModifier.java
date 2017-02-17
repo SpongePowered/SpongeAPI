@@ -42,6 +42,11 @@ import java.util.function.Function;
  */
 public interface DamageModifier {
 
+    /**
+     * Creates a new {@link Builder} for constructing a {@link DamageModifier}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return new Builder();
     }
@@ -143,8 +148,8 @@ public interface DamageModifier {
             }
 
             @Override
-            public int hashCode(){
-                    return Objects.hashCode(this.type, this.cause);
+            public int hashCode() {
+                return Objects.hashCode(this.type, this.cause);
             }
 
             @Override

@@ -46,6 +46,12 @@ public interface Skeleton extends Monster, ArmorEquipable, Ranger {
         return get(SkeletonData.class).get();
     }
 
+    /**
+     * Gets the current {@link Value value} of {@link SkeletonType}
+     * for this {@link Skeleton}.
+     *
+     * @return The value of the skeleton type
+     */
     default Value<SkeletonType> variant() {
         return getValue(Keys.SKELETON_TYPE).get();
     }

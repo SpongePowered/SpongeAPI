@@ -30,8 +30,8 @@ import java.nio.ByteOrder;
 import java.util.UUID;
 
 /**
- * A ChannelStream allows for plugins and the server to read and write Java primitive
- * data and some higher level data to {@link DataView} if necessary.
+ * A ChannelStream allows for plugins and the server to read and write Java
+ * primitive data and some higher level data to {@link DataView} if necessary.
  */
 public interface ChannelBuf {
 
@@ -326,6 +326,7 @@ public interface ChannelBuf {
      * <p>The length of the array is expected to be preceding the array as a
      * varint.</p>
      *
+     * @param index The index to read the byte array at
      * @return The byte array
      */
     byte[] readByteArray(int index);
@@ -378,6 +379,7 @@ public interface ChannelBuf {
      * Gets a byte array at the current readerIndex and increases the
      * readerIndex by the length of the array.
      *
+     * @param length The length of the byte array to read from
      * @return The byte array
      */
     byte[] readBytes(int length);
@@ -385,6 +387,8 @@ public interface ChannelBuf {
     /**
      * Gets a byte array at the specified absolute index in this buffer.
      *
+     * @param index The index of this channel buff to read from
+     * @param length The length of the byte array
      * @return The byte array
      */
     byte[] readBytes(int index, int length);

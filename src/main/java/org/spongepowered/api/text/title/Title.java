@@ -87,7 +87,7 @@ public final class Title {
      *
      * @return The {@link Text} of the title, if it was configured
      */
-    public final Optional<Text> getTitle() {
+    public Optional<Text> getTitle() {
         return this.title;
     }
 
@@ -96,7 +96,7 @@ public final class Title {
      *
      * @return The {@link Text} of the subtitle, if it was configured
      */
-    public final Optional<Text> getSubtitle() {
+    public Optional<Text> getSubtitle() {
         return this.subtitle;
     }
 
@@ -109,7 +109,7 @@ public final class Title {
      *
      * @return The amount of ticks (1/20 second) for the fade in effect
      */
-    public final Optional<Integer> getFadeIn() {
+    public Optional<Integer> getFadeIn() {
         return this.fadeIn;
     }
 
@@ -122,7 +122,7 @@ public final class Title {
      *
      * @return The amount of ticks (1/20 second) for the stay effect
      */
-    public final Optional<Integer> getStay() {
+    public Optional<Integer> getStay() {
         return this.stay;
     }
 
@@ -133,7 +133,7 @@ public final class Title {
      *
      * @return The amount of ticks (1/20 second) for the fade out effect
      */
-    public final Optional<Integer> getFadeOut() {
+    public Optional<Integer> getFadeOut() {
         return this.fadeOut;
     }
 
@@ -144,7 +144,7 @@ public final class Title {
      * @return True if the current title will be removed from the client's
      *         screen
      */
-    public final boolean isClear() {
+    public boolean isClear() {
         return this.clear;
     }
 
@@ -157,7 +157,7 @@ public final class Title {
      *
      * @return True if the current settings will be reset to the defaults
      */
-    public final boolean isReset() {
+    public boolean isReset() {
         return this.reset;
     }
 
@@ -252,7 +252,7 @@ public final class Title {
          * @return The current main title, or {@link Optional#empty()} if none
          * @see Title#getTitle()
          */
-        public final Optional<Text> getTitle() {
+        public Optional<Text> getTitle() {
             return Optional.ofNullable(this.title);
         }
 
@@ -274,7 +274,7 @@ public final class Title {
          * @return The current subtitle, or {@link Optional#empty()} if none
          * @see Title#getSubtitle()
          */
-        public final Optional<Text> getSubtitle() {
+        public Optional<Text> getSubtitle() {
             return Optional.ofNullable(this.subtitle);
         }
 
@@ -297,7 +297,7 @@ public final class Title {
          * @return The current fade in time, or {@link Optional#empty()} if none
          * @see Title#getFadeIn()
          */
-        public final Optional<Integer> getFadeIn() {
+        public Optional<Integer> getFadeIn() {
             return Optional.ofNullable(this.fadeIn);
         }
 
@@ -324,7 +324,7 @@ public final class Title {
          * @return The current stay time, or {@link Optional#empty()} if none
          * @see Title#getStay()
          */
-        public final Optional<Integer> getStay() {
+        public Optional<Integer> getStay() {
             return Optional.ofNullable(this.stay);
         }
 
@@ -352,7 +352,7 @@ public final class Title {
          *         none
          * @see Title#getFadeOut()
          */
-        public final Optional<Integer> getFadeOut() {
+        public Optional<Integer> getFadeOut() {
             return Optional.ofNullable(this.fadeOut);
         }
 
@@ -377,7 +377,7 @@ public final class Title {
          * @return {@code true} if the title will clear
          * @see Title#isClear()
          */
-        public final boolean isClear() {
+        public boolean isClear() {
             return this.clear;
         }
 
@@ -415,7 +415,7 @@ public final class Title {
          * @return {@code true} if the title will reset
          * @see Title#isReset()
          */
-        public final boolean isReset() {
+        public boolean isReset() {
             return this.reset;
         }
 

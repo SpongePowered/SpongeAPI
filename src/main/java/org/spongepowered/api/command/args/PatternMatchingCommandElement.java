@@ -28,8 +28,8 @@ import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.text.Text;
 
 import java.util.Collections;
 import java.util.List;
@@ -63,7 +63,7 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
 
         if (!ret.iterator().hasNext()) {
             throw args.createError(t("No values matching pattern '%s' present for %s!", unformattedPattern, getKey() == null
-                                                                                                            ? nullKeyArg : getKey()));
+                        ? nullKeyArg : getKey()));
         }
         return ret;
     }

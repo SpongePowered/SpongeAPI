@@ -28,7 +28,8 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a set of behaviours for an objective, which may cause it to be automatically updated.
+ * Represents a set of behaviours for an objective, which may cause it to be
+ * automatically updated.
  */
 @CatalogedBy(Criteria.class)
 public interface Criterion extends CatalogType {

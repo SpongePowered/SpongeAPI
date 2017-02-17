@@ -49,14 +49,14 @@ public interface InventoryArchetype extends CatalogType {
     }
 
     /**
-     * Gets all child InventoryArchetypes
+     * Gets all child InventoryArchetypes.
      *
      * @return The child Archetypes
      */
     List<InventoryArchetype> getChildArchetypes();
 
     /**
-     * Returns all properties defined on this Archetype
+     * Returns all properties defined on this Archetype.
      *
      * @return The properties
      */
@@ -94,12 +94,13 @@ public interface InventoryArchetype extends CatalogType {
     /**
      * A Builder for InventoryArchetypes.
      *
-     * Compositions of multiple base {@link InventoryArchetypes} are possible.
+     * <p>Compositions of multiple base {@link InventoryArchetypes} are
+     * possible.</p>
      */
     interface Builder extends ResettableBuilder<InventoryArchetype, Builder> {
 
         /**
-         * Adds a {@link InventoryTitle} to this Archetype
+         * Adds a {@link InventoryTitle} to this Archetype.
          *
          * @param title The default title
          * @return Fluent pattern
@@ -109,7 +110,7 @@ public interface InventoryArchetype extends CatalogType {
         }
 
         /**
-         * Adds a {@link InventoryTitle} to this Archetype
+         * Adds a {@link InventoryTitle} to this Archetype.
          *
          * @param title The default title
          * @return Fluent patternI
@@ -121,7 +122,7 @@ public interface InventoryArchetype extends CatalogType {
         }
 
         /**
-         * Adds an {@link InventoryProperty} to this Archetype
+         * Adds an {@link InventoryProperty} to this Archetype.
          *
          * @param property The Property to add
          * @return Fluent pattern
@@ -129,7 +130,7 @@ public interface InventoryArchetype extends CatalogType {
         Builder property(InventoryProperty<String, ?> property);
 
         /**
-         * Adds an {@link InventoryArchetype} to this Archetype
+         * Adds an {@link InventoryArchetype} to this Archetype.
          *
          * @param archetype The Archetype to add
          * @return Fluent pattern
@@ -137,7 +138,7 @@ public interface InventoryArchetype extends CatalogType {
         Builder with(InventoryArchetype archetype);
 
         /**
-         * Adds multiple {@link InventoryArchetype} to this Archetype
+         * Adds multiple {@link InventoryArchetype} to this Archetype.
          *
          * @param archetypes The Archetypes to add
          * @return Fluent pattern
@@ -145,7 +146,7 @@ public interface InventoryArchetype extends CatalogType {
         Builder with(InventoryArchetype... archetypes);
 
         /**
-         * Registers the InventoryArchetype
+         * Registers the InventoryArchetype.
          *
          * @return The registered InventoryArchetype
          */

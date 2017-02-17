@@ -35,11 +35,16 @@ import org.spongepowered.api.util.ResettableBuilder;
  * that there is an associated {@link TeleportType} and possibly, an object
  * associated with the type.
  *
- * Examples may include an {@link EntityTeleportCause} with an {@link Enderman}
- * teleporting away from rain, or a {@link Entity} entering a nether portal.
+ * <p>Examples may include an {@link EntityTeleportCause} with an {@link Enderman}
+ * teleporting away from rain, or a {@link Entity} entering a nether portal.</p>
  */
 public interface TeleportCause {
 
+    /**
+     * Creates a new {@link Builder} for building {@link TeleportCause}s.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }

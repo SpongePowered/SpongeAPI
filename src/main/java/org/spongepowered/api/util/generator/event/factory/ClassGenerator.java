@@ -178,6 +178,15 @@ public class ClassGenerator {
         }
     }
 
+    /**
+     * Gets whether the desired {@link Class} type has the desired method by
+     * {@code name} with the given {@code params}.
+     *
+     * @param type The type of class
+     * @param name The name of the method
+     * @param params The parameter array of parameter types
+     * @return True if the class has a method of the defined method and type
+     */
     public static boolean hasDeclaredMethod(Class<?> type, String name, Class<?>... params) {
         while (type != null) {
             try {
@@ -193,6 +202,16 @@ public class ClassGenerator {
         return false;
     }
 
+    /**
+     * Gets a {@link Field} from the desired {@link Class} by the
+     * {@link String field name}. However, this will attempt to climb
+     * superclasses to fetch a field from a superclass
+     *
+     * @see Class#getField(String)
+     * @param type The class type
+     * @param fieldName The name of the field
+     * @return The field, or null
+     */
     public static Field getField(Class<?> type, String fieldName) {
         while (type != null) {
             try {
@@ -233,6 +252,13 @@ public class ClassGenerator {
         return method.getAnnotation(Nonnull.class) != null;
     }
 
+    /**
+     * Creates a field with the provided {@link ClassWriter} and based on the provided
+     * {@link Property}.
+     *
+     * @param classWriter The class writer to use
+     * @param property The property containing various information
+     */
     public static void generateField(ClassWriter classWriter, Property<Class<?>, Method> property) {
         FieldVisitor fv = classWriter.visitField(ACC_PRIVATE, property.getName(), Type.getDescriptor(property.getType()), null, null);
         fv.visitEnd();
@@ -543,16 +569,13 @@ public class ClassGenerator {
         mv.visitEnd();
     }
 
-    public static String getInternalName(String name) {
-        return name.replace('.', '/');
-    }
-
     /**
      * Create the event class.
      *
      * @param type The type
      * @param name The canonical of the generated class
      * @param parentType The parent type
+     * @param plugins Event factory plugins to use for this class creation
      * @return The class' contents, to be loaded via a {@link ClassLoader}
      */
     public byte[] createClass(final Class<?> type, final String name, final Class<?> parentType, List<? extends EventFactoryPlugin> plugins) {
@@ -595,7 +618,7 @@ public class ClassGenerator {
 
             for (EventFactoryPlugin plugin : plugins) {
                 processed = plugin.contributeProperty(eventClass, internalName, cw, property);
-                if (processed == true) {
+                if (processed) {
                     break;
                 }
             }
@@ -678,6 +701,17 @@ public class ClassGenerator {
         cw.visitEnd();
 
         return cw.toByteArray();
+    }
+
+    /**
+     * Convert a java-style class name into a binary class name (replace dots
+     * with slashes).
+     *
+     * @param name class name
+     * @return class reference (binary name)
+     */
+    private static String getInternalName(String name) {
+        return name.replace('.', '/');
     }
 
 }

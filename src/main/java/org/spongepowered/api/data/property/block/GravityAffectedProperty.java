@@ -35,10 +35,22 @@ import org.spongepowered.api.data.property.BooleanProperty;
  */
 public class GravityAffectedProperty extends BooleanProperty {
 
+    /**
+     * Creates a new {@link GravityAffectedProperty} with the provided {@code value}.
+     *
+     * @param value The value
+     */
     public GravityAffectedProperty(boolean value) {
         super(value);
     }
 
+    /**
+     * Creates a new {@link GravityAffectedProperty} with the provided {@code value}
+     * and {@link org.spongepowered.api.data.Property.Operator comparison operator}.
+     *
+     * @param value The value
+     * @param operator The operator for comparisons
+     */
     public GravityAffectedProperty(boolean value, Operator operator) {
         super(value, operator);
     }

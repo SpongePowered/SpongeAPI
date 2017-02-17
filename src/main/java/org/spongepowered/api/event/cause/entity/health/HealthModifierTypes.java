@@ -25,12 +25,12 @@
 package org.spongepowered.api.event.cause.entity.health;
 
 import org.spongepowered.api.data.meta.ItemEnchantment;
+import org.spongepowered.api.effect.potion.PotionEffect;
+import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.effect.potion.PotionEffect;
-import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -56,7 +56,8 @@ public final class HealthModifierTypes {
      * Represents a {@link HealthModifier} that will modify the heal amount
      * from a {@link PotionEffect} affecting the target.
      */
-    public static final HealthModifierType DEFENSIVE_POTION_EFFECT = DummyObjectProvider.createFor(HealthModifierType.class, "DEFENSIVE_POTION_EFFECT");
+    public static final HealthModifierType DEFENSIVE_POTION_EFFECT = DummyObjectProvider.createFor(HealthModifierType.class,
+            "DEFENSIVE_POTION_EFFECT");
 
     /**
      * Represents a {@link HealthModifier} that enhances damage based on the
@@ -74,7 +75,8 @@ public final class HealthModifierTypes {
      * Represents the {@link HealthModifier} that will increase heal amount
      * from a {@link PotionEffect} affecting the target.
      */
-    public static final HealthModifierType OFFENSIVE_POTION_EFFECT = DummyObjectProvider.createFor(HealthModifierType.class, "OFFENSIVE_POTION_EFFECT");
+    public static final HealthModifierType OFFENSIVE_POTION_EFFECT = DummyObjectProvider.createFor(HealthModifierType.class,
+            "OFFENSIVE_POTION_EFFECT");
 
     /**
      * Represents the {@link HealthModifier} that will modify heal amount from

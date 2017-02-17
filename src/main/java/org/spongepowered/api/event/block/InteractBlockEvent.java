@@ -38,7 +38,7 @@ import org.spongepowered.api.world.Location;
 /**
  * Base event for all interactions involving a {@link BlockSnapshot} at a
  * {@link Location}.
- * 
+ *
  * <p>Note: Any interaction that occurs within {@link BlockTypes#AIR} where the
  * {@link Location} is not known, will contain a {@link BlockSnapshot#NONE}.</p>
  */
@@ -54,10 +54,10 @@ public interface InteractBlockEvent extends InteractEvent, TargetBlockEvent {
     Direction getTargetSide();
 
     /**
-     * An event where the targeted block is being interacted with the client's 
+     * An event where the targeted block is being interacted with the client's
      * "primary" button.
      *
-     * This is usually left-click.
+     * <p>This is usually left-click.</p>
      */
     interface Primary extends InteractBlockEvent, HandInteractEvent {
 
@@ -73,10 +73,10 @@ public interface InteractBlockEvent extends InteractEvent, TargetBlockEvent {
     }
 
     /**
-     * An event where the targeted block is being interacted with the client's 
+     * An event where the targeted block is being interacted with the client's
      * "secondary" button.
      *
-     * This is usually right-click.
+     * <p>This is usually right-click.</p>
      */
     interface Secondary extends InteractBlockEvent, HandInteractEvent {
 

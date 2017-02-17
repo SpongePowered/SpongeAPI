@@ -31,13 +31,38 @@ import org.spongepowered.api.data.value.immutable.ImmutableListValue;
 import java.util.List;
 import java.util.Optional;
 
-public interface ImmutableListData<E, I extends ImmutableListData<E, I, M>, M extends ListData<E, M, I>>
-    extends ImmutableDataManipulator<I, M> {
+/**
+ * An immutable variant of {@link ListData} that can be queried, but not
+ * changed or mutated.
+ *
+ * @param <E> The type of elements contained in the underlying list
+ * @param <I> The immutable data variant
+ * @param <M> The mutable data variant
+ */
+public interface ImmutableListData<E, I extends ImmutableListData<E, I, M>, M extends ListData<E, M, I>> extends ImmutableDataManipulator<I, M> {
 
+    /**
+     * Gets the {@link ImmutableListValue} of this {@link ImmutableListData}.
+     *
+     * @return The underlying list value
+     */
     ImmutableListValue<E> getListValue();
 
+    /**
+     * Gets the {@link List} value itself from this manipulator.
+     *
+     * @return The underlying list value as a list
+     * @see ImmutableListValue
+     */
     List<E> asList();
 
+    /**
+     * Gets an element of type {@code E} by the provided {@code index}.
+     *
+     * @param index The index to get the value at
+     * @return The object at the provided index, if available
+     * @see List#get(int)
+     */
     default Optional<E> get(int index) {
         final List<E> list = asList();
         if (list.size() < index) {
@@ -46,6 +71,14 @@ public interface ImmutableListData<E, I extends ImmutableListData<E, I, M>, M ex
         return Optional.of(list.get(index));
     }
 
+    /**
+     * Returns whether the underlying {@link List} contains the provided
+     * {@code element}.
+     *
+     * @param element The element to check
+     * @return True if the element is contained in the underlying list
+     * @see List#contains(Object)
+     */
     default boolean contains(E element) {
         return getListValue().contains(element);
     }

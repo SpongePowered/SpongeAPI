@@ -28,10 +28,26 @@ import org.spongepowered.api.data.property.BooleanProperty;
 
 public class StatisticsTrackedProperty extends BooleanProperty {
 
+    /**
+     * Creates a new {@link StatisticsTrackedProperty} for the provided
+     * {@code value}. Usually applicable to blocks, whether those blocks
+     * are statistically tracked.
+     *
+     * @param value The value whether statistics are tracked
+     */
     public StatisticsTrackedProperty(boolean value) {
         super(value);
     }
 
+    /**
+     * Creates a new {@link StatisticsTrackedProperty} for the provided
+     * {@code value} and {@link org.spongepowered.api.data.Property.Operator}.
+     * Usually applicable to blocks, whether those blocks are statistically
+     * tracked.
+     *
+     * @param value The value
+     * @param operator The operator, for comparisons
+     */
     public StatisticsTrackedProperty(boolean value, Operator operator) {
         super(value, operator);
     }

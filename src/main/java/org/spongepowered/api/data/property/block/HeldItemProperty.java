@@ -24,17 +24,37 @@
  */
 package org.spongepowered.api.data.property.block;
 
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.property.AbstractProperty;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Coerce;
 
+/**
+ * A property that provides the {@link ItemType} representation of what a
+ * {@link BlockState} or {@link BlockType} may present itself if it was
+ * represented as an {@link ItemStack}.
+ */
 public class HeldItemProperty extends AbstractProperty<String, ItemType> {
 
+    /**
+     * Creates a new {@link HeldItemProperty} with the provided {@link ItemType}.
+     *
+     * @param value The item type value for the block
+     */
     public HeldItemProperty(ItemType value) {
         super(value);
     }
 
+    /**
+     * Creates a new {@link HeldItemProperty} with the provided {@link ItemType}
+     * and {@link org.spongepowered.api.data.Property.Operator comparison operator}.
+     *
+     * @param value The item value
+     * @param op The operator for comparisons
+     */
     public HeldItemProperty(ItemType value, Operator op) {
         super(value, op);
     }

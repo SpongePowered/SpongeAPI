@@ -33,7 +33,6 @@ import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
 
 import java.util.Collection;
@@ -53,30 +52,29 @@ import java.util.function.Function;
 public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H extends ValueContainer<?>> extends ValueContainer<S> {
 
     /**
-     * Gets the desired {@link ValueContainer} of type <code>H</code> if the
+     * <p>Gets the desired {@link ValueContainer} of type <code>H</code> if the
      * {@link ValueContainer} is compatible. Since the return type is an
      * {@link Optional}, a short way of checking compatibility and presence
-     * of the requested data is to mimic the following:
-     * <pre>
-     * {@code
-     * // MyCompositeValueStore extends CompositeValueStore<MyCompositeValueStore, DataManipulator<?>>
-     * MyCompositeValueStore valueStore;
-     * final Optional<DisplayNameData> displayOptional = valueStore.get(DisplayNameData.class);
-     * if (displayOptional.isPresent()) {
-     *     // We know that we have a present DataManipulator and it's supported
-     *     System.out.println(displayOptional.get().displayName().get().toString());
-     * }
-     * }
-     * </pre>
-     * This is the equivalent as performing the following:
-     * <pre>
-     * {@code
-     * MyCompositeValueStore valueStore;
-     * if (valueStore.supports(DisplayNameData.class)) {
-     *     System.out.println(valueStore.getOrNull(DisplayNameData.class).displayName().get().toString());
-     * }
-     * }
-     * </pre>
+     * of the requested data is to mimic the following:</p>
+     *
+     * <blockquote><code>// MyCompositeValueStore extends
+     * CompositeValueStore&lt;MyCompositeValueStore,
+     * DataManipulator&lt;?&gt;&gt;<br />
+     * MyCompositeValueStore valueStore;<br />
+     * final Optional&lt;DisplayNameData&gt; displayOptional =
+     * valueStore.get(DisplayNameData.class);<br />
+     * if (displayOptional.isPresent()) {<br />
+     * &nbsp; &nbsp; // We know that we have a present DataManipulator and it's
+     * supported<br />&nbsp; &nbsp;
+     * System.out.println(displayOptional.get().displayName().get().toString());
+     * <br />}</code></blockquote>
+     *
+     * <p>This is the equivalent to performing the following:</p>
+     *
+     * <blockquote><code>MyCompositeValueStore valueStore;<br />
+     * if (valueStore.supports(DisplayNameData.class)) {<br />&nbsp; &nbsp;
+     * System.out.println(valueStore.getOrNull(DisplayNameData.class
+     * ).displayName().get().toString());<br />}</code></blockquote>
      *
      * <p>The advantage of this returning an {@link Optional} is that the
      * {@link ValueContainer} may be unsupported, the required data missing
@@ -117,33 +115,32 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     }
 
     /**
-     * Gets the desired {@link ValueContainer} of type <code>H</code> if the
+     * <p>Gets the desired {@link ValueContainer} of type <code>H</code> if the
      * {@link ValueContainer} is compatible. If insufficient data is available
      * to provide a {@link ValueContainer} with all {@link Value}s preset, a
      * new instance of the {@link ValueContainer} is returned with "default"
      * values. Since the return type is an {@link Optional}, a short way of
      * checking compatibility and presence of the requested data is to mimic
-     * the following:
-     * <pre>
-     * {@code
-     * // MyCompositeValueStore extends CompositeValueStore<MyCompositeValueStore, DataManipulator<?>>
-     * MyCompositeValueStore valueStore;
-     * final Optional<DisplayNameData> displayOptional = valueStore.getOrCreate(DisplayNameData.class);
-     * if (displayOptional.isPresent()) {
-     *     // We know that we have a present DataManipulator and it's supported
-     *     System.out.println(displayOptional.get().displayName().get().toString());
-     * }
-     * }
-     * </pre>
-     * This is the equivalent as performing the following:
-     * <pre>
-     * {@code
-     * MyCompositeValueStore valueStore;
-     * if (valueStore.supports(DisplayNameData.class)) {
-     *     System.out.println(valueStore.get(DisplayNameData.class).get().displayName().get().toString());
-     * }
-     * }
-     * </pre>
+     * the following:</p>
+     *
+     * <blockquote><code>// MyCompositeValueStore extends
+     * CompositeValueStore&lt;MyCompositeValueStore,
+     * DataManipulator&lt;?&gt;&gt;<br />
+     * MyCompositeValueStore valueStore;<br />
+     * final Optional&lt;DisplayNameData&gt; displayOptional =
+     * valueStore.getOrCreate(DisplayNameData.class);<br />
+     * if (displayOptional.isPresent()) {<br />
+     * &nbsp; &nbsp; // We know that we have a present DataManipulator and it's
+     * supported<br />&nbsp; &nbsp;
+     * System.out.println(displayOptional.get().displayName().get().toString()
+     * );<br />}</code></blockquote>
+     *
+     * <p>This is the equivalent to performing the following:</p>
+     *
+     * <blockquote><code>MyCompositeValueStore valueStore;<br />
+     * if (valueStore.supports(DisplayNameData.class)) {<br />&nbsp; &nbsp;
+     * System.out.println(valueStore.get(DisplayNameData.class
+     * ).get().displayName().get().toString());<br />}</code></blockquote>
      *
      * <p>The advantage of this returning an {@link Optional} is that the
      * {@link ValueContainer} may be unsupported, the required data missing
@@ -209,28 +206,6 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     /**
      * Offers the given {@code value} as defined by the provided {@link Key}
      * such that a {@link DataTransactionResult} is returned for any
-     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
-     * Intentionally, however, this differs from {@link #offer(Key, Object)}
-     * as it will intentionally throw an exception if the result was a failure.
-     *
-     * @param key The key to the value to set
-     * @param value The value to set
-     * @param <E> The type of value
-     * @return The transaction result
-     * @throws IllegalArgumentException If the result is a failure likely due to
-     *     incompatibility
-     */
-    default <E> DataTransactionResult tryOffer(Key<? extends BaseValue<E>> key, E value) throws IllegalArgumentException {
-        final DataTransactionResult result = offer(key, value);
-        if (!result.isSuccessful()) {
-            throw new IllegalArgumentException("Failed offer transaction!");
-        }
-        return result;
-    }
-
-    /**
-     * Offers the given {@code value} as defined by the provided {@link Key}
-     * such that a {@link DataTransactionResult} is returned for any
      * successful, rejected, and replaced {@link BaseValue}s from this
      * {@link CompositeValueStore}.
      *
@@ -250,36 +225,6 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     <E> DataTransactionResult offer(Key<? extends BaseValue<E>> key, E value, Cause cause);
 
     /**
-     * Offers the given {@code value} as defined by the provided {@link Key}
-     * such that a {@link DataTransactionResult} is returned for any
-     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
-     * Intentionally, however, this differs from {@link #offer(Key, Object)}
-     * as it will intentionally throw an exception if the result was a failure.
-     *
-     * <p>Note that this differs from {@link #offer(ValueContainer, MergeFunction)}
-     * as in that if a change is required to a
-     * {@link MutableBlockVolume#setBlock(int, int, int, BlockState, Cause)}
-     * or similar is performed, the provided {@link Cause} is used for the change
-     * in {@link BlockState}s. Traditional offer methods that do <strong>NOT</strong>
-     * take a {@link Cause} will fail if a block change is required.</p>
-     *
-     * @param key The key to the value to set
-     * @param value The value to set
-     * @param cause The cause to use in the events, if required
-     * @param <E> The type of value
-     * @return The transaction result
-     * @throws IllegalArgumentException If the result is a failure likely due to
-     *     incompatibility
-     */
-    default <E> DataTransactionResult tryOffer(Key<? extends BaseValue<E>> key, E value, Cause cause) throws IllegalArgumentException {
-        final DataTransactionResult result = offer(key, value, cause);
-        if (!result.isSuccessful()) {
-            throw new IllegalArgumentException("Failed offer transaction!");
-        }
-        return result;
-    }
-
-    /**
      * Offers the given {@link BaseValue} as defined by the provided
      * {@link Key} such that a {@link DataTransactionResult} is returned for
      * any successful, rejected, and replaced {@link BaseValue}s from this
@@ -291,27 +236,6 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      */
     default <E> DataTransactionResult offer(BaseValue<E> value) {
         return offer(value.getKey(), value.get());
-    }
-
-    /**
-     * Offers the given {@code value} as defined by the provided {@link Key}
-     * such that a {@link DataTransactionResult} is returned for any
-     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
-     * Intentionally, however, this differs from {@link #offer(Key, Object)}
-     * as it will intentionally throw an exception if the result was a failure.
-     *
-     * @param value The value to set
-     * @param <E> The type of value
-     * @return The transaction result
-     * @throws IllegalArgumentException If the result is a failure likely due to
-     *     incompatibility
-     */
-    default <E> DataTransactionResult tryOffer(BaseValue<E> value) throws IllegalArgumentException {
-        final DataTransactionResult result = offer(value.getKey(), value.get());
-        if (!result.isSuccessful()) {
-            throw new IllegalArgumentException("Failed offer transaction!");
-        }
-        return result;
     }
 
     /**
@@ -337,35 +261,6 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     }
 
     /**
-     * Offers the given {@code value} as defined by the provided {@link Key}
-     * such that a {@link DataTransactionResult} is returned for any
-     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
-     * Intentionally, however, this differs from {@link #offer(Key, Object)}
-     * as it will intentionally throw an exception if the result was a failure.
-     *
-     * <p>Note that this differs from {@link #offer(ValueContainer, MergeFunction)}
-     * as in that if a change is required to a
-     * {@link MutableBlockVolume#setBlock(int, int, int, BlockState, Cause)}
-     * or similar is performed, the provided {@link Cause} is used for the change
-     * in {@link BlockState}s. Traditional offer methods that do <strong>NOT</strong>
-     * take a {@link Cause} will fail if a block change is required.</p>
-     *
-     * @param value The value to set
-     * @param cause The cause to use for any events if necessary
-     * @param <E> The type of value
-     * @return The transaction result
-     * @throws IllegalArgumentException If the result is a failure likely due to
-     *     incompatibility
-     */
-    default <E> DataTransactionResult tryOffer(BaseValue<E> value, Cause cause) throws IllegalArgumentException {
-        final DataTransactionResult result = offer(value.getKey(), value.get(), cause);
-        if (!result.isSuccessful()) {
-            throw new IllegalArgumentException("Failed offer transaction!");
-        }
-        return result;
-    }
-
-    /**
      * Offers the given {@link ValueContainer} such that all of the available
      * {@link BaseValue}s from the given {@link ValueContainer} are offered
      * to this {@link CompositeValueStore}. The end result of the values
@@ -377,26 +272,6 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      */
     default DataTransactionResult offer(H valueContainer) {
         return offer(valueContainer, MergeFunction.IGNORE_ALL);
-    }
-
-    /**
-     * Offers the given {@link ValueContainer} such that all of the available
-     * {@link BaseValue}s from the given {@link ValueContainer} are offered
-     * to this {@link CompositeValueStore}. Intentionally, however, this differs
-     * from {@link #offer(ValueContainer)} as it will intentionally throw an
-     * exception if the result was a failure.
-     *
-     * @param valueContainer The value to set
-     * @return The transaction result
-     * @throws IllegalArgumentException If the result is a failure likely due to
-     *     incompatibility
-     */
-    default DataTransactionResult tryOffer(H valueContainer) {
-        final DataTransactionResult result = offer(valueContainer, MergeFunction.IGNORE_ALL);
-        if (!result.isSuccessful()) {
-            throw new IllegalArgumentException("Failed offer transaction!");
-        }
-        return result;
     }
 
     /**
@@ -442,28 +317,6 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
     /**
      * Offers the given {@link ValueContainer} such that all of the available
      * {@link BaseValue}s from the given {@link ValueContainer} are offered
-     * to this {@link CompositeValueStore}. Any overlaps of data are merged via
-     * the {@link MergeFunction}. Intentionally, however, this differs
-     * from {@link #offer(ValueContainer)} as it will intentionally throw an
-     * exception if the result was a failure.
-     *
-     * @param valueContainer The value to set
-     * @param function The merge function
-     * @return The transaction result
-     * @throws IllegalArgumentException If the result is a failure likely due to
-     *     incompatibility
-     */
-    default DataTransactionResult tryOffer(H valueContainer, MergeFunction function) throws IllegalArgumentException {
-        final DataTransactionResult result = offer(valueContainer, function);
-        if (!result.isSuccessful()) {
-            throw new IllegalArgumentException("Failed offer transaction!");
-        }
-        return result;
-    }
-
-    /**
-     * Offers the given {@link ValueContainer} such that all of the available
-     * {@link BaseValue}s from the given {@link ValueContainer} are offered
      * to this {@link CompositeValueStore}. The end result of the values
      * successfully offered, rejected, and replaced are stored in the returned
      * {@link DataTransactionResult}. Any overlaps of data are merged via
@@ -482,36 +335,6 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * @return The transaction result
      */
     DataTransactionResult offer(H valueContainer, MergeFunction function, Cause cause);
-
-    /**
-     * Offers the given {@link ValueContainer} such that all of the available
-     * {@link BaseValue}s from the given {@link ValueContainer} are offered
-     * to this {@link CompositeValueStore}. Any overlaps of data are merged via
-     * the {@link MergeFunction}. Intentionally, however, this differs
-     * from {@link #offer(ValueContainer)} as it will intentionally throw an
-     * exception if the result was a failure.
-     *
-     * <p>Note that this differs from {@link #offer(ValueContainer, MergeFunction)}
-     * as in that if a change is required to a
-     * {@link MutableBlockVolume#setBlock(int, int, int, BlockState, Cause)}
-     * or similar is performed, the provided {@link Cause} is used for the change
-     * in {@link BlockState}s. Traditional offer methods that do <strong>NOT</strong>
-     * take a {@link Cause} will fail if a block change is required.</p>
-     *
-     * @param valueContainer The value to set
-     * @param function The merge function
-     * @param cause The cause to use for any events if necessary
-     * @return The transaction result
-     * @throws IllegalArgumentException If the result is a failure likely due to
-     *     incompatibility
-     */
-    default DataTransactionResult tryOffer(H valueContainer, MergeFunction function, Cause cause) throws IllegalArgumentException {
-        final DataTransactionResult result = offer(valueContainer, function, cause);
-        if (!result.isSuccessful()) {
-            throw new IllegalArgumentException("Failed offer transaction!");
-        }
-        return result;
-    }
 
     /**
      * Offers all provided {@link ValueContainer}s to this
@@ -557,26 +380,6 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
      * {@link DataTransactionResult}. Any merge conflicts are resolved through
      * the {@link MergeFunction}.
      *
-     * @param valueContainers The values to set
-     * @param function The function to resolve the values
-     * @return The transaction result
-     */
-    default DataTransactionResult offer(Iterable<H> valueContainers, MergeFunction function) {
-        final DataTransactionResult.Builder builder = DataTransactionResult.builder();
-        for (H valueContainer : valueContainers) {
-            builder.absorbResult(offer(valueContainer, function));
-        }
-        return builder.build();
-    }
-
-    /**
-     * Offers all provided {@link ValueContainer}s to this
-     * {@link CompositeValueStore} much like {@link #offer(ValueContainer)}
-     * except all in a single batch. The end result of the values successfully
-     * offered, rejected, and replaced are stored in the returned
-     * {@link DataTransactionResult}. Any merge conflicts are resolved through
-     * the {@link MergeFunction}.
-     *
      * <p>Note that this differs from {@link #offer(ValueContainer, MergeFunction)}
      * as in that if a change is required to a
      * {@link MutableBlockVolume#setBlock(int, int, int, BlockState, Cause)}
@@ -595,6 +398,200 @@ public interface CompositeValueStore<S extends CompositeValueStore<S, H>, H exte
             builder.absorbResult(offer(valueContainer, function, cause));
         }
         return builder.build();
+    }
+
+    /**
+     * Offers all provided {@link ValueContainer}s to this
+     * {@link CompositeValueStore} much like {@link #offer(ValueContainer)}
+     * except all in a single batch. The end result of the values successfully
+     * offered, rejected, and replaced are stored in the returned
+     * {@link DataTransactionResult}. Any merge conflicts are resolved through
+     * the {@link MergeFunction}.
+     *
+     * @param valueContainers The values to set
+     * @param function The function to resolve the values
+     * @return The transaction result
+     */
+    default DataTransactionResult offer(Iterable<H> valueContainers, MergeFunction function) {
+        final DataTransactionResult.Builder builder = DataTransactionResult.builder();
+        for (H valueContainer : valueContainers) {
+            builder.absorbResult(offer(valueContainer, function));
+        }
+        return builder.build();
+    }
+
+    /**
+     * Offers the given {@code value} as defined by the provided {@link Key}
+     * such that a {@link DataTransactionResult} is returned for any
+     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
+     * Intentionally, however, this differs from {@link #offer(Key, Object)}
+     * as it will intentionally throw an exception if the result was a failure.
+     *
+     * @param key The key to the value to set
+     * @param value The value to set
+     * @param <E> The type of value
+     * @return The transaction result
+     * @throws IllegalArgumentException If the result is a failure likely due to
+     *     incompatibility
+     */
+    default <E> DataTransactionResult tryOffer(Key<? extends BaseValue<E>> key, E value) throws IllegalArgumentException {
+        final DataTransactionResult result = offer(key, value);
+        if (!result.isSuccessful()) {
+            throw new IllegalArgumentException("Failed offer transaction!");
+        }
+        return result;
+    }
+
+    /**
+     * Offers the given {@code value} as defined by the provided {@link Key}
+     * such that a {@link DataTransactionResult} is returned for any
+     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
+     * Intentionally, however, this differs from {@link #offer(Key, Object)}
+     * as it will intentionally throw an exception if the result was a failure.
+     *
+     * <p>Note that this differs from {@link #offer(ValueContainer, MergeFunction)}
+     * as in that if a change is required to a
+     * {@link MutableBlockVolume#setBlock(int, int, int, BlockState, Cause)}
+     * or similar is performed, the provided {@link Cause} is used for the change
+     * in {@link BlockState}s. Traditional offer methods that do <strong>NOT</strong>
+     * take a {@link Cause} will fail if a block change is required.</p>
+     *
+     * @param key The key to the value to set
+     * @param value The value to set
+     * @param cause The cause to use in the events, if required
+     * @param <E> The type of value
+     * @return The transaction result
+     * @throws IllegalArgumentException If the result is a failure likely due to
+     *     incompatibility
+     */
+    default <E> DataTransactionResult tryOffer(Key<? extends BaseValue<E>> key, E value, Cause cause) throws IllegalArgumentException {
+        final DataTransactionResult result = offer(key, value, cause);
+        if (!result.isSuccessful()) {
+            throw new IllegalArgumentException("Failed offer transaction!");
+        }
+        return result;
+    }
+
+    /**
+     * Offers the given {@code value} as defined by the provided {@link Key}
+     * such that a {@link DataTransactionResult} is returned for any
+     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
+     * Intentionally, however, this differs from {@link #offer(Key, Object)}
+     * as it will intentionally throw an exception if the result was a failure.
+     *
+     * @param value The value to set
+     * @param <E> The type of value
+     * @return The transaction result
+     * @throws IllegalArgumentException If the result is a failure likely due to
+     *     incompatibility
+     */
+    default <E> DataTransactionResult tryOffer(BaseValue<E> value) throws IllegalArgumentException {
+        final DataTransactionResult result = offer(value.getKey(), value.get());
+        if (!result.isSuccessful()) {
+            throw new IllegalArgumentException("Failed offer transaction!");
+        }
+        return result;
+    }
+
+    /**
+     * Offers the given {@code value} as defined by the provided {@link Key}
+     * such that a {@link DataTransactionResult} is returned for any
+     * successful {@link BaseValue}s from this {@link CompositeValueStore}.
+     * Intentionally, however, this differs from {@link #offer(Key, Object)}
+     * as it will intentionally throw an exception if the result was a failure.
+     *
+     * <p>Note that this differs from {@link #offer(ValueContainer, MergeFunction)}
+     * as in that if a change is required to a
+     * {@link MutableBlockVolume#setBlock(int, int, int, BlockState, Cause)}
+     * or similar is performed, the provided {@link Cause} is used for the change
+     * in {@link BlockState}s. Traditional offer methods that do <strong>NOT</strong>
+     * take a {@link Cause} will fail if a block change is required.</p>
+     *
+     * @param value The value to set
+     * @param cause The cause to use for any events if necessary
+     * @param <E> The type of value
+     * @return The transaction result
+     * @throws IllegalArgumentException If the result is a failure likely due to
+     *     incompatibility
+     */
+    default <E> DataTransactionResult tryOffer(BaseValue<E> value, Cause cause) throws IllegalArgumentException {
+        final DataTransactionResult result = offer(value.getKey(), value.get(), cause);
+        if (!result.isSuccessful()) {
+            throw new IllegalArgumentException("Failed offer transaction!");
+        }
+        return result;
+    }
+
+    /**
+     * Offers the given {@link ValueContainer} such that all of the available
+     * {@link BaseValue}s from the given {@link ValueContainer} are offered
+     * to this {@link CompositeValueStore}. Intentionally, however, this differs
+     * from {@link #offer(ValueContainer)} as it will intentionally throw an
+     * exception if the result was a failure.
+     *
+     * @param valueContainer The value to set
+     * @return The transaction result
+     * @throws IllegalArgumentException If the result is a failure likely due to
+     *     incompatibility
+     */
+    default DataTransactionResult tryOffer(H valueContainer) {
+        final DataTransactionResult result = offer(valueContainer, MergeFunction.IGNORE_ALL);
+        if (!result.isSuccessful()) {
+            throw new IllegalArgumentException("Failed offer transaction!");
+        }
+        return result;
+    }
+
+    /**
+     * Offers the given {@link ValueContainer} such that all of the available
+     * {@link BaseValue}s from the given {@link ValueContainer} are offered
+     * to this {@link CompositeValueStore}. Any overlaps of data are merged via
+     * the {@link MergeFunction}. Intentionally, however, this differs
+     * from {@link #offer(ValueContainer)} as it will intentionally throw an
+     * exception if the result was a failure.
+     *
+     * @param valueContainer The value to set
+     * @param function The merge function
+     * @return The transaction result
+     * @throws IllegalArgumentException If the result is a failure likely due to
+     *     incompatibility
+     */
+    default DataTransactionResult tryOffer(H valueContainer, MergeFunction function) throws IllegalArgumentException {
+        final DataTransactionResult result = offer(valueContainer, function);
+        if (!result.isSuccessful()) {
+            throw new IllegalArgumentException("Failed offer transaction!");
+        }
+        return result;
+    }
+
+    /**
+     * Offers the given {@link ValueContainer} such that all of the available
+     * {@link BaseValue}s from the given {@link ValueContainer} are offered
+     * to this {@link CompositeValueStore}. Any overlaps of data are merged via
+     * the {@link MergeFunction}. Intentionally, however, this differs
+     * from {@link #offer(ValueContainer)} as it will intentionally throw an
+     * exception if the result was a failure.
+     *
+     * <p>Note that this differs from {@link #offer(ValueContainer, MergeFunction)}
+     * as in that if a change is required to a
+     * {@link MutableBlockVolume#setBlock(int, int, int, BlockState, Cause)}
+     * or similar is performed, the provided {@link Cause} is used for the change
+     * in {@link BlockState}s. Traditional offer methods that do <strong>NOT</strong>
+     * take a {@link Cause} will fail if a block change is required.</p>
+     *
+     * @param valueContainer The value to set
+     * @param function The merge function
+     * @param cause The cause to use for any events if necessary
+     * @return The transaction result
+     * @throws IllegalArgumentException If the result is a failure likely due to
+     *     incompatibility
+     */
+    default DataTransactionResult tryOffer(H valueContainer, MergeFunction function, Cause cause) throws IllegalArgumentException {
+        final DataTransactionResult result = offer(valueContainer, function, cause);
+        if (!result.isSuccessful()) {
+            throw new IllegalArgumentException("Failed offer transaction!");
+        }
+        return result;
     }
 
     /**

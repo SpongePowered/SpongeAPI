@@ -56,6 +56,10 @@ import java.util.Optional;
  */
 public class TextConfigSerializer extends AbstractDataBuilder<Text> implements TypeSerializer<Text> {
 
+    /**
+     * Creates a new {@link TextConfigSerializer}. Normally this should not
+     * need to be created more than once.
+     */
     public TextConfigSerializer() {
         super(Text.class, 1);
     }

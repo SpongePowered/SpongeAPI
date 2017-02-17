@@ -60,17 +60,15 @@ import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
 import javax.tools.FileObject;
 
-@SupportedAnnotationTypes({
-        "org.spongepowered.api.plugin.Plugin",
-        "org.spongepowered.api.plugin.Dependency"
-})
-@SupportedOptions({
-        PluginProcessor.EXTRA_FILES_OPTION,
-        PluginProcessor.OUTPUT_FILE_OPTION
-})
+@SupportedAnnotationTypes({ PluginProcessor.PLUGIN_ANNOTATION_CLASS, PluginProcessor.DEPENDENCY_ANNOTATION_CLASS })
+@SupportedOptions({ PluginProcessor.EXTRA_FILES_OPTION, PluginProcessor.OUTPUT_FILE_OPTION })
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class PluginProcessor extends AbstractProcessor {
 
+    static final String PLUGIN_PACKAGE = "org.spongepowered.api.plugin.";
+    static final String PLUGIN_ANNOTATION_CLASS = PluginProcessor.PLUGIN_PACKAGE + "Plugin";
+    static final String DEPENDENCY_ANNOTATION_CLASS = PluginProcessor.PLUGIN_PACKAGE + "Dependency";
+    
     public static final String EXTRA_FILES_OPTION = "extraMetadataFiles";
     public static final String OUTPUT_FILE_OPTION = "metadataOutputFile";
 
@@ -83,7 +81,7 @@ public class PluginProcessor extends AbstractProcessor {
     private Path outputPath;
 
     @Override
-    public void init(ProcessingEnvironment processingEnv) {
+    public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
 
         String extraFiles = processingEnv.getOptions().get(EXTRA_FILES_OPTION);
@@ -131,7 +129,7 @@ public class PluginProcessor extends AbstractProcessor {
             }
 
             final TypeElement pluginElement = (TypeElement) e;
-            AnnotationWrapper<Plugin> annotation = AnnotationWrapper.get(pluginElement, Plugin.class);
+            AnnotationWrapper<Plugin> annotation = AnnotationWrapper.of(pluginElement, Plugin.class);
 
             final String id = annotation.get().id();
             if (id.isEmpty()) {
@@ -186,11 +184,11 @@ public class PluginProcessor extends AbstractProcessor {
         if (this.outputPath != null) {
             getMessager().printMessage(NOTE, "Writing plugin metadata to " + this.outputPath);
             return Files.newBufferedWriter(this.outputPath);
-        } else {
-            FileObject obj = this.processingEnv.getFiler().createResource(CLASS_OUTPUT, "", McModInfo.STANDARD_FILENAME);
-            getMessager().printMessage(NOTE, "Writing plugin metadata to " + obj.toUri());
-            return new BufferedWriter(obj.openWriter());
         }
+
+        FileObject obj = this.processingEnv.getFiler().createResource(CLASS_OUTPUT, "", McModInfo.STANDARD_FILENAME);
+        getMessager().printMessage(NOTE, "Writing plugin metadata to " + obj.toUri());
+        return new BufferedWriter(obj.openWriter());
     }
 
     private void reportDuplicatePlugin(String id, PluginElement plugin) {

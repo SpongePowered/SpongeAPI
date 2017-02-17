@@ -32,8 +32,8 @@ import org.spongepowered.api.entity.ai.task.AITaskType;
 import org.spongepowered.api.entity.ai.task.AbstractAITask;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.merchant.VillagerRegistry;
 import org.spongepowered.api.item.merchant.TradeOfferGenerator;
+import org.spongepowered.api.item.merchant.VillagerRegistry;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.network.status.Favicon;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -75,8 +75,8 @@ import java.util.function.Supplier;
  *
  * <p>Note that the registries may be in flux, especially during game
  * initialization. These will be accurate for the time they are called, however
- * they may change at a later point. Do not assume that the contents of a collection
- * will be all the entries that will exist.</p>
+ * they may change at a later point. Do not assume that the contents of a
+ * collection will be all the entries that will exist.</p>
  *
  * <p>Some of the returned instances my become incorrect if they are later
  * overwritten. However, this should occur prior to
@@ -115,8 +115,8 @@ public interface GameRegistry {
     <T extends CatalogType> Collection<T> getAllOf(Class<T> typeClass);
 
     /**
-     * Gets a collection of all available found specific types of {@link CatalogType}
-     * requested.
+     * Gets a collection of all available found specific types of
+     * {@link CatalogType} requested.
      *
      * @param pluginId The plugin id to check for types
      * @param typeClass The class of {@link CatalogType}
@@ -125,24 +125,47 @@ public interface GameRegistry {
      */
     <T extends CatalogType> Collection<T> getAllFor(String pluginId, Class<T> typeClass);
 
+    /**
+     * Gets all {@link CatalogType} for Minecraft as a base mod. Note that
+     * some {@link CatalogType}s are not originally from the game itself, and
+     * may be provided by Sponge.
+     *
+     * @param typeClass The type of catalog type
+     * @param <T> The type of catalog type
+     * @return The collection of all known types of the requested catalog type
+     */
     default <T extends CatalogType> Collection<T> getAllForMinecraft(Class<T> typeClass) {
         return getAllFor(PluginManager.MINECRAFT_PLUGIN_ID, typeClass);
     }
 
+    /**
+     * Gets all {@link CatalogType} for Sponge as a base mod. Note that
+     * some {@link CatalogType}s are not originally from the game itself, and
+     * may be provided by Sponge.
+     *
+     * @param typeClass The type of catalog type
+     * @param <T> The type of catalog type
+     * @return The collection of all known types of the requested catalog type
+     */
     default <T extends CatalogType> Collection<T> getAllForSponge(Class<T> typeClass) {
         return getAllFor(PluginManager.SPONGE_PLUGIN_ID, typeClass);
     }
 
     /**
-     * Registers the {@link CatalogRegistryModule} for dummy registration and handling.
-     * By default, the only supported modules that can be registered are dependent that
-     * plugins are not attempting to register new modules for API provided {@link CatalogType}s.
+     * Registers the {@link CatalogRegistryModule} for dummy registration and
+     * handling.
+     *
+     * <p>By default, the only supported modules that can be registered are
+     * dependent that plugins are not attempting to register new modules for
+     * API-provided {@link CatalogType}s.</p>
      *
      * @param catalogClass The dummy class itself
      * @param registryModule The registry module
      * @param <T> The type of dummy
+     * @return fluent interface
      * @throws IllegalArgumentException If there is a module already registered
-     * @throws UnsupportedOperationException If the
+     * @throws RegistryModuleAlreadyRegisteredException If the registry module
+     *      is already registered
      */
     <T extends CatalogType> GameRegistry registerModule(Class<T> catalogClass, CatalogRegistryModule<T> registryModule)
             throws IllegalArgumentException, RegistryModuleAlreadyRegisteredException;
@@ -152,6 +175,8 @@ public interface GameRegistry {
      *
      * @param module The module to register
      * @return This registry, for chaining
+     * @throws RegistryModuleAlreadyRegisteredException if the specified
+     *      registry module is already registered
      */
     GameRegistry registerModule(RegistryModule module) throws RegistryModuleAlreadyRegisteredException;
 
@@ -172,7 +197,8 @@ public interface GameRegistry {
      * @param builderClass The class of the builder
      * @param <T> The type of builder
      * @return The builder, if available
-     * @throws IllegalArgumentException If there is no supplier for the given builder class
+     * @throws IllegalArgumentException If there is no supplier for the given
+     *      builder class
      */
     <T extends ResettableBuilder<?, ? super T>> T createBuilder(Class<T> builderClass) throws IllegalArgumentException;
 
@@ -186,10 +212,14 @@ public interface GameRegistry {
      *
      * @param type The CatalogType class
      * @param obj The dummy type instance
+     * @param <T> dummy object type
+     * @return The registered type
      * @throws IllegalArgumentException If there is an id conflict with the
-     *         given type and an existing type
+     *      given type and an existing type
      * @throws UnsupportedOperationException If registration for the given type
-     *         is not supported
+     *      is not supported
+     * @throws CatalogTypeAlreadyRegisteredException if the type cannot be
+     *      registered because a matching type was already registered
      */
     <T extends CatalogType> T register(Class<T> type, T obj) throws IllegalArgumentException, CatalogTypeAlreadyRegisteredException;
 
@@ -261,7 +291,8 @@ public interface GameRegistry {
      * Gets the {@link Rotation} with the provided degrees.
      *
      * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or Optional.empty() if not found
+     * @return The {@link Rotation} with the given degrees or
+     *      <tt>Optional.empty()</tt> if not found
      */
     Optional<Rotation> getRotationFromDegree(int degrees);
 
@@ -329,20 +360,23 @@ public interface GameRegistry {
     Optional<ResourcePack> getResourcePackById(String id);
 
     /**
-     * Gets a {@link DisplaySlot} which displays only for teams
-     * with the provided color.
+     * Gets a {@link DisplaySlot} which displays only for teams with the
+     * provided color.
      *
      * @param color The color for the display slot
-     * @return The {@link DisplaySlot} with the provided color, or Optional.empty() if not found
+     * @return The {@link DisplaySlot} with the provided color, or
+     *      <tt>Optional.empty()</tt> if not found
      */
     Optional<DisplaySlot> getDisplaySlotForColor(TextColor color);
 
     /**
-     * Registers a new {@link AbstractAITask} with an {@link Agent} as the owner. The complete id
-     * will be in the format of <code>{@link PluginContainer#getId()}:id</code>.
+     * Registers a new {@link AbstractAITask} with an {@link Agent} as the
+     * owner. The complete id will be in the format of
+     * <code>{@link PluginContainer#getId()}:id</code>.
      *
      * @param plugin The plugin who owns it
      * @param id The id that represents the task type
+     * @param name The name for the task
      * @param aiClass The class of the task
      * @return The type
      */
@@ -364,9 +398,8 @@ public interface GameRegistry {
     ValueFactory getValueFactory();
 
     /**
-     * Gets the {@link VillagerRegistry} for the register mappings
-     * of {@link Career}s to {@link TradeOfferGenerator}s based on
-     * a level.
+     * Gets the {@link VillagerRegistry} for the register mappings of
+     * {@link Career}s to {@link TradeOfferGenerator}s based on a level.
      *
      * @return The villager registry instance
      */
@@ -402,7 +435,8 @@ public interface GameRegistry {
      * Gets the {@link Translation} with the provided ID.
      *
      * @param id The ID of the translation
-     * @return The {@link Translation} with the given ID or Optional.empty() if not found
+     * @return The {@link Translation} with the given ID or Optional.empty() if
+     *      not found
      */
     Optional<Translation> getTranslationById(String id);
 

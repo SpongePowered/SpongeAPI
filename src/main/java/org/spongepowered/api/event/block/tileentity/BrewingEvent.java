@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.carrier.BrewingStand;
-import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.item.inventory.AffectItemStackEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -42,13 +41,15 @@ public interface BrewingEvent extends TargetTileEntityEvent {
     BrewingStand getTargetTile();
 
     /**
+     * Gets the {@link ItemStackSnapshot} as the ingredient used.
+     *
      * @return The ingredient
      */
     ItemStackSnapshot getIngredient();
 
-    interface Start extends BrewingEvent, AffectItemStackEvent, Cancellable {}
+    interface Start extends BrewingEvent, AffectItemStackEvent {}
 
-    interface Tick extends BrewingEvent, AffectItemStackEvent, Cancellable {}
+    interface Tick extends BrewingEvent, AffectItemStackEvent {}
 
     interface Interrupt extends BrewingEvent {
         /**

@@ -36,22 +36,30 @@ public interface BlockPalette {
 
     /**
      * Gets the type of this palette.
-     * 
+     *
      * @return The palette type
      */
     BlockPaletteType getType();
 
     /**
      * Gets the highest identifier in this palette.
-     * 
+     *
      * @return The highest id
      */
     int getHighestId();
 
     /**
+     * Gets the blockstate represented by the given identifier from the mapping.
+     *
+     * @param id The identifier
+     * @return The blockstate, if found
+     */
+    Optional<BlockState> get(int id);
+
+    /**
      * Gets the identifier for the given blockstate if it exists within the
      * mapping.
-     * 
+     *
      * @param state The block state
      * @return The identifier, if found
      */
@@ -61,26 +69,18 @@ public interface BlockPalette {
      * Gets the identifier for the given blockstate from the mapping. If the
      * blockstate is not yet registered in the mapping then it is registered and
      * given the next availale identifier.
-     * 
+     *
      * @param state The blockstate
      * @return The identifier
      */
     int getOrAssign(BlockState state);
 
     /**
-     * Gets the blockstate represented by the given identifier from the mapping.
-     * 
-     * @param id The identifier
-     * @return The blockstate, if found
-     */
-    Optional<BlockState> get(int id);
-
-    /**
      * Removes the given blockstate from the mapping.
-     * 
+     *
      * <p>If this palette is the {@link BlockPaletteTypes#GLOBAL} palette then
      * removal is not supported.</p>
-     * 
+     *
      * @param state The blockstate to remove
      * @return If the blockstate existed in the mapping
      */
@@ -88,7 +88,7 @@ public interface BlockPalette {
 
     /**
      * Gets all {@link BlockState}s contained in this palette.
-     * 
+     *
      * @return All contained block states
      */
     Collection<BlockState> getEntries();

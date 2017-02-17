@@ -124,8 +124,8 @@ public class DefaultGameRules {
      * Whether {@link Agent}s should be able to change blocks, and whether
      * {@link Agent}s can pick up items.
      *
-     * <p>In vanilla Minecraft, the following entities can change blocks when this
-     * gamerule is {@code true}:
+     * <p>In vanilla Minecraft, the following entities can change blocks when
+     * this gamerule is {@code true}:
      * <ul>
      *     <li>{@link Creeper}</li>
      *     <li>{@link Zombie}</li>
@@ -140,8 +140,8 @@ public class DefaultGameRules {
      *     <li>{@link Silverfish}</li>
      * </ul></p>
      *
-     * <p>In vanilla Minecraft, the following entities can pick up items when this
-     * gamerule is{@code true}:
+     * <p>In vanilla Minecraft, the following entities can pick up items when
+     * this gamerule is{@code true}:
      * <ul>
      *     <li>{@link Villager}</li>
      *     <li>{@link Zombie}</li>
@@ -166,7 +166,8 @@ public class DefaultGameRules {
      * How often a random block tick occurs (such as plant growth,
      * leaf decay, etc.) per chunk section per game tick.
      *
-     * <p>0 will disable random ticks, higher numbers will increase random ticks</p>
+     * <p>0 will disable random ticks, higher numbers will increase random
+     * ticks</p>
      *
      * <p>This is a numerical game rule.</p>
      */

@@ -39,8 +39,6 @@ import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.ProxySource;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.util.Tristate;
-import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -50,9 +48,11 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.selector.Selector;
 import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
+import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.blockray.BlockRay;
 import org.spongepowered.api.util.blockray.BlockRayHit;
 import org.spongepowered.api.world.DimensionType;
+import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -97,10 +97,11 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent an online player,
-     * or if nothing matches and the source is a {@link Player}, give the player. If nothing matches and the source is not a player, throw an
-     * exception
-     * Gives value of type {@link Player}
+     * Expect an argument to represent an online player, or if nothing matches
+     * and the source is a {@link Player}, give the player. If nothing matches
+     * and the source is not a player, throw an exception.
+     *
+     * <p>Gives value of type {@link Player}.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -121,7 +122,8 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to represent a player who has been online at some point, as a {@link User}
+     * Expect an argument to represent a player who has been online at some
+     * point, as a {@link User}.
      *
      * @param key The key to store under
      * @return the argument
@@ -130,23 +132,23 @@ public final class GenericArguments {
         return new UserCommandElement(key, false);
     }
 
-	/**
-	 * Expect an argument to represent a player who has been online at some point,
-	 * as a {@link User}, or if nothing matches and the source is a {@link User},
-	 * give the user. If nothing matches and the source is not a {@link User}, throw
-	 * an exception.
-	 *
-	 * @param key The key to store under
-	 * @return the argument
-	 */
-	public static CommandElement userOrSource(Text key) {
-		return new UserCommandElement(key, true);
-	}
+    /**
+     * Expect an argument to represent a player who has been online at some
+     * point, as a {@link User}, or if nothing matches and the source is a
+     * {@link User}, give the user. If nothing matches and the source is not
+     * a {@link User}, throw an exception.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement userOrSource(Text key) {
+        return new UserCommandElement(key, true);
+    }
 
     /**
-     * Expect an argument to represent a world. This gives a WorldProperties object rather than an actual world in order to include unloaded worlds
-     * as well
-     * Gives values of type {@link WorldProperties}
+     * Expect an argument to represent a world. This gives a WorldProperties
+     * object rather than an actual world in order to include unloaded worlds
+     * as well. Gives values of type {@link WorldProperties}.
      *
      * @param key The key to store under
      * @return the argument
@@ -227,7 +229,8 @@ public final class GenericArguments {
     }
 
     static class MarkTrueCommandElement extends CommandElement {
-        public MarkTrueCommandElement(String flag) {
+
+        MarkTrueCommandElement(String flag) {
             super(Text.of(flag));
         }
 
@@ -327,8 +330,13 @@ public final class GenericArguments {
 
     /**
      * Return an argument that allows selecting from a limited set of values.
-     * If there are 5 or fewer choices available, the choices will be shown in the command usage. Otherwise, the usage
-     * will only display only the key. To override this behavior, see {@link #choices(Text, Map, boolean)}.
+     *
+     * <p>If there are 5 or fewer choices available, the choices will be shown
+     * in the command usage. Otherwise, the usage will only display only the
+     * key.</p>
+     *
+     * <p>To override this behavior, see {@link #choices(Text, Map, boolean)}.
+     * </p>
      *
      * @param key The key to store the resulting value under
      * @param choices The choices users can choose from
@@ -340,11 +348,14 @@ public final class GenericArguments {
 
     /**
      * Return an argument that allows selecting from a limited set of values.
-     * Unless {@code choicesInUsage} is true, general command usage will only display the provided key
+     *
+     * <p>Unless {@code choicesInUsage} is true, general command usage will only
+     * display the provided key.</p>
      *
      * @param key The key to store the resulting value under
      * @param choices The choices users can choose from
-     * @param choicesInUsage Whether to display the available choices, or simply the provided key, as part of usage
+     * @param choicesInUsage Whether to display the available choices, or simply
+     *      the provided key, as part of usage
      * @return the element to match the input
      */
     public static CommandElement choices(Text key, Map<String, ?> choices, boolean choicesInUsage) {
@@ -354,12 +365,18 @@ public final class GenericArguments {
 
     /**
      * Return an argument that allows selecting from a limited set of values.
-     * If there are 5 or fewer choices available, the choices will be shown in the command usage. Otherwise, the usage
-     * will only display only the key. To override this behavior, see {@link #choices(Text, Map, boolean)}.
+     *
+     * <p>If there are 5 or fewer choices available, the choices will be shown
+     * in the command usage. Otherwise, the usage will only display only the
+     * key.</p>
+     *
+     * <p>To override this behavior, see {@link #choices(Text, Map, boolean)}.
+     * </p>
      *
      * @param key The key to store the resulting value under
      * @param keys The function that will supply available keys
-     * @param values The function that maps an element of {@code key} to a value and any other key to {@code null}
+     * @param values The function that maps an element of {@code key} to a value
+     *      and any other key to {@code null}
      * @return the element to match the input
      */
     public static CommandElement choices(Text key, Supplier<Collection<String>> keys, Function<String, ?> values) {
@@ -368,12 +385,15 @@ public final class GenericArguments {
 
     /**
      * Return an argument that allows selecting from a limited set of values.
-     * Unless {@code choicesInUsage} is true, general command usage will only display the provided key
+     * Unless {@code choicesInUsage} is true, general command usage will only
+     * display the provided key.
      *
      * @param key The key to store the resulting value under
      * @param keys The function that will supply available keys
-     * @param values The function that maps an element of {@code key} to a value and any other key to {@code null}
-     * @param choicesInUsage Whether to display the available choices, or simply the provided key, as part of usage
+     * @param values The function that maps an element of {@code key} to a value
+     *      and any other key to {@code null}
+     * @param choicesInUsage Whether to display the available choices, or simply
+     *      the provided key, as part of usage
      * @return the element to match the input
      */
     public static CommandElement choices(Text key, Supplier<Collection<String>> keys, Function<String, ?> values, boolean choicesInUsage) {
@@ -422,19 +442,19 @@ public final class GenericArguments {
                 }
                 build.append(CommandMessageFormatting.GT_TEXT);
                 return build.build();
-            } else {
-                return super.getUsage(commander);
             }
+            return super.getUsage(commander);
         }
     }
 
 
     /**
-     * Returns a command element that matches the first of the provided elements that parses.
-     * Tab completion matches from all options
+     * Returns a command element that matches the first of the provided elements
+     * that parses tab completion matches from all options.
      *
      * @param elements The elements to check against
-     * @return The command element matching the first passing of the elements provided
+     * @return The command element matching the first passing of the elements
+     *      provided
      */
     public static CommandElement firstParsing(CommandElement... elements) {
         return new FirstParsingCommandElement(ImmutableList.copyOf(elements));
@@ -474,16 +494,16 @@ public final class GenericArguments {
         @Override
         public List<String> complete(final CommandSource src, final CommandArgs args, final CommandContext context) {
             return ImmutableList.copyOf(Iterables.concat(Iterables.transform(this.elements,
-                    input -> {
-                        if (input == null) {
-                            return ImmutableList.of();
-                        }
+                input -> {
+                    if (input == null) {
+                        return ImmutableList.of();
+                    }
 
-                        Object startState = args.getState();
-                        List<String> ret = input.complete(src, args, context);
-                        args.setState(startState);
-                        return ret;
-                    })));
+                    Object startState = args.getState();
+                    List<String> ret = input.complete(src, args, context);
+                    args.setState(startState);
+                    return ret;
+                })));
         }
 
         @Override
@@ -500,9 +520,11 @@ public final class GenericArguments {
     }
 
     /**
-     * Make the provided command element optional
-     * This means the command element is not required. However, if the element is provided with invalid format and there
-     * are no more args specified, any errors will still be passed on.
+     * Make the provided command element optional.
+     *
+     * <p>This means the command element is not required. However, if the
+     * element is provided with invalid format and there are no more args
+     * specified, any errors will still be passed on.</p>
      *
      * @param element The element to optionally require
      * @return the element to match the input
@@ -513,9 +535,12 @@ public final class GenericArguments {
 
     /**
      * Make the provided command element optional
-     * This means the command element is not required. However, if the element is provided with invalid format and there
-     * are no more args specified, any errors will still be passed on. If the given element's key and {@code value} are not
-     * null and this element is not provided the element's key will be set to the given value.
+     *
+     * <p>This means the command element is not required. However, if the
+     * element is provided with invalid format and there are no more args
+     * specified, any errors will still be passed on. If the given element's key
+     * and {@code value} are not null and this element is not provided the
+     * element's key will be set to the given value.</p>
      *
      * @param element The element to optionally require
      * @param value The default value to set
@@ -538,11 +563,17 @@ public final class GenericArguments {
     }
 
     /**
-     * Make the provided command element optional
-     * This means the command element is not required.
-     * If the argument is provided but of invalid format, it will be skipped.
-     * If the given element's key and {@code value} are not null and this element is not provided the element's key will
-     * be set to the given value.
+     * <p>Make the provided command element optional.</p>
+     *
+     * <p>This means the command element is not required.</p>
+     *
+     * <ul>
+     *     <li>If the argument is provided but of invalid format, it will be
+     *     skipped.</li>
+     *     <li>If the given element's key and {@code value} are not null and
+     *     this element is not provided the element's key will be set to the
+     *     given value.</li>
+     * </ul>
      *
      * @param element The element to optionally require
      * @param value The default value to set
@@ -606,8 +637,10 @@ public final class GenericArguments {
     }
 
     /**
-     * Require a given command element to be provided a certain number of times
-     * Command values will be stored under their provided keys in the CommandContext
+     * Require a given command element to be provided a certain number of times.
+     *
+     * <p>Command values will be stored under their provided keys in the
+     * <tt>CommandContext</tt>.</p>
      *
      * @param element The element to repeat
      * @param times The number of times to repeat the element.
@@ -661,8 +694,9 @@ public final class GenericArguments {
     }
 
     /**
-     * Require all remaining args to match as many instances of CommandElement as will fit
-     * Command element values will be stored under their provided keys in the CommandContext.
+     * Require all remaining args to match as many instances of
+     * {@link CommandElement} as will fit. Command element values will be stored
+     * under their provided keys in the CommandContext.
      *
      * @param element The element to repeat
      * @return the element to match the input
@@ -715,10 +749,12 @@ public final class GenericArguments {
     // -- Argument types for basic java types
 
     /**
-     * Parent class that specifies elemenents as having no tab completions. Useful for inputs with a very large domain, like strings and integers
+     * Parent class that specifies elemenents as having no tab completions.
+     * Useful for inputs with a very large domain, like strings and integers.
      */
     private abstract static class KeyElement extends CommandElement {
-        private KeyElement(Text key) {
+
+        protected KeyElement(Text key) {
             super(key);
         }
 
@@ -726,11 +762,14 @@ public final class GenericArguments {
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             return Collections.emptyList();
         }
+
     }
 
     /**
-     * Require an argument to be a string. Any provided argument will fit in under this argument.
-     * Gives values of type {@link String}.
+     * Require an argument to be a string. Any provided argument will fit in
+     * under this argument.
+     *
+     * <p>Gives values of type {@link String}.</p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -754,7 +793,8 @@ public final class GenericArguments {
 
     /**
      * Require an argument to be an integer (base 10).
-     * Gives values of type {@link Integer}
+     *
+     * <p>Gives values of type {@link Integer}.</p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -797,7 +837,8 @@ public final class GenericArguments {
 
     /**
      * Require an argument to be a long (base 10).
-     * Gives values of type {@link Integer}
+     *
+     * <p>Gives values of type {@link Long}.</p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -808,7 +849,8 @@ public final class GenericArguments {
 
     /**
      * Require an argument to be an double-precision floating point number.
-     * Gives values of type {@link Double}
+     *
+     * <p>Gives values of type {@link Double}.</p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -834,7 +876,9 @@ public final class GenericArguments {
 
     /**
      * Require an argument to be a boolean.
-     * The recognized true values are:
+     *
+     * <p>The recognized true values are:</p>
+     *
      * <ul>
      *     <li>true</li>
      *     <li>t</li>
@@ -842,7 +886,10 @@ public final class GenericArguments {
      *     <li>y</li>
      *     <li>verymuchso</li>
      * </ul>
-     * The recognized false values are:
+     *
+     *
+     * <p>The recognized false values are:</p>
+     *
      * <ul>
      *     <li>false</li>
      *     <li>f</li>
@@ -850,7 +897,8 @@ public final class GenericArguments {
      *     <li>n</li>
      *     <li>notatall</li>
      * </ul>
-     * Gives values of type {@link Boolean}
+     *
+     * <p>Gives values of type {@link Boolean}.</p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -861,7 +909,8 @@ public final class GenericArguments {
 
     /**
      * Require the argument to be a key under the provided enum.
-     * Gives values of type T
+     *
+     * <p>Gives values of type <tt>T</tt></p>
      *
      * @param key The key to store the matched enum value under
      * @param type The enum class to get enum constants from
@@ -894,8 +943,10 @@ public final class GenericArguments {
     }
 
     /**
-     * Require one or more strings, which are combined into a single, space-separated string.
-     * Gives values of type {@link String}
+     * Require one or more strings, which are combined into a single,
+     * space-separated string.
+     *
+     * <p>Gives values of type {@link String}.</p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -905,8 +956,10 @@ public final class GenericArguments {
     }
 
     /**
-     * Require one or more strings, without any processing, which are combined into a single, space-separated string.
-     * Gives values of type {@link String}.
+     * Require one or more strings, without any processing, which are combined
+     * into a single, space-separated string.
+     *
+     * <p>Gives values of type {@link String}.</p>
      *
      * @param key The key to store the parsed argument under
      * @return the element to match the input
@@ -932,13 +985,12 @@ public final class GenericArguments {
                     args.next();
                 }
                 return ret;
-            } else {
-                final StringBuilder ret = new StringBuilder(args.next());
-                while (args.hasNext()) {
-                    ret.append(' ').append(args.next());
-                }
-                return ret.toString();
             }
+            final StringBuilder ret = new StringBuilder(args.next());
+            while (args.hasNext()) {
+                ret.append(' ').append(args.next());
+            }
+            return ret.toString();
         }
 
         @Override
@@ -948,10 +1000,12 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect a literal sequence of arguments. This element matches the input against a predefined array of arguments expected to be present,
+     * Expect a literal sequence of arguments. This element matches the input
+     * against a predefined array of arguments expected to be present,
      * case-insensitively.
      *
-     * @param key The key to add to the context. Will be set to a value of true if this element matches
+     * @param key The key to add to the context. Will be set to a value of true
+     *      if this element matches
      * @param expectedArgs The sequence of arguments expected
      * @return the appropriate command element
      */
@@ -960,11 +1014,13 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect a literal sequence of arguments. This element matches the input against a predefined array of arguments expected to be present,
+     * Expect a literal sequence of arguments. This element matches the input
+     * against a predefined array of arguments expected to be present,
      * case-insensitively.
      *
      * @param key The key to store this argument as
-     * @param putValue The value to put at key if this argument matches. May be null
+     * @param putValue The value to put at key if this argument matches. May be
+     *      <tt>null</tt>
      * @param expectedArgs The sequence of arguments expected
      * @return the appropriate command element
      */
@@ -1044,9 +1100,8 @@ public final class GenericArguments {
                 } catch (ArgumentParseException ex2) {
                     if (this.returnSource && source instanceof User) {
                         return source;
-                    } else {
-                        throw ex2;
                     }
+                    throw ex2;
                 }
             }
         }
@@ -1089,9 +1144,8 @@ public final class GenericArguments {
                 if (this.returnSource) {
                     args.setState(state);
                     return tryReturnSource(source, args);
-                } else {
-                    throw ex;
                 }
+                throw ex;
             }
         }
 
@@ -1128,7 +1182,9 @@ public final class GenericArguments {
     }
 
     /**
-     * Acceped formats:
+     * A command element which represents a world or dimension.
+     *
+     * <p>Acceped formats:</p>
      *
      * <ul>
      *     <li>#first</li>
@@ -1168,8 +1224,8 @@ public final class GenericArguments {
                     args.insertArg(specifier);
                     @SuppressWarnings("unchecked")
                     final DimensionType type = ((Iterable<DimensionType>) this.dimensionTypeElement.parseValue(source, args)).iterator().next();
-                    Iterable<WorldProperties> ret = Sponge.getGame().getServer().getAllWorldProperties().stream().filter(input -> input != null &&
-                            input.isEnabled() && input.getDimensionType().equals(type)).collect(Collectors.toList());
+                    Iterable<WorldProperties> ret = Sponge.getGame().getServer().getAllWorldProperties().stream().filter(input -> input != null
+                            && input.isEnabled() && input.getDimensionType().equals(type)).collect(Collectors.toList());
                     return firstOnly ? ret.iterator().next() : ret;
                 }
             }
@@ -1212,9 +1268,12 @@ public final class GenericArguments {
 
     /**
      * Syntax:
-     * x,y,z
-     * x y z.
-     * each element can be relative to a location? so parseRelativeDouble() -- relative is ~(num)
+     *
+     * <blockquote><pre> x,y,z
+     * x y z.</pre></blockquote>
+     *
+     * <p>Each element can be relative to a location? so
+     * <tt>parseRelativeDouble()</tt> -- relative is ~(num)</p>
      *
      */
     private static class Vector3dCommandElement extends CommandElement {
@@ -1274,13 +1333,11 @@ public final class GenericArguments {
                     arg = args.nextIfPresent();
                     if (args.hasNext()) {
                         return ImmutableList.of(args.nextIfPresent().get());
-                    } else {
-                        return ImmutableList.of(arg.get());
                     }
+                    return ImmutableList.of(arg.get());
                 }
-            } else {
-                return ImmutableList.of();
             }
+            return ImmutableList.of();
         }
 
         private double parseRelativeDouble(CommandArgs args, String arg, @Nullable Double relativeTo) throws ArgumentParseException {
@@ -1304,7 +1361,10 @@ public final class GenericArguments {
     }
 
     /**
-     * Listens to:
+     * An element representing a location.
+     *
+     * <p>Listens to:</p>
+     *
      * <ul>
      *     <li>#spawn:&lt;world></li>
      *     <li>#me: Location of the current source</li>
@@ -1369,15 +1429,14 @@ public final class GenericArguments {
             Optional<String> nextPossibility = args.nextIfPresent();
             if (nextPossibility.isPresent() && nextPossibility.get().startsWith("@")) {
                 return Selector.complete(nextPossibility.get());
-            } else {
-                args.setState(state);
-                List<String> ret;
-                if ((ret = this.worldParser.complete(src, args, context)).isEmpty()) {
-                    args.setState(state);
-                    ret = this.vectorParser.complete(src, args, context);
-                }
-                return ret;
             }
+            args.setState(state);
+            List<String> ret;
+            if ((ret = this.worldParser.complete(src, args, context)).isEmpty()) {
+                args.setState(state);
+                ret = this.vectorParser.complete(src, args, context);
+            }
+            return ret;
         }
     }
 
@@ -1393,7 +1452,7 @@ public final class GenericArguments {
         protected Iterable<String> getChoices(CommandSource source) {
             return Sponge.getGame().getRegistry().getAllOf(this.catalogType).stream()
                 .<String>map(input -> {
-                return input == null ? null : input.getId(); // TODO: ids or names?
+                    return input == null ? null : input.getId(); // TODO: ids or names?
                 })
                 .collect(Collectors.toList());
         }
@@ -1409,7 +1468,8 @@ public final class GenericArguments {
     }
 
     /**
-     * Restricts the given command element to only insert one value into the context at the provided key.
+     * Restricts the given command element to only insert one value into the
+     * context at the provided key.
      *
      * @param element The element to restrict
      * @return the restricted element
@@ -1507,10 +1567,24 @@ public final class GenericArguments {
         }
     }
 
+    /**
+     * Creates a new {@link CommandElement} with an {@link Entity} target
+     * and the provided {@link Text} key.
+     *
+     * @param key The text key representation
+     * @return The command element
+     */
     public static CommandElement entity(Text key) {
         return new EntityCommandElement(key, false);
     }
 
+    /**
+     * Creates a new {@link CommandElement} with an {@link Entity} target
+     * or other source and the provided {@link Text} key.
+     *
+     * @param key The text key representation
+     * @return The command element
+     */
     public static CommandElement entityOrSource(Text key) {
         return new EntityCommandElement(key, true);
     }
@@ -1537,9 +1611,8 @@ public final class GenericArguments {
                 if (this.returnSource) {
                     args.setState(state);
                     return tryReturnSource(source, args);
-                } else {
-                    throw ex;
                 }
+                throw ex;
             }
         }
 

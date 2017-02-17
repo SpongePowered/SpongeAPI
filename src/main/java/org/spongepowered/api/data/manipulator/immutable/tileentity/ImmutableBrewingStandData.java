@@ -38,7 +38,7 @@ public interface ImmutableBrewingStandData extends ImmutableDataManipulator<Immu
     /**
      * Gets the {@link ImmutableBoundedValue} for the remaining brew time.
      *
-     * If nothing is brewing the immutable value is 0.
+     * <p>If nothing is brewing the immutable value is 0.</p>
      *
      * @return The immutable value for the remaining brew time
      */

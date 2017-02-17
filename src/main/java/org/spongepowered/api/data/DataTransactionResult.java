@@ -36,7 +36,6 @@ import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.ArrayList;

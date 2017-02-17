@@ -58,9 +58,8 @@ public enum Axis implements Cycleable<Axis> {
         if (x < y) {
             if (z < y) {
                 return Y;
-            } else {
-                return Z;
             }
+            return Z;
         } else if (x < z) {
             return Z;
         } else {

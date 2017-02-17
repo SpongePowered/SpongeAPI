@@ -67,7 +67,8 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable {
      * <p>{@link Transaction#getOriginal()} is used to get the {@link Location}</p>
      *
      * @param predicate The predicate to use for filtering
-     * @return The transactions for which the predicate returned <code>false</code>
+     * @return The transactions for which the predicate returned
+     *     <code>false</code>
      */
     default List<Transaction<BlockSnapshot>> filter(Predicate<Location<World>> predicate) {
         List<Transaction<BlockSnapshot>> invalidatedTransactions = Lists.newArrayList();
@@ -103,9 +104,9 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable {
          * <p>Canceling this event will prevent block logic from running
          * and also stop {@link BlockSnapshot}'s from being generated.</p>
          *
-         * <p>Note: This event is not intended to always be fired before changing
-         * a {@link BlockState} but rather it is primarily used to prevent one
-         * or more {@link BlockState}'s from being changed.</p>
+         * <p>Note: This event is not intended to always be fired before
+         * changing a {@link BlockState} but rather it is primarily used to
+         * prevent one or more {@link BlockState}'s from being changed.</p>
          *
          * @return The immutable list of one or more locations that can change
          */
@@ -168,8 +169,8 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable {
      * the piston head moving, and the adjacent block being set in a new
      * position.</p>
      *
-     * Note: This event is fired after processing all other
-     * ChangeBlockEvent's.
+     * <p>>Note: This event is fired after processing all other
+     * ChangeBlockEvent's.</p>
      */
     interface Post extends ChangeBlockEvent {}
 }

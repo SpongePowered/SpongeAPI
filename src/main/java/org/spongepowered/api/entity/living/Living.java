@@ -40,7 +40,8 @@ import org.spongepowered.api.scoreboard.TeamMember;
  * Represents an entity that is living, and therefor can be damaged.
  *
  * <p>Living entities can have {@link PotionEffect}s, breathing air
- * under water, custom names, be meaningfully added to teams, and become invisible.</p>
+ * under water, custom names, be meaningfully added to teams, and become
+ * invisible.</p>
  */
 public interface Living extends Entity, TeamMember {
 
@@ -117,9 +118,9 @@ public interface Living extends Entity, TeamMember {
      * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
      * </code></ul>
      *
-     * Note that the pitch will be the same x value returned by
+     * <p>Note that the pitch will be the same x value returned by
      * {@link Entity#getRotation()} and Minecraft does not currently support
-     * head roll so the z value will always be zero.
+     * head roll so the z value will always be zero.</p>
      *
      * @return Head rotation
      */
@@ -133,8 +134,8 @@ public interface Living extends Entity, TeamMember {
      * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
      * </code></ul>
      *
-     * Note that the pitch (x value) supplied will update the entity's pitch
-     * via {@link Entity#setRotation(Vector3d)}.
+     * <p>Note that the pitch (x value) supplied will update the entity's pitch
+     * via {@link Entity#setRotation(Vector3d)}.</p>
      *
      * @param rotation Rotation of the entities head
      */
@@ -160,8 +161,8 @@ public interface Living extends Entity, TeamMember {
         Vector2d p2 = new Vector2d(distance, targetPos.getY());
         Vector2d v1 = p2.sub(p1);
         Vector2d v2 = Vector2d.UNIT_X.mul(distance);
-        double pitchRad = Math.acos(v1.dot(v2) / (v1.length() * v2.length()));
-        double pitchDeg = pitchRad * 180 / Math.PI * (-v1.getY() / Math.abs(v1.getY()));
+        final double pitchRad = Math.acos(v1.dot(v2) / (v1.length() * v2.length()));
+        final double pitchDeg = pitchRad * 180 / Math.PI * (-v1.getY() / Math.abs(v1.getY()));
 
         // calculate yaw
         p1 = xz1;
@@ -170,12 +171,13 @@ public interface Living extends Entity, TeamMember {
         v2 = Vector2d.UNIT_Y.mul(v1.getY());
         double yawRad = Math.acos(v1.dot(v2) / (v1.length() * v2.length()));
         double yawDeg = yawRad * 180 / Math.PI;
-        if (v1.getX() < 0 && v1.getY() < 0)
+        if (v1.getX() < 0 && v1.getY() < 0) {
             yawDeg = 180 - yawDeg;
-        else if (v1.getX() > 0 && v1.getY() < 0)
+        } else if (v1.getX() > 0 && v1.getY() < 0) {
             yawDeg = 270 - (90 - yawDeg);
-        else if (v1.getX() > 0 && v1.getY() > 0)
+        } else if (v1.getX() > 0 && v1.getY() > 0) {
             yawDeg = 270 + (90 - yawDeg);
+        }
 
         setHeadRotation(new Vector3d(pitchDeg, yawDeg, getHeadRotation().getZ()));
         setRotation(new Vector3d(pitchDeg, yawDeg, getRotation().getZ()));

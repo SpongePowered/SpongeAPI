@@ -38,10 +38,22 @@ import java.util.Optional;
  */
 public class MemoryDataContainer extends MemoryDataView implements DataContainer {
 
+    /**
+     * Creates a new {@link MemoryDataContainer} with a default
+     * {@link org.spongepowered.api.data.DataView.SafetyMode} of
+     * {@link org.spongepowered.api.data.DataView.SafetyMode#ALL_DATA_CLONED}.
+     */
     public MemoryDataContainer() {
         this(DataView.SafetyMode.ALL_DATA_CLONED);
     }
 
+    /**
+     * Creates a new {@link MemoryDataContainer} with the provided
+     * {@link org.spongepowered.api.data.DataView.SafetyMode}.
+     *
+     * @param safety The safety mode to use
+     * @see org.spongepowered.api.data.DataView.SafetyMode
+     */
     public MemoryDataContainer(DataView.SafetyMode safety) {
         super(safety);
     }

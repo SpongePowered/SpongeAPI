@@ -117,6 +117,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param blockState The block
      * @param flag The various change flags controlling some interactions
      * @param cause The cause to use
+     * @return Whether the block change was successful
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
@@ -138,6 +139,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param blockState The block
      * @param flag The various change flags controlling some interactions
      * @param cause The cause to use
+     * @return Whether the block change was successful
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
@@ -155,6 +157,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param type The block type
      * @param flag The various change flags controlling some interactions
      * @param cause The cause to use
+     * @return Whether the block change was successful
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
@@ -176,6 +179,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param type The block
      * @param flag The various change flags controlling some interactions
      * @param cause The cause to use
+     * @return Whether the block change was successful
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
@@ -242,6 +246,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param force If true, forces block state to be set even if the
      *        {@link BlockType} does not match the snapshot one.
      * @param flag The various change flags controlling some interactions
+     * @param cause The cause of this operation
      * @return true if the restore was successful, false otherwise
      */
     default boolean restoreSnapshot(Vector3i position, BlockSnapshot snapshot, boolean force, BlockChangeFlag flag, Cause cause) {
@@ -462,9 +467,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * Gets the bounding box used to select blocks, which appears
      * as a black outline on a vanilla client.
      *
-     * @param x The x coordinate of the block from which to get the selection box
-     * @param y The y coordinate of the block from which to get the selection box
-     * @param z The z coordinate of the block from which to get the selection box
+     * @param x The x coord of the block from which to get the selection box
+     * @param y The y coord of the block from which to get the selection box
+     * @param z The z coord of the block from which to get the selection box
      * @return The selection box
      */
     Optional<AABB> getBlockSelectionBox(int x, int y, int z);
@@ -489,9 +494,9 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      */
     default Set<AABB> getIntersectingCollisionBoxes(Entity owner) {
         checkNotNull(owner, "owner");
-        return owner.getBoundingBox().
-            map(box -> getIntersectingCollisionBoxes(owner, box)).
-            orElse(Collections.emptySet());
+        return owner.getBoundingBox()
+            .map(box -> getIntersectingCollisionBoxes(owner, box))
+            .orElse(Collections.emptySet());
     }
 
     /**

@@ -86,7 +86,7 @@ public interface SeededVariableAmount<T> {
      * 
      * @param <T> The seed type
      */
-    static final class WrappedVariableAmount<T> implements SeededVariableAmount<T> {
+    final class WrappedVariableAmount<T> implements SeededVariableAmount<T> {
 
         private final VariableAmount inner;
 

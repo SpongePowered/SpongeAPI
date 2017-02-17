@@ -31,20 +31,62 @@ import java.util.function.Predicate;
 
 public interface FindNearestAttackableTargetAITask extends TargetAITask<FindNearestAttackableTargetAITask> {
 
+    /**
+     * Creates a new {@link Builder} for building a new {@link FindNearestAttackableTargetAITask}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the {@link Class entity class} that can be targeted.
+     *
+     * @return The entity class that can be targeted
+     */
     Class<? extends Living> getTargetClass();
 
+    /**
+     * Sets the {@link Class entity class} that can be targeted.
+     *
+     * @param targetClass The entity class to target
+     * @return This task, for chaining
+     */
     FindNearestAttackableTargetAITask setTargetClass(Class<? extends Living> targetClass);
 
+    /**
+     * Gets the chance that this task will go through and attempt to find a
+     * new target.
+     *
+     * @return The chance that this task will go through and find a target
+     */
     int getChance();
 
+    /**
+     * Sets the chance that this task will go through and attempt to find a
+     * new target.
+     *
+     * @param chance The chance that this task will attemp to find a new target
+     * @return This task, for chaining
+     */
     FindNearestAttackableTargetAITask setChance(int chance);
 
+    /**
+     * Sets the {@link Predicate} filter to determine whether a {@link Living}
+     * entity can be targeted.
+     *
+     * @param predicate The predicate
+     * @return This task, for chaining
+     */
     FindNearestAttackableTargetAITask filter(Predicate<Living> predicate);
 
+    /**
+     * Gets the {@link Predicate} filter to determine whether a {@link Living living entity}
+     * can be targeted.
+     *
+     * @return The predicate to filter living entities for targeting
+     */
     Predicate<Living> getFilter();
 
     interface Builder extends TargetAITask.Builder<FindNearestAttackableTargetAITask, Builder> {

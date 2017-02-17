@@ -40,6 +40,12 @@ public class WorldMessageChannel implements MessageChannel {
 
     private final Collection<MessageReceiver> members;
 
+    /**
+     * Creates a new {@link MessageChannel channel} specific to the provided
+     * {@link World world}.
+     *
+     * @param world The world to target
+     */
     public WorldMessageChannel(World world) {
         checkNotNull(world, "world");
         this.members = Collections.singleton(world);

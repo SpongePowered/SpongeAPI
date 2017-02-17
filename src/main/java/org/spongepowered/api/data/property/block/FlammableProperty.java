@@ -31,10 +31,23 @@ import org.spongepowered.api.data.property.BooleanProperty;
  */
 public class FlammableProperty extends BooleanProperty {
 
+    /**
+     * Creates a new {@link FlammableProperty} with the provided {@code boolean}
+     * value.
+     *
+     * @param value The value of whether a block is able to catch fire
+     */
     public FlammableProperty(boolean value) {
         super(value);
     }
 
+    /**
+     * Creates a new {@link FlammableProperty} with the provided {@code boolean}
+     * value and {@link org.spongepowered.api.data.Property.Operator comparison operator}.
+     *
+     * @param value The value of whether a block is able to catch fire
+     * @param operator The operator value for comparisons
+     */
     public FlammableProperty(boolean value, Operator operator) {
         super(value, operator);
     }

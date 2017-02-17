@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.property;
 
-
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
@@ -63,6 +62,14 @@ public interface PropertyStore<T extends Property<?, ?>> {
      */
     Optional<T> getFor(Location<World> location);
 
+    /**
+     * Gets the desired property for the provided {@link Location} at present
+     * time, in relation to the provided {@link Direction}.
+     *
+     * @param location The location of the block
+     * @param direction The direction in relation to
+     * @return The type of property
+     */
     Optional<T> getFor(Location<World> location, Direction direction);
 
     /**

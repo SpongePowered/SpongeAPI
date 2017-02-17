@@ -32,11 +32,26 @@ public class RegistryModuleAlreadyRegisteredException extends RegistryException 
 
     private RegistryModule module;
 
+    /**
+     * Creates a new {@link RegistryModuleAlreadyRegisteredException} based on
+     * the fact that the provided {@link RegistryModule} is already registered,
+     * either due to the fact that the object it covers is already associated
+     * with a different {@link RegistryModule module}, or that the module itself
+     * has already been registered.
+     *
+     * @param message The message
+     * @param module The module in question
+     */
     public RegistryModuleAlreadyRegisteredException(String message, RegistryModule module) {
         super(message);
         this.module = checkNotNull(module);
     }
 
+    /**
+     * Gets the {@link RegistryModule} associated with this exception.
+     *
+     * @return The registry module
+     */
     public RegistryModule getModule() {
         return this.module;
     }

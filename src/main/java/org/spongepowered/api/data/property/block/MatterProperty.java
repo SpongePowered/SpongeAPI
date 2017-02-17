@@ -32,10 +32,23 @@ import javax.annotation.Nullable;
 
 public class MatterProperty extends AbstractProperty<String, MatterProperty.Matter> {
 
+    /**
+     * Creates a new {@link MatterProperty} with the provided {@link Matter}
+     * state.
+     *
+     * @param value The matter state
+     */
     public MatterProperty(Matter value) {
         super(value);
     }
 
+    /**
+     * Creates a new {@link MatterProperty} with the provided {@link Matter}
+     * state.
+     *
+     * @param value The matter state
+     * @param op The operator comparison
+     */
     public MatterProperty(Matter value, @Nullable Operator op) {
         super(value, op);
     }
@@ -48,7 +61,8 @@ public class MatterProperty extends AbstractProperty<String, MatterProperty.Matt
     public enum Matter {
         SOLID,
         LIQUID,
-        GAS;
+        GAS,
+        ;
     }
 
 }

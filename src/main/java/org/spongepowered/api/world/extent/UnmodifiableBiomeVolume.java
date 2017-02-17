@@ -31,8 +31,8 @@ import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.extent.worker.BiomeVolumeWorker;
 
 /**
- * A volume containing biomes that can be accessed but not modified. The data may
- * be changed by other processes.
+ * A volume containing biomes that can be accessed but not modified. The data
+ * may be changed by other processes.
  *
  * @see BiomeVolume
  */
@@ -53,8 +53,8 @@ public interface UnmodifiableBiomeVolume extends BiomeVolume {
     UnmodifiableBiomeVolume getBiomeView(Vector3i newMin, Vector3i newMax);
 
     /**
-     * Returns a new volume that is viewed through some transformation. This does
-     * not copy the biomes, it only provides a new view of the storage.
+     * Returns a new volume that is viewed through some transformation. This
+     * does not copy the biomes, it only provides a new view of the storage.
      *
      * @param transform The transformation to be applied
      * @return The new volume with the transform
@@ -64,8 +64,8 @@ public interface UnmodifiableBiomeVolume extends BiomeVolume {
 
     /**
      * Returns a new volume that is translated so that
-     * {@link BiomeVolume#getBiomeMin()} returns {@link Vector2i#ZERO}. This does
-     * not copy the biomes, it only provides a new view of the storage.
+     * {@link BiomeVolume#getBiomeMin()} returns {@link Vector2i#ZERO}. This
+     * does not copy the biomes, it only provides a new view of the storage.
      *
      * @return The new volume with its minimum at zero
      */

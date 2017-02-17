@@ -86,7 +86,8 @@ public interface ShapedRecipe extends Recipe {
         Builder height(int height);
 
         /**
-         * Sets the dimensions of the grid for the ShapedRecipe in one method call.
+         * Sets the dimensions of the grid for the ShapedRecipe in one method
+         * call.
          *
          * @param dimensions The dimensions of the grid
          * @return fluent interface

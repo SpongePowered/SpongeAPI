@@ -30,13 +30,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.TargetedLocationData;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.entity.damage.source.DamageSource; 
+import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
@@ -74,7 +73,7 @@ import javax.annotation.Nullable;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-public interface Entity extends Identifiable, Locatable, DataHolder, DataSerializable, Translatable {
+public interface Entity extends Identifiable, Locatable, DataHolder, Translatable {
 
     /**
      * Get the type of entity.
@@ -84,20 +83,23 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
     EntityType getType();
 
     /**
-     * Creates a {@link EntitySnapshot} containing the {@link EntityType} and data of this entity.
+     * Creates a {@link EntitySnapshot} containing the {@link EntityType} and
+     * data of this entity.
+     *
      * @return The snapshot
      */
     EntitySnapshot createSnapshot();
 
     /**
-     * Gets the RNG for this entity.
+     * Gets the Random Number Generator (RNG) for this entity.
+     *
      * @return The RNG
      */
     Random getRandom();
 
     /**
-     * Sets the location of this entity. This is equivalent to a teleport,
-     * and also moves this entity's passengers.
+     * Sets the location of this entity. This is equivalent to a teleport, and
+     * also moves this entity's passengers.
      *
      * @param location The location to set
      * @return True if location was set successfully, false if location couldn't
@@ -114,9 +116,9 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
      *
      * @param location The location to set
      * @return True if location was set successfully, false if location couldn't
-     *    be set as no safe location was found or
-     *    {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *    was cancelled.
+     *      be set as no safe location was found or
+     *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
+     *      was cancelled.
      */
     default boolean setLocationSafely(Location<World> location) {
         return Sponge.getGame().getTeleportHelper()
@@ -167,30 +169,6 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
     boolean setLocationAndRotation(Location<World> location, Vector3d rotation);
 
     /**
-     * Sets the location using a safe one from
-     * {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this
-     * entity.
-     *
-     * <p>The format of the rotation is represented by:</p>
-     *
-     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
-     * </code></ul>
-     *
-     * @param location The location to set
-     * @param rotation The rotation to set
-     * @return True if location was set successfully, false if either location
-     *    couldn't be set as no safe location was found or
-     *    {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *    was cancelled
-     */
-    default boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation) {
-        return Sponge.getGame().getTeleportHelper()
-                .getSafeLocation(location)
-                .map(safe -> this.setLocationAndRotation(safe, rotation))
-                .orElse(false);
-    }
-
-    /**
      * Moves the entity to the specified location, and sets the rotation.
      * {@link RelativePositions} listed inside the EnumSet are considered
      * relative.
@@ -204,11 +182,35 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
      * @param rotation The rotation to set
      * @param relativePositions The coordinates to set relatively
      * @return True if location was set successfully, false if location couldn't
-     *     be set due to
-     *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *     being cancelled
+     *      be set due to
+     *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
+     *      being cancelled
      */
     boolean setLocationAndRotation(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions);
+
+    /**
+     * Sets the location using a safe one from
+     * {@link TeleportHelper#getSafeLocation(Location)} and the rotation of this
+     * entity.
+     *
+     * <p>The format of the rotation is represented by:</p>
+     *
+     * <ul><code>x -> pitch</code>, <code>y -> yaw</code>, <code>z -> roll
+     * </code></ul>
+     *
+     * @param location The location to set
+     * @param rotation The rotation to set
+     * @return True if location was set successfully, false if either location
+     *      couldn't be set as no safe location was found or
+     *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
+     *      was cancelled
+     */
+    default boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation) {
+        return Sponge.getGame().getTeleportHelper()
+                .getSafeLocation(location)
+                .map(safe -> this.setLocationAndRotation(safe, rotation))
+                .orElse(false);
+    }
 
     /**
      * Sets the location using a safe one from
@@ -225,9 +227,9 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
      * @param rotation The rotation to set
      * @param relativePositions The coordinates to set relatively
      * @return True if location was set successfully, false if either location
-     *     couldn't be set as no safe location was found or
-     *    {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *    was cancelled
+     *      couldn't be set as no safe location was found or
+     *      {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
+     *      was cancelled
      */
     default boolean setLocationAndRotationSafely(Location<World> location, Vector3d rotation, EnumSet<RelativePositions> relativePositions) {
         return Sponge.getGame().getTeleportHelper()
@@ -237,47 +239,49 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
     }
 
     /**
-     * Gets the entity scale. Not currently used.
-     * Returns {@link Vector3d#ONE}.
+     * Gets the entity scale. Not currently used. Returns {@link Vector3d#ONE}.
      *
      * @return The entity scale
      */
     Vector3d getScale();
 
     /**
-     * Sets the entity scale. Not currently used.
-     * Does nothing.
+     * Sets the entity scale. Not currently used. Does nothing.
      *
      * @param scale The scale
      */
     void setScale(Vector3d scale);
 
     /**
-     * Returns the entity transform as a new copy.
-     * Combines the position, rotation and scale.
+     * Returns the entity transform as a new copy. Combines the position,
+     * rotation and scale.
      *
      * @return The transform as a new copy
      */
     Transform<World> getTransform();
 
     /**
-     * Sets the entity transform. Sets the
-     * position, rotation and scale at once.
+     * Sets the entity transform. Sets the position, rotation and scale at once.
      *
      * @param transform The transform to set
      * @return True if the transform was set successfully, false if the
-     *  transform couldn't be set due to
-     *  {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
-     *  being cancelled.
+     *     transform couldn't be set due to
+     *     {@link org.spongepowered.api.event.entity.MoveEntityEvent.Teleport}
+     *     being cancelled.
      */
     boolean setTransform(Transform<World> transform);
 
     /**
-     * Sets the {@link Location} of this entity to the {@link World}'s spawn point.
+     * Sets the {@link Location} of this entity to the {@link World}'s spawn
+     * point.
      *
-     * <p>This is equivalent to setting the location via {@link TargetedLocationData}.</p>
+     * <p>This is equivalent to setting the location via
+     * {@link TargetedLocationData}.</p>
      *
      * @param world The world to transfer to
+     * @return Whether the transfer was successful, returns false if the action
+     *      is cancelled or not possible (eg. because the entity has been
+     *      removed)
      */
     default boolean transferToWorld(World world) {
         return transferToWorld(world, world.getSpawnLocation().getPosition());
@@ -286,10 +290,14 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
     /**
      * Sets the {@link Location} of this entity to a new position in a world.
      *
-     * <p>This is equivalent to setting the location via {@link TargetedLocationData}.</p>
+     * <p>This is equivalent to setting the location via
+     * {@link TargetedLocationData}.</p>
      *
      * @param world The world to transfer to
      * @param position The position in the target world
+     * @return Whether the transfer was successful, returns false if the action
+     *      is cancelled or not possible (eg. because the entity has been
+     *      removed)
      */
     boolean transferToWorld(World world, Vector3d position);
 
@@ -321,8 +329,8 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
      * Sets the location of this entity to a new position in a world which does
      * not have to be loaded (but must at least be enabled).
      *
-     * <p>If the target world is loaded then this is equivalent to
-     * setting the location via {@link TargetedLocationData}.</p>
+     * <p>If the target world is loaded then this is equivalent to setting the
+     * location via {@link TargetedLocationData}.</p>
      *
      * <p>If the target world is unloaded but is enabled according to its
      * {@link WorldArchetype#isEnabled()} then this will first load the world
@@ -343,8 +351,8 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
 
     /**
      * Gets the entity's bounding box, usually for collisions and interaction.
-     * The box has an offset matching the entity's positions. That is to say,
-     * it is absolutely positioned and not relative to the entity.
+     * The box has an offset matching the entity's positions. That is to say, it
+     * is absolutely positioned and not relative to the entity.
      *
      * @return The axis aligned bounding box
      */
@@ -396,12 +404,12 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
     DataTransactionResult setVehicle(@Nullable Entity entity);
 
     /**
-     * Gets the entity vehicle that is the base of what ever stack the
-     * current entity is a part of. This can be the current entity, if it is
-     * not riding any vehicle.
+     * Gets the entity vehicle that is the base of what ever stack the current
+     * entity is a part of. This can be the current entity, if it is not riding
+     * any vehicle.
      *
-     * <p>The returned entity can never ride another entity, that would make
-     * the ridden entity the base of the stack.</p>
+     * <p>The returned entity can never ride another entity, that would make the
+     * ridden entity the base of the stack.</p>
      *
      * @return The vehicle entity, if available
      */
@@ -467,9 +475,8 @@ public interface Entity extends Identifiable, Locatable, DataHolder, DataSeriali
 
     /**
      * Damages this {@link Entity} with the given {@link Cause}. It is
-     * imperative that a {@link DamageSource} is included
-     * with the cause for maximum compatibility with plugins and the game
-     * itself.
+     * imperative that a {@link DamageSource} is included with the cause for
+     * maximum compatibility with plugins and the game itself.
      *
      * @param damage The damage to deal
      * @param damageSource The source of damage

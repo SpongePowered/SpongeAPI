@@ -48,13 +48,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
-import org.spongepowered.api.text.TestPlainTextSerializer;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
+import org.spongepowered.api.text.TestPlainTextSerializer;
+import org.spongepowered.api.text.Text;
 
 
 /**

@@ -59,6 +59,7 @@ public interface TabList {
      * be sent.</p>
      *
      * @param header The new header
+     * @return This tab list, for chaining
      */
     TabList setHeader(@Nullable Text header);
 
@@ -76,6 +77,7 @@ public interface TabList {
      * be sent.</p>
      *
      * @param footer The new footer
+     * @return This tab list, for chaining
      */
     TabList setFooter(@Nullable Text footer);
 
@@ -87,6 +89,7 @@ public interface TabList {
      *
      * @param header The new header
      * @param footer The new footer
+     * @return This tab list, for chaining
      */
     default TabList setHeaderAndFooter(@Nullable Text header, @Nullable Text footer) {
         this.setHeader(header);
@@ -115,6 +118,7 @@ public interface TabList {
      * Adds an entry to the list.
      *
      * @param entry The entry to add
+     * @return This tab list, for chaining
      * @throws IllegalArgumentException if an entry already with the same unique
      *     id exists on the list
      * @throws IllegalStateException if the provided entry was not
@@ -124,8 +128,8 @@ public interface TabList {
     /**
      * Removes an entry from the list.
      *
-     * <p>Note that if this is used on a player, but they remain visible in-game,
-     * their skin will not work.</p>
+     * <p>Note that if this is used on a player, but they remain visible
+     * in-game, their skin will not work.</p>
      *
      * @param uniqueId The unique id of the entry to remove
      * @return The entry that was associated with the unique id

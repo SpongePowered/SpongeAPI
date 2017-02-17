@@ -77,8 +77,8 @@ public interface MutableBiomeVolume extends BiomeVolume {
     MutableBiomeVolume getBiomeView(Vector3i newMin, Vector3i newMax);
 
     /**
-     * Returns a new volume that is viewed through some transformation. This does
-     * not copy the biomes, it only provides a new view of the storage.
+     * Returns a new volume that is viewed through some transformation. This
+     * does not copy the biomes, it only provides a new view of the storage.
      *
      * @param transform The transformation to be applied
      * @return The new volume with the transform

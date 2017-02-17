@@ -34,15 +34,16 @@ import java.util.List;
 /**
  * Parser for converting a quoted string into a list of arguments.
  *
- * <p>Grammar is roughly (yeah, this is not really a proper grammar but it gives you an idea of what's happening:
+ * <p>Grammar is roughly (yeah, this is not really a proper grammar but it gives
+ * you an idea of what's happening:</p>
  *
- * <p>WHITESPACE = Character.isWhiteSpace(codePoint)
+ * <blockquote><pre> WHITESPACE = Character.isWhiteSpace(codePoint)
  * CHAR := (all unicode)
  * ESCAPE := '\' CHAR
  * QUOTE = ' | "
  * UNQUOTED_ARG := (CHAR | ESCAPE)+ WHITESPACE
  * QUOTED_ARG := QUOTE (CHAR | ESCAPE)+ QUOTE
- * ARGS := ((UNQUOTED_ARG | QUOTED_ARG) WHITESPACE+)+
+ * ARGS := ((UNQUOTED_ARG | QUOTED_ARG) WHITESPACE+)+</pre></blockquote>
  */
 class QuotedStringTokenizer implements InputTokenizer {
     private static final int CHAR_BACKSLASH = '\\';
@@ -66,17 +67,17 @@ class QuotedStringTokenizer implements InputTokenizer {
 
         final TokenizerState state = new TokenizerState(arguments, lenient);
         List<SingleArg> returnedArgs = new ArrayList<>(arguments.length() / 4);
-        if (trimTrailingSpace) {
+        if (this.trimTrailingSpace) {
             skipWhiteSpace(state);
         }
         while (state.hasMore()) {
-            if (!trimTrailingSpace) {
+            if (!this.trimTrailingSpace) {
                 skipWhiteSpace(state);
             }
             int startIdx = state.getIndex() + 1;
             String arg = nextArg(state);
             returnedArgs.add(new SingleArg(arg, startIdx, state.getIndex()));
-            if (trimTrailingSpace) {
+            if (this.trimTrailingSpace) {
                 skipWhiteSpace(state);
             }
         }
@@ -120,9 +121,8 @@ class QuotedStringTokenizer implements InputTokenizer {
             if (!state.hasMore()) {
                 if (state.isLenient() || this.forceLenient) {
                     return;
-                } else {
-                    throw state.createException(Text.of("Unterminated quoted string found"));
                 }
+                throw state.createException(Text.of("Unterminated quoted string found"));
             }
             nextCodePoint = state.peek();
             if (nextCodePoint == startQuotation) {

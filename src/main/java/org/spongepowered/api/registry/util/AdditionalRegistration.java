@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.registry.util;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.registry.RegistrationPhase;
 
 import java.lang.annotation.ElementType;
@@ -35,6 +36,12 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface AdditionalRegistration {
 
+    /**
+     * Gets the desired {@link RegistrationPhase} to perform any
+     * additional registration of {@link CatalogType}s.
+     *
+     * @return The desired registration phase for additional catalog types
+     */
     RegistrationPhase value() default RegistrationPhase.POST_INIT;
 
 }

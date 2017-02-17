@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.registry.util;
 
+import org.spongepowered.api.registry.RegistrationPhase;
 import org.spongepowered.api.registry.RegistryModule;
 
 import java.lang.annotation.ElementType;
@@ -32,13 +33,27 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Declares the registry being dependent on another registry to have completed initial registration
- * of values before this one can continue.
+ * Declares the registry being dependent on another registry to have completed
+ * initial registration of values before this one can continue.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface RegistrationDependency {
 
+    /**
+     * Gets the array of {@link RegistryModule}s that the owning
+     * {@link RegistryModule} relies on having completed their own
+     * registrations prior to this module performing registrations.
+     *
+     * <p>Note that this is different from having a module performing
+     * a {@link DelayedRegistration}, as the module in question can still
+     * perform it's registrations in the same {@link RegistrationPhase}
+     * as the depending modules. It is guaranteed that the depending
+     * modules will perform their registrations prior to the owning module.
+     * </p>
+     *
+     * @return The array of depending modules
+     */
     Class<? extends RegistryModule>[] value();
 
 }

@@ -69,7 +69,8 @@ public final class Criteria {
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective}
-     * to have a score for a player updated by the <code>/trigger</code> command.
+     * to have a score for a player updated by the <code>/trigger</code>
+     * command.
      */
     public static final Criterion TRIGGER = DummyObjectProvider.createFor(Criterion.class, "TRIGGER");
 

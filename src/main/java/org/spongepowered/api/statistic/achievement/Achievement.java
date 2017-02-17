@@ -130,11 +130,11 @@ public interface Achievement extends CatalogType, Translatable {
         Builder parent(@Nullable Achievement parent);
 
         /**
-         * Sets a statistic which will be used for tracking this achievement. May be
-         * null if this achievement is not backed by a statistic but is manually
-         * awarded instead. If the statistic is not null then the
-         * {@link #targetValue(long)} must be set as well. This defaults to null if
-         * not set.
+         * Sets a statistic which will be used for tracking this achievement.
+         * May be {@code null} if this achievement is not backed by a statistic
+         * but is manually awarded instead. If the statistic is not {@code null}
+         * then the {@link #targetValue(long)} must be set as well. This
+         * defaults to {@code null} if not set.
          *
          * @param stat The statistic, or null if not backed by a statistic
          * @return This builder, for chaining
@@ -142,9 +142,9 @@ public interface Achievement extends CatalogType, Translatable {
         Builder sourceStatistic(@Nullable Statistic stat);
 
         /**
-         * Sets the target value of the statistic backing this achievement. If the
-         * source statistic is not set then this value will be ignored if set.
-         * Defaults to 1 if not set.
+         * Sets the target value of the statistic backing this achievement. If
+         * the source statistic is not set then this value will be ignored if
+         * set. Defaults to 1 if not set.
          *
          * @param value The target value
          * @return This builder, for chaining

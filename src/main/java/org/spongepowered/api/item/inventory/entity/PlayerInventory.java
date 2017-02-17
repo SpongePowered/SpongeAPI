@@ -32,9 +32,9 @@ import org.spongepowered.api.item.inventory.type.CarriedInventory;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 
 /**
- * Represents the inventory of a Humanoid or Player. Implementors of this interface
- * guarantee that (at a minimum) the following subinventory types can be queried
- * for:
+ * Represents the inventory of a Humanoid or Player. Implementors of this
+ * interface guarantee that (at a minimum) the following subinventory types can
+ * be queried for:
  *
  * <ul><li>
  *   {@link CraftingInventory}

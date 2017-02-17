@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
-
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 public final class DamageTypes {

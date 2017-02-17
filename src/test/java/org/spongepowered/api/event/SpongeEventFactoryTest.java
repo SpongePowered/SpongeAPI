@@ -31,7 +31,6 @@ import static org.mockito.Mockito.withSettings;
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -190,7 +189,6 @@ public class SpongeEventFactoryTest {
         return mockParam(paramType, null);
     }
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
     public static Object mockParam(final Class<?> paramType, @Nullable final Class<?> target) {
         if (paramType == byte.class) {
             return (byte) 0;
@@ -224,7 +222,7 @@ public class SpongeEventFactoryTest {
             return new Transform<>((Extent) mockParam(Extent.class));
         } else if (paramType == Text[].class) {
             return new Text[] {};
-        } else if (InetSocketAddress.class.isAssignableFrom(paramType)){
+        } else if (InetSocketAddress.class.isAssignableFrom(paramType)) {
             return new InetSocketAddress(12345);
         } else if (paramType == UUID.class) {
             return UUID.randomUUID();

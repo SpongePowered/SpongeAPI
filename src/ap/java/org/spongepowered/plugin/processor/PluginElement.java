@@ -70,7 +70,6 @@ final class PluginElement {
         return this.metadata;
     }
 
-    @SuppressWarnings("deprecation")
     void apply(Messager messager) {
         String value = this.annotation.get().id();
         if (!ID_PATTERN.matcher(value).matches()) {
@@ -152,8 +151,8 @@ final class PluginElement {
                     try {
                         VersionRange.createFromVersionSpec(version);
                     } catch (InvalidVersionSpecificationException e) {
-                        messager.printMessage(ERROR, "Invalid dependency version range: " + version + " (" + e.getMessage() +
-                                ") Please check the Javadocs of @Dependency.version() for details.",
+                        messager.printMessage(ERROR, "Invalid dependency version range: " + version + " (" + e.getMessage()
+                                + ") Please check the Javadocs of @Dependency.version() for details.",
                                 this.element, this.annotation.getMirror(), this.annotation.getValue("dependencies"));
                     }
                 }
@@ -187,8 +186,8 @@ final class PluginElement {
                 try {
                     VersionRange.createFromVersionSpec(version);
                 } catch (InvalidVersionSpecificationException e) {
-                    messager.printMessage(ERROR, "Invalid dependency version range from extra metadata file: " + version + " (" + e.getMessage() +
-                            ") Please check the Javadocs of @Dependency.version() for details.", this.element, this.annotation.getMirror());
+                    messager.printMessage(ERROR, "Invalid dependency version range from extra metadata file: " + version + " (" + e.getMessage()
+                            + ") Please check the Javadocs of @Dependency.version() for details.", this.element, this.annotation.getMirror());
                 }
             }
         }

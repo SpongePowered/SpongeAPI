@@ -29,12 +29,17 @@ import org.spongepowered.api.entity.Entity;
 
 public interface EntityTeleportCause extends TeleportCause {
 
+    /**
+     * Creates a new {@link Builder} for constructing an {@link EntityTeleportCause}.
+     *
+     * @return The new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
-     * Gets the {@link Entity} teleporter
+     * Gets the {@link Entity} teleporter.
      *
      * @return The entity teleporter
      */
@@ -43,6 +48,12 @@ public interface EntityTeleportCause extends TeleportCause {
     interface EntityTeleportCauseBuilder<T extends EntityTeleportCause, B extends EntityTeleportCauseBuilder<T, B>> extends
             TeleporterCauseBuilder<T, B> {
 
+        /**
+         * Sets the {@link Entity} to use.
+         *
+         * @param teleporter The entity teleporter
+         * @return This builder, for chaining
+         */
         B entity(Entity teleporter);
 
     }

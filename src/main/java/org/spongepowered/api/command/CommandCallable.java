@@ -24,15 +24,15 @@
  */
 package org.spongepowered.api.command;
 
-import com.google.common.collect.ImmutableList;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.spec.CommandSpec;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * A low-level interface for commands that can be executed. For almost all use
@@ -64,7 +64,8 @@ public interface CommandCallable {
      *
      * @param source The command source
      * @param arguments The arguments entered up to this point
-     * @param targetPosition The position the source is looking at when performing tab completion
+     * @param targetPosition The position the source is looking at when
+     *     performing tab completion
      * @return A list of suggestions
      * @throws CommandException Thrown if there was a parsing error
      */

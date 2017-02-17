@@ -53,4 +53,5 @@ public interface EyeOfEnder extends Projectile {
     default Value<Vector3d> target() {
         return getValue(Keys.TARGETED_LOCATION).get();
     }
+
 }

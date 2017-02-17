@@ -99,7 +99,7 @@ public class AccessorModifierEventFactoryPlugin implements EventFactoryPlugin {
         }
 
         mv.visitMethodInsn(opcode, Type.getInternalName(transformerMethod.getDeclaringClass()), transformerMethod.getName(),
-                Type.getMethodDescriptor(transformerMethod), opcode == INVOKEVIRTUAL ? false : true);
+                Type.getMethodDescriptor(transformerMethod), opcode != INVOKEVIRTUAL);
 
         mv.visitInsn(Type.getType(property.getType()).getOpcode(IRETURN));
         mv.visitMaxs(0, 0);
@@ -140,7 +140,7 @@ public class AccessorModifierEventFactoryPlugin implements EventFactoryPlugin {
          * @param transformerMethod The transformer method
          * @param property The property
          */
-        public MethodPair(String name, Method callerMethod, Method transformerMethod, Property<Class<?>, Method> property) {
+        MethodPair(String name, Method callerMethod, Method transformerMethod, Property<Class<?>, Method> property) {
             this.name = name;
             this.callerMethod = callerMethod;
             this.transformerMethod = transformerMethod;

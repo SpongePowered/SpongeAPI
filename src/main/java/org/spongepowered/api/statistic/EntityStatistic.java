@@ -25,9 +25,6 @@
 package org.spongepowered.api.statistic;
 
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.text.translation.Translation;
-
-import javax.annotation.Nullable;
 
 /**
  * Represents a {@link Statistic} for an {@link EntityType}.

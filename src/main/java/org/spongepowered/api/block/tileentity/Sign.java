@@ -34,6 +34,11 @@ import org.spongepowered.api.text.Text;
  */
 public interface Sign extends TileEntity {
 
+    /**
+     * Gets the current {@link SignData} for this {@link Sign} tile entity.
+     *
+     * @return The current sign data
+     */
     default SignData getSignData() {
         return get(SignData.class).get();
     }

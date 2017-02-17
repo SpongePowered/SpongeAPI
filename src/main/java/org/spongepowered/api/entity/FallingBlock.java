@@ -30,8 +30,8 @@ import org.spongepowered.api.data.manipulator.mutable.entity.FallingBlockData;
 import org.spongepowered.api.data.value.mutable.Value;
 
 /**
- * Represents a falling block. A falling block may harm entities where it
- * lands, and optionally may place a block, or drop an item.
+ * Represents a falling block. A falling block may harm entities where it lands,
+ * and optionally may place a block, or drop an item.
  */
 public interface FallingBlock extends Entity {
 
@@ -45,8 +45,8 @@ public interface FallingBlock extends Entity {
     }
 
     /**
-     * Gets the {@link Value} for the damage to deal per block
-     * the {@link FallingBlock} has fallen.
+     * Gets the {@link Value} for the damage to deal per block the
+     * {@link FallingBlock} has fallen.
      *
      * @return The immutable value for the damage per block of falling
      */
@@ -74,8 +74,7 @@ public interface FallingBlock extends Entity {
     }
 
     /**
-     * Gets whether this falling block will try to place itself where
-     * it lands.
+     * Gets whether this falling block will try to place itself where it lands.
      *
      * @return True if this block will attempt to place itself when it lands
      */
@@ -84,8 +83,8 @@ public interface FallingBlock extends Entity {
     }
 
     /**
-     * Gets whether this falling block can drop as an item if it lands in a
-     * way that it can not be placed.
+     * Gets whether this falling block can drop as an item if it lands in a way
+     * that it can not be placed.
      *
      * @return Whether this falling block can drop as an item
      */
@@ -103,11 +102,12 @@ public interface FallingBlock extends Entity {
     }
 
     /**
-     * Gets whether this falling block will damage entities where it lands
+     * Gets whether this falling block will damage entities where it lands.
      *
      * @return Whether this falling block will damage entities where it lands
      */
     default Value<Boolean> canHurtEntities() {
         return getValue(Keys.FALLING_BLOCK_CAN_HURT_ENTITIES).get();
     }
+
 }

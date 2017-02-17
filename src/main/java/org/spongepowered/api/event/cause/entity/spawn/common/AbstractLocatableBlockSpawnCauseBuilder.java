@@ -30,8 +30,10 @@ import org.spongepowered.api.event.cause.entity.spawn.LocatableBlockSpawnCause;
 import org.spongepowered.api.world.LocatableBlock;
 
 @SuppressWarnings("unchecked")
-public abstract class AbstractLocatableBlockSpawnCauseBuilder<T extends LocatableBlockSpawnCause, B extends LocatableBlockSpawnCause.LocatableBlockSpawnCauseBuilder<T, B>>
-        extends AbstractSpawnCauseBuilder<T, B> implements LocatableBlockSpawnCause.LocatableBlockSpawnCauseBuilder<T, B> {
+public abstract class AbstractLocatableBlockSpawnCauseBuilder<T extends LocatableBlockSpawnCause,
+        B extends LocatableBlockSpawnCause.LocatableBlockSpawnCauseBuilder<T, B>>
+        extends AbstractSpawnCauseBuilder<T, B>
+        implements LocatableBlockSpawnCause.LocatableBlockSpawnCauseBuilder<T, B> {
 
     protected LocatableBlock locatableBlock;
 

@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.data.Transaction;
-import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.ItemType;
@@ -81,19 +80,21 @@ public interface UseItemStackEvent extends Event {
     interface Start extends UseItemStackEvent, Cancellable  {}
 
     /**
-     * Called after {@link UseItemStackEvent.Start} during each tick as an {@link ItemType} is
-     * being used.
+     * Called after {@link UseItemStackEvent.Start} during each tick as an
+     * {@link ItemType} is being used.
      *
-     * <p>In Vanilla, tick actions are used to play eating particles and sounds.</p>
+     * <p>In Vanilla, tick actions are used to play eating particles and
+     * sounds.</p>
      *
      * <p>In Vanilla, items only perform an action every 4 ticks, and only
-     * when 25 or fewever ticks remaining. Cancelling this event on other ticks
-     * will have no effect in Vanilla.</p>
+     * when 25 or fewever ticks remaining. Cancelling this event on other
+     * ticks will have no effect in Vanilla.</p>
      *
-     * <p>Cancelling the event will cause no action to be taken for the particular
-     * item for the tick being processed.</p>
+     * <p>Cancelling the event will cause no action to be taken for the
+     * particular item for the tick being processed.</p>
      *
-     * <p>Note: Setting the duration 0 will cause the player to finish using the item.</p>
+     * <p>Note: Setting the duration 0 will cause the player to finish using
+     * the item.</p>
      */
     interface Tick extends UseItemStackEvent, Cancellable {}
 
@@ -114,9 +115,10 @@ public interface UseItemStackEvent extends Event {
      *
      * <p>In Vanilla, this is only fired for players, not other entities.</p>
      *
-     * <p>In Vanilla, setting the duration on this event will have no effect.</p>
+     * <p>In Vanilla, setting the duration on this event will have no
+     * effect.</p>
      *
-     * Cancelling this event will prevent the {@link ItemType} from being
+     * <p>Cancelling this event will prevent the {@link ItemType} from being
      * notified that it has stopped being used. The only vanilla
      * {@link ItemType} this would affect are bows, and it would cause the bow
      * to NOT fire.</p>

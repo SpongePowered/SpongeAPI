@@ -47,7 +47,6 @@ import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.chat.ChatVisibility;
-import org.spongepowered.api.world.Locatable;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -61,7 +60,7 @@ import java.util.Set;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer, ChatTypeMessageReceiver {
+public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMessageReceiver {
 
     /**
      * Returns whether this player has an open inventory at the moment
@@ -87,8 +86,10 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
      *
      * @param inventory The inventory to view
      * @param cause The {@link Cause} to use when opening the inventory
-     * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
-     * @return The opened Container if the inventory was opened, otherwise {@link Optional#empty()}
+     * @return The opened Container if the inventory was opened, otherwise
+     *      {@link Optional#empty()}
+     * @throws IllegalArgumentException if a {@link PluginContainer} is not the
+     *      root of the cause
      */
     Optional<Container> openInventory(Inventory inventory, Cause cause) throws IllegalArgumentException;
 
@@ -97,8 +98,9 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
      * currently viewing one.
      *
      * @param cause The {@link Cause} to provide when closing the inventory
-     * @throws IllegalArgumentException if a {@link PluginContainer} is not the root of the cause
      * @return whether or not closing the inventory succeeded
+     * @throws IllegalArgumentException if a {@link PluginContainer} is not the
+     *      root of the cause
      */
     boolean closeInventory(Cause cause) throws IllegalArgumentException;
 
@@ -196,8 +198,8 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
     }
 
     /**
-     * Gets the {@link Value} of the {@link Instant} that a {@link Player} joined
-     * the {@link Server} the first time.
+     * Gets the {@link Value} of the {@link Instant} that a {@link Player}
+     * joined the {@link Server} the first time.
      *
      * @return The value for the first time a player joined
      */
@@ -206,8 +208,8 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
     }
 
     /**
-     * Gets the {@link Value} of the {@link Instant} that a {@link Player} joined
-     * the {@link Server} the last time.
+     * Gets the {@link Value} of the {@link Instant} that a {@link Player}
+     * joined the {@link Server} the last time.
      *
      * @return The value for the last time a player joined
      */
@@ -224,6 +226,7 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
     default boolean hasPlayedBefore() {
         return !firstPlayed().equals(lastPlayed());
     }
+
     /**
      * Gets a copy of the current {@link DisplayNameData} for this
      * {@link Player}.
@@ -285,9 +288,10 @@ public interface Player extends Humanoid, User, Locatable, RemoteSource, Viewer,
     /**
      * Manually respawns the player.
      *
-     * <p>If the player is not dead, this method will return <code>false</code></p>
+     * <p>If the player is not dead, this method will return <tt>false</tt></p>
      *
      * @return Whether the respawn was successful
      */
     boolean respawnPlayer();
+
 }

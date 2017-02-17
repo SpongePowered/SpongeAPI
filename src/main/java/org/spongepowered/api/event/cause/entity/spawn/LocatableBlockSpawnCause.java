@@ -29,10 +29,21 @@ import org.spongepowered.api.world.LocatableBlock;
 
 public interface LocatableBlockSpawnCause extends SpawnCause {
 
+    /**
+     * Creates a new {@link Builder} to construct a new
+     * {@link LocatableBlockSpawnCause}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the {@link LocatableBlock} for this cause.
+     *
+     * @return The locatable block
+     */
     LocatableBlock getLocatableBlock();
 
     interface LocatableBlockSpawnCauseBuilder<T extends LocatableBlockSpawnCause, B extends LocatableBlockSpawnCauseBuilder<T, B>>

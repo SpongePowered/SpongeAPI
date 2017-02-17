@@ -102,12 +102,13 @@ public class SkylandsGroundCoverPopulator implements GenerationPopulator {
 
     private abstract static class GroundCoverLayer {
 
-        private GroundCoverLayer() {
+        protected GroundCoverLayer() {
         }
 
         protected abstract BlockType getBlock(int x, int y, int z, int layer, long seed);
 
         protected abstract int getDepth(int x, int y, int z, int layer, long seed);
+
     }
 
     private static class VariableGroundCoverLayer extends GroundCoverLayer {
@@ -131,6 +132,7 @@ public class SkylandsGroundCoverPopulator implements GenerationPopulator {
         protected int getDepth(int x, int y, int z, int layer, long seed) {
             return (int) (SkylandsUtil.hashToFloat(x, layer, z, seed) * (this.max - this.min + 1) + this.min);
         }
+
     }
 
     private static class UniformGroundCoverLayer extends GroundCoverLayer {
@@ -152,5 +154,7 @@ public class SkylandsGroundCoverPopulator implements GenerationPopulator {
         protected int getDepth(int x, int y, int z, int layer, long seed) {
             return this.depth;
         }
+
     }
+
 }

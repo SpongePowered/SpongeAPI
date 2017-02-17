@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.block.tileentity;
 
 import org.spongepowered.api.block.tileentity.carrier.Furnace;
-import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.item.inventory.AffectItemStackEvent;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
@@ -37,15 +36,17 @@ public interface SmeltEvent extends TargetTileEntityEvent {
     Furnace getTargetTile();
 
     /**
+     * Gets the fuel represented as an {@link ItemStackSnapshot}.
+     *
      * @return The ingredient
      */
     ItemStackSnapshot getFuel();
 
-    interface Start extends SmeltEvent, AffectItemStackEvent, Cancellable {}
+    interface Start extends SmeltEvent, AffectItemStackEvent {}
 
     interface ConsumeFuel extends SmeltEvent, AffectItemStackEvent {}
 
-    interface Tick extends SmeltEvent, AffectItemStackEvent, Cancellable {}
+    interface Tick extends SmeltEvent, AffectItemStackEvent {}
 
     interface Interrupt extends SmeltEvent {
         /**

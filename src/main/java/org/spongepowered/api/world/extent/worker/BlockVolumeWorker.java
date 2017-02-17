@@ -26,10 +26,10 @@ package org.spongepowered.api.world.extent.worker;
 
 import org.spongepowered.api.world.extent.BlockVolume;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
-import org.spongepowered.api.world.extent.worker.procedure.BlockVolumeVisitor;
 import org.spongepowered.api.world.extent.worker.procedure.BlockVolumeMapper;
 import org.spongepowered.api.world.extent.worker.procedure.BlockVolumeMerger;
 import org.spongepowered.api.world.extent.worker.procedure.BlockVolumeReducer;
+import org.spongepowered.api.world.extent.worker.procedure.BlockVolumeVisitor;
 
 import java.util.function.BiFunction;
 
@@ -61,6 +61,7 @@ public interface BlockVolumeWorker<V extends BlockVolume> {
     /**
      * Applies a merging operation to the blocks of the operating volume and an
      * external one. Saves the results to the destination volume.
+     *
      * @param second The volume to merge with
      * @param merger The merging operation
      * @param destination The destination volume

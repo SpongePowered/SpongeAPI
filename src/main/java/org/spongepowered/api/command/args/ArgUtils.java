@@ -30,7 +30,7 @@ import org.spongepowered.api.text.TranslatableText;
 import javax.annotation.Nullable;
 
 /**
- * Internal utility methods
+ * Internal utility methods.
  */
 class ArgUtils {
     private ArgUtils() {
@@ -44,9 +44,9 @@ class ArgUtils {
 
         if (key instanceof TranslatableText) { // Use translation key
             return ((TranslatableText) key).getTranslation().getId();
-        } else {
-            return key.toPlain();
         }
+
+        return key.toPlain();
     }
 
 }

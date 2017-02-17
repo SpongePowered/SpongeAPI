@@ -39,6 +39,7 @@ import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.extent.Extent;
 import org.spongepowered.api.world.extent.worker.MutableBiomeVolumeWorker;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
+import org.spongepowered.api.world.gamerule.DefaultGameRules;
 import org.spongepowered.api.world.gen.WorldGenerator;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
@@ -83,10 +84,24 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
         return getLocation(new Vector3d(x, y, z));
     }
 
+    /**
+     * Gets a {@link LocatableBlock} for the desired {@link Vector3i} position.
+     *
+     * @param position The position to get the locatable block
+     * @return The locatable block
+     */
     default LocatableBlock getLocatableBlock(Vector3i position) {
         return LocatableBlock.builder().world(this).position(position).build();
     }
 
+    /**
+     * Gets a {@link LocatableBlock} for the desired {@code x, y, z} coordinates.
+     *
+     * @param x The x position
+     * @param y The y position
+     * @param z The z position
+     * @return The locatable block
+     */
     default LocatableBlock getLocatableBlock(int x, int y, int z) {
         return LocatableBlock.builder().world(this).position(x, y, z).build();
     }
@@ -244,7 +259,10 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     Path getDirectory();
 
     /**
+     * Gets this {@link World}'s {@link UUID}.
+     *
      * @see WorldProperties#getUniqueId()
+     * @return The uuid for this world
      */
     @Override
     default UUID getUniqueId() {
@@ -252,42 +270,62 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     }
 
     /**
+     * Gets the name of this {@link World world}.
+     *
      * @see WorldProperties#getWorldName()
+     * @return The name for this world
      */
     default String getName() {
         return getProperties().getWorldName();
     }
 
     /**
+     * Gets the current {@link Difficulty}.
+     *
      * @see WorldProperties#getDifficulty()
+     * @return The difficulty for this world
      */
     default Difficulty getDifficulty() {
         return getProperties().getDifficulty();
     }
 
     /**
+     * Gets a set game rule's current value, if available and set.
+     *
      * @see WorldProperties#getGameRule(String)
+     * @param gameRule The game rule
+     * @return the game rule, if available
      */
     default Optional<String> getGameRule(String gameRule) {
         return getProperties().getGameRule(gameRule);
     }
 
     /**
+     * Gets the current {@link Map map} of game rules and their
+     * values. Most game rules can be found in {@link DefaultGameRules}.
+     *
      * @see WorldProperties#getGameRules()
+     * @return The map of game rules and their values
      */
     default Map<String, String> getGameRules() {
         return getProperties().getGameRules();
     }
 
     /**
+     * Gets whether the spawn chunks should remain loaded.
+     *
      * @see WorldProperties#doesKeepSpawnLoaded()
+     * @return True if the spawn of this world should remain loaded
      */
     default boolean doesKeepSpawnLoaded() {
         return getProperties().doesKeepSpawnLoaded();
     }
 
     /**
+     * Sets whether the spawn chunks should remain loaded.
+     *
      * @see WorldProperties#setKeepSpawnLoaded(boolean)
+     * @param keepLoaded Whether to keep spawn loaded
      */
     default void setKeepSpawnLoaded(boolean keepLoaded) {
         getProperties().setKeepSpawnLoaded(keepLoaded);
@@ -303,14 +341,20 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     }
 
     /**
+     * Gets the {@link SerializationBehavior} to use.
+     *
      * @see WorldProperties#getSerializationBehavior()
+     * @return The serialization behavior of this world
      */
     default SerializationBehavior getSerializationBehavior() {
         return getProperties().getSerializationBehavior();
     }
 
     /**
+     * Sets the {@link SerializationBehavior} for use.
+     *
      * @see WorldProperties#setSerializationBehavior(SerializationBehavior)
+     * @param behavior The serialization behavior to set
      */
     default void setSerializationBehavior(SerializationBehavior behavior) {
         getProperties().setSerializationBehavior(behavior);

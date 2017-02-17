@@ -225,7 +225,7 @@ public interface Account extends Contextual {
      * @param contexts the {@link Context}s to use when resetting the balances.
      *
      * @return A map of {@link Currency} to {@link TransactionResult}. Each
-     * entry represents the result of resetting a particular currency.
+     *     entry represents the result of resetting a particular currency.
      */
     Map<Currency, TransactionResult> resetBalances(Cause cause, Set<Context> contexts);
 
@@ -236,7 +236,7 @@ public interface Account extends Contextual {
      * @param cause The {@link Cause} for the transaction
      *
      * @return A map of {@link Currency} to {@link TransactionResult}. Each
-     * entry represents the result of resetting a particular currency.
+     *     entry represents the result of resetting a particular currency.
      */
     default Map<Currency, TransactionResult> resetBalances(Cause cause) {
         return this.resetBalances(cause, this.getActiveContexts());

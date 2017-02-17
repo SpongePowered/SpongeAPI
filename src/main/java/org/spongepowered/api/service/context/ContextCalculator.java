@@ -34,20 +34,21 @@ import java.util.Set;
 public interface ContextCalculator<T extends Contextual> {
 
     /**
-     * Add any {@link Context}s this calculator determines to be applicable to the
-     * provided context accumulator.
+     * Add any {@link Context}s this calculator determines to be applicable to
+     * the provided context accumulator.
      * 
      *
      * @param calculable {@link Contextual} for this operation
-     * @param accumulator {@link Set} of {@link Context}s this operation will append to.
+     * @param accumulator {@link Set} of {@link Context}s this operation
+     *     will append to.
      */
     void accumulateContexts(T calculable, Set<Context> accumulator);
 
     /**
      * Checks if a {@link Context} is currently applicable to a {@link Contextual}.
      * 
-     * <p>If this calculator does not handle the given type of context, this method
-     * should return false.</p>
+     * <p>If this calculator does not handle the given type of context, this
+     * method should return false.</p>
      *
      * @param context {@link Context} being checked
      * @param subject {@link Contextual} the contextual that is being checked against

@@ -63,7 +63,8 @@ public interface Guardian extends Aquatic, Monster {
     Optional<Living> getBeamTarget();
 
     /**
-     * Sets the target of the guardian's beam. Setting a null value removes the target.
+     * Sets the target of the guardian's beam. Setting a null value removes the
+     * target.
      *
      * @param entity The entity or null to clear it
      */

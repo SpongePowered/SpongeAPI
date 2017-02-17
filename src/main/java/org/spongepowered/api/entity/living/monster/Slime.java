@@ -42,6 +42,12 @@ public interface Slime extends Monster {
         return get(SlimeData.class).get();
     }
 
+    /**
+     * Gets the {@link MutableBoundedValue value} of this
+     * {@link Slime slime's} current size.
+     *
+     * @return The mutable bounded value for the current slime size
+     */
     default MutableBoundedValue<Integer> slimeSize() {
         return getValue(Keys.SLIME_SIZE).get();
     }

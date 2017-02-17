@@ -38,9 +38,8 @@ public interface FishHook extends Projectile {
     /**
      * Gets the hooked entity for this fish hook.
      *
-     * <p>Fishooks can attach to {@link Entity} objects in the world,
-     * as though they are temporarily leashed. The hooked entity may
-     * also be null.</p>
+     * <p>Fishooks can attach to {@link Entity} objects in the world, as though
+     * they are temporarily leashed. The hooked entity may also be null.</p>
      *
      * @return The hooked item, if available
      */
@@ -49,9 +48,8 @@ public interface FishHook extends Projectile {
     /**
      * Sets the hooked entity for this fish hook.
      *
-     * <p>Fishooks can attach to {@link Entity} objects in the world,
-     * as though they are temporarily leashed. The hooked entity may
-     * also be null.</p>
+     * <p>Fishooks can attach to {@link Entity} objects in the world, as though
+     * they are temporarily leashed. The hooked entity may also be null.</p>
      *
      * @param entity The hooked entity
      */

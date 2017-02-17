@@ -33,10 +33,25 @@ import org.spongepowered.api.data.property.BooleanProperty;
  */
 public class ReplaceableProperty extends BooleanProperty {
 
+    /**
+     * Creates a new {@link ReplaceableProperty} with the provided
+     * {@code value}.
+     *
+     * @param value The value of whether a block can be replaced
+     */
     public ReplaceableProperty(boolean value) {
         super(value);
     }
 
+    /**
+     * Creates a new {@link ReplaceableProperty} with the provided
+     * {@code value} and
+     * {@link org.spongepowered.api.data.Property.Operator operator} for
+     * comparisons.
+     *
+     * @param value The value
+     * @param operator The operator
+     */
     public ReplaceableProperty(boolean value, Operator operator) {
         super(value, operator);
     }

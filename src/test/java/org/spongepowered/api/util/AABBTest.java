@@ -35,6 +35,7 @@ public class AABBTest {
 
     private static final Random RANDOM = new Random();
 
+    @SuppressWarnings("unused")
     @Test
     public void testConstructor() {
         final AABB aabb1 = new AABB(new Vector3d(1, 2, 3), new Vector3d(7, 10, 13));
@@ -49,18 +50,21 @@ public class AABBTest {
             new AABB(new Vector3d(1, 2, 3), new Vector3d(1, 10, 13));
             Assert.fail();
         } catch (IllegalArgumentException ignored) {
+            // pass
         }
 
         try {
             new AABB(new Vector3d(1, 2, 3), new Vector3d(7, 2, 13));
             Assert.fail();
         } catch (IllegalArgumentException ignored) {
+            // pass
         }
 
         try {
             new AABB(new Vector3d(1, 2, 3), new Vector3d(7, 10, 3));
             Assert.fail();
         } catch (IllegalArgumentException ignored) {
+            // pass
         }
 
         final AABB aabb3 = new AABB(1, 2, 3, 7, 10, 13);

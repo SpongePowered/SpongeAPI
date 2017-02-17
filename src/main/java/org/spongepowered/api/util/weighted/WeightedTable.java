@@ -42,14 +42,30 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
 
     private double totalWeight = 0;
 
+    /**
+     * Creates a new {@link WeightedTable} with a default roll
+     * count of {@code 1}.
+     */
     public WeightedTable() {
         super(1);
     }
 
+    /**
+     * Creates a new {@link WeightedTable} with the provided
+     * number of {@code rolls}.
+     *
+     * @param rolls The rolls for variance
+     */
     public WeightedTable(int rolls) {
         super(rolls);
     }
 
+    /**
+     * Creates a new {@link WeightedTable} with the provided
+     * {@link VariableAmount} for the amount of rolls and variance.
+     *
+     * @param rolls The rolls for variance
+     */
     public WeightedTable(VariableAmount rolls) {
         super(rolls);
     }
@@ -168,7 +184,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
 
     @Override
     public Iterator<TableEntry<T>> iterator() {
-        return new Itr();
+        return new Itr(super.iterator());
     }
 
     @Override
@@ -220,12 +236,12 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
      * An iterator which will properly trigger a rebuild of the total weight on
      * removal.
      */
-    private class Itr implements Iterator<TableEntry<T>> {
+    class Itr implements Iterator<TableEntry<T>> {
 
         private final Iterator<TableEntry<T>> iter;
 
-        protected Itr() {
-            this.iter = WeightedTable.super.iterator();
+        protected Itr(Iterator<TableEntry<T>> iter) {
+            this.iter = iter;
         }
 
         @Override

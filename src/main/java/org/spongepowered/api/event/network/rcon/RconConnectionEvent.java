@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.event.network.rcon;
 
+import org.spongepowered.api.command.source.RconSource;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.command.source.RconSource;
 
 /**
  * An event that is associated with an {@link RconSource}.

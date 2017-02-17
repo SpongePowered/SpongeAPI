@@ -35,6 +35,11 @@ public abstract class TableEntry<T> {
 
     private final double weight;
 
+    /**
+     * Creates a new {@link TableEntry} with the desired {@code weight}.
+     *
+     * @param weight The weight to associate with this entry
+     */
     public TableEntry(double weight) {
         checkArgument(weight >= 0, "Weight cannot be negative");
         this.weight = weight;

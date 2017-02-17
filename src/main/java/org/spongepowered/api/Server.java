@@ -204,8 +204,8 @@ public interface Server {
      * {@link WorldArchetype}. For the creation of the WorldArchetype please see
      * {@link org.spongepowered.api.world.WorldArchetype.Builder}.
      *
-     * <p>If the {@link World} exists at the folder name given, the properties representing
-     * that folder name are returned instead.</p>
+     * <p>If the {@link World} exists at the folder name given, the properties
+     * representing that folder name are returned instead.</p>
      *
      * <p>Although the world is created it is not loaded at this time. Please
      * see one of the following methods for loading the world.</p>
@@ -213,8 +213,11 @@ public interface Server {
      * <ul> <li>{@link #loadWorld(String)}</li> <li>{@link #loadWorld(UUID)}
      * </li> <li>{@link #loadWorld(WorldProperties)}</li> </ul>
      *
+     * @param folderName The name of the folder for the world
      * @param archetype The archetype for creation
      * @return The new or existing world properties, if creation was successful
+     * @throws IOException If there are any io issues creating the properties
+     *      file
      */
     WorldProperties createWorldProperties(String folderName, WorldArchetype archetype) throws IOException;
 
@@ -315,8 +318,8 @@ public interface Server {
     void setBroadcastChannel(MessageChannel channel);
 
     /**
-     * Gets the bound {@link InetSocketAddress} from where this server is accepting
-     * connections.
+     * Gets the bound {@link InetSocketAddress} from where this server is
+     * accepting connections.
      *
      * @return The address or Optional.empty() if not found
      */
@@ -337,8 +340,9 @@ public interface Server {
     /**
      * Tests if this server is set to online mode.
      *
-     * <b>Online mode authenticates users against Minecraft's servers, false performs
-     * no validity checks.</b>
+     * <b>Online mode authenticates users against Minecraft's servers, false
+     * performs no validity checks.</b>
+     *
      * @return True if enabled, false if not
      */
     boolean getOnlineMode();
@@ -352,13 +356,11 @@ public interface Server {
     Text getMotd();
 
     /**
-     * Shuts down the server, and kicks all players with the default kick message.
+     * Shuts down the server, and kicks all players with the default kic
+     * k message.
      *
-     * <p>
-     *     For the Sponge implementation on the client, this will trigger the Integrated
-     *     Server to shutdown a tick later.
-     * </p>
-     *
+     * <p>For the Sponge implementation on the client, this will trigger the
+     * Integrated Server to shutdown a tick later.</p>
      */
     void shutdown();
 
@@ -370,14 +372,16 @@ public interface Server {
     void shutdown(Text kickMessage);
 
     /**
-     * Gets the command source used for commands coming from this server's console.
+     * Gets the command source used for commands coming from this server's
+     * console.
      *
      * @return This server's console command source
      */
     ConsoleSource getConsole();
 
     /**
-     * Gets the ChunkTicketManager used for requesting tickets to force load chunks.
+     * Gets the ChunkTicketManager used for requesting tickets to force load
+     * chunks.
      *
      * @return This server's chunk load service
      */
@@ -431,7 +435,7 @@ public interface Server {
 
     /**
      * Checks if the current thread matches the main thread of the server.
-     * 
+     *
      * @return True if main thread, false if not
      */
     boolean isMainThread();

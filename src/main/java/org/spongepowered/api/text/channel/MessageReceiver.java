@@ -48,6 +48,33 @@ public interface MessageReceiver {
     void sendMessage(Text message);
 
     /**
+     * Sends a message constructed from the {@link TextTemplate} to
+     * this receiver.
+     *
+     * <p>If text formatting is not supported in the implementation
+     * it will be displayed as plain text.</p>
+     *
+     * @param template The text template
+     */
+    default void sendMessage(TextTemplate template) {
+        this.sendMessage(checkNotNull(template, "template").apply().build());
+    }
+
+    /**
+     * Sends a message constructed from the {@link TextTemplate} and
+     * {@code parameters} to this receiver.
+     *
+     * <p>If text formatting is not supported in the implementation
+     * it will be displayed as plain text.</p>
+     *
+     * @param template The text template
+     * @param parameters The parameters to apply to the template
+     */
+    default void sendMessage(TextTemplate template, Map<String, TextElement> parameters) {
+        this.sendMessage(checkNotNull(template, "template").apply(parameters).build());
+    }
+
+    /**
      * Sends the message(s) to this receiver.
      *
      * <p>If text formatting is not supported in the implementation
@@ -78,41 +105,16 @@ public interface MessageReceiver {
     }
 
     /**
-     * Sends a message constructed from the {@link TextTemplate} to
-     * this receiver.
-     *
-     * <p>If text formatting is not supported in the implementation
-     * it will be displayed as plain text.</p>
-     *
-     * @param template The text template
-     */
-    default void sendMessage(TextTemplate template) {
-        this.sendMessage(checkNotNull(template, "template").apply().build());
-    }
-
-    /**
-     * Sends a message constructed from the {@link TextTemplate} and
-     * {@code parameters} to this receiver.
-     *
-     * <p>If text formatting is not supported in the implementation
-     * it will be displayed as plain text.</p>
-     *
-     * @param template The text template
-     * @param parameters The parameters to apply to the template
-     */
-    default void sendMessage(TextTemplate template, Map<String, TextElement> parameters) {
-        this.sendMessage(checkNotNull(template, "template").apply(parameters).build());
-    }
-
-    /**
-     * Return the message channel that messages from this source should be sent to.
+     * Return the message channel that messages from this source should be sent
+     * to.
      *
      * @return This source's active message channel
      */
     MessageChannel getMessageChannel();
 
     /**
-     * Set the message channel that messages sent by this source should be sent to.
+     * Set the message channel that messages sent by this source should be sent
+     * to.
      *
      * @param channel The message channel to send messages to
      */

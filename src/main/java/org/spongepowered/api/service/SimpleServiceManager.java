@@ -30,19 +30,11 @@ import com.google.common.collect.MapMaker;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.SpongeEventFactory;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.NamedCause;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.function.Consumer;
-
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 
@@ -98,7 +90,7 @@ public class SimpleServiceManager implements ServiceManager {
     @SuppressWarnings("unchecked")
     @Override
     public <T> Optional<ProviderRegistration<T>> getRegistration(Class<T> service) {
-        return Optional.ofNullable((ProviderRegistration) this.providers.get(service));
+        return Optional.ofNullable((ProviderRegistration<T>) this.providers.get(service));
     }
 
     @SuppressWarnings("unchecked")
@@ -106,16 +98,14 @@ public class SimpleServiceManager implements ServiceManager {
     public <T> T provideUnchecked(Class<T> service) throws ProvisioningException {
         checkNotNull(service, "service");
         @Nullable ProviderRegistration<T> provider = (ProviderRegistration<T>) this.providers.get(service);
-        if (provider != null) {
-            return provider.getProvider();
-        } else {
+        if (provider == null) {
             throw new ProvisioningException("No provider is registered for the service '" + service.getName() + "'", service);
         }
+        return provider.getProvider();
     }
 
     private static class Provider<T> implements ProviderRegistration<T> {
 
-        @SuppressWarnings("unused")
         private final PluginContainer container;
         private final Class<T> service;
         private final T provider;

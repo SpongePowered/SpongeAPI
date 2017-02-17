@@ -28,7 +28,7 @@ import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.extent.UnmodifiableBiomeVolume;
 
 /**
- * Produces a new biome from two original biomes given as their volumea and their
+ * Produces a new biome from two original biomes given as their volume and their
  * coordinates.
  */
 @FunctionalInterface

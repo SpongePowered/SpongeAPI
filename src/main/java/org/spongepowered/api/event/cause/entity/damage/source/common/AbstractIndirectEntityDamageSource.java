@@ -28,7 +28,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
-import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSource;
 import org.spongepowered.api.event.cause.entity.damage.source.IndirectEntityDamageSource;
 
 public abstract class AbstractIndirectEntityDamageSource implements IndirectEntityDamageSource {
@@ -51,7 +50,7 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
         this.explosive = builder.explosion;
         this.magic = builder.magical;
         this.creative = builder.creative;
-        this.source = checkNotNull(builder.source, "Entity source cannot be null!");
+        this.source = checkNotNull(builder.sourceEntity, "Entity source cannot be null!");
         this.indirect = checkNotNull(builder.indirect, "Indirect source cannot be null!");
     }
 
@@ -101,15 +100,17 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
     }
 
     @SuppressWarnings("unchecked")
-    public static abstract class AbstractIndirectEntityDamageSourceBuilder<T extends IndirectEntityDamageSource, B extends IndirectEntityDamageSource.AbstractBuilder<T, B>>
-            extends AbstractEntityDamageSource.AbstractEntityDamageSourceBuilder<T, B> implements IndirectEntityDamageSource.AbstractBuilder<T, B> {
+    public abstract static class AbstractIndirectEntityDamageSourceBuilder<T extends IndirectEntityDamageSource,
+            B extends IndirectEntityDamageSource.AbstractBuilder<T, B>>
+            extends AbstractEntityDamageSource.AbstractEntityDamageSourceBuilder<T, B>
+            implements IndirectEntityDamageSource.AbstractBuilder<T, B> {
 
-        protected Entity source;
+        protected Entity sourceEntity;
         protected Entity indirect;
 
         @Override
         public B entity(Entity entity) {
-            this.source = checkNotNull(entity, "Entity source cannot be null!");
+            this.sourceEntity = checkNotNull(entity, "Entity source cannot be null!");
             return (B) this;
         }
 
@@ -123,7 +124,7 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
         @Override
         public B reset() {
             super.reset();
-            this.source = null;
+            this.sourceEntity = null;
             this.indirect = null;
             return (B) this;
         }

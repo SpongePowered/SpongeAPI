@@ -108,14 +108,40 @@ public class Functional {
         };
     }
 
+    /**
+     * Creates a new {@link Predicate} defining whether an {@link Object}
+     * is contained within the provided {@link Collection}.
+     *
+     * @param collection The collection
+     * @param <E> The type of object
+     * @return The predicate
+     */
     public static <E> Predicate<E> predicateIn(Collection<E> collection) {
         return collection::contains;
     }
 
+    /**
+     * Creates a {@link com.google.common.base.Predicate} based on the provided {@link Predicate}, used
+     * to transform between Java 8 specific code to those from the guava
+     * library.
+     *
+     * @param predicate The predicate
+     * @param <E> The type of object
+     * @return The guava predicate
+     */
     public static <E> com.google.common.base.Predicate<E> java8ToGuava(Predicate<E> predicate) {
         return predicate::test;
     }
 
+    /**
+     * Creates a new {@link Predicate} based on the provided {@link com.google.common.base.Predicate},
+     * used to transform between Java 8 specific code to those from the guava
+     * library.
+     *
+     * @param p The predicate
+     * @param <E> The type of object
+     * @return The java 8 predicate
+     */
     public static <E> Predicate<E> guavaToJava8(com.google.common.base.Predicate<E> p) {
         return p::apply;
     }

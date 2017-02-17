@@ -26,8 +26,8 @@ package org.spongepowered.api.command.args;
 
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.command.args.parsing.SingleArg;
+import org.spongepowered.api.text.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -90,7 +90,8 @@ public final class CommandArgs {
     }
 
     /**
-     * Try to read the next argument, advancing the current index if successful or returning an absent optional if not.
+     * Try to read the next argument, advancing the current index if successful
+     * or returning an absent optional if not.
      *
      * @return The optional next argument.
      */
@@ -99,8 +100,9 @@ public final class CommandArgs {
     }
 
     /**
-     * Create a parse exception with the provided message which has the position of the last parsed argument attached.
-     * The returned exception must be thrown at the target
+     * Create a parse exception with the provided message which has the position
+     * of the last parsed argument attached. The returned exception must be
+     * thrown at the target
      *
      * @param message The message for the exception
      * @return the newly created, but unthrown exception
@@ -123,7 +125,8 @@ public final class CommandArgs {
     }
 
     /**
-     * Return this arguments object's current state. Can be used to reset with the {@link #setState(Object)} method.
+     * Return this arguments object's current state. Can be used to reset with
+     * the {@link #setState(Object)} method.
      *
      * @return The current state
      */

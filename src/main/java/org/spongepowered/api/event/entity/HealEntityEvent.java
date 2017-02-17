@@ -106,8 +106,8 @@ public interface HealEntityEvent extends TargetEntityEvent, Cancellable {
 
     /**
      * Gets the "base" healing amount to apply to the targeted {@link Entity}.
-     * The "base" heal amount is the original value before passing along the chain
-     * of {@link Function}s for all known {@link HealthModifier}s.
+     * The "base" heal amount is the original value before passing along the
+     * chain of {@link Function}s for all known {@link HealthModifier}s.
      *
      * @return The base heal amount
      */

@@ -68,17 +68,17 @@ public enum Direction {
     NONE(new Vector3d(0, 0, 0), Division.NONE);
 
     private static final Direction[] SECONDARY_ORDINAL_SET = {
-            NORTH, NORTH_NORTHEAST, NORTHEAST, EAST_NORTHEAST,
-            EAST, EAST_SOUTHEAST, SOUTHEAST, SOUTH_SOUTHEAST,
-            SOUTH, SOUTH_SOUTHWEST, SOUTHWEST, WEST_SOUTHWEST,
-            WEST, WEST_NORTHWEST, NORTHWEST, NORTH_NORTHWEST,
+        NORTH, NORTH_NORTHEAST, NORTHEAST, EAST_NORTHEAST,
+        EAST, EAST_SOUTHEAST, SOUTHEAST, SOUTH_SOUTHEAST,
+        SOUTH, SOUTH_SOUTHWEST, SOUTHWEST, WEST_SOUTHWEST,
+        WEST, WEST_NORTHWEST, NORTHWEST, NORTH_NORTHWEST,
     };
     private static final Direction[] ORDINAL_SET = {
-            NORTH, NORTHEAST, EAST, SOUTHEAST,
-            SOUTH, SOUTHWEST, WEST, NORTHWEST,
+        NORTH, NORTHEAST, EAST, SOUTHEAST,
+        SOUTH, SOUTHWEST, WEST, NORTHWEST,
     };
     private static final Direction[] CARDINAL_SET = {
-            NORTH, EAST, SOUTH, WEST
+        NORTH, EAST, SOUTH, WEST
     };
     private final Vector3d offset;
     private final Vector3i blockOffset;
@@ -144,7 +144,8 @@ public enum Direction {
      * be selected.
      *
      * @param vector The vector to convert to a direction
-     * @param smallestDivision The smallest compass division that can be returned
+     * @param smallestDivision The smallest compass division that can be
+     *     returned
      * @return The closest horizontal direction.
      */
     public static Direction getClosest(Vector3d vector, Division smallestDivision) {
@@ -177,7 +178,8 @@ public enum Direction {
      * be selected.
      *
      * @param vector The vector to convert to a direction
-     * @param smallestDivision The smallest compass division that can be returned
+     * @param smallestDivision The smallest compass division that can be
+     *     returned
      * @return The closest horizontal direction.
      */
     public static Direction getClosestHorizontal(Vector3d vector, Division smallestDivision) {

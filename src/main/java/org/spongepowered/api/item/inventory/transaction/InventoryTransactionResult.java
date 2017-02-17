@@ -37,6 +37,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 /**
  * An interface for structs returned by inventory operations which encapsulate
  * the result of an attempted operation.
@@ -45,6 +47,8 @@ public final class InventoryTransactionResult {
 
     /**
      * Begin building a new InventoryTransactionResult.
+     *
+     * @return A new builder
      */
     public static Builder builder() {
         return new Builder();
@@ -53,6 +57,8 @@ public final class InventoryTransactionResult {
     /**
      * Returns a builder which indicates that the transaction succeeded, but the
      * transaction result was no-op.
+     *
+     * @return A new transaction result
      */
     public static InventoryTransactionResult successNoTransactions() {
         return InventoryTransactionResult.builder().type(Type.SUCCESS).build();
@@ -61,6 +67,8 @@ public final class InventoryTransactionResult {
     /**
      * Returns a builder which indicates that the transaction failed, and the
      * transaction result was no-op.
+     *
+     * @return A new transaction result
      */
     public static InventoryTransactionResult failNoTransactions() {
         return InventoryTransactionResult.builder().type(Type.ERROR).build();
@@ -107,7 +115,7 @@ public final class InventoryTransactionResult {
     private final List<ItemStackSnapshot> replaced;
 
     InventoryTransactionResult(Builder builder) {
-        this.type = builder.resultType;
+        this.type = checkNotNull(builder.resultType, "Result type");
         this.rejected = builder.rejected != null ? ImmutableList.copyOf(builder.rejected) : Collections.<ItemStackSnapshot>emptyList();
         this.replaced = builder.replaced != null ? ImmutableList.copyOf(builder.replaced) : Collections.<ItemStackSnapshot>emptyList();
     }
@@ -143,17 +151,30 @@ public final class InventoryTransactionResult {
 
     public static final class Builder implements ResettableBuilder<InventoryTransactionResult, Builder> {
 
-        Type resultType;
-        List<ItemStackSnapshot> rejected;
-        List<ItemStackSnapshot> replaced;
+        @Nullable Type resultType;
+        @Nullable List<ItemStackSnapshot> rejected;
+        @Nullable List<ItemStackSnapshot> replaced;
 
         Builder() {}
 
+        /**
+         * Sets the {@link Type} of transaction result being built.
+         *
+         * @param type The type of transaction result
+         * @return This builder, for chaining
+         */
         public Builder type(final Type type) {
             this.resultType = checkNotNull(type, "Type cannot be null!");
             return this;
         }
 
+        /**
+         * Adds the provided {@link ItemStack itemstacks} as stacks that have been
+         * "rejected".
+         *
+         * @param itemStacks The itemstacks being rejected
+         * @return This builder, for chaining
+         */
         public Builder reject(ItemStack... itemStacks) {
             if (this.rejected == null) {
                 this.rejected = new ArrayList<>();
@@ -166,6 +187,13 @@ public final class InventoryTransactionResult {
             return this;
         }
 
+        /**
+         * Adds the provided {@link ItemStack itemstacks} as stacks that are
+         * being replaced.
+         *
+         * @param itemStacks The itemstacks being replaced
+         * @return This builder, for chaining
+         */
         public Builder replace(ItemStack... itemStacks) {
             if (this.replaced == null) {
                 this.replaced = new ArrayList<>();
@@ -178,6 +206,11 @@ public final class InventoryTransactionResult {
             return this;
         }
 
+        /**
+         * Creates a new {@link InventoryTransactionResult}.
+         *
+         * @return A new inventoryu transaction result
+         */
         public InventoryTransactionResult build() {
             checkState(this.resultType != null, "ResultType cannot be null!");
             return new InventoryTransactionResult(this);

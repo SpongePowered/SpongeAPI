@@ -26,7 +26,6 @@ package org.spongepowered.api.event.cause.entity.spawn;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntitySnapshot;
 
 /**
  * A {@link SpawnCause} that involves two entities that "mate" to breed a new
@@ -34,14 +33,32 @@ import org.spongepowered.api.entity.EntitySnapshot;
  */
 public interface BreedingSpawnCause extends EntitySpawnCause {
 
+    /**
+     * Creates a new {@link Builder builder} for building a
+     * {@link BreedingSpawnCause}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the secondary {@link Entity} considered to be the "mate"
+     * with the {@link #getEntity()}.
+     *
+     * @return The mate
+     */
     Entity getMate();
 
     interface Builder extends EntitySpawnCauseBuilder<BreedingSpawnCause, Builder> {
 
+        /**
+         * Sets the secondary {@link Entity} that is considered the "mate".
+         *
+         * @param entity The mate entity
+         * @return This builder, for chaining
+         */
         Builder mate(Entity entity);
 
     }

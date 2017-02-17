@@ -36,7 +36,8 @@ import org.spongepowered.api.util.Coerce;
 import javax.annotation.Nullable;
 
 /**
- * Represents a {@link Property} for the dominant {@link HandPreference} of a {@link Player}.
+ * Represents a {@link Property} for the dominant {@link HandPreference} of a
+ * {@link Player}.
  *
  * <p>Handedness usually determines which hand is used for "main" interactions,
  * such as tool use or block breaking.</p>
@@ -46,17 +47,32 @@ import javax.annotation.Nullable;
  */
 public class DominantHandProperty extends AbstractProperty<String, HandPreference> {
 
+    /**
+     * Creates a new {@link DominantHandProperty} with the provided
+     * {@link HandPreference} value.
+     *
+     * @param value The value
+     */
     public DominantHandProperty(@Nullable HandPreference value) {
         super(value);
     }
 
+    /**
+     * Creates a new {@link DominantHandProperty} with the provided
+     * {@link HandPreference}
+     * and {@link org.spongepowered.api.data.Property.Operator} value.
+     *
+     * @param value The value
+     * @param op The operator for comparison
+     */
     public DominantHandProperty(@Nullable HandPreference value, @Nullable Operator op) {
         super(value, op);
     }
 
     @Override
     public int compareTo(@Nullable Property<?, ?> o) {
-        HandPreference other = Coerce.toPseudoEnum(o == null ? null : o.getValue(), HandPreference.class, HandPreferences.class, HandPreferences.RIGHT);
+        HandPreference other = Coerce.toPseudoEnum(o == null ? null : o.getValue(), HandPreference.class, HandPreferences.class,
+                HandPreferences.RIGHT);
         return this.getValue().getId().compareTo(o == null ? "" : other.getId());
     }
 }

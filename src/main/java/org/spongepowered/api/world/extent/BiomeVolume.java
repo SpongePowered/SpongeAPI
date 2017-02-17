@@ -124,8 +124,8 @@ public interface BiomeVolume {
     BiomeVolume getBiomeView(Vector3i newMin, Vector3i newMax);
 
     /**
-     * Returns a new volume that is viewed through some transformation. This does
-     * not copy the biomes, it only provides a new view of the storage.
+     * Returns a new volume that is viewed through some transformation. This
+     * does not copy the biomes, it only provides a new view of the storage.
      *
      * @param transform The transformation to be applied
      * @return The new volume with the transform
@@ -134,8 +134,8 @@ public interface BiomeVolume {
 
     /**
      * Returns a new volume that is translated so that
-     * {@link BiomeVolume#getBiomeMin()} returns {@link Vector2i#ZERO}. This does
-     * not copy the biomes, it only provides a new view of the storage.
+     * {@link BiomeVolume#getBiomeMin()} returns {@link Vector2i#ZERO}. This
+     * does not copy the biomes, it only provides a new view of the storage.
      *
      * @return The new volume with its minimum at zero
      */

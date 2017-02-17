@@ -37,6 +37,13 @@ public class WeightedObject<T> extends TableEntry<T> {
 
     private final T object;
 
+    /**
+     * Creates a new {@link WeightedObject} of the provided
+     * {@code object} and {@code weight}.
+     *
+     * @param obj The object
+     * @param weight The weight of the object
+     */
     public WeightedObject(T obj, double weight) {
         super(weight);
         this.object = checkNotNull(obj);

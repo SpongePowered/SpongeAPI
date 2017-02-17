@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.util.rotation;
 
-
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;

@@ -41,7 +41,6 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Map;
 import java.util.Set;
@@ -138,7 +137,7 @@ public interface ItemStack extends DataHolder, Translatable {
 
     @Override
     ItemStack copy();
-    
+
     interface Builder extends DataBuilder<ItemStack> {
 
         @Override
@@ -159,7 +158,8 @@ public interface ItemStack extends DataHolder, Translatable {
          *
          * @param quantity The quantity of the item stack
          * @return This builder, for chaining
-         * @throws IllegalArgumentException If the quantity is outside the allowed bounds
+         * @throws IllegalArgumentException If the quantity is outside the
+         *      allowed bounds
          */
         Builder quantity(int quantity) throws IllegalArgumentException;
 
@@ -183,7 +183,8 @@ public interface ItemStack extends DataHolder, Translatable {
          *
          * @param itemData The item data to set
          * @return This builder, for chaining
-         * @throws IllegalArgumentException If the item data is incompatible with the item
+         * @throws IllegalArgumentException If the item data is incompatible
+         *      with the item
          */
         Builder itemData(DataManipulator<?, ?> itemData) throws IllegalArgumentException;
 
@@ -225,7 +226,7 @@ public interface ItemStack extends DataHolder, Translatable {
          */
         default Builder fromBlockState(BlockState blockState) {
             checkNotNull(blockState);
-            final BlockType blockType= blockState.getType();
+            final BlockType blockType = blockState.getType();
             checkArgument(blockType.getItem().isPresent(), "Missing valid ItemType for BlockType: " + blockType.getId());
             itemType(blockType.getItem().get());
             blockState.getContainers().forEach(this::itemData);
@@ -278,6 +279,6 @@ public interface ItemStack extends DataHolder, Translatable {
          * @return A new instance of an ItemStack
          * @throws IllegalStateException If the item stack is not completed
          */
-        ItemStack build() throws IllegalStateException;        
+        ItemStack build() throws IllegalStateException;
     }
 }

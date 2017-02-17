@@ -41,8 +41,8 @@ import java.lang.annotation.Target;
 public @interface Listener {
 
     /**
-     * The order this listener should be called in relation to other listeners in
-     * the {@link EventManager}.
+     * The order this listener should be called in relation to other listeners
+     * in the {@link EventManager}.
      *
      * @return The order the listener should be called in
      */
@@ -51,7 +51,7 @@ public @interface Listener {
     /**
      * Whether this listener should be called before any other server mods, such
      * as Forge mods. All Sponge event listeners are called after mods, unless
-     * they specify the {@link #beforeModifications()} flag to be true.
+     * they specify the {@code #beforeModifications()} flag to be true.
      *
      * @return If the listener should be fired before other server mods
      */

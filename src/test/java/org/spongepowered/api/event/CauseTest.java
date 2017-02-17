@@ -29,7 +29,6 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 import com.google.common.collect.ImmutableList;
 import org.junit.Test;
@@ -41,7 +40,6 @@ import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.NamedCause;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -212,7 +210,12 @@ public class CauseTest {
     @Test
     public void testListedArray() {
         final List<String> fooList = ImmutableList.of("foo", "bar", "baz", "floof");
-        final Cause cause = Cause.builder().suggestNamed("foo", "foo").suggestNamed("bar", "bar").suggestNamed("baz", "baz").suggestNamed("floof", "floof").build();
+        final Cause cause = Cause.builder()
+                .suggestNamed("foo", "foo")
+                .suggestNamed("bar", "bar")
+                .suggestNamed("baz", "baz")
+                .suggestNamed("floof", "floof")
+                .build();
         final List<String> stringList = cause.allOf(String.class);
         assertThat(stringList.isEmpty(), is(false));
         assertThat(stringList.equals(fooList), is(true));

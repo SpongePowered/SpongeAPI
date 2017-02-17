@@ -28,17 +28,37 @@ public class RegistryException extends UnsupportedOperationException {
 
     private static final long serialVersionUID = -1476084919005947372L;
 
+    /**
+     * Creates a new {@link RegistryException}.
+     */
     public RegistryException() {
     }
 
+    /**
+     * Creates a new {@link RegistryException} with the provided {@code message}.
+     *
+     * @param message The message of the exception
+     */
     public RegistryException(String message) {
         super(message);
     }
 
+    /**
+     * Creates a new {@link RegistryException} with the provided {@code message}
+     * and propagated {@link Throwable cause}.
+     *
+     * @param message The message
+     * @param cause The cause
+     */
     public RegistryException(String message, Throwable cause) {
         super(message, cause);
     }
 
+    /**
+     * Creates a new {@link RegistryException} with the provided {@link Throwable cause}.
+     *
+     * @param cause The cause
+     */
     public RegistryException(Throwable cause) {
         super(cause);
     }

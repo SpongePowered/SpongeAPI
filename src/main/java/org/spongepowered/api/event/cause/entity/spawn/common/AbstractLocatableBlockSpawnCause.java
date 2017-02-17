@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.cause.entity.spawn.common;
 
-import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.event.cause.entity.spawn.LocatableBlockSpawnCause;
 import org.spongepowered.api.world.LocatableBlock;
 
