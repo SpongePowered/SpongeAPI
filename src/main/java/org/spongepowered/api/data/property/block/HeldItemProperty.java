@@ -50,7 +50,7 @@ public class HeldItemProperty extends AbstractProperty<String, ItemType> {
 
     /**
      * Creates a new {@link HeldItemProperty} with the provided {@link ItemType}
-     * and {@link Operator comparison operator}.
+     * and {@link org.spongepowered.api.data.Property.Operator comparison operator}.
      *
      * @param value The item value
      * @param op The operator for comparisons

@@ -31,6 +31,11 @@ import org.spongepowered.api.entity.living.Agent;
 
 public interface LookIdleAITask extends AITask<Agent> {
 
+    /**
+     * Creates a new {@link Builder} to build a new {@link LookIdleAITask}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }

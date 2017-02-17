@@ -44,7 +44,8 @@ public class ArmorTypeProperty extends AbstractProperty<String, ArmorType> {
 
     /**
      * Construct a new {@link ArmorTypeProperty} with the desired
-     * {@link ArmorType} and {@link Operator}.
+     * {@link ArmorType} and
+     * {@link org.spongepowered.api.data.Property.Operator}.
      *
      * @param value The armor type to use
      * @param op The operator to use for comparisons

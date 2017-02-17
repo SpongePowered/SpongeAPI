@@ -44,7 +44,9 @@ public class ToolTypeProperty extends AbstractProperty<String, ToolType> {
 
     /**
      * Creates a new {@link ToolTypeProperty} with the provided
-     * {@link ToolType} value and {@link Operator} for comparisons.
+     * {@link ToolType} value and
+     * {@link org.spongepowered.api.data.Property.Operator}
+     * for comparisons.
      *
      * @param value The value
      * @param op The operator for comparisons
