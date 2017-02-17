@@ -59,9 +59,6 @@ import org.spongepowered.api.entity.living.animal.SkeletonHorse;
 import org.spongepowered.api.entity.living.animal.ZombieHorse;
 import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.entity.projectile.arrow.Arrow;
-import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
@@ -72,6 +69,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Axis;
@@ -570,9 +568,10 @@ public final class Keys {
 
     /**
      * Represents the type of {@link Horse}.
-     * @deprecated Due to the structural changes of Horses, they are now separate interfaces:
-     * {@link RideableHorse}, {@link Donkey}, {@link Mule}, {@link SkeletonHorse}, {@link ZombieHorse},
-     * and {@link Llama}.
+     * @deprecated Due to the structural changes of Horses, they are now
+     *     separate interfaces: {@link RideableHorse}, {@link Donkey},
+     *     {@link Mule}, {@link SkeletonHorse}, {@link ZombieHorse},
+     *     and {@link Llama}.
      */
     @Deprecated
     public static final Key<Value<HorseVariant>> HORSE_VARIANT = KeyFactory.fake("HORSE_VARIANT");

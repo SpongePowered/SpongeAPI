@@ -30,6 +30,15 @@ import java.util.function.BiConsumer;
 
 public interface TradeOfferListMutator {
 
+    /**
+     * Mutates the provided {@link List list} of {@link TradeOffer}s
+     * with the provided {@link Merchant} and {@link Random} to provide
+     * possible contextualized information.
+     *
+     * @param owner The owner of the list
+     * @param tradeOffers The trade offers currently
+     * @param random The random to use for random number generation
+     */
     void accept(Merchant owner, List<TradeOffer> tradeOffers, Random random);
 
 }

@@ -176,8 +176,8 @@ public interface Property<K, V> extends Comparable<Property<?, ?>> {
     }
 
     /**
-     * Gets the key for this property. Key is only used if an item stack can have
-     * more than one property of a particular type. If the property has no
+     * Gets the key for this property. Key is only used if an item stack can
+     * have more than one property of a particular type. If the property has no
      * specific key, the property class name is returned so that properties of
      * the same type are implicitly comparable.
      *

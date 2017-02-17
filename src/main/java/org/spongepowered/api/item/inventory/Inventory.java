@@ -283,6 +283,16 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     boolean contains(ItemStack stack);
 
     /**
+     * Checks for whether there is a stack in this Inventory with the given
+     * ItemType. This is equivalent to calling <code>!inv.query(stack)
+     * .hasChildren();</code>
+     *
+     * @param type The type to search for
+     * @return True if at least one stack in this list has the given type
+     */
+    boolean contains(ItemType type);
+
+    /**
      * Checks whether the given stack is contained in this Inventory.
      * The stack size is ignored. Note this will return true if any amount
      * of the supplied stack is found. To check if an inventory contains at
@@ -292,16 +302,6 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @return True if the stack is present in this inventory
      */
     boolean containsAny(ItemStack stack);
-
-    /**
-     * Checks for whether there is a stack in this Inventory with the given
-     * ItemType. This is equivalent to calling <code>!inv.query(stack)
-     * .hasChildren();</code>
-     *
-     * @param type The type to search for
-     * @return True if at least one stack in this list has the given type
-     */
-    boolean contains(ItemType type);
 
     /**
      * Returns the maximum size of any stack in this Inventory.
@@ -409,28 +409,13 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * containing only {@link Slot} instances.
      * To query for stacks of any size use {@link #queryAny(ItemStack...)}.
      *
-     * @param types items to query for, stack sizes must match the supplied stack exactly
+     * @param types items to query for, stack sizes must match the supplied
+     *     stack exactly
      * @param <T> expected inventory type, specified as generic to allow easy
-     *      pseudo-duck-typing
+     *     pseudo-duck-typing
      * @return the query result
      */
     <T extends Inventory> T query(ItemStack... types);
-
-    /**
-     * Query this inventory for inventories containing any stacks which match
-     * the supplied stack operands ignoring its quantity. This query operates
-     * directly on {@link Slot} leaf nodes in the inventory and will always
-     * return a collection containing only {@link Slot} instances. Logical
-     * <code>OR</code> is applied between operands.
-     * This ignores stack sizes. To query for stacks of a specific size use
-     * {@link #query(ItemStack...)}.
-     *
-     * @param types items to query for, the size of the stacks is always ignored
-     * @param <T> expected inventory type, specified as generic to allow easy
-     *      pseudo-duck-typing
-     * @return the query result
-     */
-    <T extends Inventory> T queryAny(ItemStack... types);
 
     /**
      * Query this inventory for inventories which match any of the supplied
@@ -488,6 +473,22 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @return the query result
      */
     <T extends Inventory> T query(Object... args);
+
+    /**
+     * Query this inventory for inventories containing any stacks which match
+     * the supplied stack operands ignoring its quantity. This query operates
+     * directly on {@link Slot} leaf nodes in the inventory and will always
+     * return a collection containing only {@link Slot} instances. Logical
+     * <code>OR</code> is applied between operands.
+     * This ignores stack sizes. To query for stacks of a specific size use
+     * {@link #query(ItemStack...)}.
+     *
+     * @param types items to query for, the size of the stacks is always ignored
+     * @param <T> expected inventory type, specified as generic to allow easy
+     *      pseudo-duck-typing
+     * @return the query result
+     */
+    <T extends Inventory> T queryAny(ItemStack... types);
 
     /**
      * Returns the {@link PluginContainer} who built this inventory.

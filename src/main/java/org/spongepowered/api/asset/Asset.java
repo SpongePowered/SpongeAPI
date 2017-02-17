@@ -78,7 +78,7 @@ public interface Asset {
      *
      * @param output Path to copy to
      * @param overwrite If the file should be overwritten if it exists
-     * @throws IOException
+     * @throws IOException File exception
      */
     default void copyToFile(Path output, boolean overwrite) throws IOException {
         this.copyToFile(output, overwrite, true);
@@ -90,7 +90,7 @@ public interface Asset {
      * @param output Path to copy to
      * @param overwrite If the file should be overwritten if it exists
      * @param onlyIfAbsent If the file should only be copied if absent
-     * @throws IOException
+     * @throws IOException File exception
      */
     default void copyToFile(Path output, boolean overwrite, boolean onlyIfAbsent) throws IOException {
         checkNotNull(output, "output");
@@ -121,7 +121,7 @@ public interface Asset {
      *
      * @param outputDirectory The directory to copy to
      * @param overwrite If the file should be overwritten if it exists
-     * @throws IOException
+     * @throws IOException File exception
      */
     default void copyToDirectory(Path outputDirectory, boolean overwrite) throws IOException {
         this.copyToDirectory(outputDirectory, overwrite, true);
@@ -133,7 +133,7 @@ public interface Asset {
      * @param outputDirectory The directory to copy to
      * @param overwrite If the file should be overwritten if it exists
      * @param onlyIfAbsent If the file should only be copied if absent
-     * @throws IOException
+     * @throws IOException File exception
      */
     default void copyToDirectory(Path outputDirectory, boolean overwrite, boolean onlyIfAbsent) throws IOException {
         checkNotNull(outputDirectory, "outputDirectory");

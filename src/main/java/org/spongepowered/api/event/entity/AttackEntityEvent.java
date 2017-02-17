@@ -29,6 +29,7 @@ import org.spongepowered.api.block.tileentity.carrier.Dispenser;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.event.Cancellable;
@@ -162,7 +163,7 @@ public interface AttackEntityEvent extends TargetEntityEvent, Cancellable {
      * {@link DamageModifierTypes#BLOCKING} and the {@link Cause} contains
      * an {@link ItemStackSnapshot}, usually an item that can "block".
      *
-     * @@deprecated {@link #SHIELD} should be used instead, since blocking no longer exists in the game as of 1.9
+     * @deprecated {@link #SHIELD} should be used instead, since blocking no longer exists in the game as of 1.9
      */
     @Deprecated
     String BLOCKING = "Shield";
@@ -170,7 +171,7 @@ public interface AttackEntityEvent extends TargetEntityEvent, Cancellable {
     /**
      * or use with a {@link DamageModifier} where its type is a
      * {@link DamageModifierTypes#SHIELD} and the {@link Cause} contains
-     * an {@link ItemStackSnapshot} (in Vanilla, a shield)
+     * an {@link ItemStackSnapshot} (in Vanilla, a shield).
      */
     String SHIELD = "Shield";
 

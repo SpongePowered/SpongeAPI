@@ -118,7 +118,8 @@ public final class ParticleOptions {
      * {@link ParticleType}s this option is applicable to is
      * {@link ParticleTypes#SPLASH_POTION}.
      */
-    public static final ParticleOption<PotionEffectType> POTION_EFFECT_TYPE = DummyObjectProvider.createFor(ParticleOption.class, "POTION_EFFECT_TYPE");
+    public static final ParticleOption<PotionEffectType> POTION_EFFECT_TYPE = DummyObjectProvider
+        .createFor(ParticleOption.class, "POTION_EFFECT_TYPE");
 
     /**
      * This option will affect the amount of particles that are spawned. The

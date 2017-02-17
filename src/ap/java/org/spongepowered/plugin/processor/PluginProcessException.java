@@ -31,18 +31,18 @@ final class PluginProcessException extends RuntimeException {
 
     private static final long serialVersionUID = -8573308144869929605L;
 
-    public PluginProcessException() {
+    PluginProcessException() {
     }
 
-    public PluginProcessException(String message) {
+    PluginProcessException(String message) {
         super(message);
     }
 
-    public PluginProcessException(String message, Throwable cause) {
+    PluginProcessException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public PluginProcessException(Throwable cause) {
+    PluginProcessException(Throwable cause) {
         super(cause);
     }
 

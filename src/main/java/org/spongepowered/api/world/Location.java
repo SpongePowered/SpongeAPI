@@ -630,7 +630,8 @@ public final class Location<E extends Extent> implements DataHolder {
      *
      * @param type The type
      * @return An entity, if one was created
-     * @throws IllegalArgumentException If the position or entity type is not valid to create
+     * @throws IllegalArgumentException If the position or entity type is not
+     *     valid to create
      * @throws IllegalStateException If a constructor cannot be found
      * @see EntityUniverse#createEntity(EntityType, Vector3d)
      */
@@ -651,7 +652,8 @@ public final class Location<E extends Extent> implements DataHolder {
      * <p>The requirements involve that all necessary setup of states and data
      * is already preformed on the entity retrieved from the various
      * {@link EntityUniverse#createEntity(EntityType,Vector3d)} methods. Calling
-     * this will make the now-spawned entity able to be processed by various systems.</p>
+     * this will make the now-spawned entity able to be processed by various
+     * systems.</p>
      *
      * <p>If the entity was unable to spawn, the entity is not removed, but it
      * should be taken note that there can be many reasons for a failure.</p>
