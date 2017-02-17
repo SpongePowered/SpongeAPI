@@ -369,7 +369,7 @@ public class ClassGenerator {
 
             mv.visitLabel(afterPut);
 
-            if (type.equals(Type.LONG_TYPE) || type.equals(Type.DOUBLE_TYPE)) {
+            if (type.getSize() > 1) {
                 paramIndex++; // Skip empty slot
             }
         }
@@ -634,5 +634,16 @@ public class ClassGenerator {
                 this.generateAccessorsandMutator(cw, eventClass, parentType, internalName, property);
             }
         }
+    }
+
+    /**
+     * Convert a java-style class name into a binary class name (replace dots
+     * with slashes).
+     *
+     * @param name class name
+     * @return class reference (binary name)
+     */
+    public static String getInternalName(String name) {
+        return name.replace('.', '/');
     }
 }

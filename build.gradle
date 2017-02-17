@@ -10,11 +10,6 @@ buildscript {
             name = 'sponge'
             url = 'https://repo.spongepowered.org/maven'
         }
-        maven {
-            name = 'Spoon snapshot'
-            url = 'http://spoon.gforge.inria.fr/repositories/snapshots/'
-       }
-
     }
 
     dependencies {
