@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data;
 
-
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
