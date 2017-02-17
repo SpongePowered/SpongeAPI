@@ -102,6 +102,7 @@ import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
 import org.spongepowered.api.event.entity.ChangeEntityPotionEffectEvent;
 import org.spongepowered.api.event.entity.CollideEntityEvent;
 import org.spongepowered.api.event.entity.ConstructEntityEvent;
+import org.spongepowered.api.event.entity.ControlEntityEvent;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.DestructEntityEvent;
 import org.spongepowered.api.event.entity.ExpireEntityEvent;
@@ -1458,6 +1459,30 @@ public class SpongeEventFactory {
         values.put("targetType", targetType);
         values.put("transform", transform);
         return SpongeEventFactoryUtils.createEventImpl(ConstructEntityEvent.Pre.class, values);
+    }
+
+    /**
+     * AUTOMATICALLY GENERATED, DO NOT EDIT.
+     * Creates a new instance of
+     * {@link org.spongepowered.api.event.entity.ControlEntityEvent}.
+     * 
+     * @param cause The cause
+     * @param targetEntity The target entity
+     * @param forwardSpeed The forward speed
+     * @param jumping The jumping
+     * @param sneaking The sneaking
+     * @param strafeSpeed The strafe speed
+     * @return A new control entity event
+     */
+    public static ControlEntityEvent createControlEntityEvent(Cause cause, Entity targetEntity, float forwardSpeed, boolean jumping, boolean sneaking, float strafeSpeed) {
+        HashMap<String, Object> values = new HashMap<>();
+        values.put("cause", cause);
+        values.put("targetEntity", targetEntity);
+        values.put("forwardSpeed", forwardSpeed);
+        values.put("jumping", jumping);
+        values.put("sneaking", sneaking);
+        values.put("strafeSpeed", strafeSpeed);
+        return SpongeEventFactoryUtils.createEventImpl(ControlEntityEvent.class, values);
     }
 
     /**
