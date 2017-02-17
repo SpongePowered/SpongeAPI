@@ -44,7 +44,8 @@ public class EyeLocationProperty extends AbstractProperty<String, Vector3d> {
 
     /**
      * Creates a new {@link EyeLocationProperty} based on the provided
-     * {@link Vector3d position} and {@link Operator comparison operator}.
+     * {@link Vector3d position} and
+     * {@link org.spongepowered.api.data.Property.Operator comparison operator}.
      *
      * @param value The position value
      * @param op The comparison operator

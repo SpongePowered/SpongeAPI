@@ -46,7 +46,7 @@ public class GravityAffectedProperty extends BooleanProperty {
 
     /**
      * Creates a new {@link GravityAffectedProperty} with the provided {@code value}
-     * and {@link Operator comparison operator}.
+     * and {@link org.spongepowered.api.data.Property.Operator comparison operator}.
      *
      * @param value The value
      * @param operator The operator for comparisons

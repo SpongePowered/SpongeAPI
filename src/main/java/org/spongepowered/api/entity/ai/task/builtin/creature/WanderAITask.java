@@ -25,22 +25,54 @@
 package org.spongepowered.api.entity.ai.task.builtin.creature;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.task.AITask;
 import org.spongepowered.api.entity.ai.task.AITaskBuilder;
 import org.spongepowered.api.entity.living.Creature;
 
 public interface WanderAITask extends AITask<Creature> {
 
+    /**
+     * Creates a new {@link Builder} to build a new
+     * {@link WanderAITask}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the speed modifier at which the owning {@link Entity}
+     * will move around to appear to "wander".
+     *
+     * @return The speed modifier
+     */
     double getSpeed();
 
+    /**
+     * Sets the speed modifier at which the owning {@link Entity}
+     * will move around to appear to "wander".
+     *
+     * @param speed The movement speed modifier
+     * @return This task, for chaining
+     */
     WanderAITask setSpeed(double speed);
 
+    /**
+     * Gets the chance that the owning {@link Entity} will "wander".
+     *
+     * @return The chance that the owning entity will "wander"
+     */
     int getExecutionChance();
 
+    /**
+     * Sets the chance that the owning {@link Entity} will perform
+     * a "wander".
+     *
+     * @param executionChance The wandering chance
+     * @return This task, for chaining
+     */
     WanderAITask setExecutionChance(int executionChance);
 
     interface Builder extends AITaskBuilder<Creature, WanderAITask, Builder> {

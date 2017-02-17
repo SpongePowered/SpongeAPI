@@ -40,7 +40,7 @@ public class EyeHeightProperty extends DoubleProperty {
 
     /**
      * Creates a new {@link EyeHeightProperty} based on the provided
-     * {@code value} and {@link Operator comparison operator}.
+     * {@code value} and {@link org.spongepowered.api.data.Property.Operator comparison operator}.
      *
      * @param value The value of the eye height
      * @param operator The operator for comparisons
