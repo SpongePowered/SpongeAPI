@@ -31,11 +31,17 @@ import static org.mockito.Mockito.withSettings;
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.modules.junit4.PowerMockRunnerDelegate;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.cause.Cause;
@@ -48,7 +54,8 @@ import org.spongepowered.api.event.entity.ai.AITaskEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.PEBKACException;
-import org.spongepowered.api.util.generator.event.factory.EventFactory;
+import org.spongepowered.api.util.generator.event.factory.ClassGenerator;
+import org.spongepowered.api.util.generator.event.factory.ClassGeneratorProvider;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
@@ -65,7 +72,9 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-@RunWith(Parameterized.class)
+@RunWith(PowerMockRunner.class)
+@PowerMockRunnerDelegate(Parameterized.class)
+@PrepareForTest(Sponge.class)
 public class SpongeEventFactoryTest {
 
     private static final Set<Class<?>> excludedEvents = ImmutableSet.of(DamageEntityEvent.class, HealEntityEvent.class,
@@ -88,16 +97,22 @@ public class SpongeEventFactoryTest {
         return Mockito.RETURNS_MOCKS.answer(invoc);
     });
 
+    private static ClassGeneratorProvider provider = new ClassGeneratorProvider("org.spongepowered.test");
+    private static EventFactory factory = provider.createFactoryInterfaceImpl(EventFactory.class);
+
+    @Before
+    public void setUp() {
+        PowerMockito.mockStatic(Sponge.class);
+        PowerMockito.when(Sponge.getEventFactory()).thenReturn(factory);
+    }
+
     @Parameterized.Parameters(name = "{0}")
     public static List<Object[]> getMethods() {
         ImmutableList.Builder<Object[]> methods = ImmutableList.builder();
         for (Method method : SpongeEventFactory.class.getMethods()) {
-            if (method.getName().startsWith("createState")) {
-                continue; // TODO minecrell needs to make this possible.
-            }
             if (method.getName().startsWith("create") && Modifier.isStatic(method.getModifiers())
                 && !excludedEvents.contains(method.getReturnType())) {
-                methods.add(new Object[]{method.getReturnType().getSimpleName(), method});
+                methods.add(new Object[]{method.getReturnType().getName(), method});
             }
         }
         return methods.build();
@@ -155,7 +170,7 @@ public class SpongeEventFactoryTest {
                         + "\tSolution: Modify the method name and/or signature to follow the expected getter/sett er semantics,"
                         + "or annotate the event with @ImplementedBy to indicate the abstract class used as the superclass."
                         + "(2) A bug in the class generator was found\n"
-                        + "\tSolution: Look into " + EventFactory.class.getName() + " and its implementations.\n",
+                        + "\tSolution: Look into " + ClassGenerator.class.getName() + " and its implementations.\n",
                         e);
                 }
             }
@@ -175,7 +190,7 @@ public class SpongeEventFactoryTest {
                 + "(). "
                 + "See the wrapped exception for more details.\n"
                 + "(2) A bug in the class generator was found\n"
-                + "\tSolution: Look into " + EventFactory.class.getName() + " and its implementations.\n"
+                + "\tSolution: Look into " + ClassGenerator.class.getName() + " and its implementations.\n"
                 + "(3) A method that does not follow getter/setter semantics (getProp(), isBool(), setProp()) "
                 + "was added (i.e. blockList())\n"
                 + "\tSolution: Revisit " + this.method.getReturnType().getName() + " and its supertypes. If the method in question "

@@ -50,17 +50,6 @@ public interface FactoryProvider {
      */
     void setNullPolicy(NullPolicy policy);
 
-    /**
-     * Creates a function that takes a map of property names with their
-     * values to create a new instance of a generated class that implements
-     * the given type.
-     *
-     * @param type The type to generate a class for
-     * @param parentType The parent type
-     * @param plugins The {@link EventFactoryPlugin}s to use when generating the class
-     * @param <T> The type of the event
-     * @return The function
-     */
-    <T> EventFactory<T> create(Class<T> type, Class<?> parentType, List<? extends EventFactoryPlugin> plugins);
+    <T> T createFactoryInterfaceImpl(Class<T> clazz);
 
 }

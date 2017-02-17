@@ -55,14 +55,17 @@ import static org.objectweb.asm.Opcodes.V1_6;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.spongepowered.api.eventgencore.AccessorFirstStrategy;
 import org.spongepowered.api.eventgencore.Property;
 import org.spongepowered.api.eventgencore.PropertySearchStrategy;
+import org.spongepowered.api.eventgencore.PropertySorter;
 import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 import org.spongepowered.api.eventgencore.annotation.UseField;
 import org.spongepowered.api.eventgencore.classwrapper.reflection.ReflectionClassWrapper;
@@ -71,8 +74,14 @@ import org.spongepowered.api.util.generator.event.factory.plugin.EventFactoryPlu
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -280,36 +289,49 @@ public class ClassGenerator {
     }
 
     private void generateConstructor(ClassWriter classWriter, String internalName, Class<?> parentType,
-            ImmutableSet<? extends Property<Class<?>, Method>> properties) {
+           List<? extends Property<Class<?>, Method>> properties) {
+
+        List<? extends Property<Class<?>, Method>> requiredProperties = properties.stream().filter(p -> p.isLeastSpecificType() && isRequired(p)).collect(Collectors.toList());
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("(");
+        for (Property<Class<?>, Method> property: properties) {
+            if (!property.isMostSpecificType() || !isRequired(property)) {
+                continue;
+            }
+            builder.append(Type.getDescriptor(property.getType()));
+        }
+        builder.append(")V");
+
+        String methodDesc = builder.toString();
+
         MethodVisitor mv =
-                classWriter.visitMethod(ACC_PUBLIC, "<init>", "(Ljava/util/Map;)V", "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)V", null);
+                classWriter.visitMethod(ACC_PUBLIC, "<init>", methodDesc, null, null);
         mv.visitCode();
 
         // super()
         mv.visitVarInsn(ALOAD, 0);
         mv.visitMethodInsn(INVOKESPECIAL, Type.getInternalName(parentType), "<init>", "()V", false);
 
-        for (Property<Class<?>, Method> property : properties) {
-            if (!property.isLeastSpecificType()) {
-                continue;
-            }
+        // 0 is 'this', parameters start at 1
+        for (int i = 0, paramIndex = 1; i < requiredProperties.size(); i++, paramIndex++) {
+            Property<Class<?>, Method> property = requiredProperties.get(i);
 
-            // Object value = map.get("key")
-            mv.visitVarInsn(ALOAD, 1);
-            mv.visitLdcInsn(property.getName());
-            mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Map", "remove", "(Ljava/lang/Object;)Ljava/lang/Object;", true);
-            mv.visitVarInsn(ASTORE, 2);
+            Type type = Type.getType(property.getType());
+            int loadOpcode = type.getOpcode(Opcodes.ILOAD);
+
+            boolean isPrimitive = property.getType().isPrimitive();
 
             // Only if we have a null policy:
             // if (value == null) throw new NullPointerException(...)
             if (this.nullPolicy != NullPolicy.DISABLE_PRECONDITIONS) {
-                boolean useNullTest = (((this.nullPolicy == NullPolicy.NON_NULL_BY_DEFAULT && !this.hasNullable(property.getAccessor()))
+                boolean useNullTest = !isPrimitive && (((this.nullPolicy == NullPolicy.NON_NULL_BY_DEFAULT && !this.hasNullable(property.getAccessor()))
                         || (this.nullPolicy == NullPolicy.NULL_BY_DEFAULT && this.hasNonnull(property.getAccessor())))
                         && isRequired(property));
 
                 if (useNullTest) {
                     Label afterNullTest = new Label();
-                    mv.visitVarInsn(ALOAD, 2);
+                    mv.visitVarInsn(loadOpcode, paramIndex);
                     mv.visitJumpInsn(IFNONNULL, afterNullTest);
                     mv.visitTypeInsn(NEW, "java/lang/NullPointerException");
                     mv.visitInsn(DUP);
@@ -324,16 +346,18 @@ public class ClassGenerator {
 
             Label afterPut = new Label();
 
-            // if (value != null) {
-            mv.visitVarInsn(ALOAD, 2);
-            mv.visitJumpInsn(IFNULL, afterPut);
+            if (!isPrimitive) {
+                // if (value != null) {
+                mv.visitVarInsn(loadOpcode, paramIndex);
+                mv.visitJumpInsn(IFNULL, afterPut);
+            }
 
             // stack: -> this
             mv.visitVarInsn(ALOAD, 0);
 
             // ProperObject newValue = (ProperObject) value
-            mv.visitVarInsn(ALOAD, 2);
-            visitUnboxingMethod(mv, Type.getType(property.getType()));
+            mv.visitVarInsn(loadOpcode, paramIndex);
+            //visitUnboxingMethod(mv, Type.getType(property.getType()));
 
             // this.field = newValue
             if (hasUseField) {
@@ -344,31 +368,10 @@ public class ClassGenerator {
             // }
 
             mv.visitLabel(afterPut);
-        }
 
-        // if (!map.isEmpty()) throw new IllegalArgumentException(...)
-        {
-            Label afterException = new Label();
-
-            mv.visitVarInsn(ALOAD, 1);
-            mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Map", "isEmpty", "()Z", true);
-            mv.visitJumpInsn(IFNE, afterException);
-
-            mv.visitTypeInsn(NEW, "java/lang/IllegalArgumentException");
-            mv.visitInsn(DUP);
-            mv.visitTypeInsn(NEW, "java/lang/StringBuilder");
-            mv.visitInsn(DUP);
-            mv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
-            mv.visitLdcInsn("Some parameters are unused: ");
-            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
-            mv.visitVarInsn(ALOAD, 1);
-            mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Map", "keySet", "()Ljava/util/Set;", true);
-            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
-            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
-            mv.visitMethodInsn(INVOKESPECIAL, "java/lang/IllegalArgumentException", "<init>", "(Ljava/lang/String;)V", false);
-            mv.visitInsn(ATHROW);
-
-            mv.visitLabel(afterException);
+            if (type.getSize() > 1) {
+                paramIndex++; // Skip empty slot
+            }
         }
 
         // super.init();
@@ -583,7 +586,7 @@ public class ClassGenerator {
         checkNotNull(name, "name");
         checkNotNull(parentType, "parentType");
 
-        final ImmutableSet<? extends Property<Class<?>, Method>> properties = this.propertySearch.findProperties(new ReflectionClassWrapper(type));
+        final List<? extends Property<Class<?>, Method>> properties = this.propertySearch.findProperties(new ReflectionClassWrapper(type));
         final String internalName = getInternalName(name);
 
         final ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
@@ -612,7 +615,8 @@ public class ClassGenerator {
     }
 
     private void generateWithPlugins(ClassWriter cw, Class<?> eventClass, Class<?> parentType, String internalName,
-            ImmutableSet<? extends Property<Class<?>, Method>> properties, MethodVisitor toStringMv, List<? extends EventFactoryPlugin> plugins) {
+            List<? extends Property<Class<?>, Method>> properties, MethodVisitor toStringMv, List<? extends EventFactoryPlugin> plugins) {
+
         for (Property<Class<?>, Method> property : properties) {
             boolean processed = false;
 
@@ -633,85 +637,13 @@ public class ClassGenerator {
     }
 
     /**
-     * Create the factory for an event class.
-     *
-     * @param type The event class
-     * @param name The canonical name of the factory class
-     * @return The factory class' bytes
-     */
-    public byte[] createFactory(final Class<?> type, final String name) {
-        checkNotNull(type, "type");
-
-        String internalName = name.replace('.', '/');
-
-        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
-        cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, internalName, null, "java/lang/Object", new String[] {Type.getInternalName(EventFactory.class)});
-
-        // Create the constructor
-        {
-            MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, "<init>", "()V", null, null);
-            mv.visitCode();
-            mv.visitVarInsn(ALOAD, 0);
-            mv.visitMethodInsn(INVOKESPECIAL, "java/lang/Object", "<init>", "()V", false);
-            mv.visitInsn(RETURN);
-            mv.visitMaxs(0, 0);
-            mv.visitEnd();
-        }
-
-        // Main apply()
-        {
-            MethodVisitor mv = cw.visitMethod(ACC_PUBLIC,
-                    "apply",
-                    "(Ljava/util/Map;)" + Type.getDescriptor(type),
-                    "(Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;)" + Type.getDescriptor(type),
-                    null);
-            mv.visitCode();
-            mv.visitTypeInsn(NEW, Type.getInternalName(type));
-            mv.visitInsn(DUP);
-            mv.visitVarInsn(ALOAD, 1);
-            mv.visitMethodInsn(INVOKESPECIAL, Type.getInternalName(type), "<init>", "(Ljava/util/Map;)V", false);
-            mv.visitInsn(ARETURN);
-            mv.visitMaxs(0, 0);
-            mv.visitEnd();
-        }
-
-        // Bridge apply()
-        {
-            MethodVisitor mv = cw.visitMethod(
-                    ACC_PUBLIC + ACC_BRIDGE + ACC_SYNTHETIC,
-                    "apply",
-                    "(Ljava/lang/Object;)Ljava/lang/Object;",
-                    null,
-                    null);
-            mv.visitCode();
-            mv.visitVarInsn(ALOAD, 0);
-            mv.visitVarInsn(ALOAD, 1);
-            mv.visitTypeInsn(CHECKCAST, "java/util/Map");
-            mv.visitMethodInsn(
-                    INVOKEVIRTUAL,
-                    internalName,
-                    "apply",
-                    "(Ljava/util/Map;)" + Type.getDescriptor(type),
-                    false);
-            mv.visitInsn(ARETURN);
-            mv.visitMaxs(0, 0);
-            mv.visitEnd();
-        }
-
-        cw.visitEnd();
-
-        return cw.toByteArray();
-    }
-
-    /**
      * Convert a java-style class name into a binary class name (replace dots
      * with slashes).
      *
      * @param name class name
      * @return class reference (binary name)
      */
-    private static String getInternalName(String name) {
+    public static String getInternalName(String name) {
         return name.replace('.', '/');
     }
-
 }

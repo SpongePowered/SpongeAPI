@@ -1,6 +1,7 @@
 // Gradle plugins
 buildscript {
     repositories {
+        mavenLocal()
         maven {
             name = 'gradle-plugins'
             url = 'https://plugins.gradle.org/m2'
@@ -114,7 +115,8 @@ genEventImpl {
     excludeSrc = []
     outputDir = 'src/main/java/'
     outputFactory = 'org.spongepowered.api.event.SpongeEventFactory'
-    eventImplCreateMethod = 'org.spongepowered.api.event.SpongeEventFactoryUtils.createEventImpl'
+    outputInterface = 'org.spongepowered.api.event.EventFactory'
+    eventImplCreateMethod = 'org.spongepowered.api.Sponge.getEventFactory'
     sortPriorityPrefix = 'original'
     groupingPrefixes = ['from': 'to']
     validateCode = false

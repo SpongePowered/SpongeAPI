@@ -78,19 +78,20 @@ public class ClassGeneratorProvider implements FactoryProvider {
         return this.targetPackage + "." + name + "$" + classifier;
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public <T> EventFactory<T> create(final Class<T> type, Class<?> parentType, List<? extends EventFactoryPlugin> plugins) {
+    public Class<?> createEventImpl(final Class<?> type, Class<?> parentType, List<? extends EventFactoryPlugin> plugins) {
         String eventName = getClassName(type, "Impl");
-        String factoryName = getClassName(type, "Factory");
+        return this.classLoader.defineClass(eventName, this.builder.createClass(type, eventName, parentType, plugins));
+    }
 
-        Class<?> eventClass = this.classLoader.defineClass(eventName, this.builder.createClass(type, eventName, parentType, plugins));
-        Class<?> factoryClass = this.classLoader.defineClass(factoryName, this.builder.createFactory(eventClass, factoryName));
+    @Override
+    public <T> T createFactoryInterfaceImpl(Class<T> clazz) {
+        String name = getClassName(clazz, "Impl");
+        Class<T> implClass = (Class<T>) this.classLoader.defineClass(name, FactoryInterfaceGenerator.createClass(clazz, name, this));
 
         try {
-            return (EventFactory<T>) factoryClass.newInstance();
+            return implClass.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
-            throw new RuntimeException("Failed to create event factory", e);
+            throw new RuntimeException("Failed to create event factory interface impl", e);
         }
     }
 }
