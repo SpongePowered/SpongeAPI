@@ -32,20 +32,62 @@ import org.spongepowered.api.entity.living.Agent;
 
 public interface WatchClosestAITask extends AITask<Agent> {
 
+    /**
+     * Creates a new {@link Builder} to build a new
+     * {@link WatchClosestAITask}.
+     *
+     * @return A new builder
+     */
     static Builder builder() {
         return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the {@link Class} of the {@link Entity} type to "stare" or
+     * "watch" when that type of entity is nearby.
+     *
+     * @return The class of entity to "watch"
+     */
     Class<? extends Entity> getWatchedClass();
 
+    /**
+     * Sets the {@link Class} of the {@link Entity} type to "stare" or
+     * "watch" when that type of entity is nearby.
+     *
+     * @param watchedClass The class of entity to "watch"
+     * @return This task, for chaining
+     */
     WatchClosestAITask setWatchedClass(Class<? extends Entity> watchedClass);
 
+    /**
+     * Gets the maximum distance to "watch" a targeted {@link Entity}.
+     *
+     * @return The distance to watch a targeted entity
+     */
     float getMaxDistance();
 
+    /**
+     * Sets the maximum distance to "watch" a targeted {@link Entity}.
+     *
+     * @param maxDistance The maximum distance to watch an entity
+     * @return This task, for chaining
+     */
     WatchClosestAITask setMaxDistance(float maxDistance);
 
+    /**
+     * Gets the chance that an {@link Entity} will "watch" a targeted
+     * {@link Entity}.
+     *
+     * @return The chance to watch
+     */
     float getChance();
 
+    /**
+     * SEts the chance to "watch" a targeted {@link Entity}.
+     *
+     * @param chance The chance to "watch"
+     * @return This task, for chaining
+     */
     WatchClosestAITask setChance(float chance);
 
     interface Builder extends AITaskBuilder<Agent, WatchClosestAITask, Builder> {

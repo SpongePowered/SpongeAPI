@@ -281,7 +281,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
          */
         public StateMatcher build() throws IllegalStateException {
             checkState(this.type != null, "BlockType cannot be null!");
-            return new StateMatcher(this.type, this.traits.toArray(new BlockTrait[this.traits.size() - 1]), this.values.toArray());
+            return new StateMatcher(this.type, this.traits.toArray(new BlockTrait<?>[this.traits.size() - 1]), this.values.toArray());
 
         }
 
@@ -328,7 +328,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
         }
 
         /**
-         * Gets a {@link true} return value if the provided {@link BlockState}
+         * Gets a {@code true} return value if the provided {@link BlockState}
          * sufficiently matches this matcher, such that the {@link BlockType}
          * matches, and the pre-defined {@link BlockTrait} values match.
          *

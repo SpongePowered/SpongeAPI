@@ -41,8 +41,9 @@ public class StatisticsTrackedProperty extends BooleanProperty {
 
     /**
      * Creates a new {@link StatisticsTrackedProperty} for the provided
-     * {@code value} and {@link Operator}. Usually applicable to blocks,
-     * whether those blocks are statistically tracked.
+     * {@code value} and {@link org.spongepowered.api.data.Property.Operator}.
+     * Usually applicable to blocks, whether those blocks are statistically
+     * tracked.
      *
      * @param value The value
      * @param operator The operator, for comparisons

@@ -40,7 +40,8 @@ public class MemoryDataContainer extends MemoryDataView implements DataContainer
 
     /**
      * Creates a new {@link MemoryDataContainer} with a default
-     * {@link SafetyMode} of {@link SafetyMode#ALL_DATA_CLONED}.
+     * {@link org.spongepowered.api.data.DataView.SafetyMode} of
+     * {@link org.spongepowered.api.data.DataView.SafetyMode#ALL_DATA_CLONED}.
      */
     public MemoryDataContainer() {
         this(DataView.SafetyMode.ALL_DATA_CLONED);
@@ -48,10 +49,10 @@ public class MemoryDataContainer extends MemoryDataView implements DataContainer
 
     /**
      * Creates a new {@link MemoryDataContainer} with the provided
-     * {@link SafetyMode}.
+     * {@link org.spongepowered.api.data.DataView.SafetyMode}.
      *
      * @param safety The safety mode to use
-     * @see SafetyMode
+     * @see org.spongepowered.api.data.DataView.SafetyMode
      */
     public MemoryDataContainer(DataView.SafetyMode safety) {
         super(safety);

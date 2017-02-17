@@ -632,7 +632,7 @@ public interface DataView {
     boolean isEmpty();
 
     /**
-     * Gets the {@link SafetyMode} of this data view.
+     * Gets the {@link org.spongepowered.api.data.DataView.SafetyMode} of this data view.
      *
      * @return The safety mode
      */
