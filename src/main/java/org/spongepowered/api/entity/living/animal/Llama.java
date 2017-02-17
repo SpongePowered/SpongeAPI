@@ -37,10 +37,21 @@ import org.spongepowered.api.entity.projectile.source.ProjectileSource;
  */
 public interface Llama extends Horse, ProjectileSource {
 
+    /**
+     * Gets the {@link Value} for the {@link Keys#LLAMA_STRENGTH llama strength}
+     * when attacking.
+     *
+     * @return The strength value of the llama
+     */
     default MutableBoundedValue<Integer> strength() {
         return getValue(Keys.LLAMA_STRENGTH).get();
     }
 
+    /**
+     * Gets the {@link Value} for the {@link Keys#LLAMA_VARIANT llama variant}.
+     *
+     * @return The variant value of the llama
+     */
     default Value<LlamaVariant> llamaVariant() {
         return getValue(Keys.LLAMA_VARIANT).get();
     }

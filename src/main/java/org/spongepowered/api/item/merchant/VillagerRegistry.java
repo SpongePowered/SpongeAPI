@@ -119,6 +119,7 @@ public interface VillagerRegistry {
      * Generates a new {@link List} of {@link TradeOffer}s based on the
      * provided {@link Career}, {@code level}, and {@link Random}.
      *
+     * @param merchant The merchant
      * @param career The career
      * @param level The level
      * @param random The random
@@ -139,6 +140,7 @@ public interface VillagerRegistry {
      * {@link TradeOfferListMutator}s registered for the desired level
      * and {@link Career}, the list remains unmodified.
      *
+     * @param merchant The merchant
      * @param currentOffers The current offers
      * @param career The career
      * @param level The level

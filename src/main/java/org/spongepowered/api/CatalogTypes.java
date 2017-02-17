@@ -210,7 +210,7 @@ public final class CatalogTypes {
     public static final Class<DoublePlantType> DOUBLE_PLANT_TYPE = DoublePlantType.class;
 
     /**
-     * @deprecated Use {@link #DOUBLE_PLANT_TYPE}
+     * @deprecated Use {@link #DOUBLE_PLANT_TYPE}.
      */
     @Deprecated
     public static final Class<DoublePlantType> DOUBLE_SIZE_PLANT_TYPE = DOUBLE_PLANT_TYPE;

@@ -438,19 +438,24 @@ public final class SoundTypes {
 
     public static final SoundType ENTITY_EVOCATION_FANGS_ATTACK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_FANGS_ATTACK");
 
-    public static final SoundType ENTITY_EVOCATION_ILLAGER_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_AMBIENT");
+    public static final SoundType ENTITY_EVOCATION_ILLAGER_AMBIENT = DummyObjectProvider
+        .createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_AMBIENT");
 
-    public static final SoundType ENTITY_EVOCATION_ILLAGER_CAST_SPELL = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_CAST_SPELL");
+    public static final SoundType ENTITY_EVOCATION_ILLAGER_CAST_SPELL = DummyObjectProvider
+        .createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_CAST_SPELL");
 
     public static final SoundType ENTITY_EVOCATION_ILLAGER_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_DEATH");
 
     public static final SoundType ENTITY_EVOCATION_ILLAGER_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_HURT");
 
-    public static final SoundType ENTITY_EVOCATION_ILLAGER_PREPARE_ATTACK = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_PREPARE_ATTACK");
+    public static final SoundType ENTITY_EVOCATION_ILLAGER_PREPARE_ATTACK = DummyObjectProvider
+        .createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_PREPARE_ATTACK");
 
-    public static final SoundType ENTITY_EVOCATION_ILLAGER_PREPARE_SUMMON = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_PREPARE_SUMMON");
+    public static final SoundType ENTITY_EVOCATION_ILLAGER_PREPARE_SUMMON = DummyObjectProvider
+        .createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_PREPARE_SUMMON");
 
-    public static final SoundType ENTITY_EVOCATION_ILLAGER_PREPARE_WOLOLO = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_PREPARE_WOLOLO");
+    public static final SoundType ENTITY_EVOCATION_ILLAGER_PREPARE_WOLOLO = DummyObjectProvider
+        .createFor(SoundType.class, "ENTITY_EVOCATION_ILLAGER_PREPARE_WOLOLO");
 
     public static final SoundType ENTITY_EXPERIENCE_BOTTLE_THROW = DummyObjectProvider.createFor(SoundType.class, "ENTITY_EXPERIENCE_BOTTLE_THROW");
 
@@ -842,9 +847,11 @@ public final class SoundTypes {
 
     public static final SoundType ENTITY_VILLAGER_YES = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VILLAGER_YES");
 
-    public static final SoundType ENTITY_VINDICATION_ILLAGER_AMBIENT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VINDICATION_ILLAGER_AMBIENT");
+    public static final SoundType ENTITY_VINDICATION_ILLAGER_AMBIENT = DummyObjectProvider
+        .createFor(SoundType.class, "ENTITY_VINDICATION_ILLAGER_AMBIENT");
 
-    public static final SoundType ENTITY_VINDICATION_ILLAGER_DEATH = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VINDICATION_ILLAGER_DEATH");
+    public static final SoundType ENTITY_VINDICATION_ILLAGER_DEATH = DummyObjectProvider
+        .createFor(SoundType.class, "ENTITY_VINDICATION_ILLAGER_DEATH");
 
     public static final SoundType ENTITY_VINDICATION_ILLAGER_HURT = DummyObjectProvider.createFor(SoundType.class, "ENTITY_VINDICATION_ILLAGER_HURT");
 

@@ -34,6 +34,7 @@ public final class LlamaVariants {
     public static final LlamaVariant BROWN = DummyObjectProvider.createFor(LlamaVariant.class, "BROWN");
     public static final LlamaVariant GRAY = DummyObjectProvider.createFor(LlamaVariant.class, "GRAY");
     // SORTFIELDS:OFF
+
     private LlamaVariants() {}
 
 }

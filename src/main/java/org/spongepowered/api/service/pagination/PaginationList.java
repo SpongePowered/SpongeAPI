@@ -151,8 +151,8 @@ public interface PaginationList {
         Builder title(Text title);
 
         /**
-         * Sets the header to be displayed for this output on all pages after the
-         * title bar but before the contents.</p>
+         * Sets the header to be displayed for this output on all pages after
+         * the title bar but before the contents.
          *
          * <p>Header and footer will use this Text's style and color for
          * formatting.</p>
@@ -166,8 +166,8 @@ public interface PaginationList {
         Builder header(@Nullable Text header);
 
         /**
-         * Sets the footer to be displayed for this output on all pages after the
-         * contents and page navigation bar.
+         * Sets the footer to be displayed for this output on all pages after
+         * the contents and page navigation bar.
          *
          * <p>If the footer is not specified, or passed in as <code>null</code>,
          * it will be omitted when displaying the list.</p>

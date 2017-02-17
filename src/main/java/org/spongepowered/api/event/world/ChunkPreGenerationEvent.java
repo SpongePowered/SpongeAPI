@@ -37,7 +37,7 @@ public interface ChunkPreGenerationEvent extends TargetWorldEvent {
 
     /**
      * The object that contains the progress information for the
-     * current {@link ChunkPreGenerate}
+     * current {@link ChunkPreGenerate}.
      *
      * @return The {@link ChunkPreGenerate}
      */

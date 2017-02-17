@@ -95,8 +95,8 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     Optional<ItemStack> peek(EquipmentSlotType equipmentType);
 
     /**
-     * Gets without removing the items from the stack for the specified equipment
-     * type in this Inventory.
+     * Gets without removing the items from the stack for the specified
+     * equipment type in this Inventory.
      *
      * @see Inventory#peek()
      * @param equipmentType Type of equipment slot to query for
@@ -116,8 +116,8 @@ public interface EquipmentInventory extends OrderedInventory, CarriedInventory<A
     Optional<ItemStack> peek(EquipmentType equipmentType);
 
     /**
-     * Gets without removing the items from the stack for the specified equipment
-     * type in this Inventory.
+     * Gets without removing the items from the stack for the specified
+     * equipment type in this Inventory.
      *
      * @see Inventory#peek()
      * @param equipmentType Type of equipment slot to query for

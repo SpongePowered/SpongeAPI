@@ -42,11 +42,13 @@ public final class StructureModes {
     /**
      * Data mode can only be used during natural generation.
      *
-     * <p>They mark the location to run a function specified by its metadata input, which can only be used for relevant structures.</p>
+     * <p>They mark the location to run a function specified by its metadata
+     * input, which can only be used for relevant structures.</p>
      *
      * <p>The structure block is removed afterwards.</p>
      *
-     * <p>This mode is the default mode when a structure block is first placed.</p>
+     * <p>This mode is the default mode when a structure block is first
+     * placed.</p>
      */
     public static final StructureMode DATA = DummyObjectProvider.createFor(StructureMode.class, "DATA");
 
@@ -56,7 +58,8 @@ public final class StructureModes {
     public static final StructureMode LOAD = DummyObjectProvider.createFor(StructureMode.class, "LOAD");
 
     /**
-     * Save mode allows a player to highlight a structure in the world and save it to a file.
+     * Save mode allows a player to highlight a structure in the world and
+     * save it to a file.
      */
     public static final StructureMode SAVE = DummyObjectProvider.createFor(StructureMode.class, "SAVE");
 

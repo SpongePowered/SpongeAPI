@@ -62,28 +62,32 @@ public class DefaultGameRules {
      * Whether the server should skip checking player speed when
      * the player is wearing elytra.
      *
-     * <p>This is a boolean game rule, with a default value of {@code false}.</p>
+     * <p>This is a boolean game rule, with a default value of
+     * {@code false}.</p>
      */
     public static final String DISABLE_ELYTRA_MOVEMENT_CHECK = "disableElytraMovementCheck";
 
     /**
      * Whether the day-night cycle and moon phases progress.
      *
-     * <p>This is a boolean game rule, with a default value of {@code true}.</p>
+     * <p>This is a boolean game rule, with a default value of
+     * {@code true}.</p>
      */
     public static final String DO_DAYLIGHT_CYCLE = "doDaylightCycle";
 
     /**
      * Whether entities that are not mobs should have drops.
      *
-     * <p>This is a boolean game rule, with a default value of {@code true}.</p>
+     * <p>This is a boolean game rule, with a default value of
+     * {@code true}.</p>
      */
     public static final String DO_ENTITY_DROPS = "doEntityDrops";
 
     /**
      * Whether fire should spread and naturally extinguish.
      *
-     * <p>This is a boolean game rule, with a default value of {@code true}.</p>
+     * <p>This is a boolean game rule, with a default value of
+     * {@code true}.</p>
      */
     public static final String DO_FIRE_TICK = "doFireTick";
 
@@ -119,14 +123,16 @@ public class DefaultGameRules {
      * Whether {@link Player}s should keep items in their inventory
      * after death.
      *
-     * <p>This is a boolean game rule, with a default value of {@code false}.</p>
+     * <p>This is a boolean game rule, with a default value of
+     * {@code false}.</p>
      */
     public static final String KEEP_INVENTORY = "keepInventory";
 
     /**
      * Whether to log admin commands to server log.
      *
-     * <p>This is a boolean game rule, with a default value of {@code true}.</p>
+     * <p>This is a boolean game rule, with a default value of
+     * {@code true}.</p>
      */
     public static final String LOG_ADMIN_COMMANDS = "logAdminCommands";
 
@@ -136,8 +142,9 @@ public class DefaultGameRules {
      *
      * <p>Damage affects {@link GameModes#SURVIVAL survival mode} or
      * {@link GameModes#ADVENTURE adventure mode} {@link Player}s, and all
-     * mobs but bats. Pushable entities include non-spectator-mode {@link Player}, any
-     * mob except {@link Bat}s, as well as {@link Boat}s and {@link Minecart}.</p>
+     * mobs but bats. Pushable entities include non-spectator-mode
+     * {@link Player}, any mob except {@link Bat}s, as well as
+     * {@link Boat}s and {@link Minecart}.</p>
      *
      * <p>Setting to {@code 0} disables the rule.</p>
      *
@@ -201,7 +208,8 @@ public class DefaultGameRules {
     /**
      * Whether the debug screen shows all or reduced information.
      *
-     * <p>This is a boolean game rule, with a default value of {@code false}.</p>
+     * <p>This is a boolean game rule, with a default value of
+     * {@code false}.</p>
      */
     public static final String REDUCED_DEBUG_INFO = "reducedDebugInfo";
 

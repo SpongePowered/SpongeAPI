@@ -27,8 +27,8 @@ package org.spongepowered.api.data.manipulator.immutable.entity;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.PigSaddleData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.living.animal.RideableHorse;
 import org.spongepowered.api.entity.living.animal.Pig;
+import org.spongepowered.api.entity.living.animal.RideableHorse;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**

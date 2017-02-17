@@ -63,7 +63,8 @@ public final class Title {
      *
      * @param title The main title of the title, or {@code null} for default
      * @param subtitle The subtitle of the title, or {@code null} for default
-     * @param actionBar The action bar text of the title, or {@code null} for default
+     * @param actionBar The action bar text of the title, or {@code null} for
+     *     default
      * @param fadeIn The fade in time of the title, or {@code null} for default
      * @param stay The stay time of the title, or {@code null} for default
      * @param fadeOut The fade out time of the title, or {@code null} for
@@ -73,8 +74,8 @@ public final class Title {
      * @param reset {@code true} if this title resets all settings to default
      *        first
      */
-    Title(@Nullable Text title, @Nullable Text subtitle, @Nullable Text actionBar, @Nullable Integer fadeIn, @Nullable Integer stay, @Nullable Integer fadeOut,
-            boolean clear, boolean reset) {
+    Title(@Nullable Text title, @Nullable Text subtitle, @Nullable Text actionBar, @Nullable Integer fadeIn, @Nullable Integer stay,
+            @Nullable Integer fadeOut, boolean clear, boolean reset) {
         this.title = Optional.ofNullable(title);
         this.subtitle = Optional.ofNullable(subtitle);
         this.actionBar = Optional.ofNullable(actionBar);
@@ -108,7 +109,7 @@ public final class Title {
      *
      * @return The {@link Text} of the action bar, if it was configured
      */
-    public final Optional<Text> getActionBar() {
+    public Optional<Text> getActionBar() {
         return this.actionBar;
     }
 
@@ -313,15 +314,15 @@ public final class Title {
          * @return The current action bar text, or {@link Optional#empty()} if none
          * @see Title#getActionBar()
          */
-        public final Optional<Text> getActionBar() {
+        public Optional<Text> getActionBar() {
             return Optional.ofNullable(this.actionBar);
         }
 
         /**
          * Sets the action bar text to send to the player.
          *
-         * @param actionBar The text to use for the action bar, or {@code null} to
-         *        reset
+         * @param actionBar The text to use for the action bar, or {@code null}
+         *     to reset
          * @return This title builder
          * @see Title#getActionBar()
          */
@@ -498,7 +499,12 @@ public final class Title {
         public Title build() {
             // If the title has no other properties and is either empty, just clears
             // or just resets we can return a special instance
-            if (this.title == null && this.subtitle == null && this.actionBar == null && this.fadeIn == null && this.stay == null && this.fadeOut == null) {
+            if (this.title == null
+                && this.subtitle == null
+                && this.actionBar == null
+                && this.fadeIn == null
+                && this.stay == null
+                && this.fadeOut == null) {
                 if (this.clear) {
                     if (!this.reset) {
                         return CLEAR;

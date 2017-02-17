@@ -47,7 +47,8 @@ public interface ImmutableEndGatewayData extends ImmutableDataManipulator<Immuta
      * Gets the {@link ImmutableValue} for the "should use exact teleport
      * location" state of the {@link EndGateway}.
      *
-     * @return The immutable value for the "should use exact teleport location" state
+     * @return The immutable value for the "should use exact teleport location"
+     *     state
      */
     ImmutableValue<Boolean> exactTeleport();
 
@@ -59,7 +60,8 @@ public interface ImmutableEndGatewayData extends ImmutableDataManipulator<Immuta
     ImmutableValue<Long> age();
 
     /**
-     * Gets the {@link ImmutableValue} for the teleport cooldown of the {@link EndGateway}.
+     * Gets the {@link ImmutableValue} for the teleport cooldown of the
+     * {@link EndGateway}.
      *
      * @return The immutable value for the teleport cooldown
      */
