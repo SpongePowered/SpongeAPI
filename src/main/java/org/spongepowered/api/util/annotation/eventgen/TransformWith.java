@@ -22,4 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.util.generator.event;
+package org.spongepowered.api.util.annotation.eventgen;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * Used to indicate a method that will be called from the method with the
+ * corresponding {@link TransformResult} annotation.
+ *
+ * <p>This annotation should be placed on the method with the least specific
+ * return type, if covariant return types are used.</p>
+ *
+ * <p>The method annotated with this annotation <bold>must</bold> either return
+ * an instance of the method's class, or Object (for compatibility with
+ * generics).</p>
+ */
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface TransformWith {
+
+    /**
+     * Gets the name used to match this annotation to a {@link TransformResult}
+     * annotation.
+     *
+     * <p>Changing this is only necessary when this annotation is present on
+     * multiple methods in a class, or its superinterfaces/superclass.</p>
+     *
+     * @return The name to use
+     */
+    String value() default "";
+
+}

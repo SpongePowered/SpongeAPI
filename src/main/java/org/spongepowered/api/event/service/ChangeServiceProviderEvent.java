@@ -25,9 +25,9 @@
 package org.spongepowered.api.event.service;
 
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 import org.spongepowered.api.service.ProviderRegistration;
 import org.spongepowered.api.service.ServiceManager;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 import java.util.Optional;
 

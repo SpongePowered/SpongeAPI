@@ -31,8 +31,8 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
-import org.spongepowered.api.eventgencore.annotation.UseField;
 import org.spongepowered.api.util.Tuple;
+import org.spongepowered.api.util.annotation.eventgen.UseField;
 
 import java.util.Iterator;
 import java.util.List;
@@ -43,7 +43,8 @@ import java.util.function.Function;
 
 public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<DamageModifier> implements DamageEntityEvent {
 
-    @UseField protected double originalDamage;
+    @UseField
+    protected double originalDamage;
     @UseField protected List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions;
 
     @UseField protected double baseDamage;

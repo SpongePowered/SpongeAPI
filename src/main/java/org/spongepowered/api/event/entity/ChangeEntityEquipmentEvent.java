@@ -34,11 +34,11 @@ import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.entity.living.humanoid.TargetHumanoidEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
 import org.spongepowered.api.event.item.inventory.TargetInventoryEvent;
-import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 import java.util.Optional;
 

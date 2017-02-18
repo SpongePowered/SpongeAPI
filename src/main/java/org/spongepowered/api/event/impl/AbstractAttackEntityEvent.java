@@ -30,8 +30,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.entity.AttackEntityEvent;
-import org.spongepowered.api.eventgencore.annotation.UseField;
 import org.spongepowered.api.util.Tuple;
+import org.spongepowered.api.util.annotation.eventgen.UseField;
 
 import java.util.Iterator;
 import java.util.List;
@@ -41,7 +41,8 @@ import java.util.function.Function;
 
 public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<DamageModifier> implements AttackEntityEvent {
 
-    @UseField protected double originalDamage;
+    @UseField
+    protected double originalDamage;
     @UseField protected List<Tuple<DamageModifier, Function<? super Double, Double>>> originalFunctions;
 
     @UseField protected double baseDamage;

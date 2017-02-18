@@ -25,8 +25,8 @@
 package org.spongepowered.api.event.impl;
 
 import org.spongepowered.api.event.message.MessageEvent;
-import org.spongepowered.api.eventgencore.annotation.UseField;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.annotation.eventgen.UseField;
 
 /**
  * Abstract implementation of {@link MessageEvent}. Contains a
@@ -36,7 +36,8 @@ import org.spongepowered.api.text.Text;
 @SuppressWarnings("NullableProblems")
 public abstract class AbstractMessageEvent extends AbstractEvent implements MessageEvent {
 
-    @UseField protected MessageFormatter formatter;
+    @UseField
+    protected MessageFormatter formatter;
     @UseField protected Text originalMessage;
 
     @Override

@@ -22,45 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.generator.event.factory;
+package org.spongepowered.api.event.impl;
 
-import org.spongepowered.api.util.generator.event.factory.plugin.EventFactoryPlugin;
+import com.google.common.base.Preconditions;
+import org.spongepowered.api.event.entity.ai.AITaskEvent;
 
-import java.util.List;
+public abstract class AbstractAITaskEvent extends AbstractEvent implements AITaskEvent {
 
-/**
- * Creates event factories that can generate new instances of requested
- * events.
- */
-public interface FactoryProvider {
-
-    /**
-     * Get whether there should be any checks on whether a parameter is
-     * null when it should not be.
-     *
-     * @return The null policy
-     */
-    NullPolicy getNullPolicy();
-
-    /**
-     * Set whether there should be any checks on whether a parameter is
-     * null when it should not be.
-     *
-     * @param policy The null policy
-     */
-    void setNullPolicy(NullPolicy policy);
-
-    /**
-     * Creates a function that takes a map of property names with their
-     * values to create a new instance of a generated class that implements
-     * the given type.
-     *
-     * @param type The type to generate a class for
-     * @param parentType The parent type
-     * @param plugins The {@link EventFactoryPlugin}s to use when generating the class
-     * @param <T> The type of the event
-     * @return The function
-     */
-    <T> EventFactory<T> create(Class<T> type, Class<?> parentType, List<? extends EventFactoryPlugin> plugins);
+    @Override
+    public void init() {
+        Preconditions.checkArgument(this.getGoal().getOwner() == this.getTargetEntity(), String.format("The target entity '%s' is not the owner of the goal '%s'!", this.getTargetEntity(), this.getGoal()));
+    }
 
 }

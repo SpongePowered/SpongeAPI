@@ -29,13 +29,14 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
-import org.spongepowered.api.eventgencore.annotation.UseField;
+import org.spongepowered.api.util.annotation.eventgen.UseField;
 
 import java.util.List;
 
 public abstract class AbstractAffectEntityEvent extends AbstractEvent implements AffectEntityEvent {
 
-    @UseField protected List<Entity> entities;
+    @UseField
+    protected List<Entity> entities;
     @UseField(overrideToString = true) protected List<EntitySnapshot> entitySnapshots;
 
     @Override

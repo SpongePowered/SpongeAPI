@@ -29,9 +29,9 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.cause.entity.health.HealthModifier;
 import org.spongepowered.api.event.cause.entity.health.source.HealingSource;
 import org.spongepowered.api.event.impl.AbstractHealEntityEvent;
-import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
-import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 import org.spongepowered.api.util.Tuple;
+import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 import java.util.List;
 import java.util.Map;

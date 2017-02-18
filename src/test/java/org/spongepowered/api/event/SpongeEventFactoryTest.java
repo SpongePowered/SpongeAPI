@@ -48,7 +48,6 @@ import org.spongepowered.api.event.entity.ai.AITaskEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.PEBKACException;
-import org.spongepowered.api.util.generator.event.factory.EventFactory;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
@@ -92,12 +91,9 @@ public class SpongeEventFactoryTest {
     public static List<Object[]> getMethods() {
         ImmutableList.Builder<Object[]> methods = ImmutableList.builder();
         for (Method method : SpongeEventFactory.class.getMethods()) {
-            if (method.getName().startsWith("createState")) {
-                continue; // TODO minecrell needs to make this possible.
-            }
             if (method.getName().startsWith("create") && Modifier.isStatic(method.getModifiers())
                 && !excludedEvents.contains(method.getReturnType())) {
-                methods.add(new Object[]{method.getReturnType().getSimpleName(), method});
+                methods.add(new Object[]{method.getReturnType().getName(), method});
             }
         }
         return methods.build();
@@ -155,7 +151,7 @@ public class SpongeEventFactoryTest {
                         + "\tSolution: Modify the method name and/or signature to follow the expected getter/sett er semantics,"
                         + "or annotate the event with @ImplementedBy to indicate the abstract class used as the superclass."
                         + "(2) A bug in the class generator was found\n"
-                        + "\tSolution: Look into " + EventFactory.class.getName() + " and its implementations.\n",
+                        + "\tSolution: Look into event-impl-gen.\n",
                         e);
                 }
             }
@@ -175,7 +171,7 @@ public class SpongeEventFactoryTest {
                 + "(). "
                 + "See the wrapped exception for more details.\n"
                 + "(2) A bug in the class generator was found\n"
-                + "\tSolution: Look into " + EventFactory.class.getName() + " and its implementations.\n"
+                + "\tSolution: Look into event-impl-gen.\n"
                 + "(3) A method that does not follow getter/setter semantics (getProp(), isBool(), setProp()) "
                 + "was added (i.e. blockList())\n"
                 + "\tSolution: Revisit " + this.method.getReturnType().getName() + " and its supertypes. If the method in question "

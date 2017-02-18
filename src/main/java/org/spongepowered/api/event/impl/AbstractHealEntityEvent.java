@@ -29,8 +29,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.event.cause.entity.health.HealthModifier;
 import org.spongepowered.api.event.entity.HealEntityEvent;
-import org.spongepowered.api.eventgencore.annotation.UseField;
 import org.spongepowered.api.util.Tuple;
+import org.spongepowered.api.util.annotation.eventgen.UseField;
 
 import java.util.Iterator;
 import java.util.List;
