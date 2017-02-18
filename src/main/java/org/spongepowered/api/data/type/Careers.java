@@ -37,6 +37,8 @@ public final class Careers {
 
     public static final Career BUTCHER = DummyObjectProvider.createFor(Career.class, "BUTCHER");
 
+    public static final Career CARTOGRAPHER = DummyObjectProvider.createFor(Career.class, "CARTOGRAPHER");
+
     public static final Career CLERIC = DummyObjectProvider.createFor(Career.class, "CLERIC");
 
     public static final Career FARMER = DummyObjectProvider.createFor(Career.class, "FARMER");
