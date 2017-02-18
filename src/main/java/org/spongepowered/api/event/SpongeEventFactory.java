@@ -2330,21 +2330,15 @@ public class SpongeEventFactory {
      * {@link org.spongepowered.api.event.entity.living.humanoid.player.KickPlayerEvent}.
      * 
      * @param cause The cause
-     * @param originalChannel The original channel
-     * @param channel The channel
-     * @param formatter The formatter
+     * @param reason The reason
      * @param targetEntity The target entity
-     * @param messageCancelled The message cancelled
      * @return A new kick player event
      */
-    public static KickPlayerEvent createKickPlayerEvent(Cause cause, MessageChannel originalChannel, Optional<MessageChannel> channel, MessageEvent.MessageFormatter formatter, Player targetEntity, boolean messageCancelled) {
+    public static KickPlayerEvent createKickPlayerEvent(Cause cause, Text reason, Player targetEntity) {
         HashMap<String, Object> values = new HashMap<>();
         values.put("cause", cause);
-        values.put("originalChannel", originalChannel);
-        values.put("channel", channel);
-        values.put("formatter", formatter);
+        values.put("reason", reason);
         values.put("targetEntity", targetEntity);
-        values.put("messageCancelled", messageCancelled);
         return SpongeEventFactoryUtils.createEventImpl(KickPlayerEvent.class, values);
     }
 

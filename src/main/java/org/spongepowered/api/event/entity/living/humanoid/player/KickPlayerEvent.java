@@ -25,11 +25,25 @@
 package org.spongepowered.api.event.entity.living.humanoid.player;
 
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.message.MessageChannelEvent;
+import org.spongepowered.api.text.Text;
 
 /**
  * Fired when a {@link Player} is kicked.
  */
-public interface KickPlayerEvent extends TargetPlayerEvent, MessageChannelEvent {
+public interface KickPlayerEvent extends TargetPlayerEvent {
+
+    /**
+     * Gets the reason given to the player.
+     *
+     * @return The reason
+     */
+    Text getReason();
+
+    /**
+     * Sets the reason given to the player.
+     *
+     * @param reason The reason
+     */
+    void setReason(Text reason);
 
 }
