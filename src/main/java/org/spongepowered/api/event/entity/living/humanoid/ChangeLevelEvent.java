@@ -26,7 +26,7 @@ package org.spongepowered.api.event.entity.living.humanoid;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
-import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
  * Called when a human's level is changed.

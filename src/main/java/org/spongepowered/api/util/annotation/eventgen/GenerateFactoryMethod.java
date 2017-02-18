@@ -22,5 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.util.generator.event.factory.plugin;
+package org.spongepowered.api.util.annotation.eventgen;
+
+/**
+ * Explicitly enables generation of an event factory method for an event class.
+ *
+ * <p>By default, an event which contains subinterfaces will not have
+ * an event factory method generated.</p>
+ */
+public @interface GenerateFactoryMethod {
+
+}

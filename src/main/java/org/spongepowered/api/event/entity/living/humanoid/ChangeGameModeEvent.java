@@ -28,7 +28,7 @@ import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
-import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
  * Called when a {@link Humanoid} changes {@link GameMode}.

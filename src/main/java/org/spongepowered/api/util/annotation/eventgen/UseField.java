@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.annotation;
+package org.spongepowered.api.util.annotation.eventgen;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -30,29 +30,27 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Used to indicate that the return type of a method should be transformed by
- * calling a method on it, indicated by the {@link TransformWith} annotation.
+ * Used to mark fields which should be used by the class generator.
  *
- * <p>This annotation should be placed on the method with the least specific
- * return type, if covariant return types are used.</p>
+ * <p>The class generator will reference the annotated field when
+ * generating methods, and set it from the constructor arguments</p>
  *
- * <p>The return type of the annotation, or a superclass/superinterface of it,
- * must have a method annotated with {@link TransformWith}, with a matching
- * {@link #value()}.</p>
+ * <p>Any field in an abstract class without this field will not be
+ * set automatically, even if it matches a property from the implemented
+ * event.</p>
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface TransformResult {
+@Target(ElementType.FIELD)
+public @interface UseField {
 
     /**
-     * Gets the name used to match this annotation to a {@link TransformWith}
-     * annotation.
+     * Indicates whether to use the annotated field directly in the generated 'toString()' method,
+     * rather than calling the normal accessor method.
      *
-     * <p>Changing this is only necessary when multiple {@link TransformWith}
-     * annotations are present in the annotated method's return type's class.
-     * </p>
-     *
-     * @return The name to use
+     * <p>This should only be used when there are special restrictions on calling the accessor
+     * (for example, AffectEntityEvent#getEntitySnapshots)</p>
+     * @return
      */
-    String value() default "";
+    boolean overrideToString() default false;
+
 }

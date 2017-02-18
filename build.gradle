@@ -14,8 +14,8 @@ buildscript {
     dependencies {
         classpath 'gradle.plugin.net.minecrell:licenser:0.3'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
-        classpath 'org.spongepowered:event-impl-gen:2.1.0-SNAPSHOT'
         classpath 'gradle.plugin.org.spongepowered:spongegradle:0.8.1'
+        classpath 'org.spongepowered:event-impl-gen:4.0.0-SNAPSHOT'
     }
 }
 
@@ -65,8 +65,7 @@ dependencies {
     compile 'com.flowpowered:flow-noise:1.0.1-SNAPSHOT'
 
     // Event generation
-    compile 'org.ow2.asm:asm:5.0.3'
-    compile 'org.spongepowered:event-gen-core:2.1.0-SNAPSHOT'
+    compile 'org.ow2.asm:asm-debug-all:5.0.3'
 }
 
 // JAR manifest configuration
@@ -89,36 +88,30 @@ artifacts {
     archives javadocJar
 }
 
-apply plugin: 'event-impl-gen'
-
 // Compile time code generator for the event factory
+apply plugin: 'org.spongepowered.event-impl-gen'
+
 genEventImpl {
-    includeSrc = [
-            'src/main/java/org/spongepowered/api/event/achievement/',
-            'src/main/java/org/spongepowered/api/event/action/',
-            'src/main/java/org/spongepowered/api/event/block/',
-            'src/main/java/org/spongepowered/api/event/command/',
-            'src/main/java/org/spongepowered/api/event/data/',
-            'src/main/java/org/spongepowered/api/event/economy/',
-            'src/main/java/org/spongepowered/api/event/entity/',
-            'src/main/java/org/spongepowered/api/event/game/',
-            'src/main/java/org/spongepowered/api/event/item/inventory/',
-            'src/main/java/org/spongepowered/api/event/message/',
-            'src/main/java/org/spongepowered/api/event/network/',
-            'src/main/java/org/spongepowered/api/event/server/',
-            'src/main/java/org/spongepowered/api/event/service/',
-            'src/main/java/org/spongepowered/api/event/statistic/',
-            'src/main/java/org/spongepowered/api/event/user/',
-            'src/main/java/org/spongepowered/api/event/world/',
-    ]
-    excludeSrc = []
-    outputDir = 'src/main/java/'
+    include 'org/spongepowered/api/event/*/**/*'
+    exclude 'org/spongepowered/api/event/cause/'
+    exclude 'org/spongepowered/api/event/filter/'
+    exclude 'org/spongepowered/api/event/impl/'
+
+    output = '.gradle/sponge-event-factory.jar'
+    outputPackage = 'org.spongepowered.api.event.gen'
     outputFactory = 'org.spongepowered.api.event.SpongeEventFactory'
-    eventImplCreateMethod = 'org.spongepowered.api.event.SpongeEventFactoryUtils.createEventImpl'
+
     sortPriorityPrefix = 'original'
     groupingPrefixes = ['from': 'to']
     validateCode = false
 }
+
+dependencies {
+    compile files(tasks.genEventImpl)
+}
+
+// Define setupDecompWorkspace task so it runs when setting up the implementation workspace
+task('setupDecompWorkspace', dependsOn: 'genEventImpl')
 
 sortClassFields {
     add 'main', 'org.spongepowered.api.CatalogTypes'

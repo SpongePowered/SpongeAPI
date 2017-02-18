@@ -30,14 +30,14 @@ import static org.spongepowered.api.text.TextTemplate.of;
 
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.impl.AbstractMessageEvent;
-import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
-import org.spongepowered.api.eventgencore.annotation.PropertySettings;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.text.transform.FixedPartitionedTextFormatter;
 import org.spongepowered.api.text.transform.SimpleTextFormatter;
 import org.spongepowered.api.text.transform.SimpleTextTemplateApplier;
 import org.spongepowered.api.text.transform.TextTemplateApplier;
+import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 /**
  * Describes events when a involving a {@link Text} message.
