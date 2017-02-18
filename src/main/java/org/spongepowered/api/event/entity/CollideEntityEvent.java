@@ -26,7 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.action.CollideEvent;
-import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
  * Fired when an {@link Entity} collides with one or more {@link Entity}'s.

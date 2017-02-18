@@ -28,7 +28,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.entity.living.TargetLivingEvent;
 import org.spongepowered.api.event.message.MessageChannelEvent;
-import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
  * An event where the {@link Entity} is being either removed usually due to

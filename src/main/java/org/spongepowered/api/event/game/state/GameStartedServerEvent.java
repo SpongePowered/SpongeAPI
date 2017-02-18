@@ -25,10 +25,17 @@
 package org.spongepowered.api.event.game.state;
 
 import org.spongepowered.api.GameState;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 /**
  * Represents a {@link GameState#SERVER_STARTED} event.
  */
 public interface GameStartedServerEvent extends GameStateEvent {
+
+    @Override
+    @PropertySettings(requiredParameter = false, generateMethods = false)
+    default GameState getState() {
+        return GameState.SERVER_STARTED;
+    }
 
 }

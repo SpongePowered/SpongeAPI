@@ -28,8 +28,8 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.impl.AbstractSpawnEntityEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
-import org.spongepowered.api.eventgencore.annotation.GenerateFactoryMethod;
-import org.spongepowered.api.eventgencore.annotation.ImplementedBy;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 
 /**
  * Raised when an {@link Entity} is spawned. This usually follows the chain of

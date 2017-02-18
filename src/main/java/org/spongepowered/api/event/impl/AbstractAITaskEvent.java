@@ -22,16 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.generator.event.factory;
+package org.spongepowered.api.event.impl;
 
-import java.util.Map;
-import java.util.function.Function;
+import com.google.common.base.Preconditions;
+import org.spongepowered.api.event.entity.ai.AITaskEvent;
 
-/**
- * Generates a new instance of an event using a given map of parameters.
- *
- * @param <E> The type of event
- */
-public interface EventFactory<E> extends Function<Map<String, Object>, E> {
+public abstract class AbstractAITaskEvent extends AbstractEvent implements AITaskEvent {
+
+    @Override
+    public void init() {
+        Preconditions.checkArgument(this.getGoal().getOwner() == this.getTargetEntity(), String.format("The target entity '%s' is not the owner of the goal '%s'!", this.getTargetEntity(), this.getGoal()));
+    }
 
 }

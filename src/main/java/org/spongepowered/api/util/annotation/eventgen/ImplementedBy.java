@@ -22,45 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.generator.event.factory;
+package org.spongepowered.api.util.annotation.eventgen;
 
-import org.spongepowered.api.util.generator.event.factory.plugin.EventFactoryPlugin;
-
-import java.util.List;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * Creates event factories that can generate new instances of requested
- * events.
+ * Used to indicate the base class that a generated event class extends from.
  */
-public interface FactoryProvider {
+@Inherited
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ImplementedBy {
 
     /**
-     * Gets whether there should be any checks on whether a parameter is
-     * null when it should not be.
+     * Gets the class which serves as the base class which the generated class for this
+     * event interface will extend.
      *
-     * @return The null policy
+     * @return The base class to use
      */
-    NullPolicy getNullPolicy();
+    Class<?> value();
 
     /**
-     * Sets whether there should be any checks on whether a parameter is
-     * null when it should not be.
+     * Gets the priority for this annotaion, relative to other annotations in the same
+     * hierarchy of the event interface
      *
-     * @param policy The null policy
-     */
-    void setNullPolicy(NullPolicy policy);
-
-    /**
-     * Creates a function that takes a map of property names with their
-     * values to create a new instance of a generated class that implements
-     * the given type.
+     * <p>The annotation with the highest priority will be used.</p>
      *
-     * @param type The type to generate a class for
-     * @param parentType The parent type
-     * @param plugins The {@link EventFactoryPlugin}s to use when generating the class
-     * @param <T> The type of the event
-     * @return The function
+     * @return The priority to use
      */
-    <T> EventFactory<T> create(Class<T> type, Class<?> parentType, List<? extends EventFactoryPlugin> plugins);
+    int priority() default 1;
 
 }

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event;
 
-import org.spongepowered.api.eventgencore.annotation.PropertySettings;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 /**
  * Represents an event that can be cancelled.

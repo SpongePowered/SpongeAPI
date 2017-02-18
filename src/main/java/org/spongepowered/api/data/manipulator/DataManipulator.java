@@ -37,7 +37,7 @@ import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.util.annotation.TransformWith;
+import org.spongepowered.api.util.annotation.eventgen.TransformWith;
 
 import java.util.Optional;
 import java.util.function.Function;

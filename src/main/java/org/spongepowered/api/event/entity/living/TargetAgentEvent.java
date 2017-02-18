@@ -25,12 +25,10 @@
 package org.spongepowered.api.event.entity.living;
 
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.eventgencore.annotation.codecheck.CompareTo;
 
 public interface TargetAgentEvent extends TargetLivingEvent {
 
     @Override
-    @CompareTo(position = 2)
     Agent getTargetEntity();
 
 }

@@ -25,10 +25,17 @@
 package org.spongepowered.api.event.game.state;
 
 import org.spongepowered.api.GameState;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 /**
  * Represents {@link GameState#LOAD_COMPLETE} event.
  */
 public interface GameLoadCompleteEvent extends GameStateEvent {
+
+    @Override
+    @PropertySettings(requiredParameter = false, generateMethods = false)
+    default GameState getState() {
+        return GameState.LOAD_COMPLETE;
+    }
 
 }
