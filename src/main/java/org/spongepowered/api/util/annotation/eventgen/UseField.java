@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util.annotation.eventgen;
 
+import org.spongepowered.api.event.entity.AffectEntityEvent;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -44,12 +46,15 @@ import java.lang.annotation.Target;
 public @interface UseField {
 
     /**
-     * Indicates whether to use the annotated field directly in the generated 'toString()' method,
-     * rather than calling the normal accessor method.
+     * Indicates whether to use the annotated field directly in the
+     * generated '{@link #toString()}' method, rather than calling the
+     * normal accessor method.
      *
-     * <p>This should only be used when there are special restrictions on calling the accessor
-     * (for example, AffectEntityEvent#getEntitySnapshots)</p>
-     * @return
+     * <p>This should only be used when there are special restrictions
+     * on calling the accessor (for example,
+     * {@link AffectEntityEvent#getEntitySnapshots()}).</p>
+     *
+     * @return Whether to override the toString
      */
     boolean overrideToString() default false;
 
