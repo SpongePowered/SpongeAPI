@@ -39,16 +39,16 @@ import java.lang.annotation.Target;
 public @interface ImplementedBy {
 
     /**
-     * Gets the class which serves as the base class which the generated class for this
-     * event interface will extend.
+     * Gets the class which serves as the base class which the generated class
+     * for this event interface will extend.
      *
      * @return The base class to use
      */
     Class<?> value();
 
     /**
-     * Gets the priority for this annotaion, relative to other annotations in the same
-     * hierarchy of the event interface
+     * Gets the priority for this annotation, relative to other annotations in
+     * the same hierarchy of the event interface.
      *
      * <p>The annotation with the highest priority will be used.</p>
      *
