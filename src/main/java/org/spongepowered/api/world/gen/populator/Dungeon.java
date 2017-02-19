@@ -26,17 +26,20 @@ package org.spongepowered.api.world.gen.populator;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
-import org.spongepowered.api.entity.EntitySnapshot;
+import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.weighted.LootTable;
 import org.spongepowered.api.util.weighted.VariableAmount;
-import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.gen.Populator;
 
+import java.util.Optional;
+
+import javax.annotation.Nullable;
+
 /**
- * Represents a which places 'Dungeon's randomly underground. Each dungeon has
+ * Represents a {@link Populator} which places 'Dungeon's randomly underground. Each dungeon has
  * some associated MobSpawnerData, and data regarding the contents of any chests
  * generated within the dungeon.
  */
@@ -75,12 +78,50 @@ public interface Dungeon extends Populator {
     }
 
     /**
-     * Gets the {@link MobSpawnerData} which represents the MobSpawner which
-     * will be created within the dungeon.
-     * 
-     * @return The mob spawner data
+     * <p>Gets the {@link MobSpawnerData} which represents the MobSpawner which
+     * will be created within the dungeon.</p>
+     *
+     * <p><b>Note: </b> Only one of choices or mob spawner data
+     * will be present.</p>
+     *
+     * @return The mob spawner data, if present
      */
-    MobSpawnerData getSpawnerData();
+    Optional<MobSpawnerData> getMobSpawnerData();
+
+    /**
+     * <p>Sets {@link MobSpawnerData} which will be used to create the spawner
+     * within the dungeon.</p>
+     *
+     * <p><b>Note: </b> Only one of choices or mob spawner data
+     * will be present.</p>
+     * @param data MobSpawnerData to use
+     */
+    void setMobSpawnerData(MobSpawnerData data);
+
+    /**
+     * <p>Gets a weighted collection of possible
+     * {@link EntityArchetype}s that could be spawned. One type is chosen when
+     * creating the dungeon, for more complex spawners see
+     * {@link #getMobSpawnerData()}.</p>
+     *
+     * <p><b>Note: </b> Only one of choices or mob spawner data
+     * will be present.</p>
+     *
+     * @return Weighted table of possible types, if present
+     */
+    Optional<WeightedTable<EntityArchetype>> getChoices();
+
+    /**
+     * <p>Sets the possible {@link EntityArchetype}s that could be spawned.
+     * One type is chosen when creating the dungeon, for more complex
+     * spawners see {@link #setMobSpawnerData(MobSpawnerData)}</p>
+     *
+     * <p><b>Note: </b> Only one of choices or mob spawner data
+     * will be present.</p>
+     *
+     * @param choices Weighted table of possible types
+     */
+    void setChoices(WeightedTable<EntityArchetype> choices);
 
     /**
      * Gets a mutable weighted collection of possible contents of the chests.
@@ -117,89 +158,31 @@ public interface Dungeon extends Populator {
         }
 
         /**
-         * Sets the {@link MobSpawnerData} which represents the MobSpawner which
-         * will be created within the dungeon. Setting this directly will
-         * overwrite the related builder methods.
-         * 
-         * @param data The mob spawner data to use
+         * <p>Sets {@link MobSpawnerData} that will be used to create the spawner
+         * within the dungeon.</p>
+         *
+         * <p><b>Note: </b> Only one of choices or mob spawner data
+         * will be present.</p>
+         * @param data MobSpawnerData to use
          * @return This builder, for chaining
          */
         Builder mobSpawnerData(MobSpawnerData data);
 
         /**
-         * Sets the minimum delay between batches of monsters. <p> Each time the
-         * timer is reset the new delay is chosen randomly from between the
-         * minimum (inclusive) and maximum (exclusive) delays. </p>
+         * <p>Sets the possible {@link EntityArchetype}s that could be spawned.
+         * One type is chosen when creating the dungeon, for more complex
+         * spawners see {@link #mobSpawnerData(MobSpawnerData)}}</p>
          *
-         * @param delay The new minimum delay, in ticks
+         * <p>To use the default set of choices, pass <code>null</code> instead
+         * of a table.</p>
+         *
+         * <p><b>Note: </b> Only one of choices or mob spawner data
+         * will be present.</p>
+         *
+         * @param choices Weighted table of possible types
          * @return This builder, for chaining
          */
-        Builder minimumSpawnDelay(short delay);
-
-        /**
-         * Sets the maximum delay between batches of monsters. <p> Each time the
-         * timer is reset the new delay is chosen randomly from between the
-         * minimum (inclusive) and maximum (exclusive) delays. </p>
-         *
-         * @param delay The new maximum delay, in ticks
-         * @return This builder, for chaining
-         */
-        Builder maximumSpawnDelay(short delay);
-
-        /**
-         * Sets the number of monsters that will attempt to spawn in each batch.
-         *
-         * <p>The actual number of monsters spawned may be less than the
-         * attempted amount if the maximum number of entities allowed in the
-         * area is reached. </p>
-         *
-         * @param count The new count
-         * @return This builder, for chaining
-         */
-        Builder spawnCount(short count);
-
-        /**
-         * Sets the maximum amount of entities that may be within the spawn
-         * range. This monster spawner will cease spawning new entities if this
-         * cap is reached.
-         *
-         * @param count The new maximum amount of nearby entities
-         * @return This builder, for chaining
-         */
-        Builder maximumNearbyEntities(short count);
-
-        /**
-         * Sets the minimum range to the nearest player before this monster
-         * spawner will activate.
-         *
-         * @param range The new required range
-         * @return This builder, for chaining
-         */
-        Builder requiredPlayerRange(short range);
-
-        /**
-         * Sets the range within which the monsters from each batch will be
-         * spawned.
-         * 
-         * <p> The total region within which the monster may be spawned is
-         * defined by a cuboid with dimensions of
-         * {@code range*2+1 x 3 x range*2+1} centered around the monster
-         * spawner. </p>
-         *
-         * @param range The new range
-         * @return This builder, for chaining
-         */
-        Builder spawnRange(short range);
-
-        /**
-         * Defines a number of {@link WeightedSerializableObject}s from which
-         * the type of each batch will be randomly selected based on the
-         * weighting value.
-         *
-         * @param entities The possible entities
-         * @return This builder, for chaining
-         */
-        Builder possibleEntities(WeightedTable<EntitySnapshot> entities);
+        Builder choices(@Nullable WeightedTable<EntityArchetype> choices);
 
         /**
          * Defines a {@link LootTable} of {@link ItemStackSnapshot}s from which

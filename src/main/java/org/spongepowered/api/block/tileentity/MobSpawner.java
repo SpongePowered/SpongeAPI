@@ -27,9 +27,10 @@ package org.spongepowered.api.block.tileentity;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.data.value.mutable.WeightedCollectionValue;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntitySnapshot;
+import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 
@@ -137,7 +138,7 @@ public interface MobSpawner extends TileEntity {
     }
 
     /**
-     * Gets the {@link org.spongepowered.api.data.manipulator.mutable.MobSpawnerData.NextEntityToSpawnValue}
+     * Gets the {@link Value}
      * for the overridden
      * {@link WeightedSerializableObject}{@code <EntitySnapshot>} to spawn
      * next. If possible, the next entity to spawn may be chosen from the
@@ -145,7 +146,7 @@ public interface MobSpawner extends TileEntity {
      *
      * @return The next possible entity to spawn
      */
-    default MobSpawnerData.NextEntityToSpawnValue nextEntityToSpawn() {
+    default Value<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn() {
         return getValue(Keys.SPAWNER_NEXT_ENTITY_TO_SPAWN).get();
     }
 
@@ -159,7 +160,7 @@ public interface MobSpawner extends TileEntity {
      *
      * @return The immutable weighted entity collection value of entities
      */
-    default WeightedCollectionValue<EntitySnapshot> possibleEntitiesToSpawn() {
+    default WeightedCollectionValue<EntityArchetype> possibleEntitiesToSpawn() {
         return getValue(Keys.SPAWNER_ENTITIES).get();
     }
 

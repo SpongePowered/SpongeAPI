@@ -46,6 +46,7 @@ import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.Item;
@@ -77,6 +78,7 @@ import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.rotation.Rotation;
+import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 
 import java.time.Instant;
 import java.util.List;
@@ -931,7 +933,7 @@ public final class Keys {
 
     public static final Key<Value<EntityType>> SPAWNABLE_ENTITY_TYPE = KeyFactory.fake("SPAWNABLE_ENTITY_TYPE");
 
-    public static final Key<WeightedCollectionValue<EntitySnapshot>> SPAWNER_ENTITIES = KeyFactory.fake("SPAWNER_ENTITIES");
+    public static final Key<WeightedCollectionValue<EntityArchetype>> SPAWNER_ENTITIES = KeyFactory.fake("SPAWNER_ENTITIES");
 
     public static final Key<MutableBoundedValue<Short>> SPAWNER_MAXIMUM_DELAY = KeyFactory.fake("SPAWNER_MAXIMUM_DELAY");
 
@@ -939,7 +941,8 @@ public final class Keys {
 
     public static final Key<MutableBoundedValue<Short>> SPAWNER_MINIMUM_DELAY = KeyFactory.fake("SPAWNER_MINIMUM_DELAY");
 
-    public static final Key<MobSpawnerData.NextEntityToSpawnValue> SPAWNER_NEXT_ENTITY_TO_SPAWN = KeyFactory.fake("SPAWNER_NEXT_ENTITY_TO_SPAWN");
+    public static final Key<Value<WeightedSerializableObject<EntityArchetype>>> SPAWNER_NEXT_ENTITY_TO_SPAWN = KeyFactory
+            .fake("SPAWNER_NEXT_ENTITY_TO_SPAWN");
 
     public static final Key<MutableBoundedValue<Short>> SPAWNER_REMAINING_DELAY = KeyFactory.fake("SPAWNER_REMAINING_DELAY");
 
