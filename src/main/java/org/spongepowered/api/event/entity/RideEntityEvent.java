@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.entity.dismount.DismountType;
 
 /**
  * An event that involves an {@link Entity} riding another.
@@ -40,6 +41,14 @@ public interface RideEntityEvent extends TargetEntityEvent, Cancellable {
     /**
      * Raised when an {@link Entity} is being dismounted.
      */
-    interface Dismount extends RideEntityEvent {}
+    interface Dismount extends RideEntityEvent {
+
+        /**
+         * Gets the {@link DismountType} when entity is dismounted
+         *
+         * @return The dismount type
+         */
+        DismountType getDismountType();
+    }
 
 }
