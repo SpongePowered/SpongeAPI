@@ -44,6 +44,7 @@ import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
+import org.spongepowered.api.setting.SettingManager;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.chat.ChatVisibility;
@@ -293,5 +294,12 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      * @return Whether the respawn was successful
      */
     boolean respawnPlayer();
+
+    /**
+     * Gets the setting manager for the player.
+     *
+     * @return The setting manager
+     */
+    SettingManager getSettingManager();
 
 }
