@@ -110,6 +110,11 @@ dependencies {
     compile files(tasks.genEventImpl)
 }
 
+// Include event factory in JAR
+jar {
+    from zipTree(tasks.genEventImpl.outputs.files.first())
+}
+
 // Define setupDecompWorkspace task so it runs when setting up the implementation workspace
 task('setupDecompWorkspace', dependsOn: 'genEventImpl')
 
