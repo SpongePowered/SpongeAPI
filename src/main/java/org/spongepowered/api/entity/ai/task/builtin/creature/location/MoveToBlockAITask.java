@@ -34,24 +34,71 @@ import org.spongepowered.api.world.World;
 
 import java.util.function.Predicate;
 
+/**
+ * An {@link AITask} which uses a predicate to determine the movement target
+ * location for an entity.
+ */
 public interface MoveToBlockAITask extends AITask<Creature> {
 
+    /**
+     * Creates a new {@link Builder} to build a new {@link MoveToBlockAITask}.
+     *
+     * @return A new builder
+     */
     static MoveToBlockAITask.Builder builder() {
         return Sponge.getRegistry().createBuilder(MoveToBlockAITask.Builder.class);
     }
 
+    /**
+     * Gets the movement speed modifier for moving towards a location target.
+     *
+     * @return The movement speed modifier
+     */
     double getSpeed();
 
+    /**
+     * Sets the movement speed modifier for moving towards a location target.
+     *
+     * @param speed The movement speed modifier
+     * @return This task, for chaining
+     */
     MoveToBlockAITask setSpeed(double speed);
 
+    /**
+     * Gets the range for which the entity will search for a valid destination.
+     *
+     * @return The search range
+     */
     int getSearchRange();
 
+    /**
+     * Sets the range for which the entity will search for a valid destination.
+     *
+     * @param searchRange The search range
+     * @return This task, for chaining
+     */
     MoveToBlockAITask setSearchRange(int searchRange);
 
+    /**
+     * Gets the current destination position as a {@link Vector3i} for this task.
+     *
+     * @return The current destination position
+     */
     Vector3i getDestination();
 
+    /**
+     * Sets the current destination for this task.
+     *
+     * @param destination The destination position
+     * @return This task, for chaining
+     */
     MoveToBlockAITask setDestination(Vector3i destination);
 
+    /**
+     * Gets the {@link Predicate} that this task uses to determine valid destinations.
+     *
+     * @return The destination predicate
+     */
     Predicate<Location<World>> getDestinationPredicate();
 
     interface Builder extends AITaskBuilder<Creature, MoveToBlockAITask, MoveToBlockAITask.Builder> {
