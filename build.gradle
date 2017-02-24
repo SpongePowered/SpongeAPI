@@ -238,6 +238,7 @@ apply plugin: 'com.github.johnrengelman.shadow'
 shadowJar {
     classifier = 'shaded'
     from sourceSets.ap.output
+    from zipTree(tasks.genEventImpl.outputs.files.first())
 }
 
 artifacts {
