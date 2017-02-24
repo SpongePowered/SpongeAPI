@@ -41,6 +41,7 @@ import org.spongepowered.api.util.ResettableBuilder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Represents a transaction taking place where a {@link DataHolder} is
@@ -286,6 +287,24 @@ public final class DataTransactionResult {
      */
     public boolean isSuccessful() {
         return getType() == Type.SUCCESS;
+    }
+
+    /**
+     * Returns the instance of this {@link DataTransactionResult}, if the transaction was successful.
+     *
+     * @return the instance of this {@link DataTransactionResult}, or {@code Optional.empty()}
+     */
+    public Optional<DataTransactionResult> ifSuccessful() {
+        return isSuccessful() ? Optional.of(this) : Optional.empty();
+    }
+
+    /**
+     * Returns the instance of this {@link DataTransactionResult}, if the transaction was not successful.
+     *
+     * @return the instance of this {@link DataTransactionResult}, or {@code Optional.empty()}
+     */
+    public Optional<DataTransactionResult> ifUnsuccessful() {
+        return isSuccessful() ? Optional.empty() : Optional.of(this);
     }
 
     /**
