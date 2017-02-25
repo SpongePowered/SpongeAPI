@@ -375,15 +375,15 @@ public final class DataTransactionResult {
             return false;
         }
         DataTransactionResult that = (DataTransactionResult) o;
-        return type == that.type &&
-               Objects.equal(rejected, that.rejected) &&
-               Objects.equal(replaced, that.replaced) &&
-               Objects.equal(success, that.success);
+        return this.type == that.type
+               && Objects.equal(this.rejected, that.rejected)
+               && Objects.equal(this.replaced, that.replaced)
+               && Objects.equal(this.success, that.success);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(type, rejected, replaced, success);
+        return Objects.hashCode(this.type, this.rejected, this.replaced, this.success);
     }
 
     /**
