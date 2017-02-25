@@ -32,6 +32,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Nullable;
+
 /**
  * Container for a subject's data. This container updates live, and provides raw
  * data for a subject not taking into account any sort of inheritance.
@@ -173,7 +175,7 @@ public interface SubjectData {
      * @param value The value to set.
      * @return Whether the operation was successful
      */
-    boolean setOption(Set<Context> contexts, String key, String value);
+    boolean setOption(Set<Context> contexts, String key, @Nullable String value);
 
     /**
      * Clear all options in the given context combination.

@@ -239,6 +239,10 @@ public class MemorySubjectData implements SubjectData {
         Map<String, String> newMap;
 
         if (origMap == null) {
+            if (value == null) {
+                return false;
+            }
+
             if ((origMap = this.options.putIfAbsent(ImmutableSet.copyOf(contexts), ImmutableMap.of(key.toLowerCase(), value))) == null) {
                 return true;
             }
