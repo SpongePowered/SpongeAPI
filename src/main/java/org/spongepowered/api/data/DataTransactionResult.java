@@ -36,11 +36,15 @@ import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.CompositeValueStore;
 import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.util.PEBKACException;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
  * Represents a transaction taking place where a {@link DataHolder} is
@@ -319,6 +323,39 @@ public final class DataTransactionResult {
         return this.replaced;
     }
 
+    /**
+     * If this result of {@link #isSuccessful()} returns {@code true},
+     * the provided {@link Consumer} is called provided a list of all
+     * "successful" data as retrieved from {@link #getSuccessfulData()}.
+     *
+     * @param consumer The consumer to call
+     */
+    public void ifSucessful(Consumer<List<ImmutableValue<?>>> consumer) {
+        if (isSuccessful()) {
+            try {
+                consumer.accept(this.success);
+            } catch (Exception e) {
+                // Because Callable throws exception in the signature.....
+                new RuntimeException("Something went wrong trying to call a callable", e).printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Used to call a {@link Supplier} for an {@link Exception} of type
+     * {@code E} such that if this transaction's {@link #isSuccessful()}
+     * returns {@code false}, the supplier's exception is thrown.
+     *
+     * @param supplier The supplier of the exception to throw
+     * @param <E> The type of exception
+     * @throws E The exception to throw if this transaction is not successful
+     */
+    public <E extends Exception> void ifNotSuccessful(Supplier<E> supplier) throws E {
+        if (!isSuccessful()) {
+            throw supplier.get();
+        }
+    }
+
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
@@ -327,6 +364,26 @@ public final class DataTransactionResult {
                 .add("replacedData", this.replaced)
                 .add("successfulData", this.success)
                 .toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        DataTransactionResult that = (DataTransactionResult) o;
+        return type == that.type &&
+               Objects.equal(rejected, that.rejected) &&
+               Objects.equal(replaced, that.replaced) &&
+               Objects.equal(success, that.success);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(type, rejected, replaced, success);
     }
 
     /**
