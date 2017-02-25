@@ -22,24 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.setting.value;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.spongepowered.api.CatalogType;
+
+import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
+ * A {@link CatalogType} setting value.
  */
-public interface CommandSource extends MessageReceiver, Subject {
+public class CatalogSettingValue<T extends CatalogType> implements SettingValue<T> {
 
-    /**
-     * Gets the name identifying this command source.
-     *
-     * @return The name of this command source
-     */
-    String getName();
+    private final Class<T> catalogClass;
+    @Nullable private T value;
+
+    public CatalogSettingValue(Class<T> catalogClass, @Nullable T value) {
+        this.catalogClass = checkNotNull(catalogClass, "catalog class");
+        this.value = value;
+    }
+
+    @Override
+    public Optional<T> get() {
+        return Optional.ofNullable(this.value);
+    }
+
+    @Override
+    public void set(@Nullable T value) {
+        this.value = value;
+    }
+
+    @Override
+    public String serialize() {
+        return this.value == null ? "" : this.value.getId();
+    }
 
 }

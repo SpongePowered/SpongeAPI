@@ -22,24 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.setting.type;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.spongepowered.api.setting.value.NumberSettingValue;
+
+import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
+ * A {@link Integer} setting type.
  */
-public interface CommandSource extends MessageReceiver, Subject {
+public class IntegerSettingType implements SettingType<Integer, NumberSettingValue<Integer>> {
 
-    /**
-     * Gets the name identifying this command source.
-     *
-     * @return The name of this command source
-     */
-    String getName();
+    protected IntegerSettingType() {
+    }
+
+    @Override
+    public String serialize(NumberSettingValue<Integer> object) {
+        return object.serialize();
+    }
+
+    @Override
+    public Optional<NumberSettingValue<Integer>> deserialize(String string) {
+        checkNotNull(string, "string");
+
+        try {
+            int value = Integer.parseInt(string);
+            return Optional.of(this.createValue(value));
+        } catch (NumberFormatException e) {
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public NumberSettingValue<Integer> createValue(@Nullable Integer value) {
+        return new NumberSettingValue<>(value);
+    }
 
 }

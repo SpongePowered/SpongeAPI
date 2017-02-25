@@ -22,24 +22,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.setting.type;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.spongepowered.api.setting.value.BooleanSettingValue;
+
+import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
+ * A {@link Boolean} setting type.
  */
-public interface CommandSource extends MessageReceiver, Subject {
+public class BooleanSettingType implements SettingType<Boolean, BooleanSettingValue> {
 
-    /**
-     * Gets the name identifying this command source.
-     *
-     * @return The name of this command source
-     */
-    String getName();
+    protected BooleanSettingType() {
+    }
+
+    @Override
+    public String serialize(BooleanSettingValue object) {
+        return object.serialize();
+    }
+
+    @Override
+    public Optional<BooleanSettingValue> deserialize(String string) {
+        checkNotNull(string, "string");
+
+        switch (string.toLowerCase().trim()) {
+            case "true":
+            case "yes":
+            case "y":
+            case "on":
+                return Optional.of(this.createValue(true));
+            case "false":
+            case "no":
+            case "n":
+            case "off":
+                return Optional.of(this.createValue(false));
+        }
+
+        return Optional.empty();
+    }
+
+    @Override
+    public BooleanSettingValue createValue(@Nullable Boolean value) {
+        return new BooleanSettingValue(value);
+    }
 
 }

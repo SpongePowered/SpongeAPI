@@ -22,24 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.setting.value;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
+import com.google.common.base.Objects;
+
+import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
+ * A {@link String} setting value.
  */
-public interface CommandSource extends MessageReceiver, Subject {
+public class StringSettingValue implements SettingValue<String> {
 
-    /**
-     * Gets the name identifying this command source.
-     *
-     * @return The name of this command source
-     */
-    String getName();
+    @Nullable private String value;
+
+    public StringSettingValue(@Nullable String value) {
+        this.value = value;
+    }
+
+    @Override
+    public Optional<String> get() {
+        return Optional.ofNullable(this.value);
+    }
+
+    @Override
+    public void set(@Nullable String value) {
+        this.value = value;
+    }
+
+    @Override
+    public String serialize() {
+        return String.valueOf(this.value);
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("value", this.value)
+                .toString();
+    }
 
 }

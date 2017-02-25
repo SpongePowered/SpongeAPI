@@ -29,7 +29,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextElement;
 import org.spongepowered.api.text.TextTemplate;
+import org.spongepowered.api.text.translation.locale.Locales;
 
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -119,5 +121,18 @@ public interface MessageReceiver {
      * @param channel The message channel to send messages to
      */
     void setMessageChannel(MessageChannel channel);
+
+    /**
+     * Gets the locale used by this message receiver.
+     *
+     * <p>If this {@link MessageReceiver} does have a {@link Locale} configured
+     * or does not support configuring a {@link Locale},
+     * {@link Locales#DEFAULT} is used.</p>
+     *
+     * @return The locale used by this message receiver
+     */
+    default Locale getLocale() {
+        return Locales.DEFAULT;
+    }
 
 }

@@ -44,6 +44,8 @@ import org.spongepowered.api.registry.RegistryModule;
 import org.spongepowered.api.registry.RegistryModuleAlreadyRegisteredException;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
+import org.spongepowered.api.setting.SettingRegistry;
+import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.BlockStatistic;
 import org.spongepowered.api.statistic.EntityStatistic;
 import org.spongepowered.api.statistic.ItemStatistic;
@@ -329,6 +331,13 @@ public interface GameRegistry {
      * @return The recipe registry
      */
     RecipeRegistry getRecipeRegistry();
+
+    /**
+     * Gets the global {@link SettingRegistry}.
+     *
+     * @return The global setting registry
+     */
+    SettingRegistry getSettingRegistry();
 
     /**
      * Gets a {@link ResourcePack} that's already been created by its ID.

@@ -22,24 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.setting.value;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
+import com.google.common.base.Objects;
+import org.spongepowered.api.util.OptBool;
+
+import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
+ * A {@link Boolean} setting value.
  */
-public interface CommandSource extends MessageReceiver, Subject {
+public class BooleanSettingValue implements SettingValue<Boolean> {
 
-    /**
-     * Gets the name identifying this command source.
-     *
-     * @return The name of this command source
-     */
-    String getName();
+    @Nullable private Boolean value;
+
+    public BooleanSettingValue(@Nullable Boolean value) {
+        this.value = value;
+    }
+
+    @Override
+    public Optional<Boolean> get() {
+        return OptBool.of(this.value);
+    }
+
+    @Override
+    public void set(@Nullable Boolean value) {
+        this.value = value;
+    }
+
+    @Override
+    public String serialize() {
+        return String.valueOf(this.value);
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("value", this.value)
+                .toString();
+    }
 
 }

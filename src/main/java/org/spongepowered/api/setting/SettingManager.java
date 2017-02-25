@@ -22,24 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.setting;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-/**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- */
-public interface CommandSource extends MessageReceiver, Subject {
+import java.util.Optional;
 
-    /**
-     * Gets the name identifying this command source.
-     *
-     * @return The name of this command source
-     */
-    String getName();
+import javax.annotation.Nullable;
 
+public interface SettingManager {
+
+    <T> boolean hasValue(Setting<T> setting);
+
+    <T> Optional<T> getValue(Setting<T> setting);
+
+    default <T> T getValue(Setting<T> setting, T defaultValue) {
+        checkNotNull(defaultValue, "default value");
+        return this.getValue(setting).orElse(defaultValue);
+    }
+
+    <T> void setValue(Setting<T> setting, @Nullable T value);
 }

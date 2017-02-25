@@ -22,24 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.setting.value;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
+import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
- * Something that can execute commands.
+ * A setting value.
  *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
+ * <p>Setting values are mutable.</p>
+ *
+ * @param <T> The setting value type
  */
-public interface CommandSource extends MessageReceiver, Subject {
+public interface SettingValue<T> {
 
     /**
-     * Gets the name identifying this command source.
+     * Gets the value.
      *
-     * @return The name of this command source
+     * @return The value, if present, {@link Optional#empty()} otherwise
      */
-    String getName();
+    Optional<T> get();
+
+    /**
+     * Sets the value.
+     *
+     * @param value The value
+     */
+    void set(@Nullable T value);
+
+    /**
+     * Gets a string representation of this value.
+     *
+     * @return The string representation of this value
+     */
+    String serialize();
 
 }

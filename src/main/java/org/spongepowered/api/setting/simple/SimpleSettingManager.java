@@ -22,24 +22,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.setting.simple;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
+import org.spongepowered.api.setting.Setting;
+import org.spongepowered.api.setting.SettingManager;
+import org.spongepowered.api.setting.SettingRegistry;
 
-/**
- * Something that can execute commands.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- */
-public interface CommandSource extends MessageReceiver, Subject {
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
-    /**
-     * Gets the name identifying this command source.
-     *
-     * @return The name of this command source
-     */
-    String getName();
+import javax.annotation.Nullable;
 
+public class SimpleSettingManager implements SettingManager {
+
+    protected final Map<Setting<?>, Object> values = new HashMap<>();
+    protected final SettingRegistry registry;
+
+    public SimpleSettingManager(SettingRegistry registry) {
+        this.registry = registry;
+    }
+
+    @Override
+    public <T> boolean hasValue(Setting<T> setting) {
+        return this.values.containsKey(setting);
+    }
+
+    @Override
+    public <T> Optional<T> getValue(Setting<T> setting) {
+        @Nullable final T value = (T) this.values.get(setting);
+        if (value == null) {
+            return setting.getDefaultValue();
+        }
+        return Optional.of(value);
+    }
+
+    @Override
+    public <T> void setValue(Setting<T> setting, @Nullable T value) {
+        if (value == null) {
+            this.values.remove(setting);
+            return;
+        }
+
+        this.values.put(setting, value);
+    }
 }
