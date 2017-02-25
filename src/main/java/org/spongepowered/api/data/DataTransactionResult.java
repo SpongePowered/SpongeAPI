@@ -375,10 +375,10 @@ public final class DataTransactionResult {
             return false;
         }
         DataTransactionResult that = (DataTransactionResult) o;
-        return type == that.type &&
-               Objects.equal(rejected, that.rejected) &&
-               Objects.equal(replaced, that.replaced) &&
-               Objects.equal(success, that.success);
+        return type == that.type
+               && Objects.equal(rejected, that.rejected)
+               && Objects.equal(replaced, that.replaced)
+               && Objects.equal(success, that.success);
     }
 
     @Override
