@@ -44,7 +44,7 @@ public interface RideEntityEvent extends TargetEntityEvent, Cancellable {
     interface Dismount extends RideEntityEvent {
 
         /**
-         * Gets the {@link DismountType} when entity is dismounted
+         * Gets the {@link DismountType} when entity is dismounted.
          *
          * @return The dismount type
          */
