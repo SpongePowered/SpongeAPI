@@ -36,47 +36,47 @@ public class InventoryArchetypes {
     /**
      * A single Inventory Slot.
      */
-    public static final InventoryArchetype SLOT = DummyObjectProvider.createFor(InventoryArchetype.class, "SLOT");
+    public static final InventoryArchetype SLOT = DummyObjectProvider.createFor(InventoryArchetype.class, "slot");
 
     /**
      * A row of Slots. 9 Slots by default.
      */
-    public static final InventoryArchetype MENU_ROW = DummyObjectProvider.createFor(InventoryArchetype.class, "MENU_ROW");
+    public static final InventoryArchetype MENU_ROW = DummyObjectProvider.createFor(InventoryArchetype.class, "menu_row");
 
     /**
      * A grid of Slots.
      */
-    public static final InventoryArchetype MENU_GRID = DummyObjectProvider.createFor(InventoryArchetype.class, "MENU_GRID");
+    public static final InventoryArchetype MENU_GRID = DummyObjectProvider.createFor(InventoryArchetype.class, "menu_grid");
 
     /**
      * A column of Slots.
      */
-    public static final InventoryArchetype MENU_COLUMN = DummyObjectProvider.createFor(InventoryArchetype.class, "MENU_COLUMN");
+    public static final InventoryArchetype MENU_COLUMN = DummyObjectProvider.createFor(InventoryArchetype.class, "menu_column");
 
     /**
      * A Slot acting like a button.
      */
-    public static final InventoryArchetype MENU_BUTTON = DummyObjectProvider.createFor(InventoryArchetype.class, "MENU_BUTTON");
+    public static final InventoryArchetype MENU_BUTTON = DummyObjectProvider.createFor(InventoryArchetype.class, "menu_button");
 
     /**
      * A Slot acting like an icon.
      */
-    public static final InventoryArchetype MENU_ICON = DummyObjectProvider.createFor(InventoryArchetype.class, "MENU_ICON");
+    public static final InventoryArchetype MENU_ICON = DummyObjectProvider.createFor(InventoryArchetype.class, "menu_icon");
 
     /**
      * A Slot that can toggle between two icon states.
      */
-    public static final InventoryArchetype MENU_CHECKBOX = DummyObjectProvider.createFor(InventoryArchetype.class, "MENU_CHECKBOX");
+    public static final InventoryArchetype MENU_CHECKBOX = DummyObjectProvider.createFor(InventoryArchetype.class, "menu_checkbox");
 
     /**
      * An icon Slot that can count up and down.
      */
-    public static final InventoryArchetype MENU_SPINNER = DummyObjectProvider.createFor(InventoryArchetype.class, "MENU_SPINNER");
+    public static final InventoryArchetype MENU_SPINNER = DummyObjectProvider.createFor(InventoryArchetype.class, "menu_spinner");
 
     /**
      * A Players personal crafting area. Output with 2x2 Grid
      */
-    public static final InventoryArchetype CRAFTING = DummyObjectProvider.createFor(InventoryArchetype.class, "CRAFTING");
+    public static final InventoryArchetype CRAFTING = DummyObjectProvider.createFor(InventoryArchetype.class, "crafting");
 
     // Vanilla Archetypes
 
@@ -85,74 +85,72 @@ public class InventoryArchetypes {
     /**
      * A Chest. By default 9x3.
      */
-    public static final InventoryArchetype CHEST = DummyObjectProvider.createFor(InventoryArchetype.class, "CHEST");
+    public static final InventoryArchetype CHEST = DummyObjectProvider.createFor(InventoryArchetype.class, "chest");
 
     /**
      * A DoubleChest. By default 9x6.
      */
-    public static final InventoryArchetype DOUBLE_CHEST = DummyObjectProvider.createFor(InventoryArchetype.class, "DOUBLE_CHEST");
+    public static final InventoryArchetype DOUBLE_CHEST = DummyObjectProvider.createFor(InventoryArchetype.class, "double_chest");
 
     /**
      * A Hopper. 5x1
      */
-    public static final InventoryArchetype HOPPER = DummyObjectProvider.createFor(InventoryArchetype.class, "HOPPER");
+    public static final InventoryArchetype HOPPER = DummyObjectProvider.createFor(InventoryArchetype.class, "hopper");
 
     /**
      * A Dispenser or Dropper. 3x3
      */
-    public static final InventoryArchetype DISPENSER = DummyObjectProvider.createFor(InventoryArchetype.class, "DISPENSER");
+    public static final InventoryArchetype DISPENSER = DummyObjectProvider.createFor(InventoryArchetype.class, "dispenser");
 
     /**
-     * A Workbench. 3x3
+     * A Workbench. 3x3 + 1 Output
      */
-    public static final InventoryArchetype WORKBENCH = DummyObjectProvider.createFor(InventoryArchetype.class, "WORKBENCH");
+    public static final InventoryArchetype WORKBENCH = DummyObjectProvider.createFor(InventoryArchetype.class, "workbench");
 
     // Slot-based
 
     /**
      * A Furnace. 3 Slots
      */
-    public static final InventoryArchetype FURNACE = DummyObjectProvider.createFor(InventoryArchetype.class, "FURNACE");
+    public static final InventoryArchetype FURNACE = DummyObjectProvider.createFor(InventoryArchetype.class, "furnace");
 
     /**
      * A EnchantingTable. 2 Slots
      */
-    public static final InventoryArchetype ENCHANTING_TABLE = DummyObjectProvider.createFor(InventoryArchetype.class, "ENCHANTING_TABLE");
+    public static final InventoryArchetype ENCHANTING_TABLE = DummyObjectProvider.createFor(InventoryArchetype.class, "enchanting_table");
 
     /**
      * A Anvil. 3 Slots
      */
-    public static final InventoryArchetype ANVIL = DummyObjectProvider.createFor(InventoryArchetype.class, "ANVIL");
+    public static final InventoryArchetype ANVIL = DummyObjectProvider.createFor(InventoryArchetype.class, "anvil");
 
     /**
-     * A BrewingStand. 4 Slots.
-     *
-     * <p>5 Slots in Minecraft 1.9</p>
+     * A BrewingStand. 5 Slots.
      */
-    public static final InventoryArchetype BREWING_STAND = DummyObjectProvider.createFor(InventoryArchetype.class, "BREWING_STAND");
+    public static final InventoryArchetype BREWING_STAND = DummyObjectProvider.createFor(InventoryArchetype.class, "brewing_stand");
 
     /**
      * A Beacon. 1 Slot
      */
-    public static final InventoryArchetype BEACON = DummyObjectProvider.createFor(InventoryArchetype.class, "BEACON");
+    public static final InventoryArchetype BEACON = DummyObjectProvider.createFor(InventoryArchetype.class, "beacon");
 
     // Entity
 
     /**
      * A RideableHorse, Donkey or Mule 2 Slots.
      */
-    public static final InventoryArchetype HORSE = DummyObjectProvider.createFor(InventoryArchetype.class, "HORSE");
+    public static final InventoryArchetype HORSE = DummyObjectProvider.createFor(InventoryArchetype.class, "horse");
 
     /**
      * A Villager. 3 Slots
      */
-    public static final InventoryArchetype VILLAGER = DummyObjectProvider.createFor(InventoryArchetype.class, "VILLAGER");
+    public static final InventoryArchetype VILLAGER = DummyObjectProvider.createFor(InventoryArchetype.class, "villager");
 
     /**
      * A Donkey or Mule with Chest. 2 Slots and 5x3 Chest
      * Needs a horse as carrier to show to player in Vanilla.
      */
-    public static final InventoryArchetype HORSE_WITH_CHEST = DummyObjectProvider.createFor(InventoryArchetype.class, "HORSE_WITH_CHEST");
+    public static final InventoryArchetype HORSE_WITH_CHEST = DummyObjectProvider.createFor(InventoryArchetype.class, "horse_with_chest");
 
     // Player
 
@@ -162,8 +160,8 @@ public class InventoryArchetypes {
      *
      * <p>Cannot be opened by the server in Vanilla.</p>
      */
-    public static final InventoryArchetype PLAYER = DummyObjectProvider.createFor(InventoryArchetype.class, "PLAYER");
+    public static final InventoryArchetype PLAYER = DummyObjectProvider.createFor(InventoryArchetype.class, "player");
 
-    public static final InventoryArchetype UNKNOWN = DummyObjectProvider.createFor(InventoryArchetype.class, "UNKNOWN");
+    public static final InventoryArchetype UNKNOWN = DummyObjectProvider.createFor(InventoryArchetype.class, "unknown");
 
 }
