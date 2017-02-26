@@ -43,9 +43,6 @@ import java.util.function.DoubleUnaryOperator;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.Immutable;
 
-import javax.annotation.Nullable;
-import javax.annotation.concurrent.Immutable;
-
 /**
  * Represents a modifier that will apply a function on a damage value to deal
  * towards an entity such that the raw damage is the input of a

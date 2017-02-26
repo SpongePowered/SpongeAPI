@@ -414,6 +414,9 @@ public final class Cause implements Iterable<Object> {
 
         public Builder append(Object cause) {
             checkNotNull(cause, "Cause cannot be null!");
+            if (!this.causes.isEmpty() && this.causes.get(this.causes.size() - 1) == cause) {
+                return this;
+            }
             this.causes.add(cause);
             return this;
         }

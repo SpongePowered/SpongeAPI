@@ -33,6 +33,7 @@ import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.StringJoiner;
 
 import javax.annotation.Nullable;
@@ -92,7 +93,16 @@ public final class EventContext {
     @SuppressWarnings("unchecked")
     public <T> Optional<T> get(EventContextKey<T> key) {
         checkNotNull(key, "EventContextKey cannot be null");
-        return Optional.ofNullable((T) this.entries.get(key.getId()));
+        return Optional.ofNullable((T) this.entries.get(key));
+    }
+
+    /**
+     * Gets all {@link EventContextKey}s present in this context.
+     * 
+     * @return All present keys
+     */
+    public Set<EventContextKey<?>> keys() {
+        return this.entries.keySet();
     }
 
     @Override
