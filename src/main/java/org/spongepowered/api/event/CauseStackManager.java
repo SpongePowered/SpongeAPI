@@ -29,6 +29,7 @@ import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.cause.EventContextKey;
 import org.spongepowered.api.event.cause.EventContextKeys;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 /**
@@ -94,10 +95,20 @@ public interface CauseStackManager {
     Object peekCause();
 
     /**
+     * Returns an {@link AutoCloseable} frame handle which should be used in a
+     * try-with-resource block the frame will be automatically popped from the
+     * frame stack when the handle is closed.
+     * 
+     * @return The frame handle
+     */
+    AutoCloseable createCauseFrame();
+
+    /**
      * Pushes a frame of the current cause stack and context state.
      * 
      * @return A handle for the frame which must be passed back to pop the frame
      *         from the stack
+     * @see #createCauseFrame() for a more easily managed CauseFrame
      */
     Object pushCauseFrame();
 
@@ -113,15 +124,6 @@ public interface CauseStackManager {
      * @param handle The frame handle to pop
      */
     void popCauseFrame(Object handle);
-
-    /**
-     * Returns an {@link AutoCloseable} frame handle which should be used in a
-     * try-with-resource block the frame will be automatically popped from the
-     * frame stack when the handle is closed.
-     * 
-     * @return The frame handle
-     */
-    AutoCloseable createCauseFrame();
 
     /**
      * Adds the given object to the current context under the given key.
@@ -140,6 +142,23 @@ public interface CauseStackManager {
      * @return The context object, if present
      */
     <T> Optional<T> getContext(EventContextKey<T> key);
+
+    /**
+     * Gets the context value with the given key.
+     * 
+     * <p>If the key is not available, {@link NoSuchElementException} will be
+     * thrown.</p>
+     * 
+     * @param key The context key
+     * @return The context object, if present
+     */
+    default <T> T requireContext(EventContextKey<T> key) {
+        final Optional<T> optional = getContext(key);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+        throw new NoSuchElementException(String.format("Could not retrieve value for key '%s'", key.getId()));
+    }
 
     /**
      * Removes the given context key from the current context.

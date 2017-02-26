@@ -32,6 +32,7 @@ import com.google.common.collect.Maps;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
@@ -94,6 +95,23 @@ public final class EventContext {
     public <T> Optional<T> get(EventContextKey<T> key) {
         checkNotNull(key, "EventContextKey cannot be null");
         return Optional.ofNullable((T) this.entries.get(key));
+    }
+
+    /**
+     * Gets the value corresponding to the given key from the context.
+     *
+     * <p>If the key is not available, {@link NoSuchElementException} will be
+     * thrown.</p>
+     * 
+     * @param key The key
+     * @return The context value, if found
+     */
+    public <T> T require(EventContextKey<T> key) {
+        final Optional<T> optional = get(key);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+        throw new NoSuchElementException(String.format("Could not retrieve value for key '%s'", key.getId()));
     }
 
     /**
