@@ -36,6 +36,9 @@ sourceSets {
 dependencies {
     // Logging
     compile 'org.slf4j:slf4j-api:1.7.22'
+    compile 'org.apache.logging.log4j:log4j-api:2.0-beta9'
+    compile 'org.apache.logging.log4j:log4j-core:2.0-beta9'
+
 
     // Dependencies provided by Minecraft
     compile 'com.google.guava:guava:17.0'

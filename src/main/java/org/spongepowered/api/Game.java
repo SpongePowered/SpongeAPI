@@ -37,6 +37,8 @@ import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceManager;
+import org.spongepowered.api.util.reporting.ErrorReport;
+import org.spongepowered.api.util.reporting.PrettyPrinter;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 
@@ -203,5 +205,11 @@ public interface Game {
      * @return The channel registrar
      */
     ChannelRegistrar getChannelRegistrar();
+
+    ErrorReport createReport();
+
+    PrettyPrinter createPrinter();
+
+    PrettyPrinter createPrinter(int width);
 
 }
