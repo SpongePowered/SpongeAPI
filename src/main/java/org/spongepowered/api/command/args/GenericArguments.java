@@ -929,14 +929,14 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Arrays.asList(this.type.getEnumConstants()).stream()
-                .map(input -> input == null ? null : input.name())
+            return Arrays.stream(this.type.getEnumConstants())
+                .map(Enum::name)
                 .collect(Collectors.toList());
         }
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            return Enum.valueOf(this.type, choice.toUpperCase());
+            return Enum.valueOf(this.type, choice);
         }
     }
 
