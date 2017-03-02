@@ -94,6 +94,13 @@ public interface WorldArchetype extends CatalogType {
     long getSeed();
 
     /**
+     * Gets if the seed will be randomized for each world generated.
+     * 
+     * @return If the seed is randomized
+     */
+    boolean isSeedRandomized();
+
+    /**
      * Gets the gamemode.
      *
      * @return The gamemode
@@ -228,13 +235,19 @@ public interface WorldArchetype extends CatalogType {
         Builder generateSpawnOnLoad(boolean state);
 
         /**
-         * Sets the seed. If not specified this will default to using a
-         * random seed.
+         * Sets the seed. See {@link #randomSeed()} if a random seed is desired.
          *
          * @param seed The seed
          * @return The builder, for chaining
          */
         Builder seed(long seed);
+
+        /**
+         * Sets the seed to be randomized for each world created.
+         * 
+         * @return The builder, for chaining
+         */
+        Builder randomSeed();
 
         /**
          * Sets the default {@link GameMode}. If not specified this
