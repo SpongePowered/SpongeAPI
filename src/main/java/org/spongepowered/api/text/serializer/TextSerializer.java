@@ -24,14 +24,21 @@
  */
 package org.spongepowered.api.text.serializer;
 
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a serializer for {@link Text} instances that converts an input
  * string into a formatted {@link Text} instance, or a {@link Text} instance
  * into the string representation.
+ *
+ * <p>Custom implementations can be registered using
+ * {@link GameRegistry#register(Class, CatalogType)}.</p>
  */
-public interface TextSerializer {
+@CatalogedBy(TextSerializers.class)
+public interface TextSerializer extends CatalogType {
 
     /**
      * Returns a string representation of the provided {@link Text} in a format
