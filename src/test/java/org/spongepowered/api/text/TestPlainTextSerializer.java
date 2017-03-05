@@ -38,6 +38,16 @@ public class TestPlainTextSerializer implements SafeTextSerializer {
     }
 
     @Override
+    public String getId() {
+        return "sponge:plain";
+    }
+
+    @Override
+    public String getName() {
+        return "Plain Text";
+    }
+
+    @Override
     public Text deserialize(String input) {
         return Text.of(input);
     }

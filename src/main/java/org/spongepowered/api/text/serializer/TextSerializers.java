@@ -64,7 +64,7 @@ public final class TextSerializers {
 
     /**
      * A {@link FormattingCodeTextSerializer} for a simple {@link Text}
-     * representatior similar to {@link #LEGACY_FORMATTING_CODE} but using the
+     * representation similar to {@link #LEGACY_FORMATTING_CODE} but using the
      * formatting character {@code &} instead of the internal one.
      *
      * <p>Example of a string parsed by this {@link TextSerializer}
