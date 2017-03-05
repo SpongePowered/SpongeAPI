@@ -90,7 +90,12 @@ public final class TextSerializers {
 
     /**
      * The {@link TextSerializer} for Sponge's TextXML format.
+     *
+     * @deprecated Will be moved out of SpongeAPI in revision 7.0. See
+     *     <a href="https://github.com/SpongePowered/SpongeAPI/issues/1511">
+     *         SpongePowered/SpongeAPI#1511</a>
      */
+    @Deprecated
     public static final TextSerializer TEXT_XML = DummyObjectProvider.createFor(TextSerializer.class, "TEXT_XML");
 
     /**
