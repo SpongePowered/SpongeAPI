@@ -39,7 +39,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -118,7 +117,7 @@ public class PluginProcessor extends AbstractProcessor {
             return false;
         }
 
-        if (!contains(annotations, Plugin.class)) {
+        if (!ProcessorUtils.contains(annotations, Plugin.class)) {
             return false;
         }
 
@@ -198,21 +197,6 @@ public class PluginProcessor extends AbstractProcessor {
 
     private Messager getMessager() {
         return this.processingEnv.getMessager();
-    }
-
-    private static boolean contains(Collection<? extends TypeElement> elements, Class<?> clazz) {
-        if (elements.isEmpty()) {
-            return false;
-        }
-
-        final String name = clazz.getName();
-        for (TypeElement element : elements) {
-            if (element.getQualifiedName().contentEquals(name)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
 }
