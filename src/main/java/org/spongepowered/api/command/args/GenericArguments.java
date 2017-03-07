@@ -57,6 +57,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.storage.WorldProperties;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -921,10 +922,21 @@ public final class GenericArguments {
 
     private static class EnumValueElement<T extends Enum<T>> extends PatternMatchingCommandElement {
         private final Class<T> type;
+        private final Map<String, T> values;
 
         EnumValueElement(Text key, Class<T> type) {
             super(key);
             this.type = type;
+            this.values = Arrays.stream(type.getFields())
+                    .filter(Field::isEnumConstant)
+                    .collect(Collectors.toMap(
+                            field -> field.getName().toLowerCase(),
+                            field -> Enum.valueOf(type, field.getName()),
+                            (value, value2) -> {
+                                throw new UnsupportedOperationException(type.getCanonicalName() + " contains more than one enum constant " +
+                                        "with the same name, only differing by capitalization, which is unsupported.");
+                            }
+                    ));
         }
 
         @Override
@@ -936,7 +948,12 @@ public final class GenericArguments {
 
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
-            return Enum.valueOf(this.type, choice);
+            T value = this.values.get(choice.toLowerCase());
+            if (value == null) {
+                throw new IllegalArgumentException("No enum constant " + this.type.getCanonicalName() + "." + choice);
+            }
+
+            return value;
         }
     }
 
