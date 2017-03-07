@@ -927,11 +927,10 @@ public final class GenericArguments {
         EnumValueElement(Text key, Class<T> type) {
             super(key);
             this.type = type;
-            this.values = Arrays.stream(type.getFields())
-                    .filter(Field::isEnumConstant)
+            this.values = Arrays.stream(type.getEnumConstants())
                     .collect(Collectors.toMap(
-                            field -> field.getName().toLowerCase(),
-                            field -> Enum.valueOf(type, field.getName()),
+                            value -> value.name().toLowerCase(),
+                            value -> value,
                             (value, value2) -> {
                                 throw new UnsupportedOperationException(type.getCanonicalName() + " contains more than one enum constant " +
                                         "with the same name, only differing by capitalization, which is unsupported.");
