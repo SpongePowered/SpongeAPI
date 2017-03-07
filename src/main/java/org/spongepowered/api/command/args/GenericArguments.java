@@ -940,9 +940,7 @@ public final class GenericArguments {
 
         @Override
         protected Iterable<String> getChoices(CommandSource source) {
-            return Arrays.stream(this.type.getEnumConstants())
-                .map(Enum::name)
-                .collect(Collectors.toList());
+            return this.values.keySet();
         }
 
         @Override
