@@ -51,6 +51,8 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 
 /**
  * A loaded Minecraft world.
@@ -175,6 +177,50 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      * @return The loaded or generated chunk, if already generated
      */
     Optional<Chunk> loadChunk(int cx, int cy, int cz, boolean shouldGenerate);
+
+    /**
+     * Gets the chunk at the given chunk coordinate position if it exists or if
+     * {@code shouldGenerate} is true and the chunk is generated.
+     *
+     * <p>Unlike {@link #loadChunk(Vector3i, boolean)} this method allows the
+     * implementation to load the chunk asynchronously without blocking the
+     * main server thread. The {@link Future} will be called with the chunk once
+     * the operation was completed.</p>
+     *
+     * <p><b>Note:</b> If asynchronous chunk loading is not supported by
+     * the implementation, the chunk will be loaded synchronously and the
+     * {@link Future} will be called immediately.</p>
+     *
+     * @param chunkPosition The position
+     * @param shouldGenerate True to generate a new chunk
+     * @return The future callback for the loaded chunk
+     */
+    default CompletableFuture<Optional<Chunk>> loadChunkAsync(Vector3i chunkPosition, boolean shouldGenerate) {
+        return loadChunkAsync(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), shouldGenerate);
+    }
+
+    /**
+     * Gets the chunk at the given chunk coordinate position if it exists or if
+     * {@code shouldGenerate} is true and the chunk is generated.
+     *
+     * <p>Unlike {@link #loadChunk(Vector3i, boolean)} this method allows the
+     * implementation to load the chunk asynchronously without blocking the
+     * main server thread. The {@link Future} will be called with the chunk once
+     * the operation was completed.</p>
+     *
+     * <p><b>Note:</b> If asynchronous chunk loading is not supported by
+     * the implementation, the chunk will be loaded synchronously and the
+     * {@link Future} will be called immediately.</p>
+     *
+     * @param cx The x coordinate
+     * @param cy The y coordinate
+     * @param cz The z coordinate
+     * @param shouldGenerate True to generate a new chunk
+     * @return The future callback for the loaded chunk
+     */
+    default CompletableFuture<Optional<Chunk>> loadChunkAsync(int cx, int cy, int cz, boolean shouldGenerate) {
+        return CompletableFuture.completedFuture(loadChunk(cx, cy, cz, shouldGenerate));
+    }
 
     /**
      * Unloads the given chunk from the world. Returns a {@code boolean} flag

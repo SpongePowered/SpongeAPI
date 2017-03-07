@@ -64,7 +64,7 @@ public final class TextSerializers {
 
     /**
      * A {@link FormattingCodeTextSerializer} for a simple {@link Text}
-     * representatior similar to {@link #LEGACY_FORMATTING_CODE} but using the
+     * representation similar to {@link #LEGACY_FORMATTING_CODE} but using the
      * formatting character {@code &} instead of the internal one.
      *
      * <p>Example of a string parsed by this {@link TextSerializer}
@@ -90,7 +90,12 @@ public final class TextSerializers {
 
     /**
      * The {@link TextSerializer} for Sponge's TextXML format.
+     *
+     * @deprecated Will be moved out of SpongeAPI in revision 7.0. See
+     *     <a href="https://github.com/SpongePowered/SpongeAPI/issues/1511">
+     *         SpongePowered/SpongeAPI#1511</a>
      */
+    @Deprecated
     public static final TextSerializer TEXT_XML = DummyObjectProvider.createFor(TextSerializer.class, "TEXT_XML");
 
     /**

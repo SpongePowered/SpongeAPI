@@ -5,17 +5,13 @@ buildscript {
             name = 'gradle-plugins'
             url = 'https://plugins.gradle.org/m2'
         }
-        maven {
-            name = 'sponge'
-            url = 'https://repo.spongepowered.org/maven'
-        }
     }
 
     dependencies {
         classpath 'gradle.plugin.net.minecrell:licenser:0.3'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
         classpath 'gradle.plugin.org.spongepowered:spongegradle:0.8.1'
-        classpath 'org.spongepowered:event-impl-gen:4.0.0-SNAPSHOT'
+        classpath 'gradle.plugin.org.spongepowered:event-impl-gen:5.0.2'
     }
 }
 
@@ -98,27 +94,12 @@ artifacts {
 apply plugin: 'org.spongepowered.event-impl-gen'
 
 genEventImpl {
+    outputFactory = 'org.spongepowered.api.event.SpongeEventFactory'
+
     include 'org/spongepowered/api/event/*/**/*'
     exclude 'org/spongepowered/api/event/cause/'
     exclude 'org/spongepowered/api/event/filter/'
     exclude 'org/spongepowered/api/event/impl/'
-
-    output = '.gradle/sponge-event-factory.jar'
-    outputPackage = 'org.spongepowered.api.event.gen'
-    outputFactory = 'org.spongepowered.api.event.SpongeEventFactory'
-
-    sortPriorityPrefix = 'original'
-    groupingPrefixes = ['from': 'to']
-    validateCode = false
-}
-
-dependencies {
-    compile files(tasks.genEventImpl)
-}
-
-// Include event factory in JAR
-jar {
-    from zipTree(tasks.genEventImpl.outputs.files.first())
 }
 
 // Define setupDecompWorkspace task so it runs when setting up the implementation workspace
@@ -238,7 +219,6 @@ apply plugin: 'com.github.johnrengelman.shadow'
 shadowJar {
     classifier = 'shaded'
     from sourceSets.ap.output
-    from zipTree(tasks.genEventImpl.outputs.files.first())
 }
 
 artifacts {
