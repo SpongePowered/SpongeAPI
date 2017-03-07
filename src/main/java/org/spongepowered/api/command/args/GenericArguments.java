@@ -930,7 +930,7 @@ public final class GenericArguments {
             this.values = Arrays.stream(type.getEnumConstants())
                     .collect(Collectors.toMap(
                             value -> value.name().toLowerCase(),
-                            value -> value,
+                            Function.identity(),
                             (value, value2) -> {
                                 throw new UnsupportedOperationException(type.getCanonicalName() + " contains more than one enum constant " +
                                         "with the same name, only differing by capitalization, which is unsupported.");
