@@ -12,8 +12,12 @@ defaultTasks 'licenseFormat', 'build'
 group = 'org.spongepowered'
 archivesBaseName = project.name.toLowerCase()
 
+// Java version
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
 afterEvaluate {
-    // Java version
+    // Set it again in case ForgeGradle resets it to 1.6
     sourceCompatibility = '1.8'
     targetCompatibility = '1.8'
 }
@@ -51,19 +55,17 @@ test {
 jar {
     manifest {
         attributes(
-                'Built-By': System.properties['user.name'],
-                'Created-By': "${System.properties['java.vm.version']} (${System.properties['java.vm.vendor']})",
+                'Specification-Title': api.name,
+                'Specification-Version': api.version,
+                'Specification-Vendor': api.organization,
 
-                'Implementation-Title': project.name,
-                'Implementation-Vendor': project.url
+                'Created-By': "${System.properties['java.version']} (${System.properties['java.vendor']})"
         )
     }
 }
 
-// The version can change until we're done configuring the project, so delay setting the manifest entries until that is final
 afterEvaluate {
     jar.manifest {
-        attributes['Implementation-Version'] = project.version
         if (commit) attributes['Git-Commit'] = commit
         if (branch) attributes['Git-Branch'] = branch
     }
