@@ -80,7 +80,7 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
 
     Pattern getFormattedPattern(String input) {
         if (!input.startsWith("^")) { // Anchor matches to the beginning -- this lets us use find()
-            input = "^" + input;
+            input = "^" + Pattern.quote(input); // Quote input to avoid syntax errors caused by characters such as '['
         }
         return Pattern.compile(input, Pattern.CASE_INSENSITIVE);
 
