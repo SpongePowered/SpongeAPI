@@ -39,7 +39,7 @@ import java.util.Map;
  * "default" {@link CatalogType}s.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
+@Target({ElementType.TYPE, ElementType.FIELD})
 public @interface RegisterCatalog {
 
     /**
