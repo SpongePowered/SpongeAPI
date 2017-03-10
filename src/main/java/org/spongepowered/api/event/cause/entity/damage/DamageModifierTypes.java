@@ -85,11 +85,6 @@ public final class DamageModifierTypes {
     public static final DamageModifierType BLOCKING = DummyObjectProvider.createFor(DamageModifierType.class, "SHIELD");
 
     /**
-     * Represents a {@link DamageModifier} that will reduce damage due to using a shield.
-     */
-    public static final DamageModifierType SHIELD = DummyObjectProvider.createFor(DamageModifierType.class, "SHIELD");
-
-    /**
      * Represents the {@link DamageModifier} that will modify damage output
      * based on the fact that the attacking source is critically hitting the
      * target.
@@ -148,6 +143,11 @@ public final class DamageModifierTypes {
      */
     public static final DamageModifierType OFFENSIVE_POTION_EFFECT = DummyObjectProvider
             .createFor(DamageModifierType.class, "OFFENSIVE_POTION_EFFECT");
+
+    /**
+     * Represents a {@link DamageModifier} that will reduce damage due to using a shield.
+     */
+    public static final DamageModifierType SHIELD = DummyObjectProvider.createFor(DamageModifierType.class, "SHIELD");
 
     /**
      * Represents the {@link DamageModifier} that will modify damage from

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data;
 
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
@@ -31,7 +32,9 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulatorBuilder;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataContentUpdater;
 import org.spongepowered.api.data.persistence.DataTranslator;
+import org.spongepowered.api.plugin.PluginContainer;
 
+import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -134,13 +137,18 @@ public interface DataManager {
      * data representation, and mass application of a {@link DataManipulator}
      * to multiple {@link DataHolder}s.
      *
+     * <p>Due to the addition of {@link DataRegistration}</p>
+     *
      * @param manipulatorClass The class of the data manipulator
      * @param immutableManipulatorClass The class of the immutable
      *     datamanipulator
      * @param builder The builder instance of the data manipulator
      * @param <T> The type of data manipulator
      * @param <I> The type of immutable datamanipulator
+     * @deprecated Use {@link DataRegistration#builder()} to simplify the
+     *     registration process with the plugin developer provided id's
      */
+    @Deprecated
     <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>> void register(Class<? extends T> manipulatorClass,
             Class<? extends I> immutableManipulatorClass, DataManipulatorBuilder<T, I> builder);
 
@@ -204,5 +212,15 @@ public interface DataManager {
      * @return The data translator, if available
      */
     <T> Optional<DataTranslator<T>> getTranslator(Class<T> objectclass);
+
+    /**
+     * Gets all {@link Class}es of all {@link DataManipulator}s registered for
+     * the provided {@link PluginContainer}. The provided {@link Collection} is
+     * considered immutable and can not be modified.
+     *
+     * @param container The plugin container for registered classes
+     * @return The collection of all registered data manipulator classes
+     */
+    Collection<Class<? extends DataManipulator<?, ?>>> getAllRegistrationsFor(PluginContainer container);
 
 }

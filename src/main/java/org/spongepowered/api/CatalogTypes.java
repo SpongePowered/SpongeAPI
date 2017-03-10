@@ -205,7 +205,6 @@ public final class CatalogTypes {
     public static final Class<HorseStyle> HORSE_STYLE = HorseStyle.class;
 
     @Deprecated public static final Class<HorseVariant> HORSE_VARIANT = HorseVariant.class;
-
     public static final Class<InstrumentType> INSTRUMENT_TYPE = InstrumentType.class;
 
     public static final Class<InventoryArchetype> INVENTORY_ARCHETYPE = InventoryArchetype.class;
@@ -267,7 +266,6 @@ public final class CatalogTypes {
     public static final Class<ShrubType> SHRUB_TYPE = ShrubType.class;
 
     @Deprecated public static final Class<SkeletonType> SKELETON_TYPE = SkeletonType.class;
-
     public static final Class<SkinPart> SKIN_PART = SkinPart.class;
 
     public static final Class<SkullType> SKULL_TYPE = SkullType.class;
