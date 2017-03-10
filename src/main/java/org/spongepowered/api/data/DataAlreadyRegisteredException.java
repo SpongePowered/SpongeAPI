@@ -25,12 +25,56 @@
 package org.spongepowered.api.data;
 
 import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 
 import javax.annotation.Nullable;
 
 public class DataAlreadyRegisteredException extends DataException {
 
     @Nullable
-    private final Class<? extends DataManipulator<?, ?>>
+    private final Class<? extends DataManipulator<?, ?>> manipulatorClass;
+    @Nullable
+    private final Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass;
+    @Nullable
+    private final DataManipulatorBuilder<?, ?> builder;
 
+
+    public DataAlreadyRegisteredException(@Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
+        @Nullable Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass,
+        @Nullable DataManipulatorBuilder<?, ?> builder) {
+        this.manipulatorClass = manipulatorClass;
+        this.immutableManipulatorClass = immutableManipulatorClass;
+        this.builder = builder;
+    }
+
+    public DataAlreadyRegisteredException(String message,
+        @Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
+        @Nullable Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass,
+        @Nullable DataManipulatorBuilder<?, ?> builder) {
+        super(message);
+        this.manipulatorClass = manipulatorClass;
+        this.immutableManipulatorClass = immutableManipulatorClass;
+        this.builder = builder;
+    }
+
+    public DataAlreadyRegisteredException(String message, Throwable cause,
+        @Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
+        @Nullable Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass,
+        @Nullable DataManipulatorBuilder<?, ?> builder) {
+        super(message, cause);
+        this.manipulatorClass = manipulatorClass;
+        this.immutableManipulatorClass = immutableManipulatorClass;
+        this.builder = builder;
+    }
+
+    public DataAlreadyRegisteredException(Throwable cause,
+        @Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
+        @Nullable Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass,
+        @Nullable DataManipulatorBuilder<?, ?> builder) {
+        super(cause);
+        this.manipulatorClass = manipulatorClass;
+        this.immutableManipulatorClass = immutableManipulatorClass;
+        this.builder = builder;
+    }
 }
