@@ -56,6 +56,8 @@ public final class PopulatorTypes {
 
     public static final PopulatorType FOREST = DummyObjectProvider.createFor(PopulatorType.class, "FOREST");
 
+    public static final PopulatorType FOSSIL = DummyObjectProvider.createFor(PopulatorType.class, "FOSSIL");
+
     public static final PopulatorType GENERIC_BLOCK = DummyObjectProvider.createFor(PopulatorType.class, "GENERIC_BLOCK");
 
     public static final PopulatorType GENERIC_OBJECT = DummyObjectProvider.createFor(PopulatorType.class, "GENERIC_OBJECT");
