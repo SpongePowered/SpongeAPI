@@ -115,4 +115,18 @@ public interface EconomyService extends ContextualService<Account> {
      * @return The {@link Account}, if available.
      */
     Optional<Account> getOrCreateAccount(String identifier);
+
+    /**
+     * Returns the {@link Set} of all stored {@link UniqueAccount} objects. 
+     *
+     * @return The {@link Set} of all stored {@link UniqueAccount} objects.
+     */
+    Set<UniqueAccount> getAllUniqueAccounts();
+
+    /**
+     * Returns the {@link Set} of all stored {@link VirtualAccount} objects.
+     *
+     * @return The {@link Set} of all stored {@link VirtualAccount} objects.
+     */
+    Set<VirtualAccount> getAllVirtualAccounts();
 }
