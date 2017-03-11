@@ -171,6 +171,16 @@ public interface WorldProperties extends DataSerializable {
     long getSeed();
 
     /**
+     * Sets the seed of this world.
+     * 
+     * <p>Warning: this may cause the edge of currently generated chunks to no
+     * longer align with newly generated chunks.</p>
+     * 
+     * @param seed The new world seed
+     */
+    void setSeed(long seed);
+
+    /**
      * Gets the number of ticks which have occurred since the world was created.
      *
      * @return The total time in ticks
