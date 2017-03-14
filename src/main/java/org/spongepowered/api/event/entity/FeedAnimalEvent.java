@@ -34,6 +34,7 @@ import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
  */
 @GenerateFactoryMethod
 public interface FeedAnimalEvent extends InteractEntityEvent {
+
     /**
      * Gets the {@link ItemType} fed to the {@link Animal}.
      *
