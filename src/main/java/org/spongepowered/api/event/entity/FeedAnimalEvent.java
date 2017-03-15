@@ -27,6 +27,8 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
@@ -36,11 +38,11 @@ import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 public interface FeedAnimalEvent extends InteractEntityEvent {
 
     /**
-     * Gets the {@link ItemType} fed to the {@link Animal}.
+     * Gets a snapshot of the {@link ItemStack} fed to the {@link Animal} before it is used.
      *
-     * @return The item fed to the animal
+     * @return A snapshot of the item fed.
      */
-    ItemType getItem();
+    ItemStackSnapshot getItem();
 
     /**
      * Fired when an adult {@link Animal} is fed with a breeding item leading to it being set in love.
