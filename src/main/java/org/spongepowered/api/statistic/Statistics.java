@@ -109,8 +109,6 @@ public final class Statistics {
 
     public static final Statistic PLAYER_KILLS = DummyObjectProvider.createFor(Statistic.class, "PLAYER_KILLS");
 
-    public static final Statistic PLAY_ONE_MINUTE = DummyObjectProvider.createFor(Statistic.class, "PLAY_ONE_MINUTE");
-
     public static final Statistic RECORD_PLAYED = DummyObjectProvider.createFor(Statistic.class, "RECORD_PLAYED");
 
     public static final Statistic SLEEP_IN_BED = DummyObjectProvider.createFor(Statistic.class, "SLEEP_IN_BED");

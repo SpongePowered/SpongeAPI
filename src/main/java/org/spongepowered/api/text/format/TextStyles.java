@@ -42,7 +42,7 @@ public final class TextStyles {
     /**
      * Represents an empty {@link TextStyle}.
      */
-    public static final TextStyle NONE = new NoneTextStyle();
+    public static final TextStyle.Base NONE = new NoneTextStyle();
 
     public static final TextStyle.Base OBFUSCATED = new DummyTextStyle("OBFUSCATED");
     public static final TextStyle.Base BOLD = new DummyTextStyle("BOLD");
@@ -79,7 +79,7 @@ public final class TextStyles {
     /**
      * A private class that represents the type of the {@link #NONE} text style.
      */
-    private static final class NoneTextStyle extends TextStyle implements CatalogType {
+    private static final class NoneTextStyle extends TextStyle.Base implements CatalogType {
 
         /**
          * Constructs a new {@link NoneTextStyle}.
