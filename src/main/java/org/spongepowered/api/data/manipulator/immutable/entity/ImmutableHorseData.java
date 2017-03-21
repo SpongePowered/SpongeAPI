@@ -28,15 +28,15 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.HorseData;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
-import org.spongepowered.api.data.type.HorseVariant;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.living.animal.RideableHorse;
 
 /**
  * An {@link ImmutableDataManipulator} handling the various information for a
  * {@link RideableHorse} including {@link HorseColor}, {@link HorseStyle}, and
- * {@link HorseVariant}.
+ * {@link org.spongepowered.api.data.type.HorseVariant}.
  */
+@SuppressWarnings("deprecation")
 public interface ImmutableHorseData extends ImmutableDataManipulator<ImmutableHorseData, HorseData> {
 
     /**
@@ -62,6 +62,6 @@ public interface ImmutableHorseData extends ImmutableDataManipulator<ImmutableHo
      *
      * @return The immutable value for the horse variant
      */
-    ImmutableValue<HorseVariant> variant();
+    ImmutableValue<org.spongepowered.api.data.type.HorseVariant> variant();
 
 }

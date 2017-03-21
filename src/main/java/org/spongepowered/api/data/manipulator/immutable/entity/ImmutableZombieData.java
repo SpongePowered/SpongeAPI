@@ -25,9 +25,7 @@
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.ZombieData;
 import org.spongepowered.api.data.type.Profession;
-import org.spongepowered.api.data.type.ZombieType;
 import org.spongepowered.api.data.value.immutable.ImmutableOptionalValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.living.monster.Zombie;
@@ -39,14 +37,16 @@ import java.util.Optional;
  * profession of a {@link Zombie}.
  */
 @Deprecated
-public interface ImmutableZombieData extends ImmutableDataManipulator<ImmutableZombieData, ZombieData> {
+@SuppressWarnings("deprecation")
+public interface ImmutableZombieData extends ImmutableDataManipulator<ImmutableZombieData,
+    org.spongepowered.api.data.manipulator.mutable.entity.ZombieData> {
 
     /**
      * Returns a value specifying Zombie's type.
      *
      * @return Zombie's type
      */
-    ImmutableValue<ZombieType> type();
+    ImmutableValue<org.spongepowered.api.data.type.ZombieType> type();
 
     /**
      * Value representing a zombie's {@link Profession}.

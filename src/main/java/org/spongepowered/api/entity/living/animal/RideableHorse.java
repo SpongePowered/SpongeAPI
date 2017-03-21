@@ -28,7 +28,6 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.HorseData;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
-import org.spongepowered.api.data.type.HorseVariant;
 import org.spongepowered.api.data.value.mutable.Value;
 
 /**
@@ -48,7 +47,8 @@ public interface RideableHorse extends Horse {
     }
 
     @Override
-    default Value<HorseVariant> variant() {
+    @SuppressWarnings("deprecation")
+    default Value<org.spongepowered.api.data.type.HorseVariant> variant() {
         return getValue(Keys.HORSE_VARIANT).get();
     }
 

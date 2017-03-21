@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.ElderData;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.Aquatic;
 import org.spongepowered.api.entity.living.Living;
@@ -38,12 +37,14 @@ import java.util.Optional;
 public interface Guardian extends Aquatic, Monster {
 
     /**
-     * Gets the {@link ElderData} for the "elder" state.
+     * Gets the {@link org.spongepowered.api.data.manipulator.mutable.entity.ElderData} for the "elder" state.
      *
      * @return The elder data manipulator
      */
-    default ElderData getElderData() {
-        return get(ElderData.class).get();
+    @Deprecated
+    @SuppressWarnings("deprecation")
+    default org.spongepowered.api.data.manipulator.mutable.entity.ElderData getElderData() {
+        return get(org.spongepowered.api.data.manipulator.mutable.entity.ElderData.class).get();
     }
 
     /**

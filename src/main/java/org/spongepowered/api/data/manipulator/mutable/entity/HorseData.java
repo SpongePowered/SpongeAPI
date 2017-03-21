@@ -28,23 +28,22 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableHorseData;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
-import org.spongepowered.api.data.type.HorseVariant;
-import org.spongepowered.api.data.type.HorseVariants;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.animal.RideableHorse;
 
 /**
  * An {@link DataManipulator} handling the various information for a
  * {@link RideableHorse} including {@link HorseColor}, {@link HorseStyle}, and
- * {@link HorseVariant}.
+ * {@link org.spongepowered.api.data.type.HorseVariant}.
  */
+@SuppressWarnings("deprecation")
 public interface HorseData extends DataManipulator<HorseData, ImmutableHorseData> {
 
     /**
      * Gets a {@link Value} for the {@link HorseColor}.
      *
      * <p>In Vanilla, this will have no effect unless {@link #variant()}
-     * is {@link HorseVariants#HORSE}</p>
+     * is {@link org.spongepowered.api.data.type.HorseVariants#HORSE}</p>
      *
      * @return The value for the horse color
      */
@@ -55,14 +54,14 @@ public interface HorseData extends DataManipulator<HorseData, ImmutableHorseData
      * Gets a {@link Value} for the {@link HorseStyle}.
      *
      * <p>In Vanilla, this will have no effect unless {@link #variant()}
-     * is {@link HorseVariants#HORSE}</p>
+     * is {@link org.spongepowered.api.data.type.HorseVariants#HORSE}</p>
      *
      * @return The value for the horse style
      */
     Value<HorseStyle> style();
 
     /**
-     * Gets the {@link Value} for the {@link HorseVariant}.
+     * Gets the {@link Value} for the {@link org.spongepowered.api.data.type.HorseVariant}.
      *
      * <p>HorseVariants may change the capability of a horse. Some horses
      * are unable to equip an extra chest, while others are unable to equip
@@ -71,7 +70,7 @@ public interface HorseData extends DataManipulator<HorseData, ImmutableHorseData
      * @return The value for the horse variant
      */
     @Deprecated
-    Value<HorseVariant> variant();
+    Value<org.spongepowered.api.data.type.HorseVariant> variant();
 
 
 }

@@ -25,15 +25,16 @@
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
-import org.spongepowered.api.data.manipulator.mutable.entity.SkeletonData;
-import org.spongepowered.api.data.type.SkeletonType;
 import org.spongepowered.api.entity.living.monster.Skeleton;
 
 /**
- * A type of {@link ImmutableVariantData} for {@link SkeletonType}s belonging
+ * A type of {@link ImmutableVariantData} for
+ * {@link org.spongepowered.api.data.type.SkeletonType}s belonging
  * to an {@link Skeleton}.
  */
 @Deprecated
-public interface ImmutableSkeletonData extends ImmutableVariantData<SkeletonType, ImmutableSkeletonData, SkeletonData> {
+@SuppressWarnings("deprecation")
+public interface ImmutableSkeletonData extends ImmutableVariantData<org.spongepowered.api.data.type.SkeletonType, ImmutableSkeletonData,
+    org.spongepowered.api.data.manipulator.mutable.entity.SkeletonData> {
 
 }
