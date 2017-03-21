@@ -576,7 +576,8 @@ public final class Keys {
      *     and {@link Llama}.
      */
     @Deprecated
-    public static final Key<Value<HorseVariant>> HORSE_VARIANT = KeyFactory.fake("HORSE_VARIANT");
+    @SuppressWarnings("deprecation")
+    public static final Key<Value<org.spongepowered.api.data.type.HorseVariant>> HORSE_VARIANT = KeyFactory.fake("HORSE_VARIANT");
 
     /**
      * Represents the {@link Key} for representing the "is infinite" state
@@ -907,7 +908,8 @@ public final class Keys {
      * @deprecated Due to the fact that skeletons have interfaces instead of types now
      */
     @Deprecated
-    public static final Key<Value<SkeletonType>> SKELETON_TYPE = KeyFactory.fake("SKELETON_TYPE");
+    @SuppressWarnings("deprecation")
+    public static final Key<Value<org.spongepowered.api.data.type.SkeletonType>> SKELETON_TYPE = KeyFactory.fake("SKELETON_TYPE");
 
     public static final Key<Value<UUID>> SKIN_UNIQUE_ID = KeyFactory.fake("SKIN_UNIQUE_ID");
 
@@ -1123,7 +1125,9 @@ public final class Keys {
 
     public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = KeyFactory.fake("WIRE_ATTACHMENT_WEST");
 
-    public static final Key<Value<ZombieType>> ZOMBIE_TYPE = KeyFactory.fake("ZOMBIE_TYPE");
+    @Deprecated
+    @SuppressWarnings("deprecation")
+    public static final Key<Value<org.spongepowered.api.data.type.ZombieType>> ZOMBIE_TYPE = KeyFactory.fake("ZOMBIE_TYPE");
 
     // SORTFIELDS:OFF
 

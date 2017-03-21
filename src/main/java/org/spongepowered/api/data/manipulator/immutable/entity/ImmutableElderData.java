@@ -25,7 +25,6 @@
 package org.spongepowered.api.data.manipulator.immutable.entity;
 
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.ElderData;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.living.monster.Guardian;
 
@@ -36,7 +35,8 @@ import org.spongepowered.api.entity.living.monster.Guardian;
  * items dropped when killed.
  */
 @Deprecated
-public interface ImmutableElderData extends ImmutableDataManipulator<ImmutableElderData, ElderData> {
+@SuppressWarnings("deprecation")
+public interface ImmutableElderData extends ImmutableDataManipulator<ImmutableElderData, org.spongepowered.api.data.manipulator.mutable.entity.ElderData> {
 
     /**
      * Gets the {@link ImmutableValue} for the "elder" state.

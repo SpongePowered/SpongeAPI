@@ -28,7 +28,6 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.HorseData;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
-import org.spongepowered.api.data.type.HorseVariant;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.item.inventory.Carrier;
 
@@ -46,14 +45,15 @@ public interface Horse extends Animal, Carrier {
     }
 
     /**
-     * Gets the {@link Value} of the {@link HorseVariant} for this
+     * Gets the {@link Value} of the {@link org.spongepowered.api.data.type.HorseVariant} for this
      * {@link Horse}.
      *
      * @return The variant value
      * @deprecated This is now only usable with {@link RideableHorse}s.
      */
     @Deprecated
-    default Value<HorseVariant> variant() {
+    @SuppressWarnings("deprecation")
+    default Value<org.spongepowered.api.data.type.HorseVariant> variant() {
         return getValue(Keys.HORSE_VARIANT).get();
     }
 
