@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
 import org.spongepowered.api.world.Location;
@@ -36,7 +37,7 @@ import java.util.List;
 /**
  * Called when an {@link Explosion} occurs in a {@link World}.
  */
-public interface ExplosionEvent extends TargetWorldEvent {
+public interface ExplosionEvent extends Event {
 
     /**
      * Gets the {@link Explosion} involved in this event.
@@ -48,7 +49,7 @@ public interface ExplosionEvent extends TargetWorldEvent {
     /**
      * An event that is fired before the explosion occurs.
      */
-    interface Pre extends ExplosionEvent, Cancellable {
+    interface Pre extends ExplosionEvent, TargetWorldEvent, Cancellable {
 
         /**
          * Sets the {@link Explosion} involved for this event. This will
@@ -68,7 +69,7 @@ public interface ExplosionEvent extends TargetWorldEvent {
      * already calculated all the blocks and entities the explosion should
      * affect.
      */
-    interface Detonate extends ExplosionEvent, AffectEntityEvent {
+    interface Detonate extends ExplosionEvent, TargetWorldEvent, AffectEntityEvent {
 
         /**
          * Gets the list of calculated affected locations for blocks that will

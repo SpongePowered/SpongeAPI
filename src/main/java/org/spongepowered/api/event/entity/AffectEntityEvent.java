@@ -52,7 +52,7 @@ import java.util.function.Predicate;
  * Other cases will be included as necessary.
  */
 @ImplementedBy(AbstractAffectEntityEvent.class)
-public interface AffectEntityEvent extends TargetWorldEvent, Cancellable {
+public interface AffectEntityEvent extends Event, Cancellable {
 
     /**
      * Gets an {@link List} of the entity data
