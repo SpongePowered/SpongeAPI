@@ -55,8 +55,7 @@ public class SpongeAbstractEventTest {
 
         when(transaction.getOriginal().getLocation()).thenReturn(Optional.of(new Location<>(mockParam(World.class), Vector3d.ZERO)));
 
-        ChangeBlockEvent.Break event = SpongeEventFactory.createChangeBlockEventBreak(Cause.source("none").build(), mockParam(World.class),
-                Lists.newArrayList(transaction));
+        ChangeBlockEvent.Break event = SpongeEventFactory.createChangeBlockEventBreak(Cause.source("none").build(), Lists.newArrayList(transaction));
         event.filter(location -> false);
 
         assertThat(transaction.isValid(), is(false));

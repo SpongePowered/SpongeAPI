@@ -46,7 +46,7 @@ import java.util.function.Predicate;
  * Base event for when {@link BlockState}s at {@link Location}s are being
  * changed.
  */
-public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable {
+public interface ChangeBlockEvent extends Event, Cancellable {
 
     /**
      * Gets a list of the {@link Transaction}s for this event. If a
@@ -95,7 +95,7 @@ public interface ChangeBlockEvent extends TargetWorldEvent, Cancellable {
      * Called before running specific block logic at one or more 
      * {@link Location}'s such as {@link BlockTypes#FLOWING_WATER}.
      */
-    interface Pre extends TargetWorldEvent, Cancellable {
+    interface Pre extends Event, Cancellable {
 
         /**
          * Represents a list of one or more {@link Location}'s where
