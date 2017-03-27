@@ -190,6 +190,13 @@ public interface ChunkTicketManager {
         int getMaxNumChunks();
 
         /**
+         * Gets the world passed when creating this ticket
+         *
+         * @return The World object given to this ticket upon its creation
+         */
+        World getWorld();
+
+        /**
          * Gets the companion data stored in a {@link DataContainer}. Note that
          * the provided {@link DataContainer} is modifiable, but a copy of the
          * internal container, and as such may need to be
