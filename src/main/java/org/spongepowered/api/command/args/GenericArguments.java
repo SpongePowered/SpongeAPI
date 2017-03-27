@@ -1604,35 +1604,59 @@ public final class GenericArguments {
     }
 
     /**
-     * Creates a new {@link CommandElement} with an {@link Entity} target
-     * and the provided {@link Text} key.
+     * Expect an argument to represent an {@link Entity}.
      *
-     * @param key The text key representation
-     * @return The command element
+     * @param key The key to store under
+     * @return the argument
      */
     public static CommandElement entity(Text key) {
         return new EntityCommandElement(key, false, false, null);
     }
 
     /**
-     * Creates a new {@link CommandElement} with an {@link Entity} target
-     * or other source and the provided {@link Text} key.
+     * Expect an argument to represent an {@link Entity}, or if the argument is
+     * not present and the {@link CommandSource} is an entity, return the
+     * source.
      *
-     * @param key The text key representation
-     * @return The command element
+     * @param key The key to store under
+     * @return the argument
      */
     public static CommandElement entityOrSource(Text key) {
         return new EntityCommandElement(key, true, false, null);
     }
 
+    /**
+     * Expect an argument to represent an {@link Entity} of the specified type.
+     *
+     * @param key The key to store under
+     * @param type The type which the entity must subclass
+     * @return the argument
+     */
     public static CommandElement entity(Text key, Class<? extends Entity> type) {
         return new EntityCommandElement(key, false, false, type);
     }
 
+    /**
+     * Expect an argument to represent an {@link Entity}, or if the argument is
+     * not present and the {@link CommandSource} is looking at an entity,
+     * return that entity.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
     public static CommandElement entityOrTarget(Text key) {
         return new EntityCommandElement(key, false, true, null);
     }
 
+    /**
+     * Expect an argument to represent an {@link Entity} of the specified type,
+     * or if the argument is not present and the {@link CommandSource} is
+     * looking at an applicable entity, return that entity.
+     *
+     * @param key The key to store under
+     * @param type The type which the entity must subclass
+     * @return the argument
+     */
     public static CommandElement entityOrTarget(Text key, Class<? extends Entity> type) {
         return new EntityCommandElement(key, false, true, type);
     }
