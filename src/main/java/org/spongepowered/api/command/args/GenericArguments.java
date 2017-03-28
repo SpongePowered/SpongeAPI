@@ -92,6 +92,7 @@ import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -2142,6 +2143,133 @@ public final class GenericArguments {
                 throw args.createError(Text.of("Invalid duration!"));
             }
         }
+    }
+
+    /**
+     * Uses a custom set of suggestions for an argument. The provided
+     * suggestions will replace the regular ones.
+     *
+     * @param argument The element to replace the suggestions of
+     * @param suggestions The suggestions to use
+     * @return the argument
+     */
+    public static CommandElement withSuggestions(CommandElement argument, Iterable<String> suggestions) {
+        return withSuggestions(argument, suggestions, true);
+    }
+
+    /**
+     * Uses a custom set of suggestions for an argument. The provided
+     * suggestions will replace the regular ones.
+     *
+     * <p>If {@code requireBegin} is false, then the already typed argument
+     * will not be used to filter the provided suggestions.</p>
+     *
+     * @param argument The element to replace the suggestions of
+     * @param suggestions The suggestions to use
+     * @param requireBegin Whether or not to require the current argument to
+     *                     begin provided arguments
+     * @return the argument
+     */
+    public static CommandElement withSuggestions(CommandElement argument, Iterable<String> suggestions, boolean requireBegin) {
+        return withSuggestions(argument, (s) -> suggestions, requireBegin);
+    }
+
+    /**
+     * Filters an argument's suggestions. A suggestion will only be used if it
+     * matches the predicate.
+     *
+     * @param argument The element to filter the suggestions of
+     * @param predicate The predicate to test suggestions against
+     * @return the argument
+     */
+    public static CommandElement withConstrainedSuggestions(CommandElement argument, Predicate<String> predicate) {
+        return new FilteredSuggestionsElement(argument, predicate);
+    }
+
+    /**
+     * Uses a custom set of suggestions for an argument. The provided
+     * suggestions will replace the regular ones.
+     *
+     * @param argument The element to replace the suggestions of
+     * @param suggestions A function to return the suggestions to use
+     * @return the argument
+     */
+    public static CommandElement withSuggestions(CommandElement argument, Function<CommandSource, Iterable<String>> suggestions) {
+        return withSuggestions(argument, suggestions, true);
+    }
+
+    /**
+     * Uses a custom set of suggestions for an argument. The provided
+     * suggestions will replace the regular ones.
+     *
+     * <p>If {@code requireBegin} is false, then the already typed argument
+     * will not be used to filter the provided suggestions.</p>
+     *
+     * @param argument The element to replace the suggestions of
+     * @param suggestions A function to return the suggestions to use
+     * @param requireBegin Whether or not to require the current argument to
+     *                     begin provided arguments
+     * @return the argument
+     */
+    public static CommandElement withSuggestions(CommandElement argument, Function<CommandSource, Iterable<String>> suggestions, boolean requireBegin) {
+        return new WithSuggestionsElement(argument, suggestions, requireBegin);
+    }
+
+    private static class WithSuggestionsElement extends CommandElement {
+
+        private final CommandElement wrapped;
+        private final Function<CommandSource, Iterable<String>> suggestions;
+        private final boolean requireBegin;
+
+        protected WithSuggestionsElement(CommandElement wrapped, Function<CommandSource, Iterable<String>> suggestions, boolean requireBegin) {
+            super(wrapped.getKey());
+            this.wrapped = wrapped;
+            this.suggestions = suggestions;
+            this.requireBegin = requireBegin;
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            return this.wrapped.parseValue(source, args);
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            if (this.requireBegin) {
+                String arg = args.nextIfPresent().orElse("");
+                return ImmutableList.copyOf(Iterables.filter(this.suggestions.apply(src), f -> f.startsWith(arg)));
+            } else {
+                return ImmutableList.copyOf(this.suggestions.apply(src));
+            }
+        }
+
+    }
+
+    private static class FilteredSuggestionsElement extends CommandElement {
+
+        private final CommandElement wrapped;
+        private final Predicate<String> predicate;
+
+        protected FilteredSuggestionsElement(CommandElement wrapped, Predicate<String> predicate) {
+            super(wrapped.getKey());
+            this.wrapped = wrapped;
+            this.predicate = predicate.negate();
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            return this.wrapped.parseValue(source, args);
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            List<String> ret = this.wrapped.complete(src, args, context);
+            ret.removeIf(this.predicate);
+            return ret;
+        }
+
     }
 
 }
