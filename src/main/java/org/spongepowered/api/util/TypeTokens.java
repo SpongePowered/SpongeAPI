@@ -45,9 +45,11 @@ import org.spongepowered.api.data.type.DoublePlantType;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.Fish;
 import org.spongepowered.api.data.type.GoldenApple;
+import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.Hinge;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
+import org.spongepowered.api.data.type.LlamaVariant;
 import org.spongepowered.api.data.type.LogAxis;
 import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.data.type.OcelotType;
@@ -70,6 +72,7 @@ import org.spongepowered.api.data.type.StoneType;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.TreeType;
 import org.spongepowered.api.data.type.WallType;
+import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -83,6 +86,7 @@ import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.extra.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
@@ -184,6 +188,10 @@ public class TypeTokens {
 
     public static final TypeToken<EntitySnapshot> ENTITY_TOKEN = new TypeToken<EntitySnapshot>() {};
 
+    public static final TypeToken<Map<EntityType, Double>> ENTITY_TYPE_DOUBLE_MAP_TOKEN = new TypeToken<Map<EntityType, Double>>() {};
+
+    public static final TypeToken<MapValue<EntityType, Double>> ENTITY_TYPE_DOUBLE_MAP_VALUE_TOKEN = new TypeToken<MapValue<EntityType, Double>>() {};
+
     public static final TypeToken<EntityType> ENTITY_TYPE_TOKEN = new TypeToken<EntityType>() {};
 
     public static final TypeToken<Value<EntityType>> ENTITY_TYPE_VALUE_TOKEN = new TypeToken<Value<EntityType>>() {};
@@ -214,6 +222,10 @@ public class TypeTokens {
 
     public static final TypeToken<Value<GoldenApple>> GOLDEN_APPLE_VALUE_TOKEN = new TypeToken<Value<GoldenApple>>() {};
 
+    public static final TypeToken<HandPreference> HAND_PREFERENCE_TYPE_TOKEN = new TypeToken<HandPreference>() {};
+
+    public static final TypeToken<Value<HandPreference>> HAND_PREFERENCE_VALUE_TOKEN = new TypeToken<Value<HandPreference>>() {};
+
     public static final TypeToken<Hinge> HINGE_TOKEN = new TypeToken<Hinge>() {};
 
     public static final TypeToken<Value<Hinge>> HINGE_VALUE_TOKEN = new TypeToken<Value<Hinge>>() {};
@@ -242,6 +254,10 @@ public class TypeTokens {
 
     public static final TypeToken<Value<ItemStackSnapshot>> ITEM_SNAPSHOT_VALUE_TOKEN = new TypeToken<Value<ItemStackSnapshot>>() {};
 
+    public static final TypeToken<Optional<Living>> LAST_ATTACKER_TOKEN = new TypeToken<Optional<Living>>() {};
+
+    public static final TypeToken<OptionalValue<Living>> LAST_ATTACKER_VALUE_TOKEN = new TypeToken<OptionalValue<Living>>() {};
+
     public static final TypeToken<List<DyeColor>> LIST_DYE_COLOR_TOKEN = new TypeToken<List<DyeColor>>() {};
 
     public static final TypeToken<ListValue<DyeColor>> LIST_DYE_COLOR_VALUE_TOKEN = new TypeToken<ListValue<DyeColor>>() {};
@@ -269,6 +285,10 @@ public class TypeTokens {
     public static final TypeToken<ListValue<FireworkEffect>> LIST_VALUE_FIREWORK_TOKEN = new TypeToken<ListValue<FireworkEffect>>() {};
 
     public static final TypeToken<ListValue<TradeOffer>> LIST_VALUE_TRADE_OFFER_TOKEN = new TypeToken<ListValue<TradeOffer>>() {};
+
+    public static final TypeToken<LlamaVariant> LLAMA_VARIANT_TOKEN = new TypeToken<LlamaVariant>() {};
+
+    public static final TypeToken<Value<LlamaVariant>> LLAMA_VARIANT_VALUE_TOKEN = new TypeToken<Value<LlamaVariant>>() {};
 
     public static final TypeToken<LogAxis> LOG_AXIS_TOKEN = new TypeToken<LogAxis>() {};
 
@@ -443,6 +463,14 @@ public class TypeTokens {
     public static final TypeToken<WeightedSerializableObject<EntityArchetype>> WEIGHTED_ENTITY_ARCHETYPE_TOKEN = new TypeToken<WeightedSerializableObject<EntityArchetype>>() {};
 
     public static final TypeToken<Value<WeightedSerializableObject<EntityArchetype>>> WEIGHTED_ENTITY_ARCHETYPE_VALUE_TOKEN = new TypeToken<Value<WeightedSerializableObject<EntityArchetype>>>() {};
+
+    public static final TypeToken<Map<Direction, WireAttachmentType>> WIRE_ATTACHMENT_MAP_TOKEN = new TypeToken<Map<Direction, WireAttachmentType>>() {};
+
+    public static final TypeToken<MapValue<Direction, WireAttachmentType>> WIRE_ATTACHMENT_MAP_VALUE_TOKEN = new TypeToken<MapValue<Direction, WireAttachmentType>>() {};
+
+    public static final TypeToken<WireAttachmentType> WIRE_ATTACHMENT_TYPE_TOKEN = new TypeToken<WireAttachmentType>() {};
+
+    public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {};
 
     public static final TypeToken<org.spongepowered.api.data.type.ZombieType> ZOMBIE_TYPE_TOKEN = new TypeToken<org.spongepowered.api.data.type.ZombieType>() {};
 

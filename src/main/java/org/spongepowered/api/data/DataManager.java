@@ -153,6 +153,18 @@ public interface DataManager {
             Class<? extends I> immutableManipulatorClass, DataManipulatorBuilder<T, I> builder);
 
     /**
+     * Registers a legacy {@code id} that is used by a previous version of
+     * {@link DataRegistration} from a plugin such that the custom data can
+     * be retained, while not being lost. The legacy id can be used for custom
+     * data that was loaded prior to {@link #register(Class, Class, DataManipulatorBuilder)}
+     * being transitioned to using {@link DataRegistration}s.
+     *
+     * @param legacyId The legacy id
+     * @param registration The registration object successfully created
+     */
+    void registerLegacyManipulatorIds(String legacyId, DataRegistration<?, ?> registration);
+
+    /**
      * Attempts to retrieve the builder for the given
      * {@link ImmutableDataHolder}.
      *

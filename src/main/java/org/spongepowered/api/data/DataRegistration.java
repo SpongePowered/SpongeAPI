@@ -39,21 +39,41 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
      * Creates a new {@link Builder} to build a {@link DataRegistration}.
      * Through the use of generics, this can be duck-typed to the generics of
      * the desired {@link DataManipulator} type to be registered.
-     * @param <T>
-     * @param <I>
-     * @return
+     * @param <T> The type of data manipulator
+     * @param <I> The type of immutable data manipulator
+     * @return The new builder instance
      */
     @SuppressWarnings("unchecked")
     static <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>> Builder<T, I> builder() {
         return (Builder<T, I>) Sponge.getRegistry().createBuilder(Builder.class);
     }
 
+    /**
+     * Gets the {@link DataManipulator} class for this registration.
+     *
+     * @return The manipulator class registered
+     */
     Class<T> getManipulatorClass();
 
+    /**
+     * Gets the {@link ImmutableDataManipulator} class for this registration.
+     *
+     * @return The immutable class registered
+     */
     Class<I> getImmutableManipulatorClass();
 
+    /**
+     * Gets the {@link DataManipulatorBuilder} registered for this registration.
+     *
+     * @return The manipulator builder
+     */
     DataManipulatorBuilder<T, I> getDataManipulatorBuilder();
 
+    /**
+     * Gets the owning {@link PluginContainer}.
+     *
+     * @return The owning plugin container for this registration
+     */
     PluginContainer getPluginContainer();
 
     @Override
@@ -84,6 +104,16 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          * @return This builder, for chaining
          */
         Builder<T, I> setManipulatorId(String id);
+
+        /**
+         * Sets the {@link DataManipulatorBuilder} to be used to generate new
+         * {@link DataManipulator DataManipulators} and
+         * {@link ImmutableDataManipulator ImmutableDataManipulators}.
+         *
+         * @param builder The builder
+         * @return This builder, for chaining
+         */
+        Builder<T, I> setBuilder(DataManipulatorBuilder<T, I> builder);
 
         /**
          * Since {@link DataRegistration} objects should be considered
@@ -127,9 +157,10 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          *
          *
          * @return The data registration object
-         * @throws IllegalStateException
-         * @throws IllegalArgumentException
-         * @throws DataAlreadyRegisteredException
+         * @throws IllegalStateException If registrations can no longer take place
+         * @throws IllegalArgumentException Various reasons
+         * @throws DataAlreadyRegisteredException If the classes and or builder
+         *     has already been registered
          */
         DataRegistration<T, I> buildAndRegister(PluginContainer container) throws IllegalStateException, IllegalArgumentException,
                                                                                   DataAlreadyRegisteredException;
