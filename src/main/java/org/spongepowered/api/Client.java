@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.ThreadContext;
 import org.spongepowered.api.world.World;
@@ -64,6 +63,7 @@ public interface Client extends ThreadContext {
      * Loads a world save with the given name.
      *
      * @param saveLocation The location of the save
+     * @return A future containing the Server object.
      */
     CompletableFuture<Server> loadWorldSave(Path saveLocation);
 
@@ -73,16 +73,9 @@ public interface Client extends ThreadContext {
      * TODO return a multiplayer session object
      *
      * @param server The server to join
+     * @return A future containing the server connection object
      */
     CompletableFuture<?> joinServer(InetSocketAddress server);
-
-    /**
-     * Gets the current pause state of the game. In singleplayer, pausing the game will also pause
-     * the world. In multiplayer, it will only bring up the pause menu.
-     *
-     * @return The current pause state
-     */
-    Value<Boolean> pause();
 
     /**
      * Gets the directory resource packs are stored in.
