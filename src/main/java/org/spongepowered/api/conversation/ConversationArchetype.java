@@ -88,14 +88,14 @@ public interface ConversationArchetype {
     boolean catchesOutput();
 
     /**
-     * Gets if {@link Conversant}s can use commands
+     * Gets if {@link Conversant}s can use commands.
      *
      * @return Whether or not {@link Conversant}s can use commands
      */
     boolean allowsCommands();
 
     /**
-     * Gets the default handler for all {@link Conversant}s within the conversation
+     * Gets the default handler for all {@link Conversant}s within the conversation.
      *
      * @return The default handler for all {@link Conversant}s within the conversation
      */
@@ -136,14 +136,15 @@ public interface ConversationArchetype {
      *
      * <p>Generally only one conversant is set, as each question is completed
      * after just one responds, but multiple are allowed to support the use case
-     * of multiple participants. If you want them to be in their own conversation,
-     * use the archetype to simply start another one.</p>
+     * of multiple participants. If you want them to be in their own
+     * conversation, use the archetype to simply start another one.</p>
      *
      * @param plugin The plugin starting the conversation
      * @param conversants The conversants to start the conversation for
      * @return The conversation that was started, if created successfully
      */
-    Optional<Conversation> start(PluginContainer plugin, Conversant... conversants);
+    Optional<Conversation> start(PluginContainer plugin,
+        Conversant... conversants);
 
     /**
      * Gets a builder based off of this archetype's values.
@@ -155,7 +156,8 @@ public interface ConversationArchetype {
     /**
      * Used to create an {@link ConversationArchetype}.
      */
-    interface Builder extends ResettableBuilder<ConversationArchetype, Builder> {
+    interface Builder extends
+        ResettableBuilder<ConversationArchetype, Builder> {
 
         /**
          * Sets the id of the archetype. This is mandatory.
@@ -209,7 +211,9 @@ public interface ConversationArchetype {
         Builder firstQuestion(Question question);
 
         /**
-         * Adds an ending handler to the conversation. You should at least add one.
+         * Adds an ending handler to the conversation.
+         *
+         * <p>You should at least add one handler.</p>
          *
          * @param endingHandler The ending handler to add
          * @return The modified builder

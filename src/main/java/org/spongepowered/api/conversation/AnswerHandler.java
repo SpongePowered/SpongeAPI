@@ -54,7 +54,7 @@ public interface AnswerHandler {
      * @param question The question being answered
      * @param args The context of this specific question
      * @return Whether to end the conversation, repeat the question, or go to
-     * another question
+     *     another question
      */
     QuestionResult handle(Conversation conversation, Conversant conversant, Question question, ResponseContext args);
 

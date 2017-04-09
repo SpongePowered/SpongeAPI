@@ -134,7 +134,8 @@ public interface Conversation {
      * @param conversant The conversant to add to the conversation
      * @param externalChatHandler The chat handler to give the conversant
      */
-    void addConversant(Conversant conversant, ExternalChatHandler externalChatHandler);
+    void addConversant(Conversant conversant,
+        ExternalChatHandler externalChatHandler);
 
     /**
      * Removes the specified {@link Conversant} from the conversation.
@@ -158,7 +159,7 @@ public interface Conversation {
      * conversation, instead use {@link #addConversant(Conversant)}
      *
      * @param conversant The conversant which you want to modify
-     * @param externalChatHandler The external chat handler for the specified player
+     * @param externalChatHandler The external chat handler for the conversant
      */
     void setChatHandler(Conversant conversant, ExternalChatHandler externalChatHandler);
 
@@ -186,7 +187,7 @@ public interface Conversation {
     void catchOutput(boolean catches);
 
     /**
-     * Gets if {@link Conversant} output should be caught
+     * Gets if {@link Conversant} output should be caught.
      *
      * @return Whether or not {@link Conversant} output should be caught
      */
@@ -200,7 +201,7 @@ public interface Conversation {
     void allowCommands(boolean allow);
 
     /**
-     * Gets if {@link Conversant}s can use commands
+     * Gets if {@link Conversant}s can use commands.
      *
      * @return Whether or not {@link Conversant}s can use commands
      */

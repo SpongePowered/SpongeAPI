@@ -45,7 +45,7 @@ public interface ExternalChatHandler {
      * Notify this handler that the conversation has come to an end.
      *
      * @param conversant The {@link Conversant} to send the messages to,
-     * if applicable
+     *     if applicable
      */
     void finish(Conversant conversant);
 
