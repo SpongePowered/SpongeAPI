@@ -33,8 +33,8 @@ import java.util.Optional;
 
 /**
  * Handles all active conversations. This is where conversant input is processed
- * as well as where conversations are started by Sponge. There are some methods that
- * can be used for easy retrieval of conversations as well.
+ * as well as where conversations are started by Sponge. There are some methods
+ * that can be used for easy retrieval of conversations as well.
  */
 public interface ConversationManager {
 
@@ -55,10 +55,12 @@ public interface ConversationManager {
     Collection<Conversation> getConversations();
 
     /**
-     * Processes a {@link Conversant}s incoming chat if they are in a conversation.
+     * Processes a {@link Conversant}s incoming chat if they are in
+     * a conversation.
      *
      * <p>This should generally only be called by Sponge, but a plugin could
-     * utilize this method to essentially act as the conversant in the conversation.</p>
+     * utilize this method to essentially act as the conversant in
+     * the conversation.</p>
      *
      * @param conversant The conversant to process chat for
      * @param message The conversant's raw message
@@ -75,7 +77,8 @@ public interface ConversationManager {
      * @param conversants The conversants to add to the conversation
      * @return The conversation if it was successfully created
      */
-    Optional<Conversation> start(ConversationArchetype archetype, PluginContainer plugin, Conversant... conversants);
+    Optional<Conversation> start(ConversationArchetype archetype,
+        PluginContainer plugin, Conversant... conversants);
 
     /**
      * Removes the specified {@link Conversation} from the manager.

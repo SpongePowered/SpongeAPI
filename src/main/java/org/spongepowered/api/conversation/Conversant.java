@@ -29,8 +29,6 @@ import org.spongepowered.api.text.Text;
 
 import java.util.Optional;
 
-import javax.annotation.Nullable;
-
 /**
  * Represents someone that can take part in a {@link Conversation}.
  */
@@ -64,7 +62,7 @@ public interface Conversant extends CommandSource {
      *
      * @param conversation The conversation to add them to
      * @return The conversation they end up in, whether it's the new one or the
-     * one they were originally in
+     *     one they were originally in
      */
     Conversation setConversation(Conversation conversation);
 

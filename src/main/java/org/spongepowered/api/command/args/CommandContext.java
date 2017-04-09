@@ -31,6 +31,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.conversation.ResponseContext;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.world.Location;
 
@@ -42,7 +43,7 @@ import java.util.Optional;
  * Context that a command is executed in.
  * This object stores parsed arguments from other commands
  */
-public final class CommandContext {
+public final class CommandContext implements ResponseContext {
 
     /**
      * The argument key for a target block position that may be present

@@ -32,8 +32,8 @@ import org.spongepowered.api.event.cause.conversation.ConversationEndType;
 import javax.annotation.Nullable;
 
 @SuppressWarnings("unchecked")
-public abstract class AbstractConversationEndCauseBuilder<T extends ConversationEndCause, B extends ConversationEndCause.ConversationEndCauseBuilder<T, B>>
-    implements ConversationEndCause.ConversationEndCauseBuilder<T, B> {
+public abstract class AbstractConversationEndCauseBuilder<T extends ConversationEndCause,
+B extends ConversationEndCause.ConversationEndCauseBuilder<T, B>> implements ConversationEndCause.ConversationEndCauseBuilder<T, B> {
 
     protected AbstractConversationEndCauseBuilder() {
 

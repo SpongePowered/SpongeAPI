@@ -30,6 +30,7 @@ import com.google.inject.Inject;
 import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
+import org.spongepowered.api.conversation.ConversationManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.property.PropertyRegistry;
 import org.spongepowered.api.data.property.PropertyStore;
@@ -252,4 +253,40 @@ public final class Sponge {
         return getGame().getGameDictionary();
     }
 
+<<<<<<< bleeding
+=======
+    /**
+     * Gets the {@link CommandManager} instance from the
+     * {@link Game} instance.
+     *
+     * @see Game#getCommandManager()
+     * @return The command manager instance
+     */
+    public static CommandManager getCommandManager() {
+        return getGame().getCommandManager();
+    }
+
+    /**
+     * Gets the {@link ChannelRegistrar} instance from the
+     * {@link Game} instance.
+     *
+     * @see Game#getChannelRegistrar()
+     * @return The channel registrar instance
+     */
+    public static ChannelRegistrar getChannelRegistrar() {
+        return getGame().getChannelRegistrar();
+    }
+
+    /**
+     * Gets the {@link ConversationManager} instance from
+     * the {@link Game} instance.
+     *
+     * @see Game#getConversationManager()
+     * @return The conversation manager instance
+     */
+    public static ConversationManager getConversationManager() {
+        return getGame().getConversationManager();
+    }
+
+>>>>>>> Functional conversation API
 }

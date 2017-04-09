@@ -44,14 +44,15 @@ public interface ConversationEndCause {
     }
 
     /**
-     * Gets how the conversation ended
+     * Gets how the conversation ended.
      *
      * @return The type of of conversation end
      */
     @Nonnull
     ConversationEndType getConversationEndType();
 
-    interface ConversationEndCauseBuilder<T extends ConversationEndCause, B extends ConversationEndCause.ConversationEndCauseBuilder<T, B>> extends ResettableBuilder<T, B> {
+    interface ConversationEndCauseBuilder<T extends ConversationEndCause, B extends ConversationEndCause.ConversationEndCauseBuilder<T, B>> extends
+        ResettableBuilder<T, B> {
 
         /**
          * Sets the {@link ConversationEndCause} for this builder. This is

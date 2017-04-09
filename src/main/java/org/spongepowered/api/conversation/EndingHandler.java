@@ -43,10 +43,11 @@ public interface EndingHandler {
      * if the conversation is set to catch messages.</p>
      *
      * @param conversation The involved conversation
-     * @param context The context which has been added to over the course of the
-     * conversation
+     * @param context The context which has been added to over the course of
+     *     the conversation
      * @param endType How the conversation ended
      */
-    void handle(Conversation conversation, DataContainer context, ConversationEndType endType);
+    void handle(Conversation conversation, DataContainer context,
+        ConversationEndType endType);
 
 }

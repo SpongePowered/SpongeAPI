@@ -29,6 +29,7 @@ import org.spongepowered.api.block.tileentity.EnderChest;
 import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.RemoteSource;
+import org.spongepowered.api.conversation.Conversant;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
@@ -69,7 +70,7 @@ import javax.annotation.Nullable;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMessageReceiver {
+public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMessageReceiver, Conversant {
 
     /**
      * Returns whether this player has an open inventory at the moment

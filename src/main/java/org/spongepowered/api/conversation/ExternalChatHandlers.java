@@ -61,7 +61,7 @@ public class ExternalChatHandlers {
      * to the {@link Conversant} and sends them once the conversation is finished.
      *
      * @return An external chat handler which sends messages on conversation
-     * completion
+     *     completion
      */
     public static ExternalChatHandler sendOnFinish() {
         return new SendOnFinishChatHandler();

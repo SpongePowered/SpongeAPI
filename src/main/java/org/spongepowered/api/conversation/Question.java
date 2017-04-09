@@ -31,8 +31,8 @@ import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.util.ResettableBuilder;
 
 /**
- * A {@link Conversation} contains one of these which point to each other, allowing
- * for handling, and identification.
+ * A {@link Conversation} contains one of these which point to each other,
+ * allowing for handling, and identification.
  */
 public interface Question extends TextRepresentable {
 
@@ -91,8 +91,8 @@ public interface Question extends TextRepresentable {
         Builder id(String id);
 
         /**
-         * Sets the prompt of the question. This is essentially the question asked
-         * and needs to be set.
+         * Sets the prompt of the question. This is essentially the question
+         * asked and needs to be set.
          *
          * @param prompt The desired prompt
          * @return The modified builder

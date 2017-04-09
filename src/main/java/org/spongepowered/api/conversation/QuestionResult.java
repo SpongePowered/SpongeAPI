@@ -114,8 +114,8 @@ public class QuestionResult {
     }
 
     /**
-     * The different kinds of question result types there are which conversations
-     * can handle.
+     * The different kinds of question result types there are which
+     * conversations can handle.
      */
     public enum QuestionResultType {
         NEXT, REPEAT, END
