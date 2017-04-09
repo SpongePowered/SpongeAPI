@@ -143,8 +143,7 @@ public interface ConversationArchetype {
      * @param conversants The conversants to start the conversation for
      * @return The conversation that was started, if created successfully
      */
-    Optional<Conversation> start(PluginContainer plugin,
-        Conversant... conversants);
+    Optional<Conversation> start(PluginContainer plugin, Conversant... conversants);
 
     /**
      * Gets a builder based off of this archetype's values.
@@ -156,8 +155,7 @@ public interface ConversationArchetype {
     /**
      * Used to create an {@link ConversationArchetype}.
      */
-    interface Builder extends
-        ResettableBuilder<ConversationArchetype, Builder> {
+    interface Builder extends ResettableBuilder<ConversationArchetype, Builder> {
 
         /**
          * Sets the id of the archetype. This is mandatory.
