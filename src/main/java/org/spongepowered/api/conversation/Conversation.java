@@ -63,7 +63,7 @@ public interface Conversation {
      * @return The exit string
      */
     default String getExitString() {
-        return this.getArchetype().getExitString();
+        return getArchetype().getExitString();
     }
 
     /**
@@ -73,7 +73,7 @@ public interface Conversation {
      * @return The conversation header, if available
      */
     default Optional<Text> getHeader() {
-        return this.getArchetype().getHeader();
+        return getArchetype().getHeader();
     }
 
     /**
@@ -134,8 +134,7 @@ public interface Conversation {
      * @param conversant The conversant to add to the conversation
      * @param externalChatHandler The chat handler to give the conversant
      */
-    void addConversant(Conversant conversant,
-        ExternalChatHandler externalChatHandler);
+    void addConversant(Conversant conversant, ExternalChatHandler externalChatHandler);
 
     /**
      * Removes the specified {@link Conversant} from the conversation.
@@ -177,7 +176,7 @@ public interface Conversation {
      *
      * @return Whether or not this conversation has ended
      */
-    boolean ended();
+    boolean hasEnded();
 
     /**
      * Sets whether or not {@link Conversant} output should be caught.

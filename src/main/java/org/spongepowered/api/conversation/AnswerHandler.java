@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.conversation;
 
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.text.Text;
 
 /**
@@ -36,9 +38,9 @@ public interface AnswerHandler {
      * Handles a {@link Conversant}'s answer to a {@link Question}.
      *
      * <p>This is where you should collect all information from individual
-     * {@link Question}s or prompts, to the{@link org.spongepowered.api.data.DataContainer}
+     * {@link Question}s or prompts, to the{@link DataContainer}
      * accessible through {@link Conversation#getContext()} with
-     * {@link org.spongepowered.api.data.DataQuery} or store it yourself.</p>
+     * {@link DataQuery} or store it yourself.</p>
      *
      * <p>A {@link QuestionResult} needs to be returned so the conversation
      * knows how to continue on. The three possible types can be accessed
