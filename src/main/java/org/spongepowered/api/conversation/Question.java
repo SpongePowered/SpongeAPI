@@ -77,6 +77,13 @@ public interface Question extends TextRepresentable {
     CommandElement getArguments();
 
     /**
+     * Gets a builder based on the values present in the question.
+     *
+     * @return The new builder
+     */
+    Builder toBuilder();
+
+    /**
      * Used to create a new {@link Question}.
      */
     interface Builder extends ResettableBuilder<Question, Builder> {
