@@ -26,7 +26,6 @@ package org.spongepowered.api.event.conversation;
 
 import org.spongepowered.api.conversation.Conversation;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
 
 /**
  * An event called when a conversation is either ending or has already ended.
@@ -34,7 +33,7 @@ import org.spongepowered.api.event.Event;
  * <p>It is highly recommended to utilize the event's sub-interfaces rather
  * as that is how you will know if the event has ended or not yet.</p>
  */
-public interface ConversationCloseEvent extends Event {
+public interface ConversationCloseEvent extends ConversationEvent {
 
     /**
      * Gets the conversation.

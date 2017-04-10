@@ -28,7 +28,6 @@ import org.spongepowered.api.conversation.Conversant;
 import org.spongepowered.api.conversation.Conversation;
 import org.spongepowered.api.conversation.ConversationArchetype;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
 
 import java.util.Set;
 
@@ -39,7 +38,7 @@ import java.util.Set;
  * to information and let you know if the conversation is starting or has
  * started already.</p>
  */
-public interface ConversationOpenEvent extends Event {
+public interface ConversationOpenEvent extends ConversationEvent {
 
     /**
      * Called before the {@link Conversation} is created, giving you access to

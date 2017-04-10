@@ -27,7 +27,7 @@ package org.spongepowered.api.event.cause.conversation.common;
 import org.spongepowered.api.event.cause.conversation.ConversationEndCause;
 import org.spongepowered.api.event.cause.conversation.ConversationEndType;
 
-public class AbstractConversationEndCause implements ConversationEndCause {
+public abstract class AbstractConversationEndCause implements ConversationEndCause {
 
     protected final ConversationEndType endType;
 

@@ -22,37 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.conversation;
+package org.spongepowered.api.event.conversation;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.event.Event;
 
-/**
- * Provided conversation end types that you should attempt to stick to.
- */
-public final class ConversationEndTypes {
-
-    /**
-     * Should be used if there was a problem with the conversation, such as a
-     * missing question.
-     */
-    public static final ConversationEndType ERROR = DummyObjectProvider.createFor(ConversationEndType.class, "ERROR");
-
-    /**
-     * Shows that the conversation has naturally been finished by reaching the
-     * last question.
-     */
-    public static final ConversationEndType FINISHED = DummyObjectProvider.createFor(ConversationEndType.class, "FINISHED");
-
-    /**
-     * Should be used if another plugin is forcing the plugin to be closed.
-     */
-    public static final ConversationEndType FORCED = DummyObjectProvider.createFor(ConversationEndType.class, "FORCED");
-
-    /**
-     * Shows that the user has used the exit keyword to leave the conversation.
-     */
-    public static final ConversationEndType QUIT = DummyObjectProvider.createFor(ConversationEndType.class, "QUIT");
-
-    private ConversationEndTypes() {}
+public interface ConversationEvent extends Event {
 
 }

@@ -47,7 +47,6 @@ public interface EndingHandler {
      *     the conversation
      * @param endType How the conversation ended
      */
-    void handle(Conversation conversation, DataContainer context,
-        ConversationEndType endType);
+    void handle(Conversation conversation, DataContainer context, ConversationEndType endType);
 
 }

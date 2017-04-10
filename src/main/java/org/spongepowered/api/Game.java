@@ -27,6 +27,7 @@ package org.spongepowered.api;
 import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
+import org.spongepowered.api.conversation.Conversation;
 import org.spongepowered.api.conversation.ConversationManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.DataSerializable;
@@ -239,7 +240,7 @@ public interface Game {
 
     /**
      * Gets the {@link ConversationManager} for managing and
-     * handling {@link org.spongepowered.api.conversation.Conversation}s.
+     * handling {@link Conversation}s.
      *
      * @return The conversation manager
      */

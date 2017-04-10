@@ -32,7 +32,14 @@ import java.util.Queue;
 /**
  * The main external chat handlers you would need.
  */
-public class ExternalChatHandlers {
+public final class ExternalChatHandlers {
+
+    private static final ExternalChatHandler letThrough = new LetThroughExternalChatHandler();
+    private static final ExternalChatHandler deleteAll = new DeleteAllExternalChatHandler();
+
+    private ExternalChatHandlers() {
+
+    }
 
     /**
      * Creates an external chat handler which lets through all messages so
@@ -41,7 +48,7 @@ public class ExternalChatHandlers {
      * @return An external chat handler which lets through all messages
      */
     public static ExternalChatHandler letThrough() {
-        return new LetThroughExternalChatHandler();
+        return letThrough;
     }
 
     /**
@@ -53,7 +60,7 @@ public class ExternalChatHandlers {
      * @return An external chat handler which deletes all incoming messages
      */
     public static ExternalChatHandler deleteAll() {
-        return new DeleteAllExternalChatHandler();
+        return deleteAll;
     }
 
     /**
@@ -71,7 +78,7 @@ public class ExternalChatHandlers {
      * An external chat handler which lets through all messages so the
      * {@link Conversant} sees all the messages even within the conversation.
      */
-    public static class LetThroughExternalChatHandler implements ExternalChatHandler {
+    private static class LetThroughExternalChatHandler implements ExternalChatHandler {
 
         @Override
         public boolean process(Text text) {
@@ -87,7 +94,7 @@ public class ExternalChatHandlers {
      * An external chat handler which deletes all incoming messages so the
      * {@link Conversant} never sees them.
      */
-    public static class DeleteAllExternalChatHandler implements ExternalChatHandler {
+    private static class DeleteAllExternalChatHandler implements ExternalChatHandler {
 
         @Override
         public boolean process(Text text) {
@@ -103,7 +110,7 @@ public class ExternalChatHandlers {
      * An external chat handler which stores all incoming messages going to the
      * {@link Conversant} and sends them once the conversation is finished.
      */
-    public static class SendOnFinishChatHandler implements ExternalChatHandler {
+    private static class SendOnFinishChatHandler implements ExternalChatHandler {
 
         private final Queue<Text> messages = new ArrayDeque<>();
 
