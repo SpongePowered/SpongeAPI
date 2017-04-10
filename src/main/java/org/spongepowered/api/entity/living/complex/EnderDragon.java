@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.complex;
 
+import org.spongepowered.api.boss.ServerBossBar;
 import org.spongepowered.api.entity.EnderCrystal;
 import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.living.monster.Boss;
@@ -47,5 +48,12 @@ public interface EnderDragon extends ComplexLiving, Boss, Aerial, ProjectileLaun
      * @return The ender crystal
      */
     Optional<EnderCrystal> getHealingCrystal();
+
+    /**
+     * Gets the boss bar this dragon uses.
+     *
+     * @return The boss bar
+     */
+    ServerBossBar getBossBar();
 
 }
