@@ -213,6 +213,8 @@ public final class CatalogTypes {
 
     public static final Class<OcelotType> OCELOT_TYPE = OcelotType.class;
 
+    public static final Class<ParrotVariant> PARROT_VARIANT = ParrotVariant.class;
+
     public static final Class<ParticleOption> PARTICLE_OPTION = ParticleOption.class;
 
     public static final Class<ParticleType> PARTICLE_TYPE = ParticleType.class;

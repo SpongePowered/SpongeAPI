@@ -57,6 +57,7 @@ import org.spongepowered.api.entity.living.animal.Donkey;
 import org.spongepowered.api.entity.living.animal.Horse;
 import org.spongepowered.api.entity.living.animal.Llama;
 import org.spongepowered.api.entity.living.animal.Mule;
+import org.spongepowered.api.entity.living.animal.Parrot;
 import org.spongepowered.api.entity.living.animal.RideableHorse;
 import org.spongepowered.api.entity.living.animal.SkeletonHorse;
 import org.spongepowered.api.entity.living.animal.ZombieHorse;
@@ -1467,6 +1468,13 @@ public final class Keys {
      * @see OpenData#open()
      */
     public static final Key<Value<Boolean>> OPEN = KeyFactory.fake("OPEN");
+
+    /**
+     * Represents the {@link ParrotVariant variant} of a {@link Parrot}.
+     *
+     * @see ParrotData#type()
+     */
+    public static final Key<Value<ParrotVariant>> PARROT_VARIANT = KeyFactory.fake("PARROT_VARIANT");
 
     /**
      * Represents the {@link Key} for the amount of ticks a {@link Furnace} has
