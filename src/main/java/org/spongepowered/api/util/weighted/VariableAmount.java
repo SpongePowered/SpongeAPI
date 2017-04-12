@@ -25,6 +25,7 @@
 package org.spongepowered.api.util.weighted;
 
 import com.flowpowered.math.GenericMath;
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
@@ -238,7 +239,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public String toString() {
-            return Objects.toStringHelper(this).add("amount", this.amount).toString();
+            return MoreObjects.toStringHelper(this).add("amount", this.amount).toString();
         }
 
         @Override
@@ -296,7 +297,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public String toString() {
-            return Objects.toStringHelper(this).add("base", this.base).add("variance", this.variance).toString();
+            return MoreObjects.toStringHelper(this).add("base", this.base).add("variance", this.variance).toString();
         }
 
         @Override
@@ -356,7 +357,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public String toString() {
-            return Objects.toStringHelper(this).add("base", this.base).add("addition", this.addition).toString();
+            return MoreObjects.toStringHelper(this).add("base", this.base).add("addition", this.addition).toString();
         }
 
         @Override
@@ -420,7 +421,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public String toString() {
-            return Objects.toStringHelper(this).add("base", this.base).add("chance", this.chance).add("inner", this.inner).toString();
+            return MoreObjects.toStringHelper(this).add("base", this.base).add("chance", this.chance).add("inner", this.inner).toString();
         }
 
         @Override

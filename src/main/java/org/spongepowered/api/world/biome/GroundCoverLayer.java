@@ -26,6 +26,7 @@ package org.spongepowered.api.world.biome;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.weighted.SeededVariableAmount;
@@ -134,7 +135,7 @@ public class GroundCoverLayer {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("block", this.block)
                 .add("depth", this.depth)
                 .toString();

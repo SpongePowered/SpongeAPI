@@ -26,6 +26,7 @@ package org.spongepowered.api.event.cause.entity.damage;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.spongepowered.api.event.cause.entity.ModifierFunction;
 
@@ -88,7 +89,7 @@ public class DamageFunction implements ModifierFunction<DamageModifier> {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("modifier", getModifier())
                 .add("function", getFunction())
                 .toString();

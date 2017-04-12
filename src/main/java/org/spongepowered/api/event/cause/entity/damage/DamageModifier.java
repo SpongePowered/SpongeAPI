@@ -27,6 +27,7 @@ package org.spongepowered.api.event.cause.entity.damage;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.entity.Entity;
@@ -210,7 +211,7 @@ public interface DamageModifier {
 
             @Override
             public String toString() {
-                return Objects.toStringHelper("DamageModifier")
+                return MoreObjects.toStringHelper("DamageModifier")
                         .add("type", this.type)
                         .add("cause", this.cause)
                         .add("contributing", this.snapshot)

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text.action;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
@@ -228,7 +229,7 @@ public abstract class HoverAction<R> extends TextAction<R> {
 
             @Override
             public String toString() {
-                return Objects.toStringHelper(this)
+                return MoreObjects.toStringHelper(this)
                         .add("uuid", this.uuid)
                         .add("name", this.name)
                         .add("type", this.type)

@@ -26,6 +26,7 @@ package org.spongepowered.api.text;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterators;
@@ -321,8 +322,8 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
         return Objects.hashCode(this.format, this.children, this.clickAction, this.hoverAction, this.shiftClickAction);
     }
 
-    Objects.ToStringHelper toStringHelper() {
-        return Objects.toStringHelper(Text.class)
+    MoreObjects.ToStringHelper toStringHelper() {
+        return MoreObjects.toStringHelper(Text.class)
                 .omitNullValues()
                 .add("format", this.format.isEmpty() ? null : this.format)
                 .add("children", this.children.isEmpty() ? null : this.children)
@@ -762,8 +763,8 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
             return Objects.hashCode(this.format, this.clickAction, this.hoverAction, this.shiftClickAction, this.children);
         }
 
-        Objects.ToStringHelper toStringHelper() {
-            return Objects.toStringHelper(Builder.class)
+        MoreObjects.ToStringHelper toStringHelper() {
+            return MoreObjects.toStringHelper(Builder.class)
                     .omitNullValues()
                     .add("format", this.format.isEmpty() ? null : this.format)
                     .add("children", this.children.isEmpty() ? null : this.children)

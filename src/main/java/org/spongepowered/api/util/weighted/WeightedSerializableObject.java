@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.util.weighted;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
@@ -50,7 +51,7 @@ public class WeightedSerializableObject<T extends DataSerializable> extends Weig
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("object", get())
                 .add("weight", getWeight())
                 .toString();

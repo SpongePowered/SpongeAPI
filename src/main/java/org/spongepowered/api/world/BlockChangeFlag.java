@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 /**
@@ -125,7 +126,7 @@ public enum BlockChangeFlag {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("updateNeighbors", this.updateNeighbors)
                 .add("performBlockPhysics", this.performBlockPhysics)
                 .toString();

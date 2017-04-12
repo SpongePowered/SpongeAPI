@@ -26,6 +26,7 @@ package org.spongepowered.api.text;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.data.DataContainer;
@@ -111,7 +112,7 @@ public final class BookView implements DataSerializable {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("title", this.title)
                 .add("author", this.author)
                 .add("pages", this.pages)

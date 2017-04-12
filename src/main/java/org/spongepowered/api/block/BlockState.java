@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.CatalogType;
@@ -388,7 +389,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
 
         @Override
         public String toString() {
-            return Objects.toStringHelper(this)
+            return MoreObjects.toStringHelper(this)
                     .add("type", this.type)
                     .add("traits", this.traits)
                     .add("values", this.values)

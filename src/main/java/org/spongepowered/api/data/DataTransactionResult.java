@@ -27,6 +27,7 @@ package org.spongepowered.api.data;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
@@ -358,7 +359,7 @@ public final class DataTransactionResult {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("resultType", this.type)
                 .add("rejectedData", this.rejected)
                 .add("replacedData", this.replaced)

@@ -26,6 +26,7 @@ package org.spongepowered.api.text.format;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.Text;
@@ -438,7 +439,7 @@ public class TextStyle implements TextElement {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(TextStyle.class)
+        return MoreObjects.toStringHelper(TextStyle.class)
                 .omitNullValues()
                 .add("bold", this.bold.orElse(null))
                 .add("italic", this.italic.orElse(null))

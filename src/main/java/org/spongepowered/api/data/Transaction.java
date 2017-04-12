@@ -138,7 +138,7 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
 
     @Override
     public String toString() {
-        return com.google.common.base.Objects.toStringHelper(this)
+        return com.google.common.base.MoreObjects.toStringHelper(this)
                 .add("original", this.original)
                 .add("default", this.defaultReplacement)
                 .add("custom", this.custom)

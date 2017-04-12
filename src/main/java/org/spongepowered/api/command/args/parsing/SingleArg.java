@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.command.args.parsing;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 /**
@@ -96,7 +97,7 @@ public final class SingleArg {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("value", this.value)
                 .add("startIdx", this.startIdx)
                 .add("endIdx", this.endIdx)
