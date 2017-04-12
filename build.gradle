@@ -192,7 +192,6 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.service.economy.transaction.TransactionTypes'
     add 'main', 'org.spongepowered.api.statistic.Statistics'
     add 'main', 'org.spongepowered.api.statistic.StatisticTypes'
-    add 'main', 'org.spongepowered.api.statistic.achievement.Achievements'
     add 'main', 'org.spongepowered.api.text.chat.ChatTypes'
     add 'main', 'org.spongepowered.api.text.chat.ChatVisibilities'
     add 'main', 'org.spongepowered.api.text.format.TextColors'

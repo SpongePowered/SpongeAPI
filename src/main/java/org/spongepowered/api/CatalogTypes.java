@@ -62,7 +62,6 @@ import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMo
 import org.spongepowered.api.service.economy.transaction.TransactionType;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticType;
-import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.chat.ChatVisibility;
 import org.spongepowered.api.text.format.TextColor;
@@ -93,8 +92,6 @@ import org.spongepowered.api.world.weather.Weather;
 public final class CatalogTypes {
 
     // SORTFIELDS:ON
-
-    public static final Class<Achievement> ACHIEVEMENT = Achievement.class;
 
     public static final Class<AITaskType> AI_TASK_TYPE = AITaskType.class;
 

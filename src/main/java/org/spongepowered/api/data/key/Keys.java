@@ -83,7 +83,6 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Color;
@@ -112,14 +111,6 @@ public final class Keys {
      * @see AbsorptionData#absorption()
      */
     public static final Key<Value<Double>> ABSORPTION = KeyFactory.fake("ABSORPTION");
-
-    /**
-     * Represents the {@link Key} for the {@link Achievement}s  earned by a
-     * {@link Player}.
-     *
-     * @see AchievementData#achievements()
-     */
-    public static final Key<SetValue<Achievement>> ACHIEVEMENTS = KeyFactory.fake("ACHIEVEMENTS");
 
     /**
      * Represents the {@link Key} for the "affecting spawning" state of

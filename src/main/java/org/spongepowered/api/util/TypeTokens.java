@@ -53,7 +53,6 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
@@ -70,10 +69,6 @@ import java.util.UUID;
 public class TypeTokens {
 
     // SORTFIELDS:ON
-
-    public static final TypeToken<Set<Achievement>> ACHIEVEMENT_SET_TOKEN = new TypeToken<Set<Achievement>>() {private static final long serialVersionUID = -1;};
-
-    public static final TypeToken<SetValue<Achievement>> ACHIEVEMENT_SET_VALUE_TOKEN = new TypeToken<SetValue<Achievement>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Art> ART_TOKEN = new TypeToken<Art>() {private static final long serialVersionUID = -1;};
 

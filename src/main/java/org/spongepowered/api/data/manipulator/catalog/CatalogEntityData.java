@@ -75,7 +75,6 @@ import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.world.weather.Weather;
 
 /**
@@ -84,11 +83,6 @@ import org.spongepowered.api.world.weather.Weather;
  */
 public final class CatalogEntityData {
 
-    /**
-     * The {@link AchievementData} class that can be applied to
-     * {@link Player}s.
-     */
-    public static final Class<AchievementData> ACHIEVEMENT_DATA = AchievementData.class;
     /**
      * The {@link AgeableData} that represents age determining whether an
      * {@link Entity} is a child or an adult. Always exists for
@@ -383,9 +377,8 @@ public final class CatalogEntityData {
      */
     public static final Class<SneakingData> SNEAKING_DATA = SneakingData.class;
     /**
-     * Represents the container of all known applied {@link Statistic}s and
-     * {@link Achievement}s. Usually applicable to {@link Player}s and
-     * {@link User}s.
+     * Represents the container of all known applied {@link Statistic}s. Usually
+     * applicable to {@link Player}s and {@link User}s.
      */
     public static final Class<StatisticData> STATISTIC_DATA = StatisticData.class;
     /**

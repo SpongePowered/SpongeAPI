@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.living.player;
 
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.manipulator.mutable.entity.AchievementData;
 import org.spongepowered.api.data.manipulator.mutable.entity.StatisticData;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.Tamer;
@@ -70,15 +69,6 @@ public interface User extends DataHolder, ArmorEquipable, Tamer, Subject {
      * @return The associated online Player, if available
      */
     Optional<Player> getPlayer();
-
-    /**
-     * Gets a copy of the {@link AchievementData} for this user.
-     *
-     * @return A copy of the achievement data
-     */
-    default AchievementData getAchievementData() {
-        return get(AchievementData.class).get();
-    }
 
     /**
      * Gets a copy of the {@link StatisticData} for this user.
