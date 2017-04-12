@@ -107,6 +107,8 @@ public final class EntityTypes {
 
     public static final EntityType HUSK = DummyObjectProvider.createFor(EntityType.class, "HUSK");
 
+    public static final EntityType ILLUSION_ILLAGER = DummyObjectProvider.createFor(EntityType.class, "ILLUSION_ILLAGER");
+
     public static final EntityType IRON_GOLEM = DummyObjectProvider.createFor(EntityType.class, "IRON_GOLEM");
 
     public static final EntityType ITEM = DummyObjectProvider.createFor(EntityType.class, "ITEM");
@@ -132,6 +134,8 @@ public final class EntityTypes {
     public static final EntityType OCELOT = DummyObjectProvider.createFor(EntityType.class, "OCELOT");
 
     public static final EntityType PAINTING = DummyObjectProvider.createFor(EntityType.class, "PAINTING");
+
+    public static final EntityType PARROT = DummyObjectProvider.createFor(EntityType.class, "PARROT");
 
     public static final EntityType PIG = DummyObjectProvider.createFor(EntityType.class, "PIG");
 
