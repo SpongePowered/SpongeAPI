@@ -32,7 +32,6 @@ import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
 
 import java.util.ArrayList;
@@ -270,7 +269,7 @@ public final class CommandFlags extends CommandElement {
                 List<String> retStrings = this.longFlags.keySet().stream()
                     .filter(new StartsWithPredicate(longFlag))
                     .map(arg -> "--" + arg)
-                    .collect(GuavaCollectors.toImmutableList());
+                    .collect(ImmutableList.toImmutableList());
                 if (retStrings.isEmpty() && this.unknownLongFlagBehavior == UnknownFlagBehavior.ACCEPT_VALUE) { // Then we probably have a
                     // following arg specified, if there's anything
                     args.nextIfPresent();

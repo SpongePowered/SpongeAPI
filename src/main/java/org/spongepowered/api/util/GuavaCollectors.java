@@ -32,31 +32,26 @@ import java.util.stream.Collector;
 /**
  * A set of collectors to allow interoperability between immutable guava
  * collections and the JDK 8 Streams API.
+ *
+ * @deprecated Use methods provided by Guava
  */
+@Deprecated
 public class GuavaCollectors {
     private GuavaCollectors() {
     }
-
-    private static final Collector<Object, ImmutableList.Builder<Object>, ImmutableList<Object>> IMMUTABLE_LIST_COLLECTOR =
-        Collector.of(ImmutableList::builder,
-                     ImmutableList.Builder::add, (ImmutableList.Builder<Object> a, ImmutableList.Builder<Object> b) -> a.addAll(b.build()),
-                     ImmutableList.Builder::build);
-
-    private static final Collector<Object, ImmutableSet.Builder<Object>, ImmutableSet<Object>> IMMUTABLE_SET_COLLECTOR =
-        Collector.of(ImmutableSet::builder,
-                     ImmutableSet.Builder::add, (ImmutableSet.Builder<Object> a, ImmutableSet.Builder<Object> b) -> a.addAll(b.build()),
-                     ImmutableSet.Builder::build,
-                     Collector.Characteristics.UNORDERED);
 
     /**
      * Collect the values from a stream to an {@link ImmutableList}.
      *
      * @param <T> The type of elements contained by the list
      * @return The appropriate collector
+     *
+     * @deprecated Use {@link ImmutableList#toImmutableList()}
      */
     @SuppressWarnings({"unchecked", "rawtypes"}) // We are just sharing an instance
+    @Deprecated
     public static <T> Collector<T, ImmutableList.Builder<T>, ImmutableList<T>> toImmutableList() {
-        return (Collector) IMMUTABLE_LIST_COLLECTOR;
+        return (Collector) ImmutableList.toImmutableList();
     }
 
     /**
@@ -64,9 +59,12 @@ public class GuavaCollectors {
      *
      * @param <T> The type of elements contained in the set
      * @return The appropriate collector
+     *
+     * @deprecated Use {@link ImmutableSet#toImmutableSet()}
      */
     @SuppressWarnings({"unchecked", "rawtypes"}) // We are just sharing an instance
+    @Deprecated
     public static <T> Collector<T, ImmutableSet.Builder<T>, ImmutableSet<T>> toImmutableSet() {
-        return (Collector) IMMUTABLE_SET_COLLECTOR;
+        return (Collector) ImmutableSet.toImmutableSet();
     }
 }
