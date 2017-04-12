@@ -83,8 +83,8 @@ javadoc {
     options.charSet = 'UTF-8'
     options.links(
             'http://www.slf4j.org/apidocs/',
-            'https://google.github.io/guava/releases/17.0/api/docs/',
-            'https://google.github.io/guice/api-docs/4.0/javadoc/',
+            'https://google.github.io/guava/releases/21.0/api/docs/',
+            'https://google.github.io/guice/api-docs/4.1/javadoc/',
             'https://zml2008.github.io/configurate/configurate-core/apidocs/',
             'https://zml2008.github.io/configurate/configurate-hocon/apidocs/',
             'https://flowpowered.com/math/',
