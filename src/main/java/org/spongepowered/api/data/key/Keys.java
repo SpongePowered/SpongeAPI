@@ -1066,6 +1066,16 @@ public final class Keys {
      */
     public static final Key<Value<Boolean>> SUSPENDED = KeyFactory.fake("SUSPENDED");
 
+    /**
+     * Represents the {@link Key} for representing the scoreboard tags applied
+     * to an entity.
+     * 
+     * @see <a href=
+     *      "https://www.reddit.com/r/MinecraftCommands/comments/3g0qnv/learning_about_tags_in_15w32b/"
+     *      >Learning about 'Tags' in 15w32b</a>
+     */
+    public static final Key<SetValue<String>> TAGS = KeyFactory.fake("TAGS"); 
+    
     public static final Key<OptionalValue<UUID>> TAMED_OWNER = KeyFactory.fake("TAMED_OWNER");
 
     public static final Key<Value<Vector3d>> TARGETED_LOCATION = KeyFactory.fake("TARGETED_LOCATION");
