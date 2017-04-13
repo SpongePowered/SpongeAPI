@@ -393,10 +393,26 @@ public final class Keys {
      */
     public static final Key<Value<Vector3i>> EXIT_POSITION = KeyFactory.fake("EXIT_PORTAL");
 
+    /**
+     * Represents the {@link Key} for representing the total amount of xp needed
+     * to advance from the current level to the next one.
+     *
+     * @see #EXPERIENCE_SINCE_LEVEL
+     */
     public static final Key<ImmutableBoundedValue<Integer>> EXPERIENCE_FROM_START_OF_LEVEL = KeyFactory.fake("EXPERIENCE_FROM_START_OF_LEVEL");
 
+    /**
+     * Represents the {@link Key} for representing the current level of a
+     * {@link Player]
+     */
     public static final Key<MutableBoundedValue<Integer>> EXPERIENCE_LEVEL = KeyFactory.fake("EXPERIENCE_LEVEL");
 
+    /**
+     * Represents the {@link Key} for representing the amount of xp a
+     * {@link Player] has collected towards the next level.
+     *
+     * @see #EXPERIENCE_FROM_START_OF_LEVEL
+     */
     public static final Key<MutableBoundedValue<Integer>> EXPERIENCE_SINCE_LEVEL = KeyFactory.fake("EXPERIENCE_SINCE_LEVEL");
 
     public static final Key<MutableBoundedValue<Integer>> EXPIRATION_TICKS = KeyFactory.fake("EXPIRATION_TICKS");
@@ -505,8 +521,6 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Double>> HEALTH_SCALE = KeyFactory.fake("HEALTH_SCALE");
 
     public static final Key<MutableBoundedValue<Float>> HEIGHT = KeyFactory.fake("HEIGHT");
-
-    public static final Key<MutableBoundedValue<Integer>> HELD_EXPERIENCE = KeyFactory.fake("HELD_EXPERIENCE");
 
     /**
      * Represents the {@link Key} for representing the "attributes hidden"
