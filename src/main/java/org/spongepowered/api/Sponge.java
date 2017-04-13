@@ -26,23 +26,53 @@ package org.spongepowered.api;
 
 import static com.google.common.base.Preconditions.checkState;
 
+import com.google.inject.Inject;
 import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.command.CommandManager;
+import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
+import org.spongepowered.api.data.property.PropertyRegistry;
+import org.spongepowered.api.data.property.PropertyStore;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceManager;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.TeleportHelper;
+
+import javax.annotation.Nullable;
 
 /**
  * A static all access class granting static access to various systems
- * for the API. At the root of all the accessors is {@link Sponge#getGame()},
- * which is only available once the game has been constructed.
+ * for the API.
  */
+@SuppressWarnings("NullableProblems")
 public final class Sponge {
 
-    private static final Game game = null;
+    @Inject private static Game game;
+    @Inject private static Platform platform;
+
+    @Inject private static GameRegistry registry;
+    @Inject private static DataManager dataManager;
+    @Inject private static PropertyRegistry propertyRegistry;
+
+    @Inject private static PluginManager pluginManager;
+    @Inject private static EventManager eventManager;
+    @Inject private static AssetManager assetManager;
+    @Inject private static ConfigManager configManager;
+    @Inject private static CommandManager commandManager;
+    @Inject private static ServiceManager serviceManager;
+    @Inject private static Scheduler scheduler;
+    @Inject private static ChannelRegistrar channelRegistrar;
+
+    @Inject private static TeleportHelper teleportHelper;
+
+    private static <T> T check(@Nullable T instance) {
+        checkState(instance != null, "Sponge has not been initialized!");
+        return instance;
+    }
+
 
     /**
      * Gets the {@link Game} instance. There is ever only going
@@ -53,97 +83,134 @@ public final class Sponge {
      * @return The game instance
      */
     public static Game getGame() {
-        checkState(game != null, "Sponge has not been initialized!");
-        return game;
+        return check(game);
     }
 
     /**
-     * Gets the current {@link GameRegistry} instance from the
-     * {@link Game} instance.
+     * Returns the current platform, or implementation, this {@link Game} is running on.
      *
-     * @see Game#getRegistry()
+     * @return The current implementation
+     */
+    public static Platform getPlatform() {
+        return check(platform);
+    }
+
+
+    /**
+     * Gets the {@link GameRegistry} instance.
+     *
      * @return The game registry instance
      */
     public static GameRegistry getRegistry() {
-        return getGame().getRegistry();
+        return check(registry);
     }
 
     /**
-     * Gets the {@link ServiceManager} instance from the
-     * {@link Game} instance.
+     * Gets the {@link DataManager} instance.
      *
-     * @see Game#getServiceManager()
-     * @return The service manager instance
-     */
-    public static ServiceManager getServiceManager() {
-        return getGame().getServiceManager();
-    }
-
-    /**
-     * Gets the {@link EventManager} instance from the
-     * {@link Game} instance.
-     *
-     * @see Game#getEventManager()
-     * @return The event manager instance
-     */
-    public static EventManager getEventManager() {
-        return getGame().getEventManager();
-    }
-
-    /**
-     * Gets the {@link AssetManager} instance from the
-     * {@link Game} instance.
-     *
-     * @see Game#getAssetManager()
-     * @return The asset manager instance
-     */
-    public static AssetManager getAssetManager() {
-        return getGame().getAssetManager();
-    }
-
-    /**
-     * Gets the {@link Scheduler} instance from the
-     * {@link Game} instance.
-     *
-     * @see Game#getScheduler()
-     * @return The scheduler instance
-     */
-    public static Scheduler getScheduler() {
-        return getGame().getScheduler();
-    }
-
-    /**
-     * Gets the {@link DataManager} instance from the
-     * {@link Game} instance.
-     *
-     * @see Game#getDataManager()
      * @return The data manager instance
      */
     public static DataManager getDataManager() {
-        return getGame().getDataManager();
+        return check(dataManager);
     }
 
+
     /**
-     * Gets the {@link PluginManager} instance from the
-     * {@link Game} instance.
+     * Gets the {@link PropertyRegistry} instance to register
+     * {@link PropertyStore}s.
      *
-     * @see Game#getPluginManager()
+     * @return The property registry
+     */
+    public static PropertyRegistry getPropertyRegistry() {
+        return check(propertyRegistry);
+    }
+
+
+    /**
+     * Gets the {@link PluginManager} instance.
+     *
      * @return The plugin manager instance
      */
     public static PluginManager getPluginManager() {
-        return getGame().getPluginManager();
+        return check(pluginManager);
     }
 
     /**
-     * Gets the {@link Platform} instance from the
-     * {@link Game} instance.
+     * Gets the {@link EventManager} instance.
      *
-     * @see Game#getPlatform()
-     * @return The platform
+     * @return The event manager instance
      */
-    public static Platform getPlatform() {
-        return getGame().getPlatform();
+    public static EventManager getEventManager() {
+        return check(eventManager);
     }
+
+    /**
+     * Gets the {@link AssetManager} instance.
+     *
+     * @return The asset manager instance
+     */
+    public static AssetManager getAssetManager() {
+        return check(assetManager);
+    }
+
+    /**
+     * Gets the {@link ConfigManager} used to load and manage configuration files
+     * for plugins.
+     *
+     * @return The configuration manager
+     */
+    public static ConfigManager getConfigManager() {
+        return check(configManager);
+    }
+
+    /**
+     * Gets the {@link CommandManager} instance.
+     *
+     * @return The command manager instance
+     */
+    public static CommandManager getCommandManager() {
+        return check(commandManager);
+    }
+
+    /**
+     * Gets the game's instance of the service manager, which is the gateway
+     * to various services provided by Sponge (command registration and so on).
+     *
+     * <p>Services registered by other plugins may be available too.</p>
+     *
+     * @return The service manager
+     */
+    public static ServiceManager getServiceManager() {
+        return check(serviceManager);
+    }
+
+    /**
+     * Gets the scheduler used to schedule tasks.
+     *
+     * @return The scheduler
+     */
+    public static Scheduler getScheduler() {
+        return check(scheduler);
+    }
+
+    /**
+     * Gets the {@link ChannelRegistrar} for creating network channels.
+     *
+     * @return The channel registrar
+     */
+    public static ChannelRegistrar getChannelRegistrar() {
+        return check(channelRegistrar);
+    }
+
+    /**
+     * Gets the {@link TeleportHelper}, used to find safe {@link Location}s.
+     *
+     * @return The teleport helper
+     */
+    public static TeleportHelper getTeleportHelper() {
+        return check(teleportHelper);
+    }
+
 
     /**
      * Gets whether a {@link Server} instance is available without throwing an
@@ -173,6 +240,7 @@ public final class Sponge {
         return getGame().getServer();
     }
 
+
     /**
      * Gets the {@link GameDictionary} instance from the
      * {@link Game} instance.
@@ -182,28 +250,6 @@ public final class Sponge {
      */
     public static GameDictionary getDictionary() {
         return getGame().getGameDictionary();
-    }
-
-    /**
-     * Gets the {@link CommandManager} instance from the
-     * {@link Game} instance.
-     *
-     * @see Game#getCommandManager()
-     * @return The command manager instance
-     */
-    public static CommandManager getCommandManager() {
-        return getGame().getCommandManager();
-    }
-
-    /**
-     * Gets the {@link ChannelRegistrar} instance from the
-     * {@link Game} instance.
-     *
-     * @see Game#getChannelRegistrar()
-     * @return The channel registrar instance
-     */
-    public static ChannelRegistrar getChannelRegistrar() {
-        return getGame().getChannelRegistrar();
     }
 
 }

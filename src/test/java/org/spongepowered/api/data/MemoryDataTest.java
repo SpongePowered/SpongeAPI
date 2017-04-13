@@ -247,9 +247,7 @@ public class MemoryDataTest {
         DataManager service = mock(DataManager.class);
         DataBuilder<SimpleData> builder = new SimpleDataBuilder();
 
-        Game game = mock(Game.class);
-        when(game.getDataManager()).thenReturn(service);
-        TestHooks.setGame(game);
+        TestHooks.setInstance("dataManager", service);
 
         when(service.getBuilder(SimpleData.class)).thenReturn(Optional.of(builder));
         when(service.getTranslator(Mockito.any())).thenReturn(Optional.empty());
