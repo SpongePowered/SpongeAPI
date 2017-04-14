@@ -103,8 +103,18 @@ public interface PaginationList {
      * Send the constructed pagination list to the given source.
      *
      * @param source The source to send to
+     * @param page The page to send
      */
-    void sendTo(MessageReceiver source);
+    void sendTo(MessageReceiver source, int page);
+
+    /**
+     * Send the constructed pagination list to the given source.
+     *
+     * @param source The source to send to
+     */
+    default void sendTo(MessageReceiver source){
+        this.sendTo(source, 1);
+    }
 
     /**
      * Send the constructed pagination list to the specified
