@@ -243,7 +243,7 @@ public final class Sponge {
 
     /**
      * Gets whether a {@link Client} instance is available without throwing an
-     * exception from calling {@link #getServer()}.
+     * exception from calling {@link #getClient()}.
      *
      * @see Game#isClientAvailable()
      * @return True if the client instance is available

@@ -30,7 +30,8 @@ package org.spongepowered.api.util;
 public interface ThreadContext {
 
     /**
-     * Checks if the current thread matches the main thread of the server.
+     * Checks if the current thread matches the main thread of the server or
+     * client.
      *
      * @return True if main thread, false if not
      */
