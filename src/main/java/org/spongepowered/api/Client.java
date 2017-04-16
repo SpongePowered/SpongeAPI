@@ -25,6 +25,7 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.network.ServerConnection;
 import org.spongepowered.api.util.ThreadContext;
 import org.spongepowered.api.world.World;
 
@@ -57,7 +58,7 @@ public interface Client extends ThreadContext {
      *
      * @return The integrated server
      */
-    Optional<Server> getIntegratedServer();
+    Optional<LocalServer> getIntegratedServer();
 
     /**
      * Loads a world save with the given name.
@@ -65,17 +66,22 @@ public interface Client extends ThreadContext {
      * @param saveLocation The location of the save
      * @return A future containing the Server object.
      */
-    CompletableFuture<Server> loadWorldSave(Path saveLocation);
+    CompletableFuture<LocalServer> loadWorldSave(Path saveLocation);
 
     /**
      * Joins a server.
      *
-     * TODO return a multiplayer session object
-     *
      * @param server The server to join
      * @return A future containing the server connection object
      */
-    CompletableFuture<?> joinServer(InetSocketAddress server);
+    CompletableFuture<ServerConnection> joinServer(InetSocketAddress server);
+
+    /**
+     * Gets the {@link ServerConnection} to the current server.
+     *
+     * @return The server connection
+     */
+    Optional<ServerConnection> getServerConnection();
 
     /**
      * Gets the directory resource packs are stored in.
