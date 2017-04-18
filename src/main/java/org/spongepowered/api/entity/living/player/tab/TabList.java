@@ -31,19 +31,13 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.annotation.Nullable;
-
 /**
- * Represents a {@link Player}'s tab list.
+ * Represents a {@link Player}'s tab list. For mutability, use the
+ * {@link PlayerTabList}.
+ *
+ * @see PlayerTabList
  */
 public interface TabList {
-
-    /**
-     * Gets the associated {@link Player} with this {@link TabList}.
-     *
-     * @return The associated player
-     */
-    Player getPlayer();
 
     /**
      * Gets this list's header.
@@ -53,49 +47,11 @@ public interface TabList {
     Optional<Text> getHeader();
 
     /**
-     * Sets this list's header.
-     *
-     * <p>When {@code null} is passed, an empty {@link Text} will
-     * be sent.</p>
-     *
-     * @param header The new header
-     * @return This tab list, for chaining
-     */
-    TabList setHeader(@Nullable Text header);
-
-    /**
      * Gets this list's footer.
      *
      * @return The current footer
      */
     Optional<Text> getFooter();
-
-    /**
-     * Sets this list's footer.
-     *
-     * <p>When {@code null} is passed, an empty {@link Text} will
-     * be sent.</p>
-     *
-     * @param footer The new footer
-     * @return This tab list, for chaining
-     */
-    TabList setFooter(@Nullable Text footer);
-
-    /**
-     * Sets this list's header and footer.
-     *
-     * <p>When {@code null} is passed, an empty {@link Text} will
-     * be sent.</p>
-     *
-     * @param header The new header
-     * @param footer The new footer
-     * @return This tab list, for chaining
-     */
-    default TabList setHeaderAndFooter(@Nullable Text header, @Nullable Text footer) {
-        this.setHeader(header);
-        this.setFooter(footer);
-        return this;
-    }
 
     /**
      * Gets the entries on the list.
@@ -114,26 +70,5 @@ public interface TabList {
      */
     Optional<TabListEntry> getEntry(UUID uniqueId);
 
-    /**
-     * Adds an entry to the list.
-     *
-     * @param entry The entry to add
-     * @return This tab list, for chaining
-     * @throws IllegalArgumentException if an entry already with the same unique
-     *     id exists on the list
-     * @throws IllegalStateException if the provided entry was not
-     */
-    TabList addEntry(TabListEntry entry) throws IllegalArgumentException;
-
-    /**
-     * Removes an entry from the list.
-     *
-     * <p>Note that if this is used on a player, but they remain visible
-     * in-game, their skin will not work.</p>
-     *
-     * @param uniqueId The unique id of the entry to remove
-     * @return The entry that was associated with the unique id
-     */
-    Optional<TabListEntry> removeEntry(UUID uniqueId);
 
 }

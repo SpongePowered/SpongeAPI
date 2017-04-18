@@ -38,6 +38,7 @@ import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
+import org.spongepowered.api.entity.living.player.tab.PlayerTabList;
 import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.message.MessageChannelEvent;
@@ -172,7 +173,7 @@ public interface Player extends BasePlayer, RemoteSource, Viewer, ChatTypeMessag
      *
      * @return This player's TabList
      */
-    TabList getTabList();
+    PlayerTabList getTabList();
 
     /**
      * Kicks the player, showing the default kick reason (the translation key
