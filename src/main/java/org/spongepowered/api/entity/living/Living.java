@@ -34,6 +34,7 @@ import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.scoreboard.TeamMember;
 
 /**
@@ -43,7 +44,7 @@ import org.spongepowered.api.scoreboard.TeamMember;
  * under water, custom names, be meaningfully added to teams, and become
  * invisible.</p>
  */
-public interface Living extends Entity, TeamMember {
+public interface Living extends Entity, ProjectileSource, TeamMember {
 
     /**
      * Gets a copy of the current {@link HealthData}.
