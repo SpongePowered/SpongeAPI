@@ -101,6 +101,23 @@ public interface Game {
      */
     Server getServer();
 
+    /**
+     * Returns if the {@link Client} is available for use. The result of this method is entirely
+     * dependent on the implementation.
+     *
+     * @return True if the Client is available, false if not
+     */
+    boolean isClientAvailable();
+
+    /**
+     * Gets the {@link Client} if the game is client-side and is available. If it is not, an error
+     * is thrown.
+     *
+     * @return The client
+     * @throws IllegalStateException If the Client isn't currently available.
+     */
+    Client getClient();
+
 
     /**
      * Retrieves the GameDictionary (item dictionary) for this GameRegistry.
