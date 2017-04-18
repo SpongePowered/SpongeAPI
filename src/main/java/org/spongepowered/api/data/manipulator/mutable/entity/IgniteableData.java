@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableIgniteableData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -40,6 +41,7 @@ public interface IgniteableData extends DataManipulator<IgniteableData, Immutabl
      * "ticks" the {@link Entity} remains on fire.
      *
      * @return The immutable value of "fire ticks"
+     * @see Keys#FIRE_TICKS
      */
     MutableBoundedValue<Integer> fireTicks();
 
@@ -48,6 +50,7 @@ public interface IgniteableData extends DataManipulator<IgniteableData, Immutabl
      * "ticks" before the fire will damage the owning {@link Entity}.
      *
      * @return The immutable value
+     * @see Keys#FIRE_DAMAGE_DELAY
      */
     MutableBoundedValue<Integer> fireDelay();
 

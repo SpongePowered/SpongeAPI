@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.item;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableGoldenAppleData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.GoldenApple;
@@ -34,6 +35,8 @@ import org.spongepowered.api.data.type.GoldenApple;
  * <p>Since different types of golden apples have different properties, it is
  * recommended to further check the specific item properties associated with
  * the golden apple type from the item stack after changing this data.</p>
+ *
+ * @see Keys#GOLDEN_APPLE_TYPE
  */
 public interface GoldenAppleData extends VariantData<GoldenApple, GoldenAppleData, ImmutableGoldenAppleData> {
 

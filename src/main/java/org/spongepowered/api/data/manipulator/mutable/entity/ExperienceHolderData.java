@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableExperienceHolderData;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
@@ -44,6 +45,7 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
      *
      * @return The bounded value of experience since the beginning of the
      *     current level
+     * @see Keys#EXPERIENCE_SINCE_LEVEL
      */
     MutableBoundedValue<Integer> experienceSinceLevel();
 
@@ -54,6 +56,7 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
      * {@link #experienceSinceLevel()} amount.
      *
      * @return The immutable bounded required experience between levels
+     * @see Keys#EXPERIENCE_FROM_START_OF_LEVEL
      */
     ImmutableBoundedValue<Integer> getExperienceBetweenLevels();
 
@@ -64,6 +67,7 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
      * per level.
      *
      * @return The current level according to the amount of total experience
+     * @see Keys#EXPERIENCE_LEVEL
      */
     MutableBoundedValue<Integer> level();
 
@@ -71,6 +75,7 @@ public interface ExperienceHolderData extends DataManipulator<ExperienceHolderDa
      * Gets the total amount of experience stored.
      *
      * @return The value of total amount of experience
+     * @see Keys#TOTAL_EXPERIENCE
      */
     MutableBoundedValue<Integer> totalExperience();
 

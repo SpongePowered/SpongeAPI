@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.tileentity;
 
 import org.spongepowered.api.block.tileentity.carrier.Beacon;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableBeaconData;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
@@ -45,6 +46,7 @@ public interface BeaconData extends DataManipulator<BeaconData, ImmutableBeaconD
      * {@link PotionEffectType}.
      *
      * @return The optional value for the primary potion effect
+     * @see Keys#BEACON_PRIMARY_EFFECT
      */
     OptionalValue<PotionEffectType> primaryEffect();
 
@@ -53,6 +55,7 @@ public interface BeaconData extends DataManipulator<BeaconData, ImmutableBeaconD
      * {@link PotionEffectType}.
      *
      * @return The optional value for the secondary potion effect
+     * @see Keys#BEACON_SECONDARY_EFFECT
      */
     OptionalValue<PotionEffectType> secondaryEffect();
 

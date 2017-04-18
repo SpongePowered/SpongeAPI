@@ -25,12 +25,15 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.tileentity.Comparator;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableComparatorData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.ComparatorType;
 
 /**
  * Represents the {@link Comparator} data.
+ *
+ * @see Keys#COMPARATOR_TYPE
  */
 public interface ComparatorData extends VariantData<ComparatorType, ComparatorData, ImmutableComparatorData> {
 

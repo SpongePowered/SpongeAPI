@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.item;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableGenerationData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -42,6 +43,7 @@ public interface GenerationData extends DataManipulator<GenerationData, Immutabl
      * state of a book.
      *
      * @return The bounded value for the generation state
+     * @see Keys#GENERATION
      */
     MutableBoundedValue<Integer> generation();
 

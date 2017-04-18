@@ -26,6 +26,7 @@ package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableLayeredData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -42,6 +43,7 @@ public interface LayeredData extends DataManipulator<LayeredData, ImmutableLayer
      * Gets the {@link MutableBoundedValue} for the "layer" state.
      *
      * @return The bounded value for the "layer" state
+     * @see Keys#LAYER
      */
     MutableBoundedValue<Integer> layer();
 

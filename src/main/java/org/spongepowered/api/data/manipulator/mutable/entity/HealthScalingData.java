@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableHealthScalingData;
 import org.spongepowered.api.data.value.BoundedValue;
@@ -40,6 +41,7 @@ public interface HealthScalingData extends DataManipulator<HealthScalingData, Im
      * out of 10 hearts.</p>
      *
      * @return The value for the health scale
+     * @see Keys#HEALTH_SCALE
      */
     BoundedValue<Double> healthScale();
 

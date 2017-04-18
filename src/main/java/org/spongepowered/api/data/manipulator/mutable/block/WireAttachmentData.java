@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableWireAttachmentData;
 import org.spongepowered.api.data.type.WireAttachmentType;
@@ -44,6 +45,7 @@ public interface WireAttachmentData extends DataManipulator<WireAttachmentData, 
      *
      * @return The map value for the directions and their associated
      *     wire attachment types
+     * @see Keys#WIRE_ATTACHMENTS
      */
     MapValue<Direction, WireAttachmentType> wireAttachments();
 
@@ -52,6 +54,7 @@ public interface WireAttachmentData extends DataManipulator<WireAttachmentData, 
      * {@link WireAttachmentType}.
      *
      * @return The value for the northern wire attachment type
+     * @see Keys#WIRE_ATTACHMENT_NORTH
      */
     Value<WireAttachmentType> wireAttachmentNorth();
 
@@ -60,6 +63,7 @@ public interface WireAttachmentData extends DataManipulator<WireAttachmentData, 
      * {@link WireAttachmentType}.
      *
      * @return The value for the southern wire attachment type
+     * @see Keys#WIRE_ATTACHMENT_SOUTH
      */
     Value<WireAttachmentType> wireAttachmentSouth();
 
@@ -68,6 +72,7 @@ public interface WireAttachmentData extends DataManipulator<WireAttachmentData, 
      * {@link WireAttachmentType}.
      *
      * @return The value for the eastern wire attachment type
+     * @see Keys#WIRE_ATTACHMENT_EAST
      */
     Value<WireAttachmentType> wireAttachmentEast();
 
@@ -76,6 +81,7 @@ public interface WireAttachmentData extends DataManipulator<WireAttachmentData, 
      * {@link WireAttachmentType}.
      *
      * @return The value for the western wire attachment type
+     * @see Keys#WIRE_ATTACHMENT_WEST
      */
     Value<WireAttachmentType> wireAttachmentWest();
 

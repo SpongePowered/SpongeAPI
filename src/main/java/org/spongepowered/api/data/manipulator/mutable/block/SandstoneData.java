@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableSandstoneData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.SandstoneType;
@@ -33,6 +34,8 @@ import org.spongepowered.api.data.type.SandstoneType;
  * An {@link VariantData} for the {@link SandstoneType}. Usually
  * applicable to {@link BlockTypes#SANDSTONE} and
  * {@link BlockTypes#RED_SANDSTONE}.
+ *
+ * @see Keys#SANDSTONE_TYPE
  */
 public interface SandstoneData extends VariantData<SandstoneType, SandstoneData, ImmutableSandstoneData> {
 

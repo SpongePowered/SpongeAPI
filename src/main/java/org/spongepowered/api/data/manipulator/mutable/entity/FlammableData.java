@@ -24,14 +24,16 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFlammableData;
 import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.living.monster.Blaze;
 
 /**
- * An {@link DataManipulator} for the "flaming" state of an entity. This state
+ * An {@link DataManipulator} for the "aflame" state of an entity. This state
  * is different from being set on fire as the entity is igniting itself without
- * taking damage.
+ * taking damage. Usually applies to {@link Blaze}s.
  */
 public interface FlammableData extends DataManipulator<FlammableData, ImmutableFlammableData> {
 
@@ -39,6 +41,7 @@ public interface FlammableData extends DataManipulator<FlammableData, ImmutableF
      * Gets the {@link Value} for the "aflame" state.
      *
      * @return The value for the aflame state
+     * @see Keys#IS_AFLAME
      */
     Value<Boolean> flammable();
 

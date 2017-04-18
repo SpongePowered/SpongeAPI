@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableShearedData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -39,6 +40,7 @@ public interface ShearedData extends DataManipulator<ShearedData, ImmutableShear
      * Gets the {@link Value} of the "sheared" state.
      *
      * @return The value for the "sheared" state
+     * @see Keys#IS_SHEARED
      */
     Value<Boolean> sheared();
 

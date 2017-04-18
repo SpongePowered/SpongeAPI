@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableGrowthData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -41,6 +42,7 @@ public interface GrowthData extends DataManipulator<GrowthData, ImmutableGrowthD
      * Gets the {@link MutableBoundedValue} for the "growth" stage.
      *
      * @return The immutable bounded value growth stage
+     * @see Keys#GROWTH_STAGE
      */
     MutableBoundedValue<Integer> growthStage();
 

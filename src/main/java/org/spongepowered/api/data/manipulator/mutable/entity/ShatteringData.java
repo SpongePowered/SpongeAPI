@@ -24,24 +24,26 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableShatteringData;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.projectile.EnderPearl;
+import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
  * An {@link DataManipulator} representing the "shattering" state of an
- * {@link EnderPearl}. Usually, if an {@link EnderPearl} will "shatter" at
+ * {@link EyeOfEnder}. Usually, if an {@link EyeOfEnder} will "shatter" at
  * the end of it's travel duration such that no {@link ItemStack} will drop.
  */
 public interface ShatteringData extends DataManipulator<ShatteringData, ImmutableShatteringData> {
 
     /**
      * Gets the {@link Value} for the "shattering" state of an
-     * {@link EnderPearl}.
+     * {@link EyeOfEnder}.
      *
      * @return The immutable value for the "shattering" state
+     * @see Keys#WILL_SHATTER
      */
     Value<Boolean> willShatter();
 

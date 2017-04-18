@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSkinData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -44,6 +45,7 @@ public interface SkinData extends DataManipulator<SkinData, ImmutableSkinData> {
      * {@link Humanoid} entity for customization.
      *
      * @return The value for the skin uuid
+     * @see Keys#SKIN_UNIQUE_ID
      */
     Value<UUID> skinUniqueId();
 

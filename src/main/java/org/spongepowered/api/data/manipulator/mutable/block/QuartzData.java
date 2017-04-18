@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableQuartzData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.QuartzType;
@@ -32,6 +33,8 @@ import org.spongepowered.api.data.type.QuartzType;
 /**
  * A {@link VariantData} for the {@link QuartzType}. Usually applicable to
  * {@link BlockTypes#QUARTZ_BLOCK}.
+ *
+ * @see Keys#QUARTZ_TYPE
  */
 public interface QuartzData extends VariantData<QuartzType, QuartzData, ImmutableQuartzData> {
 

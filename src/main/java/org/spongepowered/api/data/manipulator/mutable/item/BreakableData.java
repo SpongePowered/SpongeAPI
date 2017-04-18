@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.item;
 
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableBreakableData;
 import org.spongepowered.api.data.value.mutable.SetValue;
@@ -49,6 +50,7 @@ public interface BreakableData extends DataManipulator<BreakableData, ImmutableB
      *
      * @return The immutable set of block types that can be broken by the item
      *     stack
+     * @see Keys#BREAKABLE_BLOCK_TYPES
      */
     SetValue<BlockType> breakable();
 

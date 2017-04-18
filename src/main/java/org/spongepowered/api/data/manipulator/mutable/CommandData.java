@@ -26,6 +26,7 @@ package org.spongepowered.api.data.manipulator.mutable;
 
 import org.spongepowered.api.block.tileentity.CommandBlock;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableCommandData;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
@@ -46,6 +47,7 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * Gets the currently stored command.
      *
      * @return The command
+     * @see Keys#COMMAND
      */
     Value<String> storedCommand();
 
@@ -60,6 +62,7 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * comparator.</p>
      *
      * @return The last success count
+     * @see Keys#SUCCESS_COUNT
      */
     Value<Integer> successCount();
 
@@ -68,6 +71,7 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * last command it executed.
      *
      * @return Whether the command output is tracked
+     * @see Keys#TRACKS_OUTPUT
      */
     Value<Boolean> doesTrackOutput();
 
@@ -78,6 +82,7 @@ public interface CommandData extends DataManipulator<CommandData, ImmutableComma
      * true, otherwise {@link Optional#empty()} will be returned.</p>
      *
      * @return The last command output, if available
+     * @see Keys#LAST_COMMAND_OUTPUT
      */
     OptionalValue<Text> lastOutput();
 

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFlyingAbilityData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -42,6 +43,7 @@ public interface FlyingAbilityData extends DataManipulator<FlyingAbilityData, Im
      * Gets the {@link Value} for whether the owner can "fly".
      *
      * @return The value for being able to toggle "flying"
+     * @see Keys#CAN_FLY
      */
     Value<Boolean> canFly();
 

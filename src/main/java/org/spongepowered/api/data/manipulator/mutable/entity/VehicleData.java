@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableVehicleData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -31,9 +32,9 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 
 /**
- * An {@link DataManipulator} that handles the current "passenger" if
- * the owning {@link Entity} is considered to be a "vehicle" or another
- * {@link Entity} is currently riding the owning {@link Entity}.
+ * A {@link DataManipulator} that handles the current "vehicle" if
+ * the owning {@link Entity} is considered to be a "passenger" or another
+ * {@link Entity} is currently being ridden by the owning {@link Entity}.
  */
 public interface VehicleData extends DataManipulator<VehicleData, ImmutableVehicleData> {
 
@@ -41,6 +42,7 @@ public interface VehicleData extends DataManipulator<VehicleData, ImmutableVehic
      * Gets the {@link Value} for the current "vehicle" being ridden.
      *
      * @return The value for the vehicle being ridden
+     * @see Keys#VEHICLE
      */
     Value<EntitySnapshot> vehicle();
 
@@ -50,6 +52,7 @@ public interface VehicleData extends DataManipulator<VehicleData, ImmutableVehic
      * causing that entity to be called the "base vehicle".
      *
      * @return The value for the base vehicle
+     * @see Keys#BASE_VEHICLE
      */
     Value<EntitySnapshot> baseVehicle();
 

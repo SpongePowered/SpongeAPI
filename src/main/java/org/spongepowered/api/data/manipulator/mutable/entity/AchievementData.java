@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAchievementData;
 import org.spongepowered.api.data.value.mutable.SetValue;
@@ -41,6 +42,7 @@ public interface AchievementData extends DataManipulator<AchievementData, Immuta
      * Gets the {@link SetValue} of {@link Achievement}s earned.
      *
      * @return The set value of achievements earned
+     * @see Keys#ACHIEVEMENTS
      */
     SetValue<Achievement> achievements();
 

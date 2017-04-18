@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableFireworkRocketData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -46,6 +47,7 @@ public interface FireworkRocketData extends DataManipulator<FireworkRocketData, 
      * approximation of what vanilla Minecraft performs.</p>
      *
      * @return The flight modifier
+     * @see Keys#FIREWORK_FLIGHT_MODIFIER
      */
     MutableBoundedValue<Integer> flightModifier();
 }

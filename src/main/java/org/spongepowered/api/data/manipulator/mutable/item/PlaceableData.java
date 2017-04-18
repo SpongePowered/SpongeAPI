@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.item;
 
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutablePlaceableData;
 import org.spongepowered.api.data.value.mutable.SetValue;
@@ -47,6 +48,7 @@ public interface PlaceableData extends DataManipulator<PlaceableData, ImmutableP
      * {@link ItemType} can be placed on.
      *
      * @return The immutable set value of block types the item can be placed on
+     * @see Keys#PLACEABLE_BLOCKS
      */
     SetValue<BlockType> placeable();
 

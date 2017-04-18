@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableSlabData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.SlabType;
@@ -32,6 +33,8 @@ import org.spongepowered.api.data.type.SlabType;
 /**
  * A {@link VariantData} for the {@link SlabType}. Usually applicable
  * to {@link BlockTypes#STONE_SLAB} and {@link BlockTypes#STONE_SLAB2}, etc.
+ *
+ * @see Keys#SLAB_TYPE
  */
 public interface SlabData extends VariantData<SlabType, SlabData, ImmutableSlabData> {
 

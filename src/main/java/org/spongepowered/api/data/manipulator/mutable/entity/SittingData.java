@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSittingData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -41,6 +42,7 @@ public interface SittingData extends DataManipulator<SittingData, ImmutableSitti
      * Gets the {@link Value} for the "sitting" state.
      *
      * @return The value for the sitting states
+     * @see Keys#IS_SITTING
      */
     Value<Boolean> sitting();
 

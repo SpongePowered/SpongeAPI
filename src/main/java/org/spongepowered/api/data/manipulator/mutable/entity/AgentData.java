@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAgentData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -37,6 +38,7 @@ public interface AgentData extends DataManipulator<AgentData, ImmutableAgentData
      * Gets the {@link Value} for whether AI tasks are enabled or not.
      *
      * @return The value for the current "enabled" state of ai tasks
+     * @see Keys#AI_ENABLED
      */
     Value<Boolean> aiEnabled();
 

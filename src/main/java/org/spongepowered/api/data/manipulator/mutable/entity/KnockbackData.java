@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableKnockbackData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -42,6 +43,7 @@ public interface KnockbackData extends DataManipulator<KnockbackData, ImmutableK
      * Gets the {@link MutableBoundedValue} for the "knockback strength.
      *
      * @return The immutable value for the knockback strength
+     * @see Keys#KNOCKBACK_STRENGTH
      */
     MutableBoundedValue<Integer> knockbackStrength();
 

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableLeashData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -41,6 +42,7 @@ public interface LeashData extends DataManipulator<LeashData, ImmutableLeashData
      * Gets the {@link Value} for the "leash holder".
      *
      * @return The value for the leash holder
+     * @see Keys#LEASH_HOLDER
      */
     Value<Entity> leashHolder();
 

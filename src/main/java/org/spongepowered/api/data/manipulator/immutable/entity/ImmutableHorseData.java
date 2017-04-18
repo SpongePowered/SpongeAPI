@@ -54,7 +54,7 @@ public interface ImmutableHorseData extends ImmutableDataManipulator<ImmutableHo
     ImmutableValue<HorseStyle> style();
 
     /**
-     * Gets the {@link ImmutableValue} for the {@link HorseVariant}.
+     * Gets the {@link ImmutableValue} for the {@link org.spongepowered.api.data.type.HorseVariant}.
      *
      * <p>HorseVariants may change the capability of a horse. Some horses
      * are unable to equip an extra chest, while others are unable to equip

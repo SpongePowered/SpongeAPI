@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable;
 
 import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableDisplayNameData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -46,6 +47,7 @@ public interface DisplayNameData extends DataManipulator<DisplayNameData, Immuta
      * player set, or it may be undefined.
      *
      * @return The display name, if available
+     * @see Keys#DISPLAY_NAME
      */
     Value<Text> displayName();
 

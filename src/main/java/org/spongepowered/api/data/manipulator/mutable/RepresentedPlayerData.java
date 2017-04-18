@@ -27,6 +27,7 @@ package org.spongepowered.api.data.manipulator.mutable;
 import org.spongepowered.api.block.tileentity.Skull;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableRepresentedPlayerData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -45,6 +46,7 @@ public interface RepresentedPlayerData extends DataManipulator<RepresentedPlayer
      * represented by the {@link DataHolder}.
      *
      * @return The value of the game profile
+     * @see Keys#REPRESENTED_PLAYER
      */
     Value<GameProfile> owner();
 

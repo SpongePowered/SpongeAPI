@@ -28,14 +28,14 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.type.LlamaVariant;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.entity.projectile.ProjectileLauncher;
 
 /**
  * Represents a Llama in the base game. Llamas are unique in that
  * they can be ridden by players, but not controlled by players. Likewise, they
  * have colors and styles and can have storage "strength".
  */
-public interface Llama extends Horse, ProjectileSource {
+public interface Llama extends Horse, ProjectileLauncher {
 
     /**
      * Gets the {@link Value} for the {@link Keys#LLAMA_STRENGTH llama strength}

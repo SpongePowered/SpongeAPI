@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableRepresentedItemData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -44,6 +45,7 @@ public interface RepresentedItemData extends DataManipulator<RepresentedItemData
      * an {@link ItemStackSnapshot}.
      *
      * @return The value for the item stack snapshot
+     * @see Keys#REPRESENTED_ITEM
      */
     Value<ItemStackSnapshot> item();
 

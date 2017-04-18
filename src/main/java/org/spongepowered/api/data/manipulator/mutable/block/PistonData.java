@@ -25,12 +25,15 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutablePistonData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.PistonType;
 
 /**
  * Represents the {@link PistonType} of a {@link BlockTypes#PISTON_HEAD}.
+ *
+ * @see Keys#PISTON_TYPE
  */
 public interface PistonData extends VariantData<PistonType, PistonData, ImmutablePistonData> {
 

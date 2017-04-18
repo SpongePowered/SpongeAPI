@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableColoredData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -38,6 +39,7 @@ public interface ColoredData extends DataManipulator<ColoredData, ImmutableColor
      * Gets the {@link Value} for the {@link Color}.
      *
      * @return The value for the color
+     * @see Keys#COLOR
      */
     Value<Color> color();
 

@@ -31,7 +31,6 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.spongepowered.api.Game;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
@@ -52,9 +51,7 @@ public class SimpleServiceManagerTest {
         when(this.testPluginContainer.getId()).thenReturn("TestPlugin");
         when(this.manager.fromInstance(testPlugin)).thenReturn(Optional.of(this.testPluginContainer));
 
-        Game game = mock(Game.class);
-        when(game.getEventManager()).thenReturn(mock(EventManager.class));
-        TestHooks.setGame(game);
+        TestHooks.setInstance("eventManager", mock(EventManager.class));
     }
 
     @Test
