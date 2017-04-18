@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import org.spongepowered.api.Platform;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
@@ -40,6 +41,7 @@ import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.BlockChangeFlag;
+import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.worker.MutableBiomeVolumeWorker;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
@@ -522,4 +524,24 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      */
     ArchetypeVolume createArchetypeVolume(Vector3i min, Vector3i max, Vector3i origin);
 
+    /**
+     * Gets the logical platform of this extent.
+     *
+     * <p>Normally, the dedicated server will always be
+     * {@link Platform.Type#SERVER SERVER} and a client on the server will
+     * always be {@link Platform.Type#CLIENT CLIENT}. However, a client on an
+     * integrated server (single player) may have access to extents of both
+     * types. An event listener may get an event which contains either.
+     * </p>
+     * <p>
+     * Note: If the context is {@link Platform.Type#CLIENT CLIENT}, any changes
+     * made to {@link Chunk chunks} or {@link Entity entities} will <b>not</b>
+     * take effect on the server. It is important to pay attention to this
+     * because the logical client and server can become de-synchronized very
+     * easily.
+     * </p>
+     *
+     * @return The logical platform
+     */
+    Platform.Type getLogicalPlatform();
 }
