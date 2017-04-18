@@ -75,7 +75,8 @@ public interface Client extends ThreadContext {
     void joinServer(InetSocketAddress server);
 
     /**
-     * Gets the {@link ServerConnection} to the current server.
+     * Gets the {@link ServerConnection} to the current server. This returns
+     * for both local and dedicated server connections.
      *
      * @return The server connection
      */
