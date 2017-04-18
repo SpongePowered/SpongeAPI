@@ -31,8 +31,6 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.tileentity.*;
 import org.spongepowered.api.block.tileentity.carrier.*;
-import org.spongepowered.api.block.tileentity.EndGateway;
-import org.spongepowered.api.block.tileentity.Structure;
 import org.spongepowered.api.data.manipulator.mutable.*;
 import org.spongepowered.api.data.manipulator.mutable.block.*;
 import org.spongepowered.api.data.manipulator.mutable.entity.*;
@@ -47,7 +45,6 @@ import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.entity.*;
-import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.explosive.FusedExplosive;
 import org.spongepowered.api.entity.hanging.ItemFrame;
@@ -107,6 +104,14 @@ import java.util.UUID;
 public final class Keys {
 
     // SORTFIELDS:ON
+
+    /**
+     * Represents the {@link Key} for the absoprtion amount of any {@link Living}
+     * entity.
+     *
+     * @see AbsorptionData#absorption()
+     */
+    public static final Key<Value<Double>> ABSORPTION = KeyFactory.fake("ABSORPTION");
 
     /**
      * Represents the {@link Key} for the {@link Achievement}s  earned by a
