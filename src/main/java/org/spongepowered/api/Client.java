@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.ClientPlayer;
 import org.spongepowered.api.network.ServerConnection;
 import org.spongepowered.api.util.ThreadContext;
 import org.spongepowered.api.world.World;
@@ -50,7 +50,7 @@ public interface Client extends ThreadContext {
      *
      * @return The client player
      */
-    Optional<Player> getClientPlayer();
+    Optional<ClientPlayer> getClientPlayer();
 
     /**
      * Gets the current local server instance if it is running.

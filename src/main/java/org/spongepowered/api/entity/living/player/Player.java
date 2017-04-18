@@ -33,11 +33,9 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
 import org.spongepowered.api.data.manipulator.mutable.entity.JoinData;
-import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.entity.living.player.tab.TabList;
@@ -48,7 +46,6 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.resourcepack.ResourcePack;
-import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.channel.MessageReceiver;
@@ -57,7 +54,6 @@ import org.spongepowered.api.text.chat.ChatVisibility;
 
 import java.time.Instant;
 import java.util.Optional;
-import java.util.Set;
 
 import javax.annotation.Nullable;
 
@@ -69,7 +65,7 @@ import javax.annotation.Nullable;
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
  */
-public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMessageReceiver {
+public interface Player extends BasePlayer, RemoteSource, Viewer, ChatTypeMessageReceiver {
 
     /**
      * Returns whether this player has an open inventory at the moment
@@ -156,13 +152,6 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
     MessageChannelEvent.Chat simulateChat(Text message, Cause cause);
 
     /**
-     * Gets the skin parts that this player has allowed to render.
-     *
-     * @return A set of skin parts displayed
-     */
-    Set<SkinPart> getDisplayedSkinParts();
-
-    /**
      * Gets the appropriate {@link PlayerConnection} linking this Player
      * to a client.
      *
@@ -197,20 +186,6 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      * @param reason The reason for the kick
      */
     void kick(Text reason);
-
-    /**
-     * Gets the {@link Scoreboard} displayed to the player.
-     *
-     * @return The scoreboard displayed to the player
-     */
-    Scoreboard getScoreboard();
-
-    /**
-     * Sets the {@link Scoreboard} displayed to the player.
-     *
-     * @param scoreboard The scoreboard to display
-     */
-    void setScoreboard(Scoreboard scoreboard);
 
     /**
      * Gets a copy of the current {@link JoinData}.
