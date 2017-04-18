@@ -91,6 +91,7 @@ public interface Client extends ThreadContext {
 
     /**
      * Gets the directory game assets are located and should be stored in.
+     * These assets are shared between game instances.
      *
      * @return The directory for assets
      */
