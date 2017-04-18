@@ -137,7 +137,10 @@ public interface DataManager {
      * data representation, and mass application of a {@link DataManipulator}
      * to multiple {@link DataHolder}s.
      *
-     * <p>Due to the addition of {@link DataRegistration}</p>
+     * <p>Due to the addition of {@link DataRegistration}, a serialization id
+     * is automatically generated upon registration, and is advised to properly
+     * take note of the id as any registered data will be re-serialized with this
+     * id in mind, and no longer the {@link Class#getName()}.</p>
      *
      * @param manipulatorClass The class of the data manipulator
      * @param immutableManipulatorClass The class of the immutable

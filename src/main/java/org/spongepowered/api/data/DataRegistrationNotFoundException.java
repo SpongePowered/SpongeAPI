@@ -51,4 +51,19 @@ public class DataRegistrationNotFoundException extends DataException {
         this.manipulatorClass = manipulatorClass;
         this.immutableClass = immutableClass;
     }
+
+    @Nullable
+    public String getRegistrationQuery() {
+        return this.registrationQuery;
+    }
+
+    @Nullable
+    public Class<? extends DataManipulator<?, ?>> getManipulatorClass() {
+        return this.manipulatorClass;
+    }
+
+    @Nullable
+    public Class<? extends ImmutableDataManipulator<?, ?>> getImmutableClass() {
+        return this.immutableClass;
+    }
 }

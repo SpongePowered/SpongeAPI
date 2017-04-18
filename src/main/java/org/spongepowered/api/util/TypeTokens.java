@@ -31,48 +31,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.data.meta.PatternLayer;
-import org.spongepowered.api.data.type.Art;
-import org.spongepowered.api.data.type.BigMushroomType;
-import org.spongepowered.api.data.type.BodyPart;
-import org.spongepowered.api.data.type.BrickType;
-import org.spongepowered.api.data.type.Career;
-import org.spongepowered.api.data.type.CoalType;
-import org.spongepowered.api.data.type.ComparatorType;
-import org.spongepowered.api.data.type.CookedFish;
-import org.spongepowered.api.data.type.DirtType;
-import org.spongepowered.api.data.type.DisguisedBlockType;
-import org.spongepowered.api.data.type.DoublePlantType;
-import org.spongepowered.api.data.type.DyeColor;
-import org.spongepowered.api.data.type.Fish;
-import org.spongepowered.api.data.type.GoldenApple;
-import org.spongepowered.api.data.type.HandPreference;
-import org.spongepowered.api.data.type.Hinge;
-import org.spongepowered.api.data.type.HorseColor;
-import org.spongepowered.api.data.type.HorseStyle;
-import org.spongepowered.api.data.type.LlamaVariant;
-import org.spongepowered.api.data.type.LogAxis;
-import org.spongepowered.api.data.type.NotePitch;
-import org.spongepowered.api.data.type.OcelotType;
-import org.spongepowered.api.data.type.PickupRule;
-import org.spongepowered.api.data.type.PistonType;
-import org.spongepowered.api.data.type.PlantType;
-import org.spongepowered.api.data.type.PortionType;
-import org.spongepowered.api.data.type.PrismarineType;
-import org.spongepowered.api.data.type.Profession;
-import org.spongepowered.api.data.type.QuartzType;
-import org.spongepowered.api.data.type.RabbitType;
-import org.spongepowered.api.data.type.RailDirection;
-import org.spongepowered.api.data.type.SandType;
-import org.spongepowered.api.data.type.SandstoneType;
-import org.spongepowered.api.data.type.ShrubType;
-import org.spongepowered.api.data.type.SkullType;
-import org.spongepowered.api.data.type.SlabType;
-import org.spongepowered.api.data.type.StairShape;
-import org.spongepowered.api.data.type.StoneType;
-import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.type.TreeType;
-import org.spongepowered.api.data.type.WallType;
-import org.spongepowered.api.data.type.WireAttachmentType;
+import org.spongepowered.api.data.type.*;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -238,8 +197,10 @@ public class TypeTokens {
 
     public static final TypeToken<Value<HorseStyle>> HORSE_STYLE_VALUE_TOKEN = new TypeToken<Value<HorseStyle>>() {};
 
+    @Deprecated
     public static final TypeToken<org.spongepowered.api.data.type.HorseVariant> HORSE_VARIANT_TOKEN = new TypeToken<org.spongepowered.api.data.type.HorseVariant>() {};
 
+    @Deprecated
     public static final TypeToken<Value<org.spongepowered.api.data.type.HorseVariant>> HORSE_VARIANT_VALUE_TOKEN = new TypeToken<Value<org.spongepowered.api.data.type.HorseVariant>>() {};
 
     public static final TypeToken<Instant> INSTANT_TOKEN = new TypeToken<Instant>() {};
@@ -400,8 +361,10 @@ public class TypeTokens {
 
     public static final TypeToken<Value<ShrubType>> SHRUB_VALUE_TOKEN = new TypeToken<Value<ShrubType>>() {};
 
+    @Deprecated
     public static final TypeToken<org.spongepowered.api.data.type.SkeletonType> SKELETON_TOKEN = new TypeToken<org.spongepowered.api.data.type.SkeletonType>() {};
 
+    @Deprecated
     public static final TypeToken<Value<org.spongepowered.api.data.type.SkeletonType>> SKELETON_VALUE_TOKEN = new TypeToken<Value<org.spongepowered.api.data.type.SkeletonType>>() {};
 
     public static final TypeToken<SkullType> SKULL_TOKEN = new TypeToken<SkullType>() {};
@@ -472,8 +435,10 @@ public class TypeTokens {
 
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {};
 
+    @Deprecated
     public static final TypeToken<org.spongepowered.api.data.type.ZombieType> ZOMBIE_TYPE_TOKEN = new TypeToken<org.spongepowered.api.data.type.ZombieType>() {};
 
+    @Deprecated
     public static final TypeToken<Value<org.spongepowered.api.data.type.ZombieType>> ZOMBIE_TYPE_VALUE_TOKEN = new TypeToken<Value<org.spongepowered.api.data.type.ZombieType>>() {};
 
     // SORTFIELDS:OFF

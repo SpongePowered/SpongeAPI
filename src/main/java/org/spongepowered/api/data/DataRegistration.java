@@ -29,7 +29,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.ResettableBuilder;
 
@@ -39,13 +38,13 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
      * Creates a new {@link Builder} to build a {@link DataRegistration}.
      * Through the use of generics, this can be duck-typed to the generics of
      * the desired {@link DataManipulator} type to be registered.
-     * @param <T> The type of data manipulator
-     * @param <I> The type of immutable data manipulator
+     * @param <M> The type of data manipulator
+     * @param <D> The type of immutable data manipulator
      * @return The new builder instance
      */
     @SuppressWarnings("unchecked")
-    static <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>> Builder<T, I> builder() {
-        return (Builder<T, I>) Sponge.getRegistry().createBuilder(Builder.class);
+    static <M extends DataManipulator<M, D>, D extends ImmutableDataManipulator<D, M>> Builder<M, D> builder() {
+        return (Builder<M, D>) Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
@@ -85,9 +84,9 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
     interface Builder<T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>>
         extends ResettableBuilder<DataRegistration<T, I>, Builder<T, I>> {
 
-        Builder<T, I> setDataClass(Class<T> manipulatorClass);
+        Builder<T, I> dataClass(Class<T> manipulatorClass);
 
-        Builder<T, I> setImmutableDataClass(Class<I> immutableDataClass);
+        Builder<T, I> immutableClass(Class<I> immutableDataClass);
 
         /**
          * Sets the id for the manipulator. The id should be formatted
@@ -103,7 +102,19 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          * @param id The id for the manipulator
          * @return This builder, for chaining
          */
-        Builder<T, I> setManipulatorId(String id);
+        Builder<T, I> manipulatorId(String id);
+
+        /**
+         * Sets a more generalized name to refer to the registered
+         * {@link DataManipulator} as a common name.
+         *
+         * <p>As an example: if I have a DummyTestData, a name could be "Dummy".
+         * </p>
+         *
+         * @param name The data name
+         * @return This builder, for chaining
+         */
+        Builder<T, I> dataName(String name);
 
         /**
          * Sets the {@link DataManipulatorBuilder} to be used to generate new
@@ -113,7 +124,7 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          * @param builder The builder
          * @return This builder, for chaining
          */
-        Builder<T, I> setBuilder(DataManipulatorBuilder<T, I> builder);
+        Builder<T, I> builder(DataManipulatorBuilder<T, I> builder);
 
         /**
          * Since {@link DataRegistration} objects should be considered
@@ -152,7 +163,10 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          * is that when the {@link DataRegistration} object is built, all of the
          * classes and the provided builder will already have been registered.</p>
          *
-         * <p>It is expected that as the required </p>
+         * <p>It is expected that as the required {@link PluginContainer} is used
+         * is not a default container from Sponge. The
+         * {@link PluginContainer#getId()} is utilized to generate the final
+         * {@link DataRegistration#getId()} for serialization purposes.</p>
          *
          *
          *

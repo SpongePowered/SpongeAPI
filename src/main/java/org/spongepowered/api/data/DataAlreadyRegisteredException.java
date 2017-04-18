@@ -32,12 +32,9 @@ import javax.annotation.Nullable;
 
 public class DataAlreadyRegisteredException extends DataException {
 
-    @Nullable
-    private final Class<? extends DataManipulator<?, ?>> manipulatorClass;
-    @Nullable
-    private final Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass;
-    @Nullable
-    private final DataManipulatorBuilder<?, ?> builder;
+    @Nullable private final Class<? extends DataManipulator<?, ?>> manipulatorClass;
+    @Nullable private final Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass;
+    @Nullable private final DataManipulatorBuilder<?, ?> builder;
 
 
     public DataAlreadyRegisteredException(@Nullable Class<? extends DataManipulator<?, ?>> manipulatorClass,
@@ -76,5 +73,20 @@ public class DataAlreadyRegisteredException extends DataException {
         this.manipulatorClass = manipulatorClass;
         this.immutableManipulatorClass = immutableManipulatorClass;
         this.builder = builder;
+    }
+
+    @Nullable
+    public Class<? extends DataManipulator<?, ?>> getManipulatorClass() {
+        return this.manipulatorClass;
+    }
+
+    @Nullable
+    public Class<? extends ImmutableDataManipulator<?, ?>> getImmutableManipulatorClass() {
+        return this.immutableManipulatorClass;
+    }
+
+    @Nullable
+    public DataManipulatorBuilder<?, ?> getBuilder() {
+        return this.builder;
     }
 }
