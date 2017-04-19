@@ -2310,6 +2310,8 @@ public final class Keys {
     @SuppressWarnings("deprecation")
     public static final Key<Value<org.spongepowered.api.data.type.ZombieType>> ZOMBIE_TYPE = KeyFactory.fake("ZOMBIE_TYPE");
 
+    public static final Key<Value<Boolean>> IS_ADULT = null;
+
     // SORTFIELDS:OFF
 
     private Keys() {}
