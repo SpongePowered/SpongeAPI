@@ -43,8 +43,8 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
      * @return The new builder instance
      */
     @SuppressWarnings("unchecked")
-    static <M extends DataManipulator<M, D>, D extends ImmutableDataManipulator<D, M>> Builder<M, D> builder() {
-        return (Builder<M, D>) Sponge.getRegistry().createBuilder(Builder.class);
+    static Builder<?, ?> builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
@@ -84,14 +84,37 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
     interface Builder<T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>>
         extends ResettableBuilder<DataRegistration<T, I>, Builder<T, I>> {
 
-        Builder<T, I> dataClass(Class<T> manipulatorClass);
+        /**
+         * Sets the {@link DataManipulator} class to be used. For the sake of
+         * generics, this method must be called prior to
+         * {@link #immutableClass(Class)} to properly infer generic usage
+         * by the compiler and at runtime.
+         *
+         * @param manipulatorClass The manipulator class
+         * @param <D> The type of data manipulator
+         * @param <M> The type of immutable data manipulator
+         * @return This builder, properly generified, for chaining
+         */
+        <D extends DataManipulator<D, M>, M extends ImmutableDataManipulator<M, D>> Builder<D, M> dataClass(Class<D> manipulatorClass);
 
-        Builder<T, I> immutableClass(Class<I> immutableDataClass);
+        /**
+         * Sets the immutable class. <strong>THIS MUST BE CALLED AFTER
+         * {@link #dataClass(Class)}!</strong>
+         *
+         * @param immutableDataClass The immutable data class
+         * @return This builder, for chaining
+         * @throws IllegalStateException If the data manipulator class has not
+         *     been set already
+         */
+        Builder<T, I> immutableClass(Class<I> immutableDataClass) throws IllegalStateException;
 
         /**
          * Sets the id for the manipulator. The id should be formatted
          * according to the normal {@link CatalogType} standard:
-         * <code>&#123;plugin-id&#124;&#58;&#123;manipulator-id&#124;</code>
+         * <code>&#123;manipulator-id&#124;</code> since the
+         * <code>&quot;pluginid&quot;</code>
+         * is gathered from {@link #buildAndRegister(PluginContainer)} provided
+         * {@link PluginContainer}.
          *
          * <p>The importance of the id is that the id is what will be used for
          * serialization and deserialization of custom plugin provided data,
