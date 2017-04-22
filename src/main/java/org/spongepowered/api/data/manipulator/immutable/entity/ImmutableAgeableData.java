@@ -49,7 +49,10 @@ public interface ImmutableAgeableData extends ImmutableDataManipulator<Immutable
      * should be {@code true} and vice versa.
      *
      * @return The immutable value for the "baby" state
+     * @deprecated Due to this being added as the inverse of {@link #age()},
+     *     this method is to be removed
      */
+    @Deprecated
     ImmutableValue<Boolean> baby();
 
     /**

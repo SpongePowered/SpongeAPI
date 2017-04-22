@@ -1178,6 +1178,11 @@ public final class Keys {
      * @see InWallData#inWall()
      */
     public static final Key<Value<Boolean>> IN_WALL = KeyFactory.fake("IN_WALL");
+    /**
+     * Represents the {@link Key} for the state whether a {@link Ageable}
+     * entity is considered an "adult" and may affect breeding capabilities.
+     */
+    public static final Key<Value<Boolean>> IS_ADULT = KeyFactory.fake("IS_ADULT");
 
     /**
      * Represents the {@link Key} for whether a {@link Blaze} is currently
@@ -1189,6 +1194,12 @@ public final class Keys {
      * @see FlammableData#flammable()
      */
     public static final Key<Value<Boolean>> IS_AFLAME = KeyFactory.fake("IS_AFLAME");
+
+    /**
+     * @deprecated Use the inverse of {@link Keys#IS_ADULT}.
+     */
+    @Deprecated
+    public static final Key<Value<Boolean>> IS_BABY = KeyFactory.fake("IS_BABY");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is flying.
