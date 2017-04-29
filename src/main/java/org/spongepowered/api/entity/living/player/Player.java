@@ -29,7 +29,7 @@ import org.spongepowered.api.block.tileentity.EnderChest;
 import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.RemoteSource;
-import org.spongepowered.api.conversation.Conversant;
+import org.spongepowered.api.text.conversation.Conversant;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;

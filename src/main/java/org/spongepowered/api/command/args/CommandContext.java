@@ -31,7 +31,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.conversation.ResponseContext;
+import org.spongepowered.api.text.conversation.ResponseContext;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.world.Location;
 

@@ -22,4 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.conversation;
+package org.spongepowered.api.text.conversation;
+
+import org.spongepowered.api.text.Text;
+
+/**
+ * Each {@link Conversant} has one of these to handle the chat messages being
+ * sent to them.
+ */
+public interface ExternalChatHandler {
+
+    /**
+     * Processes the specified incoming text for this {@link Conversation}.
+     * Returns whether or not to send the message normally.
+     *
+     * @param text The text to process
+     * @return Whether or not to send the message normally to the player
+     */
+    boolean process(Text text);
+
+    /**
+     * Notify this handler that the conversation has come to an end.
+     *
+     * @param conversant The {@link Conversant} to send the messages to,
+     *     if applicable
+     */
+    void finish(Conversant conversant);
+
+}

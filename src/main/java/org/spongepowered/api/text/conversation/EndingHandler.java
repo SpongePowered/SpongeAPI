@@ -22,42 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.conversation;
+package org.spongepowered.api.text.conversation;
 
 import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataQuery;
+import org.spongepowered.api.event.cause.conversation.ConversationEndType;
 import org.spongepowered.api.text.Text;
 
 /**
- * A functional interface, which a {@link Question} utilizes to handle responses.
+ * A functional interface which is called when a {@link Conversation} is over
+ * so it can complete its function with all collected information.
  */
 @FunctionalInterface
-public interface AnswerHandler {
+public interface EndingHandler {
 
     /**
-     * Handles a {@link Conversant}'s answer to a {@link Question}.
-     *
-     * <p>This is where you should collect all information from individual
-     * {@link Question}s or prompts, to the{@link DataContainer}
-     * accessible through {@link Conversation#getContext()} with
-     * {@link DataQuery} or store it yourself.</p>
-     *
-     * <p>A {@link QuestionResult} needs to be returned so the conversation
-     * knows how to continue on. The three possible types can be accessed
-     * by static methods on the class. You can tell the conversation to either
-     * end, go to the next question, or repeat the same question.</p>
+     * Handles the completion of a {@link Conversation}.
      *
      * <p><strong>Note:</strong> You must use
      * {@link Conversant#sendThroughMessage(Text)} to send conversants a message
      * if the conversation is set to catch messages.</p>
      *
-     * @param conversation The conversation involved in this answer
-     * @param conversant The conversant answering the question
-     * @param question The question being answered
-     * @param args The context of this specific question
-     * @return Whether to end the conversation, repeat the question, or go to
-     *     another question
+     * @param conversation The involved conversation
+     * @param context The context which has been added to over the course of
+     *     the conversation
+     * @param endType How the conversation ended
      */
-    QuestionResult handle(Conversation conversation, Conversant conversant, Question question, ResponseContext args);
+    void handle(Conversation conversation, DataContainer context, ConversationEndType endType);
 
 }
