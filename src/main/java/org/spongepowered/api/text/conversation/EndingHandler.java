@@ -42,9 +42,6 @@ public interface EndingHandler {
      * {@link Conversant#sendThroughMessage(Text)} to send conversants a message
      * if the conversation is set to catch messages.</p>
      *
-     * <p>Also consider the fact that there may be no conversants left
-     * within the conversation.</p>
-     *
      * @param conversation The involved conversation
      * @param context The context which has been added to over the course of
      *     the conversation
