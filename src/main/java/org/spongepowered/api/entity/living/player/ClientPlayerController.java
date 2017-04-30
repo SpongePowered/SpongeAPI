@@ -27,12 +27,37 @@ package org.spongepowered.api.entity.living.player;
 import org.spongepowered.api.network.ServerConnection;
 
 /**
- * Created by Matthew on 4/30/2017.
+ * Player controller for the client's player
  */
 public interface ClientPlayerController extends PlayerController {
 
+    /**
+     * Gets the {@link ClientPlayer} entity.
+     *
+     * @return The player entity
+     */
     ClientPlayer getPlayer();
 
     @Override
     ServerConnection getConnection();
+
+    /**
+     * Sends a chat message in plain text to the server.
+     *
+     * <p>Messages longer than the max allowed will be truncated. As of 1.11.2,
+     * the maximum length is 256.</p>
+     *
+     * <p>Messages which contain forbidden characters will throw an Exception.
+     * Currently, characters must not be a control character or the section
+     * sign (&#x00a7)</p>
+     *
+     * <p>Note: Calling this method too often may result in being kicked for
+     * chat spam. Different server implementations have different thresholds
+     * and cooldown times for chat messages.</p>
+     *
+     * @param message The message to send.
+     * @throws IllegalArgumentException If the message has illegal characters
+     */
+    void sendChatMessage(String message) throws IllegalArgumentException;
+
 }

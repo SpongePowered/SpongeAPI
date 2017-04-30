@@ -43,11 +43,11 @@ import java.util.concurrent.CompletableFuture;
 public interface Client extends ThreadContext, ChatTypeMessageReceiver {
 
     /**
-     * Gets the currently loaded world, if any.
+     * Gets the world the client is currently viewing, if any.
      *
-     * @return The current world
+     * @return The world being viewed
      */
-    Optional<World> getLoadedWorld();
+    Optional<World> getViewedWorld();
 
     /**
      * Gets the current client player controller, if it exists.
@@ -69,7 +69,7 @@ public interface Client extends ThreadContext, ChatTypeMessageReceiver {
     Optional<LocalServer> getLocalServer();
 
     /**
-     * Loads a world save with the given name.
+     * Loads a world save with the given path. It must be inside the saves directory.
      *
      * @param saveLocation The location of the save
      * @return The local server instance in a completable future
