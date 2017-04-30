@@ -38,6 +38,9 @@ import javax.annotation.Nullable;
 
 /**
  * Represents a created conversation with one or more {@link Conversant}s.
+ *
+ * <p>These are checked every five minutes to see if there are no players.
+ * If this is true, the conversation is ended with </p>
  */
 public interface Conversation {
 
@@ -110,7 +113,8 @@ public interface Conversation {
      * {@link Conversant}s, and calls the relevant events.
      *
      * <p>A question handler should not call this to end a {@link Conversation}
-     * if it is finished normally, but rather return {@link QuestionResultType#END}</p>
+     * if it is finished normally, but rather return a
+     * {@link QuestionResultType#END}.</p>
      *
      * @param endType The type of end this should be
      * @param cause The cause of this end
@@ -122,6 +126,8 @@ public interface Conversation {
      * Adds the specified {@link Conversant} to the conversation,
      * with the generic delete all {@link ExternalChatHandler}.
      *
+     * <p>This sends them the prompt of the current active question.</p>
+     *
      * @param conversant The conversant to add to the conversation
      */
     default void addConversant(Conversant conversant) {
@@ -130,6 +136,8 @@ public interface Conversation {
 
     /**
      * Adds a {@link Conversant} to the conversation.
+     *
+     * <p>This sends them the prompt of the current active question.</p>
      *
      * @param conversant The conversant to add to the conversation
      * @param externalChatHandler The chat handler to give the conversant
@@ -143,19 +151,26 @@ public interface Conversation {
      * answer each question. Once one answers, both will go to the next
      * question or step.</p>
      *
+     * <p>If you remove all {@link Conversant}s remember to end the
+     * conversation with {@link #end(ConversationEndType, Cause)}.</p>
+     *
      * @param conversant The conversant to remove from the conversation
      */
     void removeConversant(Conversant conversant);
 
     /**
      * Removes every {@link Conversant} from the conversation.
+     *
+     * <p>This does not end the conversation, so keep in mind
+     * you should use {@link #end(ConversationEndType, Cause)} or else this
+     * conversation will just continue without any conversants.</p>
      */
     void removeAllConversants();
 
     /**
-     * If the specified {@link Conversant} is in the conversation it changes their
-     * {@link ExternalChatHandler} to the one you specify. If they are not in the
-     * conversation, instead use {@link #addConversant(Conversant)}
+     * If the specified {@link Conversant} is in the conversation it changes
+     * their {@link ExternalChatHandler} to the one you specify. If they are
+     * not in the conversation, instead use {@link #addConversant(Conversant)}.
      *
      * @param conversant The conversant which you want to modify
      * @param externalChatHandler The external chat handler for the conversant

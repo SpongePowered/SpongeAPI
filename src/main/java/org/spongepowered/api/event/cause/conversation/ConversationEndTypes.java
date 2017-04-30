@@ -53,6 +53,12 @@ public final class ConversationEndTypes {
      */
     public static final ConversationEndType QUIT = DummyObjectProvider.createFor(ConversationEndType.class, "QUIT");
 
+    /**
+     * Used to convey that the conversation has timed out due to there being no
+     * conversants left in a conversation.
+     */
+    public static final ConversationEndType TIMED_OUT = DummyObjectProvider.createFor(ConversationEndType.class, "TIMED_OUT");
+
     private ConversationEndTypes() {}
 
 }
