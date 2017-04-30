@@ -36,7 +36,7 @@ import javax.annotation.Nullable;
  * A mutable version of {@link TabList}. It also contains a reference to the
  * {@link Player} entity.
  */
-public interface PlayerTabList extends TabList {
+public interface ServerTabList extends TabList {
 
     /**
      * Gets the associated {@link Player} with this {@link TabList}.

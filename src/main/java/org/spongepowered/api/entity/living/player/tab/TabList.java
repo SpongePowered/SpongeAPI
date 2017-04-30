@@ -33,9 +33,9 @@ import java.util.UUID;
 
 /**
  * Represents a {@link Player}'s tab list. For mutability, use the
- * {@link PlayerTabList}.
+ * {@link ServerTabList}.
  *
- * @see PlayerTabList
+ * @see ServerTabList
  */
 public interface TabList {
 

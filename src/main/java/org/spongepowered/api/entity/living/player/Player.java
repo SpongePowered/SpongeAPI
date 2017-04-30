@@ -35,7 +35,7 @@ import org.spongepowered.api.data.manipulator.mutable.entity.JoinData;
 import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
-import org.spongepowered.api.entity.living.player.tab.PlayerTabList;
+import org.spongepowered.api.entity.living.player.tab.ServerTabList;
 import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.message.MessageChannelEvent;
@@ -105,7 +105,7 @@ public interface Player extends BasePlayer, PlayerController {
      *
      * @return This player's TabList
      */
-    PlayerTabList getTabList();
+    ServerTabList getTabList();
 
     /**
      * Kicks the player, showing the default kick reason (the translation key
