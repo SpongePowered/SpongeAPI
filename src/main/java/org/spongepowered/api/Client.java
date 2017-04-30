@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api;
 
-import org.spongepowered.api.entity.living.player.ClientPlayer;
+import org.spongepowered.api.entity.living.player.ClientPlayerController;
 import org.spongepowered.api.network.ServerConnection;
 import org.spongepowered.api.util.ThreadContext;
 import org.spongepowered.api.world.World;
@@ -32,6 +32,7 @@ import org.spongepowered.api.world.World;
 import java.net.InetSocketAddress;
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Represents the Minecraft client.
@@ -46,11 +47,11 @@ public interface Client extends ThreadContext {
     Optional<World> getLoadedWorld();
 
     /**
-     * Gets the current client player entity, if it exists.
+     * Gets the current client player controller, if it exists.
      *
      * @return The client player
      */
-    Optional<ClientPlayer> getClientPlayer();
+    Optional<ClientPlayerController> getPlayerController();
 
     /**
      * Gets the current local server instance if it is running.
@@ -63,16 +64,17 @@ public interface Client extends ThreadContext {
      * Loads a world save with the given name.
      *
      * @param saveLocation The location of the save
+     * @return
      * @see Game#getSavesDirectory()
      */
-    void loadWorldSave(Path saveLocation);
+    CompletableFuture<LocalServer> loadWorldSave(Path saveLocation);
 
     /**
      * Joins a server.
      *
      * @param server The server to join
      */
-    void joinServer(InetSocketAddress server);
+    CompletableFuture<ServerConnection> joinServer(InetSocketAddress server);
 
     /**
      * Gets the {@link ServerConnection} to the current server. This returns

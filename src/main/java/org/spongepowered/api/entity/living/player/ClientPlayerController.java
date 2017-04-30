@@ -24,38 +24,15 @@
  */
 package org.spongepowered.api.entity.living.player;
 
-import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
-import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.network.ServerConnection;
 
 /**
- * Base interface for {@link Player server} and {@link ClientPlayer client}
- * players.
+ * Created by Matthew on 4/30/2017.
  */
-public interface BasePlayer extends Humanoid, User {
+public interface ClientPlayerController extends PlayerController {
 
-    /**
-     * Gets a copy of the current {@link DisplayNameData} for this
-     * {@link Player}.
-     *
-     * @return A copy of the current display name data
-     */
-    DisplayNameData getDisplayNameData();
+    ClientPlayer getPlayer();
 
-    /**
-     * Gets a copy of the current {@link GameModeData} for this {@link Player}.
-     *
-     * @return A copy of the current game mode data
-     */
-    GameModeData getGameModeData();
-
-    /**
-     * Gets the current {@link GameMode} for this {@link Player}.
-     *
-     * @return The current game mode value
-     */
-    Value<GameMode> gameMode();
-
+    @Override
+    ServerConnection getConnection();
 }

@@ -24,15 +24,13 @@
  */
 package org.spongepowered.api.entity.living.player;
 
-import org.spongepowered.api.entity.living.player.tab.TabListEntry;
-
-import java.util.Optional;
-
 /**
- * Created by Matthew on 4/18/2017.
+ * Player instance which is specific to the client.
+ *
+ * <p>The client player, like its server counterpart, represents a player in
+ * the world. Unlike the server's, the client cannot directly change certain
+ * items.</p>
  */
 public interface ClientPlayer extends BasePlayer {
-
-    Optional<TabListEntry> getPlayerInfo();
 
 }
