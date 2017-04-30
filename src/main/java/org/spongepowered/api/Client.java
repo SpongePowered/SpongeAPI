@@ -26,6 +26,9 @@ package org.spongepowered.api;
 
 import org.spongepowered.api.entity.living.player.ClientPlayerController;
 import org.spongepowered.api.network.ServerConnection;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
+import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.util.ThreadContext;
 import org.spongepowered.api.world.World;
 
@@ -37,7 +40,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Represents the Minecraft client.
  */
-public interface Client extends ThreadContext {
+public interface Client extends ThreadContext, ChatTypeMessageReceiver {
 
     /**
      * Gets the currently loaded world, if any.
@@ -53,6 +56,11 @@ public interface Client extends ThreadContext {
      */
     Optional<ClientPlayerController> getPlayerController();
 
+    @Override
+    default void sendMessage(ChatType type, Text message) {
+        getPlayerController().ifPresent(p -> p.sendMessage(type, message));
+    }
+
     /**
      * Gets the current local server instance if it is running.
      *
@@ -64,7 +72,7 @@ public interface Client extends ThreadContext {
      * Loads a world save with the given name.
      *
      * @param saveLocation The location of the save
-     * @return
+     * @return The local server instance in a completable future
      * @see Game#getSavesDirectory()
      */
     CompletableFuture<LocalServer> loadWorldSave(Path saveLocation);
@@ -73,6 +81,7 @@ public interface Client extends ThreadContext {
      * Joins a server.
      *
      * @param server The server to join
+     * @return The server connection
      */
     CompletableFuture<ServerConnection> joinServer(InetSocketAddress server);
 
