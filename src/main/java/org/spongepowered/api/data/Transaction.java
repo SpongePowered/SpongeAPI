@@ -153,7 +153,7 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
 
     @Override
     public DataContainer toContainer() {
-        final DataContainer container = new MemoryDataContainer()
+        final DataContainer container = DataContainer.createNew()
             .set(Queries.CONTENT_VERSION, getContentVersion())
             .set(Queries.TYPE_CLASS, this.original.getClass().getName())
             .set(Queries.ORIGINAL, this.original)

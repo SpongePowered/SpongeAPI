@@ -29,11 +29,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterators;
-import com.google.common.reflect.TypeToken;
-import ninja.leaping.configurate.objectmapping.serialize.TypeSerializers;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.text.action.ClickAction;
@@ -45,7 +42,6 @@ import org.spongepowered.api.text.format.TextFormat;
 import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.format.TextStyles;
 import org.spongepowered.api.text.selector.Selector;
-import org.spongepowered.api.text.serializer.TextConfigSerializer;
 import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
@@ -293,7 +289,7 @@ public abstract class Text implements TextRepresentable, DataSerializable, Compa
 
     @Override
     public DataContainer toContainer() {
-        return new MemoryDataContainer()
+        return DataContainer.createNew()
                 .set(Queries.CONTENT_VERSION, getContentVersion())
                 .set(Queries.JSON, TextSerializers.JSON.serialize(this));
     }

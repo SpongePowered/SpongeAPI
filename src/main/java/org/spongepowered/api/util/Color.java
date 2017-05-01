@@ -33,7 +33,6 @@ import org.apache.commons.lang3.Validate;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.persistence.AbstractDataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
@@ -325,7 +324,7 @@ public final class Color implements DataSerializable {
 
     @Override
     public DataContainer toContainer() {
-        return new MemoryDataContainer()
+        return DataContainer.createNew()
             .set(Queries.CONTENT_VERSION, getContentVersion())
             .set(Queries.COLOR_RED, this.getRed())
             .set(Queries.COLOR_GREEN, this.getGreen())

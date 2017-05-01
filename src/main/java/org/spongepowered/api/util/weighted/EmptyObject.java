@@ -27,7 +27,6 @@ package org.spongepowered.api.util.weighted;
 import com.google.common.base.Objects;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
 
 /**
@@ -54,7 +53,7 @@ public class EmptyObject<T> extends TableEntry<T> implements DataSerializable {
 
     @Override
     public DataContainer toContainer() {
-        return new MemoryDataContainer()
+        return DataContainer.createNew()
                 .set(Queries.CONTENT_VERSION, getContentVersion())
                 .set(Queries.WEIGHTED_SERIALIZABLE_WEIGHT, getWeight());
     }

@@ -38,8 +38,7 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
      * Creates a new {@link Builder} to build a {@link DataRegistration}.
      * Through the use of generics, this can be duck-typed to the generics of
      * the desired {@link DataManipulator} type to be registered.
-     * @param <M> The type of data manipulator
-     * @param <D> The type of immutable data manipulator
+     *
      * @return The new builder instance
      */
     @SuppressWarnings("unchecked")

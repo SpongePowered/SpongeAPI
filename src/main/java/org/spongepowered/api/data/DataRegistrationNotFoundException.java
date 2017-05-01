@@ -31,6 +31,7 @@ import javax.annotation.Nullable;
 
 public class DataRegistrationNotFoundException extends DataException {
 
+    private static final long serialVersionUID = -1671720083547789746L;
     @Nullable private String registrationQuery;
     @Nullable private Class<? extends DataManipulator<?, ?>> manipulatorClass;
     @Nullable private Class<? extends ImmutableDataManipulator<?, ?>> immutableClass;

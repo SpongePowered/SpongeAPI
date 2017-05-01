@@ -28,7 +28,6 @@ import com.flowpowered.math.GenericMath;
 import com.google.common.base.Objects;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
 
 import java.util.Random;
@@ -263,7 +262,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public DataContainer toContainer() {
-            return new MemoryDataContainer()
+            return DataContainer.createNew()
                     .set(Queries.CONTENT_VERSION, getContentVersion())
                     .set(Queries.VARIABLE_AMOUNT, this.amount);
         }
@@ -322,7 +321,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public DataContainer toContainer() {
-            return new MemoryDataContainer()
+            return DataContainer.createNew()
                     .set(Queries.CONTENT_VERSION, getContentVersion())
                     .set(Queries.VARIABLE_BASE, this.base)
                     .set(Queries.VARIABLE_VARIANCE, this.variance);
@@ -382,7 +381,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public DataContainer toContainer() {
-            return new MemoryDataContainer()
+            return DataContainer.createNew()
                     .set(Queries.CONTENT_VERSION, getContentVersion())
                     .set(Queries.VARIABLE_BASE, this.base)
                     .set(Queries.VARIABLE_VARIANCE, this.addition);
@@ -447,7 +446,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public DataContainer toContainer() {
-            return new MemoryDataContainer()
+            return DataContainer.createNew()
                     .set(Queries.CONTENT_VERSION, getContentVersion())
                     .set(Queries.VARIABLE_CHANCE, this.chance)
                     .set(Queries.VARIABLE_BASE, this.base)

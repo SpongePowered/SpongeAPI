@@ -30,7 +30,6 @@ import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -103,7 +102,7 @@ public final class BookView implements DataSerializable {
     @Override
     public DataContainer toContainer() {
         List<DataContainer> pages = this.pages.stream().map(Text::toContainer).collect(Collectors.toList());
-        return new MemoryDataContainer()
+        return DataContainer.createNew()
                 .set(Queries.CONTENT_VERSION, getContentVersion())
                 .set(Queries.TEXT_TITLE, this.title.toContainer())
                 .set(Queries.TEXT_AUTHOR, this.author.toContainer())

@@ -26,6 +26,8 @@ package org.spongepowered.api.data;
 
 public class DataException extends RuntimeException {
 
+    private static final long serialVersionUID = -7843375998187638640L;
+
     public DataException() {
     }
 

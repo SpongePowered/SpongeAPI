@@ -58,7 +58,10 @@ import javax.annotation.Nullable;
 
 /**
  * Default implementation of a {@link DataView} being used in memory.
+ * @deprecated To be moved to implementation to avoid implementation bugs
+ *     being existing in the API.
  */
+@Deprecated
 public class MemoryDataView implements DataView {
 
     protected final Map<String, Object> map = Maps.newLinkedHashMap();
