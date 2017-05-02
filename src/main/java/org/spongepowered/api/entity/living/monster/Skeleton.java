@@ -35,30 +35,4 @@ import org.spongepowered.api.entity.living.Ranger;
 @SuppressWarnings("deprecation")
 public interface Skeleton extends Monster, ArmorEquipable, Ranger {
 
-    /**
-     * Gets the current
-     * {@link org.spongepowered.api.data.manipulator.mutable.entity.SkeletonData}
-     * represented by this
-     * {@link Skeleton}.
-     *
-     * @return A copy of the current skeleton data
-     * @deprecated Skeleton now has subclassed interfaces for types
-     */
-    @Deprecated
-    default org.spongepowered.api.data.manipulator.mutable.entity.SkeletonData getSkeletonData() {
-        return get(org.spongepowered.api.data.manipulator.mutable.entity.SkeletonData.class).get();
-    }
-
-    /**
-     * Gets the current {@link Value value} of {@link org.spongepowered.api.data.type.SkeletonType}
-     * for this {@link Skeleton}.
-     *
-     * @return The value of the skeleton type
-     * @deprecated Skeleton now has subclassed interfaces for types
-     */
-    @Deprecated
-    default Value<org.spongepowered.api.data.type.SkeletonType> variant() {
-        return getValue(Keys.SKELETON_TYPE).get();
-    }
-
 }

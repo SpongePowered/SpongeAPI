@@ -42,6 +42,7 @@ public interface DataContainer extends DataView {
      * @return A new data container
      */
     static DataContainer createNew() {
+        // TODO - Move to implementation - unit tests are difficult...
         return new MemoryDataContainer();
     }
 

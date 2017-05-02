@@ -175,13 +175,6 @@ public final class CatalogEntityData {
      */
     public static final Class<DyeableData> DYEABLE_DATA = DyeableData.class;
     /**
-     * Signifies that an entity is considered an "elder". Usually applies to
-     * {@link Guardian}s.
-     */
-    @Deprecated
-    @SuppressWarnings("deprecation")
-    public static final Class<ElderData> ELDER_DATA = ElderData.class;
-    /**
      * Signifies that an entity can hold "experience". Usually applies to
      * {@link Player}s.
      */
@@ -253,8 +246,8 @@ public final class CatalogEntityData {
      */
     public static final Class<HealthData> HEALTH_DATA = HealthData.class;
     /**
-     * Represents a {@link RideableHorse}s specific data, such as {@link HorseVariant},
-     * {@link HorseStyle}, and {@link HorseColor}.
+     * Represents a {@link RideableHorse}s specific data, such as {@link HorseStyle},
+     * and {@link HorseColor}.
      */
     public static final Class<HorseData> HORSE_DATA = HorseData.class;
     /**
@@ -375,12 +368,6 @@ public final class CatalogEntityData {
      */
     public static final Class<SizeData> SIZE_DATA = SizeData.class;
     /**
-     * Represents the {@link SkeletonType} of a {@link Skeleton}.
-     */
-    @Deprecated
-    @SuppressWarnings("deprecation")
-    public static final Class<SkeletonData> SKELETON_DATA = SkeletonData.class;
-    /**
      * Signifies that the owner is currently "sleeping". This will usually
      * apply to {@link Humanoid}s and {@link Bat}s.
      */
@@ -416,13 +403,6 @@ public final class CatalogEntityData {
      * {@link Entity}.
      */
     public static final Class<VelocityData> VELOCITY_DATA = VelocityData.class;
-    /**
-     * Specifies the type of a {@link Zombie}, as well as its profession
-     * (if it has one).
-     */
-    @Deprecated
-    @SuppressWarnings("deprecation")
-    public static final Class<ZombieData> ZOMBIE_DATA = ZombieData.class;
     /**
      * Signifies that an entity is currently "wet". Usually applicable to
      * {@link Wolf} entities.

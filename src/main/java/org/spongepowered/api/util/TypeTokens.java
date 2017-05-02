@@ -197,12 +197,6 @@ public class TypeTokens {
 
     public static final TypeToken<Value<HorseStyle>> HORSE_STYLE_VALUE_TOKEN = new TypeToken<Value<HorseStyle>>() {private static final long serialVersionUID = -1;};
 
-    @Deprecated
-    public static final TypeToken<org.spongepowered.api.data.type.HorseVariant> HORSE_VARIANT_TOKEN = new TypeToken<org.spongepowered.api.data.type.HorseVariant>() {private static final long serialVersionUID = -1;};
-
-    @Deprecated
-    public static final TypeToken<Value<org.spongepowered.api.data.type.HorseVariant>> HORSE_VARIANT_VALUE_TOKEN = new TypeToken<Value<org.spongepowered.api.data.type.HorseVariant>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<Instant> INSTANT_TOKEN = new TypeToken<Instant>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<Instant>> INSTANT_VALUE_TOKEN = new TypeToken<Value<Instant>>() {private static final long serialVersionUID = -1;};
@@ -361,12 +355,6 @@ public class TypeTokens {
 
     public static final TypeToken<Value<ShrubType>> SHRUB_VALUE_TOKEN = new TypeToken<Value<ShrubType>>() {private static final long serialVersionUID = -1;};
 
-    @Deprecated
-    public static final TypeToken<org.spongepowered.api.data.type.SkeletonType> SKELETON_TOKEN = new TypeToken<org.spongepowered.api.data.type.SkeletonType>() {private static final long serialVersionUID = -1;};
-
-    @Deprecated
-    public static final TypeToken<Value<org.spongepowered.api.data.type.SkeletonType>> SKELETON_VALUE_TOKEN = new TypeToken<Value<org.spongepowered.api.data.type.SkeletonType>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<SkullType> SKULL_TOKEN = new TypeToken<SkullType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<SkullType>> SKULL_VALUE_TOKEN = new TypeToken<Value<SkullType>>() {private static final long serialVersionUID = -1;};
@@ -434,12 +422,6 @@ public class TypeTokens {
     public static final TypeToken<WireAttachmentType> WIRE_ATTACHMENT_TYPE_TOKEN = new TypeToken<WireAttachmentType>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {private static final long serialVersionUID = -1;};
-
-    @Deprecated
-    public static final TypeToken<org.spongepowered.api.data.type.ZombieType> ZOMBIE_TYPE_TOKEN = new TypeToken<org.spongepowered.api.data.type.ZombieType>() {private static final long serialVersionUID = -1;};
-
-    @Deprecated
-    public static final TypeToken<Value<org.spongepowered.api.data.type.ZombieType>> ZOMBIE_TYPE_VALUE_TOKEN = new TypeToken<Value<org.spongepowered.api.data.type.ZombieType>>() {private static final long serialVersionUID = -1;};
 
     // SORTFIELDS:OFF
 

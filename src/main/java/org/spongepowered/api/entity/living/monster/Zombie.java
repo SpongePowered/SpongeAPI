@@ -32,22 +32,4 @@ import org.spongepowered.api.entity.living.Ageable;
  */
 public interface Zombie extends Monster, ArmorEquipable, Ageable {
 
-    /**
-     * Gets the
-     * {@link org.spongepowered.api.data.manipulator.mutable.entity.ZombieData}
-     * representing the type of the zombie, as well as its profession
-     * (if it has one).
-     *
-     * @return The zombie data
-     * @deprecated Since Zombies are no longer separated by
-     *     {@link org.spongepowered.api.data.type.ZombieType}, the
-     *     proper discrimination is checking for {@link Husk} and
-     *     {@link ZombieVillager}
-     */
-    @Deprecated
-    @SuppressWarnings("deprecation")
-    default org.spongepowered.api.data.manipulator.mutable.entity.ZombieData getZombieData() {
-        return get(org.spongepowered.api.data.manipulator.mutable.entity.ZombieData.class).get();
-    }
-
 }

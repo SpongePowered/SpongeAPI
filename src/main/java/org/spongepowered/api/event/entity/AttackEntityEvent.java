@@ -162,16 +162,6 @@ public interface AttackEntityEvent extends TargetEntityEvent, Cancellable {
     String HARD_HAT_ARMOR = "HardHat";
 
     /**
-     * For use with a {@link DamageModifier} where it's type is a
-     * {@link DamageModifierTypes#BLOCKING} and the {@link Cause} contains
-     * an {@link ItemStackSnapshot}, usually an item that can "block".
-     *
-     * @deprecated {@link #SHIELD} should be used instead, since blocking no longer exists in the game as of 1.9
-     */
-    @Deprecated
-    String BLOCKING = "Shield";
-
-    /**
      * or use with a {@link DamageModifier} where its type is a
      * {@link DamageModifierTypes#SHIELD} and the {@link Cause} contains
      * an {@link ItemStackSnapshot} (in Vanilla, a shield).

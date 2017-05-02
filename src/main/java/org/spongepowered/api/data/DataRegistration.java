@@ -180,11 +180,6 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
          * which, much like {@link CatalogType#getId()} is formatted with
          * <code>&#123;plugin-id&#124;&#58;&#123;manipulator-id&#124;</code>.
          *
-         * <p>The difference to constructing the {@link DataRegistration} object
-         * and {@link DataManager#register(Class, Class, DataManipulatorBuilder)}
-         * is that when the {@link DataRegistration} object is built, all of the
-         * classes and the provided builder will already have been registered.</p>
-         *
          * <p>It is expected that as the required {@link PluginContainer} is used
          * is not a default container from Sponge. The
          * {@link PluginContainer#getId()} is utilized to generate the final

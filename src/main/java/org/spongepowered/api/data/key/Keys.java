@@ -700,13 +700,6 @@ public final class Keys {
     public static final Key<Value<DyeColor>> DYE_COLOR = KeyFactory.fake("DYE_COLOR");
 
     /**
-     * Represents the {@link Key} for whether a {@link Guardian} is an Elder Guardian.
-     *
-     * @see ElderData#elder()
-     */
-    public static final Key<Value<Boolean>> ELDER_GUARDIAN = KeyFactory.fake("ELDER_GUARDIAN");
-
-    /**
      * Represents the {@link Key} for representing the age of
      * an {@link EndGateway}.
      *
@@ -1041,16 +1034,6 @@ public final class Keys {
     public static final Key<MutableBoundedValue<Float>> HEIGHT = KeyFactory.fake("HEIGHT");
 
     /**
-     * Represents the {@link Key} for the amount of experience points stored
-     * by an {@link ExperienceOrb}.
-     *
-     * @deprecated Use {@link Keys#CONTAINED_EXPERIENCE} instead. This key has
-     *     no effect and will be removed in a future release.
-     */
-    @Deprecated
-    public static final Key<MutableBoundedValue<Integer>> HELD_EXPERIENCE = KeyFactory.fake("HELD_EXPERIENCE");
-
-    /**
      * Represents the {@link Key} for representing the "attributes hidden"
      * state of an {@link ItemStack}.
      *
@@ -1109,9 +1092,6 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the color of a {@link Horse}.
      *
-     * <p>In Vanilla, this will have no effect unless {@link #HORSE_VARIANT}
-     * is {@link HorseVariants#HORSE}.</p>
-     *
      * @see HorseData#color()
      */
     public static final Key<Value<HorseColor>> HORSE_COLOR = KeyFactory.fake("HORSE_COLOR");
@@ -1119,23 +1099,9 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the style of a {@link Horse}.
      *
-     * <p>In Vanilla, this will have no effect unless {@link #HORSE_VARIANT}
-     * is {@link HorseVariants#HORSE}.</p>
-     *
      * @see HorseData#style()
      */
     public static final Key<Value<HorseStyle>> HORSE_STYLE = KeyFactory.fake("HORSE_STYLE");
-
-    /**
-     * Represents the type of {@link Horse}.
-     * @deprecated Due to the structural changes of Horses, they are now
-     *     separate interfaces: {@link RideableHorse}, {@link Donkey},
-     *     {@link Mule}, {@link SkeletonHorse}, {@link ZombieHorse},
-     *     and {@link Llama}.
-     */
-    @Deprecated
-    @SuppressWarnings("deprecation")
-    public static final Key<Value<org.spongepowered.api.data.type.HorseVariant>> HORSE_VARIANT = KeyFactory.fake("HORSE_VARIANT");
 
     /**
      * Represents the {@link Key} for whether an {@link Item} will not despawn
@@ -1194,12 +1160,6 @@ public final class Keys {
      * @see FlammableData#flammable()
      */
     public static final Key<Value<Boolean>> IS_AFLAME = KeyFactory.fake("IS_AFLAME");
-
-    /**
-     * @deprecated Use the inverse of {@link Keys#IS_ADULT}.
-     */
-    @Deprecated
-    public static final Key<Value<Boolean>> IS_BABY = KeyFactory.fake("IS_BABY");
 
     /**
      * Represents the {@link Key} for whether an {@link Entity} is flying.
@@ -1384,17 +1344,6 @@ public final class Keys {
      * @see LayeredData#layer()
      */
     public static final Key<MutableBoundedValue<Integer>> LAYER = KeyFactory.fake("LAYER");
-
-    /**
-     * Represents the {@link Key} for who holds the leash an {@link Entity} is
-     * on.
-     *
-     * @see LeashData#leashHolder()
-     * @deprecated The type of this key will change to
-     *     {@code Key<Value<Entity>>} in a future release.
-     */
-    @Deprecated
-    public static final Key<Value<EntitySnapshot>> LEASH_HOLDER = KeyFactory.fake("LEASH_HOLDER");
 
     /**
      * Represents the {@link Key} for the rotation of an {@link Entity}'s left
@@ -1843,16 +1792,6 @@ public final class Keys {
     public static final Key<ListValue<Text>> SIGN_LINES = KeyFactory.fake("SIGN_LINES");
 
     /**
-     * Represents the {@link Key} for representing the {@link SkeletonType}
-     * of a {@link Skeleton}.
-     *
-     * @deprecated Due to the fact that skeletons have interfaces instead of types now
-     */
-    @Deprecated
-    @SuppressWarnings("deprecation")
-    public static final Key<Value<org.spongepowered.api.data.type.SkeletonType>> SKELETON_TYPE = KeyFactory.fake("SKELETON_TYPE");
-
-    /**
      * Represents the {@link Key} for the skin of a {@link Humanoid}.
      *
      * <p>Skins can only be manipulated by supplying the UUID of a player
@@ -2241,14 +2180,6 @@ public final class Keys {
     public static final Key<Value<Vector3d>> VELOCITY = KeyFactory.fake("VELOCITY");
 
     /**
-     * Represents the {@link Key} for the profession of a {@link Zombie} whose
-     * {@link #ZOMBIE_TYPE} is {@link ZombieTypes#VILLAGER}.
-     *
-     * @see ZombieData#profession()
-     */
-    public static final Key<OptionalValue<Profession>> VILLAGER_ZOMBIE_PROFESSION = KeyFactory.fake("VILLAGER_ZOMBIE_PROFESSION");
-
-    /**
      * Represents the {@link Key} for the speed at which an entity walks.
      *
      * @see MovementSpeedData#walkSpeed()
@@ -2310,16 +2241,6 @@ public final class Keys {
      * @see WireAttachmentData#wireAttachmentWest()
      */
     public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = KeyFactory.fake("WIRE_ATTACHMENT_WEST");
-
-    /**
-     * Represents the {@link Key} for the type of a {@link Zombie}.
-     *
-     * @deprecated Zombies are now subclassed
-     * @see org.spongepowered.api.data.manipulator.mutable.entity.ZombieData
-     */
-    @Deprecated
-    @SuppressWarnings("deprecation")
-    public static final Key<Value<org.spongepowered.api.data.type.ZombieType>> ZOMBIE_TYPE = KeyFactory.fake("ZOMBIE_TYPE");
 
     // SORTFIELDS:OFF
 
