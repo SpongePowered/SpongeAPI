@@ -96,7 +96,7 @@ public interface ClientConnectionEvent extends Event {
      * indicates that a player should not be allowed to join
      * ({@link GameProfile} or {@link InetAddress} has an ban, or is
      * not on the whitelist), then this event will automatically cancelled by
-     * the {@link Platform#getImplementation() 'game' plugin}, with the proper
+     * the {@link Platform.Component#IMPLEMENTATION 'game' plugin}, with the proper
      * message set through {@link MessageEvent#setMessage(TextRepresentable)}. No action
      * on the part of the registered {@link BanService} or
      * {@link WhitelistService} is required for this to occur.
