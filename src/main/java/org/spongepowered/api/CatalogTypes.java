@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api;
 
+import org.spongepowered.api.advancement.Advancement;
+import org.spongepowered.api.advancement.AdvancementTree;
+import org.spongepowered.api.advancement.AdvancementType;
+import org.spongepowered.api.advancement.criteria.trigger.TriggerType;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.tileentity.TileEntityType;
 import org.spongepowered.api.boss.BossBarColor;
@@ -94,6 +98,12 @@ import org.spongepowered.api.world.weather.Weather;
 public final class CatalogTypes {
 
     // SORTFIELDS:ON
+
+    public static final Class<Advancement> ADVANCEMENT = Advancement.class;
+
+    public static final Class<AdvancementTree> ADVANCEMENT_TREE = AdvancementTree.class;
+
+    public static final Class<AdvancementType> ADVANCEMENT_TYPE = AdvancementType.class;
 
     public static final Class<AITaskType> AI_TASK_TYPE = AITaskType.class;
 
@@ -294,6 +304,8 @@ public final class CatalogTypes {
     public static final Class<TransactionType> TRANSACTION_TYPE = TransactionType.class;
 
     public static final Class<TreeType> TREE_TYPE = TreeType.class;
+
+    public static final Class<TriggerType> TRIGGER_TYPE = TriggerType.class;
 
     public static final Class<Visibility> VISIBILITY = Visibility.class;
 
