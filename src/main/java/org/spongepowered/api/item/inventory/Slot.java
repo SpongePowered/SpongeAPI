@@ -38,4 +38,11 @@ public interface Slot extends Inventory {
      */
     int getStackSize();
 
+	/**
+     * Gets the ordinal of a slot.
+     *
+     * @return the slot's ordinal
+     */
+    int getOrdinal();
+
 }
