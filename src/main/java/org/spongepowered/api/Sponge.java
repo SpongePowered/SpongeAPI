@@ -30,7 +30,7 @@ import com.google.inject.Inject;
 import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
-import org.spongepowered.api.text.conversation.ConversationManager;
+import org.spongepowered.api.command.conversation.ConversationManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.property.PropertyRegistry;
 import org.spongepowered.api.data.property.PropertyStore;

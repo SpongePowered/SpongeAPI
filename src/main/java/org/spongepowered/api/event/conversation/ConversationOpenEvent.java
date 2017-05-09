@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.event.conversation;
 
-import org.spongepowered.api.text.conversation.Conversant;
-import org.spongepowered.api.text.conversation.Conversation;
-import org.spongepowered.api.text.conversation.ConversationArchetype;
+import org.spongepowered.api.command.conversation.Conversant;
+import org.spongepowered.api.command.conversation.Conversation;
+import org.spongepowered.api.command.conversation.ConversationArchetype;
 import org.spongepowered.api.event.Cancellable;
 
 import java.util.Set;

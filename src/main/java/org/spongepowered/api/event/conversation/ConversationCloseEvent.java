@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.conversation;
 
-import org.spongepowered.api.text.conversation.Conversation;
+import org.spongepowered.api.command.conversation.Conversation;
 import org.spongepowered.api.event.Cancellable;
 
 /**

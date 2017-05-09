@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.text.conversation;
+package org.spongepowered.api.command.conversation;
 
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.Sponge;

@@ -37,8 +37,6 @@ public abstract class AbstractConversationEndCauseBuilder<T extends Conversation
 
     @Nullable protected ConversationEndType endType;
 
-    @Nullable protected ConversationEndType endType;
-
     protected AbstractConversationEndCauseBuilder() {
 
     }
