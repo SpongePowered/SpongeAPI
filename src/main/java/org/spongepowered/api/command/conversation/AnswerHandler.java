@@ -30,7 +30,8 @@ import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.text.Text;
 
 /**
- * A functional interface, which a {@link Question} utilizes to handle responses.
+ * A functional interface, which a {@link Question} utilizes
+ * to handle responses.
  */
 @FunctionalInterface
 public interface AnswerHandler {

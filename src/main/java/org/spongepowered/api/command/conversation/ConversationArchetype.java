@@ -142,8 +142,10 @@ public interface ConversationArchetype {
      * @param plugin The plugin starting the conversation
      * @param conversants The conversants to start the conversation for
      * @return The conversation that was started, if created successfully
+     * @throws IllegalArgumentException If the object passed in is not
+     *     a plugin instance
      */
-    Optional<Conversation> start(PluginContainer plugin, Conversant... conversants);
+    Optional<Conversation> start(Object plugin, Conversant... conversants);
 
     /**
      * Gets a builder based off of this archetype's values.

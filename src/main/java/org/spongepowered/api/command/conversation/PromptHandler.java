@@ -22,5 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
 package org.spongepowered.api.command.conversation;
+
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.text.Text;
+
+/**
+ * A functional interface, which a {@link Question} utilizes
+ * to generate its prompt.
+ */
+@FunctionalInterface
+public interface PromptHandler {
+
+    Text handle(Conversation conversation, DataContainer context);
+
+}

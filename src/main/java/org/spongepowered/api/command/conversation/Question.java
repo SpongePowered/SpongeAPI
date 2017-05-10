@@ -26,6 +26,7 @@ package org.spongepowered.api.command.conversation;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.args.CommandElement;
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -34,7 +35,7 @@ import org.spongepowered.api.util.ResettableBuilder;
  * A {@link Conversation} contains one of these which point to each other,
  * allowing for handling, and identification.
  */
-public interface Question extends TextRepresentable {
+public interface Question {
 
     /**
      * Creates a new {@link Question.Builder} to build a {@link Question}.
@@ -62,11 +63,14 @@ public interface Question extends TextRepresentable {
     AnswerHandler getHandler();
 
     /**
-     * Gets the prompt for this question.
+     * Gets the prompt for handler for this question.
      *
-     * @return The prompt
+     * <p>This is specified through a functional interface
+     * to generate a prompt with contextual information.</p>
+     *
+     * @return The prompt handler for this question
      */
-    Text getPrompt();
+    PromptHandler getPromptHandler();
 
     /**
      * Gets the arguments set for this question. This is set on creation to
@@ -98,13 +102,15 @@ public interface Question extends TextRepresentable {
         Builder id(String id);
 
         /**
-         * Sets the prompt of the question. This is essentially the question
-         * asked and needs to be set.
+         * Allows you to specify a contextually based prompt,
+         * from the {@link Conversation} and the {@link DataContainer} context.
          *
-         * @param prompt The desired prompt
+         * <p>Can simply return a constant {@link Text} if you wish.</p>
+         *
+         * @param promptHandler The handler for the prompt
          * @return The modified builder
          */
-        Builder prompt(Text prompt);
+        Builder prompt(PromptHandler promptHandler);
 
         /**
          * Sets the answer handler for the question.
@@ -124,6 +130,9 @@ public interface Question extends TextRepresentable {
 
         /**
          * Sets the arguments for the question as a sequence.
+         *
+         * <p>If these are not set, it will generally default
+         * to a command element of a string with the key "answer".</p>
          *
          * @param elements A variable amount of command elements
          * @return The modified builder
