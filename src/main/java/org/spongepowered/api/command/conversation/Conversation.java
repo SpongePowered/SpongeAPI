@@ -70,8 +70,20 @@ public interface Conversation {
     }
 
     /**
-     * An ease of use method to retrieve a header for each question, with the
-     * specified padding and the optional.
+     * An ease of use method to retrieve the banner for each question, which
+     * is set if the title is specified and has padding added on.
+     *
+     * @return The conversation header, if available
+     */
+    default Optional<Text> getBanner() {
+        return getArchetype().getBanner();
+    }
+
+    /**
+     * An ease of use method to retrieve the header for each question, which
+     * is not always set.
+     *
+     * <p>Occurs after the banner if that is set.</p>
      *
      * @return The conversation header, if available
      */

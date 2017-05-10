@@ -26,11 +26,10 @@ package org.spongepowered.api.command.conversation;
 
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -109,11 +108,22 @@ public interface ConversationArchetype {
     ImmutableSet<EndingHandler> getEndingHandlers();
 
     /**
-     * Gets the header that will be sent before each question prompt it is set.
+     * Gets the banner that will be sent before each question prompt
+     * if title is set.
      *
      * <p>This is a combination of the padding and title set.</p>
      *
-     * @return The question header, if available
+     * @return The question banner, if available
+     */
+    Optional<Text> getBanner();
+
+    /**
+     * Gets the header that occurs before each question, or after
+     * the banner if the the banner is set.
+     *
+     * <p>This is completely optional and is often not set.</p>
+     *
+     * @return The question header, if set
      */
     Optional<Text> getHeader();
 
@@ -178,6 +188,11 @@ public interface ConversationArchetype {
         /**
          * Sets the message sent to conversants on conversation start.
          *
+         * <p>This is not needed at all.</p>
+         *
+         * <p>This is sent before banner and header if those
+         * are set and only once.</p>
+         *
          * @param startingMessage The desired starting message
          * @return The modified builder
          */
@@ -185,7 +200,9 @@ public interface ConversationArchetype {
 
         /**
          * Sets the padding of the header sent before each question. Defaults to
-         * = if you do not set one.
+         * '=' if you do not set one and you set a title.
+         *
+         * <p>This does not need to be set.</p>
          *
          * @param padding The desired padding text
          * @return The modified builder
@@ -196,10 +213,25 @@ public interface ConversationArchetype {
          * Sets the title of the header sent before each question. If not set,
          * no header will be sent before each question.
          *
+         * <p>This does not need to be set if you don't want a
+         * banner before each question.</p>
+         *
          * @param title The desired title for the conversation
          * @return The modified builder
          */
         Builder title(@Nullable Text title);
+
+        /**
+         * Sets the header that occurs before each question, or
+         * after the banner if the the title is set.
+         *
+         * <p>This does not need to be set if you don't want a
+         * header before each question.</p>
+         *
+         * @param header The desired header for the conversation
+         * @return The modified builder
+         */
+        Builder header(@Nullable Text header);
 
         /**
          * Sets the first question of the conversation. This is required to set
@@ -221,12 +253,20 @@ public interface ConversationArchetype {
         Builder endingHandler(EndingHandler endingHandler);
 
         /**
-         * Adds an entire list of ending handlers to the conversation.
+         * Adds all specified ending handlers to the conversation.
          *
          * @param endingHandlers The ending handlers to add
          * @return The modified builder
          */
-        Builder endingHandlers(List<EndingHandler> endingHandlers);
+        Builder endingHandlers(EndingHandler... endingHandlers);
+
+        /**
+         * Adds an entire collection of ending handlers to the conversation.
+         *
+         * @param endingHandlers The ending handlers to add
+         * @return The modified builder
+         */
+        Builder endingHandlers(Collection<EndingHandler> endingHandlers);
 
         /**
          * Resets the list of ending handlers. Make sure to have at least

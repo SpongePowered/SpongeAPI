@@ -28,7 +28,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.args.CommandElement;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.TextRepresentable;
 import org.spongepowered.api.util.ResettableBuilder;
 
 /**
@@ -123,7 +122,7 @@ public interface Question {
         /**
          * Sets the argument for the question.
          *
-         * @param element The desired command elemtn
+         * @param element The desired command element
          * @return The modified builder
          */
         Builder argument(CommandElement element);
