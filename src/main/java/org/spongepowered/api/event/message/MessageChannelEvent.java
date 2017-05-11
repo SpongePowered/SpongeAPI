@@ -40,7 +40,8 @@ import javax.annotation.Nullable;
 public interface MessageChannelEvent extends MessageEvent {
 
     /**
-     * Gets the original channel that this message will be sent to.
+     * Gets the original channel that this message will be sent to. On client
+     * events, this will always be {@link MessageChannel#TO_LOOPBACK}.
      *
      * @return The original message channel to send to
      */
@@ -69,8 +70,20 @@ public interface MessageChannelEvent extends MessageEvent {
     /**
      * Fired when the {@link Text} being sent to a {@link MessageChannel} was
      * due to chatting.
+     *
+     * @see ServerChat
+     * @see ClientChat
+     * @deprecated Use the side-specific versions below.
      */
-    interface Chat extends MessageChannelEvent, Cancellable {
+    @Deprecated
+    interface Chat extends ClientChat.Receive {
+
+    }
+
+    /**
+     * This event is fired when a client sends a chat message to the server.
+     */
+    interface ClientChat extends MessageChannelEvent, Cancellable {
 
         /**
          * Gets the 'raw' chat message.
@@ -85,5 +98,50 @@ public interface MessageChannelEvent extends MessageEvent {
          */
         Text getRawMessage();
 
+        /**
+         * Fired on the client before the message is sent to the server.
+         *
+         * <p>This is the start of the chat event chain.
+         * {@link ClientChat.Receive} is fired next.</p>
+         */
+        interface Send extends ClientChat {
+
+        }
+
+        /**
+         * Fired on the server before it is sent to the other players.
+         *
+         * <p>{@link ServerChat.Send} is fired next.</p>
+         */
+        interface Receive extends ClientChat {
+
+        }
     }
+
+    /**
+     * This event is fired when the server sends a chat message to the client.
+     */
+    interface ServerChat extends MessageChannelEvent, Cancellable {
+
+
+        /**
+         * Fired on the server before the message is sent.
+         *
+         * <p>{@link ServerChat.Receive} is fired next.</p>
+         */
+        interface Send extends ServerChat {
+
+        }
+
+        /**
+         * Fired on the client as the message is processed.
+         *
+         * <p>This is the end of the event chain. No more events will be fired
+         * from here.</p>
+         */
+        interface Receive extends ServerChat {
+
+        }
+    }
+
 }
