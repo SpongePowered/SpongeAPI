@@ -56,6 +56,12 @@ public interface Client extends ThreadContext, ChatTypeMessageReceiver {
      */
     Optional<ClientPlayerController> getPlayerController();
 
+    /**
+     * Displays a message to the player.
+     *
+     * <p>This delegates to {@link #getPlayerController()} and automatically
+     * handles empty.</p>
+     */
     @Override
     default void sendMessage(ChatType type, Text message) {
         getPlayerController().ifPresent(p -> p.sendMessage(type, message));

@@ -34,7 +34,10 @@ import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
 import org.spongepowered.api.data.manipulator.mutable.entity.JoinData;
 import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.effect.Viewer;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.entity.living.player.tab.ServerTabList;
 import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.event.cause.Cause;
@@ -49,7 +52,10 @@ import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.text.chat.ChatType;
 
 import java.time.Instant;
+import java.util.Optional;
 import java.util.Set;
+
+import javax.annotation.Nullable;
 
 /**
  * A Player represents the in-game entity of a human playing on a server.
@@ -62,7 +68,7 @@ import java.util.Set;
  * <p>This is specifically the server player. For client, see
  * {@link ClientPlayer}.</p>
  */
-public interface Player extends BasePlayer, PlayerController {
+public interface Player extends BasePlayer, Viewer, PlayerController {
 
     /**
      * Simulates a chat message from a player.
@@ -185,15 +191,18 @@ public interface Player extends BasePlayer, PlayerController {
         return !firstPlayed().equals(lastPlayed());
     }
 
-    @Override default DisplayNameData getDisplayNameData() {
+    @Override
+    default DisplayNameData getDisplayNameData() {
         return get(DisplayNameData.class).get();
     }
 
-    @Override default GameModeData getGameModeData() {
+    @Override
+    default GameModeData getGameModeData() {
         return get(GameModeData.class).get();
     }
 
-    @Override default Value<GameMode> gameMode() {
+    @Override
+    default Value<GameMode> gameMode() {
         return getValue(Keys.GAME_MODE).get();
     }
 
@@ -227,4 +236,19 @@ public interface Player extends BasePlayer, PlayerController {
      */
     Inventory getEnderChestInventory();
 
+    /**
+     * Gets the {@link Entity} followed by the camera when in the
+     * {@link GameModes#SPECTATOR spectator gamemode}.
+     *
+     * @return The followed entity, if present, empty otherwise
+     */
+    Optional<Entity> getSpectatorTarget();
+
+    /**
+     * Sets the {@link Entity} followed by the camera when in the
+     * {@link GameModes#SPECTATOR spectator gamemode}.
+     *
+     * @param entity The entity to spectate
+     */
+    void setSpectatorTarget(@Nullable Entity entity);
 }

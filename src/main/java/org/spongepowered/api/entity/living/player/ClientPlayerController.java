@@ -38,6 +38,10 @@ public interface ClientPlayerController extends PlayerController {
      */
     ClientPlayer getPlayer();
 
+    /**
+     * Gets the {@link ServerConnection} to which the player is connected.
+     * @return The connection
+     */
     @Override
     ServerConnection getConnection();
 

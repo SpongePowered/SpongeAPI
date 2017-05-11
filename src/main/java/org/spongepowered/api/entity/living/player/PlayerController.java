@@ -25,9 +25,6 @@
 package org.spongepowered.api.entity.living.player;
 
 import org.spongepowered.api.command.source.RemoteSource;
-import org.spongepowered.api.effect.Viewer;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
@@ -36,8 +33,6 @@ import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.chat.ChatVisibility;
 
 import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 /**
  * The controller handles certain aspects of the player.
@@ -52,7 +47,7 @@ import javax.annotation.Nullable;
  *
  * TODO I don't like the name 'controller'
  */
-public interface PlayerController extends RemoteSource, Viewer, ChatTypeMessageReceiver {
+public interface PlayerController extends RemoteSource, ChatTypeMessageReceiver {
 
     /**
      * Returns whether this player has an open inventory at the moment
@@ -122,25 +117,10 @@ public interface PlayerController extends RemoteSource, Viewer, ChatTypeMessageR
      * <p>If the player is not dead, this method will return <tt>false</tt></p>
      *
      * <p>On the client, this will not respawn the player, but send a request
-     * to do so to the server.</p>
+     * to do so to the server. This will always run regardless of health.</p>
      *
      * @return Whether the respawn was successful
      */
     boolean respawnPlayer();
 
-    /**
-     * Gets the {@link Entity} followed by the camera when in the
-     * {@link GameModes#SPECTATOR spectator gamemode}.
-     *
-     * @return The followed entity, if present, empty otherwise
-     */
-    Optional<Entity> getSpectatorTarget();
-
-    /**
-     * Sets the {@link Entity} followed by the camera when in the
-     * {@link GameModes#SPECTATOR spectator gamemode}.
-     *
-     * @param entity The entity to spectate
-     */
-    void setSpectatorTarget(@Nullable Entity entity);
 }
