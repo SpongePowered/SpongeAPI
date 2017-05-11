@@ -44,7 +44,8 @@ import org.spongepowered.api.world.World;
 import java.net.InetAddress;
 
 /**
- * Represents an event fired during the login process.
+ * Represents an event fired during the login process on the server. For client
+ * side login events, see {@link ServerConnectionEvent}.
  *
  * <p>Together with {@link SpawnEntityEvent}, these events represent
  * the progression of a {@link Player} from first authenticating, to being
@@ -58,6 +59,8 @@ import java.net.InetAddress;
  * However, the player is not at a well-defined state at that point.
  * It's recommended to use the this event's subinterfaces to interact
  * with the player at well-defined moments during the connection process.</p>
+ *
+ * @see ServerConnectionEvent
  */
 public interface ClientConnectionEvent extends Event {
 
