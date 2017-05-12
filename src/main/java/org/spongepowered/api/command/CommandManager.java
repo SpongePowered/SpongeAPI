@@ -25,6 +25,7 @@
 package org.spongepowered.api.command;
 
 import org.spongepowered.api.command.dispatcher.Dispatcher;
+import org.spongepowered.api.event.command.TabCompleteEvent;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -168,11 +169,35 @@ public interface CommandManager extends Dispatcher {
      * <p>If a suggestion is chosen by the user, it will replace the last
      * word.</p>
      *
+     * <p>This automatically calls {@link TabCompleteEvent.Chat}.</p>
+     *
      * @param source The command source
      * @param arguments The arguments entered up to this point
-     * @return A list of suggestions
+     * @param targetPosition The position the source is looking at when
+     *     performing tab completion
+     * @return An immutable list of suggestions
      */
     @Override
-    List<String> getSuggestions(CommandSource source, String arguments, @Nullable Location<World> targetPosition);
+    default List<String> getSuggestions(CommandSource source, String arguments, @Nullable Location<World> targetPosition) {
+        return getSuggestions(source, arguments, targetPosition, false);
+    }
+
+    /**
+     * Gets a list of suggestions based on input.
+     *
+     * <p>If a suggestion is chosen by the user, it will replace the last
+     * word.</p>
+     *
+     * <p>This automatically calls {@link TabCompleteEvent.Chat}.</p>
+     *
+     * @param source The command source
+     * @param arguments The arguments entered up to this point
+     * @param targetPosition The position the source is looking at when
+     *     performing tab completion
+     * @param modifyingCommandBlock Whether or not the command source is
+     *     modifying a command block command
+     * @return An immutable list of suggestions
+     */
+    List<String> getSuggestions(CommandSource source, String arguments, @Nullable Location<World> targetPosition, boolean modifyingCommandBlock);
 
 }

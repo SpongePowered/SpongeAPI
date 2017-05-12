@@ -24,12 +24,19 @@
  */
 package org.spongepowered.api.command.conversation;
 
+import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.conversation.ConversationEndType;
+import org.spongepowered.api.event.command.TabCompleteEvent;
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
  * Handles all active conversations. This is where conversant input is processed
@@ -55,11 +62,26 @@ public interface ConversationManager {
     Collection<Conversation> getConversations();
 
     /**
+     * Gets tab completion suggestions for the {@link Conversant}'s
+     * current input.
+     *
+     * <p>This calls {@link TabCompleteEvent.Conversation}.</p>
+     *
+     * @param conversant The conversant involved
+     * @param arguments The input to parse, based on what they have
+     *     typed so far
+     * @param targetPosition The position the source is looking at when
+     *     performing tab completion
+     * @return The tab complete suggestions
+     */
+    List<String> getSuggestions(Conversant conversant, String arguments, @Nullable Location<World> targetPosition);
+
+    /**
      * Processes a {@link Conversant}s incoming chat if they are in
      * a conversation.
      *
-     * <p>This should generally only be called by Sponge, but a plugin could
-     * utilize this method to essentially act as the conversant in
+     * <p>This should generally only be called by implementations, but a plugin
+     * could utilize this method to essentially act as the conversant in
      * the conversation.</p>
      *
      * @param conversant The conversant to process chat for
@@ -72,6 +94,10 @@ public interface ConversationManager {
      * Starts a {@link Conversation} based off of an archetype and the specified
      * {@link Conversant}s.
      *
+     * <p>This should generally only be used by implementations. See the
+     * {@link ConversationArchetype#start(Object, Conversant...)} method
+     * instead.</p>
+     *
      * @param archetype The archetype to base the conversation on
      * @param plugin The plugin submitting the conversation
      * @param conversants The conversants to add to the conversation
@@ -83,7 +109,7 @@ public interface ConversationManager {
     /**
      * Removes the specified {@link Conversation} from the manager.
      *
-     * <p>Generally should only be used by Sponge. Instead use
+     * <p>Generally should only be used by implementations. Instead use
      * {@link Conversation#end(ConversationEndType, Cause)}.</p>
      *
      * @param conversation The conversation to remove from the manager
@@ -91,7 +117,8 @@ public interface ConversationManager {
     void remove(Conversation conversation);
 
     /**
-     * Ends every conversation. Should generally only be used by Sponge.
+     * Ends every conversation. Should generally only be used by
+     * implementations.
      *
      * @param endType The end type
      * @param cause The cause

@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.event.command;
 
+import org.spongepowered.api.command.conversation.Conversation;
+import org.spongepowered.api.command.conversation.Question;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
@@ -133,9 +135,36 @@ public interface TabCompleteEvent extends Event, Cancellable {
      * Fired when a {@link Player} sends a tab complete request for chat.
      *
      * <p>In Vanilla, this is fired when a {@link Player} presses the
-     * <code>TAB</code> key with anything other than a command in chat
-     * (the contents of chat does not start with <code>/</code>.</p>
+     * <code>TAB</code> key with anything other than while in a conversation
+     * or typing in a command(a string starting with <code>/</code>).</p>
      */
     interface Chat extends TabCompleteEvent {}
+
+    /**
+     * Fired when a {@link Player} sends a tab completion request for
+     * conversations.
+     *
+     * <p>In Vanilla, this is fired when a {@link Player} is in a
+     * {@link org.spongepowered.api.command.conversation.Conversation}
+     * and not typing a command.</p>
+     */
+    interface Conversation extends TabCompleteEvent {
+
+        /**
+         * Gets the conversation which is being tab completed in.
+         *
+         * @return The conversation
+         */
+        org.spongepowered.api.command.conversation.Conversation getConversation();
+
+        /**
+         * Gets the current question with the arguments being parsed
+         * for this conversation.
+         *
+         * @return The question
+         */
+        Question getQuestion();
+
+    }
 
 }
