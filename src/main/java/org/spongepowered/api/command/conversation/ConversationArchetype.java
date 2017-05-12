@@ -142,6 +142,14 @@ public interface ConversationArchetype {
     Optional<Text> getPadding();
 
     /**
+     * Gets the message sent to {@link Conversant}s when they
+     * try to use a command in a conversation and that is disabled.
+     *
+     * @return The no command usage message
+     */
+    Text getNoCommandUsageMessage();
+
+    /**
      * Starts the conversation for the specified conversants.
      *
      * <p>Generally only one conversant is set, as each question is completed
@@ -279,6 +287,9 @@ public interface ConversationArchetype {
         /**
          * Sets the default chat handler for {@link Conversant}s being added.
          *
+         * <p>In the default Sponge implementation, this defaults to a
+         * handler which simply deletes all incoming messages.</p>
+         *
          * @param externalChatHandler The desired default external chat handler
          * @return The modified builder
          */
@@ -301,6 +312,15 @@ public interface ConversationArchetype {
          * @return The modified builder
          */
         Builder allowCommands(boolean allow);
+
+        /**
+         * Sets the message sent to {@link Conversant}s when they
+         * try to use a command in a conversation and that is disabled.
+         *
+         * @param message The message to send
+         * @return The modified builder
+         */
+        Builder noCommandUsageMessage(Text message);
 
         /**
          * Takes all of the values from the builder to create a

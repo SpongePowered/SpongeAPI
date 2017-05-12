@@ -169,7 +169,7 @@ public interface CommandManager extends Dispatcher {
      * <p>If a suggestion is chosen by the user, it will replace the last
      * word.</p>
      *
-     * <p>This automatically calls {@link TabCompleteEvent.Chat}.</p>
+     * <p>This automatically calls {@link TabCompleteEvent.Command}.</p>
      *
      * @param source The command source
      * @param arguments The arguments entered up to this point
@@ -188,7 +188,7 @@ public interface CommandManager extends Dispatcher {
      * <p>If a suggestion is chosen by the user, it will replace the last
      * word.</p>
      *
-     * <p>This automatically calls {@link TabCompleteEvent.Chat}.</p>
+     * <p>This automatically calls {@link TabCompleteEvent.Command}.</p>
      *
      * @param source The command source
      * @param arguments The arguments entered up to this point

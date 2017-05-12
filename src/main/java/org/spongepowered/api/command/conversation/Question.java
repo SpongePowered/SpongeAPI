@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.command.conversation;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.args.CommandElement;
+import org.spongepowered.api.command.args.parsing.InputTokenizer;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -78,6 +81,13 @@ public interface Question {
      * @return The set arguments of the question
      */
     CommandElement getArguments();
+
+    /**
+     * Gets the active input tokenizer used for this question.
+     *
+     * @return This question's input tokenizer
+     */
+    InputTokenizer getInputTokenizer();
 
     /**
      * Gets a builder based on the values present in the question.
@@ -137,6 +147,16 @@ public interface Question {
          * @return The modified builder
          */
         Builder arguments(CommandElement... elements);
+
+        /**
+         * Sets the input tokenizer to be used to convert input from a string
+         * into a list of argument tokens.
+         *
+         * @see InputTokenizer Fo common input parser implementations
+         * @param inputTokenizer The input tokenizer to parse with
+         * @return The modified builder
+         */
+        Builder inputTokenizer(InputTokenizer inputTokenizer);
 
         /**
          * Creates the question from the values added to the builder.

@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.command.conversation;
 
-import java.util.Optional;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-import javax.annotation.Nullable;
+import java.util.Optional;
 
 /**
  * What to return from your answer handler on a question, to allow moving on to
@@ -60,22 +60,24 @@ public class QuestionResult {
      * @return A question result which will move on to the next question
      */
     public static QuestionResult nextQuestion(Question nextQuestion) {
+        checkNotNull(nextQuestion, "The specified question cannot be null!");
         return new QuestionResult(QuestionResultType.NEXT, nextQuestion);
     }
 
-    @Nullable private final Question nextQuestion;
+    private final Optional<Question> nextQuestion;
     private final QuestionResultType type;
 
     /**
      * Creates a new question result with the specified type.
      *
-     * <p>Should not pass {@link QuestionResultType#NEXT} with this constructor,
-     * but rather {@link QuestionResult#QuestionResult(QuestionResultType, Question)}</p>
+     * <p>Should not pass {@link QuestionResultType#NEXT} with this
+     * constructor, but rather
+     * {@link QuestionResult#QuestionResult(QuestionResultType, Question)}.</p>
      *
      * @param type The type of question result
      */
     private QuestionResult(QuestionResultType type) {
-        this.nextQuestion = null;
+        this.nextQuestion = Optional.empty();
         this.type = type;
     }
 
@@ -89,7 +91,7 @@ public class QuestionResult {
      * @param nextQuestion The next question
      */
     private QuestionResult(QuestionResultType type, Question nextQuestion) {
-        this.nextQuestion = nextQuestion;
+        this.nextQuestion = Optional.of(nextQuestion);
         this.type = type;
     }
 
@@ -101,7 +103,7 @@ public class QuestionResult {
      * @return The next question, if available.
      */
     public Optional<Question> getNextQuestion() {
-        return Optional.ofNullable(this.nextQuestion);
+        return this.nextQuestion;
     }
 
     /**
