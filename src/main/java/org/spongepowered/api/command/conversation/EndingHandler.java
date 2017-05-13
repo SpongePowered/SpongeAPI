@@ -25,6 +25,7 @@
 package org.spongepowered.api.command.conversation;
 
 import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.conversation.ConversationEndType;
 import org.spongepowered.api.text.Text;
 
@@ -49,7 +50,8 @@ public interface EndingHandler {
      * @param context The context which has been added to over the course of
      *     the conversation
      * @param endType How the conversation ended
+     * @param cause The related cause, often a plugin, the player, or similar
      */
-    void handle(Conversation conversation, DataContainer context, ConversationEndType endType);
+    void handle(Conversation conversation, DataContainer context, ConversationEndType endType, Cause cause);
 
 }

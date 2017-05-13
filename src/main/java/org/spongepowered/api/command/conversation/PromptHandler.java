@@ -34,6 +34,14 @@ import org.spongepowered.api.text.Text;
 @FunctionalInterface
 public interface PromptHandler {
 
-    Text handle(Conversation conversation, DataContainer context);
+    /**
+     * Gets the contextually based prompt from the handler the
+     * {@link Conversation} creator sets.
+     *
+     * @param conversation The conversation involved
+     * @param context The context of the conversation so far
+     * @return The determined prompt
+     */
+    Text getPrompt(Conversation conversation, DataContainer context);
 
 }

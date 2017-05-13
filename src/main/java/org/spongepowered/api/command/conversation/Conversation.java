@@ -45,6 +45,15 @@ import javax.annotation.Nullable;
 public interface Conversation {
 
     /**
+     * A convenience method to get the id of the conversation archetype.
+     *
+     * @return The id of the conversation archetype
+     */
+    default String getId() {
+        return getArchetype().getId();
+    }
+
+    /**
      * Gets who started the conversation, if present.
      *
      * @return The {@link PluginContainer} who started this conversation
@@ -143,7 +152,7 @@ public interface Conversation {
      * @param conversant The conversant to add to the conversation
      */
     default void addConversant(Conversant conversant) {
-        addConversant(conversant, ExternalChatHandlers.deleteAll());
+        addConversant(conversant, getArchetype().getDefaultChatHandler());
     }
 
     /**
@@ -255,14 +264,5 @@ public interface Conversation {
      * @return Whether or not the specified ending handler was removed
      */
     boolean removeEndingHandler(EndingHandler endingHandler);
-
-    /**
-     * A convenience method to get the id of the conversation archetype.
-     *
-     * @return The id of the conversation archetype
-     */
-    default String getId() {
-        return getArchetype().getId();
-    }
     
 }
