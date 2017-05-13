@@ -56,7 +56,7 @@ public interface ConversationManager {
     /**
      * Gets all current active conversations.
      *
-     * @return A collection of all active conversations
+     * @return An unmodifiable collection of all active conversations
      */
     Collection<Conversation> getConversations();
 
