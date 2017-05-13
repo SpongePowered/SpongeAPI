@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.command.conversation;
 
-import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.conversation.ConversationEndType;
 import org.spongepowered.api.event.command.TabCompleteEvent;

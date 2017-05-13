@@ -65,14 +65,6 @@ public interface ConversationArchetype {
     Optional<Text> getStartingMessage();
 
     /**
-     * Gets the string that if the conversant enters will cause them to leave
-     * the conversation.
-     *
-     * @return The string which allows the conversant to leave the conversation
-     */
-    String getExitString();
-
-    /**
      * Gets the question the conversation will start with.
      *
      * @return The first question
@@ -148,6 +140,14 @@ public interface ConversationArchetype {
      * @return The no command usage message
      */
     Text getNoCommandUsageMessage();
+
+    /**
+     * Gets the handler which handles input to see if it should end
+     * the {@link Conversation}.
+     *
+     * @return The cancelling handler
+     */
+    CancellingHandler getCancellingHandler();
 
     /**
      * Starts the conversation for the specified conversants.
@@ -283,6 +283,18 @@ public interface ConversationArchetype {
          * @return The modified builder.
          */
         Builder clearEndingHandlers();
+
+        /**
+         * Sets the handler which handles input to see if it should end
+         * the {@link Conversation}.
+         *
+         * <p>This does not need to be set as it defaults to checking for
+         * "/exit", "/quit", and "/leave".</p>
+         *
+         * @param cancellingHandler The cancelling handler
+         * @return The modified builder
+         */
+        Builder setCancellingHandler(CancellingHandler cancellingHandler);
 
         /**
          * Sets the default chat handler for {@link Conversant}s being added.

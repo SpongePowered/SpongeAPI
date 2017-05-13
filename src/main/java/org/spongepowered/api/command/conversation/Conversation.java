@@ -60,14 +60,12 @@ public interface Conversation {
     DataContainer getContext();
 
     /**
-     * An ease of access method for the string which a {@link Conversant} can
-     * use to exit a conversation.
+     * Gets the handler which handles input to see if it should end
+     * the {@link Conversation}.
      *
-     * @return The exit string
+     * @return The cancelling handler
      */
-    default String getExitString() {
-        return getArchetype().getExitString();
-    }
+    CancellingHandler getCancellingHandler();
 
     /**
      * An ease of use method to retrieve the banner for each question, which

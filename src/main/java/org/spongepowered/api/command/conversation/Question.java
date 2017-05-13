@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.command.conversation;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.args.CommandElement;
 import org.spongepowered.api.command.args.parsing.InputTokenizer;
