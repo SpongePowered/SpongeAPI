@@ -65,7 +65,9 @@ public interface Conversation {
      *
      * @return The cancelling handler
      */
-    CancellingHandler getCancellingHandler();
+    default CancellingHandler getCancellingHandler() {
+        return getArchetype().getCancellingHandler();
+    }
 
     /**
      * An ease of use method to retrieve the banner for each question, which
