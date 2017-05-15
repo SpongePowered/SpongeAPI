@@ -69,6 +69,7 @@ public final class Sponge {
     @Inject private static ChannelRegistrar channelRegistrar;
 
     @Inject private static TeleportHelper teleportHelper;
+    @Inject private static CauseStackManager causeStackManager;
 
     private static <T> T check(@Nullable T instance) {
         checkState(instance != null, "Sponge has not been initialized!");
@@ -255,28 +256,6 @@ public final class Sponge {
     }
 
     /**
-     * Gets the {@link CommandManager} instance from the
-     * {@link Game} instance.
-     *
-     * @see Game#getCommandManager()
-     * @return The command manager instance
-     */
-    public static CommandManager getCommandManager() {
-        return getGame().getCommandManager();
-    }
-
-    /**
-     * Gets the {@link ChannelRegistrar} instance from the
-     * {@link Game} instance.
-     *
-     * @see Game#getChannelRegistrar()
-     * @return The channel registrar instance
-     */
-    public static ChannelRegistrar getChannelRegistrar() {
-        return getGame().getChannelRegistrar();
-    }
-
-    /**
      * Gets the {@link CauseStackManager} instance from the
      * {@link Game} instance.
      *
@@ -284,7 +263,7 @@ public final class Sponge {
      * @return The cause stack manager instance
      */
     public static CauseStackManager getCauseStackManager() {
-        return getGame().getCauseStackManager();
+        return check(causeStackManager);
     }
 
 }

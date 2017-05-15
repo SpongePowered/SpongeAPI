@@ -246,6 +246,8 @@ public interface Game {
      * 
      * @return The cause stack manager
      */
-    CauseStackManager getCauseStackManager();
+    default CauseStackManager getCauseStackManager() {
+        return Sponge.getCauseStackManager();
+    }
 
 }

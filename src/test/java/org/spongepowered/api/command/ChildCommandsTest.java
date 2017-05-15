@@ -61,6 +61,7 @@ public class ChildCommandsTest {
         CommandManager cm = mock(CommandManager.class);
         when(game.getCommandManager()).thenReturn(cm);
         TestHooks.setGame(game);
+        TestHooks.setInstance("commandManager", cm);
     }
 
     @Test

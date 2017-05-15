@@ -64,6 +64,7 @@ public class SimpleServiceManagerTest {
         when(csm.popCause()).thenReturn(null);
         when(csm.getCurrentCause()).thenReturn(Cause.of(EventContext.empty(), this));
         TestHooks.setGame(game);
+        TestHooks.setInstance("causeStackManager", csm);
     }
 
     @Test
