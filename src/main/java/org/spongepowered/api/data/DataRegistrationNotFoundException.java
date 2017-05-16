@@ -41,6 +41,7 @@ public class DataRegistrationNotFoundException extends DataException {
     }
 
     public DataRegistrationNotFoundException(String registrationQuery) {
+        super(registrationQuery);
         this.registrationQuery = registrationQuery;
     }
 
