@@ -330,7 +330,7 @@ public final class DataTransactionResult {
      *
      * @param consumer The consumer to call
      */
-    public void ifSucessful(Consumer<List<ImmutableValue<?>>> consumer) {
+    public void ifSuccessful(Consumer<List<ImmutableValue<?>>> consumer) {
         if (isSuccessful()) {
             try {
                 consumer.accept(this.success);
