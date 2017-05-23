@@ -35,6 +35,13 @@ import java.util.function.Consumer;
 public interface ExternalChatHandler extends Consumer<Text> {
 
     /**
+     * Gets the type of this chat handler.
+     *
+     * @return This chat handler's type
+     */
+    ExternalChatHandlerType getType();
+
+    /**
      * Processes the specified incoming text for this {@link Conversation}.
      * Returns whether or not to send the message normally.
      *
@@ -48,8 +55,16 @@ public interface ExternalChatHandler extends Consumer<Text> {
      */
     void finish();
 
+    /**
+     * Drains all messages to the {@link ExternalChatHandler} the
+     * {@link Conversant} is being switched to.
+     *
+     * <p>Can also choose to not send these to the consumer, instead
+     * process them however they'd like.</p>
+     *
+     * @param consumer The consumer for the messages, generally the new
+     *     {@link ExternalChatHandler}
+     */
     void drainTo(Consumer<Text> consumer);
-
-    ExternalChatHandlerType getType();
 
 }

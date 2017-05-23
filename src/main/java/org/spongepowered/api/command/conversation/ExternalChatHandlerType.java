@@ -27,9 +27,22 @@ package org.spongepowered.api.command.conversation;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * Used to create the individual {@link ExternalChatHandler}s for each
+ * {@link Conversant}. There are some provided in {@link ExternalChatHandlerTypes}
+ * but plugins can create their own as well.
+ */
 @CatalogedBy(ExternalChatHandlerTypes.class)
 public interface ExternalChatHandlerType extends CatalogType {
 
+    /**
+     * Creates an {@link ExternalChatHandler} of this type, for the specified
+     * conversation and conversant.
+     *
+     * @param conversation The conversation the conversant is in
+     * @param conversant The conversant the handler is for
+     * @return The created external chat handler for the conversant
+     */
     ExternalChatHandler createFor(Conversation conversation, Conversant conversant);
 
 }

@@ -26,14 +26,36 @@ package org.spongepowered.api.command.conversation;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
+/**
+ * Provided {@link ExternalChatHandlerType}s that you can create
+ * {@link ExternalChatHandler}s for specific {@link Conversant}s.
+ */
 public final class ExternalChatHandlerTypes {
 
+    /**
+     * Lets all messages going to the {@link Conversant} to be sent to them.
+     */
     public static final ExternalChatHandlerType PASS_THROUGH = DummyObjectProvider.createFor(ExternalChatHandlerType.class, "PASS_THROUGH");
 
+    /**
+     * Discards all messages going to the {@link Conversant}, so they
+     * will never receive them.
+     */
     public static final ExternalChatHandlerType DISCARD = DummyObjectProvider.createFor(ExternalChatHandlerType.class, "DISCARD");
 
+    /**
+     * Sends all messages collected throughout the {@link Conversation}
+     * instantly once the {@link Conversation} ends.
+     */
     public static final ExternalChatHandlerType SEND_ON_COMPLETION = DummyObjectProvider.createFor(ExternalChatHandlerType.class, "SEND_ON_COMPLETION");
 
+    /**
+     * Sends all messages collected throughout the {@link Conversation}
+     * over time. This is implementation dependent, but
+     * generally one gets sent once every 1 or 2 seconds.
+     */
     public static final ExternalChatHandlerType SEND_SLOWLY_ON_COMPLETION = DummyObjectProvider.createFor(ExternalChatHandlerType.class, "SEND_SLOWLY_ON_COMPLETION");
+
+    private ExternalChatHandlerTypes() {}
 
 }
