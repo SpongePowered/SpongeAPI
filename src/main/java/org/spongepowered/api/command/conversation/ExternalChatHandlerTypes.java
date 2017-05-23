@@ -33,15 +33,15 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 public final class ExternalChatHandlerTypes {
 
     /**
-     * Lets all messages going to the {@link Conversant} to be sent to them.
-     */
-    public static final ExternalChatHandlerType PASS_THROUGH = DummyObjectProvider.createFor(ExternalChatHandlerType.class, "PASS_THROUGH");
-
-    /**
      * Discards all messages going to the {@link Conversant}, so they
      * will never receive them.
      */
     public static final ExternalChatHandlerType DISCARD = DummyObjectProvider.createFor(ExternalChatHandlerType.class, "DISCARD");
+
+    /**
+     * Lets all messages going to the {@link Conversant} to be sent to them.
+     */
+    public static final ExternalChatHandlerType PASS_THROUGH = DummyObjectProvider.createFor(ExternalChatHandlerType.class, "PASS_THROUGH");
 
     /**
      * Sends all messages collected throughout the {@link Conversation}
