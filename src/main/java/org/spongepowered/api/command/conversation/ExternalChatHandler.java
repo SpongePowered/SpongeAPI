@@ -67,4 +67,17 @@ public interface ExternalChatHandler extends Consumer<Text> {
      */
     void drainTo(Consumer<Text> consumer);
 
+    /**
+     * Accepts the incoming text from a previous {@link ExternalChatHandler}.
+     *
+     * <p>Implementations should override to provide their desired
+     * functionality if this does not match.</p>
+     *
+     * @param text The text to add/process
+     */
+    @Override
+    default void accept(Text text) {
+        process(text);
+    }
+
 }

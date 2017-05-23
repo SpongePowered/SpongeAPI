@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.command.conversation;
 
-import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -97,9 +96,12 @@ public interface ConversationArchetype {
     /**
      * Gets the handlers that handles the end of the {@link Conversation}.
      *
+     * <p>The collection is implementation dependent, but is
+     * generally immutable or a copy.</p>
+     *
      * @return All ending handlers
      */
-    ImmutableSet<EndingHandler> getEndingHandlers();
+    Collection<EndingHandler> getEndingHandlers();
 
     /**
      * Gets the banner that will be sent before each question prompt

@@ -190,13 +190,16 @@ public interface Conversation {
 
     /**
      * If the specified {@link Conversant} is in the conversation it changes
-     * their {@link ExternalChatHandler} to the one you specify. If they are
-     * not in the conversation, instead use {@link #addConversant(Conversant)}.
+     * their {@link ExternalChatHandler} to the one you specify.
+     *
+     * <p>If they are not in the conversation, instead use
+     * {@link #addConversant(Conversant)}.</p>
      *
      * @param conversant The conversant which you want to modify
      * @param externalChatHandlerType The external chat handler for the conversant
+     * @throws IllegalArgumentException If the conversant you specify is not in the conversation
      */
-    void setChatHandler(Conversant conversant, ExternalChatHandlerType externalChatHandlerType);
+    void setChatHandler(Conversant conversant, ExternalChatHandlerType externalChatHandlerType) throws IllegalArgumentException;
 
     /**
      * Gets the chat handler which handles incoming messages for a

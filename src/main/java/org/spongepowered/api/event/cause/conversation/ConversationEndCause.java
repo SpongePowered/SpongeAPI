@@ -27,8 +27,6 @@ package org.spongepowered.api.event.cause.conversation;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import javax.annotation.Nonnull;
-
 /**
  * The cause behind a conversation ending.
  */

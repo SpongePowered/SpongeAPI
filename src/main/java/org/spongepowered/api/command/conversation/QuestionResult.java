@@ -32,7 +32,11 @@ import java.util.Optional;
  * What to return from your answer handler on a question, to allow moving on to
  * a next question, the same question, or to end the conversation.
  */
+@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class QuestionResult {
+
+    private static final QuestionResult END = new QuestionResult(QuestionResultType.END);
+    private static final QuestionResult REPEAT = new QuestionResult(QuestionResultType.REPEAT);
 
     /**
      * Gets a question result which will end the question.
@@ -40,7 +44,7 @@ public class QuestionResult {
      * @return A question result which ends the question
      */
     public static QuestionResult end() {
-        return new QuestionResult(QuestionResultType.END);
+        return END;
     }
 
     /**
@@ -49,7 +53,7 @@ public class QuestionResult {
      * @return A question result which will repeat the current question
      */
     public static QuestionResult repeat() {
-        return new QuestionResult(QuestionResultType.REPEAT);
+        return REPEAT;
     }
 
     /**
