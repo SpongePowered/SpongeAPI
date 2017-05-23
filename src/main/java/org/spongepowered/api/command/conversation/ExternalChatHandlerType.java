@@ -24,32 +24,12 @@
  */
 package org.spongepowered.api.command.conversation;
 
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.function.Consumer;
+@CatalogedBy(ExternalChatHandlerTypes.class)
+public interface ExternalChatHandlerType extends CatalogType {
 
-/**
- * Each {@link Conversant} has one of these to handle the chat messages being
- * sent to them.
- */
-public interface ExternalChatHandler extends Consumer<Text> {
-
-    /**
-     * Processes the specified incoming text for this {@link Conversation}.
-     * Returns whether or not to send the message normally.
-     *
-     * @param text The text to process
-     * @return Whether or not to send the message normally to the player
-     */
-    boolean process(Text text);
-
-    /**
-     * Notify this handler that the conversation has come to an end.
-     */
-    void finish();
-
-    void drainTo(Consumer<Text> consumer);
-
-    ExternalChatHandlerType getType();
+    ExternalChatHandler createFor(Conversation conversation, Conversant conversant);
 
 }

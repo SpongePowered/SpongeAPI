@@ -24,32 +24,16 @@
  */
 package org.spongepowered.api.command.conversation;
 
-import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-import java.util.function.Consumer;
+public final class ExternalChatHandlerTypes {
 
-/**
- * Each {@link Conversant} has one of these to handle the chat messages being
- * sent to them.
- */
-public interface ExternalChatHandler extends Consumer<Text> {
+    public static final ExternalChatHandlerType PASS_THROUGH = DummyObjectProvider.createFor(ExternalChatHandlerType.class, "PASS_THROUGH");
 
-    /**
-     * Processes the specified incoming text for this {@link Conversation}.
-     * Returns whether or not to send the message normally.
-     *
-     * @param text The text to process
-     * @return Whether or not to send the message normally to the player
-     */
-    boolean process(Text text);
+    public static final ExternalChatHandlerType DISCARD = DummyObjectProvider.createFor(ExternalChatHandlerType.class, "DISCARD");
 
-    /**
-     * Notify this handler that the conversation has come to an end.
-     */
-    void finish();
+    public static final ExternalChatHandlerType SEND_ON_COMPLETION = DummyObjectProvider.createFor(ExternalChatHandlerType.class, "SEND_ON_COMPLETION");
 
-    void drainTo(Consumer<Text> consumer);
-
-    ExternalChatHandlerType getType();
+    public static final ExternalChatHandlerType SEND_SLOWLY_ON_COMPLETION = DummyObjectProvider.createFor(ExternalChatHandlerType.class, "SEND_SLOWLY_ON_COMPLETION");
 
 }

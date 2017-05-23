@@ -145,14 +145,14 @@ public interface Conversation {
 
     /**
      * Adds the specified {@link Conversant} to the conversation,
-     * with the generic delete all {@link ExternalChatHandler}.
+     * with the generic delete all {@link ExternalChatHandlerType}.
      *
      * <p>This sends them the prompt of the current active question.</p>
      *
      * @param conversant The conversant to add to the conversation
      */
     default void addConversant(Conversant conversant) {
-        addConversant(conversant, getArchetype().getDefaultChatHandler());
+        addConversant(conversant, getArchetype().getDefaultChatHandlerType());
     }
 
     /**
@@ -161,9 +161,9 @@ public interface Conversation {
      * <p>This sends them the prompt of the current active question.</p>
      *
      * @param conversant The conversant to add to the conversation
-     * @param externalChatHandler The chat handler to give the conversant
+     * @param externalChatHandlerType The external chat handler type to give the conversant
      */
-    void addConversant(Conversant conversant, ExternalChatHandler externalChatHandler);
+    void addConversant(Conversant conversant, ExternalChatHandlerType externalChatHandlerType);
 
     /**
      * Removes the specified {@link Conversant} from the conversation.
@@ -194,9 +194,9 @@ public interface Conversation {
      * not in the conversation, instead use {@link #addConversant(Conversant)}.
      *
      * @param conversant The conversant which you want to modify
-     * @param externalChatHandler The external chat handler for the conversant
+     * @param externalChatHandlerType The external chat handler for the conversant
      */
-    void setChatHandler(Conversant conversant, ExternalChatHandler externalChatHandler);
+    void setChatHandler(Conversant conversant, ExternalChatHandlerType externalChatHandlerType);
 
     /**
      * Gets the chat handler which handles incoming messages for a

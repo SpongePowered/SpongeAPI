@@ -86,11 +86,13 @@ public interface ConversationArchetype {
     boolean allowsCommands();
 
     /**
-     * Gets the default handler for all {@link Conversant}s within the conversation.
+     * Gets the default external chat handler type for all {@link Conversant}s
+     * within the conversation.
      *
-     * @return The default handler for all {@link Conversant}s within the conversation
+     * @return The default external chat handler type for all {@link Conversant}s
+     *     within the conversation
      */
-    ExternalChatHandler getDefaultChatHandler();
+    ExternalChatHandlerType getDefaultChatHandlerType();
 
     /**
      * Gets the handlers that handles the end of the {@link Conversation}.
@@ -297,15 +299,15 @@ public interface ConversationArchetype {
         Builder setCancellingHandler(CancellingHandler cancellingHandler);
 
         /**
-         * Sets the default chat handler for {@link Conversant}s being added.
+         * Sets the default chat handler type for {@link Conversant}s being added.
          *
          * <p>In the default Sponge implementation, this defaults to a
-         * handler which simply deletes all incoming messages.</p>
+         * handler type which simply deletes all incoming messages.</p>
          *
-         * @param externalChatHandler The desired default external chat handler
+         * @param externalChatHandlerType The desired default external chat handler type
          * @return The modified builder
          */
-        Builder defaultChatHandler(ExternalChatHandler externalChatHandler);
+        Builder defaultChatHandlerType(ExternalChatHandlerType externalChatHandlerType);
 
         /**
          * Sets whether or not the conversation should prevent {@link Conversant}'s
