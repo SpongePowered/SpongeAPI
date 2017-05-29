@@ -24,80 +24,54 @@
  */
 package org.spongepowered.api.command.conversation;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
 
 /**
- * What to return from your answer handler on a question, to allow moving on to
- * a next question, the same question, or to end the conversation.
+ * What to build and return from your answer handler on a question, to allow
+ * moving on to a next question, the same question, or to end the conversation.
  */
-@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-public class QuestionResult {
-
-    private static final QuestionResult END = new QuestionResult(QuestionResultType.END);
-    private static final QuestionResult REPEAT = new QuestionResult(QuestionResultType.REPEAT);
+public interface QuestionResult {
 
     /**
-     * Gets a question result which will end the question.
-     *
-     * @return A question result which ends the question
+     * The various types of question result types.
      */
-    public static QuestionResult end() {
-        return END;
+    enum QuestionResultType {
+
+        /**
+         * Ends the conversation naturally.
+         */
+        END,
+
+        /**
+         * Repeats the current question.
+         */
+        REPEAT,
+
+        /**
+         * Goes to the next question, that you must specify.
+         */
+        NEXT
+
     }
 
     /**
-     * Gets a question result which will repeat the current question.
+     * Creates a new {@link QuestionResult.Builder} to build a {@link QuestionResult}.
      *
-     * @return A question result which will repeat the current question
+     * @return The new builder
      */
-    public static QuestionResult repeat() {
-        return REPEAT;
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
-     * Gets the question result which will move the conversation to the
-     * next question.
+     * Gets the question result type.
      *
-     * @param nextQuestion The desired question to move on to
-     * @return A question result which will move on to the next question
+     * @return The type
      */
-    public static QuestionResult nextQuestion(Question nextQuestion) {
-        checkNotNull(nextQuestion, "The specified question cannot be null!");
-        return new QuestionResult(QuestionResultType.NEXT, nextQuestion);
-    }
-
-    private final Optional<Question> nextQuestion;
-    private final QuestionResultType type;
-
-    /**
-     * Creates a new question result with the specified type.
-     *
-     * <p>Should not pass {@link QuestionResultType#NEXT} with this
-     * constructor, but rather
-     * {@link QuestionResult#QuestionResult(QuestionResultType, Question)}.</p>
-     *
-     * @param type The type of question result
-     */
-    private QuestionResult(QuestionResultType type) {
-        this.nextQuestion = Optional.empty();
-        this.type = type;
-    }
-
-    /**
-     * Creates a new question result with the specified type.
-     *
-     * <p>Should generally only be used when the result type is
-     * {@link QuestionResultType#NEXT}</p>
-     *
-     * @param type The type of question result
-     * @param nextQuestion The next question
-     */
-    private QuestionResult(QuestionResultType type, Question nextQuestion) {
-        this.nextQuestion = Optional.of(nextQuestion);
-        this.type = type;
-    }
+    QuestionResultType getType();
 
     /**
      * Gets the next question, if it is present.
@@ -106,25 +80,73 @@ public class QuestionResult {
      *
      * @return The next question, if available.
      */
-    public Optional<Question> getNextQuestion() {
-        return this.nextQuestion;
-    }
+    Optional<Question> getNextQuestion();
 
     /**
-     * Gets the question result type.
+     * Gets a builder based off of this result's values.
      *
-     * @return The type
+     * @return The builder
      */
-    public QuestionResultType getType() {
-        return this.type;
-    }
+    Builder toBuilder();
 
     /**
-     * The different kinds of question result types there are which
-     * conversations can handle.
+     * Used to create an {@link QuestionResult}.
      */
-    public enum QuestionResultType {
-        NEXT, REPEAT, END
+    interface Builder extends ResettableBuilder<QuestionResult, Builder> {
+
+        /**
+         * Sets the question result type.
+         *
+         * @param type The desired question result type
+         * @return The modified builder
+         */
+        Builder type(QuestionResultType type);
+
+        /**
+         * Sets the next question.
+         *
+         * <p>Automatically sets the type to next.</p>
+         *
+         * @param question The desired next question
+         * @return The modified builder
+         */
+        Builder nextQuestion(Question question);
+
+        /**
+         * Sets the question result type to go to the
+         * next question.
+         *
+         * <p>You must set the next question to use
+         * this type.</p>
+         *
+         * @return The modified builder
+         */
+        Builder next();
+
+        /**
+         * Sets the question result type to
+         * end the conversation.
+         *
+         * @return The modified builder
+         */
+        Builder end();
+
+        /**
+         * Sets the question result type to
+         * repeat the current question.
+         *
+         * @return The modified builder
+         */
+        Builder repeat();
+
+        /**
+         * Takes all of the values from the builder to create a
+         * {@link QuestionResult}.
+         *
+         * @return The created question result
+         */
+        QuestionResult build();
+
     }
 
 }
