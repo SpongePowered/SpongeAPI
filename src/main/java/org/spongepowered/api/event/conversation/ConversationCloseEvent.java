@@ -25,13 +25,14 @@
 package org.spongepowered.api.event.conversation;
 
 import org.spongepowered.api.command.conversation.Conversation;
+import org.spongepowered.api.command.conversation.Question;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.cause.conversation.ConversationEndType;
+
+import java.util.Optional;
 
 /**
  * An event called when a conversation is either ending or has already ended.
- *
- * <p>It is highly recommended to utilize the event's sub-interfaces rather
- * as that is how you will know if the event has ended or not yet.</p>
  */
 public interface ConversationCloseEvent extends ConversationEvent {
 
@@ -45,8 +46,37 @@ public interface ConversationCloseEvent extends ConversationEvent {
     /**
      * Called when the conversation is in the process of ending, so it can
      * still be cancelled.
+     *
+     * <p>If you cancel this event, the conversation does not have its
+     * conversants removed, its ending handlers called, and depending on
+     * the {@link ConversationEndType} there may be no more questions so
+     * the conversation may end up in a sort of limbo. To remedy this
+     * you can set the next question if you so desire.</p>
      */
     interface Ending extends ConversationCloseEvent, Cancellable {
+
+        /**
+         * Sets the next question to be asked if the event ends
+         * up cancelled.
+         *
+         * <p>This does not need to be called, as the conversation
+         * may still have a question depending on the {@link ConversationEndType}
+         * of the event.</p>
+         *
+         * <p><b>Note:</b> This will override the current question if there
+         * is one once the event has completed.</p>
+         *
+         * @param question The question to set
+         */
+        void setPostQuestion(Question question);
+
+        /**
+         * Gets the question set in the event, to be set
+         * once the event has completed.
+         *
+         * @return The question to be set, if available
+         */
+        Optional<Question> getPostQuestion();
 
     }
 

@@ -33,10 +33,6 @@ import java.util.Set;
 
 /**
  * An event called when a {@link Conversation} is either starting or has started.
- *
- * <p>You really should use the sub-interfaces as they include the most access
- * to information and let you know if the conversation is starting or has
- * started already.</p>
  */
 public interface ConversationOpenEvent extends ConversationEvent {
 
@@ -44,8 +40,8 @@ public interface ConversationOpenEvent extends ConversationEvent {
      * Called before the {@link Conversation} is created, giving you access to
      * the archetype as well as who will be in the conversation.
      *
-     * <p>If you are removing all conversants, it is better to simply cancel the
-     * conversation creation.</p>
+     * <p>If you remove all conversants, the implementation will not create
+     * the conversation.</p>
      */
     interface Starting extends ConversationOpenEvent, Cancellable {
 

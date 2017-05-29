@@ -40,7 +40,7 @@ public interface EndingHandler {
      * Handles the completion of a {@link Conversation}.
      *
      * <p><strong>Note:</strong> You must use
-     * {@link Conversant#sendThroughMessage(Text)} to send conversants a message
+     * {@link Conversant#sendMessage(Text, boolean)} to send conversants a message
      * if the conversation is set to catch messages.</p>
      *
      * <p>Also consider the fact that there may be no conversants left

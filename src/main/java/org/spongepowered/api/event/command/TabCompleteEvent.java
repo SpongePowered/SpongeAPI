@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.command;
 
-import org.spongepowered.api.command.conversation.Conversation;
 import org.spongepowered.api.command.conversation.Question;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;

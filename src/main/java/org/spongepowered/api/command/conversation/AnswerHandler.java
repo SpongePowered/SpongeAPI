@@ -50,7 +50,7 @@ public interface AnswerHandler {
      * end, go to the next question, or repeat the same question.</p>
      *
      * <p><strong>Note:</strong> You must use
-     * {@link Conversant#sendThroughMessage(Text)} to send conversants a message
+     * {@link Conversant#sendMessage(Text, boolean)} to send conversants a message
      * if the conversation is set to catch messages.</p>
      *
      * @param conversation The conversation involved in this answer

@@ -125,9 +125,12 @@ public interface Conversation {
      * Sets the new question, sending them the header, as well as the prompt
      * of the question.
      *
+     * <p>This overrides the current question, so be careful with
+     * its use.</p>
+     *
      * @param question The question to set to
      */
-    void setQuestion(@Nullable Question question);
+    void setQuestion(Question question);
 
     /**
      * Ends the conversation, calling all of the ending handlers, removing the

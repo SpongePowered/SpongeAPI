@@ -26,6 +26,9 @@ package org.spongepowered.api.event.conversation;
 
 import org.spongepowered.api.event.Event;
 
+/**
+ * A generic event involving conversations.
+ */
 public interface ConversationEvent extends Event {
 
 }

@@ -76,10 +76,13 @@ public interface Conversant extends CommandSource {
     /**
      * Due to conversations often catching messages, this allows messages while
      * they're in a conversation to go through to them no matter what
-     * and bypass their {@link ExternalChatHandler}.
+     * and bypass their {@link ExternalChatHandler} if you set ignoreConversation
+     * to true.
      *
      * @param message The message to send
+     * @param ignoreConversation Whether or not to ignore whether the conversant
+     *     is in a conversation or not
      */
-    void sendThroughMessage(Text message);
+    void sendMessage(Text message, boolean ignoreConversation);
 
 }
