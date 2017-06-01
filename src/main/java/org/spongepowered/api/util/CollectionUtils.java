@@ -26,11 +26,17 @@ package org.spongepowered.api.util;
 
 import com.google.common.collect.Maps;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.IdentityHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.stream.Collector;
 
 public final class CollectionUtils {
 
@@ -62,7 +68,18 @@ public final class CollectionUtils {
         }
     }
 
-
+    /**
+     * Returns a Collector which will collect all values in a stream,
+     * and return an {@link Collections#unmodifiableSet(Set)}.
+     * @param <T> Value type of stream
+     * @return A {@link Collector} for building an immutable set
+     */
+    public static <T> Collector<T, Set<T>, Set<T>> immutableSetCollector() {
+        return Collector.of(HashSet::new, Set::add, (left, right) -> {
+            left.addAll(right);
+            return left;
+        }, Collections::unmodifiableSet);
+    }
 
     private CollectionUtils() {
     }
