@@ -117,6 +117,15 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     int getHighestYAt(int x, int z);
 
     /**
+     * Returns the y level that precipitation ends falling in the given column.
+     *
+     * <p>A value is still returned for columns in biomes which do not receive precipitation.</p>
+     *
+     * @return the y level that precipitation ends
+     */
+    int getPrecipitationLevel(int x, int z);
+
+    /**
      * Get the {@link Location} of the highest block that sunlight can reach in
      * the given column.
      *
