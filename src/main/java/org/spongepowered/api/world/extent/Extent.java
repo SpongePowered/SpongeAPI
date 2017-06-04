@@ -26,6 +26,7 @@ package org.spongepowered.api.world.extent;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -117,15 +118,6 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     int getHighestYAt(int x, int z);
 
     /**
-     * Returns the y level that precipitation ends falling in the given column.
-     *
-     * <p>A value is still returned for columns in biomes which do not receive precipitation.</p>
-     *
-     * @return the y level that precipitation ends
-     */
-    int getPrecipitationLevel(int x, int z);
-
-    /**
      * Get the {@link Location} of the highest block that sunlight can reach in
      * the given column.
      *
@@ -137,6 +129,26 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      */
     default Vector3i getHighestPositionAt(Vector3i position) {
         return new Vector3i(position.getX(), getHighestYAt(position.getX(), position.getZ()), position.getZ());
+    }
+
+    /**
+     * Returns the y level that precipitation ends falling in the given column.
+     *
+     * <p>A value is still returned for columns in biomes which do not receive precipitation.</p>
+     *
+     * @return the y level that precipitation ends
+     */
+    int getPrecipitationLevel(int x, int z);
+
+    /**
+     * Returns the y level that precipitation ends falling in the given column.
+     *
+     * <p>A value is still returned for columns in biomes which do not receive precipitation.</p>
+     *
+     * @return the y level that precipitation ends
+     */
+    default int getPrecipitationLevel(Vector2i column) {
+        return this.getPrecipitationLevel(column.getX(), column.getY());
     }
 
     /**
