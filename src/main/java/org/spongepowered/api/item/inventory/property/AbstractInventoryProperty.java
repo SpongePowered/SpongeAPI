@@ -27,7 +27,9 @@ package org.spongepowered.api.item.inventory.property;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.item.inventory.InventoryProperty;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
@@ -39,6 +41,8 @@ import javax.annotation.Nullable;
  * @param <V> Value type
  */
 public abstract class AbstractInventoryProperty<K, V> implements InventoryProperty<K, V> {
+
+    private static Map<Class<? extends AbstractInventoryProperty>, String> defaultKeys = new HashMap<>();
 
     /**
      * Operator for comparing to other properties. Operators should always be
@@ -113,7 +117,7 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
      */
     @SuppressWarnings("unchecked")
     protected K getDefaultKey(@Nullable V value) {
-        return (K) this.getClass().getSimpleName().toLowerCase(Locale.ENGLISH);
+        return (K) defaultKeys.computeIfAbsent(this.getClass(), k -> this.getClass().getSimpleName().toLowerCase(Locale.ENGLISH));
     }
 
     /**
