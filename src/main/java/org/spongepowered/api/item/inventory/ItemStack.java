@@ -183,6 +183,14 @@ public interface ItemStack extends DataHolder, Translatable {
         Builder quantity(int quantity) throws IllegalArgumentException;
 
         /**
+         * Sets the ItemStack's quantity to represent any size to be used for
+         * querying inventories.
+         *
+         * @return This builder, for chaining
+         */
+        Builder anySize();
+
+        /**
          * Adds a {@link Key} and related {@link Object} value to apply to the
          * resulting {@link ItemStack}. Note that the resulting
          * {@link ItemStack} may not actually accept the provided {@code Key}
