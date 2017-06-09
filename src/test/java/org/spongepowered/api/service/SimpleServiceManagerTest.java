@@ -49,14 +49,14 @@ public class SimpleServiceManagerTest {
         this.manager = mock(PluginManager.class);
         this.testPluginContainer = mock(PluginContainer.class);
         when(this.testPluginContainer.getId()).thenReturn("TestPlugin");
-        when(this.manager.fromInstance(testPlugin)).thenReturn(Optional.of(this.testPluginContainer));
+        when(this.manager.fromInstance(this.testPlugin)).thenReturn(Optional.of(this.testPluginContainer));
 
         TestHooks.setInstance("eventManager", mock(EventManager.class));
     }
 
     @Test
     public void testRegisterService() {
-        SimpleServiceManager serviceManager = new SimpleServiceManager(manager);
+        SimpleServiceManager serviceManager = new SimpleServiceManager(this.manager);
 
         serviceManager.setProvider(this.testPlugin, TestInterface.class, new TestImplCow());
 
@@ -69,9 +69,9 @@ public class SimpleServiceManagerTest {
 
     @Test
     public void testDuplicateRegistrationAllowed() {
-        SimpleServiceManager serviceManager = new SimpleServiceManager(manager);
-        serviceManager.setProvider(testPlugin, TestInterface.class, new TestImplCow());
-        serviceManager.setProvider(testPlugin, TestInterface.class, new TestImplDog());
+        SimpleServiceManager serviceManager = new SimpleServiceManager(this.manager);
+        serviceManager.setProvider(this.testPlugin, TestInterface.class, new TestImplCow());
+        serviceManager.setProvider(this.testPlugin, TestInterface.class, new TestImplDog());
 
         assertEquals("woof", serviceManager.provideUnchecked(TestInterface.class).bark());
     }

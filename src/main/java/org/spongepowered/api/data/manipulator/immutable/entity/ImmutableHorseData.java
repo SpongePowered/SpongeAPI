@@ -35,7 +35,6 @@ import org.spongepowered.api.entity.living.animal.RideableHorse;
  * An {@link ImmutableDataManipulator} handling the various information for a
  * {@link RideableHorse} including {@link HorseColor}, {@link HorseStyle}.
  */
-@SuppressWarnings("deprecation")
 public interface ImmutableHorseData extends ImmutableDataManipulator<ImmutableHorseData, HorseData> {
 
     /**

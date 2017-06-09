@@ -25,7 +25,6 @@
 package org.spongepowered.api.util.weighted;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.Queries;

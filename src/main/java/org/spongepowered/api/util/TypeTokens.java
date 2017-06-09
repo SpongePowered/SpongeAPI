@@ -65,7 +65,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
-@SuppressWarnings("deprecation")
 public class TypeTokens {
 
     // SORTFIELDS:ON

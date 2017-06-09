@@ -25,7 +25,6 @@
 package org.spongepowered.api.world;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 
 /**
  * A flag of sorts that determines whether a block change will perform various

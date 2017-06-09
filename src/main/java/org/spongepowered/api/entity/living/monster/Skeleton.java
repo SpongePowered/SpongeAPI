@@ -24,15 +24,12 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.ArmorEquipable;
 import org.spongepowered.api.entity.living.Ranger;
 
 /**
  * Represents a Skeleton.
  */
-@SuppressWarnings("deprecation")
 public interface Skeleton extends Monster, ArmorEquipable, Ranger {
 
 }

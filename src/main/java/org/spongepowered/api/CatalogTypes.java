@@ -89,6 +89,7 @@ import org.spongepowered.api.world.weather.Weather;
  * {@link GameRegistry#getType(Class, String)} and
  * {@link GameRegistry#getAllOf(Class)}.
  */
+@SuppressWarnings("rawtypes")
 public final class CatalogTypes {
 
     // SORTFIELDS:ON

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;

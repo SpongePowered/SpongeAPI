@@ -39,7 +39,6 @@ import java.util.Optional;
  * @deprecated To be removed in future releases to avoid implementation bugs
  *     being part of the API.
  */
-@SuppressWarnings("deprecation")
 @Deprecated
 public class MemoryDataContainer extends MemoryDataView implements DataContainer {
 

@@ -290,7 +290,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
 
         }
 
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings({"unchecked", "rawtypes"})
         @Override
         public MatcherBuilder from(StateMatcher value) {
             reset();

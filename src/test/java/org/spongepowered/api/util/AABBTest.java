@@ -35,7 +35,6 @@ public class AABBTest {
 
     private static final Random RANDOM = new Random();
 
-    @SuppressWarnings("unused")
     @Test
     public void testConstructor() {
         final AABB aabb1 = new AABB(new Vector3d(1, 2, 3), new Vector3d(7, 10, 13));

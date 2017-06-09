@@ -51,7 +51,6 @@ import org.spongepowered.api.util.PEBKACException;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.net.InetSocketAddress;
@@ -106,7 +105,7 @@ public class SpongeEventFactoryTest {
     public Method method;
 
     @Test
-    public void testCreate() throws InvocationTargetException, IllegalAccessException {
+    public void testCreate() {
         try {
             // We only care about keeping extends around for the duration
             // of this particular event.

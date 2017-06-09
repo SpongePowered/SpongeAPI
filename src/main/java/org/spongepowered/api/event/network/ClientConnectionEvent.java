@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.network;
 
-import org.spongepowered.api.Platform;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
@@ -46,18 +45,18 @@ import java.net.InetAddress;
 /**
  * Represents an event fired during the login process.
  *
- * <p>Together with {@link SpawnEntityEvent}, these events represent
- * the progression of a {@link Player} from first authenticating, to being
- * fully loaded in the world.</p>
+ * <p>Together with {@link SpawnEntityEvent}, these events represent the
+ * progression of a {@link Player} from first authenticating, to being fully
+ * loaded in the world.</p>
  *
  * <p>The events are fired in the following order:</p>
  *
  * <p>#Auth -> #Login -> {@link SpawnEntityEvent} -> #Join</p>
  *
  * <p>{@link SpawnEntityEvent} is still fired for players, for consistency.
- * However, the player is not at a well-defined state at that point.
- * It's recommended to use the this event's subinterfaces to interact
- * with the player at well-defined moments during the connection process.</p>
+ * However, the player is not at a well-defined state at that point. It's
+ * recommended to use the this event's subinterfaces to interact with the player
+ * at well-defined moments during the connection process.</p>
  */
 public interface ClientConnectionEvent extends Event {
 
@@ -68,6 +67,7 @@ public interface ClientConnectionEvent extends Event {
      * <p>Note: This event is fired before #Login.</p>
      */
     interface Auth extends ClientConnectionEvent, MessageEvent, Cancellable {
+
         /**
          * Gets the {@link RemoteConnection} representing the client connection.
          *
@@ -89,17 +89,16 @@ public interface ClientConnectionEvent extends Event {
      *
      * <p>Note: This event is fired after #Auth and is NOT async. Any changes
      * required for the {@link Player}s {@link Transform} should be done during
-     * this event and NOT during #Join.
-     * </p>
+     * this event and NOT during #Join. </p>
      *
      * <p>If the registered {@link BanService} or {@link WhitelistService}
-     * indicates that a player should not be allowed to join
-     * ({@link GameProfile} or {@link InetAddress} has an ban, or is
-     * not on the whitelist), then this event will automatically cancelled by
-     * the {@link Platform.Component#IMPLEMENTATION 'game' plugin}, with the proper
-     * message set through {@link MessageEvent#setMessage(TextRepresentable)}. No action
-     * on the part of the registered {@link BanService} or
-     * {@link WhitelistService} is required for this to occur.
+     * indicates that a player should not be allowed to join (
+     * {@link GameProfile} or {@link InetAddress} has an ban, or is not on the
+     * whitelist), then this event will automatically cancelled by the
+     * implementation, with the proper message set through
+     * {@link MessageEvent#setMessage(TextRepresentable)}. No action on the part
+     * of the registered {@link BanService} or {@link WhitelistService} is
+     * required for this to occur.
      *
      * Plugins may uncancel the event to allow a client to join, regardless of
      * its ban/whitelist status.</p>
@@ -146,9 +145,8 @@ public interface ClientConnectionEvent extends Event {
      * Called when a {@link Player} joins the game {@link World} for the first
      * time after initial connection.
      *
-     * <p>The {@link SpawnEntityEvent} for the {@link Player} is fired after
-     * the #Login event. This event is fired after both.</p>
-     * </p>
+     * <p>The {@link SpawnEntityEvent} for the {@link Player} is fired after the
+     * #Login event. This event is fired after both.</p> </p>
      */
     interface Join extends ClientConnectionEvent, TargetPlayerEvent, MessageChannelEvent {}
 

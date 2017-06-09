@@ -27,7 +27,6 @@ package org.spongepowered.api.world.biome;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.weighted.SeededVariableAmount;
 import org.spongepowered.api.util.weighted.VariableAmount;

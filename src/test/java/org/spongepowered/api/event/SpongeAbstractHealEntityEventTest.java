@@ -80,7 +80,6 @@ public class SpongeAbstractHealEntityEventTest {
         assertThat(event.getOriginalFinalHealAmount(), is(closeTo(originalDamage, ERROR)));
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void testUseModifiers() {
         Entity targetEntity = mockParam(Entity.class);
@@ -119,7 +118,6 @@ public class SpongeAbstractHealEntityEventTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void testSetModifiers() {
         Entity targetEntity = mockParam(Entity.class);
 
@@ -164,7 +162,6 @@ public class SpongeAbstractHealEntityEventTest {
         assertThat(event.getModifiers(), is(Matchers.equalTo(Lists.newArrayList(HealthFunction.of(firstModifer, newFunction), originalFunctions.get(1)))));
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void testAddModifier() {
         Entity targetEntity = mockParam(Entity.class);
@@ -216,7 +213,6 @@ public class SpongeAbstractHealEntityEventTest {
         assertThat(event.getModifiers(), is(Matchers.equalTo(newFunctions)));
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void testModifiersApplicable() {
         Entity targetEntity = mockParam(Entity.class);

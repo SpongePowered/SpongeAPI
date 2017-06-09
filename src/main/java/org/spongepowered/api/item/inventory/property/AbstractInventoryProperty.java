@@ -40,6 +40,7 @@ import javax.annotation.Nullable;
  * @param <K> Key type, use {@link String} if no particular key type is required
  * @param <V> Value type
  */
+@SuppressWarnings("rawtypes")
 public abstract class AbstractInventoryProperty<K, V> implements InventoryProperty<K, V> {
 
     private static Map<Class<? extends AbstractInventoryProperty>, String> defaultKeys = new HashMap<>();

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.text.format;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.text.Text;
 
 import java.util.Optional;
@@ -79,7 +78,7 @@ public final class TextStyles {
     /**
      * A private class that represents the type of the {@link #NONE} text style.
      */
-    private static final class NoneTextStyle extends TextStyle.Base implements CatalogType {
+    private static final class NoneTextStyle extends TextStyle.Base {
 
         /**
          * Constructs a new {@link NoneTextStyle}.

@@ -276,21 +276,20 @@ public final class CommandFlags extends CommandElement {
                     return null;
                 }
                 return retStrings;
-            } else {
-                boolean complete = false;
-                Object state = args.getState();
-                try {
-                    element.parse(src, args, context);
-                } catch (ArgumentParseException ex) {
-                    complete = true;
-                }
-                if (!args.hasNext()) {
-                    complete = true;
-                }
-                if (complete) {
-                    args.setState(state);
-                    return element.complete(src, args, context);
-                }
+            }
+            boolean complete = false;
+            Object state = args.getState();
+            try {
+                element.parse(src, args, context);
+            } catch (ArgumentParseException ex) {
+                complete = true;
+            }
+            if (!args.hasNext()) {
+                complete = true;
+            }
+            if (complete) {
+                args.setState(state);
+                return element.complete(src, args, context);
             }
         }
         return null;

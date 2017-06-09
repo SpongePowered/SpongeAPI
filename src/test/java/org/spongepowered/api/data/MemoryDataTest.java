@@ -36,7 +36,6 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.spongepowered.api.Game;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.util.test.TestHooks;
 
@@ -48,7 +47,6 @@ import java.util.Set;
 
 public class MemoryDataTest {
 
-    @SuppressWarnings("unused")
     @Test
     public void testCreateDataView() {
         DataContainer.createNew();
@@ -107,7 +105,7 @@ public class MemoryDataTest {
             list.add(new SimpleData(i, 0.1 * i, "i", Lists.asList(number, new String[] {" foo", "bar"})));
         }
         container.set(of("SimpleData"), list);
-        String containerString = container.toString();
+        container.toString();
     }
 
     @Test
@@ -405,7 +403,7 @@ public class MemoryDataTest {
         main.set(DataQuery.of("SINGLE"), ImmutableList.of(data2));
         main.set(DataQuery.of("SUB"), values);
 
-        Map<?, ?> map = main.getMap(of()).get();
+        main.getMap(of()).get();
     }
 
 }
