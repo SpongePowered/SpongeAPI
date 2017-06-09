@@ -26,7 +26,6 @@ package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.TileEntityArchetype;
-import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;

@@ -38,6 +38,7 @@ public interface RconConnectionEvent extends Event {
      *
      * @return The {@link RconSource} responsible for the event
      */
+    @Override
     RconSource getSource();
 
     interface Connect extends RconConnectionEvent, Cancellable {}

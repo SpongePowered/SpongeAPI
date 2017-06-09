@@ -26,7 +26,6 @@ package org.spongepowered.api.world.extent;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
 
 import java.util.Collection;

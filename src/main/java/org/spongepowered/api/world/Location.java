@@ -621,7 +621,6 @@ public final class Location<E extends Extent> implements DataHolder {
      * <p>This will remove any extended block data at the given position.</p>
      * @return True if the block change was successful
      */
-    @SuppressWarnings("ConstantConditions")
     public boolean removeBlock() {
         return getExtent().setBlockType(getBlockPosition(), BlockTypes.AIR, BlockChangeFlag.ALL);
     }
