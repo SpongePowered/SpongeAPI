@@ -137,7 +137,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * <p>A value is still returned for columns in biomes which do not
      * receive precipitation.</p>
      *
-     * @return the y level that precipitation ends
+     * @return The y level that precipitation ends
      */
     int getPrecipitationLevel(int x, int z);
 
@@ -147,7 +147,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * <p>A value is still returned for columns in biomes which do not
      * receive precipitation.</p>
      *
-     * @return the y level that precipitation ends
+     * @return The y level that precipitation ends
      */
     default int getPrecipitationLevel(Vector2i column) {
         return this.getPrecipitationLevel(column.getX(), column.getY());
