@@ -134,7 +134,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     /**
      * Returns the y level that precipitation ends falling in the given column.
      *
-     * <p>A value is still returned for columns in biomes which do not receive precipitation.</p>
+     * <p>A value is still returned for columns in biomes which do not
+     * receive precipitation.</p>
      *
      * @return the y level that precipitation ends
      */
@@ -143,7 +144,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     /**
      * Returns the y level that precipitation ends falling in the given column.
      *
-     * <p>A value is still returned for columns in biomes which do not receive precipitation.</p>
+     * <p>A value is still returned for columns in biomes which do not
+     * receive precipitation.</p>
      *
      * @return the y level that precipitation ends
      */
