@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.CatalogType;
@@ -43,7 +44,6 @@ import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.util.Cycleable;
-import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -96,13 +96,13 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
     BlockType getType();
 
     /**
-     * Applies extended properties for the current @{link BlockType} if any to 
+     * Applies extended properties for the current @{link BlockType} if any to
      * the current {@link BlockState}. This usually is gathered from surrounding
      * {@link BlockState}'s.
-     * 
+     *
      * <p>Note: This should only be called for live {@link BlockState}'s at
      * a specific {@link Location} for accurate results.</p>
-     * 
+     *
      * <p>
      * Examples of some extended properties are:
      * </p>
@@ -112,7 +112,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
      *     <li>occupied status for beds</li>
      *     <li>fence connections</li>
      * </ul>
-     * 
+     *
      * @param location The location used to search for extended properties
      * @return The blockstate with extended properties included if any
      */
@@ -290,7 +290,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
 
         }
 
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings({"unchecked", "rawtypes"})
         @Override
         public MatcherBuilder from(StateMatcher value) {
             reset();
@@ -336,7 +336,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
             return this.type.getAllBlockStates()
                     .stream()
                     .filter(this::matches)
-                    .collect(GuavaCollectors.toImmutableList());
+                    .collect(ImmutableList.toImmutableList());
         }
 
         /**
@@ -388,7 +388,7 @@ public interface BlockState extends ImmutableDataHolder<BlockState>, DirectionRe
 
         @Override
         public String toString() {
-            return Objects.toStringHelper(this)
+            return MoreObjects.toStringHelper(this)
                     .add("type", this.type)
                     .add("traits", this.traits)
                     .add("values", this.values)

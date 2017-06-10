@@ -29,6 +29,7 @@ import static org.spongepowered.api.command.args.GenericArguments.firstParsing;
 import static org.spongepowered.api.command.args.GenericArguments.optional;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.command.CommandCallable;
@@ -445,7 +446,7 @@ public final class CommandSpec implements CommandCallable {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("args", this.args)
                 .add("executor", this.executor)
                 .add("description", this.description)

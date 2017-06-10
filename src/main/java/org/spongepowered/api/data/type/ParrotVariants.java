@@ -22,5 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.statistic.achievement;
+package org.spongepowered.api.data.type;
+
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
+/**
+ * An enumeration of known vanilla {@link OcelotType}s.
+ */
+public final class ParrotVariants {
+
+    // SORTFIELDS:ON
+
+    public static final ParrotVariant BLUE = DummyObjectProvider.createFor(ParrotVariant.class, "BLUE");
+
+    public static final ParrotVariant CYAN = DummyObjectProvider.createFor(ParrotVariant.class, "CYAN");
+
+    public static final ParrotVariant GRAY = DummyObjectProvider.createFor(ParrotVariant.class, "GRAY");
+
+    public static final ParrotVariant GREEN = DummyObjectProvider.createFor(ParrotVariant.class, "GREEN");
+
+    public static final ParrotVariant RED = DummyObjectProvider.createFor(ParrotVariant.class, "RED");
+
+    // SORTFIELDS:OFF
+
+    private ParrotVariants() {
+    }
+}

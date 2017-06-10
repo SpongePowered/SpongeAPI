@@ -150,7 +150,7 @@ public final class RespawnLocation implements DataSerializable {
 
     @Override
     public String toString() {
-        return com.google.common.base.Objects.toStringHelper(this)
+        return com.google.common.base.MoreObjects.toStringHelper(this)
                 .add("worldId", this.worldId)
                 .add("position", this.position)
                 .add("forced", this.forced)

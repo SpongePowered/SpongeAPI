@@ -64,7 +64,7 @@ public class CoerceTest {
         assertTrue(!nullBoolean.isPresent());
 
         Optional<Boolean> invalidBoolean = Coerce.asBoolean("foo");
-        assertTrue(!nullBoolean.isPresent());
+        assertTrue(!invalidBoolean.isPresent());
     }
 
     @Test

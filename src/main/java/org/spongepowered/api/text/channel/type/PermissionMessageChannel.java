@@ -26,11 +26,11 @@ package org.spongepowered.api.text.channel.type;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.service.permission.PermissionService;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.util.GuavaCollectors;
 
 import java.util.Collection;
 import java.util.Map;
@@ -71,7 +71,7 @@ public class PermissionMessageChannel implements MessageChannel {
                         .filter(Map.Entry::getValue)
                         .map(entry -> entry.getKey().getCommandSource().orElse(null))
                         .filter(source -> source != null))
-                .collect(GuavaCollectors.toImmutableSet());
+                .collect(ImmutableSet.toImmutableSet());
     }
 
 }

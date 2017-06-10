@@ -80,7 +80,6 @@ public class SpongeAbstractDamageEntityEventTest {
         assertThat(event.getOriginalFinalDamage(), is(closeTo(originalDamage, ERROR)));
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void testUseModifiers() {
         Entity targetEntity = mockParam(Entity.class);
@@ -119,7 +118,6 @@ public class SpongeAbstractDamageEntityEventTest {
         assertThat(event.getOriginalFunctions(), is(Matchers.equalTo(originalFunctions)));
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void testSetModifiers() {
         Entity targetEntity = mockParam(Entity.class);
@@ -165,7 +163,6 @@ public class SpongeAbstractDamageEntityEventTest {
         assertThat(event.getModifiers(), is(Matchers.equalTo(Lists.newArrayList(DamageFunction.of(firstModifer, newFunction), originalFunctions.get(1)))));
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void testAddModifier() {
         Entity targetEntity = mockParam(Entity.class);
@@ -217,7 +214,6 @@ public class SpongeAbstractDamageEntityEventTest {
         assertThat(event.getModifiers(), is(Matchers.equalTo(newFunctions)));
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void testModifiersApplicable() {
         Entity targetEntity = mockParam(Entity.class);

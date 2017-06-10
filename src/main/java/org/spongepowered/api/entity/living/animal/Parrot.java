@@ -22,26 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.AchievementData;
-import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
-import org.spongepowered.api.statistic.achievement.Achievement;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.mutable.entity.ParrotData;
+import org.spongepowered.api.data.type.ParrotVariant;
+import org.spongepowered.api.data.value.mutable.Value;
 
 /**
- * An {@link ImmutableDataManipulator} containing data related to having earned
- * {@link Achievement}s. The use of {@link ImmutableSetValue} is to prevent any
- * possible duplication when it comes to granting/removing {@link Achievement}s
- * without the worry of losing track.
+ * Represents a parrot.
  */
-public interface ImmutableAchievementData extends ImmutableDataManipulator<ImmutableAchievementData, AchievementData> {
+public interface Parrot extends Animal {
 
     /**
-     * Gets the {@link ImmutableSetValue} for the {@link Achievement}s earned.
+     * Gets a copy of the current {@link ParrotData} being represented by
+     * this {@link Parrot}.
      *
-     * @return The immutable set value of achievements
+     * @return A copy of the current parrot data
      */
-    ImmutableSetValue<Achievement> achievements();
+    default ParrotData getParrotData() {
+        return this.get(ParrotData.class).get();
+    }
+
+    /**
+     * Gets the {@link Value} for the {@link ParrotVariant} of this
+     * {@link Parrot}.
+     *
+     * @return The parrot variant value
+     */
+    default Value<ParrotVariant> variant() {
+        return this.getValue(Keys.PARROT_VARIANT).get();
+    }
 
 }

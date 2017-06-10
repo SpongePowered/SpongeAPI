@@ -69,7 +69,7 @@ public class CauseTest {
     @Test(expected = NullPointerException.class)
     public void testWithNullCause() {
         final Cause old = Cause.source("foo").build();
-        final Cause newCause = old.with(null);
+        old.with(null);
     }
 
     @Test
@@ -131,7 +131,7 @@ public class CauseTest {
         final Player playerB = Mockito.mock(Player.class);
         final NamedCause namedA = NamedCause.of(NamedCause.OWNER, player);
         final NamedCause namedB = NamedCause.of(NamedCause.OWNER, playerB);
-        final Cause cause = Cause.of(namedA, namedB);
+        Cause.of(namedA, namedB);
         // The line above should throw an exception!
     }
 
@@ -199,7 +199,6 @@ public class CauseTest {
         User user = Mockito.mock(User.class);
         User owner = Mockito.mock(User.class);
         final Cause enhanced = cause.with(NamedCause.of(NamedCause.NOTIFIER, user)).with(NamedCause.of(NamedCause.OWNER, owner));
-        final Map<String, Object> causes = enhanced.getNamedCauses();
 
         final Optional<User> optional = enhanced.first(User.class);
         assertThat(optional.isPresent(), is(true));

@@ -26,7 +26,7 @@ package org.spongepowered.api.text.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextElement;
 
@@ -83,7 +83,7 @@ public abstract class TextAction<R> implements TextElement {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .addValue(this.result)
                 .toString();
     }

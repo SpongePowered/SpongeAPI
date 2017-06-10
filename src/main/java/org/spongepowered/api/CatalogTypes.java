@@ -62,7 +62,6 @@ import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMo
 import org.spongepowered.api.service.economy.transaction.TransactionType;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticType;
-import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.chat.ChatVisibility;
 import org.spongepowered.api.text.format.TextColor;
@@ -90,11 +89,10 @@ import org.spongepowered.api.world.weather.Weather;
  * {@link GameRegistry#getType(Class, String)} and
  * {@link GameRegistry#getAllOf(Class)}.
  */
+@SuppressWarnings("rawtypes")
 public final class CatalogTypes {
 
     // SORTFIELDS:ON
-
-    public static final Class<Achievement> ACHIEVEMENT = Achievement.class;
 
     public static final Class<AITaskType> AI_TASK_TYPE = AITaskType.class;
 
@@ -215,6 +213,8 @@ public final class CatalogTypes {
     public static final Class<ObjectiveDisplayMode> OBJECTIVE_DISPLAY_MODE = ObjectiveDisplayMode.class;
 
     public static final Class<OcelotType> OCELOT_TYPE = OcelotType.class;
+
+    public static final Class<ParrotVariant> PARROT_VARIANT = ParrotVariant.class;
 
     public static final Class<ParticleOption> PARTICLE_OPTION = ParticleOption.class;
 

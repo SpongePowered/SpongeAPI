@@ -22,37 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.entity;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableHorseData;
-import org.spongepowered.api.data.type.HorseColor;
-import org.spongepowered.api.data.type.HorseStyle;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.living.animal.RideableHorse;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.living.animal.Parrot;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * An {@link DataManipulator} handling the various information for a
- * {@link RideableHorse} including {@link HorseColor}, {@link HorseStyle}.
+ * Represents the variant of a {@link Parrot}.
  */
-public interface HorseData extends DataManipulator<HorseData, ImmutableHorseData> {
-
-    /**
-     * Gets a {@link Value} for the {@link HorseColor}.
-     *
-     * @return The value for the horse color
-     * @see Keys#HORSE_COLOR
-     */
-    Value<HorseColor> color();
-
-
-    /**
-     * Gets a {@link Value} for the {@link HorseStyle}.
-     *
-     * @return The value for the horse style
-     * @see Keys#HORSE_STYLE
-     */
-    Value<HorseStyle> style();
+@CatalogedBy(ParrotVariants.class)
+public interface ParrotVariant extends CatalogType {
 
 }

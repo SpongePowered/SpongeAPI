@@ -22,25 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.achievement;
+package org.spongepowered.api.data.manipulator.mutable.tileentity;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
-import org.spongepowered.api.event.message.MessageChannelEvent;
-import org.spongepowered.api.statistic.achievement.Achievement;
+import org.spongepowered.api.block.tileentity.Bed;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableBedData;
+import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.value.mutable.Value;
 
 /**
- * Represents an event that is called when an {@link Achievement} is granted.
+ * A {@link DataManipulator} handling the various data of a
+ * {@link Bed}.
  */
-public interface GrantAchievementEvent extends MessageChannelEvent, Cancellable {
+public interface BedData extends DataManipulator<BedData, ImmutableBedData> {
 
     /**
-     * Gets the achievement being targeted.
+     * Gets the {@link Value} for the {@link DyeColor color}.
      *
-     * @return The achievement
+     * @return The value for the color
      */
-    Achievement getAchievement();
-
-    interface TargetPlayer extends GrantAchievementEvent, TargetPlayerEvent {}
+    Value<DyeColor> color();
 
 }

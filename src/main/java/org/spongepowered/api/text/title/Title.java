@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.text.title;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.spongepowered.api.text.Text;
 
@@ -210,7 +211,7 @@ public final class Title {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .omitNullValues()
                 .add("title", this.title.orElse(null))
                 .add("subtitle", this.subtitle.orElse(null))
@@ -549,7 +550,7 @@ public final class Title {
 
         @Override
         public String toString() {
-            return Objects.toStringHelper(this)
+            return MoreObjects.toStringHelper(this)
                     .omitNullValues()
                     .add("title", this.title)
                     .add("subtitle", this.subtitle)

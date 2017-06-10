@@ -350,7 +350,7 @@ public final class Color implements DataSerializable {
 
     @Override
     public String toString() {
-        return com.google.common.base.Objects.toStringHelper(this)
+        return com.google.common.base.MoreObjects.toStringHelper(this)
             .add("red", this.getRed())
             .add("green", this.getGreen())
             .add("blue", this.getBlue())

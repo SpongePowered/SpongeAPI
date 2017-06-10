@@ -62,7 +62,7 @@ public class ListenerProcessor extends AbstractProcessor {
         if (ProcessorUtils.contains(annotations, Listener.class)) {
             for (Element e : roundEnv.getElementsAnnotatedWith(Listener.class)) {
                 if (e.getKind() != ElementKind.METHOD) {
-                    processingEnv.getMessager().printMessage(ERROR, "Invalid element of type " + e.getKind() + " annotated with @Listener", e);
+                    this.processingEnv.getMessager().printMessage(ERROR, "Invalid element of type " + e.getKind() + " annotated with @Listener", e);
                     continue;
                 }
                 ExecutableElement method = (ExecutableElement) e;
@@ -94,8 +94,8 @@ public class ListenerProcessor extends AbstractProcessor {
     }
 
     private boolean isTypeSubclass(Element typedElement, String subclass) {
-        Elements elements = processingEnv.getElementUtils();
-        Types types = processingEnv.getTypeUtils();
+        Elements elements = this.processingEnv.getElementUtils();
+        Types types = this.processingEnv.getTypeUtils();
 
         TypeMirror event = types.getDeclaredType(elements.getTypeElement(subclass));
         return types.isAssignable(typedElement.asType(), event);

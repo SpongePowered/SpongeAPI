@@ -22,37 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.entity;
+package org.spongepowered.api.data.manipulator.immutable.tileentity;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableHorseData;
-import org.spongepowered.api.data.type.HorseColor;
-import org.spongepowered.api.data.type.HorseStyle;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.living.animal.RideableHorse;
+import org.spongepowered.api.block.tileentity.Bed;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.BedData;
+import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
 /**
- * An {@link DataManipulator} handling the various information for a
- * {@link RideableHorse} including {@link HorseColor}, {@link HorseStyle}.
+ * An {@link ImmutableDataManipulator} handling the various data of a
+ * {@link Bed}.
  */
-public interface HorseData extends DataManipulator<HorseData, ImmutableHorseData> {
+public interface ImmutableBedData extends ImmutableDataManipulator<ImmutableBedData, BedData> {
 
     /**
-     * Gets a {@link Value} for the {@link HorseColor}.
+     * Gets the {@link ImmutableValue} for the {@link DyeColor color}.
      *
-     * @return The value for the horse color
-     * @see Keys#HORSE_COLOR
+     * @return The immutable value for the color
      */
-    Value<HorseColor> color();
-
-
-    /**
-     * Gets a {@link Value} for the {@link HorseStyle}.
-     *
-     * @return The value for the horse style
-     * @see Keys#HORSE_STYLE
-     */
-    Value<HorseStyle> style();
+    ImmutableValue<DyeColor> color();
 
 }

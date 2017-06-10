@@ -22,37 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.entity;
+package org.spongepowered.api.block.tileentity;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableHorseData;
-import org.spongepowered.api.data.type.HorseColor;
-import org.spongepowered.api.data.type.HorseStyle;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.BedData;
+import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.living.animal.RideableHorse;
 
 /**
- * An {@link DataManipulator} handling the various information for a
- * {@link RideableHorse} including {@link HorseColor}, {@link HorseStyle}.
+ * Represents a Bed {@link TileEntity}.
  */
-public interface HorseData extends DataManipulator<HorseData, ImmutableHorseData> {
+public interface Bed extends TileEntity {
 
     /**
-     * Gets a {@link Value} for the {@link HorseColor}.
+     * Gets the {@link BedData data} of this {@link Bed bed}.
      *
-     * @return The value for the horse color
-     * @see Keys#HORSE_COLOR
+     * @return The current bed data for this bed
      */
-    Value<HorseColor> color();
-
+    default BedData getBedData() {
+        return this.get(BedData.class).get();
+    }
 
     /**
-     * Gets a {@link Value} for the {@link HorseStyle}.
+     * Gets the {@link Value} for the {@link DyeColor color}.
      *
-     * @return The value for the horse style
-     * @see Keys#HORSE_STYLE
+     * @return The value for the color
      */
-    Value<HorseStyle> style();
+    default Value<DyeColor> color() {
+        return this.getValue(Keys.DYE_COLOR).get();
+    }
 
 }

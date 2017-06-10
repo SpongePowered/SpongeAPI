@@ -760,7 +760,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      */
     @SuppressWarnings("unchecked")
     public static <E extends Extent> Predicate<BlockRayHit<E>> allFilter() {
-        return (Predicate<BlockRayHit<E>>) ALL_FILTER;
+        return ALL_FILTER;
     }
 
     /**
@@ -775,7 +775,7 @@ public class BlockRay<E extends Extent> implements Iterator<BlockRayHit<E>> {
      */
     @SuppressWarnings("unchecked")
     public static <E extends Extent> Predicate<BlockRayHit<E>> onlyAirFilter() {
-        return (Predicate<BlockRayHit<E>>) ONLY_AIR_FILTER;
+        return ONLY_AIR_FILTER;
     }
 
     /**
