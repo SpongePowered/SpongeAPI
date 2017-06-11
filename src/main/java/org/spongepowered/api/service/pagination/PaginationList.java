@@ -101,14 +101,17 @@ public interface PaginationList {
 
     /**
      * Send the constructed pagination list to the given source.
+     * Out of bounds page will result in a friendly error message being displayed to the source.
+     * e.g. 'page 0 does not exist' or 'page 10 is too high'
      *
      * @param source The source to send to
-     * @param page The page to send
+     * @param page The page to send (starts at index 1)
      */
     void sendTo(MessageReceiver source, int page);
 
     /**
      * Send the constructed pagination list to the given source.
+     * Starts on page 1.
      *
      * @param source The source to send to
      */
