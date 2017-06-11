@@ -196,7 +196,7 @@ public final class CommandSpec implements CommandCallable {
 
         /**
          * Sets an extended description to use in longer help listings for this
-         * command. Will be appended to the short description and the command's
+         * command. Should be appended to the short description and the command's
          * usage.
          *
          * @param extendedDescription The description to set
@@ -399,9 +399,7 @@ public final class CommandSpec implements CommandCallable {
     }
 
     /**
-     * Return a longer description for this command. This description is
-     * composed of at least all present of the short description, the usage
-     * statement, and the extended description
+     * Returns the extended description
      *
      * @param source The source to get the extended description for
      * @return the extended description
@@ -409,16 +407,7 @@ public final class CommandSpec implements CommandCallable {
     @Override
     public Optional<Text> getHelp(CommandSource source) {
         checkNotNull(source, "source");
-        Text.Builder builder = Text.builder();
-        Optional<Text> desc = getShortDescription(source);
-        if (desc.isPresent()) {
-            builder.append(desc.get(), Text.NEW_LINE);
-        }
-        builder.append(getUsage(source));
-        if (this.extendedDescription != null) {
-            builder.append(Text.NEW_LINE, this.extendedDescription);
-        }
-        return Optional.of(builder.build());
+        return Optional.ofNullable(extendedDescription);
     }
 
     @Override
