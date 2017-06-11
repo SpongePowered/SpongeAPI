@@ -345,7 +345,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> addTranslation(Vector3d translation) {
         checkNotNull(translation, "translation");
-        return new Transform<>(getExtent(), getPosition().add(translation));
+        return new Transform<>(getExtent(), getPosition().add(translation), getRotation(), getScale());
     }
 
     /**
