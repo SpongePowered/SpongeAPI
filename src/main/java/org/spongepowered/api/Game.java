@@ -108,7 +108,9 @@ public interface Game {
      *
      * @return The item dictionary, or empty if unsupported
      */
-    Optional<GameDictionary> getGameDictionary();
+    default Optional<GameDictionary> getGameDictionary() {
+        return Optional.empty();
+    }
 
 
     /**
