@@ -329,15 +329,23 @@ public final class DataTransactionResult {
      *
      * @param consumer The consumer to call
      */
-    public void ifSucessful(Consumer<List<ImmutableValue<?>>> consumer) {
+    public void ifSuccessful(Consumer<List<ImmutableValue<?>>> consumer) {
         if (isSuccessful()) {
-            try {
-                consumer.accept(this.success);
-            } catch (Exception e) {
-                // Because Callable throws exception in the signature.....
-                new RuntimeException("Something went wrong trying to call a callable", e).printStackTrace();
-            }
+            consumer.accept(this.success);
         }
+    }
+
+    /**
+     * If this result of {@link #isSuccessful()} returns {@code true},
+     * the provided {@link Consumer} is called provided a list of all
+     * "successful" data as retrieved from {@link #getSuccessfulData()}.
+     *
+     * @param consumer The consumer to call
+     * @deprecated Use {@link #ifSuccessful(Consumer)} instead
+     */
+    @Deprecated
+    public void ifSucessful(Consumer<List<ImmutableValue<?>>> consumer) {
+        ifSuccessful(consumer);
     }
 
     /**
