@@ -34,10 +34,21 @@ public interface ExtentBufferFactory {
     /**
      * Returns a new biome buffer of the desired size.
      *
-     * @param size The size of the buffer on x and z (y in the vector)
+     * @param size The size of the buffer on x, y, and z.
      * @return A new biome buffer
      */
-    MutableBiomeVolume createBiomeBuffer(Vector3i size);
+    default MutableBiomeVolume createBiomeBuffer(Vector3i size) {
+        return createBiomeBuffer(Vector3i.ZERO, size);
+    }
+
+    /**
+     * Returns a new biome buffer of the desired size and minimum position.
+     *
+     * @param min The minimum point of the buffer.
+     * @param size The size of the buffer on x, y, and z.
+     * @return A new biome buffer
+     */
+    MutableBiomeVolume createBiomeBuffer(Vector3i min, Vector3i size);
 
     /**
      * Returns a new biome buffer of the desired size.
@@ -52,13 +63,40 @@ public interface ExtentBufferFactory {
     }
 
     /**
+     * Returns a new biome buffer of the desired size and minimum position.
+     *
+     * @param xMin The minimum point of the buffer on x
+     * @param yMin The minimum point of the buffer on y
+     * @param zMin The minimum point of the buffer on z
+     * @param xSize The size of the buffer on x
+     * @param ySize The size of the buffer on y
+     * @param zSize The size of the buffer on z
+     * @return A new biome buffer
+     */
+    default MutableBiomeVolume createBiomeBuffer(int xMin, int yMin, int zMin, int xSize, int ySize, int zSize) {
+        return createBiomeBuffer(new Vector3i(xMin, yMin, zMin), new Vector3i(xSize, ySize, zSize));
+    }
+
+    /**
      * Returns a new biome buffer of the desired size. This buffer is thread
      * safe.
      *
-     * @param size The size of the buffer on x and z (y in the vector)
+     * @param size The size of the buffer on x, y, and z.
      * @return A new biome buffer
      */
-    MutableBiomeVolume createThreadSafeBiomeBuffer(Vector3i size);
+    default MutableBiomeVolume createThreadSafeBiomeBuffer(Vector3i size) {
+        return createThreadSafeBiomeBuffer(Vector3i.ZERO, size);
+    }
+
+    /**
+     * Returns a new biome buffer of the desired size an minimum position. This
+     * buffer is thread safe.
+     *
+     * @param min The minimum point of the buffer.
+     * @param size The size of the buffer on x, y, and z.
+     * @return A new biome buffer
+     */
+    MutableBiomeVolume createThreadSafeBiomeBuffer(Vector3i min, Vector3i size);
 
     /**
      * Returns a new biome buffer of the desired size. This buffer is thread
@@ -74,12 +112,39 @@ public interface ExtentBufferFactory {
     }
 
     /**
+     * Returns a new biome buffer of the desired size. This buffer is thread
+     * safe.
+     *
+     * @param xMin The minimum point of the buffer on x
+     * @param yMin The minimum point of the buffer on y
+     * @param zMin The minimum point of the buffer on z
+     * @param xSize The size of the buffer on x
+     * @param ySize The size of the buffer on y
+     * @param zSize The size of the buffer on z
+     * @return A new biome buffer
+     */
+    default MutableBiomeVolume createThreadSafeBiomeBuffer(int xMin, int yMin, int zMin, int xSize, int ySize, int zSize) {
+        return createThreadSafeBiomeBuffer(new Vector3i(xMin, yMin, zMin), new Vector3i(xSize, ySize, zSize));
+    }
+
+    /**
      * Returns a new block buffer of the desired size.
      *
-     * @param size The size of the buffer on x, y and z
+     * @param size The size of the buffer on x, y, and z
      * @return A new block buffer
      */
-    MutableBlockVolume createBlockBuffer(Vector3i size);
+    default MutableBlockVolume createBlockBuffer(Vector3i size) {
+        return createBlockBuffer(Vector3i.ZERO, size);
+    }
+
+    /**
+     * Returns a new block buffer of the desired size and minimum position.
+     *
+     * @param min The minimum point of the buffer.
+     * @param size The size of the buffer on x, y, and z
+     * @return A new block buffer
+     */
+    MutableBlockVolume createBlockBuffer(Vector3i min, Vector3i size);
 
     /**
      * Returns a new block buffer of the desired size.
@@ -94,13 +159,40 @@ public interface ExtentBufferFactory {
     }
 
     /**
+     * Returns a new block buffer of the desired size and minimum position.
+     *
+     * @param xMin The minimum point of the buffer on x
+     * @param yMin The minimum point of the buffer on y
+     * @param zMin The minimum point of the buffer on z
+     * @param xSize The size of the buffer on x
+     * @param ySize The size of the buffer on y
+     * @param zSize The size of the buffer on z
+     * @return A new block buffer
+     */
+    default MutableBlockVolume createBlockBuffer(int xMin, int yMin, int zMin, int xSize, int ySize, int zSize) {
+        return createBlockBuffer(new Vector3i(xMin, yMin, zMin), new Vector3i(xSize, ySize, zSize));
+    }
+
+    /**
      * Returns a new block buffer of the desired size. This buffer is thread
      * safe.
      *
-     * @param size The size of the buffer on x, y and z
+     * @param size The size of the buffer on x, y, and z
      * @return A new block buffer
      */
-    MutableBlockVolume createThreadSafeBlockBuffer(Vector3i size);
+    default MutableBlockVolume createThreadSafeBlockBuffer(Vector3i size) {
+        return createThreadSafeBlockBuffer(Vector3i.ZERO, size);
+    }
+
+    /**
+     * Returns a new block buffer of the desired size and minimum position. This
+     * buffer is thread safe.
+     *
+     * @param min The minimum point of the buffer.
+     * @param size The size of the buffer on x, y, and z
+     * @return A new block buffer
+     */
+    MutableBlockVolume createThreadSafeBlockBuffer(Vector3i min, Vector3i size);
 
     /**
      * Returns a new block buffer of the desired size. This buffer is thread
@@ -113,6 +205,22 @@ public interface ExtentBufferFactory {
      */
     default MutableBlockVolume createThreadSafeBlockBuffer(int xSize, int ySize, int zSize) {
         return createThreadSafeBlockBuffer(new Vector3i(xSize, ySize, zSize));
+    }
+
+    /**
+     * Returns a new block buffer of the desired size and minimum position. This
+     * buffer is thread safe.
+     *
+     * @param xMin The minimum point of the buffer on x
+     * @param yMin The minimum point of the buffer on y
+     * @param zMin The minimum point of the buffer on z
+     * @param xSize The size of the buffer on x
+     * @param ySize The size of the buffer on y
+     * @param zSize The size of the buffer on z
+     * @return A new block buffer
+     */
+    default MutableBlockVolume createThreadSafeBlockBuffer(int xMin, int yMin, int zMin, int xSize, int ySize, int zSize) {
+        return createThreadSafeBlockBuffer(new Vector3i(xMin, yMin, zMin), new Vector3i(xSize, ySize, zSize));
     }
 
     /**
