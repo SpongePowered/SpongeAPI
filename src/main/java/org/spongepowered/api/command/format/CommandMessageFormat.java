@@ -22,42 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.command.format;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.translation.locale.Locales;
-
-import java.util.Locale;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Something that traditionally executes commands, can receive messages and
- * can have permissions associated with them.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- *
- * <p>Note that while command sources are typically associated with a command,
- * they may not be the direct <em>cause</em> of a command invocation</p>
+ * Defines a standard format for command messages.
  */
-public interface CommandSource extends MessageReceiver, Subject {
+@CatalogedBy(CommandMessageFormats.class)
+public interface CommandMessageFormat extends CatalogType {
 
     /**
-     * Gets the name identifying this command source.
+     * Applies the format to the provided text.
      *
-     * @return The name of this command source
+     * @param text The {@link Text} to apply the format to
+     * @return The formatted text
      */
-    String getName();
-
-    /**
-     * Gets the locale used by this command source. If this
-     * {@link CommandSource} does have a {@link Locale} configured or does not
-     * support configuring a {@link Locale}, {@link Locales#DEFAULT} is used.
-     *
-     * @return The locale used by this command source
-     */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
-    }
+    Text applyFormat(Text text);
 
 }

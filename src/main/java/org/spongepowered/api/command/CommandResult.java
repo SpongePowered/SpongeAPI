@@ -24,60 +24,56 @@
  */
 package org.spongepowered.api.command;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.ResettableBuilder;
+
 import java.util.Optional;
+import java.util.OptionalInt;
 
 import javax.annotation.Nullable;
 
 /**
  * Represents the result of a command in Sponge.
  */
-public class CommandResult {
-    private static final CommandResult EMPTY = builder().build();
-    private static final CommandResult SUCCESS = builder().successCount(1).build();
-    private final Optional<Integer> successCount;
-    private final Optional<Integer> affectedBlocks;
-    private final Optional<Integer> affectedEntities;
-    private final Optional<Integer> affectedItems;
-    private final Optional<Integer> queryResult;
+public interface CommandResult {
 
     /**
-     * Returns a {@link Builder}.
+     * Creates a builder that creates {@link CommandResult}s.
      *
-     * @return A new command result builder
+     * @return The {@link Builder}
      */
-    public static Builder builder() {
-        return new Builder();
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
     }
 
     /**
-     * Returns a new {@link CommandResult} indicating that a command was
-     * processed.
+     * Builds a result that indicates successes.
      *
-     * @return The command result
+     * @return The {@link CommandResult}
      */
-    public static CommandResult empty() {
-        return EMPTY;
+    static CommandResult success() {
+        return builder().successCount(1).build();
     }
 
     /**
-     * Returns a result indicating the command was processed with a single
-     * success.
+     * Builds an empty result.
      *
-     * @return The result
+     * @return The {@link CommandResult}
      */
-    public static CommandResult success() {
-        return SUCCESS;
+    static CommandResult empty() {
+        return builder().build();
     }
 
     /**
-     * Returns a result indicating the command was processed with a single
-     * success.
+     * Builds an empty result that will prompt the command manager to send an
+     * error message without throwing an exception.
      *
-     * @param count The success count
-     * @return The result
+     * @param errorMessage The error message to send
+     * @return The {@link CommandResult}
      */
-    public static CommandResult successCount(int count) {
-        return builder().successCount(count).build();
+    static CommandResult error(Text errorMessage) {
+        return builder().error(errorMessage).build();
     }
 
     /**
@@ -87,7 +83,7 @@ public class CommandResult {
      * @param count The amount of blocks affected
      * @return The result
      */
-    public static CommandResult affectedBlocks(int count) {
+    static CommandResult withAffectedBlocks(int count) {
         return builder().affectedBlocks(count).build();
     }
 
@@ -98,7 +94,7 @@ public class CommandResult {
      * @param count The amount of entities affected
      * @return The result
      */
-    public static CommandResult affectedEntities(int count) {
+    static CommandResult withAffectedEntities(int count) {
         return builder().affectedEntities(count).build();
     }
 
@@ -109,7 +105,7 @@ public class CommandResult {
      * @param count The amount of items affected
      * @return The result
      */
-    public static CommandResult affectedItems(int count) {
+    static CommandResult withAffectedItems(int count) {
         return builder().affectedItems(count).build();
     }
 
@@ -120,36 +116,18 @@ public class CommandResult {
      * @param count The amount of queries
      * @return The result
      */
-    public static CommandResult queryResult(int count) {
+    static CommandResult withQueryResult(int count) {
         return builder().queryResult(count).build();
     }
 
-    /**
-     * Constructs a new command result.
-     *
-     * @param successCount The success count
-     * @param affectedBlocks The number of affected blocks
-     * @param affectedEntities The number of affected entities
-     * @param affectedItems The number of affected items
-     * @param queryResult The query result
-     */
-    CommandResult(@Nullable Integer successCount, @Nullable Integer affectedBlocks, @Nullable Integer affectedEntities,
-            @Nullable Integer affectedItems, @Nullable Integer queryResult) {
-        this.successCount = Optional.ofNullable(successCount);
-        this.affectedBlocks = Optional.ofNullable(affectedBlocks);
-        this.affectedEntities = Optional.ofNullable(affectedEntities);
-        this.affectedItems = Optional.ofNullable(affectedItems);
-        this.queryResult = Optional.ofNullable(queryResult);
-    }
+    Optional<Text> getErrorMessage();
 
     /**
      * Gets the success count of the command.
      *
      * @return The success count of the command
      */
-    public Optional<Integer> getSuccessCount() {
-        return this.successCount;
-    }
+    OptionalInt successCount();
 
     /**
      * Gets the number of blocks affected by the command.
@@ -157,9 +135,7 @@ public class CommandResult {
      * @return The number of blocks affected by the command, if such a count
      *         exists
      */
-    public Optional<Integer> getAffectedBlocks() {
-        return this.affectedBlocks;
-    }
+    OptionalInt affectedBlocks();
 
     /**
      * Gets the number of entities affected by the command.
@@ -167,9 +143,7 @@ public class CommandResult {
      * @return The number of entities affected by the command, if such a count
      *         exists
      */
-    public Optional<Integer> getAffectedEntities() {
-        return this.affectedEntities;
-    }
+    OptionalInt affectedEntities();
 
     /**
      * Gets the number of items affected by the command.
@@ -177,9 +151,7 @@ public class CommandResult {
      * @return The number of items affected by the command, if such a count
      *         exists
      */
-    public Optional<Integer> getAffectedItems() {
-        return this.affectedItems;
-    }
+    OptionalInt affectedItems();
 
     /**
      * Gets the query result of the command, e.g. the time of the day,
@@ -187,26 +159,12 @@ public class CommandResult {
      *
      * @return The query result of the command, if one exists
      */
-    public Optional<Integer> getQueryResult() {
-        return this.queryResult;
-    }
+    OptionalInt queryResult();
 
     /**
-     * A builder for {@link CommandResult}s.
+     * Builds {@link CommandResult}s.
      */
-    public static class Builder {
-        @Nullable
-        private Integer successCount;
-        @Nullable
-        private Integer affectedBlocks;
-        @Nullable
-        private Integer affectedEntities;
-        @Nullable
-        private Integer affectedItems;
-        @Nullable
-        private Integer queryResult;
-
-        Builder() {}
+    interface Builder extends ResettableBuilder<CommandResult, Builder> {
 
         /**
          * Sets if the command has been processed.
@@ -214,10 +172,7 @@ public class CommandResult {
          * @param successCount If the command has been processed
          * @return This builder, for chaining
          */
-        public Builder successCount(@Nullable Integer successCount) {
-            this.successCount = successCount;
-            return this;
-        }
+        Builder successCount(@Nullable Integer successCount);
 
         /**
          * Sets the amount of blocks affected by the command.
@@ -225,10 +180,7 @@ public class CommandResult {
          * @param affectedBlocks The amount of blocks affected by the command
          * @return This builder, for chaining
          */
-        public Builder affectedBlocks(@Nullable Integer affectedBlocks) {
-            this.affectedBlocks = affectedBlocks;
-            return this;
-        }
+        Builder affectedBlocks(@Nullable Integer affectedBlocks);
 
         /**
          * Sets the amount of entities affected by the command.
@@ -237,10 +189,7 @@ public class CommandResult {
          *     command
          * @return This builder, for chaining
          */
-        public Builder affectedEntities(@Nullable Integer affectedEntities) {
-            this.affectedEntities = affectedEntities;
-            return this;
-        }
+        Builder affectedEntities(@Nullable Integer affectedEntities);
 
         /**
          * Sets the amount of items affected by the command.
@@ -248,10 +197,7 @@ public class CommandResult {
          * @param affectedItems The amount of items affected by the command
          * @return This builder, for chaining
          */
-        public Builder affectedItems(@Nullable Integer affectedItems) {
-            this.affectedItems = affectedItems;
-            return this;
-        }
+        Builder affectedItems(@Nullable Integer affectedItems);
 
         /**
          * Sets the query result of the command, e.g. the time of the day,
@@ -260,18 +206,27 @@ public class CommandResult {
          * @param queryResult The query result of the command
          * @return This builder, for chaining
          */
-        public Builder queryResult(@Nullable Integer queryResult) {
-            this.queryResult = queryResult;
-            return this;
-        }
+        Builder queryResult(@Nullable Integer queryResult);
+
+        /**
+         * Sets or unsets the error message to return to the user without
+         * throwing an exception.
+         *
+         * <p>If this is set, then the command parser will send this message to
+         * the command invoker.</p>
+         *
+         * @param errorMessage The message to send to the user.
+         * @return This builder, for chaining
+         */
+        Builder error(@Nullable Text errorMessage);
 
         /**
          * Builds the {@link CommandResult}.
          *
          * @return A CommandResult with the specified settings
          */
-        public CommandResult build() {
-            return new CommandResult(this.successCount, this.affectedBlocks, this.affectedEntities, this.affectedItems, this.queryResult);
-        }
+        CommandResult build();
+
     }
+
 }

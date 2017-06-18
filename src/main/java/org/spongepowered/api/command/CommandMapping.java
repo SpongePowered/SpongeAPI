@@ -56,10 +56,10 @@ public interface CommandMapping {
     Set<String> getAllAliases();
 
     /**
-     * Gets the callable.
+     * Gets the {@link Command} associated with this mapping.
      *
-     * @return The callable
+     * @return The {@link Command}
      */
-    CommandCallable getCallable();
+    Command getCommand();
 
 }

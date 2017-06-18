@@ -22,42 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.command.parameter.flag;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.translation.locale.Locales;
+import org.spongepowered.api.command.parameter.ArgumentParseException;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-import java.util.Locale;
+public final class UnknownFlagBehaviors {
 
-/**
- * Something that traditionally executes commands, can receive messages and
- * can have permissions associated with them.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- *
- * <p>Note that while command sources are typically associated with a command,
- * they may not be the direct <em>cause</em> of a command invocation</p>
- */
-public interface CommandSource extends MessageReceiver, Subject {
+    private UnknownFlagBehaviors() {}
+
+    // SORTFIELDS:ON
 
     /**
-     * Gets the name identifying this command source.
-     *
-     * @return The name of this command source
+     * Mark the flag as a non-value flag.
      */
-    String getName();
+    public static UnknownFlagBehavior ACCEPT_NONVALUE = DummyObjectProvider.createFor(UnknownFlagBehavior.class, "ACCEPT_NONVALUE");
 
     /**
-     * Gets the locale used by this command source. If this
-     * {@link CommandSource} does have a {@link Locale} configured or does not
-     * support configuring a {@link Locale}, {@link Locales#DEFAULT} is used.
-     *
-     * @return The locale used by this command source
+     * Mark the flag as a string-valued flag.
      */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
-    }
+    public static UnknownFlagBehavior ACCEPT_VALUE = DummyObjectProvider.createFor(UnknownFlagBehavior.class, "ACCEPT_VALUE");
+
+    /**
+     * Throw an {@link ArgumentParseException} when an unknown flag is
+     * encountered.
+     */
+    public static UnknownFlagBehavior ERROR = DummyObjectProvider.createFor(UnknownFlagBehavior.class, "ERROR");
+
+    /**
+     * Act as if the unknown flag is an ordinary argument.
+     */
+    public static UnknownFlagBehavior IGNORE = DummyObjectProvider.createFor(UnknownFlagBehavior.class, "IGNORE");
+
+    /**
+     * Skip this argument entirely.
+     */
+    public static UnknownFlagBehavior SKIP = DummyObjectProvider.createFor(UnknownFlagBehavior.class, "SKIP");
+
+    // SORTFIELDS:OFF
 
 }

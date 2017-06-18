@@ -25,10 +25,12 @@
 package org.spongepowered.api.command.dispatcher;
 
 import com.google.common.collect.Multimap;
-import org.spongepowered.api.command.CommandCallable;
+import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandMapping;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.event.cause.Cause;
 
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -37,7 +39,7 @@ import javax.annotation.Nullable;
 /**
  * Executes a command based on user input.
  */
-public interface Dispatcher extends CommandCallable {
+public interface Dispatcher extends Command {
 
     /**
      * Gets a list of commands. Each command, regardless of how many aliases it
@@ -83,10 +85,10 @@ public interface Dispatcher extends CommandCallable {
      * the given alias.
      *
      * @param alias The alias to look up
-     * @param source The source this alias is being looked up for
+     * @param cause The {@link Cause} this alias is being looked up for, if any
      * @return The command mapping, if available
      */
-    Optional<? extends CommandMapping> get(String alias, @Nullable CommandSource source);
+    Optional<? extends CommandMapping> get(String alias, @Nullable Cause cause);
 
     /**
      * Gets all the {@link CommandMapping}s associated with an alias.
@@ -120,4 +122,22 @@ public interface Dispatcher extends CommandCallable {
      * @return True if a mapping exists
      */
     boolean containsMapping(CommandMapping mapping);
+
+    /**
+     * Returns a {@link CommandNode} that can be traversed to easily discover
+     * subcommands of the given command, if any exist.
+     *
+     * @param alias The alias of the command
+     * @return The {@link CommandNode}, if the alias returns a command.
+     */
+    Optional<? extends CommandNode> getCommandNode(String alias);
+
+    /**
+     * Returns a {@link CommandNode} that can be traversed to easily discover
+     * subcommands of any commands that this dispatcher handles, if any exist.
+     *
+     * @return The {@link CommandNode}, if the alias returns a command.
+     */
+    Map<String, ? extends CommandNode> getCommandNodes();
+
 }

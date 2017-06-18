@@ -22,42 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.command.parameter.token;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.translation.locale.Locales;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.command.parameter.ArgumentParseException;
+import org.spongepowered.api.command.parameter.Parameter;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.Locale;
+import java.util.List;
 
 /**
- * Something that traditionally executes commands, can receive messages and
- * can have permissions associated with them.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- *
- * <p>Note that while command sources are typically associated with a command,
- * they may not be the direct <em>cause</em> of a command invocation</p>
+ * Provides a function to transform raw strings into tokens, which can be
+ * consumed by {@link Parameter}s.
  */
-public interface CommandSource extends MessageReceiver, Subject {
+@CatalogedBy(InputTokenizers.class)
+public interface InputTokenizer extends CatalogType {
 
     /**
-     * Gets the name identifying this command source.
+     * Take the input string and split it as appropriate into argument tokens.
      *
-     * @return The name of this command source
+     * @param arguments The provided arguments
+     * @param lenient Whether to parse leniently
+     * @return The tokenized strings. Empty list if error occurs
+     * @throws ArgumentParseException if an invalid input is provided
      */
-    String getName();
-
-    /**
-     * Gets the locale used by this command source. If this
-     * {@link CommandSource} does have a {@link Locale} configured or does not
-     * support configuring a {@link Locale}, {@link Locales#DEFAULT} is used.
-     *
-     * @return The locale used by this command source
-     */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
-    }
+    List<SingleArg> tokenize(String arguments, boolean lenient) throws ArgumentParseException;
 
 }

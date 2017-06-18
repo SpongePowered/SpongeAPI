@@ -22,14 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.command;
+package org.spongepowered.api.command.parameter.managed.standard;
 
-/**
- * Fired when a command is sent.
- *
- * @deprecated Use {@link CommandExecutionEvent.Pre} instead, deprecated for
- *      naming change
- */
-@Deprecated
-public interface SendCommandEvent extends CommandExecutionEvent.Pre {
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.command.parameter.managed.ValueParameter;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
+@CatalogedBy(CatalogedValueParameters.class)
+public interface CatalogedValueParameter extends ValueParameter, CatalogType {
+
 }

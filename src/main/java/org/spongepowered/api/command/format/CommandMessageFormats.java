@@ -22,42 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.command.format;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.translation.locale.Locales;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-import java.util.Locale;
+public final class CommandMessageFormats {
 
-/**
- * Something that traditionally executes commands, can receive messages and
- * can have permissions associated with them.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- *
- * <p>Note that while command sources are typically associated with a command,
- * they may not be the direct <em>cause</em> of a command invocation</p>
- */
-public interface CommandSource extends MessageReceiver, Subject {
+    private CommandMessageFormats() {}
+
+    // SORTFIELDS:ON
 
     /**
-     * Gets the name identifying this command source.
-     *
-     * @return The name of this command source
+     * Formats text to use the suggested formatting for a debug message.
      */
-    String getName();
+    public static final CommandMessageFormat DEBUG = DummyObjectProvider.createFor(CommandMessageFormat.class, "debug");
 
     /**
-     * Gets the locale used by this command source. If this
-     * {@link CommandSource} does have a {@link Locale} configured or does not
-     * support configuring a {@link Locale}, {@link Locales#DEFAULT} is used.
+     * Formats text to use the suggested formatting for an error message.
      *
-     * @return The locale used by this command source
+     * <p>This is not necessary when creating an exception to be thrown</p>
      */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
-    }
+    public static final CommandMessageFormat ERROR = DummyObjectProvider.createFor(CommandMessageFormat.class, "error");
+
+    /**
+     * Formats text to use the suggested formatting for a success message.
+     */
+    public static final CommandMessageFormat SUCCESS = DummyObjectProvider.createFor(CommandMessageFormat.class, "success");
+
+    /**
+     * Formats text to use the suggested formatting for a system message.
+     */
+    public static final CommandMessageFormat SYSTEM = DummyObjectProvider.createFor(CommandMessageFormat.class, "system");
+
+    // SORTFIELDS:OFF
 
 }

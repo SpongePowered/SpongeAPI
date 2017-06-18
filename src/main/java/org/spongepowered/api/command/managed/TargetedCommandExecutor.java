@@ -22,42 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.command.managed;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.translation.locale.Locales;
-
-import java.util.Locale;
+import org.spongepowered.api.command.CommandException;
+import org.spongepowered.api.command.CommandResult;
+import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.command.parameter.CommandContext;
+import org.spongepowered.api.event.cause.Cause;
 
 /**
- * Something that traditionally executes commands, can receive messages and
- * can have permissions associated with them.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- *
- * <p>Note that while command sources are typically associated with a command,
- * they may not be the direct <em>cause</em> of a command invocation</p>
+ * Provides the logic for a command that checks to see if
+ * {@link CommandContext#getCommandSource()} is of the correct type.
  */
-public interface CommandSource extends MessageReceiver, Subject {
+@FunctionalInterface
+public interface TargetedCommandExecutor<T extends CommandSource> {
 
     /**
-     * Gets the name identifying this command source.
+     * Callback for the execution of a command.
      *
-     * @return The name of this command source
+     * @param cause The {@link Cause} of the command
+     * @param source The {@link CommandSource} executing the command
+     * @param context The parsed command arguments for this command
+     * @return the result of executing this command
+     * @throws CommandException If a user-facing error occurs while
+     *     executing this command
      */
-    String getName();
-
-    /**
-     * Gets the locale used by this command source. If this
-     * {@link CommandSource} does have a {@link Locale} configured or does not
-     * support configuring a {@link Locale}, {@link Locales#DEFAULT} is used.
-     *
-     * @return The locale used by this command source
-     */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
-    }
+    CommandResult execute(Cause cause, T source, CommandContext context) throws CommandException;
 
 }

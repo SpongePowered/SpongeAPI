@@ -25,6 +25,10 @@
 package org.spongepowered.api.command;
 
 import org.spongepowered.api.command.dispatcher.Dispatcher;
+import org.spongepowered.api.event.CauseStackManager;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.EventContextKey;
+import org.spongepowered.api.event.cause.EventContextKeys;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -54,14 +58,14 @@ public interface CommandManager extends Dispatcher {
      * <p>The first non-conflicted alias becomes the "primary alias."</p>
      *
      * @param plugin A plugin instance
-     * @param callable The command
+     * @param command The command
      * @param alias An array of aliases
      * @return The registered command mapping, unless no aliases could be
      *     registered
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a
      *     plugin instance
      */
-    Optional<CommandMapping> register(Object plugin, CommandCallable callable, String... alias);
+    Optional<CommandMapping> register(Object plugin, Command command, String... alias);
 
     /**
      * Register a given command using the given list of aliases.
@@ -75,41 +79,56 @@ public interface CommandManager extends Dispatcher {
      * <p>The first non-conflicted alias becomes the "primary alias."</p>
      *
      * @param plugin A plugin instance
-     * @param callable The command
+     * @param command The command
      * @param aliases A list of aliases
      * @return The registered command mapping, unless no aliases could be
      *     registered
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a
      *     plugin instance
      */
-    Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases);
+    Optional<CommandMapping> register(Object plugin, Command command, List<String> aliases);
 
     /**
-     * Register a given command using a given list of aliases.
+     * Register a given command using the given list of aliases.
      *
-     * <p>The provided callback function will be called with a list of aliases
-     * that are not taken (from the list of aliases that were requested) and
-     * it should return a list of aliases to actually register. Aliases may be
-     * removed, and if no aliases remain, then the command will not be
-     * registered. It may be possible that no aliases are available, and thus
-     * the callback would receive an empty list. New aliases should not be added
-     * to the list in the callback as this may cause
-     * {@link IllegalArgumentException} to be thrown.</p>
+     * <p>If there is a conflict with one of the aliases (i.e. that alias
+     * is already assigned to another command), then the alias will be skipped.
+     * It is possible for there to be no alias to be available out of
+     * the provided list of aliases, which would mean that the command would not
+     * be assigned to any aliases.</p>
      *
      * <p>The first non-conflicted alias becomes the "primary alias."</p>
      *
-     * @param plugin A plugin instance
-     * @param callable The command
-     * @param aliases A list of aliases
-     * @param callback The callback
+     * @param pluginContainer A {@link PluginContainer}
+     * @param command The command
+     * @param alias An array of aliases
      * @return The registered command mapping, unless no aliases could be
      *     registered
-     * @throws IllegalArgumentException Thrown if new conflicting aliases are
-     *     added in the callback
      * @throws IllegalArgumentException Thrown if {@code plugin} is not a
      *     plugin instance
      */
-    Optional<CommandMapping> register(Object plugin, CommandCallable callable, List<String> aliases, Function<List<String>, List<String>> callback);
+    Optional<CommandMapping> register(PluginContainer pluginContainer, Command command, String... alias);
+
+    /**
+     * Register a given command using the given list of aliases.
+     *
+     * <p>If there is a conflict with one of the aliases (i.e. that alias
+     * is already assigned to another command), then the alias will be skipped.
+     * It is possible for there to be no alias to be available out of
+     * the provided list of aliases, which would mean that the command would
+     * not be assigned to any aliases.</p>
+     *
+     * <p>The first non-conflicted alias becomes the "primary alias."</p>
+     *
+     * @param pluginContainer A {@link PluginContainer}
+     * @param command The command
+     * @param aliases A list of aliases
+     * @return The registered command mapping, unless no aliases could be
+     *     registered
+     * @throws IllegalArgumentException Thrown if the {@link PluginContainer}
+     *     is not valid.
+     */
+    Optional<CommandMapping> register(PluginContainer pluginContainer, Command command, List<String> aliases);
 
     /**
      * Remove a command identified by the given mapping.
@@ -150,17 +169,101 @@ public interface CommandManager extends Dispatcher {
     int size();
 
     /**
+     * Execute the command based on input arguments. The {@link Cause} of the
+     * invocation will be taken from the {@link CauseStackManager} at the time
+     * this method is invoked.
+     *
+     * <p>The implementing class must perform the necessary permission
+     * checks.</p>
+     *
+     * <p>Note that the {@link CommandManager} is <strong>not</strong> permitted
+     * to throw a {@link CommandException} if the selected command fails, it
+     * must handle the error gracefully and return an appropriate
+     * {@link CommandResult}</p>
+     *
+     * @param arguments The raw arguments for this command
+     * @return The result of a command being processed
+     */
+    CommandResult process(String arguments);
+
+    /**
+     * Execute the command based on input arguments. The {@link Cause} of the
+     * invocation will be taken from the {@link CauseStackManager} at the time
+     * this method is invoked, with the {@link EventContextKeys#COMMAND_SOURCE}
+     * {@link EventContextKeys#COMMAND_PERMISSION_SUBJECT} set to the specified
+     * {@link CommandSource}.
+     *
+     * <p>The implementing class must perform the necessary permission
+     * checks.</p>
+     *
+     * <p>Note that the {@link CommandManager} is <strong>not</strong> permitted
+     * to throw a {@link CommandException} if the selected command fails, it
+     * must handle the error gracefully and return an appropriate
+     * {@link CommandResult}</p>
+     *
+     * @param arguments The raw arguments for this command
+     * @return The result of a command being processed
+     */
+    CommandResult process(CommandSource commandSource, String arguments);
+
+    /**
      * Execute the command based on input arguments.
      *
      * <p>The implementing class must perform the necessary permission
      * checks.</p>
      *
-     * @param source The caller of the command
+     * <p>Note that the {@link CommandManager} is <strong>not</strong> permitted
+     * to throw a {@link CommandException} if the selected command fails, it
+     * must handle the error gracefully and return an appropriate
+     * {@link CommandResult}</p>
+     *
+     * @param cause The {@link Cause} of the command
      * @param arguments The raw arguments for this command
      * @return The result of a command being processed
      */
-    @Override
-    CommandResult process(CommandSource source, String arguments);
+    CommandResult process(Cause cause, String arguments);
+
+    /**
+     * Gets a list of suggestions based on input. The {@link Cause} of the
+     * invocation will be taken from the {@link CauseStackManager} at the time
+     * this method is invoked.
+     *
+     * <p>If a suggestion is chosen by the user, it will replace the last
+     * word.</p>
+     *
+     * <p>Note that the {@link CommandManager} is <strong>not</strong> permitted
+     * to throw a {@link CommandException} if the selected command fails, it
+     * must handle the error gracefully and return a list of suggestions
+     * (which may be empty)</p>
+     *
+     * @param arguments The arguments entered up to this point
+     * @param targetPosition The position the source is looking at when
+     *     performing tab completion
+     * @return A list of suggestions
+     */
+    List<String> getSuggestions(String arguments, @Nullable Location<World> targetPosition);
+
+    /**
+     * Gets a list of suggestions based on input. The {@link Cause} of the
+     * invocation will be taken from the {@link CauseStackManager} at the time
+     * this method is invoked, with the {@link EventContextKeys#COMMAND_SOURCE}
+     * and {@link EventContextKeys#COMMAND_PERMISSION_SUBJECT} set to the
+     * specified {@link CommandSource}.
+     *
+     * <p>If a suggestion is chosen by the user, it will replace the last
+     * word.</p>
+     *
+     * <p>Note that the {@link CommandManager} is <strong>not</strong> permitted
+     * to throw a {@link CommandException} if the selected command fails, it
+     * must handle the error gracefully and return a list of suggestions
+     * (which may be empty)</p>
+     *
+     * @param arguments The arguments entered up to this point
+     * @param targetPosition The position the source is looking at when
+     *     performing tab completion
+     * @return A list of suggestions
+     */
+    List<String> getSuggestions(CommandSource commandSource, String arguments, @Nullable Location<World> targetPosition);
 
     /**
      * Gets a list of suggestions based on input.
@@ -168,11 +271,26 @@ public interface CommandManager extends Dispatcher {
      * <p>If a suggestion is chosen by the user, it will replace the last
      * word.</p>
      *
-     * @param source The command source
+     * <p>Note that the {@link CommandManager} is <strong>not</strong> permitted
+     * to throw a {@link CommandException} if the selected command fails, it
+     * must handle the error gracefully and return a list of suggestions
+     * (which may be empty)</p>
+     *
+     * @param cause The {@link Cause}
      * @param arguments The arguments entered up to this point
+     * @param targetPosition The position the source is looking at when
+     *     performing tab completion
      * @return A list of suggestions
      */
-    @Override
-    List<String> getSuggestions(CommandSource source, String arguments, @Nullable Location<World> targetPosition);
+    List<String> getSuggestions(Cause cause, String arguments, @Nullable Location<World> targetPosition);
+
+    /**
+     * Gets the primary alias for the supplied {@link Command}, if it
+     * has been registered.
+     *
+     * @param command The {@link Command}
+     * @return The primary alias, if it exists.
+     */
+    Optional<String> getPrimaryAlias(Command command);
 
 }

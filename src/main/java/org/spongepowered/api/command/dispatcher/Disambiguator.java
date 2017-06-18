@@ -26,6 +26,7 @@ package org.spongepowered.api.command.dispatcher;
 
 import org.spongepowered.api.command.CommandMapping;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.event.cause.Cause;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,11 +40,11 @@ public interface Disambiguator {
      * Disambiguate an alias in cases where there are multiple command mappings
      * registered for a given alias.
      *
-     * @param source The CommandSource executing the command, if any
+     * @param cause The {@link Cause} executing the command, if any
      * @param aliasUsed The alias input by the user
      * @param availableOptions The commands registered to this alias
      * @return The specific command to use
      */
-    Optional<CommandMapping> disambiguate(@Nullable CommandSource source, String aliasUsed, List<CommandMapping> availableOptions);
+    Optional<CommandMapping> disambiguate(@Nullable Cause cause, String aliasUsed, List<CommandMapping> availableOptions);
 
 }

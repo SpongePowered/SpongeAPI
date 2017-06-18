@@ -24,40 +24,40 @@
  */
 package org.spongepowered.api.command;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.translation.locale.Locales;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
-import java.util.Locale;
+import org.spongepowered.api.text.Text;
 
 /**
- * Something that traditionally executes commands, can receive messages and
- * can have permissions associated with them.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- *
- * <p>Note that while command sources are typically associated with a command,
- * they may not be the direct <em>cause</em> of a command invocation</p>
+ * This exception is thrown when the target {@link CommandSource}s is of the
+ * correct type to call the target command.
  */
-public interface CommandSource extends MessageReceiver, Subject {
+public class IncorrectCommandSourceException extends CommandException {
+    private static final long serialVersionUID = -2927330349931825821L;
 
     /**
-     * Gets the name identifying this command source.
-     *
-     * @return The name of this command source
+     * Create an exception with the default message.
      */
-    String getName();
-
-    /**
-     * Gets the locale used by this command source. If this
-     * {@link CommandSource} does have a {@link Locale} configured or does not
-     * support configuring a {@link Locale}, {@link Locales#DEFAULT} is used.
-     *
-     * @return The locale used by this command source
-     */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
+    public IncorrectCommandSourceException() {
+        this(t("You cannot execute this command!"));
     }
 
+    /**
+     * Create a permissions exception with a custom message.
+     *
+     * @param message The message
+     */
+    public IncorrectCommandSourceException(Text message) {
+        super(message);
+    }
+
+    /**
+     * Create a permissions exception with a custom message and cause.
+     *
+     * @param message the message
+     * @param cause the cause
+     */
+    public IncorrectCommandSourceException(Text message, Throwable cause) {
+        super(message, cause);
+    }
 }

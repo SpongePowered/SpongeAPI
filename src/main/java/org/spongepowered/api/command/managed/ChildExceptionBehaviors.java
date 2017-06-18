@@ -22,42 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.command.managed;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.translation.locale.Locales;
-
-import java.util.Locale;
+import org.spongepowered.api.command.Command;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Something that traditionally executes commands, can receive messages and
- * can have permissions associated with them.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- *
- * <p>Note that while command sources are typically associated with a command,
- * they may not be the direct <em>cause</em> of a command invocation</p>
+ * The possible behaviors of a {@link Command} when a child command throws an
+ * exception.
  */
-public interface CommandSource extends MessageReceiver, Subject {
+public final class ChildExceptionBehaviors {
+
+    private ChildExceptionBehaviors() {}
+
+    // SORTFIELDS:ON
 
     /**
-     * Gets the name identifying this command source.
-     *
-     * @return The name of this command source
+     * If a child command throws an exception, rethrows it, preventing all
+     * further command execution. This is the default.
      */
-    String getName();
+    public static final ChildExceptionBehavior RETHROW = DummyObjectProvider.createFor(ChildExceptionBehavior.class, "RETHROW");
 
     /**
-     * Gets the locale used by this command source. If this
-     * {@link CommandSource} does have a {@link Locale} configured or does not
-     * support configuring a {@link Locale}, {@link Locales#DEFAULT} is used.
-     *
-     * @return The locale used by this command source
+     * If a child command throws an exception, stores it and continues with
+     * the parent command, displaying the error if the command execution ends
+     * due to an exception. Else, the exception will be swallowed.
      */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
-    }
+    public static final ChildExceptionBehavior STORE = DummyObjectProvider.createFor(ChildExceptionBehavior.class, "STORE");
+
+    /**
+     * If a child command throws an exception, suppresses it and executes the
+     * parent command.
+     */
+    public static final ChildExceptionBehavior SUPPRESS = DummyObjectProvider.createFor(ChildExceptionBehavior.class, "SUPPRESS");
+
+    // SORTFIELDS:OFF
 
 }

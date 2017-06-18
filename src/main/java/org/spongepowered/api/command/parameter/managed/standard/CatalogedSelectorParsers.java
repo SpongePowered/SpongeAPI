@@ -22,42 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.command.parameter.managed.standard;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.translation.locale.Locales;
-
-import java.util.Locale;
+import org.spongepowered.api.command.parameter.managed.SelectorParser;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Something that traditionally executes commands, can receive messages and
- * can have permissions associated with them.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- *
- * <p>Note that while command sources are typically associated with a command,
- * they may not be the direct <em>cause</em> of a command invocation</p>
+ * Standard {@link SelectorParser}s
  */
-public interface CommandSource extends MessageReceiver, Subject {
+public final class CatalogedSelectorParsers {
+
+    private CatalogedSelectorParsers() {}
+
+    // SORTFIELDS:ON
 
     /**
-     * Gets the name identifying this command source.
-     *
-     * @return The name of this command source
+     * Returns a {@link SelectorParser} that will return anything that is of
+     * type {@link Entity}
      */
-    String getName();
+    public final static CatalogedSelectorParser ENTITIES =
+            DummyObjectProvider.createFor(CatalogedSelectorParser.class, "ENTITIES");
 
     /**
-     * Gets the locale used by this command source. If this
-     * {@link CommandSource} does have a {@link Locale} configured or does not
-     * support configuring a {@link Locale}, {@link Locales#DEFAULT} is used.
-     *
-     * @return The locale used by this command source
+     * Returns a {@link SelectorParser} that will ignore a selector
      */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
-    }
+    public final static CatalogedSelectorParser NONE =
+            DummyObjectProvider.createFor(CatalogedSelectorParser.class, "NONE");
 
+    /**
+     * Returns a {@link SelectorParser} that will return anything that is of
+     * type {@link Player}
+     */
+    public final static CatalogedSelectorParser PLAYERS =
+            DummyObjectProvider.createFor(CatalogedSelectorParser.class, "PLAYERS");
+
+    // SORTFIELDS:OFF
 }

@@ -22,14 +22,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.command;
-
-/**
- * Fired when a command is sent.
- *
- * @deprecated Use {@link CommandExecutionEvent.Pre} instead, deprecated for
- *      naming change
- */
-@Deprecated
-public interface SendCommandEvent extends CommandExecutionEvent.Pre {
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.command.parameter.managed.impl;

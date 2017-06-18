@@ -22,42 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.command.managed;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.translation.locale.Locales;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.command.CommandException;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.Locale;
+import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 /**
- * Something that traditionally executes commands, can receive messages and
- * can have permissions associated with them.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- *
- * <p>Note that while command sources are typically associated with a command,
- * they may not be the direct <em>cause</em> of a command invocation</p>
+ * Defines the behavior when a child command throws a {@link CommandException}.
  */
-public interface CommandSource extends MessageReceiver, Subject {
+@CatalogedBy(ChildExceptionBehaviors.class)
+public interface ChildExceptionBehavior extends CatalogType {
 
     /**
-     * Gets the name identifying this command source.
+     * Handles an exception from a child command.
      *
-     * @return The name of this command source
-     */
-    String getName();
-
-    /**
-     * Gets the locale used by this command source. If this
-     * {@link CommandSource} does have a {@link Locale} configured or does not
-     * support configuring a {@link Locale}, {@link Locales#DEFAULT} is used.
+     * <p>An implementation can do one of the following:</p>
+     * <ul>
+     *     <li>Return {@code null} to discard the exception</li>
+     *     <li>Return the exception to inform the parent of the exception to
+     *     store it</li>
+     *     <li>(Re-)throw an exception to immediately terminate execution of
+     *     the current command</li>
+     * </ul>
      *
-     * @return The locale used by this command source
+     * @param exception The exception to handle
+     * @return The {@link CommandException}, should it be stored
+     * @throws CommandException thrown if command execution should terminate
      */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
-    }
+    @Nullable
+    CommandException onChildCommandError(CommandException exception) throws CommandException;
 
 }

@@ -22,42 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
-
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.translation.locale.Locales;
-
-import java.util.Locale;
+package org.spongepowered.api.command.parameter.token;
 
 /**
- * Something that traditionally executes commands, can receive messages and
- * can have permissions associated with them.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- *
- * <p>Note that while command sources are typically associated with a command,
- * they may not be the direct <em>cause</em> of a command invocation</p>
+ * This represents a single argument with its start and end indexes
+ * in the associated raw input string.
  */
-public interface CommandSource extends MessageReceiver, Subject {
+public interface SingleArg {
 
     /**
-     * Gets the name identifying this command source.
+     * Gets the argument value.
      *
-     * @return The name of this command source
+     * @return The argument
      */
-    String getName();
+    String getArg();
 
     /**
-     * Gets the locale used by this command source. If this
-     * {@link CommandSource} does have a {@link Locale} configured or does not
-     * support configuring a {@link Locale}, {@link Locales#DEFAULT} is used.
+     * Gets the index in the unparsed string that this argument starts at.
      *
-     * @return The locale used by this command source
+     * @return The index.
      */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
-    }
+    int getStartIndex();
+
+    /**
+     * Gets the index in the unparsed string that this argument ends at.
+     *
+     * @return The index
+     */
+    int getEndIndex();
 
 }

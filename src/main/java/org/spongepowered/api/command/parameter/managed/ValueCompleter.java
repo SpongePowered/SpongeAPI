@@ -22,42 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.command.parameter.managed;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.translation.locale.Locales;
+import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.command.parameter.ArgumentParseException;
+import org.spongepowered.api.command.parameter.CommandContext;
+import org.spongepowered.api.command.parameter.token.CommandArgs;
+import org.spongepowered.api.event.cause.Cause;
 
-import java.util.Locale;
+import java.util.List;
 
 /**
- * Something that traditionally executes commands, can receive messages and
- * can have permissions associated with them.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- *
- * <p>Note that while command sources are typically associated with a command,
- * they may not be the direct <em>cause</em> of a command invocation</p>
+ * Defines the completions for a parameter.
  */
-public interface CommandSource extends MessageReceiver, Subject {
+@FunctionalInterface
+public interface ValueCompleter {
 
     /**
-     * Gets the name identifying this command source.
+     * Gets valid completions for a command.
      *
-     * @return The name of this command source
+     * @param cause The {@link Cause} that requested command completion
+     * @param args The {@link CommandArgs} that contains the unparsed arguments
+     * @param context The {@link CommandContext} that contains the parsed arguments
+     * @return The {@link List} of completions to display to the client
+     * @throws ArgumentParseException if a parameter could not be parsed
      */
-    String getName();
-
-    /**
-     * Gets the locale used by this command source. If this
-     * {@link CommandSource} does have a {@link Locale} configured or does not
-     * support configuring a {@link Locale}, {@link Locales#DEFAULT} is used.
-     *
-     * @return The locale used by this command source
-     */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
-    }
+    List<String> complete(Cause cause, CommandArgs args, CommandContext context) throws ArgumentParseException;
 
 }

@@ -22,42 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.command.parameter.managed;
 
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.text.channel.MessageReceiver;
-import org.spongepowered.api.text.translation.locale.Locales;
+import org.spongepowered.api.command.parameter.ArgumentParseException;
+import org.spongepowered.api.command.parameter.CommandContext;
+import org.spongepowered.api.command.parameter.token.CommandArgs;
+import org.spongepowered.api.event.cause.Cause;
 
-import java.util.Locale;
+import java.util.Optional;
 
 /**
- * Something that traditionally executes commands, can receive messages and
- * can have permissions associated with them.
- *
- * <p>Examples of potential implementations include players, the server console,
- * Rcon clients, web-based clients, command blocks, and so on.</p>
- *
- * <p>Note that while command sources are typically associated with a command,
- * they may not be the direct <em>cause</em> of a command invocation</p>
+ * Defines how a parameter should be parsed.
  */
-public interface CommandSource extends MessageReceiver, Subject {
+@FunctionalInterface
+public interface ValueParser {
 
     /**
-     * Gets the name identifying this command source.
+     * Gets the value for the parameter. This may return more than one value.
      *
-     * @return The name of this command source
-     */
-    String getName();
-
-    /**
-     * Gets the locale used by this command source. If this
-     * {@link CommandSource} does have a {@link Locale} configured or does not
-     * support configuring a {@link Locale}, {@link Locales#DEFAULT} is used.
+     * <p>This should have no side effects on anything except on the state of
+     * the {@link CommandArgs}.</p>
      *
-     * @return The locale used by this command source
+     * @param cause The {@link Cause} that caused this command
+     * @param args The {@link CommandArgs} that contains the unparsed arguments
+     * @param context The {@link CommandContext} containing the state about this command
+     * @return Returns the value(s), usually from {@link CommandArgs#next()}
+     * @throws ArgumentParseException if a parameter could not be parsed
      */
-    default Locale getLocale() {
-        return Locales.DEFAULT;
-    }
+    Optional<?> getValue(Cause cause, CommandArgs args, CommandContext context) throws ArgumentParseException;
 
 }

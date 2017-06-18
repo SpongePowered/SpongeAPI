@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.cause;
 
 import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
@@ -39,7 +40,9 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ServiceManager;
+import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
 /**
@@ -52,6 +55,27 @@ public final class EventContextKeys {
     public static final EventContextKey<BlockSnapshot> BLOCK_HIT = createFor("BLOCK_HIT");
 
     public static final EventContextKey<User> CREATOR = createFor("CREATOR");
+
+    /**
+     * Explicitly indicates the entity that is central to a command invocation.
+     */
+    public static final EventContextKey<Entity> COMMAND_ENTITY = createFor("COMMAND_ENTITY");
+
+    /**
+     * Explicitly indicates a location that is attached to a command invocation.
+     */
+    public static final EventContextKey<Location<World>> COMMAND_LOCATION = createFor("COMMAND_LOCATION");
+
+    /**
+     * Explicitly indicates whose permissions should be checked during a
+     * command invocation.
+     */
+    public static final EventContextKey<Subject> COMMAND_PERMISSION_SUBJECT = createFor("COMMAND_PERMISSION_SUBJECT");
+
+    /**
+     * Explicitly indicates the source of a command invocation.
+     */
+    public static final EventContextKey<CommandSource> COMMAND_SOURCE = createFor("COMMAND_SOURCE");
 
     public static final EventContextKey<DamageType> DAMAGE_TYPE = createFor("DAMAGE_TYPE");
 
