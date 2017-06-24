@@ -98,6 +98,11 @@ public final class NamedCause {
     public static final String LIQUID_FLOW = "LiquidFlow";
 
     /**
+     * Used by {@link org.spongepowered.api.event.block.ChangeBlockEvent.Modify} when liquids mix together.
+     */
+    public static final String LIQUID_MIX = "LiquidMix";
+
+    /**
      * Used by any event where a {@link User} notifies either a
      * block or entity.
      */
