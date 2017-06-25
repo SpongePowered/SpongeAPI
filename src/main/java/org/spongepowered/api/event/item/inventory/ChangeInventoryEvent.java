@@ -25,7 +25,10 @@
 package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.entity.item.TargetItemEvent;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEvent {
@@ -40,7 +43,45 @@ public interface ChangeInventoryEvent extends TargetInventoryEvent, AffectSlotEv
      */
     interface Held extends ChangeInventoryEvent {}
 
-    interface Transfer extends ChangeInventoryEvent {}
+    /**
+     * Fired when an {@link Inventory} transfers items into another.
+     */
+    interface Transfer extends ChangeInventoryEvent {
+
+        /**
+         * Gets the source {@link Inventory} of this {@link Event}.
+         *
+         * @return The source {@link Inventory}
+         */
+        Inventory getSourceInventory();
+
+        /**
+         * Fired before an {@link Inventory} attempts to transfer items.
+         */
+        interface Pre extends TargetInventoryEvent, Cancellable {
+
+            /**
+             * Gets the source {@link Inventory} of this {@link Event}.
+             *
+             * @return The source {@link Inventory}
+             */
+            Inventory getSourceInventory();
+
+            /**
+             * Gets the target {@link Inventory} of this {@link Event}.
+             *
+             * @return The target {@link Inventory}
+             */
+            @Override
+            Inventory getTargetInventory();
+        }
+
+        /**
+         * Fires after an {@link Inventory} transferred an item.
+         */
+        interface Post extends Transfer {}
+
+    }
 
     interface Pickup extends ChangeInventoryEvent, TargetItemEvent {}
 }
