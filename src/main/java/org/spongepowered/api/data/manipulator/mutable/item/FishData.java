@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.item;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableFishData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.Fish;
@@ -37,6 +38,8 @@ import org.spongepowered.api.item.inventory.ItemStack;
  * <p>Since different types of fish have different properties, it is
  * recommended to further check the specific item properties associated with
  * the fish type from the item stack after changing this data.</p>
+ *
+ * @see Keys#FISH_TYPE
  */
 public interface FishData extends VariantData<Fish, FishData, ImmutableFishData> {
 

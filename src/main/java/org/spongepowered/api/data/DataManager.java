@@ -31,7 +31,9 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulatorBuilder;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataContentUpdater;
 import org.spongepowered.api.data.persistence.DataTranslator;
+import org.spongepowered.api.plugin.PluginContainer;
 
+import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -128,21 +130,14 @@ public interface DataManager {
     <T extends ImmutableDataHolder<T>, B extends ImmutableDataBuilder<T, B>> void register(Class<T> holderClass, B builder);
 
     /**
-     * Registers the given {@link DataManipulator} class with it's associated
-     * {@link DataManipulatorBuilder}. The builder can be used to create new
-     * instances of the given {@link DataManipulator} for data retrieval,
-     * data representation, and mass application of a {@link DataManipulator}
-     * to multiple {@link DataHolder}s.
+     * Registers a legacy {@code id} that is used by a previous version of
+     * {@link DataRegistration} from a plugin such that the custom data can
+     * be retained, while not being lost.
      *
-     * @param manipulatorClass The class of the data manipulator
-     * @param immutableManipulatorClass The class of the immutable
-     *     datamanipulator
-     * @param builder The builder instance of the data manipulator
-     * @param <T> The type of data manipulator
-     * @param <I> The type of immutable datamanipulator
+     * @param legacyId The legacy id
+     * @param registration The registration object successfully created
      */
-    <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>> void register(Class<? extends T> manipulatorClass,
-            Class<? extends I> immutableManipulatorClass, DataManipulatorBuilder<T, I> builder);
+    void registerLegacyManipulatorIds(String legacyId, DataRegistration<?, ?> registration);
 
     /**
      * Attempts to retrieve the builder for the given
@@ -204,5 +199,34 @@ public interface DataManager {
      * @return The data translator, if available
      */
     <T> Optional<DataTranslator<T>> getTranslator(Class<T> objectclass);
+
+    /**
+     * Gets all {@link Class}es of all {@link DataManipulator}s registered for
+     * the provided {@link PluginContainer}. The provided {@link Collection} is
+     * considered immutable and can not be modified.
+     *
+     * @param container The plugin container for registered classes
+     * @return The collection of all registered data manipulator classes
+     */
+    Collection<Class<? extends DataManipulator<?, ?>>> getAllRegistrationsFor(PluginContainer container);
+
+    /**
+     * Creates a new {@link DataContainer} with a default
+     * {@link org.spongepowered.api.data.DataView.SafetyMode} of
+     * {@link org.spongepowered.api.data.DataView.SafetyMode#ALL_DATA_CLONED}.
+     *
+     * @return A new data container
+     */
+    DataContainer createContainer();
+
+    /**
+     * Creates a new {@link DataContainer} with the provided
+     * {@link org.spongepowered.api.data.DataView.SafetyMode}.
+     *
+     * @param safety The safety mode to use
+     * @see org.spongepowered.api.data.DataView.SafetyMode
+     * @return A new data container with the provided safety mode
+     */
+    DataContainer createContainer(DataView.SafetyMode safety);
 
 }

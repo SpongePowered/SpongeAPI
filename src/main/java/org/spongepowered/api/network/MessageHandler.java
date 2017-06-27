@@ -29,6 +29,7 @@ import org.spongepowered.api.Platform;
 /**
  * Represents a handler for a message that was received over the network.
  */
+@FunctionalInterface
 public interface MessageHandler<M extends Message> {
 
     /**

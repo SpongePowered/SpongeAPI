@@ -31,7 +31,32 @@ import org.spongepowered.api.data.value.BaseValue;
  * Represents a data structure that contains data. A DataContainer is
  * an object that can be considered a root {@link DataView}.
  */
+@SuppressWarnings("deprecation")
 public interface DataContainer extends DataView {
+
+    /**
+     * Creates a new {@link DataContainer} with a default
+     * {@link org.spongepowered.api.data.DataView.SafetyMode} of
+     * {@link org.spongepowered.api.data.DataView.SafetyMode#ALL_DATA_CLONED}.
+     *
+     * @return A new data container
+     */
+    static DataContainer createNew() {
+        // TODO - Move to implementation - unit tests are difficult...
+        return new MemoryDataContainer();
+    }
+
+    /**
+     * Creates a new {@link DataContainer} with the provided
+     * {@link org.spongepowered.api.data.DataView.SafetyMode}.
+     *
+     * @param safety The safety mode to use
+     * @see org.spongepowered.api.data.DataView.SafetyMode
+     * @return A new data container with the provided safety mode
+     */
+    static DataContainer createNew(SafetyMode safety) {
+        return new MemoryDataContainer(safety);
+    }
 
     @Override
     DataContainer set(DataQuery path, Object value);

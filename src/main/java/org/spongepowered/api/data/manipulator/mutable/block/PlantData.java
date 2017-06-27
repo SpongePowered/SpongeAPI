@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutablePlantData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.PlantType;
@@ -32,6 +33,8 @@ import org.spongepowered.api.data.type.PlantType;
 /**
  * An {@link VariantData} for the {@link PlantType} state. Usually applicable
  * to {@link BlockTypes#RED_FLOWER} and {@link BlockTypes#YELLOW_FLOWER}.
+ *
+ * @see Keys#PLANT_TYPE
  */
 public interface PlantData extends VariantData<PlantType, PlantData, ImmutablePlantData> {
 

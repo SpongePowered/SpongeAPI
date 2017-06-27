@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableTreeData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.TreeType;
@@ -34,6 +35,8 @@ import org.spongepowered.api.data.type.TreeType;
  * is for a visual difference in the types of tree related blocks. Usually
  * applicable to {@link BlockTypes#SAPLING}, {@link BlockTypes#PLANKS},
  * {@link BlockTypes#LOG}, etc.
+ *
+ * @see Keys#TREE_TYPE
  */
 public interface TreeData extends VariantData<TreeType, TreeData, ImmutableTreeData> {
 

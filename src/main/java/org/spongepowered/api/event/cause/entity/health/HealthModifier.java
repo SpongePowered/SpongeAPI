@@ -27,19 +27,20 @@ package org.spongepowered.api.event.cause.entity.health;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.function.Function;
+import java.util.function.DoubleUnaryOperator;
 
 /**
- * Represents a modifier that will apply a function on a damage value to
- * deal towards an entity such that the raw damage is the input of a
- * {@link Function} such that the output will be the final damage applied
- * to the {@link Entity}.
+ * Represents a modifier that will apply a function on a damage value to deal
+ * towards an entity such that the raw damage is the input of a
+ * {@link DoubleUnaryOperator} such that the output will be the final damage
+ * applied to the {@link Entity}.
  */
 public interface HealthModifier {
 
@@ -67,8 +68,8 @@ public interface HealthModifier {
     Cause getCause();
 
     /**
-     * A builder that creates {@link HealthModifier}s, for use in both plugin and
-     * implementation requirements.
+     * A builder that creates {@link HealthModifier}s, for use in both plugin
+     * and implementation requirements.
      */
     final class Builder implements ResettableBuilder<HealthModifier, Builder> {
 
@@ -177,10 +178,10 @@ public interface HealthModifier {
 
             @Override
             public String toString() {
-                return Objects.toStringHelper(this)
-                    .add("type", this.type)
-                    .add("cause", this.cause)
-                    .toString();
+                return MoreObjects.toStringHelper(this)
+                        .add("type", this.type)
+                        .add("cause", this.cause)
+                        .toString();
             }
         }
 

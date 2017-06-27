@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.flowpowered.math.imaginary.Quaterniond;
 import com.flowpowered.math.matrix.Matrix4d;
 import com.flowpowered.math.vector.Vector3d;
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.extent.Extent;
 
@@ -345,7 +345,7 @@ public final class Transform<E extends Extent> {
      */
     public Transform<E> addTranslation(Vector3d translation) {
         checkNotNull(translation, "translation");
-        return new Transform<>(getExtent(), getPosition().add(translation));
+        return new Transform<>(getExtent(), getPosition().add(translation), getRotation(), getScale());
     }
 
     /**
@@ -458,7 +458,7 @@ public final class Transform<E extends Extent> {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("location", getLocation())
                 .add("rotation", this.rotation)
                 .add("scale", this.scale)

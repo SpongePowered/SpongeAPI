@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAgeableData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -39,22 +40,13 @@ public interface AgeableData extends DataManipulator<AgeableData, ImmutableAgeab
      * Gets the {@link MutableBoundedValue} for the "age" state.
      *
      * @return The mutable bounded value for the "age"
+     * @see Keys#AGE
      */
     MutableBoundedValue<Integer> age();
 
     /**
      * Gets the {@link Value} for whether the {@link #age()} is
-     * considered to be a "baby". If the value is false, {@link #adult()}
-     * should be {@code true} and vice versa.
-     *
-     * @return The immutable value for the "baby" state
-     */
-    Value<Boolean> baby();
-
-    /**
-     * Gets the {@link Value} for whether the {@link #age()} is
-     * considered to be an "adult". If the value is false, {@link #baby()}
-     * should be {@code true} and vice versa.
+     * considered to be an "adult".
      *
      * @return The immutable value for the "adult" state
      */

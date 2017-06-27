@@ -106,6 +106,31 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     }
 
     /**
+     * Get the y value of the highest block that sunlight can reach in the given
+     * column.
+     *
+     * <p>This method ignores all transparent blocks, providing the highest
+     * opaque block.</p>
+     *
+     * @return The y value of the highest opaque block
+     */
+    int getHighestYAt(int x, int z);
+
+    /**
+     * Get the {@link Location} of the highest block that sunlight can reach in
+     * the given column.
+     *
+     * <p>This method ignores all transparent blocks, providing the highest
+     * opaque block.</p>
+     *
+     * @param position The column position
+     * @return The highest opaque position
+     */
+    default Vector3i getHighestPositionAt(Vector3i position) {
+        return new Vector3i(position.getX(), getHighestYAt(position.getX(), position.getZ()), position.getZ());
+    }
+
+    /**
      * Sets the block at the given position in the world with the provided
      * {@link Cause} will be used for any events thrown. Note that the
      * difference between this an {@link MutableBlockVolume#setBlock(Vector3i, BlockState, Cause)} is

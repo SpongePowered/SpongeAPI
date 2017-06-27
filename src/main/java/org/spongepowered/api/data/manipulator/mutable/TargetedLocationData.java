@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableTargetedLocationData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -48,6 +49,7 @@ public interface TargetedLocationData extends DataManipulator<TargetedLocationDa
      * Gets the {@link Value} for the targeted {@link Vector3d}.
      *
      * @return The value for the targeted location
+     * @see Keys#TARGETED_LOCATION
      */
     Value<Vector3d> target();
 

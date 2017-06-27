@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableGriefingData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -43,6 +44,7 @@ public interface GriefingData extends DataManipulator<GriefingData, ImmutableGri
      * Gets the {@link Value} for the "griefing" state.
      *
      * @return The value of the griefing state
+     * @see Keys#CAN_GRIEF
      */
     Value<Boolean> canGrief();
 

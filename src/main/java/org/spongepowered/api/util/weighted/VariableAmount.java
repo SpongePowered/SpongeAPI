@@ -25,10 +25,9 @@
 package org.spongepowered.api.util.weighted;
 
 import com.flowpowered.math.GenericMath;
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Queries;
 
 import java.util.Random;
@@ -239,7 +238,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public String toString() {
-            return Objects.toStringHelper(this).add("amount", this.amount).toString();
+            return MoreObjects.toStringHelper(this).add("amount", this.amount).toString();
         }
 
         @Override
@@ -263,7 +262,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public DataContainer toContainer() {
-            return new MemoryDataContainer()
+            return DataContainer.createNew()
                     .set(Queries.CONTENT_VERSION, getContentVersion())
                     .set(Queries.VARIABLE_AMOUNT, this.amount);
         }
@@ -297,7 +296,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public String toString() {
-            return Objects.toStringHelper(this).add("base", this.base).add("variance", this.variance).toString();
+            return MoreObjects.toStringHelper(this).add("base", this.base).add("variance", this.variance).toString();
         }
 
         @Override
@@ -322,7 +321,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public DataContainer toContainer() {
-            return new MemoryDataContainer()
+            return DataContainer.createNew()
                     .set(Queries.CONTENT_VERSION, getContentVersion())
                     .set(Queries.VARIABLE_BASE, this.base)
                     .set(Queries.VARIABLE_VARIANCE, this.variance);
@@ -357,7 +356,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public String toString() {
-            return Objects.toStringHelper(this).add("base", this.base).add("addition", this.addition).toString();
+            return MoreObjects.toStringHelper(this).add("base", this.base).add("addition", this.addition).toString();
         }
 
         @Override
@@ -382,7 +381,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public DataContainer toContainer() {
-            return new MemoryDataContainer()
+            return DataContainer.createNew()
                     .set(Queries.CONTENT_VERSION, getContentVersion())
                     .set(Queries.VARIABLE_BASE, this.base)
                     .set(Queries.VARIABLE_VARIANCE, this.addition);
@@ -421,7 +420,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public String toString() {
-            return Objects.toStringHelper(this).add("base", this.base).add("chance", this.chance).add("inner", this.inner).toString();
+            return MoreObjects.toStringHelper(this).add("base", this.base).add("chance", this.chance).add("inner", this.inner).toString();
         }
 
         @Override
@@ -447,7 +446,7 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public DataContainer toContainer() {
-            return new MemoryDataContainer()
+            return DataContainer.createNew()
                     .set(Queries.CONTENT_VERSION, getContentVersion())
                     .set(Queries.VARIABLE_CHANCE, this.chance)
                     .set(Queries.VARIABLE_BASE, this.base)

@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.living.complex;
 import org.spongepowered.api.entity.EnderCrystal;
 import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.living.monster.Boss;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.entity.projectile.ProjectileLauncher;
 
 import java.util.Optional;
 import java.util.Set;
@@ -35,7 +35,7 @@ import java.util.Set;
 /**
  * Represents an Ender Dragon.
  */
-public interface EnderDragon extends ComplexLiving, Boss, Aerial, ProjectileSource {
+public interface EnderDragon extends ComplexLiving, Boss, Aerial, ProjectileLauncher {
 
     @Override
     Set<EnderDragonPart> getParts();

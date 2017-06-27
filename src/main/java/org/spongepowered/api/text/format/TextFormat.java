@@ -26,6 +26,7 @@ package org.spongepowered.api.text.format;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.reflect.TypeToken;
 import ninja.leaping.configurate.objectmapping.serialize.TypeSerializers;
@@ -206,7 +207,7 @@ public final class TextFormat implements TextElement {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("color", this.color)
                 .add("style", this.style)
                 .toString();

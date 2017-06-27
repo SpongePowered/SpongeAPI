@@ -34,7 +34,7 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.BaseValue;
 
-public interface EntityArchetype extends Archetype<EntitySnapshot> {
+public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
 
     /**
      * Creates a {@link Builder} to get {@link EntityArchetype}s.

@@ -54,6 +54,7 @@ import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.InventoryArchetype;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
+import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.scoreboard.CollisionRule;
 import org.spongepowered.api.scoreboard.Visibility;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
@@ -62,7 +63,6 @@ import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMo
 import org.spongepowered.api.service.economy.transaction.TransactionType;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticType;
-import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.chat.ChatVisibility;
 import org.spongepowered.api.text.format.TextColor;
@@ -90,11 +90,10 @@ import org.spongepowered.api.world.weather.Weather;
  * {@link GameRegistry#getType(Class, String)} and
  * {@link GameRegistry#getAllOf(Class)}.
  */
+@SuppressWarnings("rawtypes")
 public final class CatalogTypes {
 
     // SORTFIELDS:ON
-
-    public static final Class<Achievement> ACHIEVEMENT = Achievement.class;
 
     public static final Class<AITaskType> AI_TASK_TYPE = AITaskType.class;
 
@@ -138,6 +137,8 @@ public final class CatalogTypes {
 
     public static final Class<CookedFish> COOKED_FISH = CookedFish.class;
 
+    public static final Class<CraftingRecipe> CRAFTING_RECIPES = CraftingRecipe.class;
+
     public static final Class<Criterion> CRITERION = Criterion.class;
 
     public static final Class<DamageModifierType> DAMAGE_MODIFIER_TYPE = DamageModifierType.class;
@@ -161,12 +162,6 @@ public final class CatalogTypes {
     public static final Class<DisplaySlot> DISPLAY_SLOT = DisplaySlot.class;
 
     public static final Class<DoublePlantType> DOUBLE_PLANT_TYPE = DoublePlantType.class;
-
-    /**
-     * @deprecated Use {@link #DOUBLE_PLANT_TYPE}.
-     */
-    @Deprecated
-    public static final Class<DoublePlantType> DOUBLE_SIZE_PLANT_TYPE = DOUBLE_PLANT_TYPE;
 
     public static final Class<DyeColor> DYE_COLOR = DyeColor.class;
 
@@ -204,8 +199,6 @@ public final class CatalogTypes {
 
     public static final Class<HorseStyle> HORSE_STYLE = HorseStyle.class;
 
-    @Deprecated public static final Class<HorseVariant> HORSE_VARIANT = HorseVariant.class;
-
     public static final Class<InstrumentType> INSTRUMENT_TYPE = InstrumentType.class;
 
     public static final Class<InventoryArchetype> INVENTORY_ARCHETYPE = InventoryArchetype.class;
@@ -223,6 +216,8 @@ public final class CatalogTypes {
     public static final Class<ObjectiveDisplayMode> OBJECTIVE_DISPLAY_MODE = ObjectiveDisplayMode.class;
 
     public static final Class<OcelotType> OCELOT_TYPE = OcelotType.class;
+
+    public static final Class<ParrotVariant> PARROT_VARIANT = ParrotVariant.class;
 
     public static final Class<ParticleOption> PARTICLE_OPTION = ParticleOption.class;
 
@@ -265,8 +260,6 @@ public final class CatalogTypes {
     public static final Class<SerializationBehavior> SERIALIZATION_BEHAVIOR = SerializationBehavior.class;
 
     public static final Class<ShrubType> SHRUB_TYPE = ShrubType.class;
-
-    @Deprecated public static final Class<SkeletonType> SKELETON_TYPE = SkeletonType.class;
 
     public static final Class<SkinPart> SKIN_PART = SkinPart.class;
 

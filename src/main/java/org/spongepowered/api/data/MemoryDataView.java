@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 import static org.spongepowered.api.data.DataQuery.of;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -58,7 +59,10 @@ import javax.annotation.Nullable;
 
 /**
  * Default implementation of a {@link DataView} being used in memory.
+ * @deprecated To be moved to implementation to avoid implementation bugs
+ *     being existing in the API.
  */
+@Deprecated
 public class MemoryDataView implements DataView {
 
     protected final Map<String, Object> map = Maps.newLinkedHashMap();
@@ -847,7 +851,7 @@ public class MemoryDataView implements DataView {
 
     @Override
     public String toString() {
-        final Objects.ToStringHelper helper = Objects.toStringHelper(this);
+        final MoreObjects.ToStringHelper helper = MoreObjects.toStringHelper(this);
         if (!this.path.toString().isEmpty()) {
             helper.add("path", this.path);
         }

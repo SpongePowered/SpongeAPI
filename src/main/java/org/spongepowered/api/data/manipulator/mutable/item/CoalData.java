@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.item;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableCoalData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.CoalType;
@@ -33,6 +34,8 @@ import org.spongepowered.api.item.inventory.ItemStack;
 /**
  * A type of {@link VariantData} handling the {@link CoalType} of an
  * {@link ItemStack} of the {@link ItemTypes#COAL}.
+ *
+ * @see Keys#COAL_TYPE
  */
 public interface CoalData extends VariantData<CoalType, CoalData, ImmutableCoalData> {
 

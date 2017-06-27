@@ -262,6 +262,6 @@ public class UnmodifiableWeightedTable<T> extends WeightedTable<T> {
             return false;
         }
         UnmodifiableWeightedTable<?> that = (UnmodifiableWeightedTable<?>) o;
-        return Objects.equal(table, that.table);
+        return Objects.equal(this.table, that.table);
     }
 }

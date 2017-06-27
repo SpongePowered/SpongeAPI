@@ -22,26 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.entity;
-
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAchievementData;
-import org.spongepowered.api.data.value.mutable.SetValue;
-import org.spongepowered.api.statistic.achievement.Achievement;
-
-/**
- * An {@link DataManipulator} containing data related to having earned
- * {@link Achievement}s. The use of {@link SetValue} is to prevent any possible
- * duplication when it comes to granting/removing {@link Achievement}s without
- * the worry of losing track.
- */
-public interface AchievementData extends DataManipulator<AchievementData, ImmutableAchievementData> {
-
-    /**
-     * Gets the {@link SetValue} of {@link Achievement}s earned.
-     *
-     * @return The set value of achievements earned
-     */
-    SetValue<Achievement> achievements();
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.item.recipe.crafting;

@@ -24,61 +24,8 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.entity.HorseData;
-import org.spongepowered.api.data.type.HorseColor;
-import org.spongepowered.api.data.type.HorseStyle;
-import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.item.inventory.Carrier;
 
 public interface Horse extends Animal, Carrier {
-
-    /**
-     * Gets a copy of the {@link HorseData} representing this {@link Horse}.
-     *
-     * @return A copy of the horse data
-     * @deprecated This is now only usable with {@link RideableHorse}s.
-     */
-    @Deprecated
-    default HorseData getHorseData() {
-        return get(HorseData.class).get();
-    }
-
-    /**
-     * Gets the {@link Value} of the {@link org.spongepowered.api.data.type.HorseVariant} for this
-     * {@link Horse}.
-     *
-     * @return The variant value
-     * @deprecated This is now only usable with {@link RideableHorse}s.
-     */
-    @Deprecated
-    @SuppressWarnings("deprecation")
-    default Value<org.spongepowered.api.data.type.HorseVariant> variant() {
-        return getValue(Keys.HORSE_VARIANT).get();
-    }
-
-    /**
-     * Gets the {@link Value} of the {@link HorseStyle} for this
-     * {@link Horse}.
-     *
-     * @return The horse style
-     * @deprecated This is now only usable with {@link RideableHorse}s.
-     */
-    @Deprecated
-    default Value<HorseStyle> style() {
-        return getValue(Keys.HORSE_STYLE).get();
-    }
-
-    /**
-     * Gets the {@link Value} of the {@link HorseColor} for this
-     * {@link Horse}.
-     *
-     * @return The horse color
-     * @deprecated This is now only usable with {@link RideableHorse}s.
-     */
-    @Deprecated
-    default Value<HorseColor> color() {
-        return getValue(Keys.HORSE_COLOR).get();
-    }
 
 }

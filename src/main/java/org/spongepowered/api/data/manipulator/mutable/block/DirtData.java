@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableDirtData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.DirtType;
@@ -32,6 +33,8 @@ import org.spongepowered.api.data.type.DirtType;
 /**
  * An {@link VariantData} for the {@link DirtType}. Usually applicable to
  * {@link BlockTypes#DIRT}.
+ *
+ * @see Keys#DIRT_TYPE
  */
 public interface DirtData extends VariantData<DirtType, DirtData, ImmutableDirtData> {
 

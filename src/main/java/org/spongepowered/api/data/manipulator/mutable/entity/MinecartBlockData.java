@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableMinecartBlockData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -36,6 +37,7 @@ public interface MinecartBlockData extends DataManipulator<MinecartBlockData, Im
      * Gets the {@link BlockState} represented by the {@link Minecart}.
      *
      * @return The represented block
+     * @see Keys#REPRESENTED_BLOCK
      */
     Value<BlockState> block();
 
@@ -46,6 +48,7 @@ public interface MinecartBlockData extends DataManipulator<MinecartBlockData, Im
      * and negative values move the block downwards.</p>
      *
      * @return The block offset
+     * @see Keys#OFFSET
      */
     Value<Integer> offset();
 

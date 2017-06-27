@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutablePickupRuleData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
@@ -33,6 +34,8 @@ import org.spongepowered.api.entity.projectile.arrow.Arrow;
 /**
  * A {@link DataManipulator} for the "pickup" rule of an
  * {@link Arrow}.
+ *
+ * @see Keys#PICKUP_RULE
  */
 public interface PickupRuleData extends VariantData<PickupRule, PickupRuleData, ImmutablePickupRuleData> {
 

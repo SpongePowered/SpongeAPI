@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.item;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutablePagedData;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
@@ -45,6 +46,7 @@ public interface PagedData extends ListData<Text, PagedData, ImmutablePagedData>
      * Gets the {@link ListValue} for the {@link Text} pages.
      *
      * @return The list value of text pages
+     * @see Keys#BOOK_PAGES
      */
     default ListValue<Text> pages() {
         return getListValue();

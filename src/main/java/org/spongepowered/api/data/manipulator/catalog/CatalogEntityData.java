@@ -57,9 +57,7 @@ import org.spongepowered.api.entity.living.monster.Blaze;
 import org.spongepowered.api.entity.living.monster.Creeper;
 import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Endermite;
-import org.spongepowered.api.entity.living.monster.Guardian;
 import org.spongepowered.api.entity.living.monster.MagmaCube;
-import org.spongepowered.api.entity.living.monster.Skeleton;
 import org.spongepowered.api.entity.living.monster.Slime;
 import org.spongepowered.api.entity.living.monster.Zombie;
 import org.spongepowered.api.entity.living.player.Player;
@@ -75,7 +73,6 @@ import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.statistic.achievement.Achievement;
 import org.spongepowered.api.world.weather.Weather;
 
 /**
@@ -84,11 +81,6 @@ import org.spongepowered.api.world.weather.Weather;
  */
 public final class CatalogEntityData {
 
-    /**
-     * The {@link AchievementData} class that can be applied to
-     * {@link Player}s.
-     */
-    public static final Class<AchievementData> ACHIEVEMENT_DATA = AchievementData.class;
     /**
      * The {@link AgeableData} that represents age determining whether an
      * {@link Entity} is a child or an adult. Always exists for
@@ -175,13 +167,6 @@ public final class CatalogEntityData {
      */
     public static final Class<DyeableData> DYEABLE_DATA = DyeableData.class;
     /**
-     * Signifies that an entity is considered an "elder". Usually applies to
-     * {@link Guardian}s.
-     */
-    @Deprecated
-    @SuppressWarnings("deprecation")
-    public static final Class<ElderData> ELDER_DATA = ElderData.class;
-    /**
      * Signifies that an entity can hold "experience". Usually applies to
      * {@link Player}s.
      */
@@ -253,8 +238,8 @@ public final class CatalogEntityData {
      */
     public static final Class<HealthData> HEALTH_DATA = HealthData.class;
     /**
-     * Represents a {@link RideableHorse}s specific data, such as {@link HorseVariant},
-     * {@link HorseStyle}, and {@link HorseColor}.
+     * Represents a {@link RideableHorse}s specific data, such as {@link HorseStyle},
+     * and {@link HorseColor}.
      */
     public static final Class<HorseData> HORSE_DATA = HorseData.class;
     /**
@@ -375,12 +360,6 @@ public final class CatalogEntityData {
      */
     public static final Class<SizeData> SIZE_DATA = SizeData.class;
     /**
-     * Represents the {@link SkeletonType} of a {@link Skeleton}.
-     */
-    @Deprecated
-    @SuppressWarnings("deprecation")
-    public static final Class<SkeletonData> SKELETON_DATA = SkeletonData.class;
-    /**
      * Signifies that the owner is currently "sleeping". This will usually
      * apply to {@link Humanoid}s and {@link Bat}s.
      */
@@ -396,9 +375,8 @@ public final class CatalogEntityData {
      */
     public static final Class<SneakingData> SNEAKING_DATA = SneakingData.class;
     /**
-     * Represents the container of all known applied {@link Statistic}s and
-     * {@link Achievement}s. Usually applicable to {@link Player}s and
-     * {@link User}s.
+     * Represents the container of all known applied {@link Statistic}s. Usually
+     * applicable to {@link Player}s and {@link User}s.
      */
     public static final Class<StatisticData> STATISTIC_DATA = StatisticData.class;
     /**
@@ -416,13 +394,6 @@ public final class CatalogEntityData {
      * {@link Entity}.
      */
     public static final Class<VelocityData> VELOCITY_DATA = VelocityData.class;
-    /**
-     * Specifies the type of a {@link Zombie}, as well as its profession
-     * (if it has one).
-     */
-    @Deprecated
-    @SuppressWarnings("deprecation")
-    public static final Class<ZombieData> ZOMBIE_DATA = ZombieData.class;
     /**
      * Signifies that an entity is currently "wet". Usually applicable to
      * {@link Wolf} entities.

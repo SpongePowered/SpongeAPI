@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutablePlayerCreatedData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -40,6 +41,7 @@ public interface PlayerCreatedData extends DataManipulator<PlayerCreatedData, Im
      * {@link IronGolem}.
      *
      * @return The value for the "player created" state
+     * @see Keys#PLAYER_CREATED
      */
     Value<Boolean> playerCreated();
 

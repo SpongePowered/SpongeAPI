@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableBreathingData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -39,6 +40,7 @@ public interface BreathingData extends DataManipulator<BreathingData, ImmutableB
      * changed to {@code (air >= 0 && air <= maxAir)}.
      *
      * @return The mutable value of remaining air
+     * @see Keys#REMAINING_AIR
      */
     MutableBoundedValue<Integer> remainingAir();
 
@@ -48,6 +50,7 @@ public interface BreathingData extends DataManipulator<BreathingData, ImmutableB
      * remain at least 1.
      *
      * @return The mutable bounded value of maximum air capacity
+     * @see Keys#MAX_AIR
      */
     MutableBoundedValue<Integer> maxAir();
 

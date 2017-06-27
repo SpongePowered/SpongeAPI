@@ -22,30 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.entity;
+package org.spongepowered.api.asset;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableElderData;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.EntityTypes;
-import org.spongepowered.api.entity.living.monster.Guardian;
+import com.google.inject.BindingAnnotation;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * An {@link DataManipulator} for marking the "elder" state of a
- * {@link Guardian}. Usually, if a {@link Guardian} is an "elder", it will have
- * a higher amount of health, deal more damage, and have a variance in the
- * items dropped when killed.
- * 
- * @deprecated see {@link EntityTypes#ELDER_GUARDIAN}
+ * Provides an injection for {@link Asset}s in plugins.
  */
-@Deprecated
-public interface ElderData extends DataManipulator<ElderData, ImmutableElderData> {
+@BindingAnnotation
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface AssetId {
 
     /**
-     * Gets the {@link Value} for the "elder" state.
+     * The path to the {@link Asset} in the asset folder of the plugin.
      *
-     * @return The value for the elder state
+     * @return The path to the asset
+     * @see AssetManager#getAsset(Object, String)
      */
-    Value<Boolean> elder();
+    String value();
 
 }

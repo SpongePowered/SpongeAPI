@@ -22,37 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.entity;
+package org.spongepowered.api.data.manipulator.immutable.entity;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.type.Profession;
-import org.spongepowered.api.data.value.mutable.OptionalValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.living.monster.Zombie;
-
-import java.util.Optional;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
+import org.spongepowered.api.data.manipulator.mutable.entity.ParrotData;
+import org.spongepowered.api.data.type.ParrotVariant;
+import org.spongepowered.api.entity.living.animal.Parrot;
 
 /**
- * Represents an {@link DataManipulator} handling the type and
- * profession of a {@link Zombie}.
+ * A type of {@link ImmutableVariantData} for {@link ParrotVariant}s belonging
+ * to an {@link Parrot}.
  */
-@Deprecated
-@SuppressWarnings("deprecation")
-public interface ZombieData extends DataManipulator<ZombieData,
-    org.spongepowered.api.data.manipulator.immutable.entity.ImmutableZombieData> {
-
-    /**
-     * Returns a value specifying Zombie's type.
-     *
-     * @return Zombie's type
-     */
-    Value<org.spongepowered.api.data.type.ZombieType> type();
-
-    /**
-     * Value representing a zombie's zombie's {@link Profession}.
-     * .
-     * @return Profession of the zombie, or {@link Optional#empty()} if it has none
-     */
-    OptionalValue<Profession> profession();
+public interface ImmutableParrotData extends ImmutableVariantData<ParrotVariant, ImmutableParrotData, ParrotData> {
 
 }

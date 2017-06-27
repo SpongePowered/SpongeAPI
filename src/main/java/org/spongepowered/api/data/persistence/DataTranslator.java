@@ -30,13 +30,14 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.MemoryDataView;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.util.Map;
 
 /**
  * A compatibility object to translate and translate any type of
  * {@link Object} that is not a {@link DataSerializable}. Natively,
- * {@link MemoryDataView} will attempt to locate a {@code DataTranslator}
+ * {@link DataView} will attempt to locate a {@code DataTranslator}
  * during {@link DataView#set(DataQuery, Object)}.
  *
  * @param <T> The type of object that this translator can handle
@@ -71,4 +72,20 @@ public interface DataTranslator<T> extends CatalogType {
      *     for any reason
      */
     DataContainer translate(T obj) throws InvalidDataException;
+
+    /**
+     * Serializes the {@code T} object and applies the provided
+     * data to the provided {@link DataView} instead of creating
+     * a new {@link DataContainer}, reducing nested information.
+     *
+     * @param obj The object to serialize
+     * @param dataView The data view to serialize to
+     * @return The provided data view, for chaining
+     */
+    default DataView addTo(T obj, DataView dataView) {
+        for (Map.Entry<DataQuery, Object> entry : translate(obj).getValues(false).entrySet()) {
+            dataView.set(entry.getKey(), entry);
+        }
+        return dataView;
+    }
 }

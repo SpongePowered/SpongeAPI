@@ -22,19 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.data.manipulator.mutable.entity;
 
-import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
-import org.spongepowered.api.entity.living.monster.Skeleton;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableParrotData;
+import org.spongepowered.api.data.manipulator.mutable.VariantData;
+import org.spongepowered.api.data.type.ParrotVariant;
+import org.spongepowered.api.entity.living.animal.Parrot;
 
 /**
- * A type of {@link ImmutableVariantData} for
- * {@link org.spongepowered.api.data.type.SkeletonType}s belonging
- * to an {@link Skeleton}.
+ * A type of {@link VariantData} for {@link ParrotVariant}s belonging
+ * to an {@link Parrot}.
  */
-@Deprecated
-@SuppressWarnings("deprecation")
-public interface ImmutableSkeletonData extends ImmutableVariantData<org.spongepowered.api.data.type.SkeletonType, ImmutableSkeletonData,
-    org.spongepowered.api.data.manipulator.mutable.entity.SkeletonData> {
+public interface ParrotData extends VariantData<ParrotVariant, ParrotData, ImmutableParrotData> {
 
 }

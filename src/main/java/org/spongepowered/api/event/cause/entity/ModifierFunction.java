@@ -22,5 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.statistic.achievement;
+package org.spongepowered.api.event.cause.entity;
+
+import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
+import org.spongepowered.api.event.cause.entity.health.HealthModifier;
+
+import java.util.function.DoubleUnaryOperator;
+
+/**
+ * A function associating either a {@link HealthModifier} or a
+ * {@link DamageModifier} with a {@link DoubleUnaryOperator} of the resultant
+ * effect.
+ *
+ * @param <M> The modifier type
+ */
+public interface ModifierFunction<M> {
+
+    M getModifier();
+
+    DoubleUnaryOperator getFunction();
+
+}

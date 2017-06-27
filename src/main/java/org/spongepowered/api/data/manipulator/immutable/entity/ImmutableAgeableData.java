@@ -45,17 +45,7 @@ public interface ImmutableAgeableData extends ImmutableDataManipulator<Immutable
 
     /**
      * Gets the {@link ImmutableValue} for whether the {@link #age()} is
-     * considered to be a "baby". If the value is false, {@link #adult()}
-     * should be {@code true} and vice versa.
-     *
-     * @return The immutable value for the "baby" state
-     */
-    ImmutableValue<Boolean> baby();
-
-    /**
-     * Gets the {@link ImmutableValue} for whether the {@link #age()} is
-     * considered to be an "adult". If the value is false, {@link #baby()}
-     * should be {@code true} and vice versa.
+     * considered to be an "adult".
      *
      * @return The immutable value for the "adult" state
      */

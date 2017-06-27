@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.living;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.AgeableData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
 
 /**
@@ -58,6 +59,15 @@ public interface Ageable extends Creature {
      */
     default MutableBoundedValue<Integer> age() {
         return getValue(Keys.AGE).get();
+    }
+
+    /**
+     * Gets the {@link Value} for the "adult" state.
+     *
+     * @return The value for the "adult" state
+     */
+    default Value<Boolean> adult() {
+        return getValue(Keys.IS_ADULT).get();
     }
 
 }

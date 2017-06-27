@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutablePrismarineData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.PrismarineType;
@@ -32,6 +33,8 @@ import org.spongepowered.api.data.type.PrismarineType;
 /**
  * An {@link VariantData} for the {@link PrismarineType}. Usually
  * applicable to {@link BlockTypes#PRISMARINE}.
+ *
+ * @see Keys#PRISMARINE_TYPE
  */
 public interface PrismarineData extends VariantData<PrismarineType, PrismarineData, ImmutablePrismarineData> {
 

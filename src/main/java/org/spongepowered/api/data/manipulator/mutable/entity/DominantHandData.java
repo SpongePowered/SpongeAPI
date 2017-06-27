@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableDominantHandData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
@@ -50,6 +51,7 @@ public interface DominantHandData extends VariantData<HandPreference, DominantHa
      * {@link Entity}.
      *
      * @return The value for handedness
+     * @see Keys#DOMINANT_HAND
      */
     Value<HandPreference> dominantHand();
 

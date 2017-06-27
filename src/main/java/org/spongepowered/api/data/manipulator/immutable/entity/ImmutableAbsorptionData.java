@@ -22,21 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.data.manipulator.immutable.entity;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.entity.living.animal.RideableHorse;
-import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.entity.AbsorptionData;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.entity.living.Living;
 
 /**
- * Represents the variant of a {@link RideableHorse}.
- * <p>The variant of a horse defines the various behaviors the horse can have.
- * Some behaviors limit whether a horse can be chested, wear horse armor, or
- * can be saddled.</p>
+ * An {@link ImmutableDataManipulator} for representing the absorption
+ * of a {@link Living living entity}.
  */
-@Deprecated
-@CatalogedBy(HorseVariants.class)
-public interface HorseVariant extends CatalogType, Translatable {
+public interface ImmutableAbsorptionData extends ImmutableDataManipulator<ImmutableAbsorptionData, AbsorptionData> {
+
+    /**
+     * Gets the {@link ImmutableValue} for the absorption.
+     *
+     * @return The value for the absorption
+     */
+    ImmutableValue<Double> absorption();
 
 }

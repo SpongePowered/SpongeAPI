@@ -54,6 +54,7 @@ import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.text.chat.ChatType;
 import org.spongepowered.api.text.chat.ChatVisibility;
+import org.spongepowered.api.world.WorldBorder;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -339,4 +340,21 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      */
     void setSpectatorTarget(@Nullable Entity entity);
 
+    /**
+     * Gets the {@link WorldBorder} for this player, if present. If no border is
+     * set, an empty {@code Optional} is returned.
+     *
+     * @return The {@code WorldBorder} of this player as an {@code Optional}, if
+     *     present
+     */
+    Optional<WorldBorder> getWorldBorder();
+
+    /**
+     * Sets the {@link WorldBorder} instance for this player to the given world 
+     * border. If {@code null} is passed, the world border is unset.
+     * 
+     * @param border The world border to be used, may be {@code null}
+     * @param cause The cause of the border's change
+     */
+    void setWorldBorder(@Nullable WorldBorder border, Cause cause);
 }

@@ -24,30 +24,14 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.living.animal.Parrot;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * An enumeration of known vanilla {@link HorseVariant}s.
+ * Represents the variant of a {@link Parrot}.
  */
-@Deprecated
-public final class HorseVariants {
+@CatalogedBy(ParrotVariants.class)
+public interface ParrotVariant extends CatalogType {
 
-    // SORTFIELDS:ON
-
-    public static final HorseVariant DONKEY = DummyObjectProvider.createFor(HorseVariant.class, "DONKEY");
-
-    public static final HorseVariant HORSE = DummyObjectProvider.createFor(HorseVariant.class, "HORSE");
-
-    public static final HorseVariant LLAMA = DummyObjectProvider.createFor(HorseVariant.class, "LLAMA");
-
-    public static final HorseVariant MULE = DummyObjectProvider.createFor(HorseVariant.class, "MULE");
-
-    public static final HorseVariant SKELETON_HORSE = DummyObjectProvider.createFor(HorseVariant.class, "SKELETON_HORSE");
-
-    public static final HorseVariant UNDEAD_HORSE = DummyObjectProvider.createFor(HorseVariant.class, "UNDEAD_HORSE");
-
-    // SORTFIELDS:OFF
-
-    private HorseVariants() {
-    }
 }

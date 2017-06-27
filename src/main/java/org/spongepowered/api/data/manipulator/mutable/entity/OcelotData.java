@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableOcelotData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.OcelotType;
@@ -32,6 +33,8 @@ import org.spongepowered.api.entity.living.animal.Ocelot;
 /**
  * A type of {@link VariantData} for {@link OcelotType}s belonging
  * to an {@link Ocelot}.
+ *
+ * @see Keys#OCELOT_TYPE
  */
 public interface OcelotData extends VariantData<OcelotType, OcelotData, ImmutableOcelotData> {
 

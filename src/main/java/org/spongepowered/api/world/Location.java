@@ -42,7 +42,6 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
@@ -340,6 +339,20 @@ public final class Location<E extends Extent> implements DataHolder {
     public Location<E> setPosition(Vector3d position) {
         checkNotNull(position, "position");
         if (position == getPosition()) {
+            return this;
+        }
+        return new Location<>(getExtent(), position);
+    }
+
+    /**
+     * Create a new instance with a new block position.
+     *
+     * @param position The new position
+     * @return A new instance
+     */
+    public Location<E> setBlockPosition(Vector3i position) {
+        checkNotNull(position, "position");
+        if (position == getBlockPosition()) {
             return this;
         }
         return new Location<>(getExtent(), position);
@@ -682,6 +695,16 @@ public final class Location<E extends Extent> implements DataHolder {
         return this.getExtent().spawnEntities(entities, cause);
     }
 
+    /**
+     * Gets the highest {@link Location} at this location.
+     *
+     * @return The highest location at this location
+     * @see Extent#getHighestPositionAt(Vector3i)
+     */
+    public Location<E> asHighestLocation() {
+        return this.setBlockPosition(this.getExtent().getHighestPositionAt(getBlockPosition()));
+    }
+
     @Override
     public DataTransactionResult remove(Class<? extends DataManipulator<?, ?>> containerClass) {
         return getExtent().remove(getBlockPosition(), containerClass);
@@ -765,7 +788,7 @@ public final class Location<E extends Extent> implements DataHolder {
 
     @Override
     public DataContainer toContainer() {
-        final DataContainer container = new MemoryDataContainer();
+        final DataContainer container = DataContainer.createNew();
         container.set(Queries.CONTENT_VERSION, getContentVersion());
         if (getExtent() instanceof World) {
             container.set(Queries.WORLD_NAME, ((World) getExtent()).getName());

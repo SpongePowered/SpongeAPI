@@ -141,9 +141,12 @@ public class Functional {
      * @param p The predicate
      * @param <E> The type of object
      * @return The java 8 predicate
+     *
+     * @deprecated {@link com.google.common.base.Predicate} extends {@link Predicate}
      */
+    @Deprecated
     public static <E> Predicate<E> guavaToJava8(com.google.common.base.Predicate<E> p) {
-        return p::apply;
+        return p;
     }
 
     /**

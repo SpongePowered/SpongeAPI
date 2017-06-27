@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.block;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableRailDirectionData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.RailDirection;
@@ -33,6 +34,8 @@ import org.spongepowered.api.util.Direction;
  * An {@link VariantData} for the {@link RailDirection} of rails. The
  * primary difference between a {@link RailDirection} and {@link Direction} is
  * that a {@link RailDirection} can be ascending in the cardinal directions.
+ *
+ * @see Keys#RAIL_DIRECTION
  */
 public interface RailDirectionData extends VariantData<RailDirection, RailDirectionData, ImmutableRailDirectionData> {
 

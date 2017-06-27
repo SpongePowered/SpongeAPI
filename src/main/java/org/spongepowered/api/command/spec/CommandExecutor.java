@@ -33,6 +33,7 @@ import org.spongepowered.api.command.args.CommandContext;
  * Interface containing the method directing how a certain command will
  * be executed.
  */
+@FunctionalInterface
 public interface CommandExecutor {
     /**
      * Callback for the execution of a command.

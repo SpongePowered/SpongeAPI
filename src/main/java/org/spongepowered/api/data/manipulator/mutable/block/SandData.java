@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableSandData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.SandType;
@@ -32,6 +33,8 @@ import org.spongepowered.api.data.type.SandType;
 /**
  * An {@link VariantData} for the {@link SandType}. Usually applicable to
  * {@link BlockTypes#SAND}.
+ *
+ * @see Keys#SAND_TYPE
  */
 public interface SandData extends VariantData<SandType, SandData, ImmutableSandData> {
 

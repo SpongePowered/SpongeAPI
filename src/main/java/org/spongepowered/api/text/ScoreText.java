@@ -26,6 +26,7 @@ package org.spongepowered.api.text;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.scoreboard.Score;
@@ -124,7 +125,7 @@ public final class ScoreText extends Text {
     }
 
     @Override
-    Objects.ToStringHelper toStringHelper() {
+    MoreObjects.ToStringHelper toStringHelper() {
         return super.toStringHelper()
                 .addValue(this.score)
                 .add("override", this.override.orElse(null));
@@ -251,7 +252,7 @@ public final class ScoreText extends Text {
         }
 
         @Override
-        Objects.ToStringHelper toStringHelper() {
+        MoreObjects.ToStringHelper toStringHelper() {
             return super.toStringHelper()
                     .addValue(this.score)
                     .add("override", this.override);

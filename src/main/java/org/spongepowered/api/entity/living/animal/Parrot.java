@@ -22,27 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.living.monster.Guardian;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.manipulator.mutable.entity.ParrotData;
+import org.spongepowered.api.data.type.ParrotVariant;
+import org.spongepowered.api.data.value.mutable.Value;
 
 /**
- * An {@link ImmutableDataManipulator} for marking the "elder" state of a
- * {@link Guardian}. Usually, if a {@link Guardian} is an "elder", it will have
- * a higher amount of health, deal more damage, and have a variance in the
- * items dropped when killed.
+ * Represents a parrot.
  */
-@Deprecated
-@SuppressWarnings("deprecation")
-public interface ImmutableElderData extends ImmutableDataManipulator<ImmutableElderData, org.spongepowered.api.data.manipulator.mutable.entity.ElderData> {
+public interface Parrot extends Animal {
 
     /**
-     * Gets the {@link ImmutableValue} for the "elder" state.
+     * Gets a copy of the current {@link ParrotData} being represented by
+     * this {@link Parrot}.
      *
-     * @return The immutable value for the elder state
+     * @return A copy of the current parrot data
      */
-    ImmutableValue<Boolean> elder();
+    default ParrotData getParrotData() {
+        return this.get(ParrotData.class).get();
+    }
+
+    /**
+     * Gets the {@link Value} for the {@link ParrotVariant} of this
+     * {@link Parrot}.
+     *
+     * @return The parrot variant value
+     */
+    default Value<ParrotVariant> variant() {
+        return this.getValue(Keys.PARROT_VARIANT).get();
+    }
 
 }

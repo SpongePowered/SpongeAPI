@@ -22,26 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.data.manipulator.mutable.tileentity;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.block.tileentity.Bed;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableBedData;
+import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.value.mutable.Value;
 
 /**
- * An enumeration of known vanilla {@link SkeletonType}s.
+ * A {@link DataManipulator} handling the various data of a
+ * {@link Bed}.
  */
-@Deprecated
-public final class SkeletonTypes {
+public interface BedData extends DataManipulator<BedData, ImmutableBedData> {
 
-    // SORTFIELDS:ON
+    /**
+     * Gets the {@link Value} for the {@link DyeColor color}.
+     *
+     * @return The value for the color
+     */
+    Value<DyeColor> color();
 
-    public static final SkeletonType NORMAL = DummyObjectProvider.createFor(SkeletonType.class, "NORMAL");
-
-    public static final SkeletonType STRAY = DummyObjectProvider.createFor(SkeletonType.class, "STRAY");
-
-    public static final SkeletonType WITHER = DummyObjectProvider.createFor(SkeletonType.class, "WITHER");
-
-    // SORTFIELDS:OFF
-
-    private SkeletonTypes() {
-    }
 }

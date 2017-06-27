@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.block;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableAttachedData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -39,6 +40,7 @@ public interface AttachedData extends DataManipulator<AttachedData, ImmutableAtt
      * Gets the {@link Value} for the "attached" state.
      *
      * @return The "attached" value state
+     * @see Keys#ATTACHED
      */
     Value<Boolean> attached();
 

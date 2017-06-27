@@ -428,6 +428,13 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      */
     PortalAgent getPortalAgent();
 
+    /**
+     * Gets the sea level of the world.
+     *
+     * @return The sea level
+     */
+    int getSeaLevel();
+
     @Override
     MutableBiomeVolumeWorker<World> getBiomeWorker();
 

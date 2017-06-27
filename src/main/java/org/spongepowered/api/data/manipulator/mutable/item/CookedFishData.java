@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.item;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableCookedFishData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.type.CookedFish;
@@ -33,6 +34,8 @@ import org.spongepowered.api.item.inventory.ItemStack;
 /**
  * A type of {@link VariantData} handling the {@link CookedFish} of an
  * {@link ItemStack} of the {@link ItemTypes#COOKED_FISH}.
+ *
+ * @see Keys#COOKED_FISH
  */
 public interface CookedFishData extends VariantData<CookedFish, CookedFishData, ImmutableCookedFishData> {
 

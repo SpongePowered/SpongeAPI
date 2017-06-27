@@ -76,20 +76,6 @@ public final class DamageModifierTypes {
     public static final DamageModifierType ATTACK_COOLDOWN = DummyObjectProvider.createFor(DamageModifierType.class, "ATTACK_COOLDOWN");
 
     /**
-     * Represents a {@link DamageModifier} that will reduce damage due to
-     * an attempt at blocking.
-     *
-     * @deprecated {@link #SHIELD} should be used instead, since blocking no longer exists in the game as of 1.9
-     */
-    @Deprecated
-    public static final DamageModifierType BLOCKING = DummyObjectProvider.createFor(DamageModifierType.class, "SHIELD");
-
-    /**
-     * Represents a {@link DamageModifier} that will reduce damage due to using a shield.
-     */
-    public static final DamageModifierType SHIELD = DummyObjectProvider.createFor(DamageModifierType.class, "SHIELD");
-
-    /**
      * Represents the {@link DamageModifier} that will modify damage output
      * based on the fact that the attacking source is critically hitting the
      * target.
@@ -148,6 +134,18 @@ public final class DamageModifierTypes {
      */
     public static final DamageModifierType OFFENSIVE_POTION_EFFECT = DummyObjectProvider
             .createFor(DamageModifierType.class, "OFFENSIVE_POTION_EFFECT");
+
+    /**
+     * Represents a {@link DamageModifier} that will reduce damage due to
+     * using a shield.
+     */
+    public static final DamageModifierType SHIELD = DummyObjectProvider.createFor(DamageModifierType.class, "SHIELD");
+
+    /**
+     * Represents a {@link DamageModifier} that is applied for a sweaping
+     * attack.
+     */
+    public static final DamageModifierType SWEAPING = DummyObjectProvider.createFor(DamageModifierType.class, "SWEAPING");
 
     /**
      * Represents the {@link DamageModifier} that will modify damage from

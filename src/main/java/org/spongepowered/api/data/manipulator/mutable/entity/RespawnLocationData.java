@@ -26,6 +26,7 @@ package org.spongepowered.api.data.manipulator.mutable.entity;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableRespawnLocation;
 import org.spongepowered.api.data.manipulator.mutable.MappedData;
@@ -51,6 +52,7 @@ public interface RespawnLocationData extends MappedData<UUID, RespawnLocation, R
      * respawn points for other {@link World}s.
      *
      * @return The map for the respawn locations per world id
+     * @see Keys#RESPAWN_LOCATIONS
      */
     default MapValue<UUID, RespawnLocation> respawnLocation() {
         return getMapValue();

@@ -22,24 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.network;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import com.google.inject.BindingAnnotation;
 
-@Deprecated
-public final class ZombieTypes {
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-    // SORTFIELDS:ON
+/**
+ * An annotation used for naming {@link ChannelBinding} injections.
+ *
+ * <p><pre>{@code @ChannelId("SomeChannel") @Inject
+ * ChannelBinding.RawDataChannel channel;}</pre></p>
+ */
+@BindingAnnotation
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface ChannelId {
 
-    public static final ZombieType HUSK = DummyObjectProvider.createFor(ZombieType.class, "HUSK");
-
-    public static final ZombieType NORMAL = DummyObjectProvider.createFor(ZombieType.class, "NORMAL");
-
-    public static final ZombieType VILLAGER = DummyObjectProvider.createFor(ZombieType.class, "VILLAGER");
-
-    // SORTFIELDS:OFF
-
-    private ZombieTypes() {
-    }
-
+    /**
+     * Gets the channel id.
+     *
+     * @return The channel id
+     */
+    String value();
 }

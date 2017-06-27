@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableConnectedDirectionData;
 import org.spongepowered.api.data.value.mutable.SetValue;
@@ -43,6 +44,7 @@ public interface ConnectedDirectionData extends DataManipulator<ConnectedDirecti
      * {@link Direction}s.
      *
      * @return The immutable set value for connected directions
+     * @see Keys#CONNECTED_DIRECTIONS
      */
     SetValue<Direction> connectedDirections();
 
@@ -51,6 +53,7 @@ public interface ConnectedDirectionData extends DataManipulator<ConnectedDirecti
      * "connected".
      *
      * @return The value for the north direction
+     * @see Keys#CONNECTED_NORTH
      */
     Value<Boolean> connectedNorth();
 
@@ -59,6 +62,7 @@ public interface ConnectedDirectionData extends DataManipulator<ConnectedDirecti
      * "connected".
      *
      * @return The value for the south direction
+     * @see Keys#CONNECTED_SOUTH
      */
     Value<Boolean> connectedSouth();
 
@@ -67,6 +71,7 @@ public interface ConnectedDirectionData extends DataManipulator<ConnectedDirecti
      * "connected".
      *
      * @return The value for the east direction
+     * @see Keys#CONNECTED_WEST
      */
     Value<Boolean> connectedEast();
 
@@ -75,6 +80,7 @@ public interface ConnectedDirectionData extends DataManipulator<ConnectedDirecti
      * "connected".
      *
      * @return The value for the west direction
+     * @see Keys#CONNECTED_EAST
      */
     Value<Boolean> connectedWest();
 

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.item;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableAuthorData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -35,6 +36,7 @@ public interface AuthorData extends DataManipulator<AuthorData, ImmutableAuthorD
      * Gets the author of this item.
      *
      * @return The author of the item
+     * @see Keys#BOOK_AUTHOR
      */
     Value<Text> author();
 

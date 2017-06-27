@@ -22,38 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.item.recipe.crafting;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.type.Profession;
-import org.spongepowered.api.data.value.immutable.ImmutableOptionalValue;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.living.monster.Zombie;
+import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
+import org.spongepowered.api.item.recipe.RecipeRegistry;
+import org.spongepowered.api.world.World;
 
 import java.util.Optional;
 
 /**
- * Represents an {@link ImmutableDataManipulator} handling the type and
- * profession of a {@link Zombie}.
+ * A registry for Crafting Table recipes.
  */
-@Deprecated
-@SuppressWarnings("deprecation")
-public interface ImmutableZombieData extends ImmutableDataManipulator<ImmutableZombieData,
-    org.spongepowered.api.data.manipulator.mutable.entity.ZombieData> {
+public interface CraftingRecipeRegistry extends RecipeRegistry<CraftingRecipe> {
 
     /**
-     * Returns a value specifying Zombie's type.
+     * Retrieves the recipe which would be crafted when the player clicks
+     * the output slot.
      *
-     * @return Zombie's type
+     * @param grid The crafting grid
+     * @param world The world the player is in
+     * @return The found {@link CraftingRecipe}, or {@link Optional#empty()}
+     *         if no recipe was found for this configuration
      */
-    ImmutableValue<org.spongepowered.api.data.type.ZombieType> type();
+    Optional<CraftingRecipe> findMatchingRecipe(CraftingGridInventory grid, World world);
 
     /**
-     * Value representing a zombie's {@link Profession}.
+     * Finds the matching recipe and creates the {@link CraftingResult},
+     * which is then returned.
      *
-     * @return Profession of the zombie, or {@link Optional#empty()} if it has
-     *      none
+     * @param grid The crafting grid
+     * @param world The world the player is in
+     * @return The {@link CraftingResult} if a recipe was found, or
+     *         {@link Optional#empty()} if not
      */
-    ImmutableOptionalValue<Profession> profession();
-
+    default Optional<CraftingResult> getResult(CraftingGridInventory grid, World world) {
+        return findMatchingRecipe(grid, world)
+                .flatMap(recipe -> recipe.getResult(grid, world));
+    }
 }

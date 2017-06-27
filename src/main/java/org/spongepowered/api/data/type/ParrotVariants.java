@@ -22,18 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.entity;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.manipulator.mutable.VariantData;
-import org.spongepowered.api.entity.living.monster.Skeleton;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * A type of {@link VariantData} for {@link org.spongepowered.api.data.type.SkeletonType}s belonging
- * to an {@link Skeleton}.
+ * An enumeration of known vanilla {@link OcelotType}s.
  */
-@Deprecated
-@SuppressWarnings("deprecation")
-public interface SkeletonData extends VariantData<org.spongepowered.api.data.type.SkeletonType,
-    SkeletonData, org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSkeletonData> {
+public final class ParrotVariants {
 
+    // SORTFIELDS:ON
+
+    public static final ParrotVariant BLUE = DummyObjectProvider.createFor(ParrotVariant.class, "BLUE");
+
+    public static final ParrotVariant CYAN = DummyObjectProvider.createFor(ParrotVariant.class, "CYAN");
+
+    public static final ParrotVariant GRAY = DummyObjectProvider.createFor(ParrotVariant.class, "GRAY");
+
+    public static final ParrotVariant GREEN = DummyObjectProvider.createFor(ParrotVariant.class, "GREEN");
+
+    public static final ParrotVariant RED = DummyObjectProvider.createFor(ParrotVariant.class, "RED");
+
+    // SORTFIELDS:OFF
+
+    private ParrotVariants() {
+    }
 }

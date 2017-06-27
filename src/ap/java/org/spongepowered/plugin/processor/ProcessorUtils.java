@@ -22,23 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.plugin.processor;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.entity.living.monster.Zombie;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import java.util.Collection;
 
-/**
- * <p>
- *     Represents the type of a {@link Zombie}.
- * </p>
- * <p>
- *     Note that zombies with {@link ZombieTypes#VILLAGER} must also have an
- *     associated {@link Profession}.
- * </p>
- */
-@Deprecated
-@CatalogedBy(ZombieTypes.class)
-public interface ZombieType extends CatalogType {
+import javax.lang.model.element.TypeElement;
+
+final class ProcessorUtils {
+
+    private ProcessorUtils() {
+    }
+
+    static boolean contains(Collection<? extends TypeElement> elements, Class<?> clazz) {
+        if (elements.isEmpty()) {
+            return false;
+        }
+
+        final String name = clazz.getName();
+        for (TypeElement element : elements) {
+            if (element.getQualifiedName().contentEquals(name)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 }

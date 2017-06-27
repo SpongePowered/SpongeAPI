@@ -27,6 +27,7 @@ package org.spongepowered.api.text;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -343,7 +344,7 @@ public final class TextTemplate implements TextRepresentable, Iterable<Object> {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("elements", this.elements)
                 .add("arguments", this.arguments)
                 .add("text", this.text)
@@ -470,7 +471,7 @@ public final class TextTemplate implements TextRepresentable, Iterable<Object> {
 
         @Override
         public String toString() {
-            return Objects.toStringHelper(this)
+            return MoreObjects.toStringHelper(this)
                     .omitNullValues()
                     .add("optional", this.optional)
                     .add("defaultValue", this.defaultValue)
@@ -594,7 +595,7 @@ public final class TextTemplate implements TextRepresentable, Iterable<Object> {
 
             @Override
             public String toString() {
-                return Objects.toStringHelper(this)
+                return MoreObjects.toStringHelper(this)
                         .omitNullValues()
                         .add("name", this.name)
                         .add("optional", this.optional)

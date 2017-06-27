@@ -25,6 +25,7 @@
 package org.spongepowered.api.extra.fluid.data.manipulator.mutable;
 
 import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
@@ -49,6 +50,8 @@ public interface FluidItemData extends DataManipulator<FluidItemData, ImmutableF
      * Gets the {@link FluidStackSnapshot} from the owner as a value.
      *
      * @return The value of the fluid stack snapshot
+     *
+     * @see Keys#FLUID_ITEM_STACK
      */
     Value<FluidStackSnapshot> fluid();
 

@@ -38,7 +38,6 @@ import org.spongepowered.api.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -125,7 +124,7 @@ public class ChildCommandElementExecutor extends CommandElement implements Comma
         }
         return filterCommands(src).stream()
                 .filter(new StartsWithPredicate(commandComponent.get()))
-                .collect(GuavaCollectors.toImmutableList());
+                .collect(ImmutableList.toImmutableList());
     }
 
     private Set<String> filterCommands(final CommandSource src) {

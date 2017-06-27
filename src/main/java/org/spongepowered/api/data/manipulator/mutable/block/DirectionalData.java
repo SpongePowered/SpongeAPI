@@ -26,6 +26,7 @@ package org.spongepowered.api.data.manipulator.mutable.block;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableDirectionalData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -42,6 +43,7 @@ public interface DirectionalData extends DataManipulator<DirectionalData, Immuta
      * Gets the {@link Value} for the current "facing" {@link Direction}.
      *
      * @return The current "facing" direction value
+     * @see Keys#DIRECTION
      */
     Value<Direction> direction();
 

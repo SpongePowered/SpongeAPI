@@ -27,12 +27,12 @@ package org.spongepowered.api.entity.living.monster;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.Aerial;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.entity.projectile.ProjectileLauncher;
 
 /**
  * Represents a Blaze.
  */
-public interface Blaze extends Monster, ProjectileSource, Aerial {
+public interface Blaze extends Monster, Aerial, ProjectileLauncher {
 
     /**
      * Gets the current {@link Value value} for whether this {@link Blaze}

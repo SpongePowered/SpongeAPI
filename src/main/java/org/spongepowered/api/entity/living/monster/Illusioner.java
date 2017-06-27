@@ -22,19 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
-
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.entity.living.monster.Skeleton;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+package org.spongepowered.api.entity.living.monster;
 
 /**
- * Represents the type of skeleton a {@link Skeleton}
- * can be. Certain skeleton types define the items a skeleton can equip and
- * can define the various status immunities, such as withering.
+ * Represents an illusioner.
  */
-@Deprecated
-@CatalogedBy(SkeletonTypes.class)
-public interface SkeletonType extends CatalogType {
+public interface Illusioner extends Monster {
 
 }

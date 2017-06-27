@@ -451,7 +451,7 @@ public final class GenericArguments {
         @Override
         public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
             final String prefix = args.nextIfPresent().orElse("");
-            return this.keySupplier.get().stream().filter(new StartsWithPredicate(prefix)).collect(GuavaCollectors.toImmutableList());
+            return this.keySupplier.get().stream().filter(new StartsWithPredicate(prefix)).collect(ImmutableList.toImmutableList());
         }
 
         @Override
@@ -1149,7 +1149,7 @@ public final class GenericArguments {
                     .map(GameProfile::getName)
                     .filter(Optional::isPresent)
                     .map(Optional::get)
-                    .collect(GuavaCollectors.toImmutableList());
+                    .collect(ImmutableList.toImmutableList());
         }
 
         @Override
@@ -1363,7 +1363,7 @@ public final class GenericArguments {
             // Traverse through the possible arguments. We can't really complete arbitrary integers
             if (arg.isPresent()) {
                 if (arg.get().startsWith("#")) {
-                    return SPECIAL_TOKENS.stream().filter(new StartsWithPredicate(arg.get())).collect(GuavaCollectors.toImmutableList());
+                    return SPECIAL_TOKENS.stream().filter(new StartsWithPredicate(arg.get())).collect(ImmutableList.toImmutableList());
                 } else if (arg.get().contains(",") || !args.hasNext()) {
                     return ImmutableList.of(arg.get());
                 } else {
@@ -1423,7 +1423,7 @@ public final class GenericArguments {
             if (args.peek().startsWith("@")) { // We are a selector
                 return Selector.parse(args.next()).resolve(source).stream()
                         .map(Entity::getLocation)
-                        .collect(GuavaCollectors.toImmutableSet());
+                        .collect(ImmutableSet.toImmutableSet());
             }
 
             Object world;

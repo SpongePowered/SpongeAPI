@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFoodData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -43,6 +44,7 @@ public interface FoodData extends DataManipulator<FoodData, ImmutableFoodData> {
      * may heal. If the food level is at 0, the human entity may starve.</p>
      *
      * @return The current food level
+     * @see Keys#FOOD_LEVEL
      */
     MutableBoundedValue<Integer> foodLevel();
 
@@ -55,6 +57,7 @@ public interface FoodData extends DataManipulator<FoodData, ImmutableFoodData> {
      * movements and actions performed by the {@link Humanoid} entity.</p>
      *
      * @return The immutable bounded value of exhaustion
+     * @see Keys#EXHAUSTION
      */
     MutableBoundedValue<Double> exhaustion();
 
@@ -68,6 +71,7 @@ public interface FoodData extends DataManipulator<FoodData, ImmutableFoodData> {
      * {@link Humanoid} entity.</p>
      *
      * @return The immutable bounded value of saturation
+     * @see Keys#SATURATION
      */
     MutableBoundedValue<Double> saturation();
 

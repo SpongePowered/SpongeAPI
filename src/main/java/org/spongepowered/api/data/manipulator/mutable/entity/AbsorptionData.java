@@ -22,25 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.achievement;
+package org.spongepowered.api.data.manipulator.mutable.entity;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
-import org.spongepowered.api.event.message.MessageChannelEvent;
-import org.spongepowered.api.statistic.achievement.Achievement;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAbsorptionData;
+import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.living.Living;
 
 /**
- * Represents an event that is called when an {@link Achievement} is granted.
+ * A {@link DataManipulator} for representing the absorption
+ * of a {@link Living living entity}.
  */
-public interface GrantAchievementEvent extends MessageChannelEvent, Cancellable {
+public interface AbsorptionData extends DataManipulator<AbsorptionData, ImmutableAbsorptionData> {
 
     /**
-     * Gets the achievement being targeted.
+     * Gets the {@link Value} for the absorption.
      *
-     * @return The achievement
+     * @return The value for the absorption
      */
-    Achievement getAchievement();
-
-    interface TargetPlayer extends GrantAchievementEvent, TargetPlayerEvent {}
+    Value<Double> absorption();
 
 }

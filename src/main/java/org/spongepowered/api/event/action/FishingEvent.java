@@ -24,20 +24,16 @@
  */
 package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.Transaction;
-import org.spongepowered.api.data.type.Fish;
-import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.projectile.FishHook;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.block.CollideBlockEvent;
-import org.spongepowered.api.event.entity.ChangeEntityExperienceEvent;
 import org.spongepowered.api.event.entity.TargetEntityEvent;
-import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 import java.util.List;
 
@@ -46,12 +42,6 @@ import java.util.List;
  * {@link FishHook}.
  */
 public interface FishingEvent extends Event {
-
-    /**
-     * Gets the original {@link FishHook}, as a {@link EntitySnapshot}.
-     * @return The original fish hook
-     */
-    EntitySnapshot getOriginalFishHook();
 
     /**
      * Gets the {@link FishHook} related with this event.
@@ -83,28 +73,35 @@ public interface FishingEvent extends Event {
      * or "reeled in".
      *
      * <p>If the {@link FishHook} was cast into water, an {@link ItemStack} may
-     * be hooken when it is retracted. If the event is not cancelled, Vanilla
-     * will send the @link ItemStackby spawning an {@link Item}, and sending it
-     * moving towards the player.
+     * be hooked when it is retracted. If the event is not cancelled, Vanilla
+     * will send one or more {@link ItemStack} by spawning {@link Item}s, and
+     * sending them moving towards the player.</p>
      *
-     * If the {@link FishHook} has an entity hooked, Vanilla will pull
+     * <p>If the {@link FishHook} has an entity hooked, Vanilla will pull
      * the hooked entity towards the caster, if the event is not cancelled.</p>
-     *
-     * <p>In Vanilla, {@link Transaction#getOriginal() the original {@link ItemStack}}
-     * will usually be a {@link Fish}, or miscellaneous item.</p>
      */
-    interface Stop extends FishingEvent, ChangeEntityExperienceEvent {
+    interface Stop extends FishingEvent, Cancellable {
 
         /**
-         * Gets the {@link Transaction} that is the transaction involving the
-         * {@link ItemStack}, If you wish to change the itemstack result, use
-         * {@link Transaction#setCustom(DataSerializable)}.
+         * Gets a list of {@link Transaction}s for each {@link ItemStackSnapshot}
+         * that will be spawned if this event is not cancelled.
          *
-         * <p>The special item type {@link ItemTypes#NONE} is used to represent
-         * no item being caught.</p>
-         *
-         * @return The itemstack transaction
+         * @return The transactions
          */
-        List<Transaction<ItemStackSnapshot>> getItemStackTransaction();
+        List<Transaction<ItemStackSnapshot>> getTransactions();
+
+        /**
+         * Gets a list of {@link Transaction}s for each {@link ItemStackSnapshot}
+         * that will be spawned if this event is not cancelled.
+         *
+         * @return The transactions
+         * @deprecated Use {@link #getTransactions()}
+         */
+        @Deprecated
+        @PropertySettings(generateMethods = false, requiredParameter = false) // TODO: Detect default methods
+        default List<Transaction<ItemStackSnapshot>> getItemStackTransaction() {
+            return getTransactions();
+        }
+
     }
 }

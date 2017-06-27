@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.entity;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableHealthData;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -48,6 +49,7 @@ public interface HealthData extends DataManipulator<HealthData, ImmutableHealthD
      * convention may be broken.</p>
      *
      * @return Health value
+     * @see Keys#HEALTH
      */
     MutableBoundedValue<Double> health();
 
@@ -59,6 +61,7 @@ public interface HealthData extends DataManipulator<HealthData, ImmutableHealthD
      * than the total maximum health of this entity.</p>
      *
      * @return This entities maximum health
+     * @see Keys#MAX_HEALTH
      */
     MutableBoundedValue<Double> maxHealth();
 

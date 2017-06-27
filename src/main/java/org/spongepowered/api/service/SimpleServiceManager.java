@@ -27,6 +27,7 @@ package org.spongepowered.api.service;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.MapMaker;
+import com.google.inject.Singleton;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.SpongeEventFactory;
 import org.spongepowered.api.event.cause.Cause;
@@ -41,6 +42,7 @@ import javax.inject.Inject;
 /**
  * The default implementation of {@link ServiceManager}.
  */
+@Singleton
 public class SimpleServiceManager implements ServiceManager {
 
     private final ConcurrentMap<Class<?>, ProviderRegistration<?>> providers =
@@ -90,7 +92,7 @@ public class SimpleServiceManager implements ServiceManager {
     @SuppressWarnings("unchecked")
     @Override
     public <T> Optional<ProviderRegistration<T>> getRegistration(Class<T> service) {
-        return Optional.ofNullable((ProviderRegistration) this.providers.get(service));
+        return Optional.ofNullable((ProviderRegistration<T>) this.providers.get(service));
     }
 
     @SuppressWarnings("unchecked")
