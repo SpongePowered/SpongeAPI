@@ -121,6 +121,6 @@ public interface Enchantment extends CatalogType, Translatable {
      *
      * @return If this is a treasure enchantment
      */
-    boolean isTreasureEnchantment();
+    boolean isTreasure();
 
 }
