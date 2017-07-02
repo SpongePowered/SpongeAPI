@@ -112,4 +112,15 @@ public interface Enchantment extends CatalogType, Translatable {
      * @return Whether these enchantments are compatible
      */
     boolean isCompatibleWith(Enchantment ench);
+
+    /**
+     * Gets whether or not this enchantment is considered a "treasure"
+     * enchantment.
+     *
+     * <p>These do not occur naturally in enchantment tables.</p>
+     *
+     * @return If this is a treasure enchantment
+     */
+    boolean isTreasureEnchantment();
+
 }
