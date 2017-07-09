@@ -24,21 +24,25 @@
  */
 package org.spongepowered.api.command.args;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
-
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
+import ninja.leaping.configurate.ConfigurationNode;
+import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
+import ninja.leaping.configurate.loader.ConfigurationLoader;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandMessageFormatting;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.ProxySource;
+import org.spongepowered.api.command.source.RemoteSource;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.persistence.DataTranslators;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -46,6 +50,9 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.user.UserStorageService;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.selector.Selector;
+import org.spongepowered.api.text.serializer.TextParseException;
+import org.spongepowered.api.text.serializer.TextSerializers;
+import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.blockray.BlockRay;
@@ -54,8 +61,25 @@ import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.extent.EntityUniverse;
 import org.spongepowered.api.world.storage.WorldProperties;
 
+import javax.annotation.Nullable;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.StringReader;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.InetAddress;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.UnknownHostException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -65,12 +89,15 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nullable;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 
 /**
@@ -1578,45 +1605,99 @@ public final class GenericArguments {
     }
 
     /**
-     * Creates a new {@link CommandElement} with an {@link Entity} target
-     * and the provided {@link Text} key.
+     * Expect an argument to represent an {@link Entity}.
      *
-     * @param key The text key representation
-     * @return The command element
+     * @param key The key to store under
+     * @return the argument
      */
     public static CommandElement entity(Text key) {
-        return new EntityCommandElement(key, false);
+        return new EntityCommandElement(key, false, false, null);
     }
 
     /**
-     * Creates a new {@link CommandElement} with an {@link Entity} target
-     * or other source and the provided {@link Text} key.
+     * Expect an argument to represent an {@link Entity}, or if the argument is
+     * not present and the {@link CommandSource} is an entity, return the
+     * source.
      *
-     * @param key The text key representation
-     * @return The command element
+     * @param key The key to store under
+     * @return the argument
      */
     public static CommandElement entityOrSource(Text key) {
-        return new EntityCommandElement(key, true);
+        return new EntityCommandElement(key, true, false, null);
+    }
+
+    /**
+     * Expect an argument to represent an {@link Entity} of the specified type.
+     *
+     * @param key The key to store under
+     * @param type The type which the entity must subclass
+     * @return the argument
+     */
+    public static CommandElement entity(Text key, Class<? extends Entity> type) {
+        return new EntityCommandElement(key, false, false, type);
+    }
+
+    /**
+     * Expect an argument to represent an {@link Entity}, or if the argument is
+     * not present and the {@link CommandSource} is looking at an entity,
+     * return that entity.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement entityOrTarget(Text key) {
+        return new EntityCommandElement(key, false, true, null);
+    }
+
+    /**
+     * Expect an argument to represent an {@link Entity} of the specified type,
+     * or if the argument is not present and the {@link CommandSource} is
+     * looking at an applicable entity, return that entity.
+     *
+     * @param key The key to store under
+     * @param type The type which the entity must subclass
+     * @return the argument
+     */
+    public static CommandElement entityOrTarget(Text key, Class<? extends Entity> type) {
+        return new EntityCommandElement(key, false, true, type);
     }
 
     private static class EntityCommandElement extends SelectorCommandElement {
 
-        private final boolean returnSource;
+        protected final boolean returnTarget;
+        protected final boolean returnSource;
+        protected final Class<? extends Entity> type;
 
-        protected EntityCommandElement(Text key, boolean returnSource) {
+        protected EntityCommandElement(Text key, boolean returnSource, boolean returnTarget,
+                                       @Nullable Class<? extends Entity> type) {
             super(key);
             this.returnSource = returnSource;
+            this.returnTarget = returnTarget;
+            this.type = type;
         }
 
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            if (!args.hasNext() && this.returnSource) {
-                return tryReturnSource(source, args);
+            if (!args.hasNext()) {
+                if (this.returnSource) {
+                    return tryReturnSource(source, args);
+                }
+                if (this.returnTarget) {
+                    return tryReturnTarget(source, args, this.type == null ? Entity.class : this.type);
+                }
             }
 
             Object state = args.getState();
             try {
-                return super.parseValue(source, args);
+                Entity entity = (Entity) super.parseValue(source, args);
+                if (!type.isAssignableFrom(entity.getClass())) {
+                    Text name = Sponge.getRegistry().getAllOf(EntityType.class).stream()
+                            .filter(t -> t.getEntityClass().equals(this.type)).findFirst()
+                            .map(EntityType::getTranslation).<Text>map(Text::of)
+                            .orElse(Text.of(this.type.getSimpleName()));
+                    throw args.createError(Text.of("The entity is not of the required type! (", name, ")"));
+                }
+                return entity;
             } catch (ArgumentParseException ex) {
                 if (this.returnSource) {
                     args.setState(state);
@@ -1633,6 +1714,9 @@ public final class GenericArguments {
                 if (input == null) {
                     return null;
                 }
+                if (this.type != null && !this.type.isAssignableFrom(input.getClass())) {
+                    return null;
+                }
                 if (input instanceof Player) {
                     return ((Player)input).getName();
                 }
@@ -1643,11 +1727,18 @@ public final class GenericArguments {
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
             UUID uuid = UUID.fromString(choice);
+            boolean found = false;
             for (World world : Sponge.getServer().getWorlds()) {
                 Optional<Entity> ret = world.getEntity(uuid);
                 if (ret.isPresent()) {
-                    return ret.get();
+                    if (this.type == null || this.type.isAssignableFrom(ret.get().getClass())) {
+                        return ret.get();
+                    }
+                    found = true;
                 }
+            }
+            if (found) {
+                throw new IllegalArgumentException("Input value " + choice + " was not an entity of the required type!");
             }
             throw new IllegalArgumentException("Input value " + choice + " was not an entity");
         }
@@ -1662,10 +1753,532 @@ public final class GenericArguments {
             }
         }
 
+        private static Entity tryReturnTarget(CommandSource source, CommandArgs args, Class<? extends Entity> type) throws ArgumentParseException {
+            Entity entity = tryReturnSource(source, args);
+            return entity.getWorld().getIntersectingEntities(entity, 10).stream()
+                    .filter(e -> !e.getEntity().equals(entity)).map(EntityUniverse.EntityHit::getEntity)
+                    .filter(e -> !type.isAssignableFrom(e.getClass())).findFirst()
+                    .orElseThrow(() -> args.createError(t("No entities matched and source was not looking at a valid entity!")));
+        }
+
         @Override
         public Text getUsage(CommandSource src) {
-            return src instanceof Player && this.returnSource ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+            return src instanceof Entity && (this.returnSource || this.returnTarget) ? Text.of("[", this.getKey(), "]") : super.getUsage(src);
         }
+    }
+
+    /**
+     * Expect an argument to represent a {@link URL}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement url(Text key) {
+        return new URLElement(key);
+    }
+
+    private static class URLElement extends KeyElement {
+
+        protected URLElement(Text key) {
+            super(key);
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String str = args.next();
+            URL url;
+            try {
+                url = new URL(str);
+            } catch (MalformedURLException ex) {
+                throw new ArgumentParseException(Text.of("Invalid URL!"), ex, str, 0);
+            }
+            try {
+                url.toURI();
+            } catch (URISyntaxException ex) {
+                throw new ArgumentParseException(Text.of("Invalid URL!"), ex, str, 0);
+            }
+            return url;
+        }
+    }
+
+    /**
+     * Expect an argument to return an IP address, in the form of an
+     * {@link InetAddress}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement ip(Text key) {
+        return new IpElement(key, false);
+    }
+
+    /**
+     * Expect an argument to return an IP address, in the form of an
+     * {@link InetAddress}, or if nothing matches and the source is a
+     * {@link RemoteSource}, return the source's address.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement ipOrSource(Text key) {
+        return new IpElement(key, true);
+    }
+
+    private static class IpElement extends KeyElement {
+
+        private final boolean self;
+        private final PlayerCommandElement possiblePlayer;
+
+        protected IpElement(Text key, boolean self) {
+            super(key);
+            this.self = self;
+            this.possiblePlayer = new PlayerCommandElement(key, false);
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (!args.hasNext() && this.self) {
+                if (source instanceof RemoteSource) {
+                    return ((RemoteSource) source).getConnection().getAddress().getAddress();
+                } else {
+                    throw args.createError(Text.of("No IP address was specified!"));
+                }
+            }
+            Object state = args.getState();
+            String s = args.next();
+            try {
+                return InetAddress.getByName(s);
+            } catch (UnknownHostException e) {
+                try {
+                    return ((Player) this.possiblePlayer.parseValue(source, args)).getConnection().getAddress().getAddress();
+                } catch (ArgumentParseException ex) {
+                    if (this.self && source instanceof RemoteSource) {
+                        args.setState(state);
+                        return ((RemoteSource) source).getConnection().getAddress().getAddress();
+                    }
+                    throw args.createError(Text.of("Invalid IP address!"));
+                }
+            }
+        }
+
+        @Override
+        public Text getUsage(CommandSource src) {
+            return src instanceof RemoteSource && this.self ? Text.of("[", super.getUsage(src), "]") : super.getUsage(src);
+        }
+
+    }
+
+    /**
+     * Expect an argument to return a {@link BigDecimal}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement bigDecimal(Text key) {
+        return new BigDecimalElement(key);
+    }
+
+    private static class BigDecimalElement extends KeyElement {
+
+        protected BigDecimalElement(Text key) {
+            super(key);
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String next = args.next();
+            try {
+                return new BigDecimal(next);
+            } catch (NumberFormatException ex) {
+                throw args.createError(Text.of("Expected a number, but input " + next + " was not"));
+            }
+        }
+    }
+
+    /**
+     * Expect an argument to return a {@link BigInteger}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement bigInteger(Text key) {
+        return new BigIntegerElement(key);
+    }
+
+    private static class BigIntegerElement extends KeyElement {
+
+        protected BigIntegerElement(Text key) {
+            super(key);
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String integerString = args.next();
+            try {
+                return new BigInteger(integerString);
+            } catch (NumberFormatException ex) {
+                throw args.createError(Text.of("Expected an integer, but input "+integerString+" was not"));
+            }
+        }
+    }
+
+    /**
+     * Expect an argument to be a valid {@link DataContainer}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement dataContainer(Text key) {
+        return new DataElement(key);
+    }
+
+    private static class DataElement extends RemainingJoinedStringsCommandElement {
+
+        protected DataElement(Text key) {
+            super(key, true);
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String argument = (String) super.parseValue(source, args);
+            Callable<BufferedReader> reader = () -> new BufferedReader(new StringReader(argument));
+            ConfigurationLoader<? extends ConfigurationNode> loader = HoconConfigurationLoader.builder()
+                    .setSource(reader).build();
+            ConfigurationNode node;
+            try {
+                node = loader.load();
+            } catch (IOException ex) {
+                throw args.createError(Text.of("Node parsing failed: ", ex.getMessage()));
+            }
+            return DataTranslators.CONFIGURATION_NODE.translate(node);
+        }
+
+    }
+
+    /**
+     * Expect an argument to be a {@link UUID}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement uuid(Text key) {
+        return new UUIDElement(key);
+    }
+
+    private static class UUIDElement extends KeyElement {
+
+        protected UUIDElement(Text key) {
+            super(key);
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            try {
+                return UUID.fromString(args.next());
+            } catch (IllegalArgumentException ex) {
+                throw args.createError(Text.of("Invalid UUID!"));
+            }
+        }
+
+    }
+
+    /**
+     * Expect an argument to be valid {@link Text}. Can use either JSON or color codes.
+     *
+     * @param key The key to store under
+     * @param complex If true, parsed as JSON text; if false, parsed as
+     *                color-coded text
+     * @param allRemaining If true, consumes all remaining arguments; if false,
+     *                     uses a single argument
+     * @return the argument
+     */
+    public static CommandElement text(Text key, boolean complex, boolean allRemaining) {
+        return new TextCommandElement(key, complex, allRemaining);
+    }
+
+    private static class TextCommandElement extends KeyElement {
+
+        private final boolean complex;
+        private final boolean allRemaining;
+        private final RemainingJoinedStringsCommandElement joinedElement;
+
+        protected TextCommandElement(Text key, boolean complex, boolean allRemaining) {
+            super(key);
+            this.complex = complex;
+            this.allRemaining = allRemaining;
+            joinedElement = allRemaining ? new RemainingJoinedStringsCommandElement(key, false) : null;
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String arg = this.allRemaining ? (String) joinedElement.parseValue(source, args) : args.next();
+            if (this.complex) {
+                try {
+                    return TextSerializers.JSON.deserialize(arg);
+                } catch (TextParseException ex) {
+                    throw args.createError(Text.of("Invalid JSON text: ", ex.getMessage()));
+                }
+            } else {
+                return TextSerializers.FORMATTING_CODE.deserialize(arg);
+            }
+        }
+    }
+
+    /**
+     * Expect an argument to be a date-time, in the form of a
+     * {@link LocalDateTime}. If no date is specified, {@link LocalDate#now()}
+     * is used; if no time is specified, {@link LocalTime#MIDNIGHT} is used.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement dateTime(Text key) {
+        return new DateTimeElement(key, false);
+    }
+
+    /**
+     * Expect an argument to be a date-time, in the form of a
+     * {@link LocalDateTime}. If no date is specified, {@link LocalDate#now()}
+     * is used; if no time is specified, {@link LocalTime#MIDNIGHT} is used.
+     *
+     * <p>If no argument at all is specified, defaults to
+     * {@link LocalDateTime#now()}.</p>
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement dateTimeOrNow(Text key) {
+        return new DateTimeElement(key, true);
+    }
+
+    private static class DateTimeElement extends CommandElement {
+
+        private final boolean returnNow;
+
+        protected DateTimeElement(Text key, boolean returnNow) {
+            super(key);
+            this.returnNow = returnNow;
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (!args.hasNext() && this.returnNow) {
+                return LocalDateTime.now();
+            }
+            Object state = args.getState();
+            String date = args.next();
+            try {
+                return LocalDateTime.parse(date);
+            } catch (DateTimeParseException ex) {
+                try {
+                    return LocalDateTime.of(LocalDate.now(), LocalTime.parse(date));
+                } catch (DateTimeParseException ex2) {
+                    try {
+                        return LocalDateTime.of(LocalDate.parse(date), LocalTime.MIDNIGHT);
+                    } catch (DateTimeParseException ex3) {
+                        if (this.returnNow) {
+                            args.setState(state);
+                            return LocalDateTime.now();
+                        }
+                        throw args.createError(Text.of("Invalid date-time!"));
+                    }
+                }
+            }
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            String date = LocalDateTime.now().withNano(0).toString();
+            if (date.startsWith(args.nextIfPresent().orElse(""))) {
+                return ImmutableList.of(date);
+            } else {
+                return ImmutableList.of();
+            }
+        }
+
+        @Override
+        public Text getUsage(CommandSource src) {
+            if (!this.returnNow) {
+                return super.getUsage(src);
+            } else {
+                return Text.of("[", this.getKey(), "]");
+            }
+        }
+    }
+
+    /**
+     * Expect an argument to be a {@link Duration}.
+     *
+     * @param key The key to store under
+     * @return the argument
+     */
+    public static CommandElement duration(Text key) {
+        return new DurationElement(key);
+    }
+
+    private static class DurationElement extends KeyElement {
+
+        protected DurationElement(Text key) {
+            super(key);
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            String s = args.next().toUpperCase();
+            if (!s.contains("T")) {
+                if (s.contains("D")) {
+                    if (s.contains("H") || s.contains("M") || s.contains("S")) {
+                        s = s.replace("D", "DT");
+                    }
+                } else {
+                    s = "T" + s;
+                }
+            }
+            if (!s.startsWith("P")) {
+                s = "P" + s;
+            }
+            try {
+                return Duration.parse(s);
+            } catch (DateTimeParseException ex) {
+                throw args.createError(Text.of("Invalid duration!"));
+            }
+        }
+    }
+
+    /**
+     * Uses a custom set of suggestions for an argument. The provided
+     * suggestions will replace the regular ones.
+     *
+     * @param argument The element to replace the suggestions of
+     * @param suggestions The suggestions to use
+     * @return the argument
+     */
+    public static CommandElement withSuggestions(CommandElement argument, Iterable<String> suggestions) {
+        return withSuggestions(argument, suggestions, true);
+    }
+
+    /**
+     * Uses a custom set of suggestions for an argument. The provided
+     * suggestions will replace the regular ones.
+     *
+     * <p>If {@code requireBegin} is false, then the already typed argument
+     * will not be used to filter the provided suggestions.</p>
+     *
+     * @param argument The element to replace the suggestions of
+     * @param suggestions The suggestions to use
+     * @param requireBegin Whether or not to require the current argument to
+     *                     begin provided arguments
+     * @return the argument
+     */
+    public static CommandElement withSuggestions(CommandElement argument, Iterable<String> suggestions, boolean requireBegin) {
+        return withSuggestions(argument, (s) -> suggestions, requireBegin);
+    }
+
+    /**
+     * Filters an argument's suggestions. A suggestion will only be used if it
+     * matches the predicate.
+     *
+     * @param argument The element to filter the suggestions of
+     * @param predicate The predicate to test suggestions against
+     * @return the argument
+     */
+    public static CommandElement withConstrainedSuggestions(CommandElement argument, Predicate<String> predicate) {
+        return new FilteredSuggestionsElement(argument, predicate);
+    }
+
+    /**
+     * Uses a custom set of suggestions for an argument. The provided
+     * suggestions will replace the regular ones.
+     *
+     * @param argument The element to replace the suggestions of
+     * @param suggestions A function to return the suggestions to use
+     * @return the argument
+     */
+    public static CommandElement withSuggestions(CommandElement argument, Function<CommandSource, Iterable<String>> suggestions) {
+        return withSuggestions(argument, suggestions, true);
+    }
+
+    /**
+     * Uses a custom set of suggestions for an argument. The provided
+     * suggestions will replace the regular ones.
+     *
+     * <p>If {@code requireBegin} is false, then the already typed argument
+     * will not be used to filter the provided suggestions.</p>
+     *
+     * @param argument The element to replace the suggestions of
+     * @param suggestions A function to return the suggestions to use
+     * @param requireBegin Whether or not to require the current argument to
+     *                     begin provided arguments
+     * @return the argument
+     */
+    public static CommandElement withSuggestions(CommandElement argument, Function<CommandSource, Iterable<String>> suggestions, boolean requireBegin) {
+        return new WithSuggestionsElement(argument, suggestions, requireBegin);
+    }
+
+    private static class WithSuggestionsElement extends CommandElement {
+
+        private final CommandElement wrapped;
+        private final Function<CommandSource, Iterable<String>> suggestions;
+        private final boolean requireBegin;
+
+        protected WithSuggestionsElement(CommandElement wrapped, Function<CommandSource, Iterable<String>> suggestions, boolean requireBegin) {
+            super(wrapped.getKey());
+            this.wrapped = wrapped;
+            this.suggestions = suggestions;
+            this.requireBegin = requireBegin;
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            return this.wrapped.parseValue(source, args);
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            if (this.requireBegin) {
+                String arg = args.nextIfPresent().orElse("");
+                return ImmutableList.copyOf(Iterables.filter(this.suggestions.apply(src), f -> f.startsWith(arg)));
+            } else {
+                return ImmutableList.copyOf(this.suggestions.apply(src));
+            }
+        }
+
+    }
+
+    private static class FilteredSuggestionsElement extends CommandElement {
+
+        private final CommandElement wrapped;
+        private final Predicate<String> predicate;
+
+        protected FilteredSuggestionsElement(CommandElement wrapped, Predicate<String> predicate) {
+            super(wrapped.getKey());
+            this.wrapped = wrapped;
+            this.predicate = predicate.negate();
+        }
+
+        @Nullable
+        @Override
+        protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            return this.wrapped.parseValue(source, args);
+        }
+
+        @Override
+        public List<String> complete(CommandSource src, CommandArgs args, CommandContext context) {
+            List<String> ret = this.wrapped.complete(src, args, context);
+            ret.removeIf(this.predicate);
+            return ret;
+        }
+
     }
 
 }
