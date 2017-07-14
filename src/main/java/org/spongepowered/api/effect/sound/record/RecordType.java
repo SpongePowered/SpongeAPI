@@ -26,6 +26,7 @@ package org.spongepowered.api.effect.sound.record;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.tileentity.Jukebox;
+import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -36,4 +37,11 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(RecordTypes.class)
 public interface RecordType extends CatalogType, Translatable {
 
+    /**
+     * Gets the {@link SoundType} that is used
+     * by this {@link RecordType}.
+     *
+     * @return The sound type
+     */
+    SoundType getSound();
 }
