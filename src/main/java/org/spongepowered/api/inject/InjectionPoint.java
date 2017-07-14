@@ -30,7 +30,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 
 /**
- * A {@link InjectionPoint} is a method to get extra information when a
+ * An {@link InjectionPoint} is a method to get extra information when a
  * field or parameter is being injected. This gives access to all the
  * {@link Annotation}s and the field or parameter type.
  */
