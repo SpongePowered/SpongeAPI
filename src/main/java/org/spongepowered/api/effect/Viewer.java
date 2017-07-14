@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.effect.sound.record.RecordType;
 import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundCategories;
 import org.spongepowered.api.effect.sound.SoundCategory;
@@ -150,6 +151,24 @@ public interface Viewer {
      *        0 and 2
      */
     void playSound(SoundType sound, SoundCategory category, Vector3d position, double volume, double pitch, double minVolume);
+
+    /**
+     * Plays the given {@link RecordType} at the given position. The benefit of playing
+     * {@link RecordType} instead of a {@link SoundType} allows you to stop them through
+     * the {@link #stopRecord(Vector3i)}. Playing a new {@link RecordType} at the same
+     * position will cancel the currently playing one.
+     *
+     * @param position The position
+     * @param recordType The record type
+     */
+    void playRecord(Vector3i position, RecordType recordType);
+
+    /**
+     * Stops the record that is playing at the given position.
+     *
+     * @param position The position
+     */
+    void stopRecord(Vector3i position);
 
     /**
      * Sends a {@link Title} to this player.
