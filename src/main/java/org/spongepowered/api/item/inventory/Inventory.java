@@ -491,6 +491,30 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     <T extends Inventory> T queryAny(ItemStack... types);
 
     /**
+     * <p>Query this inventory by dynamically inspecting each operand. Each
+     * operand in turn is checked for a match against the other query methods,
+     * and if a matching method is found the query is performed using the
+     * operand. This is repeated until all operands are consumed and allows a
+     * union of multiple query types to be aggregated into a single view.</p>
+     *
+     * <p>For operands with no matching type, the behaviour is determined by the
+     * individual inventory. A naive match may be obtained by calling .equals()
+     * against the child inventory passing the unknown operand as an argument.
+     * </p>
+     *
+     * <p>
+     * This ignores stack sizes in any {@link ItemStack}s specified. To query
+     * for stacks of a specific size use {@link #query(Object...)}.
+     * </p>
+     *
+     * @param args search parameters
+     * @param <T> expected inventory type, specified as generic to allow easy
+     *      pseudo-duck-typing
+     * @return the query result
+     */
+    <T extends Inventory> T queryAny(Object... args);
+
+    /**
      * Returns the {@link PluginContainer} who built this inventory.
      *
      * @return The container
