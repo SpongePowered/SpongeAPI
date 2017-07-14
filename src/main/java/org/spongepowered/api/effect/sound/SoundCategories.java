@@ -24,18 +24,33 @@
  */
 package org.spongepowered.api.effect.sound;
 
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+
 public final class SoundCategories {
 
-    public static final SoundCategory MASTER = null;
-    public static final SoundCategory MUSIC = null;
-    public static final SoundCategory RECORD = null;
-    public static final SoundCategory WEATHER = null;
-    public static final SoundCategory BLOCK = null;
-    public static final SoundCategory HOSTILE = null;
-    public static final SoundCategory NEUTRAL = null;
-    public static final SoundCategory PLAYER = null;
-    public static final SoundCategory AMBIENT = null;
-    public static final SoundCategory VOICE = null;
+    // SORTFIELDS:ON
+
+    public static final SoundCategory AMBIENT = DummyObjectProvider.createFor(SoundCategory.class, "AMBIENT");
+
+    public static final SoundCategory BLOCK = DummyObjectProvider.createFor(SoundCategory.class, "BLOCK");
+
+    public static final SoundCategory HOSTILE = DummyObjectProvider.createFor(SoundCategory.class, "HOSTILE");
+
+    public static final SoundCategory MASTER = DummyObjectProvider.createFor(SoundCategory.class, "MASTER");
+
+    public static final SoundCategory MUSIC = DummyObjectProvider.createFor(SoundCategory.class, "MUSIC");
+
+    public static final SoundCategory NEUTRAL = DummyObjectProvider.createFor(SoundCategory.class, "NEUTRAL");
+
+    public static final SoundCategory PLAYER = DummyObjectProvider.createFor(SoundCategory.class, "PLAYER");
+
+    public static final SoundCategory RECORD = DummyObjectProvider.createFor(SoundCategory.class, "RECORD");
+
+    public static final SoundCategory VOICE = DummyObjectProvider.createFor(SoundCategory.class, "VOICE");
+
+    public static final SoundCategory WEATHER = DummyObjectProvider.createFor(SoundCategory.class, "WEATHER");
+
+    // SORTFIELDS:OFF
 
     private SoundCategories() {
     }

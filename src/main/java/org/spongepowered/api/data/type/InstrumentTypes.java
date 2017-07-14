@@ -34,11 +34,21 @@ public final class InstrumentTypes {
 
     public static final InstrumentType BASS_DRUM = DummyObjectProvider.createFor(InstrumentType.class, "BASS_DRUM");
 
+    public static final InstrumentType BELL = DummyObjectProvider.createFor(InstrumentType.class, "BELL");
+
+    public static final InstrumentType CHIME = DummyObjectProvider.createFor(InstrumentType.class, "CHIME");
+
+    public static final InstrumentType FLUTE = DummyObjectProvider.createFor(InstrumentType.class, "FLUTE");
+
+    public static final InstrumentType GUITAR = DummyObjectProvider.createFor(InstrumentType.class, "GUITAR");
+
     public static final InstrumentType HARP = DummyObjectProvider.createFor(InstrumentType.class, "HARP");
 
     public static final InstrumentType HIGH_HAT = DummyObjectProvider.createFor(InstrumentType.class, "HIGH_HAT");
 
     public static final InstrumentType SNARE = DummyObjectProvider.createFor(InstrumentType.class, "SNARE");
+
+    public static final InstrumentType XYLOPHONE = DummyObjectProvider.createFor(InstrumentType.class, "XYLOPHONE");
 
     // SORTFIELDS:OFF
 
