@@ -92,8 +92,19 @@ public interface ItemStack extends DataHolder, Translatable {
      * Gets the {@link ItemType} of this {@link ItemStack}.
      *
      * @return The item type
+     * @deprecated Use {@link #getType()}
      */
-    ItemType getItem();
+    @Deprecated
+    default ItemType getItem() {
+        return getType();
+    }
+
+    /**
+     * Gets the {@link ItemType} of this {@link ItemStack}.
+     *
+     * @return The item type
+     */
+    ItemType getType();
 
     /**
      * Gets the quantity of items in this stack. This may exceed the max stack
