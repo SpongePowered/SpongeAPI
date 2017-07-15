@@ -93,7 +93,7 @@ public final class ItemStackComparators {
             if (o2 == null) {
                 return -1;
             }
-            return o1.getItem().getName().compareTo(o2.getItem().getName());
+            return o1.getType().getName().compareTo(o2.getType().getName());
         }
 
     }

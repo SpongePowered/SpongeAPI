@@ -53,11 +53,23 @@ public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot
      * {@link ItemStackSnapshot} is representing.
      *
      * @return The current stack size
+     * @deprecated Use {@link #getQuantity()}
      */
-    int getCount();
+    @Deprecated
+    default int getCount() {
+        return getQuantity();
+    }
 
     /**
-     * Returns true if {@link #getCount()} is zero and therefore this
+     * Gets the quantity of items in this the {@link ItemStack} this
+     * {@link ItemStackSnapshot} is representing.
+     *
+     * @return The current stack size
+     */
+    int getQuantity();
+
+    /**
+     * Returns true if {@link #getQuantity()} is zero and therefore this
      * ItemStackSnapshot is empty.
      *
      * @return True if this ItemStackSnapshot is empty
