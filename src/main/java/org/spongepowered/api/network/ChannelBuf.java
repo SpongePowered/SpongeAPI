@@ -177,11 +177,21 @@ public interface ChannelBuf {
     ChannelBuf slice(int index, int length);
 
     /**
+     * Returns {@code true} if and only if this buffer has a backing byte array.
+     *
+     * <p>If this method returns true, you can safely call {@link #array()}.</p>
+     *
+     * @return {@code true} if this buffer has a backing byte array
+     */
+    boolean hasArray();
+
+    /**
      * Gets the backing byte array of this stream.
      *
      * @return A copy of the backing byte array
+     * @throws UnsupportedOperationException if there is no backing byte array
      */
-    byte[] array();
+    byte[] array() throws UnsupportedOperationException;
 
     /**
      * Sets the specified boolean at the current writerIndex and increases
@@ -725,7 +735,9 @@ public interface ChannelBuf {
      *
      * @param data The string data
      * @return This stream for chaining
+     * @deprecated use {@link #writeString(String)}
      */
+    @Deprecated
     ChannelBuf writeUTF(String data);
 
     /**
@@ -739,7 +751,9 @@ public interface ChannelBuf {
      * @param index The index
      * @param data The string data
      * @return This stream for chaining
+     * @deprecated use {@link #setString(int, String)}
      */
+    @Deprecated
     ChannelBuf setUTF(int index, String data);
 
     /**
@@ -750,7 +764,9 @@ public interface ChannelBuf {
      * the UTF-8 bytes of the string.</p>
      *
      * @return The string
+     * @deprecated use {@link #readString()}
      */
+    @Deprecated
     String readUTF();
 
     /**
@@ -761,7 +777,9 @@ public interface ChannelBuf {
      *
      * @param index The index
      * @return The string
+     * @deprecated use {@link #getString(int)}
      */
+    @Deprecated
     String getUTF(int index);
 
     /**
