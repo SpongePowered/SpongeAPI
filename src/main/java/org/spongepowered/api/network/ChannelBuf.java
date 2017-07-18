@@ -735,9 +735,7 @@ public interface ChannelBuf {
      *
      * @param data The string data
      * @return This stream for chaining
-     * @deprecated use {@link #writeString(String)}
      */
-    @Deprecated
     ChannelBuf writeUTF(String data);
 
     /**
@@ -751,9 +749,7 @@ public interface ChannelBuf {
      * @param index The index
      * @param data The string data
      * @return This stream for chaining
-     * @deprecated use {@link #setString(int, String)}
      */
-    @Deprecated
     ChannelBuf setUTF(int index, String data);
 
     /**
@@ -764,9 +760,7 @@ public interface ChannelBuf {
      * the UTF-8 bytes of the string.</p>
      *
      * @return The string
-     * @deprecated use {@link #readString()}
      */
-    @Deprecated
     String readUTF();
 
     /**
@@ -777,9 +771,7 @@ public interface ChannelBuf {
      *
      * @param index The index
      * @return The string
-     * @deprecated use {@link #getString(int)}
      */
-    @Deprecated
     String getUTF(int index);
 
     /**
