@@ -505,8 +505,9 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     InventoryArchetype getArchetype();
 
     /**
-     * Intersects the slots of both inventories
-     * The resulting inventory will only contain slots.
+     * Intersects the slots of both inventories.
+     * The resulting inventory will only contain slots
+     * that are present in both inventories.
      *
      * @param inventory the other inventory
      * @return an inventory wrapping all slots that are present in both inventories
@@ -515,7 +516,8 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
 
     /**
      * Constructs a union of the slots in both inventories.
-     * The resulting inventory will only contain slots.
+     * The resulting inventory will contain all slots
+     * from both inventories.
      *
      * @param inventory the other inventory
      * @return an inventory wrapping all slots of both inventories.
