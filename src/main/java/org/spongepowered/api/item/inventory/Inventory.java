@@ -505,6 +505,33 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     InventoryArchetype getArchetype();
 
     /**
+     * Intersects the slots of both inventories
+     * The resulting inventory will only contain slots.
+     *
+     * @param inventory the other inventory
+     * @return an inventory wrapping all slots that are present in both inventories
+     */
+    Inventory intersect(Inventory inventory);
+
+    /**
+     * Constructs a union of the slots in both inventories.
+     * The resulting inventory will only contain slots.
+     *
+     * @param inventory the other inventory
+     * @return an inventory wrapping all slots of both inventories.
+     */
+    Inventory union(Inventory inventory);
+
+    /**
+     * Returns true if the given inventory is a descendant of this one.
+     * This includes deeply nested ones but not usually not query-results.
+     *
+     * @param inventory the other inventory
+     * @return whether the given inventory is contained in this one.
+     */
+    boolean containsInventory(Inventory inventory);
+
+    /**
      * A Builder for Inventories based on {@link InventoryArchetype}s.
      */
     interface Builder extends ResettableBuilder<Inventory, Builder> {
