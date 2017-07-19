@@ -36,6 +36,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.world.World;
 
 import java.util.UUID;
 
@@ -49,6 +50,7 @@ public final class EventContextKeys {
     public static final EventContextKey<DismountType> DISMOUNT_TYPE = createFor("DISMOUNT_TYPE");
     public static final EventContextKey<User> IGNITER = createFor("IGNITER");
     public static final EventContextKey<DamageSource> LAST_DAMAGE_SOURCE = createFor("LAST_DAMAGE_SOURCE");
+    public static final EventContextKey<World> LIQUID_MIX = createFor("LIQUID_MIX");
     public static final EventContextKey<User> NOTIFIER = createFor("NOTIFIER");
     public static final EventContextKey<User> OWNER = createFor("OWNER");
     public static final EventContextKey<Player> PLAYER = createFor("PLAYER");

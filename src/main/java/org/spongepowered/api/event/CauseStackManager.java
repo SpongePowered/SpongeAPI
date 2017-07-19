@@ -95,22 +95,12 @@ public interface CauseStackManager {
     Object peekCause();
 
     /**
-     * Returns an {@link AutoCloseable} frame handle which should be used in a
-     * try-with-resource block the frame will be automatically popped from the
-     * frame stack when the handle is closed.
-     * 
-     * @return The frame handle
-     */
-    AutoCloseable createCauseFrame();
-
-    /**
      * Pushes a frame of the current cause stack and context state.
      * 
      * @return A handle for the frame which must be passed back to pop the frame
      *         from the stack
-     * @see #createCauseFrame() for a more easily managed CauseFrame
      */
-    Object pushCauseFrame();
+    CauseStackFrame pushCauseFrame();
 
     /**
      * Replaces the current cause stack and context with the cause frame at the
@@ -123,7 +113,7 @@ public interface CauseStackManager {
      * 
      * @param handle The frame handle to pop
      */
-    void popCauseFrame(Object handle);
+    void popCauseFrame(CauseStackFrame handle);
 
     /**
      * Adds the given object to the current context under the given key.
@@ -169,4 +159,10 @@ public interface CauseStackManager {
      */
     <T> Optional<T> removeContext(EventContextKey<T> key);
 
+    public static interface CauseStackFrame extends AutoCloseable {
+
+        @Override
+        public void close();
+
+    }
 }
