@@ -45,7 +45,7 @@ import java.util.UUID;
  */
 public final class EventContextKeys {
 
-    public static final EventContextKey<UUID> CREATOR = createFor("CREATOR");
+    public static final EventContextKey<User> CREATOR = createFor("CREATOR");
     public static final EventContextKey<DamageType> DAMAGE_TYPE = createFor("DAMAGE_TYPE");
     public static final EventContextKey<DismountType> DISMOUNT_TYPE = createFor("DISMOUNT_TYPE");
     public static final EventContextKey<User> IGNITER = createFor("IGNITER");
@@ -61,6 +61,11 @@ public final class EventContextKeys {
     public static final EventContextKey<TeleportType> TELEPORT_TYPE = createFor("TELEPORT_TYPE");
     public static final EventContextKey<User> THROWER = createFor("THROWER");
     public static final EventContextKey<ItemStackSnapshot> WEAPON = createFor("WEAPON");
+    public static final EventContextKey<Player> FAKE_PLAYER = createFor("FAKE_PLAYER");
+    public static final EventContextKey<World> PLAYER_BREAK = createFor("PLAYER_BREAK");
+    public static final EventContextKey<World> PLAYER_PLACE = createFor("PLAYER_PLACE");
+    public static final EventContextKey<World> FIRE_SPREAD = createFor("FIRE_SPREAD");
+    public static final EventContextKey<World> LEAVES_DECAY = createFor("LEAVES_DECAY");
 
     @SuppressWarnings("unchecked")
     private static <T> EventContextKey<T> createFor(String id) {
