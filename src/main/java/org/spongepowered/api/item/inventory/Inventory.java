@@ -361,6 +361,19 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Inventory child, Class<T> property, Object key);
 
     /**
+     * Gets the property with the default key defined in <em>this</em>
+     * inventory for the specified (immediate) sub-inventory.
+     *
+     * @param child the child inventory to inspect
+     * @param property the type of property to query for
+     * @param <T> expected type of inventory property, generic to enable easy
+     *      pseudo-duck-typing
+     * @return matching properties, may be absent if no property matched the
+     *      supplied criteria
+     */
+    <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Inventory child, Class<T> property);
+
+    /**
      * Gets a property with the specified key defined directly on this Inventory
      * if one is defined. For sub-inventories this is effectively the same as
      * <code>inv.getParent().getProperty(inv, property, key);</code> but for
@@ -375,6 +388,21 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      *      supplied criteria
      */
     <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Class<T> property, Object key);
+
+    /**
+     * Gets a property with the default key defined directly on this Inventory
+     * if one is defined. For sub-inventories this is effectively the same as
+     * <code>inv.getParent().getProperty(inv, property);</code> but for
+     * top-level inventories may include properties defined on the inventory
+     * directly.
+     *
+     * @param property the type of property to query for
+     * @param <T> expected type of inventory property, generic to enable easy
+     *      pseudo-duck-typing
+     * @return matching properties, may be absent if no property matched the
+     *      supplied criteria
+     */
+    <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Class<T> property);
 
     /**
      * Query this inventory for inventories matching any of the supplied types.
