@@ -371,7 +371,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @return matching properties, may be absent if no property matched the
      *      supplied criteria
      */
-    <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Inventory child, Class<T> property);
+    <T extends InventoryProperty<?, ?>> Optional<T> getInventoryProperty(Inventory child, Class<T> property);
 
     /**
      * Gets a property with the specified key defined directly on this Inventory
@@ -402,7 +402,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @return matching properties, may be absent if no property matched the
      *      supplied criteria
      */
-    <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Class<T> property);
+    <T extends InventoryProperty<?, ?>> Optional<T> getInventoryProperty(Class<T> property);
 
     /**
      * Query this inventory for inventories matching any of the supplied types.
