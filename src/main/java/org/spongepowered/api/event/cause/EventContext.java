@@ -119,8 +119,17 @@ public final class EventContext {
      * 
      * @return All present keys
      */
-    public Set<EventContextKey<?>> keys() {
+    public Set<EventContextKey<?>> keySet() {
         return this.entries.keySet();
+    }
+
+    /**
+     * Gets this event context as a {@link Map} of EventContextKeys to Objects.
+     * 
+     * @return A map view of this context
+     */
+    public Map<EventContextKey<?>, Object> asMap() {
+        return this.entries;
     }
 
     @Override
