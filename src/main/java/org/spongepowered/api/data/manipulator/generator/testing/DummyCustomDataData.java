@@ -2,10 +2,10 @@ package org.spongepowered.api.data.manipulator.generator.testing;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataQuery;
+import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.key.KeyFactory;
 import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
-import org.spongepowered.api.data.manipulator.generator.DataRegistration;
 import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -40,8 +40,4 @@ public class DummyCustomDataData {
                     .predicate(dataHolder -> dataHolder instanceof Agent)
                     .version(1)
                     .build(null, "MyCustomData"); // Not supposed to be null
-
-    public static final DataManipulatorBuilder<DummyManipulator, ImmutableDummyManipulator> MY_BUILDER =
-            MY_REGISTRATION.getBuilder();
-
 }

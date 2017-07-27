@@ -90,6 +90,20 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
      */
     PluginContainer getPluginContainer();
 
+    /**
+     * Constructs a default {@link DataManipulator} of type {@link T}.
+     *
+     * @return The constructed data manipulator
+     */
+    T constructManipulator();
+
+    /**
+     * Constructs a default {@link ImmutableDataManipulator} of type {@link I}.
+     *
+     * @return The constructed immutable data manipulator
+     */
+    T constructImmutableManipulator();
+
     @Override
     String getId();
 

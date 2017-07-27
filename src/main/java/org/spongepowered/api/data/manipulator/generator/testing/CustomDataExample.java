@@ -1,24 +1,28 @@
 package org.spongepowered.api.data.manipulator.generator.testing;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.data.DataQuery;
+import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.key.KeyFactory;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.generator.CustomDataProvider;
-import org.spongepowered.api.data.manipulator.generator.DataRegistration;
+import org.spongepowered.api.data.manipulator.generator.CustomData;
+import org.spongepowered.api.data.manipulator.generator.KeyValue;
+import org.spongepowered.api.data.manipulator.mutable.ListData;
+import org.spongepowered.api.data.manipulator.mutable.MappedData;
+import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.util.TypeTokens;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class SimpleStringCustomData {
+public class CustomDataExample {
 
+    /*
     // For obvious reasons, we want to be able to use the key for various things. so we generate it!
     public static final Key<Value<String>> MY_STRING = KeyFactory.makeSingleKey(TypeTokens.STRING_TOKEN, TypeTokens.STRING_VALUE_TOKEN, DataQuery.of
             ("MyString"), "com.gabizou.my_string", "MyStringKey");
@@ -39,11 +43,10 @@ public class SimpleStringCustomData {
     // the classes and builder instance are also validated and registered with the DataManager.
     // No further registration is required
     private static final DataRegistration<?, ?> MY_STRING_REGISTRATION = CustomDataProvider.builder()
-            .id("CustomStringData")
             //.intValue(MY_STRING, 54) // Will not compile due to method requirements :D
-            .stringValue(MY_STRING, "DefaultString")
-            .list(MY_STACKS, ImmutableList.of(), ItemStack.class)
-            .build(null); // Not actually supposed to be null, but it can be for the sake of demonstration
+            .value(MY_STRING, "DefaultString")
+            .value(MY_STACKS, ImmutableList.of())
+            .build(null, "CustomStringData"); // Not actually supposed to be null, but it can be for the sake of demonstration
 
     // We now have our generated "super class" which can be used in any methods accepting manipulator classes
     public static final Class<? extends DataManipulator<?, ?>> MY_STRING_MANIPULATOR = MY_STRING_REGISTRATION.getSuperManipulator();
@@ -56,6 +59,44 @@ public class SimpleStringCustomData {
 
     // After all this is set and done, the DataRegistration is also able to produce new instances
     // without having to use the DataManager, since it already has the instance prepared.
+    */
 
 
+    public static final Key<ListValue<ItemStack>> MY_STACKS_KEY = KeyFactory.makeListKey(
+            ItemStack.class, DataQuery.of("MyStacks"), "test_data:my_stacks");
+
+    public static final Key<MapValue<Integer, String>> MY_MAP_KEY = KeyFactory.makeMapKeyWithKeyAndValue(
+            Integer.class, String.class, DataQuery.of("MyMap"), "test_data:my_map");
+
+    private static final DataRegistration<? extends ListData<ItemStack, ?, ?>, ?> MY_STACKS_DATA = CustomData.builder()
+            .list(MY_STACKS_KEY)
+            .defaultValue(new ArrayList<>())
+            .build(null, "my_stacks_data");
+
+    private static final DataRegistration<? extends MappedData<Integer, String, ?, ?>, ?> MY_MAP_DATA = CustomData.builder()
+            .map(MY_MAP_KEY)
+            .defaultValue(new HashMap<>())
+            .build(null, "my_map_data");
+
+    private static final DataRegistration<?, ?> MULTIPLE_KEYS_DATA = CustomData.builder()
+            .keyValues()
+            .value(MY_STACKS_KEY, new ArrayList<>())
+            .value(MY_MAP_KEY, new HashMap<>())
+            .build(null, "my_data_collection");
+
+    interface MyDataCollection extends DataManipulator {
+
+        @KeyValue("my_stacks")
+        ListValue<ItemStack> myStacks();
+
+        @KeyValue("my_stacks")
+        List<ItemStack> getMyStacks();
+
+        @KeyValue("my_stacks")
+        void setMyStacks(List<ItemStack> value);
+    }
+
+    interface MyImmutableDataCollection extends ImmutableDataManipulator {
+
+    }
 }
