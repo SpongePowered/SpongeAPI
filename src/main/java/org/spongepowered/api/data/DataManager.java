@@ -28,7 +28,6 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulatorBuilder;
-import org.spongepowered.api.data.manipulator.generator.CustomDataProvider;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataContentUpdater;
 import org.spongepowered.api.data.persistence.DataTranslator;
@@ -229,7 +228,5 @@ public interface DataManager {
      * @return A new data container with the provided safety mode
      */
     DataContainer createContainer(DataView.SafetyMode safety);
-
-    <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>> CustomDataProvider.TypeBuilder<T,I> createCustomBuilder(Class<T> manipulatorClass, Class<I> immutableClass);
 
 }
