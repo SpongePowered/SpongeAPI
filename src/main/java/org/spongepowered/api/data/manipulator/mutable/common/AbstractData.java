@@ -30,10 +30,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.data.DataContainer;
-<<<<<<< HEAD
-=======
-import org.spongepowered.api.data.MemoryDataContainer;
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
 import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
@@ -63,9 +59,6 @@ import java.util.stream.Collectors;
  *
  * @param <M> The mutable data manipulator type
  * @param <I> The immutable data manipulator type
- */
-@SuppressWarnings("unchecked")
-=======
  * @deprecated These classes are only to be used for easing the compatibility requirements
  * for plugin developers moving to the new system introduced by
  * {@link org.spongepowered.api.data.manipulator.generator.CustomDataProvider}. It is highly
@@ -74,7 +67,6 @@ import java.util.stream.Collectors;
  */
 @SuppressWarnings("unchecked")
 @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
 public abstract class AbstractData<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>> implements DataManipulator<M, I> {
 
 
@@ -107,10 +99,7 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
      * @param key The key for the value return type
      * @param function The function for getting the value
      */
-<<<<<<< HEAD
-=======
     @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
     protected final void registerKeyValue(Key<?> key, Supplier<Value<?>> function) {
         this.keyValueMap.put(checkNotNull(key), checkNotNull(function));
     }
@@ -124,10 +113,7 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
      * @param key The key for the value return type
      * @param function The function for getting the field
      */
-<<<<<<< HEAD
-=======
     @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
     protected final void registerFieldGetter(Key<?> key, Supplier<?> function) {
         this.keyFieldGetterMap.put(checkNotNull(key, "The key cannot be null"), checkNotNull(function, "The function cannot be null"));
     }
@@ -142,10 +128,7 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
      * @param function The function for setting the field
      */
     @SuppressWarnings("rawtypes")
-<<<<<<< HEAD
-=======
     @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
     protected final <E> void registerFieldSetter(Key<? extends BaseValue<E>> key, Consumer<E> function) {
         this.keyFieldSetterMap.put(checkNotNull(key), checkNotNull((Consumer) function));
     }
@@ -156,10 +139,7 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
      * field can be represented as a {@link Value} such that there is an
      * associated {@link Key} to "get" that field value.
      */
-<<<<<<< HEAD
-=======
     @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
     protected abstract void registerGettersAndSetters();
 
     // Beyond this point is all implementation with the getter/setter functions!
@@ -238,11 +218,7 @@ public abstract class AbstractData<M extends DataManipulator<M, I>, I extends Im
 
     @Override
     public DataContainer toContainer() {
-<<<<<<< HEAD
         return DataContainer.createNew()
-=======
-        return new MemoryDataContainer()
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
                 .set(Queries.CONTENT_VERSION, getContentVersion());
     }
 

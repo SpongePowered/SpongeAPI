@@ -201,7 +201,6 @@ public interface DataManager {
      */
     <T> Optional<DataTranslator<T>> getTranslator(Class<T> objectclass);
 
-<<<<<<< HEAD
     /**
      * Gets all {@link Class}es of all {@link DataManipulator}s registered for
      * the provided {@link PluginContainer}. The provided {@link Collection} is
@@ -231,7 +230,6 @@ public interface DataManager {
      */
     DataContainer createContainer(DataView.SafetyMode safety);
 
-=======
     <T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>> CustomDataProvider.TypeBuilder<T,I> createCustomBuilder(Class<T> manipulatorClass, Class<I> immutableClass);
->>>>>>> 3cc3815... Initial work on Custom Data generation. Implementation will reside in
+
 }

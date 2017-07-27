@@ -13,14 +13,15 @@ import org.spongepowered.api.data.manipulator.generator.DataRegistration;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.util.CommonTokens;
+import org.spongepowered.api.util.TypeTokens;
 
 import java.util.List;
 
 public class SimpleStringCustomData {
 
     // For obvious reasons, we want to be able to use the key for various things. so we generate it!
-    public static final Key<Value<String>> MY_STRING = KeyFactory.makeSingleKey(CommonTokens.STRING_TOKEN, CommonTokens.STRING_VALUE_TOKEN, DataQuery.of("MyString"), "com.gabizou.my_string", "MyStringKey");
+    public static final Key<Value<String>> MY_STRING = KeyFactory.makeSingleKey(TypeTokens.STRING_TOKEN, TypeTokens.STRING_VALUE_TOKEN, DataQuery.of
+            ("MyString"), "com.gabizou.my_string", "MyStringKey");
 
     public static final TypeToken<List<ItemStack>> LIST_ITEM_STACK_TOKEN = new TypeToken<List<ItemStack>>() {
     };

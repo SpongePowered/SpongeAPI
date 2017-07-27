@@ -10,22 +10,24 @@ import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.util.CommonTokens;
+import org.spongepowered.api.util.TypeTokens;
+
+import java.util.ArrayList;
 
 public class DummyCustomDataData {
 
     public static final Key<MutableBoundedValue<Integer>> MY_INT_KEY =
             KeyFactory
-                    .makeSingleKey(CommonTokens.INTEGER_TOKEN,
-                            CommonTokens.BOUNDED_INTEGER_VALUE_TOKEN,
+                    .makeSingleKey(TypeTokens.INTEGER_TOKEN,
+                            TypeTokens.BOUNDED_INTEGER_VALUE_TOKEN,
                             DataQuery.of("MyInteger"),
                             "com.gabizou:my_integer",
                             "My Integer");
 
     public static final Key<ListValue<ItemEnchantment>> MY_ENCHANTMENT_KEY =
             KeyFactory
-                    .makeListKey(CommonTokens.LIST_ITEM_ENCHANTMENT_TOKEN,
-                            CommonTokens.LIST_ITEM_ENCHANTMENT_VALUE_TOKEN,
+                    .makeListKey(TypeTokens.LIST_ITEM_ENCHANTMENT_TOKEN,
+                            TypeTokens.LIST_ITEM_ENCHANTMENT_VALUE_TOKEN,
                             DataQuery.of("MyItemEnchantment"),
                             "com.gabizou:my_item_enchantment",
                             "My Item Enchantment");
@@ -34,7 +36,7 @@ public class DummyCustomDataData {
             Sponge.getDataManager()
                     .createCustomBuilder(DummyManipulator.class, ImmutableDummyManipulator.class)
                     .boundedKey(MY_INT_KEY, "myInt", 10, 0, 10)
-                    .key(MY_ENCHANTMENT_KEY, "myEnchantment")
+                    .key(MY_ENCHANTMENT_KEY, "myEnchantment", new ArrayList<>())
                     .predicate(dataHolder -> dataHolder instanceof Agent)
                     .version(1)
                     .build(null, "MyCustomData"); // Not supposed to be null

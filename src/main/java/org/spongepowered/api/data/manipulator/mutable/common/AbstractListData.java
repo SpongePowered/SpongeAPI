@@ -46,10 +46,6 @@ import java.util.Optional;
  * @param <E> The type of element within the list
  * @param <M> The type of {@link DataManipulator}
  * @param <I> The type of {@link ImmutableDataManipulator}
-<<<<<<< HEAD
- */
-@SuppressWarnings("unchecked")
-=======
  * @deprecated These classes are only to be used for easing the compatibility requirements
  * for plugin developers moving to the new system introduced by
  * {@link org.spongepowered.api.data.manipulator.generator.CustomDataProvider}. It is highly
@@ -58,7 +54,6 @@ import java.util.Optional;
  */
 @SuppressWarnings("unchecked")
 @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
 public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends ImmutableListData<E, I, M>>
         extends AbstractSingleData<List<E>, M, I> implements ListData<E, M, I> {
 
@@ -72,17 +67,10 @@ public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends
     }
 
     @Override
-<<<<<<< HEAD
-    public <V> Optional<V> get(Key<? extends BaseValue<V>> key) {
-        // we can delegate this since we have a direct value check as this is
-        // a Single value.
-        return key == this.usedKey ? Optional.of((V) this.getValue()) : super.get(key);
-=======
     public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
         // we can delegate this since we have a direct value check as this is
         // a Single value.
         return key == this.usedKey ? Optional.of((E) this.getValue()) : super.get(key);
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
     }
 
     @Override

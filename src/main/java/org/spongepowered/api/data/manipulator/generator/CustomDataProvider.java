@@ -79,7 +79,7 @@ public class CustomDataProvider {
 
     public interface TypeBuilder<T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>> {
 
-        <E> TypeBuilder<T, I> key(Key<? extends BaseValue<E>> key, String id, E defualtValue) throws IllegalArgumentException;
+        <E> TypeBuilder<T, I> key(Key<? extends BaseValue<E>> key, String id, E defaultValue) throws IllegalArgumentException;
 
         <E> TypeBuilder<T, I> boundedKey(Key<? extends BoundedValue<E>> key, String id, E defaultValue, E lowerBound, E upperBound) throws IllegalArgumentException;
 

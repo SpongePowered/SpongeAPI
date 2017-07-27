@@ -29,10 +29,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.data.DataContainer;
-<<<<<<< HEAD
-=======
-import org.spongepowered.api.data.MemoryDataContainer;
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
 import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
@@ -53,10 +49,6 @@ import java.util.stream.Collectors;
  *
  * @param <I> The immutable data manipulator type
  * @param <M> The mutable manipulator type
-<<<<<<< HEAD
- */
-@SuppressWarnings("unchecked")
-=======
  * @deprecated These classes are only to be used for easing the compatibility requirements
  * for plugin developers moving to the new system introduced by
  * {@link org.spongepowered.api.data.manipulator.generator.CustomDataProvider}. It is highly
@@ -65,10 +57,8 @@ import java.util.stream.Collectors;
  */
 @SuppressWarnings("unchecked")
 @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
 public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>>
         implements ImmutableDataManipulator<I, M> {
-
 
     private final Map<Key<?>, Supplier<ImmutableValue<?>>> keyValueMap = Maps.newHashMap();
     private final Map<Key<?>, Supplier<?>> keyFieldGetterMap = Maps.newHashMap();
@@ -85,10 +75,7 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
      * @param key The key for the value return type
      * @param function The function for getting the value
      */
-<<<<<<< HEAD
-=======
     @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
     protected final void registerKeyValue(Key<?> key, Supplier<ImmutableValue<?>> function) {
         this.keyValueMap.put(checkNotNull(key), checkNotNull(function));
     }
@@ -102,18 +89,12 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
      * @param key The key for the value return type
      * @param function The function for getting the field
      */
-<<<<<<< HEAD
-=======
     @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
     protected final void registerFieldGetter(Key<?> key, Supplier<?> function) {
         this.keyFieldGetterMap.put(checkNotNull(key), checkNotNull(function));
     }
 
-<<<<<<< HEAD
-=======
     @Deprecated
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
     protected abstract void registerGetters();
 
     @Override
@@ -188,11 +169,7 @@ public abstract class AbstractImmutableData<I extends ImmutableDataManipulator<I
 
     @Override
     public DataContainer toContainer() {
-<<<<<<< HEAD
         return DataContainer.createNew()
-=======
-        return new MemoryDataContainer()
->>>>>>> be5ec10... Re-add common data implementations as deprecated...
                 .set(Queries.CONTENT_VERSION, getContentVersion());
     }
 
