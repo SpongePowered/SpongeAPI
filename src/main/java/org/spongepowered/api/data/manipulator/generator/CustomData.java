@@ -39,12 +39,14 @@ import org.spongepowered.api.data.manipulator.mutable.ListData;
 import org.spongepowered.api.data.manipulator.mutable.MappedData;
 import org.spongepowered.api.data.manipulator.mutable.VariantData;
 import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -275,7 +277,22 @@ public interface CustomData {
          * @param <T> The type of the value
          * @return This builder, for chaining
          */
-        <T extends Comparable<T>> KeysBuilder<M, I> boundedKey(Key<? extends BaseValue<T>> key, T defaultValue, T minimum, T maximum);
+        <T extends Comparable<T>> KeysBuilder<M, I> boundedKey(Key<? extends BoundedValue<T>> key, T defaultValue, T minimum, T maximum);
+
+        /**
+         * Registers a {@link Key} with a bounded value and specified
+         * default value. The {@link Comparator} will be used to check whether
+         * the value is between it's bounds.
+         *
+         * @param key The key
+         * @param defaultValue The default value
+         * @param minimum The minimum value
+         * @param maximum The maximum value
+         * @param comparator The comparator
+         * @param <T> The type of the value
+         * @return This builder, for chaining
+         */
+        <T> KeysBuilder<M, I> boundedKey(Key<? extends BoundedValue<T>> key, T defaultValue, T minimum, T maximum, Comparator<T> comparator);
     }
 
     /**
