@@ -56,8 +56,8 @@ public class DummyCustomDataData {
                             "My Item Enchantment");
 
     public static final DataRegistration<DummyManipulator, ImmutableDummyManipulator> MY_REGISTRATION =
-            CustomData.builder().keyValues()
-                    .boundedValue(MY_INT_KEY, 10, 0, 10)
+            CustomData.builder().keys()
+                    .boundedKey(MY_INT_KEY, 10, 0, 10)
                     .value(MY_ENCHANTMENT_KEY, new ArrayList<>())
                     .predicate(dataHolder -> dataHolder instanceof Agent)
                     .interfaces(DummyManipulator.class, ImmutableDummyManipulator.class)

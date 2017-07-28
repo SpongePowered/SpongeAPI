@@ -42,6 +42,8 @@ import org.spongepowered.api.data.value.mutable.MapValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -59,13 +61,13 @@ public interface CustomData {
     }
 
     /**
-     * Constructs a new {@link KeyValuesBuilder}. This is the only {@link DataBuilder}
+     * Constructs a new {@link KeysBuilder}. This is the only {@link DataBuilder}
      * that supports multiple {@link Key}s.
      *
      * @return The key values data builder
      */
-    static KeyValuesBuilder keyValuesBuilder() {
-        return builder().keyValues();
+    static KeysBuilder keysBuilder() {
+        return builder().keys();
     }
 
     /**
@@ -123,12 +125,12 @@ public interface CustomData {
     interface BaseBuilder extends ResettableBuilder<DataRegistration<?, ?>, BaseBuilder> {
 
         /**
-         * Constructs a new {@link KeyValuesBuilder}. This is the only {@link DataBuilder}
+         * Constructs a new {@link KeysBuilder}. This is the only {@link DataBuilder}
          * that supports multiple {@link Key}s.
          *
          * @return The key values data builder
          */
-        KeyValuesBuilder<?, ?> keyValues();
+        KeysBuilder<?, ?> keys();
 
         /**
          * Generates a {@link VariantBuilder}. Only one key will be registered in
@@ -209,8 +211,8 @@ public interface CustomData {
      * @param <M> The mutable manipulator type
      * @param <I> The immutable manipulator type
      */
-    interface KeyValuesBuilder<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>>
-            extends DataBuilder<M, I, KeyValuesBuilder<M, I>> {
+    interface KeysBuilder<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>>
+            extends DataBuilder<M, I, KeysBuilder<M, I>> {
 
         /**
          * Sets the interfaces that the generated {@link DataManipulator} and
@@ -222,7 +224,7 @@ public interface CustomData {
          * @param <NI> The type of the immutable interface
          * @return This builder, for chaining
          */
-        <NM extends DataManipulator<NM, NI>, NI extends ImmutableDataManipulator<NI, NM>> KeyValuesBuilder<NM, NI> interfaces(
+        <NM extends DataManipulator<NM, NI>, NI extends ImmutableDataManipulator<NI, NM>> KeysBuilder<NM, NI> interfaces(
                 Class<NM> mutableClass, Class<NI> immutableClass);
 
         /**
@@ -233,7 +235,7 @@ public interface CustomData {
          * @param <T> The type of the value
          * @return This builder, for chaining
          */
-        <T> KeyValuesBuilder<M, I> value(Key<? extends BaseValue<T>> key, T defaultValue);
+        <T> KeysBuilder<M, I> key(Key<? extends BaseValue<T>> key, T defaultValue);
 
         /**
          * Registers a {@link Key} with a bounded value and specified default value.
@@ -245,7 +247,7 @@ public interface CustomData {
          * @param <T> The type of the value
          * @return This builder, for chaining
          */
-        <T extends Comparable<T>> KeyValuesBuilder<M, I> boundedValue(Key<? extends BaseValue<T>> key, T defaultValue, T minimum, T maximum);
+        <T extends Comparable<T>> KeysBuilder<M, I> boundedKey(Key<? extends BaseValue<T>> key, T defaultValue, T minimum, T maximum);
     }
 
     interface VariantBuilder<V, M extends VariantData<V, M, I>, I extends ImmutableVariantData<V, I, M>>
@@ -264,6 +266,12 @@ public interface CustomData {
         <NM extends VariantData<V, NM, NI>, NI extends ImmutableVariantData<V, NI, NM>> VariantBuilder<V, NM, NI> interfaces(
                 Class<NM> mutableClass, Class<NI> immutableClass);
 
+        /**
+         * Sets the default variant type, is required to be set.
+         *
+         * @param defaultVariant The default variant type
+         * @return This builder, for chaining
+         */
         VariantBuilder<V, M, I> defaultValue(V defaultVariant);
     }
 
@@ -283,6 +291,13 @@ public interface CustomData {
         <NM extends ListData<E, NM, NI>, NI extends ImmutableListData<E, NI, NM>> ListBuilder<E, NM, NI> interfaces(
                 Class<NM> mutableClass, Class<NI> immutableClass);
 
+        /**
+         * Sets the default {@link List} value. Defaults to
+         * {@link ArrayList#ArrayList()}.
+         *
+         * @param defaultList The default list
+         * @return This builder, for chaining
+         */
         ListBuilder<E, M, I> defaultValue(List<E> defaultList);
     }
 
@@ -303,7 +318,8 @@ public interface CustomData {
                 Class<NM> mutableClass, Class<NI> immutableClass);
 
         /**
-         * Sets the default {@link Map} value.
+         * Sets the default {@link Map} value. Defaults to
+         * {@link HashMap#HashMap()}.
          *
          * @param defaultMap The default map value
          * @return This builder, for chaining

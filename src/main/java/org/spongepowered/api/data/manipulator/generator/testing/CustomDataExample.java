@@ -103,7 +103,7 @@ public class CustomDataExample {
             .build(null, "my_map_data");
 
     private static final DataRegistration<MyDataCollection, MyImmutableDataCollection> MULTIPLE_KEYS_DATA = CustomData.builder()
-            .keyValues()
+            .keys()
             .value(MY_STACKS_KEY, new ArrayList<>())
             .value(MY_MAP_KEY, new HashMap<>())
             .interfaces(MyDataCollection.class, MyImmutableDataCollection.class)
