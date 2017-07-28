@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.data.manipulator.generator;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataRegistration;
@@ -56,8 +58,8 @@ public interface CustomData {
      *
      * @return The builder
      */
-    static BaseBuilder builder() {
-        return Sponge.getRegistry().createBuilder(CustomData.BaseBuilder.class);
+    static TypeBuilder builder() {
+        return Sponge.getRegistry().createBuilder(CustomData.TypeBuilder.class);
     }
 
     /**
@@ -116,13 +118,32 @@ public interface CustomData {
     }
 
     /**
-     * The {@link BaseBuilder}, this builder will construct a {@link DataBuilder}
-     * based on the type of {@link DataManipulator} and {@link ImmutableDataManipulator}
-     * as output. Using the {@link BaseBuilder#from(Object)} and {@link BaseBuilder#reset()}
-     * won't affect the state of the builder, calling the methods in this class
-     * generates a new {@link DataBuilder}.
+     * The base interface of all the builders for custom data.
      */
-    interface BaseBuilder extends ResettableBuilder<DataRegistration<?, ?>, BaseBuilder> {
+    interface BaseBuilder extends ResettableBuilder<DataRegistration<?, ?>, TypeBuilder> {
+
+        /**
+         * This cannot be used to load values from the {@link DataRegistration},
+         * the {@link BaseBuilder} will just be reset in this case. It is recommend
+         * to just use {@link #reset()} in this case.
+         *
+         * @param value The built object
+         * @return This builder, for chaining
+         */
+        @Deprecated
+        @Override
+        default TypeBuilder from(DataRegistration<?, ?> value) {
+            checkNotNull(value, "value");
+            return reset();
+        }
+    }
+
+    /**
+     * The {@link TypeBuilder}, this builder will construct a {@link DataBuilder}
+     * based on the type of {@link DataManipulator} and {@link ImmutableDataManipulator}
+     * as output.
+     */
+    interface TypeBuilder extends BaseBuilder {
 
         /**
          * Constructs a new {@link KeysBuilder}. This is the only {@link DataBuilder}
@@ -172,8 +193,16 @@ public interface CustomData {
                 Key<? extends MapValue<K, V>> key);
     }
 
+    /**
+     * The base interface for all the types of builders that generate
+     * {@link DataManipulator} and {@link ImmutableDataManipulator} classes.
+     *
+     * @param <M> The mutable manipulator type
+     * @param <I> The immutable manipulator type
+     * @param <B> The builder type
+     */
     interface DataBuilder<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>, B extends DataBuilder<M, I, B>>
-            extends ResettableBuilder<DataRegistration<M, I>, B> {
+            extends BaseBuilder {
 
         /**
          * Sets the content version of the constructed
@@ -205,8 +234,7 @@ public interface CustomData {
     }
 
     /**
-     * A expansion of the {@link CustomData} that supports
-     * multiple {@link Key}s and values.
+     * This {@link DataBuilder} supports multiple {@link Key}s and it's values.
      *
      * @param <M> The mutable manipulator type
      * @param <I> The immutable manipulator type
@@ -250,6 +278,14 @@ public interface CustomData {
         <T extends Comparable<T>> KeysBuilder<M, I> boundedKey(Key<? extends BaseValue<T>> key, T defaultValue, T minimum, T maximum);
     }
 
+    /**
+     * This {@link DataBuilder} supports only one {@link Key}. The generated classes
+     * will always extend {@link VariantData} and {@link ImmutableVariantData}.
+     *
+     * @param <V> The variant type
+     * @param <M> The mutable manipulator type
+     * @param <I> The immutable manipulator type
+     */
     interface VariantBuilder<V, M extends VariantData<V, M, I>, I extends ImmutableVariantData<V, I, M>>
             extends DataBuilder<M, I, VariantBuilder<V, M, I>> {
 
@@ -275,6 +311,15 @@ public interface CustomData {
         VariantBuilder<V, M, I> defaultValue(V defaultVariant);
     }
 
+    /**
+     * This {@link DataBuilder} supports only one {@link Key} with a {@link BaseValue}
+     * of the type {@link ListValue}. The generated classes will
+     * always extend {@link ListData} and {@link ImmutableListData}.
+     *
+     * @param <E> The element type of the list
+     * @param <M> The mutable manipulator type
+     * @param <I> The immutable manipulator type
+     */
     interface ListBuilder<E, M extends ListData<E, M, I>, I extends ImmutableListData<E, I, M>>
             extends DataBuilder<M, I, ListBuilder<E, M, I>> {
 
@@ -301,6 +346,16 @@ public interface CustomData {
         ListBuilder<E, M, I> defaultValue(List<E> defaultList);
     }
 
+    /**
+     * This {@link DataBuilder} supports only one {@link Key} with a {@link BaseValue}
+     * of the type {@link MapValue}. The generated classes will
+     * always extend {@link MappedData} and {@link ImmutableMappedData}.
+     *
+     * @param <K> The key type of the map
+     * @param <V> The value type of the map
+     * @param <M> The mutable manipulator type
+     * @param <I> The immutable manipulator type
+     */
     interface MapBuilder<K, V, M extends MappedData<K, V, M, I>, I extends ImmutableMappedData<K, V, I, M>>
             extends DataBuilder<M, I, MapBuilder<K, V, M, I>> {
 

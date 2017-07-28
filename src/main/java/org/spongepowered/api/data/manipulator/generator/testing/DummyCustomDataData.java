@@ -58,7 +58,7 @@ public class DummyCustomDataData {
     public static final DataRegistration<DummyManipulator, ImmutableDummyManipulator> MY_REGISTRATION =
             CustomData.builder().keys()
                     .boundedKey(MY_INT_KEY, 10, 0, 10)
-                    .value(MY_ENCHANTMENT_KEY, new ArrayList<>())
+                    .key(MY_ENCHANTMENT_KEY, new ArrayList<>())
                     .predicate(dataHolder -> dataHolder instanceof Agent)
                     .interfaces(DummyManipulator.class, ImmutableDummyManipulator.class)
                     .version(1)
