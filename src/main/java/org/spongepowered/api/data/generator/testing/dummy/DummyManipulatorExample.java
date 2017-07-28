@@ -59,5 +59,5 @@ public class DummyManipulatorExample {
                     // Apply interfaces
                     .interfaces(DummyManipulator.class, ImmutableDummyManipulator.class)
                     .version(1)
-                    .build("my_data_plugin", "dummy_manipulator"); // Not supposed to be null
+                    .buildAndRegister("my_data_plugin", "dummy_manipulator"); // Not supposed to be null
 }

@@ -62,7 +62,7 @@ public interface DataGenerator extends ResettableBuilder<DataRegistration<?, ?>,
      * @return The builder
      */
     static TypeBuilder builder() {
-        return Sponge.getRegistry().createBuilder(DataGenerator.TypeBuilder.class);
+        return Sponge.getRegistry().createBuilder(TypeBuilder.class);
     }
 
     /**
@@ -84,7 +84,7 @@ public interface DataGenerator extends ResettableBuilder<DataRegistration<?, ?>,
      * @param <V> The value type
      * @return The variant data builder
      */
-    static <V> DataGenerator.VariantBuilder<V, ? extends VariantData<V, ?, ?>, ? extends ImmutableVariantData<V, ?, ?>> variantBuilder(
+    static <V> VariantBuilder<V, ? extends VariantData<V, ?, ?>, ? extends ImmutableVariantData<V, ?, ?>> variantBuilder(
             Key<? extends Value<V>> key) {
         return builder().variant(key);
     }
@@ -99,7 +99,7 @@ public interface DataGenerator extends ResettableBuilder<DataRegistration<?, ?>,
      * @param <E> The element type
      * @return The list data builder
      */
-    static <E> DataGenerator.ListBuilder<E, ? extends ListData<E, ?, ?>, ? extends ImmutableListData<E, ?, ?>> listBuilder(
+    static <E> ListBuilder<E, ? extends ListData<E, ?, ?>, ? extends ImmutableListData<E, ?, ?>> listBuilder(
             Key<? extends ListValue<E>> key) {
         return builder().list(key);
     }
@@ -115,7 +115,7 @@ public interface DataGenerator extends ResettableBuilder<DataRegistration<?, ?>,
      * @param <V> The map value type
      * @return The map data builder
      */
-    static <K, V> DataGenerator.MapBuilder<K, V, ? extends MappedData<K, V, ?, ?>, ? extends ImmutableMappedData<K, V, ?, ?>> mapBuilder(
+    static <K, V> MapBuilder<K, V, ? extends MappedData<K, V, ?, ?>, ? extends ImmutableMappedData<K, V, ?, ?>> mapBuilder(
             Key<? extends MapValue<K, V>> key) {
         return builder().map(key);
     }
@@ -157,7 +157,7 @@ public interface DataGenerator extends ResettableBuilder<DataRegistration<?, ?>,
          * @param <V> The value type
          * @return This builder as a variant builder, for chaining
          */
-        <V> DataGenerator.VariantBuilder<V, ? extends VariantData<V, ?, ?>, ? extends ImmutableVariantData<V, ?, ?>> variant(
+        <V> VariantBuilder<V, ? extends VariantData<V, ?, ?>, ? extends ImmutableVariantData<V, ?, ?>> variant(
                 Key<? extends Value<V>> key);
 
         /**
@@ -170,7 +170,7 @@ public interface DataGenerator extends ResettableBuilder<DataRegistration<?, ?>,
          * @param <E> The element type
          * @return The builder as a list data builder, for chaining
          */
-        <E> DataGenerator.ListBuilder<E, ? extends ListData<E, ?, ?>, ? extends ImmutableListData<E, ?, ?>> list(
+        <E> ListBuilder<E, ? extends ListData<E, ?, ?>, ? extends ImmutableListData<E, ?, ?>> list(
                 Key<? extends ListValue<E>> key);
 
         /**
@@ -184,7 +184,7 @@ public interface DataGenerator extends ResettableBuilder<DataRegistration<?, ?>,
          * @param <V> The map value type
          * @return The builder as a map data builder, for chaining
          */
-        <K, V> DataGenerator.MapBuilder<K, V, ? extends MappedData<K, V, ?, ?>, ? extends ImmutableMappedData<K, V, ?, ?>> map(
+        <K, V> MapBuilder<K, V, ? extends MappedData<K, V, ?, ?>, ? extends ImmutableMappedData<K, V, ?, ?>> map(
                 Key<? extends MapValue<K, V>> key);
     }
 
@@ -229,14 +229,14 @@ public interface DataGenerator extends ResettableBuilder<DataRegistration<?, ?>,
         B predicate(Predicate<? extends DataHolder> predicate);
 
         /**
-         * Builds the {@link DataRegistration} with the specified
+         * Builds and registers the {@link DataRegistration} with the specified
          * plugin instance and manipulator id.
          *
          * @param pluginInstance The plugin instance
          * @param id The manipulator id
          * @return The constructed data registration
          */
-        DataRegistration<M, I> build(Object pluginInstance, String id);
+        DataRegistration<M, I> buildAndRegister(Object pluginInstance, String id);
     }
 
     /**

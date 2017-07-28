@@ -53,7 +53,7 @@ public class SimpleExamples {
     private static final DataRegistration<? extends ListData<String, ?, ?>, ?> MY_LINES_DATA = DataGenerator.builder()
             .list(MY_LINES_KEY)
             .defaultValue(new ArrayList<>())
-            .build("my_data_plugin", "my_lines_data");
+            .buildAndRegister("my_data_plugin", "my_lines_data");
 
     public static final Key<MapValue<Integer, String>> MY_INT_TO_STRING_MAP_KEY = makeMapKeyWithKeyAndValue(
             TypeTokens.INTEGER_TOKEN, TypeTokens.STRING_TOKEN, DataQuery.of("MyIntToStringMap"), "my_data_plugin:my_int_to_string_map", "My Int To "
@@ -62,7 +62,7 @@ public class SimpleExamples {
     private static final DataRegistration<? extends MappedData<Integer, String, ?, ?>, ?> MY_INT_TO_STRING_MAP_DATA = DataGenerator.builder()
             .map(MY_INT_TO_STRING_MAP_KEY)
             .defaultValue(new HashMap<>())
-            .build("my_data_plugin", "my_int_to_string_map_data");
+            .buildAndRegister("my_data_plugin", "my_int_to_string_map_data");
 
     enum Fruit {
         APPLE,
@@ -77,7 +77,7 @@ public class SimpleExamples {
     private static final DataRegistration<? extends VariantData<Fruit, ?, ?>, ?> MY_FRUIT_DATA = DataGenerator.builder()
             .variant(MY_FRUIT_KEY)
             .defaultValue(Fruit.APPLE)
-            .build("my_data_plugin", "my_fruit_data");
+            .buildAndRegister("my_data_plugin", "my_fruit_data");
 
     public static final Key<Value<Fruit>> MY_OTHER_FRUIT_KEY = makeValueKey(
             TypeToken.of(Fruit.class), DataQuery.of("MyOtherFruit"), "my_data_plugin:my_other_fruit", "My Other Fruit");
@@ -90,5 +90,5 @@ public class SimpleExamples {
             .variant(MY_OTHER_FRUIT_KEY)
             .interfaces(OtherFruitData.class, OtherImmutableFruitData.class)
             .defaultValue(Fruit.APPLE)
-            .build("my_data_plugin", "my_other_fruit_data");
+            .buildAndRegister("my_data_plugin", "my_other_fruit_data");
 }
