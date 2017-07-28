@@ -102,7 +102,7 @@ public interface DataRegistration<T extends DataManipulator<T, I>, I extends Imm
      *
      * @return The constructed immutable data manipulator
      */
-    T constructImmutableManipulator();
+    I constructImmutableManipulator();
 
     @Override
     String getId();

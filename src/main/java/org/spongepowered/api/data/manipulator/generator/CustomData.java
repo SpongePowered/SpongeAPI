@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.data.manipulator.generator;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataRegistration;
@@ -125,19 +123,17 @@ public interface CustomData {
     interface BaseBuilder extends ResettableBuilder<DataRegistration<?, ?>, TypeBuilder> {
 
         /**
-         * This cannot be used to load values from the {@link DataRegistration},
-         * the {@link BaseBuilder} will just be reset in this case. It is recommend
-         * to just use {@link #reset()} in this case.
+         * The nature of the builder doesn't allow values of data registration to be
+         * reused. It is also unlikely that {@link Key}s names and manipulator types
+         * will be reused in multiple {@link DataRegistration}s. Use {@link #reset()}
+         * and resupply the builder instead.
          *
          * @param value The built object
          * @return This builder, for chaining
          */
         @Deprecated
         @Override
-        default TypeBuilder from(DataRegistration<?, ?> value) {
-            checkNotNull(value, "value");
-            return reset();
-        }
+        TypeBuilder from(DataRegistration<?, ?> value) throws UnsupportedOperationException;
     }
 
     /**
@@ -162,7 +158,7 @@ public interface CustomData {
          *
          * @param key Tke key
          * @param <V> The value type
-         * @return The variant data builder
+         * @return This builder as a variant builder, for chaining
          */
         <V> CustomData.VariantBuilder<V, ? extends VariantData<V, ?, ?>, ? extends ImmutableVariantData<V, ?, ?>> variant(
                 Key<? extends Value<V>> key);
@@ -175,7 +171,7 @@ public interface CustomData {
          *
          * @param key Tke key
          * @param <E> The element type
-         * @return The list data builder
+         * @return The builder as a list data builder, for chaining
          */
         <E> CustomData.ListBuilder<E, ? extends ListData<E, ?, ?>, ? extends ImmutableListData<E, ?, ?>> list(
                 Key<? extends ListValue<E>> key);
@@ -189,7 +185,7 @@ public interface CustomData {
          * @param key Tke key
          * @param <K> The map key type
          * @param <V> The map value type
-         * @return The map data builder
+         * @return The builder as a map data builder, for chaining
          */
         <K, V> CustomData.MapBuilder<K, V, ? extends MappedData<K, V, ?, ?>, ? extends ImmutableMappedData<K, V, ?, ?>> map(
                 Key<? extends MapValue<K, V>> key);
@@ -205,6 +201,17 @@ public interface CustomData {
      */
     interface DataBuilder<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>, B extends DataBuilder<M, I, B>>
             extends BaseBuilder {
+
+        /**
+         * Sets a more generalized name to refer to the registered
+         * {@link DataManipulator} as a common name.
+         *
+         * <p>As an example: if I have a DummyTestData, a name could be "Dummy".</p>
+         *
+         * @param name The data name
+         * @return This builder, for chaining
+         */
+        B name(String name);
 
         /**
          * Sets the content version of the constructed
