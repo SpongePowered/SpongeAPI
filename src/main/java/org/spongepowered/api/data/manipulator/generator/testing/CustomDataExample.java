@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.generator.testing;
 
+import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.data.key.Key;
@@ -34,11 +35,10 @@ import org.spongepowered.api.data.manipulator.generator.CustomData;
 import org.spongepowered.api.data.manipulator.generator.KeyValue;
 import org.spongepowered.api.data.manipulator.mutable.ListData;
 import org.spongepowered.api.data.manipulator.mutable.MappedData;
-import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MapValue;
-import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.TypeTokens;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,10 +87,10 @@ public class CustomDataExample {
 
 
     public static final Key<ListValue<ItemStack>> MY_STACKS_KEY = KeyFactory.makeListKey(
-            ItemStack.class, DataQuery.of("MyStacks"), "test_data:my_stacks");
+            TypeToken.of(ItemStack.class), DataQuery.of("MyStacks"), "test_data:my_stacks", "MyStacks");
 
     public static final Key<MapValue<Integer, String>> MY_MAP_KEY = KeyFactory.makeMapKeyWithKeyAndValue(
-            Integer.class, String.class, DataQuery.of("MyMap"), "test_data:my_map");
+            TypeTokens.INTEGER_TOKEN, TypeTokens.STRING_TOKEN, DataQuery.of("MyMap"), "test_data:my_map", "MyMap");
 
     private static final DataRegistration<? extends ListData<ItemStack, ?, ?>, ?> MY_STACKS_DATA = CustomData.builder()
             .list(MY_STACKS_KEY)
@@ -102,13 +102,14 @@ public class CustomDataExample {
             .defaultValue(new HashMap<>())
             .build(null, "my_map_data");
 
-    private static final DataRegistration<?, ?> MULTIPLE_KEYS_DATA = CustomData.builder()
+    private static final DataRegistration<MyDataCollection, MyImmutableDataCollection> MULTIPLE_KEYS_DATA = CustomData.builder()
             .keyValues()
             .value(MY_STACKS_KEY, new ArrayList<>())
             .value(MY_MAP_KEY, new HashMap<>())
+            .interfaces(MyDataCollection.class, MyImmutableDataCollection.class)
             .build(null, "my_data_collection");
 
-    interface MyDataCollection extends DataManipulator {
+    interface MyDataCollection extends DataManipulator<MyDataCollection, MyImmutableDataCollection> {
 
         @KeyValue("my_stacks")
         ListValue<ItemStack> myStacks();
@@ -120,7 +121,7 @@ public class CustomDataExample {
         void setMyStacks(List<ItemStack> value);
     }
 
-    interface MyImmutableDataCollection extends ImmutableDataManipulator {
+    interface MyImmutableDataCollection extends ImmutableDataManipulator<MyImmutableDataCollection, MyDataCollection> {
 
     }
 }

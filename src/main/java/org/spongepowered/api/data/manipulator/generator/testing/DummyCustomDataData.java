@@ -25,10 +25,10 @@
 package org.spongepowered.api.data.manipulator.generator.testing;
 
 import org.spongepowered.api.data.DataQuery;
+import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.key.KeyFactory;
 import org.spongepowered.api.data.manipulator.generator.CustomData;
-import org.spongepowered.api.data.manipulator.generator.CustomDataRegistration;
 import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -55,7 +55,7 @@ public class DummyCustomDataData {
                             "com.gabizou:my_item_enchantment",
                             "My Item Enchantment");
 
-    public static final CustomDataRegistration<DummyManipulator, ImmutableDummyManipulator> MY_REGISTRATION =
+    public static final DataRegistration<DummyManipulator, ImmutableDummyManipulator> MY_REGISTRATION =
             CustomData.builder().keyValues()
                     .boundedValue(MY_INT_KEY, 10, 0, 10)
                     .value(MY_ENCHANTMENT_KEY, new ArrayList<>())

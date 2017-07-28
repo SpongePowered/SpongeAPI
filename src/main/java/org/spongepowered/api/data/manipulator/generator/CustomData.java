@@ -59,17 +59,74 @@ public interface CustomData {
     }
 
     /**
-     * The {@link BaseBuilder}, this builder will generate a {@link DataBuilder}
-     * based on the type of {@link DataManipulator} and {@link ImmutableDataManipulator}
-     * as output.
+     * Constructs a new {@link KeyValuesBuilder}. This is the only {@link DataBuilder}
+     * that supports multiple {@link Key}s.
+     *
+     * @return The key values data builder
      */
-    interface BaseBuilder extends ResettableBuilder<CustomDataRegistration<?, ?>, BaseBuilder> {
+    static KeyValuesBuilder keyValuesBuilder() {
+        return builder().keyValues();
+    }
+
+    /**
+     * Generates a {@link VariantBuilder}. Only one key will be registered in
+     * this {@link DataBuilder}. The output extend the classes
+     * {@link VariantData} and a {@link ImmutableVariantData}.
+     *
+     * @param key Tke key
+     * @param <V> The value type
+     * @return The variant data builder
+     */
+    static <V> CustomData.VariantBuilder<V, ? extends VariantData<V, ?, ?>, ? extends ImmutableVariantData<V, ?, ?>> variantBuilder(
+            Key<? extends Value<V>> key) {
+        return builder().variant(key);
+    }
+
+    /**
+     * Generates a {@link ListBuilder}. Only one key will be registered in
+     * this {@link DataBuilder} and it's {@link Value} type must be a
+     * {@link ListValue}. The output extend the classes
+     * {@link ListData} and a {@link ImmutableListData}.
+     *
+     * @param key Tke key
+     * @param <E> The element type
+     * @return The list data builder
+     */
+    static <E> CustomData.ListBuilder<E, ? extends ListData<E, ?, ?>, ? extends ImmutableListData<E, ?, ?>> listBuilder(
+            Key<? extends ListValue<E>> key) {
+        return builder().list(key);
+    }
+
+    /**
+     * Generates a {@link MapBuilder}. Only one key will be registered in
+     * this {@link DataBuilder} and it's {@link Value} type must be a
+     * {@link MapValue}. The output extend the classes
+     * {@link MappedData} and a {@link ImmutableMappedData}.
+     *
+     * @param key Tke key
+     * @param <K> The map key type
+     * @param <V> The map value type
+     * @return The map data builder
+     */
+    static <K, V> CustomData.MapBuilder<K, V, ? extends MappedData<K, V, ?, ?>, ? extends ImmutableMappedData<K, V, ?, ?>> mapBuilder(
+            Key<? extends MapValue<K, V>> key) {
+        return builder().map(key);
+    }
+
+    /**
+     * The {@link BaseBuilder}, this builder will construct a {@link DataBuilder}
+     * based on the type of {@link DataManipulator} and {@link ImmutableDataManipulator}
+     * as output. Using the {@link BaseBuilder#from(Object)} and {@link BaseBuilder#reset()}
+     * won't affect the state of the builder, calling the methods in this class
+     * generates a new {@link DataBuilder}.
+     */
+    interface BaseBuilder extends ResettableBuilder<DataRegistration<?, ?>, BaseBuilder> {
 
         /**
-         * Generates a {@link KeyValuesBuilder}. This is the  only {@link DataBuilder}
+         * Constructs a new {@link KeyValuesBuilder}. This is the only {@link DataBuilder}
          * that supports multiple {@link Key}s.
          *
-         * @return The key values builder
+         * @return The key values data builder
          */
         KeyValuesBuilder<?, ?> keyValues();
 
@@ -80,7 +137,7 @@ public interface CustomData {
          *
          * @param key Tke key
          * @param <V> The value type
-         * @return The variant builder
+         * @return The variant data builder
          */
         <V> CustomData.VariantBuilder<V, ? extends VariantData<V, ?, ?>, ? extends ImmutableVariantData<V, ?, ?>> variant(
                 Key<? extends Value<V>> key);
@@ -93,7 +150,7 @@ public interface CustomData {
          *
          * @param key Tke key
          * @param <E> The element type
-         * @return The list builder
+         * @return The list data builder
          */
         <E> CustomData.ListBuilder<E, ? extends ListData<E, ?, ?>, ? extends ImmutableListData<E, ?, ?>> list(
                 Key<? extends ListValue<E>> key);
@@ -107,13 +164,14 @@ public interface CustomData {
          * @param key Tke key
          * @param <K> The map key type
          * @param <V> The map value type
-         * @return The map builder
+         * @return The map data builder
          */
         <K, V> CustomData.MapBuilder<K, V, ? extends MappedData<K, V, ?, ?>, ? extends ImmutableMappedData<K, V, ?, ?>> map(
                 Key<? extends MapValue<K, V>> key);
     }
 
-    interface DataBuilder<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>, B> {
+    interface DataBuilder<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>, B extends DataBuilder<M, I, B>>
+            extends ResettableBuilder<DataRegistration<M, I>, B> {
 
         /**
          * Sets the content version of the constructed
@@ -141,7 +199,7 @@ public interface CustomData {
          * @param id The manipulator id
          * @return The constructed data registration
          */
-        CustomDataRegistration<M, I> build(Object pluginInstance, String id);
+        DataRegistration<M, I> build(Object pluginInstance, String id);
     }
 
     /**
