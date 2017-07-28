@@ -38,16 +38,16 @@ import java.util.Set;
 
 /**
  * An abstract implementation of an {@link ImmutableDataManipulator} that
- * specificaly deals with a single value.
+ * specifically deals with a single value.
  *
  * @param <T> The type of value
  * @param <I> The type of immutable manipulator
  * @param <M> The type of mutable manipulator
  * @deprecated These classes are only to be used for easing the compatibility requirements
  * for plugin developers moving to the new system introduced by
- * {@link org.spongepowered.api.data.manipulator.generator.CustomDataProvider}. It is highly
+ * {@link org.spongepowered.api.data.generator.DataGenerator}. It is highly
  * recommended to move towards the data provider system as all implementation classes provided
- * by the API will be removed in the next major version (API 7.0.0).
+ * by the API will be removed in the next major version (API 8.0.0).
  */
 @Deprecated
 public abstract class AbstractImmutableSingleData<T, I extends ImmutableDataManipulator<I, M>, M extends DataManipulator<M, I>>

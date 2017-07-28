@@ -39,6 +39,13 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * @deprecated These classes are only to be used for easing the compatibility requirements
+ * for plugin developers moving to the new system introduced by
+ * {@link org.spongepowered.api.data.generator.DataGenerator}. It is highly
+ * recommended to move towards the data provider system as all implementation classes provided
+ * by the API will be removed in the next major version (API 8.0.0).
+ */
 @Deprecated
 public abstract class AbstractImmutableMappedData<K, V, I extends ImmutableMappedData<K, V, I, M>, M extends MappedData<K, V, M, I>>
     extends AbstractImmutableSingleData<Map<K, V>, I, M> implements ImmutableMappedData<K, V, I, M> {

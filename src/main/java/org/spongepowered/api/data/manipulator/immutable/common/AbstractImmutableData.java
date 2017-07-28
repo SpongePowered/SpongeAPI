@@ -51,9 +51,9 @@ import java.util.stream.Collectors;
  * @param <M> The mutable manipulator type
  * @deprecated These classes are only to be used for easing the compatibility requirements
  * for plugin developers moving to the new system introduced by
- * {@link org.spongepowered.api.data.manipulator.generator.CustomDataProvider}. It is highly
+ * {@link org.spongepowered.api.data.generator.DataGenerator}. It is highly
  * recommended to move towards the data provider system as all implementation classes provided
- * by the API will be removed in the next major version (API 7.0.0).
+ * by the API will be removed in the next major version (API 8.0.0).
  */
 @SuppressWarnings("unchecked")
 @Deprecated

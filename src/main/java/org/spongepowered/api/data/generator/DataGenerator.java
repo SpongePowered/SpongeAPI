@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.generator;
+package org.spongepowered.api.data.generator;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
@@ -50,16 +50,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
-@SuppressWarnings("unchecked")
-public interface CustomData {
+/**
+ * A generator that allows a {@link DataRegistration} to be constructed with
+ * generated {@link DataManipulator} and {@link ImmutableDataManipulator} classes.
+ */
+public interface DataGenerator extends ResettableBuilder<DataRegistration<?, ?>, DataGenerator.TypeBuilder> {
 
     /**
-     * Constructs a new {@link BaseBuilder}.
+     * Constructs a new {@link TypeBuilder}.
      *
      * @return The builder
      */
     static TypeBuilder builder() {
-        return Sponge.getRegistry().createBuilder(CustomData.TypeBuilder.class);
+        return Sponge.getRegistry().createBuilder(DataGenerator.TypeBuilder.class);
     }
 
     /**
@@ -81,7 +84,7 @@ public interface CustomData {
      * @param <V> The value type
      * @return The variant data builder
      */
-    static <V> CustomData.VariantBuilder<V, ? extends VariantData<V, ?, ?>, ? extends ImmutableVariantData<V, ?, ?>> variantBuilder(
+    static <V> DataGenerator.VariantBuilder<V, ? extends VariantData<V, ?, ?>, ? extends ImmutableVariantData<V, ?, ?>> variantBuilder(
             Key<? extends Value<V>> key) {
         return builder().variant(key);
     }
@@ -96,7 +99,7 @@ public interface CustomData {
      * @param <E> The element type
      * @return The list data builder
      */
-    static <E> CustomData.ListBuilder<E, ? extends ListData<E, ?, ?>, ? extends ImmutableListData<E, ?, ?>> listBuilder(
+    static <E> DataGenerator.ListBuilder<E, ? extends ListData<E, ?, ?>, ? extends ImmutableListData<E, ?, ?>> listBuilder(
             Key<? extends ListValue<E>> key) {
         return builder().list(key);
     }
@@ -112,36 +115,30 @@ public interface CustomData {
      * @param <V> The map value type
      * @return The map data builder
      */
-    static <K, V> CustomData.MapBuilder<K, V, ? extends MappedData<K, V, ?, ?>, ? extends ImmutableMappedData<K, V, ?, ?>> mapBuilder(
+    static <K, V> DataGenerator.MapBuilder<K, V, ? extends MappedData<K, V, ?, ?>, ? extends ImmutableMappedData<K, V, ?, ?>> mapBuilder(
             Key<? extends MapValue<K, V>> key) {
         return builder().map(key);
     }
 
     /**
-     * The base interface of all the builders for custom data.
+     * The nature of the builder doesn't allow values of data registration to be
+     * reused. It is also unlikely that {@link Key}s names and manipulator types
+     * will be reused in multiple {@link DataRegistration}s. Use {@link #reset()}
+     * and resupply the builder instead.
+     *
+     * @param value The built object
+     * @return This builder, for chaining
      */
-    interface BaseBuilder extends ResettableBuilder<DataRegistration<?, ?>, TypeBuilder> {
-
-        /**
-         * The nature of the builder doesn't allow values of data registration to be
-         * reused. It is also unlikely that {@link Key}s names and manipulator types
-         * will be reused in multiple {@link DataRegistration}s. Use {@link #reset()}
-         * and resupply the builder instead.
-         *
-         * @param value The built object
-         * @return This builder, for chaining
-         */
-        @Deprecated
-        @Override
-        TypeBuilder from(DataRegistration<?, ?> value) throws UnsupportedOperationException;
-    }
+    @Deprecated
+    @Override
+    TypeBuilder from(DataRegistration<?, ?> value) throws UnsupportedOperationException;
 
     /**
      * The {@link TypeBuilder}, this builder will construct a {@link DataBuilder}
      * based on the type of {@link DataManipulator} and {@link ImmutableDataManipulator}
      * as output.
      */
-    interface TypeBuilder extends BaseBuilder {
+    interface TypeBuilder extends DataGenerator {
 
         /**
          * Constructs a new {@link KeysBuilder}. This is the only {@link DataBuilder}
@@ -160,7 +157,7 @@ public interface CustomData {
          * @param <V> The value type
          * @return This builder as a variant builder, for chaining
          */
-        <V> CustomData.VariantBuilder<V, ? extends VariantData<V, ?, ?>, ? extends ImmutableVariantData<V, ?, ?>> variant(
+        <V> DataGenerator.VariantBuilder<V, ? extends VariantData<V, ?, ?>, ? extends ImmutableVariantData<V, ?, ?>> variant(
                 Key<? extends Value<V>> key);
 
         /**
@@ -173,7 +170,7 @@ public interface CustomData {
          * @param <E> The element type
          * @return The builder as a list data builder, for chaining
          */
-        <E> CustomData.ListBuilder<E, ? extends ListData<E, ?, ?>, ? extends ImmutableListData<E, ?, ?>> list(
+        <E> DataGenerator.ListBuilder<E, ? extends ListData<E, ?, ?>, ? extends ImmutableListData<E, ?, ?>> list(
                 Key<? extends ListValue<E>> key);
 
         /**
@@ -187,7 +184,7 @@ public interface CustomData {
          * @param <V> The map value type
          * @return The builder as a map data builder, for chaining
          */
-        <K, V> CustomData.MapBuilder<K, V, ? extends MappedData<K, V, ?, ?>, ? extends ImmutableMappedData<K, V, ?, ?>> map(
+        <K, V> DataGenerator.MapBuilder<K, V, ? extends MappedData<K, V, ?, ?>, ? extends ImmutableMappedData<K, V, ?, ?>> map(
                 Key<? extends MapValue<K, V>> key);
     }
 
@@ -200,7 +197,7 @@ public interface CustomData {
      * @param <B> The builder type
      */
     interface DataBuilder<M extends DataManipulator<M, I>, I extends ImmutableDataManipulator<I, M>, B extends DataBuilder<M, I, B>>
-            extends BaseBuilder {
+            extends DataGenerator {
 
         /**
          * Sets a more generalized name to refer to the registered

@@ -36,15 +36,11 @@ import org.spongepowered.api.data.value.mutable.ListValue;
 import java.util.List;
 
 /**
- *
- * @param <E>
- * @param <I>
- * @param <M>
  * @deprecated These classes are only to be used for easing the compatibility requirements
  * for plugin developers moving to the new system introduced by
- * {@link org.spongepowered.api.data.manipulator.generator.CustomDataProvider}. It is highly
+ * {@link org.spongepowered.api.data.generator.DataGenerator}. It is highly
  * recommended to move towards the data provider system as all implementation classes provided
- * by the API will be removed in the next major version (API 7.0.0).
+ * by the API will be removed in the next major version (API 8.0.0).
  */
 @Deprecated
 public abstract class AbstractImmutableListData<E, I extends ImmutableListData<E, I, M>, M extends ListData<E, M, I>>

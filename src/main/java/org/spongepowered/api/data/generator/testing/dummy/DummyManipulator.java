@@ -22,34 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.generator.testing;
+package org.spongepowered.api.data.generator.testing.dummy;
 
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.generator.KeyValue;
+import org.spongepowered.api.data.generator.KeyValue;
 import org.spongepowered.api.data.meta.ItemEnchantment;
+import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.mutable.ListValue;
+import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.Value;
 
 import java.util.List;
 
 public interface DummyManipulator extends DataManipulator<DummyManipulator, ImmutableDummyManipulator> {
 
-    @KeyValue("my_integer")
-    Value<Integer> myInt();
+    // My int
 
-    @KeyValue("my_item_enchantment")
-    ListValue<ItemEnchantment> enchantment();
+    @KeyValue("my_int") MutableBoundedValue<Integer> myInt();
+    @KeyValue("my_int") int getMyInt();
+    @KeyValue("my_int") Integer getMyInteger();
+    @KeyValue("my_int") void setMyInt(int value);
+    @KeyValue("my_int") DummyManipulator myInt(int value);
+    @KeyValue("my_int") void setMyInteger(Integer value);
+    @KeyValue("my_int") DummyManipulator myInteger(Integer value);
 
-    @KeyValue("my_integer")
-    int myIntValue();
+    // My item enchantments
 
-    @KeyValue("my_integer")
-    void setMyInt(int value);
-
-    @KeyValue("my_item_enchantment")
-    List<ItemEnchantment> getEnchantment();
-
-    @KeyValue("my_item_enchantment")
-    void setEnchantment(List<ItemEnchantment> enchantment);
+    @KeyValue("my_item_enchantments") ListValue<ItemEnchantment> enchantments();
+    @KeyValue("my_item_enchantments") List<ItemEnchantment> getEnchantments();
+    @KeyValue("my_item_enchantments") void setEnchantments(List<ItemEnchantment> enchantments);
+    @KeyValue("my_item_enchantments") DummyManipulator enchantments(List<ItemEnchantment> enchantments);
 
 }

@@ -22,5 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.data.manipulator.generator;
+package org.spongepowered.api.data.generator.testing.dummy;
+
+import org.spongepowered.api.data.generator.KeyValue;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.meta.ItemEnchantment;
+import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
+import org.spongepowered.api.data.value.immutable.ImmutableListValue;
+
+import java.util.List;
+
+public interface ImmutableDummyManipulator extends ImmutableDataManipulator<ImmutableDummyManipulator, DummyManipulator> {
+
+    // My int
+
+    @KeyValue("my_int") ImmutableBoundedValue<Integer> myInt();
+    @KeyValue("my_int") int getMyInt();
+    @KeyValue("my_int") Integer getMyInteger();
+    @KeyValue("my_int") ImmutableDummyManipulator myInt(int value);
+    @KeyValue("my_int") ImmutableDummyManipulator myInteger(Integer value);
+
+    // My item enchantments
+
+    @KeyValue("my_item_enchantments") ImmutableListValue<ItemEnchantment> enchantments();
+    @KeyValue("my_item_enchantments") List<ItemEnchantment> getEnchantments();
+    @KeyValue("my_item_enchantments") ImmutableDummyManipulator enchantments(List<ItemEnchantment> enchantments);
+
+}

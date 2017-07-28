@@ -22,13 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.generator.testing;
+package org.spongepowered.api.data.generator.testing.dummy;
 
+import static org.spongepowered.api.data.key.KeyFactory.makeListKey;
+import static org.spongepowered.api.data.key.KeyFactory.makeMutableBoundedValueKey;
+
+import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataRegistration;
+import org.spongepowered.api.data.generator.DataGenerator;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.key.KeyFactory;
-import org.spongepowered.api.data.manipulator.generator.CustomData;
 import org.spongepowered.api.data.meta.ItemEnchantment;
 import org.spongepowered.api.data.value.mutable.ListValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
@@ -37,30 +40,24 @@ import org.spongepowered.api.util.TypeTokens;
 
 import java.util.ArrayList;
 
-public class DummyCustomDataData {
+public class DummyManipulatorExample {
 
-    public static final Key<MutableBoundedValue<Integer>> MY_INT_KEY =
-            KeyFactory
-                    .makeSingleKey(TypeTokens.INTEGER_TOKEN,
-                            TypeTokens.BOUNDED_INTEGER_VALUE_TOKEN,
-                            DataQuery.of("MyInteger"),
-                            "com.gabizou:my_integer",
-                            "My Integer");
+    public static final Key<MutableBoundedValue<Integer>> MY_INT_KEY = makeMutableBoundedValueKey(
+            TypeTokens.INTEGER_TOKEN, DataQuery.of("MyInteger"), "my_data_plugin:my_int", "My Integer");
 
-    public static final Key<ListValue<ItemEnchantment>> MY_ENCHANTMENT_KEY =
-            KeyFactory
-                    .makeListKey(TypeTokens.LIST_ITEM_ENCHANTMENT_TOKEN,
-                            TypeTokens.LIST_ITEM_ENCHANTMENT_VALUE_TOKEN,
-                            DataQuery.of("MyItemEnchantment"),
-                            "com.gabizou:my_item_enchantment",
-                            "My Item Enchantment");
+    public static final Key<ListValue<ItemEnchantment>> MY_ITEM_ENCHANTMENTS_KEY = makeListKey(
+            TypeToken.of(ItemEnchantment.class), DataQuery.of("MyItemEnchantments"), "my_data_plugin:my_item_enchantments", "My Item Enchantments");
 
     public static final DataRegistration<DummyManipulator, ImmutableDummyManipulator> MY_REGISTRATION =
-            CustomData.builder().keys()
+            DataGenerator.builder().keys()
+                    // Register my bounded int key
                     .boundedKey(MY_INT_KEY, 10, 0, 10)
-                    .key(MY_ENCHANTMENT_KEY, new ArrayList<>())
+                    // Register my enchantments key
+                    .key(MY_ITEM_ENCHANTMENTS_KEY, new ArrayList<>())
+                    // Only target agent
                     .predicate(dataHolder -> dataHolder instanceof Agent)
+                    // Apply interfaces
                     .interfaces(DummyManipulator.class, ImmutableDummyManipulator.class)
                     .version(1)
-                    .build(null, "MyCustomData"); // Not supposed to be null
+                    .build("my_data_plugin", "dummy_manipulator"); // Not supposed to be null
 }
