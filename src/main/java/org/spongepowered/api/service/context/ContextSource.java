@@ -30,9 +30,10 @@ package org.spongepowered.api.service.context;
 public interface ContextSource {
 
     /**
-     * Returns the context most relevant to this object. This context may be the
-     * same across multiple invocations (but may not, so don't count on this
-     * being true).
+     * Returns the context most relevant to this object.
+     *
+     * <p>This context may be the same across multiple invocations (but may not,
+     * so don't count on this being true).</p>
      *
      * @return A given context
      */

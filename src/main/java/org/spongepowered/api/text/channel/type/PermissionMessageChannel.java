@@ -66,8 +66,8 @@ public class PermissionMessageChannel implements MessageChannel {
     public Collection<MessageReceiver> getMembers() {
         PermissionService service = Sponge.getGame().getServiceManager().provideUnchecked(PermissionService.class);
 
-        return service.getKnownSubjects().values().stream()
-                .flatMap(input -> input.getAllWithPermission(this.permission).entrySet().stream()
+        return service.getLoadedCollections().values().stream()
+                .flatMap(input -> input.getLoadedWithPermission(this.permission).entrySet().stream()
                         .filter(Map.Entry::getValue)
                         .map(entry -> entry.getKey().getCommandSource().orElse(null))
                         .filter(source -> source != null))

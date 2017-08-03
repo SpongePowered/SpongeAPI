@@ -27,33 +27,38 @@ package org.spongepowered.api.service.context;
 import java.util.Set;
 
 /**
- * Calculate the availability of {@link Context}s for a {@link Contextual}. 
- * These methods may be invoked frequently, and therefore should be fast.
- * 
+ * Calculates the {@link Context}s applicable for a {@link Contextual}.
+ *
+ * <p>These methods may be invoked frequently, and therefore should be fast.</p>
  */
 public interface ContextCalculator<T extends Contextual> {
 
     /**
-     * Add any {@link Context}s this calculator determines to be applicable to
+     * Adds any {@link Context}s this calculator determines to be applicable to
      * the provided context accumulator.
-     * 
      *
-     * @param calculable {@link Contextual} for this operation
-     * @param accumulator {@link Set} of {@link Context}s this operation
-     *     will append to.
+     * @param calculable the {@link Contextual} for this operation
+     * @param accumulator a {@link Set} of {@link Context}s this operation
+     *                    will accumulate to.
      */
     void accumulateContexts(T calculable, Set<Context> accumulator);
 
     /**
-     * Checks if a {@link Context} is currently applicable to a {@link Contextual}.
+     * Checks if a {@link Context} is currently applicable to a
+     * {@link Contextual}.
      * 
      * <p>If this calculator does not handle the given type of context, this
      * method should return false.</p>
      *
-     * @param context {@link Context} being checked
-     * @param subject {@link Contextual} the contextual that is being checked against
-     * @return True if the given {@link Context} is handled by this calculator and is
-     *         applicable to the given {@link Contextual}. Otherwise false.
+     * <p>For the given set of contexts which would be accumulated using
+     * {@link #accumulateContexts(Contextual, Set)}, this method should return
+     * true if the given context would be included in the accumulated set.</p>
+     *
+     * @param context the {@link Context} being checked
+     * @param calculable the {@link Contextual} that is being checked against
+     * @return True if the given {@link Context} is handled by this calculator
+     *         and is applicable to the given {@link Contextual}. Otherwise
+     *         false.
      */
-    boolean matches(Context context, T subject);
+    boolean matches(Context context, T calculable);
 }
