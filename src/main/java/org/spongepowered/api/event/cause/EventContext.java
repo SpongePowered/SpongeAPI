@@ -115,6 +115,17 @@ public final class EventContext {
     }
 
     /**
+     * Gets whether the provided {@link EventContextKey} is included in this
+     * context.
+     *
+     * @param key The context key to check
+     * @return True if the key is used and there is an entry for it
+     */
+    public boolean containsKey(EventContextKey<?> key) {
+        return this.entries.containsKey(key);
+    }
+
+    /**
      * Gets all {@link EventContextKey}s present in this context.
      * 
      * @return All present keys

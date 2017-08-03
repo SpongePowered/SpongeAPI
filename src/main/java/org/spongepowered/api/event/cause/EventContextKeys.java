@@ -66,6 +66,7 @@ public final class EventContextKeys {
     public static final EventContextKey<World> PLAYER_PLACE = createFor("PLAYER_PLACE");
     public static final EventContextKey<World> FIRE_SPREAD = createFor("FIRE_SPREAD");
     public static final EventContextKey<World> LEAVES_DECAY = createFor("LEAVES_DECAY");
+    public static final EventContextKey<World> PISTON_RETRACT = createFor("PISTON_RETRACT");
 
     @SuppressWarnings("unchecked")
     private static <T> EventContextKey<T> createFor(String id) {
