@@ -22,12 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.inventory.entity;
-
-import org.spongepowered.api.entity.living.player.Player;
+package org.spongepowered.api.item.inventory.equipment;
 
 /**
- * Represents the inventory of a Humanoid or Player.
+ * An equipment item which can be worn, eg. armor or headwear
  */
-public interface PlayerInventory extends UserInventory<Player> {
+public interface WornEquipmentType extends EquipmentType {
+
 }

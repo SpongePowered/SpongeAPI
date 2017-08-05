@@ -31,11 +31,8 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  */
 public final class EquipmentTypes {
 
-    // SORTFIELDS:ON
-
     /**
-     * Any type, all other types should subclass this to allow instanceof checks
-     * to succeed.
+     * Any type, all other types should subclass this to allow instanceof checks to succeed.
      */
     public static final EquipmentType ANY = DummyObjectProvider.createFor(EquipmentType.class, "ANY");
 
@@ -45,25 +42,26 @@ public final class EquipmentTypes {
     public static final EquipmentType EQUIPPED = DummyObjectProvider.createFor(EquipmentType.class, "EQUIPPED");
 
     /**
-     * Armor types, HEADWEAR, CHESTPLATE, LEGGINGS and BOOTS should subclass
-     * this.
+     * Any held types like MAINHAND and OFFHAND
      */
-    public static final EquipmentTypeWorn WORN = DummyObjectProvider.createFor(EquipmentTypeWorn.class, "WORN");
+    public static final HeldEquipmentType HELD = DummyObjectProvider.createFor(HeldEquipmentType.class, "HELD");
 
-    // SORTFIELDS:OFF
+    public static final HeldEquipmentType MAIN_HAND = DummyObjectProvider.createFor(HeldEquipmentType.class, "MAINHAND");
 
-    // SORTFIELDS:ON
+    public static final HeldEquipmentType OFF_HAND = DummyObjectProvider.createFor(HeldEquipmentType.class, "OFFHAND");
 
-    public static final EquipmentTypeWorn BOOTS = DummyObjectProvider.createFor(EquipmentTypeWorn.class, "BOOTS");
+    /**
+     * Any worn types like HEADWEAR, CHESTPLATE, LEGGINGS and BOOTS.
+     */
+    public static final WornEquipmentType WORN = DummyObjectProvider.createFor(WornEquipmentType.class, "WORN");
 
-    public static final EquipmentTypeWorn CHESTPLATE = DummyObjectProvider.createFor(EquipmentTypeWorn.class, "CHESTPLATE");
+    public static final WornEquipmentType BOOTS = DummyObjectProvider.createFor(WornEquipmentType.class, "BOOTS");
 
-    // Armor
-    public static final EquipmentTypeWorn HEADWEAR = DummyObjectProvider.createFor(EquipmentTypeWorn.class, "HEADWEAR");
+    public static final WornEquipmentType CHESTPLATE = DummyObjectProvider.createFor(WornEquipmentType.class, "CHESTPLATE");
 
-    public static final EquipmentTypeWorn LEGGINGS = DummyObjectProvider.createFor(EquipmentTypeWorn.class, "LEGGINGS");
+    public static final WornEquipmentType HEADWEAR = DummyObjectProvider.createFor(WornEquipmentType.class, "HEADWEAR");
 
-    // SORTFIELDS:OFF
+    public static final WornEquipmentType LEGGINGS = DummyObjectProvider.createFor(WornEquipmentType.class, "LEGGINGS");
 
     /**
      * No subclasses for you.
