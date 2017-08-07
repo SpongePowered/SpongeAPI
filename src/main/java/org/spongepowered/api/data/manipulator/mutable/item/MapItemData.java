@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.manipulator.mutable.item;
 
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableMapItemData;
 import org.spongepowered.api.data.value.mutable.Value;
@@ -41,6 +42,7 @@ public interface MapItemData extends DataManipulator<MapItemData, ImmutableMapIt
      * {@link ItemTypes#FILLED_MAP} {@link ItemStack}.
      *
      * @return The attached map id
+     * @see Keys#ATTACHED_MAP
      */
     Value<String> attachedMap();
 

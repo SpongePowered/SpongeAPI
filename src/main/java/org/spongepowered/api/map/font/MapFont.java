@@ -43,7 +43,7 @@ public final class MapFont {
 
     public MapFont(Map<Character, CharacterSprite> characters, int spaceSize) {
         ImmutableMap.Builder<Character, CharacterSprite> builder =
-                new ImmutableMap.Builder<Character, CharacterSprite>();
+                new ImmutableMap.Builder<>();
 
         if (!characters.containsKey(' ')) {
             builder.put(' ', new CharacterSprite(spaceSize, 8, new boolean[16]));

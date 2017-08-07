@@ -24,13 +24,12 @@
  */
 package org.spongepowered.api.map.util;
 
-import com.google.common.collect.ImmutableCollection;
 import org.spongepowered.api.map.color.MapColor;
 import org.spongepowered.api.map.color.MapColorMatchers;
 import org.spongepowered.api.map.color.MapColors;
 import org.spongepowered.api.util.Color;
 
-import java.util.AbstractCollection;
+import java.util.Collection;
 import java.util.function.Function;
 
 /**
@@ -45,7 +44,7 @@ public interface MapColorFactory {
      *
      * @return All the map colors including shades
      */
-    AbstractCollection<MapColor> getAll();
+    Collection<MapColor> getAll();
 
     /**
      * Returns a {@link MapColor} that is closest matching to the given

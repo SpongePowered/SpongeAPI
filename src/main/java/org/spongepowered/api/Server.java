@@ -447,4 +447,5 @@ public interface Server {
      * @return The server's map storage handler
      */
     MapViewStorage getMapViewStorage();
+
 }

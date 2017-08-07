@@ -38,8 +38,8 @@ public class CharacterSprite {
     /**
      * Create a new CharacterSprite with the specified character width and height.
      *
-     * The shape contains a row*width+col indexed bitmap of the shape, where true
-     * represents a filled pixel and false represents a transparent pixel.
+     * <p>The shape contains a row*width+col indexed bitmap of the shape, where
+     * true represents a filled pixel and false represents a transparent pixel.</p>
      *
      * @param width The width in pixels of the character
      * @param height The height in pixels of the character

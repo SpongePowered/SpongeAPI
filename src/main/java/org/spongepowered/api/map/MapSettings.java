@@ -289,6 +289,7 @@ public interface MapSettings extends DataSerializable {
          * @return The settings
          */
         MapSettings build();
+
     }
     
 }

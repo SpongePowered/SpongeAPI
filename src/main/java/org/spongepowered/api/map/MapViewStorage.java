@@ -24,10 +24,8 @@
  */
 package org.spongepowered.api.map;
 
-import com.google.common.collect.ImmutableCollection;
 import org.spongepowered.api.item.inventory.ItemStack;
 
-import java.util.AbstractCollection;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -83,7 +81,7 @@ public interface MapViewStorage {
      * @return A collection of all the loaded maps
      * @see #getStoredMaps()
      */
-    AbstractCollection<MapView> getLoadedMaps();
+    Collection<MapView> getLoadedMaps();
 
     /**
      * Deletes the provided map's file from the disk.

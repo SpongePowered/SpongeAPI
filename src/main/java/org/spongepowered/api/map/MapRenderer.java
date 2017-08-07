@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.map;
 
-
 import org.spongepowered.api.entity.living.player.Player;
 
 import javax.annotation.Nullable;

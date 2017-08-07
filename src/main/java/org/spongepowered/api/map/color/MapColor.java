@@ -121,6 +121,7 @@ public interface MapColor extends DataSerializable {
         default MapColor.Base base() {
             return this;
         }
+
     }
 
 }

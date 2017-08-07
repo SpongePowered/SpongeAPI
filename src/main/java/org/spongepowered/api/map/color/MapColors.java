@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.map.color;
 
-import com.google.common.collect.ImmutableCollection;
 import org.spongepowered.api.map.util.MapColorFactory;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
