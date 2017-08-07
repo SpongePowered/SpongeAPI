@@ -41,19 +41,16 @@ public final class MapColorMatchers {
      * CIELab distance. This tends to be a much more accurate overall match, but
      * the conversion is slightly more computationally intensive.
      */
-    public static final Function<Color, MapColor> CIELAB = dummy("CIELAB");
+    @SuppressWarnings("unchecked")
+    public static final Function<Color, MapColor> CIELAB = DummyObjectProvider.createFor(Function.class,"CIELAB");
 
     /**
      * This is the default color matcher and simply minimizes the distance in RGB
      * colorspace, this method is quite simple, but offers a fairly accurate match.
      */
-    public static final Function<Color, MapColor> RGB_UNWEIGHTED = dummy("RGB_UNWEIGHTED");
+    @SuppressWarnings("unchecked")
+    public static final Function<Color, MapColor> RGB_UNWEIGHTED = DummyObjectProvider.createFor(Function.class,"RGB_UNWEIGHTED");
 
     //SORTFIELDS:OFF
-
-    @SuppressWarnings("unchecked")
-    private static final Function<Color, MapColor> dummy(String name) {
-        return (Function<Color, MapColor>) DummyObjectProvider.createFor(Function.class, name);
-    }
 
 }

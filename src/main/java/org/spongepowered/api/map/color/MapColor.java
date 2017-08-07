@@ -98,9 +98,9 @@ public interface MapColor extends DataSerializable {
 
     /**
      * A MapColor.Base represents the singleton instances that refer to the non-shaded
-     * palette available. These colors
+     * palette available.
      */
-    @CatalogedBy(MapColors.Base.class)
+    @CatalogedBy(MapColors.class)
     interface Base extends MapColor, CatalogType {
 
         /**
