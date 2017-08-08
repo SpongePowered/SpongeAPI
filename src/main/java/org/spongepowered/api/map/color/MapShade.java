@@ -37,6 +37,10 @@ public interface MapShade extends CatalogType {
     /**
      * Returns this shade's multiplication factor to the base color.
      *
+     * <p>Each component of the base colors RGB value is separately multiplied
+     * by this factor. The result is then divided by 255 and rounded to the
+     * nearest whole.</p>
+     *
      * @return The multiplication factor
      */
     int getMultiplication();
