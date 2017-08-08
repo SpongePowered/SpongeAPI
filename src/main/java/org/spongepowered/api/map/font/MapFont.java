@@ -26,6 +26,8 @@ package org.spongepowered.api.map.font;
 
 import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Map;
@@ -37,32 +39,18 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Represents a font on a map that can be used for drawing characters.
  */
-public final class MapFont {
+public interface MapFont {
 
-    private final ImmutableMap<Character, CharacterSprite> characters;
-
-    public MapFont(Map<Character, CharacterSprite> characters, int spaceSize) {
-        ImmutableMap.Builder<Character, CharacterSprite> builder =
-                new ImmutableMap.Builder<>();
-
-        if (!characters.containsKey(' ')) {
-            builder.put(' ', new CharacterSprite(spaceSize, 8, new boolean[16]));
-        }
-
-        builder.putAll(characters);
-
-        this.characters = builder.build();
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
     }
-
     /**
      * Returns the {@link CharacterSprite} data for the specified character.
      *
      * @param ch The character to retrieve a sprite for
      * @return The sprite version of the character
      */
-    public Optional<CharacterSprite> getChar(char ch) {
-        return Optional.ofNullable(this.characters.get(ch));
-    }
+    Optional<CharacterSprite> getChar(char ch);
 
     /**
      * Returns the pixel width of a string of text accounting for the
@@ -73,28 +61,7 @@ public final class MapFont {
      * @throws IllegalArgumentException If the text provided contains a
      *         character not provided in the character sprites
      */
-    public int getWidth(String text) {
-        checkNotNull(text, "text");
-
-        if (text.length() == 0) {
-            return 0;
-        }
-
-        int width = 0;
-        // Avoids copying the inner character array by indexing
-        for (int i = 0; i < text.length(); i++) {
-            char ch = text.charAt(i);
-            CharacterSprite value = this.characters.get(ch);
-            checkArgument(value != null, "Character '" + ch + "' was not provided as a CharacterSprite.");
-            width += value.getWidth();
-
-            // Only add spacing from the left after first character.
-            if (i > 1) {
-                width += value.getSpacing();
-            }
-        }
-        return width;
-    }
+    int getWidth(String text);
 
     /**
      * Returns the maximum pixel height of a string of text.
@@ -102,26 +69,30 @@ public final class MapFont {
      * @param text The text to return the height of
      * @return The maximum number of pixels in height this text will take up
      */
-    public int getHeight(String text) {
-        checkNotNull(text, "text");
+    int getHeight(String text);
 
-        if (text.length() == 0) {
-            return 0;
-        }
+    interface Builder extends ResettableBuilder<MapFont, Builder> {
+        /**
+         * Sets the mapping between a character and a {@link CharacterSprite}.
+         *
+         * @param spriteMap The map of characters to font sprites
+         * @return The builder for chaining
+         */
+        Builder characters(Map<Character, CharacterSprite> spriteMap);
 
-        int maxHeight = 0;
-        for (int i = 0; i < text.length(); i++) {
-            char ch = text.charAt(i);
-            // Skip whitespace
-            if (!Character.isWhitespace(ch)) {
-                CharacterSprite sprite = this.characters.get(ch);
-                checkArgument(sprite != null, "Character '" + ch + "' was not provided as a CharacterSprite.");
-                if (sprite.getHeight() > maxHeight) {
-                    maxHeight = sprite.getHeight();
-                }
-            }
-        }
-        return maxHeight;
+        /**
+         * Sets the width of a space character.
+         *
+         * @param width The width in map pixels
+         * @return The builder for chaining
+         */
+        Builder spaceWidth(int width);
+
+        /**
+         * Builds the {@link MapFont} from the provided font details.
+         *
+         * @return The font
+         */
+        MapFont build();
     }
-
 }

@@ -179,16 +179,6 @@ public interface MapSettings extends DataSerializable {
     interface Builder extends ResettableBuilder<MapSettings, Builder> {
 
         /**
-         * Fills this {@link MapSettings} for creating {@link MapView}s or
-         * {@link MapSettings}s, the builder is then seeded with the values
-         * from the given {@link MapSettings} object.
-         *
-         * @param settings The seed settings
-         * @return A newly seeded builder for chaining
-         */
-        Builder fill(MapSettings settings);
-
-        /**
          * Sets the world x and z coordinates that the vanilla map renderer uses
          * as its center position.
          *
@@ -223,6 +213,7 @@ public interface MapSettings extends DataSerializable {
         Builder usesDefaultCursors(boolean useDefaultCursors);
 
         /**
+         *
          * Sets the {@link MapCursorType} used for players on the map when
          * {@link #usesDefaultCursors()} is true. By default this is a
          * {@link MapCursorTypes#WHITE_POINTER}.
