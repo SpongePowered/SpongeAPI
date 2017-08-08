@@ -25,6 +25,7 @@
 package org.spongepowered.api.map.color;
 
 import org.spongepowered.api.map.util.MapColorFactory;
+import org.spongepowered.api.map.util.MapColorMatcher;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
@@ -124,27 +125,27 @@ public final class MapColors {
 
     /**
      * Returns a {@link MapColor} that is closest matching to the given
-     * {@link Color} applying the provided {@link Function} to perform
-     * the match.
+     * {@link Color} using a function that provides a good balance
+     * between accuracy and conversion speed.
      *
      * @param color The color to match
-     * @return The closest {@link MapColor} to the provided color
+     * @return The {@link MapColor} matched
      */
     public static MapColor of(Color color) {
-        return factory.of(color);
+        return of(color, MapColorMatchers.RGB_UNWEIGHTED);
     }
 
     /**
      * Returns a {@link MapColor} that is closest matching to the given
-     * {@link Color} applying the provided {@link Function} to perform
+     * {@link Color} applying the provided {@link MapColorMatcher} to perform
      * the match.
      *
      * @param color The color to match
-     * @param matcher The {@link Function} used to perform the match
+     * @param matcher The {@link MapColorMatcher} used to perform the match
      * @return The closest {@link MapColor} to the provided color
      */
-    public static MapColor of(Color color, Function<Color, MapColor> matcher) {
-        return factory.of(color, matcher);
+    public static MapColor of(Color color, MapColorMatcher matcher) {
+        return matcher.apply(color);
     }
 
     private MapColors() {

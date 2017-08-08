@@ -25,12 +25,9 @@
 package org.spongepowered.api.map.util;
 
 import org.spongepowered.api.map.color.MapColor;
-import org.spongepowered.api.map.color.MapColorMatchers;
 import org.spongepowered.api.map.color.MapColors;
-import org.spongepowered.api.util.Color;
 
 import java.util.Collection;
-import java.util.function.Function;
 
 /**
  * Represents the required implementation for the static methods in
@@ -45,28 +42,5 @@ public interface MapColorFactory {
      * @return All the map colors including shades
      */
     Collection<MapColor> getAll();
-
-    /**
-     * Returns a {@link MapColor} that is closest matching to the given
-     * {@link Color} using the {@link MapColorMatchers#RGB_UNWEIGHTED}
-     * match type.
-     *
-     * @param color The color to match
-     * @return The closest {@link MapColor} to the provided color
-     */
-    default MapColor of(Color color) {
-        return of(color, MapColorMatchers.RGB_UNWEIGHTED);
-    }
-
-    /**
-     * Returns a {@link MapColor} that is closest matching to the given
-     * {@link Color} applying the provided {@link Function} to perform
-     * the match.
-     *
-     * @param color The color to match
-     * @param matcher The function applied to perform the match
-     * @return The closest {@link MapColor} to the provided color
-     */
-    MapColor of(Color color, Function<Color, MapColor> matcher);
 
 }

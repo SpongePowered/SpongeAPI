@@ -1,5 +1,5 @@
 /*
- * This file is part of SpongeAPI, licensed under the MIT License (MIT).
+ * The MIT License (MIT)
  *
  * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
@@ -22,36 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.map.color;
 
-import org.spongepowered.api.map.util.MapColorMatcher;
+package org.spongepowered.api.map.util;
+
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.map.color.MapColor;
+import org.spongepowered.api.map.color.MapColorMatchers;
 import org.spongepowered.api.util.Color;
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.function.Function;
 
 /**
- * An enumeration of all the built-in {@link MapColorMatcher}
+ * Represents a color matching function between an RGB and a color representable on a map palette
  */
-public final class MapColorMatchers {
-
-    //SORTFIELDS:ON
-
-    /**
-     * A matcher that matches to the {@link MapColor} with the smallest overall
-     * CIELab distance. This tends to be a much more accurate overall match, but
-     * the conversion is slightly more computationally intensive.
-     */
-    @SuppressWarnings("unchecked")
-    public static final MapColorMatcher CIELAB = DummyObjectProvider.createFor(MapColorMatcher.class,"CIELAB");
-
-    /**
-     * This is the default color matcher and simply minimizes the distance in RGB
-     * colorspace, this method is quite simple, but offers a fairly accurate match.
-     */
-    @SuppressWarnings("unchecked")
-    public static final MapColorMatcher RGB_UNWEIGHTED = DummyObjectProvider.createFor(MapColorMatcher.class,"RGB_UNWEIGHTED");
-
-    //SORTFIELDS:OFF
-
+@CatalogedBy(MapColorMatchers.class)
+public interface MapColorMatcher extends Function<Color, MapColor>, CatalogType {
 }
