@@ -159,6 +159,8 @@ public interface MapView {
      * Draws an image to the map, starting at the top left corner,
      * clipping it if it goes out of bounds.
      *
+     * <p>Ignores alpha channel.</p>
+     *
      * @param image The image to draw
      */
     default void drawImage(BufferedImage image) {
@@ -167,6 +169,8 @@ public interface MapView {
 
     /**
      * Draws an image to the map, clipping it if it goes out of bounds.
+     *
+     * <p>Ignores alpha channel.</p>
      *
      * @param position The top left coordinate on the map
      * @param image The image to draw
@@ -178,11 +182,53 @@ public interface MapView {
     /**
      * Draws an image to the map, clipping it if it goes out of bounds.
      *
+     * <p>Ignores alpha channel.</p>
+     *
      * @param x The top left x coordinate on the map
      * @param y The top left y coordinate on the map
      * @param image The image to draw
      */
     void drawImage(int x, int y, BufferedImage image);
+
+    /**
+     * Draws an image to the map, clipping it if it goes out of bounds.
+     *
+     * <p>Uses the set threshold to determine the cutoff for alpha masking.
+     * Any pixel with alpha <= threshold will not be blitted.</p>
+     *
+     * @param threshold The alpha threshold for masking
+     * @param image The image to draw
+     */
+    default void drawImage(int threshold, BufferedImage image) {
+        drawImage(0, 0, threshold, image);
+    }
+
+    /**
+     * Draws an image to the map, clipping it if it goes out of bounds.
+     *
+     * <p>Uses the set threshold to determine the cutoff for alpha masking.
+     * Any pixel with alpha <= threshold will not be blitted.</p>
+     *
+     * @param position The top left coordinate on the map
+     * @param threshold The alpha threshold for masking
+     * @param image The image to draw
+     */
+    default void drawImage(Vector2i position, int threshold, BufferedImage image) {
+        drawImage(position.getX(), position.getY(), threshold, image);
+    }
+
+    /**
+     * Draws an image to the map, clipping it if it goes out of bounds.
+     *
+     * <p>Uses the set threshold to determine the cutoff for alpha masking.
+     * Any pixel with alpha <= threshold will not be blitted.</p>
+     *
+     * @param x The top left x coordinate on the map
+     * @param y The top left y coordinate on the map
+     * @param threshold The alpha threshold for masking
+     * @param image The image to draw
+     */
+    void drawImage(int x, int y, int threshold, BufferedImage image);
 
     /**
      * Draws text to the map, handling colors but not formatting.
