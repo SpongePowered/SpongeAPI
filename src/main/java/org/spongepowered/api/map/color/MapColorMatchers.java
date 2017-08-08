@@ -42,14 +42,12 @@ public final class MapColorMatchers {
      * CIELab distance. This tends to be a much more accurate overall match, but
      * the conversion is slightly more computationally intensive.
      */
-    @SuppressWarnings("unchecked")
     public static final MapColorMatcher CIELAB = DummyObjectProvider.createFor(MapColorMatcher.class,"CIELAB");
 
     /**
      * This is the default color matcher and simply minimizes the distance in RGB
      * colorspace, this method is quite simple, but offers a fairly accurate match.
      */
-    @SuppressWarnings("unchecked")
     public static final MapColorMatcher RGB_UNWEIGHTED = DummyObjectProvider.createFor(MapColorMatcher.class,"RGB_UNWEIGHTED");
 
     //SORTFIELDS:OFF
