@@ -1674,6 +1674,20 @@ public final class GenericArguments {
         return new EntityCommandElement(key, false, true, type);
     }
 
+    /**
+     * Expect an argument to represent an {@link Entity} of the specified
+     * {@link EntityType}, or if the argument is not present and the
+     * {@link CommandSource} is looking at an applicable entity, return that
+     * entity.
+     *
+     * @param key The key to store under
+     * @param type The type which the entity must be
+     * @return the argument
+     */
+    public static CommandElement entityOrTarget(Text key, EntityType type) {
+        return new EntityCommandElement(key, false, true, type.getEntityClass());
+    }
+
     private static class EntityCommandElement extends SelectorCommandElement {
 
         protected final boolean returnTarget;
