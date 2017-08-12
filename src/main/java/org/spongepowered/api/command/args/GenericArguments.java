@@ -2069,8 +2069,11 @@ public final class GenericArguments {
      * {@link LocalDateTime}. If no date is specified, {@link LocalDate#now()}
      * is used; if no time is specified, {@link LocalTime#MIDNIGHT} is used.
      *
+     * <p>Date-times are expected in the ISO-8601 format.</p>
+     *
      * @param key The key to store under
      * @return the argument
+     * @see <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a>
      */
     public static CommandElement dateTime(Text key) {
         return new DateTimeElement(key, false);
@@ -2083,6 +2086,8 @@ public final class GenericArguments {
      *
      * <p>If no argument at all is specified, defaults to
      * {@link LocalDateTime#now()}.</p>
+     *
+     * <p>Date-times are expected in the ISO-8601 format.</p>
      *
      * @param key The key to store under
      * @return the argument
@@ -2149,6 +2154,9 @@ public final class GenericArguments {
 
     /**
      * Expect an argument to be a {@link Duration}.
+     *
+     * <p>Durations are expected in the following format: {@code #D#H#M#S}.
+     * This is not case sensitive.</p>
      *
      * @param key The key to store under
      * @return the argument
