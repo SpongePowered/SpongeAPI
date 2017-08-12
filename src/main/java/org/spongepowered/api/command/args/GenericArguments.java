@@ -51,8 +51,8 @@ import org.spongepowered.api.service.user.UserStorageService;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.selector.Selector;
 import org.spongepowered.api.text.serializer.TextParseException;
+import org.spongepowered.api.text.serializer.TextSerializer;
 import org.spongepowered.api.text.serializer.TextSerializers;
-import org.spongepowered.api.util.GuavaCollectors;
 import org.spongepowered.api.util.StartsWithPredicate;
 import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.blockray.BlockRay;
@@ -1638,6 +1638,18 @@ public final class GenericArguments {
     }
 
     /**
+     * Expect an argument to represent an {@link Entity} of the specified
+     * {@link EntityType}.
+     *
+     * @param key The key to store under
+     * @param type The type which the entity must be
+     * @return the argument
+     */
+    public static CommandElement entity(Text key, EntityType type) {
+        return new EntityCommandElement(key, false, false, type.getEntityClass());
+    }
+
+    /**
      * Expect an argument to represent an {@link Entity}, or if the argument is
      * not present and the {@link CommandSource} is looking at an entity,
      * return that entity.
@@ -1989,28 +2001,27 @@ public final class GenericArguments {
     }
 
     /**
-     * Expect an argument to be valid {@link Text}. Can use either JSON or color codes.
+     * Expect an argument to be valid {@link Text}.
      *
      * @param key The key to store under
-     * @param complex If true, parsed as JSON text; if false, parsed as
-     *                color-coded text
+     * @param serializer The serializer to parse the text with
      * @param allRemaining If true, consumes all remaining arguments; if false,
      *                     uses a single argument
      * @return the argument
      */
-    public static CommandElement text(Text key, boolean complex, boolean allRemaining) {
-        return new TextCommandElement(key, complex, allRemaining);
+    public static CommandElement text(Text key, TextSerializer serializer, boolean allRemaining) {
+        return new TextCommandElement(key, serializer, allRemaining);
     }
 
     private static class TextCommandElement extends KeyElement {
 
-        private final boolean complex;
+        private final TextSerializer serializer;
         private final boolean allRemaining;
         private final RemainingJoinedStringsCommandElement joinedElement;
 
-        protected TextCommandElement(Text key, boolean complex, boolean allRemaining) {
+        protected TextCommandElement(Text key, TextSerializer serializer, boolean allRemaining) {
             super(key);
-            this.complex = complex;
+            this.serializer = serializer;
             this.allRemaining = allRemaining;
             joinedElement = allRemaining ? new RemainingJoinedStringsCommandElement(key, false) : null;
         }
@@ -2019,14 +2030,22 @@ public final class GenericArguments {
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
             String arg = this.allRemaining ? (String) joinedElement.parseValue(source, args) : args.next();
-            if (this.complex) {
-                try {
-                    return TextSerializers.JSON.deserialize(arg);
-                } catch (TextParseException ex) {
-                    throw args.createError(Text.of("Invalid JSON text: ", ex.getMessage()));
+            try {
+                return serializer.deserialize(arg);
+            } catch (TextParseException ex) {
+                if (serializer == TextSerializers.JSON) {
+                    if (ex.getMessage() == null) {
+                        throw args.createError(Text.of("Invalid JSON text!"));
+                    } else {
+                        throw args.createError(Text.of("Invalid JSON text: ", ex.getMessage()));
+                    }
+                } else {
+                    if (ex.getMessage() == null) {
+                        throw args.createError(Text.of("Invalid text!"));
+                    } else {
+                        throw args.createError(Text.of("Invalid text: ", ex.getMessage()));
+                    }
                 }
-            } else {
-                return TextSerializers.FORMATTING_CODE.deserialize(arg);
             }
         }
     }
