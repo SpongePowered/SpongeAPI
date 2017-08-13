@@ -294,7 +294,6 @@ public final class Cause implements Iterable<Object> {
      * cause array of objects.
      *
      * @param additional The additional object to add
-     * @param additionals The remaining objects to add
      * @return The new cause
      */
     public Cause with(Object additional) {

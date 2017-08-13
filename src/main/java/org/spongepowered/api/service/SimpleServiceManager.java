@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.collect.MapMaker;
 import com.google.inject.Singleton;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.event.CauseStackManager.CauseStackFrame;
+import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.SpongeEventFactory;
 import org.spongepowered.api.event.cause.EventContextKeys;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -78,7 +78,7 @@ public class SimpleServiceManager implements ServiceManager {
 
         PluginContainer container = containerOptional.get();
         ProviderRegistration<?> oldProvider = this.providers.put(service, new Provider<>(container, service, provider));
-        try (CauseStackFrame frame = Sponge.getCauseStackManager().pushCauseFrame()) {
+        try (CauseStackManager.StackFrame frame = Sponge.getCauseStackManager().pushCauseFrame()) {
             Sponge.getCauseStackManager().addContext(EventContextKeys.SERVICE_MANAGER, this);
             Sponge.getCauseStackManager().pushCause(container);
             Sponge.getEventManager().post(SpongeEventFactory.createChangeServiceProviderEvent(Sponge.getCauseStackManager().getCurrentCause(),

@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.event.cause;
 
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.projectile.source.ProjectileSource;
@@ -45,28 +48,60 @@ import java.util.UUID;
  */
 public final class EventContextKeys {
 
+
+    // SORTFIELDS:ON
+
+    public static final EventContextKey<BlockSnapshot> BLOCK_HIT = createFor("BLOCK_HIT");
+
     public static final EventContextKey<User> CREATOR = createFor("CREATOR");
+
     public static final EventContextKey<DamageType> DAMAGE_TYPE = createFor("DAMAGE_TYPE");
+
     public static final EventContextKey<DismountType> DISMOUNT_TYPE = createFor("DISMOUNT_TYPE");
-    public static final EventContextKey<User> IGNITER = createFor("IGNITER");
-    public static final EventContextKey<DamageSource> LAST_DAMAGE_SOURCE = createFor("LAST_DAMAGE_SOURCE");
-    public static final EventContextKey<World> LIQUID_MIX = createFor("LIQUID_MIX");
-    public static final EventContextKey<User> NOTIFIER = createFor("NOTIFIER");
-    public static final EventContextKey<User> OWNER = createFor("OWNER");
-    public static final EventContextKey<Player> PLAYER = createFor("PLAYER");
-    public static final EventContextKey<GameProfile> PLAYER_SIMULATED = createFor("PLAYER_SIMULATED");
-    public static final EventContextKey<ProjectileSource> PROJECTILE_SOURCE = createFor("PROJECTILE_SOURCE");
-    public static final EventContextKey<ServiceManager> SERVICE_MANAGER = createFor("SERVICE_MANAGER");
-    public static final EventContextKey<SpawnType> SPAWN_TYPE = createFor("SPAWN_TYPE");
-    public static final EventContextKey<TeleportType> TELEPORT_TYPE = createFor("TELEPORT_TYPE");
-    public static final EventContextKey<User> THROWER = createFor("THROWER");
-    public static final EventContextKey<ItemStackSnapshot> WEAPON = createFor("WEAPON");
+
+    public static final EventContextKey<Entity> ENTITY_HIT = createFor("ENTITY_HIT");
+
     public static final EventContextKey<Player> FAKE_PLAYER = createFor("FAKE_PLAYER");
-    public static final EventContextKey<World> PLAYER_BREAK = createFor("PLAYER_BREAK");
-    public static final EventContextKey<World> PLAYER_PLACE = createFor("PLAYER_PLACE");
+
     public static final EventContextKey<World> FIRE_SPREAD = createFor("FIRE_SPREAD");
+
+    public static final EventContextKey<Living> IGNITER = createFor("IGNITER");
+
+    public static final EventContextKey<DamageSource> LAST_DAMAGE_SOURCE = createFor("LAST_DAMAGE_SOURCE");
+
     public static final EventContextKey<World> LEAVES_DECAY = createFor("LEAVES_DECAY");
+
+    public static final EventContextKey<World> LIQUID_MIX = createFor("LIQUID_MIX");
+
+    public static final EventContextKey<User> NOTIFIER = createFor("NOTIFIER");
+
+    public static final EventContextKey<User> OWNER = createFor("OWNER");
+
+    public static final EventContextKey<World> PISTON_EXTEND = createFor("PISTON_EXTEND");
+
     public static final EventContextKey<World> PISTON_RETRACT = createFor("PISTON_RETRACT");
+
+    public static final EventContextKey<Player> PLAYER = createFor("PLAYER");
+
+    public static final EventContextKey<World> PLAYER_BREAK = createFor("PLAYER_BREAK");
+
+    public static final EventContextKey<World> PLAYER_PLACE = createFor("PLAYER_PLACE");
+
+    public static final EventContextKey<GameProfile> PLAYER_SIMULATED = createFor("PLAYER_SIMULATED");
+
+    public static final EventContextKey<ProjectileSource> PROJECTILE_SOURCE = createFor("PROJECTILE_SOURCE");
+
+    public static final EventContextKey<ServiceManager> SERVICE_MANAGER = createFor("SERVICE_MANAGER");
+
+    public static final EventContextKey<SpawnType> SPAWN_TYPE = createFor("SPAWN_TYPE");
+
+    public static final EventContextKey<TeleportType> TELEPORT_TYPE = createFor("TELEPORT_TYPE");
+
+    public static final EventContextKey<ProjectileSource> THROWER = createFor("THROWER");
+
+    public static final EventContextKey<ItemStackSnapshot> WEAPON = createFor("WEAPON");
+
+    // SORTFIELDS:OFF
 
     @SuppressWarnings("unchecked")
     private static <T> EventContextKey<T> createFor(String id) {

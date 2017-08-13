@@ -25,6 +25,8 @@
 package org.spongepowered.api.event.cause;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -35,6 +37,11 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(EventContextKeys.class)
 public interface EventContextKey<T> extends CatalogType {
 
+    @SuppressWarnings("unchecked")
+    static <T> Builder<T> builder(Class<T> clazz) {
+        return Sponge.getRegistry().createBuilder(Builder.class).type(clazz);
+    }
+
     /**
      * Gets the allowed type for the value of this key.
      * 
@@ -42,4 +49,20 @@ public interface EventContextKey<T> extends CatalogType {
      */
     Class<T> getAllowedType();
 
+    interface Builder<T> extends ResettableBuilder<EventContextKey<T>, Builder<T>> {
+
+        Builder<T> type(Class<T> tClass);
+
+        Builder<T> id(String id);
+
+        Builder<T> name(String name);
+
+        EventContextKey<T> build();
+
+        @Override
+        Builder<T> from(EventContextKey<T> value) throws UnsupportedOperationException;
+
+        @Override
+        Builder<T> reset();
+    }
 }

@@ -100,7 +100,7 @@ public interface CauseStackManager {
      * @return A handle for the frame which must be passed back to pop the frame
      *         from the stack
      */
-    CauseStackFrame pushCauseFrame();
+    StackFrame pushCauseFrame();
 
     /**
      * Replaces the current cause stack and context with the cause frame at the
@@ -113,7 +113,7 @@ public interface CauseStackManager {
      * 
      * @param handle The frame handle to pop
      */
-    void popCauseFrame(CauseStackFrame handle);
+    void popCauseFrame(StackFrame handle);
 
     /**
      * Adds the given object to the current context under the given key.
@@ -159,10 +159,10 @@ public interface CauseStackManager {
      */
     <T> Optional<T> removeContext(EventContextKey<T> key);
 
-    public static interface CauseStackFrame extends AutoCloseable {
+    interface StackFrame extends AutoCloseable {
 
         @Override
-        public void close();
+        void close();
 
     }
 }
