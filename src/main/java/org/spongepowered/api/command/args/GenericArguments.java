@@ -1690,9 +1690,10 @@ public final class GenericArguments {
 
     private static class EntityCommandElement extends SelectorCommandElement {
 
-        protected final boolean returnTarget;
-        protected final boolean returnSource;
-        protected final Class<? extends Entity> type;
+        private final boolean returnTarget;
+        private final boolean returnSource;
+        @Nullable
+        private final Class<? extends Entity> type;
 
         protected EntityCommandElement(Text key, boolean returnSource, boolean returnTarget,
                                        @Nullable Class<? extends Entity> type) {
@@ -1716,7 +1717,7 @@ public final class GenericArguments {
             Object state = args.getState();
             try {
                 Entity entity = (Entity) super.parseValue(source, args);
-                if (!type.isAssignableFrom(entity.getClass())) {
+                if (this.type != null && !this.type.isAssignableFrom(entity.getClass())) {
                     Text name = Sponge.getRegistry().getAllOf(EntityType.class).stream()
                             .filter(t -> t.getEntityClass().equals(this.type)).findFirst()
                             .map(EntityType::getTranslation).<Text>map(Text::of)
