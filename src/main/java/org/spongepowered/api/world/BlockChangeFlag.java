@@ -28,7 +28,7 @@ import com.google.common.base.MoreObjects;
 
 /**
  * A flag of sorts that determines whether a block change will perform various
- * interactions, such as notifying neighboring blocks, performing block phsyics
+ * interactions, such as notifying neighboring blocks, performing block physics
  * on placement, etc.
  */
 public enum BlockChangeFlag {
