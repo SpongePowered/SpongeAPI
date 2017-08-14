@@ -1717,7 +1717,7 @@ public final class GenericArguments {
             Object state = args.getState();
             try {
                 Entity entity = (Entity) super.parseValue(source, args);
-                if (this.type != null && !this.type.isAssignableFrom(entity.getClass())) {
+                if (!this.checkEntity(entity)) {
                     Text name = Sponge.getRegistry().getAllOf(EntityType.class).stream()
                             .filter(t -> t.getEntityClass().equals(this.type)).findFirst()
                             .map(EntityType::getTranslation).<Text>map(Text::of)
@@ -1741,7 +1741,7 @@ public final class GenericArguments {
                 if (input == null) {
                     return null;
                 }
-                if (this.type != null && !this.type.isAssignableFrom(input.getClass())) {
+                if (!this.checkEntity(input)) {
                     return null;
                 }
                 if (input instanceof Player) {
@@ -1758,8 +1758,9 @@ public final class GenericArguments {
             for (World world : Sponge.getServer().getWorlds()) {
                 Optional<Entity> ret = world.getEntity(uuid);
                 if (ret.isPresent()) {
-                    if (this.type == null || this.type.isAssignableFrom(ret.get().getClass())) {
-                        return ret.get();
+                    Entity entity = ret.get();
+                    if (this.checkEntity(entity)) {
+                        return entity;
                     }
                     found = true;
                 }
@@ -1770,22 +1771,29 @@ public final class GenericArguments {
             throw new IllegalArgumentException("Input value " + choice + " was not an entity");
         }
 
-        private static Entity tryReturnSource(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            if (source instanceof Entity) {
+        private Entity tryReturnSource(CommandSource source, CommandArgs args) throws ArgumentParseException {
+            if (source instanceof Entity && this.checkEntity((Entity) source)) {
                 return (Entity) source;
-            } else if (source instanceof ProxySource && ((ProxySource) source).getOriginalSource() instanceof Entity) {
-                return (Entity) ((ProxySource) source).getOriginalSource();
-            } else {
-                throw args.createError(t("No entities matched and source was not an entity!"));
             }
+            if (source instanceof ProxySource) {
+                CommandSource proxy = ((ProxySource) source).getOriginalSource();
+                if (proxy instanceof Entity && this.checkEntity((Entity) proxy)) {
+                    return (Entity) proxy;
+                }
+            }
+            throw args.createError(t("No entities matched and source was not an entity!"));
         }
 
-        private static Entity tryReturnTarget(CommandSource source, CommandArgs args, Class<? extends Entity> type) throws ArgumentParseException {
+        private Entity tryReturnTarget(CommandSource source, CommandArgs args, Class<? extends Entity> type) throws ArgumentParseException {
             Entity entity = tryReturnSource(source, args);
             return entity.getWorld().getIntersectingEntities(entity, 10).stream()
                     .filter(e -> !e.getEntity().equals(entity)).map(EntityUniverse.EntityHit::getEntity)
-                    .filter(e -> !type.isAssignableFrom(e.getClass())).findFirst()
+                    .filter(this::checkEntity).findFirst()
                     .orElseThrow(() -> args.createError(t("No entities matched and source was not looking at a valid entity!")));
+        }
+
+        private boolean checkEntity(Entity entity) {
+            return this.type == null || this.type.isAssignableFrom(entity.getClass());
         }
 
         @Override
