@@ -27,6 +27,7 @@ package org.spongepowered.api.item.inventory;
 import org.spongepowered.api.GameDictionary;
 import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
@@ -36,7 +37,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  * it is a snapshot, a snapshot cannot be modified, but modifications will
  * result in a new instance of the {@link ItemStackSnapshot}.
  */
-public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot> {
+public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot>, Translatable {
 
     ItemStackSnapshot NONE = DummyObjectProvider.createFor(ItemStackSnapshot.class, "NONE");
 
