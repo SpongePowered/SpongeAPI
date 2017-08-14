@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.entity;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
@@ -493,13 +492,12 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
     /**
      * Gets the nearby entities within the desired distance.
      *
-     * @see World#getEntities(Predicate)
+     * @see World#getNearbyEntities(Vector3d, double)
      * @param distance The distance
      * @return The collection of nearby entities
      */
     default Collection<Entity> getNearbyEntities(double distance) {
-        checkArgument(distance > 0, "Distance must be above zero!");
-        return getNearbyEntities(entity -> entity.getTransform().getPosition().distance(this.getTransform().getPosition()) <= distance);
+        return this.getWorld().getNearbyEntities(this.getLocation().getPosition(), distance);
     }
 
     /**
