@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 
 /**
  * A flag of sorts that determines whether a block change will perform various
@@ -125,7 +125,7 @@ public enum BlockChangeFlag {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("updateNeighbors", this.updateNeighbors)
                 .add("performBlockPhysics", this.performBlockPhysics)
                 .toString();

@@ -26,6 +26,7 @@ package org.spongepowered.api.text;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.text.action.ClickAction;
@@ -108,7 +109,7 @@ public final class SelectorText extends Text {
     }
 
     @Override
-    Objects.ToStringHelper toStringHelper() {
+    MoreObjects.ToStringHelper toStringHelper() {
         return super.toStringHelper()
                 .addValue(this.selector);
     }
@@ -208,7 +209,7 @@ public final class SelectorText extends Text {
         }
 
         @Override
-        Objects.ToStringHelper toStringHelper() {
+        MoreObjects.ToStringHelper toStringHelper() {
             return super.toStringHelper()
                     .addValue(this.selector);
         }

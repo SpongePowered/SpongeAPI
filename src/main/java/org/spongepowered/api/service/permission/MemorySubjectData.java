@@ -30,7 +30,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
-
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.util.Tristate;
 
@@ -40,6 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentMap;
 
 import javax.annotation.Nullable;
@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  * A subject data implementation storing all contained data in memory.
  *
- * <p>This class is thread-safe.
+ * <p>This class is thread-safe.</p>
  */
 public class MemorySubjectData implements SubjectData {
 
@@ -96,12 +96,12 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
-    public boolean setPermission(Set<Context> contexts, String permission, Tristate value) {
+    public CompletableFuture<Boolean> setPermission(Set<Context> contexts, String permission, Tristate value) {
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
             NodeTree oldTree = this.permissions.get(contexts);
             if (oldTree != null && oldTree.get(permission) == value) {
-                return false;
+                return CompletableFuture.completedFuture(false);
             }
 
             if (oldTree == null && value != Tristate.UNDEFINED) {
@@ -114,63 +114,61 @@ public class MemorySubjectData implements SubjectData {
                 }
             }
         }
-        return true;
-
+        return CompletableFuture.completedFuture(true);
     }
 
     @Override
-    public boolean clearPermissions() {
+    public CompletableFuture<Boolean> clearPermissions() {
         boolean wasEmpty = this.permissions.isEmpty();
         this.permissions.clear();
-        return !wasEmpty;
+        return CompletableFuture.completedFuture(!wasEmpty);
     }
 
     @Override
-    public boolean clearPermissions(Set<Context> context) {
-        return this.permissions.remove(context) != null;
+    public CompletableFuture<Boolean> clearPermissions(Set<Context> context) {
+        return CompletableFuture.completedFuture(this.permissions.remove(context) != null);
     }
 
     @Override
-    public Map<Set<Context>, List<Subject>> getAllParents() {
-        ImmutableMap.Builder<Set<Context>, List<Subject>> ret = ImmutableMap.builder();
+    public Map<Set<Context>, List<SubjectReference>> getAllParents() {
+        ImmutableMap.Builder<Set<Context>, List<SubjectReference>> ret = ImmutableMap.builder();
         for (Map.Entry<Set<Context>, List<Map.Entry<String, String>>> ent : this.parents.entrySet()) {
             ret.put(ent.getKey(), toSubjectList(ent.getValue()));
         }
         return ret.build();
     }
 
-    List<Subject> toSubjectList(List<Map.Entry<String, String>> parents) {
-        ImmutableList.Builder<Subject> ret = ImmutableList.builder();
+    List<SubjectReference> toSubjectList(List<Map.Entry<String, String>> parents) {
+        ImmutableList.Builder<SubjectReference> ret = ImmutableList.builder();
         for (Map.Entry<String, String> ent : parents) {
-            SubjectCollection collection = this.service.getSubjects(ent.getKey());
-            ret.add(collection.get(ent.getValue()));
+            ret.add(this.service.newSubjectReference(ent.getKey(), ent.getValue()));
         }
         return ret.build();
     }
 
     @Override
-    public List<Subject> getParents(Set<Context> contexts) {
+    public List<SubjectReference> getParents(Set<Context> contexts) {
         List<Map.Entry<String, String>> ret = this.parents.get(contexts);
         return ret == null ? Collections.emptyList() : toSubjectList(ret);
     }
 
     @Override
-    public boolean addParent(Set<Context> contexts, Subject parent) {
+    public CompletableFuture<Boolean> addParent(Set<Context> contexts, SubjectReference parent) {
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
-            Map.Entry<String, String> newEnt = Maps.immutableEntry(parent.getContainingCollection().getIdentifier(),
-                    parent.getIdentifier());
+            Map.Entry<String, String> newEnt = Maps.immutableEntry(parent.getCollectionIdentifier(),
+                    parent.getSubjectIdentifier());
             List<Map.Entry<String, String>> oldParents = this.parents.get(contexts);
             List<Map.Entry<String, String>> newParents = ImmutableList.<Map.Entry<String, String>>builder()
                     .addAll(oldParents == null ? Collections.emptyList() : oldParents)
                     .add(newEnt)
                     .build();
             if (oldParents != null && oldParents.contains(newEnt)) {
-                return false;
+                return CompletableFuture.completedFuture(false);
             }
 
             if (updateCollection(this.parents, contexts, oldParents, newParents)) {
-                return true;
+                return CompletableFuture.completedFuture(true);
             }
         }
     }
@@ -189,37 +187,37 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
-    public boolean removeParent(Set<Context> contexts, Subject parent) {
+    public CompletableFuture<Boolean> removeParent(Set<Context> contexts, SubjectReference parent) {
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
-            Map.Entry<String, String> removeEnt = Maps.immutableEntry(parent.getContainingCollection().getIdentifier(),
-                    parent.getIdentifier());
+            Map.Entry<String, String> removeEnt = Maps.immutableEntry(parent.getCollectionIdentifier(),
+                    parent.getSubjectIdentifier());
             List<Map.Entry<String, String>> oldParents = this.parents.get(contexts);
             List<Map.Entry<String, String>> newParents;
 
             if (oldParents == null || !oldParents.contains(removeEnt)) {
-                return false;
+                return CompletableFuture.completedFuture(false);
             }
             newParents = new ArrayList<>(oldParents);
             newParents.remove(removeEnt);
 
             if (updateCollection(this.parents, contexts, oldParents, Collections.unmodifiableList(newParents))) {
-                return true;
+                return CompletableFuture.completedFuture(true);
             }
         }
 
     }
 
     @Override
-    public boolean clearParents() {
+    public CompletableFuture<Boolean> clearParents() {
         boolean wasEmpty = this.parents.isEmpty();
         this.parents.clear();
-        return !wasEmpty;
+        return CompletableFuture.completedFuture(!wasEmpty);
     }
 
     @Override
-    public boolean clearParents(Set<Context> contexts) {
-        return this.parents.remove(contexts) != null;
+    public CompletableFuture<Boolean> clearParents(Set<Context> contexts) {
+        return CompletableFuture.completedFuture(this.parents.remove(contexts) != null);
     }
 
     @Override
@@ -234,23 +232,23 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
-    public boolean setOption(Set<Context> contexts, String key, @Nullable String value) {
+    public CompletableFuture<Boolean> setOption(Set<Context> contexts, String key, @Nullable String value) {
         Map<String, String> origMap = this.options.get(contexts);
         Map<String, String> newMap;
 
         if (origMap == null) {
             if (value == null) {
-                return false;
+                return CompletableFuture.completedFuture(false);
             }
 
             if ((origMap = this.options.putIfAbsent(ImmutableSet.copyOf(contexts), ImmutableMap.of(key.toLowerCase(), value))) == null) {
-                return true;
+                return CompletableFuture.completedFuture(true);
             }
         }
         do {
             if (value == null) {
                 if (!origMap.containsKey(key)) {
-                    return false;
+                    return CompletableFuture.completedFuture(false);
                 }
                 newMap = new HashMap<>();
                 newMap.putAll(origMap);
@@ -263,17 +261,17 @@ public class MemorySubjectData implements SubjectData {
             newMap = Collections.unmodifiableMap(newMap);
         }
         while (!this.options.replace(contexts, origMap, newMap));
-        return true;
+        return CompletableFuture.completedFuture(true);
     }
 
     @Override
-    public boolean clearOptions(Set<Context> contexts) {
-        return this.options.remove(contexts) != null;
+    public CompletableFuture<Boolean> clearOptions(Set<Context> contexts) {
+        return CompletableFuture.completedFuture(this.options.remove(contexts) != null);
     }
 
     @Override
-    public boolean clearOptions() {
+    public CompletableFuture<Boolean> clearOptions() {
         this.options.clear();
-        return true;
+        return CompletableFuture.completedFuture(true);
     }
 }

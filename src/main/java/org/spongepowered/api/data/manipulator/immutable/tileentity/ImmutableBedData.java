@@ -22,23 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.data.manipulator.immutable.tileentity;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.entity.living.monster.Zombie;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.block.tileentity.Bed;
+import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.manipulator.mutable.tileentity.BedData;
+import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
 
 /**
- * <p>
- *     Represents the type of a {@link Zombie}.
- * </p>
- * <p>
- *     Note that zombies with {@link ZombieTypes#VILLAGER} must also have an
- *     associated {@link Profession}.
- * </p>
+ * An {@link ImmutableDataManipulator} handling the various data of a
+ * {@link Bed}.
  */
-@Deprecated
-@CatalogedBy(ZombieTypes.class)
-public interface ZombieType extends CatalogType {
+public interface ImmutableBedData extends ImmutableDataManipulator<ImmutableBedData, BedData> {
+
+    /**
+     * Gets the {@link ImmutableValue} for the {@link DyeColor color}.
+     *
+     * @return The immutable value for the color
+     */
+    ImmutableValue<DyeColor> color();
 
 }

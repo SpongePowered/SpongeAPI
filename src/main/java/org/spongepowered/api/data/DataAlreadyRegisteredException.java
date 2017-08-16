@@ -32,6 +32,7 @@ import javax.annotation.Nullable;
 
 public class DataAlreadyRegisteredException extends DataException {
 
+    private static final long serialVersionUID = 6644721737729647869L;
     @Nullable private final Class<? extends DataManipulator<?, ?>> manipulatorClass;
     @Nullable private final Class<? extends ImmutableDataManipulator<?, ?>> immutableManipulatorClass;
     @Nullable private final DataManipulatorBuilder<?, ?> builder;

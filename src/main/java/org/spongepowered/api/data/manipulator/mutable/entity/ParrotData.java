@@ -22,5 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault
-package org.spongepowered.api.statistic.achievement;
+package org.spongepowered.api.data.manipulator.mutable.entity;
+
+import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableParrotData;
+import org.spongepowered.api.data.manipulator.mutable.VariantData;
+import org.spongepowered.api.data.type.ParrotVariant;
+import org.spongepowered.api.entity.living.animal.Parrot;
+
+/**
+ * A type of {@link VariantData} for {@link ParrotVariant}s belonging
+ * to an {@link Parrot}.
+ */
+public interface ParrotData extends VariantData<ParrotVariant, ParrotData, ImmutableParrotData> {
+
+}

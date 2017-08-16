@@ -22,19 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.data.manipulator.immutable.entity;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.entity.living.monster.Skeleton;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
+import org.spongepowered.api.data.manipulator.mutable.entity.ParrotData;
+import org.spongepowered.api.data.type.ParrotVariant;
+import org.spongepowered.api.entity.living.animal.Parrot;
 
 /**
- * Represents the type of skeleton a {@link Skeleton}
- * can be. Certain skeleton types define the items a skeleton can equip and
- * can define the various status immunities, such as withering.
+ * A type of {@link ImmutableVariantData} for {@link ParrotVariant}s belonging
+ * to an {@link Parrot}.
  */
-@Deprecated
-@CatalogedBy(SkeletonTypes.class)
-public interface SkeletonType extends CatalogType {
+public interface ImmutableParrotData extends ImmutableVariantData<ParrotVariant, ImmutableParrotData, ParrotData> {
 
 }

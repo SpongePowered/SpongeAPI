@@ -29,6 +29,7 @@ import static org.spongepowered.api.command.args.GenericArguments.firstParsing;
 import static org.spongepowered.api.command.args.GenericArguments.optional;
 import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.command.CommandCallable;
@@ -63,7 +64,7 @@ public final class CommandSpec implements CommandCallable {
     private final CommandElement args;
     private final CommandExecutor executor;
     private final Optional<Text> description;
-    @Nullable private final Text extendedDescription;
+    private final Optional<Text> extendedDescription;
     @Nullable private final String permission;
     private final InputTokenizer argumentParser;
 
@@ -73,7 +74,7 @@ public final class CommandSpec implements CommandCallable {
         this.executor = executor;
         this.permission = permission;
         this.description = Optional.ofNullable(description);
-        this.extendedDescription = extendedDescription;
+        this.extendedDescription = Optional.ofNullable(extendedDescription);
         this.argumentParser = parser;
     }
 
@@ -386,6 +387,15 @@ public final class CommandSpec implements CommandCallable {
     }
 
     /**
+     * Gets the extended description used with this command if any is present
+     *
+     * @return the extended description.
+     */
+    public Optional<Text> getExtendedDescription(CommandSource source) {
+        return this.extendedDescription;
+    }
+
+    /**
      * Gets the usage for this command appropriate for the provided command
      * source.
      *
@@ -410,14 +420,9 @@ public final class CommandSpec implements CommandCallable {
     public Optional<Text> getHelp(CommandSource source) {
         checkNotNull(source, "source");
         Text.Builder builder = Text.builder();
-        Optional<Text> desc = getShortDescription(source);
-        if (desc.isPresent()) {
-            builder.append(desc.get(), Text.NEW_LINE);
-        }
+        this.getShortDescription(source).ifPresent((a) -> builder.append(a, Text.NEW_LINE));
         builder.append(getUsage(source));
-        if (this.extendedDescription != null) {
-            builder.append(Text.NEW_LINE, this.extendedDescription);
-        }
+        this.getExtendedDescription(source).ifPresent((a) -> builder.append(Text.NEW_LINE, a));
         return Optional.of(builder.build());
     }
 
@@ -445,7 +450,7 @@ public final class CommandSpec implements CommandCallable {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("args", this.args)
                 .add("executor", this.executor)
                 .add("description", this.description)

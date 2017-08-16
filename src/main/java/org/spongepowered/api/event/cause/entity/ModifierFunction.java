@@ -22,26 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.event.cause.entity;
 
-import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
+import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
+import org.spongepowered.api.event.cause.entity.health.HealthModifier;
+
+import java.util.function.DoubleUnaryOperator;
 
 /**
- * An enumeration of known vanilla {@link SkeletonType}s.
+ * A function associating either a {@link HealthModifier} or a
+ * {@link DamageModifier} with a {@link DoubleUnaryOperator} of the resultant
+ * effect.
+ *
+ * @param <M> The modifier type
  */
-@Deprecated
-public final class SkeletonTypes {
+public interface ModifierFunction<M> {
 
-    // SORTFIELDS:ON
+    M getModifier();
 
-    public static final SkeletonType NORMAL = DummyObjectProvider.createFor(SkeletonType.class, "NORMAL");
+    DoubleUnaryOperator getFunction();
 
-    public static final SkeletonType STRAY = DummyObjectProvider.createFor(SkeletonType.class, "STRAY");
-
-    public static final SkeletonType WITHER = DummyObjectProvider.createFor(SkeletonType.class, "WITHER");
-
-    // SORTFIELDS:OFF
-
-    private SkeletonTypes() {
-    }
 }

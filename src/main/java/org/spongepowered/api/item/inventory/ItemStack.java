@@ -40,6 +40,7 @@ import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.text.translation.Translatable;
 
 import java.util.Map;
@@ -78,13 +79,32 @@ public interface ItemStack extends DataHolder, Translatable {
         return builder().itemType(itemType).quantity(quantity).build();
     }
 
+    /**
+     * Returns an empty {@link ItemStack}
+     *
+     * @return The empty ItemStack
+     */
+    static ItemStack empty() {
+        return builder().itemType(ItemTypes.NONE).build();
+    }
+
+    /**
+     * Gets the {@link ItemType} of this {@link ItemStack}.
+     *
+     * @return The item type
+     * @deprecated Use {@link #getType()}
+     */
+    @Deprecated
+    default ItemType getItem() {
+        return getType();
+    }
 
     /**
      * Gets the {@link ItemType} of this {@link ItemStack}.
      *
      * @return The item type
      */
-    ItemType getItem();
+    ItemType getType();
 
     /**
      * Gets the quantity of items in this stack. This may exceed the max stack
@@ -134,6 +154,16 @@ public interface ItemStack extends DataHolder, Translatable {
      * @return True if this equals the ItemStack
      */
     boolean equalTo(ItemStack that);
+
+    /**
+     * Returns true if {@link #getQuantity()} is zero and therefore this
+     * ItemStack is empty.
+     *
+     * <p>In Vanilla empty ItemStacks are not rendered by the client.</p>
+     *
+     * @return True if this ItemStack is empty
+     */
+    boolean isEmpty();
 
     @Override
     ItemStack copy();

@@ -22,27 +22,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
-
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.entity.living.monster.Guardian;
-
-/**
- * An {@link ImmutableDataManipulator} for marking the "elder" state of a
- * {@link Guardian}. Usually, if a {@link Guardian} is an "elder", it will have
- * a higher amount of health, deal more damage, and have a variance in the
- * items dropped when killed.
- */
-@Deprecated
-@SuppressWarnings("deprecation")
-public interface ImmutableElderData extends ImmutableDataManipulator<ImmutableElderData, org.spongepowered.api.data.manipulator.mutable.entity.ElderData> {
-
-    /**
-     * Gets the {@link ImmutableValue} for the "elder" state.
-     *
-     * @return The immutable value for the elder state
-     */
-    ImmutableValue<Boolean> elder();
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.effect.sound.record;

@@ -27,6 +27,7 @@ package org.spongepowered.api.event.cause;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockTypes;
@@ -95,6 +96,11 @@ public final class NamedCause {
      * Used by {@link org.spongepowered.api.event.block.ChangeBlockEvent.Pre} before liquid flows.
      */
     public static final String LIQUID_FLOW = "LiquidFlow";
+
+    /**
+     * Used by {@link org.spongepowered.api.event.block.ChangeBlockEvent.Modify} when liquids mix together.
+     */
+    public static final String LIQUID_MIX = "LiquidMix";
 
     /**
      * Used by any event where a {@link User} notifies either a
@@ -308,7 +314,7 @@ public final class NamedCause {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
             .add("name", this.name)
             .add("object", this.object)
             .toString();

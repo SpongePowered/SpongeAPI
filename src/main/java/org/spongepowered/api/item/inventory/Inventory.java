@@ -361,6 +361,19 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Inventory child, Class<T> property, Object key);
 
     /**
+     * Gets the property with the default key defined in <em>this</em>
+     * inventory for the specified (immediate) sub-inventory.
+     *
+     * @param child the child inventory to inspect
+     * @param property the type of property to query for
+     * @param <T> expected type of inventory property, generic to enable easy
+     *      pseudo-duck-typing
+     * @return matching properties, may be absent if no property matched the
+     *      supplied criteria
+     */
+    <T extends InventoryProperty<?, ?>> Optional<T> getInventoryProperty(Inventory child, Class<T> property);
+
+    /**
      * Gets a property with the specified key defined directly on this Inventory
      * if one is defined. For sub-inventories this is effectively the same as
      * <code>inv.getParent().getProperty(inv, property, key);</code> but for
@@ -375,6 +388,21 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      *      supplied criteria
      */
     <T extends InventoryProperty<?, ?>> Optional<T> getProperty(Class<T> property, Object key);
+
+    /**
+     * Gets a property with the default key defined directly on this Inventory
+     * if one is defined. For sub-inventories this is effectively the same as
+     * <code>inv.getParent().getProperty(inv, property);</code> but for
+     * top-level inventories may include properties defined on the inventory
+     * directly.
+     *
+     * @param property the type of property to query for
+     * @param <T> expected type of inventory property, generic to enable easy
+     *      pseudo-duck-typing
+     * @return matching properties, may be absent if no property matched the
+     *      supplied criteria
+     */
+    <T extends InventoryProperty<?, ?>> Optional<T> getInventoryProperty(Class<T> property);
 
     /**
      * Query this inventory for inventories matching any of the supplied types.
@@ -503,6 +531,45 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
      * @return The inventory archetype
      */
     InventoryArchetype getArchetype();
+
+    /**
+     * Intersects the slots of both inventories.
+     * The resulting inventory will only contain slots
+     * that are present in both inventories.
+     *
+     * @param inventory the other inventory
+     * @return an inventory wrapping all slots that are present in both inventories
+     */
+    Inventory intersect(Inventory inventory);
+
+    /**
+     * Constructs a union of the slots in both inventories.
+     * The resulting inventory will contain all slots from both inventories.
+     * The slots of this inventory are ordered before the slots of the given inventory.
+     * If the same slot is contained in both inventories the duplicate in the second one is removed.
+     *
+     * @param inventory the other inventory
+     * @return an inventory wrapping all slots of both inventories.
+     */
+    Inventory union(Inventory inventory);
+
+    /**
+     * Returns true if the given inventory is a descendant of this one.
+     * This method will check for deeply nested inventories but
+     * will only return true if the entire inventory structure is contained.
+     * This means that e.g. for a query result of multiple slots the
+     * inventory will not return true even if all slots are contained.
+     * If you want to check if all slots of an inventory are contained in
+     * another one use {@link #intersect(Inventory)} instead.
+     * <p>
+     * You can use this if you want to check if a single Slot is contained
+     * in an inventory or an entire row is contained in a Grid.
+     * </p>
+     *
+     * @param inventory the other inventory
+     * @return whether the given inventory is contained in this one.
+     */
+    boolean containsInventory(Inventory inventory);
 
     /**
      * A Builder for Inventories based on {@link InventoryArchetype}s.

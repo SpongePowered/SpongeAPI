@@ -22,32 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.effect.sound.record;
 
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
-/**
- * An enumeration of known vanilla {@link HorseVariant}s.
- */
-@Deprecated
-public final class HorseVariants {
+public final class RecordTypes {
 
     // SORTFIELDS:ON
 
-    public static final HorseVariant DONKEY = DummyObjectProvider.createFor(HorseVariant.class, "DONKEY");
+    public static final RecordType BLOCKS = DummyObjectProvider.createFor(RecordType.class, "BLOCKS");
 
-    public static final HorseVariant HORSE = DummyObjectProvider.createFor(HorseVariant.class, "HORSE");
+    public static final RecordType CAT = DummyObjectProvider.createFor(RecordType.class, "CAT");
 
-    public static final HorseVariant LLAMA = DummyObjectProvider.createFor(HorseVariant.class, "LLAMA");
+    public static final RecordType CHIRP = DummyObjectProvider.createFor(RecordType.class, "CHIRP");
 
-    public static final HorseVariant MULE = DummyObjectProvider.createFor(HorseVariant.class, "MULE");
+    public static final RecordType ELEVEN = DummyObjectProvider.createFor(RecordType.class, "ELEVEN");
 
-    public static final HorseVariant SKELETON_HORSE = DummyObjectProvider.createFor(HorseVariant.class, "SKELETON_HORSE");
+    public static final RecordType FAR = DummyObjectProvider.createFor(RecordType.class, "FAR");
 
-    public static final HorseVariant UNDEAD_HORSE = DummyObjectProvider.createFor(HorseVariant.class, "UNDEAD_HORSE");
+    public static final RecordType MALL = DummyObjectProvider.createFor(RecordType.class, "MALL");
+
+    public static final RecordType MELLOHI = DummyObjectProvider.createFor(RecordType.class, "MELLOHI");
+
+    public static final RecordType STAL = DummyObjectProvider.createFor(RecordType.class, "STAL");
+
+    public static final RecordType STRAD = DummyObjectProvider.createFor(RecordType.class, "STRAD");
+
+    public static final RecordType THIRTEEN = DummyObjectProvider.createFor(RecordType.class, "THIRTEEN");
+
+    public static final RecordType WAIT = DummyObjectProvider.createFor(RecordType.class, "WAIT");
+
+    public static final RecordType WARD = DummyObjectProvider.createFor(RecordType.class, "WARD");
 
     // SORTFIELDS:OFF
 
-    private HorseVariants() {
+    private RecordTypes() {
     }
+
 }

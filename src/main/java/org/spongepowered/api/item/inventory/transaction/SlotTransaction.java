@@ -70,7 +70,7 @@ public final class SlotTransaction extends Transaction<ItemStackSnapshot> {
 
     @Override
     public String toString() {
-        return com.google.common.base.Objects.toStringHelper(this)
+        return com.google.common.base.MoreObjects.toStringHelper(this)
                 .add("slot", this.slot)
                 .add("original", getOriginal())
                 .add("default", getDefault())

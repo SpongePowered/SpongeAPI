@@ -89,16 +89,6 @@ public final class TextSerializers {
     public static final TextSerializer JSON = DummyObjectProvider.createFor(TextSerializer.class, "JSON");
 
     /**
-     * The {@link TextSerializer} for Sponge's TextXML format.
-     *
-     * @deprecated Will be moved out of SpongeAPI in revision 7.0. See
-     *     <a href="https://github.com/SpongePowered/SpongeAPI/issues/1511">
-     *         SpongePowered/SpongeAPI#1511</a>
-     */
-    @Deprecated
-    public static final TextSerializer TEXT_XML = DummyObjectProvider.createFor(TextSerializer.class, "TEXT_XML");
-
-    /**
      * Returns a representation that accepts and outputs formatting codes, using
      * the provided formatting character.
      *

@@ -27,6 +27,7 @@ package org.spongepowered.api.item.inventory;
 import org.spongepowered.api.GameDictionary;
 import org.spongepowered.api.data.ImmutableDataHolder;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
@@ -36,7 +37,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
  * it is a snapshot, a snapshot cannot be modified, but modifications will
  * result in a new instance of the {@link ItemStackSnapshot}.
  */
-public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot> {
+public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot>, Translatable {
 
     ItemStackSnapshot NONE = DummyObjectProvider.createFor(ItemStackSnapshot.class, "NONE");
 
@@ -53,8 +54,28 @@ public interface ItemStackSnapshot extends ImmutableDataHolder<ItemStackSnapshot
      * {@link ItemStackSnapshot} is representing.
      *
      * @return The current stack size
+     * @deprecated Use {@link #getQuantity()}
      */
-    int getCount();
+    @Deprecated
+    default int getCount() {
+        return getQuantity();
+    }
+
+    /**
+     * Gets the quantity of items in this the {@link ItemStack} this
+     * {@link ItemStackSnapshot} is representing.
+     *
+     * @return The current stack size
+     */
+    int getQuantity();
+
+    /**
+     * Returns true if {@link #getQuantity()} is zero and therefore this
+     * ItemStackSnapshot is empty.
+     *
+     * @return True if this ItemStackSnapshot is empty
+     */
+    boolean isEmpty();
 
     /**
      * Creates a new {@link ItemStack} with all the data currently available

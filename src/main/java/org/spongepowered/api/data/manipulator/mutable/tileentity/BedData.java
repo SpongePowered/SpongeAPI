@@ -22,26 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.data.manipulator.mutable.tileentity;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.entity.AchievementData;
-import org.spongepowered.api.data.value.immutable.ImmutableSetValue;
-import org.spongepowered.api.statistic.achievement.Achievement;
+import org.spongepowered.api.block.tileentity.Bed;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableBedData;
+import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.data.value.mutable.Value;
 
 /**
- * An {@link ImmutableDataManipulator} containing data related to having earned
- * {@link Achievement}s. The use of {@link ImmutableSetValue} is to prevent any
- * possible duplication when it comes to granting/removing {@link Achievement}s
- * without the worry of losing track.
+ * A {@link DataManipulator} handling the various data of a
+ * {@link Bed}.
  */
-public interface ImmutableAchievementData extends ImmutableDataManipulator<ImmutableAchievementData, AchievementData> {
+public interface BedData extends DataManipulator<BedData, ImmutableBedData> {
 
     /**
-     * Gets the {@link ImmutableSetValue} for the {@link Achievement}s earned.
+     * Gets the {@link Value} for the {@link DyeColor color}.
      *
-     * @return The immutable set value of achievements
+     * @return The value for the color
      */
-    ImmutableSetValue<Achievement> achievements();
+    Value<DyeColor> color();
 
 }

@@ -26,7 +26,7 @@ package org.spongepowered.api.util.weighted;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 
 /**
  * An entry which contains an object.
@@ -81,6 +81,6 @@ public class WeightedObject<T> extends TableEntry<T> {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this).add("object", this.object).toString();
+        return MoreObjects.toStringHelper(this).add("object", this.object).toString();
     }
 }

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.extent;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.imaginary.Quaterniond;
@@ -75,6 +76,26 @@ public interface EntityUniverse {
      * @return A collection of entities
      */
     Collection<Entity> getEntities();
+
+    /**
+     * Return a collection of entities contained within {@code distance} blocks
+     * of the specified location. This uses a sphere to test distances.
+     *
+     * <p>For world implementations, only some parts of the world is usually
+     * loaded, so this method will only return entities within those loaded
+     * parts.</p>
+     *
+     * @param location The location at the center of the search radius
+     * @param distance The search radius
+     * @return A collection of nearby entities
+     */
+    default Collection<Entity> getNearbyEntities(Vector3d location, double distance) {
+        checkNotNull(location, "location");
+        checkArgument(distance > 0, "distance must be > 0");
+        return this.getIntersectingEntities(new AABB(location.getX() - distance, location.getY() - distance, location.getZ() - distance,
+                location.getX() + distance, location.getY() + distance, location.getZ() + distance),
+                entity -> entity.getLocation().getPosition().distanceSquared(location) <= distance * distance);
+    }
 
     /**
      * Return a collection of entities contained within this universe, possibly

@@ -22,19 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.entity;
+package org.spongepowered.api.item.inventory.crafting;
 
-import org.spongepowered.api.data.manipulator.immutable.ImmutableVariantData;
-import org.spongepowered.api.entity.living.monster.Skeleton;
+import org.spongepowered.api.item.inventory.type.GridInventory;
+import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
+import org.spongepowered.api.world.World;
+
+import java.util.Optional;
 
 /**
- * A type of {@link ImmutableVariantData} for
- * {@link org.spongepowered.api.data.type.SkeletonType}s belonging
- * to an {@link Skeleton}.
+ * A CraftingGridInventory represents the inventory of something that can craft
+ * items. This is excluding the Result slot.
  */
-@Deprecated
-@SuppressWarnings("deprecation")
-public interface ImmutableSkeletonData extends ImmutableVariantData<org.spongepowered.api.data.type.SkeletonType, ImmutableSkeletonData,
-    org.spongepowered.api.data.manipulator.mutable.entity.SkeletonData> {
-
+public interface CraftingGridInventory extends GridInventory {
+    /**
+     * Retrieves the recipe formed by this CraftingGridInventory, if any.
+     *
+     * @param world The world where the item would be crafted in
+     * @return The recipe or {@link Optional#empty()} if no recipe is formed
+     */
+    Optional<CraftingRecipe> getRecipe(World world);
 }

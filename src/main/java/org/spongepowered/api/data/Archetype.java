@@ -28,21 +28,23 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
+import java.util.Optional;
+
 /**
  * A {@link DataHolder} which has no attachment to any particular world allowing
  * it to be used as a blueprint to create multiple copies of its containing
  * data.
  */
-public interface Archetype<S extends LocatableSnapshot<S>> extends DataHolder {
+public interface Archetype<S extends LocatableSnapshot<S>, E> extends DataHolder {
 
     /**
      * Creates a new instance based on this archetype at the given location.
      * 
      * @param location The location to create the new instance at
      * @param cause The cause of the creation
-     * @return Whether the creation was successful
+     * @return The created type, if successful
      */
-    boolean apply(Location<World> location, Cause cause);
+    Optional<E> apply(Location<World> location, Cause cause);
 
     /**
      * Creates a new immutable snapshot based on this archetype.

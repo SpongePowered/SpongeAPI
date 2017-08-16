@@ -32,7 +32,6 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.entity.GameModeData;
 import org.spongepowered.api.data.manipulator.mutable.entity.JoinData;
-import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
@@ -50,10 +49,10 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.text.chat.ChatType;
+import org.spongepowered.api.world.WorldBorder;
 
 import java.time.Instant;
 import java.util.Optional;
-import java.util.Set;
 import javax.annotation.Nullable;
 
 /**
@@ -123,13 +122,6 @@ public interface Player extends Humanoid, User, Viewer, PlayerController {
     void kick(Text reason);
 
     /**
-     * Gets the skin parts that this player has allowed to render.
-     *
-     * @return A set of skin parts displayed
-     */
-    Set<SkinPart> getDisplayedSkinParts();
-
-    /**
      * Gets the {@link Scoreboard} displayed to the player.
      *
      * @return The scoreboard displayed to the player
@@ -196,6 +188,7 @@ public interface Player extends Humanoid, User, Viewer, PlayerController {
     default DisplayNameData getDisplayNameData() {
         return get(DisplayNameData.class).get();
     }
+
     /**
      * Gets a copy of the current {@link GameModeData} for this {@link Player}.
      *
@@ -204,6 +197,7 @@ public interface Player extends Humanoid, User, Viewer, PlayerController {
     default GameModeData getGameModeData() {
         return get(GameModeData.class).get();
     }
+
     /**
      * Gets the current {@link GameMode} for this {@link Player}.
      *
@@ -258,4 +252,22 @@ public interface Player extends Humanoid, User, Viewer, PlayerController {
      * @param entity The entity to spectate
      */
     void setSpectatorTarget(@Nullable Entity entity);
+
+    /**
+     * Gets the {@link WorldBorder} for this player, if present. If no border is
+     * set, an empty {@code Optional} is returned.
+     *
+     * @return The {@code WorldBorder} of this player as an {@code Optional}, if
+     *     present
+     */
+    Optional<WorldBorder> getWorldBorder();
+
+    /**
+     * Sets the {@link WorldBorder} instance for this player to the given world
+     * border. If {@code null} is passed, the world border is unset.
+     *
+     * @param border The world border to be used, may be {@code null}
+     * @param cause The cause of the border's change
+     */
+    void setWorldBorder(@Nullable WorldBorder border, Cause cause);
 }

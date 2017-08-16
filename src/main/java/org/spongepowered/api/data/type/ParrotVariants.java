@@ -24,19 +24,27 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.entity.living.animal.RideableHorse;
-import org.spongepowered.api.text.translation.Translatable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Represents the variant of a {@link RideableHorse}.
- * <p>The variant of a horse defines the various behaviors the horse can have.
- * Some behaviors limit whether a horse can be chested, wear horse armor, or
- * can be saddled.</p>
+ * An enumeration of known vanilla {@link OcelotType}s.
  */
-@Deprecated
-@CatalogedBy(HorseVariants.class)
-public interface HorseVariant extends CatalogType, Translatable {
+public final class ParrotVariants {
 
+    // SORTFIELDS:ON
+
+    public static final ParrotVariant BLUE = DummyObjectProvider.createFor(ParrotVariant.class, "BLUE");
+
+    public static final ParrotVariant CYAN = DummyObjectProvider.createFor(ParrotVariant.class, "CYAN");
+
+    public static final ParrotVariant GRAY = DummyObjectProvider.createFor(ParrotVariant.class, "GRAY");
+
+    public static final ParrotVariant GREEN = DummyObjectProvider.createFor(ParrotVariant.class, "GREEN");
+
+    public static final ParrotVariant RED = DummyObjectProvider.createFor(ParrotVariant.class, "RED");
+
+    // SORTFIELDS:OFF
+
+    private ParrotVariants() {
+    }
 }

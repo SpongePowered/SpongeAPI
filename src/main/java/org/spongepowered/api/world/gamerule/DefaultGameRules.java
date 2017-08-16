@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.gamerule;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.tileentity.CommandBlock;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Bat;
@@ -49,6 +50,13 @@ import org.spongepowered.api.entity.vehicle.minecart.Minecart;
  * An enumeration of all possible GameRule names in vanilla minecraft.
  */
 public class DefaultGameRules {
+
+    /**
+     * If advancements should be announced to the server.
+     *
+     * <p>This is a boolean game rule, with a default value of {@code true}.</p>
+     */
+    public static final String ANNOUNCE_ADVANCEMENTS = "announceAdvancements";
 
     /**
      * Whether {@link CommandBlock}s should notify admins when
@@ -92,6 +100,14 @@ public class DefaultGameRules {
     public static final String DO_FIRE_TICK = "doFireTick";
 
     /**
+     * Whether {@link Player}s can only craft recipes they have unlocked.
+     *
+     * <p>This is a boolean game rule, with a default value of
+     * {@code false}.</p>
+     */
+    public static final String DO_LIMITED_CRAFTING = "doLimitedCrafting";
+
+    /**
      * Whether {@link Agent}s should drop items.
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
@@ -120,6 +136,13 @@ public class DefaultGameRules {
     public static final String DO_WEATHER_CYCLE = "doWeatherCycle";
 
     /**
+     * A function to be executed once per tick.
+     *
+     * <p>This is a string game rule, with a default value of {@code -}.</p>
+     */
+    public static final String GAME_LOOP_FUNCTION = "gameLoopFunction";
+
+    /**
      * Whether {@link Player}s should keep items in their inventory
      * after death.
      *
@@ -135,6 +158,14 @@ public class DefaultGameRules {
      * {@code true}.</p>
      */
     public static final String LOG_ADMIN_COMMANDS = "logAdminCommands";
+
+    /**
+     * The total number of {@link BlockTypes#CHAIN_COMMAND_BLOCK chain command
+     * blocks} that can run during a single tick.
+     *
+     * <p>This is a numerical game rule, with a default value of {@code 65536}.</p>
+     */
+    public static final String MAX_COMMAND_CHAIN_LENGTH = "maxCommandChainLength";
 
     /**
      * The maximum number of other pushable entities a mob or player can push,

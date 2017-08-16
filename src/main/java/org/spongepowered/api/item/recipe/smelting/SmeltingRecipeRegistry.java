@@ -22,56 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.statistic.achievement;
+package org.spongepowered.api.item.recipe.smelting;
 
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.text.translation.Translation;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.item.recipe.RecipeRegistry;
 
-import java.util.Collection;
 import java.util.Optional;
 
 /**
- * Represents an in-game achievement which may be earned by or given to players.
+ * A registry for Crafting Table recipes.
  */
-@CatalogedBy(Achievements.class)
-public interface Achievement extends Statistic {
+public interface SmeltingRecipeRegistry extends RecipeRegistry<SmeltingRecipe> {
 
     /**
-     * Returns the description that describes this achievement.
+     * Retrieves the recipe used when smelting the given ingredient.
      *
-     * @return The description of this achievement
+     * @param ingredient The ingredient to check against
+     * @return The found {@link SmeltingRecipe}, or {@link Optional#empty()}
+     *         if no recipe was found for this {@link ItemStackSnapshot}
      */
-    Translation getDescription();
+    Optional<SmeltingRecipe> findMatchingRecipe(ItemStackSnapshot ingredient);
 
     /**
-     * Returns the parent of this achievement, if there is one.
+     * Finds the matching recipe and creates the {@link SmeltingResult},
+     * which is then returned.
      *
-     * @return The parent of this achievement
+     * @param ingredient The ingredient to check against
+     * @return The {@link SmeltingResult} if a recipe was found, or
+     *         {@link Optional#empty()} if not
      */
-    Optional<Achievement> getParent();
-
-    /**
-     * Returns the children of this achievement.
-     *
-     * @return An immutable collection of all children this achievement has
-     */
-    Collection<Achievement> getChildren();
-
-    /**
-     * Returns the {@link ItemStack} that this achievement is represented by.
-     *
-     * @return ItemStack representation
-     */
-    Optional<ItemStackSnapshot> getItemStackSnapshot();
-
-    /**
-     * Returns true if this is a "special" achievement.
-     *
-     * @return True if special achievement
-     */
-    boolean isSpecial();
-
+    default Optional<SmeltingResult> getResult(ItemStackSnapshot ingredient) {
+        return findMatchingRecipe(ingredient)
+                .flatMap(recipe -> recipe.getResult(ingredient));
+    }
 }

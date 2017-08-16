@@ -61,10 +61,10 @@ public abstract class AbstractListData<E, M extends ListData<E, M, I>, I extends
     }
 
     @Override
-    public <E> Optional<E> get(Key<? extends BaseValue<E>> key) {
+    public <V> Optional<V> get(Key<? extends BaseValue<V>> key) {
         // we can delegate this since we have a direct value check as this is
         // a Single value.
-        return key == this.usedKey ? Optional.of((E) this.getValue()) : super.get(key);
+        return key == this.usedKey ? Optional.of((V) this.getValue()) : super.get(key);
     }
 
     @Override

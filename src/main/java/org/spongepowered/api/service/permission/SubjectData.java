@@ -31,14 +31,29 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 import javax.annotation.Nullable;
 
 /**
- * Container for a subject's data. This container updates live, and provides raw
- * data for a subject not taking into account any sort of inheritance.
- * Basically, this interface is meant to represent what's 'in the file', rather
- * than the higher-level query methods available in {@link Subject}
+ * Container for a subject's data.
+ *
+ * <p>This container updates live, and provides raw data for a subject not
+ * taking into account any sort of inheritance. This interface is meant to
+ * represent what's 'in the file', rather than the higher-level query methods
+ * available in {@link Subject}.</p>
+ *
+ * <p>Methods which modify the state of the data return
+ * {@link CompletableFuture}s. This allows for the time which is taken to apply
+ * and persist the change to the implementations storage backend. These futures
+ * should return quickly for changes made to transient subject data, but may
+ * take longer to return for changes made to a subjects persistent data. Methods
+ * which use this data in {@link Subject} may not reflect the change until the
+ * future has returned.</p>
+ *
+ * <p>{@link CompletableFuture#allOf(CompletableFuture[])} can be used to
+ * combine multiple futures into one, if the result of methods is not
+ * needed.</p>
  */
 public interface SubjectData {
 
@@ -57,9 +72,10 @@ public interface SubjectData {
     Map<Set<Context>, Map<String, Boolean>> getAllPermissions();
 
     /**
-     * Returns the list of permissions set for the given context. This list is
-     * immutable and is not a live view. If no permissions have been set,
-     * returns an empty list.
+     * Returns the list of permissions set for the given context.
+     *
+     * <p>This list is immutable and is not a live view. If no permissions have
+     * been set, it returns an empty list.</p>
      *
      * @param contexts The particular context combination to check
      * @return Any permissions set
@@ -67,9 +83,12 @@ public interface SubjectData {
     Map<String, Boolean> getPermissions(Set<Context> contexts);
 
     /**
-     * Sets a permission to a given value. Setting value as
-     * {@link Tristate#UNDEFINED} unsets the permission. An empty set of
-     * contexts applies this permission to the global context.
+     * Sets a permission to a given value
+     *
+     * <p>Setting value as {@link Tristate#UNDEFINED} unsets the permission.</p>
+     *
+     * <p>An empty set of contexts applies this permission to the global
+     * context.</p>
      *
      *  @param contexts The particular combination of contexts to set this
      *                  permission in
@@ -77,80 +96,90 @@ public interface SubjectData {
      * @param value The value to set this permission to
      * @return Whether the operation was successful
      */
-    boolean setPermission(Set<Context> contexts, String permission, Tristate value);
+    CompletableFuture<Boolean> setPermission(Set<Context> contexts, String permission, Tristate value);
 
     /**
      * Clear all permissions set in any context.
      *
      * @return Whether any change occurred
      */
-    boolean clearPermissions();
+    CompletableFuture<Boolean> clearPermissions();
 
     /**
-     * Clear all permissions set in a given context combination. Passing an
-     * empty context set unsets permissions in the global context.
+     * Clear all permissions set in a given context combination.
+     *
+     * <p>Passing an empty context set clears permissions in the global
+     * context.</p>
      *
      * @param contexts The context combination to clear permissions in
      * @return Whether any change occurred
      */
-    boolean clearPermissions(Set<Context> contexts);
+    CompletableFuture<Boolean> clearPermissions(Set<Context> contexts);
 
     /**
-     * Return all registered parent subjects for all contexts. The returned map
-     * is immutable and not a live view. The results of this method do not
-     * traverse any sort of inheritance structure a permissions plugin may
-     * implement.
+     * Return all registered parent subjects for all contexts.
+     *
+     * <p>The returned map is immutable and not a live view. The results of this
+     * method do not traverse any sort of inheritance structure a permissions
+     * plugin may implement.</p>
      *
      * @return All registered parents and the context they are registered in
      */
-    Map<Set<Context>, List<Subject>> getAllParents();
+    Map<Set<Context>, List<SubjectReference>> getAllParents();
 
     /**
-     * Return all registered parent subjects for a given context. The returned
-     * map is immutable and not a live view. The results of this method do not
-     * traverse any sort of inheritance structure a permissions plugin may
-     * implement.
+     * Return all registered parent subjects for a given context.
+     *
+     * <p>The returned map is immutable and not a live view. The results of this
+     * method do not traverse any sort of inheritance structure a permissions
+     * plugin may implement.</p>
      *
      * @param contexts The context to check
      * @return names of parents valid in the given context
      */
-    List<Subject> getParents(Set<Context> contexts);
+    List<SubjectReference> getParents(Set<Context> contexts);
 
     /**
-     * Adds a parent in a particular context combination. Passing an empty
-     * context combination means the parent is added in the global context
+     * Adds a parent in a particular context combination.
+     *
+     * <p>Passing an empty context combination means the parent is added in the
+     * global context.</p>
      *
      * @param contexts The context combination this operation is applicable to
      * @param parent The name of the parent to add
      * @return Whether the operation was successful
      */
-    boolean addParent(Set<Context> contexts, Subject parent);
+    CompletableFuture<Boolean> addParent(Set<Context> contexts, SubjectReference parent);
 
     /**
-     * Removes a parent in a particular context combination. Passing an empty
-     * context combination means the parent is removed in the global context.
+     * Removes a parent in a particular context combination.
+     *
+     * <p>Passing an empty context combination means the parent is removed in
+     * the global context.</p>
      *
      * @param contexts The context combination this operation is applicable to
      * @param parent The name of the parent to remove
      * @return Whether the operation was successful
      */
-    boolean removeParent(Set<Context> contexts, Subject parent);
+    CompletableFuture<Boolean> removeParent(Set<Context> contexts, SubjectReference parent);
 
     /**
      * Remove all parents in any context combination.
      *
      * @return Whether any change occurred
      */
-    boolean clearParents();
+    CompletableFuture<Boolean> clearParents();
 
     /**
-     * Remove all parents in a given context combination. An empty context
-     * combination represents the global context.
+     * Remove all parents in a given context combination.
+     *
+     * <p>Passing an empty context set clears parents in the global
+     * context.</p>
      *
      * @param contexts The context combination to clear the parents of
      * @return Whether any change occurred
      */
-    boolean clearParents(Set<Context> contexts);
+    CompletableFuture<Boolean> clearParents(Set<Context> contexts);
 
     /**
      * Return all options for all context combinations currently registered.
@@ -170,25 +199,31 @@ public interface SubjectData {
     /**
      * Sets a specific option to a value.
      *
+     * <p>Passing a null value will unset the option.</p>
+     *
      * @param contexts The context combination to set the given option in
      * @param key The key to set. Case-insensitive.
      * @param value The value to set.
      * @return Whether the operation was successful
      */
-    boolean setOption(Set<Context> contexts, String key, @Nullable String value);
-
-    /**
-     * Clear all options in the given context combination.
-     *
-     * @param contexts The context combination
-     * @return Whether the operation was successful (any options were removed)
-     */
-    boolean clearOptions(Set<Context> contexts);
+    CompletableFuture<Boolean> setOption(Set<Context> contexts, String key, @Nullable String value);
 
     /**
      * Clear all options.
      *
      * @return Whether the operation was successful
      */
-    boolean clearOptions();
+    CompletableFuture<Boolean> clearOptions();
+
+    /**
+     * Clear all options in the given context combination.
+     *
+     * <p>Passing an empty context set clears options in the global
+     * context.</p>
+     *
+     * @param contexts The context combination
+     * @return Whether the operation was successful (any options were removed)
+     */
+    CompletableFuture<Boolean> clearOptions(Set<Context> contexts);
+
 }

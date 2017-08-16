@@ -30,7 +30,6 @@ import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.MemoryDataView;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Map;
@@ -38,7 +37,7 @@ import java.util.Map;
 /**
  * A compatibility object to translate and translate any type of
  * {@link Object} that is not a {@link DataSerializable}. Natively,
- * {@link MemoryDataView} will attempt to locate a {@code DataTranslator}
+ * {@link DataView} will attempt to locate a {@code DataTranslator}
  * during {@link DataView#set(DataQuery, Object)}.
  *
  * @param <T> The type of object that this translator can handle

@@ -25,6 +25,8 @@
 package org.spongepowered.api.world;
 
 import com.flowpowered.math.vector.Vector3d;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * A world border is a square boundary, extending through the entire y-axis.
@@ -37,6 +39,15 @@ import com.flowpowered.math.vector.Vector3d;
  * <p>In Minecraft, a warning is displayed in the form of a reddish tint.</p>
  */
 public interface WorldBorder {
+
+    /**
+     * Creates a new {@link Builder} instance for making {@link WorldBorder}s.
+     * 
+     * @return The builder
+     */
+    static Builder builder() {
+        return Sponge.getRegistry().createBuilder(Builder.class);
+    }
 
     /**
      * Gets the diameter the world border is expanding or contracting to.
@@ -208,4 +219,93 @@ public interface WorldBorder {
      * @see ChunkPreGenerate
      */
     ChunkPreGenerate.Builder newChunkPreGenerate(World world);
+
+    /**
+     * Copies the properties of the passed border onto this border.
+     * 
+     * @param border The border whose properties are to be copied
+     */
+    default void copyPropertiesFrom(WorldBorder border) {
+        setCenter(border.getCenter().getX(), border.getCenter().getZ());
+        setDamageAmount(border.getDamageAmount());
+        setDamageThreshold(border.getDamageThreshold());
+        setDiameter(border.getDiameter(), border.getNewDiameter(), border.getTimeRemaining());
+        setWarningDistance(border.getWarningDistance());
+        setWarningTime(border.getWarningTime());
+    }
+
+    interface Builder extends ResettableBuilder<WorldBorder, Builder> {
+
+        /**
+         * Copies the required data from the passed {@code WorldBorder}.
+         * 
+         * @param border The world border whose data is to be copied
+         * @return The builder, for chaining
+         */
+        @Override
+        Builder from(WorldBorder border);
+
+        /**
+         * Sets the diameter of this world border.
+         * 
+         * @param diameter The diameter that this border will have.
+         * @return The builder, for chaining.
+         * @see WorldBorder#setDiameter(double)
+         */
+        Builder diameter(double diameter);
+
+        /**
+         * Sets the centre of this world border.
+         * 
+         * @param x The x-coordinate of the new centre
+         * @param z The z-coordinate of the new centre
+         * @return The builder, for chaining
+         * @see WorldBorder#setCenter(double, double)
+         */
+        Builder center(double x, double z);
+
+        /**
+         * Sets the warning time of this world border.
+         * 
+         * @param time Warning time in seconds
+         * @return The builder, for chaining
+         * @see WorldBorder#setWarningTime(int)
+         */
+        Builder warningTime(int time);
+
+        /**
+         * Sets the warning distance of this world border.
+         * 
+         * @param distance The warning distance in blocks
+         * @return The builder, for chaining
+         * @see WorldBorder#setWarningDistance(int)
+         */
+        Builder warningDistance(int distance);
+
+        /**
+         * Sets the damage threshold of this world border.
+         * 
+         * @param distance The damage threshold in blocks
+         * @return The builder, for chaining
+         * @see WorldBorder#setDamageThreshold(double)
+         */
+        Builder damageThreshold(double distance);
+
+        /**
+         * Sets the damage amount of this world border.
+         * 
+         * @param damage The damage amount
+         * @return The builder, for chaining
+         * @see WorldBorder#setDamageAmount(double)
+         */
+        Builder damageAmount(double damage);
+        
+        /**
+         * Builds the world border from the information given. If no information
+         * is given, a {@code WorldBorder} with default properties is built.
+         * 
+         * @return The built world border
+         */
+        WorldBorder build();
+    }
 }

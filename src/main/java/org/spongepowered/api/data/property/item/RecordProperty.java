@@ -22,21 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.entity;
+package org.spongepowered.api.data.property.item;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.mutable.VariantData;
-import org.spongepowered.api.entity.living.monster.Skeleton;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.spongepowered.api.data.Property;
+import org.spongepowered.api.data.property.AbstractProperty;
+import org.spongepowered.api.effect.sound.record.RecordType;
+import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
- * A type of {@link VariantData} for {@link org.spongepowered.api.data.type.SkeletonType}s belonging
- * to an {@link Skeleton}.
- *
- * @see Keys#SKELETON_TYPE
+ * A {@link RecordProperty} used to retrieve a {@link RecordType}
+ * from a {@link ItemType} or {@link ItemStack}.
  */
-@Deprecated
-@SuppressWarnings("deprecation")
-public interface SkeletonData extends VariantData<org.spongepowered.api.data.type.SkeletonType,
-    SkeletonData, org.spongepowered.api.data.manipulator.immutable.entity.ImmutableSkeletonData> {
+public final class RecordProperty extends AbstractProperty<String, RecordType> {
 
+    public RecordProperty(RecordType instrument) {
+        super(checkNotNull(instrument, "instrument"));
+    }
+
+    @Override
+    public int compareTo(Property<?, ?> o) {
+        if (!(o instanceof RecordProperty)) {
+            return -1;
+        }
+        return getValue().getId().compareTo(((RecordProperty) o).getValue().getId());
+    }
 }

@@ -22,40 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.entity;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.type.Profession;
-import org.spongepowered.api.data.value.mutable.OptionalValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.living.monster.Zombie;
-
-import java.util.Optional;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.entity.living.animal.Parrot;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents an {@link DataManipulator} handling the type and
- * profession of a {@link Zombie}.
+ * Represents the variant of a {@link Parrot}.
  */
-@Deprecated
-@SuppressWarnings("deprecation")
-public interface ZombieData extends DataManipulator<ZombieData,
-    org.spongepowered.api.data.manipulator.immutable.entity.ImmutableZombieData> {
-
-    /**
-     * Returns a value specifying Zombie's type.
-
-     * @return Zombie's type
-     * @see Keys#ZOMBIE_TYPE
-     */
-    Value<org.spongepowered.api.data.type.ZombieType> type();
-
-    /**
-     * Value representing a zombie's zombie's {@link Profession}.
-     *
-     * @return Profession of the zombie, or {@link Optional#empty()} if it has none
-     * @see Keys#VILLAGER_ZOMBIE_PROFESSION
-     */
-    OptionalValue<Profession> profession();
+@CatalogedBy(ParrotVariants.class)
+public interface ParrotVariant extends CatalogType {
 
 }

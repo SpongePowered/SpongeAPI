@@ -26,7 +26,6 @@ package org.spongepowered.api.item.merchant;
 
 import java.util.List;
 import java.util.Random;
-import java.util.function.BiConsumer;
 
 public interface TradeOfferListMutator {
 

@@ -71,73 +71,11 @@ public interface TargetAITask<A extends TargetAITask<A>> extends AITask<Creature
      */
     A setOnlyNearby(boolean nearby);
 
-    /**
-     * Implementation detail.
-     *
-     * @return The search status
-     * @deprecated Will be removed in the next major API release
-     */
-    @Deprecated
-    int getSearchStatus();
-
-    /**
-     * Implementation detail.
-     *
-     * @param status The search status
-     * @return This task, for chaining
-     * @deprecated Will be removed in the next major API release
-     */
-    @Deprecated
-    A setSearchStatus(int status);
-
-    /**
-     * Implementation detail.
-     *
-     * @return Implementation detail
-     * @deprecated Will be removed in the next major API release
-     */
-    @Deprecated
-    int getSearchDelay();
-
-    /**
-     * Implementation detail.
-     *
-     * @param delay Implementation detail
-     * @return This task, for chaining
-     * @deprecated Will be removed in the next major API release
-     */
-    @Deprecated
-    A setSearchDelay(int delay);
-
-    /**
-     * Implementation detail.
-     *
-     * @return Implementation detail
-     * @deprecated Will be removed in the next major API release
-     */
-    @Deprecated
-    int getInterruptIfTargetUnseenTicks();
-
-    /**
-     * Implementation detail.
-     *
-     * @param ticks Implementation detail
-     * @return This task, for chaining
-     */
-    @Deprecated
-    A setInterruptIfTargetUnseenTicks(int ticks);
-
     interface Builder<A extends TargetAITask<A>, B extends Builder<A, B>> extends AITaskBuilder<Creature, A, B> {
 
         B checkSight();
 
         B onlyNearby();
-
-        @Deprecated
-        B searchDelay(int delayTicks);
-
-        @Deprecated
-        B interruptTargetUnseenTicks(int unseenTicks);
 
         @Override
         B reset();

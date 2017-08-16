@@ -31,9 +31,15 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 
 /**
- * The context that a service check occurs in. Instances of a context are
- * designed to function as cache keys, meaning they should be fairly lightweight
- * and not hold references to large objects
+ * The context that a given service check occurs in.
+ *
+ * <p>Instances of a context are designed to function as cache keys, meaning
+ * they should be fairly lightweight and not hold references to large
+ * objects.</p>
+ *
+ * <p>Contexts consist of a "type" (or key) and a "name" (or value).</p>
+ *
+ * <p>Some common context keys are expressed as static parameters.</p>
  */
 public final class Context implements Map.Entry<String, String> {
     public static final String USER_KEY = "user";
@@ -59,22 +65,24 @@ public final class Context implements Map.Entry<String, String> {
     }
 
     /**
-     * Gets the type.
+     * Gets the context type.
      *
-     * @return the type of item this context represents, for example for a world
-     *         this would be {@code world}
+     * <p>For example, if the context represented a world, the type would be
+     * {@code world}</p>
+     *
+     * @return The type of item this context represents
      */
     public String getType() {
         return getKey();
     }
 
     /**
-     * Gets the name.
+     * Gets the context name.
      *
-     * @return the specific name of the item involved in this context, for
-     *         example if the type were {@code world} this would be the name of
-     *         the world.
-     * 
+     * <p>For example, if the context represented a world, the name would be
+     * the name of the world.</p>
+     *
+     * @return The specific name of the item involved in this context
      */
     public String getName() {
         return getValue();
@@ -101,7 +109,6 @@ public final class Context implements Map.Entry<String, String> {
             return true;
         }
         return o instanceof Map.Entry<?, ?> && this.wrapped.equals(o);
-
     }
 
     @Override

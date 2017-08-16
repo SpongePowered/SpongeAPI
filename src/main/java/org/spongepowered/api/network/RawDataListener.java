@@ -29,6 +29,7 @@ import org.spongepowered.api.Platform;
 /**
  * Represents a listener for data being sent to a raw channel.
  */
+@FunctionalInterface
 public interface RawDataListener {
 
     /**

@@ -29,7 +29,6 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.channel.MessageReceiver;
 import org.spongepowered.api.text.chat.ChatType;
-import org.spongepowered.api.util.GuavaCollectors;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -83,7 +82,7 @@ public class CombinedMessageChannel implements MessageChannel {
     public Collection<MessageReceiver> getMembers() {
         return this.channels.stream()
                 .flatMap(channel -> channel.getMembers().stream())
-                .collect(GuavaCollectors.toImmutableSet());
+                .collect(ImmutableSet.toImmutableSet());
     }
 
 }

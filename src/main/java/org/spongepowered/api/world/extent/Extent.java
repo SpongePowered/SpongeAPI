@@ -26,6 +26,7 @@ package org.spongepowered.api.world.extent;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.Platform;
@@ -119,6 +120,19 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     int getHighestYAt(int x, int z);
 
     /**
+     * Get the y value of the highest block that sunlight can reach in the given
+     * column.
+     *
+     * <p>This method ignores all transparent blocks, providing the highest
+     * opaque block.</p>
+     *
+     * @return The y value of the highest opaque block
+     */
+    default int getHighestYAt(Vector2i column) {
+        return this.getHighestYAt(column.getX(), column.getY());
+    }
+
+    /**
      * Get the {@link Location} of the highest block that sunlight can reach in
      * the given column.
      *
@@ -130,6 +144,41 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      */
     default Vector3i getHighestPositionAt(Vector3i position) {
         return new Vector3i(position.getX(), getHighestYAt(position.getX(), position.getZ()), position.getZ());
+    }
+
+    /**
+     * Returns the y level that precipitation ends falling in the given column.
+     *
+     * <p>A value is still returned for columns in biomes which do not
+     * receive precipitation.</p>
+     *
+     * @return The y level that precipitation ends
+     */
+    int getPrecipitationLevelAt(int x, int z);
+
+    /**
+     * Returns the y level that precipitation ends falling in the given column.
+     *
+     * <p>A value is still returned for columns in biomes which do not
+     * receive precipitation.</p>
+     *
+     * @return The y level that precipitation ends
+     */
+    default int getPrecipitationLevelAt(Vector2i column) {
+        return this.getPrecipitationLevelAt(column.getX(), column.getY());
+    }
+
+    /**
+     * Returns the position that precipitation ends falling in the column
+     * of the given position.
+     *
+     * <p>A position is still returned for positions in biomes which do not
+     * receive precipitation.</p>
+     *
+     * @return The position that precipitation ends
+     */
+    default Vector3i getPrecipitationLevelAt(Vector3i position) {
+        return new Vector3i(position.getX(), this.getPrecipitationLevelAt(position.getX(), position.getZ()), position.getZ());
     }
 
     /**

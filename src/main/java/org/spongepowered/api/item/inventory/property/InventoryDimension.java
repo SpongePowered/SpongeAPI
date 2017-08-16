@@ -37,11 +37,6 @@ import org.spongepowered.api.util.Coerce;
 public class InventoryDimension extends AbstractInventoryProperty<String, Vector2i> {
 
     public static final String PROPERTY_NAME = "inventorydimension";
-    /**
-     * @deprecated Please use {@link #PROPERTY_NAME} instead, this field is a typo.
-     */
-    @Deprecated
-    public static final String PROPERTY_NAM = PROPERTY_NAME;
 
     /**
      * Create a new InventoryDimension property with the specified value.

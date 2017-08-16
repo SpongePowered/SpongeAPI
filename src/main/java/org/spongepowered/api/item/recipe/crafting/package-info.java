@@ -22,25 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.achievement;
-
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.entity.living.humanoid.player.TargetPlayerEvent;
-import org.spongepowered.api.event.message.MessageChannelEvent;
-import org.spongepowered.api.statistic.achievement.Achievement;
-
-/**
- * Represents an event that is called when an {@link Achievement} is granted.
- */
-public interface GrantAchievementEvent extends MessageChannelEvent, Cancellable {
-
-    /**
-     * Gets the achievement being targeted.
-     *
-     * @return The achievement
-     */
-    Achievement getAchievement();
-
-    interface TargetPlayer extends GrantAchievementEvent, TargetPlayerEvent {}
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package org.spongepowered.api.item.recipe.crafting;

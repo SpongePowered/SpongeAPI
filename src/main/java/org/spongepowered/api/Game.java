@@ -41,6 +41,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 
 import java.nio.file.Path;
+import java.util.Optional;
 
 /**
  * The core accessor of the API. The implementation uses this to pass
@@ -120,11 +121,13 @@ public interface Game {
 
 
     /**
-     * Retrieves the GameDictionary (item dictionary) for this GameRegistry.
+     * Retrieves the GameDictionary (item dictionary) for this {@link Game}.
      *
-     * @return The item dictionary
+     * @return The item dictionary, or empty if unsupported
      */
-    GameDictionary getGameDictionary();
+    default Optional<GameDictionary> getGameDictionary() {
+        return Optional.empty();
+    }
 
 
     /**

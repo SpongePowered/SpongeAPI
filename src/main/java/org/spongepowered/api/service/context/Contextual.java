@@ -24,26 +24,54 @@
  */
 package org.spongepowered.api.service.context;
 
+import java.util.Optional;
 import java.util.Set;
 
 /**
  * A common interface for objects that have an identifier and are bound by
  * {@link Context}s.
  *
+ * <p>Used primarily by {@link ContextualService}s.</p>
  */
 public interface Contextual {
 
     /**
-     * Returns the identifier associated with this Contextual. Not guaranteed to
-     * be human-readable.
+     * Returns the identifier associated with this Contextual.
      *
-     * @return The unique identifier for this subject
+     * <p>The identifier of each distinct Contextual within a collection of
+     * contextuals should be unique.</p>
+     *
+     * <p>Not guaranteed to be human-readable. Use
+     * {@link #getFriendlyIdentifier()} for a more readable version.</p>
+     *
+     * @return The identifier for this subject
      */
     String getIdentifier();
 
     /**
-     * Calculate active contexts, using the {@link ContextCalculator}s for the
-     * service.
+     * Returns the friendly identifier associated with this Contextual.
+     *
+     * <p>Unlike {@link #getIdentifier()}, this value is not guaranteed to be
+     * unique.</p>
+     *
+     * <p>If the friendly identifier is equal to the normal identifier,
+     * this method should return {@link Optional#empty()}.</p>
+     *
+     * <p>Contextuals which represent a Player or a User should return the
+     * username here, if available.</p>
+     *
+     * @return The friendly identifier for this contextual
+     */
+    default Optional<String> getFriendlyIdentifier() {
+        return Optional.empty();
+    }
+
+    /**
+     * Calculates the objects active contexts at the given moment, using the
+     * {@link ContextCalculator}s held by the {@link ContextualService}.
+     *
+     * <p>"Active" contexts refers to the contexts currently applicable to the
+     * contextual.</p>
      *
      * <p>The result of these calculations may be cached.</p>
      *

@@ -42,6 +42,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.TeleportHelper;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 /**
  * A static all access class granting static access to various systems
@@ -275,9 +276,9 @@ public final class Sponge {
      * {@link Game} instance.
      *
      * @see Game#getGameDictionary()
-     * @return The game dictionary instance
+     * @return The game dictionary instance, or empty if unsupported
      */
-    public static GameDictionary getDictionary() {
+    public static Optional<GameDictionary> getDictionary() {
         return getGame().getGameDictionary();
     }
 

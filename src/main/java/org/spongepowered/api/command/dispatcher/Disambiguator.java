@@ -32,6 +32,7 @@ import java.util.Optional;
 
 import javax.annotation.Nullable;
 
+@FunctionalInterface
 public interface Disambiguator {
 
     /**

@@ -24,7 +24,11 @@
  */
 package org.spongepowered.api.service.context;
 
-
+/**
+ * A common interface for services which make use of {@link Contextual}s.
+ *
+ * @param <T> the contextual type
+ */
 public interface ContextualService<T extends Contextual> {
 
     /**
