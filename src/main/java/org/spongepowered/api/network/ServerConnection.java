@@ -24,17 +24,15 @@
  */
 package org.spongepowered.api.network;
 
-import org.spongepowered.api.entity.living.player.tab.TabList;
-
 /**
  * Represents the server connection from the client.
  */
 public interface ServerConnection extends RemoteConnection {
 
     /**
-     * Gets the tab list for the current server.
+     * Gets the list of players the current server is reporting.
      *
-     * @return The tab list.
+     * @return The list of players.
      */
-    TabList getTabList();
+    NetworkPlayerList getTabList();
 }

@@ -28,18 +28,17 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
+import org.spongepowered.api.network.NetworkPlayer;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.ResettableBuilder;
-
-import java.util.Optional;
 
 import javax.annotation.Nullable;
 
 /**
  * Represents the information attached to an entry in a {@link TabList}.
  */
-public interface TabListEntry {
+public interface TabListEntry extends NetworkPlayer {
 
     /**
      * Creates a new {@link Builder} to create {@link TabListEntry}s.
@@ -58,33 +57,12 @@ public interface TabListEntry {
     TabList getList();
 
     /**
-     * Gets the {@link GameProfile} associated with this entry.
-     *
-     * @return The profile associated with this entry
-     */
-    GameProfile getProfile();
-
-    /**
-     * Gets this entry's display name.
-     *
-     * @return This entry's display name
-     */
-    Optional<Text> getDisplayName();
-
-    /**
      * Sets this entry's display name.
      *
      * @param displayName The new display name
      * @return This entry, for chaining
      */
     TabListEntry setDisplayName(@Nullable Text displayName);
-
-    /**
-     * Gets the latency for this entry.
-     *
-     * @return The latency for this entry
-     */
-    int getLatency();
 
     /**
      * Sets the latency for this entry.
@@ -130,13 +108,6 @@ public interface TabListEntry {
      * @return This entry, for chaining
      */
     TabListEntry setLatency(int latency);
-
-    /**
-     * Gets the {@link GameMode} this entry is in.
-     *
-     * @return The gamemode this entry is in
-     */
-    GameMode getGameMode();
 
     /**
      * Sets this entry's gamemode.

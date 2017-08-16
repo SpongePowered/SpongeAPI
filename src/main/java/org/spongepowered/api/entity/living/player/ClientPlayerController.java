@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.player;
 
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.network.ServerConnection;
 
 /**
@@ -32,11 +33,11 @@ import org.spongepowered.api.network.ServerConnection;
 public interface ClientPlayerController extends PlayerController {
 
     /**
-     * Gets the {@link ClientPlayer} entity.
+     * Gets the {@link Humanoid} player entity.
      *
      * @return The player entity
      */
-    ClientPlayer getPlayer();
+    Humanoid getPlayer();
 
     /**
      * Gets the {@link ServerConnection} to which the player is connected.

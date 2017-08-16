@@ -36,9 +36,9 @@ import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
-import org.spongepowered.api.entity.living.player.tab.ServerTabList;
 import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.message.MessageChannelEvent;
@@ -54,7 +54,6 @@ import org.spongepowered.api.text.chat.ChatType;
 import java.time.Instant;
 import java.util.Optional;
 import java.util.Set;
-
 import javax.annotation.Nullable;
 
 /**
@@ -64,11 +63,8 @@ import javax.annotation.Nullable;
  *
  * <p>Any methods called on Player that are not on User do not store any data
  * that persists across server restarts.</p>
- *
- * <p>This is specifically the server player. For client, see
- * {@link ClientPlayer}.</p>
  */
-public interface Player extends BasePlayer, Viewer, PlayerController {
+public interface Player extends Humanoid, User, Viewer, PlayerController {
 
     /**
      * Simulates a chat message from a player.
@@ -111,7 +107,7 @@ public interface Player extends BasePlayer, Viewer, PlayerController {
      *
      * @return This player's TabList
      */
-    ServerTabList getTabList();
+    TabList getTabList();
 
     /**
      * Kicks the player, showing the default kick reason (the translation key
@@ -191,17 +187,28 @@ public interface Player extends BasePlayer, Viewer, PlayerController {
         return !firstPlayed().equals(lastPlayed());
     }
 
-    @Override
+    /**
+     * Gets a copy of the current {@link DisplayNameData} for this
+     * {@link Player}.
+     *
+     * @return A copy of the current display name data
+     */
     default DisplayNameData getDisplayNameData() {
         return get(DisplayNameData.class).get();
     }
-
-    @Override
+    /**
+     * Gets a copy of the current {@link GameModeData} for this {@link Player}.
+     *
+     * @return A copy of the current game mode data
+     */
     default GameModeData getGameModeData() {
         return get(GameModeData.class).get();
     }
-
-    @Override
+    /**
+     * Gets the current {@link GameMode} for this {@link Player}.
+     *
+     * @return The current game mode value
+     */
     default Value<GameMode> gameMode() {
         return getValue(Keys.GAME_MODE).get();
     }
