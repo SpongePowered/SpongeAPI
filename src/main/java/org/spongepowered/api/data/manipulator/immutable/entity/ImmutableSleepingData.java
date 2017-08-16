@@ -44,14 +44,5 @@ public interface ImmutableSleepingData extends ImmutableDataManipulator<Immutabl
      */
     ImmutableValue<Boolean> sleeping();
 
-    /**
-     * Gets the {@link ImmutableValue} for whether the owning {@link Player}'s
-     * "sleeping" state is ignored when vanilla mechanics dictate that all
-     * {@link Player}s must be sleeping to advance through the night.
-     *
-     * @return The immutable value for ignoring sleep
-     */
-    ImmutableValue<Boolean> ignoreSleeping();
-
 }
 
