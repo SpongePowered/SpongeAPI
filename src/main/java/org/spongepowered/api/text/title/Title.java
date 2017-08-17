@@ -182,6 +182,9 @@ public interface Title {
      * Gets whether or not this title configuration will clear the current title
      * from the client's screen.
      *
+     * <p>This would keep the currently used display times and only remove
+     * the title.</p>
+     *
      * @return Whether or not the current title will be removed from the
      *     client's screen
      */
@@ -275,6 +278,9 @@ public interface Title {
          * Sets this title configuration to clear the current title from the
          * client's screen.
          *
+         * <p>This will keep the currently used display times and will only
+         * remove the title.</p>
+         *
          * @return The modified builder
          */
         default Builder clear() {
@@ -284,6 +290,9 @@ public interface Title {
         /**
          * Sets whether or not this title configuration will clear the current
          * title from the client's screen.
+         *
+         * <p>This will keep the currently used display times and will only
+         * remove the title.</p>
          *
          * @param clear Whether or not the current title should be removed from
          *     the client's screen
