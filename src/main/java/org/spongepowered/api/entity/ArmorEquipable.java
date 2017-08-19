@@ -26,6 +26,7 @@ package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
 
 import java.util.Optional;
 
@@ -50,7 +51,9 @@ public interface ArmorEquipable extends Equipable {
      *
      * @return The helmet, if available
      */
-    Optional<ItemStack> getHelmet();
+    default Optional<ItemStack> getHelmet() {
+        return this.getEquipped(EquipmentTypes.HEADWEAR);
+    }
 
     /**
      * Sets the helmet currently being worn by this entity.
@@ -60,7 +63,9 @@ public interface ArmorEquipable extends Equipable {
      *
      * @param helmet The helmet to put on the entity
      */
-    void setHelmet(@Nullable ItemStack helmet);
+    default void setHelmet(@Nullable ItemStack helmet) {
+        this.equip(EquipmentTypes.HEADWEAR, helmet);
+    }
 
     /**
      * Gets the chestplate currently being worn by this entity.
@@ -70,7 +75,9 @@ public interface ArmorEquipable extends Equipable {
      *
      * @return The chestplate, if available
      */
-    Optional<ItemStack> getChestplate();
+    default Optional<ItemStack> getChestplate() {
+        return this.getEquipped(EquipmentTypes.CHESTPLATE);
+    }
 
     /**
      * Sets the chestplate currently being worn by this entity.
@@ -80,7 +87,9 @@ public interface ArmorEquipable extends Equipable {
      *
      * @param chestplate The chestplate to put on the entity
      */
-    void setChestplate(@Nullable ItemStack chestplate);
+    default void setChestplate(@Nullable ItemStack chestplate) {
+        this.equip(EquipmentTypes.CHESTPLATE, chestplate);
+    }
 
     /**
      * Gets the leggings currently being worn by this entity.
@@ -90,7 +99,9 @@ public interface ArmorEquipable extends Equipable {
      *
      * @return The leggings, if available
      */
-    Optional<ItemStack> getLeggings();
+    default Optional<ItemStack> getLeggings() {
+        return this.getEquipped(EquipmentTypes.LEGGINGS);
+    }
 
     /**
      * Sets the leggings currently being worn by this entity.
@@ -100,7 +111,9 @@ public interface ArmorEquipable extends Equipable {
      *
      * @param leggings The leggings to put on the entity
      */
-    void setLeggings(@Nullable ItemStack leggings);
+    default void setLeggings(@Nullable ItemStack leggings) {
+        this.equip(EquipmentTypes.LEGGINGS, leggings);
+    }
 
     /**
      * Gets the boots currently being worn by this entity.
@@ -110,7 +123,9 @@ public interface ArmorEquipable extends Equipable {
      *
      * @return The boots, if available
      */
-    Optional<ItemStack> getBoots();
+    default Optional<ItemStack> getBoots() {
+        return this.getEquipped(EquipmentTypes.BOOTS);
+    }
 
     /**
      * Sets the boots currently being worn by this entity.
@@ -120,7 +135,9 @@ public interface ArmorEquipable extends Equipable {
      *
      * @param boots The boots to put on the entity
      */
-    void setBoots(@Nullable ItemStack boots);
+    default void setBoots(@Nullable ItemStack boots) {
+        this.equip(EquipmentTypes.BOOTS, boots);
+    }
 
     /**
      * Gets the current equipped item in hand if available.

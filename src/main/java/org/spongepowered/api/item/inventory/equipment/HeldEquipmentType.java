@@ -25,8 +25,8 @@
 package org.spongepowered.api.item.inventory.equipment;
 
 /**
- * An equipment item which can be worn, eg. armor or headwear
+ * An equipment item which can be held. E.g. main or offhand
  */
-public interface EquipmentTypeWorn extends EquipmentType {
+public interface HeldEquipmentType extends EquipmentType {
 
 }

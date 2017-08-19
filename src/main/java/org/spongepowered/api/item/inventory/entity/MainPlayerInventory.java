@@ -24,10 +24,14 @@
  */
 package org.spongepowered.api.item.inventory.entity;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.item.inventory.type.GridInventory;
 
 /**
- * Represents the inventory of a Humanoid or Player.
+ * A Players main inventory including the hotbar.
  */
-public interface PlayerInventory extends UserInventory<Player> {
+public interface MainPlayerInventory extends GridInventory {
+
+    Hotbar getHotbar();
+
+    GridInventory getGrid();
 }

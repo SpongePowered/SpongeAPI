@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.property;
 
-import org.spongepowered.api.item.inventory.equipment.EquipmentTypeWorn;
+import org.spongepowered.api.item.inventory.equipment.WornEquipmentType;
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
 import org.spongepowered.api.util.Coerce;
 
@@ -40,7 +40,7 @@ public class ArmorSlotType extends EquipmentSlotType {
      * 
      * @param value armour type to match
      */
-    public ArmorSlotType(EquipmentTypeWorn value) {
+    public ArmorSlotType(WornEquipmentType value) {
         super(value);
     }
 
@@ -51,7 +51,7 @@ public class ArmorSlotType extends EquipmentSlotType {
      * @param value armour type to match
      * @param operator logical operator (either EQUAL or NOTEQUAL) to apply
      */
-    public ArmorSlotType(EquipmentTypeWorn value, Operator operator) {
+    public ArmorSlotType(WornEquipmentType value, Operator operator) {
         super(value, operator);
     }
 
@@ -63,7 +63,7 @@ public class ArmorSlotType extends EquipmentSlotType {
      * @param operator logical operator (either EQUAL or NOTEQUAL) to apply
      */
     public ArmorSlotType(Object value, Operator operator) {
-        super(Coerce.<EquipmentTypeWorn>toPseudoEnum(value, EquipmentTypeWorn.class, EquipmentTypeWorn.class, EquipmentTypes.WORN), operator);
+        super(Coerce.<WornEquipmentType>toPseudoEnum(value, WornEquipmentType.class, WornEquipmentType.class, EquipmentTypes.WORN), operator);
     }
 
     /**
