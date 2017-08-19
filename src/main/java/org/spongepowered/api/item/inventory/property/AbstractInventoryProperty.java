@@ -122,6 +122,14 @@ public abstract class AbstractInventoryProperty<K, V> implements InventoryProper
     protected K getDefaultKey(@Nullable V value) {
         return (K) getDefaultKey(this.getClass());
     }
+
+    /**
+     * Gets the default key for the provided InventoryProperty class.
+     *
+     * @param clazz The InventoryProperty class.
+     * @param <T> The InventoryProperty type.
+     * @return default key to use.
+     */
     public static <T extends InventoryProperty<?, ?>> Object getDefaultKey(Class<T> clazz) {
         return defaultKeys.computeIfAbsent(clazz, k -> k.getSimpleName().toLowerCase(Locale.ENGLISH));
     }
