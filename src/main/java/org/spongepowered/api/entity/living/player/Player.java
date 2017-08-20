@@ -45,7 +45,6 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
