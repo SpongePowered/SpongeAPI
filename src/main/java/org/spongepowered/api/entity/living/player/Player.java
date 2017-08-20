@@ -355,12 +355,4 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      * @param cause The cause of the border's change
      */
     void setWorldBorder(@Nullable WorldBorder border, Cause cause);
-
-    /**
-     * Gets the {@link ItemStack} that is being used. If no {@code ItemStack}
-     * is being used, {@code Optional.empty()} is returned.
-     * 
-     * @return The {@code ItemStack} being used, if any
-     */
-    Optional<ItemStack> getActiveItemStack();
 }

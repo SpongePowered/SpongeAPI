@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.data.Transaction;
+import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.ItemType;
@@ -60,6 +61,13 @@ public interface UseItemStackEvent extends Event {
      * @return The item being consumed
      */
     ItemStackSnapshot getItemStackInUse();
+
+    /**
+     * Gets the {@link HandType} that is using the {@link ItemStack}.
+     *
+     * @return The {@code HandType} that is using the item
+     */
+    HandType getActiveHand();
 
     /**
      * Called before {@link UseItemStackEvent.Tick} when a player starts using an
