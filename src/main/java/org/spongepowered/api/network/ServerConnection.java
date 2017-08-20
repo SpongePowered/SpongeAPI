@@ -22,53 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.player.tab;
-
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.text.Text;
-
-import java.util.Collection;
-import java.util.Optional;
-import java.util.UUID;
+package org.spongepowered.api.network;
 
 /**
- * Represents a {@link Player}'s tab list. For mutability, use the
- * {@link ServerTabList}.
- *
- * @see ServerTabList
+ * Represents the server connection from the client.
  */
-public interface TabList {
+public interface ServerConnection extends RemoteConnection {
 
     /**
-     * Gets this list's header.
+     * Gets the list of players the current server is reporting.
      *
-     * @return The current header
+     * @return The list of players.
      */
-    Optional<Text> getHeader();
-
-    /**
-     * Gets this list's footer.
-     *
-     * @return The current footer
-     */
-    Optional<Text> getFooter();
-
-    /**
-     * Gets the entries on the list.
-     *
-     * <p>The returned collection should be immutable.</p>
-     *
-     * @return The entries on the list
-     */
-    Collection<TabListEntry> getEntries();
-
-    /**
-     * Gets a {@link TabListEntry} matching the specified unique id.
-     *
-     * @param uniqueId The unique id to search for
-     * @return The entry if present, otherwise {@link Optional#empty()}
-     */
-    Optional<TabListEntry> getEntry(UUID uniqueId);
-
-
+    NetworkPlayerList getTabList();
 }

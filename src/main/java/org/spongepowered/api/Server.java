@@ -31,6 +31,7 @@ import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
+import org.spongepowered.api.util.ThreadContext;
 import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldArchetype;
@@ -47,7 +48,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Represents a typical Minecraft Server.
  */
-public interface Server {
+public interface Server extends ThreadContext {
 
     /**
      * Gets the {@link Player}s currently online.
@@ -433,10 +434,4 @@ public interface Server {
      */
     void setPlayerIdleTimeout(int timeout);
 
-    /**
-     * Checks if the current thread matches the main thread of the server.
-     *
-     * @return True if main thread, false if not
-     */
-    boolean isMainThread();
 }

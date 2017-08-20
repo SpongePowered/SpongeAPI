@@ -75,6 +75,21 @@ public interface MessageChannel {
             .build();
 
     /**
+     * A channel with either the client or console as a member. If neither are
+     * ready, it may be empty. On an integrated server, it may have both.
+     */
+    MessageChannel TO_LOOPBACK = () -> {
+        ImmutableSet.Builder<MessageReceiver> builder = ImmutableSet.builder();
+        if (Sponge.isClientAvailable()) {
+            Sponge.getClient().getPlayerController().ifPresent(builder::add);
+        }
+        if (Sponge.isServerAvailable()) {
+            builder.add(Sponge.getServer().getConsole());
+        }
+        return builder.build();
+    };
+
+    /**
      * Creates a message channel that targets all subjects with the given
      * permission.
      *

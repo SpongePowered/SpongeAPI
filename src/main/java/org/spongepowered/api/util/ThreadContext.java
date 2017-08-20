@@ -22,53 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.player.tab;
-
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.text.Text;
-
-import java.util.Collection;
-import java.util.Optional;
-import java.util.UUID;
+package org.spongepowered.api.util;
 
 /**
- * Represents a {@link Player}'s tab list. For mutability, use the
- * {@link ServerTabList}.
- *
- * @see ServerTabList
+ * Interface for checking the current thread context.
  */
-public interface TabList {
+public interface ThreadContext {
 
     /**
-     * Gets this list's header.
+     * Checks if the current thread matches the main thread of the server or
+     * client.
      *
-     * @return The current header
+     * @return True if main thread, false if not
      */
-    Optional<Text> getHeader();
-
-    /**
-     * Gets this list's footer.
-     *
-     * @return The current footer
-     */
-    Optional<Text> getFooter();
-
-    /**
-     * Gets the entries on the list.
-     *
-     * <p>The returned collection should be immutable.</p>
-     *
-     * @return The entries on the list
-     */
-    Collection<TabListEntry> getEntries();
-
-    /**
-     * Gets a {@link TabListEntry} matching the specified unique id.
-     *
-     * @param uniqueId The unique id to search for
-     * @return The entry if present, otherwise {@link Optional#empty()}
-     */
-    Optional<TabListEntry> getEntry(UUID uniqueId);
-
+    boolean isMainThread();
 
 }

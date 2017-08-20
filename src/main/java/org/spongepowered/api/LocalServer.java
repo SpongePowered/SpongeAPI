@@ -22,53 +22,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.player.tab;
+package org.spongepowered.api;
 
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.text.Text;
-
-import java.util.Collection;
-import java.util.Optional;
-import java.util.UUID;
+import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 
 /**
- * Represents a {@link Player}'s tab list. For mutability, use the
- * {@link ServerTabList}.
- *
- * @see ServerTabList
+ * Represents the local, integrated server. By default, this is not available
+ * to connect to, but it can be published.
  */
-public interface TabList {
+public interface LocalServer extends Server {
 
     /**
-     * Gets this list's header.
+     * Gets whether this server is available to other clients.
      *
-     * @return The current header
+     * @return The publish status
      */
-    Optional<Text> getHeader();
+    boolean isPublished();
 
     /**
-     * Gets this list's footer.
+     * Publishes the server to the local network.
      *
-     * @return The current footer
+     * @param mode The gamemode to give guests
+     * @param withCheats Whether guests can use cheats
      */
-    Optional<Text> getFooter();
+    void publish(GameMode mode, boolean withCheats);
 
     /**
-     * Gets the entries on the list.
-     *
-     * <p>The returned collection should be immutable.</p>
-     *
-     * @return The entries on the list
+     * Publishes the server to the local network with the player's
+     * current {@link GameMode} and cheats disabled.
      */
-    Collection<TabListEntry> getEntries();
-
-    /**
-     * Gets a {@link TabListEntry} matching the specified unique id.
-     *
-     * @param uniqueId The unique id to search for
-     * @return The entry if present, otherwise {@link Optional#empty()}
-     */
-    Optional<TabListEntry> getEntry(UUID uniqueId);
-
+    void publish();
 
 }

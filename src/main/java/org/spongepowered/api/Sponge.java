@@ -243,6 +243,35 @@ public final class Sponge {
 
 
     /**
+     * Gets whether a {@link Client} instance is available without throwing an
+     * exception from calling {@link #getClient()}.
+     *
+     * @see Game#isClientAvailable()
+     * @return True if the client instance is available
+     */
+    public static boolean isClientAvailable() {
+        return getGame().isClientAvailable();
+    }
+
+    /**
+     * Gets the {@link Client} instance from the {@link Game} instance. If the
+     * current platform is not client or is not loaded, an
+     * {@link IllegalStateException} is thrown.
+     *
+     * <p>Note: During various {@link GameState}s, a {@link Client} instance
+     * may <strong>NOT</strong> be available. During these specific states,
+     * calling {@link Game#getClient()} will throw an exception. To double
+     * check, call {@link #isClientAvailable()}</p>
+     *
+     * @see Game#getClient()
+     * @see Game#isClientAvailable()
+     * @return The client instance
+     */
+    public static Client getClient() {
+        return getGame().getClient();
+    }
+
+    /**
      * Gets the {@link GameDictionary} instance from the
      * {@link Game} instance.
      *
