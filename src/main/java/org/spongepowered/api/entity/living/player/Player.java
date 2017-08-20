@@ -45,6 +45,7 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
@@ -354,4 +355,12 @@ public interface Player extends Humanoid, User, RemoteSource, Viewer, ChatTypeMe
      * @param cause The cause of the border's change
      */
     void setWorldBorder(@Nullable WorldBorder border, Cause cause);
+
+    /**
+     * Gets the {@link ItemStack} that is being used. If no {@code ItemStack}
+     * is being used, {@code Optional.empty()} is returned.
+     * 
+     * @return The {@code ItemStack} being used, if any
+     */
+    Optional<ItemStack> getActiveItemStack();
 }
