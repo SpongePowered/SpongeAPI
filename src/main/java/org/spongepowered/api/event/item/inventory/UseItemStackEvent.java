@@ -32,6 +32,8 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
+import java.util.Optional;
+
 public interface UseItemStackEvent extends Event {
 
     /**
@@ -63,11 +65,14 @@ public interface UseItemStackEvent extends Event {
     ItemStackSnapshot getItemStackInUse();
 
     /**
-     * Gets the {@link HandType} that is using the {@link ItemStack}.
+     * Gets the {@link HandType} that is using the {@link ItemStack}, if
+     * possible. This method may return {@code Optional.empty()} if the hand is
+     * not the main hand or the off-hand (e.g. if a mod lets another slot be
+     * usable).
      *
-     * @return The {@code HandType} that is using the item
+     * @return The {@code HandType} that is using the item, if possible
      */
-    HandType getActiveHand();
+    Optional<HandType> getActiveHand();
 
     /**
      * Called before {@link UseItemStackEvent.Tick} when a player starts using an
@@ -95,7 +100,7 @@ public interface UseItemStackEvent extends Event {
      * sounds.</p>
      *
      * <p>In Vanilla, items only perform an action every 4 ticks, and only
-     * when 25 or fewever ticks remaining. Cancelling this event on other
+     * when 25 or fewer ticks remaining. Cancelling this event on other
      * ticks will have no effect in Vanilla.</p>
      *
      * <p>Cancelling the event will cause no action to be taken for the
@@ -134,7 +139,7 @@ public interface UseItemStackEvent extends Event {
     interface Stop extends UseItemStackEvent, Cancellable {}
 
     /**
-     * Fired when an item uis finished 'normally', e.g. used for the
+     * Fired when an item is finished 'normally', e.g. used for the
      * entire maximum duration. In contrast to {@link Stop}, this
      * even will not fire if the item use was interrupted in any way.
      *
