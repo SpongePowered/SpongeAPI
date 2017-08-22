@@ -41,4 +41,5 @@ public interface IgnoreSleepingData extends DataManipulator<IgnoreSleepingData, 
      * @see Keys#IGNORE_SLEEPING
      */
     Value<Boolean> ignoreSleeping();
+
 }
