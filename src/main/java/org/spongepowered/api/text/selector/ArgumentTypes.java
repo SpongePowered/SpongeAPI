@@ -63,7 +63,7 @@ public final class ArgumentTypes {
      *
      * <p>In Vanilla, this is represented by the {@code m} selector key.</p>
      */
-    public static final ArgumentType<GameMode> GAME_MODE = null;
+    public static final ArgumentType.Invertible<GameMode> GAME_MODE = null;
 
     /**
      * The argument type limiting the number of results of a {@link Selector}.
