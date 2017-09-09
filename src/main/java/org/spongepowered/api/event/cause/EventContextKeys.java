@@ -100,6 +100,7 @@ public final class EventContextKeys {
     public static final EventContextKey<ProjectileSource> THROWER = createFor("THROWER");
 
     public static final EventContextKey<ItemStackSnapshot> WEAPON = createFor("WEAPON");
+    public static final EventContextKey<ItemStackSnapshot> USED_ITEM = createFor("USED_ITEM");
 
     // SORTFIELDS:OFF
 
