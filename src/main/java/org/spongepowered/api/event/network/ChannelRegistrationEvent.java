@@ -27,13 +27,12 @@ package org.spongepowered.api.event.network;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.NamedCause;
 
 /**
  * Fired when a channel is registered or unregistered.
  *
- * <p>If the channel is being registered on the server, the {@link Cause}'s
- * {@link NamedCause#SOURCE} will be the {@link Player} who initiated the registration.</p>
+ * <p>If the channel is being registered on the server, the {@link Cause} will
+ * contain the {@link Player} who initiated the registration.</p>
  */
 public interface ChannelRegistrationEvent extends Event {
 

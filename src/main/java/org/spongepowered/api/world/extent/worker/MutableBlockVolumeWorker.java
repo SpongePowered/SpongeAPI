@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.extent.worker;
 
-import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.world.extent.BlockVolume;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
 import org.spongepowered.api.world.extent.worker.procedure.BlockVolumeFiller;
@@ -70,8 +69,7 @@ public interface MutableBlockVolumeWorker<V extends MutableBlockVolume> extends 
      * Applies a filler operation to the volume.
      *
      * @param filler The filler operation
-     * @param cause The cause of this operation
      */
-    void fill(BlockVolumeFiller filler, Cause cause);
+    void fill(BlockVolumeFiller filler);
 
 }

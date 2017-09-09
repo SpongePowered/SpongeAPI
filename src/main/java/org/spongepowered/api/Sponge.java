@@ -33,6 +33,7 @@ import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.property.PropertyRegistry;
 import org.spongepowered.api.data.property.PropertyStore;
+import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.plugin.PluginManager;
@@ -68,6 +69,7 @@ public final class Sponge {
     @Inject private static ChannelRegistrar channelRegistrar;
 
     @Inject private static TeleportHelper teleportHelper;
+    @Inject private static CauseStackManager causeStackManager;
 
     private static <T> T check(@Nullable T instance) {
         checkState(instance != null, "Sponge has not been initialized!");
@@ -251,6 +253,17 @@ public final class Sponge {
      */
     public static Optional<GameDictionary> getDictionary() {
         return getGame().getGameDictionary();
+    }
+
+    /**
+     * Gets the {@link CauseStackManager} instance from the
+     * {@link Game} instance.
+     *
+     * @see Game#getCauseStackManager()
+     * @return The cause stack manager instance
+     */
+    public static CauseStackManager getCauseStackManager() {
+        return check(causeStackManager);
     }
 
 }

@@ -191,7 +191,7 @@ public interface DamageModifier {
             }
 
             @Override
-            public int hashCode(){
+            public int hashCode() {
                 return Objects.hashCode(this.type, this.cause);
             }
 

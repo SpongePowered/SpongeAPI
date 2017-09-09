@@ -30,7 +30,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.text.channel.ChatTypeMessageReceiver;
 import org.spongepowered.api.text.channel.MessageReceiver;
@@ -419,7 +418,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
      * @param explosion The explosion to cause
      * @param cause The cause for the explosion
      */
-    void triggerExplosion(Explosion explosion, Cause cause);
+    void triggerExplosion(Explosion explosion);
 
     /**
      * Gets the portal agent, used for manipulating teleporters.
@@ -439,7 +438,7 @@ public interface World extends Extent, WeatherUniverse, Viewer, ContextSource, M
     MutableBiomeVolumeWorker<World> getBiomeWorker();
 
     @Override
-    MutableBlockVolumeWorker<World> getBlockWorker(Cause cause);
+    MutableBlockVolumeWorker<World> getBlockWorker();
 
     /**
      * Instructs the world to save all data.

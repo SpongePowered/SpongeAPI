@@ -22,22 +22,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.spawn.common;
-
-import org.spongepowered.api.event.cause.entity.spawn.SpawnCause;
-import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
-
-public abstract class AbstractSpawnCause implements SpawnCause {
-
-    protected final SpawnType spawnType;
-
-    protected AbstractSpawnCause(AbstractSpawnCauseBuilder<?, ?> builder) {
-        this.spawnType = builder.spawnType;
-    }
-
-    @Override
-    public SpawnType getType() {
-        return this.spawnType;
-    }
-
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.api.event.cause.entity.teleport;

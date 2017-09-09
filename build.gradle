@@ -171,6 +171,7 @@ sortClassFields {
     add 'main', 'org.spongepowered.api.entity.ai.GoalTypes'
     add 'main', 'org.spongepowered.api.entity.EntityTypes'
     add 'main', 'org.spongepowered.api.entity.living.player.gamemode.GameModes'
+    add 'main', 'org.spongepowered.api.event.cause.EventContextKeys'
     add 'main', 'org.spongepowered.api.event.cause.entity.damage.DamageModifierTypes'
     add 'main', 'org.spongepowered.api.event.cause.entity.damage.DamageTypes'
     add 'main', 'org.spongepowered.api.event.cause.entity.damage.source.DamageSources'

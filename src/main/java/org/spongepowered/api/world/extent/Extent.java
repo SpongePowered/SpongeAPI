@@ -35,8 +35,6 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.data.property.LocationBasePropertyHolder;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
@@ -180,85 +178,61 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     }
 
     /**
-     * Sets the block at the given position in the world with the provided
-     * {@link Cause} will be used for any events thrown. Note that the
-     * difference between this an {@link MutableBlockVolume#setBlock(Vector3i, BlockState, Cause)} is
-     * that no block tracking chaining will take place. Note that there is
-     * a requirement that the {@link PluginContainer} of the plugin calling
-     * this method is <strong>REQUIRED</strong>.
+     * Sets the block at the given position in the world.
      *
      * @param position The position
      * @param blockState The block
      * @param flag The various change flags controlling some interactions
-     * @param cause The cause to use
      * @return Whether the block change was successful
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
-    default boolean setBlock(Vector3i position, BlockState blockState, BlockChangeFlag flag, Cause cause) {
-        return setBlock(position.getX(), position.getY(), position.getZ(), blockState, flag, cause);
+    default boolean setBlock(Vector3i position, BlockState blockState, BlockChangeFlag flag) {
+        return setBlock(position.getX(), position.getY(), position.getZ(), blockState, flag);
     }
 
     /**
-     * Sets the block at the given position in the world with the provided
-     * {@link Cause} will be used for any events thrown. Note that the
-     * difference between this an {@link MutableBlockVolume#setBlock(Vector3i, BlockState, Cause)} is
-     * that no block tracking chaining will take place. Note that there is
-     * a requirement that the {@link PluginContainer} of the plugin calling
-     * this method is <strong>REQUIRED</strong>.
+     * Sets the block at the given position in the world.
      *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      * @param blockState The block
      * @param flag The various change flags controlling some interactions
-     * @param cause The cause to use
      * @return Whether the block change was successful
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
-    boolean setBlock(int x, int y, int z, BlockState blockState, BlockChangeFlag flag, Cause cause);
+    boolean setBlock(int x, int y, int z, BlockState blockState, BlockChangeFlag flag);
 
     /**
-     * Sets the block at the given position in the world with the provided
-     * {@link Cause} will be used for any events thrown. Note that the
-     * difference between this an {@link MutableBlockVolume#setBlockType(Vector3i, BlockType, Cause)} is
-     * that no block tracking chaining will take place. Note that there is
-     * a requirement that the {@link PluginContainer} of the plugin calling
-     * this method is <strong>REQUIRED</strong>.
+     * Sets the block at the given position in the world.
      *
      * @param position The position
      * @param type The block type
      * @param flag The various change flags controlling some interactions
-     * @param cause The cause to use
      * @return Whether the block change was successful
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
-    default boolean setBlockType(Vector3i position, BlockType type, BlockChangeFlag flag, Cause cause) {
-        return setBlock(position.getX(), position.getY(), position.getZ(), type.getDefaultState(), flag, cause);
+    default boolean setBlockType(Vector3i position, BlockType type, BlockChangeFlag flag) {
+        return setBlock(position.getX(), position.getY(), position.getZ(), type.getDefaultState(), flag);
     }
 
     /**
-     * Sets the block at the given position in the world with the provided
-     * {@link Cause} will be used for any events thrown. Note that the
-     * difference between this an {@link MutableBlockVolume#setBlockType(Vector3i, BlockType, Cause)} is
-     * that no block tracking chaining will take place. Note that there is
-     * a requirement that the {@link PluginContainer} of the plugin calling
-     * this method is <strong>REQUIRED</strong>.
+     * Sets the block at the given position in the world.
      *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
      * @param type The block
      * @param flag The various change flags controlling some interactions
-     * @param cause The cause to use
      * @return Whether the block change was successful
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
-    default boolean setBlockType(int x, int y, int z, BlockType type, BlockChangeFlag flag, Cause cause) {
-        return setBlock(x, y, z, type.getDefaultState(), flag, cause);
+    default boolean setBlockType(int x, int y, int z, BlockType type, BlockChangeFlag flag) {
+        return setBlock(x, y, z, type.getDefaultState(), flag);
     }
 
     /**
@@ -304,7 +278,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param cause The cause of the snapshot restore
      * @return true if the restore was successful, false otherwise
      */
-    boolean restoreSnapshot(BlockSnapshot snapshot, boolean force, BlockChangeFlag flag, Cause cause);
+    boolean restoreSnapshot(BlockSnapshot snapshot, boolean force, BlockChangeFlag flag);
 
     /**
      * Restores the {@link BlockSnapshot} at the given position.
@@ -323,8 +297,8 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param cause The cause of this operation
      * @return true if the restore was successful, false otherwise
      */
-    default boolean restoreSnapshot(Vector3i position, BlockSnapshot snapshot, boolean force, BlockChangeFlag flag, Cause cause) {
-        return restoreSnapshot(position.getX(), position.getY(), position.getZ(), snapshot, force, flag, cause);
+    default boolean restoreSnapshot(Vector3i position, BlockSnapshot snapshot, boolean force, BlockChangeFlag flag) {
+        return restoreSnapshot(position.getX(), position.getY(), position.getZ(), snapshot, force, flag);
     }
 
     /**
@@ -346,7 +320,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
      * @param cause The cause of the snapshot restore
      * @return true if the restore was successful, false otherwise
      */
-    boolean restoreSnapshot(int x, int y, int z, BlockSnapshot snapshot, boolean force, BlockChangeFlag flag, Cause cause);
+    boolean restoreSnapshot(int x, int y, int z, BlockSnapshot snapshot, boolean force, BlockChangeFlag flag);
 
     /**
      * Gets a list of {@link ScheduledBlockUpdate}s on this block.
@@ -435,7 +409,7 @@ public interface Extent extends EntityUniverse, TileEntityVolume, InteractableVo
     MutableBiomeVolumeWorker<? extends Extent> getBiomeWorker();
 
     @Override
-    MutableBlockVolumeWorker<? extends Extent> getBlockWorker(Cause cause);
+    MutableBlockVolumeWorker<? extends Extent> getBlockWorker();
 
     /**
      * Gets the {@link UUID}, if available, of the user who created the

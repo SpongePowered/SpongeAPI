@@ -26,7 +26,6 @@ package org.spongepowered.api.entity.explosive;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.FuseData;
-import org.spongepowered.api.event.cause.Cause;
 
 /**
  * Represents an explosive that detonates after its fuse has expired.
@@ -54,17 +53,15 @@ public interface FusedExplosive extends Explosive {
      * Primes this explosive to detonate after the amount of ticks that
      * this entity explodes in defined by {@link Keys#FUSE_DURATION}.
      *
-     * @param cause The cause of this primed entity
      * @throws IllegalStateException if explosive already primed
      */
-    void prime(Cause cause);
+    void prime();
 
     /**
      * Cancels an actively primed explosive.
      *
-     * @param cause The cause for diffusion
      * @throws IllegalStateException if explosive is not primed
      */
-    void defuse(Cause cause);
+    void defuse();
 
 }

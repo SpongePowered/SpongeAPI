@@ -28,7 +28,6 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExplosionRadiusData;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.Cause;
 
 /**
  * Represents an explosive entity that explodes.
@@ -58,9 +57,7 @@ public interface Explosive extends Entity {
 
     /**
      * Detonates this explosive as soon as possible.
-     *
-     * @param cause The cause of detonation
      */
-    void detonate(Cause cause);
+    void detonate();
 
 }

@@ -186,8 +186,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#durationOnUse()
      */
-    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION_ON_USE
-            = KeyFactory.fake("AREA_EFFECT_CLOUD_DURATION_ON_USE");
+    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_DURATION_ON_USE = KeyFactory.fake("AREA_EFFECT_CLOUD_DURATION_ON_USE");
 
     /**
      * Represents the {@link Key} for the particle type of an
@@ -219,8 +218,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#radiusOnUse()
      */
-    public static final Key<MutableBoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_PER_TICK
-            = KeyFactory.fake("AREA_EFFECT_CLOUD_RADIUS_PER_TICK");
+    public static final Key<MutableBoundedValue<Double>> AREA_EFFECT_CLOUD_RADIUS_PER_TICK = KeyFactory.fake("AREA_EFFECT_CLOUD_RADIUS_PER_TICK");
 
     /**
      * Represents the {@link Key} for the delay (in ticks) after which an
@@ -229,8 +227,7 @@ public final class Keys {
      *
      * @see AreaEffectCloudData#applicationDelay()
      */
-    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_REAPPLICATION_DELAY
-            = KeyFactory.fake("AREA_EFFECT_CLOUD_REAPPLICATION_DELAY");
+    public static final Key<MutableBoundedValue<Integer>> AREA_EFFECT_CLOUD_REAPPLICATION_DELAY = KeyFactory.fake("AREA_EFFECT_CLOUD_REAPPLICATION_DELAY");
 
     /**
      * Represents the {@link Key} for the duration in ticks after which an
@@ -1130,6 +1127,7 @@ public final class Keys {
      * @see InWallData#inWall()
      */
     public static final Key<Value<Boolean>> IN_WALL = KeyFactory.fake("IN_WALL");
+
     /**
      * Represents the {@link Key} for the state whether a {@link Ageable}
      * entity is considered an "adult" and may affect breeding capabilities.
@@ -1879,8 +1877,7 @@ public final class Keys {
      *
      * @see MobSpawnerData#nextEntityToSpawn()
      */
-    public static final Key<Value<WeightedSerializableObject<EntityArchetype>>> SPAWNER_NEXT_ENTITY_TO_SPAWN = KeyFactory
-            .fake("SPAWNER_NEXT_ENTITY_TO_SPAWN");
+    public static final Key<Value<WeightedSerializableObject<EntityArchetype>>> SPAWNER_NEXT_ENTITY_TO_SPAWN = KeyFactory.fake("SPAWNER_NEXT_ENTITY_TO_SPAWN");
 
     /**
      * Represents the {@link Key} for the remaining number of ticks to pass
@@ -2139,7 +2136,6 @@ public final class Keys {
      * @see InvisibilityData#ignoresCollisionDetection()
      */
     public static final Key<Value<Boolean>> VANISH_IGNORES_COLLISION = KeyFactory.fake("VANISH_IGNORES_COLLISION");
-
 
     /**
      * Represents the {@link Key} for

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -41,10 +40,9 @@ public interface Archetype<S extends LocatableSnapshot<S>, E> extends DataHolder
      * Creates a new instance based on this archetype at the given location.
      * 
      * @param location The location to create the new instance at
-     * @param cause The cause of the creation
      * @return The created type, if successful
      */
-    Optional<E> apply(Location<World> location, Cause cause);
+    Optional<E> apply(Location<World> location);
 
     /**
      * Creates a new immutable snapshot based on this archetype.

@@ -29,13 +29,15 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.collect.MapMaker;
 import com.google.inject.Singleton;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.SpongeEventFactory;
-import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.EventContextKeys;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 
 import java.util.Optional;
 import java.util.concurrent.ConcurrentMap;
+
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 
@@ -76,8 +78,12 @@ public class SimpleServiceManager implements ServiceManager {
 
         PluginContainer container = containerOptional.get();
         ProviderRegistration<?> oldProvider = this.providers.put(service, new Provider<>(container, service, provider));
-        Sponge.getEventManager().post(SpongeEventFactory.createChangeServiceProviderEvent(Cause.source(container).build(),
-                this.providers.get(service), Optional.ofNullable(oldProvider)));
+        try (CauseStackManager.StackFrame frame = Sponge.getCauseStackManager().pushCauseFrame()) {
+            Sponge.getCauseStackManager().addContext(EventContextKeys.SERVICE_MANAGER, this);
+            Sponge.getCauseStackManager().pushCause(container);
+            Sponge.getEventManager().post(SpongeEventFactory.createChangeServiceProviderEvent(Sponge.getCauseStackManager().getCurrentCause(),
+                    this.providers.get(service), Optional.ofNullable(oldProvider)));
+        }
     }
 
 

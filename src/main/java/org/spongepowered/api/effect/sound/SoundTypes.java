@@ -89,9 +89,9 @@ public final class SoundTypes {
 
     public static final SoundType BLOCK_END_GATEWAY_SPAWN = DummyObjectProvider.createFor(SoundType.class, "BLOCK_END_GATEWAY_SPAWN");
 
-    public static final SoundType BLOCK_END_PORTAL_SPAWN = DummyObjectProvider.createFor(SoundType.class, "BLOCK_END_PORTAL_SPAWN");
-
     public static final SoundType BLOCK_END_PORTAL_FRAME_FILL = DummyObjectProvider.createFor(SoundType.class, "BLOCK_END_PORTAL_FRAME_FILL");
+
+    public static final SoundType BLOCK_END_PORTAL_SPAWN = DummyObjectProvider.createFor(SoundType.class, "BLOCK_END_PORTAL_SPAWN");
 
     public static final SoundType BLOCK_FENCE_GATE_CLOSE = DummyObjectProvider.createFor(SoundType.class, "BLOCK_FENCE_GATE_CLOSE");
 

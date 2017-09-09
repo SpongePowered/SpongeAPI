@@ -27,7 +27,6 @@ package org.spongepowered.api.world.extent;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.extent.worker.BlockVolumeWorker;
@@ -214,6 +213,6 @@ public interface BlockVolume {
      * @param cause The cause for the block worker to use for changes
      * @return The block worker
      */
-    BlockVolumeWorker<? extends BlockVolume> getBlockWorker(Cause cause);
+    BlockVolumeWorker<? extends BlockVolume> getBlockWorker();
 
 }

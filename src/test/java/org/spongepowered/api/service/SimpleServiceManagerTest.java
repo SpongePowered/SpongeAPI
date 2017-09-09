@@ -31,7 +31,11 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventManager;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.util.test.TestHooks;
@@ -51,7 +55,16 @@ public class SimpleServiceManagerTest {
         when(this.testPluginContainer.getId()).thenReturn("TestPlugin");
         when(this.manager.fromInstance(this.testPlugin)).thenReturn(Optional.of(this.testPluginContainer));
 
+        Game game = mock(Game.class);
         TestHooks.setInstance("eventManager", mock(EventManager.class));
+        when(game.getEventManager()).thenReturn(mock(EventManager.class));
+        CauseStackManager csm = mock(CauseStackManager.class);
+        when(game.getCauseStackManager()).thenReturn(csm);
+        when(csm.pushCause(null)).thenReturn(csm);
+        when(csm.popCause()).thenReturn(null);
+        when(csm.getCurrentCause()).thenReturn(Cause.of(EventContext.empty(), this));
+        TestHooks.setGame(game);
+        TestHooks.setInstance("causeStackManager", csm);
     }
 
     @Test

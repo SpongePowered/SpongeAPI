@@ -22,23 +22,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.teleport.common;
+package org.spongepowered.api.event.cause;
 
-import org.spongepowered.api.event.cause.entity.teleport.PortalTeleportCause;
-import org.spongepowered.api.world.PortalAgent;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public abstract class AbstractPortalTeleportCause extends AbstractTeleportCause implements PortalTeleportCause {
+/**
+ * A key for values in the {@link EventContext}.
+ *
+ * @param <T> The type of the value stored with this key
+ */
+@CatalogedBy(EventContextKeys.class)
+public interface EventContextKey<T> extends CatalogType {
 
-    protected final PortalAgent agent;
-
-    protected AbstractPortalTeleportCause(AbstractPortalTeleportCauseBuilder<?, ?> builder) {
-        super(builder);
-        this.agent = builder.agent;
+    @SuppressWarnings("unchecked")
+    static <T> Builder<T> builder(Class<T> clazz) {
+        return Sponge.getRegistry().createBuilder(Builder.class).type(clazz);
     }
 
-    @Override
-    public PortalAgent getTeleporter() {
-        return this.agent;
-    }
+    /**
+     * Gets the allowed type for the value of this key.
+     * 
+     * @return The allowed type
+     */
+    Class<T> getAllowedType();
 
+    interface Builder<T> extends ResettableBuilder<EventContextKey<T>, Builder<T>> {
+
+        Builder<T> type(Class<T> tClass);
+
+        Builder<T> id(String id);
+
+        Builder<T> name(String name);
+
+        EventContextKey<T> build();
+
+        @Override
+        Builder<T> from(EventContextKey<T> value) throws UnsupportedOperationException;
+
+        @Override
+        Builder<T> reset();
+    }
 }
