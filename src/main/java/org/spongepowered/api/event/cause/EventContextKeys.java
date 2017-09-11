@@ -36,12 +36,11 @@ import org.spongepowered.api.event.cause.entity.dismount.DismountType;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnType;
 import org.spongepowered.api.event.cause.entity.teleport.TeleportType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ServiceManager;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.world.World;
-
-import java.util.UUID;
 
 /**
  * Standard keys for use within {@link EventContext}s.
@@ -89,6 +88,8 @@ public final class EventContextKeys {
 
     public static final EventContextKey<GameProfile> PLAYER_SIMULATED = createFor("PLAYER_SIMULATED");
 
+    public static final EventContextKey<PluginContainer> PLUGIN = createFor("PLUGIN");
+
     public static final EventContextKey<ProjectileSource> PROJECTILE_SOURCE = createFor("PROJECTILE_SOURCE");
 
     public static final EventContextKey<ServiceManager> SERVICE_MANAGER = createFor("SERVICE_MANAGER");
@@ -99,8 +100,9 @@ public final class EventContextKeys {
 
     public static final EventContextKey<ProjectileSource> THROWER = createFor("THROWER");
 
-    public static final EventContextKey<ItemStackSnapshot> WEAPON = createFor("WEAPON");
     public static final EventContextKey<ItemStackSnapshot> USED_ITEM = createFor("USED_ITEM");
+
+    public static final EventContextKey<ItemStackSnapshot> WEAPON = createFor("WEAPON");
 
     // SORTFIELDS:OFF
 
