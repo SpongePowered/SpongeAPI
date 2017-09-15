@@ -79,9 +79,9 @@ public class SimpleServiceManager implements ServiceManager {
         PluginContainer container = containerOptional.get();
         ProviderRegistration<?> oldProvider = this.providers.put(service, new Provider<>(container, service, provider));
         try (CauseStackManager.StackFrame frame = Sponge.getCauseStackManager().pushCauseFrame()) {
-            Sponge.getCauseStackManager().addContext(EventContextKeys.SERVICE_MANAGER, this);
-            Sponge.getCauseStackManager().pushCause(container);
-            Sponge.getEventManager().post(SpongeEventFactory.createChangeServiceProviderEvent(Sponge.getCauseStackManager().getCurrentCause(),
+            frame.addContext(EventContextKeys.SERVICE_MANAGER, this);
+            frame.pushCause(container);
+            Sponge.getEventManager().post(SpongeEventFactory.createChangeServiceProviderEvent(frame.getCurrentCause(),
                     this.providers.get(service), Optional.ofNullable(oldProvider)));
         }
     }
