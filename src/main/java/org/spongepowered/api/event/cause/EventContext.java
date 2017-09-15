@@ -97,6 +97,19 @@ public final class EventContext {
         return Optional.ofNullable((T) this.entries.get(key));
     }
 
+    @SuppressWarnings("unchecked")
+    public <T> Optional<T> findByName(String possibleName, Class<T> klass) {
+        checkNotNull(possibleName, "String names cannot be null");
+        checkNotNull(klass, "Type class cannot be null");
+        checkArgument(!possibleName.isEmpty(), "String names cannot be empty");
+        final String simplified = possibleName.toLowerCase().replace('_', ' ');
+        return (Optional<T>) this.entries.entrySet().stream()
+            .filter(entry -> entry.getKey().getName().toLowerCase().contains(simplified))
+            .map(Map.Entry::getValue)
+            .filter(klass::isInstance)
+            .findFirst();
+    }
+
     /**
      * Gets the value corresponding to the given key from the context.
      *

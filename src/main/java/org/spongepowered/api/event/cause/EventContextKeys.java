@@ -106,6 +106,65 @@ public final class EventContextKeys {
 
     // SORTFIELDS:OFF
 
+    public static final class Named {
+        // SORTFIELDS:ON
+
+        public static final String BLOCK_HIT = "BLOCK_HIT";
+
+        public static final String CREATOR = "CREATOR";
+
+        public static final String DAMAGE_TYPE = "DAMAGE_TYPE";
+
+        public static final String DISMOUNT_TYPE = "DISMOUNT_TYPE";
+
+        public static final String ENTITY_HIT = "ENTITY_HIT";
+
+        public static final String FAKE_PLAYER = "FAKE_PLAYER";
+
+        public static final String FIRE_SPREAD = "FIRE_SPREAD";
+
+        public static final String IGNITER = "IGNITER";
+
+        public static final String LAST_DAMAGE_SOURCE = "LAST_DAMAGE_SOURCE";
+
+        public static final String LEAVES_DECAY = "LEAVES_DECAY";
+
+        public static final String LIQUID_MIX = "LIQUID_MIX";
+
+        public static final String NOTIFIER = "NOTIFIER";
+
+        public static final String OWNER = "OWNER";
+
+        public static final String PISTON_EXTEND = "PISTON_EXTEND";
+
+        public static final String PISTON_RETRACT = "PISTON_RETRACT";
+
+        public static final String PLAYER = "PLAYER";
+
+        public static final String PLAYER_BREAK = "PLAYER_BREAK";
+
+        public static final String PLAYER_PLACE = "PLAYER_PLACE";
+
+        public static final String PLAYER_SIMULATED = "PLAYER_SIMULATED";
+
+        public static final String PLUGIN = "PLUGIN";
+
+        public static final String PROJECTILE_SOURCE = "PROJECTILE_SOURCE";
+
+        public static final String SERVICE_MANAGER = "SERVICE_MANAGER";
+
+        public static final String SPAWN_TYPE = "SPAWN_TYPE";
+
+        public static final String TELEPORT_TYPE = "TELEPORT_TYPE";
+
+        public static final String THROWER = "THROWER";
+
+        public static final String USED_ITEM = "USED_ITEM";
+
+        public static final String WEAPON = "WEAPON";
+        // SORTFIELDS:OFF
+
+    }
     @SuppressWarnings("unchecked")
     private static <T> EventContextKey<T> createFor(String id) {
         return DummyObjectProvider.createFor(EventContextKey.class, id);
