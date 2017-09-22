@@ -161,6 +161,63 @@ public interface CauseStackManager {
 
     interface StackFrame extends AutoCloseable {
 
+        /**
+         * Gets the current {@link Cause} object from the current cause stack.
+         *
+         * @return A cause of the current stack.
+         * @see CauseStackManager#getCurrentCause()
+         */
+        Cause getCurrentCause();
+
+        /**
+         * Gets an {@link EventContext} object on the current contextual
+         * information.
+         *
+         * @return The current event context
+         * @see CauseStackManager#getCurrentContext()
+         */
+        EventContext getCurrentContext();
+
+        /**
+         * Pushes an object to the current cause stack which will associate it with
+         * all events through from api actions until it is popped off again.
+         *
+         * @param obj The object to push to the stack
+         * @return The stack frame, for chaining
+         * @see CauseStackManager#pushCause(Object)
+         */
+        StackFrame pushCause(Object obj);
+
+        /**
+         * Pops the most recently pushed cause object off of the stack and returns
+         * it.
+         *
+         * @return The last pushed object
+         * @see CauseStackManager#popCause()
+         */
+        Object popCause();
+
+        /**
+         * Adds the given object to the current context under the given key.
+         *
+         * @param key The context key
+         * @param value The object
+         * @return The stack frame, for chaining
+         * @see EventContextKeys
+         * @see CauseStackManager#addContext(EventContextKey, Object)
+         */
+        <T> StackFrame addContext(EventContextKey<T> key, T value);
+
+        /**
+         * Removes the given context key from the current context.
+         *
+         * @param key The key to clear
+         * @return The existing context value, if it was present
+         * @see EventContextKeys
+         * @see CauseStackManager#removeContext(EventContextKey)
+         */
+        <T> Optional<T> removeContext(EventContextKey<T> key);
+
         @Override
         void close();
 

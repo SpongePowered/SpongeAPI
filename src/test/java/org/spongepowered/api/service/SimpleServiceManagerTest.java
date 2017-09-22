@@ -63,6 +63,12 @@ public class SimpleServiceManagerTest {
         when(csm.pushCause(null)).thenReturn(csm);
         when(csm.popCause()).thenReturn(null);
         when(csm.getCurrentCause()).thenReturn(Cause.of(EventContext.empty(), this));
+        CauseStackManager.StackFrame sf = mock(CauseStackManager.StackFrame.class);
+        when(sf.pushCause(null)).thenReturn(sf);
+        when(sf.addContext(null, null)).thenReturn(sf);
+        when(sf.popCause()).thenReturn(null);
+        when(sf.getCurrentCause()).thenReturn(Cause.of(EventContext.empty(), this));
+        when(csm.pushCauseFrame()).thenReturn(sf);
         TestHooks.setGame(game);
         TestHooks.setInstance("causeStackManager", csm);
     }
