@@ -87,6 +87,8 @@ public class TypeTokens {
 
     public static final TypeToken<MutableBoundedValue<Double>> BOUNDED_DOUBLE_VALUE_TOKEN = new TypeToken<MutableBoundedValue<Double>>() {private static final long serialVersionUID = -1;};
 
+    public static final TypeToken<MutableBoundedValue<Float>> BOUNDED_FLOAT_VALUE_TOKEN = new TypeToken<MutableBoundedValue<Float>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<MutableBoundedValue<Integer>> BOUNDED_INTEGER_VALUE_TOKEN = new TypeToken<MutableBoundedValue<Integer>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<MutableBoundedValue<Short>> BOUNDED_SHORT_VALUE_TOKEN = new TypeToken<MutableBoundedValue<Short>>() {private static final long serialVersionUID = -1;};
