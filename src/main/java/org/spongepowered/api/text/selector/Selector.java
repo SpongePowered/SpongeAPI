@@ -192,6 +192,7 @@ public interface Selector {
      * @param origin The source that should be considered the origin of this
      *        selector
      * @return The matched entities
+     * @deprecated Use {@link #resolve(CommandSource)}
      */
     @Deprecated
     default List<Entity> resolveForce(CommandSource origin) {
@@ -204,6 +205,7 @@ public interface Selector {
      *
      * @param extent The extents to search for targets
      * @return The matched entities
+     * @deprecated Use {@link #resolve(Extent[])}
      */
     @Deprecated
     default List<Entity> resolveForce(Extent... extent) {
@@ -216,6 +218,7 @@ public interface Selector {
      *
      * @param extent The extents to search for targets
      * @return The matched entities
+     * @deprecated Use {@link #resolve(Collection)}
      */
     @Deprecated
     default List<Entity> resolveForce(Collection<? extends Extent> extent) {
@@ -228,6 +231,7 @@ public interface Selector {
      *
      * @param location The location to resolve the selector around
      * @return The matched entities
+     * @deprecated Use {@link #resolve(Location)}
      */
     @Deprecated
     default List<Entity> resolveForce(Location<World> location) {
