@@ -187,6 +187,54 @@ public interface Selector {
     List<Entity> resolve(Location<World> location);
 
     /**
+     * Resolves this {@link Selector} to a list of entities around the origin.
+     *
+     * @param origin The source that should be considered the origin of this
+     *        selector
+     * @return The matched entities
+     */
+    @Deprecated
+    default List<Entity> resolveForce(CommandSource origin) {
+        return resolve(origin);
+    }
+
+    /**
+     * Resolves this {@link Selector} to a list of entities around (0|0|0) in
+     * the given {@link Extent Extent(s)}.
+     *
+     * @param extent The extents to search for targets
+     * @return The matched entities
+     */
+    @Deprecated
+    default List<Entity> resolveForce(Extent... extent) {
+        return resolve(extent);
+    }
+
+    /**
+     * Resolves this {@link Selector} to a list of entities around (0|0|0) in
+     * the given {@link Extent Extent(s)}.
+     *
+     * @param extent The extents to search for targets
+     * @return The matched entities
+     */
+    @Deprecated
+    default List<Entity> resolveForce(Collection<? extends Extent> extent) {
+        return resolve(extent);
+    }
+
+    /**
+     * Resolves this {@link Selector} to a list of entities around the given
+     * {@link Location}.
+     *
+     * @param location The location to resolve the selector around
+     * @return The matched entities
+     */
+    @Deprecated
+    default List<Entity> resolveForce(Location<World> location) {
+        return resolve(location);
+    }
+
+    /**
      * Converts this {@link Selector} to a valid selector string.
      *
      * @return A valid {@link Selector} string that can be inserted into a
