@@ -7,9 +7,14 @@ src/main/java/org/spongepowered/api/data/** @gabizou
 src/main/java/org/spongepowered/api/effect/** @gabizou
 src/main/java/org/spongepowered/api/entity/** @gabizou
 src/main/java/org/spongepowered/api/entity/ai/** @Zidane
+src/main/java/org/spongepowered/api/event/cause/** @Deamon5550
+src/main/java/org/spongepowered/api/event/filter/** @Deamon5550
 src/main/java/org/spongepowered/api/item/inventory/** @Faithcaio
 src/main/java/org/spongepowered/api/item/recipe/** @Faithcaio
 src/main/java/org/spongepowered/api/profile/** @kashike
 src/main/java/org/spongepowered/api/registry/** @gabizou
 src/main/java/org/spongepowered/api/text/** @kashike @minecrell
 src/main/java/org/spongepowered/api/world/gamerule/** @kashike
+src/main/java/org/spongepowered/api/world/biome/** @Deamon5550
+src/main/java/org/spongepowered/api/world/gen/** @Deamon5550
+src/main/java/org/spongepowered/api/world/schematic/** @Deamon5550
