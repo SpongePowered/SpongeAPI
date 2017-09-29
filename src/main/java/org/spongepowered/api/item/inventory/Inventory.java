@@ -61,6 +61,15 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
     Inventory parent();
 
     /**
+     * Gets the root {@link Inventory} of this {@link Inventory}.
+     * This is equivalent to calling {@link #parent()} until it returns itself.
+     *
+     * @return the root inventory, returns this inventory if there is no
+     *       parent (this is a top-level inventory)
+     */
+    Inventory root();
+
+    /**
      * Returns an iterable view of all {@link Slot}s (leaf nodes) in this
      * Inventory.
      *
