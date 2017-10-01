@@ -26,10 +26,11 @@ package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.event.action.InteractEvent;
 import org.spongepowered.api.event.entity.living.humanoid.HandInteractEvent;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
- * Base event for all interactions with an @{link ItemStack} in hand.
+ * Base event for all interactions with an {@link ItemStack} in hand.
  * 
  * <p>Note: Canceling this event will halt any future actions from
  * occuring.</p>

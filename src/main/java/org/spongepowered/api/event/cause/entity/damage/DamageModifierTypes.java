@@ -142,10 +142,19 @@ public final class DamageModifierTypes {
     public static final DamageModifierType SHIELD = DummyObjectProvider.createFor(DamageModifierType.class, "SHIELD");
 
     /**
-     * Represents a {@link DamageModifier} that is applied for a sweaping
+     * Represents a {@link DamageModifier} that is applied for a sweeping
      * attack.
      */
-    public static final DamageModifierType SWEAPING = DummyObjectProvider.createFor(DamageModifierType.class, "SWEAPING");
+    public static final DamageModifierType SWEEPING = DummyObjectProvider.createFor(DamageModifierType.class, "SWEEPING");
+
+    /**
+     * Represents a {@link DamageModifier} that is applied for a sweaping
+     * attack.
+     *
+     * @deprecated use {@link #SWEEPING}
+     */
+    @Deprecated
+    public static final DamageModifierType SWEAPING = SWEEPING;
 
     /**
      * Represents the {@link DamageModifier} that will modify damage from

@@ -45,7 +45,7 @@ public class FluidViscosityProperty extends IntProperty {
      */
     public FluidViscosityProperty(int value) {
         super(value);
-        checkArgument(value >= 0, "Temperature of a fluid cannot be less than zero!");
+        checkArgument(value >= 0, "Viscosity of a fluid cannot be less than zero!");
     }
 
     /**

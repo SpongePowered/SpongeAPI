@@ -39,7 +39,7 @@ public final class BossBarOverlays {
     public static final BossBarOverlay NOTCHED_10 = DummyObjectProvider.createFor(BossBarOverlay.class, "NOTCHED_10");
 
     /**
-     * An overlay with 10 segments.
+     * An overlay with 12 segments.
      */
     public static final BossBarOverlay NOTCHED_12 = DummyObjectProvider.createFor(BossBarOverlay.class, "NOTCHED_12");
 

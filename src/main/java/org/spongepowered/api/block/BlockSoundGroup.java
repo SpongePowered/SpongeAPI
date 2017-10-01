@@ -33,16 +33,16 @@ import org.spongepowered.api.entity.living.Living;
 public interface BlockSoundGroup {
 
     /**
-     * Gets the pitch used when playing sounds.
+     * Gets the volume used when playing sounds.
      *
-     * @return The pitch
+     * @return The volume
      */
     double getVolume();
 
     /**
-     * Gets the volume used when playing sounds.
+     * Gets the pitch used when playing sounds.
      *
-     * @return The volume
+     * @return The pitch
      */
     double getPitch();
 

@@ -71,7 +71,7 @@ public interface ListValue<E> extends CollectionValue<E, List<E>, ListValue<E>, 
 
     /**
      * Removes the element at the specified position in this list (optional
-     * operation).  Shifts any subsequent elements to the left, subtracts
+     * operation). Shifts any subsequent elements to the left, subtracts
      * one from their indices.
      *
      * @param index The index of the element to remove

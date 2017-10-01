@@ -152,7 +152,7 @@ public interface Objective {
     boolean removeScore(Score score);
 
     /**
-     * Removes the {@link Score} with the specified name from this objectie, if present.
+     * Removes the {@link Score} with the specified name from this objective, if present.
      *
      * @param name The name of the {@link Score} to remove.
      * @return Whether the score existed on this objective

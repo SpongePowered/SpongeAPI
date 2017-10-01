@@ -95,7 +95,7 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
 
     /**
      * Return the next sibling inventory, allows traversing the inventory
-     * hierarchy without using an iterator. If no more children, returns an
+     * hierarchy without using an iterator. If no more siblings, returns an
      * {@link EmptyInventory}.
      *
      * @param <T> expected inventory type, specified as generic to allow easy
