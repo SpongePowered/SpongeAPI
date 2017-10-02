@@ -28,6 +28,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.asset.Asset;
 import org.spongepowered.api.asset.AssetManager;
@@ -161,6 +162,18 @@ public interface PluginContainer {
      */
     default Logger getLogger() {
         return LoggerFactory.getLogger(getId());
+    }
+
+    /**
+     * Creates a catalog key with the {@link #getId() id} of
+     * this plugin as the namespace.
+     *
+     * @param value The value
+     * @return The catalog key
+     * @see CatalogKey#of(String, String)
+     */
+    default CatalogKey createCatalogKey(final String value) {
+        return CatalogKey.of(this.getId(), value);
     }
 
 }

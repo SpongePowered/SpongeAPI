@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.extra.modifier.empty;
 
+import org.spongepowered.api.CatalogKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.world.World;
@@ -54,8 +55,8 @@ public class VoidWorldGeneratorModifier implements WorldGeneratorModifier {
     }
 
     @Override
-    public String getId() {
-        return "sponge:void";
+    public CatalogKey getKey() {
+        return CatalogKey.sponge("void");
     }
 
     @Override

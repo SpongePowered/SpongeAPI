@@ -49,8 +49,19 @@ public interface CatalogType {
      * default/vanilla minecraft types.</p>
      *
      * @return The unique identifier of this dummy type
+     * @deprecated use {@link #getKey()}
      */
-    String getId();
+    @Deprecated
+    default String getId() {
+        return this.getKey().toString();
+    }
+
+    /**
+     * Gets the catalog key for this catalog type.
+     *
+     * @return The catalog key
+     */
+    CatalogKey getKey();
 
     /**
      * Gets the human-readable name of this individual {@link CatalogType}. This
@@ -59,6 +70,8 @@ public interface CatalogType {
      *
      * @return The human-readable name of this dummy type
      */
-    String getName();
+    default String getName() {
+        return this.getKey().getValue();
+    }
 
 }
