@@ -31,7 +31,6 @@ import com.google.common.collect.Iterables;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -52,14 +51,17 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
     @Override
     protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
         final String unformattedPattern = args.next();
-        Pattern pattern = getFormattedPattern(unformattedPattern);
-        Iterable<String> filteredChoices = Iterables.filter(getChoices(source), element -> pattern.matcher(element).find());
-        for (String el : filteredChoices) { // Match a single value
-            if (el.equalsIgnoreCase(unformattedPattern)) {
-                return Collections.singleton(getValue(el));
-            }
+        Iterable<String> choices = getChoices(source);
+
+        // Check for an exact match before we create the regex.
+        // We do this because anything with ^[abc] would not match [abc]
+        Optional<Object> exactMatch = getExactMatch(choices, unformattedPattern);
+        if (exactMatch.isPresent()) {
+            return exactMatch.get();
         }
-        Iterable<Object> ret = Iterables.transform(filteredChoices, this::getValue);
+
+        Pattern pattern = getFormattedPattern(unformattedPattern);
+        Iterable<Object> ret = Iterables.transform(Iterables.filter(choices, element -> pattern.matcher(element).find()), this::getValue);
 
         if (!ret.iterator().hasNext()) {
             throw args.createError(t("No values matching pattern '%s' present for %s!", unformattedPattern, getKey() == null
@@ -84,6 +86,18 @@ public abstract class PatternMatchingCommandElement extends CommandElement {
         }
         return Pattern.compile(input, Pattern.CASE_INSENSITIVE);
 
+    }
+
+    /**
+     * Tests a string against a set of valid choices to see if it is a
+     * case-insensitive match.
+     *
+     * @param choices The choices available to match against
+     * @param potentialChoice The potential choice
+     * @return If matched, an {@link Optional} containing the matched value
+     */
+    protected Optional<Object> getExactMatch(final Iterable<String> choices, final String potentialChoice) {
+        return Iterables.tryFind(choices, potentialChoice::equalsIgnoreCase).toJavaUtil().map(this::getValue);
     }
 
     /**

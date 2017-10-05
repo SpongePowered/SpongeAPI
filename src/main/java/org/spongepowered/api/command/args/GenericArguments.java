@@ -1118,33 +1118,25 @@ public final class GenericArguments {
         }
     }
 
-    private static class UserCommandElement extends PatternMatchingCommandElement {
+    private static class UserCommandElement extends SelectorCommandElement {
 
-        private final PlayerCommandElement possiblePlayer;
         private final boolean returnSource;
 
         protected UserCommandElement(@Nullable Text key, boolean returnSource) {
             super(key);
-            this.possiblePlayer = new PlayerCommandElement(key, returnSource);
             this.returnSource = returnSource;
         }
 
         @Nullable
         @Override
         protected Object parseValue(CommandSource source, CommandArgs args) throws ArgumentParseException {
-            Object state = args.getState();
             try {
-                return this.possiblePlayer.parseValue(source, args);
-            } catch (ArgumentParseException ex) {
-                args.setState(state);
-                try {
-                    return super.parseValue(source, args);
-                } catch (ArgumentParseException ex2) {
-                    if (this.returnSource && source instanceof User) {
-                        return source;
-                    }
-                    throw ex2;
+                return Iterables.filter((Iterable<Entity>) super.parseValue(source, args), e -> e instanceof User);
+            } catch (ArgumentParseException ex2) {
+                if (this.returnSource && source instanceof User) {
+                    return source;
                 }
+                throw ex2;
             }
         }
 
@@ -1160,6 +1152,25 @@ public final class GenericArguments {
         @Override
         protected Object getValue(String choice) throws IllegalArgumentException {
             return Sponge.getGame().getServiceManager().provideUnchecked(UserStorageService.class).get(choice).get();
+        }
+
+        @Override
+        public void parse(CommandSource source, CommandArgs args, CommandContext context) throws ArgumentParseException {
+            // If we're not completing, then we want to use the UserStorageService directly
+            // to get any direct match.
+            if (getKey() != null && !context.hasAny(CommandContext.TAB_COMPLETION)) {
+                Object state = args.getState();
+                String element = args.next();
+                Optional<User> match = Sponge.getServiceManager().provideUnchecked(UserStorageService.class).get(element);
+                if (match.isPresent()) {
+                    context.putArg(getKey(), match.get());
+                    return;
+                }
+
+                args.setState(state);
+            }
+
+            super.parse(source, args, context);
         }
     }
 
