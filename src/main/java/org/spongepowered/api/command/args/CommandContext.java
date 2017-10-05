@@ -50,6 +50,11 @@ public final class CommandContext {
      */
     public static final String TARGET_BLOCK_ARG = "targetblock-pos048658"; // Random junk afterwards so we don't accidentally conflict with other args
 
+    /**
+     * The argument key to indicate that a tab completion is taking place.
+     */
+    public static final String TAB_COMPLETION = "tab-complete-50456"; // Random junk afterwards so we don't accidentally conflict with other args
+
     private final Multimap<String, Object> parsedArgs;
 
     /**
