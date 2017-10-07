@@ -604,6 +604,14 @@ public interface Inventory extends Iterable<Inventory>, Nameable {
         Builder property(String name, InventoryProperty<?, ?> property);
 
         /**
+         * Sets an {@link InventoryProperty} with its default key.
+         *
+         * @param property The property
+         * @return Fluent pattern
+         */
+        Builder property(InventoryProperty<?, ?> property);
+
+        /**
          * Sets the {@link Carrier} that carries the Inventory.
          *
          * @param carrier The Carrier
