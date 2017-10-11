@@ -26,12 +26,13 @@ package org.spongepowered.api.world.biome;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.MoreObjects;
+import java.util.function.DoubleFunction;
+
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.weighted.SeededVariableAmount;
 import org.spongepowered.api.util.weighted.VariableAmount;
 
-import java.util.function.Function;
+import com.google.common.base.MoreObjects;
 
 /**
  * Represents a layer of BlockStates specific to a biome which may be placed in
@@ -39,7 +40,7 @@ import java.util.function.Function;
  */
 public class GroundCoverLayer {
 
-    private Function<Double, BlockState> block;
+    private DoubleFunction<BlockState> block;
     private SeededVariableAmount<Double> depth;
 
     /**
@@ -59,7 +60,7 @@ public class GroundCoverLayer {
      *        place at this layer
      * @param depth The depth of the layer
      */
-    public GroundCoverLayer(Function<Double, BlockState> block, SeededVariableAmount<Double> depth) {
+    public GroundCoverLayer(DoubleFunction<BlockState> block, SeededVariableAmount<Double> depth) {
         this.block = checkNotNull(block, "block");
         this.depth = checkNotNull(depth, "depth");
     }
@@ -69,7 +70,7 @@ public class GroundCoverLayer {
      * 
      * @return The block state
      */
-    public Function<Double, BlockState> getBlockState() {
+    public DoubleFunction<BlockState> getBlockState() {
         return this.block;
     }
 
@@ -79,7 +80,7 @@ public class GroundCoverLayer {
      * 
      * @param block The block state function
      */
-    public void setBlockState(Function<Double, BlockState> block) {
+    public void setBlockState(DoubleFunction<BlockState> block) {
         this.block = checkNotNull(block, "block");
     }
 
